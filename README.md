@@ -13,6 +13,7 @@
 - [技术架构与模块边界](docs/03-architecture.md)
 - [数据配置和 Schema 设计](docs/04-content-schema.md)
 - [设计决策记录](docs/05-design-decisions.md)
+- [医院纵向切片冻结快照与实现入口](docs/06-vertical-slice-design-freeze-v0.1.md)
 
 ## 游戏设计导航
 

@@ -4,6 +4,21 @@
 
 项目当前处于前期设计与纵向切片准备阶段，目前尚未开始正式功能开发。
 
+## 开发
+
+```bash
+npm install
+npm run dev
+npm run typecheck
+npm run test:run
+npm run build
+```
+
+- `src/core`：纯 TypeScript 规则与结算。
+- `src/content`：版本化内容配置。
+- `src/state`：应用状态与持久化适配。
+- `src/ui`：不拥有规则的展示组件。
+
 ## 文档入口
 
 - [项目协作规则](AGENTS.md)

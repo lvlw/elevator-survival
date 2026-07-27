@@ -6,6 +6,8 @@ export {
   HOSPITAL_ITEM_IDS,
   HOSPITAL_SLICE_ITEM_IDS,
   hospitalItemCatalog,
+  hospitalItemEquipmentCatalog,
+  hospitalItemEquipmentProfiles,
   hospitalItemResourceCatalog,
   hospitalItemResourceProfiles,
 } from './hospital-v0.1/items'

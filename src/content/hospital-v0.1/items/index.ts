@@ -7,3 +7,5 @@ export {
   hospitalItemResourceProfiles,
 } from './hospital-item-resource-profiles'
 export { hospitalItemResourceCatalog } from './hospital-item-resource-catalog'
+export { hospitalItemEquipmentCatalog } from './hospital-item-equipment-catalog'
+export { hospitalItemEquipmentProfiles } from './hospital-item-equipment-profiles'

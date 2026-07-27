@@ -3,6 +3,11 @@ export {
   hospitalSliceV01RuleConfig,
 } from './hospital-v0.1/rule-config'
 export {
+  HOSPITAL_ITEM_IDS,
+  HOSPITAL_SLICE_ITEM_IDS,
+  hospitalItemCatalog,
+} from './hospital-v0.1/items'
+export {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
   HOSPITAL_EDGE_IDS,
   HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,

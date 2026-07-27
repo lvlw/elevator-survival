@@ -19,6 +19,9 @@ describe('hospitalSliceV01RuleConfig', () => {
 
     expect(config.metadata.rulesVersion).toBe(HOSPITAL_SLICE_RULES_VERSION)
     expect(config.scene.totalTime).toBe(200)
+    expect(config.scene.travelTimeModifiers).toEqual({
+      minorContusionTimeIncreasePercent: 10,
+    })
     expect(config.backpack).toMatchObject({
       width: 6,
       height: 4,
@@ -97,6 +100,12 @@ describe('ruleConfigSchema', () => {
       'negative daily maintenance labor',
       (config: RuleConfigInput) => {
         config.maintenance.dailyBaseLabor.points = -1
+      },
+    ],
+    [
+      'negative minor contusion travel modifier',
+      (config: RuleConfigInput) => {
+        config.scene.travelTimeModifiers.minorContusionTimeIncreasePercent = -1
       },
     ],
   ])('rejects %s', (_name, mutate) => {

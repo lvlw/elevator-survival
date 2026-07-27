@@ -34,6 +34,9 @@ export const ruleConfigSchema = z
         sceneTimePerUnit: positiveInteger,
         minimumSceneTime: positiveInteger,
       }),
+      travelTimeModifiers: z.object({
+        minorContusionTimeIncreasePercent: nonNegativeInteger,
+      }),
     }),
     forcedReturn: z.object({
       effectiveTimePerBaseDamage: positiveInteger,

@@ -31,6 +31,9 @@ export const hospitalSliceV01RuleConfig = parseRuleConfig({
       sceneTimePerUnit: 10,
       minimumSceneTime: 10,
     },
+    travelTimeModifiers: {
+      minorContusionTimeIncreasePercent: 10,
+    },
   },
   forcedReturn: {
     effectiveTimePerBaseDamage: 20,

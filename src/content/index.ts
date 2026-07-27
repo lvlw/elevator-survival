@@ -6,6 +6,8 @@ export {
   HOSPITAL_ITEM_IDS,
   HOSPITAL_SLICE_ITEM_IDS,
   hospitalItemCatalog,
+  hospitalItemResourceCatalog,
+  hospitalItemResourceProfiles,
 } from './hospital-v0.1/items'
 export {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,

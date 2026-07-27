@@ -139,6 +139,12 @@ export const hospitalSliceV01RuleConfig = parseRuleConfig({
     },
   },
   maintenance: {
+    itemResourceMaximums: {
+      fireAxeDurability: 2,
+      heavyCoatIntegrity: 4,
+      crowbarDurability: 3,
+      toolkitDurability: 2,
+    },
     dailyBaseLabor: {
       points: 3,
       recoveryPerPoint: 1,

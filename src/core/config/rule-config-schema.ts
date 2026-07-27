@@ -154,6 +154,12 @@ export const ruleConfigSchema = z
       }),
     }),
     maintenance: z.object({
+      itemResourceMaximums: z.object({
+        fireAxeDurability: positiveInteger,
+        heavyCoatIntegrity: positiveInteger,
+        crowbarDurability: positiveInteger,
+        toolkitDurability: positiveInteger,
+      }),
       dailyBaseLabor: z.object({
         points: nonNegativeInteger,
         recoveryPerPoint: positiveInteger,

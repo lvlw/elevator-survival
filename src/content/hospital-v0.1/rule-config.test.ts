@@ -56,6 +56,12 @@ describe('hospitalSliceV01RuleConfig', () => {
 
   it('contains the frozen maintenance values', () => {
     expect(hospitalSliceV01RuleConfig.maintenance).toMatchObject({
+      itemResourceMaximums: {
+        fireAxeDurability: 2,
+        heavyCoatIntegrity: 4,
+        crowbarDurability: 3,
+        toolkitDurability: 2,
+      },
       dailyBaseLabor: { points: 3, recoveryPerPoint: 1 },
       materialRepair: {
         metalParts: { units: 1, mechanicalRepairPoints: 5 },
@@ -72,6 +78,18 @@ describe('hospitalSliceV01RuleConfig', () => {
 
 describe('ruleConfigSchema', () => {
   it.each([
+    [
+      'invalid fire axe durability maximum',
+      (config: RuleConfigInput) => {
+        config.maintenance.itemResourceMaximums.fireAxeDurability = 0
+      },
+    ],
+    [
+      'invalid item resource maximum',
+      (config: RuleConfigInput) => {
+        config.maintenance.itemResourceMaximums.crowbarDurability = 0
+      },
+    ],
     [
       'mismatched backpack cells',
       (config: RuleConfigInput) => {

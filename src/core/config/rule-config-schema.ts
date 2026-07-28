@@ -49,6 +49,7 @@ export const ruleConfigSchema = z
       width: positiveInteger,
       height: positiveInteger,
       totalCells: positiveInteger,
+      quickSlotCount: positiveInteger,
       weightBands: z.strictObject({
         normal: z.strictObject({
           min: nonNegativeInteger,

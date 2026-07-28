@@ -18,5 +18,5 @@
 | 玩家生命、流血、伤口、挫伤与镇痛 | DEC-026、DEC-031、DEC-034、DEC-035 | `combat.player`、`combat.escape`、`medical.painkiller`、`scene.postActionBleedingDamage` | `src/core/condition/` | `src/core/condition/condition.test.ts`、医院条件集成测试 | 已实现 | 基础状态和选择器已实现，医疗物品与日结算命令未实现。 |
 | 消防斧耐久2 | DEC-039 | `maintenance.itemResourceMaximums.fireAxeDurability` | 医院物品资源目录 | `hospital-item-resource-profiles.test.ts` | 已实现 | 只追踪资源状态，不代表消防斧攻击或维修配方已实现。 |
 | 统一 Effect 管线 | DEC-006 | 尚无正式实现配置 | 尚无 | 尚无 | 未实现 | 当前模块通过显式结果组合，未形成统一 Effect 编排层。 |
-| 快捷栏 | DEC-007、DEC-016 | 尚无实现配置 | 尚无 | 尚无 | 未实现 | 装备模块没有将快捷栏作为第四装备槽。 |
+| 快捷栏 | DEC-007、DEC-016 | `backpack.quickSlotCount`、医院快捷栏资格目录 | `src/core/quick-slot/`、医院快捷栏资格目录 | `src/core/quick-slot/quick-slot.test.ts`、医院快捷栏集成测试 | 已实现基础容器与转移 | 已实现实际单件实例、堆叠抽取、放回、槽间移动交换和显式移出；物品效果、命令编排、使用时间和UI仍未实现。 |
 | 战斗、搜索、日结算、存档与完整 Run 编排 | DEC-009、DEC-025、DEC-027、DEC-028、DEC-031、DEC-032 | 部分测试参数已存在 | 尚无完整命令链 | 现有测试仅覆盖独立规则或纸面参数 | 部分实现 | 配置和部分基础能力已存在，但完整玩法流程尚未实现。 |

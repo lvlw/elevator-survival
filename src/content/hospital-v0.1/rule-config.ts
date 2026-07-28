@@ -46,6 +46,7 @@ export const hospitalSliceV01RuleConfig = parseRuleConfig({
     width: 6,
     height: 4,
     totalCells: 24,
+    quickSlotCount: 2,
     weightBands: {
       normal: { min: 0, max: 16, timeIncreasePercent: 0 },
       loaded: { min: 17, max: 24, timeIncreasePercent: 10 },

@@ -51,5 +51,5 @@ export interface AdjustedTravelTimeResult {
   readonly finalTime: number
 }
 
-export type BackpackRules = FrozenRuleConfig['backpack']
+export type BackpackRules = Pick<FrozenRuleConfig['backpack'], 'weightBands'>
 export type CombatRules = FrozenRuleConfig['combat']

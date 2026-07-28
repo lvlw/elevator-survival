@@ -27,6 +27,7 @@ describe('hospitalSliceV01RuleConfig', () => {
       width: 6,
       height: 4,
       totalCells: 24,
+      quickSlotCount: 2,
     })
     expect(config.combat.player.maxHealth).toBe(12)
     expect(config.combat.infectedOrderly).toMatchObject({
@@ -78,6 +79,12 @@ describe('hospitalSliceV01RuleConfig', () => {
 })
 
 describe('ruleConfigSchema', () => {
+  it.each([0, -1, 1.5])('rejects invalid quick slot count %s', (count) => {
+    const invalidConfig = mutableConfigCopy()
+    invalidConfig.backpack.quickSlotCount = count
+    expect(ruleConfigSchema.safeParse(invalidConfig).success).toBe(false)
+  })
+
   it.each([
     [
       'invalid fire axe durability maximum',

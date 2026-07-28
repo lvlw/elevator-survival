@@ -11,6 +11,7 @@ import {
   type ItemInstance,
 } from '../../core/inventory'
 import {
+  applySceneExplorationEffects,
   createInitialSceneExplorationSnapshot,
   previewSceneMoveCommand,
   resolveSceneMoveCommand,
@@ -86,6 +87,32 @@ const scene = (
   )
 
 describe('hospital scene movement command', () => {
+  it('replays identical preview and resolution Effect plans into the same snapshot', () => {
+    const start = scene(HOSPITAL_NODE_IDS.elevatorAnteroom)
+    const command = {
+      edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall,
+    }
+    const preview = previewSceneMoveCommand(start, command, dependencies)
+    const resolved = resolveSceneMoveCommand(start, command, dependencies)
+    expect(preview.canExecute).toBe(true)
+    if (!preview.canExecute) throw new Error('正式移动预览必须成功')
+    expect(preview.result.effects).toEqual(resolved.result.effects)
+    expect(
+      applySceneExplorationEffects(
+        start,
+        preview.result.effects,
+        config.combat.player,
+      ),
+    ).toEqual(preview.result.snapshot)
+    expect(
+      applySceneExplorationEffects(
+        start,
+        resolved.result.effects,
+        config.combat.player,
+      ),
+    ).toEqual(resolved.snapshot)
+  })
+
   it('moves from the elevator anteroom to the emergency hall using the formal edge', () => {
     const result = resolveSceneMoveCommand(
       scene(HOSPITAL_NODE_IDS.elevatorAnteroom),
@@ -180,8 +207,9 @@ describe('hospital scene movement command', () => {
   })
 
   it('allows overtime movement and then performs a forced return', () => {
+    const start = scene(HOSPITAL_NODE_IDS.emergencyHall, 5)
     const result = resolveSceneMoveCommand(
-      scene(HOSPITAL_NODE_IDS.emergencyHall, 5),
+      start,
       { edgeId: HOSPITAL_EDGE_IDS.emergencyHallToPharmacy },
       dependencies,
     )
@@ -194,6 +222,13 @@ describe('hospital scene movement command', () => {
       currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
       remainingTime: 0,
     })
+    expect(
+      applySceneExplorationEffects(
+        start,
+        result.result.effects,
+        config.combat.player,
+      ),
+    ).toEqual(result.snapshot)
   })
 
   it('settles configured bleeding once after movement', () => {
@@ -209,8 +244,14 @@ describe('hospital scene movement command', () => {
   })
 
   it('keeps the movement destination when bleeding death outranks forced return', () => {
+    const start = scene(
+      HOSPITAL_NODE_IDS.emergencyHall,
+      5,
+      backpack(),
+      condition(1, true),
+    )
     const result = resolveSceneMoveCommand(
-      scene(HOSPITAL_NODE_IDS.emergencyHall, 5, backpack(), condition(1, true)),
+      start,
       { edgeId: HOSPITAL_EDGE_IDS.emergencyHallToPharmacy },
       dependencies,
     )
@@ -219,6 +260,13 @@ describe('hospital scene movement command', () => {
       currentNodeId: HOSPITAL_NODE_IDS.pharmacy,
     })
     expect(result.result.effects.some((effect) => effect.kind === 'scene-node-changed' && effect.reason === 'forced-return')).toBe(false)
+    expect(
+      applySceneExplorationEffects(
+        start,
+        result.result.effects,
+        config.combat.player,
+      ),
+    ).toEqual(result.snapshot)
   })
 
   it('marks an active move into the elevator safety node as safe-returned', () => {

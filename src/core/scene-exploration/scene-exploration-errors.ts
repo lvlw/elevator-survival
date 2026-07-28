@@ -13,6 +13,15 @@ export type SceneExplorationErrorCode =
   | 'CANNOT_CARRY'
   | 'NO_RETURN_ROUTE'
   | 'INVALID_INPUT'
+  | 'EMPTY_EFFECTS'
+  | 'UNKNOWN_EFFECT'
+  | 'INVALID_EFFECT_ORDER'
+  | 'EFFECT_NODE_MISMATCH'
+  | 'EFFECT_TIME_MISMATCH'
+  | 'EFFECT_HEALTH_MISMATCH'
+  | 'EFFECT_STATUS_MISMATCH'
+  | 'EFFECT_HEALTH_RESULT_MISMATCH'
+  | 'INCOMPLETE_EFFECT_PLAN'
 
 export class SceneExplorationError extends Error {
   readonly code: SceneExplorationErrorCode

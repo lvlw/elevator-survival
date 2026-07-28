@@ -6,6 +6,7 @@ export {
   createInitialSceneExplorationSnapshot,
   createSceneExplorationSnapshot,
 } from './scene-exploration-snapshot'
+export { applySceneExplorationEffects } from './scene-exploration-effects'
 export {
   previewSceneMoveCommand,
   resolveSceneMoveCommand,
@@ -13,6 +14,7 @@ export {
 export type {
   MoveThroughSceneEdgeCommand,
   SceneExplorationDependencies,
+  SceneExplorationEffect,
   SceneExplorationSnapshot,
   SceneExplorationStatus,
   SceneMoveEffect,
@@ -20,4 +22,5 @@ export type {
   SceneMoveHealthLossSource,
   SceneMovePreview,
   SceneMoveResolution,
+  SceneMoveTransitionPlan,
 } from './scene-exploration-types'

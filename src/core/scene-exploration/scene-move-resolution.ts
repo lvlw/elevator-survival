@@ -1,6 +1,5 @@
 import { deepFreeze } from '../config'
 import {
-  createPlayerCondition,
   hasMinorContusions,
 } from '../condition'
 import { calculateBackpackWeightSubtotal } from '../inventory'
@@ -12,6 +11,7 @@ import {
 } from '../scene-graph'
 import { resolveTimedSceneAction } from '../scene'
 import { SceneExplorationError } from './scene-exploration-errors'
+import { applySceneExplorationEffects } from './scene-exploration-effects'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
 import type {
   MoveThroughSceneEdgeCommand,
@@ -22,6 +22,7 @@ import type {
   SceneMoveEvaluation,
   SceneMovePreview,
   SceneMoveResolution,
+  SceneMoveTransitionPlan,
 } from './scene-exploration-types'
 
 function graphFailure(error: unknown): never {
@@ -68,7 +69,7 @@ function evaluate(
   snapshotInput: SceneExplorationSnapshot,
   command: MoveThroughSceneEdgeCommand,
   dependencies: SceneExplorationDependencies,
-): SceneMoveEvaluation {
+): SceneMoveTransitionPlan {
   const snapshot = createSceneExplorationSnapshot(snapshotInput, dependencies)
   if (snapshot.status !== 'active') {
     throw new SceneExplorationError('SCENE_NOT_ACTIVE', '场景已终止')
@@ -197,7 +198,6 @@ function evaluate(
         : sceneOutcome.kind === 'forced-return'
           ? 'forced-returned'
           : 'active'
-  let currentNodeId = traversal.toNodeId
   if (status === 'forced-returned') {
     effects.push({
       kind: 'scene-node-changed',
@@ -207,7 +207,6 @@ function evaluate(
       routeNodeIds: [...returnRoute.nodeIds],
       routeEdgeIds: [...returnRoute.edgeIds],
     })
-    currentNodeId = returnRoute.safetyNodeId
   }
   if (status !== snapshot.status) {
     effects.push({
@@ -222,38 +221,40 @@ function evaluate(
             : 'forced-return',
     })
   }
-  const nextSnapshot = createSceneExplorationSnapshot(
-    {
-      ...snapshot,
-      status,
-      currentNodeId,
-      remainingTime: sceneOutcome.clock.remainingTime,
-      condition: createPlayerCondition(
-        {
-          ...snapshot.condition,
-          currentHealth: sceneOutcome.vitals.currentHealth,
-          bleeding: sceneOutcome.vitals.bleeding,
-        },
-        dependencies.config.combat.player,
-      ),
+  return deepFreeze({
+    command: { ...command },
+    metadata: {
+      originNodeId: snapshot.currentNodeId,
+      destinationNodeId: traversal.toNodeId,
+      edgeId: command.edgeId,
+      baseMovementTime: traversal.edge.baseTravelTime,
+      finalMovementTime: movementAdjustment.finalTime,
+      backpackWeight,
+      loadTier: movementAdjustment.loadTier,
+      minorContusionModifierApplied:
+        movementAdjustment.minorContusionModifierApplied,
+      movementAdjustment,
+      returnRoute,
+      sceneOutcome,
     },
-    dependencies,
+    effects,
+  })
+}
+
+function materializeEvaluation(
+  initialSnapshot: SceneExplorationSnapshot,
+  plan: SceneMoveTransitionPlan,
+  dependencies: SceneExplorationDependencies,
+): SceneMoveEvaluation {
+  const snapshot = applySceneExplorationEffects(
+    initialSnapshot,
+    plan.effects,
+    dependencies.config.combat.player,
   )
   return deepFreeze({
-    originNodeId: snapshot.currentNodeId,
-    destinationNodeId: traversal.toNodeId,
-    edgeId: command.edgeId,
-    baseMovementTime: traversal.edge.baseTravelTime,
-    finalMovementTime: movementAdjustment.finalTime,
-    backpackWeight,
-    loadTier: movementAdjustment.loadTier,
-    minorContusionModifierApplied:
-      movementAdjustment.minorContusionModifierApplied,
-    movementAdjustment,
-    returnRoute,
-    sceneOutcome,
-    effects,
-    snapshot: nextSnapshot,
+    ...plan.metadata,
+    effects: plan.effects,
+    snapshot,
   })
 }
 
@@ -263,9 +264,14 @@ export function previewSceneMoveCommand(
   dependencies: SceneExplorationDependencies,
 ): SceneMovePreview {
   try {
+    const initialSnapshot = createSceneExplorationSnapshot(
+      snapshot,
+      dependencies,
+    )
+    const plan = evaluate(initialSnapshot, command, dependencies)
     return deepFreeze({
       canExecute: true,
-      result: evaluate(snapshot, command, dependencies),
+      result: materializeEvaluation(initialSnapshot, plan, dependencies),
     })
   } catch (error) {
     if (error instanceof SceneExplorationError) {
@@ -280,6 +286,8 @@ export function resolveSceneMoveCommand(
   command: MoveThroughSceneEdgeCommand,
   dependencies: SceneExplorationDependencies,
 ): SceneMoveResolution {
-  const result = evaluate(snapshot, command, dependencies)
+  const initialSnapshot = createSceneExplorationSnapshot(snapshot, dependencies)
+  const plan = evaluate(initialSnapshot, command, dependencies)
+  const result = materializeEvaluation(initialSnapshot, plan, dependencies)
   return deepFreeze({ result, snapshot: result.snapshot })
 }

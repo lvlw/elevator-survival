@@ -42,7 +42,7 @@ export type SceneMoveHealthLossSource =
   | 'forced-return-base'
   | 'forced-return-bleeding'
 
-export type SceneMoveEffect =
+export type SceneExplorationEffect =
   | Readonly<{
       kind: 'scene-node-changed'
       reason: 'movement'
@@ -92,9 +92,17 @@ export interface SceneMoveEvaluation {
   readonly movementAdjustment: AdjustedTravelTimeResult
   readonly returnRoute: ReturnRouteResult
   readonly sceneOutcome: TimedSceneActionOutcome
-  readonly effects: readonly SceneMoveEffect[]
+  readonly effects: readonly SceneExplorationEffect[]
   readonly snapshot: SceneExplorationSnapshot
 }
+
+export interface SceneMoveTransitionPlan {
+  readonly command: MoveThroughSceneEdgeCommand
+  readonly metadata: Omit<SceneMoveEvaluation, 'effects' | 'snapshot'>
+  readonly effects: readonly SceneExplorationEffect[]
+}
+
+export type SceneMoveEffect = SceneExplorationEffect
 
 export type SceneMovePreview =
   | Readonly<{ canExecute: true; result: SceneMoveEvaluation }>

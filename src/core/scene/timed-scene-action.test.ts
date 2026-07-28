@@ -8,13 +8,19 @@ import {
   type SceneClockSnapshot,
   type SceneVitalSnapshot,
   type TimedSceneActionInput,
+  type TimedSceneActionRules,
 } from '.'
 
-const RULES: ForcedReturnRules = Object.freeze({
+const FORCED_RETURN_RULES: ForcedReturnRules = Object.freeze({
   effectiveTimePerBaseDamage: 20,
   baseDamageCap: 4,
   bleedingExtraDamage: 1,
   bleedingExtraDamageCountsTowardBaseCap: false,
+})
+
+const RULES: TimedSceneActionRules = Object.freeze({
+  postActionBleedingDamage: 1,
+  forcedReturn: FORCED_RETURN_RULES,
 })
 
 const VITALS: SceneVitalSnapshot = Object.freeze({
@@ -157,6 +163,22 @@ describe('post-action bleeding', () => {
     expect(outcome.vitals.currentHealth).toBe(8)
   })
 
+  it('uses the supplied post-action bleeding damage instead of a hardcoded value', () => {
+    const outcome = resolveTimedSceneAction(
+      { remainingTime: 100 },
+      VITALS,
+      {
+        ...ACTION,
+        healthAfterPrimaryEffect: 7,
+        bleedingAfterPrimaryEffect: true,
+      },
+      { ...RULES, postActionBleedingDamage: 2 },
+    )
+
+    expect(outcome.postActionBleedingDamage).toBe(2)
+    expect(outcome.vitals.currentHealth).toBe(5)
+  })
+
   it('makes bleeding death terminal before a safe return', () => {
     const outcome = resolve(10, {
       healthAfterPrimaryEffect: 1,
@@ -190,21 +212,33 @@ describe('forced return damage', () => {
     [81, 4],
   ])('maps effective time %i to base damage %i', (effectiveTime, damage) => {
     expect(
-      calculateForcedReturnDamage(effectiveTime, 0, false, RULES).baseDamage,
+      calculateForcedReturnDamage(
+        effectiveTime,
+        0,
+        false,
+        FORCED_RETURN_RULES,
+      ).baseDamage,
     ).toBe(damage)
   })
 
   it('adds bleeding damage only when effective time is positive', () => {
     expect(
-      calculateForcedReturnDamage(0, 0, true, RULES).bleedingExtraDamage,
+      calculateForcedReturnDamage(0, 0, true, FORCED_RETURN_RULES)
+        .bleedingExtraDamage,
     ).toBe(0)
     expect(
-      calculateForcedReturnDamage(1, 0, true, RULES).bleedingExtraDamage,
+      calculateForcedReturnDamage(1, 0, true, FORCED_RETURN_RULES)
+        .bleedingExtraDamage,
     ).toBe(1)
   })
 
   it('does not count bleeding damage toward the base cap', () => {
-    const damage = calculateForcedReturnDamage(100, 0, true, RULES)
+    const damage = calculateForcedReturnDamage(
+      100,
+      0,
+      true,
+      FORCED_RETURN_RULES,
+    )
 
     expect(damage.baseDamage).toBe(4)
     expect(damage.bleedingExtraDamage).toBe(1)
@@ -409,10 +443,13 @@ describe('scene input errors', () => {
   })
 
   it.each([
-    { ...RULES, effectiveTimePerBaseDamage: 0 },
-    { ...RULES, baseDamageCap: 0 },
-    { ...RULES, bleedingExtraDamage: 0 },
-    { ...RULES, bleedingExtraDamageCountsTowardBaseCap: true },
+    { ...FORCED_RETURN_RULES, effectiveTimePerBaseDamage: 0 },
+    { ...FORCED_RETURN_RULES, baseDamageCap: 0 },
+    { ...FORCED_RETURN_RULES, bleedingExtraDamage: 0 },
+    {
+      ...FORCED_RETURN_RULES,
+      bleedingExtraDamageCountsTowardBaseCap: true,
+    },
   ])('rejects invalid forced-return configuration %#', (rules) => {
     expect(() =>
       calculateForcedReturnDamage(
@@ -424,13 +461,27 @@ describe('scene input errors', () => {
     ).toThrow(SceneResolutionError)
   })
 
+  it.each([0, -1, 1.5])(
+    'rejects invalid post-action bleeding damage %s',
+    (postActionBleedingDamage) => {
+      expect(() =>
+        resolveTimedSceneAction(
+          { remainingTime: 10 },
+          VITALS,
+          ACTION,
+          { ...RULES, postActionBleedingDamage },
+        ),
+      ).toThrow(SceneResolutionError)
+    },
+  )
+
   it('rejects safe-integer overflow in effective return time', () => {
     expect(() =>
       calculateForcedReturnDamage(
         Number.MAX_SAFE_INTEGER,
         1,
         false,
-        RULES,
+        FORCED_RETURN_RULES,
       ),
     ).toThrow(SceneResolutionError)
   })

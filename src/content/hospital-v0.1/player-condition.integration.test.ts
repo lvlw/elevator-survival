@@ -191,7 +191,10 @@ describe('condition integration with travel and scene transaction', () => {
         estimatedReturnTimeAfterAction: 10,
         reachesElevatorSafety: false,
       },
-      config.forcedReturn,
+      {
+        postActionBleedingDamage: config.scene.postActionBleedingDamage,
+        forcedReturn: config.forcedReturn,
+      },
     )
     const rebuilt = createPlayerCondition(
       {

@@ -75,7 +75,10 @@ describe('hospital return route integration', () => {
         estimatedReturnTimeAfterAction: route.estimatedReturnTime,
         reachesElevatorSafety: false,
       },
-      config.forcedReturn,
+      {
+        postActionBleedingDamage: config.scene.postActionBleedingDamage,
+        forcedReturn: config.forcedReturn,
+      },
     )
 
     expect(route.estimatedReturnTime).toBe(42)

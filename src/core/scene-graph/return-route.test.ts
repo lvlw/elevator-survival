@@ -103,6 +103,49 @@ describe('return route', () => {
     expect(result.travelTimeAdjustment).toBeNull()
   })
 
+  it('allows a zero-distance route with a valid enabled edge set', () => {
+    expect(
+      route({
+        currentNodeId: 'safe-a',
+        availability: { enabledEdgeIds: ['to-middle'] },
+      }),
+    ).toMatchObject({
+      baseReturnTime: 0,
+      estimatedReturnTime: 0,
+      nodeIds: ['safe-a'],
+      edgeIds: [],
+    })
+  })
+
+  it.each([
+    ['unknown enabled edge', ['missing-edge'], 'UNKNOWN_ENABLED_EDGE'],
+    [
+      'duplicate enabled edge',
+      ['to-middle', 'to-middle'],
+      'DUPLICATE_ENABLED_EDGE',
+    ],
+  ] as const)(
+    'validates %s before returning a zero-distance route',
+    (_name, ids, code) => {
+      expect(() =>
+        route({
+          currentNodeId: 'safe-a',
+          availability: { enabledEdgeIds: ids },
+        }),
+      ).toThrowError(
+        expect.objectContaining<Partial<SceneGraphError>>({ code }),
+      )
+    },
+  )
+
+  it('still rejects an unknown current node', () => {
+    expect(() => route({ currentNodeId: 'missing-node' })).toThrowError(
+      expect.objectContaining<Partial<SceneGraphError>>({
+        code: 'UNKNOWN_NODE',
+      }),
+    )
+  })
+
   it('throws a dedicated error when no safety node is reachable', () => {
     expect(() =>
       route({ availability: { enabledEdgeIds: [] } }),

@@ -10,6 +10,7 @@ export const hospitalSliceV01RuleConfig = parseRuleConfig({
   },
   scene: {
     totalTime: 200,
+    postActionBleedingDamage: 1,
     movementEdgeTime: 10,
     searchTime: {
       withFlashlight: 20,

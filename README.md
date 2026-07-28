@@ -2,7 +2,7 @@
 
 > 一款以异常电梯为中枢、进入不同灾难世界完成限时生存任务的网页单人策略 Roguelite 游戏。
 
-项目当前处于前期设计与纵向切片准备阶段，目前尚未开始正式功能开发。
+项目已完成纯 TypeScript 规则内核的基础模块，包括版本化配置、确定性随机、场景事务、节点图、背包、物品资源、装备和玩家条件状态。React UI、完整 Run 编排、战斗、医院完整交互流程和存档仍未完成，当前纵向切片尚不可游玩。
 
 ## 开发
 
@@ -28,7 +28,9 @@ npm run build
 - [技术架构与模块边界](docs/03-architecture.md)
 - [数据配置和 Schema 设计](docs/04-content-schema.md)
 - [设计决策记录](docs/05-design-decisions.md)
+- [设计决策覆盖关系索引](docs/07-decision-supersession-index.md)
 - [医院纵向切片冻结快照与实现入口](docs/06-vertical-slice-design-freeze-v0.1.md)
+- [规则实现追踪矩阵](docs/08-rule-implementation-traceability.md)
 
 ## 游戏设计导航
 

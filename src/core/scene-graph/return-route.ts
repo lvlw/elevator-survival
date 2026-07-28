@@ -3,6 +3,7 @@ import { deepFreeze } from '../config'
 import { calculateAdjustedTravelTime, classifyLoad } from '../load'
 import { SceneGraphError } from './graph-errors'
 import { findShortestPath } from './shortest-path'
+import { validateTraversalAvailability } from './scene-graph'
 import type {
   FindReturnRouteInput,
   ReturnRouteResult,
@@ -16,6 +17,7 @@ export function findReturnRoute(
     .filter((node) => node.isReturnSafetyNode)
     .map((node) => node.id)
   const load = classifyLoad(input.totalWeight, config.backpack)
+  validateTraversalAvailability(input.graph, input.availability)
   const currentIsSafetyNode = safetyNodeIds.includes(input.currentNodeId)
 
   if (currentIsSafetyNode) {

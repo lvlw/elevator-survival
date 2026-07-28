@@ -5,61 +5,62 @@ const positiveInteger = z.number().int().positive()
 const nonEmptyString = z.string().trim().min(1)
 
 export const ruleConfigSchema = z
-  .object({
-    metadata: z.object({
+  .strictObject({
+    metadata: z.strictObject({
       rulesVersion: nonEmptyString,
       displayVersion: nonEmptyString,
       name: nonEmptyString,
     }),
-    scene: z.object({
+    scene: z.strictObject({
       totalTime: positiveInteger,
+      postActionBleedingDamage: positiveInteger,
       movementEdgeTime: positiveInteger,
-      searchTime: z.object({
+      searchTime: z.strictObject({
         withFlashlight: positiveInteger,
         withoutFlashlight: positiveInteger,
       }),
       batteryUseTime: positiveInteger,
-      extractionTime: z.object({
+      extractionTime: z.strictObject({
         direct: positiveInteger,
         cautious: positiveInteger,
       }),
-      medicalTime: z.object({
+      medicalTime: z.strictObject({
         bandage: positiveInteger,
         painkiller: positiveInteger,
         disinfectant: positiveInteger,
         firstAidKit: positiveInteger,
       }),
-      combatTimeConversion: z.object({
+      combatTimeConversion: z.strictObject({
         ctbUnit: positiveInteger,
         sceneTimePerUnit: positiveInteger,
         minimumSceneTime: positiveInteger,
       }),
-      travelTimeModifiers: z.object({
+      travelTimeModifiers: z.strictObject({
         minorContusionTimeIncreasePercent: nonNegativeInteger,
       }),
     }),
-    forcedReturn: z.object({
+    forcedReturn: z.strictObject({
       effectiveTimePerBaseDamage: positiveInteger,
       baseDamageCap: positiveInteger,
       bleedingExtraDamage: positiveInteger,
       bleedingExtraDamageCountsTowardBaseCap: z.literal(false),
     }),
-    backpack: z.object({
+    backpack: z.strictObject({
       width: positiveInteger,
       height: positiveInteger,
       totalCells: positiveInteger,
-      weightBands: z.object({
-        normal: z.object({
+      weightBands: z.strictObject({
+        normal: z.strictObject({
           min: nonNegativeInteger,
           max: nonNegativeInteger,
           timeIncreasePercent: nonNegativeInteger,
         }),
-        loaded: z.object({
+        loaded: z.strictObject({
           min: nonNegativeInteger,
           max: nonNegativeInteger,
           timeIncreasePercent: nonNegativeInteger,
         }),
-        overloaded: z.object({
+        overloaded: z.strictObject({
           min: nonNegativeInteger,
           max: nonNegativeInteger,
           timeIncreasePercent: nonNegativeInteger,
@@ -67,29 +68,29 @@ export const ruleConfigSchema = z
         cannotCarryFrom: positiveInteger,
       }),
     }),
-    combat: z.object({
-      player: z.object({
+    combat: z.strictObject({
+      player: z.strictObject({
         maxHealth: positiveInteger,
       }),
-      infectedOrderly: z.object({
+      infectedOrderly: z.strictObject({
         maxHealth: positiveInteger,
-        firstActionTime: z.object({
+        firstActionTime: z.strictObject({
           unaware: positiveInteger,
           alerted: positiveInteger,
         }),
-        actionInterval: z.object({
+        actionInterval: z.strictObject({
           scratch: positiveInteger,
           lungeBite: positiveInteger,
         }),
       }),
-      metalPipe: z.object({
+      metalPipe: z.strictObject({
         maxDurability: positiveInteger,
-        basicAttack: z.object({
+        basicAttack: z.strictObject({
           damage: nonNegativeInteger,
           ctb: positiveInteger,
           durabilityCost: nonNegativeInteger,
         }),
-        chargedStrike: z.object({
+        chargedStrike: z.strictObject({
           damage: nonNegativeInteger,
           ctb: positiveInteger,
           durabilityCost: nonNegativeInteger,
@@ -97,17 +98,17 @@ export const ruleConfigSchema = z
           maxUsesPerExploration: positiveInteger,
         }),
       }),
-      defend: z.object({
+      defend: z.strictObject({
         ctb: positiveInteger,
       }),
-      temporaryAttack: z.object({
+      temporaryAttack: z.strictObject({
         damage: nonNegativeInteger,
         ctb: positiveInteger,
         durabilityCost: nonNegativeInteger,
         actionDelay: nonNegativeInteger,
       }),
-      escape: z.object({
-        baseCtb: z.object({
+      escape: z.strictObject({
+        baseCtb: z.strictObject({
           normal: positiveInteger,
           loaded: positiveInteger,
           overloaded: positiveInteger,
@@ -116,8 +117,8 @@ export const ruleConfigSchema = z
         woundCtbBonusCap: nonNegativeInteger,
       }),
     }),
-    medical: z.object({
-      bandage: z.object({
+    medical: z.strictObject({
+      bandage: z.strictObject({
         combatCtb: positiveInteger,
         sceneTime: positiveInteger,
         hubSceneTime: nonNegativeInteger,
@@ -125,7 +126,7 @@ export const ruleConfigSchema = z
         stopsBleeding: z.boolean(),
         treatsOpenWound: z.boolean(),
       }),
-      painkiller: z.object({
+      painkiller: z.strictObject({
         combatCtb: positiveInteger,
         sceneTime: positiveInteger,
         hubSceneTime: nonNegativeInteger,
@@ -135,7 +136,7 @@ export const ruleConfigSchema = z
         minorInjuryRecoveryPenaltyReduction: nonNegativeInteger,
         stacks: z.boolean(),
       }),
-      disinfectant: z.object({
+      disinfectant: z.strictObject({
         usableInCombat: z.literal(false),
         sceneTime: positiveInteger,
         hubSceneTime: nonNegativeInteger,
@@ -144,7 +145,7 @@ export const ruleConfigSchema = z
         reducesExistingInfectionProgress: z.boolean(),
         stopsBleeding: z.boolean(),
       }),
-      firstAidKit: z.object({
+      firstAidKit: z.strictObject({
         usableInCombat: z.literal(false),
         sceneTime: positiveInteger,
         hubSceneTime: nonNegativeInteger,
@@ -153,39 +154,39 @@ export const ruleConfigSchema = z
         stopsBleedingWhenRemovingLastOpenWound: z.boolean(),
       }),
     }),
-    maintenance: z.object({
-      itemResourceMaximums: z.object({
+    maintenance: z.strictObject({
+      itemResourceMaximums: z.strictObject({
         fireAxeDurability: positiveInteger,
         heavyCoatIntegrity: positiveInteger,
         crowbarDurability: positiveInteger,
         toolkitDurability: positiveInteger,
       }),
-      dailyBaseLabor: z.object({
+      dailyBaseLabor: z.strictObject({
         points: nonNegativeInteger,
         recoveryPerPoint: positiveInteger,
       }),
-      materialRepair: z.object({
-        metalParts: z.object({
+      materialRepair: z.strictObject({
+        metalParts: z.strictObject({
           units: positiveInteger,
           mechanicalRepairPoints: positiveInteger,
         }),
-        fabric: z.object({
+        fabric: z.strictObject({
           units: positiveInteger,
           textileRepairPoints: positiveInteger,
         }),
       }),
-      toolkitRepair: z.object({
+      toolkitRepair: z.strictObject({
         metalParts: positiveInteger,
         electronicComponents: positiveInteger,
         durabilityRecovery: positiveInteger,
       }),
-      flashlightCharge: z.object({
+      flashlightCharge: z.strictObject({
         batteryUnits: positiveInteger,
         chargeRecovery: positiveInteger,
         maxCharge: positiveInteger,
       }),
     }),
-    dailySettlement: z.object({
+    dailySettlement: z.strictObject({
       maxSatiety: positiveInteger,
       dailySatietyCost: nonNegativeInteger,
       unresolvedBleedingHealthLoss: nonNegativeInteger,

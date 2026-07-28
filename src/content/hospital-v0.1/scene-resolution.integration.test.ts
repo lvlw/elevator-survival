@@ -29,7 +29,10 @@ function resolveExtraction(
       estimatedReturnTimeAfterAction: returnTime,
       reachesElevatorSafety: false,
     },
-    config.forcedReturn,
+    {
+      postActionBleedingDamage: config.scene.postActionBleedingDamage,
+      forcedReturn: config.forcedReturn,
+    },
   )
 }
 
@@ -85,7 +88,10 @@ describe('hospital scene resolution integration', () => {
         estimatedReturnTimeAfterAction: 0,
         reachesElevatorSafety: false,
       },
-      config.forcedReturn,
+      {
+        postActionBleedingDamage: config.scene.postActionBleedingDamage,
+        forcedReturn: config.forcedReturn,
+      },
     )
     const painkillerAction = {
       timeCost: config.medical.painkiller.sceneTime,
@@ -98,7 +104,10 @@ describe('hospital scene resolution integration', () => {
       { remainingTime: config.scene.totalTime },
       { ...vitals, currentHealth: 6, bleeding: true },
       painkillerAction,
-      config.forcedReturn,
+      {
+        postActionBleedingDamage: config.scene.postActionBleedingDamage,
+        forcedReturn: config.forcedReturn,
+      },
     )
 
     expect(bandage.postActionBleedingDamage).toBe(0)

@@ -15,6 +15,7 @@ import type {
   TimedSceneActionInput,
   TimedSceneActionOutcome,
   TimedSceneActionPreview,
+  TimedSceneActionRules,
 } from './scene-types'
 
 function validateSnapshots(
@@ -93,15 +94,22 @@ function createOutcome(
   clock: SceneClockSnapshot,
   vitals: SceneVitalSnapshot,
   action: TimedSceneActionInput,
-  forcedReturnRules: ForcedReturnRules,
+  rules: TimedSceneActionRules,
 ): TimedSceneActionOutcome {
   validateSnapshots(clock, vitals, action)
   assertCanStart(clock, vitals)
-  assertValidForcedReturnRules(forcedReturnRules)
+  assertValidForcedReturnRules(rules.forcedReturn)
+  assertPositiveSafeInteger(
+    rules.postActionBleedingDamage,
+    'INVALID_POST_ACTION_BLEEDING_DAMAGE',
+    '行动后流血伤害',
+  )
 
   const remainingTime = Math.max(0, clock.remainingTime - action.timeCost)
   const overtimeDebt = Math.max(0, action.timeCost - clock.remainingTime)
-  const postActionBleedingDamage = action.bleedingAfterPrimaryEffect ? 1 : 0
+  const postActionBleedingDamage = action.bleedingAfterPrimaryEffect
+    ? rules.postActionBleedingDamage
+    : 0
   const healthAfterBleeding = Math.max(
     0,
     action.healthAfterPrimaryEffect - postActionBleedingDamage,
@@ -160,7 +168,7 @@ function createOutcome(
     overtimeDebt,
     action.estimatedReturnTimeAfterAction,
     action.bleedingAfterPrimaryEffect,
-    forcedReturnRules,
+    rules.forcedReturn,
   )
   const finalHealth = Math.max(
     0,
@@ -199,10 +207,15 @@ export function previewTimedSceneAction(
   clock: SceneClockSnapshot,
   vitals: SceneVitalSnapshot,
   action: TimedSceneActionInput,
-  forcedReturnRules: ForcedReturnRules,
+  rules: TimedSceneActionRules,
 ): TimedSceneActionPreview {
   validateSnapshots(clock, vitals, action)
-  assertValidForcedReturnRules(forcedReturnRules)
+  assertValidForcedReturnRules(rules.forcedReturn)
+  assertPositiveSafeInteger(
+    rules.postActionBleedingDamage,
+    'INVALID_POST_ACTION_BLEEDING_DAMAGE',
+    '行动后流血伤害',
+  )
 
   if (vitals.currentHealth === 0) {
     return deepFreeze({
@@ -220,7 +233,7 @@ export function previewTimedSceneAction(
 
   return deepFreeze({
     canStart: true,
-    outcome: createOutcome(clock, vitals, action, forcedReturnRules),
+    outcome: createOutcome(clock, vitals, action, rules),
   })
 }
 
@@ -228,7 +241,7 @@ export function resolveTimedSceneAction(
   clock: SceneClockSnapshot,
   vitals: SceneVitalSnapshot,
   action: TimedSceneActionInput,
-  forcedReturnRules: ForcedReturnRules,
+  rules: TimedSceneActionRules,
 ): TimedSceneActionOutcome {
-  return createOutcome(clock, vitals, action, forcedReturnRules)
+  return createOutcome(clock, vitals, action, rules)
 }

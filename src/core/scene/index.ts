@@ -17,4 +17,5 @@ export type {
   TimedSceneActionOutcomeKind,
   TimedSceneActionPreview,
   TimedSceneActionRejectionCode,
+  TimedSceneActionRules,
 } from './scene-types'

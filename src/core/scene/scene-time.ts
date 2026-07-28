@@ -16,7 +16,10 @@ export function assertNonNegativeSafeInteger(
 
 export function assertPositiveSafeInteger(
   value: number,
-  code: 'INVALID_MAX_HEALTH' | 'INVALID_ACTION_TIME',
+  code:
+    | 'INVALID_MAX_HEALTH'
+    | 'INVALID_ACTION_TIME'
+    | 'INVALID_POST_ACTION_BLEEDING_DAMAGE',
   label: string,
 ): void {
   if (!Number.isSafeInteger(value) || value <= 0) {

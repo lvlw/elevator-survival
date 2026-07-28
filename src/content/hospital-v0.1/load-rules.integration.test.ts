@@ -98,7 +98,10 @@ describe('hospital load rules integration', () => {
         estimatedReturnTimeAfterAction: adjustedReturnTime,
         reachesElevatorSafety: false,
       },
-      config.forcedReturn,
+      {
+        postActionBleedingDamage: config.scene.postActionBleedingDamage,
+        forcedReturn: config.forcedReturn,
+      },
     )
 
     expect(adjustedReturnTime).toBe(42)

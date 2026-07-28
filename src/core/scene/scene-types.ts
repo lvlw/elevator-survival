@@ -20,6 +20,11 @@ export interface TimedSceneActionInput {
 
 export type ForcedReturnRules = FrozenRuleConfig['forcedReturn']
 
+export interface TimedSceneActionRules {
+  readonly postActionBleedingDamage: number
+  readonly forcedReturn: ForcedReturnRules
+}
+
 export interface ForcedReturnDamage {
   readonly effectiveEmergencyReturnTime: number
   readonly baseDamage: number

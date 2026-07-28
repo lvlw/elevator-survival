@@ -19,6 +19,7 @@ describe('hospitalSliceV01RuleConfig', () => {
 
     expect(config.metadata.rulesVersion).toBe(HOSPITAL_SLICE_RULES_VERSION)
     expect(config.scene.totalTime).toBe(200)
+    expect(config.scene.postActionBleedingDamage).toBe(1)
     expect(config.scene.travelTimeModifiers).toEqual({
       minorContusionTimeIncreasePercent: 10,
     })
@@ -131,6 +132,44 @@ describe('ruleConfigSchema', () => {
     mutate(invalidConfig)
 
     expect(ruleConfigSchema.safeParse(invalidConfig).success).toBe(false)
+  })
+
+  it.each([
+    [
+      'unknown top-level field',
+      (config: RuleConfigInput & Record<string, unknown>) => {
+        config.unknown = true
+      },
+    ],
+    [
+      'unknown scene field',
+      (config: RuleConfigInput) => {
+        ;(config.scene as typeof config.scene & Record<string, unknown>).unknown =
+          true
+      },
+    ],
+    [
+      'unknown deeply nested player field',
+      (config: RuleConfigInput) => {
+        ;(
+          config.combat.player as typeof config.combat.player &
+            Record<string, unknown>
+        ).unknown = true
+      },
+    ],
+    [
+      'misspelled post-action bleeding field',
+      (config: RuleConfigInput) => {
+        ;(
+          config.scene as typeof config.scene & Record<string, unknown>
+        ).postActionBleedingDammage = 1
+      },
+    ],
+  ])('strictly rejects %s', (_name, mutate) => {
+    const invalid = mutableConfigCopy() as RuleConfigInput &
+      Record<string, unknown>
+    mutate(invalid)
+    expect(ruleConfigSchema.safeParse(invalid).success).toBe(false)
   })
 })
 

@@ -2,6 +2,7 @@ import { deepFreeze } from '../config'
 import { createPlayerCondition } from '../condition'
 import { createBackpackSnapshot } from '../inventory'
 import { validateTraversalAvailability } from '../scene-graph'
+import { validateSceneSearchState } from '../scene-search'
 import { SceneExplorationError } from './scene-exploration-errors'
 import type {
   SceneExplorationDependencies,
@@ -23,6 +24,19 @@ export function createSceneExplorationSnapshot(
   if (!STATUSES.includes(input.status)) {
     throw new SceneExplorationError('INVALID_STATUS', '场景探索状态无效')
   }
+  if (
+    input.sceneInstanceId.trim().length === 0 ||
+    input.searchState.sceneInstanceId !== input.sceneInstanceId
+  ) {
+    throw new SceneExplorationError(
+      'INVALID_INPUT',
+      '场景实例ID与搜索状态不一致',
+    )
+  }
+  const searchState = validateSceneSearchState(
+    input.searchState,
+    dependencies.graph,
+  )
   if (
     input.currentNodeId.trim().length === 0 ||
     !dependencies.graph.nodes.some((node) => node.id === input.currentNodeId)
@@ -53,6 +67,8 @@ export function createSceneExplorationSnapshot(
   }
   return deepFreeze({
     status: input.status,
+    sceneInstanceId: input.sceneInstanceId,
+    searchState,
     currentNodeId: input.currentNodeId,
     remainingTime: input.remainingTime,
     enabledEdgeIds: [...input.enabledEdgeIds].sort(),

@@ -52,6 +52,7 @@ export function applySceneExplorationEffects(
 
   let state = deepFreeze({
     ...initialSnapshot,
+    searchState: initialSnapshot.searchState,
     enabledEdgeIds: [...initialSnapshot.enabledEdgeIds],
     backpack: {
       ...initialSnapshot.backpack,

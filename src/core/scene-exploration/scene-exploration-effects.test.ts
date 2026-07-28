@@ -48,6 +48,14 @@ const graph = createSceneGraph({
 })
 const catalog = createItemCatalog([])
 const dependencies = { graph, physicalCatalog: catalog, config }
+const sceneInstanceId = 'effect-scene'
+const searchState = {
+  sceneInstanceId,
+  nodeStates: graph.nodes.map((node) => ({
+    kind: 'not-available' as const,
+    nodeId: node.id,
+  })),
+}
 const initial = (
   node = 'safe',
   remainingTime = 100,
@@ -56,6 +64,8 @@ const initial = (
 ) =>
   createInitialSceneExplorationSnapshot(
     {
+      sceneInstanceId,
+      searchState,
       currentNodeId: node,
       remainingTime,
       enabledEdgeIds: ['safe-middle', 'middle-far'],

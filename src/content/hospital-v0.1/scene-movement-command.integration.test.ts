@@ -16,6 +16,7 @@ import {
   previewSceneMoveCommand,
   resolveSceneMoveCommand,
 } from '../../core/scene-exploration'
+import { createSceneSearchState } from '../../core/scene-search'
 import {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
   HOSPITAL_EDGE_IDS,
@@ -26,12 +27,21 @@ import {
 import { hospitalSliceV01RuleConfig as config } from './rule-config'
 import { hospitalItemCatalog } from './items'
 import { HOSPITAL_ITEM_IDS } from './items/hospital-item-ids'
+import { hospitalMainSearchCatalog } from './search'
 
 const dependencies = {
   graph: hospitalSliceV01SceneGraph,
   physicalCatalog: hospitalItemCatalog,
   config,
 }
+const sceneInstanceId = 'hospital-movement-scene'
+const searchState = createSceneSearchState({
+  runSeed: 'hospital-movement-seed',
+  sceneInstanceId,
+  graph: hospitalSliceV01SceneGraph,
+  searchCatalog: hospitalMainSearchCatalog,
+  itemCatalog: hospitalItemCatalog,
+})
 const at = (instanceId: string, x: number, y: number): BackpackPlacement => ({
   instanceId,
   x,
@@ -77,6 +87,8 @@ const scene = (
 ) =>
   createInitialSceneExplorationSnapshot(
     {
+      sceneInstanceId,
+      searchState,
       currentNodeId,
       remainingTime,
       enabledEdgeIds,
@@ -131,6 +143,7 @@ describe('hospital scene movement command', () => {
       currentNodeId: HOSPITAL_NODE_IDS.emergencyHall,
       remainingTime: config.scene.totalTime - 10,
     })
+    expect(result.snapshot.searchState).toEqual(searchState)
     expect(result.result.effects.map((effect) => effect.kind)).toEqual([
       'scene-node-changed',
       'scene-time-resolved',

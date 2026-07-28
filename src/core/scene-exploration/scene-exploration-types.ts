@@ -10,6 +10,7 @@ import type {
   SceneGraph,
 } from '../scene-graph'
 import type { TimedSceneActionOutcome } from '../scene'
+import type { SceneSearchStateSnapshot } from '../scene-search'
 import type { SceneExplorationErrorCode } from './scene-exploration-errors'
 
 export type SceneExplorationStatus =
@@ -19,6 +20,8 @@ export type SceneExplorationStatus =
   | 'dead'
 
 export interface SceneExplorationSnapshot {
+  readonly sceneInstanceId: string
+  readonly searchState: SceneSearchStateSnapshot
   readonly status: SceneExplorationStatus
   readonly currentNodeId: string
   readonly remainingTime: number

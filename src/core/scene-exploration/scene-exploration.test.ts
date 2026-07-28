@@ -59,6 +59,14 @@ const catalog = createItemCatalog([
   { id: 'weight', name: '负重', width: 1, height: 1, unitWeight: 1, canRotate: true, stacking: { kind: 'stackable', maxQuantity: 30 } },
 ])
 const dependencies = { graph, physicalCatalog: catalog, config }
+const sceneInstanceId = 'core-scene'
+const searchState = {
+  sceneInstanceId,
+  nodeStates: graph.nodes.map((node) => ({
+    kind: 'not-available' as const,
+    nodeId: node.id,
+  })),
+}
 const backpack = (weight = 0) =>
   createBackpackSnapshot(
     weight === 0
@@ -97,6 +105,8 @@ const snapshot = (
 ) =>
   createInitialSceneExplorationSnapshot(
     {
+      sceneInstanceId,
+      searchState,
       currentNodeId: node,
       remainingTime,
       enabledEdgeIds,
@@ -126,6 +136,8 @@ describe('scene exploration snapshot', () => {
     expect(() =>
       createInitialSceneExplorationSnapshot(
         {
+          sceneInstanceId,
+          searchState,
           currentNodeId: 'safe',
           remainingTime: 10,
           enabledEdgeIds: ['safe-middle'],

@@ -1,0 +1,269 @@
+import { describe, expect, it } from 'vitest'
+import { type FrozenRuleConfig } from '../config'
+import {
+  activatePainkiller,
+  addMinorContusion,
+  createInitialPlayerCondition,
+  createPlayerCondition,
+  startBleeding,
+} from '../condition'
+import { createBackpackSnapshot, createItemCatalog } from '../inventory'
+import { createSceneGraph } from '../scene-graph'
+import {
+  createInitialSceneExplorationSnapshot,
+  createSceneExplorationSnapshot,
+  previewSceneMoveCommand,
+  resolveSceneMoveCommand,
+  SceneExplorationError,
+} from '.'
+
+const config = {
+  combat: { player: { maxHealth: 12 } },
+  backpack: {
+    weightBands: {
+      normal: { min: 0, max: 16, timeIncreasePercent: 0 },
+      loaded: { min: 17, max: 24, timeIncreasePercent: 10 },
+      overloaded: { min: 25, max: 28, timeIncreasePercent: 25 },
+      cannotCarryFrom: 29,
+    },
+  },
+  scene: {
+    postActionBleedingDamage: 1,
+    travelTimeModifiers: { minorContusionTimeIncreasePercent: 10 },
+  },
+  medical: {
+    painkiller: { suppressesMinorContusionMovementPenalty: true },
+  },
+  forcedReturn: {
+    effectiveTimePerBaseDamage: 20,
+    baseDamageCap: 4,
+    bleedingExtraDamage: 1,
+    bleedingExtraDamageCountsTowardBaseCap: false,
+  },
+} as unknown as FrozenRuleConfig
+
+const graph = createSceneGraph({
+  nodes: [
+    { id: 'safe', name: '安全点', isReturnSafetyNode: true },
+    { id: 'middle', name: '中点', isReturnSafetyNode: false },
+    { id: 'far', name: '远点', isReturnSafetyNode: false },
+    { id: 'isolated', name: '孤立点', isReturnSafetyNode: false },
+  ],
+  edges: [
+    { id: 'safe-middle', from: 'safe', to: 'middle', baseTravelTime: 10, bidirectional: true },
+    { id: 'middle-far', from: 'middle', to: 'far', baseTravelTime: 20, bidirectional: true },
+    { id: 'one-way', from: 'middle', to: 'isolated', baseTravelTime: 10, bidirectional: false },
+  ],
+})
+const catalog = createItemCatalog([
+  { id: 'weight', name: '负重', width: 1, height: 1, unitWeight: 1, canRotate: true, stacking: { kind: 'stackable', maxQuantity: 30 } },
+])
+const dependencies = { graph, physicalCatalog: catalog, config }
+const backpack = (weight = 0) =>
+  createBackpackSnapshot(
+    weight === 0
+      ? { width: 2, height: 2, items: [], placements: [] }
+      : {
+          width: 2,
+          height: 2,
+          items: [{ instanceId: 'load', definitionId: 'weight', quantity: weight }],
+          placements: [{ instanceId: 'load', x: 0, y: 0, rotated: false }],
+        },
+    catalog,
+  )
+const condition = (
+  currentHealth = 12,
+  bleeding = false,
+  minorContusions = 0,
+  painkillerActive = false,
+) =>
+  createPlayerCondition(
+    {
+      currentHealth,
+      bleeding,
+      untreatedOpenWounds: bleeding ? 1 : 0,
+      treatedOpenWounds: 0,
+      minorContusions,
+      painkillerActive,
+    },
+    config.combat.player,
+  )
+const snapshot = (
+  node = 'safe',
+  remainingTime = 100,
+  weight = 0,
+  playerCondition = condition(),
+  enabledEdgeIds = ['safe-middle', 'middle-far'],
+) =>
+  createInitialSceneExplorationSnapshot(
+    {
+      currentNodeId: node,
+      remainingTime,
+      enabledEdgeIds,
+      backpack: backpack(weight),
+      condition: playerCondition,
+    },
+    dependencies,
+  )
+
+describe('scene exploration snapshot', () => {
+  it('normalizes enabled edges and deeply freezes nested state without mutation', () => {
+    const enabled = ['middle-far', 'safe-middle']
+    const result = snapshot('safe', 100, 0, condition(), enabled)
+    expect(result.enabledEdgeIds).toEqual(['middle-far', 'safe-middle'])
+    expect(enabled).toEqual(['middle-far', 'safe-middle'])
+    expect(Object.isFrozen(result)).toBe(true)
+    expect(Object.isFrozen(result.enabledEdgeIds)).toBe(true)
+    expect(Object.isFrozen(result.condition)).toBe(true)
+    expect(Object.isFrozen(result.backpack)).toBe(true)
+  })
+
+  it.each([
+    [{ currentNodeId: 'missing' }, 'INVALID_CURRENT_NODE'],
+    [{ remainingTime: -1 }, 'INVALID_REMAINING_TIME'],
+    [{ enabledEdgeIds: ['safe-middle', 'safe-middle'] }, 'DUPLICATE_ENABLED_EDGE'],
+  ])('rejects invalid snapshot %#', (change, code) => {
+    expect(() =>
+      createInitialSceneExplorationSnapshot(
+        {
+          currentNodeId: 'safe',
+          remainingTime: 10,
+          enabledEdgeIds: ['safe-middle'],
+          backpack: backpack(),
+          condition: condition(),
+          ...change,
+        },
+        dependencies,
+      ),
+    ).toThrowError(expect.objectContaining({ code }))
+  })
+
+  it('rejects active zero health and dead positive health', () => {
+    expect(() => snapshot('safe', 10, 0, condition(0))).toThrowError(
+      expect.objectContaining({ code: 'STATUS_HEALTH_CONFLICT' }),
+    )
+    expect(() =>
+      createSceneExplorationSnapshot(
+        { ...snapshot(), status: 'dead', condition: condition(1) },
+        dependencies,
+      ),
+    ).toThrowError(expect.objectContaining({ code: 'STATUS_HEALTH_CONFLICT' }))
+  })
+})
+
+describe('scene move evaluation', () => {
+  it('moves by edge id and returns deterministic structured effects', () => {
+    const input = snapshot()
+    const preview = previewSceneMoveCommand(input, { edgeId: 'safe-middle' }, dependencies)
+    const resolved = resolveSceneMoveCommand(input, { edgeId: 'safe-middle' }, dependencies)
+    expect(preview).toEqual({ canExecute: true, result: resolved.result })
+    expect(resolved.snapshot).toMatchObject({
+      status: 'active',
+      currentNodeId: 'middle',
+      remainingTime: 90,
+    })
+    expect(resolved.result.effects.map((effect) => effect.kind)).toEqual([
+      'scene-node-changed',
+      'scene-time-resolved',
+    ])
+    expect(input.currentNodeId).toBe('safe')
+    expect(Object.isFrozen(resolved.result.effects)).toBe(true)
+  })
+
+  it.each([
+    [0, false, false, 10],
+    [17, false, false, 11],
+    [0, true, false, 11],
+    [17, true, false, 13],
+    [17, true, true, 11],
+    [25, false, false, 13],
+  ])('calculates weight %i contusion=%s analgesia=%s as %i', (weight, contused, analgesia, expected) => {
+    let state = createInitialPlayerCondition(config.combat.player)
+    if (contused) state = addMinorContusion(state)
+    if (analgesia) state = activatePainkiller(state)
+    expect(resolveSceneMoveCommand(snapshot('safe', 100, weight, state), { edgeId: 'safe-middle' }, dependencies).result.finalMovementTime).toBe(expected)
+  })
+
+  it('applies multiple contusions once', () => {
+    const state = addMinorContusion(addMinorContusion(condition()))
+    expect(resolveSceneMoveCommand(snapshot('safe', 100, 0, state), { edgeId: 'safe-middle' }, dependencies).result.finalMovementTime).toBe(11)
+  })
+
+  it('calculates return from the destination and safely returns when moving to safety', () => {
+    const outward = resolveSceneMoveCommand(snapshot(), { edgeId: 'safe-middle' }, dependencies)
+    expect(outward.result.returnRoute).toMatchObject({ startNodeId: 'middle', baseReturnTime: 10 })
+    const returning = resolveSceneMoveCommand(snapshot('middle'), { edgeId: 'safe-middle' }, dependencies)
+    expect(returning.snapshot).toMatchObject({ status: 'safe-returned', currentNodeId: 'safe' })
+    expect(returning.result.returnRoute).toMatchObject({ baseReturnTime: 0, estimatedReturnTime: 0, edgeIds: [] })
+  })
+
+  it('allows overtime, moves first, then forces return with ordered losses', () => {
+    const result = resolveSceneMoveCommand(
+      snapshot('middle', 5, 0, condition(12, true)),
+      { edgeId: 'middle-far' },
+      dependencies,
+    )
+    expect(result.result.sceneOutcome.overtimeDebt).toBe(15)
+    expect(result.snapshot).toMatchObject({ status: 'forced-returned', currentNodeId: 'safe', remainingTime: 0 })
+    expect(result.result.effects.map((effect) => effect.kind)).toEqual([
+      'scene-node-changed',
+      'scene-time-resolved',
+      'health-lost',
+      'health-lost',
+      'health-lost',
+      'scene-node-changed',
+      'scene-status-changed',
+    ])
+    expect(result.result.effects.filter((effect) => effect.kind === 'health-lost').map((effect) => effect.source)).toEqual([
+      'post-action-bleeding',
+      'forced-return-base',
+      'forced-return-bleeding',
+    ])
+  })
+
+  it('makes bleeding death terminal after movement and before forced return', () => {
+    const result = resolveSceneMoveCommand(
+      snapshot('middle', 5, 0, condition(1, true)),
+      { edgeId: 'middle-far' },
+      dependencies,
+    )
+    expect(result.snapshot).toMatchObject({ status: 'dead', currentNodeId: 'far' })
+    expect(result.result.effects.some((effect) => effect.kind === 'scene-node-changed' && effect.reason === 'forced-return')).toBe(false)
+    expect(result.result.effects.at(-1)).toMatchObject({ kind: 'scene-status-changed', toStatus: 'dead' })
+  })
+
+  it.each([
+    ['', 'INVALID_EDGE_ID'],
+    ['missing', 'UNKNOWN_EDGE'],
+    ['one-way', 'EDGE_NOT_ENABLED'],
+  ])('rejects edge %s as %s without mutation', (edgeId, code) => {
+    const input = snapshot()
+    expect(previewSceneMoveCommand(input, { edgeId }, dependencies)).toEqual({
+      canExecute: false,
+      rejectionCode: code,
+    })
+    expect(input.currentNodeId).toBe('safe')
+  })
+
+  it('rejects reverse one-way traversal, disconnected edge, no return route, and cannot carry', () => {
+    expect(previewSceneMoveCommand(snapshot('isolated', 10, 0, condition(), ['one-way']), { edgeId: 'one-way' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'EDGE_NOT_CONNECTED' })
+    expect(previewSceneMoveCommand(snapshot('safe'), { edgeId: 'middle-far' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'EDGE_NOT_CONNECTED' })
+    expect(previewSceneMoveCommand(snapshot('middle', 10, 0, condition(), ['one-way']), { edgeId: 'one-way' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'NO_RETURN_ROUTE' })
+    expect(previewSceneMoveCommand(snapshot('safe', 10, 29), { edgeId: 'safe-middle' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'CANNOT_CARRY' })
+  })
+
+  it.each(['safe-returned', 'forced-returned', 'dead'] as const)('rejects movement after %s', (status) => {
+    const currentHealth = status === 'dead' ? 0 : 12
+    const terminal = createSceneExplorationSnapshot(
+      { ...snapshot(), status, condition: condition(currentHealth) },
+      dependencies,
+    )
+    expect(previewSceneMoveCommand(terminal, { edgeId: 'safe-middle' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'SCENE_NOT_ACTIVE' })
+  })
+
+  it('rejects zero remaining time and throws from formal resolution', () => {
+    const zero = snapshot('safe', 0)
+    expect(previewSceneMoveCommand(zero, { edgeId: 'safe-middle' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'SCENE_TIME_EXHAUSTED' })
+    expect(() => resolveSceneMoveCommand(zero, { edgeId: 'safe-middle' }, dependencies)).toThrowError(SceneExplorationError)
+  })
+})

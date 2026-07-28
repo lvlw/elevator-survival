@@ -17,6 +17,7 @@
 | 装备资格与背包转移 | DEC-007、DEC-016、DEC-020、DEC-037 | 医院装备资格目录 | `src/core/equipment/`、医院装备目录 | `src/core/equipment/equipment.test.ts`、医院装备集成测试 | 已实现 | 装备不占格且不计入背包负重；上下文换装资格未实现。 |
 | 玩家生命、流血、伤口、挫伤与镇痛 | DEC-026、DEC-031、DEC-034、DEC-035 | `combat.player`、`combat.escape`、`medical.painkiller`、`scene.postActionBleedingDamage` | `src/core/condition/` | `src/core/condition/condition.test.ts`、医院条件集成测试 | 已实现 | 基础状态和选择器已实现，医疗物品与日结算命令未实现。 |
 | 消防斧耐久2 | DEC-039 | `maintenance.itemResourceMaximums.fireAxeDurability` | 医院物品资源目录 | `hospital-item-resource-profiles.test.ts` | 已实现 | 只追踪资源状态，不代表消防斧攻击或维修配方已实现。 |
-| 统一 Effect 管线 | DEC-006 | 尚无正式实现配置 | 尚无 | 尚无 | 未实现 | 当前模块通过显式结果组合，未形成统一 Effect 编排层。 |
+| 统一 Effect 管线 | DEC-006 | 复用场景、负载与返程配置 | `src/core/scene-exploration/` | `src/core/scene-exploration/scene-exploration.test.ts`、医院移动命令集成测试 | 部分实现 | 已建立移动命令的最小有序 Effect 编排模式；尚未形成通用命令总线或覆盖其他玩法命令。 |
+| 场景移动命令 | DEC-004、DEC-024、DEC-030、DEC-033、DEC-035、DEC-038 | `scene.*`、`forcedReturn.*`、`backpack.weightBands` | `src/core/scene-exploration/` | `src/content/hospital-v0.1/scene-movement-command.integration.test.ts` | 已实现 | 实现场景级快照、边ID移动、背包负载、挫伤、返程、流血和终局优先级；不是完整 RunState，医院切片尚不可玩。 |
 | 快捷栏 | DEC-007、DEC-016 | `backpack.quickSlotCount`、医院快捷栏资格目录 | `src/core/quick-slot/`、医院快捷栏资格目录 | `src/core/quick-slot/quick-slot.test.ts`、医院快捷栏集成测试 | 已实现基础容器与转移 | 已实现实际单件实例、堆叠抽取、放回、槽间移动交换和显式移出；物品效果、命令编排、使用时间和UI仍未实现。 |
 | 战斗、搜索、日结算、存档与完整 Run 编排 | DEC-009、DEC-025、DEC-027、DEC-028、DEC-031、DEC-032 | 部分测试参数已存在 | 尚无完整命令链 | 现有测试仅覆盖独立规则或纸面参数 | 部分实现 | 配置和部分基础能力已存在，但完整玩法流程尚未实现。 |

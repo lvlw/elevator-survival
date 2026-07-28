@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest'
 import { SceneGraphError } from './graph-errors'
-import { createSceneGraph, validateTraversalAvailability } from './scene-graph'
+import {
+  createSceneGraph,
+  getSceneEdgeTraversal,
+  validateTraversalAvailability,
+} from './scene-graph'
 import type { SceneGraphDefinition } from './graph-types'
 
 const validDefinition = (): SceneGraphDefinition => ({
@@ -142,6 +146,46 @@ describe('traversal availability', () => {
           enabledEdgeIds: ['safe-room', 'safe-room'],
         }),
       'DUPLICATE_ENABLED_EDGE',
+    )
+  })
+})
+
+describe('edge traversal query', () => {
+  it('resolves both directions of a bidirectional edge', () => {
+    const graph = createSceneGraph(validDefinition())
+    const availability = { enabledEdgeIds: ['safe-room'] }
+    expect(
+      getSceneEdgeTraversal(graph, 'safe-room', 'safe', availability),
+    ).toMatchObject({ fromNodeId: 'safe', toNodeId: 'room' })
+    expect(
+      getSceneEdgeTraversal(graph, 'safe-room', 'room', availability),
+    ).toMatchObject({ fromNodeId: 'room', toNodeId: 'safe' })
+  })
+
+  it.each([
+    ['missing', 'safe', ['safe-room'], 'UNKNOWN_EDGE'],
+    ['safe-room', 'safe', [], 'EDGE_NOT_ENABLED'],
+  ])('rejects edge=%s from=%s as %s', (edgeId, fromNodeId, enabledEdgeIds, code) => {
+    const graph = createSceneGraph(validDefinition())
+    expectCode(
+      () =>
+        getSceneEdgeTraversal(graph, edgeId, fromNodeId, { enabledEdgeIds }),
+      code,
+    )
+  })
+
+  it('rejects the reverse direction of a one-way edge', () => {
+    const definition = validDefinition()
+    const graph = createSceneGraph({
+      ...definition,
+      edges: [{ ...definition.edges[0], bidirectional: false }],
+    })
+    expectCode(
+      () =>
+        getSceneEdgeTraversal(graph, 'safe-room', 'room', {
+          enabledEdgeIds: ['safe-room'],
+        }),
+      'EDGE_NOT_CONNECTED',
     )
   })
 })

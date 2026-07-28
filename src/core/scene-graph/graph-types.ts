@@ -28,6 +28,12 @@ export interface TraversalAvailability {
   readonly enabledEdgeIds: ReadonlySet<string> | readonly string[]
 }
 
+export interface SceneEdgeTraversal {
+  readonly edge: Readonly<SceneEdgeDefinition>
+  readonly fromNodeId: string
+  readonly toNodeId: string
+}
+
 export interface PathCostContext {
   readonly edge: Readonly<SceneEdgeDefinition>
   readonly fromNodeId: string

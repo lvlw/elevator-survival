@@ -6,10 +6,40 @@ import type {
   SceneGraphDefinition,
   SceneNodeDefinition,
   TraversalAvailability,
+  SceneEdgeTraversal,
 } from './graph-types'
 
 function isNonEmpty(value: string): boolean {
   return value.trim().length > 0
+}
+
+export function getSceneEdgeTraversal(
+  graph: SceneGraph,
+  edgeId: string,
+  fromNodeId: string,
+  availability: TraversalAvailability,
+): SceneEdgeTraversal {
+  if (edgeId.trim().length === 0) {
+    throw new SceneGraphError('INVALID_EDGE', '边ID不能为空')
+  }
+  if (!graph.nodes.some((node) => node.id === fromNodeId)) {
+    throw new SceneGraphError('UNKNOWN_NODE', `未知出发节点：${fromNodeId}`)
+  }
+  const edge = graph.edges.find((candidate) => candidate.id === edgeId)
+  if (!edge) {
+    throw new SceneGraphError('UNKNOWN_EDGE', `未知边：${edgeId}`)
+  }
+  const enabled = validateTraversalAvailability(graph, availability)
+  if (!enabled.has(edgeId)) {
+    throw new SceneGraphError('EDGE_NOT_ENABLED', `边未启用：${edgeId}`)
+  }
+  if (edge.from === fromNodeId) {
+    return deepFreeze({ edge, fromNodeId, toNodeId: edge.to })
+  }
+  if (edge.bidirectional && edge.to === fromNodeId) {
+    return deepFreeze({ edge, fromNodeId, toNodeId: edge.from })
+  }
+  throw new SceneGraphError('EDGE_NOT_CONNECTED', `边不能从当前节点穿越：${edgeId}`)
 }
 
 function equivalentEdgeKey(edge: SceneEdgeDefinition): string {

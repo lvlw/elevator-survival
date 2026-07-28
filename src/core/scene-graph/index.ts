@@ -3,7 +3,11 @@ export {
   type SceneGraphErrorCode,
 } from './graph-errors'
 export { findReturnRoute } from './return-route'
-export { createSceneGraph } from './scene-graph'
+export {
+  createSceneGraph,
+  getSceneEdgeTraversal,
+  validateTraversalAvailability,
+} from './scene-graph'
 export { findShortestPath } from './shortest-path'
 export type {
   FindReturnRouteInput,
@@ -11,6 +15,7 @@ export type {
   PathCostContext,
   ReturnRouteResult,
   SceneEdgeDefinition,
+  SceneEdgeTraversal,
   SceneGraph,
   SceneGraphDefinition,
   SceneNodeDefinition,

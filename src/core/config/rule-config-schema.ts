@@ -18,6 +18,7 @@ export const ruleConfigSchema = z
       searchTime: z.strictObject({
         withFlashlight: positiveInteger,
         withoutFlashlight: positiveInteger,
+        flashlightChargeCost: positiveInteger,
       }),
       batteryUseTime: positiveInteger,
       extractionTime: z.strictObject({

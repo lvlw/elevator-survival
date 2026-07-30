@@ -14,6 +14,11 @@ export type ItemStateErrorCode =
   | 'RESOURCE_ACTION_UNAVAILABLE'
   | 'INSUFFICIENT_RESOURCE'
   | 'RESOURCE_RESTORE_UNAVAILABLE'
+  | 'DUPLICATE_ITEM_STATE'
+  | 'MISSING_ITEM_STATE'
+  | 'EXTRA_ITEM_STATE'
+  | 'ITEM_STATE_IDENTITY_MISMATCH'
+  | 'UNKNOWN_ITEM_STATE'
 
 export class ItemStateError extends Error {
   readonly code: ItemStateErrorCode

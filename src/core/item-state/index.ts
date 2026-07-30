@@ -7,12 +7,18 @@ export {
   previewCommittedResourceAction,
   restoreItemResource,
 } from './item-state'
+export {
+  createItemStateCollectionSnapshot,
+  getItemState,
+  replaceItemState,
+} from './item-state-collection'
 export type {
   ItemResourceCatalog,
   ItemResourceKind,
   ItemResourceProfile,
   ItemResourceState,
   ItemState,
+  ItemStateCollectionSnapshot,
   ResourceActionFailure,
   ResourceActionPreview,
   ResourceActionResult,

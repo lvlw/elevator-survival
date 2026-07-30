@@ -1,7 +1,16 @@
 import { describe, expect, it } from 'vitest'
 import { type FrozenRuleConfig } from '../config'
 import { createPlayerCondition } from '../condition'
+import {
+  createEmptyEquipment,
+  createEquipmentProfileCatalog,
+} from '../equipment'
 import { createBackpackSnapshot, createItemCatalog } from '../inventory'
+import { createItemResourceCatalog } from '../item-state'
+import {
+  createEmptyQuickSlots,
+  createQuickSlotProfileCatalog,
+} from '../quick-slot'
 import { createSceneGraph } from '../scene-graph'
 import {
   applySceneExplorationEffects,
@@ -14,6 +23,7 @@ import {
 const config = {
   combat: { player: { maxHealth: 12 } },
   backpack: {
+    quickSlotCount: 2,
     weightBands: {
       normal: { min: 0, max: 16, timeIncreasePercent: 0 },
       loaded: { min: 17, max: 24, timeIncreasePercent: 10 },
@@ -47,7 +57,23 @@ const graph = createSceneGraph({
   ],
 })
 const catalog = createItemCatalog([])
-const dependencies = { graph, physicalCatalog: catalog, config }
+const equipmentCatalog = createEquipmentProfileCatalog([], [])
+const quickSlotCatalog = createQuickSlotProfileCatalog([], [])
+const itemResourceCatalog = createItemResourceCatalog([], [])
+const equipment = createEmptyEquipment(catalog, equipmentCatalog)
+const quickSlots = createEmptyQuickSlots(
+  config.backpack.quickSlotCount,
+  catalog,
+  quickSlotCatalog,
+)
+const dependencies = {
+  graph,
+  physicalCatalog: catalog,
+  equipmentCatalog,
+  quickSlotCatalog,
+  itemResourceCatalog,
+  config,
+}
 const sceneInstanceId = 'effect-scene'
 const searchState = {
   sceneInstanceId,
@@ -73,6 +99,9 @@ const initial = (
         { width: 1, height: 1, items: [], placements: [] },
         catalog,
       ),
+      equipment,
+      quickSlots,
+      itemStates: { states: [] },
       condition: createPlayerCondition(
         {
           currentHealth: health,

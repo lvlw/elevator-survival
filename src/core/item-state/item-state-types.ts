@@ -27,6 +27,10 @@ export interface ItemState {
   readonly resource: ItemResourceState
 }
 
+export interface ItemStateCollectionSnapshot {
+  readonly states: readonly Readonly<ItemState>[]
+}
+
 export type ResourceActionFailure =
   | 'NO_RESOURCE'
   | 'INSUFFICIENT_RESOURCE'

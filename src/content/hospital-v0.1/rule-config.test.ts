@@ -20,6 +20,11 @@ describe('hospitalSliceV01RuleConfig', () => {
     expect(config.metadata.rulesVersion).toBe(HOSPITAL_SLICE_RULES_VERSION)
     expect(config.scene.totalTime).toBe(200)
     expect(config.scene.postActionBleedingDamage).toBe(1)
+    expect(config.scene.searchTime).toEqual({
+      withFlashlight: 20,
+      withoutFlashlight: 30,
+      flashlightChargeCost: 1,
+    })
     expect(config.scene.travelTimeModifiers).toEqual({
       minorContusionTimeIncreasePercent: 10,
     })
@@ -132,6 +137,12 @@ describe('ruleConfigSchema', () => {
       'negative minor contusion travel modifier',
       (config: RuleConfigInput) => {
         config.scene.travelTimeModifiers.minorContusionTimeIncreasePercent = -1
+      },
+    ],
+    [
+      'invalid flashlight search charge cost',
+      (config: RuleConfigInput) => {
+        config.scene.searchTime.flashlightChargeCost = 0
       },
     ],
   ])('rejects %s', (_name, mutate) => {

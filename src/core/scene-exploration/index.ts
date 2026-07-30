@@ -11,8 +11,19 @@ export {
   previewSceneMoveCommand,
   resolveSceneMoveCommand,
 } from './scene-move-resolution'
+export {
+  previewMainSearchCommand,
+  resolveMainSearchCommand,
+} from './main-search-command'
 export type {
+  MainSearchCommandDependencies,
+  MainSearchEvaluation,
+  MainSearchLightingOutcome,
+  MainSearchPreview,
+  MainSearchResolution,
+  MainSearchTransitionPlan,
   MoveThroughSceneEdgeCommand,
+  PerformMainSearchCommand,
   SceneExplorationDependencies,
   SceneExplorationEffect,
   SceneExplorationSnapshot,
@@ -23,4 +34,5 @@ export type {
   SceneMovePreview,
   SceneMoveResolution,
   SceneMoveTransitionPlan,
+  SearchIlluminationChoice,
 } from './scene-exploration-types'

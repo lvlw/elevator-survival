@@ -4,7 +4,9 @@ import { createRandomCursor, createStreamId, drawIntInclusive } from '../random'
 import { createSceneGraph } from '../scene-graph'
 import {
   createMainSearchDefinitionCatalog,
+  createSearchIlluminationProfileCatalog,
   createSceneSearchState,
+  getPlayerVisibleNodeSearchState,
   materializeMainSearchOutcome,
   revealPreparedMainSearchOutcome,
   SceneSearchError,
@@ -210,5 +212,81 @@ describe('scene search state', () => {
     expect(() => revealPreparedMainSearchOutcome(revealPreparedMainSearchOutcome(state, 'a'), 'a')).toThrowError(expect.objectContaining({ code: 'ALREADY_SEARCHED' }))
     expect(() => revealPreparedMainSearchOutcome(state, 'c')).toThrowError(expect.objectContaining({ code: 'NODE_NOT_SEARCHABLE' }))
     expect(() => revealPreparedMainSearchOutcome(state, 'missing')).toThrowError(expect.objectContaining({ code: 'UNKNOWN_NODE' }))
+  })
+
+  it('keeps prepared results hidden until the node is searched', () => {
+    const hidden = getPlayerVisibleNodeSearchState(create(), 'a')
+    expect(hidden).toEqual({ kind: 'available-unsearched', nodeId: 'a' })
+    expect('preparedOutcome' in hidden).toBe(false)
+    expect(JSON.stringify(hidden)).not.toContain('instanceId')
+    expect(JSON.stringify(hidden)).not.toContain('intel-a')
+
+    const visible = getPlayerVisibleNodeSearchState(
+      revealPreparedMainSearchOutcome(create(), 'a'),
+      'a',
+    )
+    expect(visible.kind).toBe('searched')
+    if (visible.kind !== 'searched') throw new Error('节点必须已搜索')
+    expect(visible.revealedItems).toHaveLength(2)
+    expect(visible.revealedIntelIds).toEqual(['intel-a', 'intel-b'])
+    expect(Object.isFrozen(visible)).toBe(true)
+    expect(Object.isFrozen(visible.revealedItems)).toBe(true)
+    expect(getPlayerVisibleNodeSearchState(create(), 'c')).toEqual({
+      kind: 'not-available',
+      nodeId: 'c',
+    })
+  })
+})
+
+describe('search illumination profiles', () => {
+  it('validates complete definitions and exposes a frozen provider catalog', () => {
+    const catalog = createSearchIlluminationProfileCatalog(
+      [
+        { definitionId: 'single', kind: 'low-light-provider' },
+        { definitionId: 'stack-a', kind: 'not-provider' },
+        { definitionId: 'stack-b', kind: 'not-provider' },
+      ],
+      items.definitionIds,
+    )
+    expect(catalog.definitionIds).toEqual([
+      'single',
+      'stack-a',
+      'stack-b',
+    ])
+    expect(catalog.get('single').kind).toBe('low-light-provider')
+    expect(Object.isFrozen(catalog)).toBe(true)
+  })
+
+  it.each([
+    [
+      'missing profile',
+      [{ definitionId: 'single', kind: 'low-light-provider' }],
+      'MISSING_ILLUMINATION_PROFILE',
+    ],
+    [
+      'duplicate profile',
+      [
+        { definitionId: 'single', kind: 'low-light-provider' },
+        { definitionId: 'single', kind: 'not-provider' },
+      ],
+      'DUPLICATE_ILLUMINATION_PROFILE',
+    ],
+    [
+      'unknown definition',
+      [
+        { definitionId: 'single', kind: 'low-light-provider' },
+        { definitionId: 'stack-a', kind: 'not-provider' },
+        { definitionId: 'stack-b', kind: 'not-provider' },
+        { definitionId: 'missing', kind: 'not-provider' },
+      ],
+      'INVALID_ILLUMINATION_PROFILE',
+    ],
+  ])('rejects %s', (_name, profiles, code) => {
+    expect(() =>
+      createSearchIlluminationProfileCatalog(
+        profiles as never,
+        items.definitionIds,
+      ),
+    ).toThrowError(expect.objectContaining({ code }))
   })
 })

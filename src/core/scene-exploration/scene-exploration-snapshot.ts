@@ -1,6 +1,7 @@
 import { deepFreeze } from '../config'
 import { createPlayerCondition } from '../condition'
-import { createBackpackSnapshot } from '../inventory'
+import { createItemStateCollectionSnapshot } from '../item-state'
+import { createCarriedItemContainersSnapshot } from '../quick-slot'
 import { validateTraversalAvailability } from '../scene-graph'
 import { validateSceneSearchState } from '../scene-search'
 import { SceneExplorationError } from './scene-exploration-errors'
@@ -52,6 +53,39 @@ export function createSceneExplorationSnapshot(
   validateTraversalAvailability(dependencies.graph, {
     enabledEdgeIds: input.enabledEdgeIds,
   })
+  if (
+    input.quickSlots.slots.length !==
+    dependencies.config.backpack.quickSlotCount
+  ) {
+    throw new SceneExplorationError(
+      'INVALID_INPUT',
+      '快捷栏数量与规则配置不一致',
+    )
+  }
+  const carried = createCarriedItemContainersSnapshot(
+    input.backpack,
+    input.equipment,
+    input.quickSlots,
+    {
+      physicalCatalog: dependencies.physicalCatalog,
+      equipmentCatalog: dependencies.equipmentCatalog,
+      quickSlotCatalog: dependencies.quickSlotCatalog,
+    },
+  )
+  const carriedItems = [
+    ...carried.backpack.items,
+    ...Object.values(carried.equipment).filter(
+      (item): item is NonNullable<typeof item> => item !== null,
+    ),
+    ...carried.quickSlots.slots.filter(
+      (item): item is NonNullable<typeof item> => item !== null,
+    ),
+  ]
+  const itemStates = createItemStateCollectionSnapshot(
+    input.itemStates.states,
+    carriedItems,
+    dependencies.itemResourceCatalog,
+  )
   const condition = createPlayerCondition(
     input.condition,
     dependencies.config.combat.player,
@@ -72,10 +106,10 @@ export function createSceneExplorationSnapshot(
     currentNodeId: input.currentNodeId,
     remainingTime: input.remainingTime,
     enabledEdgeIds: [...input.enabledEdgeIds].sort(),
-    backpack: createBackpackSnapshot(
-      input.backpack,
-      dependencies.physicalCatalog,
-    ),
+    backpack: carried.backpack,
+    equipment: carried.equipment,
+    quickSlots: carried.quickSlots,
+    itemStates,
     condition,
   })
 }

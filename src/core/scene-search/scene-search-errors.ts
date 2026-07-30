@@ -15,6 +15,10 @@ export type SceneSearchErrorCode =
   | 'NODE_NOT_SEARCHABLE'
   | 'ALREADY_SEARCHED'
   | 'INVALID_SEARCH_STATE'
+  | 'INVALID_ILLUMINATION_PROFILE'
+  | 'DUPLICATE_ILLUMINATION_PROFILE'
+  | 'MISSING_ILLUMINATION_PROFILE'
+  | 'UNKNOWN_ILLUMINATION_PROFILE'
 
 export class SceneSearchError extends Error {
   readonly code: SceneSearchErrorCode

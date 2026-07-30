@@ -70,3 +70,24 @@ export interface SceneSearchStateCreationInput {
   readonly searchCatalog: MainSearchDefinitionCatalog
   readonly itemCatalog: ItemCatalog
 }
+
+export type ItemSearchIlluminationProfile = Readonly<{
+  definitionId: string
+  kind: 'not-provider' | 'low-light-provider'
+}>
+
+export interface SearchIlluminationProfileCatalog {
+  readonly definitionIds: readonly string[]
+  has(definitionId: string): boolean
+  get(definitionId: string): ItemSearchIlluminationProfile
+}
+
+export type PlayerVisibleNodeSearchState =
+  | Readonly<{ kind: 'not-available'; nodeId: string }>
+  | Readonly<{ kind: 'available-unsearched'; nodeId: string }>
+  | Readonly<{
+      kind: 'searched'
+      nodeId: string
+      revealedItems: readonly Readonly<ItemInstance>[]
+      revealedIntelIds: readonly string[]
+    }>

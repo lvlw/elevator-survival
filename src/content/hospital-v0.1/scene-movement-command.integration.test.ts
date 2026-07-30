@@ -10,6 +10,11 @@ import {
   type BackpackPlacement,
   type ItemInstance,
 } from '../../core/inventory'
+import { createFullItemState } from '../../core/item-state'
+import {
+  createEmptyEquipment,
+} from '../../core/equipment'
+import { createEmptyQuickSlots } from '../../core/quick-slot'
 import {
   applySceneExplorationEffects,
   createInitialSceneExplorationSnapshot,
@@ -25,15 +30,32 @@ import {
   hospitalSliceV01SceneGraph,
 } from './hospital-scene-graph'
 import { hospitalSliceV01RuleConfig as config } from './rule-config'
-import { hospitalItemCatalog } from './items'
+import {
+  hospitalItemCatalog,
+  hospitalItemEquipmentCatalog,
+  hospitalItemQuickSlotCatalog,
+  hospitalItemResourceCatalog,
+} from './items'
 import { HOSPITAL_ITEM_IDS } from './items/hospital-item-ids'
 import { hospitalMainSearchCatalog } from './search'
 
 const dependencies = {
   graph: hospitalSliceV01SceneGraph,
   physicalCatalog: hospitalItemCatalog,
+  equipmentCatalog: hospitalItemEquipmentCatalog,
+  quickSlotCatalog: hospitalItemQuickSlotCatalog,
+  itemResourceCatalog: hospitalItemResourceCatalog,
   config,
 }
+const equipment = createEmptyEquipment(
+  hospitalItemCatalog,
+  hospitalItemEquipmentCatalog,
+)
+const quickSlots = createEmptyQuickSlots(
+  config.backpack.quickSlotCount,
+  hospitalItemCatalog,
+  hospitalItemQuickSlotCatalog,
+)
 const sceneInstanceId = 'hospital-movement-scene'
 const searchState = createSceneSearchState({
   runSeed: 'hospital-movement-seed',
@@ -93,6 +115,13 @@ const scene = (
       remainingTime,
       enabledEdgeIds,
       backpack: inventory,
+      equipment,
+      quickSlots,
+      itemStates: {
+        states: inventory.items.map((item) =>
+          createFullItemState(item, hospitalItemResourceCatalog),
+        ),
+      },
       condition: playerCondition,
     },
     dependencies,

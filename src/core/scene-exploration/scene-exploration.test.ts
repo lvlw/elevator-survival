@@ -7,7 +7,19 @@ import {
   createPlayerCondition,
   startBleeding,
 } from '../condition'
+import {
+  createEmptyEquipment,
+  createEquipmentProfileCatalog,
+} from '../equipment'
 import { createBackpackSnapshot, createItemCatalog } from '../inventory'
+import {
+  createFullItemState,
+  createItemResourceCatalog,
+} from '../item-state'
+import {
+  createEmptyQuickSlots,
+  createQuickSlotProfileCatalog,
+} from '../quick-slot'
 import { createSceneGraph } from '../scene-graph'
 import {
   createInitialSceneExplorationSnapshot,
@@ -20,6 +32,7 @@ import {
 const config = {
   combat: { player: { maxHealth: 12 } },
   backpack: {
+    quickSlotCount: 2,
     weightBands: {
       normal: { min: 0, max: 16, timeIncreasePercent: 0 },
       loaded: { min: 17, max: 24, timeIncreasePercent: 10 },
@@ -58,7 +71,35 @@ const graph = createSceneGraph({
 const catalog = createItemCatalog([
   { id: 'weight', name: '负重', width: 1, height: 1, unitWeight: 1, canRotate: true, stacking: { kind: 'stackable', maxQuantity: 30 } },
 ])
-const dependencies = { graph, physicalCatalog: catalog, config }
+const equipmentCatalog = createEquipmentProfileCatalog(
+  [{ definitionId: 'weight', kind: 'not-equippable' }],
+  catalog.definitionIds,
+)
+const quickSlotCatalog = createQuickSlotProfileCatalog(
+  [{ definitionId: 'weight', kind: 'not-eligible' }],
+  catalog.definitionIds,
+)
+const itemResourceCatalog = createItemResourceCatalog(
+  [{ definitionId: 'weight', kind: 'none' }],
+  catalog.definitionIds,
+)
+const equipment = createEmptyEquipment(
+  catalog,
+  equipmentCatalog,
+)
+const quickSlots = createEmptyQuickSlots(
+  config.backpack.quickSlotCount,
+  catalog,
+  quickSlotCatalog,
+)
+const dependencies = {
+  graph,
+  physicalCatalog: catalog,
+  equipmentCatalog,
+  quickSlotCatalog,
+  itemResourceCatalog,
+  config,
+}
 const sceneInstanceId = 'core-scene'
 const searchState = {
   sceneInstanceId,
@@ -111,6 +152,19 @@ const snapshot = (
       remainingTime,
       enabledEdgeIds,
       backpack: backpack(weight),
+      equipment,
+      quickSlots,
+      itemStates: {
+        states:
+          weight === 0
+            ? []
+            : [
+                createFullItemState(
+                  { instanceId: 'load', definitionId: 'weight' },
+                  itemResourceCatalog,
+                ),
+              ],
+      },
       condition: playerCondition,
     },
     dependencies,
@@ -142,6 +196,9 @@ describe('scene exploration snapshot', () => {
           remainingTime: 10,
           enabledEdgeIds: ['safe-middle'],
           backpack: backpack(),
+          equipment,
+          quickSlots,
+          itemStates: { states: [] },
           condition: condition(),
           ...change,
         },

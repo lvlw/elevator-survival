@@ -1,6 +1,15 @@
 import type { FrozenRuleConfig } from '../config'
 import type { PlayerConditionSnapshot } from '../condition'
+import type {
+  EquipmentProfileCatalog,
+  EquipmentSnapshot,
+} from '../equipment'
 import type { BackpackSnapshot, ItemCatalog } from '../inventory'
+import type {
+  ItemResourceCatalog,
+  ItemResourceKind,
+  ItemStateCollectionSnapshot,
+} from '../item-state'
 import type {
   AdjustedTravelTimeResult,
   CarryableLoadTier,
@@ -10,7 +19,15 @@ import type {
   SceneGraph,
 } from '../scene-graph'
 import type { TimedSceneActionOutcome } from '../scene'
-import type { SceneSearchStateSnapshot } from '../scene-search'
+import type {
+  MainSearchDefinitionCatalog,
+  SceneSearchStateSnapshot,
+  SearchIlluminationProfileCatalog,
+} from '../scene-search'
+import type {
+  QuickSlotProfileCatalog,
+  QuickSlotSnapshot,
+} from '../quick-slot'
 import type { SceneExplorationErrorCode } from './scene-exploration-errors'
 
 export type SceneExplorationStatus =
@@ -27,13 +44,25 @@ export interface SceneExplorationSnapshot {
   readonly remainingTime: number
   readonly enabledEdgeIds: readonly string[]
   readonly backpack: BackpackSnapshot
+  readonly equipment: EquipmentSnapshot
+  readonly quickSlots: QuickSlotSnapshot
+  readonly itemStates: ItemStateCollectionSnapshot
   readonly condition: PlayerConditionSnapshot
 }
 
 export interface SceneExplorationDependencies {
   readonly graph: SceneGraph
   readonly physicalCatalog: ItemCatalog
+  readonly equipmentCatalog: EquipmentProfileCatalog
+  readonly quickSlotCatalog: QuickSlotProfileCatalog
+  readonly itemResourceCatalog: ItemResourceCatalog
   readonly config: FrozenRuleConfig
+}
+
+export interface MainSearchCommandDependencies
+  extends SceneExplorationDependencies {
+  readonly searchCatalog: MainSearchDefinitionCatalog
+  readonly searchIlluminationCatalog: SearchIlluminationProfileCatalog
 }
 
 export interface MoveThroughSceneEdgeCommand {
@@ -62,6 +91,29 @@ export type SceneExplorationEffect =
       routeEdgeIds: readonly string[]
     }>
   | Readonly<{
+      kind: 'item-resource-consumed'
+      source: 'main-search-illumination'
+      instanceId: string
+      definitionId: string
+      resourceKind: ItemResourceKind
+      currentBefore: number
+      requestedCost: number
+      consumed: number
+      currentAfter: number
+      depleted: boolean
+    }>
+  | Readonly<{
+      kind: 'scene-main-search-revealed'
+      nodeId: string
+      searchOrdinal: number
+      revealedItemInstanceIds: readonly string[]
+      revealedItemSummary: readonly Readonly<{
+        definitionId: string
+        quantity: number
+      }>[]
+      revealedIntelIds: readonly string[]
+    }>
+  | Readonly<{
       kind: 'scene-time-resolved'
       remainingTimeBefore: number
       actionTimeCost: number
@@ -82,6 +134,49 @@ export type SceneExplorationEffect =
       toStatus: SceneExplorationStatus
       reason: 'safe-return' | 'forced-return' | 'death'
     }>
+
+export type SearchIlluminationChoice =
+  | 'use-equipped-flashlight'
+  | 'search-without-flashlight'
+
+export interface PerformMainSearchCommand {
+  readonly illumination: SearchIlluminationChoice
+}
+
+export type MainSearchLightingOutcome = 'illuminated' | 'low-light'
+
+export interface MainSearchEvaluation {
+  readonly nodeId: string
+  readonly searchOrdinal: number
+  readonly illumination: SearchIlluminationChoice
+  readonly lightingOutcome: MainSearchLightingOutcome
+  readonly actionTime: number
+  readonly flashlightInstanceId: string | null
+  readonly backpackWeight: number
+  readonly loadTier: CarryableLoadTier
+  readonly returnRoute: ReturnRouteResult
+  readonly sceneOutcome: TimedSceneActionOutcome
+  readonly effects: readonly SceneExplorationEffect[]
+  readonly snapshot: SceneExplorationSnapshot
+}
+
+export interface MainSearchTransitionPlan {
+  readonly command: PerformMainSearchCommand
+  readonly metadata: Omit<MainSearchEvaluation, 'effects' | 'snapshot'>
+  readonly effects: readonly SceneExplorationEffect[]
+}
+
+export type MainSearchPreview =
+  | Readonly<{ canExecute: true; result: MainSearchEvaluation }>
+  | Readonly<{
+      canExecute: false
+      rejectionCode: SceneExplorationErrorCode
+    }>
+
+export interface MainSearchResolution {
+  readonly result: MainSearchEvaluation
+  readonly snapshot: SceneExplorationSnapshot
+}
 
 export interface SceneMoveEvaluation {
   readonly originNodeId: string

@@ -4,11 +4,15 @@ import {
   createFullItemState,
   createItemResourceCatalog,
   createItemState,
+  createItemStateCollectionSnapshot,
+  getItemState,
   ItemStateError,
   previewCommittedResourceAction,
   restoreItemResource,
+  replaceItemState,
   type ItemResourceProfile,
 } from '.'
+import type { ItemInstance } from '../inventory'
 
 const profiles = [
   { definitionId: 'pipe', kind: 'durability', maximum: 6 },
@@ -233,5 +237,104 @@ describe('resource restoration', () => {
     expect(result.state.instanceId).toBe('instance-coat')
     expect(Object.isFrozen(result)).toBe(true)
     expect(Object.isFrozen(result.state)).toBe(true)
+  })
+})
+
+describe('item state collection', () => {
+  const carried = [
+    { instanceId: 'pipe-1', definitionId: 'pipe', quantity: 1 },
+    { instanceId: 'lamp-1', definitionId: 'lamp', quantity: 1 },
+  ] satisfies readonly ItemInstance[]
+  const states = [
+    createFullItemState(carried[1], catalog),
+    createFullItemState(carried[0], catalog),
+  ]
+
+  it('validates complete coverage, sorts, freezes, and preserves input', () => {
+    const before = structuredClone(states)
+    const collection = createItemStateCollectionSnapshot(
+      states,
+      carried,
+      catalog,
+    )
+    expect(collection.states.map((item) => item.instanceId)).toEqual([
+      'lamp-1',
+      'pipe-1',
+    ])
+    expect(states).toEqual(before)
+    expect(Object.isFrozen(collection)).toBe(true)
+    expect(Object.isFrozen(collection.states)).toBe(true)
+  })
+
+  it.each([
+    [
+      'duplicate state',
+      [states[0], states[0]],
+      carried,
+      'DUPLICATE_ITEM_STATE',
+    ],
+    [
+      'missing state',
+      [states[0]],
+      carried,
+      'MISSING_ITEM_STATE',
+    ],
+    [
+      'extra state',
+      [
+        ...states,
+        createFullItemState(
+          { instanceId: 'card-1', definitionId: 'card' },
+          catalog,
+        ),
+      ],
+      carried,
+      'EXTRA_ITEM_STATE',
+    ],
+    [
+      'definition mismatch',
+      [
+        states[0],
+        {
+          ...states[1],
+          definitionId: 'coat',
+          resource: { kind: 'integrity' as const, current: 4 },
+        },
+      ],
+      carried,
+      'ITEM_STATE_IDENTITY_MISMATCH',
+    ],
+  ])('rejects %s', (_name, inputStates, inputItems, code) => {
+    expect(() =>
+      createItemStateCollectionSnapshot(
+        inputStates,
+        inputItems,
+        catalog,
+      ),
+    ).toThrowError(expect.objectContaining({ code }))
+  })
+
+  it('queries and atomically replaces one state without changing identity', () => {
+    const collection = createItemStateCollectionSnapshot(
+      states,
+      carried,
+      catalog,
+    )
+    const consumed = consumeCommittedResource(
+      getItemState(collection, 'lamp-1'),
+      1,
+    )
+    const replaced = replaceItemState(collection, consumed.state)
+    expect(getItemState(replaced, 'lamp-1').resource).toEqual({
+      kind: 'charge',
+      current: 2,
+    })
+    expect(getItemState(collection, 'lamp-1').resource).toEqual({
+      kind: 'charge',
+      current: 3,
+    })
+    expect(() => getItemState(collection, 'missing')).toThrowError(
+      expect.objectContaining({ code: 'UNKNOWN_ITEM_STATE' }),
+    )
   })
 })

@@ -15,6 +15,7 @@ export const hospitalSliceV01RuleConfig = parseRuleConfig({
     searchTime: {
       withFlashlight: 20,
       withoutFlashlight: 30,
+      flashlightChargeCost: 1,
     },
     batteryUseTime: 10,
     extractionTime: {

@@ -232,9 +232,11 @@ function evaluate(
     nodeId: snapshot.currentNodeId,
     searchOrdinal: prepared.searchOrdinal,
     revealedItemInstanceIds: prepared.revealedItems.map(
-      (item) => item.instanceId,
+      ({ item }) => item.instanceId,
     ),
-    revealedItemSummary: summarizeItems(prepared.revealedItems),
+    revealedItemSummary: summarizeItems(
+      prepared.revealedItems.map(({ item }) => item),
+    ),
     revealedIntelIds: [...prepared.revealedIntelIds],
   })
 
@@ -348,7 +350,7 @@ function materializeEvaluation(
   const snapshot = applySceneExplorationEffects(
     initialSnapshot,
     plan.effects,
-    dependencies.config.combat.player,
+    dependencies,
   )
   return deepFreeze({
     ...plan.metadata,

@@ -2,6 +2,10 @@ export { SceneSearchError, type SceneSearchErrorCode } from './scene-search-erro
 export { createMainSearchDefinitionCatalog } from './scene-search-definition-catalog'
 export { createSearchIlluminationProfileCatalog } from './search-illumination-profile-catalog'
 export { materializeMainSearchOutcome } from './scene-search-materialization'
+export {
+  createSceneItemSnapshot,
+  createSearchItemState,
+} from './scene-item-snapshot'
 export { getPlayerVisibleNodeSearchState } from './player-visible-search-state'
 export {
   createSceneSearchState,
@@ -18,6 +22,8 @@ export type {
   SceneSearchStateCreationInput,
   SceneSearchStateSnapshot,
   SearchItemGrant,
+  SearchItemInitialState,
+  SceneItemSnapshot,
   SearchRandomTrace,
   SearchIlluminationProfileCatalog,
   WeightedSearchItemChoice,

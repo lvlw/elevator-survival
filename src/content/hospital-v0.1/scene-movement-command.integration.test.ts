@@ -63,6 +63,7 @@ const searchState = createSceneSearchState({
   graph: hospitalSliceV01SceneGraph,
   searchCatalog: hospitalMainSearchCatalog,
   itemCatalog: hospitalItemCatalog,
+  itemResourceCatalog: hospitalItemResourceCatalog,
 })
 const at = (instanceId: string, x: number, y: number): BackpackPlacement => ({
   instanceId,

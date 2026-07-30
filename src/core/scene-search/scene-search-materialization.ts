@@ -1,5 +1,6 @@
 import { deepFreeze } from '../config'
 import { createItemInstance, type ItemCatalog } from '../inventory'
+import type { ItemResourceCatalog } from '../item-state'
 import {
   RANDOM_ALGORITHM_VERSION,
   createRandomCursor,
@@ -7,6 +8,10 @@ import {
   drawIntInclusive,
 } from '../random'
 import { SceneSearchError } from './scene-search-errors'
+import {
+  createSceneItemSnapshot,
+  createSearchItemState,
+} from './scene-item-snapshot'
 import type {
   MainSearchDefinition,
   PreparedMainSearchOutcome,
@@ -30,24 +35,45 @@ export function materializeMainSearchOutcome(
   sceneInstanceId: string,
   definition: MainSearchDefinition,
   itemCatalog: ItemCatalog,
+  resourceCatalog: ItemResourceCatalog,
 ): PreparedMainSearchOutcome {
   if (runSeed.trim().length === 0 || sceneInstanceId.trim().length === 0) {
     throw new SceneSearchError('INVALID_SCENE_INSTANCE_ID', '种子和场景实例ID不能为空')
   }
-  const items = definition.fixedItemGrants.map((grant, index) =>
-    createItemInstance(
+  const materializeGrant = (
+    grant: SearchItemGrant,
+    source: 'fixed' | 'weighted',
+    sourceOrdinal: number,
+  ) => {
+    const item = createItemInstance(
       {
         instanceId: stableInstanceId(
           sceneInstanceId,
           definition.nodeId,
           definition.searchOrdinal,
-          'fixed',
-          index,
+          source,
+          sourceOrdinal,
         ),
-        ...grant,
+        definitionId: grant.definitionId,
+        quantity: grant.quantity,
       },
       itemCatalog,
-    ),
+    )
+    return createSceneItemSnapshot(
+      {
+        item,
+        state: createSearchItemState(
+          item,
+          grant.initialState,
+          resourceCatalog,
+        ),
+      },
+      itemCatalog,
+      resourceCatalog,
+    )
+  }
+  const items = definition.fixedItemGrants.map((grant, index) =>
+    materializeGrant(grant, 'fixed', index),
   )
   let randomTrace = null
   if (definition.weightedItemChoice) {
@@ -70,21 +96,7 @@ export function materializeMainSearchOutcome(
       return draw.value <= cumulative
     })
     if (!selected) throw new SceneSearchError('INVALID_WEIGHTED_POOL', '加权抽取没有命中候选')
-    items.push(
-      createItemInstance(
-        {
-          instanceId: stableInstanceId(
-            sceneInstanceId,
-            definition.nodeId,
-            definition.searchOrdinal,
-            'weighted',
-            0,
-          ),
-          ...selected.grant,
-        },
-        itemCatalog,
-      ),
-    )
+    items.push(materializeGrant(selected.grant, 'weighted', 0))
     randomTrace = {
       algorithmVersion: RANDOM_ALGORITHM_VERSION,
       streamId,

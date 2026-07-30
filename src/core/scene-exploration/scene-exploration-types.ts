@@ -4,10 +4,15 @@ import type {
   EquipmentProfileCatalog,
   EquipmentSnapshot,
 } from '../equipment'
-import type { BackpackSnapshot, ItemCatalog } from '../inventory'
+import type {
+  BackpackPlacement,
+  BackpackSnapshot,
+  ItemCatalog,
+} from '../inventory'
 import type {
   ItemResourceCatalog,
   ItemResourceKind,
+  ItemState,
   ItemStateCollectionSnapshot,
 } from '../item-state'
 import type {
@@ -76,6 +81,19 @@ export type SceneMoveHealthLossSource =
 
 export type SceneExplorationEffect =
   | Readonly<{
+      kind: 'scene-item-picked-up'
+      nodeId: string
+      sourceInstanceId: string
+      definitionId: string
+      quantityBefore: number
+      quantityPicked: number
+      quantityRemaining: number
+      destinationInstanceId: string
+      destinationPlacement: Omit<BackpackPlacement, 'instanceId'>
+      destinationItemState: Readonly<ItemState>
+      pickupKind: 'full' | 'partial'
+    }>
+  | Readonly<{
       kind: 'scene-node-changed'
       reason: 'movement'
       fromNodeId: string
@@ -141,6 +159,47 @@ export type SearchIlluminationChoice =
 
 export interface PerformMainSearchCommand {
   readonly illumination: SearchIlluminationChoice
+}
+
+export interface PickUpRevealedNodeItemCommand {
+  readonly nodeItemInstanceId: string
+  readonly quantity: number
+  readonly placement: Omit<BackpackPlacement, 'instanceId'>
+  readonly extractedInstanceId?: string
+}
+
+export interface NodeItemPickupEvaluation {
+  readonly nodeId: string
+  readonly sourceInstanceId: string
+  readonly destinationInstanceId: string
+  readonly definitionId: string
+  readonly quantityPicked: number
+  readonly quantityRemaining: number
+  readonly pickupKind: 'full' | 'partial'
+  readonly destinationPlacement: Omit<BackpackPlacement, 'instanceId'>
+  readonly backpackWeightBefore: number
+  readonly backpackWeightAfter: number
+  readonly loadTierAfter: CarryableLoadTier
+  readonly effects: readonly SceneExplorationEffect[]
+  readonly snapshot: SceneExplorationSnapshot
+}
+
+export interface NodeItemPickupTransitionPlan {
+  readonly command: PickUpRevealedNodeItemCommand
+  readonly metadata: Omit<NodeItemPickupEvaluation, 'effects' | 'snapshot'>
+  readonly effects: readonly SceneExplorationEffect[]
+}
+
+export type NodeItemPickupPreview =
+  | Readonly<{ canExecute: true; result: NodeItemPickupEvaluation }>
+  | Readonly<{
+      canExecute: false
+      rejectionCode: SceneExplorationErrorCode
+    }>
+
+export interface NodeItemPickupResolution {
+  readonly result: NodeItemPickupEvaluation
+  readonly snapshot: SceneExplorationSnapshot
 }
 
 export type MainSearchLightingOutcome = 'illuminated' | 'low-light'

@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import { createItemCatalog } from '../inventory'
+import { createItemResourceCatalog } from '../item-state'
 import { createRandomCursor, createStreamId, drawIntInclusive } from '../random'
 import { createSceneGraph } from '../scene-graph'
 import {
   createMainSearchDefinitionCatalog,
+  createSceneItemSnapshot,
   createSearchIlluminationProfileCatalog,
   createSceneSearchState,
   getPlayerVisibleNodeSearchState,
@@ -26,14 +28,27 @@ const items = createItemCatalog([
   { id: 'stack-b', name: 'B', width: 1, height: 1, unitWeight: 1, canRotate: true, stacking: { kind: 'stackable', maxQuantity: 4 } },
   { id: 'single', name: 'S', width: 1, height: 2, unitWeight: 2, canRotate: true, stacking: { kind: 'none' } },
 ])
+const resources = createItemResourceCatalog(
+  items.definitionIds.map((definitionId) => ({
+    definitionId,
+    kind: 'none' as const,
+  })),
+  items.definitionIds,
+)
 const definition = (nodeId = 'a'): MainSearchDefinition => ({
   nodeId,
   searchOrdinal: 0,
-  fixedItemGrants: [{ definitionId: 'single', quantity: 1 }],
+  fixedItemGrants: [
+    {
+      definitionId: 'single',
+      quantity: 1,
+      initialState: { kind: 'none' },
+    },
+  ],
   weightedItemChoice: {
     entries: [
-      { grant: { definitionId: 'stack-b', quantity: 1 }, weight: 30 },
-      { grant: { definitionId: 'stack-a', quantity: 2 }, weight: 70 },
+      { grant: { definitionId: 'stack-b', quantity: 1, initialState: { kind: 'none' } }, weight: 30 },
+      { grant: { definitionId: 'stack-a', quantity: 2, initialState: { kind: 'none' } }, weight: 70 },
     ],
   },
   fixedIntelIds: ['intel-b', 'intel-a'],
@@ -43,7 +58,12 @@ describe('main search definition catalog', () => {
   it('normalizes and deeply freezes valid definitions without mutating input', () => {
     const input = definition()
     const before = structuredClone(input)
-    const catalog = createMainSearchDefinitionCatalog([input], graph, items)
+    const catalog = createMainSearchDefinitionCatalog(
+      [input],
+      graph,
+      items,
+      resources,
+    )
     expect(catalog.nodeIds).toEqual(['a'])
     expect(catalog.get('a').weightedItemChoice?.entries.map((entry) => entry.grant.definitionId)).toEqual(['stack-a', 'stack-b'])
     expect(catalog.get('a').fixedIntelIds).toEqual(['intel-a', 'intel-b'])
@@ -56,14 +76,15 @@ describe('main search definition catalog', () => {
     [[definition('a'), definition('a')], 'DUPLICATE_NODE_DEFINITION'],
     [[definition('missing')], 'UNKNOWN_NODE'],
     [[{ ...definition(), nodeId: '' }], 'INVALID_NODE_ID'],
-    [[{ ...definition(), fixedItemGrants: [{ definitionId: '', quantity: 1 }] }], 'INVALID_GRANT'],
-    [[{ ...definition(), fixedItemGrants: [{ definitionId: 'missing', quantity: 1 }] }], 'INVALID_GRANT'],
-    [[{ ...definition(), fixedItemGrants: [{ definitionId: 'stack-a', quantity: 0 }] }], 'INVALID_GRANT'],
-    [[{ ...definition(), fixedItemGrants: [{ definitionId: 'single', quantity: 2 }] }], 'INVALID_GRANT'],
-    [[{ ...definition(), fixedItemGrants: [{ definitionId: 'stack-a', quantity: 4 }] }], 'INVALID_GRANT'],
-    [[{ ...definition(), weightedItemChoice: { entries: [{ grant: { definitionId: 'stack-a', quantity: 1 }, weight: 1 }] } }], 'INVALID_WEIGHTED_POOL'],
-    [[{ ...definition(), weightedItemChoice: { entries: [{ grant: { definitionId: 'stack-a', quantity: 1 }, weight: 0 }, { grant: { definitionId: 'stack-b', quantity: 1 }, weight: 1 }] } }], 'INVALID_WEIGHT'],
-    [[{ ...definition(), weightedItemChoice: { entries: [{ grant: { definitionId: 'stack-a', quantity: 1 }, weight: 1 }, { grant: { definitionId: 'stack-a', quantity: 2 }, weight: 1 }] } }], 'DUPLICATE_WEIGHTED_DEFINITION'],
+    [[{ ...definition(), fixedItemGrants: [{ definitionId: '', quantity: 1, initialState: { kind: 'none' } }] }], 'INVALID_GRANT'],
+    [[{ ...definition(), fixedItemGrants: [{ definitionId: 'missing', quantity: 1, initialState: { kind: 'none' } }] }], 'INVALID_GRANT'],
+    [[{ ...definition(), fixedItemGrants: [{ definitionId: 'stack-a', quantity: 0, initialState: { kind: 'none' } }] }], 'INVALID_GRANT'],
+    [[{ ...definition(), fixedItemGrants: [{ definitionId: 'single', quantity: 2, initialState: { kind: 'none' } }] }], 'INVALID_GRANT'],
+    [[{ ...definition(), fixedItemGrants: [{ definitionId: 'stack-a', quantity: 4, initialState: { kind: 'none' } }] }], 'INVALID_GRANT'],
+    [[{ ...definition(), fixedItemGrants: [{ definitionId: 'stack-a', quantity: 1 }] }], 'INVALID_INITIAL_STATE'],
+    [[{ ...definition(), weightedItemChoice: { entries: [{ grant: { definitionId: 'stack-a', quantity: 1, initialState: { kind: 'none' } }, weight: 1 }] } }], 'INVALID_WEIGHTED_POOL'],
+    [[{ ...definition(), weightedItemChoice: { entries: [{ grant: { definitionId: 'stack-a', quantity: 1, initialState: { kind: 'none' } }, weight: 0 }, { grant: { definitionId: 'stack-b', quantity: 1, initialState: { kind: 'none' } }, weight: 1 }] } }], 'INVALID_WEIGHT'],
+    [[{ ...definition(), weightedItemChoice: { entries: [{ grant: { definitionId: 'stack-a', quantity: 1, initialState: { kind: 'none' } }, weight: 1 }, { grant: { definitionId: 'stack-a', quantity: 2, initialState: { kind: 'none' } }, weight: 1 }] } }], 'DUPLICATE_WEIGHTED_DEFINITION'],
     [[{ ...definition(), fixedIntelIds: ['same', 'same'] }], 'DUPLICATE_INTEL_ID'],
   ])('rejects invalid definition %# as %s', (definitions, code) => {
     expect(() =>
@@ -71,6 +92,7 @@ describe('main search definition catalog', () => {
         definitions as MainSearchDefinition[],
         graph,
         items,
+        resources,
       ),
     ).toThrowError(expect.objectContaining({ code }))
   })
@@ -83,53 +105,285 @@ describe('main search definition catalog', () => {
           ...invalid,
           weightedItemChoice: {
             entries: [
-              { grant: { definitionId: 'stack-a', quantity: 1 }, weight: Number.MAX_SAFE_INTEGER },
-              { grant: { definitionId: 'stack-b', quantity: 1 }, weight: 1 },
+              { grant: { definitionId: 'stack-a', quantity: 1, initialState: { kind: 'none' } }, weight: Number.MAX_SAFE_INTEGER },
+              { grant: { definitionId: 'stack-b', quantity: 1, initialState: { kind: 'none' } }, weight: 1 },
             ],
           },
         }],
         graph,
         items,
+        resources,
       ),
     ).toThrowError(expect.objectContaining({ code: 'WEIGHT_OVERFLOW' }))
   })
 })
 
+describe('scene item snapshots and explicit initial resources', () => {
+  const resourceItems = createItemCatalog([
+    {
+      id: 'none-item',
+      name: '无资源',
+      width: 1,
+      height: 1,
+      unitWeight: 1,
+      canRotate: true,
+      stacking: { kind: 'stackable', maxQuantity: 3 },
+    },
+    {
+      id: 'durable-item',
+      name: '耐久物',
+      width: 1,
+      height: 1,
+      unitWeight: 1,
+      canRotate: true,
+      stacking: { kind: 'none' },
+    },
+  ])
+  const resourceProfiles = createItemResourceCatalog(
+    [
+      { definitionId: 'none-item', kind: 'none' },
+      { definitionId: 'durable-item', kind: 'durability', maximum: 3 },
+    ],
+    resourceItems.definitionIds,
+  )
+
+  it('creates a deeply frozen entity without mutating input', () => {
+    const input = {
+      item: {
+        instanceId: 'entity-1',
+        definitionId: 'none-item',
+        quantity: 1,
+      },
+      state: {
+        instanceId: 'entity-1',
+        definitionId: 'none-item',
+        resource: { kind: 'none' as const },
+      },
+    }
+    const before = structuredClone(input)
+    const entity = createSceneItemSnapshot(
+      input,
+      resourceItems,
+      resourceProfiles,
+    )
+    expect(entity).toEqual(before)
+    expect(input).toEqual(before)
+    expect(Object.isFrozen(entity)).toBe(true)
+    expect(Object.isFrozen(entity.item)).toBe(true)
+    expect(Object.isFrozen(entity.state.resource)).toBe(true)
+  })
+
+  it.each([
+    [
+      {
+        item: { instanceId: 'a', definitionId: 'none-item', quantity: 1 },
+        state: { instanceId: 'b', definitionId: 'none-item', resource: { kind: 'none' } },
+      },
+      'ITEM_IDENTITY_MISMATCH',
+    ],
+    [
+      {
+        item: { instanceId: 'a', definitionId: 'none-item', quantity: 1 },
+        state: { instanceId: 'a', definitionId: 'durable-item', resource: { kind: 'durability', current: 1 } },
+      },
+      'ITEM_IDENTITY_MISMATCH',
+    ],
+    [
+      {
+        item: { instanceId: 'a', definitionId: 'none-item', quantity: 1 },
+        state: { instanceId: 'a', definitionId: 'none-item', resource: { kind: 'charge', current: 1 } },
+      },
+      'RESOURCE_KIND_MISMATCH',
+    ],
+  ])('rejects mismatched scene entity %#', (input, code) => {
+    expect(() =>
+      createSceneItemSnapshot(
+        input as never,
+        resourceItems,
+        resourceProfiles,
+      ),
+    ).toThrowError(expect.objectContaining({ code }))
+  })
+
+  it('requires none for none profiles and explicit for resource profiles', () => {
+    const valid = createMainSearchDefinitionCatalog(
+      [
+        {
+          nodeId: 'a',
+          searchOrdinal: 0,
+          fixedItemGrants: [
+            {
+              definitionId: 'durable-item',
+              quantity: 1,
+              initialState: { kind: 'explicit', current: 2 },
+            },
+          ],
+          weightedItemChoice: null,
+          fixedIntelIds: [],
+        },
+      ],
+      graph,
+      resourceItems,
+      resourceProfiles,
+    )
+    const outcome = materializeMainSearchOutcome(
+      'seed',
+      'resource-scene',
+      valid.get('a'),
+      resourceItems,
+      resourceProfiles,
+    )
+    expect(outcome.revealedItems[0].state.resource).toEqual({
+      kind: 'durability',
+      current: 2,
+    })
+    expect(outcome.revealedItems[0].item.instanceId).toBe(
+      outcome.revealedItems[0].state.instanceId,
+    )
+  })
+
+  it.each([
+    ['none-item', { kind: 'explicit', current: 1 }],
+    ['durable-item', { kind: 'none' }],
+    ['durable-item', { kind: 'explicit', current: 4 }],
+    ['durable-item', { kind: 'explicit', current: -1 }],
+    ['durable-item', { kind: 'explicit', current: 1.5 }],
+  ])('rejects invalid explicit initial state for %s', (definitionId, initialState) => {
+    expect(() =>
+      createMainSearchDefinitionCatalog(
+        [
+          {
+            nodeId: 'a',
+            searchOrdinal: 0,
+            fixedItemGrants: [
+              { definitionId, quantity: 1, initialState },
+            ],
+            weightedItemChoice: null,
+            fixedIntelIds: [],
+          },
+        ] as never,
+        graph,
+        resourceItems,
+        resourceProfiles,
+      ),
+    ).toThrowError(
+      expect.objectContaining({ code: 'INVALID_INITIAL_STATE' }),
+    )
+  })
+
+  it.each([
+    { kind: 'none', current: 0 },
+    { kind: 'explicit', current: 1, maximum: 3 },
+  ])('strictly rejects extra initial-state fields %#', (initialState) => {
+    const definitionId =
+      initialState.kind === 'none' ? 'none-item' : 'durable-item'
+    expect(() =>
+      createMainSearchDefinitionCatalog(
+        [
+          {
+            nodeId: 'a',
+            searchOrdinal: 0,
+            fixedItemGrants: [
+              { definitionId, quantity: 1, initialState },
+            ],
+            weightedItemChoice: null,
+            fixedIntelIds: [],
+          },
+        ] as never,
+        graph,
+        resourceItems,
+        resourceProfiles,
+      ),
+    ).toThrowError(
+      expect.objectContaining({ code: 'INVALID_INITIAL_STATE' }),
+    )
+  })
+
+  it('keeps resource state out of the current player-visible item projection', () => {
+    const catalog = createMainSearchDefinitionCatalog(
+      [
+        {
+          nodeId: 'a',
+          searchOrdinal: 0,
+          fixedItemGrants: [
+            {
+              definitionId: 'durable-item',
+              quantity: 1,
+              initialState: { kind: 'explicit', current: 2 },
+            },
+          ],
+          weightedItemChoice: null,
+          fixedIntelIds: [],
+        },
+      ],
+      graph,
+      resourceItems,
+      resourceProfiles,
+    )
+    const state = revealPreparedMainSearchOutcome(
+      createSceneSearchState({
+        runSeed: 'seed',
+        sceneInstanceId: 'visible-resource',
+        graph,
+        searchCatalog: catalog,
+        itemCatalog: resourceItems,
+        itemResourceCatalog: resourceProfiles,
+      }),
+      'a',
+    )
+    const visible = getPlayerVisibleNodeSearchState(state, 'a')
+    expect(visible.kind).toBe('searched')
+    expect(JSON.stringify(visible)).not.toContain('"resource"')
+    expect(JSON.stringify(visible)).not.toContain('"current":2')
+  })
+})
+
 describe('deterministic search materialization', () => {
   it('does not draw random values for a fixed-only definition', () => {
-    const fixed = {
+    const fixed: MainSearchDefinition = {
       ...definition(),
       fixedItemGrants: [
-        { definitionId: 'stack-b', quantity: 1 },
-        { definitionId: 'single', quantity: 1 },
+        { definitionId: 'stack-b', quantity: 1, initialState: { kind: 'none' } },
+        { definitionId: 'single', quantity: 1, initialState: { kind: 'none' } },
       ],
       weightedItemChoice: null,
     }
-    const catalog = createMainSearchDefinitionCatalog([fixed], graph, items)
-    const outcome = materializeMainSearchOutcome('seed', 'scene-1', catalog.get('a'), items)
+    const catalog = createMainSearchDefinitionCatalog(
+      [fixed],
+      graph,
+      items,
+      resources,
+    )
+    const outcome = materializeMainSearchOutcome(
+      'seed',
+      'scene-1',
+      catalog.get('a'),
+      items,
+      resources,
+    )
     expect(outcome.randomTrace).toBeNull()
-    expect(outcome.revealedItems.map((item) => item.definitionId)).toEqual([
+    expect(outcome.revealedItems.map(({ item }) => item.definitionId)).toEqual([
       'single',
       'stack-b',
     ])
-    expect(outcome.revealedItems.map((item) => item.instanceId)).toEqual([
+    expect(outcome.revealedItems.map(({ item }) => item.instanceId)).toEqual([
       'search:scene-1:a:0:fixed:0',
       'search:scene-1:a:0:fixed:1',
     ])
   })
 
   it('is identical across repeats and normalized candidate input order', () => {
-    const firstCatalog = createMainSearchDefinitionCatalog([definition()], graph, items)
+    const firstCatalog = createMainSearchDefinitionCatalog([definition()], graph, items, resources)
     const reversed = definition()
     const secondCatalog = createMainSearchDefinitionCatalog([{
       ...reversed,
       weightedItemChoice: {
         entries: [...reversed.weightedItemChoice!.entries].reverse(),
       },
-    }], graph, items)
-    const first = materializeMainSearchOutcome('seed', 'scene-1', firstCatalog.get('a'), items)
-    expect(materializeMainSearchOutcome('seed', 'scene-1', firstCatalog.get('a'), items)).toEqual(first)
-    expect(materializeMainSearchOutcome('seed', 'scene-1', secondCatalog.get('a'), items)).toEqual(first)
+    }], graph, items, resources)
+    const first = materializeMainSearchOutcome('seed', 'scene-1', firstCatalog.get('a'), items, resources)
+    expect(materializeMainSearchOutcome('seed', 'scene-1', firstCatalog.get('a'), items, resources)).toEqual(first)
+    expect(materializeMainSearchOutcome('seed', 'scene-1', secondCatalog.get('a'), items, resources)).toEqual(first)
     expect(Object.isFrozen(first)).toBe(true)
     expect(Object.isFrozen(first.randomTrace)).toBe(true)
     expect(Object.isFrozen(first.revealedItems[0])).toBe(true)
@@ -150,27 +404,28 @@ describe('deterministic search materialization', () => {
   })
 
   it('uses isolated named streams and stable non-colliding instance ids', () => {
-    const catalog = createMainSearchDefinitionCatalog([definition('a'), definition('b')], graph, items)
-    const a = materializeMainSearchOutcome('seed', 'scene-1', catalog.get('a'), items)
-    const b = materializeMainSearchOutcome('seed', 'scene-1', catalog.get('b'), items)
-    const anotherScene = materializeMainSearchOutcome('seed', 'scene-2', catalog.get('a'), items)
+    const catalog = createMainSearchDefinitionCatalog([definition('a'), definition('b')], graph, items, resources)
+    const a = materializeMainSearchOutcome('seed', 'scene-1', catalog.get('a'), items, resources)
+    const b = materializeMainSearchOutcome('seed', 'scene-1', catalog.get('b'), items, resources)
+    const anotherScene = materializeMainSearchOutcome('seed', 'scene-2', catalog.get('a'), items, resources)
     expect(a.randomTrace?.streamId).not.toBe(b.randomTrace?.streamId)
-    expect(new Set(a.revealedItems.map((item) => item.instanceId)).size).toBe(a.revealedItems.length)
-    expect(a.revealedItems.map((item) => item.instanceId)).not.toEqual(anotherScene.revealedItems.map((item) => item.instanceId))
+    expect(new Set(a.revealedItems.map(({ item }) => item.instanceId)).size).toBe(a.revealedItems.length)
+    expect(a.revealedItems.map(({ item }) => item.instanceId)).not.toEqual(anotherScene.revealedItems.map(({ item }) => item.instanceId))
     const unrelated = createRandomCursor('seed', createStreamId('combat'))
     drawIntInclusive(unrelated, 1, 100)
-    expect(materializeMainSearchOutcome('seed', 'scene-1', catalog.get('a'), items)).toEqual(a)
+    expect(materializeMainSearchOutcome('seed', 'scene-1', catalog.get('a'), items, resources)).toEqual(a)
   })
 })
 
 describe('scene search state', () => {
-  const catalog = createMainSearchDefinitionCatalog([definition('a'), { ...definition('b'), weightedItemChoice: null }], graph, items)
+  const catalog = createMainSearchDefinitionCatalog([definition('a'), { ...definition('b'), weightedItemChoice: null }], graph, items, resources)
   const create = () => createSceneSearchState({
     runSeed: 'seed',
     sceneInstanceId: 'scene-1',
     graph,
     searchCatalog: catalog,
     itemCatalog: items,
+    itemResourceCatalog: resources,
   })
 
   it('prepares every node at scene creation and keeps instance ids globally unique', () => {
@@ -182,7 +437,7 @@ describe('scene search state', () => {
     ])
     const ids = state.nodeStates.flatMap((node) =>
       node.kind === 'unsearched'
-        ? node.preparedOutcome.revealedItems.map((item) => item.instanceId)
+        ? node.preparedOutcome.revealedItems.map(({ item }) => item.instanceId)
         : [],
     )
     expect(new Set(ids).size).toBe(ids.length)

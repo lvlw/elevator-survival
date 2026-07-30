@@ -1,6 +1,8 @@
 import { deepFreeze } from '../config'
 import { createItemInstance, type ItemCatalog } from '../inventory'
+import type { ItemResourceCatalog } from '../item-state'
 import type { SceneGraph } from '../scene-graph'
+import { createSearchItemState } from './scene-item-snapshot'
 import { SceneSearchError } from './scene-search-errors'
 import type {
   MainSearchDefinition,
@@ -13,25 +15,33 @@ const MAX_SAFE = BigInt(Number.MAX_SAFE_INTEGER)
 function normalizeGrant(
   grant: SearchItemGrant,
   itemCatalog: ItemCatalog,
+  resourceCatalog: ItemResourceCatalog,
 ): SearchItemGrant {
   if (grant.definitionId.trim().length === 0) {
     throw new SceneSearchError('INVALID_GRANT', '物品定义ID不能为空')
   }
   try {
-    createItemInstance(
+    const item = createItemInstance(
       { instanceId: 'search-grant-validation', ...grant },
       itemCatalog,
     )
-  } catch {
+    createSearchItemState(item, grant.initialState, resourceCatalog)
+  } catch (error) {
+    if (error instanceof SceneSearchError) throw error
     throw new SceneSearchError('INVALID_GRANT', `搜索物品产出非法：${grant.definitionId}`)
   }
-  return { ...grant }
+  return {
+    definitionId: grant.definitionId,
+    quantity: grant.quantity,
+    initialState: { ...grant.initialState },
+  }
 }
 
 export function createMainSearchDefinitionCatalog(
   definitions: readonly MainSearchDefinition[],
   graph: SceneGraph,
   itemCatalog: ItemCatalog,
+  resourceCatalog: ItemResourceCatalog,
 ): MainSearchDefinitionCatalog {
   const graphNodeIds = new Set(graph.nodes.map((node) => node.id))
   const byNode = new Map<string, MainSearchDefinition>()
@@ -49,7 +59,7 @@ export function createMainSearchDefinitionCatalog(
       throw new SceneSearchError('INVALID_NODE_ID', '搜索序号必须是非负安全整数')
     }
     const fixedItemGrants = input.fixedItemGrants
-      .map((grant) => normalizeGrant(grant, itemCatalog))
+      .map((grant) => normalizeGrant(grant, itemCatalog, resourceCatalog))
       .sort((a, b) => a.definitionId.localeCompare(b.definitionId))
     let weightedItemChoice = null
     if (input.weightedItemChoice) {
@@ -59,7 +69,11 @@ export function createMainSearchDefinitionCatalog(
       const ids = new Set<string>()
       let total = 0n
       const entries = input.weightedItemChoice.entries.map((entry) => {
-        const grant = normalizeGrant(entry.grant, itemCatalog)
+        const grant = normalizeGrant(
+          entry.grant,
+          itemCatalog,
+          resourceCatalog,
+        )
         if (!Number.isSafeInteger(entry.weight) || entry.weight <= 0) {
           throw new SceneSearchError('INVALID_WEIGHT', '权重必须是正安全整数')
         }

@@ -249,7 +249,7 @@ function materializeEvaluation(
   const snapshot = applySceneExplorationEffects(
     initialSnapshot,
     plan.effects,
-    dependencies.config.combat.player,
+    dependencies,
   )
   return deepFreeze({
     ...plan.metadata,

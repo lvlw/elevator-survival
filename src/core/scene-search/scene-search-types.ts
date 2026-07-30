@@ -1,9 +1,23 @@
 import type { ItemCatalog, ItemInstance } from '../inventory'
+import type {
+  ItemResourceCatalog,
+  ItemState,
+} from '../item-state'
 import type { SceneGraph } from '../scene-graph'
+
+export type SearchItemInitialState =
+  | Readonly<{ kind: 'none' }>
+  | Readonly<{ kind: 'explicit'; current: number }>
 
 export interface SearchItemGrant {
   readonly definitionId: string
   readonly quantity: number
+  readonly initialState: SearchItemInitialState
+}
+
+export interface SceneItemSnapshot {
+  readonly item: Readonly<ItemInstance>
+  readonly state: Readonly<ItemState>
 }
 
 export interface WeightedSearchItemEntry {
@@ -39,7 +53,7 @@ export interface SearchRandomTrace {
 export interface PreparedMainSearchOutcome {
   readonly nodeId: string
   readonly searchOrdinal: number
-  readonly revealedItems: readonly Readonly<ItemInstance>[]
+  readonly revealedItems: readonly Readonly<SceneItemSnapshot>[]
   readonly revealedIntelIds: readonly string[]
   readonly randomTrace: SearchRandomTrace | null
 }
@@ -54,7 +68,7 @@ export type MainSearchState =
   | Readonly<{
       kind: 'searched'
       nodeId: string
-      revealedItems: readonly Readonly<ItemInstance>[]
+      revealedItems: readonly Readonly<SceneItemSnapshot>[]
       revealedIntelIds: readonly string[]
     }>
 
@@ -69,6 +83,7 @@ export interface SceneSearchStateCreationInput {
   readonly graph: SceneGraph
   readonly searchCatalog: MainSearchDefinitionCatalog
   readonly itemCatalog: ItemCatalog
+  readonly itemResourceCatalog: ItemResourceCatalog
 }
 
 export type ItemSearchIlluminationProfile = Readonly<{

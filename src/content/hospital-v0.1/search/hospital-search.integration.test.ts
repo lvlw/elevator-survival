@@ -9,7 +9,11 @@ import {
   HOSPITAL_NODE_IDS,
   hospitalSliceV01SceneGraph,
 } from '../hospital-scene-graph'
-import { HOSPITAL_ITEM_IDS, hospitalItemCatalog } from '../items'
+import {
+  HOSPITAL_ITEM_IDS,
+  hospitalItemCatalog,
+  hospitalItemResourceCatalog,
+} from '../items'
 import { hospitalMainSearchCatalog } from './hospital-search-catalog'
 import { hospitalMainSearchDefinitions } from './hospital-search-definitions'
 import { HOSPITAL_INTEL_IDS } from './hospital-search-ids'
@@ -24,6 +28,7 @@ function prepare(sceneInstanceId = SCENE_INSTANCE_ID) {
     graph: hospitalSliceV01SceneGraph,
     searchCatalog: hospitalMainSearchCatalog,
     itemCatalog: hospitalItemCatalog,
+    itemResourceCatalog: hospitalItemResourceCatalog,
   })
 }
 
@@ -51,7 +56,11 @@ describe('hospital main search definitions', () => {
   it('keeps the formal emergency hall grants, intel, and 40/30/30 pool', () => {
     const definition = hospitalMainSearchCatalog.get(HOSPITAL_NODE_IDS.emergencyHall)
     expect(definition.fixedItemGrants).toEqual([
-      { definitionId: HOSPITAL_ITEM_IDS.metalParts, quantity: 1 },
+      {
+        definitionId: HOSPITAL_ITEM_IDS.metalParts,
+        quantity: 1,
+        initialState: { kind: 'none' },
+      },
     ])
     expect(definition.fixedIntelIds).toEqual([HOSPITAL_INTEL_IDS.accessRouteHint])
     expect(definition.weightedItemChoice?.entries.map((entry) => [entry.grant.definitionId, entry.weight])).toEqual([
@@ -65,7 +74,11 @@ describe('hospital main search definitions', () => {
   it('keeps the formal pharmacy grant and 35/30/20/15 pool', () => {
     const definition = hospitalMainSearchCatalog.get(HOSPITAL_NODE_IDS.pharmacy)
     expect(definition.fixedItemGrants).toEqual([
-      { definitionId: HOSPITAL_ITEM_IDS.bandage, quantity: 1 },
+      {
+        definitionId: HOSPITAL_ITEM_IDS.bandage,
+        quantity: 1,
+        initialState: { kind: 'none' },
+      },
     ])
     expect(definition.fixedIntelIds).toEqual([])
     expect(definition.weightedItemChoice?.entries.map((entry) => [entry.grant.definitionId, entry.weight])).toEqual([
@@ -80,8 +93,16 @@ describe('hospital main search definitions', () => {
   it('keeps security fixed grants and intel without a random draw', () => {
     const definition = hospitalMainSearchCatalog.get(HOSPITAL_NODE_IDS.securityOffice)
     expect(definition.fixedItemGrants).toEqual([
-      { definitionId: HOSPITAL_ITEM_IDS.isolationWardAccessCard, quantity: 1 },
-      { definitionId: HOSPITAL_ITEM_IDS.standardBattery, quantity: 1 },
+      {
+        definitionId: HOSPITAL_ITEM_IDS.isolationWardAccessCard,
+        quantity: 1,
+        initialState: { kind: 'none' },
+      },
+      {
+        definitionId: HOSPITAL_ITEM_IDS.standardBattery,
+        quantity: 1,
+        initialState: { kind: 'none' },
+      },
     ])
     expect(definition.fixedIntelIds).toEqual([
       HOSPITAL_INTEL_IDS.securityMonitoringRecord,
@@ -100,7 +121,7 @@ describe('hospital deterministic search materialization', () => {
         .filter((node) => node.kind === 'unsearched')
         .map((node) => ({
           nodeId: node.nodeId,
-          items: node.preparedOutcome.revealedItems.map((item) => ({
+          items: node.preparedOutcome.revealedItems.map(({ item }) => ({
             definitionId: item.definitionId,
             instanceId: item.instanceId,
           })),
@@ -178,10 +199,10 @@ describe('hospital deterministic search materialization', () => {
     const before = createRandomCursor(RUN_SEED, createStreamId('battle', 'enemy'))
     drawIntInclusive(before, 1, 100)
     const forward = hospitalMainSearchCatalog.nodeIds.map((nodeId) =>
-      materializeMainSearchOutcome(RUN_SEED, SCENE_INSTANCE_ID, hospitalMainSearchCatalog.get(nodeId), hospitalItemCatalog),
+      materializeMainSearchOutcome(RUN_SEED, SCENE_INSTANCE_ID, hospitalMainSearchCatalog.get(nodeId), hospitalItemCatalog, hospitalItemResourceCatalog),
     )
     const reverse = [...hospitalMainSearchCatalog.nodeIds].reverse().map((nodeId) =>
-      materializeMainSearchOutcome(RUN_SEED, SCENE_INSTANCE_ID, hospitalMainSearchCatalog.get(nodeId), hospitalItemCatalog),
+      materializeMainSearchOutcome(RUN_SEED, SCENE_INSTANCE_ID, hospitalMainSearchCatalog.get(nodeId), hospitalItemCatalog, hospitalItemResourceCatalog),
     ).reverse()
     expect(reverse).toEqual(forward)
     expect(prepare()).toEqual(prepare())
@@ -193,7 +214,7 @@ describe('hospital deterministic search materialization', () => {
     const ids = (state: ReturnType<typeof prepare>) =>
       state.nodeStates.flatMap((node) =>
         node.kind === 'unsearched'
-          ? node.preparedOutcome.revealedItems.map((item) => item.instanceId)
+          ? node.preparedOutcome.revealedItems.map(({ item }) => item.instanceId)
           : [],
       )
     expect(ids(second)).not.toEqual(ids(first))

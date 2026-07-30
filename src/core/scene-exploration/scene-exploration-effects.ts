@@ -1,14 +1,27 @@
 import { deepFreeze } from '../config'
 import { applyHealthLoss, type PlayerHealthRules } from '../condition'
 import {
+  addItemToBackpack,
+  calculateBackpackWeightSubtotal,
+  createItemInstance,
+} from '../inventory'
+import {
   consumeCommittedResource,
+  createItemState,
+  createItemStateCollectionSnapshot,
   getItemState,
   replaceItemState,
 } from '../item-state'
-import { revealPreparedMainSearchOutcome } from '../scene-search'
+import { classifyLoad } from '../load'
+import {
+  createSceneItemSnapshot,
+  revealPreparedMainSearchOutcome,
+} from '../scene-search'
 import { SceneExplorationError } from './scene-exploration-errors'
+import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
 import type {
   SceneExplorationEffect,
+  SceneExplorationDependencies,
   SceneExplorationSnapshot,
 } from './scene-exploration-types'
 
@@ -28,6 +41,7 @@ function fail(
     | 'EFFECT_HEALTH_RESULT_MISMATCH'
     | 'EFFECT_RESOURCE_MISMATCH'
     | 'EFFECT_SEARCH_MISMATCH'
+    | 'EFFECT_PICKUP_MISMATCH'
     | 'INCOMPLETE_EFFECT_PLAN',
   message: string,
 ): never {
@@ -59,8 +73,13 @@ function sameValue(left: unknown, right: unknown): boolean {
 export function applySceneExplorationEffects(
   initialSnapshot: SceneExplorationSnapshot,
   effects: readonly SceneExplorationEffect[],
-  healthRules: PlayerHealthRules,
+  rulesOrDependencies: PlayerHealthRules | SceneExplorationDependencies,
 ): SceneExplorationSnapshot {
+  const dependencies =
+    'graph' in rulesOrDependencies ? rulesOrDependencies : null
+  const healthRules = dependencies
+    ? dependencies.config.combat.player
+    : (rulesOrDependencies as PlayerHealthRules)
   if (effects.length === 0) {
     throw new SceneExplorationError('EMPTY_EFFECTS', 'Effect计划不能为空')
   }
@@ -96,7 +115,7 @@ export function applySceneExplorationEffects(
     },
     condition: { ...initialSnapshot.condition },
   })
-  let primaryKind: 'movement' | 'main-search' | null = null
+  let primaryKind: 'movement' | 'main-search' | 'pickup' | null = null
   let sawResourceConsumption = false
   let sawTime = false
   let sawForcedReturn = false
@@ -112,6 +131,221 @@ export function applySceneExplorationEffects(
     }
 
     switch (effect.kind) {
+      case 'scene-item-picked-up': {
+        if (
+          index !== 0 ||
+          effects.length !== 1 ||
+          primaryKind !== null ||
+          sawResourceConsumption ||
+          sawTime
+        ) {
+          fail('INVALID_EFFECT_ORDER', '拾取Effect必须是唯一Effect')
+        }
+        if (!dependencies) {
+          fail(
+            'EFFECT_PICKUP_MISMATCH',
+            '拾取Effect回放需要完整场景探索依赖',
+          )
+        }
+        if (
+          effect.nodeId !== state.currentNodeId ||
+          state.status !== 'active' ||
+          state.condition.currentHealth === 0
+        ) {
+          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect的场景状态无效')
+        }
+        const node = state.searchState.nodeStates.find(
+          (candidate) => candidate.nodeId === effect.nodeId,
+        )
+        if (!node || node.kind !== 'searched') {
+          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect节点尚未完成搜索')
+        }
+        const source = node.revealedItems.find(
+          (entity) =>
+            entity.item.instanceId === effect.sourceInstanceId,
+        )
+        if (
+          !source ||
+          source.item.definitionId !== effect.definitionId ||
+          source.item.quantity !== effect.quantityBefore ||
+          !Number.isSafeInteger(effect.quantityPicked) ||
+          effect.quantityPicked <= 0 ||
+          effect.quantityPicked > effect.quantityBefore ||
+          effect.quantityRemaining !==
+            effect.quantityBefore - effect.quantityPicked
+        ) {
+          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect源物品或数量不一致')
+        }
+        const expectedKind =
+          effect.quantityRemaining === 0 ? 'full' : 'partial'
+        if (effect.pickupKind !== expectedKind) {
+          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect类型与剩余数量不一致')
+        }
+        const definition = dependencies.physicalCatalog.get(
+          effect.definitionId,
+        )
+        if (
+          (expectedKind === 'full' &&
+            effect.destinationInstanceId !== effect.sourceInstanceId) ||
+          (expectedKind === 'partial' &&
+            (effect.destinationInstanceId === effect.sourceInstanceId ||
+              definition.stacking.kind !== 'stackable' ||
+              source.state.resource.kind !== 'none'))
+        ) {
+          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect目标实例身份非法')
+        }
+        const knownIds = new Set<string>([
+          ...state.backpack.items.map((item) => item.instanceId),
+          ...Object.values(state.equipment)
+            .filter((item) => item !== null)
+            .map((item) => item.instanceId),
+          ...state.quickSlots.slots
+            .filter((item) => item !== null)
+            .map((item) => item.instanceId),
+        ])
+        for (const candidate of state.searchState.nodeStates) {
+          const entities =
+            candidate.kind === 'unsearched'
+              ? candidate.preparedOutcome.revealedItems
+              : candidate.kind === 'searched'
+                ? candidate.revealedItems
+                : []
+          for (const entity of entities) {
+            if (entity.item.instanceId !== effect.sourceInstanceId) {
+              knownIds.add(entity.item.instanceId)
+            }
+          }
+        }
+        if (
+          expectedKind === 'partial' &&
+          (typeof effect.destinationInstanceId !== 'string' ||
+            effect.destinationInstanceId.trim().length === 0 ||
+            knownIds.has(effect.destinationInstanceId))
+        ) {
+          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect目标实例ID重复或为空')
+        }
+        let destinationState
+        try {
+          destinationState = createItemState(
+            effect.destinationItemState,
+            dependencies.itemResourceCatalog,
+          )
+        } catch {
+          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect目标资源状态非法')
+        }
+        if (
+          destinationState.instanceId !== effect.destinationInstanceId ||
+          destinationState.definitionId !== effect.definitionId ||
+          (expectedKind === 'full' &&
+            !sameValue(destinationState, source.state)) ||
+          (expectedKind === 'partial' &&
+            destinationState.resource.kind !== 'none')
+        ) {
+          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect目标资源状态被篡改')
+        }
+        const destinationItem = createItemInstance(
+          {
+            instanceId: effect.destinationInstanceId,
+            definitionId: effect.definitionId,
+            quantity: effect.quantityPicked,
+          },
+          dependencies.physicalCatalog,
+        )
+        if (
+          !effect.destinationPlacement ||
+          typeof effect.destinationPlacement !== 'object' ||
+          !Number.isSafeInteger(effect.destinationPlacement.x) ||
+          effect.destinationPlacement.x < 0 ||
+          !Number.isSafeInteger(effect.destinationPlacement.y) ||
+          effect.destinationPlacement.y < 0 ||
+          typeof effect.destinationPlacement.rotated !== 'boolean'
+        ) {
+          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect目标摆放声明非法')
+        }
+        let backpack
+        try {
+          backpack = addItemToBackpack(
+            state.backpack,
+            destinationItem,
+            {
+              instanceId: effect.destinationInstanceId,
+              ...effect.destinationPlacement,
+            },
+            dependencies.physicalCatalog,
+          )
+        } catch {
+          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect目标摆放非法')
+        }
+        const weight = calculateBackpackWeightSubtotal(
+          backpack,
+          dependencies.physicalCatalog,
+        )
+        if (
+          !classifyLoad(weight, dependencies.config.backpack).canCarry
+        ) {
+          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect导致无法携带')
+        }
+        const nextSource =
+          effect.quantityRemaining === 0
+            ? null
+            : createSceneItemSnapshot(
+                {
+                  item: {
+                    ...source.item,
+                    quantity: effect.quantityRemaining,
+                  },
+                  state: source.state,
+                },
+                dependencies.physicalCatalog,
+                dependencies.itemResourceCatalog,
+              )
+        const searchState = deepFreeze({
+          ...state.searchState,
+          nodeStates: state.searchState.nodeStates.map((candidate) =>
+            candidate.nodeId === effect.nodeId &&
+            candidate.kind === 'searched'
+              ? {
+                  ...candidate,
+                  revealedItems: candidate.revealedItems.flatMap(
+                    (entity) =>
+                      entity.item.instanceId === effect.sourceInstanceId
+                        ? nextSource
+                          ? [nextSource]
+                          : []
+                        : [entity],
+                  ),
+                }
+              : candidate,
+          ),
+        })
+        const carriedItems = [
+          ...backpack.items,
+          ...Object.values(state.equipment).filter(
+            (item): item is NonNullable<typeof item> => item !== null,
+          ),
+          ...state.quickSlots.slots.filter(
+            (item): item is NonNullable<typeof item> => item !== null,
+          ),
+        ]
+        let itemStates
+        try {
+          itemStates = createItemStateCollectionSnapshot(
+            [...state.itemStates.states, destinationState],
+            carriedItems,
+            dependencies.itemResourceCatalog,
+          )
+        } catch {
+          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect无法建立随身资源状态')
+        }
+        state = deepFreeze({
+          ...state,
+          searchState,
+          backpack,
+          itemStates,
+        })
+        primaryKind = 'pickup'
+        break
+      }
       case 'item-resource-consumed': {
         if (
           index !== 0 ||
@@ -192,10 +426,10 @@ export function applySceneExplorationEffects(
           fail('EFFECT_SEARCH_MISMATCH', '主要搜索揭示结果无效')
         }
         const actualIds = revealedNode.revealedItems.map(
-          (item) => item.instanceId,
+          ({ item }) => item.instanceId,
         )
         const actualSummary = summarizeRevealedItems(
-          revealedNode.revealedItems,
+          revealedNode.revealedItems.map(({ item }) => item),
         )
         if (
           !sameValue(actualIds, effect.revealedItemInstanceIds) ||
@@ -334,7 +568,11 @@ export function applySceneExplorationEffects(
     }
   }
 
-  if (primaryKind === null || !sawTime) {
+  if (
+    primaryKind === null ||
+    (primaryKind !== 'pickup' && !sawTime) ||
+    (primaryKind === 'pickup' && sawTime)
+  ) {
     fail('INCOMPLETE_EFFECT_PLAN', 'Effect计划缺少主要效果或时间结算')
   }
   if (sawResourceConsumption && primaryKind !== 'main-search') {
@@ -346,5 +584,7 @@ export function applySceneExplorationEffects(
   if (sawForcedReturn && state.status !== 'forced-returned') {
     fail('INCOMPLETE_EFFECT_PLAN', '强制返程节点变化后必须提交对应状态')
   }
-  return deepFreeze(state)
+  return dependencies
+    ? createSceneExplorationSnapshot(state, dependencies)
+    : deepFreeze(state)
 }

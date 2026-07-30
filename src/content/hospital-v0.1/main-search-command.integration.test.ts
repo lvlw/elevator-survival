@@ -166,6 +166,7 @@ function hospitalSnapshot(
         graph: hospitalSliceV01SceneGraph,
         searchCatalog: hospitalMainSearchCatalog,
         itemCatalog: hospitalItemCatalog,
+        itemResourceCatalog: hospitalItemResourceCatalog,
       }),
       currentNodeId: nodeId,
       remainingTime,
@@ -285,7 +286,7 @@ describe('hospital main search command', () => {
     const illuminatedNode = searchedNode(withLight.snapshot, nodeId)
     const lowLightNode = searchedNode(withoutLight.snapshot, nodeId)
     expect(
-      illuminatedNode.revealedItems.map((item) => item.definitionId),
+      illuminatedNode.revealedItems.map(({ item }) => item.definitionId),
     ).toEqual(expected)
     expect(lowLightNode).toEqual(illuminatedNode)
   })

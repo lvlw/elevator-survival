@@ -15,6 +15,10 @@ export {
   previewMainSearchCommand,
   resolveMainSearchCommand,
 } from './main-search-command'
+export {
+  previewNodeItemPickupCommand,
+  resolveNodeItemPickupCommand,
+} from './node-item-pickup-command'
 export type {
   MainSearchCommandDependencies,
   MainSearchEvaluation,
@@ -23,7 +27,12 @@ export type {
   MainSearchResolution,
   MainSearchTransitionPlan,
   MoveThroughSceneEdgeCommand,
+  NodeItemPickupEvaluation,
+  NodeItemPickupPreview,
+  NodeItemPickupResolution,
+  NodeItemPickupTransitionPlan,
   PerformMainSearchCommand,
+  PickUpRevealedNodeItemCommand,
   SceneExplorationDependencies,
   SceneExplorationEffect,
   SceneExplorationSnapshot,

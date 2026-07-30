@@ -150,13 +150,20 @@ const searchCatalog = createMainSearchDefinitionCatalog(
     {
       nodeId: 'search',
       searchOrdinal: 0,
-      fixedItemGrants: [{ definitionId: 'bandage', quantity: 1 }],
+      fixedItemGrants: [
+        {
+          definitionId: 'bandage',
+          quantity: 1,
+          initialState: { kind: 'none' },
+        },
+      ],
       weightedItemChoice: null,
       fixedIntelIds: ['intel-search'],
     },
   ],
   graph,
   physicalCatalog,
+  itemResourceCatalog,
 )
 const searchIlluminationCatalog =
   createSearchIlluminationProfileCatalog(
@@ -284,6 +291,7 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
     graph,
     searchCatalog,
     itemCatalog: physicalCatalog,
+    itemResourceCatalog,
   })
   if (searched) {
     searchState = revealPreparedMainSearchOutcome(searchState, 'search')

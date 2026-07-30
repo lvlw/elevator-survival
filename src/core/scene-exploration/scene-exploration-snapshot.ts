@@ -37,6 +37,8 @@ export function createSceneExplorationSnapshot(
   const searchState = validateSceneSearchState(
     input.searchState,
     dependencies.graph,
+    dependencies.physicalCatalog,
+    dependencies.itemResourceCatalog,
   )
   if (
     input.currentNodeId.trim().length === 0 ||
@@ -81,6 +83,23 @@ export function createSceneExplorationSnapshot(
       (item): item is NonNullable<typeof item> => item !== null,
     ),
   ]
+  const carriedIds = new Set(carriedItems.map((item) => item.instanceId))
+  for (const node of searchState.nodeStates) {
+    const sceneItems =
+      node.kind === 'unsearched'
+        ? node.preparedOutcome.revealedItems
+        : node.kind === 'searched'
+          ? node.revealedItems
+          : []
+    for (const entity of sceneItems) {
+      if (carriedIds.has(entity.item.instanceId)) {
+        throw new SceneExplorationError(
+          'INVALID_INPUT',
+          `场景节点与随身容器存在重复物品实例：${entity.item.instanceId}`,
+        )
+      }
+    }
+  }
   const itemStates = createItemStateCollectionSnapshot(
     input.itemStates.states,
     carriedItems,

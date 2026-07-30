@@ -1,5 +1,8 @@
 import { deepFreeze } from '../config'
+import type { ItemCatalog } from '../inventory'
+import type { ItemResourceCatalog } from '../item-state'
 import type { SceneGraph } from '../scene-graph'
+import { createSceneItemSnapshot } from './scene-item-snapshot'
 import { SceneSearchError } from './scene-search-errors'
 import { materializeMainSearchOutcome } from './scene-search-materialization'
 import type {
@@ -11,6 +14,8 @@ import type {
 export function validateSceneSearchState(
   state: SceneSearchStateSnapshot,
   graph: SceneGraph,
+  itemCatalog: ItemCatalog,
+  resourceCatalog: ItemResourceCatalog,
 ): SceneSearchStateSnapshot {
   if (state.sceneInstanceId.trim().length === 0) {
     throw new SceneSearchError('INVALID_SCENE_INSTANCE_ID', '场景实例ID不能为空')
@@ -28,11 +33,16 @@ export function validateSceneSearchState(
         : node.kind === 'searched'
           ? node.revealedItems
           : []
-    for (const item of items) {
-      if (instanceIds.has(item.instanceId)) {
-        throw new SceneSearchError('DUPLICATE_INSTANCE_ID', `搜索实例ID重复：${item.instanceId}`)
+    for (const input of items) {
+      const entity = createSceneItemSnapshot(
+        input,
+        itemCatalog,
+        resourceCatalog,
+      )
+      if (instanceIds.has(entity.item.instanceId)) {
+        throw new SceneSearchError('DUPLICATE_INSTANCE_ID', `搜索实例ID重复：${entity.item.instanceId}`)
       }
-      instanceIds.add(item.instanceId)
+      instanceIds.add(entity.item.instanceId)
     }
   }
   return deepFreeze({
@@ -57,6 +67,7 @@ export function createSceneSearchState(
             input.sceneInstanceId,
             input.searchCatalog.get(node.id),
             input.itemCatalog,
+            input.itemResourceCatalog,
           ),
         }
       : { kind: 'not-available', nodeId: node.id },
@@ -64,6 +75,8 @@ export function createSceneSearchState(
   return validateSceneSearchState(
     { sceneInstanceId: input.sceneInstanceId, nodeStates },
     input.graph,
+    input.itemCatalog,
+    input.itemResourceCatalog,
   )
 }
 

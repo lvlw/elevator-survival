@@ -7,6 +7,8 @@ export {
   createSceneExplorationSnapshot,
 } from './scene-exploration-snapshot'
 export { applySceneExplorationEffects } from './scene-exploration-effects'
+export { getPlayerVisibleSceneNodeState } from './player-visible-scene-node'
+export { selectInfectedOrderlyFirstActionTime } from './scene-alert'
 export {
   previewSceneMoveCommand,
   resolveSceneMoveCommand,
@@ -19,6 +21,10 @@ export {
   previewNodeItemPickupCommand,
   resolveNodeItemPickupCommand,
 } from './node-item-pickup-command'
+export {
+  previewSceneObstacleOptionCommand,
+  resolveSceneObstacleOptionCommand,
+} from './scene-obstacle-command'
 export type {
   MainSearchCommandDependencies,
   MainSearchEvaluation,
@@ -33,10 +39,17 @@ export type {
   NodeItemPickupTransitionPlan,
   PerformMainSearchCommand,
   PickUpRevealedNodeItemCommand,
+  PerformSceneObstacleOptionCommand,
   SceneExplorationDependencies,
   SceneExplorationEffect,
   SceneExplorationSnapshot,
+  SceneExplorationSnapshotInput,
+  SceneAlertState,
   SceneExplorationStatus,
+  SceneObstacleCommandDependencies,
+  SceneObstacleEvaluation,
+  SceneObstaclePreview,
+  SceneObstacleResolution,
   SceneMoveEffect,
   SceneMoveEvaluation,
   SceneMoveHealthLossSource,

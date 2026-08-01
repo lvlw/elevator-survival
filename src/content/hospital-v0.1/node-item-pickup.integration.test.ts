@@ -7,6 +7,11 @@ import {
 } from '../../core/inventory'
 import { createFullItemState } from '../../core/item-state'
 import {
+  addSceneItems,
+  createEmptySceneItemsSnapshot,
+  getSceneNodeItems,
+} from '../../core/scene-items'
+import {
   createSceneExplorationSnapshot,
   previewNodeItemPickupCommand,
   resolveNodeItemPickupCommand,
@@ -86,10 +91,27 @@ function searchedSnapshot(
     itemCatalog: hospitalItemCatalog,
     itemResourceCatalog: hospitalItemResourceCatalog,
   })
+  const preparedNode = prepared.nodeStates.find((node) => node.nodeId === nodeId)
+  if (!preparedNode || preparedNode.kind !== 'unsearched') throw new Error('节点缺少预定结果')
+  const sceneItems = addSceneItems(
+    createEmptySceneItemsSnapshot({
+      graph: hospitalSliceV01SceneGraph,
+      itemCatalog: hospitalItemCatalog,
+      itemResourceCatalog: hospitalItemResourceCatalog,
+    }),
+    nodeId,
+    preparedNode.preparedOutcome.revealedItems,
+    {
+      graph: hospitalSliceV01SceneGraph,
+      itemCatalog: hospitalItemCatalog,
+      itemResourceCatalog: hospitalItemResourceCatalog,
+    },
+  )
   return createSceneExplorationSnapshot(
     {
       sceneInstanceId,
       searchState: revealPreparedMainSearchOutcome(prepared, nodeId),
+      sceneItems,
       status,
       currentNodeId: nodeId,
       remainingTime: 137,
@@ -122,11 +144,7 @@ function source(
   snapshot: SceneExplorationSnapshot,
   definitionId: string,
 ) {
-  const node = snapshot.searchState.nodeStates.find(
-    (candidate) => candidate.nodeId === snapshot.currentNodeId,
-  )
-  if (!node || node.kind !== 'searched') throw new Error('节点必须已搜索')
-  const entity = node.revealedItems.find(
+  const entity = getSceneNodeItems(snapshot.sceneItems, snapshot.currentNodeId).find(
     (candidate) => candidate.item.definitionId === definitionId,
   )
   if (!entity) throw new Error('搜索物品不存在')

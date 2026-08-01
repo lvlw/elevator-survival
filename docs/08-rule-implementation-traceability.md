@@ -17,11 +17,13 @@
 | 装备资格与背包转移 | DEC-007、DEC-016、DEC-020、DEC-037 | 医院装备资格目录 | `src/core/equipment/`、医院装备目录 | `src/core/equipment/equipment.test.ts`、医院装备集成测试 | 已实现 | 装备不占格且不计入背包负重；上下文换装资格未实现。 |
 | 玩家生命、流血、伤口、挫伤与镇痛 | DEC-026、DEC-031、DEC-034、DEC-035 | `combat.player`、`combat.escape`、`medical.painkiller`、`scene.postActionBleedingDamage` | `src/core/condition/` | `src/core/condition/condition.test.ts`、医院条件集成测试 | 已实现 | 基础状态和选择器已实现，医疗物品与日结算命令未实现。 |
 | 消防斧耐久2 | DEC-039 | `maintenance.itemResourceMaximums.fireAxeDurability` | 医院物品资源目录 | `hospital-item-resource-profiles.test.ts` | 已实现 | 只追踪资源状态，不代表消防斧攻击或维修配方已实现。 |
-| 统一 Effect 管线 | DEC-006 | 复用场景、负载与返程配置 | `src/core/scene-exploration/` | 核心场景Effect、搜索与拾取命令测试，医院集成测试 | 部分实现 | 场景移动、主要搜索和节点物品拾取已采用冻结Effect计划和唯一应用器生成最终快照；尚未形成通用命令总线。 |
+| 统一 Effect 管线 | DEC-006 | 复用场景、负载与返程配置 | `src/core/scene-exploration/` | 核心场景Effect、搜索、拾取与障碍命令测试，医院集成测试 | 部分实现 | 场景移动、主要搜索、节点物品拾取和防火门已采用冻结Effect计划和唯一应用器生成最终快照；尚未形成通用命令总线。 |
 | 场景移动命令 | DEC-004、DEC-024、DEC-030、DEC-033、DEC-035、DEC-038 | `scene.*`、`forcedReturn.*`、`backpack.weightBands` | `src/core/scene-exploration/` | `src/content/hospital-v0.1/scene-movement-command.integration.test.ts` | 已实现 | 实现场景级快照、边ID移动、背包负载、挫伤、返程、流血和终局优先级；不是完整 RunState，医院切片尚不可玩。 |
 | 场景节点主要搜索 | DEC-010、DEC-013、DEC-023、DEC-024、DEC-030、DEC-032、DEC-035 | `scene.searchTime`、医院搜索与照明资格目录 | `src/core/scene-search/`、`src/core/scene-exploration/`、`src/content/hospital-v0.1/search/` | 核心搜索及命令测试、医院搜索命令集成测试 | 部分实现 | 已实现结果预定、搜索命令、照明和揭示；独立互动及搜索UI尚未实现。 |
 | 节点物品拾取 | DEC-006、DEC-007、DEC-015、DEC-016、DEC-017、DEC-023、DEC-024、DEC-032 | 医院物理物品、资源档案与搜索定义 | `src/core/scene-search/`、`src/core/scene-exploration/node-item-pickup-command.ts` | 核心拾取命令测试、医院拾取集成测试 | 部分实现 | 已完成显式拾取、部分数量、背包摆放、负载和Effect提交；手动堆叠合并、任务对象互动和UI尚未实现。 |
-| 门与通道权限 | DEC-029、DEC-030、DEC-040 | 医院节点图与权限物品目录 | 尚无命令实现 | 尚无对应命令测试 | 未实现 | DEC-040已确认背包持卡直接授权工作人员通道且不消耗门禁卡；防火门和工作人员通道命令尚未实现。 |
-| 工具箱开门产物 | DEC-032、DEC-036、DEC-040 | 医院事件与物品目录 | 已有场景物品实体与显式拾取基础；尚无开门产物Effect | 尚无开门产物集成测试 | 未实现 | 工具箱产出电子元件的节点实体归属已确认；开门命令和产物创建Effect尚未实现。 |
+| 医院防火门 | DEC-029、DEC-030、DEC-032、DEC-035、DEC-036、DEC-040 | `scene.fireDoor`、医院障碍与物品目录 | `src/core/scene-obstacle/`、`src/core/scene-exploration/`、医院障碍目录 | 医院防火门与完整流程集成测试 | 已实现 | 六种选项、时间、资源、确定性风险、单级警觉、节点产物及Effect已完成；UI尚未实现。 |
+| 工作人员通道 | DEC-029、DEC-030、DEC-040 | 医院节点图、边权限和权限物品目录 | `src/core/scene-access/`、医院边权限目录 | 医院工作人员通道真实流程测试 | 已实现 | 背包持卡实时授权，不消耗卡且无额外开门行动；权限边不写入 `enabledEdgeIds`。 |
+| 工具箱开门产物 | DEC-032、DEC-036、DEC-040 | 医院事件与物品目录 | `src/core/scene-items/`、`scene-item-spawned` Effect | 医院工具箱开门与拾取流程测试 | 已实现 | 电子元件以稳定实例ID进入当前节点地面状态，不自动拾取或合并。 |
+| 场景单级警觉 | DEC-032 | 医院防火门内容、`combat.infectedOrderly.firstActionTime` | 场景探索警觉状态与首次行动时间选择器 | 医院防火门警觉测试 | 部分实现 | `unalerted/alerted` 单级事实及70/50配置选择已实现；战斗遭遇尚未接入。 |
 | 快捷栏 | DEC-007、DEC-016 | `backpack.quickSlotCount`、医院快捷栏资格目录 | `src/core/quick-slot/`、医院快捷栏资格目录 | `src/core/quick-slot/quick-slot.test.ts`、医院快捷栏集成测试 | 已实现基础容器与转移 | 已实现实际单件实例、堆叠抽取、放回、槽间移动交换和显式移出；物品效果、命令编排、使用时间和UI仍未实现。 |
 | 战斗、日结算、存档与完整 Run 编排 | DEC-009、DEC-025、DEC-027、DEC-028、DEC-031 | 部分测试参数已存在 | 尚无完整命令链 | 现有测试仅覆盖独立规则或纸面参数 | 部分实现 | 配置和部分基础能力已存在，但完整玩法流程尚未实现。 |

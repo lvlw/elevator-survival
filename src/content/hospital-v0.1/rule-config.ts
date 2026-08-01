@@ -17,6 +17,17 @@ export const hospitalSliceV01RuleConfig = parseRuleConfig({
       withoutFlashlight: 30,
       flashlightChargeCost: 1,
     },
+    fireDoor: {
+      accessCardTime: 10,
+      crowbarTime: 20,
+      toolkitTime: 30,
+      fireAxeTime: 10,
+      forceEntryTime: 20,
+      equippedItemResourceCost: 1,
+      impactProtectionIntegrityCost: 1,
+      forceEntryInjuryRiskPercent: 60,
+      protectedForceEntryInjuryRiskPercent: 20,
+    },
     batteryUseTime: 10,
     extractionTime: {
       direct: 10,

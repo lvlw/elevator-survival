@@ -1,5 +1,9 @@
 import { deepFreeze } from '../config'
-import { applyHealthLoss, type PlayerHealthRules } from '../condition'
+import {
+  addMinorContusion,
+  applyHealthLoss,
+  type PlayerHealthRules,
+} from '../condition'
 import {
   addItemToBackpack,
   calculateBackpackWeightSubtotal,
@@ -13,6 +17,11 @@ import {
   replaceItemState,
 } from '../item-state'
 import { classifyLoad } from '../load'
+import {
+  addSceneItems,
+  getSceneNodeItems,
+  removeSceneItemQuantity,
+} from '../scene-items'
 import {
   createSceneItemSnapshot,
   revealPreparedMainSearchOutcome,
@@ -42,6 +51,10 @@ function fail(
     | 'EFFECT_RESOURCE_MISMATCH'
     | 'EFFECT_SEARCH_MISMATCH'
     | 'EFFECT_PICKUP_MISMATCH'
+    | 'EFFECT_OBSTACLE_MISMATCH'
+    | 'EFFECT_ALERT_MISMATCH'
+    | 'EFFECT_CONTUSION_MISMATCH'
+    | 'EFFECT_SPAWN_MISMATCH'
     | 'INCOMPLETE_EFFECT_PLAN',
   message: string,
 ): never {
@@ -102,6 +115,7 @@ export function applySceneExplorationEffects(
   let state = deepFreeze({
     ...initialSnapshot,
     searchState: initialSnapshot.searchState,
+    sceneItems: initialSnapshot.sceneItems,
     equipment: initialSnapshot.equipment,
     quickSlots: initialSnapshot.quickSlots,
     itemStates: initialSnapshot.itemStates,
@@ -115,8 +129,14 @@ export function applySceneExplorationEffects(
     },
     condition: { ...initialSnapshot.condition },
   })
-  let primaryKind: 'movement' | 'main-search' | 'pickup' | null = null
+  let primaryKind: 'movement' | 'main-search' | 'pickup' | 'obstacle' | 'decline' | null = null
   let sawResourceConsumption = false
+  let consumedResourceEffect: Extract<
+    SceneExplorationEffect,
+    { readonly kind: 'item-resource-consumed' }
+  > | null = null
+  let activeObstacleId: string | null = null
+  let activeObstacleOptionId: string | null = null
   let sawTime = false
   let sawForcedReturn = false
   let sawStatus = false
@@ -154,13 +174,10 @@ export function applySceneExplorationEffects(
         ) {
           fail('EFFECT_PICKUP_MISMATCH', '拾取Effect的场景状态无效')
         }
-        const node = state.searchState.nodeStates.find(
-          (candidate) => candidate.nodeId === effect.nodeId,
-        )
-        if (!node || node.kind !== 'searched') {
-          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect节点尚未完成搜索')
-        }
-        const source = node.revealedItems.find(
+        const source = getSceneNodeItems(
+          state.sceneItems,
+          effect.nodeId,
+        ).find(
           (entity) =>
             entity.item.instanceId === effect.sourceInstanceId,
         )
@@ -207,10 +224,15 @@ export function applySceneExplorationEffects(
           const entities =
             candidate.kind === 'unsearched'
               ? candidate.preparedOutcome.revealedItems
-              : candidate.kind === 'searched'
-                ? candidate.revealedItems
-                : []
+              : []
           for (const entity of entities) {
+            if (entity.item.instanceId !== effect.sourceInstanceId) {
+              knownIds.add(entity.item.instanceId)
+            }
+          }
+        }
+        for (const candidate of state.sceneItems.nodeStates) {
+          for (const entity of candidate.items) {
             if (entity.item.instanceId !== effect.sourceInstanceId) {
               knownIds.add(entity.item.instanceId)
             }
@@ -285,39 +307,17 @@ export function applySceneExplorationEffects(
         ) {
           fail('EFFECT_PICKUP_MISMATCH', '拾取Effect导致无法携带')
         }
-        const nextSource =
-          effect.quantityRemaining === 0
-            ? null
-            : createSceneItemSnapshot(
-                {
-                  item: {
-                    ...source.item,
-                    quantity: effect.quantityRemaining,
-                  },
-                  state: source.state,
-                },
-                dependencies.physicalCatalog,
-                dependencies.itemResourceCatalog,
-              )
-        const searchState = deepFreeze({
-          ...state.searchState,
-          nodeStates: state.searchState.nodeStates.map((candidate) =>
-            candidate.nodeId === effect.nodeId &&
-            candidate.kind === 'searched'
-              ? {
-                  ...candidate,
-                  revealedItems: candidate.revealedItems.flatMap(
-                    (entity) =>
-                      entity.item.instanceId === effect.sourceInstanceId
-                        ? nextSource
-                          ? [nextSource]
-                          : []
-                        : [entity],
-                  ),
-                }
-              : candidate,
-          ),
-        })
+        const sceneItems = removeSceneItemQuantity(
+          state.sceneItems,
+          effect.nodeId,
+          effect.sourceInstanceId,
+          effect.quantityPicked,
+          {
+            graph: dependencies.graph,
+            itemCatalog: dependencies.physicalCatalog,
+            itemResourceCatalog: dependencies.itemResourceCatalog,
+          },
+        )
         const carriedItems = [
           ...backpack.items,
           ...Object.values(state.equipment).filter(
@@ -339,7 +339,7 @@ export function applySceneExplorationEffects(
         }
         state = deepFreeze({
           ...state,
-          searchState,
+          sceneItems,
           backpack,
           itemStates,
         })
@@ -351,23 +351,24 @@ export function applySceneExplorationEffects(
           index !== 0 ||
           sawResourceConsumption ||
           primaryKind !== null ||
-          sawTime ||
-          effect.source !== 'main-search-illumination'
+          sawTime
         ) {
-          fail('INVALID_EFFECT_ORDER', '搜索照明资源Effect顺序非法')
+          fail('INVALID_EFFECT_ORDER', '装备资源Effect顺序非法')
         }
-        const utility = state.equipment.utility
+        const equipped = state.equipment[effect.equipmentSlot]
         if (
-          !utility ||
-          utility.instanceId !== effect.instanceId ||
-          utility.definitionId !== effect.definitionId ||
-          effect.resourceKind !== 'charge'
+          !equipped ||
+          equipped.instanceId !== effect.instanceId ||
+          equipped.definitionId !== effect.definitionId ||
+          (effect.source === 'main-search-illumination' &&
+            (effect.equipmentSlot !== 'utility' || effect.resourceKind !== 'charge'))
         ) {
-          fail('EFFECT_RESOURCE_MISMATCH', '照明资源Effect与实用装备不一致')
+          fail('EFFECT_RESOURCE_MISMATCH', '资源Effect与声明装备槽不一致')
         }
         const itemState = getItemState(state.itemStates, effect.instanceId)
         if (
           itemState.definitionId !== effect.definitionId ||
+          itemState.resource.kind === 'none' ||
           itemState.resource.kind !== effect.resourceKind ||
           itemState.resource.current !== effect.currentBefore
         ) {
@@ -394,9 +395,158 @@ export function applySceneExplorationEffects(
           itemStates: replaceItemState(state.itemStates, result.state),
         })
         sawResourceConsumption = true
+        consumedResourceEffect = effect
+        break
+      }
+      case 'scene-edge-enabled': {
+        const expectedIndex = sawResourceConsumption ? 1 : 0
+        const obstacle = dependencies?.obstacleCatalog?.has(effect.obstacleId)
+          ? dependencies.obstacleCatalog.get(effect.obstacleId)
+          : null
+        const option = obstacle?.options.find(({ id }) => id === effect.optionId)
+        const resourceMatches =
+          option?.kind === 'equipped-resource'
+            ? consumedResourceEffect !== null &&
+              consumedResourceEffect.source === option.resourceSource &&
+              consumedResourceEffect.equipmentSlot === option.equipmentSlot &&
+              consumedResourceEffect.definitionId === option.requiredDefinitionId &&
+              consumedResourceEffect.requestedCost === dependencies?.config.scene.fireDoor.equippedItemResourceCost
+            : option?.kind === 'force-entry'
+              ? consumedResourceEffect === null ||
+                (consumedResourceEffect.source === 'fire-door-impact-protection' &&
+                  consumedResourceEffect.equipmentSlot === 'armor' &&
+                  consumedResourceEffect.definitionId === option.protectionDefinitionId &&
+                  consumedResourceEffect.requestedCost === dependencies?.config.scene.fireDoor.impactProtectionIntegrityCost)
+              : consumedResourceEffect === null
+        if (
+          index !== expectedIndex ||
+          primaryKind !== null ||
+          !obstacle ||
+          !option ||
+          option.kind === 'decline' ||
+          !resourceMatches ||
+          obstacle.edgeId !== effect.edgeId ||
+          !obstacle.endpointNodeIds.includes(state.currentNodeId) ||
+          effect.nodeId !== state.currentNodeId ||
+          state.enabledEdgeIds.includes(effect.edgeId)
+        ) {
+          fail('EFFECT_OBSTACLE_MISMATCH', '障碍开边Effect与当前状态不一致')
+        }
+        state = deepFreeze({
+          ...state,
+          enabledEdgeIds: [...state.enabledEdgeIds, effect.edgeId].sort(),
+        })
+        primaryKind = 'obstacle'
+        activeObstacleId = effect.obstacleId
+        activeObstacleOptionId = effect.optionId
+        break
+      }
+      case 'scene-item-spawned': {
+        const obstacle = activeObstacleId
+          ? dependencies?.obstacleCatalog?.get(activeObstacleId)
+          : null
+        const option = obstacle?.options.find(({ id }) => id === activeObstacleOptionId)
+        const matchesGrant =
+          option?.kind === 'equipped-resource' &&
+          obstacle?.eventId === effect.sourceEventId &&
+          option.id === effect.sourceOptionId &&
+          option.spawnGrants.some(
+            (grant) =>
+              grant.definitionId === effect.entity.item.definitionId &&
+              grant.quantity === effect.entity.item.quantity,
+          )
+        if (primaryKind !== 'obstacle' || sawTime || effect.nodeId !== state.currentNodeId || !matchesGrant) {
+          fail('INVALID_EFFECT_ORDER', '场景物品产出Effect顺序非法')
+        }
+        let entity
+        try {
+          entity = createSceneItemSnapshot(
+            effect.entity,
+            dependencies!.physicalCatalog,
+            dependencies!.itemResourceCatalog,
+          )
+        } catch {
+          fail('EFFECT_SPAWN_MISMATCH', '场景物品产出实体无效')
+        }
+        const sceneItems = addSceneItems(
+          state.sceneItems,
+          effect.nodeId,
+          [entity],
+          {
+            graph: dependencies!.graph,
+            itemCatalog: dependencies!.physicalCatalog,
+            itemResourceCatalog: dependencies!.itemResourceCatalog,
+          },
+        )
+        state = deepFreeze({ ...state, sceneItems })
+        break
+      }
+      case 'scene-alert-changed': {
+        const obstacle = activeObstacleId
+          ? dependencies?.obstacleCatalog?.get(activeObstacleId)
+          : null
+        const option = obstacle?.options.find(({ id }) => id === activeObstacleOptionId)
+        const expectedReason =
+          option?.kind === 'force-entry'
+            ? 'fire-door-force-entry'
+            : option?.kind === 'equipped-resource' && option.setsAlert
+              ? 'fire-door-fire-axe'
+              : null
+        if (
+          primaryKind !== 'obstacle' ||
+          sawTime ||
+          state.alertState !== effect.fromAlertState ||
+          effect.toAlertState !== 'alerted' ||
+          effect.reason !== expectedReason
+        ) {
+          fail('EFFECT_ALERT_MISMATCH', '警觉Effect与当前状态不一致')
+        }
+        state = deepFreeze({ ...state, alertState: 'alerted' as const })
+        break
+      }
+      case 'minor-contusion-added': {
+        const obstacle = activeObstacleId
+          ? dependencies?.obstacleCatalog?.get(activeObstacleId)
+          : null
+        const option = obstacle?.options.find(({ id }) => id === activeObstacleOptionId)
+        if (
+          primaryKind !== 'obstacle' ||
+          sawTime ||
+          effect.added !== 1 ||
+          state.condition.minorContusions !== effect.countBefore ||
+          effect.countAfter !== effect.countBefore + 1 ||
+          option?.kind !== 'force-entry'
+        ) {
+          fail('EFFECT_CONTUSION_MISMATCH', '轻微挫伤Effect与当前状态不一致')
+        }
+        state = deepFreeze({
+          ...state,
+          condition: addMinorContusion(state.condition),
+        })
+        break
+      }
+      case 'scene-obstacle-declined': {
+        const obstacle = dependencies?.obstacleCatalog?.has(effect.obstacleId)
+          ? dependencies.obstacleCatalog.get(effect.obstacleId)
+          : null
+        if (
+          effects.length !== 1 ||
+          index !== 0 ||
+          !obstacle ||
+          obstacle.options.find(({ id }) => id === effect.optionId)?.kind !== 'decline' ||
+          obstacle.edgeId !== effect.edgeId ||
+          effect.nodeId !== state.currentNodeId ||
+          state.enabledEdgeIds.includes(effect.edgeId)
+        ) {
+          fail('EFFECT_OBSTACLE_MISMATCH', '放弃障碍Effect与当前状态不一致')
+        }
+        primaryKind = 'decline'
         break
       }
       case 'scene-main-search-revealed': {
+        if (!dependencies) {
+          fail('EFFECT_SEARCH_MISMATCH', '搜索Effect回放需要完整场景依赖')
+        }
         if (
           primaryKind !== null ||
           sawTime ||
@@ -419,29 +569,33 @@ export function applySceneExplorationEffects(
           state.searchState,
           effect.nodeId,
         )
-        const revealedNode = revealed.nodeStates.find(
-          (node) => node.nodeId === effect.nodeId,
-        )
-        if (!revealedNode || revealedNode.kind !== 'searched') {
-          fail('EFFECT_SEARCH_MISMATCH', '主要搜索揭示结果无效')
-        }
-        const actualIds = revealedNode.revealedItems.map(
+        const actualIds = current.preparedOutcome.revealedItems.map(
           ({ item }) => item.instanceId,
         )
         const actualSummary = summarizeRevealedItems(
-          revealedNode.revealedItems.map(({ item }) => item),
+          current.preparedOutcome.revealedItems.map(({ item }) => item),
         )
         if (
           !sameValue(actualIds, effect.revealedItemInstanceIds) ||
           !sameValue(actualSummary, effect.revealedItemSummary) ||
           !sameValue(
-            revealedNode.revealedIntelIds,
+            current.preparedOutcome.revealedIntelIds,
             effect.revealedIntelIds,
           )
         ) {
           fail('EFFECT_SEARCH_MISMATCH', '主要搜索Effect的揭示列表被篡改')
         }
-        state = deepFreeze({ ...state, searchState: revealed })
+        const sceneItems = addSceneItems(
+          state.sceneItems,
+          effect.nodeId,
+          current.preparedOutcome.revealedItems,
+          {
+            graph: dependencies.graph,
+            itemCatalog: dependencies.physicalCatalog,
+            itemResourceCatalog: dependencies.itemResourceCatalog,
+          },
+        )
+        state = deepFreeze({ ...state, searchState: revealed, sceneItems })
         primaryKind = 'main-search'
         break
       }
@@ -471,7 +625,9 @@ export function applySceneExplorationEffects(
               ? sawResourceConsumption
                 ? 2
                 : 1
-              : -1
+              : primaryKind === 'obstacle'
+                ? index
+                : -1
         if (sawTime || index !== expectedIndex) {
           fail('INVALID_EFFECT_ORDER', '时间Effect必须紧随主要效果且只能出现一次')
         }
@@ -570,13 +726,15 @@ export function applySceneExplorationEffects(
 
   if (
     primaryKind === null ||
-    (primaryKind !== 'pickup' && !sawTime) ||
+    (primaryKind !== 'pickup' && primaryKind !== 'decline' && !sawTime) ||
     (primaryKind === 'pickup' && sawTime)
   ) {
     fail('INCOMPLETE_EFFECT_PLAN', 'Effect计划缺少主要效果或时间结算')
   }
   if (sawResourceConsumption && primaryKind !== 'main-search') {
-    fail('INCOMPLETE_EFFECT_PLAN', '照明资源消费后缺少主要搜索揭示')
+    if (primaryKind !== 'obstacle') {
+      fail('INCOMPLETE_EFFECT_PLAN', '装备资源消费后缺少对应主要效果')
+    }
   }
   if (state.condition.currentHealth === 0 && state.status !== 'dead') {
     fail('INCOMPLETE_EFFECT_PLAN', '生命归零后必须提交dead状态')

@@ -526,8 +526,8 @@ describe('scene search state', () => {
     const searched = revealed.nodeStates[0]
     expect(searched.kind).toBe('searched')
     if (searched.kind !== 'searched') throw new Error('测试节点必须已搜索')
-    expect(searched.revealedItems).toEqual(hidden.preparedOutcome.revealedItems)
     expect(searched.revealedIntelIds).toEqual(hidden.preparedOutcome.revealedIntelIds)
+    expect('revealedItems' in searched).toBe(false)
     expect(state.nodeStates[0].kind).toBe('unsearched')
   })
 
@@ -551,10 +551,8 @@ describe('scene search state', () => {
     )
     expect(visible.kind).toBe('searched')
     if (visible.kind !== 'searched') throw new Error('节点必须已搜索')
-    expect(visible.revealedItems).toHaveLength(2)
     expect(visible.revealedIntelIds).toEqual(['intel-a', 'intel-b'])
     expect(Object.isFrozen(visible)).toBe(true)
-    expect(Object.isFrozen(visible.revealedItems)).toBe(true)
     expect(getPlayerVisibleNodeSearchState(create(), 'c')).toEqual({
       kind: 'not-available',
       nodeId: 'c',
@@ -692,15 +690,13 @@ describe('scene search state', () => {
     }))).toThrowError(expect.objectContaining({ code: 'DUPLICATE_INSTANCE_ID' }))
   })
 
-  it('accepts a searched node after every revealed item has been picked up', () => {
+  it('keeps searched state limited to lifecycle and revealed intel', () => {
     const searched = revealPreparedMainSearchOutcome(create(), 'a')
     const node = searched.nodeStates.find((candidate) => candidate.nodeId === 'a')
     expect(validate(replaceNode(searched, 'a', {
       ...node,
-      revealedItems: [],
     })).nodeStates.find((candidate) => candidate.nodeId === 'a')).toMatchObject({
       kind: 'searched',
-      revealedItems: [],
     })
   })
 })

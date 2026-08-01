@@ -231,7 +231,7 @@ describe('hospital deterministic search materialization', () => {
     )
     expect(node?.kind).toBe('searched')
     if (!node || node.kind !== 'searched') throw new Error('急诊大厅应已搜索')
-    expect(node.revealedItems).toHaveLength(2)
+    expect('revealedItems' in node).toBe(false)
     expect(state.nodeStates.find((candidate) => candidate.nodeId === HOSPITAL_NODE_IDS.emergencyHall)?.kind).toBe('unsearched')
   })
 })

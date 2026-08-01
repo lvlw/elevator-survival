@@ -25,6 +25,25 @@ describe('hospitalSliceV01RuleConfig', () => {
       withoutFlashlight: 30,
       flashlightChargeCost: 1,
     })
+    expect(config.scene.fireDoor).toEqual({
+      accessCardTime: 10,
+      crowbarTime: 20,
+      toolkitTime: 30,
+      fireAxeTime: 10,
+      forceEntryTime: 20,
+      equippedItemResourceCost: 1,
+      impactProtectionIntegrityCost: 1,
+      forceEntryInjuryRiskPercent: 60,
+      protectedForceEntryInjuryRiskPercent: 20,
+    })
+    expect([
+      config.scene.fireDoor.accessCardTime,
+      config.scene.fireDoor.crowbarTime,
+      config.scene.fireDoor.toolkitTime,
+      config.scene.fireDoor.fireAxeTime,
+      config.scene.fireDoor.forceEntryTime,
+    ].every((time) => time < config.scene.totalTime)).toBe(true)
+    expect(Object.isFrozen(config.scene.fireDoor)).toBe(true)
     expect(config.scene.travelTimeModifiers).toEqual({
       minorContusionTimeIncreasePercent: 10,
     })
@@ -88,6 +107,18 @@ describe('ruleConfigSchema', () => {
     const invalidConfig = mutableConfigCopy()
     invalidConfig.backpack.quickSlotCount = count
     expect(ruleConfigSchema.safeParse(invalidConfig).success).toBe(false)
+  })
+
+  it.each([-1, 101, 1.5])('rejects invalid fire-door risk percent %s', (risk) => {
+    const invalid = mutableConfigCopy()
+    invalid.scene.fireDoor.forceEntryInjuryRiskPercent = risk
+    expect(ruleConfigSchema.safeParse(invalid).success).toBe(false)
+  })
+
+  it.each([0, -1, 1.5])('rejects invalid fire-door resource cost %s', (cost) => {
+    const invalid = mutableConfigCopy()
+    invalid.scene.fireDoor.equippedItemResourceCost = cost
+    expect(ruleConfigSchema.safeParse(invalid).success).toBe(false)
   })
 
   it.each([
@@ -164,6 +195,12 @@ describe('ruleConfigSchema', () => {
       (config: RuleConfigInput) => {
         ;(config.scene as typeof config.scene & Record<string, unknown>).unknown =
           true
+      },
+    ],
+    [
+      'unknown fire-door field',
+      (config: RuleConfigInput) => {
+        ;(config.scene.fireDoor as typeof config.scene.fireDoor & Record<string, unknown>).unknown = true
       },
     ],
     [

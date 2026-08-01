@@ -21,6 +21,14 @@ export {
   hospitalMainSearchDefinitions,
 } from './hospital-v0.1/search'
 export {
+  HOSPITAL_EVENT_IDS,
+  HOSPITAL_FIRE_DOOR_OPTION_IDS,
+  HOSPITAL_OBSTACLE_IDS,
+  hospitalFireDoorDefinition,
+  hospitalSceneEdgeAccessCatalog,
+  hospitalSceneObstacleCatalog,
+} from './hospital-v0.1/obstacles'
+export {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
   HOSPITAL_EDGE_IDS,
   HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,

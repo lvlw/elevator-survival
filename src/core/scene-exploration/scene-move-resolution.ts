@@ -10,6 +10,7 @@ import {
   SceneGraphError,
 } from '../scene-graph'
 import { resolveTimedSceneAction } from '../scene'
+import { getEffectiveEnabledEdgeIds } from '../scene-access'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { applySceneExplorationEffects } from './scene-exploration-effects'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
@@ -85,12 +86,16 @@ function evaluate(
   }
 
   let traversal
+  const effectiveEnabledEdgeIds = getEffectiveEnabledEdgeIds(
+    snapshot,
+    dependencies.edgeAccessCatalog,
+  )
   try {
     traversal = getSceneEdgeTraversal(
       dependencies.graph,
       command.edgeId,
       snapshot.currentNodeId,
-      { enabledEdgeIds: snapshot.enabledEdgeIds },
+      { enabledEdgeIds: effectiveEnabledEdgeIds },
     )
   } catch (error) {
     graphFailure(error)
@@ -120,7 +125,7 @@ function evaluate(
       {
         graph: dependencies.graph,
         currentNodeId: traversal.toNodeId,
-        availability: { enabledEdgeIds: snapshot.enabledEdgeIds },
+        availability: { enabledEdgeIds: effectiveEnabledEdgeIds },
         totalWeight: backpackWeight,
         hasMinorContusion,
         analgesiaActive: snapshot.condition.painkillerActive,

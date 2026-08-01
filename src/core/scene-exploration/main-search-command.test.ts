@@ -645,14 +645,14 @@ describe('main search effects and terminal ordering', () => {
       applySceneExplorationEffects(
         start,
         resolved.result.effects,
-        config.combat.player,
+        dependencies,
       ),
     ).toEqual(resolved.snapshot)
     expect(
       applySceneExplorationEffects(
         snapshot({ utility: 'flashlight' }),
         resolved.result.effects,
-        config.combat.player,
+        dependencies,
       ),
     ).toEqual(resolved.snapshot)
   })

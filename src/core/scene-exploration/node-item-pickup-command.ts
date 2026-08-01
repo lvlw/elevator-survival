@@ -7,6 +7,7 @@ import {
 } from '../inventory'
 import { createItemState } from '../item-state'
 import { classifyLoad } from '../load'
+import { getSceneNodeItems } from '../scene-items'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { applySceneExplorationEffects } from './scene-exploration-effects'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
@@ -48,10 +49,11 @@ function allKnownInstanceIds(
     const sceneItems =
       node.kind === 'unsearched'
         ? node.preparedOutcome.revealedItems
-        : node.kind === 'searched'
-          ? node.revealedItems
-          : []
+        : []
     for (const entity of sceneItems) ids.add(entity.item.instanceId)
+  }
+  for (const node of snapshot.sceneItems.nodeStates) {
+    for (const entity of node.items) ids.add(entity.item.instanceId)
   }
   return ids
 }
@@ -92,16 +94,10 @@ function evaluate(
     fail('INVALID_BACKPACK_PLACEMENT', '拾取目标摆放无效')
   }
 
-  const current = snapshot.searchState.nodeStates.find(
-    (node) => node.nodeId === snapshot.currentNodeId,
-  )
-  if (!current || current.kind !== 'searched') {
-    throw new SceneExplorationError(
-      'NODE_NOT_SEARCHED',
-      '当前节点尚未完成主要搜索',
-    )
-  }
-  const source = current.revealedItems.find(
+  const source = getSceneNodeItems(
+    snapshot.sceneItems,
+    snapshot.currentNodeId,
+  ).find(
     (entity) => entity.item.instanceId === command.nodeItemInstanceId,
   )
   if (!source) {
@@ -109,8 +105,7 @@ function evaluate(
       snapshot.searchState.nodeStates.some(
         (node) =>
           node.nodeId !== snapshot.currentNodeId &&
-          node.kind === 'searched' &&
-          node.revealedItems.some(
+          getSceneNodeItems(snapshot.sceneItems, node.nodeId).some(
             (entity) =>
               entity.item.instanceId === command.nodeItemInstanceId,
           ),

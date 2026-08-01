@@ -11,6 +11,7 @@ import {
   SceneGraphError,
 } from '../scene-graph'
 import { resolveTimedSceneAction } from '../scene'
+import { getEffectiveEnabledEdgeIds } from '../scene-access'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { applySceneExplorationEffects } from './scene-exploration-effects'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
@@ -153,12 +154,16 @@ function evaluate(
     )
   }
   let returnRoute
+  const effectiveEnabledEdgeIds = getEffectiveEnabledEdgeIds(
+    snapshot,
+    dependencies.edgeAccessCatalog,
+  )
   try {
     returnRoute = findReturnRoute(
       {
         graph: dependencies.graph,
         currentNodeId: snapshot.currentNodeId,
-        availability: { enabledEdgeIds: snapshot.enabledEdgeIds },
+        availability: { enabledEdgeIds: effectiveEnabledEdgeIds },
         totalWeight: backpackWeight,
         hasMinorContusion: hasMinorContusions(snapshot.condition),
         analgesiaActive: snapshot.condition.painkillerActive,
@@ -217,6 +222,7 @@ function evaluate(
     effects.push({
       kind: 'item-resource-consumed',
       source: 'main-search-illumination',
+      equipmentSlot: 'utility',
       instanceId: utility.instanceId,
       definitionId: utility.definitionId,
       resourceKind: preview.kind,

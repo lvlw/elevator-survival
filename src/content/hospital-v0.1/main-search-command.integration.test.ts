@@ -12,6 +12,7 @@ import {
   createItemState,
   getItemState,
 } from '../../core/item-state'
+import { getSceneNodeItems } from '../../core/scene-items'
 import {
   createInitialSceneExplorationSnapshot,
   previewMainSearchCommand,
@@ -286,7 +287,7 @@ describe('hospital main search command', () => {
     const illuminatedNode = searchedNode(withLight.snapshot, nodeId)
     const lowLightNode = searchedNode(withoutLight.snapshot, nodeId)
     expect(
-      illuminatedNode.revealedItems.map(({ item }) => item.definitionId),
+      getSceneNodeItems(withLight.snapshot.sceneItems, nodeId).map(({ item }) => item.definitionId),
     ).toEqual(expected)
     expect(lowLightNode).toEqual(illuminatedNode)
   })
@@ -382,7 +383,8 @@ describe('hospital main search command', () => {
     expect(searchedNode(
       result.snapshot,
       HOSPITAL_NODE_IDS.emergencyHall,
-    ).revealedItems).toHaveLength(2)
+    )).toMatchObject({ kind: 'searched' })
+    expect(getSceneNodeItems(result.snapshot.sceneItems, HOSPITAL_NODE_IDS.emergencyHall)).toHaveLength(2)
   })
 
   it('keeps search at 30 while loaded contusion changes return to 13', () => {
@@ -416,7 +418,8 @@ describe('hospital main search command', () => {
       expect(searchedNode(
         result.snapshot,
         HOSPITAL_NODE_IDS.emergencyHall,
-      ).revealedItems).toHaveLength(2)
+      )).toMatchObject({ kind: 'searched' })
+      expect(getSceneNodeItems(result.snapshot.sceneItems, HOSPITAL_NODE_IDS.emergencyHall)).toHaveLength(2)
     },
   )
 
@@ -437,7 +440,8 @@ describe('hospital main search command', () => {
     expect(searchedNode(
       result.snapshot,
       HOSPITAL_NODE_IDS.emergencyHall,
-    ).revealedItems).toHaveLength(2)
+    )).toMatchObject({ kind: 'searched' })
+    expect(getSceneNodeItems(result.snapshot.sceneItems, HOSPITAL_NODE_IDS.emergencyHall)).toHaveLength(2)
     expect(
       getItemState(
         result.snapshot.itemStates,

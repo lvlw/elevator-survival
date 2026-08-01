@@ -4,10 +4,15 @@ import { createItemStateCollectionSnapshot } from '../item-state'
 import { createCarriedItemContainersSnapshot } from '../quick-slot'
 import { validateTraversalAvailability } from '../scene-graph'
 import { validateSceneSearchState } from '../scene-search'
+import {
+  createEmptySceneItemsSnapshot,
+  createSceneItemsSnapshot,
+} from '../scene-items'
 import { SceneExplorationError } from './scene-exploration-errors'
 import type {
   SceneExplorationDependencies,
   SceneExplorationSnapshot,
+  SceneExplorationSnapshotInput,
   SceneExplorationStatus,
 } from './scene-exploration-types'
 
@@ -19,7 +24,7 @@ const STATUSES: readonly SceneExplorationStatus[] = [
 ]
 
 export function createSceneExplorationSnapshot(
-  input: SceneExplorationSnapshot,
+  input: SceneExplorationSnapshotInput,
   dependencies: SceneExplorationDependencies,
 ): SceneExplorationSnapshot {
   if (!STATUSES.includes(input.status)) {
@@ -40,6 +45,18 @@ export function createSceneExplorationSnapshot(
     dependencies.physicalCatalog,
     dependencies.itemResourceCatalog,
   )
+  const sceneItemsDependencies = {
+    graph: dependencies.graph,
+    itemCatalog: dependencies.physicalCatalog,
+    itemResourceCatalog: dependencies.itemResourceCatalog,
+  }
+  const sceneItems = input.sceneItems
+    ? createSceneItemsSnapshot(input.sceneItems, sceneItemsDependencies)
+    : createEmptySceneItemsSnapshot(sceneItemsDependencies)
+  const alertState = input.alertState ?? 'unalerted'
+  if (alertState !== 'unalerted' && alertState !== 'alerted') {
+    throw new SceneExplorationError('INVALID_INPUT', '场景警觉状态无效')
+  }
   if (
     input.currentNodeId.trim().length === 0 ||
     !dependencies.graph.nodes.some((node) => node.id === input.currentNodeId)
@@ -93,20 +110,31 @@ export function createSceneExplorationSnapshot(
     ),
   ]
   const carriedIds = new Set(carriedItems.map((item) => item.instanceId))
+  const allSceneIds = new Set<string>(carriedIds)
   for (const node of searchState.nodeStates) {
-    const sceneItems =
+    const hiddenItems =
       node.kind === 'unsearched'
         ? node.preparedOutcome.revealedItems
-        : node.kind === 'searched'
-          ? node.revealedItems
-          : []
-    for (const entity of sceneItems) {
-      if (carriedIds.has(entity.item.instanceId)) {
+        : []
+    for (const entity of hiddenItems) {
+      if (allSceneIds.has(entity.item.instanceId)) {
         throw new SceneExplorationError(
           'INVALID_INPUT',
-          `场景节点与随身容器存在重复物品实例：${entity.item.instanceId}`,
+          `隐藏搜索结果与其他容器存在重复物品实例：${entity.item.instanceId}`,
         )
       }
+      allSceneIds.add(entity.item.instanceId)
+    }
+  }
+  for (const node of sceneItems.nodeStates) {
+    for (const entity of node.items) {
+      if (allSceneIds.has(entity.item.instanceId)) {
+        throw new SceneExplorationError(
+          'INVALID_INPUT',
+          `节点地面物品与其他容器存在重复物品实例：${entity.item.instanceId}`,
+        )
+      }
+      allSceneIds.add(entity.item.instanceId)
     }
   }
   const itemStates = createItemStateCollectionSnapshot(
@@ -131,6 +159,8 @@ export function createSceneExplorationSnapshot(
     status: input.status,
     sceneInstanceId: input.sceneInstanceId,
     searchState,
+    sceneItems,
+    alertState,
     currentNodeId: input.currentNodeId,
     remainingTime: input.remainingTime,
     enabledEdgeIds: [...input.enabledEdgeIds].sort(),
@@ -143,7 +173,7 @@ export function createSceneExplorationSnapshot(
 }
 
 export function createInitialSceneExplorationSnapshot(
-  input: Omit<SceneExplorationSnapshot, 'status'>,
+  input: Omit<SceneExplorationSnapshotInput, 'status'>,
   dependencies: SceneExplorationDependencies,
 ): SceneExplorationSnapshot {
   return createSceneExplorationSnapshot(

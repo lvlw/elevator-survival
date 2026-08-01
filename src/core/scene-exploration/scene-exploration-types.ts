@@ -29,6 +29,13 @@ import type {
   SceneSearchStateSnapshot,
   SearchIlluminationProfileCatalog,
 } from '../scene-search'
+import type { SceneItemsSnapshot } from '../scene-items'
+import type { SceneEdgeAccessCatalog } from '../scene-access'
+import type {
+  ObstacleRiskTrace,
+  SceneObstacleCatalog,
+} from '../scene-obstacle'
+import type { SceneItemSnapshot } from '../scene-search'
 import type {
   QuickSlotProfileCatalog,
   QuickSlotSnapshot,
@@ -41,9 +48,13 @@ export type SceneExplorationStatus =
   | 'forced-returned'
   | 'dead'
 
+export type SceneAlertState = 'unalerted' | 'alerted'
+
 export interface SceneExplorationSnapshot {
   readonly sceneInstanceId: string
   readonly searchState: SceneSearchStateSnapshot
+  readonly sceneItems: SceneItemsSnapshot
+  readonly alertState: SceneAlertState
   readonly status: SceneExplorationStatus
   readonly currentNodeId: string
   readonly remainingTime: number
@@ -55,6 +66,12 @@ export interface SceneExplorationSnapshot {
   readonly condition: PlayerConditionSnapshot
 }
 
+export type SceneExplorationSnapshotInput = Omit<
+  SceneExplorationSnapshot,
+  'alertState' | 'sceneItems'
+> &
+  Partial<Pick<SceneExplorationSnapshot, 'alertState' | 'sceneItems'>>
+
 export interface SceneExplorationDependencies {
   readonly graph: SceneGraph
   readonly physicalCatalog: ItemCatalog
@@ -62,12 +79,20 @@ export interface SceneExplorationDependencies {
   readonly quickSlotCatalog: QuickSlotProfileCatalog
   readonly itemResourceCatalog: ItemResourceCatalog
   readonly config: FrozenRuleConfig
+  readonly edgeAccessCatalog?: SceneEdgeAccessCatalog
+  readonly obstacleCatalog?: SceneObstacleCatalog
 }
 
 export interface MainSearchCommandDependencies
   extends SceneExplorationDependencies {
   readonly searchCatalog: MainSearchDefinitionCatalog
   readonly searchIlluminationCatalog: SearchIlluminationProfileCatalog
+}
+
+export interface SceneObstacleCommandDependencies
+  extends SceneExplorationDependencies {
+  readonly runSeed: string
+  readonly obstacleCatalog: SceneObstacleCatalog
 }
 
 export interface MoveThroughSceneEdgeCommand {
@@ -110,7 +135,13 @@ export type SceneExplorationEffect =
     }>
   | Readonly<{
       kind: 'item-resource-consumed'
-      source: 'main-search-illumination'
+      source:
+        | 'main-search-illumination'
+        | 'fire-door-crowbar'
+        | 'fire-door-toolkit'
+        | 'fire-door-fire-axe'
+        | 'fire-door-impact-protection'
+      equipmentSlot: 'weapon' | 'armor' | 'utility'
       instanceId: string
       definitionId: string
       resourceKind: ItemResourceKind
@@ -119,6 +150,40 @@ export type SceneExplorationEffect =
       consumed: number
       currentAfter: number
       depleted: boolean
+    }>
+  | Readonly<{
+      kind: 'scene-edge-enabled'
+      obstacleId: string
+      edgeId: string
+      nodeId: string
+      optionId: string
+    }>
+  | Readonly<{
+      kind: 'scene-item-spawned'
+      nodeId: string
+      sourceEventId: string
+      sourceOptionId: string
+      entity: Readonly<SceneItemSnapshot>
+    }>
+  | Readonly<{
+      kind: 'scene-alert-changed'
+      fromAlertState: SceneAlertState
+      toAlertState: 'alerted'
+      reason: 'fire-door-fire-axe' | 'fire-door-force-entry'
+    }>
+  | Readonly<{
+      kind: 'minor-contusion-added'
+      source: 'fire-door-force-entry'
+      countBefore: number
+      added: 1
+      countAfter: number
+    }>
+  | Readonly<{
+      kind: 'scene-obstacle-declined'
+      obstacleId: string
+      optionId: string
+      nodeId: string
+      edgeId: string
     }>
   | Readonly<{
       kind: 'scene-main-search-revealed'
@@ -166,6 +231,29 @@ export interface PickUpRevealedNodeItemCommand {
   readonly quantity: number
   readonly placement: Omit<BackpackPlacement, 'instanceId'>
   readonly extractedInstanceId?: string
+}
+
+export interface PerformSceneObstacleOptionCommand {
+  readonly obstacleId: string
+  readonly optionId: string
+}
+
+export interface SceneObstacleEvaluation {
+  readonly obstacleId: string
+  readonly optionId: string
+  readonly actionTime: number
+  readonly riskTrace: ObstacleRiskTrace | null
+  readonly effects: readonly SceneExplorationEffect[]
+  readonly snapshot: SceneExplorationSnapshot
+}
+
+export type SceneObstaclePreview =
+  | Readonly<{ canExecute: true; result: SceneObstacleEvaluation }>
+  | Readonly<{ canExecute: false; rejectionCode: SceneExplorationErrorCode }>
+
+export interface SceneObstacleResolution {
+  readonly result: SceneObstacleEvaluation
+  readonly snapshot: SceneExplorationSnapshot
 }
 
 export interface NodeItemPickupEvaluation {

@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { createPlayerCondition } from '../../core/condition'
 import { createBackpackSnapshot } from '../../core/inventory'
 import { createItemState, getItemState } from '../../core/item-state'
+import { getSceneNodeItems } from '../../core/scene-items'
 import {
   applySceneExplorationEffects,
   createInitialSceneExplorationSnapshot,
@@ -89,11 +90,7 @@ function revealedItem(
   nodeId: string,
   definitionId: string,
 ) {
-  const searchState = node(snapshot, nodeId)
-  if (searchState.kind !== 'searched') {
-    throw new Error(`医院节点尚未完成主要搜索：${nodeId}`)
-  }
-  const result = searchState.revealedItems.find(
+  const result = getSceneNodeItems(snapshot.sceneItems, nodeId).find(
     ({ item }) => item.definitionId === definitionId,
   )
   if (!result) throw new Error(`节点缺少正式物品：${definitionId}`)
@@ -211,7 +208,7 @@ describe('hospital formal command chain', () => {
     ) {
       throw new Error('大厅搜索状态不符合命令链前提')
     }
-    expect(searchedHall.revealedItems).toEqual(
+    expect(getSceneNodeItems(current.sceneItems, HOSPITAL_NODE_IDS.emergencyHall)).toEqual(
       hallPrepared.preparedOutcome.revealedItems,
     )
     expect(current.backpack.items).toEqual([])
@@ -222,7 +219,7 @@ describe('hospital formal command chain', () => {
       HOSPITAL_ITEM_IDS.metalParts,
     )
     const hallIntel = searchedHall.revealedIntelIds
-    const hallOtherItemIds = searchedHall.revealedItems
+    const hallOtherItemIds = getSceneNodeItems(current.sceneItems, HOSPITAL_NODE_IDS.emergencyHall)
       .filter(({ item }) => item.instanceId !== metal.item.instanceId)
       .map(({ item }) => item.instanceId)
     const timeBeforeMetalPickup = current.remainingTime
@@ -257,7 +254,7 @@ describe('hospital formal command chain', () => {
     if (hallAfterPickup.kind !== 'searched') {
       throw new Error('大厅拾取后必须保持已搜索')
     }
-    expect(hallAfterPickup.revealedItems.map(({ item }) => item.instanceId)).toEqual(
+    expect(getSceneNodeItems(current.sceneItems, HOSPITAL_NODE_IDS.emergencyHall).map(({ item }) => item.instanceId)).toEqual(
       hallOtherItemIds,
     )
     expect(hallAfterPickup.revealedIntelIds).toEqual(hallIntel)
@@ -313,7 +310,7 @@ describe('hospital formal command chain', () => {
     ) {
       throw new Error('药房搜索状态不符合命令链前提')
     }
-    expect(searchedPharmacy.revealedItems).toEqual(
+    expect(getSceneNodeItems(current.sceneItems, HOSPITAL_NODE_IDS.pharmacy)).toEqual(
       pharmacyPrepared.preparedOutcome.revealedItems,
     )
 
@@ -402,9 +399,10 @@ describe('hospital formal command chain', () => {
           ? searchState.preparedOutcome.revealedItems.map(
               ({ item }) => item.instanceId,
             )
-          : searchState.kind === 'searched'
-            ? searchState.revealedItems.map(({ item }) => item.instanceId)
-            : [],
+          : [],
+      ),
+      ...current.sceneItems.nodeStates.flatMap(({ items }) =>
+        items.map(({ item }) => item.instanceId),
       ),
     ]
     expect(new Set(knownInstanceIds).size).toBe(knownInstanceIds.length)

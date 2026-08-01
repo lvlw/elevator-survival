@@ -3,6 +3,7 @@ import { z } from 'zod'
 const nonNegativeInteger = z.number().int().nonnegative()
 const positiveInteger = z.number().int().positive()
 const nonEmptyString = z.string().trim().min(1)
+const percent = z.number().int().min(0).max(100)
 
 export const ruleConfigSchema = z
   .strictObject({
@@ -19,6 +20,17 @@ export const ruleConfigSchema = z
         withFlashlight: positiveInteger,
         withoutFlashlight: positiveInteger,
         flashlightChargeCost: positiveInteger,
+      }),
+      fireDoor: z.strictObject({
+        accessCardTime: positiveInteger,
+        crowbarTime: positiveInteger,
+        toolkitTime: positiveInteger,
+        fireAxeTime: positiveInteger,
+        forceEntryTime: positiveInteger,
+        equippedItemResourceCost: positiveInteger,
+        impactProtectionIntegrityCost: positiveInteger,
+        forceEntryInjuryRiskPercent: percent,
+        protectedForceEntryInjuryRiskPercent: percent,
       }),
       batteryUseTime: positiveInteger,
       extractionTime: z.strictObject({
@@ -230,6 +242,11 @@ export const ruleConfigSchema = z
       config.scene.extractionTime.direct,
       config.scene.extractionTime.cautious,
       ...Object.values(config.scene.medicalTime),
+      config.scene.fireDoor.accessCardTime,
+      config.scene.fireDoor.crowbarTime,
+      config.scene.fireDoor.toolkitTime,
+      config.scene.fireDoor.fireAxeTime,
+      config.scene.fireDoor.forceEntryTime,
     ]
 
     if (sceneTimes.some((time) => time >= config.scene.totalTime)) {

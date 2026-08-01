@@ -206,7 +206,6 @@ function normalizeNodeState(
         'kind',
         'nodeId',
         'revealedIntelIds',
-        'revealedItems',
       ])
     ) {
       invalid(`已搜索节点状态字段无效：${nodeId}`)
@@ -214,12 +213,6 @@ function normalizeNodeState(
     return {
       kind,
       nodeId,
-      revealedItems: normalizeItems(
-        value.revealedItems,
-        nodeId,
-        itemCatalog,
-        resourceCatalog,
-      ),
       revealedIntelIds: normalizeIntelIds(value.revealedIntelIds, nodeId),
     }
   }
@@ -262,9 +255,7 @@ export function validateSceneSearchState(
     const nodeItems =
       node.kind === 'unsearched'
         ? node.preparedOutcome.revealedItems
-        : node.kind === 'searched'
-          ? node.revealedItems
-          : []
+        : []
     for (const entity of nodeItems) {
       if (instanceIds.has(entity.item.instanceId)) {
         throw new SceneSearchError(
@@ -331,7 +322,6 @@ export function revealPreparedMainSearchOutcome(
         ? {
             kind: 'searched' as const,
             nodeId,
-            revealedItems: [...target.preparedOutcome.revealedItems],
             revealedIntelIds: [...target.preparedOutcome.revealedIntelIds],
           }
         : node,

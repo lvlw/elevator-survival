@@ -68,7 +68,6 @@ export type MainSearchState =
   | Readonly<{
       kind: 'searched'
       nodeId: string
-      revealedItems: readonly Readonly<SceneItemSnapshot>[]
       revealedIntelIds: readonly string[]
     }>
 
@@ -103,6 +102,5 @@ export type PlayerVisibleNodeSearchState =
   | Readonly<{
       kind: 'searched'
       nodeId: string
-      revealedItems: readonly Readonly<ItemInstance>[]
       revealedIntelIds: readonly string[]
     }>

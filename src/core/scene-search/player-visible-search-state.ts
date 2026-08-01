@@ -24,7 +24,6 @@ export function getPlayerVisibleNodeSearchState(
   return deepFreeze({
     kind: 'searched',
     nodeId,
-    revealedItems: node.revealedItems.map(({ item }) => ({ ...item })),
     revealedIntelIds: [...node.revealedIntelIds],
   })
 }

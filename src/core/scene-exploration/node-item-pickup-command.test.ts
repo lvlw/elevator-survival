@@ -14,6 +14,11 @@ import {
 import { createQuickSlotProfileCatalog } from '../quick-slot'
 import { createSceneGraph } from '../scene-graph'
 import {
+  addSceneItems,
+  createEmptySceneItemsSnapshot,
+  getSceneNodeItems,
+} from '../scene-items'
+import {
   createMainSearchDefinitionCatalog,
   createSceneSearchState,
   revealPreparedMainSearchOutcome,
@@ -255,16 +260,36 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
     itemCatalog: physicalCatalog,
     itemResourceCatalog: resourceCatalog,
   })
+  let sceneItems = createEmptySceneItemsSnapshot({
+    graph,
+    itemCatalog: physicalCatalog,
+    itemResourceCatalog: resourceCatalog,
+  })
   if (searchedCurrent) {
+    const prepared = searchState.nodeStates.find((node) => node.nodeId === 'current')
+    if (!prepared || prepared.kind !== 'unsearched') throw new Error('缺少预定结果')
+    sceneItems = addSceneItems(sceneItems, 'current', prepared.preparedOutcome.revealedItems, {
+      graph,
+      itemCatalog: physicalCatalog,
+      itemResourceCatalog: resourceCatalog,
+    })
     searchState = revealPreparedMainSearchOutcome(searchState, 'current')
   }
   if (searchedOther) {
+    const prepared = searchState.nodeStates.find((node) => node.nodeId === 'other')
+    if (!prepared || prepared.kind !== 'unsearched') throw new Error('缺少预定结果')
+    sceneItems = addSceneItems(sceneItems, 'other', prepared.preparedOutcome.revealedItems, {
+      graph,
+      itemCatalog: physicalCatalog,
+      itemResourceCatalog: resourceCatalog,
+    })
     searchState = revealPreparedMainSearchOutcome(searchState, 'other')
   }
   return createSceneExplorationSnapshot(
     {
       sceneInstanceId: 'pickup-scene',
       searchState,
+      sceneItems,
       status,
       currentNodeId,
       remainingTime,
@@ -311,7 +336,7 @@ function sourceId(
   definitionId = 'stack',
   nodeId = state.currentNodeId,
 ) {
-  const entity = searchedNode(state, nodeId).revealedItems.find(
+  const entity = getSceneNodeItems(state.sceneItems, nodeId).find(
     (candidate) => candidate.item.definitionId === definitionId,
   )
   if (!entity) throw new Error('测试源物品不存在')
@@ -377,13 +402,12 @@ describe('node item pickup eligibility and identity', () => {
   it('rejects duplicate scene item identities across nodes', () => {
     const start = snapshot({ searchedOther: true })
     const currentId = sourceId(start)
-    const invalidSearchState = {
-      ...start.searchState,
-      nodeStates: start.searchState.nodeStates.map((node) =>
-        node.nodeId === 'other' && node.kind === 'searched'
+    const invalidSceneItems = {
+      nodeStates: start.sceneItems.nodeStates.map((node) =>
+        node.nodeId === 'other'
           ? {
               ...node,
-              revealedItems: node.revealedItems.map((entity, index) =>
+              items: node.items.map((entity, index) =>
                 index === 0
                   ? {
                       item: { ...entity.item, instanceId: currentId },
@@ -397,7 +421,7 @@ describe('node item pickup eligibility and identity', () => {
     }
     expect(() =>
       createSceneExplorationSnapshot(
-        { ...start, searchState: invalidSearchState },
+        { ...start, sceneItems: invalidSceneItems },
         dependencies,
       ),
     ).toThrowError(
@@ -421,7 +445,7 @@ describe('node item pickup eligibility and identity', () => {
       loadTierAfter: 'normal',
     })
     expect(result.snapshot.backpack.items[0].instanceId).toBe(sourceId(start))
-    expect(searchedNode(result.snapshot).revealedItems).toHaveLength(1)
+    expect(getSceneNodeItems(result.snapshot.sceneItems, 'current')).toHaveLength(1)
     expect(result.snapshot.itemStates.states).toContainEqual(
       expect.objectContaining({ instanceId: sourceId(start) }),
     )
@@ -445,9 +469,9 @@ describe('node item pickup eligibility and identity', () => {
     }
     expect(searchedNode(state)).toMatchObject({
       kind: 'searched',
-      revealedItems: [],
       revealedIntelIds: ['intel-current'],
     })
+    expect(getSceneNodeItems(state.sceneItems, 'current')).toEqual([])
   })
 
   it('partially picks up stackable none-state items with caller identity', () => {
@@ -467,12 +491,12 @@ describe('node item pickup eligibility and identity', () => {
       quantity: 1,
     })
     expect(
-      searchedNode(result.snapshot).revealedItems.find(
+      getSceneNodeItems(result.snapshot.sceneItems, 'current').find(
         (entity) => entity.item.instanceId === sourceId(start),
       )?.item,
     ).toMatchObject({ instanceId: sourceId(start), quantity: 2 })
     expect(
-      searchedNode(result.snapshot).revealedItems.find(
+      getSceneNodeItems(result.snapshot.sceneItems, 'current').find(
         (entity) => entity.item.instanceId === sourceId(start),
       )?.state.resource,
     ).toEqual({ kind: 'none' })
@@ -593,10 +617,10 @@ describe('node item pickup eligibility and identity', () => {
         },
         dependencies,
       ),
-    ).toEqual({ canExecute: false, rejectionCode: 'NODE_NOT_SEARCHED' })
+    ).toEqual({ canExecute: false, rejectionCode: 'UNKNOWN_NODE_ITEM' })
 
     const both = snapshot({ searchedOther: true })
-    const otherId = searchedNode(both, 'other').revealedItems.find(
+    const otherId = getSceneNodeItems(both.sceneItems, 'other').find(
       (entity) => entity.item.definitionId === 'stack',
     )!.item.instanceId
     expect(
@@ -641,7 +665,7 @@ describe('node item pickup eligibility and identity', () => {
         },
         dependencies,
       ),
-    ).toEqual({ canExecute: false, rejectionCode: 'NODE_NOT_SEARCHED' })
+    ).toEqual({ canExecute: false, rejectionCode: 'UNKNOWN_NODE_ITEM' })
   })
 
   it('allows pickup at zero remaining time while the scene is active', () => {
@@ -663,7 +687,7 @@ describe('node item pickup eligibility and identity', () => {
       const start = snapshot(options)
       const duplicateId =
         location === 'another node'
-          ? searchedNode(start, 'other').revealedItems[0].item.instanceId
+          ? getSceneNodeItems(start.sceneItems, 'other')[0].item.instanceId
           : fixedId
       expect(
         previewNodeItemPickupCommand(

@@ -100,7 +100,7 @@ export function materializeMainSearchOutcome(
     randomTrace = {
       algorithmVersion: RANDOM_ALGORITHM_VERSION,
       streamId,
-      drawIndex: cursor.drawIndex,
+      drawIndex: draw.nextCursor.drawIndex - 1,
       selectedDefinitionId: selected.grant.definitionId,
     }
   }

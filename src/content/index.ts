@@ -8,9 +8,18 @@ export {
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemEquipmentProfiles,
+  hospitalItemQuickSlotCatalog,
+  hospitalItemQuickSlotProfiles,
   hospitalItemResourceCatalog,
   hospitalItemResourceProfiles,
+  hospitalItemSearchIlluminationCatalog,
+  hospitalItemSearchIlluminationProfiles,
 } from './hospital-v0.1/items'
+export {
+  HOSPITAL_INTEL_IDS,
+  hospitalMainSearchCatalog,
+  hospitalMainSearchDefinitions,
+} from './hospital-v0.1/search'
 export {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
   HOSPITAL_EDGE_IDS,

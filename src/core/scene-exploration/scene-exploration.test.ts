@@ -32,6 +32,8 @@ import {
 const config = {
   combat: { player: { maxHealth: 12 } },
   backpack: {
+    width: 6,
+    height: 4,
     quickSlotCount: 2,
     weightBands: {
       normal: { min: 0, max: 16, timeIncreasePercent: 0 },
@@ -111,10 +113,10 @@ const searchState = {
 const backpack = (weight = 0) =>
   createBackpackSnapshot(
     weight === 0
-      ? { width: 2, height: 2, items: [], placements: [] }
+      ? { width: 6, height: 4, items: [], placements: [] }
       : {
-          width: 2,
-          height: 2,
+          width: 6,
+          height: 4,
           items: [{ instanceId: 'load', definitionId: 'weight', quantity: weight }],
           placements: [{ instanceId: 'load', x: 0, y: 0, rotated: false }],
         },
@@ -217,6 +219,46 @@ describe('scene exploration snapshot', () => {
         dependencies,
       ),
     ).toThrowError(expect.objectContaining({ code: 'STATUS_HEALTH_CONFLICT' }))
+  })
+
+  it('binds normalized backpack dimensions to the rule configuration without mutation', () => {
+    const input = {
+      ...snapshot(),
+      enabledEdgeIds: ['safe-middle'],
+    }
+    const before = structuredClone(input)
+    const result = createSceneExplorationSnapshot(input, dependencies)
+    expect(result.backpack).toMatchObject({ width: 6, height: 4 })
+    expect(input).toEqual(before)
+    expect(Object.isFrozen(input)).toBe(false)
+  })
+
+  it.each([
+    [7, 4],
+    [6, 5],
+    [100, 100],
+  ])('rejects a valid %ix%i backpack from another rule configuration', (width, height) => {
+    const mismatched = createBackpackSnapshot(
+      { width, height, items: [], placements: [] },
+      catalog,
+    )
+    expect(() =>
+      createSceneExplorationSnapshot(
+        { ...snapshot(), backpack: mismatched },
+        dependencies,
+      ),
+    ).toThrowError(
+      expect.objectContaining({ code: 'BACKPACK_CONFIG_MISMATCH' }),
+    )
+  })
+
+  it('continues to reject a quick-slot count mismatch separately', () => {
+    expect(() =>
+      createSceneExplorationSnapshot(
+        { ...snapshot(), quickSlots: { slots: [null] } },
+        dependencies,
+      ),
+    ).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
   })
 })
 

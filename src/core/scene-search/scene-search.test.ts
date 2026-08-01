@@ -12,7 +12,9 @@ import {
   materializeMainSearchOutcome,
   revealPreparedMainSearchOutcome,
   SceneSearchError,
+  validateSceneSearchState,
   type MainSearchDefinition,
+  type SceneSearchStateSnapshot,
 } from '.'
 
 const graph = createSceneGraph({
@@ -415,6 +417,49 @@ describe('deterministic search materialization', () => {
     drawIntInclusive(unrelated, 1, 100)
     expect(materializeMainSearchOutcome('seed', 'scene-1', catalog.get('a'), items, resources)).toEqual(a)
   })
+
+  it('records the accepted underlying draw index after deterministic rejection sampling', () => {
+    const rejectedThenAccepted = definition()
+    const catalog = createMainSearchDefinitionCatalog(
+      [{
+        ...rejectedThenAccepted,
+        weightedItemChoice: {
+          entries: [
+            {
+              grant: {
+                definitionId: 'stack-a',
+                quantity: 1,
+                initialState: { kind: 'none' },
+              },
+              weight: 2_147_483_648,
+            },
+            {
+              grant: {
+                definitionId: 'stack-b',
+                quantity: 1,
+                initialState: { kind: 'none' },
+              },
+              weight: 1,
+            },
+          ],
+        },
+      }],
+      graph,
+      items,
+      resources,
+    )
+    const result = materializeMainSearchOutcome(
+      'trace-rejection-0',
+      'scene-rejection',
+      catalog.get('a'),
+      items,
+      resources,
+    )
+    expect(result.randomTrace).toMatchObject({
+      drawIndex: 1,
+      selectedDefinitionId: 'stack-a',
+    })
+  })
 })
 
 describe('scene search state', () => {
@@ -427,6 +472,30 @@ describe('scene search state', () => {
     itemCatalog: items,
     itemResourceCatalog: resources,
   })
+  const validate = (input: unknown) =>
+    validateSceneSearchState(
+      input as SceneSearchStateSnapshot,
+      graph,
+      items,
+      resources,
+    )
+  const replaceNode = (
+    state: SceneSearchStateSnapshot,
+    nodeId: string,
+    replacement: unknown,
+  ) => ({
+    sceneInstanceId: state.sceneInstanceId,
+    nodeStates: state.nodeStates.map((node) =>
+      node.nodeId === nodeId ? replacement : node,
+    ),
+  })
+  const preparedNode = (state: SceneSearchStateSnapshot, nodeId = 'a') => {
+    const node = state.nodeStates.find((candidate) => candidate.nodeId === nodeId)
+    if (!node || node.kind !== 'unsearched') {
+      throw new Error('测试节点必须是未搜索状态')
+    }
+    return node
+  }
 
   it('prepares every node at scene creation and keeps instance ids globally unique', () => {
     const state = create()
@@ -489,6 +558,149 @@ describe('scene search state', () => {
     expect(getPlayerVisibleNodeSearchState(create(), 'c')).toEqual({
       kind: 'not-available',
       nodeId: 'c',
+    })
+  })
+
+  it('rejects an unknown discriminant with a scene-search domain error', () => {
+    const state = create()
+    expect(() => validate(replaceNode(state, 'c', {
+      kind: 'unknown',
+      nodeId: 'c',
+    }))).toThrowError(
+      expect.objectContaining({
+        name: 'SceneSearchError',
+        code: 'INVALID_SEARCH_STATE',
+      }),
+    )
+  })
+
+  it('strictly rejects contradictory or incomplete node-state fields', () => {
+    const state = create()
+    const prepared = preparedNode(state).preparedOutcome
+    expect(() => validate(replaceNode(state, 'c', {
+      kind: 'not-available',
+      nodeId: 'c',
+      preparedOutcome: prepared,
+    }))).toThrowError(expect.objectContaining({ code: 'INVALID_SEARCH_STATE' }))
+    expect(() => validate(replaceNode(state, 'a', {
+      kind: 'unsearched',
+      nodeId: 'a',
+    }))).toThrowError(expect.objectContaining({ code: 'INVALID_SEARCH_STATE' }))
+    const searched = revealPreparedMainSearchOutcome(state, 'a')
+    const searchedNode = searched.nodeStates.find((node) => node.nodeId === 'a')
+    expect(() => validate(replaceNode(searched, 'a', {
+      ...searchedNode,
+      preparedOutcome: prepared,
+    }))).toThrowError(expect.objectContaining({ code: 'INVALID_SEARCH_STATE' }))
+  })
+
+  it('rejects mismatched prepared node ids and invalid search ordinals', () => {
+    const state = create()
+    const node = preparedNode(state)
+    expect(() => validate(replaceNode(state, 'a', {
+      ...node,
+      preparedOutcome: { ...node.preparedOutcome, nodeId: 'b' },
+    }))).toThrowError(expect.objectContaining({ code: 'INVALID_SEARCH_STATE' }))
+    expect(() => validate(replaceNode(state, 'a', {
+      ...node,
+      preparedOutcome: { ...node.preparedOutcome, searchOrdinal: 0.5 },
+    }))).toThrowError(expect.objectContaining({ code: 'INVALID_SEARCH_STATE' }))
+  })
+
+  it('rejects duplicate and empty intel ids', () => {
+    const state = create()
+    const node = preparedNode(state)
+    for (const revealedIntelIds of [['intel-a', 'intel-a'], ['']]) {
+      expect(() => validate(replaceNode(state, 'a', {
+        ...node,
+        preparedOutcome: { ...node.preparedOutcome, revealedIntelIds },
+      }))).toThrowError(expect.objectContaining({ code: 'INVALID_SEARCH_STATE' }))
+    }
+  })
+
+  it('rejects malformed random traces and selections absent from the outcome', () => {
+    const state = create()
+    const node = preparedNode(state)
+    expect(() => validate(replaceNode(state, 'a', {
+      ...node,
+      preparedOutcome: {
+        ...node.preparedOutcome,
+        randomTrace: { ...node.preparedOutcome.randomTrace, drawIndex: -1 },
+      },
+    }))).toThrowError(expect.objectContaining({ code: 'INVALID_SEARCH_STATE' }))
+    expect(() => validate(replaceNode(state, 'a', {
+      ...node,
+      preparedOutcome: {
+        ...node.preparedOutcome,
+        randomTrace: {
+          algorithmVersion: 'counter32-v1',
+          streamId: 'stable-stream',
+          drawIndex: 0,
+          selectedDefinitionId: 'missing-definition',
+        },
+      },
+    }))).toThrowError(expect.objectContaining({ code: 'INVALID_SEARCH_STATE' }))
+  })
+
+  it('normalizes new entity copies, intel order, and node order without touching input', () => {
+    const cloned = structuredClone(create())
+    const input = {
+      ...cloned,
+      nodeStates: [...cloned.nodeStates].reverse().map((candidate) =>
+        candidate.kind === 'unsearched'
+          ? {
+              ...candidate,
+              preparedOutcome: {
+                ...candidate.preparedOutcome,
+                revealedIntelIds: [
+                  ...candidate.preparedOutcome.revealedIntelIds,
+                ].reverse(),
+              },
+            }
+          : candidate,
+      ),
+    }
+    const node = preparedNode(input)
+    const before = structuredClone(input)
+    const result = validate(input)
+    const normalizedNode = preparedNode(result)
+    expect(result.nodeStates.map(({ nodeId }) => nodeId)).toEqual(['a', 'b', 'c'])
+    expect(normalizedNode.preparedOutcome.revealedIntelIds).toEqual([
+      'intel-a',
+      'intel-b',
+    ])
+    expect(normalizedNode.preparedOutcome.revealedItems[0]).not.toBe(
+      node.preparedOutcome.revealedItems[0],
+    )
+    expect(input).toEqual(before)
+    expect(Object.isFrozen(input)).toBe(false)
+    expect(Object.isFrozen(node.preparedOutcome.revealedItems[0])).toBe(false)
+    expect(Object.isFrozen(result)).toBe(true)
+    expect(Object.isFrozen(normalizedNode.preparedOutcome)).toBe(true)
+  })
+
+  it('keeps hidden item instances globally unique across nodes', () => {
+    const state = create()
+    const first = preparedNode(state, 'a')
+    const second = preparedNode(state, 'b')
+    expect(() => validate(replaceNode(state, 'b', {
+      ...second,
+      preparedOutcome: {
+        ...second.preparedOutcome,
+        revealedItems: [first.preparedOutcome.revealedItems[0]],
+      },
+    }))).toThrowError(expect.objectContaining({ code: 'DUPLICATE_INSTANCE_ID' }))
+  })
+
+  it('accepts a searched node after every revealed item has been picked up', () => {
+    const searched = revealPreparedMainSearchOutcome(create(), 'a')
+    const node = searched.nodeStates.find((candidate) => candidate.nodeId === 'a')
+    expect(validate(replaceNode(searched, 'a', {
+      ...node,
+      revealedItems: [],
+    })).nodeStates.find((candidate) => candidate.nodeId === 'a')).toMatchObject({
+      kind: 'searched',
+      revealedItems: [],
     })
   })
 })

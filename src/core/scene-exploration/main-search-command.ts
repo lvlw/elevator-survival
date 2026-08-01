@@ -130,12 +130,14 @@ function evaluate(
 
   const definition = dependencies.searchCatalog.get(snapshot.currentNodeId)
   if (
+    nodeSearchState.preparedOutcome.nodeId !== snapshot.currentNodeId ||
+    definition.nodeId !== snapshot.currentNodeId ||
     definition.searchOrdinal !==
     nodeSearchState.preparedOutcome.searchOrdinal
   ) {
     throw new SceneExplorationError(
       'INVALID_INPUT',
-      '搜索定义与预定结果序号不一致',
+      '搜索定义、预定结果与当前节点元数据不一致',
     )
   }
 

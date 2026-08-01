@@ -7,6 +7,7 @@ import {
   createFullItemState,
   createItemResourceCatalog,
   createItemState,
+  getItemState,
 } from '../item-state'
 import { createQuickSlotProfileCatalog } from '../quick-slot'
 import { createSceneGraph } from '../scene-graph'
@@ -28,6 +29,8 @@ import {
 const config = {
   combat: { player: { maxHealth: 12 } },
   backpack: {
+    width: 6,
+    height: 4,
     quickSlotCount: 2,
     weightBands: {
       normal: { min: 0, max: 16, timeIncreasePercent: 0 },
@@ -450,6 +453,31 @@ describe('main search command eligibility and timing', () => {
     expect(previewMainSearchCommand(input, lowLight, dependencies)).toEqual({
       canExecute: false,
       rejectionCode: code,
+    })
+  })
+
+  it('rejects a search definition whose node metadata disagrees before producing effects', () => {
+    const input = snapshot({ utility: 'flashlight' })
+    const mismatchedSearchCatalog = {
+      nodeIds: searchCatalog.nodeIds,
+      has: (nodeId: string) => searchCatalog.has(nodeId),
+      get: (nodeId: string) => ({
+        ...searchCatalog.get(nodeId),
+        nodeId: 'safe',
+      }),
+    }
+    expect(previewMainSearchCommand(
+      input,
+      illuminated,
+      { ...dependencies, searchCatalog: mismatchedSearchCatalog },
+    )).toEqual({
+      canExecute: false,
+      rejectionCode: 'INVALID_INPUT',
+    })
+    expect(input.remainingTime).toBe(100)
+    expect(getItemState(input.itemStates, 'equipped-flashlight').resource).toEqual({
+      kind: 'charge',
+      current: 3,
     })
   })
 

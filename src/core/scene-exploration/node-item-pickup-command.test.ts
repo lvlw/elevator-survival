@@ -31,6 +31,8 @@ import {
 const config = {
   combat: { player: { maxHealth: 12 } },
   backpack: {
+    width: 6,
+    height: 4,
     quickSlotCount: 2,
     weightBands: {
       normal: { min: 0, max: 16, timeIncreasePercent: 0 },

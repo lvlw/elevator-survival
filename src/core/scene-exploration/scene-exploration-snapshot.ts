@@ -74,6 +74,15 @@ export function createSceneExplorationSnapshot(
       quickSlotCatalog: dependencies.quickSlotCatalog,
     },
   )
+  if (
+    carried.backpack.width !== dependencies.config.backpack.width ||
+    carried.backpack.height !== dependencies.config.backpack.height
+  ) {
+    throw new SceneExplorationError(
+      'BACKPACK_CONFIG_MISMATCH',
+      '背包尺寸与当前规则配置不一致',
+    )
+  }
   const carriedItems = [
     ...carried.backpack.items,
     ...Object.values(carried.equipment).filter(

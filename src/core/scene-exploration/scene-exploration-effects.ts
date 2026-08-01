@@ -17,6 +17,7 @@ import {
   replaceItemState,
 } from '../item-state'
 import { classifyLoad } from '../load'
+import { createSceneObstaclePrimaryPlan } from '../scene-obstacle'
 import {
   addSceneItems,
   getSceneNodeItems,
@@ -32,6 +33,7 @@ import type {
   SceneExplorationEffect,
   SceneExplorationDependencies,
   SceneExplorationSnapshot,
+  SceneObstacleCommandDependencies,
 } from './scene-exploration-types'
 
 const HEALTH_SOURCE_ORDER = [
@@ -55,6 +57,7 @@ function fail(
     | 'EFFECT_ALERT_MISMATCH'
     | 'EFFECT_CONTUSION_MISMATCH'
     | 'EFFECT_SPAWN_MISMATCH'
+    | 'EFFECT_RISK_MISMATCH'
     | 'INCOMPLETE_EFFECT_PLAN',
   message: string,
 ): never {
@@ -95,6 +98,86 @@ export function applySceneExplorationEffects(
     : (rulesOrDependencies as PlayerHealthRules)
   if (effects.length === 0) {
     throw new SceneExplorationError('EMPTY_EFFECTS', 'Effect计划不能为空')
+  }
+  const obstacleKinds = new Set([
+    'scene-edge-enabled',
+    'scene-item-spawned',
+    'scene-alert-changed',
+    'scene-obstacle-risk-resolved',
+    'minor-contusion-added',
+    'scene-obstacle-declined',
+  ])
+  const hasObstacleEffect = effects.some(
+    (effect) =>
+      obstacleKinds.has(effect.kind) ||
+      (effect.kind === 'item-resource-consumed' &&
+        effect.source.startsWith('fire-door-')),
+  )
+  let expectedObstacleActionTime: number | null = null
+  if (hasObstacleEffect) {
+    const obstacleDependencies =
+      dependencies && 'runSeed' in rulesOrDependencies
+        ? (rulesOrDependencies as SceneObstacleCommandDependencies)
+        : null
+    if (!obstacleDependencies) {
+      fail(
+        'EFFECT_RISK_MISMATCH',
+        '障碍Effect回放需要包含Run seed的完整场景障碍依赖',
+      )
+    }
+    const edgeEffects = effects.filter(
+      (effect) => effect.kind === 'scene-edge-enabled',
+    )
+    const declineEffects = effects.filter(
+      (effect) => effect.kind === 'scene-obstacle-declined',
+    )
+    if (
+      edgeEffects.length + declineEffects.length !== 1 ||
+      (edgeEffects.length === 1 && declineEffects.length === 1)
+    ) {
+      fail(
+        'INCOMPLETE_EFFECT_PLAN',
+        '障碍Effect计划必须恰好声明一个正式主要结果',
+      )
+    }
+    const identity = edgeEffects[0] ?? declineEffects[0]
+    const expected = createSceneObstaclePrimaryPlan(
+      initialSnapshot,
+      {
+        obstacleId: identity.obstacleId,
+        optionId: identity.optionId,
+      },
+      obstacleDependencies,
+    )
+    if (
+      !sameValue(
+        effects.slice(0, expected.primaryEffects.length),
+        expected.primaryEffects,
+      )
+    ) {
+      fail(
+        'INCOMPLETE_EFFECT_PLAN',
+        '障碍主要Effect的数量、内容或顺序与唯一正式计划不一致',
+      )
+    }
+    if (expected.actionTime === 0) {
+      if (effects.length !== expected.primaryEffects.length) {
+        fail('INVALID_EFFECT_ORDER', '放弃障碍必须只有一个Effect')
+      }
+    } else {
+      const timeEffect = effects[expected.primaryEffects.length]
+      if (
+        !timeEffect ||
+        timeEffect.kind !== 'scene-time-resolved' ||
+        timeEffect.actionTimeCost !== expected.actionTime
+      ) {
+        fail(
+          'EFFECT_TIME_MISMATCH',
+          '障碍时间Effect缺失或不符合正式行动时间',
+        )
+      }
+      expectedObstacleActionTime = expected.actionTime
+    }
   }
   const declaredHealthOrder = effects
     .filter((effect) => effect.kind === 'health-lost')
@@ -504,6 +587,17 @@ export function applySceneExplorationEffects(
         state = deepFreeze({ ...state, alertState: 'alerted' as const })
         break
       }
+      case 'scene-obstacle-risk-resolved': {
+        if (
+          primaryKind !== 'obstacle' ||
+          sawTime ||
+          effect.obstacleId !== activeObstacleId ||
+          effect.optionId !== activeObstacleOptionId
+        ) {
+          fail('EFFECT_RISK_MISMATCH', '障碍风险Effect顺序或身份不一致')
+        }
+        break
+      }
       case 'minor-contusion-added': {
         const obstacle = activeObstacleId
           ? dependencies?.obstacleCatalog?.get(activeObstacleId)
@@ -643,6 +737,12 @@ export function applySceneExplorationEffects(
             Math.max(0, effect.actionTimeCost - effect.remainingTimeBefore)
         ) {
           fail('EFFECT_TIME_MISMATCH', '时间Effect声明的结算结果不一致')
+        }
+        if (
+          primaryKind === 'obstacle' &&
+          effect.actionTimeCost !== expectedObstacleActionTime
+        ) {
+          fail('EFFECT_TIME_MISMATCH', '障碍行动时间与正式配置不一致')
         }
         sawTime = true
         state = deepFreeze({

@@ -114,7 +114,7 @@ function evaluate(
       existsAtAnotherRevealedNode
         ? 'NODE_ITEM_NOT_AT_CURRENT_NODE'
         : 'UNKNOWN_NODE_ITEM',
-      '指定物品不在当前已搜索节点',
+      '指定物品不在当前节点地面',
     )
   }
   if (command.quantity > source.item.quantity) {

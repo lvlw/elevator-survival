@@ -1,6 +1,11 @@
 import { createSceneObstacleCatalog, type SceneObstacleDefinition } from '../../../core/scene-obstacle'
 import { HOSPITAL_EDGE_IDS, HOSPITAL_NODE_IDS, hospitalSliceV01SceneGraph } from '../hospital-scene-graph'
-import { HOSPITAL_ITEM_IDS, hospitalItemCatalog } from '../items'
+import {
+  HOSPITAL_ITEM_IDS,
+  hospitalItemCatalog,
+  hospitalItemEquipmentCatalog,
+  hospitalItemResourceCatalog,
+} from '../items'
 import { HOSPITAL_EVENT_IDS, HOSPITAL_FIRE_DOOR_OPTION_IDS, HOSPITAL_OBSTACLE_IDS } from './hospital-obstacle-ids'
 
 export const hospitalFireDoorDefinition = {
@@ -68,5 +73,10 @@ export const hospitalFireDoorDefinition = {
 
 export const hospitalSceneObstacleCatalog = createSceneObstacleCatalog(
   [hospitalFireDoorDefinition],
-  { graph: hospitalSliceV01SceneGraph, itemCatalog: hospitalItemCatalog },
+  {
+    graph: hospitalSliceV01SceneGraph,
+    itemCatalog: hospitalItemCatalog,
+    itemResourceCatalog: hospitalItemResourceCatalog,
+    equipmentCatalog: hospitalItemEquipmentCatalog,
+  },
 )

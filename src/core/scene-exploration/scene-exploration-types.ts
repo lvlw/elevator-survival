@@ -172,6 +172,18 @@ export type SceneExplorationEffect =
       reason: 'fire-door-fire-axe' | 'fire-door-force-entry'
     }>
   | Readonly<{
+      kind: 'scene-obstacle-risk-resolved'
+      obstacleId: string
+      optionId: string
+      algorithmVersion: string
+      streamId: string
+      drawIndex: number
+      roll: number
+      riskPercent: number
+      causedMinorContusion: boolean
+      usedImpactProtection: boolean
+    }>
+  | Readonly<{
       kind: 'minor-contusion-added'
       source: 'fire-door-force-entry'
       countBefore: number

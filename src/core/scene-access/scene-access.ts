@@ -15,9 +15,14 @@ export interface SceneEdgeAccessCatalog {
   get(edgeId: string): SceneEdgeAccessProfile
 }
 
+export type SceneAccessErrorCode =
+  | 'INVALID_ACCESS_PROFILE'
+  | 'DUPLICATE_ACCESS_PROFILE'
+  | 'UNKNOWN_ACCESS_PROFILE'
+
 export class SceneAccessError extends Error {
-  readonly code: string
-  constructor(code: string, message: string) {
+  readonly code: SceneAccessErrorCode
+  constructor(code: SceneAccessErrorCode, message: string) {
     super(message)
     this.name = 'SceneAccessError'
     this.code = code

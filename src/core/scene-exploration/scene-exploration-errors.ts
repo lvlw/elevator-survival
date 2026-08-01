@@ -49,6 +49,7 @@ export type SceneExplorationErrorCode =
   | 'EFFECT_ALERT_MISMATCH'
   | 'EFFECT_CONTUSION_MISMATCH'
   | 'EFFECT_SPAWN_MISMATCH'
+  | 'EFFECT_RISK_MISMATCH'
 
 export class SceneExplorationError extends Error {
   readonly code: SceneExplorationErrorCode

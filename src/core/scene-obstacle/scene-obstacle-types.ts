@@ -1,6 +1,6 @@
-import type { EquipmentSlotKind } from '../equipment'
+import type { EquipmentProfileCatalog, EquipmentSlotKind } from '../equipment'
 import type { ItemCatalog } from '../inventory'
-import type { ItemResourceKind } from '../item-state'
+import type { ItemResourceCatalog, ItemResourceKind } from '../item-state'
 import type { SceneGraph } from '../scene-graph'
 import type { SearchItemInitialState } from '../scene-search'
 
@@ -62,6 +62,8 @@ export interface SceneObstacleCatalog {
 export interface SceneObstacleCatalogDependencies {
   readonly graph: SceneGraph
   readonly itemCatalog: ItemCatalog
+  readonly itemResourceCatalog: ItemResourceCatalog
+  readonly equipmentCatalog: EquipmentProfileCatalog
 }
 
 export interface ObstacleRiskTrace {
@@ -72,4 +74,12 @@ export interface ObstacleRiskTrace {
   readonly riskPercent: number
   readonly causedMinorContusion: boolean
   readonly usedImpactProtection: boolean
+}
+
+export interface SceneObstaclePrimaryPlan {
+  readonly obstacleId: string
+  readonly optionId: string
+  readonly actionTime: number
+  readonly riskTrace: ObstacleRiskTrace | null
+  readonly primaryEffects: readonly import('../scene-exploration/scene-exploration-types').SceneExplorationEffect[]
 }

@@ -256,6 +256,21 @@ export const ruleConfigSchema = z
         message: '场景总时间必须大于每个单项基础场景时间',
       })
     }
+
+    if (
+      config.scene.fireDoor.protectedForceEntryInjuryRiskPercent >
+      config.scene.fireDoor.forceEntryInjuryRiskPercent
+    ) {
+      context.addIssue({
+        code: 'custom',
+        path: [
+          'scene',
+          'fireDoor',
+          'protectedForceEntryInjuryRiskPercent',
+        ],
+        message: '防护后的撞门伤势风险不得高于无防护风险',
+      })
+    }
   })
 
 export type RuleConfigInput = z.input<typeof ruleConfigSchema>

@@ -115,6 +115,21 @@ describe('ruleConfigSchema', () => {
     expect(ruleConfigSchema.safeParse(invalid).success).toBe(false)
   })
 
+  it.each([
+    [20, 60, true],
+    [60, 20, false],
+    [60, 60, true],
+    [0, 100, true],
+  ])(
+    'validates protected risk %s against unprotected risk %s',
+    (protectedRisk, unprotectedRisk, succeeds) => {
+      const input = mutableConfigCopy()
+      input.scene.fireDoor.protectedForceEntryInjuryRiskPercent = protectedRisk
+      input.scene.fireDoor.forceEntryInjuryRiskPercent = unprotectedRisk
+      expect(ruleConfigSchema.safeParse(input).success).toBe(succeeds)
+    },
+  )
+
   it.each([0, -1, 1.5])('rejects invalid fire-door resource cost %s', (cost) => {
     const invalid = mutableConfigCopy()
     invalid.scene.fireDoor.equippedItemResourceCost = cost

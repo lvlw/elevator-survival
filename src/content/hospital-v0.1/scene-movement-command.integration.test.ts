@@ -94,8 +94,10 @@ const condition = (
     {
       currentHealth,
       bleeding,
-      untreatedOpenWounds: bleeding ? 1 : 0,
-      treatedOpenWounds: 0,
+      openWounds: bleeding
+          ? [{ id: 'fixture-wound', kind: 'laceration', treatment: 'untreated' }]
+          : [],
+        pendingInfectionExposures: 0,
       minorContusions,
       painkillerActive,
     },

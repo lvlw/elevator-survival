@@ -12,16 +12,20 @@ export const isDead = (state: PlayerConditionSnapshot): boolean =>
   state.currentHealth === 0
 export const hasUntreatedOpenWounds = (
   state: PlayerConditionSnapshot,
-): boolean => state.untreatedOpenWounds > 0
+): boolean => state.openWounds.some(({ treatment }) => treatment === 'untreated')
+export const getUntreatedOpenWounds = (state: PlayerConditionSnapshot) =>
+  deepFreeze(state.openWounds.filter(({ treatment }) => treatment === 'untreated'))
+export const getTreatedOpenWounds = (state: PlayerConditionSnapshot) =>
+  deepFreeze(state.openWounds.filter(({ treatment }) => treatment === 'treated'))
 export const getUntreatedOpenWoundCount = (
   state: PlayerConditionSnapshot,
-): number => state.untreatedOpenWounds
+): number => getUntreatedOpenWounds(state).length
 export const getTreatedOpenWoundCount = (
   state: PlayerConditionSnapshot,
-): number => state.treatedOpenWounds
+): number => getTreatedOpenWounds(state).length
 export const getTotalOpenWoundCount = (
   state: PlayerConditionSnapshot,
-): number => state.untreatedOpenWounds + state.treatedOpenWounds
+): number => state.openWounds.length
 export const hasMinorContusions = (
   state: PlayerConditionSnapshot,
 ): boolean => state.minorContusions > 0
@@ -52,8 +56,8 @@ export function calculateEscapeWoundCtbModifier(
       '逃跑伤口修正规则必须是非负安全整数',
     )
   }
-  const product =
-    BigInt(state.untreatedOpenWounds) * BigInt(perWound)
+  const untreatedOpenWounds = getUntreatedOpenWoundCount(state)
+  const product = BigInt(untreatedOpenWounds) * BigInt(perWound)
   if (product > MAX_SAFE) {
     throw new ConditionError(
       'ESCAPE_WOUND_CTB_OVERFLOW',
@@ -65,7 +69,7 @@ export function calculateEscapeWoundCtbModifier(
     ? Math.min(rawWoundCtb, reduction)
     : 0
   return deepFreeze({
-    untreatedOpenWounds: state.untreatedOpenWounds,
+    untreatedOpenWoundCount: untreatedOpenWounds,
     ctbPerWound: perWound,
     maximumWoundCtb: cap,
     rawWoundCtb,

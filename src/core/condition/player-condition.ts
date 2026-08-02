@@ -38,15 +38,30 @@ export function createPlayerCondition(
       '当前生命必须是0到最大生命之间的安全整数',
     )
   }
-  assertNonNegativeSafeInteger(
-    input.untreatedOpenWounds,
-    '未处理开放伤口数量',
-  )
-  assertNonNegativeSafeInteger(
-    input.treatedOpenWounds,
-    '已处理开放伤口数量',
-  )
+  if (!Array.isArray(input.openWounds)) {
+    throw new ConditionError('INVALID_OPEN_WOUND', '开放伤口必须是数组')
+  }
+  const woundIds = new Set<string>()
+  const openWounds = input.openWounds.map((wound) => {
+    if (
+      !wound ||
+      typeof wound !== 'object' ||
+      Object.keys(wound).sort().join('|') !== 'id|kind|treatment' ||
+      typeof wound.id !== 'string' ||
+      wound.id.trim().length === 0 ||
+      !['laceration', 'puncture', 'bite'].includes(wound.kind) ||
+      !['untreated', 'treated'].includes(wound.treatment)
+    ) {
+      throw new ConditionError('INVALID_OPEN_WOUND', '开放伤口记录无效')
+    }
+    if (woundIds.has(wound.id)) {
+      throw new ConditionError('DUPLICATE_OPEN_WOUND_ID', `开放伤口ID重复：${wound.id}`)
+    }
+    woundIds.add(wound.id)
+    return { ...wound }
+  }).sort((left, right) => left.id.localeCompare(right.id))
   assertNonNegativeSafeInteger(input.minorContusions, '轻微挫伤数量')
+  assertNonNegativeSafeInteger(input.pendingInfectionExposures, '待处理感染暴露数量')
   if (
     typeof input.bleeding !== 'boolean' ||
     typeof input.painkillerActive !== 'boolean'
@@ -56,7 +71,7 @@ export function createPlayerCondition(
       '流血和镇痛状态必须是布尔值',
     )
   }
-  return deepFreeze({ ...input })
+  return deepFreeze({ ...input, openWounds })
 }
 
 export function createInitialPlayerCondition(
@@ -66,10 +81,10 @@ export function createInitialPlayerCondition(
     {
       currentHealth: rules.maxHealth,
       bleeding: false,
-      untreatedOpenWounds: 0,
-      treatedOpenWounds: 0,
+      openWounds: [],
       minorContusions: 0,
       painkillerActive: false,
+      pendingInfectionExposures: 0,
     },
     rules,
   )
@@ -79,5 +94,9 @@ export function cloneCondition(
   state: PlayerConditionSnapshot,
   changes: Partial<PlayerConditionSnapshot>,
 ): PlayerConditionSnapshot {
-  return deepFreeze({ ...state, ...changes })
+  return deepFreeze({
+    ...state,
+    ...changes,
+    openWounds: (changes.openWounds ?? state.openWounds).map((wound) => ({ ...wound })),
+  })
 }

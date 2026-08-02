@@ -101,8 +101,8 @@ function snapshot(setup: Setup = {}): SceneExplorationSnapshot {
     condition: createPlayerCondition({
       currentHealth: config.combat.player.maxHealth,
       bleeding: false,
-      untreatedOpenWounds: 0,
-      treatedOpenWounds: 0,
+      openWounds: [],
+          pendingInfectionExposures: 0,
       minorContusions: 0,
       painkillerActive: false,
     }, config.combat.player),

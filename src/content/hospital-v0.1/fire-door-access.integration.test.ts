@@ -134,8 +134,10 @@ function snapshot(options: Options = {}): SceneExplorationSnapshot {
       condition: createPlayerCondition({
         currentHealth,
         bleeding,
-        untreatedOpenWounds: bleeding ? 1 : 0,
-        treatedOpenWounds: 0,
+        openWounds: bleeding
+          ? [{ id: 'fixture-wound', kind: 'laceration', treatment: 'untreated' }]
+          : [],
+        pendingInfectionExposures: 0,
         minorContusions: 0,
         painkillerActive: false,
       }, config.combat.player),
@@ -234,7 +236,7 @@ describe('hospital staff access and fire door', () => {
     expect(second.result.riskTrace).toEqual(first.result.riskTrace)
     expect(first.snapshot.alertState).toBe('alerted')
     expect(first.snapshot.condition.minorContusions).toBe(injured ? 1 : 0)
-    expect(first.snapshot.condition).toMatchObject({ bleeding: false, untreatedOpenWounds: 0, currentHealth: config.combat.player.maxHealth })
+    expect(first.snapshot.condition).toMatchObject({ bleeding: false, openWounds: [], currentHealth: config.combat.player.maxHealth })
     if (protectedByCoat) {
       expect(getItemState(first.snapshot.itemStates, 'equipped-coat').resource).toEqual({ kind: 'integrity', current: 3 })
     }

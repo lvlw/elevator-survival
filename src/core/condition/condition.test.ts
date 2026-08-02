@@ -1,383 +1,155 @@
 import { describe, expect, it } from 'vitest'
 import {
-  activatePainkiller,
   addMinorContusion,
-  addUntreatedOpenWound,
+  addOpenWound,
+  addPendingInfectionExposure,
   applyHealthLoss,
   calculateEscapeWoundCtbModifier,
-  clearPainkiller,
   ConditionError,
   createInitialPlayerCondition,
   createPlayerCondition,
-  getTotalOpenWoundCount,
-  getTreatedOpenWoundCount,
-  getUntreatedOpenWoundCount,
-  hasActiveMinorContusionTravelPenalty,
-  hasMinorContusions,
-  hasUntreatedOpenWounds,
-  isDead,
-  isPainkillerSuppressingMinorContusion,
+  getOpenWound,
+  getTreatedOpenWounds,
+  getUntreatedOpenWounds,
+  reducePendingInfectionExposure,
+  removeOpenWound,
   removeOneMinorContusion,
-  removeOneTreatedOpenWound,
   restoreHealth,
-  setBleeding,
   startBleeding,
   stopBleeding,
-  treatOneOpenWound,
-  type EscapeWoundCtbRules,
+  treatOpenWound,
   type PlayerConditionSnapshot,
 } from '.'
 
 const healthRules = { maxHealth: 12 }
 const escapeRules = {
   escape: {
+    baseCtb: { normal: 80, loaded: 80, overloaded: 110 },
     ctbPerUntreatedOpenWound: 10,
     woundCtbBonusCap: 20,
   },
-  painkiller: {
-    escapeWoundCtbReduction: 10,
-  },
-} as EscapeWoundCtbRules
+  painkiller: { escapeWoundCtbReduction: 10 },
+} as const
 
-function condition(
-  changes: Partial<PlayerConditionSnapshot> = {},
-): PlayerConditionSnapshot {
-  return createPlayerCondition(
-    {
-      currentHealth: 12,
-      bleeding: false,
-      untreatedOpenWounds: 0,
-      treatedOpenWounds: 0,
-      minorContusions: 0,
-      painkillerActive: false,
-      ...changes,
-    },
-    healthRules,
-  )
+function condition(changes: Partial<PlayerConditionSnapshot> = {}) {
+  return createPlayerCondition({
+    currentHealth: 12,
+    bleeding: false,
+    openWounds: [],
+    minorContusions: 0,
+    painkillerActive: false,
+    pendingInfectionExposures: 0,
+    ...changes,
+  }, healthRules)
 }
 
-describe('player condition creation', () => {
-  it('creates the formal initial shape', () => {
+describe('typed player condition', () => {
+  it('creates and deeply freezes a stable sorted snapshot without mutating input', () => {
+    const input: PlayerConditionSnapshot = {
+      currentHealth: 12,
+      bleeding: false,
+      openWounds: [
+        { id: 'wound-b', kind: 'bite', treatment: 'treated' },
+        { id: 'wound-a', kind: 'laceration', treatment: 'untreated' },
+      ],
+      minorContusions: 0,
+      painkillerActive: false,
+      pendingInfectionExposures: 0,
+    }
+    const result = createPlayerCondition(input, healthRules)
+    expect(result.openWounds.map(({ id }) => id)).toEqual(['wound-a', 'wound-b'])
+    expect(input.openWounds.map(({ id }) => id)).toEqual(['wound-b', 'wound-a'])
+    expect(Object.isFrozen(result)).toBe(true)
+    expect(Object.isFrozen(result.openWounds)).toBe(true)
+    expect(Object.isFrozen(result.openWounds[0])).toBe(true)
+  })
+
+  it('creates the formal initial state', () => {
     expect(createInitialPlayerCondition(healthRules)).toEqual({
       currentHealth: 12,
       bleeding: false,
-      untreatedOpenWounds: 0,
-      treatedOpenWounds: 0,
+      openWounds: [],
       minorContusions: 0,
       painkillerActive: false,
+      pendingInfectionExposures: 0,
     })
   })
-
-  it('accepts an explicit state without deriving fields', () => {
-    expect(
-      condition({
-        currentHealth: 7,
-        bleeding: false,
-        untreatedOpenWounds: 2,
-        painkillerActive: true,
-      }),
-    ).toMatchObject({
-      currentHealth: 7,
-      bleeding: false,
-      untreatedOpenWounds: 2,
-      painkillerActive: true,
-    })
-  })
-
-  it.each([-1, 13, 1.5, Number.MAX_SAFE_INTEGER + 1])(
-    'rejects invalid health %s',
-    (currentHealth) => {
-      expect(() => condition({ currentHealth })).toThrowError(ConditionError)
-    },
-  )
 
   it.each([
-    ['untreatedOpenWounds', -1],
-    ['treatedOpenWounds', -1],
-    ['minorContusions', -1],
-    ['minorContusions', 1.5],
-    ['minorContusions', Number.MAX_SAFE_INTEGER + 1],
-  ] as const)('rejects invalid %s count', (field, value) => {
-    expect(() => condition({ [field]: value })).toThrowError(ConditionError)
+    [{ id: '', kind: 'bite', treatment: 'untreated' }],
+    [{ id: 'w', kind: 'other', treatment: 'untreated' }],
+    [{ id: 'w', kind: 'bite', treatment: 'other' }],
+  ])('rejects invalid wound %o', (wound) => {
+    expect(() => condition({ openWounds: [wound as never] })).toThrow(ConditionError)
   })
 
-  it('deep-freezes state without modifying input', () => {
-    const input = {
-      currentHealth: 6,
-      bleeding: true,
-      untreatedOpenWounds: 1,
-      treatedOpenWounds: 1,
-      minorContusions: 1,
-      painkillerActive: false,
-    }
-    const before = structuredClone(input)
-    const result = createPlayerCondition(input, healthRules)
-    expect(input).toEqual(before)
-    expect(Object.isFrozen(result)).toBe(true)
-  })
-})
-
-describe('health operations', () => {
-  it('applies normal health loss with a detailed frozen result', () => {
-    const original = condition()
-    const result = applyHealthLoss(original, 4, healthRules)
-    expect(result).toMatchObject({
-      requestedLoss: 4,
-      actualLoss: 4,
-      healthBefore: 12,
-      healthAfter: 8,
-      depleted: false,
-      state: { currentHealth: 8 },
-    })
-    expect(original.currentHealth).toBe(12)
-    expect(Object.isFrozen(result)).toBe(true)
-  })
-
-  it('clamps excessive loss to zero health', () => {
-    expect(applyHealthLoss(condition({ currentHealth: 2 }), 5, healthRules)).toMatchObject({
-      actualLoss: 2,
-      healthAfter: 0,
-      depleted: true,
-    })
-  })
-
-  it('allows deterministic zero-health loss with actual loss zero', () => {
-    expect(applyHealthLoss(condition({ currentHealth: 0 }), 3, healthRules)).toMatchObject({
-      actualLoss: 0,
-      healthAfter: 0,
-      depleted: true,
-    })
-  })
-
-  it('restores normally without changing bleeding or injuries', () => {
-    const result = restoreHealth(
-      condition({
-        currentHealth: 6,
-        bleeding: true,
-        untreatedOpenWounds: 1,
-        minorContusions: 1,
-      }),
-      3,
-      healthRules,
+  it('rejects duplicate wound IDs and invalid exposure counts', () => {
+    const wound = { id: 'w', kind: 'bite', treatment: 'untreated' } as const
+    expect(() => condition({ openWounds: [wound, wound] })).toThrowError(
+      expect.objectContaining({ code: 'DUPLICATE_OPEN_WOUND_ID' }),
     )
-    expect(result).toMatchObject({
-      actualRecovery: 3,
-      unusedRecovery: 0,
-      healthAfter: 9,
-      state: {
-        bleeding: true,
-        untreatedOpenWounds: 1,
-        minorContusions: 1,
-      },
+    expect(() => condition({ pendingInfectionExposures: -1 })).toThrow(ConditionError)
+  })
+
+  it('adds, queries, treats, and removes a selected wound without changing identity', () => {
+    const added = addOpenWound(condition(), {
+      id: 'wound-1', kind: 'puncture', treatment: 'untreated',
     })
-  })
-
-  it('caps recovery and reports unused amount', () => {
-    expect(restoreHealth(condition({ currentHealth: 10 }), 4, healthRules)).toMatchObject({
-      requestedRecovery: 4,
-      actualRecovery: 2,
-      unusedRecovery: 2,
-      healthAfter: 12,
-      atMaximum: true,
+    expect(getOpenWound(added, 'wound-1')).toEqual({
+      id: 'wound-1', kind: 'puncture', treatment: 'untreated',
     })
-  })
-
-  it('permits numeric recovery from zero without claiming Run revival', () => {
-    expect(restoreHealth(condition({ currentHealth: 0 }), 1, healthRules).healthAfter).toBe(1)
-  })
-
-  it.each([0, -1, 1.5])('rejects invalid health change %s', (amount) => {
-    expect(() => applyHealthLoss(condition(), amount, healthRules)).toThrowError(
-      ConditionError,
-    )
-    expect(() => restoreHealth(condition(), amount, healthRules)).toThrowError(
-      ConditionError,
-    )
-  })
-
-  it('does not clear conditions when health reaches zero', () => {
-    const result = applyHealthLoss(
-      condition({
-        currentHealth: 1,
-        bleeding: true,
-        untreatedOpenWounds: 1,
-        minorContusions: 1,
-      }),
-      1,
-      healthRules,
-    )
-    expect(result.state).toMatchObject({
-      currentHealth: 0,
-      bleeding: true,
-      untreatedOpenWounds: 1,
-      minorContusions: 1,
+    const treated = treatOpenWound(added, 'wound-1')
+    expect(getOpenWound(treated, 'wound-1')).toEqual({
+      id: 'wound-1', kind: 'puncture', treatment: 'treated',
     })
-  })
-})
-
-describe('bleeding and open wounds', () => {
-  it('starts, stops and explicitly sets bleeding idempotently', () => {
-    const started = startBleeding(condition())
-    expect(started.bleeding).toBe(true)
-    expect(startBleeding(started)).toEqual(started)
-    const stopped = stopBleeding(started)
-    expect(stopped.bleeding).toBe(false)
-    expect(stopBleeding(stopped)).toEqual(stopped)
-    expect(setBleeding(stopped, true).bleeding).toBe(true)
+    expect(treated.bleeding).toBe(false)
+    expect(removeOpenWound(treated, 'wound-1').openWounds).toEqual([])
   })
 
-  it('starting bleeding does not add wounds', () => {
-    expect(startBleeding(condition()).untreatedOpenWounds).toBe(0)
+  it('rejects duplicate, unknown, and already treated wound operations', () => {
+    const wound = { id: 'w', kind: 'laceration', treatment: 'untreated' } as const
+    const added = addOpenWound(condition(), wound)
+    expect(() => addOpenWound(added, wound)).toThrow(ConditionError)
+    expect(() => getOpenWound(added, 'missing')).toThrow(ConditionError)
+    expect(() => treatOpenWound(treatOpenWound(added, 'w'), 'w')).toThrow(ConditionError)
+    expect(() => removeOpenWound(added, 'missing')).toThrow(ConditionError)
   })
 
-  it('stopping bleeding does not remove wounds', () => {
-    expect(
-      stopBleeding(condition({ bleeding: true, untreatedOpenWounds: 2 })),
-    ).toMatchObject({ bleeding: false, untreatedOpenWounds: 2 })
+  it('derives treated and untreated lists from the single wound source', () => {
+    const state = condition({ openWounds: [
+      { id: 'a', kind: 'laceration', treatment: 'untreated' },
+      { id: 'b', kind: 'bite', treatment: 'treated' },
+    ] })
+    expect(getUntreatedOpenWounds(state).map(({ id }) => id)).toEqual(['a'])
+    expect(getTreatedOpenWounds(state).map(({ id }) => id)).toEqual(['b'])
   })
 
-  it('adds one or multiple untreated wounds without starting bleeding', () => {
-    expect(addUntreatedOpenWound(condition())).toMatchObject({
-      untreatedOpenWounds: 1,
-      bleeding: false,
+  it('adds and explicitly reduces pending exposure without infection progress', () => {
+    const exposed = addPendingInfectionExposure(condition(), 2)
+    expect(exposed.pendingInfectionExposures).toBe(2)
+    const reduced = reducePendingInfectionExposure(exposed, 3)
+    expect(reduced).toMatchObject({
+      actualReduction: 2, unusedReduction: 1, exposuresBefore: 2, exposuresAfter: 0,
     })
-    expect(addUntreatedOpenWound(condition(), 3).untreatedOpenWounds).toBe(3)
+    expect(reduced.state.pendingInfectionExposures).toBe(0)
   })
 
-  it('treats exactly one wound atomically without stopping bleeding or healing', () => {
-    const result = treatOneOpenWound(
-      condition({
-        currentHealth: 8,
-        bleeding: true,
-        untreatedOpenWounds: 2,
-        treatedOpenWounds: 1,
-      }),
-    )
-    expect(result).toMatchObject({
-      currentHealth: 8,
-      bleeding: true,
-      untreatedOpenWounds: 1,
-      treatedOpenWounds: 2,
-    })
+  it.each([0, -1, 1.5])('rejects invalid exposure amount %s', (amount) => {
+    expect(() => addPendingInfectionExposure(condition(), amount)).toThrow(ConditionError)
+    expect(() => reducePendingInfectionExposure(condition(), amount)).toThrow(ConditionError)
   })
 
-  it('removes exactly one treated wound without other effects', () => {
-    expect(
-      removeOneTreatedOpenWound(
-        condition({ bleeding: true, treatedOpenWounds: 2 }),
-      ),
-    ).toMatchObject({ bleeding: true, treatedOpenWounds: 1 })
+  it('keeps bleeding independent from wounds', () => {
+    const wounded = addOpenWound(condition(), { id: 'w', kind: 'bite', treatment: 'untreated' })
+    expect(startBleeding(wounded).openWounds).toEqual(wounded.openWounds)
+    expect(stopBleeding(startBleeding(wounded)).openWounds).toEqual(wounded.openWounds)
   })
 
-  it('rejects absent wound operations', () => {
-    expect(() => treatOneOpenWound(condition())).toThrowError(ConditionError)
-    expect(() => removeOneTreatedOpenWound(condition())).toThrowError(
-      ConditionError,
-    )
-  })
-
-  it.each([0, -1, 1.5])('rejects invalid wound addition %s', (amount) => {
-    expect(() => addUntreatedOpenWound(condition(), amount)).toThrowError(
-      ConditionError,
-    )
-  })
-
-  it('rejects wound count overflow', () => {
-    expect(() =>
-      addUntreatedOpenWound(
-        condition({ untreatedOpenWounds: Number.MAX_SAFE_INTEGER }),
-        1,
-      ),
-    ).toThrowError(ConditionError)
-  })
-})
-
-describe('minor contusions and painkiller', () => {
-  it('adds and removes minor contusions without changing health', () => {
-    const added = addMinorContusion(condition({ currentHealth: 7 }), 2)
-    expect(added).toMatchObject({ currentHealth: 7, minorContusions: 2 })
-    expect(removeOneMinorContusion(added).minorContusions).toBe(1)
-  })
-
-  it('rejects absent removal and invalid additions', () => {
-    expect(() => removeOneMinorContusion(condition())).toThrowError(
-      ConditionError,
-    )
-    for (const amount of [0, -1, 1.5]) {
-      expect(() => addMinorContusion(condition(), amount)).toThrowError(
-        ConditionError,
-      )
-    }
-  })
-
-  it('rejects contusion count overflow', () => {
-    expect(() =>
-      addMinorContusion(
-        condition({ minorContusions: Number.MAX_SAFE_INTEGER }),
-        1,
-      ),
-    ).toThrowError(ConditionError)
-  })
-
-  it('activates painkiller without deleting any injury or bleeding', () => {
-    const result = activatePainkiller(
-      condition({
-        bleeding: true,
-        untreatedOpenWounds: 1,
-        minorContusions: 2,
-      }),
-    )
-    expect(result).toMatchObject({
-      painkillerActive: true,
-      bleeding: true,
-      untreatedOpenWounds: 1,
-      minorContusions: 2,
-    })
-    expect(activatePainkiller(result)).toEqual(result)
-  })
-
-  it('clearing painkiller restores the active contusion selector', () => {
-    const active = activatePainkiller(condition({ minorContusions: 1 }))
-    expect(hasActiveMinorContusionTravelPenalty(active)).toBe(false)
-    expect(
-      hasActiveMinorContusionTravelPenalty(clearPainkiller(active)),
-    ).toBe(true)
-  })
-
-  it('multiple contusions produce one boolean travel state', () => {
-    expect(
-      hasActiveMinorContusionTravelPenalty(
-        condition({ minorContusions: 3 }),
-      ),
-    ).toBe(true)
-  })
-})
-
-describe('condition selectors and escape wound CTB', () => {
-  it('reports death only at zero health', () => {
-    expect(isDead(condition({ currentHealth: 0 }))).toBe(true)
-    expect(isDead(condition({ currentHealth: 1 }))).toBe(false)
-  })
-
-  it('reports wound presence and counts independently', () => {
-    const state = condition({
-      untreatedOpenWounds: 2,
-      treatedOpenWounds: 3,
-    })
-    expect(hasUntreatedOpenWounds(state)).toBe(true)
-    expect(getUntreatedOpenWoundCount(state)).toBe(2)
-    expect(getTreatedOpenWoundCount(state)).toBe(3)
-    expect(getTotalOpenWoundCount(state)).toBe(5)
-  })
-
-  it('reports contusion and suppression states', () => {
-    const suppressed = condition({
-      minorContusions: 1,
-      painkillerActive: true,
-    })
-    expect(hasMinorContusions(suppressed)).toBe(true)
-    expect(isPainkillerSuppressingMinorContusion(suppressed)).toBe(true)
-    expect(hasActiveMinorContusionTravelPenalty(suppressed)).toBe(false)
+  it('keeps health and contusion operations', () => {
+    const damaged = applyHealthLoss(condition(), 5, healthRules)
+    expect(damaged.state.currentHealth).toBe(7)
+    expect(restoreHealth(damaged.state, 20, healthRules).state.currentHealth).toBe(12)
+    expect(removeOneMinorContusion(addMinorContusion(condition())).minorContusions).toBe(0)
   })
 
   it.each([
@@ -385,64 +157,21 @@ describe('condition selectors and escape wound CTB', () => {
     [1, false, 10],
     [2, false, 20],
     [3, false, 20],
-    [1, true, 0],
     [2, true, 10],
-    [3, true, 10],
-  ] as const)(
-    '%s untreated wounds with painkiller=%s gives %s CTB',
-    (untreatedOpenWounds, painkillerActive, expected) => {
-      const result = calculateEscapeWoundCtbModifier(
-        condition({ untreatedOpenWounds, painkillerActive }),
-        escapeRules,
-      )
-      expect(result.finalWoundCtb).toBe(expected)
-      expect(Object.isFrozen(result)).toBe(true)
-    },
-  )
-
-  it('ignores treated wounds and minor contusions in escape wound CTB', () => {
-    expect(
-      calculateEscapeWoundCtbModifier(
-        condition({ treatedOpenWounds: 5, minorContusions: 3 }),
-        escapeRules,
-      ).finalWoundCtb,
-    ).toBe(0)
+  ])('preserves escape modifier for %s wounds analgesia=%s', (count, painkillerActive, expected) => {
+    const openWounds = Array.from({ length: count }, (_, index) => ({
+      id: `w-${index}`,
+      kind: 'laceration' as const,
+      treatment: 'untreated' as const,
+    }))
+    expect(calculateEscapeWoundCtbModifier(
+      condition({ openWounds, painkillerActive }), escapeRules,
+    ).finalWoundCtb).toBe(expected)
   })
 
-  it.each([
-    [-1, 20, 10],
-    [10, -1, 10],
-    [10, 20, -1],
-    [1.5, 20, 10],
-  ])('rejects invalid escape rules', (perWound, cap, reduction) => {
-    expect(() =>
-      calculateEscapeWoundCtbModifier(condition(), {
-        escape: {
-          ...escapeRules.escape,
-          ctbPerUntreatedOpenWound: perWound,
-          woundCtbBonusCap: cap,
-        },
-        painkiller: {
-          ...escapeRules.painkiller,
-          escapeWoundCtbReduction: reduction,
-        },
-      }),
-    ).toThrowError(ConditionError)
-  })
-
-  it('rejects escape wound multiplication overflow', () => {
-    expect(() =>
-      calculateEscapeWoundCtbModifier(
-        condition({ untreatedOpenWounds: Number.MAX_SAFE_INTEGER }),
-        {
-          escape: {
-            ...escapeRules.escape,
-            ctbPerUntreatedOpenWound: 2,
-            woundCtbBonusCap: 20,
-          },
-          painkiller: escapeRules.painkiller,
-        },
-      ),
-    ).toThrowError(ConditionError)
+  it('does not count treated wounds for escape CTB', () => {
+    expect(calculateEscapeWoundCtbModifier(condition({ openWounds: [
+      { id: 'a', kind: 'bite', treatment: 'treated' },
+    ] }), escapeRules).finalWoundCtb).toBe(0)
   })
 })

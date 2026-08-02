@@ -3,17 +3,41 @@ import type { FrozenRuleConfig } from '../config'
 export interface PlayerConditionSnapshot {
   readonly currentHealth: number
   readonly bleeding: boolean
-  readonly untreatedOpenWounds: number
-  readonly treatedOpenWounds: number
+  readonly openWounds: readonly OpenWoundSnapshot[]
   readonly minorContusions: number
   readonly painkillerActive: boolean
+  readonly pendingInfectionExposures: number
+}
+
+export type OpenWoundKind = 'laceration' | 'puncture' | 'bite'
+export type OpenWoundTreatment = 'untreated' | 'treated'
+
+export interface OpenWoundSnapshot {
+  readonly id: string
+  readonly kind: OpenWoundKind
+  readonly treatment: OpenWoundTreatment
+}
+
+export interface InfectionExposureReductionResult {
+  readonly state: PlayerConditionSnapshot
+  readonly requestedReduction: number
+  readonly actualReduction: number
+  readonly unusedReduction: number
+  readonly exposuresBefore: number
+  readonly exposuresAfter: number
 }
 
 export type PlayerHealthRules = FrozenRuleConfig['combat']['player']
 
 export interface EscapeWoundCtbRules {
-  readonly escape: FrozenRuleConfig['combat']['escape']
-  readonly painkiller: FrozenRuleConfig['medical']['painkiller']
+  readonly escape: Pick<
+    FrozenRuleConfig['combat']['escape'],
+    'ctbPerUntreatedOpenWound' | 'woundCtbBonusCap'
+  >
+  readonly painkiller: Pick<
+    FrozenRuleConfig['medical']['painkiller'],
+    'escapeWoundCtbReduction'
+  >
 }
 
 export interface HealthLossResult {
@@ -36,7 +60,7 @@ export interface HealthRestoreResult {
 }
 
 export interface EscapeWoundCtbModifier {
-  readonly untreatedOpenWounds: number
+  readonly untreatedOpenWoundCount: number
   readonly ctbPerWound: number
   readonly maximumWoundCtb: number
   readonly rawWoundCtb: number

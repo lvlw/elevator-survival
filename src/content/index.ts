@@ -29,6 +29,13 @@ export {
   hospitalSceneObstacleCatalog,
 } from './hospital-v0.1/obstacles'
 export {
+  HOSPITAL_ENEMY_ACTION_IDS,
+  HOSPITAL_ENEMY_IDS,
+  hospitalCombatContentBindings,
+  hospitalEnemyCatalog,
+  hospitalInfectedOrderlyDefinition,
+} from './hospital-v0.1/combat'
+export {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
   HOSPITAL_EDGE_IDS,
   HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,

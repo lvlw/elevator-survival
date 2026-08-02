@@ -4,6 +4,7 @@ const nonNegativeInteger = z.number().int().nonnegative()
 const positiveInteger = z.number().int().positive()
 const nonEmptyString = z.string().trim().min(1)
 const percent = z.number().int().min(0).max(100)
+const riskTier = z.enum(['none', 'low', 'medium', 'high', 'very-high'])
 
 export const ruleConfigSchema = z
   .strictObject({
@@ -83,6 +84,14 @@ export const ruleConfigSchema = z
       }),
     }),
     combat: z.strictObject({
+      postPlayerActionBleedingDamage: positiveInteger,
+      riskTiers: z.strictObject({
+        none: percent,
+        low: percent,
+        medium: percent,
+        high: percent,
+        'very-high': percent,
+      }),
       player: z.strictObject({
         maxHealth: positiveInteger,
       }),
@@ -91,11 +100,28 @@ export const ruleConfigSchema = z
         firstActionTime: z.strictObject({
           unaware: positiveInteger,
           alerted: positiveInteger,
+          reentry: positiveInteger,
         }),
-        actionInterval: z.strictObject({
-          scratch: positiveInteger,
-          lungeBite: positiveInteger,
+        actions: z.strictObject({
+          scratch: z.strictObject({
+            ctb: positiveInteger,
+            damage: nonNegativeInteger,
+            injuryRiskTier: riskTier,
+            exposureRiskTier: riskTier,
+          }),
+          lungeBite: z.strictObject({
+            ctb: positiveInteger,
+            damage: nonNegativeInteger,
+            injuryRiskTier: riskTier,
+            exposureRiskTier: riskTier,
+          }),
         }),
+      }),
+      heavyCoat: z.strictObject({
+        directDamageReduction: nonNegativeInteger,
+        injuryRiskTierReduction: nonNegativeInteger,
+        exposureRiskTierReduction: nonNegativeInteger,
+        integrityCostPerAttack: positiveInteger,
       }),
       metalPipe: z.strictObject({
         maxDurability: positiveInteger,
@@ -114,6 +140,8 @@ export const ruleConfigSchema = z
       }),
       defend: z.strictObject({
         ctb: positiveInteger,
+        remainingDamagePercent: percent,
+        injuryRiskTierReduction: nonNegativeInteger,
       }),
       temporaryAttack: z.strictObject({
         damage: nonNegativeInteger,
@@ -231,6 +259,21 @@ export const ruleConfigSchema = z
         code: 'custom',
         path: ['backpack', 'weightBands'],
         message: '负载区间必须连续且按正常、负载、超载、无法携带排序',
+      })
+    }
+
+    const riskValues = [
+      config.combat.riskTiers.none,
+      config.combat.riskTiers.low,
+      config.combat.riskTiers.medium,
+      config.combat.riskTiers.high,
+      config.combat.riskTiers['very-high'],
+    ]
+    if (riskValues.some((value, index) => index > 0 && value < riskValues[index - 1])) {
+      context.addIssue({
+        code: 'custom',
+        path: ['combat', 'riskTiers'],
+        message: '战斗风险层级百分比必须单调不下降',
       })
     }
 

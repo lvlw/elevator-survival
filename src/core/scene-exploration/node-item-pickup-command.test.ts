@@ -306,8 +306,10 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
         {
           currentHealth: status === 'dead' ? 0 : 12,
           bleeding,
-          untreatedOpenWounds: bleeding ? 1 : 0,
-          treatedOpenWounds: 0,
+          openWounds: bleeding
+          ? [{ id: 'fixture-wound', kind: 'laceration', treatment: 'untreated' }]
+          : [],
+        pendingInfectionExposures: 0,
           minorContusions: 0,
           painkillerActive: false,
         },

@@ -56,8 +56,22 @@ describe('hospitalSliceV01RuleConfig', () => {
     expect(config.combat.player.maxHealth).toBe(12)
     expect(config.combat.infectedOrderly).toMatchObject({
       maxHealth: 14,
-      firstActionTime: { unaware: 70, alerted: 50 },
+      firstActionTime: { unaware: 70, alerted: 50, reentry: 50 },
+      actions: {
+        scratch: { ctb: 100, damage: 3, injuryRiskTier: 'high', exposureRiskTier: 'none' },
+        lungeBite: { ctb: 140, damage: 7, injuryRiskTier: 'very-high', exposureRiskTier: 'high' },
+      },
     })
+    expect(config.combat.postPlayerActionBleedingDamage).toBe(1)
+    expect(config.combat.riskTiers).toEqual({ none: 0, low: 20, medium: 40, high: 60, 'very-high': 80 })
+    expect(config.combat.heavyCoat).toEqual({
+      directDamageReduction: 1,
+      injuryRiskTierReduction: 2,
+      exposureRiskTierReduction: 1,
+      integrityCostPerAttack: 1,
+    })
+    expect(config.combat.defend).toEqual({ ctb: 80, remainingDamagePercent: 50, injuryRiskTierReduction: 1 })
+    expect(Object.isFrozen(config.combat.riskTiers)).toBe(true)
     expect(config.combat.metalPipe).toMatchObject({
       maxDurability: 6,
       basicAttack: { damage: 4, ctb: 100, durabilityCost: 1 },
@@ -103,6 +117,23 @@ describe('hospitalSliceV01RuleConfig', () => {
 })
 
 describe('ruleConfigSchema', () => {
+  it('rejects non-monotonic combat risk tiers', () => {
+    const invalid = mutableConfigCopy()
+    invalid.combat.riskTiers.medium = 10
+    expect(ruleConfigSchema.safeParse(invalid).success).toBe(false)
+  })
+
+  it('rejects an unknown combat risk tier in an action', () => {
+    const invalid = mutableConfigCopy()
+    ;(invalid.combat.infectedOrderly.actions.scratch as unknown as Record<string, unknown>).injuryRiskTier = 'extreme'
+    expect(ruleConfigSchema.safeParse(invalid).success).toBe(false)
+  })
+
+  it.each([-1, 101, 1.5])('rejects invalid defense percent %s', (value) => {
+    const invalid = mutableConfigCopy()
+    invalid.combat.defend.remainingDamagePercent = value
+    expect(ruleConfigSchema.safeParse(invalid).success).toBe(false)
+  })
   it.each([0, -1, 1.5])('rejects invalid quick slot count %s', (count) => {
     const invalidConfig = mutableConfigCopy()
     invalidConfig.backpack.quickSlotCount = count

@@ -144,8 +144,8 @@ function initialSnapshot(): SceneExplorationSnapshot {
         {
           currentHealth: config.combat.player.maxHealth,
           bleeding: false,
-          untreatedOpenWounds: 0,
-          treatedOpenWounds: 0,
+          openWounds: [],
+          pendingInfectionExposures: 0,
           minorContusions: 0,
           painkillerActive: false,
         },

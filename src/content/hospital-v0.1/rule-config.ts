@@ -67,6 +67,14 @@ export const hospitalSliceV01RuleConfig = parseRuleConfig({
     },
   },
   combat: {
+    postPlayerActionBleedingDamage: 1,
+    riskTiers: {
+      none: 0,
+      low: 20,
+      medium: 40,
+      high: 60,
+      'very-high': 80,
+    },
     player: {
       maxHealth: 12,
     },
@@ -75,11 +83,28 @@ export const hospitalSliceV01RuleConfig = parseRuleConfig({
       firstActionTime: {
         unaware: 70,
         alerted: 50,
+        reentry: 50,
       },
-      actionInterval: {
-        scratch: 100,
-        lungeBite: 140,
+      actions: {
+        scratch: {
+          ctb: 100,
+          damage: 3,
+          injuryRiskTier: 'high',
+          exposureRiskTier: 'none',
+        },
+        lungeBite: {
+          ctb: 140,
+          damage: 7,
+          injuryRiskTier: 'very-high',
+          exposureRiskTier: 'high',
+        },
       },
+    },
+    heavyCoat: {
+      directDamageReduction: 1,
+      injuryRiskTierReduction: 2,
+      exposureRiskTierReduction: 1,
+      integrityCostPerAttack: 1,
     },
     metalPipe: {
       maxDurability: 6,
@@ -98,6 +123,8 @@ export const hospitalSliceV01RuleConfig = parseRuleConfig({
     },
     defend: {
       ctb: 80,
+      remainingDamagePercent: 50,
+      injuryRiskTierReduction: 1,
     },
     temporaryAttack: {
       damage: 2,

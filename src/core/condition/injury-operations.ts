@@ -1,6 +1,6 @@
 import { deepFreeze } from '../config'
 import { ConditionError } from './condition-errors'
-import { cloneCondition } from './player-condition'
+import { cloneCondition, createOpenWoundSnapshot } from './player-condition'
 import type {
   InfectionExposureReductionResult,
   OpenWoundSnapshot,
@@ -22,8 +22,12 @@ function addCount(current: number, amount: number): number {
   return result
 }
 
-export const setBleeding = (state: PlayerConditionSnapshot, bleeding: boolean) =>
-  cloneCondition(state, { bleeding })
+export const setBleeding = (state: PlayerConditionSnapshot, bleeding: boolean) => {
+  if (typeof bleeding !== 'boolean') {
+    throw new ConditionError('INVALID_CONDITION_SHAPE', '流血状态必须是布尔值')
+  }
+  return cloneCondition(state, { bleeding })
+}
 export const startBleeding = (state: PlayerConditionSnapshot) => setBleeding(state, true)
 export const stopBleeding = (state: PlayerConditionSnapshot) => setBleeding(state, false)
 
@@ -31,10 +35,11 @@ export function addOpenWound(
   state: PlayerConditionSnapshot,
   wound: OpenWoundSnapshot,
 ): PlayerConditionSnapshot {
-  if (state.openWounds.some(({ id }) => id === wound.id)) {
-    throw new ConditionError('DUPLICATE_OPEN_WOUND_ID', `开放伤口ID重复：${wound.id}`)
+  const normalized = createOpenWoundSnapshot(wound)
+  if (state.openWounds.some(({ id }) => id === normalized.id)) {
+    throw new ConditionError('DUPLICATE_OPEN_WOUND_ID', `开放伤口ID重复：${normalized.id}`)
   }
-  return cloneCondition(state, { openWounds: [...state.openWounds, wound] })
+  return cloneCondition(state, { openWounds: [...state.openWounds, normalized] })
 }
 
 export function getOpenWound(state: PlayerConditionSnapshot, woundId: string): OpenWoundSnapshot {

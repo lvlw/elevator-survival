@@ -29,6 +29,7 @@ export {
   getOpenWound,
 } from './injury-operations'
 export {
+  createOpenWoundSnapshot,
   createInitialPlayerCondition,
   createPlayerCondition,
 } from './player-condition'

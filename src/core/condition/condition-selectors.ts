@@ -56,8 +56,8 @@ export function calculateEscapeWoundCtbModifier(
       '逃跑伤口修正规则必须是非负安全整数',
     )
   }
-  const untreatedOpenWounds = getUntreatedOpenWoundCount(state)
-  const product = BigInt(untreatedOpenWounds) * BigInt(perWound)
+  const untreatedCount = getUntreatedOpenWoundCount(state)
+  const product = BigInt(untreatedCount) * BigInt(perWound)
   if (product > MAX_SAFE) {
     throw new ConditionError(
       'ESCAPE_WOUND_CTB_OVERFLOW',
@@ -69,7 +69,7 @@ export function calculateEscapeWoundCtbModifier(
     ? Math.min(rawWoundCtb, reduction)
     : 0
   return deepFreeze({
-    untreatedOpenWoundCount: untreatedOpenWounds,
+    untreatedOpenWoundCount: untreatedCount,
     ctbPerWound: perWound,
     maximumWoundCtb: cap,
     rawWoundCtb,

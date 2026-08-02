@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest'
 import {
   applyCombatEffects,
   CombatError,
+  createCombatEncounterSnapshot,
+  createEnemyDefinitionCatalog,
   createEnemyPersistentCombatState,
   createExplorationCombatUsage,
   createFirstCombatEncounter,
@@ -10,6 +12,8 @@ import {
   previewCombatPlayerAction,
   resolveCombatPlayerAction,
   selectEnemyHealthPhase,
+  validateCombatDependencies,
+  type CombatDependencies,
   type CombatEncounterSnapshot,
   type EnemyPersistentCombatState,
 } from '../../../core/combat'
@@ -22,6 +26,7 @@ import {
   HOSPITAL_ENEMY_IDS,
   hospitalCombatContentBindings,
   hospitalEnemyCatalog,
+  hospitalInfectedOrderlyDefinition,
 } from './hospital-infected-orderly'
 import {
   HOSPITAL_ITEM_IDS,
@@ -295,9 +300,12 @@ describe('hospital infected orderly combat', () => {
   })
 
   it('enforces last-hit bleeding death before victory', () => {
-    const enemy = persistent({ currentHealth: 4 })
-    const { snapshot, dependencies } = encounter({ health: 1, bleeding: true, enemy })
-    const result = act(snapshot, 'metal-pipe-basic-attack', dependencies).snapshot
+    const { snapshot, dependencies } = encounter({ health: 1, bleeding: true })
+    const prepared = createCombatEncounterSnapshot({
+      ...snapshot,
+      enemy: { ...snapshot.enemy, currentHealth: 4 },
+    }, dependencies)
+    const result = act(prepared, 'metal-pipe-basic-attack', dependencies).snapshot
     expect(result.enemy.currentHealth).toBe(0)
     expect(result.playerCondition.currentHealth).toBe(0)
     expect(result.status).toBe('defeat')
@@ -310,6 +318,13 @@ describe('hospital infected orderly combat', () => {
     expect(result.snapshot.currentCtb).toBe(70)
     expect(result.plan.effects.some(({ kind }) => kind === 'combat-risk-resolved')).toBe(false)
     expect(result.plan.effects.some(({ kind }) => kind === 'enemy-intent-changed')).toBe(false)
+    expect(result.plan.effects.find((effect) =>
+      effect.kind === 'combat-ctb-position-changed' &&
+      effect.reason === 'enemy-action-terminal')).toMatchObject({
+      reason: 'enemy-action-terminal',
+      currentCtbBefore: 0,
+      currentCtbAfter: 70,
+    })
   })
 
   it('gives the player priority when next CTB ties the enemy', () => {
@@ -385,5 +400,406 @@ describe('hospital infected orderly combat', () => {
     const { snapshot, dependencies } = encounter()
     const terminal = { ...snapshot, status: 'victory' as const, enemy: { ...snapshot.enemy, currentHealth: 0, defeated: true } }
     expect(() => act(terminal, 'defend', dependencies)).toThrow(CombatError)
+  })
+
+  it('validates the formal hospital combat bindings against versioned content', () => {
+    const { dependencies } = encounter()
+    expect(() => validateCombatDependencies(dependencies)).not.toThrow()
+    expect(dependencies.enemyCatalog.get(
+      dependencies.bindings.enemyDefinitionId,
+    ).id).toBe(HOSPITAL_ENEMY_IDS.infectedOrderly)
+    expect(dependencies.itemResourceCatalog.get(
+      dependencies.bindings.metalPipeDefinitionId,
+    )).toEqual({
+      definitionId: HOSPITAL_ITEM_IDS.metalPipe,
+      kind: 'durability',
+      maximum: config.combat.metalPipe.maxDurability,
+    })
+    expect(dependencies.itemResourceCatalog.get(
+      dependencies.bindings.heavyCoatDefinitionId,
+    )).toEqual({
+      definitionId: HOSPITAL_ITEM_IDS.heavyCoat,
+      kind: 'integrity',
+      maximum: config.maintenance.itemResourceMaximums.heavyCoatIntegrity,
+    })
+  })
+
+  it('routes every public combat entry through the shared dependency boundary', () => {
+    const { snapshot, dependencies } = encounter()
+    const invalid = { ...dependencies, runSeed: '' }
+    const common = {
+      playerCondition: snapshot.playerCondition,
+      backpack: snapshot.backpack,
+      equipment: snapshot.equipment,
+      quickSlots: snapshot.quickSlots,
+      itemStates: snapshot.itemStates,
+      usage: snapshot.usage,
+    }
+    const calls = [
+      () => createCombatEncounterSnapshot(snapshot, invalid),
+      () => createFirstCombatEncounter({
+        ...common,
+        enemy: { ...snapshot.enemy, hasBeenEncountered: false },
+      }, 'unalerted', invalid),
+      () => createReentryCombatEncounter({
+        ...common,
+        enemy: snapshot.enemy,
+      }, invalid),
+      () => getAvailableCombatPlayerActions(snapshot, invalid),
+      () => resolveCombatPlayerAction(snapshot, { kind: 'defend' }, invalid),
+      () => applyCombatEffects(snapshot, { kind: 'defend' }, [], invalid),
+    ]
+    for (const call of calls) {
+      expect(call).toThrowError(expect.objectContaining({
+        code: 'INVALID_COMBAT_DEPENDENCIES',
+      }))
+    }
+    expect(previewCombatPlayerAction(snapshot, { kind: 'defend' }, invalid))
+      .toEqual({
+        canExecute: false,
+        errorCode: 'INVALID_COMBAT_DEPENDENCIES',
+      })
+  })
+
+  it.each([
+    ['empty run seed', (dependencies: CombatDependencies) => ({
+      ...dependencies,
+      runSeed: '',
+    })],
+    ['empty scene instance', (dependencies: CombatDependencies) => ({
+      ...dependencies,
+      sceneInstanceId: '',
+    })],
+    ['extra binding field', (dependencies: CombatDependencies) => ({
+      ...dependencies,
+      bindings: { ...dependencies.bindings, extra: true },
+    })],
+  ])('rejects invalid dependencies: %s', (_label, change) => {
+    const { dependencies } = encounter()
+    expect(() => validateCombatDependencies(change(dependencies) as never))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_COMBAT_DEPENDENCIES' }))
+  })
+
+  it('rejects unknown and semantically invalid content bindings', () => {
+    const { dependencies } = encounter()
+    const unknownEnemy = {
+      ...dependencies,
+      bindings: { ...dependencies.bindings, enemyDefinitionId: 'missing-enemy' },
+    }
+    expect(() => validateCombatDependencies(unknownEnemy)).toThrowError(
+      expect.objectContaining({ code: 'COMBAT_CONTENT_BINDING_MISMATCH' }),
+    )
+
+    const nonWeaponPipe = {
+      ...dependencies,
+      bindings: {
+        ...dependencies.bindings,
+        metalPipeDefinitionId: HOSPITAL_ITEM_IDS.heavyCoat,
+      },
+    }
+    expect(() => validateCombatDependencies(nonWeaponPipe)).toThrowError(
+      expect.objectContaining({ code: 'COMBAT_CONTENT_BINDING_MISMATCH' }),
+    )
+
+    const nonArmorCoat = {
+      ...dependencies,
+      bindings: {
+        ...dependencies.bindings,
+        heavyCoatDefinitionId: HOSPITAL_ITEM_IDS.metalPipe,
+      },
+    }
+    expect(() => validateCombatDependencies(nonArmorCoat)).toThrowError(
+      expect.objectContaining({ code: 'COMBAT_CONTENT_BINDING_MISMATCH' }),
+    )
+  })
+
+  it.each([
+    ['pipe resource kind', HOSPITAL_ITEM_IDS.metalPipe, {
+      definitionId: HOSPITAL_ITEM_IDS.metalPipe,
+      kind: 'integrity',
+      maximum: config.combat.metalPipe.maxDurability,
+    }],
+    ['pipe maximum', HOSPITAL_ITEM_IDS.metalPipe, {
+      definitionId: HOSPITAL_ITEM_IDS.metalPipe,
+      kind: 'durability',
+      maximum: config.combat.metalPipe.maxDurability - 1,
+    }],
+    ['coat resource kind', HOSPITAL_ITEM_IDS.heavyCoat, {
+      definitionId: HOSPITAL_ITEM_IDS.heavyCoat,
+      kind: 'durability',
+      maximum: config.maintenance.itemResourceMaximums.heavyCoatIntegrity,
+    }],
+  ])('rejects mismatched %s', (_label, definitionId, replacement) => {
+    const { dependencies } = encounter()
+    const original = dependencies.itemResourceCatalog
+    const changed = {
+      ...dependencies,
+      itemResourceCatalog: {
+        ...original,
+        get: (id: string) => id === definitionId ? replacement : original.get(id),
+      },
+    } as CombatDependencies
+    expect(() => validateCombatDependencies(changed)).toThrowError(
+      expect.objectContaining({ code: 'COMBAT_CONTENT_BINDING_MISMATCH' }),
+    )
+  })
+
+  it('rejects enemy configuration mismatch and snapshot binding mismatch', () => {
+    const { snapshot, dependencies } = encounter()
+    const mismatchedConfig = {
+      ...dependencies,
+      config: {
+        ...config,
+        combat: {
+          ...config.combat,
+          infectedOrderly: {
+            ...config.combat.infectedOrderly,
+            maxHealth: 13,
+          },
+        },
+      },
+    } as CombatDependencies
+    expect(() => validateCombatDependencies(mismatchedConfig)).toThrowError(
+      expect.objectContaining({ code: 'COMBAT_CONTENT_BINDING_MISMATCH' }),
+    )
+
+    const alternateDefinition = {
+      ...hospitalInfectedOrderlyDefinition,
+      id: 'enemy_other_orderly',
+      tags: [...hospitalInfectedOrderlyDefinition.tags],
+      weaknessTags: [...hospitalInfectedOrderlyDefinition.weaknessTags],
+      actions: hospitalInfectedOrderlyDefinition.actions.map((action) => ({ ...action })),
+      actionCycle: [...hospitalInfectedOrderlyDefinition.actionCycle],
+    }
+    const alternateDependencies = {
+      ...dependencies,
+      enemyCatalog: createEnemyDefinitionCatalog([
+        hospitalInfectedOrderlyDefinition,
+        alternateDefinition,
+      ]),
+      bindings: {
+        ...dependencies.bindings,
+        enemyDefinitionId: alternateDefinition.id,
+      },
+    }
+    expect(() => createCombatEncounterSnapshot(snapshot, alternateDependencies))
+      .toThrowError(expect.objectContaining({
+        code: 'COMBAT_CONTENT_BINDING_MISMATCH',
+      }))
+  })
+
+  it('strictly validates snapshot fields, statuses, and death priority', () => {
+    const { snapshot, dependencies } = encounter()
+    const deadPlayer = { ...snapshot.playerCondition, currentHealth: 0 }
+    const deadEnemy = { ...snapshot.enemy, currentHealth: 0, defeated: true }
+
+    expect(() => createCombatEncounterSnapshot({
+      ...snapshot,
+      status: 'victory',
+      playerCondition: deadPlayer,
+      enemy: deadEnemy,
+    }, dependencies)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_COMBAT_SNAPSHOT' }),
+    )
+    expect(createCombatEncounterSnapshot({
+      ...snapshot,
+      status: 'defeat',
+      playerCondition: deadPlayer,
+      enemy: deadEnemy,
+    }, dependencies).status).toBe('defeat')
+    expect(createCombatEncounterSnapshot({
+      ...snapshot,
+      status: 'victory',
+      enemy: deadEnemy,
+    }, dependencies).status).toBe('victory')
+    expect(createCombatEncounterSnapshot({
+      ...snapshot,
+      status: 'defeat',
+      playerCondition: deadPlayer,
+    }, dependencies).status).toBe('defeat')
+    expect(() => createCombatEncounterSnapshot({
+      ...snapshot,
+      status: 'victory',
+    }, dependencies)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_COMBAT_SNAPSHOT' }),
+    )
+    expect(() => createCombatEncounterSnapshot({
+      ...snapshot,
+      status: 'unknown',
+    } as never, dependencies)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_COMBAT_SNAPSHOT' }),
+    )
+    expect(() => createCombatEncounterSnapshot({
+      ...snapshot,
+      extra: true,
+    } as never, dependencies)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_COMBAT_SNAPSHOT' }),
+    )
+  })
+
+  it.each([
+    [7, 4, 2],
+    [6, 5, 2],
+    [100, 100, 2],
+    [6, 4, 1],
+    [6, 4, 3],
+  ])('rejects combat container boundary %sx%s with %s quick slots', (
+    width,
+    height,
+    quickSlotCount,
+  ) => {
+    const { snapshot, dependencies } = encounter()
+    expect(() => createCombatEncounterSnapshot({
+      ...snapshot,
+      backpack: { ...snapshot.backpack, width, height },
+      quickSlots: {
+        slots: Array.from({ length: quickSlotCount }, () => null),
+      },
+    }, dependencies)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_COMBAT_SNAPSHOT' }),
+    )
+  })
+
+  it('rejects restored temporary defense and clears defense on bleeding death', () => {
+    const { snapshot, dependencies } = encounter()
+    expect(() => createCombatEncounterSnapshot({
+      ...snapshot,
+      temporaryDefense: {
+        activatedAtCtb: 0,
+        expiresAtPlayerActionCtb: 80,
+        availableDirectAttackUses: 1,
+      },
+    }, dependencies)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_COMBAT_SNAPSHOT' }),
+    )
+
+    const dying = encounter({ health: 1, bleeding: true })
+    const result = act(dying.snapshot, 'defend', dying.dependencies)
+    expect(result.snapshot.status).toBe('defeat')
+    expect(result.snapshot.temporaryDefense).toBeNull()
+    expect(result.plan.effects.map(({ kind }) => kind)).toEqual([
+      'temporary-defense-activated',
+      'player-health-lost',
+      'temporary-defense-expired',
+      'combat-status-changed',
+    ])
+  })
+
+  it('distinguishes malformed commands from unavailable legal actions', () => {
+    const { snapshot, dependencies } = encounter()
+    expect(() => resolveCombatPlayerAction(
+      snapshot,
+      { kind: 'defend', damage: 9 } as never,
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_COMBAT_COMMAND' }))
+    expect(previewCombatPlayerAction(
+      snapshot,
+      null as never,
+      dependencies,
+    )).toEqual({ canExecute: false, errorCode: 'INVALID_COMBAT_COMMAND' })
+    expect(previewCombatPlayerAction(
+      snapshot,
+      { kind: 'temporary-attack' },
+      dependencies,
+    )).toEqual({ canExecute: false, errorCode: 'ACTION_NOT_AVAILABLE' })
+  })
+
+  it('rejects a damaged or cycle-advanced first encounter state', () => {
+    const { snapshot, dependencies } = encounter()
+    const input = {
+      playerCondition: snapshot.playerCondition,
+      backpack: snapshot.backpack,
+      equipment: snapshot.equipment,
+      quickSlots: snapshot.quickSlots,
+      itemStates: snapshot.itemStates,
+      usage: snapshot.usage,
+      enemy: {
+        ...snapshot.enemy,
+        hasBeenEncountered: false,
+        currentHealth: 13,
+      },
+    }
+    expect(() => createFirstCombatEncounter(
+      input,
+      'unalerted',
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_ENEMY_STATE' }))
+  })
+
+  it.each([0, 20])('tracks a continuous CTB Effect cursor from enemy start %s', (
+    firstEnemyCtb,
+  ) => {
+    const { snapshot, dependencies } = encounter({ pipeDurability: 0 })
+    const prepared = createCombatEncounterSnapshot({
+      ...snapshot,
+      enemyNextActionCtb: firstEnemyCtb,
+    }, dependencies)
+    const result = act(prepared, 'temporary-attack', dependencies)
+    const positions = result.plan.effects
+      .filter((effect): effect is Extract<typeof effect, {
+        kind: 'combat-ctb-position-changed'
+      }> => effect.kind === 'combat-ctb-position-changed')
+      .map(({ currentCtbBefore, currentCtbAfter }) => [
+        currentCtbBefore,
+        currentCtbAfter,
+      ])
+    expect(positions).toEqual(firstEnemyCtb === 0
+      ? [[0, 0], [0, 0], [0, 100], [100, 140]]
+      : [[0, 0], [0, 20], [20, 120], [120, 140]])
+    for (let index = 1; index < positions.length; index += 1) {
+      expect(positions[index][0]).toBe(positions[index - 1][1])
+    }
+    expect(result.snapshot).toMatchObject({ currentCtb: 140 })
+    expect(result.snapshot.enemy).toMatchObject({
+      currentIntentActionId: HOSPITAL_ENEMY_ACTION_IDS.orderlyScratch,
+      nextCycleIndex: 1,
+      resolvedActionCount: 2,
+    })
+    expect(applyCombatEffects(
+      prepared,
+      result.plan.command,
+      result.plan.effects,
+      dependencies,
+    )).toEqual(result.snapshot)
+  })
+
+  it('rejects CTB cursor tampering and missing intermediate enemy facts atomically', () => {
+    const { snapshot, dependencies } = encounter({ pipeDurability: 0 })
+    const prepared = createCombatEncounterSnapshot({
+      ...snapshot,
+      enemyNextActionCtb: 20,
+    }, dependencies)
+    const result = act(prepared, 'temporary-attack', dependencies)
+    const mutateCases = [
+      (effects: Record<string, unknown>[]) => {
+        const ctb = effects.find(({ kind, reason }) =>
+          kind === 'combat-ctb-position-changed' &&
+          reason === 'enemy-action-resolved')!
+        ctb.currentCtbBefore = 99
+      },
+      (effects: Record<string, unknown>[]) => {
+        const ctb = effects.find(({ kind, reason }) =>
+          kind === 'combat-ctb-position-changed' &&
+          reason === 'enemy-action-resolved')!
+        ctb.currentCtbAfter = 99
+      },
+      (effects: Record<string, unknown>[]) => {
+        const second = effects.findIndex(({ kind, resolvedActionCountAfter }) =>
+          kind === 'enemy-intent-changed' && resolvedActionCountAfter === 2)
+        effects.splice(second, 1)
+      },
+    ]
+    for (const mutate of mutateCases) {
+      const effects = structuredClone(result.plan.effects) as unknown as Record<string, unknown>[]
+      mutate(effects)
+      expect(() => applyCombatEffects(
+        prepared,
+        result.plan.command,
+        effects as never,
+        dependencies,
+      )).toThrowError(expect.objectContaining({ code: 'INVALID_COMBAT_EFFECTS' }))
+      expect(prepared.enemy.resolvedActionCount).toBe(0)
+      expect(prepared.currentCtb).toBe(0)
+    }
   })
 })

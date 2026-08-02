@@ -2,7 +2,19 @@ import { describe, expect, it } from 'vitest'
 import { createEnemyDefinitionCatalog } from './enemy-definition-catalog'
 import { CombatError } from './combat-errors'
 import { reduceRiskTier, selectEnemyHealthPhase } from './combat'
-import type { EnemyDefinition } from './combat-types'
+import {
+  createEnemyPersistentCombatState,
+  createExplorationCombatUsage,
+} from './enemy-persistent-state'
+import {
+  createCombatPlayerActionCommand,
+  createTemporaryDefenseSnapshot,
+} from './combat-validation'
+import type {
+  CombatDependencies,
+  EnemyDefinition,
+  EnemyPersistentCombatState,
+} from './combat-types'
 
 const definition: EnemyDefinition = {
   id: 'enemy',
@@ -16,6 +28,20 @@ const definition: EnemyDefinition = {
   actionCycle: ['scratch', 'bite'],
   initialIntentActionId: 'scratch',
 }
+
+const enemyState = (
+  changes: Partial<EnemyPersistentCombatState> = {},
+) => ({
+  enemyInstanceId: 'enemy-1',
+  definitionId: 'enemy',
+  currentHealth: 14,
+  currentIntentActionId: 'scratch',
+  nextCycleIndex: 1,
+  resolvedActionCount: 0,
+  hasBeenEncountered: false,
+  defeated: false,
+  ...changes,
+})
 
 describe('enemy definition catalog', () => {
   it('creates a deeply frozen strict catalog', () => {
@@ -76,5 +102,105 @@ describe('combat risk and phase selectors', () => {
       'healthy', 'healthy', 'wounded', 'wounded', 'severely-wounded',
       'severely-wounded', 'critical', 'critical', 'incapacitated',
     ])
+  })
+})
+
+describe('strict combat runtime facts', () => {
+  it('locks intent and next cycle position to resolved action count', () => {
+    expect(createEnemyPersistentCombatState(enemyState(), definition))
+      .toEqual(enemyState())
+    expect(createEnemyPersistentCombatState(enemyState({
+      hasBeenEncountered: true,
+      currentHealth: 9,
+      currentIntentActionId: 'bite',
+      nextCycleIndex: 0,
+      resolvedActionCount: 1,
+    }), definition)).toMatchObject({
+      currentIntentActionId: 'bite',
+      nextCycleIndex: 0,
+      resolvedActionCount: 1,
+    })
+    expect(createEnemyPersistentCombatState(enemyState({
+      hasBeenEncountered: true,
+      currentHealth: 8,
+      resolvedActionCount: 4,
+    }), definition)).toMatchObject({
+      currentIntentActionId: 'scratch',
+      nextCycleIndex: 1,
+      resolvedActionCount: 4,
+    })
+  })
+
+  it.each([
+    ['unknown field', { extra: true }],
+    ['damaged before encounter', { currentHealth: 13 }],
+    ['advanced before encounter', { resolvedActionCount: 1 }],
+    ['intent mismatch', { hasBeenEncountered: true, resolvedActionCount: 1 }],
+    ['cycle mismatch', { hasBeenEncountered: true, nextCycleIndex: 0 }],
+    ['defeated before encounter', { currentHealth: 0, defeated: true }],
+  ])('rejects enemy state with %s', (_label, changes) => {
+    expect(() => createEnemyPersistentCombatState(
+      enemyState(changes as never),
+      definition,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_ENEMY_STATE' }))
+  })
+
+  it('strictly normalizes temporary defense', () => {
+    const input = {
+      activatedAtCtb: 10,
+      expiresAtPlayerActionCtb: 90,
+      availableDirectAttackUses: 1 as const,
+    }
+    const result = createTemporaryDefenseSnapshot(input)
+    expect(result).toEqual(input)
+    expect(result).not.toBe(input)
+    expect(Object.isFrozen(result)).toBe(true)
+    expect(Object.isFrozen(input)).toBe(false)
+    expect(() => createTemporaryDefenseSnapshot({ ...input, extra: true } as never))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_COMBAT_SNAPSHOT' }))
+    expect(() => createTemporaryDefenseSnapshot({
+      ...input,
+      availableDirectAttackUses: 0,
+    } as never)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_COMBAT_SNAPSHOT' }),
+    )
+  })
+
+  it.each([
+    'metal-pipe-basic-attack',
+    'metal-pipe-charged-strike',
+    'defend',
+    'temporary-attack',
+  ] as const)('accepts exact command %s', (kind) => {
+    expect(createCombatPlayerActionCommand({ kind })).toEqual({ kind })
+  })
+
+  it.each([
+    null,
+    [],
+    {},
+    { kind: 'unknown' },
+    { kind: 'defend', damage: 1 },
+    { kind: 'defend', ctb: 1 },
+    { kind: 'defend', target: 'enemy' },
+    { kind: 'defend', resourceCost: 1 },
+  ])('rejects malformed command %o', (command) => {
+    expect(() => createCombatPlayerActionCommand(command as never)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_COMBAT_COMMAND' }),
+    )
+  })
+
+  it('rejects extra exploration usage fields', () => {
+    const config = {
+      combat: {
+        metalPipe: { chargedStrike: { maxUsesPerExploration: 1 } },
+      },
+    } as CombatDependencies['config']
+    expect(() => createExplorationCombatUsage({
+      metalPipeChargedStrikeUses: 0,
+      extra: true,
+    } as never, config)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_COMBAT_SNAPSHOT' }),
+    )
   })
 })

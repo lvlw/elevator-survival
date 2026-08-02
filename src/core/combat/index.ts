@@ -1,17 +1,30 @@
 export { CombatError } from './combat-errors'
 export { createEnemyDefinitionCatalog } from './enemy-definition-catalog'
 export {
-  applyCombatEffects,
+  previewCombatPlayerAction,
+  resolveCombatPlayerAction,
+} from './combat'
+export { applyCombatEffects } from './combat-effect-application'
+export { validateCombatDependencies } from './combat-dependencies'
+export {
   createCombatEncounterSnapshot,
-  createEnemyPersistentCombatState,
-  createExplorationCombatUsage,
   createFirstCombatEncounter,
   createReentryCombatEncounter,
+} from './combat-snapshot'
+export {
+  createEnemyPersistentCombatState,
+  createExplorationCombatUsage,
+} from './enemy-persistent-state'
+export {
   getAvailableCombatPlayerActions,
-  previewCombatPlayerAction,
-  reduceRiskTier,
-  resolveCombatPlayerAction,
-  riskTierToPercent,
   selectEnemyHealthPhase,
-} from './combat'
+} from './combat-selectors'
+export {
+  reduceRiskTier,
+  riskTierToPercent,
+} from './combat-risk'
+export {
+  createCombatPlayerActionCommand,
+  createTemporaryDefenseSnapshot,
+} from './combat-validation'
 export type * from './combat-types'

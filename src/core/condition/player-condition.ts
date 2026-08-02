@@ -1,9 +1,47 @@
 import { deepFreeze } from '../config'
 import { ConditionError } from './condition-errors'
 import type {
+  OpenWoundSnapshot,
   PlayerConditionSnapshot,
   PlayerHealthRules,
 } from './condition-types'
+
+const CONDITION_KEYS = [
+  'bleeding',
+  'currentHealth',
+  'minorContusions',
+  'openWounds',
+  'painkillerActive',
+  'pendingInfectionExposures',
+] as const
+
+const OPEN_WOUND_KEYS = ['id', 'kind', 'treatment'] as const
+
+function hasExactKeys(value: object, expected: readonly string[]): boolean {
+  const actual = Object.keys(value).sort()
+  return actual.length === expected.length &&
+    actual.every((key, index) => key === expected[index])
+}
+
+export function createOpenWoundSnapshot(input: OpenWoundSnapshot): OpenWoundSnapshot {
+  if (
+    !input ||
+    typeof input !== 'object' ||
+    Array.isArray(input) ||
+    !hasExactKeys(input, OPEN_WOUND_KEYS) ||
+    typeof input.id !== 'string' ||
+    input.id.trim().length === 0 ||
+    (input.kind !== 'laceration' && input.kind !== 'puncture' && input.kind !== 'bite') ||
+    (input.treatment !== 'untreated' && input.treatment !== 'treated')
+  ) {
+    throw new ConditionError('INVALID_OPEN_WOUND', '开放伤口记录无效')
+  }
+  return deepFreeze({
+    id: input.id,
+    kind: input.kind,
+    treatment: input.treatment,
+  })
+}
 
 function assertNonNegativeSafeInteger(value: number, label: string): void {
   if (!Number.isSafeInteger(value) || value < 0) {
@@ -29,6 +67,14 @@ export function createPlayerCondition(
 ): PlayerConditionSnapshot {
   assertRules(rules)
   if (
+    !input ||
+    typeof input !== 'object' ||
+    Array.isArray(input) ||
+    !hasExactKeys(input, CONDITION_KEYS)
+  ) {
+    throw new ConditionError('INVALID_CONDITION_SHAPE', '玩家条件状态字段无效')
+  }
+  if (
     !Number.isSafeInteger(input.currentHealth) ||
     input.currentHealth < 0 ||
     input.currentHealth > rules.maxHealth
@@ -43,22 +89,12 @@ export function createPlayerCondition(
   }
   const woundIds = new Set<string>()
   const openWounds = input.openWounds.map((wound) => {
-    if (
-      !wound ||
-      typeof wound !== 'object' ||
-      Object.keys(wound).sort().join('|') !== 'id|kind|treatment' ||
-      typeof wound.id !== 'string' ||
-      wound.id.trim().length === 0 ||
-      !['laceration', 'puncture', 'bite'].includes(wound.kind) ||
-      !['untreated', 'treated'].includes(wound.treatment)
-    ) {
-      throw new ConditionError('INVALID_OPEN_WOUND', '开放伤口记录无效')
+    const normalized = createOpenWoundSnapshot(wound)
+    if (woundIds.has(normalized.id)) {
+      throw new ConditionError('DUPLICATE_OPEN_WOUND_ID', `开放伤口ID重复：${normalized.id}`)
     }
-    if (woundIds.has(wound.id)) {
-      throw new ConditionError('DUPLICATE_OPEN_WOUND_ID', `开放伤口ID重复：${wound.id}`)
-    }
-    woundIds.add(wound.id)
-    return { ...wound }
+    woundIds.add(normalized.id)
+    return normalized
   }).sort((left, right) => left.id.localeCompare(right.id))
   assertNonNegativeSafeInteger(input.minorContusions, '轻微挫伤数量')
   assertNonNegativeSafeInteger(input.pendingInfectionExposures, '待处理感染暴露数量')
@@ -71,7 +107,14 @@ export function createPlayerCondition(
       '流血和镇痛状态必须是布尔值',
     )
   }
-  return deepFreeze({ ...input, openWounds })
+  return deepFreeze({
+    currentHealth: input.currentHealth,
+    bleeding: input.bleeding,
+    openWounds,
+    minorContusions: input.minorContusions,
+    painkillerActive: input.painkillerActive,
+    pendingInfectionExposures: input.pendingInfectionExposures,
+  })
 }
 
 export function createInitialPlayerCondition(
@@ -94,9 +137,14 @@ export function cloneCondition(
   state: PlayerConditionSnapshot,
   changes: Partial<PlayerConditionSnapshot>,
 ): PlayerConditionSnapshot {
+  const openWounds = changes.openWounds ?? state.openWounds
   return deepFreeze({
-    ...state,
-    ...changes,
-    openWounds: (changes.openWounds ?? state.openWounds).map((wound) => ({ ...wound })),
+    currentHealth: changes.currentHealth ?? state.currentHealth,
+    bleeding: changes.bleeding ?? state.bleeding,
+    openWounds: openWounds.map((wound) => createOpenWoundSnapshot(wound)),
+    minorContusions: changes.minorContusions ?? state.minorContusions,
+    painkillerActive: changes.painkillerActive ?? state.painkillerActive,
+    pendingInfectionExposures:
+      changes.pendingInfectionExposures ?? state.pendingInfectionExposures,
   })
 }

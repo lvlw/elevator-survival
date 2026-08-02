@@ -7,6 +7,7 @@ import {
   calculateEscapeWoundCtbModifier,
   ConditionError,
   createInitialPlayerCondition,
+  createOpenWoundSnapshot,
   createPlayerCondition,
   getOpenWound,
   getTreatedOpenWounds,
@@ -16,6 +17,7 @@ import {
   removeOneMinorContusion,
   restoreHealth,
   startBleeding,
+  setBleeding,
   stopBleeding,
   treatOpenWound,
   type PlayerConditionSnapshot,
@@ -73,6 +75,41 @@ describe('typed player condition', () => {
       painkillerActive: false,
       pendingInfectionExposures: 0,
     })
+  })
+
+  it.each(['extra', 'untreatedOpenWounds', 'treatedOpenWounds'])(
+    'rejects unknown top-level field %s',
+    (field) => {
+      const input = {
+        currentHealth: 12,
+        bleeding: false,
+        openWounds: [],
+        minorContusions: 0,
+        painkillerActive: false,
+        pendingInfectionExposures: 0,
+        [field]: field === 'extra' ? true : 1,
+      }
+      expect(() => createPlayerCondition(input as never, healthRules)).toThrowError(
+        expect.objectContaining({ code: 'INVALID_CONDITION_SHAPE' }),
+      )
+    },
+  )
+
+  it('normalizes wounds through one strict constructor without touching input', () => {
+    const input = {
+      id: 'wound-1',
+      kind: 'puncture' as const,
+      treatment: 'untreated' as const,
+    }
+    const result = createOpenWoundSnapshot(input)
+    expect(result).toEqual(input)
+    expect(result).not.toBe(input)
+    expect(Object.isFrozen(result)).toBe(true)
+    expect(Object.isFrozen(input)).toBe(false)
+    expect(() => createOpenWoundSnapshot({ ...input, extra: true } as never))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_OPEN_WOUND' }))
+    expect(() => addOpenWound(condition(), { ...input, extra: true } as never))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_OPEN_WOUND' }))
   })
 
   it.each([
@@ -143,6 +180,27 @@ describe('typed player condition', () => {
     const wounded = addOpenWound(condition(), { id: 'w', kind: 'bite', treatment: 'untreated' })
     expect(startBleeding(wounded).openWounds).toEqual(wounded.openWounds)
     expect(stopBleeding(startBleeding(wounded)).openWounds).toEqual(wounded.openWounds)
+  })
+
+  it('rejects a non-boolean bleeding operation and strips unknown state fields', () => {
+    const original = {
+      ...condition(),
+      legacyCount: 9,
+    }
+    expect(() => setBleeding(original, 1 as never)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_CONDITION_SHAPE' }),
+    )
+    const next = startBleeding(original)
+    expect(next).not.toHaveProperty('legacyCount')
+    expect(Object.keys(next).sort()).toEqual([
+      'bleeding',
+      'currentHealth',
+      'minorContusions',
+      'openWounds',
+      'painkillerActive',
+      'pendingInfectionExposures',
+    ])
+    expect(original.legacyCount).toBe(9)
   })
 
   it('keeps health and contusion operations', () => {

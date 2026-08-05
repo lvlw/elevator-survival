@@ -48,6 +48,7 @@ export function createCombatEncounterSnapshot(
   if (
     input.status !== 'awaiting-player' &&
     input.status !== 'victory' &&
+    input.status !== 'escaped' &&
     input.status !== 'defeat'
   ) {
     throw new CombatError('INVALID_COMBAT_SNAPSHOT', '未知战斗状态')
@@ -116,8 +117,11 @@ export function createCombatEncounterSnapshot(
     input.playerNextActionCtb <= input.enemyNextActionCtb
   const victory = input.status === 'victory' &&
     playerCondition.currentHealth > 0 && enemy.currentHealth === 0
+  const escaped = input.status === 'escaped' &&
+    playerCondition.currentHealth > 0 && enemy.currentHealth > 0 &&
+    input.currentCtb === input.playerNextActionCtb
   const defeat = input.status === 'defeat' && playerCondition.currentHealth === 0
-  if (!awaitingPlayer && !victory && !defeat) {
+  if (!awaitingPlayer && !victory && !escaped && !defeat) {
     throw new CombatError('INVALID_COMBAT_SNAPSHOT', '战斗快照状态判别无效')
   }
 

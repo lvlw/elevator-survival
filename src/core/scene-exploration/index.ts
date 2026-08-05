@@ -8,6 +8,7 @@ export {
 } from './scene-exploration-snapshot'
 export { applySceneExplorationEffects } from './scene-exploration-effects'
 export { getPlayerVisibleSceneNodeState } from './player-visible-scene-node'
+export { getPlayerVisibleSceneCombatState } from './player-visible-scene-combat'
 export { selectInfectedOrderlyFirstActionTime } from './scene-alert'
 export {
   previewSceneMoveCommand,
@@ -25,6 +26,10 @@ export {
   previewSceneObstacleOptionCommand,
   resolveSceneObstacleOptionCommand,
 } from './scene-obstacle-command'
+export {
+  previewSceneCombatPlayerAction,
+  resolveSceneCombatPlayerAction,
+} from './scene-combat-command'
 export type {
   MainSearchCommandDependencies,
   MainSearchEvaluation,
@@ -57,4 +62,7 @@ export type {
   SceneMoveResolution,
   SceneMoveTransitionPlan,
   SearchIlluminationChoice,
+  SceneCombatPlayerActionEvaluation,
+  SceneCombatPlayerActionPreview,
+  SceneCombatPlayerActionResolution,
 } from './scene-exploration-types'

@@ -5,6 +5,10 @@ import { createCarriedItemContainersSnapshot } from '../quick-slot'
 import { validateTraversalAvailability } from '../scene-graph'
 import { validateSceneSearchState } from '../scene-search'
 import {
+  createInitialSceneCombatState,
+  createSceneCombatStateSnapshot,
+} from '../scene-combat'
+import {
   createEmptySceneItemsSnapshot,
   createSceneItemsSnapshot,
 } from '../scene-items'
@@ -18,6 +22,7 @@ import type {
 
 const STATUSES: readonly SceneExplorationStatus[] = [
   'active',
+  'combat',
   'safe-returned',
   'forced-returned',
   'dead',
@@ -146,8 +151,61 @@ export function createSceneExplorationSnapshot(
     input.condition,
     dependencies.config.combat.player,
   )
+  const combatState = dependencies.sceneCombat
+    ? createSceneCombatStateSnapshot(
+        input.combatState ?? createInitialSceneCombatState(
+          input.sceneInstanceId,
+          dependencies.sceneCombat,
+        ),
+        input.sceneInstanceId,
+        dependencies.sceneCombat,
+      )
+    : deepFreeze({
+        encounters: [],
+        usage: {
+          metalPipeChargedStrikeUses:
+            input.combatState?.usage.metalPipeChargedStrikeUses ?? 0,
+        },
+      })
   if (
-    (input.status === 'active' && condition.currentHealth === 0) ||
+    dependencies.sceneCombat &&
+    dependencies.sceneCombat.combat.sceneInstanceId !== input.sceneInstanceId
+  ) {
+    throw new SceneExplorationError('INVALID_INPUT', '场景与战斗依赖的场景实例ID不一致')
+  }
+  if (
+    !Number.isSafeInteger(combatState.usage.metalPipeChargedStrikeUses) ||
+    combatState.usage.metalPipeChargedStrikeUses < 0
+  ) {
+    throw new SceneExplorationError('INVALID_INPUT', '场景战斗使用次数无效')
+  }
+  if (!dependencies.sceneCombat && (input.combatState?.encounters.length ?? 0) > 0) {
+    throw new SceneExplorationError('INVALID_INPUT', '缺少遭遇依赖时不能恢复场景战斗状态')
+  }
+  const activeEncounters = combatState.encounters.filter(({ kind }) => kind === 'active')
+  const activeEncounter = activeEncounters[0]
+  if (
+    activeEncounter?.kind === 'active' &&
+    !dependencies.graph.nodes.some(({ id }) => id === activeEncounter.returnNodeId)
+  ) {
+    throw new SceneExplorationError('INVALID_INPUT', '战斗逃跑返回节点无效')
+  }
+  const mirrorsCombat = activeEncounter?.kind === 'active' &&
+    activeEncounter.nodeId === input.currentNodeId &&
+    JSON.stringify(activeEncounter.combat.playerCondition) === JSON.stringify(condition) &&
+    JSON.stringify(activeEncounter.combat.backpack) === JSON.stringify(carried.backpack) &&
+    JSON.stringify(activeEncounter.combat.equipment) === JSON.stringify(carried.equipment) &&
+    JSON.stringify(activeEncounter.combat.quickSlots) === JSON.stringify(carried.quickSlots) &&
+    JSON.stringify(activeEncounter.combat.itemStates) === JSON.stringify(itemStates) &&
+    JSON.stringify(activeEncounter.combat.usage) === JSON.stringify(combatState.usage)
+  if (
+    (input.status === 'combat' && (activeEncounters.length !== 1 || !mirrorsCombat)) ||
+    (input.status !== 'combat' && activeEncounters.length !== 0)
+  ) {
+    throw new SceneExplorationError('INVALID_INPUT', '场景状态与活跃战斗遭遇不一致')
+  }
+  if (
+    ((input.status === 'active' || input.status === 'combat') && condition.currentHealth === 0) ||
     (input.status === 'dead' && condition.currentHealth !== 0)
   ) {
     throw new SceneExplorationError(
@@ -169,6 +227,7 @@ export function createSceneExplorationSnapshot(
     quickSlots: carried.quickSlots,
     itemStates,
     condition,
+    combatState,
   })
 }
 

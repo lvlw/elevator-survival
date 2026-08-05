@@ -44,11 +44,6 @@ export const ruleConfigSchema = z
         disinfectant: positiveInteger,
         firstAidKit: positiveInteger,
       }),
-      combatTimeConversion: z.strictObject({
-        ctbUnit: positiveInteger,
-        sceneTimePerUnit: positiveInteger,
-        minimumSceneTime: positiveInteger,
-      }),
       travelTimeModifiers: z.strictObject({
         minorContusionTimeIncreasePercent: nonNegativeInteger,
       }),
@@ -84,6 +79,11 @@ export const ruleConfigSchema = z
       }),
     }),
     combat: z.strictObject({
+      sceneTimeConversion: z.strictObject({
+        minimumSceneTime: positiveInteger,
+        ctbPerStep: positiveInteger,
+        sceneTimePerStep: positiveInteger,
+      }),
       postPlayerActionBleedingDamage: positiveInteger,
       riskTiers: z.strictObject({
         none: percent,

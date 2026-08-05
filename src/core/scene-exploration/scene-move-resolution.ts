@@ -11,6 +11,7 @@ import {
 } from '../scene-graph'
 import { resolveTimedSceneAction } from '../scene'
 import { getEffectiveEnabledEdgeIds } from '../scene-access'
+import { createFirstCombatEncounter, createReentryCombatEncounter } from '../combat'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { applySceneExplorationEffects } from './scene-exploration-effects'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
@@ -225,6 +226,53 @@ function evaluate(
             ? 'safe-return'
             : 'forced-return',
     })
+  }
+  if (status === 'active' && dependencies.sceneCombat) {
+    const definition = dependencies.sceneCombat.encounterCatalog.getByNodeId(
+      traversal.toNodeId,
+    )
+    const encounter = definition
+      ? snapshot.combatState.encounters.find(
+          ({ encounterId }) => encounterId === definition.id,
+        )
+      : null
+    if (definition && encounter?.kind === 'dormant' && !encounter.enemy.defeated) {
+      const combatInput = {
+        playerCondition: {
+          ...snapshot.condition,
+          currentHealth: effectHealth,
+        },
+        backpack: snapshot.backpack,
+        equipment: snapshot.equipment,
+        quickSlots: snapshot.quickSlots,
+        itemStates: snapshot.itemStates,
+        enemy: encounter.enemy,
+        usage: snapshot.combatState.usage,
+      }
+      const combat = encounter.enemy.hasBeenEncountered
+        ? createReentryCombatEncounter(combatInput, dependencies.sceneCombat.combat)
+        : createFirstCombatEncounter(
+            combatInput,
+            snapshot.alertState,
+            dependencies.sceneCombat.combat,
+          )
+      effects.push({
+        kind: 'scene-combat-started',
+        encounterId: definition.id,
+        eventId: definition.eventId,
+        nodeId: definition.nodeId,
+        returnNodeId: snapshot.currentNodeId,
+        enemyInstanceId: encounter.enemy.enemyInstanceId,
+        engagement: encounter.enemy.hasBeenEncountered ? 'reentry' : 'first-entry',
+        combat,
+      })
+      effects.push({
+        kind: 'scene-status-changed',
+        fromStatus: 'active',
+        toStatus: 'combat',
+        reason: 'combat-started',
+      })
+    }
   }
   return deepFreeze({
     command: { ...command },

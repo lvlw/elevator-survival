@@ -50,7 +50,7 @@ export interface TemporaryDefenseSnapshot {
   readonly availableDirectAttackUses: 1
 }
 
-export type CombatStatus = 'awaiting-player' | 'victory' | 'defeat'
+export type CombatStatus = 'awaiting-player' | 'victory' | 'escaped' | 'defeat'
 
 export interface CombatEncounterSnapshot {
   readonly status: CombatStatus
@@ -72,6 +72,7 @@ export type CombatPlayerActionCommand =
   | Readonly<{ kind: 'metal-pipe-charged-strike' }>
   | Readonly<{ kind: 'defend' }>
   | Readonly<{ kind: 'temporary-attack' }>
+  | Readonly<{ kind: 'escape' }>
 
 export interface CombatContentBindings {
   readonly enemyDefinitionId: string
@@ -105,6 +106,25 @@ export interface CombatRiskTrace {
 }
 
 export type CombatEffect =
+  | Readonly<{
+      kind: 'combat-escape-preparation-locked'
+      startedAtCtb: number
+      loadTier: 'normal' | 'loaded' | 'overloaded'
+      backpackWeight: number
+      baseCtb: number
+      untreatedOpenWoundCount: number
+      rawWoundCtb: number
+      painkillerReductionApplied: number
+      finalWoundCtb: number
+      preparationCtb: number
+      completesAtCtb: number
+    }>
+  | Readonly<{
+      kind: 'combat-escape-completed'
+      startedAtCtb: number
+      completesAtCtb: number
+      preparationCtb: number
+    }>
   | Readonly<{
       kind: 'item-resource-consumed'
       source: string
@@ -195,6 +215,8 @@ export type CombatEffect =
         | 'enemy-action-resolved'
         | 'enemy-action-terminal'
         | 'player-decision-point'
+        | 'escape-preparation-scheduled'
+        | 'escape-completed'
       currentCtbBefore: number
       currentCtbAfter: number
       playerNextActionCtbBefore: number
@@ -205,8 +227,8 @@ export type CombatEffect =
   | Readonly<{
       kind: 'combat-status-changed'
       from: CombatStatus
-      to: 'victory' | 'defeat'
-      reason: 'enemy-defeated' | 'player-death'
+      to: 'victory' | 'escaped' | 'defeat'
+      reason: 'enemy-defeated' | 'escape-completed' | 'player-death'
     }>
 
 export interface CombatTransitionPlan {
@@ -234,4 +256,5 @@ export type CombatErrorCode =
   | 'INVALID_COMBAT_COMMAND'
   | 'COMBAT_NOT_ACTIVE'
   | 'ACTION_NOT_AVAILABLE'
+  | 'CANNOT_ESCAPE_WHILE_UNCARRYABLE'
   | 'INVALID_COMBAT_EFFECTS'

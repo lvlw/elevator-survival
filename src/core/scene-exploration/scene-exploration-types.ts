@@ -41,9 +41,20 @@ import type {
   QuickSlotSnapshot,
 } from '../quick-slot'
 import type { SceneExplorationErrorCode } from './scene-exploration-errors'
+import type {
+  CombatPlayerActionCommand,
+  CombatTransitionPlan,
+  EnemyPersistentCombatState,
+  ExplorationCombatUsageSnapshot,
+} from '../combat'
+import type {
+  SceneCombatDependencies,
+  SceneCombatStateSnapshot,
+} from '../scene-combat'
 
 export type SceneExplorationStatus =
   | 'active'
+  | 'combat'
   | 'safe-returned'
   | 'forced-returned'
   | 'dead'
@@ -64,13 +75,14 @@ export interface SceneExplorationSnapshot {
   readonly quickSlots: QuickSlotSnapshot
   readonly itemStates: ItemStateCollectionSnapshot
   readonly condition: PlayerConditionSnapshot
+  readonly combatState: SceneCombatStateSnapshot
 }
 
 export type SceneExplorationSnapshotInput = Omit<
   SceneExplorationSnapshot,
-  'alertState' | 'sceneItems'
+  'alertState' | 'sceneItems' | 'combatState'
 > &
-  Partial<Pick<SceneExplorationSnapshot, 'alertState' | 'sceneItems'>>
+  Partial<Pick<SceneExplorationSnapshot, 'alertState' | 'sceneItems' | 'combatState'>>
 
 export interface SceneExplorationDependencies {
   readonly graph: SceneGraph
@@ -81,6 +93,7 @@ export interface SceneExplorationDependencies {
   readonly config: FrozenRuleConfig
   readonly edgeAccessCatalog?: SceneEdgeAccessCatalog
   readonly obstacleCatalog?: SceneObstacleCatalog
+  readonly sceneCombat?: SceneCombatDependencies
 }
 
 export interface MainSearchCommandDependencies
@@ -124,6 +137,53 @@ export type SceneExplorationEffect =
       fromNodeId: string
       toNodeId: string
       edgeId: string
+    }>
+  | Readonly<{
+      kind: 'scene-node-changed'
+      reason: 'combat-escape'
+      fromNodeId: string
+      toNodeId: string
+      encounterId: string
+    }>
+  | Readonly<{
+      kind: 'scene-combat-started'
+      encounterId: string
+      eventId: string
+      nodeId: string
+      returnNodeId: string
+      enemyInstanceId: string
+      engagement: 'first-entry' | 'reentry'
+      combat: import('../combat').CombatEncounterSnapshot
+    }>
+  | Readonly<{
+      kind: 'scene-combat-advanced'
+      encounterId: string
+      command: CombatPlayerActionCommand
+      combatPlan: CombatTransitionPlan
+    }>
+  | Readonly<{
+      kind: 'scene-combat-time-resolved'
+      encounterId: string
+      combatOutcome: 'victory' | 'escaped' | 'defeat'
+      elapsedCtb: number
+      minimumSceneTime: number
+      ctbPerStep: number
+      sceneTimePerStep: number
+      sceneTimeCost: number
+      remainingTimeBefore: number
+      remainingTimeAfter: number
+      overtimeDebt: number
+    }>
+  | Readonly<{
+      kind: 'scene-combat-ended'
+      encounterId: string
+      eventId: string
+      outcome: 'victory' | 'escaped' | 'defeat'
+      combatNodeId: string
+      escapeReturnNodeId: string | null
+      enemy: EnemyPersistentCombatState
+      usageBefore: ExplorationCombatUsageSnapshot
+      usageAfter: ExplorationCombatUsageSnapshot
     }>
   | Readonly<{
       kind: 'scene-node-changed'
@@ -228,7 +288,25 @@ export type SceneExplorationEffect =
       fromStatus: SceneExplorationStatus
       toStatus: SceneExplorationStatus
       reason: 'safe-return' | 'forced-return' | 'death'
+        | 'combat-started' | 'combat-victory' | 'combat-escaped'
     }>
+
+export interface SceneCombatPlayerActionEvaluation {
+  readonly encounterId: string
+  readonly command: CombatPlayerActionCommand
+  readonly combatPlan: CombatTransitionPlan
+  readonly effects: readonly SceneExplorationEffect[]
+  readonly snapshot: SceneExplorationSnapshot
+}
+
+export type SceneCombatPlayerActionPreview =
+  | Readonly<{ canExecute: true; result: SceneCombatPlayerActionEvaluation }>
+  | Readonly<{ canExecute: false; rejectionCode: SceneExplorationErrorCode }>
+
+export interface SceneCombatPlayerActionResolution {
+  readonly result: SceneCombatPlayerActionEvaluation
+  readonly snapshot: SceneExplorationSnapshot
+}
 
 export type SearchIlluminationChoice =
   | 'use-equipped-flashlight'

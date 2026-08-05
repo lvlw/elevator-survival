@@ -39,11 +39,6 @@ export const hospitalSliceV01RuleConfig = parseRuleConfig({
       disinfectant: 10,
       firstAidKit: 20,
     },
-    combatTimeConversion: {
-      ctbUnit: 100,
-      sceneTimePerUnit: 10,
-      minimumSceneTime: 10,
-    },
     travelTimeModifiers: {
       minorContusionTimeIncreasePercent: 10,
     },
@@ -67,6 +62,11 @@ export const hospitalSliceV01RuleConfig = parseRuleConfig({
     },
   },
   combat: {
+    sceneTimeConversion: {
+      minimumSceneTime: 10,
+      ctbPerStep: 100,
+      sceneTimePerStep: 10,
+    },
     postPlayerActionBleedingDamage: 1,
     riskTiers: {
       none: 0,

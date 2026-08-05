@@ -802,4 +802,152 @@ describe('hospital infected orderly combat', () => {
       expect(prepared.currentCtb).toBe(0)
     }
   })
+
+  it('locks escape at selection and resolves escape before an equal-time enemy action', () => {
+    const { snapshot, dependencies } = encounter()
+    const prepared = createCombatEncounterSnapshot({
+      ...snapshot,
+      enemyNextActionCtb: 80,
+    }, dependencies)
+    const result = act(prepared, 'escape', dependencies)
+    expect(result.snapshot).toMatchObject({
+      status: 'escaped',
+      currentCtb: 80,
+      playerNextActionCtb: 80,
+    })
+    expect(result.snapshot.enemy.resolvedActionCount).toBe(0)
+    expect(result.plan.effects.map(({ kind }) => kind)).toEqual([
+      'combat-escape-preparation-locked',
+      'combat-ctb-position-changed',
+      'combat-escape-completed',
+      'combat-ctb-position-changed',
+      'combat-status-changed',
+    ])
+  })
+
+  it('applies completion bleeding once and makes a lethal bleed defeat instead of escaped', () => {
+    const { snapshot, dependencies } = encounter({ health: 1, bleeding: true })
+    const prepared = createCombatEncounterSnapshot({
+      ...snapshot,
+      enemyNextActionCtb: 100,
+    }, dependencies)
+    const result = act(prepared, 'escape', dependencies)
+    expect(result.snapshot).toMatchObject({ status: 'defeat', currentCtb: 80 })
+    expect(result.plan.effects.filter((effect) =>
+      effect.kind === 'player-health-lost' &&
+      effect.source === 'post-player-action-bleeding')).toHaveLength(1)
+    expect(result.plan.effects.some(({ kind }) => kind === 'combat-escape-completed')).toBe(true)
+  })
+
+  it('audits capped wound time and painkiller reduction in the locked escape Effect', () => {
+    const { snapshot, dependencies } = encounter()
+    const wounded = createCombatEncounterSnapshot({
+      ...snapshot,
+      enemyNextActionCtb: 200,
+      playerCondition: createPlayerCondition({
+        ...snapshot.playerCondition,
+        painkillerActive: true,
+        openWounds: [0, 1, 2].map((index) => ({
+          id: `wound-${index}`,
+          kind: 'laceration' as const,
+          treatment: 'untreated' as const,
+        })),
+      }, config.combat.player),
+    }, dependencies)
+    const result = act(wounded, 'escape', dependencies)
+    expect(result.plan.effects[0]).toMatchObject({
+      kind: 'combat-escape-preparation-locked',
+      loadTier: 'normal',
+      baseCtb: 80,
+      untreatedOpenWoundCount: 3,
+      rawWoundCtb: 20,
+      painkillerReductionApplied: 10,
+      finalWoundCtb: 10,
+      preparationCtb: 90,
+      completesAtCtb: 90,
+    })
+  })
+
+  it('explicitly rejects restored cannot-carry state from starting escape', () => {
+    const { snapshot, dependencies } = encounter()
+    const materials = Array.from({ length: 6 }, (_, index) => ({
+      instanceId: `heavy-stack-${index}`,
+      definitionId: HOSPITAL_ITEM_IDS.metalParts,
+      quantity: 5,
+    }))
+    const overweight = createCombatEncounterSnapshot({
+      ...snapshot,
+      backpack: createBackpackSnapshot({
+        width: config.backpack.width,
+        height: config.backpack.height,
+        items: materials,
+        placements: materials.map(({ instanceId }, index) => ({
+          instanceId,
+          x: index,
+          y: 0,
+          rotated: false,
+        })),
+      }, hospitalItemCatalog),
+      itemStates: {
+        states: [
+          ...snapshot.itemStates.states,
+          ...materials.map((item) => createFullItemState(item, hospitalItemResourceCatalog)),
+        ],
+      },
+    }, dependencies)
+    expect(() => act(overweight, 'escape', dependencies)).toThrowError(
+      expect.objectContaining({ code: 'CANNOT_ESCAPE_WHILE_UNCARRYABLE' }),
+    )
+  })
+
+  it.each([
+    [17, 'loaded', 80],
+    [25, 'overloaded', 110],
+  ] as const)('uses backpack weight %i as %s with base escape CTB %i', (
+    targetWeight,
+    expectedTier,
+    expectedBaseCtb,
+  ) => {
+    const { snapshot, dependencies } = encounter()
+    const quantities: number[] = []
+    let remaining = targetWeight
+    while (remaining > 0) {
+      const quantity = Math.min(5, remaining)
+      quantities.push(quantity)
+      remaining -= quantity
+    }
+    const materials = quantities.map((quantity, index) => ({
+      instanceId: `load-stack-${index}`,
+      definitionId: HOSPITAL_ITEM_IDS.metalParts,
+      quantity,
+    }))
+    const weighted = createCombatEncounterSnapshot({
+      ...snapshot,
+      backpack: createBackpackSnapshot({
+        width: config.backpack.width,
+        height: config.backpack.height,
+        items: materials,
+        placements: materials.map(({ instanceId }, index) => ({
+          instanceId,
+          x: index,
+          y: 0,
+          rotated: false,
+        })),
+      }, hospitalItemCatalog),
+      itemStates: {
+        states: [
+          ...snapshot.itemStates.states,
+          ...materials.map((item) => createFullItemState(item, hospitalItemResourceCatalog)),
+        ],
+      },
+      enemyNextActionCtb: 200,
+    }, dependencies)
+    const result = act(weighted, 'escape', dependencies)
+    expect(result.plan.effects[0]).toMatchObject({
+      kind: 'combat-escape-preparation-locked',
+      backpackWeight: targetWeight,
+      loadTier: expectedTier,
+      baseCtb: expectedBaseCtb,
+    })
+  })
 })

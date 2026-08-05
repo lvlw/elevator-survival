@@ -5,6 +5,8 @@ export {
   resolveCombatPlayerAction,
 } from './combat'
 export { applyCombatEffects } from './combat-effect-application'
+export { convertCombatElapsedCtbToSceneTime } from './combat-scene-time'
+export type { CombatSceneTimeConversionRules } from './combat-scene-time'
 export { validateCombatDependencies } from './combat-dependencies'
 export {
   createCombatEncounterSnapshot,
@@ -27,4 +29,6 @@ export {
   createCombatPlayerActionCommand,
   createTemporaryDefenseSnapshot,
 } from './combat-validation'
+export { createPlayerVisibleCombatSnapshot } from './player-visible-combat'
+export type { PlayerVisibleCombatSnapshot } from './player-visible-combat'
 export type * from './combat-types'

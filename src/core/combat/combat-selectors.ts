@@ -1,5 +1,7 @@
 import { deepFreeze } from '../config'
 import { getItemState } from '../item-state'
+import { calculateBackpackWeightSubtotal } from '../inventory'
+import { classifyLoad } from '../load'
 import { validateCombatDependencies } from './combat-dependencies'
 import { createCombatEncounterSnapshot } from './combat-snapshot'
 import type {
@@ -28,6 +30,13 @@ export function getAvailableCombatPlayerActionsFromValidatedSnapshot(
     state?.resource.kind === 'durability' &&
     state.resource.current >= 1
   const actions: CombatPlayerActionCommand['kind'][] = ['defend']
+  const backpackWeight = calculateBackpackWeightSubtotal(
+    snapshot.backpack,
+    dependencies.physicalCatalog,
+  )
+  if (classifyLoad(backpackWeight, dependencies.config.backpack).canCarry) {
+    actions.push('escape')
+  }
   if (usablePipe) {
     actions.push('metal-pipe-basic-attack')
     if (

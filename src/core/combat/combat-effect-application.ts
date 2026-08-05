@@ -44,6 +44,9 @@ export function applyCombatEffects(
   for (const effect of effects) {
     const value = effect as Record<string, unknown>
     switch (effect.kind) {
+      case 'combat-escape-preparation-locked':
+      case 'combat-escape-completed':
+        break
       case 'item-resource-consumed': {
         const item = state.equipment[value.slot as 'weapon' | 'armor']!
         const current = getItemState(state.itemStates, item.instanceId)

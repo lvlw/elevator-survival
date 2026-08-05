@@ -34,6 +34,11 @@ export {
   hospitalCombatContentBindings,
   hospitalEnemyCatalog,
   hospitalInfectedOrderlyDefinition,
+  HOSPITAL_COMBAT_ENCOUNTER_IDS,
+  HOSPITAL_COMBAT_EVENT_IDS,
+  hospitalSceneCombatEncounterCatalog,
+  createHospitalSceneCombatDependencies,
+  hospitalInfectedOrderlyEncounterDefinition,
 } from './hospital-v0.1/combat'
 export {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,

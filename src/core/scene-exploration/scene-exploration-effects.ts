@@ -17,6 +17,11 @@ import {
   replaceItemState,
 } from '../item-state'
 import { classifyLoad } from '../load'
+import {
+  applyCombatEffects,
+  createFirstCombatEncounter,
+  createReentryCombatEncounter,
+} from '../combat'
 import { createSceneObstaclePrimaryPlan } from '../scene-obstacle'
 import {
   addSceneItems,
@@ -29,6 +34,7 @@ import {
 } from '../scene-search'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
+import { buildSceneCombatPlayerActionEffects } from './scene-combat-transition-plan'
 import type {
   SceneExplorationEffect,
   SceneExplorationDependencies,
@@ -58,6 +64,7 @@ function fail(
     | 'EFFECT_CONTUSION_MISMATCH'
     | 'EFFECT_SPAWN_MISMATCH'
     | 'EFFECT_RISK_MISMATCH'
+    | 'EFFECT_COMBAT_MISMATCH'
     | 'INCOMPLETE_EFFECT_PLAN',
   message: string,
 ): never {
@@ -86,6 +93,190 @@ function sameValue(left: unknown, right: unknown): boolean {
   return JSON.stringify(left) === JSON.stringify(right)
 }
 
+function applySceneCombatStartedEffects(
+  initial: SceneExplorationSnapshot,
+  effects: readonly SceneExplorationEffect[],
+  dependencies: SceneExplorationDependencies,
+): SceneExplorationSnapshot {
+  const startIndex = effects.findIndex(({ kind }) => kind === 'scene-combat-started')
+  const startEffect = effects[startIndex]
+  const statusEffect = effects[startIndex + 1]
+  if (
+    startIndex < 0 ||
+    !startEffect || startEffect.kind !== 'scene-combat-started' ||
+    effects.filter(({ kind }) => kind === 'scene-combat-started').length !== 1 ||
+    effects.length !== startIndex + 2 ||
+    !statusEffect || statusEffect.kind !== 'scene-status-changed' ||
+    statusEffect.fromStatus !== 'active' ||
+    statusEffect.toStatus !== 'combat' ||
+    statusEffect.reason !== 'combat-started' ||
+    !dependencies.sceneCombat
+  ) {
+    fail('EFFECT_COMBAT_MISMATCH', '战斗开始Effect计划不完整')
+  }
+  const beforeStart = applySceneExplorationEffects(
+    initial,
+    effects.slice(0, startIndex),
+    dependencies,
+  )
+  if (beforeStart.status !== 'active' || beforeStart.currentNodeId !== startEffect.nodeId) {
+    fail('EFFECT_COMBAT_MISMATCH', '战斗开始时的场景状态或节点无效')
+  }
+  const definition = dependencies.sceneCombat.encounterCatalog.get(startEffect.encounterId)
+  const encounterIndex = beforeStart.combatState.encounters.findIndex(
+    ({ encounterId }) => encounterId === definition.id,
+  )
+  const encounter = beforeStart.combatState.encounters[encounterIndex]
+  if (
+    encounter?.kind !== 'dormant' || encounter.enemy.defeated ||
+    startEffect.eventId !== definition.eventId ||
+    startEffect.nodeId !== definition.nodeId ||
+    startEffect.enemyInstanceId !== encounter.enemy.enemyInstanceId ||
+    !dependencies.graph.nodes.some(({ id }) => id === startEffect.returnNodeId)
+  ) {
+    fail('EFFECT_COMBAT_MISMATCH', '战斗开始Effect与遭遇状态不一致')
+  }
+  const combatInput = {
+    playerCondition: beforeStart.condition,
+    backpack: beforeStart.backpack,
+    equipment: beforeStart.equipment,
+    quickSlots: beforeStart.quickSlots,
+    itemStates: beforeStart.itemStates,
+    enemy: encounter.enemy,
+    usage: beforeStart.combatState.usage,
+  }
+  const engagement = encounter.enemy.hasBeenEncountered ? 'reentry' : 'first-entry'
+  const expected = engagement === 'reentry'
+    ? createReentryCombatEncounter(combatInput, dependencies.sceneCombat.combat)
+    : createFirstCombatEncounter(
+        combatInput,
+        beforeStart.alertState,
+        dependencies.sceneCombat.combat,
+      )
+  if (startEffect.engagement !== engagement || !sameValue(startEffect.combat, expected)) {
+    fail('EFFECT_COMBAT_MISMATCH', '战斗开始快照未由正式规则生成')
+  }
+  const encounters = [...beforeStart.combatState.encounters]
+  encounters[encounterIndex] = deepFreeze({
+    kind: 'active' as const,
+    encounterId: definition.id,
+    eventId: definition.eventId,
+    nodeId: definition.nodeId,
+    returnNodeId: startEffect.returnNodeId,
+    engagement,
+    combat: expected,
+  })
+  return createSceneExplorationSnapshot({
+    ...beforeStart,
+    status: 'combat',
+    combatState: {
+      encounters,
+      usage: expected.usage,
+    },
+    condition: expected.playerCondition,
+    backpack: expected.backpack,
+    equipment: expected.equipment,
+    quickSlots: expected.quickSlots,
+    itemStates: expected.itemStates,
+  }, dependencies)
+}
+
+function applySceneCombatActionEffects(
+  initial: SceneExplorationSnapshot,
+  effects: readonly SceneExplorationEffect[],
+  dependencies: SceneExplorationDependencies,
+): SceneExplorationSnapshot {
+  const advanced = effects[0]
+  if (
+    !advanced || advanced.kind !== 'scene-combat-advanced' ||
+    !dependencies.sceneCombat || initial.status !== 'combat'
+  ) {
+    fail('EFFECT_COMBAT_MISMATCH', '场景战斗推进Effect起点无效')
+  }
+  const expected = buildSceneCombatPlayerActionEffects(
+    initial,
+    advanced.command,
+    dependencies,
+  )
+  if (!sameValue(effects, expected) || !sameValue(advanced.command, advanced.combatPlan.command)) {
+    fail('EFFECT_COMBAT_MISMATCH', '场景战斗Effect与唯一正式计划不一致')
+  }
+  const activeIndex = initial.combatState.encounters.findIndex(
+    ({ kind }) => kind === 'active',
+  )
+  const active = initial.combatState.encounters[activeIndex]
+  if (active?.kind !== 'active' || active.encounterId !== advanced.encounterId) {
+    fail('EFFECT_COMBAT_MISMATCH', '场景活跃遭遇与战斗推进Effect不一致')
+  }
+  const combat = applyCombatEffects(
+    active.combat,
+    advanced.command,
+    advanced.combatPlan.effects,
+    dependencies.sceneCombat.combat,
+  )
+  const encounters = [...initial.combatState.encounters]
+  if (combat.status === 'awaiting-player') {
+    encounters[activeIndex] = deepFreeze({ ...active, combat })
+    return createSceneExplorationSnapshot({
+      ...initial,
+      combatState: { encounters, usage: combat.usage },
+      condition: combat.playerCondition,
+      backpack: combat.backpack,
+      equipment: combat.equipment,
+      quickSlots: combat.quickSlots,
+      itemStates: combat.itemStates,
+    }, dependencies)
+  }
+
+  const ended = effects.find(({ kind }) => kind === 'scene-combat-ended')
+  const time = effects.find(({ kind }) => kind === 'scene-combat-time-resolved')
+  const finalStatus = [...effects].reverse().find(
+    ({ kind }) => kind === 'scene-status-changed',
+  )
+  if (
+    !ended || ended.kind !== 'scene-combat-ended' ||
+    !time || time.kind !== 'scene-combat-time-resolved' ||
+    !finalStatus || finalStatus.kind !== 'scene-status-changed'
+  ) {
+    fail('INCOMPLETE_EFFECT_PLAN', '终局场景战斗Effect不完整')
+  }
+  encounters[activeIndex] = deepFreeze({
+    kind: 'dormant' as const,
+    encounterId: active.encounterId,
+    eventId: active.eventId,
+    nodeId: active.nodeId,
+    enemy: combat.enemy,
+  })
+  let condition = combat.playerCondition
+  for (const effect of effects) {
+    if (effect.kind === 'health-lost') {
+      condition = applyHealthLoss(
+        condition,
+        effect.requestedLoss,
+        dependencies.config.combat.player,
+      ).state
+    }
+  }
+  const lastNodeChange = [...effects].reverse().find(
+    ({ kind }) => kind === 'scene-node-changed',
+  )
+  const currentNodeId = lastNodeChange?.kind === 'scene-node-changed'
+    ? lastNodeChange.toNodeId
+    : initial.currentNodeId
+  return createSceneExplorationSnapshot({
+    ...initial,
+    status: finalStatus.toStatus,
+    currentNodeId,
+    remainingTime: time.remainingTimeAfter,
+    combatState: { encounters, usage: combat.usage },
+    condition,
+    backpack: combat.backpack,
+    equipment: combat.equipment,
+    quickSlots: combat.quickSlots,
+    itemStates: combat.itemStates,
+  }, dependencies)
+}
+
 export function applySceneExplorationEffects(
   initialSnapshot: SceneExplorationSnapshot,
   effects: readonly SceneExplorationEffect[],
@@ -96,6 +287,18 @@ export function applySceneExplorationEffects(
   const healthRules = dependencies
     ? dependencies.config.combat.player
     : (rulesOrDependencies as PlayerHealthRules)
+  if (effects.some(({ kind }) => kind === 'scene-combat-started')) {
+    if (!dependencies) {
+      fail('EFFECT_COMBAT_MISMATCH', '战斗开始Effect需要完整场景依赖')
+    }
+    return applySceneCombatStartedEffects(initialSnapshot, effects, dependencies)
+  }
+  if (effects.some(({ kind }) => kind === 'scene-combat-advanced')) {
+    if (!dependencies) {
+      fail('EFFECT_COMBAT_MISMATCH', '场景战斗Effect需要完整场景依赖')
+    }
+    return applySceneCombatActionEffects(initialSnapshot, effects, dependencies)
+  }
   if (effects.length === 0) {
     throw new SceneExplorationError('EMPTY_EFFECTS', 'Effect计划不能为空')
   }

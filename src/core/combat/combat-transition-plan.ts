@@ -1,5 +1,8 @@
 import { deepFreeze } from '../config'
+import { calculateEscapeWoundCtbModifier } from '../condition'
+import { calculateBackpackWeightSubtotal } from '../inventory'
 import { consumeCommittedResource, getItemState } from '../item-state'
+import { classifyLoad } from '../load'
 import { CombatError } from './combat-errors'
 import { validateCombatDependencies } from './combat-dependencies'
 import {
@@ -33,6 +36,18 @@ export function buildCombatTransitionPlan(
   const command = createCombatPlayerActionCommand(commandInput)
   if (snapshot.status !== 'awaiting-player') {
     throw new CombatError('COMBAT_NOT_ACTIVE', '战斗不在玩家决策点')
+  }
+  if (command.kind === 'escape') {
+    const weight = calculateBackpackWeightSubtotal(
+      snapshot.backpack,
+      dependencies.physicalCatalog,
+    )
+    if (!classifyLoad(weight, dependencies.config.backpack).canCarry) {
+      throw new CombatError(
+        'CANNOT_ESCAPE_WHILE_UNCARRYABLE',
+        '无法携带状态不能开始逃跑',
+      )
+    }
   }
   if (!getAvailableCombatPlayerActionsFromValidatedSnapshot(
     snapshot,
@@ -105,7 +120,44 @@ export function buildCombatTransitionPlan(
   }
 
   let actionCtb: number
-  if (
+  let isEscape = false
+  let escapeStartedAtCtb = 0
+  let escapeCompletesAtCtb = 0
+  if (command.kind === 'escape') {
+    const backpackWeight = calculateBackpackWeightSubtotal(
+      snapshot.backpack,
+      dependencies.physicalCatalog,
+    )
+    const load = classifyLoad(backpackWeight, dependencies.config.backpack)
+    if (!load.canCarry) {
+      throw new CombatError(
+        'CANNOT_ESCAPE_WHILE_UNCARRYABLE',
+        '无法携带状态不能开始逃跑',
+      )
+    }
+    const wound = calculateEscapeWoundCtbModifier(snapshot.playerCondition, {
+      escape: dependencies.config.combat.escape,
+      painkiller: dependencies.config.medical.painkiller,
+    })
+    const baseCtb = dependencies.config.combat.escape.baseCtb[load.tier]
+    actionCtb = baseCtb + wound.finalWoundCtb
+    escapeStartedAtCtb = currentCtb
+    escapeCompletesAtCtb = currentCtb + actionCtb
+    isEscape = true
+    effects.push({
+      kind: 'combat-escape-preparation-locked',
+      startedAtCtb: escapeStartedAtCtb,
+      loadTier: load.tier,
+      backpackWeight,
+      baseCtb,
+      untreatedOpenWoundCount: wound.untreatedOpenWoundCount,
+      rawWoundCtb: wound.rawWoundCtb,
+      painkillerReductionApplied: wound.painkillerReductionApplied,
+      finalWoundCtb: wound.finalWoundCtb,
+      preparationCtb: actionCtb,
+      completesAtCtb: escapeCompletesAtCtb,
+    })
+  } else if (
     command.kind === 'metal-pipe-basic-attack' ||
     command.kind === 'metal-pipe-charged-strike'
   ) {
@@ -168,7 +220,7 @@ export function buildCombatTransitionPlan(
     })
   }
 
-  if (snapshot.playerCondition.bleeding) {
+  if (!isEscape && snapshot.playerCondition.bleeding) {
     const requested = dependencies.config.combat.postPlayerActionBleedingDamage
     const actual = Math.min(playerHealth, requested)
     effects.push({
@@ -211,7 +263,9 @@ export function buildCombatTransitionPlan(
   playerNext = currentCtb + actionCtb
   effects.push({
     kind: 'combat-ctb-position-changed',
-    reason: 'player-action-scheduled',
+    reason: isEscape
+      ? 'escape-preparation-scheduled'
+      : 'player-action-scheduled',
     currentCtbBefore: currentCtb,
     currentCtbAfter: currentCtb,
     playerNextActionCtbBefore: snapshot.playerNextActionCtb,
@@ -397,7 +451,43 @@ export function buildCombatTransitionPlan(
     enemyNext = nextEnemy
   }
 
-  if (playerHealth > 0 && enemyHealth > 0) {
+  if (playerHealth > 0 && enemyHealth > 0 && isEscape) {
+    effects.push({
+      kind: 'combat-escape-completed',
+      startedAtCtb: escapeStartedAtCtb,
+      completesAtCtb: escapeCompletesAtCtb,
+      preparationCtb: actionCtb,
+    })
+    effects.push({
+      kind: 'combat-ctb-position-changed',
+      reason: 'escape-completed',
+      currentCtbBefore: currentCtb,
+      currentCtbAfter: escapeCompletesAtCtb,
+      playerNextActionCtbBefore: playerNext,
+      playerNextActionCtbAfter: escapeCompletesAtCtb,
+      enemyNextActionCtbBefore: enemyNext,
+      enemyNextActionCtbAfter: enemyNext,
+    })
+    if (bleeding) {
+      const requested = dependencies.config.combat.postPlayerActionBleedingDamage
+      const actual = Math.min(playerHealth, requested)
+      effects.push({
+        kind: 'player-health-lost',
+        source: 'post-player-action-bleeding',
+        healthBefore: playerHealth,
+        requestedLoss: requested,
+        actualLoss: actual,
+        healthAfter: playerHealth - actual,
+      })
+      playerHealth -= actual
+    }
+    effects.push({
+      kind: 'combat-status-changed',
+      from: 'awaiting-player',
+      to: playerHealth === 0 ? 'defeat' : 'escaped',
+      reason: playerHealth === 0 ? 'player-death' : 'escape-completed',
+    })
+  } else if (playerHealth > 0 && enemyHealth > 0) {
     effects.push({
       kind: 'combat-ctb-position-changed',
       reason: 'player-decision-point',

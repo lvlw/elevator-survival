@@ -26,7 +26,8 @@ export function createCombatPlayerActionCommand(
     input.kind !== 'metal-pipe-basic-attack' &&
     input.kind !== 'metal-pipe-charged-strike' &&
     input.kind !== 'defend' &&
-    input.kind !== 'temporary-attack'
+    input.kind !== 'temporary-attack' &&
+    input.kind !== 'escape'
   ) {
     throw new CombatError('INVALID_COMBAT_COMMAND', '未知玩家战斗命令')
   }

@@ -24,6 +24,7 @@ import { createSceneGraph } from '../scene-graph'
 import {
   createInitialSceneExplorationSnapshot,
   createSceneExplorationSnapshot,
+  createMoveThroughSceneEdgeCommand,
   previewSceneMoveCommand,
   resolveSceneMoveCommand,
   SceneExplorationError,
@@ -69,6 +70,67 @@ const graph = createSceneGraph({
     { id: 'middle-far', from: 'middle', to: 'far', baseTravelTime: 20, bidirectional: true },
     { id: 'one-way', from: 'middle', to: 'isolated', baseTravelTime: 10, bidirectional: false },
   ],
+})
+
+describe('strict movement command and snapshot boundaries', () => {
+  it('normalizes only the exact one-field movement command without mutating input', () => {
+    const input = { edgeId: 'safe-middle' }
+    const before = structuredClone(input)
+    const command = createMoveThroughSceneEdgeCommand(input)
+    expect(command).toEqual(input)
+    expect(command).not.toBe(input)
+    expect(Object.isFrozen(command)).toBe(true)
+    expect(input).toEqual(before)
+    expect(Object.isFrozen(input)).toBe(false)
+  })
+
+  it.each([
+    null,
+    [],
+    Object.assign(new Date(0), { edgeId: 'safe-middle' }),
+    { edgeId: '' },
+    { kind: 'move', edgeId: 'safe-middle' },
+    { edgeId: 'safe-middle', toNodeId: 'middle' },
+    { edgeId: 'safe-middle', timeCost: 1 },
+  ])('rejects malformed movement command %#', (input) => {
+    expect(() => createMoveThroughSceneEdgeCommand(input as never)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_MOVE_COMMAND' }),
+    )
+  })
+
+  it('uses the same strict command boundary for preview and resolution', () => {
+    const invalid = { edgeId: 'safe-middle', toNodeId: 'middle' }
+    expect(previewSceneMoveCommand(snapshot(), invalid as never, dependencies))
+      .toEqual({ canExecute: false, rejectionCode: 'INVALID_MOVE_COMMAND' })
+    expect(() => resolveSceneMoveCommand(snapshot(), invalid as never, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_MOVE_COMMAND' }))
+  })
+
+  it('requires all hidden state fields and rejects unknown top-level fields on restore', () => {
+    const complete = snapshot()
+    expect(createSceneExplorationSnapshot(complete, dependencies)).toEqual(complete)
+    for (const field of ['alertState', 'sceneItems', 'combatState'] as const) {
+      const incomplete = { ...complete } as Record<string, unknown>
+      delete incomplete[field]
+      expect(() => createSceneExplorationSnapshot(incomplete as never, dependencies))
+        .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    }
+    expect(() => createSceneExplorationSnapshot(
+      { ...complete, unknown: true } as never,
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+
+  it('keeps defaults exclusive to the initial constructor and deeply freezes output', () => {
+    const initial = snapshot()
+    expect(initial).toMatchObject({
+      alertState: 'unalerted',
+      combatState: { encounters: [], usage: { metalPipeChargedStrikeUses: 0 } },
+    })
+    expect(Object.isFrozen(initial)).toBe(true)
+    expect(Object.isFrozen(initial.sceneItems)).toBe(true)
+    expect(Object.isFrozen(initial.combatState)).toBe(true)
+  })
 })
 const catalog = createItemCatalog([
   { id: 'weight', name: '负重', width: 1, height: 1, unitWeight: 1, canRotate: true, stacking: { kind: 'stackable', maxQuantity: 30 } },
@@ -346,7 +408,7 @@ describe('scene move evaluation', () => {
   })
 
   it.each([
-    ['', 'INVALID_EDGE_ID'],
+    ['', 'INVALID_MOVE_COMMAND'],
     ['missing', 'UNKNOWN_EDGE'],
     ['one-way', 'EDGE_NOT_ENABLED'],
   ])('rejects edge %s as %s without mutation', (edgeId, code) => {

@@ -145,14 +145,14 @@ describe('hospital scene movement command', () => {
       applySceneExplorationEffects(
         start,
         preview.result.effects,
-        config.combat.player,
+        dependencies,
       ),
     ).toEqual(preview.result.snapshot)
     expect(
       applySceneExplorationEffects(
         start,
         resolved.result.effects,
-        config.combat.player,
+        dependencies,
       ),
     ).toEqual(resolved.snapshot)
   })
@@ -226,6 +226,41 @@ describe('hospital scene movement command', () => {
     expect(result.result.finalMovementTime).toBe(expected)
   })
 
+  it('rejects removal of loaded and contusion movement modifiers from replayed Effects', () => {
+    const loadedInventory = backpack(
+      [
+        { instanceId: 'metal', definitionId: HOSPITAL_ITEM_IDS.metalParts, quantity: 5 },
+        { instanceId: 'electronics', definitionId: HOSPITAL_ITEM_IDS.electronicComponents, quantity: 5 },
+        { instanceId: 'fabric', definitionId: HOSPITAL_ITEM_IDS.fabric, quantity: 5 },
+        { instanceId: 'bandages', definitionId: HOSPITAL_ITEM_IDS.bandage, quantity: 2 },
+      ],
+      [at('metal', 0, 0), at('electronics', 1, 0), at('fabric', 2, 0), at('bandages', 3, 0)],
+    )
+    const cases = [
+      scene(HOSPITAL_NODE_IDS.elevatorAnteroom, 100, loadedInventory),
+      scene(
+        HOSPITAL_NODE_IDS.elevatorAnteroom,
+        100,
+        backpack(),
+        addMinorContusion(createInitialPlayerCondition(config.combat.player)),
+      ),
+    ]
+    for (const start of cases) {
+      const formal = resolveSceneMoveCommand(start, {
+        edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall,
+      }, dependencies)
+      const effects = structuredClone(formal.result.effects)
+      const time = effects.find((effect) => effect.kind === 'scene-time-resolved')
+      if (time?.kind !== 'scene-time-resolved') throw new Error('movement time effect required')
+      Object.assign(time, {
+        actionTimeCost: 10,
+        remainingTimeAfter: 90,
+      })
+      expect(() => applySceneExplorationEffects(start, effects, dependencies))
+        .toThrowError(expect.objectContaining({ code: 'INCOMPLETE_EFFECT_PLAN' }))
+    }
+  })
+
   it('keeps the formal overloaded contusion return at 42 and analgesia at 38', () => {
     const inventory = backpack(
       [
@@ -271,7 +306,7 @@ describe('hospital scene movement command', () => {
       applySceneExplorationEffects(
         start,
         result.result.effects,
-        config.combat.player,
+        dependencies,
       ),
     ).toEqual(result.snapshot)
   })
@@ -309,7 +344,7 @@ describe('hospital scene movement command', () => {
       applySceneExplorationEffects(
         start,
         result.result.effects,
-        config.combat.player,
+        dependencies,
       ),
     ).toEqual(result.snapshot)
   })

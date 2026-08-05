@@ -290,6 +290,8 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
       sceneInstanceId: 'pickup-scene',
       searchState,
       sceneItems,
+      alertState: 'unalerted',
+      combatState: { encounters: [], usage: { metalPipeChargedStrikeUses: 0 } },
       status,
       currentNodeId,
       remainingTime,

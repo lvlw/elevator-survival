@@ -112,6 +112,8 @@ function searchedSnapshot(
       sceneInstanceId,
       searchState: revealPreparedMainSearchOutcome(prepared, nodeId),
       sceneItems,
+      alertState: 'unalerted',
+      combatState: { encounters: [], usage: { metalPipeChargedStrikeUses: 0 } },
       status,
       currentNodeId: nodeId,
       remainingTime: 137,

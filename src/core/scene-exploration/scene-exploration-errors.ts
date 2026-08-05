@@ -10,6 +10,7 @@ export type SceneExplorationErrorCode =
   | 'PLAYER_DEAD'
   | 'SCENE_TIME_EXHAUSTED'
   | 'INVALID_EDGE_ID'
+  | 'INVALID_MOVE_COMMAND'
   | 'UNKNOWN_EDGE'
   | 'EDGE_NOT_ENABLED'
   | 'EDGE_NOT_CONNECTED'

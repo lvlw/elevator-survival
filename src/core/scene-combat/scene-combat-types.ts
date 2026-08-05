@@ -36,6 +36,7 @@ export type SceneCombatEncounterSnapshot =
       eventId: string
       nodeId: string
       returnNodeId: string
+      entryEdgeId: string
       engagement: 'first-entry' | 'reentry'
       combat: CombatEncounterSnapshot
     }>

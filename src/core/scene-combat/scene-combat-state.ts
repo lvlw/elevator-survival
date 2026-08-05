@@ -74,6 +74,17 @@ export function createSceneCombatStateSnapshot(
   const encounters: SceneCombatEncounterSnapshot[] = []
   for (let index = 0; index < input.encounters.length; index += 1) {
     const value = input.encounters[index]
+    if (
+      !value ||
+      typeof value !== 'object' ||
+      Array.isArray(value) ||
+      (value.kind !== 'dormant' && value.kind !== 'active')
+    ) {
+      throw new SceneCombatError(
+        'INVALID_SCENE_COMBAT_STATE',
+        '遭遇状态元素必须是具有合法kind的普通对象',
+      )
+    }
     const definition = dependencies.encounterCatalog.get(
       dependencies.encounterCatalog.definitionIds[index],
     )
@@ -108,7 +119,16 @@ export function createSceneCombatStateSnapshot(
         enemy,
       }))
     } else if (value.kind === 'active') {
-      if (!hasExactObjectKeys(value, ['combat', 'encounterId', 'engagement', 'eventId', 'kind', 'nodeId', 'returnNodeId'])) {
+      if (!hasExactObjectKeys(value, [
+        'combat',
+        'encounterId',
+        'engagement',
+        'entryEdgeId',
+        'eventId',
+        'kind',
+        'nodeId',
+        'returnNodeId',
+      ])) {
         throw new SceneCombatError('INVALID_SCENE_COMBAT_STATE', '活跃遭遇字段无效')
       }
       const combat = createCombatEncounterSnapshot(
@@ -121,6 +141,8 @@ export function createSceneCombatStateSnapshot(
         combat.enemy.definitionId !== definition.enemyDefinitionId ||
         typeof value.returnNodeId !== 'string' ||
         value.returnNodeId.trim().length === 0 ||
+        typeof value.entryEdgeId !== 'string' ||
+        value.entryEdgeId.trim().length === 0 ||
         (value.engagement !== 'first-entry' && value.engagement !== 'reentry')
       ) {
         throw new SceneCombatError('INVALID_SCENE_COMBAT_STATE', '活跃遭遇战斗状态无效')
@@ -132,6 +154,7 @@ export function createSceneCombatStateSnapshot(
         eventId: definition.eventId,
         nodeId: definition.nodeId,
         returnNodeId: value.returnNodeId,
+        entryEdgeId: value.entryEdgeId,
         engagement: value.engagement,
         combat,
       }))

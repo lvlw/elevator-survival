@@ -6,11 +6,13 @@ import { createEmptyQuickSlots } from '../../../core/quick-slot'
 import {
   applySceneExplorationEffects,
   createInitialSceneExplorationSnapshot,
+  createSceneExplorationSnapshot,
   getPlayerVisibleSceneCombatState,
   previewMainSearchCommand,
   resolveSceneCombatPlayerAction,
   resolveSceneMoveCommand,
 } from '../../../core/scene-exploration'
+import { SceneCombatError } from '../../../core/scene-combat'
 import { createSceneSearchState } from '../../../core/scene-search'
 import {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
@@ -130,6 +132,9 @@ describe('hospital scene combat encounter lifecycle', () => {
     expect(active.kind).toBe('active')
     if (active.kind !== 'active') throw new Error('encounter must be active')
     expect(active.returnNodeId).toBe(HOSPITAL_NODE_IDS.emergencyHall)
+    expect(active.entryEdgeId).toBe(
+      HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor,
+    )
     expect(active.combat.enemyNextActionCtb).toBe(70)
     expect(previewMainSearchCommand(result.snapshot, {
       illumination: 'search-without-flashlight',
@@ -182,6 +187,9 @@ describe('hospital scene combat encounter lifecycle', () => {
     const active = entered.combatState.encounters[0]
     if (active.kind !== 'active') throw new Error('encounter must be active')
     expect(active.returnNodeId).toBe(HOSPITAL_NODE_IDS.securityOffice)
+    expect(active.entryEdgeId).toBe(
+      HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,
+    )
     expect(entered.backpack.items).toContainEqual(expect.objectContaining({
       instanceId: 'staff-route-card',
       quantity: 1,
@@ -202,6 +210,14 @@ describe('hospital scene combat encounter lifecycle', () => {
     })
     const dormant = victory.snapshot.combatState.encounters[0]
     expect(dormant.kind === 'dormant' && dormant.enemy.defeated).toBe(true)
+    expect(createSceneExplorationSnapshot(victory.snapshot, dependencies))
+      .toEqual(victory.snapshot)
+    const withoutCombatState = { ...victory.snapshot } as Record<string, unknown>
+    delete withoutCombatState.combatState
+    expect(() => createSceneExplorationSnapshot(
+      withoutCombatState as never,
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
     expect(victory.result.effects.filter(({ kind }) => kind === 'scene-combat-time-resolved')).toHaveLength(1)
     const left = resolveSceneMoveCommand(victory.snapshot, {
       edgeId: HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor,
@@ -311,5 +327,250 @@ describe('hospital scene combat encounter lifecycle', () => {
       : effect)
     expect(() => applySceneExplorationEffects(started, tampered, dependencies)).toThrow()
     expect(started.status).toBe('combat')
+  })
+
+  it('rejects every tampered movement-to-combat source fact atomically', () => {
+    const start = scene()
+    const resolved = resolveSceneMoveCommand(start, {
+      edgeId: HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor,
+    }, dependencies)
+    const mutations: ((effects: typeof resolved.result.effects extends readonly (infer E)[] ? E[] : never) => void)[] = [
+      (effects) => Object.assign(effects[0], {
+        edgeId: HOSPITAL_EDGE_IDS.emergencyHallToPharmacy,
+      }),
+      (effects) => Object.assign(effects[0], {
+        edgeId: HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,
+      }),
+      (effects) => Object.assign(effects[0], { fromNodeId: HOSPITAL_NODE_IDS.securityOffice }),
+      (effects) => Object.assign(effects[0], { toNodeId: HOSPITAL_NODE_IDS.pharmacy }),
+      (effects) => Object.assign(effects[1], { actionTimeCost: 1 }),
+      (effects) => Object.assign(effects.find(({ kind }) => kind === 'scene-combat-started')!, {
+        returnNodeId: HOSPITAL_NODE_IDS.securityOffice,
+      }),
+      (effects) => Object.assign(effects.find(({ kind }) => kind === 'scene-combat-started')!, {
+        entryEdgeId: HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,
+      }),
+      (effects) => Object.assign(effects.find(({ kind }) => kind === 'scene-combat-started')!, {
+        encounterId: 'tampered-encounter',
+      }),
+      (effects) => Object.assign(effects.find(({ kind }) => kind === 'scene-combat-started')!, {
+        eventId: 'tampered-event',
+      }),
+      (effects) => Object.assign(effects.find(({ kind }) => kind === 'scene-combat-started')!, {
+        enemyInstanceId: 'tampered-enemy',
+      }),
+      (effects) => Object.assign(effects.find(({ kind }) => kind === 'scene-combat-started')!, {
+        engagement: 'reentry',
+      }),
+      (effects) => {
+        const started = effects.find(({ kind }) => kind === 'scene-combat-started')
+        if (started?.kind === 'scene-combat-started') {
+          Object.assign(started.combat, { enemyNextActionCtb: 1 })
+        }
+      },
+      (effects) => effects.splice(effects.findIndex(({ kind }) => kind === 'scene-combat-started'), 1),
+      (effects) => effects.splice(effects.findIndex(
+        (effect) => effect.kind === 'scene-status-changed' && effect.reason === 'combat-started',
+      ), 1),
+    ]
+    for (const mutate of mutations) {
+      const effects = structuredClone(resolved.result.effects) as never
+      const before = structuredClone(start)
+      mutate(effects)
+      expect(() => applySceneExplorationEffects(start, effects, dependencies))
+        .toThrow()
+      expect(start).toEqual(before)
+    }
+  })
+
+  it('rejects combat suffixes added to ordinary, movement-death, or forced-return plans', () => {
+    const entered = resolveSceneMoveCommand(scene(), {
+      edgeId: HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor,
+    }, dependencies)
+    const combatSuffix = entered.result.effects.filter((effect) =>
+      effect.kind === 'scene-combat-started' ||
+      (effect.kind === 'scene-status-changed' && effect.reason === 'combat-started'))
+    const cases = [
+      {
+        start: scene(),
+        edgeId: HOSPITAL_EDGE_IDS.emergencyHallToPharmacy,
+      },
+      {
+        start: scene({ health: 1, bleeding: true }),
+        edgeId: HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor,
+      },
+      {
+        start: scene({ remainingTime: 5 }),
+        edgeId: HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor,
+      },
+    ] as const
+    for (const { start, edgeId } of cases) {
+      const formal = resolveSceneMoveCommand(start, { edgeId }, dependencies)
+      const before = structuredClone(start)
+      expect(() => applySceneExplorationEffects(
+        start,
+        [...formal.result.effects, ...combatSuffix],
+        dependencies,
+      )).toThrowError(expect.objectContaining({ code: 'INCOMPLETE_EFFECT_PLAN' }))
+      expect(start).toEqual(before)
+    }
+  })
+
+  it('strictly restores active entry edges and rejects unrelated or unauthorized sources', () => {
+    const emergency = enter()
+    expect(createSceneExplorationSnapshot(emergency, dependencies)).toEqual(emergency)
+    const changeActive = (
+      snapshot: typeof emergency,
+      changes: Record<string, unknown>,
+    ) => {
+      const copy = structuredClone(snapshot)
+      const index = copy.combatState.encounters.findIndex(({ kind }) => kind === 'active')
+      return {
+        ...copy,
+        combatState: {
+          ...copy.combatState,
+          encounters: copy.combatState.encounters.map((encounter, encounterIndex) =>
+            encounterIndex === index
+              ? { ...encounter, ...changes } as never
+              : encounter),
+        },
+      }
+    }
+    for (const changes of [
+      { returnNodeId: HOSPITAL_NODE_IDS.pharmacy },
+      { returnNodeId: HOSPITAL_NODE_IDS.isolationCorridor },
+      { entryEdgeId: HOSPITAL_EDGE_IDS.emergencyHallToPharmacy },
+      { entryEdgeId: '' },
+      { unexpected: true },
+    ]) {
+      expect(() => createSceneExplorationSnapshot(
+        changeActive(emergency, changes),
+        dependencies,
+      )).toThrow()
+    }
+    expect(() => createSceneExplorationSnapshot({
+      ...emergency,
+      enabledEdgeIds: HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+
+    const staff = resolveSceneMoveCommand(scene({
+      currentNodeId: HOSPITAL_NODE_IDS.securityOffice,
+      accessCard: true,
+    }), {
+      edgeId: HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,
+    }, dependencies).snapshot
+    expect(createSceneExplorationSnapshot(staff, dependencies)).toEqual(staff)
+    const noCardBackpack = createBackpackSnapshot({
+      width: config.backpack.width,
+      height: config.backpack.height,
+      items: [],
+      placements: [],
+    }, hospitalItemCatalog)
+    const noCardStates = {
+      states: staff.itemStates.states.filter(
+        ({ instanceId }) => instanceId !== 'staff-route-card',
+      ),
+    }
+    const activeIndex = staff.combatState.encounters.findIndex(({ kind }) => kind === 'active')
+    const active = staff.combatState.encounters[activeIndex]
+    if (active.kind !== 'active') throw new Error('encounter must be active')
+    const noCard = {
+      ...staff,
+      backpack: noCardBackpack,
+      itemStates: noCardStates,
+      combatState: {
+        ...staff.combatState,
+        encounters: staff.combatState.encounters.map((encounter, index) =>
+          index === activeIndex
+            ? {
+                ...active,
+                combat: {
+                  ...active.combat,
+                  backpack: noCardBackpack,
+                  itemStates: noCardStates,
+                },
+              }
+            : encounter,
+        ),
+      },
+    }
+    expect(() => createSceneExplorationSnapshot(noCard, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+
+  it('rejects hidden-state omission, invalid encounter elements and impossible encounter statuses', () => {
+    const started = enter()
+    for (const field of ['alertState', 'sceneItems', 'combatState'] as const) {
+      const incomplete = { ...started } as Record<string, unknown>
+      delete incomplete[field]
+      expect(() => createSceneExplorationSnapshot(incomplete as never, dependencies))
+        .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    }
+    expect(() => createSceneExplorationSnapshot({
+      ...started,
+      remainingTime: 0,
+    }, dependencies)).toThrowError(expect.objectContaining({
+      code: 'INVALID_REMAINING_TIME',
+    }))
+    for (const value of [null, [], 1, { kind: 'unknown' }]) {
+      expect(() => createSceneExplorationSnapshot({
+        ...started,
+        combatState: {
+          ...started.combatState,
+          encounters: [value] as never,
+        },
+      }, dependencies)).toThrowError(SceneCombatError)
+    }
+
+    expect(() => createSceneExplorationSnapshot({
+      ...started,
+      currentNodeId: HOSPITAL_NODE_IDS.emergencyHall,
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => createSceneExplorationSnapshot({
+      ...started,
+      status: 'forced-returned',
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+
+    const dormantAtHall = scene()
+    expect(createSceneExplorationSnapshot(dormantAtHall, dependencies))
+      .toEqual(dormantAtHall)
+    expect(() => createSceneExplorationSnapshot({
+      ...dormantAtHall,
+      currentNodeId: HOSPITAL_NODE_IDS.isolationCorridor,
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    const deadAtEncounter = createSceneExplorationSnapshot({
+      ...dormantAtHall,
+      status: 'dead',
+      currentNodeId: HOSPITAL_NODE_IDS.isolationCorridor,
+      condition: createPlayerCondition({
+        ...dormantAtHall.condition,
+        currentHealth: 0,
+      }, config.combat.player),
+    }, dependencies)
+    expect(deadAtEncounter.status).toBe('dead')
+  })
+
+  it('cannot reset escaped enemy state or exploration usage by omitting combatState', () => {
+    const started = enter()
+    const afterBasic = resolveSceneCombatPlayerAction(
+      started,
+      { kind: 'metal-pipe-basic-attack' },
+      dependencies,
+    ).snapshot
+    const afterCharged = resolveSceneCombatPlayerAction(
+      afterBasic,
+      { kind: 'metal-pipe-charged-strike' },
+      dependencies,
+    ).snapshot
+    const escaped = resolveSceneCombatPlayerAction(
+      afterCharged,
+      { kind: 'escape' },
+      dependencies,
+    ).snapshot
+    expect(escaped.combatState.usage.metalPipeChargedStrikeUses).toBe(1)
+    const incomplete = { ...escaped } as Record<string, unknown>
+    delete incomplete.combatState
+    expect(() => createSceneExplorationSnapshot(incomplete as never, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
   })
 })

@@ -143,12 +143,12 @@ describe('scene exploration Effect replay', () => {
     const first = applySceneExplorationEffects(
       start,
       resolved.result.effects,
-      config.combat.player,
+      dependencies,
     )
     const second = applySceneExplorationEffects(
       start,
       resolved.result.effects,
-      config.combat.player,
+      dependencies,
     )
     expect(first).toEqual(resolved.snapshot)
     expect(second).toEqual(first)
@@ -163,7 +163,7 @@ describe('scene exploration Effect replay', () => {
       applySceneExplorationEffects(
         bleedingStart,
         bleeding.result.effects,
-        config.combat.player,
+        dependencies,
       ),
     ).toEqual(bleeding.snapshot)
 
@@ -173,7 +173,7 @@ describe('scene exploration Effect replay', () => {
       applySceneExplorationEffects(
         safeStart,
         safe.result.effects,
-        config.combat.player,
+        dependencies,
       ).status,
     ).toBe('safe-returned')
 
@@ -183,7 +183,7 @@ describe('scene exploration Effect replay', () => {
       applySceneExplorationEffects(
         forcedStart,
         forced.result.effects,
-        config.combat.player,
+        dependencies,
       ),
     ).toEqual(forced.snapshot)
 
@@ -192,7 +192,7 @@ describe('scene exploration Effect replay', () => {
     const replayedDeath = applySceneExplorationEffects(
       deathStart,
       death.result.effects,
-      config.combat.player,
+      dependencies,
     )
     expect(replayedDeath).toMatchObject({ status: 'dead', currentNodeId: 'far' })
     expect(
@@ -204,11 +204,14 @@ describe('scene exploration Effect replay', () => {
     ).toBe(false)
   })
 
-  it('requires no graph, inventory catalog, load rules, or route calculation to replay', () => {
+  it('requires full dependencies to regenerate and verify a movement plan', () => {
     const start = initial()
     const effects = resolve(start).result.effects
-    expect(
+    expect(() =>
       applySceneExplorationEffects(start, effects, config.combat.player),
+    ).toThrowError(expect.objectContaining({ code: 'INCOMPLETE_EFFECT_PLAN' }))
+    expect(
+      applySceneExplorationEffects(start, effects, dependencies),
     ).toMatchObject({ currentNodeId: 'middle', remainingTime: 90 })
   })
 })
@@ -222,7 +225,7 @@ describe('scene exploration Effect tamper detection', () => {
       applySceneExplorationEffects(
         initial(),
         [{ kind: 'unknown' }] as unknown as SceneExplorationEffect[],
-        config.combat.player,
+        dependencies,
       ),
     ).toThrowError(expect.objectContaining({ code: 'UNKNOWN_EFFECT' }))
   })
@@ -234,31 +237,31 @@ describe('scene exploration Effect tamper detection', () => {
       applySceneExplorationEffects(
         start,
         replaceEffect(effects, 0, { fromNodeId: 'safe' }),
-        config.combat.player,
+        dependencies,
       ),
-    ).toThrowError(expect.objectContaining({ code: 'EFFECT_NODE_MISMATCH' }))
+    ).toThrowError(expect.objectContaining({ code: 'INCOMPLETE_EFFECT_PLAN' }))
     expect(() =>
       applySceneExplorationEffects(
         start,
         replaceEffect(effects, 1, { remainingTimeBefore: 6 }),
-        config.combat.player,
+        dependencies,
       ),
-    ).toThrowError(expect.objectContaining({ code: 'EFFECT_TIME_MISMATCH' }))
+    ).toThrowError(expect.objectContaining({ code: 'INCOMPLETE_EFFECT_PLAN' }))
     expect(() =>
       applySceneExplorationEffects(
         start,
         replaceEffect(effects, 2, { healthBefore: 11 }),
-        config.combat.player,
+        dependencies,
       ),
-    ).toThrowError(expect.objectContaining({ code: 'EFFECT_HEALTH_MISMATCH' }))
+    ).toThrowError(expect.objectContaining({ code: 'INCOMPLETE_EFFECT_PLAN' }))
     expect(() =>
       applySceneExplorationEffects(
         start,
         replaceEffect(effects, 2, { actualLoss: 2 }),
-        config.combat.player,
+        dependencies,
       ),
     ).toThrowError(
-      expect.objectContaining({ code: 'EFFECT_HEALTH_RESULT_MISMATCH' }),
+      expect.objectContaining({ code: 'INCOMPLETE_EFFECT_PLAN' }),
     )
     expect(() =>
       applySceneExplorationEffects(
@@ -266,9 +269,9 @@ describe('scene exploration Effect tamper detection', () => {
         replaceEffect(effects, effects.length - 1, {
           fromStatus: 'safe-returned',
         }),
-        config.combat.player,
+        dependencies,
       ),
-    ).toThrowError(expect.objectContaining({ code: 'EFFECT_STATUS_MISMATCH' }))
+    ).toThrowError(expect.objectContaining({ code: 'INCOMPLETE_EFFECT_PLAN' }))
   })
 
   it('rejects time before movement, duplicate time, and reordered health losses', () => {
@@ -277,16 +280,16 @@ describe('scene exploration Effect tamper detection', () => {
       applySceneExplorationEffects(
         initial(),
         [normal[1], normal[0]],
-        config.combat.player,
+        dependencies,
       ),
     ).toThrowError(expect.objectContaining({ code: 'INVALID_EFFECT_ORDER' }))
     expect(() =>
       applySceneExplorationEffects(
         initial(),
         [normal[0], normal[1], normal[1]],
-        config.combat.player,
+        dependencies,
       ),
-    ).toThrowError(expect.objectContaining({ code: 'INVALID_EFFECT_ORDER' }))
+    ).toThrowError(expect.objectContaining({ code: 'INCOMPLETE_EFFECT_PLAN' }))
 
     const forcedStart = initial('middle', 5, 12, true)
     const forced = resolve(forcedStart, 'middle-far').result.effects
@@ -294,9 +297,9 @@ describe('scene exploration Effect tamper detection', () => {
       applySceneExplorationEffects(
         forcedStart,
         [forced[0], forced[1], forced[3], forced[2], ...forced.slice(4)],
-        config.combat.player,
+        dependencies,
       ),
-    ).toThrowError(expect.objectContaining({ code: 'INVALID_EFFECT_ORDER' }))
+    ).toThrowError(expect.objectContaining({ code: 'INCOMPLETE_EFFECT_PLAN' }))
   })
 
   it('rejects node changes after dead and forced status without a return node', () => {
@@ -314,9 +317,9 @@ describe('scene exploration Effect tamper detection', () => {
       applySceneExplorationEffects(
         deathStart,
         [...death, extraNode],
-        config.combat.player,
+        dependencies,
       ),
-    ).toThrowError(expect.objectContaining({ code: 'INVALID_EFFECT_ORDER' }))
+    ).toThrowError(expect.objectContaining({ code: 'INCOMPLETE_EFFECT_PLAN' }))
 
     const forcedStart = initial('middle', 5)
     const forced = resolve(forcedStart, 'middle-far').result.effects
@@ -331,7 +334,7 @@ describe('scene exploration Effect tamper detection', () => {
       applySceneExplorationEffects(
         forcedStart,
         withoutReturnNode,
-        config.combat.player,
+        dependencies,
       ),
     ).toThrowError(
       expect.objectContaining({ code: 'INCOMPLETE_EFFECT_PLAN' }),
@@ -346,9 +349,68 @@ describe('scene exploration Effect tamper detection', () => {
       applySceneExplorationEffects(
         start,
         replaceEffect(effects, 1, { remainingTimeBefore: 999 }),
-        config.combat.player,
+        dependencies,
       ),
     ).toThrowError(SceneExplorationError)
     expect(start).toEqual(before)
+  })
+
+  it('rejects complete-plan movement tampering atomically', () => {
+    const start = initial()
+    const normal = resolve(start).result.effects
+    const normalMutations: ((effects: SceneExplorationEffect[]) => void)[] = [
+      (effects) => Object.assign(effects[0], { edgeId: 'middle-far' }),
+      (effects) => Object.assign(effects[0], { fromNodeId: 'far' }),
+      (effects) => Object.assign(effects[0], { toNodeId: 'far' }),
+      (effects) => Object.assign(effects[1], { actionTimeCost: 1 }),
+      (effects) => Object.assign(effects[1], { remainingTimeBefore: 99 }),
+      (effects) => Object.assign(effects[1], { remainingTimeAfter: 99 }),
+      (effects) => Object.assign(effects[1], { overtimeDebt: 1 }),
+      (effects) => effects.push({
+        kind: 'health-lost',
+        source: 'post-action-bleeding',
+        requestedLoss: 1,
+        actualLoss: 1,
+        healthBefore: 12,
+        healthAfter: 11,
+      }),
+      (effects) => effects.splice(1, 1),
+    ]
+    for (const mutate of normalMutations) {
+      const effects = structuredClone(normal) as SceneExplorationEffect[]
+      const before = structuredClone(start)
+      mutate(effects)
+      expect(() => applySceneExplorationEffects(start, effects, dependencies))
+        .toThrowError(SceneExplorationError)
+      expect(start).toEqual(before)
+    }
+
+    const forcedStart = initial('middle', 5, 12, true)
+    const forced = resolve(forcedStart, 'middle-far').result.effects
+    const forcedMutations: ((effects: SceneExplorationEffect[]) => void)[] = [
+      (effects) => effects.splice(effects.findIndex(
+        (effect) => effect.kind === 'health-lost' && effect.source === 'post-action-bleeding',
+      ), 1),
+      (effects) => effects.splice(effects.findIndex(
+        (effect) => effect.kind === 'scene-node-changed' && effect.reason === 'forced-return',
+      ), 1),
+      (effects) => Object.assign(effects.find(
+        (effect) => effect.kind === 'scene-node-changed' && effect.reason === 'forced-return',
+      )!, { toNodeId: 'middle' }),
+      (effects) => Object.assign(effects.find(
+        (effect) => effect.kind === 'scene-node-changed' && effect.reason === 'forced-return',
+      )!, { routeEdgeIds: [] }),
+      (effects) => effects.splice(effects.findIndex(
+        (effect) => effect.kind === 'scene-status-changed',
+      ), 1),
+    ]
+    for (const mutate of forcedMutations) {
+      const effects = structuredClone(forced) as SceneExplorationEffect[]
+      const before = structuredClone(forcedStart)
+      mutate(effects)
+      expect(() => applySceneExplorationEffects(forcedStart, effects, dependencies))
+        .toThrowError(SceneExplorationError)
+      expect(forcedStart).toEqual(before)
+    }
   })
 })

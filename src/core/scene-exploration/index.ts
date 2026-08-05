@@ -14,6 +14,8 @@ export {
   previewSceneMoveCommand,
   resolveSceneMoveCommand,
 } from './scene-move-resolution'
+export { createMoveThroughSceneEdgeCommand } from './scene-move-command'
+export { buildSceneMoveTransitionPlan } from './scene-move-transition-plan'
 export {
   previewMainSearchCommand,
   resolveMainSearchCommand,
@@ -49,6 +51,7 @@ export type {
   SceneExplorationEffect,
   SceneExplorationSnapshot,
   SceneExplorationSnapshotInput,
+  SceneExplorationInitialSnapshotInput,
   SceneAlertState,
   SceneExplorationStatus,
   SceneObstacleCommandDependencies,

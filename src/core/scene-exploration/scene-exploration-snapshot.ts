@@ -2,7 +2,11 @@ import { deepFreeze } from '../config'
 import { createPlayerCondition } from '../condition'
 import { createItemStateCollectionSnapshot } from '../item-state'
 import { createCarriedItemContainersSnapshot } from '../quick-slot'
-import { validateTraversalAvailability } from '../scene-graph'
+import {
+  getSceneEdgeTraversal,
+  validateTraversalAvailability,
+} from '../scene-graph'
+import { getEffectiveEnabledEdgeIds } from '../scene-access'
 import { validateSceneSearchState } from '../scene-search'
 import {
   createInitialSceneCombatState,
@@ -16,6 +20,7 @@ import { SceneExplorationError } from './scene-exploration-errors'
 import type {
   SceneExplorationDependencies,
   SceneExplorationSnapshot,
+  SceneExplorationInitialSnapshotInput,
   SceneExplorationSnapshotInput,
   SceneExplorationStatus,
 } from './scene-exploration-types'
@@ -28,10 +33,41 @@ const STATUSES: readonly SceneExplorationStatus[] = [
   'dead',
 ]
 
+const SNAPSHOT_KEYS = [
+  'alertState',
+  'backpack',
+  'combatState',
+  'condition',
+  'currentNodeId',
+  'enabledEdgeIds',
+  'equipment',
+  'itemStates',
+  'quickSlots',
+  'remainingTime',
+  'sceneInstanceId',
+  'sceneItems',
+  'searchState',
+  'status',
+] as const
+
+function hasExactSnapshotKeys(value: unknown): value is SceneExplorationSnapshotInput {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false
+  const actual = Object.keys(value).sort()
+  const expected = [...SNAPSHOT_KEYS].sort()
+  return actual.length === expected.length &&
+    actual.every((key, index) => key === expected[index])
+}
+
 export function createSceneExplorationSnapshot(
   input: SceneExplorationSnapshotInput,
   dependencies: SceneExplorationDependencies,
 ): SceneExplorationSnapshot {
+  if (!hasExactSnapshotKeys(input)) {
+    throw new SceneExplorationError(
+      'INVALID_INPUT',
+      '正式场景快照必须包含且只包含全部正式字段',
+    )
+  }
   if (!STATUSES.includes(input.status)) {
     throw new SceneExplorationError('INVALID_STATUS', '场景探索状态无效')
   }
@@ -55,10 +91,11 @@ export function createSceneExplorationSnapshot(
     itemCatalog: dependencies.physicalCatalog,
     itemResourceCatalog: dependencies.itemResourceCatalog,
   }
-  const sceneItems = input.sceneItems
-    ? createSceneItemsSnapshot(input.sceneItems, sceneItemsDependencies)
-    : createEmptySceneItemsSnapshot(sceneItemsDependencies)
-  const alertState = input.alertState ?? 'unalerted'
+  const sceneItems = createSceneItemsSnapshot(
+    input.sceneItems,
+    sceneItemsDependencies,
+  )
+  const alertState = input.alertState
   if (alertState !== 'unalerted' && alertState !== 'alerted') {
     throw new SceneExplorationError('INVALID_INPUT', '场景警觉状态无效')
   }
@@ -153,18 +190,14 @@ export function createSceneExplorationSnapshot(
   )
   const combatState = dependencies.sceneCombat
     ? createSceneCombatStateSnapshot(
-        input.combatState ?? createInitialSceneCombatState(
-          input.sceneInstanceId,
-          dependencies.sceneCombat,
-        ),
+        input.combatState,
         input.sceneInstanceId,
         dependencies.sceneCombat,
       )
     : deepFreeze({
         encounters: [],
         usage: {
-          metalPipeChargedStrikeUses:
-            input.combatState?.usage.metalPipeChargedStrikeUses ?? 0,
+          metalPipeChargedStrikeUses: input.combatState.usage.metalPipeChargedStrikeUses,
         },
       })
   if (
@@ -179,7 +212,7 @@ export function createSceneExplorationSnapshot(
   ) {
     throw new SceneExplorationError('INVALID_INPUT', '场景战斗使用次数无效')
   }
-  if (!dependencies.sceneCombat && (input.combatState?.encounters.length ?? 0) > 0) {
+  if (!dependencies.sceneCombat && input.combatState.encounters.length > 0) {
     throw new SceneExplorationError('INVALID_INPUT', '缺少遭遇依赖时不能恢复场景战斗状态')
   }
   const activeEncounters = combatState.encounters.filter(({ kind }) => kind === 'active')
@@ -189,6 +222,34 @@ export function createSceneExplorationSnapshot(
     !dependencies.graph.nodes.some(({ id }) => id === activeEncounter.returnNodeId)
   ) {
     throw new SceneExplorationError('INVALID_INPUT', '战斗逃跑返回节点无效')
+  }
+  if (activeEncounter?.kind === 'active') {
+    if (
+      activeEncounter.returnNodeId === activeEncounter.nodeId ||
+      !dependencies.graph.edges.some(({ id }) => id === activeEncounter.entryEdgeId)
+    ) {
+      throw new SceneExplorationError('INVALID_INPUT', '战斗进入来源节点或入口边无效')
+    }
+    const effectiveEnabledEdgeIds = getEffectiveEnabledEdgeIds(
+      { enabledEdgeIds: input.enabledEdgeIds, backpack: carried.backpack },
+      dependencies.edgeAccessCatalog,
+    )
+    try {
+      const traversal = getSceneEdgeTraversal(
+        dependencies.graph,
+        activeEncounter.entryEdgeId,
+        activeEncounter.returnNodeId,
+        { enabledEdgeIds: effectiveEnabledEdgeIds },
+      )
+      if (traversal.toNodeId !== activeEncounter.nodeId) {
+        throw new Error('entry edge target mismatch')
+      }
+    } catch {
+      throw new SceneExplorationError(
+        'INVALID_INPUT',
+        '活跃战斗入口边不能从来源节点合法通往遭遇节点',
+      )
+    }
   }
   const mirrorsCombat = activeEncounter?.kind === 'active' &&
     activeEncounter.nodeId === input.currentNodeId &&
@@ -203,6 +264,26 @@ export function createSceneExplorationSnapshot(
     (input.status !== 'combat' && activeEncounters.length !== 0)
   ) {
     throw new SceneExplorationError('INVALID_INPUT', '场景状态与活跃战斗遭遇不一致')
+  }
+  if (input.status === 'combat' && input.remainingTime === 0) {
+    throw new SceneExplorationError(
+      'INVALID_REMAINING_TIME',
+      '战斗中的场景必须保有正场景时间',
+    )
+  }
+  if (input.status === 'active' && dependencies.sceneCombat) {
+    const definition = dependencies.sceneCombat.encounterCatalog.getByNodeId(
+      input.currentNodeId,
+    )
+    const encounter = definition
+      ? combatState.encounters.find(({ encounterId }) => encounterId === definition.id)
+      : null
+    if (encounter?.kind === 'dormant' && !encounter.enemy.defeated) {
+      throw new SceneExplorationError(
+        'INVALID_INPUT',
+        '普通active状态不能停留在仍有自动遭遇敌人的节点',
+      )
+    }
   }
   if (
     ((input.status === 'active' || input.status === 'combat') && condition.currentHealth === 0) ||
@@ -232,11 +313,32 @@ export function createSceneExplorationSnapshot(
 }
 
 export function createInitialSceneExplorationSnapshot(
-  input: Omit<SceneExplorationSnapshotInput, 'status'>,
+  input: SceneExplorationInitialSnapshotInput,
   dependencies: SceneExplorationDependencies,
 ): SceneExplorationSnapshot {
+  const sceneItemsDependencies = {
+    graph: dependencies.graph,
+    itemCatalog: dependencies.physicalCatalog,
+    itemResourceCatalog: dependencies.itemResourceCatalog,
+  }
+  const combatState = input.combatState ?? (
+    dependencies.sceneCombat
+      ? createInitialSceneCombatState(input.sceneInstanceId, dependencies.sceneCombat)
+      : deepFreeze({
+          encounters: [],
+          usage: { metalPipeChargedStrikeUses: 0 },
+        })
+  )
   return createSceneExplorationSnapshot(
-    { ...input, status: 'active' },
+    {
+      ...input,
+      status: 'active',
+      alertState: input.alertState ?? 'unalerted',
+      sceneItems: input.sceneItems ?? createEmptySceneItemsSnapshot(
+        sceneItemsDependencies,
+      ),
+      combatState,
+    },
     dependencies,
   )
 }

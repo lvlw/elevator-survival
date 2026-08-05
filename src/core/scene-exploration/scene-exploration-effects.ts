@@ -35,6 +35,8 @@ import {
 import { SceneExplorationError } from './scene-exploration-errors'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
 import { buildSceneCombatPlayerActionEffects } from './scene-combat-transition-plan'
+import { createMoveThroughSceneEdgeCommand } from './scene-move-command'
+import { buildSceneMoveTransitionPlan } from './scene-move-transition-plan'
 import type {
   SceneExplorationEffect,
   SceneExplorationDependencies,
@@ -114,10 +116,12 @@ function applySceneCombatStartedEffects(
   ) {
     fail('EFFECT_COMBAT_MISMATCH', '战斗开始Effect计划不完整')
   }
-  const beforeStart = applySceneExplorationEffects(
+  const beforeStart = applySceneExplorationEffectsInternal(
     initial,
     effects.slice(0, startIndex),
     dependencies,
+    true,
+    true,
   )
   if (beforeStart.status !== 'active' || beforeStart.currentNodeId !== startEffect.nodeId) {
     fail('EFFECT_COMBAT_MISMATCH', '战斗开始时的场景状态或节点无效')
@@ -127,10 +131,17 @@ function applySceneCombatStartedEffects(
     ({ encounterId }) => encounterId === definition.id,
   )
   const encounter = beforeStart.combatState.encounters[encounterIndex]
+  const movementEffect = effects[0]
   if (
+    !movementEffect ||
+    movementEffect.kind !== 'scene-node-changed' ||
+    movementEffect.reason !== 'movement' ||
     encounter?.kind !== 'dormant' || encounter.enemy.defeated ||
     startEffect.eventId !== definition.eventId ||
     startEffect.nodeId !== definition.nodeId ||
+    startEffect.returnNodeId !== movementEffect.fromNodeId ||
+    startEffect.nodeId !== movementEffect.toNodeId ||
+    startEffect.entryEdgeId !== movementEffect.edgeId ||
     startEffect.enemyInstanceId !== encounter.enemy.enemyInstanceId ||
     !dependencies.graph.nodes.some(({ id }) => id === startEffect.returnNodeId)
   ) {
@@ -163,6 +174,7 @@ function applySceneCombatStartedEffects(
     eventId: definition.eventId,
     nodeId: definition.nodeId,
     returnNodeId: startEffect.returnNodeId,
+    entryEdgeId: startEffect.entryEdgeId,
     engagement,
     combat: expected,
   })
@@ -277,16 +289,45 @@ function applySceneCombatActionEffects(
   }, dependencies)
 }
 
-export function applySceneExplorationEffects(
+function applySceneExplorationEffectsInternal(
   initialSnapshot: SceneExplorationSnapshot,
   effects: readonly SceneExplorationEffect[],
   rulesOrDependencies: PlayerHealthRules | SceneExplorationDependencies,
+  movementPlanValidated = false,
+  deferStrictSnapshot = false,
 ): SceneExplorationSnapshot {
   const dependencies =
     'graph' in rulesOrDependencies ? rulesOrDependencies : null
   const healthRules = dependencies
     ? dependencies.config.combat.player
     : (rulesOrDependencies as PlayerHealthRules)
+  const firstEffect = effects[0]
+  if (
+    !movementPlanValidated &&
+    firstEffect?.kind === 'scene-node-changed' &&
+    firstEffect.reason === 'movement'
+  ) {
+    if (!dependencies) {
+      fail('INCOMPLETE_EFFECT_PLAN', '移动Effect回放需要完整场景探索依赖')
+    }
+    const command = createMoveThroughSceneEdgeCommand({
+      edgeId: firstEffect.edgeId,
+    })
+    const expected = buildSceneMoveTransitionPlan(
+      initialSnapshot,
+      command,
+      dependencies,
+    )
+    if (!sameValue(effects, expected.effects)) {
+      fail('INCOMPLETE_EFFECT_PLAN', '移动Effect与唯一正式移动计划不一致')
+    }
+    return applySceneExplorationEffectsInternal(
+      initialSnapshot,
+      effects,
+      dependencies,
+      true,
+    )
+  }
   if (effects.some(({ kind }) => kind === 'scene-combat-started')) {
     if (!dependencies) {
       fail('EFFECT_COMBAT_MISMATCH', '战斗开始Effect需要完整场景依赖')
@@ -1045,7 +1086,19 @@ export function applySceneExplorationEffects(
   if (sawForcedReturn && state.status !== 'forced-returned') {
     fail('INCOMPLETE_EFFECT_PLAN', '强制返程节点变化后必须提交对应状态')
   }
-  return dependencies
+  return dependencies && !deferStrictSnapshot
     ? createSceneExplorationSnapshot(state, dependencies)
     : deepFreeze(state)
+}
+
+export function applySceneExplorationEffects(
+  initialSnapshot: SceneExplorationSnapshot,
+  effects: readonly SceneExplorationEffect[],
+  rulesOrDependencies: PlayerHealthRules | SceneExplorationDependencies,
+): SceneExplorationSnapshot {
+  return applySceneExplorationEffectsInternal(
+    initialSnapshot,
+    effects,
+    rulesOrDependencies,
+  )
 }

@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { type FrozenRuleConfig } from '../config'
 import { createPlayerCondition } from '../condition'
+import { createEmptySceneItemsSnapshot } from '../scene-items'
 import { createEquipmentProfileCatalog } from '../equipment'
 import { createBackpackSnapshot, createItemCatalog } from '../inventory'
 import {
@@ -303,6 +304,13 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
     {
       sceneInstanceId: 'scene-command',
       searchState,
+      sceneItems: createEmptySceneItemsSnapshot({
+        graph,
+        itemCatalog: physicalCatalog,
+        itemResourceCatalog,
+      }),
+      alertState: 'unalerted',
+      combatState: { encounters: [], usage: { metalPipeChargedStrikeUses: 0 } },
       status,
       currentNodeId: nodeId,
       remainingTime,

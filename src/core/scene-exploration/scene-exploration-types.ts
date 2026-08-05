@@ -78,11 +78,15 @@ export interface SceneExplorationSnapshot {
   readonly combatState: SceneCombatStateSnapshot
 }
 
-export type SceneExplorationSnapshotInput = Omit<
+export type SceneExplorationSnapshotInput = SceneExplorationSnapshot
+
+export type SceneExplorationInitialSnapshotInput = Omit<
+  SceneExplorationSnapshot,
+  'status' | 'alertState' | 'sceneItems' | 'combatState'
+> & Partial<Pick<
   SceneExplorationSnapshot,
   'alertState' | 'sceneItems' | 'combatState'
-> &
-  Partial<Pick<SceneExplorationSnapshot, 'alertState' | 'sceneItems' | 'combatState'>>
+>>
 
 export interface SceneExplorationDependencies {
   readonly graph: SceneGraph
@@ -151,6 +155,7 @@ export type SceneExplorationEffect =
       eventId: string
       nodeId: string
       returnNodeId: string
+      entryEdgeId: string
       enemyInstanceId: string
       engagement: 'first-entry' | 'reentry'
       combat: import('../combat').CombatEncounterSnapshot

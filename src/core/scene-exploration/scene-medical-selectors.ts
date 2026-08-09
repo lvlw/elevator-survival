@@ -1,5 +1,5 @@
 import { deepFreeze } from '../config'
-import { getUntreatedOpenWounds } from '../condition'
+import { getAvailableMedicalTargets } from '../medical'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
 import { validateSceneMedicalDependencies } from './scene-medical-dependencies'
 import { getSceneMedicalItemKind } from './scene-medical-support'
@@ -54,48 +54,16 @@ export function getAvailableSceneMedicalCommandsFromValidatedSnapshot(
     snapshot.remainingTime === 0
   ) return deepFreeze([])
 
-  const untreatedWounds = getUntreatedOpenWounds(snapshot.condition)
-    .slice()
-    .sort((left, right) => left.id.localeCompare(right.id))
   const result: UseSceneMedicalItemCommand[] = []
   for (const candidate of sources(snapshot, dependencies)) {
-    if (candidate.medicalItem === 'bandage') {
-      const canUse =
-        snapshot.condition.currentHealth < dependencies.config.combat.player.maxHealth ||
-        snapshot.condition.bleeding ||
-        untreatedWounds.length > 0
-      if (!canUse) continue
-      if (untreatedWounds.length === 0) result.push({ source: candidate.source })
-      else for (const wound of untreatedWounds) {
-        result.push({ source: candidate.source, target: { kind: 'open-wound', woundId: wound.id } })
-      }
-      continue
+    for (const target of getAvailableMedicalTargets(
+      snapshot.condition,
+      snapshot.dailyMedicalUsage,
+      candidate.medicalItem,
+      dependencies.config,
+    )) {
+      result.push(target ? { source: candidate.source, target } : { source: candidate.source })
     }
-    if (candidate.medicalItem === 'painkiller') {
-      if (!snapshot.condition.painkillerActive && (snapshot.condition.minorContusions > 0 || untreatedWounds.length > 0)) {
-        result.push({ source: candidate.source })
-      }
-      continue
-    }
-    if (candidate.medicalItem === 'disinfectant') {
-      if (
-        snapshot.condition.pendingInfectionExposures > 0 &&
-        snapshot.dailyMedicalUsage.disinfectantUsesToday < dependencies.config.medical.disinfectant.maxUsesPerDay
-      ) result.push({ source: candidate.source })
-      continue
-    }
-    const hasInjury = snapshot.condition.minorContusions > 0 || snapshot.condition.openWounds.length > 0
-    const canUse =
-      snapshot.condition.currentHealth < dependencies.config.combat.player.maxHealth ||
-      hasInjury
-    if (!canUse) continue
-    if (snapshot.condition.minorContusions > 0) {
-      result.push({ source: candidate.source, target: { kind: 'minor-contusion' } })
-    }
-    for (const wound of snapshot.condition.openWounds.slice().sort((left, right) => left.id.localeCompare(right.id))) {
-      result.push({ source: candidate.source, target: { kind: 'open-wound', woundId: wound.id } })
-    }
-    if (!hasInjury) result.push({ source: candidate.source })
   }
   return deepFreeze(result.sort((left, right) => commandSortKey(left).localeCompare(commandSortKey(right))))
 }

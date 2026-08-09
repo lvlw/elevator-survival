@@ -1,4 +1,5 @@
 import { getItemState } from '../item-state'
+import { getMedicalItemKind } from '../medical'
 import { SceneExplorationError } from './scene-exploration-errors'
 import type {
   SceneExplorationSnapshot,
@@ -19,12 +20,7 @@ export function getSceneMedicalItemKind(
   definitionId: string,
   dependencies: SceneMedicalCommandDependencies,
 ): SceneMedicalItemKind | null {
-  const bindings = dependencies.medicalBindings
-  if (definitionId === bindings.bandageDefinitionId) return 'bandage'
-  if (definitionId === bindings.painkillerDefinitionId) return 'painkiller'
-  if (definitionId === bindings.disinfectantDefinitionId) return 'disinfectant'
-  if (definitionId === bindings.firstAidKitDefinitionId) return 'first-aid-kit'
-  return null
+  return getMedicalItemKind(definitionId, dependencies.medicalBindings)
 }
 
 export function resolveSceneMedicalSource(

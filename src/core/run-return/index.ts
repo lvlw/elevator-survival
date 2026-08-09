@@ -28,6 +28,7 @@ export type {
   RunReturnSnapshot,
   RunReturnSummary,
   RunReturnTransitionPlan,
+  RunStorageDependencies,
   RunStoredInventorySnapshot,
   RunTaskStorageSnapshot,
   RunWarehouseSnapshot,

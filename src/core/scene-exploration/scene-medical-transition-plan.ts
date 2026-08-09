@@ -1,15 +1,8 @@
 import { deepFreeze } from '../config'
 import {
-  activatePainkiller,
-  getUntreatedOpenWounds,
   hasMinorContusions,
-  removeOneMinorContusion,
-  reducePendingInfectionExposure,
-  removeOpenWound,
-  restoreHealth,
-  setBleeding,
-  treatOpenWound,
 } from '../condition'
+import { buildMedicalPrimaryPlan, MedicalContentError } from '../medical'
 import {
   calculateBackpackWeightSubtotal,
   createBackpackSnapshot,
@@ -136,128 +129,96 @@ export function buildSceneMedicalTransitionPlan(
     quantityAfter: source.item.quantity - 1,
   }]
 
-  let condition = snapshot.condition
-  let actionTime: number
-  if (source.medicalItem === 'bandage') {
-    const recovery = restoreHealth(
-      condition,
-      dependencies.config.medical.bandage.healthRecovery,
-      dependencies.config.combat.player,
+  let primary
+  try {
+    primary = buildMedicalPrimaryPlan(
+      snapshot.condition,
+      snapshot.dailyMedicalUsage,
+      source.medicalItem,
+      command.target,
+      dependencies.config,
     )
-    effects.push({
-      kind: 'scene-health-restored',
-      source: 'scene-bandage',
-      healthBefore: recovery.healthBefore,
-      requestedRecovery: recovery.requestedRecovery,
-      actualRecovery: recovery.actualRecovery,
-      healthAfter: recovery.healthAfter,
-      unusedRecovery: recovery.unusedRecovery,
-    })
-    condition = recovery.state
-    if (condition.bleeding && dependencies.config.medical.bandage.stopsBleeding) {
-      effects.push({
-        kind: 'scene-bleeding-changed',
-        source: 'scene-bandage',
-        before: true,
-        after: false,
-      })
-      condition = setBleeding(condition, false)
+  } catch (error) {
+    if (error instanceof MedicalContentError) {
+      throw new SceneExplorationError('SCENE_MEDICAL_NOT_AVAILABLE', error.message)
     }
-    const target = command.target
-    if (target?.kind === 'open-wound') {
-      const selected = condition.openWounds.find(
-        ({ id }) => id === target.woundId,
-      )
-      if (!selected) throw new SceneExplorationError('SCENE_MEDICAL_NOT_AVAILABLE', '指定开放伤口不存在')
-      effects.push({
-        kind: 'scene-open-wound-treated',
-        source: 'scene-bandage',
-        woundId: selected.id,
-        woundKind: selected.kind,
-        treatmentBefore: 'untreated',
-        treatmentAfter: 'treated',
-      })
-      condition = treatOpenWound(condition, selected.id)
-    }
-    actionTime = dependencies.config.medical.bandage.sceneTime
-  } else if (source.medicalItem === 'painkiller') {
-    effects.push({ kind: 'scene-painkiller-changed', before: false, after: true })
-    condition = activatePainkiller(condition)
-    actionTime = dependencies.config.medical.painkiller.sceneTime
-  } else if (source.medicalItem === 'disinfectant') {
-    const reduction = reducePendingInfectionExposure(
-      condition,
-      dependencies.config.medical.disinfectant.pendingExposureReduction,
-    )
-    effects.push({
-      kind: 'scene-infection-exposure-reduced',
-      source: 'scene-disinfectant',
-      exposuresBefore: reduction.exposuresBefore,
-      requestedReduction: reduction.requestedReduction,
-      actualReduction: reduction.actualReduction,
-      exposuresAfter: reduction.exposuresAfter,
-      unusedReduction: reduction.unusedReduction,
-    })
-    condition = reduction.state
-    effects.push({
-      kind: 'daily-medical-usage-changed',
-      usage: 'disinfectant',
-      usesBefore: snapshot.dailyMedicalUsage.disinfectantUsesToday,
-      usesAfter: snapshot.dailyMedicalUsage.disinfectantUsesToday + 1,
-    })
-    actionTime = dependencies.config.medical.disinfectant.sceneTime
-  } else {
-    const recovery = restoreHealth(
-      condition,
-      dependencies.config.medical.firstAidKit.healthRecovery,
-      dependencies.config.combat.player,
-    )
-    effects.push({
-      kind: 'scene-health-restored',
-      source: 'scene-first-aid-kit',
-      healthBefore: recovery.healthBefore,
-      requestedRecovery: recovery.requestedRecovery,
-      actualRecovery: recovery.actualRecovery,
-      healthAfter: recovery.healthAfter,
-      unusedRecovery: recovery.unusedRecovery,
-    })
-    condition = recovery.state
-    const target = command.target
-    if (target?.kind === 'minor-contusion') {
-      effects.push({
-        kind: 'scene-minor-contusion-removed',
-        source: 'scene-first-aid-kit',
-        countBefore: condition.minorContusions,
-        removed: 1,
-        countAfter: condition.minorContusions - 1,
-      })
-      condition = removeOneMinorContusion(condition)
-    } else if (target?.kind === 'open-wound') {
-      const selected = condition.openWounds.find(({ id }) => id === target.woundId)
-      if (!selected) throw new SceneExplorationError('SCENE_MEDICAL_NOT_AVAILABLE', '指定轻伤不存在')
-      effects.push({
-        kind: 'scene-open-wound-removed',
-        source: 'scene-first-aid-kit',
-        woundId: selected.id,
-        woundKind: selected.kind,
-      })
-      condition = removeOpenWound(condition, selected.id)
-      if (
-        condition.bleeding &&
-        dependencies.config.medical.firstAidKit.stopsBleedingWhenRemovingLastOpenWound &&
-        getUntreatedOpenWounds(condition).length === 0
-      ) {
+    throw error
+  }
+  for (const effect of primary.effects) {
+    switch (effect.kind) {
+      case 'health-restored':
+        effects.push({
+          kind: 'scene-health-restored',
+          source: effect.item === 'bandage' ? 'scene-bandage' : 'scene-first-aid-kit',
+          healthBefore: effect.healthBefore,
+          requestedRecovery: effect.requestedRecovery,
+          actualRecovery: effect.actualRecovery,
+          healthAfter: effect.healthAfter,
+          unusedRecovery: effect.unusedRecovery,
+        })
+        break
+      case 'bleeding-changed':
         effects.push({
           kind: 'scene-bleeding-changed',
-          source: 'scene-first-aid-kit',
-          before: true,
-          after: false,
+          source: effect.item === 'bandage' ? 'scene-bandage' : 'scene-first-aid-kit',
+          before: effect.before,
+          after: effect.after,
         })
-        condition = setBleeding(condition, false)
-      }
+        break
+      case 'open-wound-treated':
+        effects.push({
+          kind: 'scene-open-wound-treated',
+          source: 'scene-bandage',
+          woundId: effect.woundId,
+          woundKind: effect.woundKind,
+          treatmentBefore: 'untreated',
+          treatmentAfter: 'treated',
+        })
+        break
+      case 'open-wound-removed':
+        effects.push({
+          kind: 'scene-open-wound-removed',
+          source: 'scene-first-aid-kit',
+          woundId: effect.woundId,
+          woundKind: effect.woundKind,
+        })
+        break
+      case 'minor-contusion-removed':
+        effects.push({
+          kind: 'scene-minor-contusion-removed',
+          source: 'scene-first-aid-kit',
+          countBefore: effect.countBefore,
+          removed: effect.removed,
+          countAfter: effect.countAfter,
+        })
+        break
+      case 'painkiller-changed':
+        effects.push({ kind: 'scene-painkiller-changed', before: effect.before, after: effect.after })
+        break
+      case 'infection-exposure-reduced':
+        effects.push({
+          kind: 'scene-infection-exposure-reduced',
+          source: 'scene-disinfectant',
+          exposuresBefore: effect.exposuresBefore,
+          requestedReduction: effect.requestedReduction,
+          actualReduction: effect.actualReduction,
+          exposuresAfter: effect.exposuresAfter,
+          unusedReduction: effect.unusedReduction,
+        })
+        break
+      case 'daily-medical-usage-changed':
+        effects.push(effect)
+        break
     }
-    actionTime = dependencies.config.medical.firstAidKit.sceneTime
   }
+  const condition = primary.condition
+  const actionTime = source.medicalItem === 'bandage'
+    ? dependencies.config.medical.bandage.sceneTime
+    : source.medicalItem === 'painkiller'
+      ? dependencies.config.medical.painkiller.sceneTime
+      : source.medicalItem === 'disinfectant'
+        ? dependencies.config.medical.disinfectant.sceneTime
+        : dependencies.config.medical.firstAidKit.sceneTime
 
   const backpackWeight = calculateBackpackWeightSubtotal(
     backpackAfterConsumption,

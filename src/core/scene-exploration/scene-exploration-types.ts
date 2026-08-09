@@ -2,6 +2,11 @@ import type { FrozenRuleConfig } from '../config'
 import type { PlayerConditionSnapshot } from '../condition'
 import type { DailyMedicalUsageSnapshot } from '../daily-state'
 import type {
+  MedicalContentBindings,
+  MedicalItemKind,
+  MedicalTarget,
+} from '../medical'
+import type {
   EquipmentProfileCatalog,
   EquipmentSnapshot,
 } from '../equipment'
@@ -98,18 +103,9 @@ export type SceneExplorationInitialSnapshotInput = Omit<
   'alertState' | 'sceneItems' | 'combatState' | 'taskEvents'
 >>
 
-export type SceneMedicalItemKind =
-  | 'bandage'
-  | 'painkiller'
-  | 'disinfectant'
-  | 'first-aid-kit'
+export type SceneMedicalItemKind = MedicalItemKind
 
-export interface SceneMedicalContentBindings {
-  readonly bandageDefinitionId: string
-  readonly painkillerDefinitionId: string
-  readonly disinfectantDefinitionId: string
-  readonly firstAidKitDefinitionId: string
-}
+export type SceneMedicalContentBindings = MedicalContentBindings
 
 export interface SceneExplorationDependencies {
   readonly graph: SceneGraph
@@ -494,14 +490,7 @@ export type SceneMedicalItemSource =
       quickSlotIndex: number
     }>
 
-export type SceneMedicalTarget =
-  | Readonly<{
-      kind: 'open-wound'
-      woundId: string
-    }>
-  | Readonly<{
-      kind: 'minor-contusion'
-    }>
+export type SceneMedicalTarget = MedicalTarget
 
 export interface UseSceneMedicalItemCommand {
   readonly source: SceneMedicalItemSource

@@ -1,7 +1,7 @@
-import type { SceneMedicalContentBindings } from '../../../core/scene-exploration'
+import type { MedicalContentBindings } from '../../../core/medical'
 import { HOSPITAL_ITEM_IDS } from './hospital-item-ids'
 
-export const hospitalSceneMedicalContentBindings: SceneMedicalContentBindings =
+export const hospitalSceneMedicalContentBindings: MedicalContentBindings =
   Object.freeze({
     bandageDefinitionId: HOSPITAL_ITEM_IDS.bandage,
     painkillerDefinitionId: HOSPITAL_ITEM_IDS.painkiller,

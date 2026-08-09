@@ -1,0 +1,471 @@
+import { describe, expect, it } from 'vitest'
+import { createPlayerCondition } from '../../core/condition'
+import { createBackpackSnapshot, type ItemInstance } from '../../core/inventory'
+import { createFullItemState, createItemState } from '../../core/item-state'
+import {
+  applyRunReturnEffects,
+  buildRunReturnTransitionPlan,
+  createItemReturnLifecycleCatalog,
+  createRunReturnLedgerSnapshot,
+  createRunStoredInventorySnapshot,
+  getStoredTaskItemQuantity,
+  hasStoredTaskItem,
+  resolveRunReturn,
+  type RunReturnDependencies,
+  type RunReturnEffect,
+  type RunReturnInput,
+} from '../../core/run-return'
+import {
+  createInitialSceneExplorationSnapshot,
+  createSceneExplorationSnapshot,
+  type SceneExplorationDependencies,
+  type SceneExplorationStatus,
+} from '../../core/scene-exploration'
+import { addSceneItems, createEmptySceneItemsSnapshot } from '../../core/scene-items'
+import { createSceneSearchState } from '../../core/scene-search'
+import {
+  HOSPITAL_COMBAT_ENCOUNTER_IDS,
+  HOSPITAL_INTEL_IDS,
+  HOSPITAL_ITEM_IDS,
+  HOSPITAL_NODE_IDS,
+  HOSPITAL_TASK_EVENT_IDS,
+  createHospitalSceneCombatDependencies,
+  hospitalItemCatalog,
+  hospitalItemEquipmentCatalog,
+  hospitalItemQuickSlotCatalog,
+  hospitalItemResourceCatalog,
+  hospitalItemReturnLifecycleCatalog,
+  hospitalItemReturnLifecycleProfiles,
+  hospitalMainSearchCatalog,
+  hospitalSceneTaskEventCatalog,
+  hospitalSliceV01RuleConfig as config,
+  hospitalSliceV01SceneGraph,
+} from '..'
+
+const SCENE_ID = 'hospital-run-return-scene'
+
+const item = (
+  instanceId: string,
+  definitionId: string,
+  quantity = 1,
+): ItemInstance => ({ instanceId, definitionId, quantity })
+
+const backpackItems = (includeSample: boolean): readonly ItemInstance[] => [
+  item('returned-metal', HOSPITAL_ITEM_IDS.metalParts),
+  item('returned-bandages', HOSPITAL_ITEM_IDS.bandage, 2),
+  item('returned-card', HOSPITAL_ITEM_IDS.isolationWardAccessCard),
+  item('returned-crowbar', HOSPITAL_ITEM_IDS.crowbar),
+  item('returned-flashlight', HOSPITAL_ITEM_IDS.flashlight),
+  ...(includeSample ? [item('returned-sample', HOSPITAL_ITEM_IDS.sealedPathogenCase)] : []),
+]
+
+function sceneDependencies(withCompletedTask = false): SceneExplorationDependencies {
+  const base: SceneExplorationDependencies = {
+    graph: hospitalSliceV01SceneGraph,
+    physicalCatalog: hospitalItemCatalog,
+    equipmentCatalog: hospitalItemEquipmentCatalog,
+    quickSlotCatalog: hospitalItemQuickSlotCatalog,
+    itemResourceCatalog: hospitalItemResourceCatalog,
+    config,
+  }
+  if (!withCompletedTask) return base
+  return {
+    ...base,
+    taskEventCatalog: hospitalSceneTaskEventCatalog,
+    sceneCombat: createHospitalSceneCombatDependencies('run-return-seed', SCENE_ID),
+  }
+}
+
+function terminalScene(input: Readonly<{
+  status?: SceneExplorationStatus
+  includeSample?: boolean
+  sceneTaskCompleted?: boolean
+  leaveTaskItem?: boolean
+}> = {}) {
+  const status = input.status ?? 'safe-returned'
+  const includeSample = input.includeSample ?? true
+  const dependencies = sceneDependencies(input.sceneTaskCompleted)
+  const items = backpackItems(includeSample)
+  const pipe = item('equipped-pipe', HOSPITAL_ITEM_IDS.metalPipe)
+  const coat = item('equipped-coat', HOSPITAL_ITEM_IDS.heavyCoat)
+  const painkiller = item('quick-painkiller', HOSPITAL_ITEM_IDS.painkiller)
+  const itemStates = [
+    ...items.map((candidate) => {
+      if (candidate.definitionId === HOSPITAL_ITEM_IDS.crowbar) {
+        return createItemState({ ...candidate, resource: { kind: 'durability', current: 1 } }, hospitalItemResourceCatalog)
+      }
+      if (candidate.definitionId === HOSPITAL_ITEM_IDS.flashlight) {
+        return createItemState({ ...candidate, resource: { kind: 'charge', current: 2 } }, hospitalItemResourceCatalog)
+      }
+      return createFullItemState(candidate, hospitalItemResourceCatalog)
+    }),
+    createItemState({ ...pipe, resource: { kind: 'durability', current: 1 } }, hospitalItemResourceCatalog),
+    createItemState({ ...coat, resource: { kind: 'integrity', current: 2 } }, hospitalItemResourceCatalog),
+    createFullItemState(painkiller, hospitalItemResourceCatalog),
+  ]
+  const placements = [
+    { instanceId: 'returned-metal', x: 4, y: 0, rotated: false },
+    { instanceId: 'returned-bandages', x: 5, y: 0, rotated: false },
+    { instanceId: 'returned-card', x: 4, y: 1, rotated: false },
+    { instanceId: 'returned-crowbar', x: 2, y: 0, rotated: false },
+    { instanceId: 'returned-flashlight', x: 3, y: 0, rotated: false },
+    ...(includeSample
+      ? [{ instanceId: 'returned-sample', x: 0, y: 0, rotated: false }]
+      : []),
+  ]
+  const searchState = createSceneSearchState({
+    runSeed: 'run-return-seed',
+    sceneInstanceId: SCENE_ID,
+    graph: hospitalSliceV01SceneGraph,
+    searchCatalog: hospitalMainSearchCatalog,
+    itemCatalog: hospitalItemCatalog,
+    itemResourceCatalog: hospitalItemResourceCatalog,
+  })
+  const sceneItemDependencies = {
+    graph: hospitalSliceV01SceneGraph,
+    itemCatalog: hospitalItemCatalog,
+    itemResourceCatalog: hospitalItemResourceCatalog,
+  }
+  let sceneItems = createEmptySceneItemsSnapshot(sceneItemDependencies)
+  sceneItems = addSceneItems(sceneItems, HOSPITAL_NODE_IDS.specimenColdRoom, [{
+    item: item('left-electronics', HOSPITAL_ITEM_IDS.electronicComponents),
+    state: createFullItemState(
+      item('left-electronics', HOSPITAL_ITEM_IDS.electronicComponents),
+      hospitalItemResourceCatalog,
+    ),
+  }], sceneItemDependencies)
+  if (input.leaveTaskItem) {
+    sceneItems = addSceneItems(sceneItems, HOSPITAL_NODE_IDS.specimenColdRoom, [{
+      item: item('left-sample', HOSPITAL_ITEM_IDS.sealedPathogenCase),
+      state: createFullItemState(
+        item('left-sample', HOSPITAL_ITEM_IDS.sealedPathogenCase),
+        hospitalItemResourceCatalog,
+      ),
+    }], sceneItemDependencies)
+  }
+  const initial = createInitialSceneExplorationSnapshot({
+    sceneInstanceId: SCENE_ID,
+    searchState,
+    sceneItems,
+    currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
+    remainingTime: 0,
+    enabledEdgeIds: [],
+    backpack: createBackpackSnapshot({
+      width: config.backpack.width,
+      height: config.backpack.height,
+      items,
+      placements,
+    }, hospitalItemCatalog),
+    equipment: { weapon: pipe, armor: coat, utility: null },
+    quickSlots: { slots: [painkiller, null] },
+    itemStates: { states: itemStates },
+    condition: createPlayerCondition({
+      currentHealth: 7,
+      bleeding: false,
+      openWounds: [],
+      minorContusions: 1,
+      painkillerActive: false,
+      pendingInfectionExposures: 1,
+    }, config.combat.player),
+    dailyMedicalUsage: { disinfectantUsesToday: 1 },
+    runIntelLog: {
+      intelIds: input.sceneTaskCompleted
+        ? ['intel-from-search', HOSPITAL_INTEL_IDS.pathogenCaseOrigin]
+        : ['intel-from-search'],
+    },
+  }, dependencies)
+  let combatState = initial.combatState
+  let taskEvents = initial.taskEvents
+  if (input.sceneTaskCompleted) {
+    const encounter = combatState.encounters.find(
+      ({ encounterId }) => encounterId === HOSPITAL_COMBAT_ENCOUNTER_IDS.infectedOrderly,
+    )
+    if (!encounter || encounter.kind !== 'dormant') throw new Error('expected dormant encounter')
+    combatState = {
+      ...combatState,
+      encounters: [{
+        ...encounter,
+        enemy: {
+          ...encounter.enemy,
+          currentHealth: 0,
+          defeated: true,
+          hasBeenEncountered: true,
+        },
+      }],
+    }
+    taskEvents = {
+      entries: [{
+        eventId: HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval,
+        status: 'completed',
+      }],
+    }
+  }
+  return {
+    dependencies,
+    snapshot: createSceneExplorationSnapshot({
+      ...initial,
+      status,
+      condition: status === 'dead'
+        ? createPlayerCondition({
+            ...initial.condition,
+            currentHealth: 0,
+          }, config.combat.player)
+        : initial.condition,
+      combatState,
+      taskEvents,
+    }, dependencies),
+  }
+}
+
+function storedInventory() {
+  const existing = item('existing-bandage', HOSPITAL_ITEM_IDS.bandage)
+  const dependencies = {
+    physicalCatalog: hospitalItemCatalog,
+    itemResourceCatalog: hospitalItemResourceCatalog,
+    lifecycleCatalog: hospitalItemReturnLifecycleCatalog,
+  }
+  return createRunStoredInventorySnapshot({
+    warehouse: { items: [existing] },
+    taskStorage: { items: [] },
+    itemStates: { states: [createFullItemState(existing, hospitalItemResourceCatalog)] },
+  }, dependencies)
+}
+
+function returnInput(input: Parameters<typeof terminalScene>[0] = {}): {
+  request: RunReturnInput
+  dependencies: RunReturnDependencies
+} {
+  const terminal = terminalScene(input)
+  return {
+    request: {
+      terminalScene: terminal.snapshot,
+      storedInventory: storedInventory(),
+      returnLedger: { sceneInstanceIds: [] },
+    },
+    dependencies: {
+      scene: terminal.dependencies,
+      lifecycleCatalog: hospitalItemReturnLifecycleCatalog,
+    },
+  }
+}
+
+describe('hospital Run return settlement', () => {
+  it('classifies all hospital items into strict return lifecycles', () => {
+    expect(hospitalItemReturnLifecycleCatalog.definitionIds).toEqual(
+      [...hospitalItemCatalog.definitionIds].sort(),
+    )
+    expect(hospitalItemReturnLifecycleCatalog.get(HOSPITAL_ITEM_IDS.isolationWardAccessCard).kind).toBe('permission')
+    expect(hospitalItemReturnLifecycleCatalog.get(HOSPITAL_ITEM_IDS.sealedPathogenCase).kind).toBe('quest')
+    expect(hospitalItemReturnLifecycleCatalog.get(HOSPITAL_ITEM_IDS.bandage).kind).toBe('ordinary')
+    expect(() => createItemReturnLifecycleCatalog(
+      hospitalItemReturnLifecycleProfiles.slice(1),
+      hospitalItemCatalog,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => createItemReturnLifecycleCatalog(
+      [...hospitalItemReturnLifecycleProfiles, hospitalItemReturnLifecycleProfiles[0]!],
+      hospitalItemCatalog,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => createItemReturnLifecycleCatalog(
+      [{ ...hospitalItemReturnLifecycleProfiles[0]!, unknown: true }, ...hospitalItemReturnLifecycleProfiles.slice(1)] as never,
+      hospitalItemCatalog,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+
+  it.each(['safe-returned', 'forced-returned'] as const)(
+    'moves only backpack items to the formal Run destinations after %s',
+    (status) => {
+      const { request, dependencies } = returnInput({ status })
+      const result = resolveRunReturn(request, dependencies)
+      expect(result.summary.returnKind).toBe(status === 'safe-returned' ? 'safe' : 'forced')
+      expect(result.snapshot.player.backpack).toMatchObject({ items: [], placements: [] })
+      expect(result.snapshot.warehouse.items.map(({ instanceId }) => instanceId)).toEqual([
+        'existing-bandage',
+        'returned-bandages',
+        'returned-card',
+        'returned-crowbar',
+        'returned-flashlight',
+        'returned-metal',
+      ])
+      expect(result.snapshot.taskStorage.items).toEqual([
+        expect.objectContaining({
+          instanceId: 'returned-sample',
+          definitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase,
+          quantity: 1,
+        }),
+      ])
+      expect(result.snapshot.player.equipment).toEqual(request.terminalScene.equipment)
+      expect(result.snapshot.player.quickSlots).toEqual(request.terminalScene.quickSlots)
+      expect(result.snapshot.itemStates.states).toEqual(expect.arrayContaining(
+        [...request.terminalScene.itemStates.states],
+      ))
+      expect(result.snapshot.itemStates.states.find(({ instanceId }) => instanceId === 'returned-crowbar')?.resource).toEqual({ kind: 'durability', current: 1 })
+      expect(result.snapshot.itemStates.states.find(({ instanceId }) => instanceId === 'returned-flashlight')?.resource).toEqual({ kind: 'charge', current: 2 })
+      expect(result.snapshot.itemStates.states.find(({ instanceId }) => instanceId === 'equipped-pipe')?.resource).toEqual({ kind: 'durability', current: 1 })
+      expect(result.snapshot.itemStates.states.find(({ instanceId }) => instanceId === 'equipped-coat')?.resource).toEqual({ kind: 'integrity', current: 2 })
+      expect(result.snapshot.warehouse.items.filter(({ definitionId }) => definitionId === HOSPITAL_ITEM_IDS.bandage)).toHaveLength(2)
+      expect(result.snapshot.runIntelLog).toEqual(request.terminalScene.runIntelLog)
+      expect(result.snapshot.dailyMedicalUsage).toEqual({ disinfectantUsesToday: 1 })
+      expect(result.snapshot.returnLedger.sceneInstanceIds).toEqual([SCENE_ID])
+      expect(hasStoredTaskItem(result.snapshot.taskStorage, HOSPITAL_ITEM_IDS.sealedPathogenCase, 1)).toBe(true)
+      expect(Object.isFrozen(result.snapshot)).toBe(true)
+      expect(Object.isFrozen(result.snapshot.warehouse.items)).toBe(true)
+      expect(Object.isFrozen(request)).toBe(false)
+      expect(Object.isFrozen(request.returnLedger)).toBe(false)
+      expect(request.terminalScene.backpack.items).toHaveLength(6)
+    },
+  )
+
+  it.each(['active', 'dead'] as const)(
+    'rejects non-returnable scene status %s without changing any Run storage',
+    (status) => {
+      const { request, dependencies } = returnInput({ status })
+      const before = structuredClone(request.storedInventory)
+      expect(() => buildRunReturnTransitionPlan(request, dependencies)).toThrowError(
+        expect.objectContaining({ code: 'SCENE_NOT_RETURNABLE' }),
+      )
+      expect(request.storedInventory).toEqual(before)
+    },
+  )
+
+  it('does not derive task completion from a completed SceneTaskEvent without a safely returned sample', () => {
+    const { request, dependencies } = returnInput({
+      includeSample: false,
+      sceneTaskCompleted: true,
+    })
+    const result = resolveRunReturn(request, dependencies)
+    expect(getStoredTaskItemQuantity(result.snapshot.taskStorage, HOSPITAL_ITEM_IDS.sealedPathogenCase)).toBe(0)
+    expect(hasStoredTaskItem(result.snapshot.taskStorage, HOSPITAL_ITEM_IDS.sealedPathogenCase, 1)).toBe(false)
+  })
+
+  it('never stores scene remnants, unretrieved task items, or hidden search outcomes', () => {
+    const { request, dependencies } = returnInput({
+      includeSample: false,
+      leaveTaskItem: true,
+    })
+    const result = resolveRunReturn(request, dependencies)
+    expect(result.snapshot.warehouse.items.some(({ instanceId }) => instanceId === 'left-electronics')).toBe(false)
+    expect(result.snapshot.taskStorage.items).toHaveLength(0)
+    expect(result.summary.lostSceneTaskInstanceIds).toEqual(['left-sample'])
+  })
+
+  it('rejects repeat settlement by scene instance without duplicating inventory', () => {
+    const { request, dependencies } = returnInput()
+    const first = resolveRunReturn(request, dependencies)
+    expect(() => resolveRunReturn({
+      ...request,
+      storedInventory: {
+        warehouse: first.snapshot.warehouse,
+        taskStorage: first.snapshot.taskStorage,
+        itemStates: {
+          states: first.snapshot.itemStates.states.filter(({ instanceId }) =>
+            !['equipped-pipe', 'equipped-coat', 'quick-painkiller'].includes(instanceId),
+          ),
+        },
+      },
+      returnLedger: first.snapshot.returnLedger,
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'RETURN_ALREADY_SETTLED' }))
+  })
+
+  it('rejects tampered or incomplete Effects before applying any transfer', () => {
+    const { request, dependencies } = returnInput()
+    const plan = buildRunReturnTransitionPlan(request, dependencies)
+    const sampleIndex = plan.effects.findIndex((effect) =>
+      effect.kind === 'run-item-transferred' && effect.item.definitionId === HOSPITAL_ITEM_IDS.sealedPathogenCase,
+    )
+    const tamperedDestination = plan.effects.map((effect, index): RunReturnEffect =>
+      index === sampleIndex && effect.kind === 'run-item-transferred'
+        ? { ...effect, destination: 'warehouse' }
+        : effect,
+    )
+    const withoutLedger = plan.effects.filter(({ kind }) => kind !== 'run-return-recorded')
+    const changedFacts = plan.effects.map((effect): RunReturnEffect =>
+      effect.kind === 'run-facts-carried-forward'
+        ? { ...effect, runIntelLog: { intelIds: [] } }
+        : effect,
+    )
+    const changedQuantity = plan.effects.map((effect): RunReturnEffect =>
+      effect.kind === 'run-item-transferred' && effect.item.instanceId === 'returned-bandages'
+        ? { ...effect, item: { ...effect.item, quantity: effect.item.quantity + 1 } }
+        : effect,
+    )
+    const changedResource = plan.effects.map((effect): RunReturnEffect =>
+      effect.kind === 'run-item-transferred' && effect.item.instanceId === 'returned-crowbar'
+        ? { ...effect, itemState: { ...effect.itemState, resource: { kind: 'durability', current: 0 } } }
+        : effect,
+    )
+    const withoutTransfer = plan.effects.filter((effect) =>
+      effect.kind !== 'run-item-transferred' || effect.item.instanceId !== 'returned-metal',
+    )
+    expect(() => applyRunReturnEffects(request, tamperedDestination, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
+    expect(() => applyRunReturnEffects(request, withoutLedger, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
+    expect(() => applyRunReturnEffects(request, changedFacts, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
+    expect(() => applyRunReturnEffects(request, changedQuantity, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
+    expect(() => applyRunReturnEffects(request, changedResource, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
+    expect(() => applyRunReturnEffects(request, withoutTransfer, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
+    expect(request.storedInventory.warehouse.items).toHaveLength(1)
+  })
+
+  it('strictly rejects wrong destinations, duplicate instances, and incomplete ItemState ownership', () => {
+    const storageDependencies = {
+      physicalCatalog: hospitalItemCatalog,
+      itemResourceCatalog: hospitalItemResourceCatalog,
+      lifecycleCatalog: hospitalItemReturnLifecycleCatalog,
+    }
+    const sample = item('sample-in-warehouse', HOSPITAL_ITEM_IDS.sealedPathogenCase)
+    expect(() => createRunStoredInventorySnapshot({
+      warehouse: { items: [sample] },
+      taskStorage: { items: [] },
+      itemStates: { states: [createFullItemState(sample, hospitalItemResourceCatalog)] },
+    }, storageDependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    const ordinary = item('ordinary-in-task', HOSPITAL_ITEM_IDS.bandage)
+    expect(() => createRunStoredInventorySnapshot({
+      warehouse: { items: [] },
+      taskStorage: { items: [ordinary] },
+      itemStates: { states: [createFullItemState(ordinary, hospitalItemResourceCatalog)] },
+    }, storageDependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    const duplicate = item('duplicate', HOSPITAL_ITEM_IDS.sealedPathogenCase)
+    expect(() => createRunStoredInventorySnapshot({
+      warehouse: { items: [{ ...duplicate, definitionId: HOSPITAL_ITEM_IDS.bandage }] },
+      taskStorage: { items: [duplicate] },
+      itemStates: { states: [createFullItemState(duplicate, hospitalItemResourceCatalog)] },
+    }, storageDependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => createRunStoredInventorySnapshot({
+      warehouse: { items: [ordinary] },
+      taskStorage: { items: [] },
+      itemStates: { states: [] },
+    }, storageDependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    const extra = item('extra-state', HOSPITAL_ITEM_IDS.metalParts)
+    expect(() => createRunStoredInventorySnapshot({
+      warehouse: { items: [ordinary] },
+      taskStorage: { items: [] },
+      itemStates: { states: [
+        createFullItemState(ordinary, hospitalItemResourceCatalog),
+        createFullItemState(extra, hospitalItemResourceCatalog),
+      ] },
+    }, storageDependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => createRunStoredInventorySnapshot({
+      warehouse: { items: [ordinary] },
+      taskStorage: { items: [] },
+      itemStates: { states: [createFullItemState({
+        instanceId: ordinary.instanceId,
+        definitionId: HOSPITAL_ITEM_IDS.metalParts,
+      }, hospitalItemResourceCatalog)] },
+    }, storageDependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => createRunStoredInventorySnapshot({
+      warehouse: { items: [] },
+      taskStorage: { items: [] },
+      itemStates: { states: [] },
+      unknown: true,
+    } as never, storageDependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => createRunStoredInventorySnapshot(null as never, storageDependencies)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_INPUT' }),
+    )
+    expect(() => createRunReturnLedgerSnapshot({
+      sceneInstanceIds: [SCENE_ID, SCENE_ID],
+    })).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => createRunReturnLedgerSnapshot({
+      sceneInstanceIds: [],
+      unknown: true,
+    } as never)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+})

@@ -14,6 +14,8 @@ export {
   hospitalItemResourceProfiles,
   hospitalItemSearchIlluminationCatalog,
   hospitalItemSearchIlluminationProfiles,
+  hospitalItemReturnLifecycleCatalog,
+  hospitalItemReturnLifecycleProfiles,
   hospitalSceneMedicalContentBindings,
 } from './hospital-v0.1/items'
 export {

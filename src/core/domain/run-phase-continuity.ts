@@ -68,3 +68,19 @@ export function hasSameRunPhaseContinuity(
     left.currentDay === right.currentDay &&
     left.sceneInstanceId === right.sceneInstanceId
 }
+
+export function bindRunPhaseContinuityToScene(
+  previousInput: RunPhaseContinuitySnapshot,
+  sceneInstanceId: unknown,
+  expectedRulesVersion: string,
+): RunPhaseContinuitySnapshot {
+  const previous = createRunPhaseContinuitySnapshot(previousInput, expectedRulesVersion)
+  if (typeof sceneInstanceId !== 'string' || sceneInstanceId.trim().length === 0) {
+    throw new RunPhaseContinuityError('绑定的场景实例ID无效')
+  }
+  return createRunPhaseContinuitySnapshot({
+    runIdentity: previous.runIdentity,
+    currentDay: previous.currentDay,
+    sceneInstanceId,
+  }, expectedRulesVersion)
+}

@@ -10,6 +10,7 @@ import {
   resolveCurrentDayHubLoadoutCommand,
   resolveCurrentDayHubMedicalCommand,
   resolveHubSurvivalCommand,
+  projectRunReturnCarryForwardFromCurrentDayHub,
   type CurrentDayHubSnapshot,
   type HubSurvivalCommand,
   type HubSurvivalEffect,
@@ -19,16 +20,28 @@ import { createBackpackSnapshot, type ItemInstance } from '../../core/inventory'
 import { createFullItemState, getItemState } from '../../core/item-state'
 import { createQuickSlotSnapshot } from '../../core/quick-slot'
 import { createRunLoadoutSnapshot } from '../../core/run-loadout'
-import { createRunReturnSnapshot, type RunReturnDependencies } from '../../core/run-return'
+import {
+  bindRunReturnCarryForwardToScene,
+  createRunReturnSnapshot,
+  resolveRunReturn,
+  type RunReturnDependencies,
+} from '../../core/run-return'
+import {
+  createInitialSceneExplorationSnapshot,
+  createSceneExplorationSnapshot,
+} from '../../core/scene-exploration'
+import { createSceneSearchState } from '../../core/scene-search'
 import { createWorldThreatSnapshot } from '../../core/world-threat'
 import {
   HOSPITAL_ITEM_IDS,
+  HOSPITAL_NODE_IDS,
   hospitalHubSurvivalContentBindings,
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
   hospitalItemResourceCatalog,
   hospitalItemReturnLifecycleCatalog,
+  hospitalMainSearchCatalog,
   hospitalSceneMedicalContentBindings,
   hospitalSliceV01RuleConfig as config,
   hospitalSliceV01SceneGraph,
@@ -68,6 +81,7 @@ const continuity = (sceneInstanceId = 'returned-scene') => ({
 
 interface HubInput {
   readonly warehouse?: readonly ItemInstance[]
+  readonly taskStorage?: readonly ItemInstance[]
   readonly backpack?: readonly ItemInstance[]
   readonly quickSlots?: readonly (ItemInstance | null)[]
   readonly health?: number
@@ -82,16 +96,18 @@ interface HubInput {
 
 function hub(input: HubInput = {}): CurrentDayHubSnapshot {
   const warehouse = input.warehouse ?? []
+  const taskStorage = input.taskStorage ?? []
   const backpack = input.backpack ?? []
   const quickSlots = input.quickSlots ?? [null, null]
   const items = [
     ...warehouse,
+    ...taskStorage,
     ...backpack,
     ...quickSlots.filter((candidate): candidate is ItemInstance => candidate !== null),
   ]
   const runLoadout = createRunLoadoutSnapshot({
     warehouse: { items: warehouse },
-    taskStorage: { items: [] },
+    taskStorage: { items: taskStorage },
     backpack: createBackpackSnapshot({
       width: config.backpack.width,
       height: config.backpack.height,
@@ -133,6 +149,49 @@ function hub(input: HubInput = {}): CurrentDayHubSnapshot {
     satiety: { current: input.satiety ?? 4 },
     returnLedger: { sceneInstanceIds: ['returned-scene'] },
   }, dependencies)
+}
+
+function emptySafeReturnedScene(sceneInstanceId: string) {
+  const scene = returnDependencies.scene
+  const initial = createInitialSceneExplorationSnapshot({
+    sceneInstanceId,
+    searchState: createSceneSearchState({
+      runSeed: 'hospital-run-a-seed',
+      sceneInstanceId,
+      graph: hospitalSliceV01SceneGraph,
+      searchCatalog: hospitalMainSearchCatalog,
+      itemCatalog: hospitalItemCatalog,
+      itemResourceCatalog: hospitalItemResourceCatalog,
+    }),
+    currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
+    remainingTime: 0,
+    enabledEdgeIds: [],
+    backpack: createBackpackSnapshot({
+      width: config.backpack.width,
+      height: config.backpack.height,
+      items: [],
+      placements: [],
+    }, hospitalItemCatalog),
+    equipment: createEmptyEquipment(hospitalItemCatalog, hospitalItemEquipmentCatalog),
+    quickSlots: createQuickSlotSnapshot(
+      [null, null],
+      config.backpack.quickSlotCount,
+      hospitalItemCatalog,
+      hospitalItemQuickSlotCatalog,
+    ),
+    itemStates: { states: [] },
+    condition: createPlayerCondition({
+      currentHealth: config.combat.player.maxHealth,
+      bleeding: false,
+      openWounds: [],
+      minorContusions: 0,
+      painkillerActive: false,
+      pendingInfectionExposures: 0,
+    }, config.combat.player),
+    dailyMedicalUsage: { disinfectantUsesToday: 0 },
+    runIntelLog: { intelIds: [] },
+  }, scene)
+  return createSceneExplorationSnapshot({ ...initial, status: 'safe-returned' }, scene)
 }
 
 function survival(kind: HubSurvivalCommand['kind'], source: HubSurvivalCommand['source']): HubSurvivalCommand {
@@ -222,6 +281,61 @@ describe('hospital current-day hub', () => {
     expect(treated.satiety).toEqual(start.satiety)
     expect(treated.returnLedger).toEqual(start.returnLedger)
     expect(treated.continuity).toEqual(start.continuity)
+  })
+
+  it('projects one continuity-bound Return carry-forward aggregate from CurrentDayHub', () => {
+    const warehouseRation = item('warehouse-ration', HOSPITAL_ITEM_IDS.ration)
+    const start = hub({ warehouse: [warehouseRation] })
+    const carryForward = projectRunReturnCarryForwardFromCurrentDayHub(start, dependencies)
+    const rebound = bindRunReturnCarryForwardToScene(
+      carryForward,
+      'next-hospital-scene',
+      returnDependencies,
+    )
+    expect(carryForward.continuity).toEqual(start.continuity)
+    expect(carryForward.storedInventory.warehouse.items).toEqual([warehouseRation])
+    expect(carryForward.storedInventory.itemStates.states).toHaveLength(1)
+    expect(carryForward.returnLedger).toEqual(start.returnLedger)
+    expect(rebound.continuity).toEqual({
+      ...start.continuity,
+      sceneInstanceId: 'next-hospital-scene',
+    })
+    expect(rebound.storedInventory).toEqual(carryForward.storedInventory)
+    expect(rebound.returnLedger).toEqual(carryForward.returnLedger)
+  })
+
+  it('carries one Run identity, storage, and ledger through Hub, a rebound Scene, Return, and Hub', () => {
+    const warehouseRation = item('warehouse-ration', HOSPITAL_ITEM_IDS.ration)
+    const taskSample = item('task-sample', HOSPITAL_ITEM_IDS.sealedPathogenCase)
+    const start = hub({ warehouse: [warehouseRation], taskStorage: [taskSample] })
+    const rebound = bindRunReturnCarryForwardToScene(
+      projectRunReturnCarryForwardFromCurrentDayHub(start, dependencies),
+      'next-hospital-scene',
+      returnDependencies,
+    )
+    const returned = resolveRunReturn({
+      terminalScene: emptySafeReturnedScene('next-hospital-scene'),
+      carryForward: rebound,
+    }, returnDependencies).snapshot
+    const nextHub = createCurrentDayHubSnapshotFromReturn(returned, {
+      continuity: rebound.continuity,
+      worldThreat: start.worldThreat,
+      satiety: start.satiety,
+      threatSuppression: start.dailyState.threatSuppression,
+      maintenanceLaborRemaining: start.dailyState.maintenanceLaborRemaining,
+    }, dependencies)
+
+    expect(returned.continuity).toEqual(rebound.continuity)
+    expect(returned.warehouse.items).toEqual([warehouseRation])
+    expect(returned.taskStorage.items).toEqual([taskSample])
+    expect(returned.returnLedger.sceneInstanceIds).toEqual([
+      'next-hospital-scene',
+      'returned-scene',
+    ])
+    expect(nextHub.continuity).toEqual(rebound.continuity)
+    expect(nextHub.runLoadout.warehouse.items).toEqual([warehouseRation])
+    expect(nextHub.runLoadout.taskStorage.items).toEqual([taskSample])
+    expect(nextHub.returnLedger).toEqual(returned.returnLedger)
   })
 
   it('uses suppressant for an exposure, records 1/15, and changes neither exposure nor progress', () => {

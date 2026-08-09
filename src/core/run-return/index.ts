@@ -7,6 +7,8 @@ export {
 } from './run-return'
 export {
   createRunReturnLedgerSnapshot,
+  bindRunReturnCarryForwardToScene,
+  createRunReturnCarryForwardSnapshot,
   createRunReturnSnapshot,
   createRunStoredInventorySnapshot,
   createRunTaskStorageSnapshot,
@@ -14,6 +16,8 @@ export {
   getStoredTaskItemQuantity,
   hasStoredTaskItem,
   projectRunStoredInventory,
+  projectRunReturnCarryForwardFromRunReturn,
+  restoreRunReturnCarryForwardSnapshot,
 } from './run-storage'
 export type {
   ItemReturnLifecycleCatalog,
@@ -21,6 +25,8 @@ export type {
   ItemReturnLifecycleProfile,
   ReturnedPlayerStateSnapshot,
   RunReturnDependencies,
+  RunReturnCarryForwardInput,
+  RunReturnCarryForwardSnapshot,
   RunReturnEffect,
   RunReturnInput,
   RunReturnLedgerSnapshot,

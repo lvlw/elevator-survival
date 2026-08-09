@@ -7,6 +7,7 @@ export {
   createRunLoadoutDependenciesFromReturn,
   createRunLoadoutSnapshot,
   createRunLoadoutSnapshotFromReturn,
+  projectRunStoredInventoryFromRunLoadout,
 } from './run-loadout-snapshot'
 export { RunLoadoutError, type RunLoadoutErrorCode } from './run-loadout-errors'
 export { createStableRunLoadoutSplitInstanceId } from './stable-split-instance-id'

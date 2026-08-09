@@ -9,6 +9,7 @@ import {
 } from '../item-state'
 import {
   createRunReturnSnapshot,
+  createRunStoredInventorySnapshot,
   createRunTaskStorageSnapshot,
   createRunWarehouseSnapshot,
   type RunReturnDependencies,
@@ -199,4 +200,25 @@ export function createRunLoadoutSnapshotFromReturn(
     quickSlots: normalized.player.quickSlots,
     itemStates: normalized.itemStates,
   }, createRunLoadoutDependenciesFromReturn(dependencies))
+}
+
+/** Projects only Run storage facts; equipped, backpack and quick-slot state stays in the loadout. */
+export function projectRunStoredInventoryFromRunLoadout(
+  snapshotInput: RunLoadoutSnapshot,
+  dependencies: RunLoadoutDependencies,
+) {
+  const snapshot = createRunLoadoutSnapshot(snapshotInput, dependencies)
+  const storedInstanceIds = new Set([
+    ...snapshot.warehouse.items,
+    ...snapshot.taskStorage.items,
+  ].map(({ instanceId }) => instanceId))
+  return createRunStoredInventorySnapshot({
+    warehouse: snapshot.warehouse,
+    taskStorage: snapshot.taskStorage,
+    itemStates: {
+      states: snapshot.itemStates.states.filter(({ instanceId }) =>
+        storedInstanceIds.has(instanceId),
+      ),
+    },
+  }, storageDependencies(dependencies))
 }

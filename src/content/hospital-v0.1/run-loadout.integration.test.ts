@@ -15,6 +15,7 @@ import {
   createRunLoadoutDependenciesFromReturn,
   createRunLoadoutSnapshot,
   createRunLoadoutSnapshotFromReturn,
+  projectRunStoredInventoryFromRunLoadout,
   createStableRunLoadoutSplitInstanceId,
   resolveRunLoadoutCommand,
   type RunLoadoutCommand,
@@ -162,6 +163,29 @@ function returnSnapshot() {
     returnLedger: { sceneInstanceIds: ['loadout-return-scene'] },
   }, returnDependencies)
 }
+
+describe('Run loadout stored-inventory projection', () => {
+  it('derives only warehouse and task storage ItemState without caller filtering', () => {
+    const pipe = item('equipped-pipe', HOSPITAL_ITEM_IDS.metalPipe)
+    const painkiller = item('quick-painkiller', HOSPITAL_ITEM_IDS.painkiller)
+    const snapshot = loadout({
+      equipment: createEquipmentSnapshot({ weapon: pipe, armor: null, utility: null }, hospitalItemCatalog, hospitalItemEquipmentCatalog),
+      quickSlots: createEmptyQuickSlots(config.backpack.quickSlotCount, hospitalItemCatalog, hospitalItemQuickSlotCatalog),
+    })
+    const withQuickSlot = createRunLoadoutSnapshot({
+      ...snapshot,
+      quickSlots: { slots: [painkiller, null] },
+      itemStates: { states: [...snapshot.itemStates.states, createFullItemState(painkiller, hospitalItemResourceCatalog)] },
+    }, loadoutDependencies)
+    const projection = projectRunStoredInventoryFromRunLoadout(withQuickSlot, loadoutDependencies)
+    expect(projection.warehouse.items).toEqual(withQuickSlot.warehouse.items)
+    expect(projection.taskStorage.items).toEqual(withQuickSlot.taskStorage.items)
+    expect(projection.itemStates.states.map(({ instanceId }) => instanceId))
+      .not.toContain('equipped-pipe')
+    expect(projection.itemStates.states.map(({ instanceId }) => instanceId))
+      .not.toContain('quick-painkiller')
+  })
+})
 
 function resolve(
   snapshot: ReturnType<typeof loadout>,

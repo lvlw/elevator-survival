@@ -4,7 +4,9 @@ import { createBackpackSnapshot, type ItemInstance } from '../../core/inventory'
 import { createFullItemState, createItemState } from '../../core/item-state'
 import {
   applyRunReturnEffects,
+  bindRunReturnCarryForwardToScene,
   buildRunReturnTransitionPlan,
+  createRunReturnCarryForwardSnapshot,
   createItemReturnLifecycleCatalog,
   createRunReturnLedgerSnapshot,
   createRunReturnSnapshot,
@@ -12,6 +14,8 @@ import {
   getStoredTaskItemQuantity,
   hasStoredTaskItem,
   projectRunStoredInventory,
+  projectRunReturnCarryForwardFromRunReturn,
+  restoreRunReturnCarryForwardSnapshot,
   resolveRunReturn,
   type RunReturnDependencies,
   type RunReturnEffect,
@@ -260,17 +264,20 @@ function returnInput(
   dependencies: RunReturnDependencies
 } {
   const terminal = terminalScene(input)
+  const dependencies: RunReturnDependencies = {
+    scene: terminal.dependencies,
+    lifecycleCatalog: hospitalItemReturnLifecycleCatalog,
+  }
   return {
     request: {
-      continuity: continuity(terminal.snapshot.sceneInstanceId),
       terminalScene: terminal.snapshot,
-      storedInventory: inventory,
-      returnLedger: { sceneInstanceIds: [] },
+      carryForward: createRunReturnCarryForwardSnapshot({
+        continuity: continuity(terminal.snapshot.sceneInstanceId),
+        storedInventory: inventory,
+        returnLedger: { sceneInstanceIds: [] },
+      }, dependencies),
     },
-    dependencies: {
-      scene: terminal.dependencies,
-      lifecycleCatalog: hospitalItemReturnLifecycleCatalog,
-    },
+    dependencies,
   }
 }
 
@@ -331,12 +338,12 @@ describe('hospital Run return settlement', () => {
       expect(result.snapshot.runIntelLog).toEqual(request.terminalScene.runIntelLog)
       expect(result.snapshot.dailyMedicalUsage).toEqual({ disinfectantUsesToday: 1 })
       expect(result.snapshot.returnLedger.sceneInstanceIds).toEqual([SCENE_ID])
-      expect(result.snapshot.continuity).toEqual(request.continuity)
+      expect(result.snapshot.continuity).toEqual(request.carryForward.continuity)
       expect(hasStoredTaskItem(result.snapshot.taskStorage, HOSPITAL_ITEM_IDS.sealedPathogenCase, 1)).toBe(true)
       expect(Object.isFrozen(result.snapshot)).toBe(true)
       expect(Object.isFrozen(result.snapshot.warehouse.items)).toBe(true)
       expect(Object.isFrozen(request)).toBe(false)
-      expect(Object.isFrozen(request.returnLedger)).toBe(false)
+      expect(Object.isFrozen(request.carryForward.returnLedger)).toBe(true)
       expect(request.terminalScene.backpack.items).toHaveLength(6)
     },
   )
@@ -345,11 +352,11 @@ describe('hospital Run return settlement', () => {
     'rejects non-returnable scene status %s without changing any Run storage',
     (status) => {
       const { request, dependencies } = returnInput({ status })
-      const before = structuredClone(request.storedInventory)
+      const before = structuredClone(request.carryForward.storedInventory)
       expect(() => buildRunReturnTransitionPlan(request, dependencies)).toThrowError(
         expect.objectContaining({ code: 'SCENE_NOT_RETURNABLE' }),
       )
-      expect(request.storedInventory).toEqual(before)
+      expect(request.carryForward.storedInventory).toEqual(before)
     },
   )
 
@@ -357,7 +364,34 @@ describe('hospital Run return settlement', () => {
     const { request, dependencies } = returnInput()
     expect(() => resolveRunReturn({
       ...request,
-      continuity: { ...request.continuity, sceneInstanceId: 'different-scene' },
+      carryForward: {
+        ...request.carryForward,
+        continuity: { ...request.carryForward.continuity, sceneInstanceId: 'different-scene' },
+      },
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+
+  it('rejects an old scattered Return input and tampered continuity-bound carry-forward', () => {
+    const { request, dependencies } = returnInput()
+    expect(() => resolveRunReturn({
+      terminalScene: request.terminalScene,
+      continuity: request.carryForward.continuity,
+      storedInventory: request.carryForward.storedInventory,
+      returnLedger: request.carryForward.returnLedger,
+    } as never, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => restoreRunReturnCarryForwardSnapshot({
+      ...request.carryForward,
+      continuity: {
+        ...request.carryForward.continuity,
+        runIdentity: { ...request.carryForward.continuity.runIdentity, runId: 'run-b' },
+      },
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => restoreRunReturnCarryForwardSnapshot({
+      ...request.carryForward,
+      storedInventory: {
+        ...request.carryForward.storedInventory,
+        itemStates: { states: [] },
+      },
     }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
   })
 
@@ -365,9 +399,12 @@ describe('hospital Run return settlement', () => {
     const { request, dependencies } = returnInput()
     expect(() => resolveRunReturn({
       ...request,
-      continuity: {
-        ...request.continuity,
-        runIdentity: { ...request.continuity.runIdentity, rulesVersion: 'hospital-rules-v2' },
+      carryForward: {
+        ...request.carryForward,
+        continuity: {
+          ...request.carryForward.continuity,
+          runIdentity: { ...request.carryForward.continuity.runIdentity, rulesVersion: 'hospital-rules-v2' },
+        },
       },
     }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
   })
@@ -398,8 +435,11 @@ describe('hospital Run return settlement', () => {
     const first = resolveRunReturn(request, dependencies)
     expect(() => resolveRunReturn({
       ...request,
-      storedInventory: projectRunStoredInventory(first.snapshot, dependencies),
-      returnLedger: first.snapshot.returnLedger,
+      carryForward: bindRunReturnCarryForwardToScene(
+        projectRunReturnCarryForwardFromRunReturn(first.snapshot, dependencies),
+        request.terminalScene.sceneInstanceId,
+        dependencies,
+      ),
     }, dependencies)).toThrowError(expect.objectContaining({ code: 'RETURN_ALREADY_SETTLED' }))
   })
 
@@ -450,10 +490,15 @@ describe('hospital Run return settlement', () => {
         ? storedInventory({ warehouseItems: [candidate.item] })
         : storedInventory({ taskItems: [candidate.item] })
       const request: RunReturnInput = {
-        continuity: continuity(terminal.snapshot.sceneInstanceId),
         terminalScene: terminal.snapshot,
-        storedInventory: inventory,
-        returnLedger: { sceneInstanceIds: [] },
+        carryForward: createRunReturnCarryForwardSnapshot({
+          continuity: continuity(terminal.snapshot.sceneInstanceId),
+          storedInventory: inventory,
+          returnLedger: { sceneInstanceIds: [] },
+        }, {
+          scene: terminal.dependencies,
+          lifecycleCatalog: hospitalItemReturnLifecycleCatalog,
+        }),
       }
       const before = structuredClone(inventory)
       expect(() => resolveRunReturn(request, {
@@ -509,10 +554,40 @@ describe('hospital Run return settlement', () => {
     expect(() => applyRunReturnEffects(request, withoutLedger, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
     expect(() => applyRunReturnEffects(request, changedFacts, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
     expect(() => applyRunReturnEffects(request, changedContinuity, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
+    for (const continuityField of ['seed', 'rulesVersion'] as const) {
+      const changed = plan.effects.map((effect): RunReturnEffect =>
+        effect.kind === 'run-facts-carried-forward'
+          ? {
+              ...effect,
+              continuity: {
+                ...effect.continuity,
+                runIdentity: { ...effect.continuity.runIdentity, [continuityField]: `other-${continuityField}` },
+              },
+            }
+          : effect,
+      )
+      expect(() => applyRunReturnEffects(request, changed, dependencies))
+        .toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
+    }
+    for (const field of ['currentDay', 'sceneInstanceId'] as const) {
+      const changed = plan.effects.map((effect): RunReturnEffect =>
+        effect.kind === 'run-facts-carried-forward'
+          ? {
+              ...effect,
+              continuity: {
+                ...effect.continuity,
+                [field]: field === 'currentDay' ? effect.continuity.currentDay + 1 : 'other-scene',
+              },
+            }
+          : effect,
+      )
+      expect(() => applyRunReturnEffects(request, changed, dependencies))
+        .toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
+    }
     expect(() => applyRunReturnEffects(request, changedQuantity, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
     expect(() => applyRunReturnEffects(request, changedResource, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
     expect(() => applyRunReturnEffects(request, withoutTransfer, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
-    expect(request.storedInventory.warehouse.items).toHaveLength(1)
+    expect(request.carryForward.storedInventory.warehouse.items).toHaveLength(1)
   })
 
   it('strictly rejects wrong destinations, duplicate instances, and incomplete ItemState ownership', () => {

@@ -1,7 +1,10 @@
 import { deepFreeze } from '../config'
 import { createPlayerCondition } from '../condition'
 import { createDailyMedicalUsageSnapshot } from '../daily-state'
-import { createRunPhaseContinuitySnapshot } from '../domain'
+import {
+  bindRunPhaseContinuityToScene,
+  createRunPhaseContinuitySnapshot,
+} from '../domain'
 import { createEquipmentSnapshot } from '../equipment'
 import {
   createBackpackSnapshot,
@@ -15,6 +18,8 @@ import { RunReturnError } from './run-return-errors'
 import type {
   ItemReturnLifecycleKind,
   RunReturnDependencies,
+  RunReturnCarryForwardInput,
+  RunReturnCarryForwardSnapshot,
   RunReturnLedgerSnapshot,
   RunReturnSnapshot,
   RunStorageDependencies,
@@ -144,6 +149,95 @@ export function createRunReturnLedgerSnapshot(
     throw new RunReturnError('INVALID_INPUT', 'Run返回记录必须唯一且稳定排序')
   }
   return deepFreeze({ sceneInstanceIds: [...ids] })
+}
+
+function carryForwardBinding(
+  continuity: RunReturnCarryForwardInput['continuity'],
+  storedInventory: RunReturnCarryForwardInput['storedInventory'],
+  returnLedger: RunReturnCarryForwardInput['returnLedger'],
+): string {
+  return JSON.stringify({ continuity, storedInventory, returnLedger })
+}
+
+function storageDependenciesFromReturn(
+  dependencies: RunReturnDependencies,
+): RunStorageDependencies {
+  return {
+    physicalCatalog: dependencies.scene.physicalCatalog,
+    itemResourceCatalog: dependencies.scene.itemResourceCatalog,
+    lifecycleCatalog: dependencies.lifecycleCatalog,
+  }
+}
+
+export function createRunReturnCarryForwardSnapshot(
+  input: unknown,
+  dependencies: RunReturnDependencies,
+): RunReturnCarryForwardSnapshot {
+  if (!exact(input, ['continuity', 'returnLedger', 'storedInventory'])) {
+    throw new RunReturnError('INVALID_INPUT', 'Run返回既有事实结构无效')
+  }
+  let continuity
+  try {
+    continuity = createRunPhaseContinuitySnapshot(
+      input.continuity,
+      dependencies.scene.config.metadata.rulesVersion,
+    )
+  } catch (error) {
+    throw new RunReturnError(
+      'INVALID_INPUT',
+      error instanceof Error ? error.message : 'Run返回连续性无效',
+    )
+  }
+  const storageDependencies = storageDependenciesFromReturn(dependencies)
+  const storedInventory = createRunStoredInventorySnapshot(
+    input.storedInventory as RunStoredInventorySnapshot,
+    storageDependencies,
+  )
+  const returnLedger = createRunReturnLedgerSnapshot(
+    input.returnLedger as RunReturnLedgerSnapshot,
+  )
+  return deepFreeze({
+    continuity,
+    storedInventory,
+    returnLedger,
+    binding: carryForwardBinding(continuity, storedInventory, returnLedger),
+  })
+}
+
+export function restoreRunReturnCarryForwardSnapshot(
+  input: unknown,
+  dependencies: RunReturnDependencies,
+): RunReturnCarryForwardSnapshot {
+  if (!exact(input, ['binding', 'continuity', 'returnLedger', 'storedInventory']) ||
+    typeof input.binding !== 'string') {
+    throw new RunReturnError('INVALID_INPUT', 'Run返回既有事实快照无效')
+  }
+  const restored = createRunReturnCarryForwardSnapshot({
+    continuity: input.continuity,
+    storedInventory: input.storedInventory,
+    returnLedger: input.returnLedger,
+  }, dependencies)
+  if (input.binding !== restored.binding) {
+    throw new RunReturnError('INVALID_INPUT', 'Run返回既有事实连续性绑定不一致')
+  }
+  return restored
+}
+
+export function bindRunReturnCarryForwardToScene(
+  input: RunReturnCarryForwardSnapshot,
+  sceneInstanceId: unknown,
+  dependencies: RunReturnDependencies,
+): RunReturnCarryForwardSnapshot {
+  const carryForward = restoreRunReturnCarryForwardSnapshot(input, dependencies)
+  return createRunReturnCarryForwardSnapshot({
+    continuity: bindRunPhaseContinuityToScene(
+      carryForward.continuity,
+      sceneInstanceId,
+      dependencies.scene.config.metadata.rulesVersion,
+    ),
+    storedInventory: carryForward.storedInventory,
+    returnLedger: carryForward.returnLedger,
+  }, dependencies)
 }
 
 export function getStoredTaskItemQuantity(
@@ -303,4 +397,16 @@ export function projectRunStoredInventory(
       ),
     },
   }, storageDependencies)
+}
+
+export function projectRunReturnCarryForwardFromRunReturn(
+  snapshot: RunReturnSnapshot,
+  dependencies: RunReturnDependencies,
+): RunReturnCarryForwardSnapshot {
+  const normalized = createRunReturnSnapshot(snapshot, dependencies)
+  return createRunReturnCarryForwardSnapshot({
+    continuity: normalized.continuity,
+    storedInventory: projectRunStoredInventory(normalized, dependencies),
+    returnLedger: normalized.returnLedger,
+  }, dependencies)
 }

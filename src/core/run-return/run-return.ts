@@ -1,5 +1,4 @@
 import { deepFreeze } from '../config'
-import { createRunPhaseContinuitySnapshot } from '../domain'
 import { createBackpackSnapshot } from '../inventory'
 import { getItemState } from '../item-state'
 import {
@@ -8,9 +7,8 @@ import {
 } from '../scene-exploration'
 import { RunReturnError } from './run-return-errors'
 import {
-  createRunReturnLedgerSnapshot,
+  restoreRunReturnCarryForwardSnapshot,
   createRunReturnSnapshot,
-  createRunStoredInventorySnapshot,
 } from './run-storage'
 import type {
   RunReturnDependencies,
@@ -28,7 +26,7 @@ function normalizeInput(
 ) {
   if (!input || typeof input !== 'object' || Array.isArray(input) ||
     Object.getPrototypeOf(input) !== Object.prototype ||
-    Object.keys(input).sort().join(',') !== 'continuity,returnLedger,storedInventory,terminalScene') {
+    Object.keys(input).sort().join(',') !== 'carryForward,terminalScene') {
     throw new RunReturnError('INVALID_INPUT', '返回结算输入结构无效')
   }
   let terminalScene
@@ -43,19 +41,16 @@ function normalizeInput(
   if (terminalScene.status !== 'safe-returned' && terminalScene.status !== 'forced-returned') {
     throw new RunReturnError('SCENE_NOT_RETURNABLE', '只有生还且已结束探索的场景可以返回结算')
   }
-  let continuity
+  let carryForward
   try {
-    continuity = createRunPhaseContinuitySnapshot(
-      input.continuity,
-      dependencies.scene.config.metadata.rulesVersion,
-    )
+    carryForward = restoreRunReturnCarryForwardSnapshot(input.carryForward, dependencies)
   } catch (error) {
     throw new RunReturnError(
       'INVALID_INPUT',
       error instanceof Error ? error.message : 'Run返回连续性无效',
     )
   }
-  if (continuity.sceneInstanceId !== terminalScene.sceneInstanceId) {
+  if (carryForward.continuity.sceneInstanceId !== terminalScene.sceneInstanceId) {
     throw new RunReturnError('INVALID_INPUT', 'Run返回连续性与终局场景实例不一致')
   }
   const storageDependencies: RunStorageDependencies = {
@@ -63,11 +58,8 @@ function normalizeInput(
     itemResourceCatalog: dependencies.scene.itemResourceCatalog,
     lifecycleCatalog: dependencies.lifecycleCatalog,
   }
-  const storedInventory = createRunStoredInventorySnapshot(
-    input.storedInventory,
-    storageDependencies,
-  )
-  const returnLedger = createRunReturnLedgerSnapshot(input.returnLedger)
+  const storedInventory = carryForward.storedInventory
+  const returnLedger = carryForward.returnLedger
   if (returnLedger.sceneInstanceIds.includes(terminalScene.sceneInstanceId)) {
     throw new RunReturnError('RETURN_ALREADY_SETTLED', '当前场景已经完成过返回结算')
   }
@@ -80,7 +72,13 @@ function normalizeInput(
       throw new RunReturnError('INVALID_INPUT', `场景物理实例与Run储存实例重复：${instanceId}`)
     }
   }
-  return { continuity, terminalScene, storedInventory, returnLedger, storageDependencies }
+  return {
+    continuity: carryForward.continuity,
+    terminalScene,
+    storedInventory,
+    returnLedger,
+    storageDependencies,
+  }
 }
 
 function lostSceneTaskInstanceIds(

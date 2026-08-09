@@ -31,6 +31,7 @@ import {
   createRunLoadoutDependenciesFromReturn,
   createRunLoadoutSnapshot,
   createRunLoadoutSnapshotFromReturn,
+  projectRunStoredInventoryFromRunLoadout,
   resolveRunLoadoutCommand,
   type RunLoadoutCommand,
   type RunLoadoutEffect,
@@ -38,7 +39,9 @@ import {
 } from '../run-loadout'
 import {
   createRunReturnLedgerSnapshot,
+  createRunReturnCarryForwardSnapshot,
   createRunReturnSnapshot,
+  type RunReturnCarryForwardSnapshot,
   type RunReturnDependencies,
   type RunReturnLedgerSnapshot,
   type RunReturnSnapshot,
@@ -413,4 +416,20 @@ export function resolveHubSurvivalCommand(
 ) {
   const plan = buildHubSurvivalTransitionPlan(snapshot, command, dependencies)
   return applyHubSurvivalEffects(snapshot, plan.command, plan.effects, dependencies)
+}
+
+/** Projects the one formal pre-Return carry-forward aggregate from stable Hub facts. */
+export function projectRunReturnCarryForwardFromCurrentDayHub(
+  snapshotInput: CurrentDayHubSnapshot,
+  dependencies: CurrentDayHubDependencies,
+): RunReturnCarryForwardSnapshot {
+  const snapshot = createCurrentDayHubSnapshot(snapshotInput, dependencies)
+  return createRunReturnCarryForwardSnapshot({
+    continuity: snapshot.continuity,
+    storedInventory: projectRunStoredInventoryFromRunLoadout(
+      snapshot.runLoadout,
+      createRunLoadoutDependenciesFromReturn(dependencies.returnDependencies),
+    ),
+    returnLedger: snapshot.returnLedger,
+  }, dependencies.returnDependencies)
 }

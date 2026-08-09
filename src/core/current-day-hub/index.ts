@@ -5,6 +5,7 @@ export {
   createCurrentDayHubSnapshot,
   createCurrentDayHubSnapshotFromReturn,
   createHubSurvivalCommand,
+  projectRunReturnCarryForwardFromCurrentDayHub,
   getAvailableHubSurvivalCommands,
   resolveCurrentDayHubLoadoutCommand,
   resolveCurrentDayHubMedicalCommand,

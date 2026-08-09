@@ -7,6 +7,7 @@ export {
 } from './run-identity'
 export {
   RunPhaseContinuityError,
+  bindRunPhaseContinuityToScene,
   createRunPhaseContinuitySnapshot,
   hasSameRunPhaseContinuity,
   type RunPhaseContinuitySnapshot,

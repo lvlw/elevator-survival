@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  bindRunPhaseContinuityToScene,
   createRunPhaseContinuitySnapshot,
   hasSameRunPhaseContinuity,
 } from './run-phase-continuity'
@@ -32,5 +33,15 @@ describe('Run phase continuity', () => {
 
   it('rejects a rules version different from the bound configuration', () => {
     expect(() => createRunPhaseContinuitySnapshot(input, 'rules-v2')).toThrow()
+  })
+
+  it('rebinds only the explicitly supplied scene instance', () => {
+    const rebound = bindRunPhaseContinuityToScene(
+      createRunPhaseContinuitySnapshot(input, VERSION),
+      'scene-y',
+      VERSION,
+    )
+    expect(rebound).toEqual({ ...input, sceneInstanceId: 'scene-y' })
+    expect(() => bindRunPhaseContinuityToScene(rebound, '', VERSION)).toThrow()
   })
 })

@@ -50,6 +50,17 @@ export interface RunReturnLedgerSnapshot {
   readonly sceneInstanceIds: readonly string[]
 }
 
+export interface RunReturnCarryForwardInput {
+  readonly continuity: RunPhaseContinuitySnapshot
+  readonly storedInventory: RunStoredInventorySnapshot
+  readonly returnLedger: RunReturnLedgerSnapshot
+}
+
+export interface RunReturnCarryForwardSnapshot extends RunReturnCarryForwardInput {
+  /** Internal canonical binding of the one carry-forward aggregate. */
+  readonly binding: string
+}
+
 export interface ReturnedPlayerStateSnapshot {
   readonly backpack: BackpackSnapshot
   readonly equipment: EquipmentSnapshot
@@ -69,10 +80,8 @@ export interface RunReturnSnapshot {
 }
 
 export interface RunReturnInput {
-  readonly continuity: RunPhaseContinuitySnapshot
   readonly terminalScene: SceneExplorationSnapshot
-  readonly storedInventory: RunStoredInventorySnapshot
-  readonly returnLedger: RunReturnLedgerSnapshot
+  readonly carryForward: RunReturnCarryForwardSnapshot
 }
 
 export interface RunReturnDependencies {

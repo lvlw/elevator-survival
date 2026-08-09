@@ -1,8 +1,11 @@
 import { describe, expect, it } from 'vitest'
-import { createPlayerCondition } from '../../../core/condition'
+import {
+  createPlayerCondition,
+  type OpenWoundSnapshot,
+} from '../../../core/condition'
 import { createBackpackSnapshot } from '../../../core/inventory'
-import { createItemState } from '../../../core/item-state'
-import { createEmptyQuickSlots } from '../../../core/quick-slot'
+import { createFullItemState, createItemState } from '../../../core/item-state'
+import { createEmptyQuickSlots, createQuickSlotSnapshot } from '../../../core/quick-slot'
 import {
   applySceneExplorationEffects,
   createInitialSceneExplorationSnapshot,
@@ -66,11 +69,20 @@ function scene(options: {
   alertState?: 'unalerted' | 'alerted'
   currentNodeId?: string
   accessCard?: boolean
+  quickSlots?: readonly (string | null)[]
+  openWounds?: readonly OpenWoundSnapshot[]
+  minorContusions?: number
+  painkillerActive?: boolean
 } = {}) {
   const bleeding = options.bleeding ?? false
   const card = options.accessCard
     ? { instanceId: 'staff-route-card', definitionId: HOSPITAL_ITEM_IDS.isolationWardAccessCard, quantity: 1 }
     : null
+  const quickItems = (options.quickSlots ?? [null, null]).map(
+    (definitionId, index) => definitionId
+      ? { instanceId: `scene-quick-${index}`, definitionId, quantity: 1 }
+      : null,
+  )
   return createInitialSceneExplorationSnapshot({
     sceneInstanceId,
     searchState,
@@ -85,26 +97,36 @@ function scene(options: {
       placements: card ? [{ instanceId: card.instanceId, x: 0, y: 0, rotated: false }] : [],
     }, hospitalItemCatalog),
     equipment: { weapon: pipe, armor: null, utility: null },
-    quickSlots: createEmptyQuickSlots(
-      config.backpack.quickSlotCount,
-      hospitalItemCatalog,
-      hospitalItemQuickSlotCatalog,
-    ),
+    quickSlots: options.quickSlots
+      ? createQuickSlotSnapshot(
+          quickItems,
+          config.backpack.quickSlotCount,
+          hospitalItemCatalog,
+          hospitalItemQuickSlotCatalog,
+        )
+      : createEmptyQuickSlots(
+          config.backpack.quickSlotCount,
+          hospitalItemCatalog,
+          hospitalItemQuickSlotCatalog,
+        ),
     itemStates: { states: [
       createItemState({
         ...pipe,
         resource: { kind: 'durability', current: 6 },
       }, hospitalItemResourceCatalog),
       ...(card ? [createItemState({ ...card, resource: { kind: 'none' } }, hospitalItemResourceCatalog)] : []),
+      ...quickItems
+        .filter((item): item is NonNullable<typeof item> => item !== null)
+        .map((item) => createFullItemState(item, hospitalItemResourceCatalog)),
     ] },
     condition: createPlayerCondition({
       currentHealth: options.health ?? 12,
       bleeding,
-      openWounds: bleeding
+      openWounds: options.openWounds ?? (bleeding
         ? [{ id: 'existing-wound', kind: 'laceration', treatment: 'untreated' }]
-        : [],
-      minorContusions: 0,
-      painkillerActive: false,
+        : []),
+      minorContusions: options.minorContusions ?? 0,
+      painkillerActive: options.painkillerActive ?? false,
       pendingInfectionExposures: 0,
     }, config.combat.player),
   }, dependencies)
@@ -572,5 +594,97 @@ describe('hospital scene combat encounter lifecycle', () => {
     delete incomplete.combatState
     expect(() => createSceneExplorationSnapshot(incomplete as never, dependencies))
       .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+
+  it('writes a nonterminal bandage action into both active combat and scene facts', () => {
+    const started = enter(scene({
+      health: 8,
+      bleeding: true,
+      quickSlots: [HOSPITAL_ITEM_IDS.bandage, HOSPITAL_ITEM_IDS.ration],
+    }))
+    const beforeTime = started.remainingTime
+    const beforeNode = started.currentNodeId
+    const beforeBackpack = started.backpack
+    const result = resolveSceneCombatPlayerAction(started, {
+      kind: 'use-quick-slot-item',
+      quickSlotIndex: 0,
+      targetOpenWoundId: 'existing-wound',
+    }, dependencies)
+    expect(result.snapshot.status).toBe('combat')
+    expect(result.snapshot.remainingTime).toBe(beforeTime)
+    expect(result.snapshot.currentNodeId).toBe(beforeNode)
+    expect(result.snapshot.backpack).toEqual(beforeBackpack)
+    expect(result.snapshot.quickSlots.slots[0]).toBeNull()
+    expect(result.snapshot.quickSlots.slots[1]).toMatchObject({
+      definitionId: HOSPITAL_ITEM_IDS.ration,
+    })
+    expect(result.snapshot.itemStates.states.some(
+      ({ instanceId }) => instanceId === 'scene-quick-0',
+    )).toBe(false)
+    expect(result.snapshot.condition.openWounds.find(
+      ({ id }) => id === 'existing-wound',
+    )?.treatment).toBe('treated')
+    const active = result.snapshot.combatState.encounters[0]
+    if (active.kind !== 'active') throw new Error('encounter must remain active')
+    expect(active.combat.playerCondition).toEqual(result.snapshot.condition)
+    expect(active.combat.quickSlots).toEqual(result.snapshot.quickSlots)
+    expect(active.combat.itemStates).toEqual(result.snapshot.itemStates)
+    expect(active.combat.backpack).toEqual(result.snapshot.backpack)
+    expect(active.combat.equipment).toEqual(result.snapshot.equipment)
+  })
+
+  it('preserves painkiller consumption and activation when post-action bleeding writes defeat', () => {
+    const started = enter(scene({
+      health: 2,
+      bleeding: true,
+      minorContusions: 1,
+      quickSlots: [HOSPITAL_ITEM_IDS.painkiller, null],
+    }))
+    expect(started.condition.currentHealth).toBe(1)
+    const result = resolveSceneCombatPlayerAction(started, {
+      kind: 'use-quick-slot-item',
+      quickSlotIndex: 0,
+    }, dependencies)
+    expect(result.snapshot.status).toBe('dead')
+    expect(result.snapshot.condition).toMatchObject({
+      currentHealth: 0,
+      bleeding: true,
+      painkillerActive: true,
+    })
+    expect(result.snapshot.quickSlots.slots[0]).toBeNull()
+    expect(result.snapshot.itemStates.states.some(
+      ({ instanceId }) => instanceId === 'scene-quick-0',
+    )).toBe(false)
+    expect(result.result.effects.some(
+      (effect) => effect.kind === 'scene-node-changed' && effect.reason === 'combat-escape',
+    )).toBe(false)
+  })
+
+  it('keeps painkiller active through escape writeback and combat reentry', () => {
+    const started = enter(scene({
+      openWounds: [{
+        id: 'escape-wound',
+        kind: 'puncture',
+        treatment: 'untreated',
+      }],
+      quickSlots: [HOSPITAL_ITEM_IDS.painkiller, null],
+    }))
+    const medicated = resolveSceneCombatPlayerAction(started, {
+      kind: 'use-quick-slot-item',
+      quickSlotIndex: 0,
+    }, dependencies).snapshot
+    expect(medicated.condition.painkillerActive).toBe(true)
+    const escaped = resolveSceneCombatPlayerAction(
+      medicated,
+      { kind: 'escape' },
+      dependencies,
+    ).snapshot
+    expect(escaped.condition.painkillerActive).toBe(true)
+    expect(escaped.quickSlots.slots[0]).toBeNull()
+    const reentered = enter(escaped)
+    const active = reentered.combatState.encounters[0]
+    if (active.kind !== 'active') throw new Error('encounter must be active')
+    expect(active.combat.playerCondition.painkillerActive).toBe(true)
+    expect(active.combat.quickSlots.slots[0]).toBeNull()
   })
 })

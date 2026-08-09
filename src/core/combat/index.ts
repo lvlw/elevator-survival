@@ -19,6 +19,7 @@ export {
 } from './enemy-persistent-state'
 export {
   getAvailableCombatPlayerActions,
+  getAvailableCombatPlayerCommands,
   selectEnemyHealthPhase,
 } from './combat-selectors'
 export {

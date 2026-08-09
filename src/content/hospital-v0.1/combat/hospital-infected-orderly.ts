@@ -39,4 +39,6 @@ export const hospitalCombatContentBindings: CombatContentBindings = Object.freez
   enemyDefinitionId: HOSPITAL_ENEMY_IDS.infectedOrderly,
   metalPipeDefinitionId: HOSPITAL_ITEM_IDS.metalPipe,
   heavyCoatDefinitionId: HOSPITAL_ITEM_IDS.heavyCoat,
+  bandageDefinitionId: HOSPITAL_ITEM_IDS.bandage,
+  painkillerDefinitionId: HOSPITAL_ITEM_IDS.painkiller,
 })

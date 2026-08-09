@@ -73,11 +73,18 @@ export type CombatPlayerActionCommand =
   | Readonly<{ kind: 'defend' }>
   | Readonly<{ kind: 'temporary-attack' }>
   | Readonly<{ kind: 'escape' }>
+  | Readonly<{
+      kind: 'use-quick-slot-item'
+      quickSlotIndex: number
+      targetOpenWoundId?: string
+    }>
 
 export interface CombatContentBindings {
   readonly enemyDefinitionId: string
   readonly metalPipeDefinitionId: string
   readonly heavyCoatDefinitionId: string
+  readonly bandageDefinitionId: string
+  readonly painkillerDefinitionId: string
 }
 
 export interface CombatDependencies {
@@ -106,6 +113,39 @@ export interface CombatRiskTrace {
 }
 
 export type CombatEffect =
+  | Readonly<{
+      kind: 'combat-quick-slot-item-consumed'
+      source: 'combat-bandage' | 'combat-painkiller'
+      quickSlotIndex: number
+      instanceId: string
+      definitionId: string
+      quantityBefore: 1
+      quantityConsumed: 1
+      quantityAfter: 0
+    }>
+  | Readonly<{
+      kind: 'player-health-restored'
+      source: 'combat-bandage'
+      healthBefore: number
+      requestedRecovery: number
+      actualRecovery: number
+      healthAfter: number
+      unusedRecovery: number
+    }>
+  | Readonly<{
+      kind: 'open-wound-treated'
+      source: 'combat-bandage'
+      woundId: string
+      woundKind: OpenWoundSnapshot['kind']
+      treatmentBefore: 'untreated'
+      treatmentAfter: 'treated'
+    }>
+  | Readonly<{
+      kind: 'painkiller-changed'
+      source: 'combat-painkiller'
+      before: false
+      after: true
+    }>
   | Readonly<{
       kind: 'combat-escape-preparation-locked'
       startedAtCtb: number

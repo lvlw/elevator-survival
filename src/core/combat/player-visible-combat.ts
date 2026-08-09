@@ -1,12 +1,19 @@
 import { deepFreeze } from '../config'
-import { getUntreatedOpenWoundCount } from '../condition'
+import {
+  getUntreatedOpenWoundCount,
+  type OpenWoundKind,
+} from '../condition'
 import { getItemState } from '../item-state'
 import { createCombatEncounterSnapshot } from './combat-snapshot'
 import {
-  getAvailableCombatPlayerActionsFromValidatedSnapshot,
+  getAvailableCombatPlayerCommandsFromValidatedSnapshot,
   selectEnemyHealthPhase,
 } from './combat-selectors'
-import type { CombatDependencies, CombatEncounterSnapshot } from './combat-types'
+import type {
+  CombatDependencies,
+  CombatEncounterSnapshot,
+  CombatPlayerActionCommand,
+} from './combat-types'
 
 export interface PlayerVisibleCombatSnapshot {
   readonly encounterId: string
@@ -18,9 +25,9 @@ export interface PlayerVisibleCombatSnapshot {
     bleeding: boolean
     untreatedOpenWoundCount: number
     wounds: readonly Readonly<{
-      kind: string
+      id: string
+      kind: OpenWoundKind
       treatment: 'untreated' | 'treated'
-      count: number
     }>[]
     currentCtb: number
     nextActionCtb: number
@@ -30,7 +37,18 @@ export interface PlayerVisibleCombatSnapshot {
     nextActionCtb: number
     currentIntentId: string
   }>
-  readonly legalActions: readonly string[]
+  readonly legalCommands: readonly CombatPlayerActionCommand[]
+  readonly legalActions: readonly CombatPlayerActionCommand['kind'][]
+  readonly quickSlots: readonly Readonly<{
+    slotIndex: number
+    empty: boolean
+    definitionId: string | null
+    canUseInCombat: boolean
+    legalCommands: readonly Extract<
+      CombatPlayerActionCommand,
+      { kind: 'use-quick-slot-item' }
+    >[]
+  }>[]
   readonly equippedResources: Readonly<{
     weapon: Readonly<{ kind: string; current: number }> | null
     armor: Readonly<{ kind: string; current: number }> | null
@@ -60,17 +78,29 @@ export function createPlayerVisibleCombatSnapshot(
       ? null
       : { kind: state.resource.kind, current: state.resource.current }
   }
-  const woundCounts = new Map<string, number>()
-  for (const wound of snapshot.playerCondition.openWounds) {
-    const key = `${wound.kind}|${wound.treatment}`
-    woundCounts.set(key, (woundCounts.get(key) ?? 0) + 1)
-  }
-  const wounds = [...woundCounts.entries()]
-    .map(([key, count]) => {
-      const [kind, treatment] = key.split('|')
-      return { kind, treatment: treatment as 'untreated' | 'treated', count }
-    })
-    .sort((left, right) => `${left.kind}|${left.treatment}`.localeCompare(`${right.kind}|${right.treatment}`))
+  const wounds = snapshot.playerCondition.openWounds
+    .map(({ id, kind, treatment }) => ({ id, kind, treatment }))
+    .sort((left, right) => left.id.localeCompare(right.id))
+  const legalCommands = getAvailableCombatPlayerCommandsFromValidatedSnapshot(
+    snapshot,
+    dependencies,
+  )
+  const legalActions = [...new Set(legalCommands.map(({ kind }) => kind))].sort()
+  const quickSlots = snapshot.quickSlots.slots.map((item, slotIndex) => {
+    const slotCommands = legalCommands.filter(
+      (command): command is Extract<
+        CombatPlayerActionCommand,
+        { kind: 'use-quick-slot-item' }
+      > => command.kind === 'use-quick-slot-item' && command.quickSlotIndex === slotIndex,
+    )
+    return {
+      slotIndex,
+      empty: item === null,
+      definitionId: item?.definitionId ?? null,
+      canUseInCombat: slotCommands.length > 0,
+      legalCommands: slotCommands,
+    }
+  })
   return deepFreeze({
     ...identity,
     status: snapshot.status,
@@ -90,10 +120,9 @@ export function createPlayerVisibleCombatSnapshot(
       nextActionCtb: snapshot.enemyNextActionCtb,
       currentIntentId: currentAction.id,
     },
-    legalActions: getAvailableCombatPlayerActionsFromValidatedSnapshot(
-      snapshot,
-      dependencies,
-    ),
+    legalCommands,
+    legalActions,
+    quickSlots,
     equippedResources: {
       weapon: resource('weapon'),
       armor: resource('armor'),

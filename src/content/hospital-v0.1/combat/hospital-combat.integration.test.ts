@@ -119,7 +119,10 @@ function encounter(setup: Setup = {}) {
 
 function act(
   state: CombatEncounterSnapshot,
-  kind: Parameters<typeof resolveCombatPlayerAction>[1]['kind'],
+  kind: Exclude<
+    Parameters<typeof resolveCombatPlayerAction>[1],
+    { kind: 'use-quick-slot-item' }
+  >['kind'],
   dependencies: ReturnType<typeof encounter>['dependencies'],
 ) {
   return resolveCombatPlayerAction(state, { kind }, dependencies)

@@ -102,3 +102,13 @@ export function replaceItemState(
     ),
   })
 }
+
+export function removeItemState(
+  collection: ItemStateCollectionSnapshot,
+  instanceId: string,
+): ItemStateCollectionSnapshot {
+  getItemState(collection, instanceId)
+  return deepFreeze({
+    states: collection.states.filter((state) => state.instanceId !== instanceId),
+  })
+}

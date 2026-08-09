@@ -10,6 +10,7 @@ export {
 export {
   createItemStateCollectionSnapshot,
   getItemState,
+  removeItemState,
   replaceItemState,
 } from './item-state-collection'
 export type {

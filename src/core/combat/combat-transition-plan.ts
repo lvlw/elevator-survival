@@ -1,12 +1,18 @@
 import { deepFreeze } from '../config'
-import { calculateEscapeWoundCtbModifier } from '../condition'
+import {
+  activatePainkiller,
+  calculateEscapeWoundCtbModifier,
+  restoreHealth,
+  stopBleeding,
+  treatOpenWound,
+} from '../condition'
 import { calculateBackpackWeightSubtotal } from '../inventory'
 import { consumeCommittedResource, getItemState } from '../item-state'
 import { classifyLoad } from '../load'
 import { CombatError } from './combat-errors'
 import { validateCombatDependencies } from './combat-dependencies'
 import {
-  getAvailableCombatPlayerActionsFromValidatedSnapshot,
+  getAvailableCombatPlayerCommandsFromValidatedSnapshot,
   getCombatResourceState,
 } from './combat-selectors'
 import {
@@ -49,15 +55,27 @@ export function buildCombatTransitionPlan(
       )
     }
   }
-  if (!getAvailableCombatPlayerActionsFromValidatedSnapshot(
+  const isAvailable = getAvailableCombatPlayerCommandsFromValidatedSnapshot(
     snapshot,
     dependencies,
-  ).includes(command.kind)) {
+  ).some((available) => {
+    if (available.kind !== command.kind) return false
+    if (
+      available.kind === 'use-quick-slot-item' &&
+      command.kind === 'use-quick-slot-item'
+    ) {
+      return available.quickSlotIndex === command.quickSlotIndex &&
+        available.targetOpenWoundId === command.targetOpenWoundId
+    }
+    return true
+  })
+  if (!isAvailable) {
     throw new CombatError('ACTION_NOT_AVAILABLE', '玩家战斗行动不可用')
   }
 
   const effects: CombatEffect[] = []
   let currentCtb = snapshot.currentCtb
+  let playerCondition = snapshot.playerCondition
   let playerHealth = snapshot.playerCondition.currentHealth
   let enemyHealth = snapshot.enemy.currentHealth
   let playerNext = snapshot.playerNextActionCtb
@@ -157,6 +175,72 @@ export function buildCombatTransitionPlan(
       preparationCtb: actionCtb,
       completesAtCtb: escapeCompletesAtCtb,
     })
+  } else if (command.kind === 'use-quick-slot-item') {
+    const item = snapshot.quickSlots.slots[command.quickSlotIndex]!
+    const isBandage = item.definitionId === dependencies.bindings.bandageDefinitionId
+    const source = isBandage ? 'combat-bandage' : 'combat-painkiller'
+    effects.push({
+      kind: 'combat-quick-slot-item-consumed',
+      source,
+      quickSlotIndex: command.quickSlotIndex,
+      instanceId: item.instanceId,
+      definitionId: item.definitionId,
+      quantityBefore: 1,
+      quantityConsumed: 1,
+      quantityAfter: 0,
+    })
+    if (isBandage) {
+      const recovery = restoreHealth(
+        playerCondition,
+        dependencies.config.medical.bandage.healthRecovery,
+        dependencies.config.combat.player,
+      )
+      effects.push({
+        kind: 'player-health-restored',
+        source: 'combat-bandage',
+        healthBefore: recovery.healthBefore,
+        requestedRecovery: recovery.requestedRecovery,
+        actualRecovery: recovery.actualRecovery,
+        healthAfter: recovery.healthAfter,
+        unusedRecovery: recovery.unusedRecovery,
+      })
+      playerCondition = recovery.state
+      playerHealth = recovery.healthAfter
+      if (bleeding && dependencies.config.medical.bandage.stopsBleeding) {
+        effects.push({
+          kind: 'bleeding-changed',
+          before: true,
+          after: false,
+          source: 'combat-bandage',
+        })
+        playerCondition = stopBleeding(playerCondition)
+        bleeding = false
+      }
+      if (command.targetOpenWoundId) {
+        const wound = playerCondition.openWounds.find(
+          ({ id }) => id === command.targetOpenWoundId,
+        )!
+        effects.push({
+          kind: 'open-wound-treated',
+          source: 'combat-bandage',
+          woundId: wound.id,
+          woundKind: wound.kind,
+          treatmentBefore: 'untreated',
+          treatmentAfter: 'treated',
+        })
+        playerCondition = treatOpenWound(playerCondition, wound.id)
+      }
+      actionCtb = dependencies.config.medical.bandage.combatCtb
+    } else {
+      effects.push({
+        kind: 'painkiller-changed',
+        source: 'combat-painkiller',
+        before: false,
+        after: true,
+      })
+      playerCondition = activatePainkiller(playerCondition)
+      actionCtb = dependencies.config.medical.painkiller.combatCtb
+    }
   } else if (
     command.kind === 'metal-pipe-basic-attack' ||
     command.kind === 'metal-pipe-charged-strike'
@@ -220,7 +304,7 @@ export function buildCombatTransitionPlan(
     })
   }
 
-  if (!isEscape && snapshot.playerCondition.bleeding) {
+  if (!isEscape && bleeding) {
     const requested = dependencies.config.combat.postPlayerActionBleedingDamage
     const actual = Math.min(playerHealth, requested)
     effects.push({

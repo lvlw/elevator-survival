@@ -171,9 +171,70 @@ describe('strict combat runtime facts', () => {
     'metal-pipe-charged-strike',
     'defend',
     'temporary-attack',
+    'escape',
   ] as const)('accepts exact command %s', (kind) => {
     expect(createCombatPlayerActionCommand({ kind })).toEqual({ kind })
   })
+
+  it.each([
+    [
+      { kind: 'use-quick-slot-item', quickSlotIndex: 0 },
+      { kind: 'use-quick-slot-item', quickSlotIndex: 0 },
+    ],
+    [
+      {
+        kind: 'use-quick-slot-item',
+        quickSlotIndex: 1,
+        targetOpenWoundId: 'wound-1',
+      },
+      {
+        kind: 'use-quick-slot-item',
+        quickSlotIndex: 1,
+        targetOpenWoundId: 'wound-1',
+      },
+    ],
+  ] as const)('accepts and copies exact quick-slot command %o', (input, expected) => {
+    const command = createCombatPlayerActionCommand(input)
+    expect(command).toEqual(expected)
+    expect(command).not.toBe(input)
+    expect(Object.isFrozen(command)).toBe(true)
+    expect(Object.isFrozen(input)).toBe(false)
+  })
+
+  it.each([
+    { kind: 'use-quick-slot-item', quickSlotIndex: -1 },
+    { kind: 'use-quick-slot-item', quickSlotIndex: 0.5 },
+    { kind: 'use-quick-slot-item', quickSlotIndex: Number.MAX_SAFE_INTEGER + 1 },
+    { kind: 'use-quick-slot-item', quickSlotIndex: 0, targetOpenWoundId: '' },
+    { kind: 'use-quick-slot-item', quickSlotIndex: 0, targetOpenWoundId: ' ' },
+    { kind: 'use-quick-slot-item', quickSlotIndex: 0, definitionId: 'bandage' },
+    { kind: 'use-quick-slot-item', quickSlotIndex: 0, ctb: 80 },
+  ])('rejects malformed quick-slot command %o', (command) => {
+    expect(() => createCombatPlayerActionCommand(command as never)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_COMBAT_COMMAND' }),
+    )
+  })
+
+  it.each([
+    null,
+    [],
+    new Date(),
+    Object.assign(Object.create({}), {
+      kind: 'use-quick-slot-item',
+      quickSlotIndex: 0,
+    }),
+    Object.assign(Object.create(null), {
+      kind: 'use-quick-slot-item',
+      quickSlotIndex: 0,
+    }),
+  ])(
+    'rejects non-plain quick-slot command %o',
+    (command) => {
+      expect(() => createCombatPlayerActionCommand(command as never)).toThrowError(
+        expect.objectContaining({ code: 'INVALID_COMBAT_COMMAND' }),
+      )
+    },
+  )
 
   it.each([
     null,

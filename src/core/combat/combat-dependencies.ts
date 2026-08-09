@@ -23,21 +23,30 @@ export function validateCombatDependencies(
     typeof dependencies.sceneInstanceId !== 'string' ||
     dependencies.sceneInstanceId.trim().length === 0 ||
     !hasExactObjectKeys(dependencies.bindings, [
+      'bandageDefinitionId',
       'enemyDefinitionId',
       'heavyCoatDefinitionId',
       'metalPipeDefinitionId',
+      'painkillerDefinitionId',
     ]) ||
     typeof dependencies.bindings.enemyDefinitionId !== 'string' ||
     dependencies.bindings.enemyDefinitionId.trim().length === 0 ||
     typeof dependencies.bindings.metalPipeDefinitionId !== 'string' ||
     dependencies.bindings.metalPipeDefinitionId.trim().length === 0 ||
     typeof dependencies.bindings.heavyCoatDefinitionId !== 'string' ||
-    dependencies.bindings.heavyCoatDefinitionId.trim().length === 0
+    dependencies.bindings.heavyCoatDefinitionId.trim().length === 0 ||
+    typeof dependencies.bindings.bandageDefinitionId !== 'string' ||
+    dependencies.bindings.bandageDefinitionId.trim().length === 0 ||
+    typeof dependencies.bindings.painkillerDefinitionId !== 'string' ||
+    dependencies.bindings.painkillerDefinitionId.trim().length === 0
   ) {
     throw new CombatError('INVALID_COMBAT_DEPENDENCIES', '战斗依赖结构无效')
   }
 
   const { bindings } = dependencies
+  if (bindings.bandageDefinitionId === bindings.painkillerDefinitionId) {
+    bindingMismatch('绷带与止痛药不能绑定同一物品定义')
+  }
   let hasEnemy = false
   let enemy: EnemyDefinition | undefined
   try {
@@ -108,4 +117,27 @@ export function validateCombatDependencies(
     'integrity',
     dependencies.config.maintenance.itemResourceMaximums.heavyCoatIntegrity,
   )
+
+  const validateMedicalBinding = (definitionId: string) => {
+    let hasPhysicalDefinition = false
+    try {
+      hasPhysicalDefinition = dependencies.physicalCatalog.has(definitionId)
+      if (hasPhysicalDefinition) dependencies.physicalCatalog.get(definitionId)
+      const quickSlot = dependencies.quickSlotCatalog.get(definitionId)
+      const resource = dependencies.itemResourceCatalog.get(definitionId)
+      if (
+        !hasPhysicalDefinition ||
+        quickSlot.kind !== 'eligible' ||
+        resource.kind !== 'none'
+      ) {
+        bindingMismatch(`绑定战斗医疗物品资格或资源无效：${definitionId}`)
+      }
+    } catch (error) {
+      if (error instanceof CombatError) throw error
+      bindingMismatch(`未知绑定战斗医疗物品：${definitionId}`)
+    }
+  }
+
+  validateMedicalBinding(bindings.bandageDefinitionId)
+  validateMedicalBinding(bindings.painkillerDefinitionId)
 }

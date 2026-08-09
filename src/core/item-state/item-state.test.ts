@@ -8,6 +8,7 @@ import {
   getItemState,
   ItemStateError,
   previewCommittedResourceAction,
+  removeItemState,
   restoreItemResource,
   replaceItemState,
   type ItemResourceProfile,
@@ -334,6 +335,18 @@ describe('item state collection', () => {
       current: 3,
     })
     expect(() => getItemState(collection, 'missing')).toThrowError(
+      expect.objectContaining({ code: 'UNKNOWN_ITEM_STATE' }),
+    )
+  })
+
+  it('strictly removes one state without mutating the collection', () => {
+    const collection = createItemStateCollectionSnapshot(states, carried, catalog)
+    const removed = removeItemState(collection, 'lamp-1')
+    expect(removed.states.map(({ instanceId }) => instanceId)).toEqual(['pipe-1'])
+    expect(collection.states).toHaveLength(2)
+    expect(Object.isFrozen(removed)).toBe(true)
+    expect(Object.isFrozen(removed.states)).toBe(true)
+    expect(() => removeItemState(collection, 'missing')).toThrowError(
       expect.objectContaining({ code: 'UNKNOWN_ITEM_STATE' }),
     )
   })

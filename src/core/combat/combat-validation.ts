@@ -19,6 +19,43 @@ export function hasExactObjectKeys(
 export function createCombatPlayerActionCommand(
   input: CombatPlayerActionCommand,
 ): CombatPlayerActionCommand {
+  if (
+    !input ||
+    typeof input !== 'object' ||
+    Array.isArray(input) ||
+    Object.getPrototypeOf(input) !== Object.prototype
+  ) {
+    throw new CombatError('INVALID_COMBAT_COMMAND', '玩家战斗命令结构无效')
+  }
+  if (input.kind === 'use-quick-slot-item') {
+    const withTarget = Object.prototype.hasOwnProperty.call(
+      input,
+      'targetOpenWoundId',
+    )
+    if (
+      !hasExactObjectKeys(
+        input,
+        withTarget
+          ? ['kind', 'quickSlotIndex', 'targetOpenWoundId']
+          : ['kind', 'quickSlotIndex'],
+      ) ||
+      !Number.isSafeInteger(input.quickSlotIndex) ||
+      input.quickSlotIndex < 0 ||
+      (withTarget && (
+        typeof input.targetOpenWoundId !== 'string' ||
+        input.targetOpenWoundId.trim().length === 0
+      ))
+    ) {
+      throw new CombatError('INVALID_COMBAT_COMMAND', '快捷物品战斗命令结构无效')
+    }
+    return deepFreeze(withTarget
+      ? {
+          kind: input.kind,
+          quickSlotIndex: input.quickSlotIndex,
+          targetOpenWoundId: input.targetOpenWoundId,
+        }
+      : { kind: input.kind, quickSlotIndex: input.quickSlotIndex })
+  }
   if (!hasExactObjectKeys(input, ['kind'])) {
     throw new CombatError('INVALID_COMBAT_COMMAND', '玩家战斗命令结构无效')
   }

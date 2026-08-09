@@ -1,15 +1,20 @@
 import { deepFreeze } from '../config'
 import {
+  activatePainkiller,
   addOpenWound,
   addPendingInfectionExposure,
   applyHealthLoss,
-  startBleeding,
+  restoreHealth,
+  setBleeding,
+  treatOpenWound,
 } from '../condition'
 import {
   consumeCommittedResource,
   getItemState,
+  removeItemState,
   replaceItemState,
 } from '../item-state'
+import { removeQuickSlotItem } from '../quick-slot'
 import { CombatError } from './combat-errors'
 import { createCombatEncounterSnapshot } from './combat-snapshot'
 import { buildCombatTransitionPlan } from './combat-transition-plan'
@@ -44,6 +49,46 @@ export function applyCombatEffects(
   for (const effect of effects) {
     const value = effect as Record<string, unknown>
     switch (effect.kind) {
+      case 'combat-quick-slot-item-consumed': {
+        const removed = removeQuickSlotItem(
+          state,
+          effect.quickSlotIndex,
+          dependencies,
+        )
+        state = deepFreeze({
+          ...state,
+          backpack: removed.snapshot.backpack,
+          equipment: removed.snapshot.equipment,
+          quickSlots: removed.snapshot.quickSlots,
+          itemStates: removeItemState(state.itemStates, effect.instanceId),
+        })
+        break
+      }
+      case 'player-health-restored':
+        state = deepFreeze({
+          ...state,
+          playerCondition: restoreHealth(
+            state.playerCondition,
+            effect.requestedRecovery,
+            dependencies.config.combat.player,
+          ).state,
+        })
+        break
+      case 'open-wound-treated':
+        state = deepFreeze({
+          ...state,
+          playerCondition: treatOpenWound(
+            state.playerCondition,
+            effect.woundId,
+          ),
+        })
+        break
+      case 'painkiller-changed':
+        state = deepFreeze({
+          ...state,
+          playerCondition: activatePainkiller(state.playerCondition),
+        })
+        break
       case 'combat-escape-preparation-locked':
       case 'combat-escape-completed':
         break
@@ -116,7 +161,7 @@ export function applyCombatEffects(
       case 'bleeding-changed':
         state = deepFreeze({
           ...state,
-          playerCondition: startBleeding(state.playerCondition),
+          playerCondition: setBleeding(state.playerCondition, effect.after),
         })
         break
       case 'infection-exposure-added':

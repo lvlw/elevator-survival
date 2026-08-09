@@ -73,7 +73,8 @@ describe('hospital return route integration', () => {
         healthAfterPrimaryEffect: config.combat.player.maxHealth,
         bleedingAfterPrimaryEffect: false,
         estimatedReturnTimeAfterAction: route.estimatedReturnTime,
-        reachesElevatorSafety: false,
+        endsExplorationAtSafety: false,
+        isAtSafetyAfterAction: false,
       },
       {
         postActionBleedingDamage: config.scene.postActionBleedingDamage,

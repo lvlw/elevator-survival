@@ -27,7 +27,8 @@ function resolveExtraction(
       healthAfterPrimaryEffect: vitals.currentHealth,
       bleedingAfterPrimaryEffect,
       estimatedReturnTimeAfterAction: returnTime,
-      reachesElevatorSafety: false,
+      endsExplorationAtSafety: false,
+      isAtSafetyAfterAction: false,
     },
     {
       postActionBleedingDamage: config.scene.postActionBleedingDamage,
@@ -86,7 +87,8 @@ describe('hospital scene resolution integration', () => {
           6 + config.medical.bandage.healthRecovery,
         bleedingAfterPrimaryEffect: !config.medical.bandage.stopsBleeding,
         estimatedReturnTimeAfterAction: 0,
-        reachesElevatorSafety: false,
+        endsExplorationAtSafety: false,
+        isAtSafetyAfterAction: false,
       },
       {
         postActionBleedingDamage: config.scene.postActionBleedingDamage,
@@ -98,7 +100,8 @@ describe('hospital scene resolution integration', () => {
       healthAfterPrimaryEffect: 6,
       bleedingAfterPrimaryEffect: true,
       estimatedReturnTimeAfterAction: 0,
-      reachesElevatorSafety: false,
+      endsExplorationAtSafety: false,
+      isAtSafetyAfterAction: false,
     }
     const painkillerPreview = previewTimedSceneAction(
       { remainingTime: config.scene.totalTime },

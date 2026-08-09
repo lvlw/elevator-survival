@@ -51,6 +51,7 @@ const config = {
   },
   medical: {
     painkiller: { suppressesMinorContusionMovementPenalty: true },
+    disinfectant: { maxUsesPerDay: 1 },
   },
   forcedReturn: {
     effectiveTimePerBaseDamage: 20,
@@ -323,7 +324,7 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
       },
       quickSlots: { slots: [quickItem, null] },
       itemStates: { states: itemStates },
-      medicalUsage: { disinfectantUsesToday: 0 },
+      dailyMedicalUsage: { disinfectantUsesToday: 0 },
       condition: createPlayerCondition(
         {
           currentHealth,

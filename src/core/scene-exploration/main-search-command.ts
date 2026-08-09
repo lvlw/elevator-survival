@@ -264,7 +264,8 @@ function evaluate(
       healthAfterPrimaryEffect: snapshot.condition.currentHealth,
       bleedingAfterPrimaryEffect: snapshot.condition.bleeding,
       estimatedReturnTimeAfterAction: returnRoute.estimatedReturnTime,
-      reachesElevatorSafety: currentIsSafetyNode,
+      endsExplorationAtSafety: false,
+      isAtSafetyAfterAction: currentIsSafetyNode,
     },
     {
       postActionBleedingDamage:

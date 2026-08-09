@@ -69,7 +69,6 @@ export type {
   SceneMedicalResolution,
   SceneMedicalTarget,
   SceneMedicalTransitionPlan,
-  SceneMedicalUsageSnapshot,
   SceneAlertState,
   SceneExplorationStatus,
   SceneObstacleCommandDependencies,

@@ -1,5 +1,6 @@
 import type { FrozenRuleConfig } from '../config'
 import type { PlayerConditionSnapshot } from '../condition'
+import type { DailyMedicalUsageSnapshot } from '../daily-state'
 import type {
   EquipmentProfileCatalog,
   EquipmentSnapshot,
@@ -75,7 +76,7 @@ export interface SceneExplorationSnapshot {
   readonly quickSlots: QuickSlotSnapshot
   readonly itemStates: ItemStateCollectionSnapshot
   readonly condition: PlayerConditionSnapshot
-  readonly medicalUsage: SceneMedicalUsageSnapshot
+  readonly dailyMedicalUsage: DailyMedicalUsageSnapshot
   readonly combatState: SceneCombatStateSnapshot
 }
 
@@ -83,15 +84,11 @@ export type SceneExplorationSnapshotInput = SceneExplorationSnapshot
 
 export type SceneExplorationInitialSnapshotInput = Omit<
   SceneExplorationSnapshot,
-  'status' | 'alertState' | 'sceneItems' | 'combatState' | 'medicalUsage'
+  'status' | 'alertState' | 'sceneItems' | 'combatState'
 > & Partial<Pick<
   SceneExplorationSnapshot,
-  'alertState' | 'sceneItems' | 'combatState' | 'medicalUsage'
+  'alertState' | 'sceneItems' | 'combatState'
 >>
-
-export interface SceneMedicalUsageSnapshot {
-  readonly disinfectantUsesToday: number
-}
 
 export type SceneMedicalItemKind =
   | 'bandage'
@@ -209,7 +206,7 @@ export type SceneExplorationEffect =
       unusedReduction: number
     }>
   | Readonly<{
-      kind: 'scene-medical-usage-changed'
+      kind: 'daily-medical-usage-changed'
       usage: 'disinfectant'
       usesBefore: number
       usesAfter: number

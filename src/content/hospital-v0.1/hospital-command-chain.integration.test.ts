@@ -151,6 +151,7 @@ function initialSnapshot(): SceneExplorationSnapshot {
         },
         config.combat.player,
       ),
+      dailyMedicalUsage: { disinfectantUsesToday: 0 },
     },
     dependencies,
   )

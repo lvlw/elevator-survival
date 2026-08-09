@@ -200,10 +200,10 @@ export function buildSceneMedicalTransitionPlan(
     })
     condition = reduction.state
     effects.push({
-      kind: 'scene-medical-usage-changed',
+      kind: 'daily-medical-usage-changed',
       usage: 'disinfectant',
-      usesBefore: snapshot.medicalUsage.disinfectantUsesToday,
-      usesAfter: snapshot.medicalUsage.disinfectantUsesToday + 1,
+      usesBefore: snapshot.dailyMedicalUsage.disinfectantUsesToday,
+      usesAfter: snapshot.dailyMedicalUsage.disinfectantUsesToday + 1,
     })
     actionTime = dependencies.config.medical.disinfectant.sceneTime
   } else {
@@ -300,7 +300,8 @@ export function buildSceneMedicalTransitionPlan(
       healthAfterPrimaryEffect: condition.currentHealth,
       bleedingAfterPrimaryEffect: condition.bleeding,
       estimatedReturnTimeAfterAction: returnRoute.estimatedReturnTime,
-      reachesElevatorSafety: currentIsSafetyNode,
+      endsExplorationAtSafety: false,
+      isAtSafetyAfterAction: currentIsSafetyNode,
     },
     {
       postActionBleedingDamage: dependencies.config.scene.postActionBleedingDamage,

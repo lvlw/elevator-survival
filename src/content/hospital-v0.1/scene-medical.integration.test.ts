@@ -8,7 +8,9 @@ import {
   createSceneExplorationSnapshot,
   getAvailableSceneMedicalCommands,
   previewSceneMedicalCommand,
+  resolveMainSearchCommand,
   resolveSceneMedicalCommand,
+  resolveSceneMoveCommand,
   type SceneExplorationEffect,
   type SceneExplorationSnapshot,
   type UseSceneMedicalItemCommand,
@@ -16,12 +18,14 @@ import {
 import { createSceneSearchState } from '../../core/scene-search'
 import {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
+  HOSPITAL_EDGE_IDS,
   HOSPITAL_ITEM_IDS,
   HOSPITAL_NODE_IDS,
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
   hospitalItemResourceCatalog,
+  hospitalItemSearchIlluminationCatalog,
   hospitalMainSearchCatalog,
   hospitalSceneMedicalContentBindings,
   hospitalSliceV01RuleConfig as config,
@@ -36,6 +40,12 @@ const dependencies = {
   itemResourceCatalog: hospitalItemResourceCatalog,
   config,
   medicalBindings: hospitalSceneMedicalContentBindings,
+}
+
+const searchDependencies = {
+  ...dependencies,
+  searchCatalog: hospitalMainSearchCatalog,
+  searchIlluminationCatalog: hospitalItemSearchIlluminationCatalog,
 }
 
 type MedicalDefinition =
@@ -63,6 +73,7 @@ function snapshot(input: Readonly<{
   readonly pendingInfectionExposures?: number
   readonly disinfectantUsesToday?: number
   readonly remainingTime?: number
+  readonly currentNodeId?: string
 }> = {}): SceneExplorationSnapshot {
   const backpackItems = input.backpackItems ?? []
   const quickItems = (input.quickSlots ?? [null, null]).map((definitionId, index) =>
@@ -79,7 +90,7 @@ function snapshot(input: Readonly<{
       itemCatalog: hospitalItemCatalog,
       itemResourceCatalog: hospitalItemResourceCatalog,
     }),
-    currentNodeId: HOSPITAL_NODE_IDS.emergencyHall,
+    currentNodeId: input.currentNodeId ?? HOSPITAL_NODE_IDS.emergencyHall,
     remainingTime: input.remainingTime ?? config.scene.totalTime,
     enabledEdgeIds: HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
     backpack: createBackpackSnapshot({
@@ -100,7 +111,7 @@ function snapshot(input: Readonly<{
         createFullItemState(candidate, hospitalItemResourceCatalog),
       ),
     },
-    medicalUsage: { disinfectantUsesToday: input.disinfectantUsesToday ?? 0 },
+    dailyMedicalUsage: { disinfectantUsesToday: input.disinfectantUsesToday ?? 0 },
     condition: createPlayerCondition({
       currentHealth: input.currentHealth ?? config.combat.player.maxHealth,
       bleeding: input.bleeding ?? false,
@@ -178,11 +189,11 @@ describe('hospital non-combat scene medical', () => {
       pendingInfectionExposures: 2,
     }), backpackCommand('disinfectant'))
     expect(disinfectant.snapshot.condition.pendingInfectionExposures).toBe(1)
-    expect(disinfectant.snapshot.medicalUsage.disinfectantUsesToday).toBe(1)
+    expect(disinfectant.snapshot.dailyMedicalUsage.disinfectantUsesToday).toBe(1)
     expect(effectKinds(disinfectant.result.effects)).toEqual([
       'scene-medical-item-consumed',
       'scene-infection-exposure-reduced',
-      'scene-medical-usage-changed',
+      'daily-medical-usage-changed',
       'scene-time-resolved',
     ])
 
@@ -203,6 +214,62 @@ describe('hospital non-combat scene medical', () => {
     expect(firstAidContusion.snapshot.condition).toMatchObject({
       currentHealth: config.combat.player.maxHealth,
       minorContusions: 0,
+    })
+  })
+
+  it('keeps regular medical active at the elevator anteroom while time remains', () => {
+    const result = resolve(snapshot({
+      currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
+      remainingTime: 200,
+      currentHealth: 10,
+      backpackItems: [item('bandage', HOSPITAL_ITEM_IDS.bandage)],
+    }), backpackCommand('bandage'))
+
+    expect(result.snapshot).toMatchObject({
+      status: 'active',
+      currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
+      remainingTime: 190,
+    })
+    expect(resolveSceneMoveCommand(result.snapshot, {
+      edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall,
+    }, dependencies).snapshot).toMatchObject({
+      status: 'active',
+      currentNodeId: HOSPITAL_NODE_IDS.emergencyHall,
+    })
+  })
+
+  it('resolves zero-distance medical at the anteroom by debt, not normal safe return', () => {
+    const exact = resolve(snapshot({
+      currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
+      remainingTime: 10,
+      currentHealth: 10,
+      backpackItems: [item('bandage-exact', HOSPITAL_ITEM_IDS.bandage)],
+    }), backpackCommand('bandage-exact'))
+    expect(exact.snapshot).toMatchObject({
+      status: 'safe-returned',
+      remainingTime: 0,
+    })
+    expect(exact.result.sceneOutcome).toMatchObject({
+      overtimeDebt: 0,
+      forcedReturnTotalDamage: 0,
+    })
+
+    const overtime = resolve(snapshot({
+      currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
+      remainingTime: 5,
+      currentHealth: 10,
+      backpackItems: [item('bandage-overtime', HOSPITAL_ITEM_IDS.bandage)],
+    }), backpackCommand('bandage-overtime'))
+    expect(overtime.snapshot).toMatchObject({
+      status: 'forced-returned',
+      currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
+      remainingTime: 0,
+      condition: { currentHealth: 10 },
+    })
+    expect(overtime.result.sceneOutcome).toMatchObject({
+      overtimeDebt: 5,
+      effectiveEmergencyReturnTime: 5,
+      forcedReturnBaseDamage: 1,
     })
   })
 
@@ -269,7 +336,7 @@ describe('hospital non-combat scene medical', () => {
     expect(effectKinds(forced.result.effects)).toEqual([
       'scene-medical-item-consumed',
       'scene-infection-exposure-reduced',
-      'scene-medical-usage-changed',
+      'daily-medical-usage-changed',
       'scene-time-resolved',
       'health-lost',
       'health-lost',
@@ -293,7 +360,7 @@ describe('hospital non-combat scene medical', () => {
     expect(effectKinds(death.result.effects)).toEqual([
       'scene-medical-item-consumed',
       'scene-infection-exposure-reduced',
-      'scene-medical-usage-changed',
+      'daily-medical-usage-changed',
       'scene-time-resolved',
       'health-lost',
       'scene-status-changed',
@@ -317,6 +384,45 @@ describe('hospital non-combat scene medical', () => {
       minorContusions: 1,
       painkillerActive: true,
     }), dependencies)).toEqual([])
+  })
+
+  it('carries daily disinfectant usage through later movement and search without resetting it', () => {
+    const disinfected = resolve(snapshot({
+      backpackItems: [item('daily-disinfectant', HOSPITAL_ITEM_IDS.disinfectant)],
+      pendingInfectionExposures: 1,
+    }), backpackCommand('daily-disinfectant')).snapshot
+    expect(disinfected.dailyMedicalUsage).toEqual({ disinfectantUsesToday: 1 })
+
+    const moved = resolveSceneMoveCommand(disinfected, {
+      edgeId: HOSPITAL_EDGE_IDS.emergencyHallToPharmacy,
+    }, dependencies).snapshot
+    expect(moved.dailyMedicalUsage).toEqual({ disinfectantUsesToday: 1 })
+
+    const searched = resolveMainSearchCommand(moved, {
+      illumination: 'search-without-flashlight',
+    }, searchDependencies).snapshot
+    expect(searched.dailyMedicalUsage).toEqual({ disinfectantUsesToday: 1 })
+    expect(getAvailableSceneMedicalCommands(
+      createSceneExplorationSnapshot({
+        ...searched,
+        backpack: createBackpackSnapshot({
+          ...searched.backpack,
+          items: [item('second-disinfectant', HOSPITAL_ITEM_IDS.disinfectant)],
+          placements: [{ instanceId: 'second-disinfectant', x: 0, y: 0, rotated: false }],
+        }, hospitalItemCatalog),
+        itemStates: {
+          states: [createFullItemState(
+            item('second-disinfectant', HOSPITAL_ITEM_IDS.disinfectant),
+            hospitalItemResourceCatalog,
+          )],
+        },
+        condition: createPlayerCondition({
+          ...searched.condition,
+          pendingInfectionExposures: 1,
+        }, config.combat.player),
+      }, dependencies),
+      dependencies,
+    )).toEqual([])
   })
 
   it('rejects tampered consumption, targets, effects, time, bleeding, and forced-return facts atomically', () => {

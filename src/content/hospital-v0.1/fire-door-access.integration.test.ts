@@ -141,6 +141,7 @@ function snapshot(options: Options = {}): SceneExplorationSnapshot {
         minorContusions: 0,
         painkillerActive: false,
       }, config.combat.player),
+      dailyMedicalUsage: { disinfectantUsesToday: 0 },
     },
     dependencies,
   )

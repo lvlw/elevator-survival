@@ -168,6 +168,28 @@ describe('ruleConfigSchema', () => {
   })
 
   it.each([
+    ['bandage', (config: RuleConfigInput) => { config.medical.bandage.sceneTime = config.scene.totalTime }],
+    ['painkiller', (config: RuleConfigInput) => { config.medical.painkiller.sceneTime = config.scene.totalTime }],
+    ['disinfectant', (config: RuleConfigInput) => { config.medical.disinfectant.sceneTime = config.scene.totalTime }],
+    ['first-aid-kit', (config: RuleConfigInput) => { config.medical.firstAidKit.sceneTime = config.scene.totalTime }],
+  ])('rejects %s scene medical time at or above total scene time', (_name, mutate) => {
+    const invalid = mutableConfigCopy()
+    mutate(invalid)
+    expect(ruleConfigSchema.safeParse(invalid).success).toBe(false)
+  })
+
+  it('rejects the removed duplicate scene medical time configuration', () => {
+    const invalid = mutableConfigCopy()
+    ;(invalid.scene as typeof invalid.scene & Record<string, unknown>).medicalTime = {
+      bandage: 10,
+      painkiller: 10,
+      disinfectant: 10,
+      firstAidKit: 20,
+    }
+    expect(ruleConfigSchema.safeParse(invalid).success).toBe(false)
+  })
+
+  it.each([
     [
       'invalid fire axe durability maximum',
       (config: RuleConfigInput) => {

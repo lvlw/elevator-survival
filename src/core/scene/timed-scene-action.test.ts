@@ -34,7 +34,8 @@ const ACTION: TimedSceneActionInput = Object.freeze({
   healthAfterPrimaryEffect: 12,
   bleedingAfterPrimaryEffect: false,
   estimatedReturnTimeAfterAction: 0,
-  reachesElevatorSafety: false,
+  endsExplorationAtSafety: false,
+  isAtSafetyAfterAction: false,
 })
 
 function resolve(
@@ -107,7 +108,8 @@ describe('scene time and overtime debt', () => {
     (startingTime, timeCost, remainingTime, overtimeDebt) => {
       const outcome = resolve(startingTime, {
         timeCost,
-        reachesElevatorSafety: true,
+        endsExplorationAtSafety: true,
+        isAtSafetyAfterAction: true,
       })
 
       expect(outcome.clock.remainingTime).toBe(remainingTime)
@@ -183,7 +185,8 @@ describe('post-action bleeding', () => {
     const outcome = resolve(10, {
       healthAfterPrimaryEffect: 1,
       bleedingAfterPrimaryEffect: true,
-      reachesElevatorSafety: true,
+      endsExplorationAtSafety: true,
+      isAtSafetyAfterAction: true,
     })
 
     expect(outcome.kind).toBe('death')
@@ -283,9 +286,21 @@ describe('frozen formal examples', () => {
 })
 
 describe('zero-distance return boundaries', () => {
+  it('continues a regular action at safety while time remains', () => {
+    const outcome = resolve(20, {
+      endsExplorationAtSafety: false,
+      isAtSafetyAfterAction: true,
+      estimatedReturnTimeAfterAction: 0,
+    })
+
+    expect(outcome.kind).toBe('continue')
+    expect(outcome.clock.remainingTime).toBe(10)
+  })
+
   it('returns safely with no damage when debt and distance are both zero', () => {
     const outcome = resolve(10, {
-      reachesElevatorSafety: true,
+      endsExplorationAtSafety: false,
+      isAtSafetyAfterAction: true,
       estimatedReturnTimeAfterAction: 0,
     })
 
@@ -297,7 +312,8 @@ describe('zero-distance return boundaries', () => {
   it('charges overtime debt even when return distance is zero', () => {
     const outcome = resolve(5, {
       timeCost: 30,
-      reachesElevatorSafety: true,
+      endsExplorationAtSafety: true,
+      isAtSafetyAfterAction: true,
       estimatedReturnTimeAfterAction: 0,
     })
 
@@ -311,7 +327,8 @@ describe('zero-distance return boundaries', () => {
     const outcome = resolve(10, {
       healthAfterPrimaryEffect: 1,
       bleedingAfterPrimaryEffect: true,
-      reachesElevatorSafety: true,
+      endsExplorationAtSafety: true,
+      isAtSafetyAfterAction: true,
     })
 
     expect(outcome.kind).toBe('death')
@@ -324,7 +341,10 @@ describe('terminal outcome priority', () => {
   })
 
   it('returns safely when the elevator is reached with time remaining', () => {
-    expect(resolve(20, { reachesElevatorSafety: true }).kind).toBe(
+    expect(resolve(20, {
+      endsExplorationAtSafety: true,
+      isAtSafetyAfterAction: true,
+    }).kind).toBe(
       'safe-return',
     )
   })
@@ -350,7 +370,8 @@ describe('terminal outcome priority', () => {
     const outcome = resolve(10, {
       estimatedReturnTimeAfterAction: 80,
       healthAfterPrimaryEffect: 4,
-      reachesElevatorSafety: true,
+      endsExplorationAtSafety: true,
+      isAtSafetyAfterAction: true,
     })
 
     expect(outcome.kind).toBe('death')

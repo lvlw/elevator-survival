@@ -1,5 +1,6 @@
 import { deepFreeze } from '../config'
 import { createPlayerCondition } from '../condition'
+import { createDailyMedicalUsageSnapshot } from '../daily-state'
 import { createItemStateCollectionSnapshot } from '../item-state'
 import { createCarriedItemContainersSnapshot } from '../quick-slot'
 import {
@@ -42,7 +43,7 @@ const SNAPSHOT_KEYS = [
   'enabledEdgeIds',
   'equipment',
   'itemStates',
-  'medicalUsage',
+  'dailyMedicalUsage',
   'quickSlots',
   'remainingTime',
   'sceneInstanceId',
@@ -50,26 +51,6 @@ const SNAPSHOT_KEYS = [
   'searchState',
   'status',
 ] as const
-
-function createSceneMedicalUsageSnapshot(
-  input: import('./scene-exploration-types').SceneMedicalUsageSnapshot,
-) {
-  if (
-    !input ||
-    typeof input !== 'object' ||
-    Array.isArray(input) ||
-    Object.keys(input).length !== 1 ||
-    !Object.prototype.hasOwnProperty.call(input, 'disinfectantUsesToday') ||
-    !Number.isSafeInteger(input.disinfectantUsesToday) ||
-    input.disinfectantUsesToday < 0
-  ) {
-    throw new SceneExplorationError(
-      'INVALID_INPUT',
-      '场景医疗当日使用状态无效',
-    )
-  }
-  return deepFreeze({ disinfectantUsesToday: input.disinfectantUsesToday })
-}
 
 function hasExactSnapshotKeys(value: unknown): value is SceneExplorationSnapshotInput {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return false
@@ -209,7 +190,15 @@ export function createSceneExplorationSnapshot(
     input.condition,
     dependencies.config.combat.player,
   )
-  const medicalUsage = createSceneMedicalUsageSnapshot(input.medicalUsage)
+  let dailyMedicalUsage
+  try {
+    dailyMedicalUsage = createDailyMedicalUsageSnapshot(
+      input.dailyMedicalUsage,
+      dependencies.config,
+    )
+  } catch {
+    throw new SceneExplorationError('INVALID_INPUT', '每日医疗使用状态无效')
+  }
   const combatState = dependencies.sceneCombat
     ? createSceneCombatStateSnapshot(
         input.combatState,
@@ -330,7 +319,7 @@ export function createSceneExplorationSnapshot(
     quickSlots: carried.quickSlots,
     itemStates,
     condition,
-    medicalUsage,
+    dailyMedicalUsage,
     combatState,
   })
 }
@@ -360,7 +349,7 @@ export function createInitialSceneExplorationSnapshot(
       sceneItems: input.sceneItems ?? createEmptySceneItemsSnapshot(
         sceneItemsDependencies,
       ),
-      medicalUsage: input.medicalUsage ?? { disinfectantUsesToday: 0 },
+      dailyMedicalUsage: input.dailyMedicalUsage,
       combatState,
     },
     dependencies,

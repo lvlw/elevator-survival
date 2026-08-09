@@ -39,6 +39,7 @@ const config = {
   },
   medical: {
     painkiller: { suppressesMinorContusionMovementPenalty: true },
+    disinfectant: { maxUsesPerDay: 1 },
   },
   forcedReturn: {
     effectiveTimePerBaseDamage: 20,
@@ -117,6 +118,7 @@ const initial = (
         },
         config.combat.player,
       ),
+      dailyMedicalUsage: { disinfectantUsesToday: 0 },
     },
     dependencies,
   )

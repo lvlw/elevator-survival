@@ -73,6 +73,7 @@ function scene(options: {
   openWounds?: readonly OpenWoundSnapshot[]
   minorContusions?: number
   painkillerActive?: boolean
+  dailyDisinfectantUsesToday?: number
 } = {}) {
   const bleeding = options.bleeding ?? false
   const card = options.accessCard
@@ -129,6 +130,9 @@ function scene(options: {
       painkillerActive: options.painkillerActive ?? false,
       pendingInfectionExposures: 0,
     }, config.combat.player),
+    dailyMedicalUsage: {
+      disinfectantUsesToday: options.dailyDisinfectantUsesToday ?? 0,
+    },
   }, dependencies)
 }
 
@@ -196,6 +200,18 @@ describe('hospital scene combat encounter lifecycle', () => {
     expect(reentry.combat.enemy.enemyInstanceId).toBe(enemyInstanceId)
     expect(reentry.combat.enemyNextActionCtb).toBe(50)
     expect(reentry.combat.enemy.resolvedActionCount).toBe(1)
+  })
+
+  it('preserves supplied daily medical usage through combat entry and escape', () => {
+    const entered = enter(scene({ dailyDisinfectantUsesToday: 1 }))
+    expect(entered.dailyMedicalUsage).toEqual({ disinfectantUsesToday: 1 })
+
+    const escaped = resolveSceneCombatPlayerAction(
+      entered,
+      { kind: 'escape' },
+      dependencies,
+    ).snapshot
+    expect(escaped.dailyMedicalUsage).toEqual({ disinfectantUsesToday: 1 })
   })
 
   it('uses the actual security-office origin through real-time backpack card access', () => {

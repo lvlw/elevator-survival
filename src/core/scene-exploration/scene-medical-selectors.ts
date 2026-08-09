@@ -80,7 +80,7 @@ export function getAvailableSceneMedicalCommandsFromValidatedSnapshot(
     if (candidate.medicalItem === 'disinfectant') {
       if (
         snapshot.condition.pendingInfectionExposures > 0 &&
-        snapshot.medicalUsage.disinfectantUsesToday < dependencies.config.medical.disinfectant.maxUsesPerDay
+        snapshot.dailyMedicalUsage.disinfectantUsesToday < dependencies.config.medical.disinfectant.maxUsesPerDay
       ) result.push({ source: candidate.source })
       continue
     }

@@ -88,7 +88,8 @@ function evaluate(
       healthAfterPrimaryEffect: conditionAfter.currentHealth,
       bleedingAfterPrimaryEffect: conditionAfter.bleeding,
       estimatedReturnTimeAfterAction: returnRoute.estimatedReturnTime,
-      reachesElevatorSafety: currentIsSafety,
+      endsExplorationAtSafety: false,
+      isAtSafetyAfterAction: currentIsSafety,
     },
     {
       postActionBleedingDamage: dependencies.config.scene.postActionBleedingDamage,

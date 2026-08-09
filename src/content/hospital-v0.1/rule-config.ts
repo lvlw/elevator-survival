@@ -33,12 +33,6 @@ export const hospitalSliceV01RuleConfig = parseRuleConfig({
       direct: 10,
       cautious: 30,
     },
-    medicalTime: {
-      bandage: 10,
-      painkiller: 10,
-      disinfectant: 10,
-      firstAidKit: 20,
-    },
     travelTimeModifiers: {
       minorContusionTimeIncreasePercent: 10,
     },

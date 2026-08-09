@@ -126,6 +126,7 @@ const scene = (
         ),
       },
       condition: playerCondition,
+      dailyMedicalUsage: { disinfectantUsesToday: 0 },
     },
     dependencies,
   )

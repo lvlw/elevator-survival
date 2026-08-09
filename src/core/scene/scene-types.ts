@@ -15,7 +15,8 @@ export interface TimedSceneActionInput {
   readonly healthAfterPrimaryEffect: number
   readonly bleedingAfterPrimaryEffect: boolean
   readonly estimatedReturnTimeAfterAction: number
-  readonly reachesElevatorSafety: boolean
+  readonly endsExplorationAtSafety: boolean
+  readonly isAtSafetyAfterAction: boolean
 }
 
 export type ForcedReturnRules = FrozenRuleConfig['forcedReturn']

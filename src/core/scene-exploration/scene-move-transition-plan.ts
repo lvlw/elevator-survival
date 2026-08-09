@@ -138,7 +138,8 @@ export function buildSceneMoveTransitionPlan(
       healthAfterPrimaryEffect: snapshot.condition.currentHealth,
       bleedingAfterPrimaryEffect: snapshot.condition.bleeding,
       estimatedReturnTimeAfterAction: returnRoute.estimatedReturnTime,
-      reachesElevatorSafety: destinationIsSafetyNode,
+      endsExplorationAtSafety: destinationIsSafetyNode,
+      isAtSafetyAfterAction: destinationIsSafetyNode,
     },
     {
       postActionBleedingDamage: dependencies.config.scene.postActionBleedingDamage,

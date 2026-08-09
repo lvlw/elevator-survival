@@ -158,10 +158,10 @@ export function applySceneMedicalEffects(
           ).state,
         })
         break
-      case 'scene-medical-usage-changed':
+      case 'daily-medical-usage-changed':
         state = deepFreeze({
           ...state,
-          medicalUsage: { disinfectantUsesToday: effect.usesAfter },
+          dailyMedicalUsage: { disinfectantUsesToday: effect.usesAfter },
         })
         break
       case 'scene-time-resolved':

@@ -96,7 +96,8 @@ describe('hospital load rules integration', () => {
         healthAfterPrimaryEffect: config.combat.player.maxHealth,
         bleedingAfterPrimaryEffect: false,
         estimatedReturnTimeAfterAction: adjustedReturnTime,
-        reachesElevatorSafety: false,
+        endsExplorationAtSafety: false,
+        isAtSafetyAfterAction: false,
       },
       {
         postActionBleedingDamage: config.scene.postActionBleedingDamage,

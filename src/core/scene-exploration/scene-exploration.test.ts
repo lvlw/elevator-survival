@@ -49,6 +49,7 @@ const config = {
   },
   medical: {
     painkiller: { suppressesMinorContusionMovementPenalty: true },
+    disinfectant: { maxUsesPerDay: 1 },
   },
   forcedReturn: {
     effectiveTimePerBaseDamage: 20,
@@ -109,7 +110,7 @@ describe('strict movement command and snapshot boundaries', () => {
   it('requires all hidden state fields and rejects unknown top-level fields on restore', () => {
     const complete = snapshot()
     expect(createSceneExplorationSnapshot(complete, dependencies)).toEqual(complete)
-    for (const field of ['alertState', 'sceneItems', 'combatState', 'medicalUsage'] as const) {
+    for (const field of ['alertState', 'sceneItems', 'combatState', 'dailyMedicalUsage'] as const) {
       const incomplete = { ...complete } as Record<string, unknown>
       delete incomplete[field]
       expect(() => createSceneExplorationSnapshot(incomplete as never, dependencies))
@@ -130,7 +131,16 @@ describe('strict movement command and snapshot boundaries', () => {
     expect(Object.isFrozen(initial)).toBe(true)
     expect(Object.isFrozen(initial.sceneItems)).toBe(true)
     expect(Object.isFrozen(initial.combatState)).toBe(true)
-    expect(Object.isFrozen(initial.medicalUsage)).toBe(true)
+    expect(Object.isFrozen(initial.dailyMedicalUsage)).toBe(true)
+  })
+
+  it('requires a supplied daily medical state when a new scene is created', () => {
+    const incomplete = { ...snapshot() } as Record<string, unknown>
+    delete incomplete.dailyMedicalUsage
+    expect(() => createInitialSceneExplorationSnapshot(
+      incomplete as never,
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
   })
 })
 const catalog = createItemCatalog([
@@ -233,6 +243,7 @@ const snapshot = (
               ],
       },
       condition: playerCondition,
+      dailyMedicalUsage: { disinfectantUsesToday: 0 },
     },
     dependencies,
   )
@@ -267,6 +278,7 @@ describe('scene exploration snapshot', () => {
           quickSlots,
           itemStates: { states: [] },
           condition: condition(),
+          dailyMedicalUsage: { disinfectantUsesToday: 0 },
           ...change,
         },
         dependencies,

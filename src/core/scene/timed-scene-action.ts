@@ -143,7 +143,7 @@ function createOutcome(
   }
 
   if (remainingTime > 0) {
-    const isSafelyReturned = action.reachesElevatorSafety
+    const isSafelyReturned = action.endsExplorationAtSafety
 
     return deepFreeze({
       kind: isSafelyReturned ? 'safe-return' : 'continue',
@@ -176,7 +176,7 @@ function createOutcome(
   )
   const isDead = finalHealth === 0
   const zeroDistanceSafeReturn =
-    action.reachesElevatorSafety &&
+    action.isAtSafetyAfterAction &&
     forcedReturnDamage.effectiveEmergencyReturnTime === 0
 
   return deepFreeze({

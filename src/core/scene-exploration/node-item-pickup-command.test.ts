@@ -46,6 +46,9 @@ const config = {
       cannotCarryFrom: 29,
     },
   },
+  medical: {
+    disinfectant: { maxUsesPerDay: 1 },
+  },
 } as unknown as FrozenRuleConfig
 
 const graph = createSceneGraph({
@@ -304,7 +307,7 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
           createFullItemState(item, resourceCatalog),
         ),
       },
-      medicalUsage: { disinfectantUsesToday: 0 },
+      dailyMedicalUsage: { disinfectantUsesToday: 0 },
       condition: createPlayerCondition(
         {
           currentHealth: status === 'dead' ? 0 : 12,

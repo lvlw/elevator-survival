@@ -1,6 +1,11 @@
 import { deepFreeze, type FrozenRuleConfig } from '../config'
 import { createPlayerCondition, type PlayerConditionSnapshot } from '../condition'
 import {
+  createRunPhaseContinuitySnapshot,
+  hasSameRunPhaseContinuity,
+  type RunPhaseContinuitySnapshot,
+} from '../domain'
+import {
   createDailyRunStateSnapshot,
   type DailyRunStateSnapshot,
   type DailyThreatSuppressionSnapshot,
@@ -42,6 +47,7 @@ import { createSatietySnapshot, restoreSatiety, type SatietySnapshot } from '../
 import {
   createWorldThreatDefinition,
   createWorldThreatSnapshot,
+  getWorldThreatStage,
   type WorldThreatCatalog,
   type WorldThreatSnapshot,
 } from '../world-threat'
@@ -59,6 +65,7 @@ export interface CurrentDayHubDependencies {
 }
 
 export interface CurrentDayHubSnapshot {
+  readonly continuity: RunPhaseContinuitySnapshot
   readonly runLoadout: RunLoadoutSnapshot
   readonly playerCondition: PlayerConditionSnapshot
   readonly runIntelLog: RunIntelLogSnapshot
@@ -69,6 +76,7 @@ export interface CurrentDayHubSnapshot {
 }
 
 export interface CurrentDayHubCarryForwardFacts {
+  readonly continuity: RunPhaseContinuitySnapshot
   readonly worldThreat: WorldThreatSnapshot
   readonly satiety: SatietySnapshot
   readonly threatSuppression: DailyThreatSuppressionSnapshot
@@ -158,14 +166,28 @@ export function createCurrentDayHubSnapshot(
 ): CurrentDayHubSnapshot {
   validateHubSurvivalContentBindings(dependencies)
   if (!exact(input, [
-    'dailyState', 'playerCondition', 'returnLedger', 'runIntelLog',
+    'continuity', 'dailyState', 'playerCondition', 'returnLedger', 'runIntelLog',
     'runLoadout', 'satiety', 'worldThreat',
   ])) invalid('当前日中枢快照结构无效')
   const config = configOf(dependencies)
   try {
+    const continuity = createRunPhaseContinuitySnapshot(
+      input.continuity,
+      config.metadata.rulesVersion,
+    )
     const playerCondition = createPlayerCondition(input.playerCondition as PlayerConditionSnapshot, config.combat.player)
     if (playerCondition.currentHealth === 0) invalid('死亡玩家不能进入当前日中枢状态')
+    const worldThreat = createWorldThreatSnapshot(input.worldThreat, dependencies.worldThreatCatalog)
+    if (worldThreat.definitionId !== config.worldThreat.definitionId) invalid('当前日中枢威胁定义与规则版本不一致')
+    if (getWorldThreatStage(worldThreat, dependencies.worldThreatCatalog).terminal) {
+      invalid('终末世界威胁不能恢复为活动当前日中枢状态')
+    }
+    const returnLedger = createRunReturnLedgerSnapshot(input.returnLedger as RunReturnLedgerSnapshot)
+    if (!returnLedger.sceneInstanceIds.includes(continuity.sceneInstanceId)) {
+      invalid('当前日中枢返回记录缺少连续性绑定的场景')
+    }
     return deepFreeze({
+      continuity,
       runLoadout: createRunLoadoutSnapshot(
         input.runLoadout as RunLoadoutSnapshot,
         createRunLoadoutDependenciesFromReturn(dependencies.returnDependencies),
@@ -173,13 +195,9 @@ export function createCurrentDayHubSnapshot(
       playerCondition,
       runIntelLog: createRunIntelLogSnapshot(input.runIntelLog as RunIntelLogSnapshot),
       dailyState: createDailyRunStateSnapshot(input.dailyState, config),
-      worldThreat: (() => {
-        const threat = createWorldThreatSnapshot(input.worldThreat, dependencies.worldThreatCatalog)
-        if (threat.definitionId !== config.worldThreat.definitionId) invalid('当前日中枢威胁定义与规则版本不一致')
-        return threat
-      })(),
+      worldThreat,
       satiety: createSatietySnapshot(input.satiety, config),
-      returnLedger: createRunReturnLedgerSnapshot(input.returnLedger as RunReturnLedgerSnapshot),
+      returnLedger,
     })
   } catch (error) {
     if (error instanceof CurrentDayHubError) throw error
@@ -192,11 +210,24 @@ export function createCurrentDayHubSnapshotFromReturn(
   factsInput: CurrentDayHubCarryForwardFacts,
   dependencies: CurrentDayHubDependencies,
 ): CurrentDayHubSnapshot {
-  if (!exact(factsInput, ['maintenanceLaborRemaining', 'satiety', 'threatSuppression', 'worldThreat'])) {
+  if (!exact(factsInput, ['continuity', 'maintenanceLaborRemaining', 'satiety', 'threatSuppression', 'worldThreat'])) {
     invalid('当前日中枢跨场景事实结构无效')
   }
   const returned = createRunReturnSnapshot(returnInput, dependencies.returnDependencies)
+  let factsContinuity: RunPhaseContinuitySnapshot
+  try {
+    factsContinuity = createRunPhaseContinuitySnapshot(
+      factsInput.continuity,
+      configOf(dependencies).metadata.rulesVersion,
+    )
+  } catch (error) {
+    invalid(error instanceof Error ? error.message : '当前日中枢跨场景连续性无效')
+  }
+  if (!hasSameRunPhaseContinuity(returned.continuity, factsContinuity)) {
+    invalid('Run返回与当前日中枢跨场景事实的连续性不一致')
+  }
   return createCurrentDayHubSnapshot({
+    continuity: returned.continuity,
     runLoadout: createRunLoadoutSnapshotFromReturn(returned, dependencies.returnDependencies),
     playerCondition: returned.player.condition,
     runIntelLog: returned.runIntelLog,

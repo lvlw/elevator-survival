@@ -1,6 +1,7 @@
 import { deepFreeze } from '../config'
 import { createPlayerCondition } from '../condition'
 import { createDailyMedicalUsageSnapshot } from '../daily-state'
+import { createRunPhaseContinuitySnapshot } from '../domain'
 import { createEquipmentSnapshot } from '../equipment'
 import {
   createBackpackSnapshot,
@@ -173,6 +174,7 @@ export function createRunReturnSnapshot(
   dependencies: RunReturnDependencies,
 ): RunReturnSnapshot {
   if (!exact(input, [
+    'continuity',
     'dailyMedicalUsage',
     'itemStates',
     'player',
@@ -191,6 +193,22 @@ export function createRunReturnSnapshot(
     physicalCatalog: dependencies.scene.physicalCatalog,
     itemResourceCatalog: dependencies.scene.itemResourceCatalog,
     lifecycleCatalog: dependencies.lifecycleCatalog,
+  }
+  let continuity
+  try {
+    continuity = createRunPhaseContinuitySnapshot(
+      input.continuity,
+      dependencies.scene.config.metadata.rulesVersion,
+    )
+  } catch (error) {
+    throw new RunReturnError(
+      'INVALID_INPUT',
+      error instanceof Error ? error.message : 'Run返回连续性无效',
+    )
+  }
+  const returnLedger = createRunReturnLedgerSnapshot(input.returnLedger)
+  if (!returnLedger.sceneInstanceIds.includes(continuity.sceneInstanceId)) {
+    throw new RunReturnError('INVALID_INPUT', 'Run返回记录缺少连续性绑定的场景')
   }
   const warehouse = createRunWarehouseSnapshot(input.warehouse, storageDependencies)
   const taskStorage = createRunTaskStorageSnapshot(input.taskStorage, storageDependencies)
@@ -236,6 +254,7 @@ export function createRunReturnSnapshot(
     )
   }
   return deepFreeze({
+    continuity,
     player: {
       backpack,
       equipment,
@@ -253,7 +272,7 @@ export function createRunReturnSnapshot(
       input.dailyMedicalUsage,
       dependencies.scene.config,
     ),
-    returnLedger: createRunReturnLedgerSnapshot(input.returnLedger),
+    returnLedger,
   })
 }
 

@@ -128,6 +128,15 @@ function loadout(input: Readonly<{
 function returnSnapshot() {
   const source = loadout()
   return createRunReturnSnapshot({
+    continuity: {
+      runIdentity: {
+        runId: 'loadout-run',
+        seed: 'loadout-seed',
+        rulesVersion: config.metadata.rulesVersion,
+      },
+      currentDay: 2,
+      sceneInstanceId: 'loadout-return-scene',
+    },
     warehouse: source.warehouse,
     taskStorage: source.taskStorage,
     player: {
@@ -150,7 +159,7 @@ function returnSnapshot() {
     itemStates: source.itemStates,
     runIntelLog: { intelIds: [] },
     dailyMedicalUsage: { disinfectantUsesToday: 0 },
-    returnLedger: { sceneInstanceIds: [] },
+    returnLedger: { sceneInstanceIds: ['loadout-return-scene'] },
   }, returnDependencies)
 }
 

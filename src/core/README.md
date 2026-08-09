@@ -153,12 +153,14 @@
 
 `src/core/current-day-hub` 将返回结算后的整备库存、玩家条件、Run情报、日级状态、世界威胁、饱食和返回记录聚合为严格的当前日中枢稳定状态；它不是完整 `RunState`。
 
+- `src/core/domain/run-phase-continuity.ts` 复用唯一的 `RunIdentity`，只记录当前日与刚完成场景实例；Return输入、Return结果、跨场景事实和CurrentDayHub必须逐字段保持同一连续性，并绑定依赖实际加载的规则版本。
 - `createCurrentDayHubSnapshotFromReturn` 统一承接 `RunReturnSnapshot` 和一份严格的跨场景日级／威胁事实，不要求上层手工拼接多个快照。
 - `src/core/world-threat` 只表达可替换的威胁定义、非负进展和派生阶段；医院感染阶段名称只存在于医院内容层。
 - `src/core/satiety` 负责有上限的饱食事实与恢复；`src/core/daily-state` 额外记录威胁抑制次数／抑制量和剩余维护工时。
 - 整备和中枢医疗通过适配器更新同类中枢快照，未参与的情报、威胁、饱食、日级事实和返回记录保持原样。
 - 中枢医疗与中枢生存消耗品共同复用 `src/core/hub-inventory` 的真实实例消费边界；只接受仓库、背包或快捷栏的显式来源，不自动寻找、合并或补充。
 - 当前实现感染抑制剂和口粮的零时间中枢使用；未实现日结算、感染暴露换算、威胁推进、日期推进、自然恢复、维护行为、完整RunState或UI。
+- 通用世界威胁快照可以表达终末进展，但终末威胁不再是合法的活动CurrentDayHub状态；Run失败及终止协调仍由后续生命周期实现。
 
 ## 场景探索与移动命令
 

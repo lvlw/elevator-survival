@@ -46,6 +46,16 @@ import {
 
 const SCENE_ID = 'hospital-run-return-scene'
 
+const continuity = (sceneInstanceId = SCENE_ID) => ({
+  runIdentity: {
+    runId: 'hospital-run-return',
+    seed: 'hospital-run-return-seed',
+    rulesVersion: config.metadata.rulesVersion,
+  },
+  currentDay: 2,
+  sceneInstanceId,
+})
+
 const item = (
   instanceId: string,
   definitionId: string,
@@ -252,6 +262,7 @@ function returnInput(
   const terminal = terminalScene(input)
   return {
     request: {
+      continuity: continuity(terminal.snapshot.sceneInstanceId),
       terminalScene: terminal.snapshot,
       storedInventory: inventory,
       returnLedger: { sceneInstanceIds: [] },
@@ -320,6 +331,7 @@ describe('hospital Run return settlement', () => {
       expect(result.snapshot.runIntelLog).toEqual(request.terminalScene.runIntelLog)
       expect(result.snapshot.dailyMedicalUsage).toEqual({ disinfectantUsesToday: 1 })
       expect(result.snapshot.returnLedger.sceneInstanceIds).toEqual([SCENE_ID])
+      expect(result.snapshot.continuity).toEqual(request.continuity)
       expect(hasStoredTaskItem(result.snapshot.taskStorage, HOSPITAL_ITEM_IDS.sealedPathogenCase, 1)).toBe(true)
       expect(Object.isFrozen(result.snapshot)).toBe(true)
       expect(Object.isFrozen(result.snapshot.warehouse.items)).toBe(true)
@@ -340,6 +352,25 @@ describe('hospital Run return settlement', () => {
       expect(request.storedInventory).toEqual(before)
     },
   )
+
+  it('rejects Return continuity for a different terminal scene', () => {
+    const { request, dependencies } = returnInput()
+    expect(() => resolveRunReturn({
+      ...request,
+      continuity: { ...request.continuity, sceneInstanceId: 'different-scene' },
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+
+  it('rejects Return continuity whose rulesVersion differs from dependencies', () => {
+    const { request, dependencies } = returnInput()
+    expect(() => resolveRunReturn({
+      ...request,
+      continuity: {
+        ...request.continuity,
+        runIdentity: { ...request.continuity.runIdentity, rulesVersion: 'hospital-rules-v2' },
+      },
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
 
   it('does not derive task completion from a completed SceneTaskEvent without a safely returned sample', () => {
     const { request, dependencies } = returnInput({
@@ -419,6 +450,7 @@ describe('hospital Run return settlement', () => {
         ? storedInventory({ warehouseItems: [candidate.item] })
         : storedInventory({ taskItems: [candidate.item] })
       const request: RunReturnInput = {
+        continuity: continuity(terminal.snapshot.sceneInstanceId),
         terminalScene: terminal.snapshot,
         storedInventory: inventory,
         returnLedger: { sceneInstanceIds: [] },
@@ -449,6 +481,17 @@ describe('hospital Run return settlement', () => {
         ? { ...effect, runIntelLog: { intelIds: [] } }
         : effect,
     )
+    const changedContinuity = plan.effects.map((effect): RunReturnEffect =>
+      effect.kind === 'run-facts-carried-forward'
+        ? {
+            ...effect,
+            continuity: {
+              ...effect.continuity,
+              runIdentity: { ...effect.continuity.runIdentity, runId: 'other-run' },
+            },
+          }
+        : effect,
+    )
     const changedQuantity = plan.effects.map((effect): RunReturnEffect =>
       effect.kind === 'run-item-transferred' && effect.item.instanceId === 'returned-bandages'
         ? { ...effect, item: { ...effect.item, quantity: effect.item.quantity + 1 } }
@@ -465,6 +508,7 @@ describe('hospital Run return settlement', () => {
     expect(() => applyRunReturnEffects(request, tamperedDestination, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
     expect(() => applyRunReturnEffects(request, withoutLedger, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
     expect(() => applyRunReturnEffects(request, changedFacts, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
+    expect(() => applyRunReturnEffects(request, changedContinuity, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
     expect(() => applyRunReturnEffects(request, changedQuantity, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
     expect(() => applyRunReturnEffects(request, changedResource, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
     expect(() => applyRunReturnEffects(request, withoutTransfer, dependencies)).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))

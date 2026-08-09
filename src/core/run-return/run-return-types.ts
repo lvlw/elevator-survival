@@ -1,5 +1,6 @@
 import type { PlayerConditionSnapshot } from '../condition'
 import type { DailyMedicalUsageSnapshot } from '../daily-state'
+import type { RunPhaseContinuitySnapshot } from '../domain'
 import type { EquipmentSnapshot } from '../equipment'
 import type {
   BackpackSnapshot,
@@ -57,6 +58,7 @@ export interface ReturnedPlayerStateSnapshot {
 }
 
 export interface RunReturnSnapshot {
+  readonly continuity: RunPhaseContinuitySnapshot
   readonly player: ReturnedPlayerStateSnapshot
   readonly warehouse: RunWarehouseSnapshot
   readonly taskStorage: RunTaskStorageSnapshot
@@ -67,6 +69,7 @@ export interface RunReturnSnapshot {
 }
 
 export interface RunReturnInput {
+  readonly continuity: RunPhaseContinuitySnapshot
   readonly terminalScene: SceneExplorationSnapshot
   readonly storedInventory: RunStoredInventorySnapshot
   readonly returnLedger: RunReturnLedgerSnapshot
@@ -91,6 +94,7 @@ export type RunReturnEffect =
     }>
   | Readonly<{
       kind: 'run-facts-carried-forward'
+      continuity: RunPhaseContinuitySnapshot
       runIntelLog: RunIntelLogSnapshot
       dailyMedicalUsage: DailyMedicalUsageSnapshot
     }>

@@ -1,4 +1,5 @@
 import { deepFreeze } from '../config'
+import { createRunPhaseContinuitySnapshot } from '../domain'
 import { createBackpackSnapshot } from '../inventory'
 import { getItemState } from '../item-state'
 import {
@@ -27,7 +28,7 @@ function normalizeInput(
 ) {
   if (!input || typeof input !== 'object' || Array.isArray(input) ||
     Object.getPrototypeOf(input) !== Object.prototype ||
-    Object.keys(input).sort().join(',') !== 'returnLedger,storedInventory,terminalScene') {
+    Object.keys(input).sort().join(',') !== 'continuity,returnLedger,storedInventory,terminalScene') {
     throw new RunReturnError('INVALID_INPUT', '返回结算输入结构无效')
   }
   let terminalScene
@@ -41,6 +42,21 @@ function normalizeInput(
   }
   if (terminalScene.status !== 'safe-returned' && terminalScene.status !== 'forced-returned') {
     throw new RunReturnError('SCENE_NOT_RETURNABLE', '只有生还且已结束探索的场景可以返回结算')
+  }
+  let continuity
+  try {
+    continuity = createRunPhaseContinuitySnapshot(
+      input.continuity,
+      dependencies.scene.config.metadata.rulesVersion,
+    )
+  } catch (error) {
+    throw new RunReturnError(
+      'INVALID_INPUT',
+      error instanceof Error ? error.message : 'Run返回连续性无效',
+    )
+  }
+  if (continuity.sceneInstanceId !== terminalScene.sceneInstanceId) {
+    throw new RunReturnError('INVALID_INPUT', 'Run返回连续性与终局场景实例不一致')
   }
   const storageDependencies: RunStorageDependencies = {
     physicalCatalog: dependencies.scene.physicalCatalog,
@@ -64,7 +80,7 @@ function normalizeInput(
       throw new RunReturnError('INVALID_INPUT', `场景物理实例与Run储存实例重复：${instanceId}`)
     }
   }
-  return { terminalScene, storedInventory, returnLedger, storageDependencies }
+  return { continuity, terminalScene, storedInventory, returnLedger, storageDependencies }
 }
 
 function lostSceneTaskInstanceIds(
@@ -94,7 +110,7 @@ export function buildRunReturnTransitionPlan(
   input: RunReturnInput,
   dependencies: RunReturnDependencies,
 ): RunReturnTransitionPlan {
-  const { terminalScene } = normalizeInput(input, dependencies)
+  const { continuity, terminalScene } = normalizeInput(input, dependencies)
   const returnKind = terminalScene.status === 'safe-returned' ? 'safe' : 'forced'
   const effects: RunReturnEffect[] = []
   const warehouseIds: string[] = []
@@ -124,6 +140,7 @@ export function buildRunReturnTransitionPlan(
   })
   effects.push({
     kind: 'run-facts-carried-forward',
+    continuity,
     runIntelLog: terminalScene.runIntelLog,
     dailyMedicalUsage: terminalScene.dailyMedicalUsage,
   })
@@ -153,7 +170,7 @@ export function applyRunReturnEffects(
   if (JSON.stringify(effects) !== JSON.stringify(expected.effects)) {
     throw new RunReturnError('EFFECT_MISMATCH', '返回结算Effect与冻结正式计划不一致')
   }
-  const { terminalScene, storedInventory, returnLedger } = normalizeInput(input, dependencies)
+  const { continuity, terminalScene, storedInventory, returnLedger } = normalizeInput(input, dependencies)
   const warehouseItems = [...storedInventory.warehouse.items]
   const taskItems = [...storedInventory.taskStorage.items]
   const itemStates = [
@@ -175,6 +192,7 @@ export function applyRunReturnEffects(
     placements: [],
   }, dependencies.scene.physicalCatalog)
   const snapshot = createRunReturnSnapshot({
+    continuity,
     player: {
       backpack: emptyBackpack,
       equipment: terminalScene.equipment,

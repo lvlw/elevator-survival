@@ -55,3 +55,8 @@ export {
   listRuleConfigVersions,
   UnknownRulesVersionError,
 } from './rule-config-registry'
+export {
+  HOSPITAL_TASK_EVENT_IDS,
+  hospitalPathogenCaseRetrievalDefinition,
+  hospitalSceneTaskEventCatalog,
+} from './hospital-v0.1/task-events'

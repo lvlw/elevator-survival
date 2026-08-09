@@ -1,4 +1,5 @@
 import { deepFreeze } from '../config'
+import { addRunIntel } from '../run-intel'
 import {
   addMinorContusion,
   applyHealthLoss,
@@ -38,6 +39,7 @@ import { buildSceneCombatPlayerActionEffects } from './scene-combat-transition-p
 import { createMoveThroughSceneEdgeCommand } from './scene-move-command'
 import { buildSceneMoveTransitionPlan } from './scene-move-transition-plan'
 import { applySceneMedicalEffects } from './scene-medical-effect-application'
+import { applySceneTaskEventEffects } from './scene-task-event-command'
 import type {
   SceneExplorationEffect,
   SceneExplorationDependencies,
@@ -69,6 +71,7 @@ function fail(
     | 'EFFECT_RISK_MISMATCH'
     | 'EFFECT_COMBAT_MISMATCH'
     | 'EFFECT_MEDICAL_MISMATCH'
+    | 'EFFECT_TASK_EVENT_MISMATCH'
     | 'INCOMPLETE_EFFECT_PLAN',
   message: string,
 ): never {
@@ -351,6 +354,20 @@ function applySceneExplorationEffectsInternal(
     }
     return applySceneMedicalEffects(initialSnapshot, effects, medicalDependencies)
   }
+  if (effects.some(({ kind }) =>
+    kind === 'scene-task-risk-resolved' ||
+    kind === 'scene-task-item-acquired' ||
+    kind === 'scene-task-event-completed' ||
+    kind === 'scene-task-event-declined' ||
+    kind === 'scene-infection-exposure-added' ||
+    (kind === 'item-resource-consumed' && effects.some((effect) => effect.kind === 'item-resource-consumed' && effect.source === 'pathogen-case-impact-protection')),
+  )) {
+    const taskDependencies = dependencies && dependencies.taskEventCatalog && 'runSeed' in rulesOrDependencies
+      ? rulesOrDependencies as import('./scene-exploration-types').SceneTaskEventCommandDependencies
+      : null
+    if (!taskDependencies) fail('EFFECT_TASK_EVENT_MISMATCH', '任务事件 Effect 回放需要完整任务事件依赖')
+    return applySceneTaskEventEffects(initialSnapshot, effects, taskDependencies)
+  }
   if (effects.length === 0) {
     throw new SceneExplorationError('EMPTY_EFFECTS', 'Effect计划不能为空')
   }
@@ -479,6 +496,8 @@ function applySceneExplorationEffectsInternal(
   let sawForcedReturn = false
   let sawStatus = false
   let lastHealthOrder = -1
+  let expectedMainSearchIntelIds: readonly string[] | null = null
+  const addedMainSearchIntelIds: string[] = []
 
   for (let index = 0; index < effects.length; index += 1) {
     const effect = effects[index] as SceneExplorationEffect & {
@@ -945,7 +964,21 @@ function applySceneExplorationEffectsInternal(
           },
         )
         state = deepFreeze({ ...state, searchState: revealed, sceneItems })
+        expectedMainSearchIntelIds = current.preparedOutcome.revealedIntelIds.filter(
+          (intelId) => !state.runIntelLog.intelIds.includes(intelId),
+        )
         primaryKind = 'main-search'
+        break
+      }
+      case 'run-intel-added': {
+        if (
+          primaryKind !== 'main-search' || sawTime || !expectedMainSearchIntelIds ||
+          effect.intelId !== expectedMainSearchIntelIds[addedMainSearchIntelIds.length]
+        ) {
+          fail('EFFECT_SEARCH_MISMATCH', '搜索情报 Effect 与正式搜索结果不一致')
+        }
+        addedMainSearchIntelIds.push(effect.intelId)
+        state = deepFreeze({ ...state, runIntelLog: addRunIntel(state.runIntelLog, effect.intelId) })
         break
       }
       case 'scene-node-changed': {
@@ -972,13 +1005,19 @@ function applySceneExplorationEffectsInternal(
             ? 1
             : primaryKind === 'main-search'
               ? sawResourceConsumption
-                ? 2
-                : 1
+                ? 2 + (expectedMainSearchIntelIds?.length ?? 0)
+                : 1 + (expectedMainSearchIntelIds?.length ?? 0)
               : primaryKind === 'obstacle'
                 ? index
                 : -1
         if (sawTime || index !== expectedIndex) {
           fail('INVALID_EFFECT_ORDER', '时间Effect必须紧随主要效果且只能出现一次')
+        }
+        if (
+          primaryKind === 'main-search' &&
+          (!expectedMainSearchIntelIds || !sameValue(expectedMainSearchIntelIds, addedMainSearchIntelIds))
+        ) {
+          fail('EFFECT_SEARCH_MISMATCH', '搜索情报 Effect 缺失或顺序被篡改')
         }
         if (effect.remainingTimeBefore !== state.remainingTime) {
           fail('EFFECT_TIME_MISMATCH', '时间Effect的before与当前时间不一致')

@@ -152,6 +152,7 @@ function initialSnapshot(): SceneExplorationSnapshot {
         config.combat.player,
       ),
       dailyMedicalUsage: { disinfectantUsesToday: 0 },
+      runIntelLog: { intelIds: [] },
     },
     dependencies,
   )
@@ -195,6 +196,7 @@ describe('hospital formal command chain', () => {
     expect(searchResolved.result.effects.map(({ kind }) => kind)).toEqual([
       'item-resource-consumed',
       'scene-main-search-revealed',
+      'run-intel-added',
       'scene-time-resolved',
     ])
     expect(getItemState(

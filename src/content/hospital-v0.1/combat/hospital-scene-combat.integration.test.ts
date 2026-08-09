@@ -133,6 +133,7 @@ function scene(options: {
     dailyMedicalUsage: {
       disinfectantUsesToday: options.dailyDisinfectantUsesToday ?? 0,
     },
+    runIntelLog: { intelIds: [] },
   }, dependencies)
 }
 

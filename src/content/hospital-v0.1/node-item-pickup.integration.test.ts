@@ -127,6 +127,8 @@ function searchedSnapshot(
         ),
       },
       dailyMedicalUsage: { disinfectantUsesToday: 0 },
+      runIntelLog: { intelIds: [] },
+      taskEvents: { entries: [] },
       condition: createPlayerCondition(
         {
           currentHealth: status === 'dead' ? 0 : config.combat.player.maxHealth,

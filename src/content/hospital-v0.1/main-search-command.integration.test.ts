@@ -194,6 +194,7 @@ function hospitalSnapshot(
         config.combat.player,
       ),
       dailyMedicalUsage: { disinfectantUsesToday: 0 },
+      runIntelLog: { intelIds: [] },
     },
     dependencies,
   )

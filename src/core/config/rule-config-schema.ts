@@ -38,6 +38,14 @@ export const ruleConfigSchema = z
         direct: positiveInteger,
         cautious: positiveInteger,
       }),
+      pathogenCaseRetrieval: z.strictObject({
+        directContaminationRiskPercent: percent,
+        cautiousContaminationRiskPercent: percent,
+        protectedDirectContaminationRiskPercent: percent,
+        protectedCautiousContaminationRiskPercent: percent,
+        impactProtectionIntegrityCost: positiveInteger,
+        exposureOnRiskSuccess: positiveInteger,
+      }),
       travelTimeModifiers: z.strictObject({
         minorContusionTimeIncreasePercent: nonNegativeInteger,
       }),
@@ -309,6 +317,19 @@ export const ruleConfigSchema = z
           'protectedForceEntryInjuryRiskPercent',
         ],
         message: '防护后的撞门伤势风险不得高于无防护风险',
+      })
+    }
+
+    if (
+      config.scene.pathogenCaseRetrieval.protectedDirectContaminationRiskPercent >
+        config.scene.pathogenCaseRetrieval.directContaminationRiskPercent ||
+      config.scene.pathogenCaseRetrieval.protectedCautiousContaminationRiskPercent >
+        config.scene.pathogenCaseRetrieval.cautiousContaminationRiskPercent
+    ) {
+      context.addIssue({
+        code: 'custom',
+        path: ['scene', 'pathogenCaseRetrieval'],
+        message: '防护后的样本箱污染风险不得高于无防护风险',
       })
     }
   })

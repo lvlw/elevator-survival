@@ -33,6 +33,14 @@ export const hospitalSliceV01RuleConfig = parseRuleConfig({
       direct: 10,
       cautious: 30,
     },
+    pathogenCaseRetrieval: {
+      directContaminationRiskPercent: 60,
+      cautiousContaminationRiskPercent: 20,
+      protectedDirectContaminationRiskPercent: 40,
+      protectedCautiousContaminationRiskPercent: 0,
+      impactProtectionIntegrityCost: 1,
+      exposureOnRiskSuccess: 1,
+    },
     travelTimeModifiers: {
       minorContusionTimeIncreasePercent: 10,
     },

@@ -1,6 +1,11 @@
 import { deepFreeze } from '../config'
 import { createPlayerCondition } from '../condition'
 import { createDailyMedicalUsageSnapshot } from '../daily-state'
+import { createRunIntelLogSnapshot } from '../run-intel'
+import {
+  createInitialSceneTaskEventState,
+  createSceneTaskEventStateSnapshot,
+} from '../scene-task-event'
 import { createItemStateCollectionSnapshot } from '../item-state'
 import { createCarriedItemContainersSnapshot } from '../quick-slot'
 import {
@@ -46,10 +51,12 @@ const SNAPSHOT_KEYS = [
   'dailyMedicalUsage',
   'quickSlots',
   'remainingTime',
+  'runIntelLog',
   'sceneInstanceId',
   'sceneItems',
   'searchState',
   'status',
+  'taskEvents',
 ] as const
 
 function hasExactSnapshotKeys(value: unknown): value is SceneExplorationSnapshotInput {
@@ -190,6 +197,21 @@ export function createSceneExplorationSnapshot(
     input.condition,
     dependencies.config.combat.player,
   )
+  let runIntelLog
+  try {
+    runIntelLog = createRunIntelLogSnapshot(input.runIntelLog)
+  } catch {
+    throw new SceneExplorationError('INVALID_INPUT', 'Run情报记录无效')
+  }
+  let taskEvents
+  try {
+    taskEvents = createSceneTaskEventStateSnapshot(
+      input.taskEvents,
+      dependencies.taskEventCatalog,
+    )
+  } catch {
+    throw new SceneExplorationError('INVALID_INPUT', '场景任务事件状态无效')
+  }
   let dailyMedicalUsage
   try {
     dailyMedicalUsage = createDailyMedicalUsageSnapshot(
@@ -320,6 +342,8 @@ export function createSceneExplorationSnapshot(
     itemStates,
     condition,
     dailyMedicalUsage,
+    runIntelLog,
+    taskEvents,
     combatState,
   })
 }
@@ -350,6 +374,10 @@ export function createInitialSceneExplorationSnapshot(
         sceneItemsDependencies,
       ),
       dailyMedicalUsage: input.dailyMedicalUsage,
+      runIntelLog: input.runIntelLog,
+      taskEvents: input.taskEvents ?? createInitialSceneTaskEventState(
+        dependencies.taskEventCatalog,
+      ),
       combatState,
     },
     dependencies,

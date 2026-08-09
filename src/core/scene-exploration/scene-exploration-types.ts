@@ -52,6 +52,11 @@ import type {
   SceneCombatDependencies,
   SceneCombatStateSnapshot,
 } from '../scene-combat'
+import type { RunIntelLogSnapshot } from '../run-intel'
+import type {
+  SceneTaskEventCatalog,
+  SceneTaskEventStateSnapshot,
+} from '../scene-task-event'
 
 export type SceneExplorationStatus =
   | 'active'
@@ -78,16 +83,19 @@ export interface SceneExplorationSnapshot {
   readonly condition: PlayerConditionSnapshot
   readonly dailyMedicalUsage: DailyMedicalUsageSnapshot
   readonly combatState: SceneCombatStateSnapshot
+  /** Borrowed Run-level fact log; a scene never initializes its lifecycle. */
+  readonly runIntelLog: RunIntelLogSnapshot
+  readonly taskEvents: SceneTaskEventStateSnapshot
 }
 
 export type SceneExplorationSnapshotInput = SceneExplorationSnapshot
 
 export type SceneExplorationInitialSnapshotInput = Omit<
   SceneExplorationSnapshot,
-  'status' | 'alertState' | 'sceneItems' | 'combatState'
+  'status' | 'alertState' | 'sceneItems' | 'combatState' | 'taskEvents'
 > & Partial<Pick<
   SceneExplorationSnapshot,
-  'alertState' | 'sceneItems' | 'combatState'
+  'alertState' | 'sceneItems' | 'combatState' | 'taskEvents'
 >>
 
 export type SceneMedicalItemKind =
@@ -114,6 +122,7 @@ export interface SceneExplorationDependencies {
   readonly obstacleCatalog?: SceneObstacleCatalog
   readonly sceneCombat?: SceneCombatDependencies
   readonly medicalBindings?: SceneMedicalContentBindings
+  readonly taskEventCatalog?: SceneTaskEventCatalog
 }
 
 export interface SceneMedicalCommandDependencies
@@ -131,6 +140,12 @@ export interface SceneObstacleCommandDependencies
   extends SceneExplorationDependencies {
   readonly runSeed: string
   readonly obstacleCatalog: SceneObstacleCatalog
+}
+
+export interface SceneTaskEventCommandDependencies
+  extends SceneExplorationDependencies {
+  readonly runSeed: string
+  readonly taskEventCatalog: SceneTaskEventCatalog
 }
 
 export interface MoveThroughSceneEdgeCommand {
@@ -295,6 +310,7 @@ export type SceneExplorationEffect =
         | 'fire-door-toolkit'
         | 'fire-door-fire-axe'
         | 'fire-door-impact-protection'
+        | 'pathogen-case-impact-protection'
       equipmentSlot: 'weapon' | 'armor' | 'utility'
       instanceId: string
       definitionId: string
@@ -361,6 +377,51 @@ export type SceneExplorationEffect =
         quantity: number
       }>[]
       revealedIntelIds: readonly string[]
+    }>
+  | Readonly<{
+      kind: 'run-intel-added'
+      intelId: string
+    }>
+  | Readonly<{
+      kind: 'scene-task-risk-resolved'
+      eventId: string
+      optionId: string
+      algorithmVersion: string
+      streamId: string
+      drawIndex: number | null
+      roll: number | null
+      rawRiskPercent: number
+      effectiveRiskPercent: number
+      protectionApplied: boolean
+      exposureAdded: number
+    }>
+  | Readonly<{
+      kind: 'scene-task-item-acquired'
+      eventId: string
+      optionId: string
+      nodeId: string
+      instanceId: string
+      definitionId: string
+      placement: Omit<BackpackPlacement, 'instanceId'>
+      itemState: Readonly<ItemState>
+    }>
+  | Readonly<{
+      kind: 'scene-task-event-completed'
+      eventId: string
+      optionId: string
+    }>
+  | Readonly<{
+      kind: 'scene-task-event-declined'
+      eventId: string
+      optionId: string
+      nodeId: string
+    }>
+  | Readonly<{
+      kind: 'scene-infection-exposure-added'
+      source: 'pathogen-case-retrieval'
+      exposuresBefore: number
+      added: number
+      exposuresAfter: number
     }>
   | Readonly<{
       kind: 'scene-time-resolved'
@@ -444,6 +505,60 @@ export type SceneMedicalTarget =
 export interface UseSceneMedicalItemCommand {
   readonly source: SceneMedicalItemSource
   readonly target?: SceneMedicalTarget
+}
+
+export type PerformSceneTaskEventCommand =
+  | Readonly<{
+      eventId: string
+      optionId: string
+      placement: Omit<BackpackPlacement, 'instanceId'>
+    }>
+  | Readonly<{
+      eventId: string
+      optionId: string
+    }>
+
+export type SceneTaskRiskTier = 'none' | 'low' | 'medium' | 'high'
+
+export interface PlayerVisibleSceneTaskEventOption {
+  readonly optionId: string
+  readonly kind: 'extract' | 'decline'
+  readonly actionTime: number
+  readonly effectiveRiskTier: SceneTaskRiskTier
+  readonly impactProtectionActive: boolean
+  readonly requiresBackpackPlacement: boolean
+}
+
+export interface PlayerVisibleSceneTaskEvent {
+  readonly eventId: string
+  readonly status: 'available' | 'completed'
+  readonly options: readonly PlayerVisibleSceneTaskEventOption[]
+}
+
+export interface SceneTaskEventEvaluation {
+  readonly eventId: string
+  readonly optionId: string
+  readonly actionTime: number
+  readonly riskTrace: Extract<SceneExplorationEffect, { readonly kind: 'scene-task-risk-resolved' }> | null
+  readonly returnRoute: ReturnRouteResult | null
+  readonly sceneOutcome: TimedSceneActionOutcome | null
+  readonly effects: readonly SceneExplorationEffect[]
+  readonly snapshot: SceneExplorationSnapshot
+}
+
+export interface SceneTaskEventTransitionPlan {
+  readonly command: PerformSceneTaskEventCommand
+  readonly metadata: Omit<SceneTaskEventEvaluation, 'effects' | 'snapshot'>
+  readonly effects: readonly SceneExplorationEffect[]
+}
+
+export type SceneTaskEventPreview =
+  | Readonly<{ canExecute: true; result: SceneTaskEventEvaluation }>
+  | Readonly<{ canExecute: false; rejectionCode: SceneExplorationErrorCode }>
+
+export interface SceneTaskEventResolution {
+  readonly result: SceneTaskEventEvaluation
+  readonly snapshot: SceneExplorationSnapshot
 }
 
 export interface SceneMedicalEvaluation {

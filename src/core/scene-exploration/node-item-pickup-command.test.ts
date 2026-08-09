@@ -308,6 +308,8 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
         ),
       },
       dailyMedicalUsage: { disinfectantUsesToday: 0 },
+      runIntelLog: { intelIds: [] },
+      taskEvents: { entries: [] },
       condition: createPlayerCondition(
         {
           currentHealth: status === 'dead' ? 0 : 12,

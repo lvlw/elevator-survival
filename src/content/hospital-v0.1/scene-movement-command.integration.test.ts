@@ -127,6 +127,7 @@ const scene = (
       },
       condition: playerCondition,
       dailyMedicalUsage: { disinfectantUsesToday: 0 },
+      runIntelLog: { intelIds: [] },
     },
     dependencies,
   )

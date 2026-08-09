@@ -112,6 +112,7 @@ function snapshot(input: Readonly<{
       ),
     },
     dailyMedicalUsage: { disinfectantUsesToday: input.disinfectantUsesToday ?? 0 },
+    runIntelLog: { intelIds: [] },
     condition: createPlayerCondition({
       currentHealth: input.currentHealth ?? config.combat.player.maxHealth,
       bleeding: input.bleeding ?? false,

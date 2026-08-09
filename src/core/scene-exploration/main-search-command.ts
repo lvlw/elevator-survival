@@ -247,6 +247,11 @@ function evaluate(
     ),
     revealedIntelIds: [...prepared.revealedIntelIds],
   })
+  for (const intelId of prepared.revealedIntelIds) {
+    if (!snapshot.runIntelLog.intelIds.includes(intelId)) {
+      effects.push({ kind: 'run-intel-added', intelId })
+    }
+  }
 
   const currentIsSafetyNode = dependencies.graph.nodes.some(
     (node) =>

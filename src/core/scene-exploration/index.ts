@@ -9,6 +9,7 @@ export {
 export { applySceneExplorationEffects } from './scene-exploration-effects'
 export { getPlayerVisibleSceneNodeState } from './player-visible-scene-node'
 export { getPlayerVisibleSceneCombatState } from './player-visible-scene-combat'
+export { getPlayerVisibleSceneTaskEvents } from './scene-task-event-selectors'
 export { getAvailableSceneMedicalCommands } from './scene-medical-selectors'
 export { createUseSceneMedicalItemCommand } from './scene-medical-validation'
 export {
@@ -16,6 +17,11 @@ export {
   resolveSceneMedicalCommand,
 } from './scene-medical-command'
 export { buildSceneMedicalTransitionPlan } from './scene-medical-transition-plan'
+export {
+  buildSceneTaskEventTransitionPlan,
+  previewSceneTaskEventCommand,
+  resolveSceneTaskEventCommand,
+} from './scene-task-event-command'
 export { selectInfectedOrderlyFirstActionTime } from './scene-alert'
 export {
   previewSceneMoveCommand,
@@ -54,6 +60,7 @@ export type {
   PerformMainSearchCommand,
   PickUpRevealedNodeItemCommand,
   PerformSceneObstacleOptionCommand,
+  PerformSceneTaskEventCommand,
   UseSceneMedicalItemCommand,
   SceneExplorationDependencies,
   SceneExplorationEffect,
@@ -75,6 +82,14 @@ export type {
   SceneObstacleEvaluation,
   SceneObstaclePreview,
   SceneObstacleResolution,
+  SceneTaskEventCommandDependencies,
+  SceneTaskEventEvaluation,
+  SceneTaskEventPreview,
+  SceneTaskEventResolution,
+  SceneTaskEventTransitionPlan,
+  PlayerVisibleSceneTaskEvent,
+  PlayerVisibleSceneTaskEventOption,
+  SceneTaskRiskTier,
   SceneMoveEffect,
   SceneMoveEvaluation,
   SceneMoveHealthLossSource,

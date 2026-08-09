@@ -1,0 +1,199 @@
+import { describe, expect, it } from 'vitest'
+import { createPlayerCondition } from '../../core/condition'
+import { createBackpackSnapshot } from '../../core/inventory'
+import { createFullItemState, createItemState, getItemState } from '../../core/item-state'
+import {
+  applySceneExplorationEffects,
+  createInitialSceneExplorationSnapshot,
+  createSceneExplorationSnapshot,
+  getPlayerVisibleSceneTaskEvents,
+  previewSceneTaskEventCommand,
+  resolveSceneTaskEventCommand,
+  type PerformSceneTaskEventCommand,
+} from '../../core/scene-exploration'
+import { createSceneSearchState } from '../../core/scene-search'
+import {
+  HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
+  HOSPITAL_INTEL_IDS,
+  HOSPITAL_ITEM_IDS,
+  HOSPITAL_NODE_IDS,
+  HOSPITAL_TASK_EVENT_IDS,
+  createHospitalSceneCombatDependencies,
+  hospitalItemCatalog,
+  hospitalItemEquipmentCatalog,
+  hospitalItemQuickSlotCatalog,
+  hospitalItemResourceCatalog,
+  hospitalMainSearchCatalog,
+  hospitalSceneEdgeAccessCatalog,
+  hospitalSceneTaskEventCatalog,
+  hospitalSliceV01RuleConfig as config,
+  hospitalSliceV01SceneGraph,
+} from '..'
+
+const SCENE_ID = 'pathogen-case-test-scene'
+const EVENT_ID = HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval
+
+function dependencies(runSeed = 'pathogen-case-seed') {
+  return {
+    graph: hospitalSliceV01SceneGraph,
+    physicalCatalog: hospitalItemCatalog,
+    equipmentCatalog: hospitalItemEquipmentCatalog,
+    quickSlotCatalog: hospitalItemQuickSlotCatalog,
+    itemResourceCatalog: hospitalItemResourceCatalog,
+    config,
+    edgeAccessCatalog: hospitalSceneEdgeAccessCatalog,
+    taskEventCatalog: hospitalSceneTaskEventCatalog,
+    sceneCombat: createHospitalSceneCombatDependencies(runSeed, SCENE_ID),
+    runSeed,
+  }
+}
+
+function scene(input: Readonly<{
+  runSeed?: string
+  coatIntegrity?: number | null
+  defeated?: boolean
+  remainingTime?: number
+  bleeding?: boolean
+  currentHealth?: number
+}> = {}) {
+  const deps = dependencies(input.runSeed)
+  const coat = input.coatIntegrity === null
+    ? null
+    : { instanceId: 'equipped-heavy-coat', definitionId: HOSPITAL_ITEM_IDS.heavyCoat, quantity: 1 }
+  const states = coat
+    ? [createItemState({ ...coat, resource: { kind: 'integrity', current: input.coatIntegrity ?? 4 } }, hospitalItemResourceCatalog)]
+    : []
+  const initial = createInitialSceneExplorationSnapshot({
+    sceneInstanceId: SCENE_ID,
+    searchState: createSceneSearchState({
+      runSeed: input.runSeed ?? 'pathogen-case-seed', sceneInstanceId: SCENE_ID,
+      graph: hospitalSliceV01SceneGraph, searchCatalog: hospitalMainSearchCatalog,
+      itemCatalog: hospitalItemCatalog, itemResourceCatalog: hospitalItemResourceCatalog,
+    }),
+    currentNodeId: HOSPITAL_NODE_IDS.specimenColdRoom,
+    remainingTime: input.remainingTime ?? config.scene.totalTime,
+    enabledEdgeIds: HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
+    backpack: createBackpackSnapshot({ width: 6, height: 4, items: [], placements: [] }, hospitalItemCatalog),
+    equipment: { weapon: null, armor: coat, utility: null },
+    quickSlots: { slots: [null, null] },
+    itemStates: { states },
+    dailyMedicalUsage: { disinfectantUsesToday: 0 },
+    runIntelLog: { intelIds: [] },
+    condition: createPlayerCondition({
+      currentHealth: input.currentHealth ?? 12,
+      bleeding: input.bleeding ?? false,
+      openWounds: [], minorContusions: 0, painkillerActive: false,
+      pendingInfectionExposures: 0,
+    }, config.combat.player),
+  }, deps)
+  const encounter = initial.combatState.encounters[0]
+  if (!encounter || encounter.kind !== 'dormant') throw new Error('expected dormant orderly encounter')
+  const defeated = createSceneExplorationSnapshot({
+    ...initial,
+    combatState: {
+      ...initial.combatState,
+      encounters: [{
+        ...encounter,
+        enemy: input.defeated === false
+          ? encounter.enemy
+          : { ...encounter.enemy, currentHealth: 0, defeated: true, hasBeenEncountered: true },
+      }],
+    },
+  }, deps)
+  return { deps, snapshot: defeated }
+}
+
+function command(optionId: string, placement = { x: 0, y: 0, rotated: false }): PerformSceneTaskEventCommand {
+  return optionId === 'decline' ? { eventId: EVENT_ID, optionId } : { eventId: EVENT_ID, optionId, placement }
+}
+
+describe('hospital pathogen case retrieval', () => {
+  it('extracts the same stable task instance through direct and cautious choices, then records origin intel', () => {
+    const direct = scene({ coatIntegrity: null })
+    const cautious = scene({ coatIntegrity: null })
+    const directResult = resolveSceneTaskEventCommand(direct.snapshot, command('direct-extraction'), direct.deps)
+    const cautiousResult = resolveSceneTaskEventCommand(cautious.snapshot, command('cautious-extraction'), cautious.deps)
+    const directItem = directResult.snapshot.backpack.items[0]
+    expect(directItem).toMatchObject({ definitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase, quantity: 1 })
+    expect(cautiousResult.snapshot.backpack.items[0]?.instanceId).toBe(directItem?.instanceId)
+    expect(directResult.snapshot.itemStates.states[0]?.resource).toEqual({ kind: 'none' })
+    expect(directResult.snapshot.runIntelLog.intelIds).toEqual([HOSPITAL_INTEL_IDS.pathogenCaseOrigin])
+    expect(directResult.snapshot.taskEvents.entries).toEqual([{ eventId: EVENT_ID, status: 'completed' }])
+    expect(directResult.result.effects.map(({ kind }) => kind)).toContain('scene-task-risk-resolved')
+  })
+
+  it('uses the coat once whenever it actually lowers risk, including the protected cautious zero-risk path', () => {
+    const start = scene({ coatIntegrity: 1 })
+    const resolved = resolveSceneTaskEventCommand(start.snapshot, command('cautious-extraction'), start.deps)
+    expect(getItemState(resolved.snapshot.itemStates, 'equipped-heavy-coat').resource).toEqual({ kind: 'integrity', current: 0 })
+    const trace = resolved.result.riskTrace
+    expect(trace).toMatchObject({ rawRiskPercent: 20, effectiveRiskPercent: 0, protectionApplied: true, roll: null, exposureAdded: 0 })
+    expect(scene({ coatIntegrity: 0 }).snapshot.equipment.armor).not.toBeNull()
+    const exhausted = scene({ coatIntegrity: 0 })
+    const unprotected = resolveSceneTaskEventCommand(exhausted.snapshot, command('direct-extraction'), exhausted.deps)
+    expect(unprotected.result.riskTrace).toMatchObject({ rawRiskPercent: 60, effectiveRiskPercent: 60, protectionApplied: false })
+  })
+
+  it('uses an isolated named contamination stream with repeatable success and failure rolls', () => {
+    const success = scene({ runSeed: 'pathogen-case-seed', coatIntegrity: null })
+    const replay = scene({ runSeed: 'pathogen-case-seed', coatIntegrity: null })
+    const failure = scene({ runSeed: 'beta', coatIntegrity: null })
+    const successful = resolveSceneTaskEventCommand(success.snapshot, command('direct-extraction'), success.deps)
+    const replayed = resolveSceneTaskEventCommand(replay.snapshot, command('direct-extraction'), replay.deps)
+    const failed = resolveSceneTaskEventCommand(failure.snapshot, command('direct-extraction'), failure.deps)
+    expect(successful.result.riskTrace).toMatchObject({ algorithmVersion: 'counter32-v1', roll: 26, exposureAdded: 1, rawRiskPercent: 60, effectiveRiskPercent: 60 })
+    expect(replayed.result.riskTrace).toEqual(successful.result.riskTrace)
+    expect(failed.result.riskTrace).toMatchObject({ roll: 96, exposureAdded: 0 })
+    expect(successful.result.riskTrace?.streamId).toContain('scene-task-event')
+  })
+
+  it('declining remains available and has no time, random, item, intel, or state effect', () => {
+    const start = scene()
+    const declined = resolveSceneTaskEventCommand(start.snapshot, command('decline'), start.deps)
+    expect(declined.result.effects).toEqual([{ kind: 'scene-task-event-declined', eventId: EVENT_ID, optionId: 'decline', nodeId: HOSPITAL_NODE_IDS.specimenColdRoom }])
+    expect(declined.snapshot).toEqual(start.snapshot)
+    expect(previewSceneTaskEventCommand(declined.snapshot, command('direct-extraction'), start.deps).canExecute).toBe(true)
+  })
+
+  it('requires the formally declared orderly encounter to be defeated', () => {
+    const start = scene({ defeated: false })
+    expect(previewSceneTaskEventCommand(start.snapshot, command('direct-extraction'), start.deps)).toEqual({
+      canExecute: false,
+      rejectionCode: 'SCENE_TASK_EVENT_QUALIFICATION_FAILED',
+    })
+  })
+
+  it('requires an explicit valid placement before any extraction side effect and locks completed events', () => {
+    const start = scene({ coatIntegrity: 4 })
+    const invalid = previewSceneTaskEventCommand(start.snapshot, command('direct-extraction', { x: 5, y: 3, rotated: false }), start.deps)
+    expect(invalid).toEqual({ canExecute: false, rejectionCode: 'ACTION_NOT_AVAILABLE' })
+    expect(start.snapshot).toEqual(scene({ coatIntegrity: 4 }).snapshot)
+    const result = resolveSceneTaskEventCommand(start.snapshot, command('direct-extraction'), start.deps)
+    expect(previewSceneTaskEventCommand(result.snapshot, command('cautious-extraction'), start.deps)).toEqual({ canExecute: false, rejectionCode: 'SCENE_TASK_EVENT_ALREADY_COMPLETED' })
+  })
+
+  it('uses post-acquisition weight for overtime forced return, after primary effects and post-action bleeding', () => {
+    const start = scene({ remainingTime: 5, bleeding: true, currentHealth: 12 })
+    const resolved = resolveSceneTaskEventCommand(start.snapshot, command('direct-extraction'), start.deps)
+    expect(resolved.snapshot.backpack.items).toHaveLength(1)
+    expect(resolved.snapshot.remainingTime).toBe(0)
+    expect(resolved.snapshot.condition.currentHealth).toBeLessThan(12)
+    expect(resolved.snapshot.status).toBe('forced-returned')
+    expect(resolved.result.effects.map(({ kind }) => kind)).toContain('scene-time-resolved')
+  })
+
+  it('rejects effect tampering atomically and projects only player-visible choice facts', () => {
+    const start = scene({ coatIntegrity: 4 })
+    const resolved = resolveSceneTaskEventCommand(start.snapshot, command('direct-extraction'), start.deps)
+    const withoutItem = resolved.result.effects.filter(({ kind }) => kind !== 'scene-task-item-acquired')
+    expect(() => applySceneExplorationEffects(start.snapshot, withoutItem, start.deps)).toThrow(/任务事件/)
+    expect(getPlayerVisibleSceneTaskEvents(start.snapshot, start.deps)).toEqual([{
+      eventId: EVENT_ID,
+      status: 'available',
+      options: expect.arrayContaining([
+        expect.objectContaining({ optionId: 'direct-extraction', actionTime: 10, effectiveRiskTier: 'medium', impactProtectionActive: true, requiresBackpackPlacement: true }),
+        expect.objectContaining({ optionId: 'cautious-extraction', actionTime: 30, effectiveRiskTier: 'none', impactProtectionActive: true, requiresBackpackPlacement: true }),
+      ]),
+    }])
+  })
+})

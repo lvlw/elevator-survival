@@ -107,6 +107,7 @@ function snapshot(setup: Setup = {}): SceneExplorationSnapshot {
       painkillerActive: false,
     }, config.combat.player),
     dailyMedicalUsage: { disinfectantUsesToday: 0 },
+    runIntelLog: { intelIds: [] },
   }, dependencies)
 }
 

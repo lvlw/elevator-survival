@@ -244,6 +244,7 @@ const snapshot = (
       },
       condition: playerCondition,
       dailyMedicalUsage: { disinfectantUsesToday: 0 },
+      runIntelLog: { intelIds: [] },
     },
     dependencies,
   )
@@ -279,6 +280,7 @@ describe('scene exploration snapshot', () => {
           itemStates: { states: [] },
           condition: condition(),
           dailyMedicalUsage: { disinfectantUsesToday: 0 },
+          runIntelLog: { intelIds: [] },
           ...change,
         },
         dependencies,

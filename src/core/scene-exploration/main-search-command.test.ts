@@ -325,6 +325,8 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
       quickSlots: { slots: [quickItem, null] },
       itemStates: { states: itemStates },
       dailyMedicalUsage: { disinfectantUsesToday: 0 },
+      runIntelLog: { intelIds: [] },
+      taskEvents: { entries: [] },
       condition: createPlayerCondition(
         {
           currentHealth,
@@ -541,6 +543,7 @@ describe('main search effects and terminal ordering', () => {
     expect(result.result.effects.map((effect) => effect.kind)).toEqual([
       'item-resource-consumed',
       'scene-main-search-revealed',
+      'run-intel-added',
       'scene-time-resolved',
     ])
     expect(result.snapshot.itemStates.states.find(

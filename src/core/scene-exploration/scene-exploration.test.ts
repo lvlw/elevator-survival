@@ -109,7 +109,7 @@ describe('strict movement command and snapshot boundaries', () => {
   it('requires all hidden state fields and rejects unknown top-level fields on restore', () => {
     const complete = snapshot()
     expect(createSceneExplorationSnapshot(complete, dependencies)).toEqual(complete)
-    for (const field of ['alertState', 'sceneItems', 'combatState'] as const) {
+    for (const field of ['alertState', 'sceneItems', 'combatState', 'medicalUsage'] as const) {
       const incomplete = { ...complete } as Record<string, unknown>
       delete incomplete[field]
       expect(() => createSceneExplorationSnapshot(incomplete as never, dependencies))
@@ -130,6 +130,7 @@ describe('strict movement command and snapshot boundaries', () => {
     expect(Object.isFrozen(initial)).toBe(true)
     expect(Object.isFrozen(initial.sceneItems)).toBe(true)
     expect(Object.isFrozen(initial.combatState)).toBe(true)
+    expect(Object.isFrozen(initial.medicalUsage)).toBe(true)
   })
 })
 const catalog = createItemCatalog([

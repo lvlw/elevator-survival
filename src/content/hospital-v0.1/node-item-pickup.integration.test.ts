@@ -126,6 +126,7 @@ function searchedSnapshot(
           createFullItemState(item, hospitalItemResourceCatalog),
         ),
       },
+      medicalUsage: { disinfectantUsesToday: 0 },
       condition: createPlayerCondition(
         {
           currentHealth: status === 'dead' ? 0 : config.combat.player.maxHealth,

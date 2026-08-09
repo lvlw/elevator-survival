@@ -54,6 +54,10 @@ export type SceneExplorationErrorCode =
   | 'EFFECT_CONTUSION_MISMATCH'
   | 'EFFECT_SPAWN_MISMATCH'
   | 'EFFECT_RISK_MISMATCH'
+  | 'INVALID_SCENE_MEDICAL_COMMAND'
+  | 'INVALID_SCENE_MEDICAL_BINDINGS'
+  | 'SCENE_MEDICAL_NOT_AVAILABLE'
+  | 'EFFECT_MEDICAL_MISMATCH'
 
 export class SceneExplorationError extends Error {
   readonly code: SceneExplorationErrorCode

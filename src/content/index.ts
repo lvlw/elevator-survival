@@ -14,6 +14,7 @@ export {
   hospitalItemResourceProfiles,
   hospitalItemSearchIlluminationCatalog,
   hospitalItemSearchIlluminationProfiles,
+  hospitalSceneMedicalContentBindings,
 } from './hospital-v0.1/items'
 export {
   HOSPITAL_INTEL_IDS,

@@ -304,6 +304,7 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
           createFullItemState(item, resourceCatalog),
         ),
       },
+      medicalUsage: { disinfectantUsesToday: 0 },
       condition: createPlayerCondition(
         {
           currentHealth: status === 'dead' ? 0 : 12,

@@ -9,6 +9,13 @@ export {
 export { applySceneExplorationEffects } from './scene-exploration-effects'
 export { getPlayerVisibleSceneNodeState } from './player-visible-scene-node'
 export { getPlayerVisibleSceneCombatState } from './player-visible-scene-combat'
+export { getAvailableSceneMedicalCommands } from './scene-medical-selectors'
+export { createUseSceneMedicalItemCommand } from './scene-medical-validation'
+export {
+  previewSceneMedicalCommand,
+  resolveSceneMedicalCommand,
+} from './scene-medical-command'
+export { buildSceneMedicalTransitionPlan } from './scene-medical-transition-plan'
 export { selectInfectedOrderlyFirstActionTime } from './scene-alert'
 export {
   previewSceneMoveCommand,
@@ -47,11 +54,22 @@ export type {
   PerformMainSearchCommand,
   PickUpRevealedNodeItemCommand,
   PerformSceneObstacleOptionCommand,
+  UseSceneMedicalItemCommand,
   SceneExplorationDependencies,
   SceneExplorationEffect,
   SceneExplorationSnapshot,
   SceneExplorationSnapshotInput,
   SceneExplorationInitialSnapshotInput,
+  SceneMedicalContentBindings,
+  SceneMedicalCommandDependencies,
+  SceneMedicalEvaluation,
+  SceneMedicalItemKind,
+  SceneMedicalItemSource,
+  SceneMedicalPreview,
+  SceneMedicalResolution,
+  SceneMedicalTarget,
+  SceneMedicalTransitionPlan,
+  SceneMedicalUsageSnapshot,
   SceneAlertState,
   SceneExplorationStatus,
   SceneObstacleCommandDependencies,

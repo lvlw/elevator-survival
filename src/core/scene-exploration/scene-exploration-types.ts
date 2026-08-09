@@ -75,6 +75,7 @@ export interface SceneExplorationSnapshot {
   readonly quickSlots: QuickSlotSnapshot
   readonly itemStates: ItemStateCollectionSnapshot
   readonly condition: PlayerConditionSnapshot
+  readonly medicalUsage: SceneMedicalUsageSnapshot
   readonly combatState: SceneCombatStateSnapshot
 }
 
@@ -82,11 +83,28 @@ export type SceneExplorationSnapshotInput = SceneExplorationSnapshot
 
 export type SceneExplorationInitialSnapshotInput = Omit<
   SceneExplorationSnapshot,
-  'status' | 'alertState' | 'sceneItems' | 'combatState'
+  'status' | 'alertState' | 'sceneItems' | 'combatState' | 'medicalUsage'
 > & Partial<Pick<
   SceneExplorationSnapshot,
-  'alertState' | 'sceneItems' | 'combatState'
+  'alertState' | 'sceneItems' | 'combatState' | 'medicalUsage'
 >>
+
+export interface SceneMedicalUsageSnapshot {
+  readonly disinfectantUsesToday: number
+}
+
+export type SceneMedicalItemKind =
+  | 'bandage'
+  | 'painkiller'
+  | 'disinfectant'
+  | 'first-aid-kit'
+
+export interface SceneMedicalContentBindings {
+  readonly bandageDefinitionId: string
+  readonly painkillerDefinitionId: string
+  readonly disinfectantDefinitionId: string
+  readonly firstAidKitDefinitionId: string
+}
 
 export interface SceneExplorationDependencies {
   readonly graph: SceneGraph
@@ -98,6 +116,12 @@ export interface SceneExplorationDependencies {
   readonly edgeAccessCatalog?: SceneEdgeAccessCatalog
   readonly obstacleCatalog?: SceneObstacleCatalog
   readonly sceneCombat?: SceneCombatDependencies
+  readonly medicalBindings?: SceneMedicalContentBindings
+}
+
+export interface SceneMedicalCommandDependencies
+  extends SceneExplorationDependencies {
+  readonly medicalBindings: SceneMedicalContentBindings
 }
 
 export interface MainSearchCommandDependencies
@@ -122,6 +146,74 @@ export type SceneMoveHealthLossSource =
   | 'forced-return-bleeding'
 
 export type SceneExplorationEffect =
+  | Readonly<{
+      kind: 'scene-medical-item-consumed'
+      command: UseSceneMedicalItemCommand
+      medicalItem: SceneMedicalItemKind
+      sourceContainer: 'backpack' | 'quick-slot'
+      sourceSlotIndex: number | null
+      instanceId: string
+      definitionId: string
+      quantityBefore: number
+      quantityConsumed: 1
+      quantityAfter: number
+    }>
+  | Readonly<{
+      kind: 'scene-health-restored'
+      source: 'scene-bandage' | 'scene-first-aid-kit'
+      healthBefore: number
+      requestedRecovery: number
+      actualRecovery: number
+      healthAfter: number
+      unusedRecovery: number
+    }>
+  | Readonly<{
+      kind: 'scene-open-wound-treated'
+      source: 'scene-bandage'
+      woundId: string
+      woundKind: import('../condition').OpenWoundSnapshot['kind']
+      treatmentBefore: 'untreated'
+      treatmentAfter: 'treated'
+    }>
+  | Readonly<{
+      kind: 'scene-open-wound-removed'
+      source: 'scene-first-aid-kit'
+      woundId: string
+      woundKind: import('../condition').OpenWoundSnapshot['kind']
+    }>
+  | Readonly<{
+      kind: 'scene-minor-contusion-removed'
+      source: 'scene-first-aid-kit'
+      countBefore: number
+      removed: 1
+      countAfter: number
+    }>
+  | Readonly<{
+      kind: 'scene-bleeding-changed'
+      source: 'scene-bandage' | 'scene-first-aid-kit'
+      before: boolean
+      after: boolean
+    }>
+  | Readonly<{
+      kind: 'scene-painkiller-changed'
+      before: false
+      after: true
+    }>
+  | Readonly<{
+      kind: 'scene-infection-exposure-reduced'
+      source: 'scene-disinfectant'
+      exposuresBefore: number
+      requestedReduction: number
+      actualReduction: number
+      exposuresAfter: number
+      unusedReduction: number
+    }>
+  | Readonly<{
+      kind: 'scene-medical-usage-changed'
+      usage: 'disinfectant'
+      usesBefore: number
+      usesAfter: number
+    }>
   | Readonly<{
       kind: 'scene-item-picked-up'
       nodeId: string
@@ -331,6 +423,56 @@ export interface PickUpRevealedNodeItemCommand {
 export interface PerformSceneObstacleOptionCommand {
   readonly obstacleId: string
   readonly optionId: string
+}
+
+export type SceneMedicalItemSource =
+  | Readonly<{
+      container: 'backpack'
+      itemInstanceId: string
+    }>
+  | Readonly<{
+      container: 'quick-slot'
+      quickSlotIndex: number
+    }>
+
+export type SceneMedicalTarget =
+  | Readonly<{
+      kind: 'open-wound'
+      woundId: string
+    }>
+  | Readonly<{
+      kind: 'minor-contusion'
+    }>
+
+export interface UseSceneMedicalItemCommand {
+  readonly source: SceneMedicalItemSource
+  readonly target?: SceneMedicalTarget
+}
+
+export interface SceneMedicalEvaluation {
+  readonly medicalItem: SceneMedicalItemKind
+  readonly sourceContainer: SceneMedicalItemSource['container']
+  readonly sourceInstanceId: string
+  readonly actionTime: number
+  readonly returnRoute: ReturnRouteResult
+  readonly sceneOutcome: TimedSceneActionOutcome
+  readonly effects: readonly SceneExplorationEffect[]
+  readonly snapshot: SceneExplorationSnapshot
+}
+
+export interface SceneMedicalTransitionPlan {
+  readonly command: UseSceneMedicalItemCommand
+  readonly metadata: Omit<SceneMedicalEvaluation, 'effects' | 'snapshot'>
+  readonly effects: readonly SceneExplorationEffect[]
+}
+
+export type SceneMedicalPreview =
+  | Readonly<{ canExecute: true; result: SceneMedicalEvaluation }>
+  | Readonly<{ canExecute: false; rejectionCode: SceneExplorationErrorCode }>
+
+export interface SceneMedicalResolution {
+  readonly result: SceneMedicalEvaluation
+  readonly snapshot: SceneExplorationSnapshot
 }
 
 export interface SceneObstacleEvaluation {

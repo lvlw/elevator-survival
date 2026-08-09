@@ -323,6 +323,7 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
       },
       quickSlots: { slots: [quickItem, null] },
       itemStates: { states: itemStates },
+      medicalUsage: { disinfectantUsesToday: 0 },
       condition: createPlayerCondition(
         {
           currentHealth,

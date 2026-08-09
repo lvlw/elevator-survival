@@ -13,3 +13,4 @@ export { hospitalItemQuickSlotCatalog } from './hospital-item-quick-slot-catalog
 export { hospitalItemQuickSlotProfiles } from './hospital-item-quick-slot-profiles'
 export { hospitalItemSearchIlluminationCatalog } from './hospital-item-search-illumination-catalog'
 export { hospitalItemSearchIlluminationProfiles } from './hospital-item-search-illumination-profiles'
+export { hospitalSceneMedicalContentBindings } from './hospital-scene-medical-bindings'

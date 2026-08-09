@@ -37,6 +37,7 @@ import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
 import { buildSceneCombatPlayerActionEffects } from './scene-combat-transition-plan'
 import { createMoveThroughSceneEdgeCommand } from './scene-move-command'
 import { buildSceneMoveTransitionPlan } from './scene-move-transition-plan'
+import { applySceneMedicalEffects } from './scene-medical-effect-application'
 import type {
   SceneExplorationEffect,
   SceneExplorationDependencies,
@@ -67,6 +68,7 @@ function fail(
     | 'EFFECT_SPAWN_MISMATCH'
     | 'EFFECT_RISK_MISMATCH'
     | 'EFFECT_COMBAT_MISMATCH'
+    | 'EFFECT_MEDICAL_MISMATCH'
     | 'INCOMPLETE_EFFECT_PLAN',
   message: string,
 ): never {
@@ -339,6 +341,15 @@ function applySceneExplorationEffectsInternal(
       fail('EFFECT_COMBAT_MISMATCH', '场景战斗Effect需要完整场景依赖')
     }
     return applySceneCombatActionEffects(initialSnapshot, effects, dependencies)
+  }
+  if (effects.some(({ kind }) => kind === 'scene-medical-item-consumed')) {
+    const medicalDependencies = dependencies?.medicalBindings
+      ? dependencies as import('./scene-exploration-types').SceneMedicalCommandDependencies
+      : null
+    if (!medicalDependencies) {
+      fail('EFFECT_MEDICAL_MISMATCH', '探索医疗 Effect 回放需要完整医疗内容绑定')
+    }
+    return applySceneMedicalEffects(initialSnapshot, effects, medicalDependencies)
   }
   if (effects.length === 0) {
     throw new SceneExplorationError('EMPTY_EFFECTS', 'Effect计划不能为空')

@@ -1,6 +1,7 @@
 import type { FrozenRuleConfig } from '../config'
 import type { PlayerConditionSnapshot } from '../condition'
 import type { DailyMedicalUsageSnapshot } from '../daily-state'
+import type { HubItemSource } from '../hub-inventory'
 import type {
   MedicalContentBindings,
   MedicalItemKind,
@@ -24,10 +25,7 @@ export interface RunHubMedicalSnapshot {
   readonly dailyMedicalUsage: DailyMedicalUsageSnapshot
 }
 
-export type RunHubMedicalItemSource =
-  | Readonly<{ container: 'warehouse'; itemInstanceId: string }>
-  | Readonly<{ container: 'backpack'; itemInstanceId: string }>
-  | Readonly<{ container: 'quick-slot'; quickSlotIndex: number }>
+export type RunHubMedicalItemSource = HubItemSource
 
 export interface UseRunHubMedicalItemCommand {
   readonly kind: 'use-run-hub-medical-item'

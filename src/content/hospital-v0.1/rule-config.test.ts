@@ -114,9 +114,66 @@ describe('hospitalSliceV01RuleConfig', () => {
       },
     })
   })
+
+  it('contains the frozen world-threat and satiety values', () => {
+    expect(hospitalSliceV01RuleConfig.worldThreat).toEqual({
+      definitionId: 'world_threat_hospital_infection',
+      progressPerPendingExposure: 20,
+      stages: [
+        { id: 'none', minProgress: 0, dailyBaseIncrease: 0 },
+        { id: 'latent', minProgress: 1, dailyBaseIncrease: 5 },
+        { id: 'infected', minProgress: 30, dailyBaseIncrease: 10 },
+        { id: 'worsening', minProgress: 60, dailyBaseIncrease: 15 },
+        { id: 'critical', minProgress: 90, dailyBaseIncrease: 20 },
+      ],
+      terminal: { stageId: 'terminal', minProgress: 120 },
+      suppressant: { dailyReduction: 15, maxUsesPerDay: 1, hubSceneTime: 0 },
+    })
+    expect(hospitalSliceV01RuleConfig.dailySettlement).toEqual({
+      maxSatiety: 6,
+      newRunInitialSatiety: 6,
+      dailySatietyCost: 2,
+      rationRecovery: 2,
+      rationHubSceneTime: 0,
+      unresolvedBleedingHealthLoss: 2,
+      minorContusionRecoveryPenalty: 1,
+    })
+  })
 })
 
 describe('ruleConfigSchema', () => {
+  it('rejects nonascending, duplicate, and nonzero-first threat stage boundaries', () => {
+    for (const stages of [
+      [
+        { id: 'a', minProgress: 0, dailyBaseIncrease: 0 },
+        { id: 'b', minProgress: 0, dailyBaseIncrease: 1 },
+      ],
+      [
+        { id: 'a', minProgress: 1, dailyBaseIncrease: 0 },
+      ],
+      [
+        { id: 'a', minProgress: 0, dailyBaseIncrease: 0 },
+        { id: 'a', minProgress: 1, dailyBaseIncrease: 1 },
+      ],
+    ]) {
+      const invalid = mutableConfigCopy()
+      invalid.worldThreat.stages = stages
+      expect(ruleConfigSchema.safeParse(invalid).success).toBe(false)
+    }
+  })
+
+  it('rejects terminal overlap, unsafe integers, and unknown threat fields', () => {
+    const overlap = mutableConfigCopy()
+    overlap.worldThreat.terminal.minProgress = 90
+    expect(ruleConfigSchema.safeParse(overlap).success).toBe(false)
+    const unsafe = mutableConfigCopy()
+    unsafe.worldThreat.progressPerPendingExposure = Number.MAX_SAFE_INTEGER + 1
+    expect(ruleConfigSchema.safeParse(unsafe).success).toBe(false)
+    const unknown = mutableConfigCopy()
+    ;(unknown.worldThreat as typeof unknown.worldThreat & Record<string, unknown>).extra = true
+    expect(ruleConfigSchema.safeParse(unknown).success).toBe(false)
+  })
+
   it('rejects non-monotonic combat risk tiers', () => {
     const invalid = mutableConfigCopy()
     invalid.combat.riskTiers.medium = 10

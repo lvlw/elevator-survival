@@ -213,9 +213,32 @@ export const hospitalSliceV01RuleConfig = parseRuleConfig({
       maxCharge: 3,
     },
   },
+  worldThreat: {
+    definitionId: 'world_threat_hospital_infection',
+    progressPerPendingExposure: 20,
+    stages: [
+      { id: 'none', minProgress: 0, dailyBaseIncrease: 0 },
+      { id: 'latent', minProgress: 1, dailyBaseIncrease: 5 },
+      { id: 'infected', minProgress: 30, dailyBaseIncrease: 10 },
+      { id: 'worsening', minProgress: 60, dailyBaseIncrease: 15 },
+      { id: 'critical', minProgress: 90, dailyBaseIncrease: 20 },
+    ],
+    terminal: {
+      stageId: 'terminal',
+      minProgress: 120,
+    },
+    suppressant: {
+      dailyReduction: 15,
+      maxUsesPerDay: 1,
+      hubSceneTime: 0,
+    },
+  },
   dailySettlement: {
     maxSatiety: 6,
+    newRunInitialSatiety: 6,
     dailySatietyCost: 2,
+    rationRecovery: 2,
+    rationHubSceneTime: 0,
     unresolvedBleedingHealthLoss: 2,
     minorContusionRecoveryPenalty: 1,
   },

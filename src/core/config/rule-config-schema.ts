@@ -2,6 +2,8 @@ import { z } from 'zod'
 
 const nonNegativeInteger = z.number().int().nonnegative()
 const positiveInteger = z.number().int().positive()
+const safeNonNegativeInteger = z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER)
+const safePositiveInteger = z.number().int().positive().max(Number.MAX_SAFE_INTEGER)
 const nonEmptyString = z.string().trim().min(1)
 const percent = z.number().int().min(0).max(100)
 const riskTier = z.enum(['none', 'low', 'medium', 'high', 'very-high'])
@@ -230,9 +232,30 @@ export const ruleConfigSchema = z
         maxCharge: positiveInteger,
       }),
     }),
+    worldThreat: z.strictObject({
+      definitionId: nonEmptyString,
+      progressPerPendingExposure: safeNonNegativeInteger,
+      stages: z.array(z.strictObject({
+        id: nonEmptyString,
+        minProgress: safeNonNegativeInteger,
+        dailyBaseIncrease: safeNonNegativeInteger,
+      })).min(1),
+      terminal: z.strictObject({
+        stageId: nonEmptyString,
+        minProgress: safePositiveInteger,
+      }),
+      suppressant: z.strictObject({
+        dailyReduction: safeNonNegativeInteger,
+        maxUsesPerDay: safePositiveInteger,
+        hubSceneTime: safeNonNegativeInteger,
+      }),
+    }),
     dailySettlement: z.strictObject({
-      maxSatiety: positiveInteger,
-      dailySatietyCost: nonNegativeInteger,
+      maxSatiety: safePositiveInteger,
+      newRunInitialSatiety: safeNonNegativeInteger,
+      dailySatietyCost: safeNonNegativeInteger,
+      rationRecovery: safePositiveInteger,
+      rationHubSceneTime: safeNonNegativeInteger,
       unresolvedBleedingHealthLoss: nonNegativeInteger,
       minorContusionRecoveryPenalty: nonNegativeInteger,
     }),
@@ -330,6 +353,31 @@ export const ruleConfigSchema = z
         code: 'custom',
         path: ['scene', 'pathogenCaseRetrieval'],
         message: '防护后的样本箱污染风险不得高于无防护风险',
+      })
+    }
+
+    const stages = config.worldThreat.stages
+    if (
+      stages[0]?.minProgress !== 0 ||
+      stages.some((stage, index) =>
+        index > 0 && stage.minProgress <= stages[index - 1].minProgress,
+      ) ||
+      new Set(stages.map(({ id }) => id)).size !== stages.length ||
+      stages.some(({ id }) => id === config.worldThreat.terminal.stageId) ||
+      config.worldThreat.terminal.minProgress <= stages[stages.length - 1].minProgress
+    ) {
+      context.addIssue({
+        code: 'custom',
+        path: ['worldThreat'],
+        message: '世界威胁阶段必须从0开始、阈值递增、ID唯一且终末阈值位于普通阶段之后',
+      })
+    }
+
+    if (config.dailySettlement.newRunInitialSatiety > config.dailySettlement.maxSatiety) {
+      context.addIssue({
+        code: 'custom',
+        path: ['dailySettlement', 'newRunInitialSatiety'],
+        message: '新Run初始饱食不得超过饱食上限',
       })
     }
   })

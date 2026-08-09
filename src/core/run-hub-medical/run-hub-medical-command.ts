@@ -5,12 +5,13 @@ import {
   buildMedicalPrimaryPlan,
   MedicalContentError,
 } from '../medical'
-import { removeItemFromBackpack } from '../inventory'
-import { getItemState, removeItemState } from '../item-state'
 import {
-  createCarriedItemContainersSnapshot,
-  removeQuickSlotItem,
-} from '../quick-slot'
+  HubInventoryError,
+  consumeOneHubItem,
+  createHubItemSource,
+  getAvailableHubItemSources,
+  resolveHubItemSource,
+} from '../hub-inventory'
 import { RunHubMedicalError } from './run-hub-medical-errors'
 import {
   createRunHubMedicalSnapshot,
@@ -53,21 +54,7 @@ function nonEmptyId(value: unknown, label: string): string {
 }
 
 function normalizeSource(value: unknown): RunHubMedicalItemSource {
-  if (exact(value, ['container', 'itemInstanceId']) && value.container === 'warehouse') {
-    return deepFreeze({ container: 'warehouse', itemInstanceId: nonEmptyId(value.itemInstanceId, '仓库物品实例ID') })
-  }
-  if (exact(value, ['container', 'itemInstanceId']) && value.container === 'backpack') {
-    return deepFreeze({ container: 'backpack', itemInstanceId: nonEmptyId(value.itemInstanceId, '背包物品实例ID') })
-  }
-  if (
-    exact(value, ['container', 'quickSlotIndex']) &&
-    value.container === 'quick-slot' &&
-    Number.isSafeInteger(value.quickSlotIndex) &&
-    (value.quickSlotIndex as number) >= 0
-  ) {
-    return deepFreeze({ container: 'quick-slot', quickSlotIndex: value.quickSlotIndex as number })
-  }
-  invalid('中枢医疗物品来源无效')
+  try { return createHubItemSource(value) } catch { invalid('中枢医疗物品来源无效') }
 }
 
 function normalizeTarget(value: unknown) {
@@ -93,35 +80,26 @@ export function createUseRunHubMedicalItemCommand(
     : deepFreeze({ kind: 'use-run-hub-medical-item', source })
 }
 
-function carriedDependencies(dependencies: RunHubMedicalDependencies) {
-  return {
-    physicalCatalog: dependencies.runLoadout.physicalCatalog,
-    equipmentCatalog: dependencies.runLoadout.equipmentCatalog,
-    quickSlotCatalog: dependencies.runLoadout.quickSlotCatalog,
-  }
-}
-
 function resolveSource(
   snapshot: RunHubMedicalSnapshot,
   command: UseRunHubMedicalItemCommand,
   dependencies: RunHubMedicalDependencies,
 ): ResolvedRunHubMedicalSource {
-  const source = command.source
-  const item = source.container === 'warehouse'
-    ? snapshot.runLoadout.warehouse.items.find(({ instanceId }) => instanceId === source.itemInstanceId)
-    : source.container === 'backpack'
-      ? snapshot.runLoadout.backpack.items.find(({ instanceId }) => instanceId === source.itemInstanceId)
-      : snapshot.runLoadout.quickSlots.slots[source.quickSlotIndex]
-  if (!item || item.quantity < 1) unavailable('指定中枢医疗物品不在当前来源容器中')
-  const state = getItemState(snapshot.runLoadout.itemStates, item.instanceId)
+  let resolved
+  try { resolved = resolveHubItemSource(snapshot.runLoadout, command.source) }
+  catch (error) {
+    if (error instanceof HubInventoryError) unavailable(error.message)
+    throw error
+  }
+  const { source, item } = resolved
   const medicalItem = getMedicalItemKind(item.definitionId, dependencies.medicalBindings)
-  if (!medicalItem || state.definitionId !== item.definitionId || state.resource.kind !== 'none') {
+  if (!medicalItem) {
     unavailable('指定物品不是可用的中枢医疗物品')
   }
   return deepFreeze({
     source,
     sourceContainer: source.container,
-    sourceSlotIndex: source.container === 'quick-slot' ? source.quickSlotIndex : null,
+    sourceSlotIndex: resolved.sourceSlotIndex,
     item,
     medicalItem,
   })
@@ -132,59 +110,11 @@ function consumeOne(
   source: ResolvedRunHubMedicalSource,
   dependencies: RunHubMedicalDependencies,
 ): RunHubMedicalSnapshot['runLoadout'] {
-  const loadout = snapshot.runLoadout
-  const item = source.item
-  if (source.sourceContainer === 'warehouse') {
-    return {
-      ...loadout,
-      warehouse: {
-        items: item.quantity === 1
-          ? loadout.warehouse.items.filter(({ instanceId }) => instanceId !== item.instanceId)
-          : loadout.warehouse.items.map((candidate) => candidate.instanceId === item.instanceId
-            ? { ...candidate, quantity: candidate.quantity - 1 }
-            : candidate),
-      },
-      itemStates: item.quantity === 1
-        ? removeItemState(loadout.itemStates, item.instanceId)
-        : loadout.itemStates,
-    }
-  }
-  if (source.sourceContainer === 'backpack') {
-    const nextBackpack = item.quantity === 1
-      ? removeItemFromBackpack(loadout.backpack, item.instanceId, dependencies.runLoadout.physicalCatalog).snapshot
-      : {
-          ...loadout.backpack,
-          items: loadout.backpack.items.map((candidate) => candidate.instanceId === item.instanceId
-            ? { ...candidate, quantity: candidate.quantity - 1 }
-            : candidate),
-        }
-    return {
-      ...loadout,
-      backpack: nextBackpack,
-      itemStates: item.quantity === 1
-        ? removeItemState(loadout.itemStates, item.instanceId)
-        : loadout.itemStates,
-    }
-  }
-  const removed = removeQuickSlotItem(
-    createCarriedItemContainersSnapshot(
-      loadout.backpack,
-      loadout.equipment,
-      loadout.quickSlots,
-      carriedDependencies(dependencies),
-    ),
-    source.sourceSlotIndex!,
-    carriedDependencies(dependencies),
-  )
-  if (removed.removedItem.instanceId !== item.instanceId) {
-    throw new RunHubMedicalError('ACTION_NOT_AVAILABLE', '快捷栏医疗物品实例已变化')
-  }
-  return {
-    ...loadout,
-    backpack: removed.snapshot.backpack,
-    equipment: removed.snapshot.equipment,
-    quickSlots: removed.snapshot.quickSlots,
-    itemStates: removeItemState(loadout.itemStates, item.instanceId),
+  try {
+    return consumeOneHubItem(snapshot.runLoadout, source, dependencies.runLoadout).snapshot
+  } catch (error) {
+    if (error instanceof HubInventoryError) unavailable(error.message)
+    throw error
   }
 }
 
@@ -209,16 +139,8 @@ function candidateSources(
   snapshot: RunHubMedicalSnapshot,
   dependencies: RunHubMedicalDependencies,
 ): readonly ResolvedRunHubMedicalSource[] {
-  const commands: UseRunHubMedicalItemCommand[] = []
-  for (const item of snapshot.runLoadout.warehouse.items) {
-    commands.push({ kind: 'use-run-hub-medical-item', source: { container: 'warehouse', itemInstanceId: item.instanceId } })
-  }
-  for (const item of snapshot.runLoadout.backpack.items) {
-    commands.push({ kind: 'use-run-hub-medical-item', source: { container: 'backpack', itemInstanceId: item.instanceId } })
-  }
-  snapshot.runLoadout.quickSlots.slots.forEach((item, quickSlotIndex) => {
-    if (item) commands.push({ kind: 'use-run-hub-medical-item', source: { container: 'quick-slot', quickSlotIndex } })
-  })
+  const commands: UseRunHubMedicalItemCommand[] = getAvailableHubItemSources(snapshot.runLoadout)
+    .map((source) => ({ kind: 'use-run-hub-medical-item', source }))
   const result: ResolvedRunHubMedicalSource[] = []
   for (const command of commands) {
     try {

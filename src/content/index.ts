@@ -17,7 +17,12 @@ export {
   hospitalItemReturnLifecycleCatalog,
   hospitalItemReturnLifecycleProfiles,
   hospitalSceneMedicalContentBindings,
+  hospitalHubSurvivalContentBindings,
 } from './hospital-v0.1/items'
+export {
+  hospitalWorldThreatCatalog,
+  hospitalWorldThreatDefinition,
+} from './hospital-v0.1/hospital-world-threat'
 export {
   HOSPITAL_INTEL_IDS,
   hospitalMainSearchCatalog,

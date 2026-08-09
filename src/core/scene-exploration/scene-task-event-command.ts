@@ -271,7 +271,14 @@ export function applySceneTaskEventEffects(
         state = deepFreeze({ ...state, runIntelLog: addRunIntel(state.runIntelLog, effect.intelId) })
         break
       case 'scene-task-event-completed':
-        state = deepFreeze({ ...state, taskEvents: completeSceneTaskEvent(state.taskEvents, effect.eventId) })
+        state = deepFreeze({
+          ...state,
+          taskEvents: completeSceneTaskEvent(
+            state.taskEvents,
+            effect.eventId,
+            dependencies.taskEventCatalog,
+          ),
+        })
         break
       case 'scene-task-event-declined':
         break

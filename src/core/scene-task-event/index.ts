@@ -1,4 +1,8 @@
-export { createSceneTaskEventCatalog, SceneTaskEventError } from './scene-task-event-catalog'
+export {
+  createSceneTaskEventCatalog,
+  SceneTaskEventError,
+  validateSceneTaskEventDependencies,
+} from './scene-task-event-catalog'
 export {
   completeSceneTaskEvent,
   createInitialSceneTaskEventState,

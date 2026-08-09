@@ -33,6 +33,9 @@ export function createSceneTaskEventStateSnapshot(
   if (new Set(ids).size !== ids.length || ids.some((id, index) => index > 0 && id.localeCompare(ids[index - 1]) <= 0)) {
     throw new SceneTaskEventError('Task event entries must be unique and sorted.')
   }
+  if (!catalog && entries.length !== 0) {
+    throw new SceneTaskEventError('Task event state requires a task event catalog.')
+  }
   if (catalog && (ids.length !== catalog.eventIds.length || ids.some((id, index) => id !== catalog.eventIds[index]))) {
     throw new SceneTaskEventError('Task event state does not match the task event catalog.')
   }
@@ -51,13 +54,14 @@ export function getSceneTaskEventStatus(
 export function completeSceneTaskEvent(
   state: SceneTaskEventStateSnapshot,
   eventId: string,
+  catalog: SceneTaskEventCatalog,
 ): SceneTaskEventStateSnapshot {
   if (getSceneTaskEventStatus(state, eventId) !== 'available') {
     throw new SceneTaskEventError(`Task event is not available: ${eventId}`)
   }
   return createSceneTaskEventStateSnapshot({
     entries: state.entries.map((entry) => entry.eventId === eventId ? { ...entry, status: 'completed' as const } : entry),
-  })
+  }, catalog)
 }
 
 export function createStableSceneTaskEventItemInstanceId(

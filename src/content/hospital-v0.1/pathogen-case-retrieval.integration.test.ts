@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { createPlayerCondition } from '../../core/condition'
-import { createBackpackSnapshot } from '../../core/inventory'
+import { createBackpackSnapshot, type ItemInstance } from '../../core/inventory'
 import { createFullItemState, createItemState, getItemState } from '../../core/item-state'
 import {
   applySceneExplorationEffects,
@@ -11,7 +11,11 @@ import {
   resolveSceneTaskEventCommand,
   type PerformSceneTaskEventCommand,
 } from '../../core/scene-exploration'
-import { createSceneSearchState } from '../../core/scene-search'
+import {
+  createSceneSearchState,
+  revealPreparedMainSearchOutcome,
+} from '../../core/scene-search'
+import { createSceneTaskEventCatalog } from '../../core/scene-task-event'
 import {
   HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
   HOSPITAL_INTEL_IDS,
@@ -24,6 +28,7 @@ import {
   hospitalItemQuickSlotCatalog,
   hospitalItemResourceCatalog,
   hospitalMainSearchCatalog,
+  hospitalSceneCombatEncounterCatalog,
   hospitalSceneEdgeAccessCatalog,
   hospitalSceneTaskEventCatalog,
   hospitalSliceV01RuleConfig as config,
@@ -55,6 +60,8 @@ function scene(input: Readonly<{
   remainingTime?: number
   bleeding?: boolean
   currentHealth?: number
+  minorContusions?: number
+  materialWeight?: number
 }> = {}) {
   const deps = dependencies(input.runSeed)
   const coat = input.coatIntegrity === null
@@ -63,6 +70,7 @@ function scene(input: Readonly<{
   const states = coat
     ? [createItemState({ ...coat, resource: { kind: 'integrity', current: input.coatIntegrity ?? 4 } }, hospitalItemResourceCatalog)]
     : []
+  const materialItems = materialStackItems(input.materialWeight ?? 0)
   const initial = createInitialSceneExplorationSnapshot({
     sceneInstanceId: SCENE_ID,
     searchState: createSceneSearchState({
@@ -73,16 +81,31 @@ function scene(input: Readonly<{
     currentNodeId: HOSPITAL_NODE_IDS.specimenColdRoom,
     remainingTime: input.remainingTime ?? config.scene.totalTime,
     enabledEdgeIds: HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
-    backpack: createBackpackSnapshot({ width: 6, height: 4, items: [], placements: [] }, hospitalItemCatalog),
+    backpack: createBackpackSnapshot({
+      width: 6,
+      height: 4,
+      items: materialItems,
+      placements: materialItems.map((item, index) => ({
+        instanceId: item.instanceId,
+        x: index,
+        y: 0,
+        rotated: false,
+      })),
+    }, hospitalItemCatalog),
     equipment: { weapon: null, armor: coat, utility: null },
     quickSlots: { slots: [null, null] },
-    itemStates: { states },
+    itemStates: {
+      states: [
+        ...states,
+        ...materialItems.map((item) => createFullItemState(item, hospitalItemResourceCatalog)),
+      ],
+    },
     dailyMedicalUsage: { disinfectantUsesToday: 0 },
     runIntelLog: { intelIds: [] },
     condition: createPlayerCondition({
       currentHealth: input.currentHealth ?? 12,
       bleeding: input.bleeding ?? false,
-      openWounds: [], minorContusions: 0, painkillerActive: false,
+      openWounds: [], minorContusions: input.minorContusions ?? 0, painkillerActive: false,
       pendingInfectionExposures: 0,
     }, config.combat.player),
   }, deps)
@@ -101,6 +124,24 @@ function scene(input: Readonly<{
     },
   }, deps)
   return { deps, snapshot: defeated }
+}
+
+function materialStackItems(totalWeight: number): readonly ItemInstance[] {
+  if (!Number.isSafeInteger(totalWeight) || totalWeight < 0 || totalWeight > 25) {
+    throw new Error('material test weight must be an integer from 0 through 25')
+  }
+  const items: ItemInstance[] = []
+  let remaining = totalWeight
+  while (remaining > 0) {
+    const quantity = Math.min(remaining, 5)
+    items.push({
+      instanceId: `material-${items.length}`,
+      definitionId: HOSPITAL_ITEM_IDS.metalParts,
+      quantity,
+    })
+    remaining -= quantity
+  }
+  return items
 }
 
 function command(optionId: string, placement = { x: 0, y: 0, rotated: false }): PerformSceneTaskEventCommand {
@@ -134,6 +175,37 @@ describe('hospital pathogen case retrieval', () => {
     expect(unprotected.result.riskTrace).toMatchObject({ rawRiskPercent: 60, effectiveRiskPercent: 60, protectionApplied: false })
   })
 
+  it('uses the four confirmed contamination risk results and skips the zero-risk draw', () => {
+    const directStart = scene({ coatIntegrity: null })
+    const direct = resolveSceneTaskEventCommand(
+      directStart.snapshot,
+      command('direct-extraction'),
+      directStart.deps,
+    )
+    const protectedDirectStart = scene({ coatIntegrity: 1 })
+    const protectedDirect = resolveSceneTaskEventCommand(
+      protectedDirectStart.snapshot,
+      command('direct-extraction'),
+      protectedDirectStart.deps,
+    )
+    const cautiousStart = scene({ coatIntegrity: null })
+    const cautious = resolveSceneTaskEventCommand(
+      cautiousStart.snapshot,
+      command('cautious-extraction'),
+      cautiousStart.deps,
+    )
+    const protectedCautiousStart = scene({ coatIntegrity: 1 })
+    const protectedCautious = resolveSceneTaskEventCommand(
+      protectedCautiousStart.snapshot,
+      command('cautious-extraction'),
+      protectedCautiousStart.deps,
+    )
+    expect(direct.result.riskTrace).toMatchObject({ rawRiskPercent: 60, effectiveRiskPercent: 60 })
+    expect(protectedDirect.result.riskTrace).toMatchObject({ rawRiskPercent: 60, effectiveRiskPercent: 40, protectionApplied: true })
+    expect(cautious.result.riskTrace).toMatchObject({ rawRiskPercent: 20, effectiveRiskPercent: 20 })
+    expect(protectedCautious.result.riskTrace).toMatchObject({ rawRiskPercent: 20, effectiveRiskPercent: 0, protectionApplied: true, roll: null, drawIndex: null, exposureAdded: 0 })
+  })
+
   it('uses an isolated named contamination stream with repeatable success and failure rolls', () => {
     const success = scene({ runSeed: 'pathogen-case-seed', coatIntegrity: null })
     const replay = scene({ runSeed: 'pathogen-case-seed', coatIntegrity: null })
@@ -163,6 +235,88 @@ describe('hospital pathogen case retrieval', () => {
     })
   })
 
+  it('projects options only while the formal encounter is defeated and the event is available', () => {
+    const unavailable = scene({ defeated: false })
+    expect(getPlayerVisibleSceneTaskEvents(unavailable.snapshot, unavailable.deps)).toEqual([{
+      eventId: EVENT_ID,
+      status: 'available',
+      options: [],
+    }])
+    const available = scene()
+    const completed = resolveSceneTaskEventCommand(
+      available.snapshot,
+      command('direct-extraction'),
+      available.deps,
+    )
+    expect(getPlayerVisibleSceneTaskEvents(completed.snapshot, dependencies())).toEqual([{
+      eventId: EVENT_ID,
+      status: 'completed',
+      options: [],
+    }])
+  })
+
+  it('binds the hospital task event to its formal combat encounter and rejects unknown encounter IDs', () => {
+    const definition = hospitalSceneTaskEventCatalog.get(EVENT_ID)
+    expect(hospitalSceneCombatEncounterCatalog.has(definition.requiredDefeatedEncounterId)).toBe(true)
+    expect(() => createSceneTaskEventCatalog(
+      [{ ...definition, requiredDefeatedEncounterId: 'encounter-typo' }],
+      {
+        graph: hospitalSliceV01SceneGraph,
+        itemCatalog: hospitalItemCatalog,
+        equipmentCatalog: hospitalItemEquipmentCatalog,
+        itemResourceCatalog: hospitalItemResourceCatalog,
+        encounterCatalog: hospitalSceneCombatEncounterCatalog,
+      },
+    )).toThrow(/identity/)
+  })
+
+  it('rejects a nonempty task event catalog without formal scene combat dependencies', () => {
+    const start = scene()
+    expect(() => createSceneExplorationSnapshot(
+      {
+        ...start.snapshot,
+        combatState: { encounters: [], usage: { metalPipeChargedStrikeUses: 0 } },
+      },
+      { ...start.deps, sceneCombat: undefined },
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+
+  it('keeps search history and completed task origin intel consistent with RunIntel without restricting other sources', () => {
+    const start = scene()
+    const searched = revealPreparedMainSearchOutcome(
+      start.snapshot.searchState,
+      HOSPITAL_NODE_IDS.emergencyHall,
+    )
+    const revealedIntelId = searched.nodeStates.find(
+      ({ nodeId }) => nodeId === HOSPITAL_NODE_IDS.emergencyHall,
+    )
+    if (!revealedIntelId || revealedIntelId.kind !== 'searched') throw new Error('expected searched hall')
+    expect(() => createSceneExplorationSnapshot(
+      { ...start.snapshot, searchState: searched },
+      start.deps,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    const withSearchIntel = createSceneExplorationSnapshot(
+      { ...start.snapshot, searchState: searched, runIntelLog: { intelIds: [...revealedIntelId.revealedIntelIds] } },
+      start.deps,
+    )
+    expect(withSearchIntel.searchState).toEqual(searched)
+    expect(() => createSceneExplorationSnapshot(
+      { ...start.snapshot, taskEvents: { entries: [{ eventId: EVENT_ID, status: 'completed' }] } },
+      start.deps,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(createSceneExplorationSnapshot(
+      {
+        ...start.snapshot,
+        taskEvents: { entries: [{ eventId: EVENT_ID, status: 'completed' }] },
+        runIntelLog: { intelIds: ['intel-from-other-run-source', HOSPITAL_INTEL_IDS.pathogenCaseOrigin] },
+      },
+      start.deps,
+    ).runIntelLog.intelIds).toEqual([
+      'intel-from-other-run-source',
+      HOSPITAL_INTEL_IDS.pathogenCaseOrigin,
+    ])
+  })
+
   it('requires an explicit valid placement before any extraction side effect and locks completed events', () => {
     const start = scene({ coatIntegrity: 4 })
     const invalid = previewSceneTaskEventCommand(start.snapshot, command('direct-extraction', { x: 5, y: 3, rotated: false }), start.deps)
@@ -180,6 +334,57 @@ describe('hospital pathogen case retrieval', () => {
     expect(resolved.snapshot.condition.currentHealth).toBeLessThan(12)
     expect(resolved.snapshot.status).toBe('forced-returned')
     expect(resolved.result.effects.map(({ kind }) => kind)).toContain('scene-time-resolved')
+  })
+
+  it('locks the confirmed overtime, return and forced-return damage values after extraction', () => {
+    const directStart = scene({ remainingTime: 5 })
+    const direct = resolveSceneTaskEventCommand(directStart.snapshot, command('direct-extraction'), directStart.deps)
+    expect(direct.result.returnRoute).toMatchObject({ estimatedReturnTime: 30 })
+    expect(direct.result.sceneOutcome).toMatchObject({ overtimeDebt: 5, effectiveEmergencyReturnTime: 35, forcedReturnBaseDamage: 2 })
+    const cautiousStart = scene({ remainingTime: 5 })
+    const cautious = resolveSceneTaskEventCommand(cautiousStart.snapshot, command('cautious-extraction'), cautiousStart.deps)
+    expect(cautious.result.returnRoute).toMatchObject({ estimatedReturnTime: 30 })
+    expect(cautious.result.sceneOutcome).toMatchObject({ overtimeDebt: 25, effectiveEmergencyReturnTime: 55, forcedReturnBaseDamage: 3 })
+    const overloadedStart = scene({ remainingTime: 5, materialWeight: 21, minorContusions: 1 })
+    const overloaded = resolveSceneTaskEventCommand(overloadedStart.snapshot, command('cautious-extraction', { x: 0, y: 1, rotated: false }), overloadedStart.deps)
+    expect(overloaded.result.returnRoute).toMatchObject({ estimatedReturnTime: 42 })
+    expect(overloaded.result.sceneOutcome).toMatchObject({ overtimeDebt: 25, effectiveEmergencyReturnTime: 67, forcedReturnBaseDamage: 4 })
+  })
+
+  it('retains completed extraction facts when post-action bleeding kills the player without safe extraction', () => {
+    const start = scene({ remainingTime: 20, bleeding: true, currentHealth: 1 })
+    const resolved = resolveSceneTaskEventCommand(start.snapshot, command('direct-extraction'), start.deps)
+    expect(resolved.snapshot).toMatchObject({
+      status: 'dead',
+      condition: { currentHealth: 0, pendingInfectionExposures: 1 },
+      taskEvents: { entries: [{ eventId: EVENT_ID, status: 'completed' }] },
+      runIntelLog: { intelIds: [HOSPITAL_INTEL_IDS.pathogenCaseOrigin] },
+    })
+    expect(resolved.snapshot.backpack.items).toHaveLength(1)
+    expect(resolved.snapshot.status).not.toBe('safe-returned')
+  })
+
+  it('retains completed extraction facts when forced-return damage kills the player', () => {
+    const start = scene({ remainingTime: 5, currentHealth: 2 })
+    const resolved = resolveSceneTaskEventCommand(start.snapshot, command('direct-extraction'), start.deps)
+    expect(resolved.snapshot).toMatchObject({
+      status: 'dead',
+      condition: { currentHealth: 0 },
+      taskEvents: { entries: [{ eventId: EVENT_ID, status: 'completed' }] },
+      runIntelLog: { intelIds: [HOSPITAL_INTEL_IDS.pathogenCaseOrigin] },
+    })
+    expect(resolved.snapshot.backpack.items).toHaveLength(1)
+    expect(resolved.snapshot.status).not.toBe('safe-returned')
+  })
+
+  it('fails cannot-carry atomically before coat cost, risk, exposure, item, intel, or time', () => {
+    const start = scene({ coatIntegrity: 4, materialWeight: 25 })
+    expect(previewSceneTaskEventCommand(
+      start.snapshot,
+      command('direct-extraction', { x: 0, y: 1, rotated: false }),
+      start.deps,
+    )).toEqual({ canExecute: false, rejectionCode: 'ACTION_NOT_AVAILABLE' })
+    expect(start.snapshot).toEqual(scene({ coatIntegrity: 4, materialWeight: 25 }).snapshot)
   })
 
   it('rejects effect tampering atomically and projects only player-visible choice facts', () => {

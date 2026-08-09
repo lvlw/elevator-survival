@@ -2,6 +2,7 @@ import { deepFreeze } from '../config'
 import type { EquipmentProfileCatalog } from '../equipment'
 import type { ItemCatalog } from '../inventory'
 import type { ItemResourceCatalog } from '../item-state'
+import type { SceneCombatDependencies, SceneCombatEncounterCatalog } from '../scene-combat'
 import type { SceneGraph } from '../scene-graph'
 import type {
   SceneTaskEventCatalog,
@@ -45,6 +46,7 @@ export function createSceneTaskEventCatalog(
     itemCatalog: ItemCatalog
     equipmentCatalog: EquipmentProfileCatalog
     itemResourceCatalog: ItemResourceCatalog
+    encounterCatalog: SceneCombatEncounterCatalog
   }>,
 ): SceneTaskEventCatalog {
   const byId = new Map<string, SceneTaskEventDefinition>()
@@ -56,7 +58,12 @@ export function createSceneTaskEventCatalog(
       !Array.isArray(input.options) || !plain(input.impactProtection)) {
       throw new SceneTaskEventError('Invalid scene task event definition.')
     }
-    if (byId.has(input.id) || !dependencies.graph.nodes.some(({ id }) => id === input.nodeId) || !dependencies.itemCatalog.has(input.outputDefinitionId)) {
+    if (
+      byId.has(input.id) ||
+      !dependencies.graph.nodes.some(({ id }) => id === input.nodeId) ||
+      !dependencies.itemCatalog.has(input.outputDefinitionId) ||
+      !dependencies.encounterCatalog.has(input.requiredDefeatedEncounterId)
+    ) {
       throw new SceneTaskEventError('Duplicate or invalid scene task event identity.')
     }
     const protection = input.impactProtection
@@ -96,4 +103,28 @@ export function createSceneTaskEventCatalog(
       return result
     },
   })
+}
+
+/**
+ * Task events are scene content and their prerequisite encounters are scene
+ * content too. Validate the pair at every public scene restore/command edge.
+ */
+export function validateSceneTaskEventDependencies(
+  catalog: SceneTaskEventCatalog | undefined,
+  sceneCombat: SceneCombatDependencies | undefined,
+  sceneInstanceId: string,
+): void {
+  if (!catalog || catalog.eventIds.length === 0) return
+  if (!sceneCombat) {
+    throw new SceneTaskEventError('Task event content requires scene combat dependencies.')
+  }
+  if (sceneCombat.combat.sceneInstanceId !== sceneInstanceId) {
+    throw new SceneTaskEventError('Task event and combat dependencies must use the same scene instance.')
+  }
+  for (const eventId of catalog.eventIds) {
+    const event = catalog.get(eventId)
+    if (!sceneCombat.encounterCatalog.has(event.requiredDefeatedEncounterId)) {
+      throw new SceneTaskEventError('Task event prerequisite encounter is not present in the combat catalog.')
+    }
+  }
 }

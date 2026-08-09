@@ -122,6 +122,16 @@ describe('strict movement command and snapshot boundaries', () => {
     )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
   })
 
+  it('rejects hidden task event state when no task event catalog was supplied', () => {
+    expect(() => createSceneExplorationSnapshot(
+      {
+        ...snapshot(),
+        taskEvents: { entries: [{ eventId: 'hidden-task-event', status: 'available' }] },
+      },
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+
   it('keeps defaults exclusive to the initial constructor and deeply freezes output', () => {
     const initial = snapshot()
     expect(initial).toMatchObject({

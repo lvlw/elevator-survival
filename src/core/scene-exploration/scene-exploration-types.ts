@@ -146,6 +146,7 @@ export interface SceneTaskEventCommandDependencies
   extends SceneExplorationDependencies {
   readonly runSeed: string
   readonly taskEventCatalog: SceneTaskEventCatalog
+  readonly sceneCombat: SceneCombatDependencies
 }
 
 export interface MoveThroughSceneEdgeCommand {

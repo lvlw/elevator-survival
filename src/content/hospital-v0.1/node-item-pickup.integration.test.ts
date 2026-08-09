@@ -107,10 +107,14 @@ function searchedSnapshot(
       itemResourceCatalog: hospitalItemResourceCatalog,
     },
   )
+  const searchState = revealPreparedMainSearchOutcome(prepared, nodeId)
+  const runIntelIds = searchState.nodeStates.flatMap((node) =>
+    node.kind === 'searched' ? node.revealedIntelIds : [],
+  )
   return createSceneExplorationSnapshot(
     {
       sceneInstanceId,
-      searchState: revealPreparedMainSearchOutcome(prepared, nodeId),
+      searchState,
       sceneItems,
       alertState: 'unalerted',
       combatState: { encounters: [], usage: { metalPipeChargedStrikeUses: 0 } },
@@ -127,7 +131,7 @@ function searchedSnapshot(
         ),
       },
       dailyMedicalUsage: { disinfectantUsesToday: 0 },
-      runIntelLog: { intelIds: [] },
+      runIntelLog: { intelIds: runIntelIds },
       taskEvents: { entries: [] },
       condition: createPlayerCondition(
         {

@@ -301,6 +301,9 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
   if (searched) {
     searchState = revealPreparedMainSearchOutcome(searchState, 'search')
   }
+  const runIntelIds = searchState.nodeStates.flatMap((node) =>
+    node.kind === 'searched' ? node.revealedIntelIds : [],
+  )
   return createSceneExplorationSnapshot(
     {
       sceneInstanceId: 'scene-command',
@@ -325,7 +328,7 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
       quickSlots: { slots: [quickItem, null] },
       itemStates: { states: itemStates },
       dailyMedicalUsage: { disinfectantUsesToday: 0 },
-      runIntelLog: { intelIds: [] },
+      runIntelLog: { intelIds: runIntelIds },
       taskEvents: { entries: [] },
       condition: createPlayerCondition(
         {

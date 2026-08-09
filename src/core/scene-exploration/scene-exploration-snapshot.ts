@@ -5,6 +5,7 @@ import { createRunIntelLogSnapshot } from '../run-intel'
 import {
   createInitialSceneTaskEventState,
   createSceneTaskEventStateSnapshot,
+  validateSceneTaskEventDependencies,
 } from '../scene-task-event'
 import { createItemStateCollectionSnapshot } from '../item-state'
 import { createCarriedItemContainersSnapshot } from '../quick-slot'
@@ -209,8 +210,32 @@ export function createSceneExplorationSnapshot(
       input.taskEvents,
       dependencies.taskEventCatalog,
     )
+    validateSceneTaskEventDependencies(
+      dependencies.taskEventCatalog,
+      dependencies.sceneCombat,
+      input.sceneInstanceId,
+    )
   } catch {
     throw new SceneExplorationError('INVALID_INPUT', '场景任务事件状态无效')
+  }
+  const knownIntelIds = new Set(runIntelLog.intelIds)
+  for (const node of searchState.nodeStates) {
+    if (
+      node.kind === 'searched' &&
+      node.revealedIntelIds.some((intelId) => !knownIntelIds.has(intelId))
+    ) {
+      throw new SceneExplorationError('INVALID_INPUT', '已揭示的搜索情报必须保留在Run情报记录中')
+    }
+  }
+  if (dependencies.taskEventCatalog) {
+    for (const entry of taskEvents.entries) {
+      if (
+        entry.status === 'completed' &&
+        !knownIntelIds.has(dependencies.taskEventCatalog.get(entry.eventId).originIntelId)
+      ) {
+        throw new SceneExplorationError('INVALID_INPUT', '已完成任务事件的来源情报必须保留在Run情报记录中')
+      }
+    }
   }
   let dailyMedicalUsage
   try {

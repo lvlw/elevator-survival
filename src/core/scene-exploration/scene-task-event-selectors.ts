@@ -27,6 +27,18 @@ export function getPlayerVisibleSceneTaskEvents(
     const event = dependencies.taskEventCatalog.get(eventId)
     if (event.nodeId !== snapshot.currentNodeId) continue
     const status = getSceneTaskEventStatus(snapshot.taskEvents, eventId)
+    const encounter = snapshot.combatState.encounters.find(
+      ({ encounterId }) => encounterId === event.requiredDefeatedEncounterId,
+    )
+    if (
+      status === 'completed' ||
+      !encounter ||
+      encounter.kind !== 'dormant' ||
+      !encounter.enemy.defeated
+    ) {
+      result.push({ eventId, status, options: [] })
+      continue
+    }
     const armor = snapshot.equipment.armor
     const state = armor?.definitionId === event.impactProtection.definitionId ? getItemState(snapshot.itemStates, armor.instanceId) : null
     const activeCoat = state?.resource.kind === 'integrity' && state.resource.current >= 1

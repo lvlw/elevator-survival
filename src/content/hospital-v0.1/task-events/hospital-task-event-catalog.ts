@@ -1,5 +1,8 @@
 import { createSceneTaskEventCatalog } from '../../../core/scene-task-event'
-import { HOSPITAL_COMBAT_ENCOUNTER_IDS } from '../combat/hospital-scene-combat'
+import {
+  hospitalSceneCombatEncounterCatalog,
+  HOSPITAL_COMBAT_ENCOUNTER_IDS,
+} from '../combat/hospital-scene-combat'
 import { HOSPITAL_NODE_IDS, hospitalSliceV01SceneGraph } from '../hospital-scene-graph'
 import {
   hospitalItemCatalog,
@@ -39,5 +42,6 @@ export const hospitalSceneTaskEventCatalog = createSceneTaskEventCatalog(
     itemCatalog: hospitalItemCatalog,
     equipmentCatalog: hospitalItemEquipmentCatalog,
     itemResourceCatalog: hospitalItemResourceCatalog,
+    encounterCatalog: hospitalSceneCombatEncounterCatalog,
   },
 )

@@ -288,6 +288,9 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
     })
     searchState = revealPreparedMainSearchOutcome(searchState, 'other')
   }
+  const runIntelIds = searchState.nodeStates.flatMap((node) =>
+    node.kind === 'searched' ? node.revealedIntelIds : [],
+  )
   return createSceneExplorationSnapshot(
     {
       sceneInstanceId: 'pickup-scene',
@@ -308,7 +311,7 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
         ),
       },
       dailyMedicalUsage: { disinfectantUsesToday: 0 },
-      runIntelLog: { intelIds: [] },
+      runIntelLog: { intelIds: runIntelIds },
       taskEvents: { entries: [] },
       condition: createPlayerCondition(
         {

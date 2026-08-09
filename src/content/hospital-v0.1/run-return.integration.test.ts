@@ -7,9 +7,11 @@ import {
   buildRunReturnTransitionPlan,
   createItemReturnLifecycleCatalog,
   createRunReturnLedgerSnapshot,
+  createRunReturnSnapshot,
   createRunStoredInventorySnapshot,
   getStoredTaskItemQuantity,
   hasStoredTaskItem,
+  projectRunStoredInventory,
   resolveRunReturn,
   type RunReturnDependencies,
   type RunReturnEffect,
@@ -217,21 +219,33 @@ function terminalScene(input: Readonly<{
   }
 }
 
-function storedInventory() {
+function storedInventory(input: Readonly<{
+  warehouseItems?: readonly ItemInstance[]
+  taskItems?: readonly ItemInstance[]
+}> = {}) {
   const existing = item('existing-bandage', HOSPITAL_ITEM_IDS.bandage)
   const dependencies = {
     physicalCatalog: hospitalItemCatalog,
     itemResourceCatalog: hospitalItemResourceCatalog,
     lifecycleCatalog: hospitalItemReturnLifecycleCatalog,
   }
+  const warehouseItems = input.warehouseItems ?? [existing]
+  const taskItems = input.taskItems ?? []
   return createRunStoredInventorySnapshot({
-    warehouse: { items: [existing] },
-    taskStorage: { items: [] },
-    itemStates: { states: [createFullItemState(existing, hospitalItemResourceCatalog)] },
+    warehouse: { items: warehouseItems },
+    taskStorage: { items: taskItems },
+    itemStates: {
+      states: [...warehouseItems, ...taskItems].map((candidate) =>
+        createFullItemState(candidate, hospitalItemResourceCatalog),
+      ),
+    },
   }, dependencies)
 }
 
-function returnInput(input: Parameters<typeof terminalScene>[0] = {}): {
+function returnInput(
+  input: Parameters<typeof terminalScene>[0] = {},
+  inventory = storedInventory(),
+): {
   request: RunReturnInput
   dependencies: RunReturnDependencies
 } {
@@ -239,7 +253,7 @@ function returnInput(input: Parameters<typeof terminalScene>[0] = {}): {
   return {
     request: {
       terminalScene: terminal.snapshot,
-      storedInventory: storedInventory(),
+      storedInventory: inventory,
       returnLedger: { sceneInstanceIds: [] },
     },
     dependencies: {
@@ -353,17 +367,69 @@ describe('hospital Run return settlement', () => {
     const first = resolveRunReturn(request, dependencies)
     expect(() => resolveRunReturn({
       ...request,
-      storedInventory: {
-        warehouse: first.snapshot.warehouse,
-        taskStorage: first.snapshot.taskStorage,
-        itemStates: {
-          states: first.snapshot.itemStates.states.filter(({ instanceId }) =>
-            !['equipped-pipe', 'equipped-coat', 'quick-painkiller'].includes(instanceId),
-          ),
-        },
-      },
+      storedInventory: projectRunStoredInventory(first.snapshot, dependencies),
       returnLedger: first.snapshot.returnLedger,
     }, dependencies)).toThrowError(expect.objectContaining({ code: 'RETURN_ALREADY_SETTLED' }))
+  })
+
+  it('projects stored inventory from the unified Run item-state source', () => {
+    const { request, dependencies } = returnInput()
+    const settled = resolveRunReturn(request, dependencies).snapshot
+    const before = structuredClone(settled)
+    const projection = projectRunStoredInventory(settled, dependencies)
+
+    expect(projection.warehouse.items).toEqual(settled.warehouse.items)
+    expect(projection.taskStorage.items).toEqual(settled.taskStorage.items)
+    expect(projection.itemStates.states.find(({ instanceId }) => instanceId === 'returned-crowbar')?.resource)
+      .toEqual({ kind: 'durability', current: 1 })
+    expect(projection.itemStates.states.find(({ instanceId }) => instanceId === 'returned-sample')?.resource)
+      .toEqual({ kind: 'none' })
+    expect(projection.itemStates.states.some(({ instanceId }) =>
+      ['equipped-pipe', 'equipped-coat', 'quick-painkiller'].includes(instanceId),
+    )).toBe(false)
+    expect(settled.itemStates.states.find(({ instanceId }) => instanceId === 'equipped-pipe')?.resource)
+      .toEqual({ kind: 'durability', current: 1 })
+    expect(settled.itemStates.states.find(({ instanceId }) => instanceId === 'quick-painkiller')?.resource)
+      .toEqual({ kind: 'none' })
+    expect(settled).toEqual(before)
+    expect(Object.isFrozen(projection)).toBe(true)
+  })
+
+  it('rejects Run Storage instance IDs reused anywhere in the terminal Scene', () => {
+    const terminal = terminalScene({ leaveTaskItem: true })
+    const groundItems = terminal.snapshot.sceneItems.nodeStates.flatMap(({ items }) => items)
+    const unsearchedItem = terminal.snapshot.searchState.nodeStates
+      .find((node) => node.kind === 'unsearched')
+      ?.preparedOutcome.revealedItems[0]?.item
+    const cases: readonly Readonly<{
+      item: ItemInstance
+      destination: 'warehouse' | 'task-storage'
+    }>[] = [
+      { item: terminal.snapshot.backpack.items[0]!, destination: 'warehouse' },
+      { item: terminal.snapshot.equipment.weapon!, destination: 'warehouse' },
+      { item: terminal.snapshot.quickSlots.slots[0]!, destination: 'warehouse' },
+      { item: groundItems.find(({ item }) => item.instanceId === 'left-electronics')!.item, destination: 'warehouse' },
+      { item: groundItems.find(({ item }) => item.instanceId === 'left-sample')!.item, destination: 'task-storage' },
+      { item: unsearchedItem!, destination: 'warehouse' },
+    ]
+
+    expect(unsearchedItem).toBeDefined()
+    for (const candidate of cases) {
+      const inventory = candidate.destination === 'warehouse'
+        ? storedInventory({ warehouseItems: [candidate.item] })
+        : storedInventory({ taskItems: [candidate.item] })
+      const request: RunReturnInput = {
+        terminalScene: terminal.snapshot,
+        storedInventory: inventory,
+        returnLedger: { sceneInstanceIds: [] },
+      }
+      const before = structuredClone(inventory)
+      expect(() => resolveRunReturn(request, {
+        scene: terminal.dependencies,
+        lifecycleCatalog: hospitalItemReturnLifecycleCatalog,
+      })).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+      expect(inventory).toEqual(before)
+    }
   })
 
   it('rejects tampered or incomplete Effects before applying any transfer', () => {
@@ -467,5 +533,107 @@ describe('hospital Run return settlement', () => {
       sceneInstanceIds: [],
       unknown: true,
     } as never)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+
+  it('strictly restores only complete and internally consistent Run return snapshots', () => {
+    const { request, dependencies } = returnInput()
+    const settled = resolveRunReturn(request, dependencies).snapshot
+    const input = () => structuredClone(settled)
+
+    const nonEmptyBackpack = input()
+    expect(() => createRunReturnSnapshot({
+      ...nonEmptyBackpack,
+      player: {
+        ...nonEmptyBackpack.player,
+        backpack: request.terminalScene.backpack,
+      },
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+
+    const warehouseEquipmentDuplicate = input()
+    expect(() => createRunReturnSnapshot({
+      ...warehouseEquipmentDuplicate,
+      warehouse: {
+        items: [{
+          ...warehouseEquipmentDuplicate.warehouse.items[0]!,
+          instanceId: warehouseEquipmentDuplicate.player.equipment.weapon!.instanceId,
+        }, ...warehouseEquipmentDuplicate.warehouse.items.slice(1)],
+      },
+    }, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+
+    const taskQuickSlotDuplicate = input()
+    expect(() => createRunReturnSnapshot({
+      ...taskQuickSlotDuplicate,
+      taskStorage: {
+        items: [{
+          ...taskQuickSlotDuplicate.taskStorage.items[0]!,
+          instanceId: taskQuickSlotDuplicate.player.quickSlots.slots[0]!.instanceId,
+        }],
+      },
+    }, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+
+    const missingState = input()
+    expect(() => createRunReturnSnapshot({
+      ...missingState,
+      itemStates: { states: missingState.itemStates.states.slice(1) },
+    }, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+
+    const extraState = input()
+    expect(() => createRunReturnSnapshot({
+      ...extraState,
+      itemStates: {
+        states: [
+          ...extraState.itemStates.states,
+          createFullItemState(item('extra-run-state', HOSPITAL_ITEM_IDS.metalParts), hospitalItemResourceCatalog),
+        ],
+      },
+    }, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+
+    const definitionMismatch = input()
+    const storedItem = definitionMismatch.warehouse.items[0]!
+    expect(() => createRunReturnSnapshot({
+      ...definitionMismatch,
+      itemStates: {
+        states: definitionMismatch.itemStates.states.map((state) =>
+          state.instanceId === storedItem.instanceId
+            ? createFullItemState({
+                instanceId: state.instanceId,
+                definitionId: HOSPITAL_ITEM_IDS.metalParts,
+              }, hospitalItemResourceCatalog)
+            : state,
+        ),
+      },
+    }, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+
+    const wrongLifecycle = input()
+    expect(() => createRunReturnSnapshot({
+      ...wrongLifecycle,
+      warehouse: {
+        items: [
+          ...wrongLifecycle.warehouse.items,
+          wrongLifecycle.taskStorage.items[0]!,
+        ],
+      },
+      taskStorage: { items: [] },
+    }, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+
+    const duplicateLedger = input()
+    expect(() => createRunReturnSnapshot({
+      ...duplicateLedger,
+      returnLedger: { sceneInstanceIds: [SCENE_ID, SCENE_ID] },
+    }, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+
+    expect(() => createRunReturnSnapshot({
+      ...input(),
+      unknown: true,
+    } as never, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => createRunReturnSnapshot(null as never, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
   })
 })

@@ -13,6 +13,7 @@ export {
   createRunWarehouseSnapshot,
   getStoredTaskItemQuantity,
   hasStoredTaskItem,
+  projectRunStoredInventory,
 } from './run-storage'
 export type {
   ItemReturnLifecycleCatalog,

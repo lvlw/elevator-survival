@@ -10,6 +10,7 @@ import { classifyLoad } from '../load'
 import { getSceneNodeItems } from '../scene-items'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { applySceneExplorationEffects } from './scene-exploration-effects'
+import { getScenePhysicalItemInstanceIds } from './scene-physical-items'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
 import type {
   NodeItemPickupEvaluation,
@@ -32,30 +33,6 @@ function fail(
   message: string,
 ): never {
   throw new SceneExplorationError(code, message)
-}
-
-function allKnownInstanceIds(
-  snapshot: SceneExplorationSnapshot,
-): Set<string> {
-  const ids = new Set<string>()
-  for (const item of snapshot.backpack.items) ids.add(item.instanceId)
-  for (const item of Object.values(snapshot.equipment)) {
-    if (item) ids.add(item.instanceId)
-  }
-  for (const item of snapshot.quickSlots.slots) {
-    if (item) ids.add(item.instanceId)
-  }
-  for (const node of snapshot.searchState.nodeStates) {
-    const sceneItems =
-      node.kind === 'unsearched'
-        ? node.preparedOutcome.revealedItems
-        : []
-    for (const entity of sceneItems) ids.add(entity.item.instanceId)
-  }
-  for (const node of snapshot.sceneItems.nodeStates) {
-    for (const entity of node.items) ids.add(entity.item.instanceId)
-  }
-  return ids
 }
 
 function evaluate(
@@ -151,7 +128,7 @@ function evaluate(
         '部分拾取必须由调用方提供新实例ID',
       )
     }
-    if (allKnownInstanceIds(snapshot).has(command.extractedInstanceId)) {
+    if (getScenePhysicalItemInstanceIds(snapshot).includes(command.extractedInstanceId)) {
       fail(
         'DUPLICATE_DESTINATION_INSTANCE',
         '部分拾取的新实例ID已存在',

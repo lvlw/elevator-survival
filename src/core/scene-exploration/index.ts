@@ -6,6 +6,7 @@ export {
   createInitialSceneExplorationSnapshot,
   createSceneExplorationSnapshot,
 } from './scene-exploration-snapshot'
+export { getScenePhysicalItemInstanceIds } from './scene-physical-items'
 export { applySceneExplorationEffects } from './scene-exploration-effects'
 export { getPlayerVisibleSceneNodeState } from './player-visible-scene-node'
 export { getPlayerVisibleSceneCombatState } from './player-visible-scene-combat'

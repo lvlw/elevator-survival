@@ -256,3 +256,32 @@ export function createRunReturnSnapshot(
     returnLedger: createRunReturnLedgerSnapshot(input.returnLedger),
   })
 }
+
+/**
+ * Derives the stored-inventory view from the unified Run item-state source.
+ * Equipment and quick-slot states intentionally remain outside this projection.
+ */
+export function projectRunStoredInventory(
+  snapshot: RunReturnSnapshot,
+  dependencies: RunReturnDependencies,
+): RunStoredInventorySnapshot {
+  const normalized = createRunReturnSnapshot(snapshot, dependencies)
+  const storageDependencies: RunStorageDependencies = {
+    physicalCatalog: dependencies.scene.physicalCatalog,
+    itemResourceCatalog: dependencies.scene.itemResourceCatalog,
+    lifecycleCatalog: dependencies.lifecycleCatalog,
+  }
+  const storedInstanceIds = new Set([
+    ...normalized.warehouse.items,
+    ...normalized.taskStorage.items,
+  ].map(({ instanceId }) => instanceId))
+  return createRunStoredInventorySnapshot({
+    warehouse: normalized.warehouse,
+    taskStorage: normalized.taskStorage,
+    itemStates: {
+      states: normalized.itemStates.states.filter(({ instanceId }) =>
+        storedInstanceIds.has(instanceId),
+      ),
+    },
+  }, storageDependencies)
+}

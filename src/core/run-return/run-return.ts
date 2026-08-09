@@ -1,7 +1,10 @@
 import { deepFreeze } from '../config'
 import { createBackpackSnapshot } from '../inventory'
 import { getItemState } from '../item-state'
-import { createSceneExplorationSnapshot } from '../scene-exploration'
+import {
+  createSceneExplorationSnapshot,
+  getScenePhysicalItemInstanceIds,
+} from '../scene-exploration'
 import { RunReturnError } from './run-return-errors'
 import {
   createRunReturnLedgerSnapshot,
@@ -56,13 +59,9 @@ function normalizeInput(
     ...storedInventory.warehouse.items,
     ...storedInventory.taskStorage.items,
   ].map((item) => item.instanceId))
-  for (const item of [
-    ...terminalScene.backpack.items,
-    ...Object.values(terminalScene.equipment).filter((candidate) => candidate !== null),
-    ...terminalScene.quickSlots.slots.filter((candidate) => candidate !== null),
-  ]) {
-    if (storedIds.has(item.instanceId)) {
-      throw new RunReturnError('INVALID_INPUT', `场景随身物品与Run储存实例重复：${item.instanceId}`)
+  for (const instanceId of getScenePhysicalItemInstanceIds(terminalScene)) {
+    if (storedIds.has(instanceId)) {
+      throw new RunReturnError('INVALID_INPUT', `场景物理实例与Run储存实例重复：${instanceId}`)
     }
   }
   return { terminalScene, storedInventory, returnLedger, storageDependencies }

@@ -18,7 +18,6 @@ import { RunReturnError } from './run-return-errors'
 import type {
   ItemReturnLifecycleKind,
   RunReturnDependencies,
-  RunReturnCarryForwardInput,
   RunReturnCarryForwardSnapshot,
   RunReturnLedgerSnapshot,
   RunReturnSnapshot,
@@ -151,14 +150,6 @@ export function createRunReturnLedgerSnapshot(
   return deepFreeze({ sceneInstanceIds: [...ids] })
 }
 
-function carryForwardBinding(
-  continuity: RunReturnCarryForwardInput['continuity'],
-  storedInventory: RunReturnCarryForwardInput['storedInventory'],
-  returnLedger: RunReturnCarryForwardInput['returnLedger'],
-): string {
-  return JSON.stringify({ continuity, storedInventory, returnLedger })
-}
-
 function storageDependenciesFromReturn(
   dependencies: RunReturnDependencies,
 ): RunStorageDependencies {
@@ -169,7 +160,8 @@ function storageDependenciesFromReturn(
   }
 }
 
-export function createRunReturnCarryForwardSnapshot(
+/** Internal normalization primitive for the formal projection, rebind and restore paths. */
+function createCanonicalRunReturnCarryForward(
   input: unknown,
   dependencies: RunReturnDependencies,
 ): RunReturnCarryForwardSnapshot {
@@ -200,7 +192,6 @@ export function createRunReturnCarryForwardSnapshot(
     continuity,
     storedInventory,
     returnLedger,
-    binding: carryForwardBinding(continuity, storedInventory, returnLedger),
   })
 }
 
@@ -208,19 +199,14 @@ export function restoreRunReturnCarryForwardSnapshot(
   input: unknown,
   dependencies: RunReturnDependencies,
 ): RunReturnCarryForwardSnapshot {
-  if (!exact(input, ['binding', 'continuity', 'returnLedger', 'storedInventory']) ||
-    typeof input.binding !== 'string') {
+  if (!exact(input, ['continuity', 'returnLedger', 'storedInventory'])) {
     throw new RunReturnError('INVALID_INPUT', 'Run返回既有事实快照无效')
   }
-  const restored = createRunReturnCarryForwardSnapshot({
+  return createCanonicalRunReturnCarryForward({
     continuity: input.continuity,
     storedInventory: input.storedInventory,
     returnLedger: input.returnLedger,
   }, dependencies)
-  if (input.binding !== restored.binding) {
-    throw new RunReturnError('INVALID_INPUT', 'Run返回既有事实连续性绑定不一致')
-  }
-  return restored
 }
 
 export function bindRunReturnCarryForwardToScene(
@@ -229,7 +215,7 @@ export function bindRunReturnCarryForwardToScene(
   dependencies: RunReturnDependencies,
 ): RunReturnCarryForwardSnapshot {
   const carryForward = restoreRunReturnCarryForwardSnapshot(input, dependencies)
-  return createRunReturnCarryForwardSnapshot({
+  return createCanonicalRunReturnCarryForward({
     continuity: bindRunPhaseContinuityToScene(
       carryForward.continuity,
       sceneInstanceId,
@@ -404,7 +390,7 @@ export function projectRunReturnCarryForwardFromRunReturn(
   dependencies: RunReturnDependencies,
 ): RunReturnCarryForwardSnapshot {
   const normalized = createRunReturnSnapshot(snapshot, dependencies)
-  return createRunReturnCarryForwardSnapshot({
+  return createCanonicalRunReturnCarryForward({
     continuity: normalized.continuity,
     storedInventory: projectRunStoredInventory(normalized, dependencies),
     returnLedger: normalized.returnLedger,

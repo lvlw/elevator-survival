@@ -39,8 +39,8 @@ import {
 } from '../run-loadout'
 import {
   createRunReturnLedgerSnapshot,
-  createRunReturnCarryForwardSnapshot,
   createRunReturnSnapshot,
+  restoreRunReturnCarryForwardSnapshot,
   type RunReturnCarryForwardSnapshot,
   type RunReturnDependencies,
   type RunReturnLedgerSnapshot,
@@ -424,7 +424,7 @@ export function projectRunReturnCarryForwardFromCurrentDayHub(
   dependencies: CurrentDayHubDependencies,
 ): RunReturnCarryForwardSnapshot {
   const snapshot = createCurrentDayHubSnapshot(snapshotInput, dependencies)
-  return createRunReturnCarryForwardSnapshot({
+  return restoreRunReturnCarryForwardSnapshot({
     continuity: snapshot.continuity,
     storedInventory: projectRunStoredInventoryFromRunLoadout(
       snapshot.runLoadout,

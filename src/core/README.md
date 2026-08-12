@@ -162,7 +162,7 @@
 - 中枢医疗与中枢生存消耗品共同复用 `src/core/hub-inventory` 的真实实例消费边界；只接受仓库、背包或快捷栏的显式来源，不自动寻找、合并或补充。
 - 当前实现感染抑制剂和口粮的零时间中枢使用；未实现日结算、感染暴露换算、威胁推进、日期推进、自然恢复、维护行为、完整RunState或UI。
 - 通用世界威胁快照可以表达终末进展，但终末威胁不再是合法的活动CurrentDayHub状态；Run失败及终止协调仍由后续生命周期实现。
-- Return不接受散落的库存、ledger或continuity字段；carry-forward恢复会验证其规范化绑定，避免将不同Run的既有事实混入同一次返回结算。
+- Return不接受散落的库存、ledger或continuity字段；正式运行时路径由CurrentDayHub或RunReturn投影生成完整carry-forward，并只允许显式重绑定目标场景。序列化恢复严格验证该聚合自身的结构、规则版本、库存、ItemState、生命周期容器和ledger不变量，不使用派生binding副本，也不证明其不可见的历史来源。
 
 ## 场景探索与移动命令
 

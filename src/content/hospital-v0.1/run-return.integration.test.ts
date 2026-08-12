@@ -6,7 +6,6 @@ import {
   applyRunReturnEffects,
   bindRunReturnCarryForwardToScene,
   buildRunReturnTransitionPlan,
-  createRunReturnCarryForwardSnapshot,
   createItemReturnLifecycleCatalog,
   createRunReturnLedgerSnapshot,
   createRunReturnSnapshot,
@@ -271,7 +270,7 @@ function returnInput(
   return {
     request: {
       terminalScene: terminal.snapshot,
-      carryForward: createRunReturnCarryForwardSnapshot({
+      carryForward: restoreRunReturnCarryForwardSnapshot({
         continuity: continuity(terminal.snapshot.sceneInstanceId),
         storedInventory: inventory,
         returnLedger: { sceneInstanceIds: [] },
@@ -371,7 +370,7 @@ describe('hospital Run return settlement', () => {
     }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
   })
 
-  it('rejects an old scattered Return input and tampered continuity-bound carry-forward', () => {
+  it('rejects old scattered Return input and malformed carry-forward restoration', () => {
     const { request, dependencies } = returnInput()
     expect(() => resolveRunReturn({
       terminalScene: request.terminalScene,
@@ -381,10 +380,7 @@ describe('hospital Run return settlement', () => {
     } as never, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
     expect(() => restoreRunReturnCarryForwardSnapshot({
       ...request.carryForward,
-      continuity: {
-        ...request.carryForward.continuity,
-        runIdentity: { ...request.carryForward.continuity.runIdentity, runId: 'run-b' },
-      },
+      unknown: true,
     }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
     expect(() => restoreRunReturnCarryForwardSnapshot({
       ...request.carryForward,
@@ -392,6 +388,80 @@ describe('hospital Run return settlement', () => {
         ...request.carryForward.storedInventory,
         itemStates: { states: [] },
       },
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+
+  it('strictly restores only complete carry-forward aggregates and rejects the legacy binding format', () => {
+    const { request, dependencies } = returnInput()
+    const carryForward = request.carryForward
+
+    expect(restoreRunReturnCarryForwardSnapshot(carryForward, dependencies)).toEqual(carryForward)
+    expect(() => restoreRunReturnCarryForwardSnapshot({
+      ...carryForward,
+      binding: 'legacy-json-copy',
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    for (const field of ['continuity', 'storedInventory', 'returnLedger'] as const) {
+      const incomplete = { ...carryForward }
+      delete incomplete[field]
+      expect(() => restoreRunReturnCarryForwardSnapshot(incomplete, dependencies))
+        .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    }
+    expect(() => restoreRunReturnCarryForwardSnapshot({
+      ...carryForward,
+      continuity: { ...carryForward.continuity, currentDay: 0 },
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => restoreRunReturnCarryForwardSnapshot({
+      ...carryForward,
+      continuity: { ...carryForward.continuity, sceneInstanceId: '' },
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => restoreRunReturnCarryForwardSnapshot({
+      ...carryForward,
+      continuity: {
+        ...carryForward.continuity,
+        runIdentity: {
+          ...carryForward.continuity.runIdentity,
+          rulesVersion: 'hospital-rules-v2',
+        },
+      },
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => restoreRunReturnCarryForwardSnapshot({
+      ...carryForward,
+      storedInventory: {
+        ...carryForward.storedInventory,
+        itemStates: { states: [] },
+      },
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => restoreRunReturnCarryForwardSnapshot({
+      ...carryForward,
+      storedInventory: {
+        ...carryForward.storedInventory,
+        itemStates: {
+          states: [
+            ...carryForward.storedInventory.itemStates.states,
+            createFullItemState(item('extra-carry-forward-state', HOSPITAL_ITEM_IDS.metalParts), hospitalItemResourceCatalog),
+          ],
+        },
+      },
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    const duplicatedAcrossStorage = storedInventory({
+      warehouseItems: [item('duplicated-storage-item', HOSPITAL_ITEM_IDS.bandage)],
+      taskItems: [item('task-storage-item', HOSPITAL_ITEM_IDS.sealedPathogenCase)],
+    })
+    expect(() => restoreRunReturnCarryForwardSnapshot({
+      ...carryForward,
+      storedInventory: {
+        ...duplicatedAcrossStorage,
+        taskStorage: {
+          items: [{
+            ...duplicatedAcrossStorage.taskStorage.items[0]!,
+            instanceId: duplicatedAcrossStorage.warehouse.items[0]!.instanceId,
+          }],
+        },
+      },
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => restoreRunReturnCarryForwardSnapshot({
+      ...carryForward,
+      returnLedger: { sceneInstanceIds: [SCENE_ID, SCENE_ID] },
     }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
   })
 
@@ -491,7 +561,7 @@ describe('hospital Run return settlement', () => {
         : storedInventory({ taskItems: [candidate.item] })
       const request: RunReturnInput = {
         terminalScene: terminal.snapshot,
-        carryForward: createRunReturnCarryForwardSnapshot({
+        carryForward: restoreRunReturnCarryForwardSnapshot({
           continuity: continuity(terminal.snapshot.sceneInstanceId),
           storedInventory: inventory,
           returnLedger: { sceneInstanceIds: [] },

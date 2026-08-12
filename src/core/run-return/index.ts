@@ -8,7 +8,6 @@ export {
 export {
   createRunReturnLedgerSnapshot,
   bindRunReturnCarryForwardToScene,
-  createRunReturnCarryForwardSnapshot,
   createRunReturnSnapshot,
   createRunStoredInventorySnapshot,
   createRunTaskStorageSnapshot,
@@ -25,7 +24,6 @@ export type {
   ItemReturnLifecycleProfile,
   ReturnedPlayerStateSnapshot,
   RunReturnDependencies,
-  RunReturnCarryForwardInput,
   RunReturnCarryForwardSnapshot,
   RunReturnEffect,
   RunReturnInput,

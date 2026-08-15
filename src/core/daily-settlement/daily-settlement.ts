@@ -14,7 +14,7 @@ import {
   type CurrentDayHubSnapshot,
 } from '../current-day-hub'
 import { createDailyRunStateSnapshot, createInitialDailyRunStateSnapshot } from '../daily-state'
-import { createRunPhaseContinuitySnapshot } from '../domain'
+import { restoreRuleBoundRunPhaseContinuity } from '../domain'
 import { createRunIntelLogSnapshot } from '../run-intel'
 import {
   createRunLoadoutDependenciesFromReturn,
@@ -141,9 +141,9 @@ export function createDailySettlementTerminalSnapshot(
   }
   const config = configOf(dependencies)
   try {
-    const continuity = createRunPhaseContinuitySnapshot(
+    const continuity = restoreRuleBoundRunPhaseContinuity(
       input.continuity,
-      config.metadata.rulesVersion,
+      config,
     )
     const runLoadout = createRunLoadoutSnapshot(
       input.runLoadout as CurrentDayHubSnapshot['runLoadout'],
@@ -291,11 +291,8 @@ export function buildDailySettlementTransitionPlan(
   if (snapshot.continuity.currentDay === config.dailySettlement.finalPlayableDay) {
     throw new DailySettlementError(
       'FINAL_DAY_RESOLUTION_REQUIRED',
-      '第七日必须先执行正式终局检查，不能进入普通次日结算',
+      '最终可游玩日必须先执行正式终局检查，不能进入普通次日结算',
     )
-  }
-  if (snapshot.continuity.currentDay > config.dailySettlement.finalPlayableDay) {
-    throw new DailySettlementError('INVALID_INPUT', '当前日期超出正式可游玩日范围')
   }
 
   const effects: DailySettlementEffect[] = []
@@ -461,10 +458,10 @@ export function buildDailySettlementTransitionPlan(
 
   const nextDay = snapshot.continuity.currentDay + 1
   if (!Number.isSafeInteger(nextDay)) overflow('日期推进超出安全整数范围')
-  const continuity = createRunPhaseContinuitySnapshot({
+  const continuity = restoreRuleBoundRunPhaseContinuity({
     ...snapshot.continuity,
     currentDay: nextDay,
-  }, config.metadata.rulesVersion)
+  }, config)
   effects.push({
     kind: 'daily-run-day-advanced',
     before: snapshot.continuity,

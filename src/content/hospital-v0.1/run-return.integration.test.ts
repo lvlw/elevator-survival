@@ -465,6 +465,50 @@ describe('hospital Run return settlement', () => {
     }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
   })
 
+  it('accepts day seven but rejects expired continuity in carry-forward, scene rebind, and Return snapshots', () => {
+    const { request, dependencies } = returnInput()
+    const daySevenCarryForward = restoreRunReturnCarryForwardSnapshot({
+      ...request.carryForward,
+      continuity: { ...request.carryForward.continuity, currentDay: 7 },
+    }, dependencies)
+    expect(daySevenCarryForward.continuity.currentDay).toBe(7)
+    expect(bindRunReturnCarryForwardToScene(
+      daySevenCarryForward,
+      'day-seven-rebound-scene',
+      dependencies,
+    ).continuity).toEqual({
+      ...daySevenCarryForward.continuity,
+      sceneInstanceId: 'day-seven-rebound-scene',
+    })
+    const settledDaySeven = resolveRunReturn({
+      ...request,
+      carryForward: daySevenCarryForward,
+    }, dependencies).snapshot
+    expect(settledDaySeven.continuity.currentDay).toBe(7)
+    expect(createRunReturnSnapshot({
+      ...settledDaySeven,
+      continuity: { ...settledDaySeven.continuity, currentDay: 7 },
+    }, dependencies).continuity.currentDay).toBe(7)
+
+    const expiredCarryForward = {
+      ...request.carryForward,
+      continuity: { ...request.carryForward.continuity, currentDay: 8 },
+    }
+    const before = JSON.stringify(expiredCarryForward)
+    expect(() => restoreRunReturnCarryForwardSnapshot(expiredCarryForward, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => bindRunReturnCarryForwardToScene(
+      expiredCarryForward as never,
+      'expired-rebound-scene',
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(JSON.stringify(expiredCarryForward)).toBe(before)
+    expect(() => createRunReturnSnapshot({
+      ...settledDaySeven,
+      continuity: { ...settledDaySeven.continuity, currentDay: 8 },
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+
   it('rejects Return continuity whose rulesVersion differs from dependencies', () => {
     const { request, dependencies } = returnInput()
     expect(() => resolveRunReturn({

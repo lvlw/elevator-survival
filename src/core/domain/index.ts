@@ -10,5 +10,6 @@ export {
   bindRunPhaseContinuityToScene,
   createRunPhaseContinuitySnapshot,
   hasSameRunPhaseContinuity,
+  restoreRuleBoundRunPhaseContinuity,
   type RunPhaseContinuitySnapshot,
 } from './run-phase-continuity'

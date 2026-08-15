@@ -1,8 +1,8 @@
 import { deepFreeze, type FrozenRuleConfig } from '../config'
 import { createPlayerCondition, type PlayerConditionSnapshot } from '../condition'
 import {
-  createRunPhaseContinuitySnapshot,
   hasSameRunPhaseContinuity,
+  restoreRuleBoundRunPhaseContinuity,
   type RunPhaseContinuitySnapshot,
 } from '../domain'
 import {
@@ -174,9 +174,9 @@ export function createCurrentDayHubSnapshot(
   ])) invalid('当前日中枢快照结构无效')
   const config = configOf(dependencies)
   try {
-    const continuity = createRunPhaseContinuitySnapshot(
+    const continuity = restoreRuleBoundRunPhaseContinuity(
       input.continuity,
-      config.metadata.rulesVersion,
+      config,
     )
     const playerCondition = createPlayerCondition(input.playerCondition as PlayerConditionSnapshot, config.combat.player)
     if (playerCondition.currentHealth === 0) invalid('死亡玩家不能进入当前日中枢状态')
@@ -219,9 +219,9 @@ export function createCurrentDayHubSnapshotFromReturn(
   const returned = createRunReturnSnapshot(returnInput, dependencies.returnDependencies)
   let factsContinuity: RunPhaseContinuitySnapshot
   try {
-    factsContinuity = createRunPhaseContinuitySnapshot(
+    factsContinuity = restoreRuleBoundRunPhaseContinuity(
       factsInput.continuity,
-      configOf(dependencies).metadata.rulesVersion,
+      configOf(dependencies),
     )
   } catch (error) {
     invalid(error instanceof Error ? error.message : '当前日中枢跨场景连续性无效')

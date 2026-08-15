@@ -249,6 +249,14 @@ describe('hospital daily settlement', () => {
       ...result.outcome.snapshot,
       terminationReason: 'world-threat-terminal',
     }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(createDailySettlementTerminalSnapshot({
+      ...result.outcome.snapshot,
+      continuity: { ...result.outcome.snapshot.continuity, currentDay: 7 },
+    }, dependencies).continuity.currentDay).toBe(7)
+    expect(() => createDailySettlementTerminalSnapshot({
+      ...result.outcome.snapshot,
+      continuity: { ...result.outcome.snapshot.continuity, currentDay: 8 },
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
   })
 
   it('uses the pre-settlement stage for increase and the post-settlement stage for recovery', () => {

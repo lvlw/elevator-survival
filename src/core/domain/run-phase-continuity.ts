@@ -1,4 +1,4 @@
-import { deepFreeze } from '../config'
+import { deepFreeze, type FrozenRuleConfig } from '../config'
 import {
   createRunIdentity,
   type RunIdentity,
@@ -56,6 +56,25 @@ export function createRunPhaseContinuitySnapshot(
     currentDay: input.currentDay as number,
     sceneInstanceId: input.sceneInstanceId,
   })
+}
+
+/** Restores continuity against the playable-day boundary of its bound rule version. */
+export function restoreRuleBoundRunPhaseContinuity(
+  input: unknown,
+  config: Pick<FrozenRuleConfig, 'dailySettlement' | 'metadata'>,
+): RunPhaseContinuitySnapshot {
+  const continuity = createRunPhaseContinuitySnapshot(
+    input,
+    config.metadata.rulesVersion,
+  )
+  const finalPlayableDay = config.dailySettlement.finalPlayableDay
+  if (!Number.isSafeInteger(finalPlayableDay) || finalPlayableDay < 1) {
+    throw new RunPhaseContinuityError('规则绑定的最终可游玩日无效')
+  }
+  if (continuity.currentDay > finalPlayableDay) {
+    throw new RunPhaseContinuityError('Run阶段日期超过当前规则版本的可游玩范围')
+  }
+  return continuity
 }
 
 export function hasSameRunPhaseContinuity(

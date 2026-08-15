@@ -3,7 +3,9 @@ import {
   bindRunPhaseContinuityToScene,
   createRunPhaseContinuitySnapshot,
   hasSameRunPhaseContinuity,
+  restoreRuleBoundRunPhaseContinuity,
 } from './run-phase-continuity'
+import type { FrozenRuleConfig } from '../config'
 
 const VERSION = 'rules-v1'
 const input = {
@@ -11,6 +13,11 @@ const input = {
   currentDay: 2,
   sceneInstanceId: 'scene-x',
 }
+
+const playableDaysConfig = {
+  metadata: { rulesVersion: VERSION },
+  dailySettlement: { finalPlayableDay: 7 },
+} as Pick<FrozenRuleConfig, 'dailySettlement' | 'metadata'>
 
 describe('Run phase continuity', () => {
   it('strictly binds an existing RunIdentity to one day and scene', () => {
@@ -43,5 +50,17 @@ describe('Run phase continuity', () => {
     )
     expect(rebound).toEqual({ ...input, sceneInstanceId: 'scene-y' })
     expect(() => bindRunPhaseContinuityToScene(rebound, '', VERSION)).toThrow()
+  })
+
+  it('keeps the primitive unbounded while the rule-bound restore rejects expired days', () => {
+    expect(createRunPhaseContinuitySnapshot({ ...input, currentDay: 8 }, VERSION).currentDay).toBe(8)
+    expect(restoreRuleBoundRunPhaseContinuity(
+      { ...input, currentDay: 7 },
+      playableDaysConfig,
+    ).currentDay).toBe(7)
+    expect(() => restoreRuleBoundRunPhaseContinuity(
+      { ...input, currentDay: 8 },
+      playableDaysConfig,
+    )).toThrow(/可游玩范围/)
   })
 })

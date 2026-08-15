@@ -396,6 +396,31 @@ describe('hospital current-day hub', () => {
     expect(() => createCurrentDayHubSnapshot({ ...start, extra: true }, dependencies)).toThrow()
   })
 
+  it('accepts a final-day active Hub and centrally rejects expired days for every Hub transaction', () => {
+    const ration = item('day-seven-ration', HOSPITAL_ITEM_IDS.ration)
+    const daySeven = createCurrentDayHubSnapshot({
+      ...hub({ warehouse: [ration] }),
+      continuity: { ...continuity(), currentDay: 7 },
+    }, dependencies)
+    expect(resolveHubSurvivalCommand(daySeven, survival(
+      'use-hub-ration',
+      { container: 'warehouse', itemInstanceId: ration.instanceId },
+    ), dependencies).snapshot.satiety.current).toBe(6)
+
+    const expired = {
+      ...daySeven,
+      continuity: { ...daySeven.continuity, currentDay: 8 },
+    } as CurrentDayHubSnapshot
+    expect(() => createCurrentDayHubSnapshot(expired, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => resolveCurrentDayHubLoadoutCommand(expired, {} as never, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => resolveCurrentDayHubMedicalCommand(expired, {} as never, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(() => resolveHubSurvivalCommand(expired, {} as never, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+
   it('allows world threat to express terminal while active Hub rejects 120 and above', () => {
     expect(createWorldThreatSnapshot({
       definitionId: config.worldThreat.definitionId,

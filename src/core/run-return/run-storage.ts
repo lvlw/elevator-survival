@@ -3,7 +3,7 @@ import { createPlayerCondition } from '../condition'
 import { createDailyMedicalUsageSnapshot } from '../daily-state'
 import {
   bindRunPhaseContinuityToScene,
-  createRunPhaseContinuitySnapshot,
+  restoreRuleBoundRunPhaseContinuity,
 } from '../domain'
 import { createEquipmentSnapshot } from '../equipment'
 import {
@@ -170,9 +170,9 @@ function createCanonicalRunReturnCarryForward(
   }
   let continuity
   try {
-    continuity = createRunPhaseContinuitySnapshot(
+    continuity = restoreRuleBoundRunPhaseContinuity(
       input.continuity,
-      dependencies.scene.config.metadata.rulesVersion,
+      dependencies.scene.config,
     )
   } catch (error) {
     throw new RunReturnError(
@@ -276,9 +276,9 @@ export function createRunReturnSnapshot(
   }
   let continuity
   try {
-    continuity = createRunPhaseContinuitySnapshot(
+    continuity = restoreRuleBoundRunPhaseContinuity(
       input.continuity,
-      dependencies.scene.config.metadata.rulesVersion,
+      dependencies.scene.config,
     )
   } catch (error) {
     throw new RunReturnError(

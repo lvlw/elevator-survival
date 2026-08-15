@@ -27,6 +27,24 @@
 
 > 名称仅表达概念职责，不固定最终服务、类、函数或接口名称。
 
+## 当前日中枢与场景生命周期职责
+
+```text
+CurrentDayHub
+→ Scene Launch
+→ Run Scene Session
+→ Return / Termination
+```
+
+- `DailyRunState` 是“当日是否已经使用主要场景”的唯一日级状态所有者。正式启动原子地将其从未使用切换为已使用；主动／强制返回后保持已使用，只有成功生成次日状态的日结算重置该事实。
+- Scene Launch 从严格的当前日中枢投影随身物品、玩家条件、Run 情报与每日医疗使用，并以 Run 身份、规则版本、当前日和正式场景定义确定性派生场景实例身份；不使用系统时间、UUID或环境随机。
+- 正式内容层提供完整、版本绑定的 Scene runtime bundle。通用核心只读取注入的场景图、搜索、障碍、战斗遭遇、任务事件、医疗生命周期与设备充能等目录，不反向依赖具体世界内容。
+- Run Scene Session 聚合 Scene 快照与 Scene 自身不修改的 Run 日级 context。Scene 中会变化的每日医疗使用、Run 情报、随身物品和 ItemState 只存在于 Scene 快照，不复制到 context。
+- 生还返回与死亡终止都从同一严格 Session provenance 投影；返回读取终局 Scene 的情报和每日医疗使用，终止不能在 Scene 死亡后从旧中枢重新拼装另一套上下文。
+- Session 恢复使用完整 runtime 校验 Scene、context、场景实例绑定和 Run storage／Scene 物理实例唯一性；不自动修复缺失战斗状态、身份冲突或日级使用事实。
+
+> 本节记录实现职责和状态所有权，不新增玩法数值或场景规则。
+
 ## 场景时间结算职责
 
 ```text

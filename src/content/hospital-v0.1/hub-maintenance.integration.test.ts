@@ -100,6 +100,7 @@ interface HubInput {
   readonly resourceCurrent?: Readonly<Record<string, number>>
   readonly labor?: number
   readonly day?: number
+  readonly mainSceneUsedToday?: boolean
 }
 
 function hub(input: HubInput = {}): CurrentDayHubSnapshot {
@@ -177,6 +178,7 @@ function hub(input: HubInput = {}): CurrentDayHubSnapshot {
       medicalUsage: { disinfectantUsesToday: 0 },
       threatSuppression: { usesToday: 0, suppressionAmountToday: 0 },
       maintenanceLaborRemaining: input.labor ?? config.maintenance.dailyBaseLabor.points,
+      mainSceneUsedToday: input.mainSceneUsedToday ?? false,
     },
     worldThreat: { definitionId: config.worldThreat.definitionId, progress: 0 },
     satiety: { current: 4 },
@@ -210,6 +212,7 @@ describe('hospital Current-Day Hub maintenance', () => {
       warehouse: [pipe],
       backpack: [coat],
       resourceCurrent: { 'warehouse-pipe': 4, 'backpack-coat': 3 },
+      mainSceneUsedToday: true,
     })
     const result = resolve(start, {
       kind: 'allocate-base-maintenance-labor',
@@ -222,6 +225,7 @@ describe('hospital Current-Day Hub maintenance', () => {
     expect(current(result.snapshot, pipe.instanceId)).toBe(6)
     expect(current(result.snapshot, coat.instanceId)).toBe(4)
     expect(result.snapshot.dailyState.maintenanceLaborRemaining).toBe(0)
+    expect(result.snapshot.dailyState.mainSceneUsedToday).toBe(true)
     expect(result.snapshot.runLoadout.warehouse.items).toEqual([pipe])
     expect(result.snapshot.runLoadout.backpack.items).toEqual([coat])
     expect(result.effects.map(({ kind }) => kind)).toEqual([

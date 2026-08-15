@@ -1,10 +1,9 @@
 import { deepFreeze } from '../config'
 import { createDailySettlementTerminalSnapshot } from '../daily-settlement'
 import type { RunPhaseContinuitySnapshot } from '../domain'
-import { assertNoRunStorageScenePhysicalItemConflicts } from '../run-return'
-import { createSceneExplorationSnapshot } from '../scene-exploration'
+import { createRunSceneSessionSnapshot } from '../scene-launch'
+import type { RunSceneSessionSnapshot } from '../scene-launch'
 import { RunTerminationError } from './run-termination-errors'
-import { restoreRunSceneTerminationContext } from './run-scene-termination-context'
 import type {
   DailySettlementRunFailureSource,
   RunFailureEffect,
@@ -47,14 +46,13 @@ function restoreSceneDefeatSource(
     invalid('场景战败来源结构无效')
   }
   try {
-    const context = restoreRunSceneTerminationContext(
-      input.context,
-      dependencies,
+    const session = createRunSceneSessionSnapshot({
+      context: input.context,
+      scene: input.terminalScene,
+    },
+      dependencies.sceneLaunch,
     )
-    const terminalScene = createSceneExplorationSnapshot(
-      input.terminalScene as SceneDefeatRunFailureSource['terminalScene'],
-      dependencies.scene,
-    )
+    const terminalScene = session.scene
     if (
       terminalScene.status !== 'dead' ||
       terminalScene.condition.currentHealth !== 0
@@ -62,16 +60,16 @@ function restoreSceneDefeatSource(
       invalid('场景战败来源必须是生命归零的dead场景')
     }
     if (
-      context.runReturnCarryForward.continuity.sceneInstanceId !==
+      session.context.runReturnCarryForward.continuity.sceneInstanceId !==
       terminalScene.sceneInstanceId
     ) {
       invalid('场景战败来源与Run连续性绑定的场景实例不一致')
     }
-    assertNoRunStorageScenePhysicalItemConflicts(
-      context.runReturnCarryForward.storedInventory,
-      terminalScene,
-    )
-    return deepFreeze({ kind: 'scene-defeat', context, terminalScene })
+    return deepFreeze({
+      kind: 'scene-defeat',
+      context: session.context,
+      terminalScene: session.scene,
+    })
   } catch (error) {
     if (error instanceof RunTerminationError) throw error
     invalid(error instanceof Error ? error.message : '场景战败来源无效')
@@ -209,4 +207,29 @@ export function resolveRunFailure(
 ): RunFailureResult {
   const plan = buildRunFailureTransitionPlan(sourceInput, dependencies)
   return applyRunFailureEffects(sourceInput, plan.effects, dependencies)
+}
+
+export function createSceneDefeatRunFailureSourceFromSession(
+  sessionInput: RunSceneSessionSnapshot,
+  dependencies: RunTerminationDependencies,
+): SceneDefeatRunFailureSource {
+  const session = createRunSceneSessionSnapshot(
+    sessionInput,
+    dependencies.sceneLaunch,
+  )
+  return restoreSceneDefeatSource({
+    kind: 'scene-defeat',
+    context: session.context,
+    terminalScene: session.scene,
+  }, dependencies)
+}
+
+export function resolveRunFailureFromSceneSession(
+  sessionInput: RunSceneSessionSnapshot,
+  dependencies: RunTerminationDependencies,
+): RunFailureResult {
+  return resolveRunFailure(
+    createSceneDefeatRunFailureSourceFromSession(sessionInput, dependencies),
+    dependencies,
+  )
 }

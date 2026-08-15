@@ -71,3 +71,8 @@ export {
   hospitalPathogenCaseRetrievalDefinition,
   hospitalSceneTaskEventCatalog,
 } from './hospital-v0.1/task-events'
+export {
+  HOSPITAL_SCENE_DEFINITION_ID,
+  createHospitalSceneRuntimeBundle,
+  hospitalSceneLaunchContent,
+} from './hospital-v0.1/hospital-scene-runtime'

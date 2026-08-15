@@ -15,6 +15,7 @@ export interface DailyRunStateSnapshot {
   readonly medicalUsage: DailyMedicalUsageSnapshot
   readonly threatSuppression: DailyThreatSuppressionSnapshot
   readonly maintenanceLaborRemaining: number
+  readonly mainSceneUsedToday: boolean
 }
 
 type DailyConfig = Pick<FrozenRuleConfig, 'maintenance' | 'medical' | 'worldThreat'>
@@ -53,7 +54,12 @@ export function createDailyRunStateSnapshot(
   input: unknown,
   config: DailyConfig,
 ): DailyRunStateSnapshot {
-  if (!exact(input, ['maintenanceLaborRemaining', 'medicalUsage', 'threatSuppression'])) {
+  if (!exact(input, [
+    'mainSceneUsedToday',
+    'maintenanceLaborRemaining',
+    'medicalUsage',
+    'threatSuppression',
+  ])) {
     throw new DailyStateError('每日Run状态结构无效')
   }
   if (!Number.isSafeInteger(input.maintenanceLaborRemaining) ||
@@ -61,10 +67,14 @@ export function createDailyRunStateSnapshot(
     (input.maintenanceLaborRemaining as number) > config.maintenance.dailyBaseLabor.points) {
     throw new DailyStateError('每日维护工时状态无效')
   }
+  if (typeof input.mainSceneUsedToday !== 'boolean') {
+    throw new DailyStateError('每日主要场景使用状态无效')
+  }
   return deepFreeze({
     medicalUsage: createDailyMedicalUsageSnapshot(input.medicalUsage, config),
     threatSuppression: createDailyThreatSuppressionSnapshot(input.threatSuppression, config),
     maintenanceLaborRemaining: input.maintenanceLaborRemaining as number,
+    mainSceneUsedToday: input.mainSceneUsedToday,
   })
 }
 
@@ -73,5 +83,6 @@ export function createInitialDailyRunStateSnapshot(config: DailyConfig): DailyRu
     medicalUsage: createInitialDailyMedicalUsageSnapshot(),
     threatSuppression: { usesToday: 0, suppressionAmountToday: 0 },
     maintenanceLaborRemaining: config.maintenance.dailyBaseLabor.points,
+    mainSceneUsedToday: false,
   }, config)
 }

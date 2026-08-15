@@ -3,14 +3,14 @@ export {
   type RunTerminationErrorCode,
 } from './run-termination-errors'
 export {
-  bindRunSceneTerminationContextToScene,
-  projectRunSceneTerminationContextFromCurrentDayHub,
   restoreRunSceneTerminationContext,
 } from './run-scene-termination-context'
 export {
   applyRunFailureEffects,
   buildRunFailureTransitionPlan,
+  createSceneDefeatRunFailureSourceFromSession,
   resolveRunFailure,
+  resolveRunFailureFromSceneSession,
   restoreRunFailureSnapshot,
   summarizeRunFailure,
 } from './run-termination'

@@ -84,6 +84,7 @@ export interface CurrentDayHubCarryForwardFacts {
   readonly satiety: SatietySnapshot
   readonly threatSuppression: DailyThreatSuppressionSnapshot
   readonly maintenanceLaborRemaining: number
+  readonly mainSceneUsedToday: true
 }
 
 export type HubSurvivalCommand =
@@ -213,8 +214,18 @@ export function createCurrentDayHubSnapshotFromReturn(
   factsInput: CurrentDayHubCarryForwardFacts,
   dependencies: CurrentDayHubDependencies,
 ): CurrentDayHubSnapshot {
-  if (!exact(factsInput, ['continuity', 'maintenanceLaborRemaining', 'satiety', 'threatSuppression', 'worldThreat'])) {
+  if (!exact(factsInput, [
+    'continuity',
+    'mainSceneUsedToday',
+    'maintenanceLaborRemaining',
+    'satiety',
+    'threatSuppression',
+    'worldThreat',
+  ])) {
     invalid('当前日中枢跨场景事实结构无效')
+  }
+  if (factsInput.mainSceneUsedToday !== true) {
+    invalid('返回后的当前日中枢必须保留当日主要场景已使用事实')
   }
   const returned = createRunReturnSnapshot(returnInput, dependencies.returnDependencies)
   let factsContinuity: RunPhaseContinuitySnapshot
@@ -238,6 +249,7 @@ export function createCurrentDayHubSnapshotFromReturn(
       medicalUsage: returned.dailyMedicalUsage,
       threatSuppression: factsInput.threatSuppression,
       maintenanceLaborRemaining: factsInput.maintenanceLaborRemaining,
+      mainSceneUsedToday: factsInput.mainSceneUsedToday,
     },
     worldThreat: factsInput.worldThreat,
     satiety: factsInput.satiety,

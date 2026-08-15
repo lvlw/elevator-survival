@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { createPlayerCondition, type OpenWoundSnapshot } from '../../core/condition'
 import {
   createCurrentDayHubSnapshot,
+  projectRunReturnCarryForwardFromCurrentDayHub,
   type CurrentDayHubSnapshot,
 } from '../../core/current-day-hub'
 import { resolveDailySettlement } from '../../core/daily-settlement'
@@ -14,14 +15,13 @@ import { createFullItemState, createItemState } from '../../core/item-state'
 import { createQuickSlotSnapshot } from '../../core/quick-slot'
 import { createRunLoadoutSnapshot } from '../../core/run-loadout'
 import {
+  bindRunReturnCarryForwardToScene,
   resolveRunReturn,
   type RunReturnDependencies,
 } from '../../core/run-return'
 import {
   applyRunFailureEffects,
-  bindRunSceneTerminationContextToScene,
   buildRunFailureTransitionPlan,
-  projectRunSceneTerminationContextFromCurrentDayHub,
   resolveRunFailure,
   restoreRunFailureSnapshot,
   restoreRunSceneTerminationContext,
@@ -45,6 +45,7 @@ import {
   HOSPITAL_ITEM_IDS,
   HOSPITAL_NODE_IDS,
   createHospitalSceneCombatDependencies,
+  hospitalSceneLaunchContent,
   hospitalHubSurvivalContentBindings,
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
@@ -85,7 +86,10 @@ const currentDayHubDependencies = {
 }
 const dependencies: RunTerminationDependencies = {
   currentDayHub: currentDayHubDependencies,
-  scene: sceneDependencies,
+  sceneLaunch: {
+    currentDayHub: currentDayHubDependencies,
+    content: hospitalSceneLaunchContent,
+  },
 }
 
 const item = (
@@ -170,6 +174,7 @@ function hub(options: HubOptions = {}): CurrentDayHubSnapshot {
       medicalUsage: { disinfectantUsesToday: 0 },
       threatSuppression: { usesToday: 0, suppressionAmountToday: 0 },
       maintenanceLaborRemaining: config.maintenance.dailyBaseLabor.points,
+      mainSceneUsedToday: false,
     },
     worldThreat: {
       definitionId: config.worldThreat.definitionId,
@@ -263,14 +268,22 @@ function scene(options: SceneOptions = {}): SceneExplorationSnapshot {
 }
 
 function boundContext(startHub = hub()) {
-  return bindRunSceneTerminationContextToScene(
-    projectRunSceneTerminationContextFromCurrentDayHub(
+  const runReturnCarryForward = bindRunReturnCarryForwardToScene(
+    projectRunReturnCarryForwardFromCurrentDayHub(
       startHub,
-      dependencies,
+      currentDayHubDependencies,
     ),
     sceneInstanceId,
-    dependencies,
+    returnDependencies,
   )
+  return restoreRunSceneTerminationContext({
+    runReturnCarryForward,
+    worldThreat: startHub.worldThreat,
+    satiety: startHub.satiety,
+    threatSuppression: startHub.dailyState.threatSuppression,
+    maintenanceLaborRemaining: startHub.dailyState.maintenanceLaborRemaining,
+    mainSceneUsedToday: true,
+  }, dependencies)
 }
 
 function combatDeath() {
@@ -309,27 +322,23 @@ function terminalFromDaily(start: CurrentDayHubSnapshot) {
 describe('hospital Run failure termination coordinator', () => {
   it('projects stable Hub facts, binds only the Scene ID, and rejects Day 8', () => {
     const start = hub({ day: 7 })
-    const projected = projectRunSceneTerminationContextFromCurrentDayHub(
+    const projected = projectRunReturnCarryForwardFromCurrentDayHub(
       start,
-      dependencies,
+      currentDayHubDependencies,
     )
-    const rebound = bindRunSceneTerminationContextToScene(
-      projected,
-      sceneInstanceId,
-      dependencies,
-    )
+    const rebound = boundContext(start)
     expect(rebound.runReturnCarryForward.continuity).toEqual({
-      ...projected.runReturnCarryForward.continuity,
+      ...projected.continuity,
       sceneInstanceId,
     })
     expect(rebound.runReturnCarryForward.storedInventory).toEqual(
-      projected.runReturnCarryForward.storedInventory,
+      projected.storedInventory,
     )
     expect(rebound.runReturnCarryForward.returnLedger).toEqual(
-      projected.runReturnCarryForward.returnLedger,
+      projected.returnLedger,
     )
-    expect(rebound.worldThreat).toEqual(projected.worldThreat)
-    expect(rebound.satiety).toEqual(projected.satiety)
+    expect(rebound.worldThreat).toEqual(start.worldThreat)
+    expect(rebound.satiety).toEqual(start.satiety)
     expect(() => restoreRunSceneTerminationContext({
       ...rebound,
       runReturnCarryForward: {
@@ -516,11 +525,16 @@ describe('hospital Run failure termination coordinator', () => {
     }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
     expect(() => resolveRunFailure({
       ...source,
-      context: bindRunSceneTerminationContextToScene(
-        source.context,
-        'different-scene',
-        dependencies,
-      ),
+      context: {
+        ...source.context,
+        runReturnCarryForward: {
+          ...source.context.runReturnCarryForward,
+          continuity: {
+            ...source.context.runReturnCarryForward.continuity,
+            sceneInstanceId: 'different-scene',
+          },
+        },
+      },
     }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
     expect(() => resolveRunFailure({
       ...source,

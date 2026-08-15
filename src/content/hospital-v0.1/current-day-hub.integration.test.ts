@@ -92,6 +92,7 @@ interface HubInput {
   readonly satiety?: number
   readonly suppressionUses?: number
   readonly suppressionAmount?: number
+  readonly mainSceneUsedToday?: boolean
 }
 
 function hub(input: HubInput = {}): CurrentDayHubSnapshot {
@@ -144,6 +145,7 @@ function hub(input: HubInput = {}): CurrentDayHubSnapshot {
         suppressionAmountToday: input.suppressionAmount ?? 0,
       },
       maintenanceLaborRemaining: 3,
+      mainSceneUsedToday: input.mainSceneUsedToday ?? false,
     },
     worldThreat: { definitionId: config.worldThreat.definitionId, progress: input.progress ?? 0 },
     satiety: { current: input.satiety ?? 4 },
@@ -222,6 +224,7 @@ const carryForward = (sceneInstanceId = 'scene-a') => ({
   satiety: { current: 5 },
   threatSuppression: { usesToday: 0, suppressionAmountToday: 0 },
   maintenanceLaborRemaining: 2,
+  mainSceneUsedToday: true as const,
 })
 
 describe('hospital current-day hub', () => {
@@ -248,11 +251,16 @@ describe('hospital current-day hub', () => {
       satiety: { current: 5 },
       threatSuppression: { usesToday: 0, suppressionAmountToday: 0 },
       maintenanceLaborRemaining: 2,
+      mainSceneUsedToday: true,
     }, dependencies)
     expect(result).toMatchObject({
       playerCondition: { currentHealth: 11, pendingInfectionExposures: 1 },
       runIntelLog: { intelIds: ['intel-a'] },
-      dailyState: { medicalUsage: { disinfectantUsesToday: 1 }, maintenanceLaborRemaining: 2 },
+      dailyState: {
+        medicalUsage: { disinfectantUsesToday: 1 },
+        maintenanceLaborRemaining: 2,
+        mainSceneUsedToday: true,
+      },
       worldThreat: { progress: 30 }, satiety: { current: 5 }, returnLedger: { sceneInstanceIds: ['scene-a'] },
     })
     expect(result.runLoadout.warehouse.items[0].instanceId).toBe('warehouse-ration')
@@ -264,6 +272,7 @@ describe('hospital current-day hub', () => {
     const start = hub({
       warehouse: [ration, bandage], health: 10, bleeding: true,
       wounds: [{ id: 'wound-a', kind: 'laceration', treatment: 'untreated' }], progress: 30, satiety: 3,
+      mainSceneUsedToday: true,
     })
     const moved = resolveCurrentDayHubLoadoutCommand(start, {
       kind: 'warehouse-to-backpack', instanceId: 'ration', placement: { instanceId: 'ration', x: 0, y: 0, rotated: false },
@@ -281,6 +290,7 @@ describe('hospital current-day hub', () => {
     expect(treated.satiety).toEqual(start.satiety)
     expect(treated.returnLedger).toEqual(start.returnLedger)
     expect(treated.continuity).toEqual(start.continuity)
+    expect(treated.dailyState.mainSceneUsedToday).toBe(true)
   })
 
   it('projects one continuity-bound Return carry-forward aggregate from CurrentDayHub', () => {
@@ -307,7 +317,11 @@ describe('hospital current-day hub', () => {
   it('carries one Run identity, storage, and ledger through Hub, a rebound Scene, Return, and Hub', () => {
     const warehouseRation = item('warehouse-ration', HOSPITAL_ITEM_IDS.ration)
     const taskSample = item('task-sample', HOSPITAL_ITEM_IDS.sealedPathogenCase)
-    const start = hub({ warehouse: [warehouseRation], taskStorage: [taskSample] })
+    const start = hub({
+      warehouse: [warehouseRation],
+      taskStorage: [taskSample],
+      mainSceneUsedToday: true,
+    })
     const rebound = bindRunReturnCarryForwardToScene(
       projectRunReturnCarryForwardFromCurrentDayHub(start, dependencies),
       'next-hospital-scene',
@@ -323,6 +337,7 @@ describe('hospital current-day hub', () => {
       satiety: start.satiety,
       threatSuppression: start.dailyState.threatSuppression,
       maintenanceLaborRemaining: start.dailyState.maintenanceLaborRemaining,
+      mainSceneUsedToday: true,
     }, dependencies)
 
     expect(returned.continuity).toEqual(rebound.continuity)
@@ -340,9 +355,13 @@ describe('hospital current-day hub', () => {
 
   it('uses suppressant for an exposure, records 1/15, and changes neither exposure nor progress', () => {
     const suppressant = item('suppressant-stack', HOSPITAL_ITEM_IDS.infectionSuppressant, 2)
-    const start = hub({ warehouse: [suppressant], pendingExposures: 1, progress: 0 })
+    const start = hub({
+      warehouse: [suppressant], pendingExposures: 1, progress: 0,
+      mainSceneUsedToday: true,
+    })
     const command = survival('use-hub-infection-suppressant', { container: 'warehouse', itemInstanceId: 'suppressant-stack' })
     const result = resolveHubSurvivalCommand(start, command, dependencies)
+    expect(result.snapshot.dailyState.mainSceneUsedToday).toBe(true)
     expect(result.snapshot.dailyState.threatSuppression).toEqual({ usesToday: 1, suppressionAmountToday: 15 })
     expect(result.snapshot.playerCondition.pendingInfectionExposures).toBe(1)
     expect(result.snapshot.worldThreat.progress).toBe(0)
@@ -444,6 +463,14 @@ describe('hospital current-day hub', () => {
     expect(() => createCurrentDayHubSnapshotFromReturn(
       returnedSnapshot(),
       mutate(carryForward()),
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+
+  it('rejects a returned Hub that attempts to clear the daily main-scene usage fact', () => {
+    expect(() => createCurrentDayHubSnapshotFromReturn(
+      returnedSnapshot(),
+      { ...carryForward(), mainSceneUsedToday: false } as never,
       dependencies,
     )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
   })

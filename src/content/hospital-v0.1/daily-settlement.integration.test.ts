@@ -64,6 +64,7 @@ interface HubOptions {
   readonly suppressionAmount?: number
   readonly disinfectantUses?: number
   readonly maintenance?: number
+  readonly mainSceneUsedToday?: boolean
   readonly warehouse?: readonly ItemInstance[]
 }
 
@@ -123,6 +124,7 @@ function hub(options: HubOptions = {}): CurrentDayHubSnapshot {
         suppressionAmountToday: options.suppressionAmount ?? 0,
       },
       maintenanceLaborRemaining: options.maintenance ?? 1,
+      mainSceneUsedToday: options.mainSceneUsedToday ?? false,
     },
     worldThreat: {
       definitionId: config.worldThreat.definitionId,
@@ -218,6 +220,7 @@ describe('hospital daily settlement', () => {
       suppressionAmount: 15,
       disinfectantUses: 1,
       maintenance: 1,
+      mainSceneUsedToday: true,
     })
     const result = resolveDailySettlement(start, { kind: 'end-day' }, dependencies)
     expect(result.outcome).toMatchObject({ kind: 'terminal', reason: 'health-depleted' })
@@ -405,23 +408,26 @@ describe('hospital daily settlement', () => {
     expect(snapshot.playerCondition.currentHealth).toBe(12)
   })
 
-  it('resets daily medical, suppression, and maintenance state only after success', () => {
+  it('resets daily medical, suppression, maintenance, and main-scene use only after success', () => {
     const { result, snapshot } = success(hub({
       exposures: 1,
       suppressionUses: 1,
       suppressionAmount: 15,
       disinfectantUses: 1,
       maintenance: 0,
+      mainSceneUsedToday: true,
     }))
     expect(result.summary.dailyReset?.before).toEqual({
       medicalUsage: { disinfectantUsesToday: 1 },
       threatSuppression: { usesToday: 1, suppressionAmountToday: 15 },
       maintenanceLaborRemaining: 0,
+      mainSceneUsedToday: true,
     })
     expect(snapshot.dailyState).toEqual({
       medicalUsage: { disinfectantUsesToday: 0 },
       threatSuppression: { usesToday: 0, suppressionAmountToday: 0 },
       maintenanceLaborRemaining: 3,
+      mainSceneUsedToday: false,
     })
   })
 
@@ -450,7 +456,9 @@ describe('hospital daily settlement', () => {
   })
 
   it('allows day six to advance to day seven', () => {
-    expect(success(hub({ day: 6 })).snapshot.continuity.currentDay).toBe(7)
+    const snapshot = success(hub({ day: 6, mainSceneUsedToday: true })).snapshot
+    expect(snapshot.continuity.currentDay).toBe(7)
+    expect(snapshot.dailyState.mainSceneUsedToday).toBe(false)
   })
 
   it('blocks ordinary End Day on day seven before producing effects or day eight', () => {

@@ -1,28 +1,19 @@
 import type { CurrentDayHubDependencies } from '../current-day-hub'
 import type { DailySettlementTerminalSnapshot } from '../daily-settlement'
-import type { DailyThreatSuppressionSnapshot } from '../daily-state'
-import type { RunReturnCarryForwardSnapshot } from '../run-return'
 import type {
-  SceneExplorationDependencies,
-  SceneExplorationSnapshot,
-} from '../scene-exploration'
-import type { SatietySnapshot } from '../satiety'
-import type { WorldThreatSnapshot } from '../world-threat'
+  RunSceneLifecycleContextSnapshot,
+  RunSceneSessionSnapshot,
+  SceneLaunchDependencies,
+} from '../scene-launch'
 
 export type RunFailureReason = 'health-depleted' | 'world-threat-terminal'
 
-export interface RunSceneTerminationContextSnapshot {
-  readonly runReturnCarryForward: RunReturnCarryForwardSnapshot
-  readonly worldThreat: WorldThreatSnapshot
-  readonly satiety: SatietySnapshot
-  readonly threatSuppression: DailyThreatSuppressionSnapshot
-  readonly maintenanceLaborRemaining: number
-}
+export type RunSceneTerminationContextSnapshot = RunSceneLifecycleContextSnapshot
 
 export interface SceneDefeatRunFailureSource {
   readonly kind: 'scene-defeat'
-  readonly terminalScene: SceneExplorationSnapshot
-  readonly context: RunSceneTerminationContextSnapshot
+  readonly terminalScene: RunSceneSessionSnapshot['scene']
+  readonly context: RunSceneSessionSnapshot['context']
 }
 
 export interface DailySettlementRunFailureSource {
@@ -79,5 +70,5 @@ export interface RunFailureResult extends RunFailureTransitionPlan {}
 
 export interface RunTerminationDependencies {
   readonly currentDayHub: CurrentDayHubDependencies
-  readonly scene: SceneExplorationDependencies
+  readonly sceneLaunch: SceneLaunchDependencies
 }

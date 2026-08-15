@@ -169,23 +169,36 @@
 
 - `src/core/domain/run-phase-continuity.ts` 复用唯一的 `RunIdentity`，只记录当前日与刚完成场景实例；Return输入、Return结果、跨场景事实和CurrentDayHub必须逐字段保持同一连续性，并绑定依赖实际加载的规则版本。
 - `createCurrentDayHubSnapshotFromReturn` 统一承接 `RunReturnSnapshot` 和一份严格的跨场景日级／威胁事实，不要求上层手工拼接多个快照。
-- `projectRunReturnCarryForwardFromCurrentDayHub` 是发起下一次Return前既有Run库存与返回记录的唯一正式投影；它把continuity、普通／任务库存及对应ItemState、返回记录作为不可拆分聚合交给Return。`bindRunPhaseContinuityToScene` 只显式切换目标场景实例，不生成ID、不推进日期。
+- `src/core/scene-launch` 是从当前日中枢进入正式主要场景的唯一生命周期入口；它先严格恢复中枢，再确定性派生场景实例ID、原子占用当日主要场景次数，并建立冻结的 `RunSceneSessionSnapshot`。
+- `projectRunReturnCarryForwardFromCurrentDayHub` 只由正式 Scene Launch 用来携带既有Run库存与返回记录；它把continuity、普通／任务库存及对应ItemState、返回记录作为不可拆分聚合交给Session context。`bindRunPhaseContinuityToScene` 只显式切换目标场景实例，不生成ID、不推进日期。
 - `src/core/world-threat` 表达可替换的威胁定义、非负进展、派生阶段和通用日恢复修正；医院感染阶段名称只存在于医院内容层。
-- `src/core/satiety` 负责有上限的饱食事实、恢复、消耗及版本化日恢复区间选择；`src/core/daily-state` 额外记录威胁抑制次数／抑制量和剩余维护工时。
+- `src/core/satiety` 负责有上限的饱食事实、恢复、消耗及版本化日恢复区间选择；`src/core/daily-state` 额外记录威胁抑制次数／抑制量、剩余维护工时和当天主要场景是否已经使用。该布尔值不从返回记录或当前场景ID反推。
 - 整备、中枢医疗和中枢维护通过适配器更新同类中枢快照，未参与的情报、威胁、饱食、日级事实和返回记录保持原样。
 - 中枢医疗与中枢生存消耗品共同复用 `src/core/hub-inventory` 的真实实例消费边界；只接受仓库、背包或快捷栏的显式来源，不自动寻找、合并或补充。
 - `src/core/daily-settlement` 从严格活动中枢快照接受唯一的 `end-day` 命令，按持续危险、世界威胁、暴露清算、饱食、匮乏、有限恢复、轻伤生命周期、日级重置和日期推进生成冻结的完整 Effect 计划；预览、应用与回放重建同一计划。
 - 成功结算复用日级初始构造器并生成下一日活动中枢；流血致死、匮乏致死或世界威胁终末返回独立严格终止快照，不伪装成活动中枢。普通结束本日只允许第1至第6日，第7日要求未来终局协调器先处理正式主线检查。
 - 当前实现感染抑制剂和口粮的零时间中枢使用、装备维护、手电筒中枢充能及原子日结算；尚未实现完整七日世界推进、完整RunState、存档或UI。
 - 通用世界威胁快照可以表达终末进展，但终末威胁不再是合法的活动CurrentDayHub状态；日结算终末可以交给上层 Run 失败终止协调器冻结。
-- Return不接受散落的库存、ledger或continuity字段；正式运行时路径由CurrentDayHub或RunReturn投影生成完整carry-forward，并只允许显式重绑定目标场景。序列化恢复严格验证该聚合自身的结构、规则版本、库存、ItemState、生命周期容器和ledger不变量，不使用派生binding副本，也不证明其不可见的历史来源。
+- Return不接受散落的库存、ledger或continuity字段；正式运行时路径从Run Scene Session投影终局Scene与已绑定的完整carry-forward。序列化恢复严格验证该聚合自身的结构、规则版本、库存、ItemState、生命周期容器和ledger不变量，不使用派生binding副本。
+
+## Scene Launch 与 Run Scene Session
+
+`src/core/scene-launch` 负责最小 `CurrentDayHub → Scene → Return / Termination` 生命周期，不是完整 RunState。
+
+- 启动命令只有严格的 `launch-main-scene`；调用方不能提供身份、日期、库存、条件、情报、每日医疗状态或内容目录。
+- 场景实例ID只由Run ID、seed、规则版本、当前日和正式场景定义ID确定性派生，不读取系统时间、UUID或环境随机。
+- 内容层注入完整 runtime bundle；正式Session要求场景图、物品／装备／快捷栏／资源目录、搜索、通行、障碍、战斗遭遇、任务事件、医疗生命周期、设备充能、Run seed、正式入口和初始边集合全部存在且版本一致。
+- Session context只保存Scene期间不由Scene修改的Run事实：已绑定的Return carry-forward、世界威胁、饱食、威胁抑制、维护工时和已使用主要场景事实。RunIntel、DailyMedicalUsage、随身物品和ItemState只由Scene快照拥有。
+- Scene严格恢复使用完整runtime，因此自动遭遇节点不能伪造成普通active状态来插入电池或医疗动作；Run storage与随身、地面及隐藏搜索产物继续使用共享物理实例冲突校验。
+- 生还Return从同一Session投影并保持当日主要场景已使用；成功日结算以正式日级初始构造器生成次日false。死亡终止直接消费同一Session，不从旧Hub重建provenance。
+- Launch使用冻结完整Effect计划并在应用前重建精确比较；缺失、重复、乱序或身份／快照／context篡改都会在提交前失败。
 
 ## Run 失败终止协调
 
 `src/core/run-termination` 将已经完整提交的死亡 Scene 或 `DailySettlementTerminalSnapshot` 转换为唯一、冻结且不可继续的 `RunFailureSnapshot`；它不是完整 RunState。
 
 - 当前只接受三种已有正式事实：生命归零的 `dead` Scene、日结算 `health-depleted`、日结算 `world-threat-terminal`。原因完全由来源推导，调用方不能覆盖。
-- Scene 失败上下文从严格 `CurrentDayHubSnapshot` 正式投影，并复用 `RunReturnCarryForwardSnapshot` 保存 RunIdentity、日期、既有仓库、任务储存区、ItemState和返回记录；绑定新 Scene 时只改变嵌套的场景实例ID。
+- Scene 失败上下文直接来自正式 `RunSceneSessionSnapshot`，并复用其中已经绑定的 `RunReturnCarryForwardSnapshot` 保存 RunIdentity、日期、既有仓库、任务储存区、ItemState和返回记录；终止阶段不能从旧Hub另行投影或重新绑定。
 - 玩家条件、随身物品、装备、快捷栏、RunIntel和每日医疗使用状态只读取严格恢复后的终局 Scene；世界威胁、饱食、当日抑制和维护工时读取进入 Scene 前不变的上下文。
 - Run Storage 与死亡现场全部物理实例复用 Return 的全局实例冲突校验；死亡不会执行 Return 提取、追加返回记录、推进日期、日结算、免费恢复、清仓或写入 Profile。
 - Daily Settlement 来源直接复用完整终止快照，不重算感染、饱食、恢复或轻伤生命周期。

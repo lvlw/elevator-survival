@@ -3,6 +3,7 @@ import {
   createWorldThreatCatalog,
   createWorldThreatDefinition,
   createWorldThreatSnapshot,
+  getWorldThreatDailyRecoveryModifier,
   getWorldThreatStage,
 } from '.'
 
@@ -10,8 +11,8 @@ const definition = {
   definitionId: 'threat-a',
   progressPerPendingExposure: 20,
   stages: [
-    { id: 'stage-0', minProgress: 0, dailyBaseIncrease: 0 },
-    { id: 'stage-1', minProgress: 30, dailyBaseIncrease: 5 },
+    { id: 'stage-0', minProgress: 0, dailyBaseIncrease: 0, dailyRecoveryModifier: { kind: 'fixed-penalty', amount: 0 } },
+    { id: 'stage-1', minProgress: 30, dailyBaseIncrease: 5, dailyRecoveryModifier: { kind: 'blocked' } },
   ],
   terminal: { stageId: 'terminal', minProgress: 60 },
   suppressant: { dailyReduction: 15, maxUsesPerDay: 1, hubSceneTime: 0 },
@@ -24,6 +25,14 @@ describe('world threat', () => {
       .toEqual({ id: 'stage-1', terminal: false, dailyBaseIncrease: 5 })
     expect(getWorldThreatStage(createWorldThreatSnapshot({ definitionId: 'threat-a', progress: 60 }, catalog), catalog))
       .toEqual({ id: 'terminal', terminal: true, dailyBaseIncrease: 0 })
+    expect(getWorldThreatDailyRecoveryModifier(
+      createWorldThreatSnapshot({ definitionId: 'threat-a', progress: 30 }, catalog),
+      catalog,
+    )).toEqual({ kind: 'blocked' })
+    expect(() => getWorldThreatDailyRecoveryModifier(
+      createWorldThreatSnapshot({ definitionId: 'threat-a', progress: 60 }, catalog),
+      catalog,
+    )).toThrow(/终末/)
   })
 
   it('rejects invalid definitions, unknown threats, negative progress, and unknown fields', () => {

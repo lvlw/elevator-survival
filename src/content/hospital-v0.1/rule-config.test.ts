@@ -120,11 +120,11 @@ describe('hospitalSliceV01RuleConfig', () => {
       definitionId: 'world_threat_hospital_infection',
       progressPerPendingExposure: 20,
       stages: [
-        { id: 'none', minProgress: 0, dailyBaseIncrease: 0 },
-        { id: 'latent', minProgress: 1, dailyBaseIncrease: 5 },
-        { id: 'infected', minProgress: 30, dailyBaseIncrease: 10 },
-        { id: 'worsening', minProgress: 60, dailyBaseIncrease: 15 },
-        { id: 'critical', minProgress: 90, dailyBaseIncrease: 20 },
+        { id: 'none', minProgress: 0, dailyBaseIncrease: 0, dailyRecoveryModifier: { kind: 'fixed-penalty', amount: 0 } },
+        { id: 'latent', minProgress: 1, dailyBaseIncrease: 5, dailyRecoveryModifier: { kind: 'fixed-penalty', amount: 0 } },
+        { id: 'infected', minProgress: 30, dailyBaseIncrease: 10, dailyRecoveryModifier: { kind: 'fixed-penalty', amount: 1 } },
+        { id: 'worsening', minProgress: 60, dailyBaseIncrease: 15, dailyRecoveryModifier: { kind: 'blocked' } },
+        { id: 'critical', minProgress: 90, dailyBaseIncrease: 20, dailyRecoveryModifier: { kind: 'blocked' } },
       ],
       terminal: { stageId: 'terminal', minProgress: 120 },
       suppressant: { dailyReduction: 15, maxUsesPerDay: 1, hubSceneTime: 0 },
@@ -136,7 +136,17 @@ describe('hospitalSliceV01RuleConfig', () => {
       rationRecovery: 2,
       rationHubSceneTime: 0,
       unresolvedBleedingHealthLoss: 2,
+      baseHealthRecovery: 2,
+      deprivationHealthLoss: 1,
+      satietyRecoveryCaps: [
+        { min: 0, max: 1, maxHealthRecovery: 0, deprived: true },
+        { min: 2, max: 3, maxHealthRecovery: 1, deprived: false },
+        { min: 4, max: 6, maxHealthRecovery: 2, deprived: false },
+      ],
       minorContusionRecoveryPenalty: 1,
+      untreatedOpenWoundRecoveryPenalty: 1,
+      minorInjuryRecoveryPenaltyCap: 2,
+      finalPlayableDay: 7,
     })
   })
 })
@@ -145,15 +155,15 @@ describe('ruleConfigSchema', () => {
   it('rejects nonascending, duplicate, and nonzero-first threat stage boundaries', () => {
     for (const stages of [
       [
-        { id: 'a', minProgress: 0, dailyBaseIncrease: 0 },
-        { id: 'b', minProgress: 0, dailyBaseIncrease: 1 },
+        { id: 'a', minProgress: 0, dailyBaseIncrease: 0, dailyRecoveryModifier: { kind: 'fixed-penalty' as const, amount: 0 } },
+        { id: 'b', minProgress: 0, dailyBaseIncrease: 1, dailyRecoveryModifier: { kind: 'fixed-penalty' as const, amount: 0 } },
       ],
       [
-        { id: 'a', minProgress: 1, dailyBaseIncrease: 0 },
+        { id: 'a', minProgress: 1, dailyBaseIncrease: 0, dailyRecoveryModifier: { kind: 'fixed-penalty' as const, amount: 0 } },
       ],
       [
-        { id: 'a', minProgress: 0, dailyBaseIncrease: 0 },
-        { id: 'a', minProgress: 1, dailyBaseIncrease: 1 },
+        { id: 'a', minProgress: 0, dailyBaseIncrease: 0, dailyRecoveryModifier: { kind: 'fixed-penalty' as const, amount: 0 } },
+        { id: 'a', minProgress: 1, dailyBaseIncrease: 1, dailyRecoveryModifier: { kind: 'fixed-penalty' as const, amount: 0 } },
       ],
     ]) {
       const invalid = mutableConfigCopy()
@@ -172,6 +182,42 @@ describe('ruleConfigSchema', () => {
     const unknown = mutableConfigCopy()
     ;(unknown.worldThreat as typeof unknown.worldThreat & Record<string, unknown>).extra = true
     expect(ruleConfigSchema.safeParse(unknown).success).toBe(false)
+  })
+
+  it('rejects invalid or non-strict daily recovery stage modifiers', () => {
+    const missing = mutableConfigCopy()
+    delete (missing.worldThreat.stages[0] as unknown as Record<string, unknown>).dailyRecoveryModifier
+    expect(ruleConfigSchema.safeParse(missing).success).toBe(false)
+    const negative = mutableConfigCopy()
+    negative.worldThreat.stages[0].dailyRecoveryModifier = { kind: 'fixed-penalty', amount: -1 }
+    expect(ruleConfigSchema.safeParse(negative).success).toBe(false)
+    const unknown = mutableConfigCopy()
+    ;(unknown.worldThreat.stages[0].dailyRecoveryModifier as unknown as Record<string, unknown>).extra = true
+    expect(ruleConfigSchema.safeParse(unknown).success).toBe(false)
+  })
+
+  it('requires satiety recovery bands to continuously cover zero through max satiety', () => {
+    for (const bands of [
+      [
+        { min: 1, max: 1, maxHealthRecovery: 0, deprived: true },
+        { min: 2, max: 3, maxHealthRecovery: 1, deprived: false },
+        { min: 4, max: 6, maxHealthRecovery: 2, deprived: false },
+      ],
+      [
+        { min: 0, max: 1, maxHealthRecovery: 0, deprived: true },
+        { min: 3, max: 3, maxHealthRecovery: 1, deprived: false },
+        { min: 4, max: 6, maxHealthRecovery: 2, deprived: false },
+      ],
+      [
+        { min: 0, max: 1, maxHealthRecovery: 0, deprived: true },
+        { min: 2, max: 3, maxHealthRecovery: 1, deprived: false },
+        { min: 4, max: 7, maxHealthRecovery: 2, deprived: false },
+      ],
+    ]) {
+      const invalid = mutableConfigCopy()
+      invalid.dailySettlement.satietyRecoveryCaps = bands
+      expect(ruleConfigSchema.safeParse(invalid).success).toBe(false)
+    }
   })
 
   it('rejects non-monotonic combat risk tiers', () => {

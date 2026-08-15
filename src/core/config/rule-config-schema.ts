@@ -7,6 +7,15 @@ const safePositiveInteger = z.number().int().positive().max(Number.MAX_SAFE_INTE
 const nonEmptyString = z.string().trim().min(1)
 const percent = z.number().int().min(0).max(100)
 const riskTier = z.enum(['none', 'low', 'medium', 'high', 'very-high'])
+const dailyRecoveryModifier = z.discriminatedUnion('kind', [
+  z.strictObject({
+    kind: z.literal('fixed-penalty'),
+    amount: safeNonNegativeInteger,
+  }),
+  z.strictObject({
+    kind: z.literal('blocked'),
+  }),
+])
 
 export const ruleConfigSchema = z
   .strictObject({
@@ -239,6 +248,7 @@ export const ruleConfigSchema = z
         id: nonEmptyString,
         minProgress: safeNonNegativeInteger,
         dailyBaseIncrease: safeNonNegativeInteger,
+        dailyRecoveryModifier,
       })).min(1),
       terminal: z.strictObject({
         stageId: nonEmptyString,
@@ -257,7 +267,18 @@ export const ruleConfigSchema = z
       rationRecovery: safePositiveInteger,
       rationHubSceneTime: safeNonNegativeInteger,
       unresolvedBleedingHealthLoss: nonNegativeInteger,
+      baseHealthRecovery: safeNonNegativeInteger,
+      deprivationHealthLoss: safeNonNegativeInteger,
+      satietyRecoveryCaps: z.array(z.strictObject({
+        min: safeNonNegativeInteger,
+        max: safeNonNegativeInteger,
+        maxHealthRecovery: safeNonNegativeInteger,
+        deprived: z.boolean(),
+      })).min(1),
       minorContusionRecoveryPenalty: nonNegativeInteger,
+      untreatedOpenWoundRecoveryPenalty: safeNonNegativeInteger,
+      minorInjuryRecoveryPenaltyCap: safeNonNegativeInteger,
+      finalPlayableDay: safePositiveInteger,
     }),
   })
   .superRefine((config, context) => {
@@ -378,6 +399,23 @@ export const ruleConfigSchema = z
         code: 'custom',
         path: ['dailySettlement', 'newRunInitialSatiety'],
         message: '新Run初始饱食不得超过饱食上限',
+      })
+    }
+
+    const satietyCaps = config.dailySettlement.satietyRecoveryCaps
+    if (
+      satietyCaps[0]?.min !== 0 ||
+      satietyCaps.some((band, index) =>
+        band.min > band.max ||
+        band.max > config.dailySettlement.maxSatiety ||
+        (index > 0 && satietyCaps[index - 1].max + 1 !== band.min),
+      ) ||
+      satietyCaps[satietyCaps.length - 1]?.max !== config.dailySettlement.maxSatiety
+    ) {
+      context.addIssue({
+        code: 'custom',
+        path: ['dailySettlement', 'satietyRecoveryCaps'],
+        message: '饱食恢复上限区间必须连续覆盖0到饱食上限',
       })
     }
   })

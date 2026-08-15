@@ -10,6 +10,15 @@ export interface SatietyRestoreResult {
   readonly after: number
 }
 
+export interface SatietyConsumptionResult {
+  readonly before: number
+  readonly requested: number
+  readonly consumed: number
+  readonly after: number
+}
+
+export type SatietyRecoveryBand = FrozenRuleConfig['dailySettlement']['satietyRecoveryCaps'][number]
+
 export class SatietyError extends Error {
   public constructor(message: string) { super(message); this.name = 'SatietyError' }
 }
@@ -44,4 +53,33 @@ export function restoreSatiety(
     snapshot: createSatietySnapshot({ current: after }, config),
     result: { before: snapshot.current, requested, restored: after - snapshot.current, after },
   })
+}
+
+export function consumeSatiety(
+  snapshotInput: SatietySnapshot,
+  requested: number,
+  config: SatietyConfig,
+): Readonly<{ snapshot: SatietySnapshot; result: SatietyConsumptionResult }> {
+  const snapshot = createSatietySnapshot(snapshotInput, config)
+  if (!Number.isSafeInteger(requested) || requested < 0) {
+    throw new SatietyError('饱食消耗量无效')
+  }
+  const consumed = Math.min(snapshot.current, requested)
+  const after = snapshot.current - consumed
+  return deepFreeze({
+    snapshot: createSatietySnapshot({ current: after }, config),
+    result: { before: snapshot.current, requested, consumed, after },
+  })
+}
+
+export function getSatietyRecoveryBand(
+  snapshotInput: SatietySnapshot,
+  config: SatietyConfig,
+): SatietyRecoveryBand {
+  const snapshot = createSatietySnapshot(snapshotInput, config)
+  const band = config.dailySettlement.satietyRecoveryCaps.find(
+    ({ min, max }) => snapshot.current >= min && snapshot.current <= max,
+  )
+  if (!band) throw new SatietyError('饱食恢复区间未覆盖当前饱食值')
+  return deepFreeze(band)
 }

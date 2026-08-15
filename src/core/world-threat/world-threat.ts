@@ -4,7 +4,12 @@ export interface WorldThreatStageDefinition {
   readonly id: string
   readonly minProgress: number
   readonly dailyBaseIncrease: number
+  readonly dailyRecoveryModifier: DailyHealthRecoveryModifier
 }
+
+export type DailyHealthRecoveryModifier =
+  | Readonly<{ kind: 'fixed-penalty'; amount: number }>
+  | Readonly<{ kind: 'blocked' }>
 
 export interface WorldThreatDefinition {
   readonly definitionId: string
@@ -66,9 +71,16 @@ export function createWorldThreatDefinition(input: unknown): WorldThreatDefiniti
   const stages: WorldThreatStageDefinition[] = []
   const ids = new Set<string>()
   for (const candidate of input.stages) {
-    if (!exact(candidate, ['dailyBaseIncrease', 'id', 'minProgress']) ||
+    if (!exact(candidate, ['dailyBaseIncrease', 'dailyRecoveryModifier', 'id', 'minProgress']) ||
       !nonEmpty(candidate.id) || !nonNegative(candidate.minProgress) ||
-      !nonNegative(candidate.dailyBaseIncrease) || ids.has(candidate.id)) {
+      !nonNegative(candidate.dailyBaseIncrease) || ids.has(candidate.id) ||
+      !plain(candidate.dailyRecoveryModifier) ||
+      (candidate.dailyRecoveryModifier.kind !== 'blocked' &&
+        candidate.dailyRecoveryModifier.kind !== 'fixed-penalty') ||
+      (candidate.dailyRecoveryModifier.kind === 'blocked'
+        ? !exact(candidate.dailyRecoveryModifier, ['kind'])
+        : !exact(candidate.dailyRecoveryModifier, ['amount', 'kind']) ||
+          !nonNegative(candidate.dailyRecoveryModifier.amount))) {
       throw new WorldThreatError('世界威胁阶段定义无效')
     }
     ids.add(candidate.id)
@@ -76,6 +88,9 @@ export function createWorldThreatDefinition(input: unknown): WorldThreatDefiniti
       id: candidate.id,
       minProgress: candidate.minProgress,
       dailyBaseIncrease: candidate.dailyBaseIncrease,
+      dailyRecoveryModifier: candidate.dailyRecoveryModifier.kind === 'blocked'
+        ? { kind: 'blocked' as const }
+        : { kind: 'fixed-penalty' as const, amount: candidate.dailyRecoveryModifier.amount as number },
     })
   }
   if (stages[0].minProgress !== 0 ||
@@ -129,4 +144,17 @@ export function getWorldThreatStage(
   }
   const stage = [...definition.stages].reverse().find(({ minProgress }) => snapshot.progress >= minProgress)!
   return deepFreeze({ id: stage.id, terminal: false, dailyBaseIncrease: stage.dailyBaseIncrease })
+}
+
+export function getWorldThreatDailyRecoveryModifier(
+  snapshotInput: WorldThreatSnapshot,
+  catalog: WorldThreatCatalog,
+): DailyHealthRecoveryModifier {
+  const snapshot = createWorldThreatSnapshot(snapshotInput, catalog)
+  const definition = catalog[snapshot.definitionId]
+  if (snapshot.progress >= definition.terminal.minProgress) {
+    throw new WorldThreatError('终末世界威胁没有普通日恢复修正')
+  }
+  const stage = [...definition.stages].reverse().find(({ minProgress }) => snapshot.progress >= minProgress)!
+  return deepFreeze(stage.dailyRecoveryModifier)
 }

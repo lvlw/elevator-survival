@@ -1,5 +1,6 @@
 export { createItemReturnLifecycleCatalog } from './item-return-lifecycle'
 export { RunReturnError, type RunReturnErrorCode } from './run-return-errors'
+export { assertNoRunStorageScenePhysicalItemConflicts } from './scene-storage-identity'
 export {
   applyRunReturnEffects,
   buildRunReturnTransitionPlan,

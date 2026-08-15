@@ -3,9 +3,9 @@ import { createBackpackSnapshot } from '../inventory'
 import { getItemState } from '../item-state'
 import {
   createSceneExplorationSnapshot,
-  getScenePhysicalItemInstanceIds,
 } from '../scene-exploration'
 import { RunReturnError } from './run-return-errors'
+import { assertNoRunStorageScenePhysicalItemConflicts } from './scene-storage-identity'
 import {
   restoreRunReturnCarryForwardSnapshot,
   createRunReturnSnapshot,
@@ -63,15 +63,7 @@ function normalizeInput(
   if (returnLedger.sceneInstanceIds.includes(terminalScene.sceneInstanceId)) {
     throw new RunReturnError('RETURN_ALREADY_SETTLED', '当前场景已经完成过返回结算')
   }
-  const storedIds = new Set([
-    ...storedInventory.warehouse.items,
-    ...storedInventory.taskStorage.items,
-  ].map((item) => item.instanceId))
-  for (const instanceId of getScenePhysicalItemInstanceIds(terminalScene)) {
-    if (storedIds.has(instanceId)) {
-      throw new RunReturnError('INVALID_INPUT', `场景物理实例与Run储存实例重复：${instanceId}`)
-    }
-  }
+  assertNoRunStorageScenePhysicalItemConflicts(storedInventory, terminalScene)
   return {
     continuity: carryForward.continuity,
     terminalScene,

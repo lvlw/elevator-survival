@@ -1,4 +1,5 @@
 import type { FrozenRuleConfig } from '../config'
+import type { DeviceRechargeCatalog } from '../device-recharge'
 import type { PlayerConditionSnapshot } from '../condition'
 import type { DailyMedicalUsageSnapshot } from '../daily-state'
 import type {
@@ -8,6 +9,7 @@ import type {
 } from '../medical'
 import type {
   EquipmentProfileCatalog,
+  EquipmentSlotKind,
   EquipmentSnapshot,
 } from '../equipment'
 import type {
@@ -126,6 +128,10 @@ export interface SceneMedicalCommandDependencies
   readonly medicalBindings: SceneMedicalContentBindings
 }
 
+export interface SceneBatteryCommandDependencies extends SceneExplorationDependencies {
+  readonly deviceRechargeCatalog: DeviceRechargeCatalog
+}
+
 export interface MainSearchCommandDependencies
   extends SceneExplorationDependencies {
   readonly searchCatalog: MainSearchDefinitionCatalog
@@ -155,6 +161,28 @@ export type SceneMoveHealthLossSource =
   | 'forced-return-bleeding'
 
 export type SceneExplorationEffect =
+  | Readonly<{
+      kind: 'scene-battery-consumed'
+      command: UseSceneBatteryCommand
+      instanceId: string
+      definitionId: string
+      quantityBefore: number
+      quantityConsumed: 1
+      quantityAfter: number
+    }>
+  | Readonly<{
+      kind: 'scene-device-resource-restored'
+      targetContainer: 'backpack' | 'equipment'
+      targetEquipmentSlot: EquipmentSlotKind | null
+      targetInstanceId: string
+      targetDefinitionId: string
+      resourceKind: Exclude<ItemResourceKind, 'none'>
+      resourceBefore: number
+      requestedRecovery: number
+      actualRecovery: number
+      resourceAfter: number
+      unusedRecovery: number
+    }>
   | Readonly<{
       kind: 'scene-medical-item-consumed'
       command: UseSceneMedicalItemCommand
@@ -497,6 +525,11 @@ export interface UseSceneMedicalItemCommand {
   readonly target?: SceneMedicalTarget
 }
 
+export interface UseSceneBatteryCommand {
+  readonly batteryInstanceId: string
+  readonly targetInstanceId: string
+}
+
 export type PerformSceneTaskEventCommand =
   | Readonly<{
       eventId: string
@@ -574,6 +607,31 @@ export type SceneMedicalPreview =
 
 export interface SceneMedicalResolution {
   readonly result: SceneMedicalEvaluation
+  readonly snapshot: SceneExplorationSnapshot
+}
+
+export interface SceneBatteryEvaluation {
+  readonly batteryInstanceId: string
+  readonly targetInstanceId: string
+  readonly actionTime: number
+  readonly returnRoute: ReturnRouteResult
+  readonly sceneOutcome: TimedSceneActionOutcome
+  readonly effects: readonly SceneExplorationEffect[]
+  readonly snapshot: SceneExplorationSnapshot
+}
+
+export interface SceneBatteryTransitionPlan {
+  readonly command: UseSceneBatteryCommand
+  readonly metadata: Omit<SceneBatteryEvaluation, 'effects' | 'snapshot'>
+  readonly effects: readonly SceneExplorationEffect[]
+}
+
+export type SceneBatteryPreview =
+  | Readonly<{ canExecute: true; result: SceneBatteryEvaluation }>
+  | Readonly<{ canExecute: false; rejectionCode: SceneExplorationErrorCode }>
+
+export interface SceneBatteryResolution {
+  readonly result: SceneBatteryEvaluation
   readonly snapshot: SceneExplorationSnapshot
 }
 

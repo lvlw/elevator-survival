@@ -39,6 +39,7 @@ import { buildSceneCombatPlayerActionEffects } from './scene-combat-transition-p
 import { createMoveThroughSceneEdgeCommand } from './scene-move-command'
 import { buildSceneMoveTransitionPlan } from './scene-move-transition-plan'
 import { applySceneMedicalEffects } from './scene-medical-effect-application'
+import { applySceneBatteryEffects } from './scene-battery-effect-application'
 import { applySceneTaskEventEffects } from './scene-task-event-command'
 import type {
   SceneExplorationEffect,
@@ -71,6 +72,7 @@ function fail(
     | 'EFFECT_RISK_MISMATCH'
     | 'EFFECT_COMBAT_MISMATCH'
     | 'EFFECT_MEDICAL_MISMATCH'
+    | 'EFFECT_BATTERY_MISMATCH'
     | 'EFFECT_TASK_EVENT_MISMATCH'
     | 'INCOMPLETE_EFFECT_PLAN',
   message: string,
@@ -353,6 +355,13 @@ function applySceneExplorationEffectsInternal(
       fail('EFFECT_MEDICAL_MISMATCH', '探索医疗 Effect 回放需要完整医疗内容绑定')
     }
     return applySceneMedicalEffects(initialSnapshot, effects, medicalDependencies)
+  }
+  if (effects.some(({ kind }) => kind === 'scene-battery-consumed')) {
+    const batteryDependencies = dependencies && 'deviceRechargeCatalog' in dependencies
+      ? dependencies as import('./scene-exploration-types').SceneBatteryCommandDependencies
+      : null
+    if (!batteryDependencies) fail('EFFECT_BATTERY_MISMATCH', '场景电池 Effect 回放需要完整充能目录')
+    return applySceneBatteryEffects(initialSnapshot, effects, batteryDependencies)
   }
   if (effects.some(({ kind }) =>
     kind === 'scene-task-risk-resolved' ||

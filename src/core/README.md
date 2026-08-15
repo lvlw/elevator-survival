@@ -1,11 +1,15 @@
 # Core
 
+## Scene battery recharge
+
+`src/core/device-recharge` owns neutral, injected supply-to-device compatibility bindings. `src/core/scene-exploration` uses those bindings for the non-combat Scene battery command: a real backpack supply is consumed, the carried device `ItemState` is restored through the shared resource helper, then the existing timed Scene-action lifecycle resolves time, bleeding, death, and forced return through one frozen Effect plan. It does not import Hub-maintenance transactions, auto-select a source or target, or implement combat charging.
+
 纯 TypeScript 规则、状态转移、Effect、确定性随机与结算逻辑的边界。
 
 - 配置契约和运行时校验属于核心，具体医院配置不属于核心。
 - 最小 Run 身份在创建时绑定已注册的规则版本。
 - 核心不依赖 React、React DOM、Zustand、DOM 或浏览器 API。
-- 场景边移动、主要搜索、节点物品显式拾取、医院防火门、工作人员通道实时权限、单级警觉、感染护工战斗、医院样本箱任务事件、返回结算、最小整备库存管理、原子日结算、最小 Run 失败终止协调，以及中枢装备维护与手电筒充能已经实现；场景和中枢医疗支持绷带、止痛药、消毒剂和急救包，战斗医疗支持绷带和止痛药。场景内电池充能、制作、拆解、完整 RunState、Save IO 和 UI 尚未实现。
+- 场景边移动、主要搜索、节点物品显式拾取、医院防火门、工作人员通道实时权限、单级警觉、感染护工战斗、医院样本箱任务事件、返回结算、最小整备库存管理、原子日结算、最小 Run 失败终止协调，以及中枢和非战斗场景中的手电筒电池充能已经实现；场景和中枢医疗支持绷带、止痛药、消毒剂和急救包，战斗医疗支持绷带和止痛药。制作、拆解、完整 RunState、Save IO 和 UI 尚未实现。
 
 ## 确定性随机
 

@@ -8,6 +8,11 @@ export {
 } from './scene-exploration-snapshot'
 export { getScenePhysicalItemInstanceIds } from './scene-physical-items'
 export { applySceneExplorationEffects } from './scene-exploration-effects'
+export { applySceneBatteryEffects } from './scene-battery-effect-application'
+export { getAvailableSceneBatteryCommands } from './scene-battery-selectors'
+export { createUseSceneBatteryCommand } from './scene-battery-validation'
+export { previewSceneBatteryCommand, resolveSceneBatteryCommand } from './scene-battery-command'
+export { buildSceneBatteryTransitionPlan } from './scene-battery-transition-plan'
 export { getPlayerVisibleSceneNodeState } from './player-visible-scene-node'
 export { getPlayerVisibleSceneCombatState } from './player-visible-scene-combat'
 export { getPlayerVisibleSceneTaskEvents } from './scene-task-event-selectors'
@@ -63,6 +68,7 @@ export type {
   PerformSceneObstacleOptionCommand,
   PerformSceneTaskEventCommand,
   UseSceneMedicalItemCommand,
+  UseSceneBatteryCommand,
   SceneExplorationDependencies,
   SceneExplorationEffect,
   SceneExplorationSnapshot,
@@ -77,6 +83,11 @@ export type {
   SceneMedicalResolution,
   SceneMedicalTarget,
   SceneMedicalTransitionPlan,
+  SceneBatteryCommandDependencies,
+  SceneBatteryEvaluation,
+  SceneBatteryPreview,
+  SceneBatteryResolution,
+  SceneBatteryTransitionPlan,
   SceneAlertState,
   SceneExplorationStatus,
   SceneObstacleCommandDependencies,

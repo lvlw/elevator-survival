@@ -1,5 +1,9 @@
 # Content
 
+## Hospital device recharge content
+
+The Hospital content layer provides the only current neutral recharge binding: `standard battery → flashlight (charge)`. The same catalog is injected into both Hub maintenance and Scene exploration; core modules do not contain Hospital item IDs or assume that other devices are rechargeable.
+
 存放版本化内容配置，不保存可变 Run 状态。
 
 - 医院 `v0.1` 配置位于 `hospital-v0.1/`。

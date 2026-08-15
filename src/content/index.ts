@@ -16,6 +16,7 @@ export {
   hospitalItemSearchIlluminationProfiles,
   hospitalItemMaintenanceCatalog,
   hospitalItemMaintenanceProfiles,
+  hospitalDeviceRechargeCatalog,
   hospitalItemReturnLifecycleCatalog,
   hospitalItemReturnLifecycleProfiles,
   hospitalSceneMedicalContentBindings,

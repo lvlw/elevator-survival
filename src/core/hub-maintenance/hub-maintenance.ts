@@ -1,4 +1,5 @@
 import { deepFreeze, type FrozenRuleConfig } from '../config'
+import type { DeviceRechargeCatalog } from '../device-recharge'
 import {
   createCurrentDayHubSnapshot,
   type CurrentDayHubDependencies,
@@ -38,12 +39,12 @@ export interface HubMaintenanceMaterialBindings {
   readonly metalPartsDefinitionId: string
   readonly fabricDefinitionId: string
   readonly electronicComponentsDefinitionId: string
-  readonly standardBatteryDefinitionId: string
 }
 
 export interface HubMaintenanceContentBindings {
   readonly profiles: MaintenanceProfileCatalog
   readonly materials: HubMaintenanceMaterialBindings
+  readonly deviceRechargeCatalog: DeviceRechargeCatalog
 }
 
 export interface HubMaintenanceDependencies {
@@ -387,21 +388,22 @@ export function validateHubMaintenanceDependencies(
     invalid('中枢维护依赖结构无效')
   }
   const bindings = dependencies.contentBindings
-  if (!plain(bindings) || !exact(bindings, ['materials', 'profiles']) ||
+  if (!plain(bindings) || !exact(bindings, ['deviceRechargeCatalog', 'materials', 'profiles']) ||
     !plain(bindings.materials) || !exact(bindings.materials, [
       'electronicComponentsDefinitionId',
       'fabricDefinitionId',
       'metalPartsDefinitionId',
-      'standardBatteryDefinitionId',
     ]) || !bindings.profiles || !Array.isArray(bindings.profiles.definitionIds) ||
-    typeof bindings.profiles.get !== 'function' || typeof bindings.profiles.has !== 'function') {
+    typeof bindings.profiles.get !== 'function' || typeof bindings.profiles.has !== 'function' ||
+    !bindings.deviceRechargeCatalog || !Array.isArray(bindings.deviceRechargeCatalog.bindings) ||
+    typeof bindings.deviceRechargeCatalog.get !== 'function' ||
+    typeof bindings.deviceRechargeCatalog.getBindingsForTarget !== 'function') {
     invalid('中枢维护内容绑定无效')
   }
   const materialIds = [
     bindings.materials.metalPartsDefinitionId,
     bindings.materials.fabricDefinitionId,
     bindings.materials.electronicComponentsDefinitionId,
-    bindings.materials.standardBatteryDefinitionId,
   ]
   if (materialIds.some((id) => typeof id !== 'string' || !id.trim()) ||
     new Set(materialIds).size !== materialIds.length) {
@@ -421,6 +423,14 @@ export function validateHubMaintenanceDependencies(
       loadout.itemResourceCatalog.get(definitionId).kind !== 'none' ||
       loadout.lifecycleCatalog.get(definitionId).kind !== 'ordinary') {
       invalid('中枢维护材料绑定不符合物品语义')
+    }
+  }
+  for (const recharge of bindings.deviceRechargeCatalog.bindings) {
+    if (!loadout.physicalCatalog.has(recharge.supplyDefinitionId) ||
+      !loadout.physicalCatalog.has(recharge.targetDefinitionId) ||
+      loadout.itemResourceCatalog.get(recharge.supplyDefinitionId).kind !== 'none' ||
+      loadout.itemResourceCatalog.get(recharge.targetDefinitionId).kind !== recharge.targetResourceKind) {
+      invalid('中枢设备充能目录与物品语义不一致')
     }
   }
   for (const definitionId of bindings.profiles.definitionIds) {
@@ -540,20 +550,19 @@ function listEligibleTargetCandidates(
 }
 
 function materialDefinitionId(
-  material: HubMaintenanceMaterialKind,
+  material: Exclude<HubMaintenanceMaterialKind, 'standard-battery'>,
   bindings: HubMaintenanceMaterialBindings,
 ): string {
   switch (material) {
     case 'metal-parts': return bindings.metalPartsDefinitionId
     case 'fabric': return bindings.fabricDefinitionId
     case 'electronic-components': return bindings.electronicComponentsDefinitionId
-    case 'standard-battery': return bindings.standardBatteryDefinitionId
   }
 }
 
 function listMaterialSources(
   runLoadout: RunLoadoutSnapshot,
-  material: HubMaintenanceMaterialKind,
+  material: Exclude<HubMaintenanceMaterialKind, 'standard-battery'>,
   dependencies: HubMaintenanceDependencies,
 ): readonly HubMaintenanceMaterialSourceCandidate[] {
   const expectedDefinitionId = materialDefinitionId(material, dependencies.contentBindings.materials)
@@ -569,6 +578,32 @@ function listMaterialSources(
           definitionId: resolved.item.definitionId,
           quantity: resolved.item.quantity,
         })
+      }
+    } catch (error) {
+      if (!(error instanceof HubInventoryError)) throw error
+    }
+  }
+  return deepFreeze(result.sort((left, right) => sourceKey(left.source).localeCompare(sourceKey(right.source))))
+}
+
+function listRechargeSources(
+  runLoadout: RunLoadoutSnapshot,
+  targetDefinitionIds: readonly string[],
+  dependencies: HubMaintenanceDependencies,
+): readonly HubMaintenanceMaterialSourceCandidate[] {
+  const supplies = new Set(
+    targetDefinitionIds.flatMap((targetDefinitionId) =>
+      dependencies.contentBindings.deviceRechargeCatalog
+        .getBindingsForTarget(targetDefinitionId)
+        .map(({ supplyDefinitionId }) => supplyDefinitionId),
+    ),
+  )
+  const result: HubMaintenanceMaterialSourceCandidate[] = []
+  for (const source of getAvailableHubItemSources(runLoadout)) {
+    try {
+      const resolved = resolveHubItemSource(runLoadout, source)
+      if (supplies.has(resolved.item.definitionId)) {
+        result.push({ material: 'standard-battery', source: resolved.source, instanceId: resolved.item.instanceId, definitionId: resolved.item.definitionId, quantity: resolved.item.quantity })
       }
     } catch (error) {
       if (!(error instanceof HubInventoryError)) throw error
@@ -634,7 +669,11 @@ export function getAvailableHubMaintenanceActions(
     })
   }
   const flashlightTargets = listEligibleTargetCandidates(snapshot, 'flashlight-charge', dependencies)
-  const batterySources = listMaterialSources(snapshot.runLoadout, 'standard-battery', dependencies)
+  const batterySources = listRechargeSources(
+    snapshot.runLoadout,
+    flashlightTargets.map(({ definitionId }) => definitionId),
+    dependencies,
+  )
   if (flashlightTargets.length > 0 && batterySources.length > 0) {
     actions.push({
       kind: 'charge-flashlight',
@@ -662,7 +701,7 @@ function multiplySafe(left: number, right: number, label: string): number {
 function resolveMaterial(
   runLoadout: RunLoadoutSnapshot,
   sourceInput: HubItemSource,
-  material: HubMaintenanceMaterialKind,
+  material: Exclude<HubMaintenanceMaterialKind, 'standard-battery'>,
   dependencies: HubMaintenanceDependencies,
 ): ResolvedHubMaintenanceMaterial {
   let resolved
@@ -683,6 +722,29 @@ function resolveMaterial(
     sourceSlotIndex: resolved.sourceSlotIndex,
     item: resolved.item,
   })
+}
+
+function resolveRechargeBattery(
+  runLoadout: RunLoadoutSnapshot,
+  sourceInput: HubItemSource,
+  targetDefinitionId: string,
+  dependencies: HubMaintenanceDependencies,
+): ResolvedHubMaintenanceMaterial {
+  let resolved
+  try {
+    resolved = resolveHubItemSource(runLoadout, sourceInput)
+  } catch (error) {
+    if (error instanceof HubInventoryError) unavailable(error.message)
+    throw error
+  }
+  const binding = dependencies.contentBindings.deviceRechargeCatalog.get(
+    resolved.item.definitionId,
+    targetDefinitionId,
+  )
+  if (!binding || binding.targetResourceKind !== 'charge') {
+    unavailable('指定来源不能为该设备充能')
+  }
+  return deepFreeze({ material: 'standard-battery', source: resolved.source, sourceContainer: resolved.sourceContainer, sourceSlotIndex: resolved.sourceSlotIndex, item: resolved.item })
 }
 
 function consumeMaterial(
@@ -928,7 +990,12 @@ function buildFlashlightChargeResult(
   dependencies: HubMaintenanceDependencies,
 ): HubMaintenanceOperationResult {
   const target = resolveEligibleTarget(snapshot.runLoadout, command.target, 'flashlight-charge', dependencies)
-  const battery = resolveMaterial(snapshot.runLoadout, command.batterySource, 'standard-battery', dependencies)
+  const battery = resolveRechargeBattery(
+    snapshot.runLoadout,
+    command.batterySource,
+    target.item.definitionId,
+    dependencies,
+  )
   assertMaterialSeparateFromTargets(battery, [target])
   const consumed = consumeMaterial(snapshot.runLoadout, battery, dependencies)
   const restored = restoreTarget(

@@ -1,5 +1,7 @@
 # 规则实现追踪矩阵
 
+| 场景非战斗手电筒电池充能 | DEC-036 | `scene.batteryUseTime`、`maintenance.flashlightCharge` 与医院电池→手电筒中性兼容目录 | `src/core/device-recharge/`、`src/core/scene-exploration/` | `src/content/hospital-v0.1/scene-battery.integration.test.ts` | 已实现 | 仅允许真实背包通用电池为背包或实用装备位中的未充满手电筒充能；恢复、行动时间、流血、死亡和超时返程均经单一冻结 Scene Effect 计划结算，不实现战斗充能或自动选择。 |
+
 > 本文件用于连接设计决策、版本化配置、实现和测试，不是权威规则来源。实际规则以已确认 DEC 为准；存在类型、接口或测试辅助组合不代表完整玩法命令链已经实现。
 
 | 主题 | 相关 DEC | 配置路径 | 实现路径 | 主要测试路径 | 状态 | 说明 |
@@ -17,7 +19,7 @@
 | 装备资格与背包转移 | DEC-007、DEC-016、DEC-020、DEC-037 | 医院装备资格目录 | `src/core/equipment/`、医院装备目录 | `src/core/equipment/equipment.test.ts`、医院装备集成测试 | 已实现 | 装备不占格且不计入背包负重；上下文换装资格未实现。 |
 | 玩家生命、流血、伤口、挫伤、暴露与镇痛 | DEC-026、DEC-031、DEC-034、DEC-035 | `combat.player`、`combat.escape`、`medical.*`、`scene.postActionBleedingDamage` | `src/core/condition/`、`src/core/daily-state/`、`src/core/medical/`、`src/core/combat/`、`src/core/scene-exploration/`、`src/core/run-hub-medical/` | `src/core/condition/condition.test.ts`、医院场景／战斗／中枢医疗集成测试 | 部分实现 | 已实现类型化伤口、待处理感染暴露、日级消毒剂次数，以及场景／中枢绷带、止痛药、消毒剂、急救包和战斗绷带／止痛药；中枢为零时间库存、条件与日级使用事务。医院感染进展、原子日结算和最小失败终止协调已实现；Save IO 和 UI 尚未实现。 |
 | 消防斧耐久2 | DEC-039 | `maintenance.itemResourceMaximums.fireAxeDurability` | 医院物品资源目录 | `hospital-item-resource-profiles.test.ts` | 已实现 | 只追踪资源状态，不代表消防斧攻击或维修配方已实现。 |
-| 当前日中枢装备维护与手电筒充能 | DEC-006、DEC-007、DEC-016、DEC-018、DEC-019、DEC-020、DEC-036、DEC-039 | `maintenance.dailyBaseLabor`、`maintenance.materialRepair`、`maintenance.toolkitRepair`、`maintenance.flashlightCharge`、医院维护 profile／材料绑定 | `src/core/hub-maintenance/`、`src/core/hub-inventory/`、`src/core/item-state/`、`src/content/hospital-v0.1/items/hospital-item-maintenance-*.ts` | `src/content/hospital-v0.1/hub-maintenance.integration.test.ts` | 已实现 | 在合法 CurrentDayHub 上实现基础工时、金属零件、布料、工具箱双材料和手电筒电池充能；目标为真实仓库／背包／装备栏实例，材料来源显式且原子消费，计划／预览／应用共用精确 Effect 比较。消防斧无维护 profile；场景电池操作、制作、拆解、Save IO、完整 RunState 与 UI 未实现。 |
+| 当前日中枢装备维护与手电筒充能 | DEC-006、DEC-007、DEC-016、DEC-018、DEC-019、DEC-020、DEC-036、DEC-039 | `maintenance.dailyBaseLabor`、`maintenance.materialRepair`、`maintenance.toolkitRepair`、`maintenance.flashlightCharge`、医院维护 profile／材料绑定 | `src/core/hub-maintenance/`、`src/core/hub-inventory/`、`src/core/item-state/`、`src/content/hospital-v0.1/items/hospital-item-maintenance-*.ts` | `src/content/hospital-v0.1/hub-maintenance.integration.test.ts` | 已实现 | 在合法 CurrentDayHub 上实现基础工时、金属零件、布料、工具箱双材料和手电筒电池充能；目标为真实仓库／背包／装备栏实例，材料来源显式且原子消费，计划／预览／应用共用精确 Effect 比较。消防斧无维护 profile；制作、拆解、Save IO、完整 RunState 与 UI 未实现。 |
 | 统一 Effect 管线 | DEC-006 | 复用场景、负载、战斗与返程配置 | `src/core/scene-exploration/` | 核心场景Effect、搜索、拾取、障碍与场景战斗命令测试，医院集成测试 | 部分实现 | 场景移动、主要搜索、节点物品拾取、防火门和场景战斗已采用冻结Effect计划和唯一应用器生成最终快照；战斗推进内嵌并验证完整Combat计划；尚未形成通用命令总线。 |
 | 场景移动命令 | DEC-004、DEC-024、DEC-030、DEC-033、DEC-035、DEC-038 | `scene.*`、`forcedReturn.*`、`backpack.weightBands` | `src/core/scene-exploration/` | 核心移动命令与Effect防篡改测试、`src/content/hospital-v0.1/scene-movement-command.integration.test.ts` | 已实现 | 严格校验单字段边ID命令；移动、负载、挫伤、返程、流血、终局与战斗触发共用唯一完整Effect计划，应用前会重新生成并完整比对；不是完整 RunState，医院切片尚不可玩。 |
 | 场景节点主要搜索 | DEC-010、DEC-013、DEC-023、DEC-024、DEC-030、DEC-032、DEC-035 | `scene.searchTime`、医院搜索与照明资格目录 | `src/core/scene-search/`、`src/core/scene-exploration/`、`src/content/hospital-v0.1/search/` | 核心搜索及命令测试、医院搜索命令集成测试 | 部分实现 | 已实现结果预定、搜索命令、照明和揭示；独立互动及搜索UI尚未实现。 |

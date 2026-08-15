@@ -14,6 +14,7 @@ import {
 import { createFullItemState, createItemState } from '../../core/item-state'
 import { createQuickSlotSnapshot } from '../../core/quick-slot'
 import { createRunLoadoutSnapshot } from '../../core/run-loadout'
+import { deriveSceneInstanceIdFromRunFacts } from '../../core/scene-launch'
 import {
   bindRunReturnCarryForwardToScene,
   resolveRunReturn,
@@ -61,8 +62,23 @@ import {
   hospitalWorldThreatCatalog,
 } from '..'
 
-const sceneInstanceId = 'hospital-run-failure-scene'
 const runSeed = 'hospital-run-failure-seed'
+const runIdentity = {
+  runId: 'run-failure-golden',
+  seed: runSeed,
+  rulesVersion: config.metadata.rulesVersion,
+}
+const defaultCurrentDay = 3
+
+function sceneInstanceIdFor(currentDay: number): string {
+  return deriveSceneInstanceIdFromRunFacts({
+    runIdentity,
+    currentDay,
+    sceneDefinitionId: hospitalSceneLaunchContent.sceneDefinitionId,
+  })
+}
+
+const sceneInstanceId = sceneInstanceIdFor(defaultCurrentDay)
 const sceneDependencies = {
   graph: hospitalSliceV01SceneGraph,
   physicalCatalog: hospitalItemCatalog,
@@ -153,11 +169,9 @@ function hub(options: HubOptions = {}): CurrentDayHubSnapshot {
   return createCurrentDayHubSnapshot({
     continuity: {
       runIdentity: {
-        runId: 'run-failure-golden',
-        seed: runSeed,
-        rulesVersion: config.metadata.rulesVersion,
+        ...runIdentity,
       },
-      currentDay: options.day ?? 3,
+      currentDay: options.day ?? defaultCurrentDay,
       sceneInstanceId: 'previous-returned-scene',
     },
     runLoadout,
@@ -268,12 +282,17 @@ function scene(options: SceneOptions = {}): SceneExplorationSnapshot {
 }
 
 function boundContext(startHub = hub()) {
+  const activeSceneInstanceId = deriveSceneInstanceIdFromRunFacts({
+    runIdentity: startHub.continuity.runIdentity,
+    currentDay: startHub.continuity.currentDay,
+    sceneDefinitionId: hospitalSceneLaunchContent.sceneDefinitionId,
+  })
   const runReturnCarryForward = bindRunReturnCarryForwardToScene(
     projectRunReturnCarryForwardFromCurrentDayHub(
       startHub,
       currentDayHubDependencies,
     ),
-    sceneInstanceId,
+    activeSceneInstanceId,
     returnDependencies,
   )
   return restoreRunSceneTerminationContext({
@@ -329,7 +348,7 @@ describe('hospital Run failure termination coordinator', () => {
     const rebound = boundContext(start)
     expect(rebound.runReturnCarryForward.continuity).toEqual({
       ...projected.continuity,
-      sceneInstanceId,
+      sceneInstanceId: sceneInstanceIdFor(7),
     })
     expect(rebound.runReturnCarryForward.storedInventory).toEqual(
       projected.storedInventory,

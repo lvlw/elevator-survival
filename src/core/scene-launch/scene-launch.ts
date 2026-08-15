@@ -6,7 +6,7 @@ import {
   type CurrentDayHubDependencies,
   type CurrentDayHubSnapshot,
 } from '../current-day-hub'
-import { bindRunPhaseContinuityToScene } from '../domain'
+import { bindRunPhaseContinuityToScene, type RunIdentity } from '../domain'
 import type { ItemState } from '../item-state'
 import {
   assertNoRunStorageScenePhysicalItemConflicts,
@@ -135,6 +135,12 @@ export interface RunSceneReturnResolution {
   readonly currentDayHub: CurrentDayHubSnapshot
 }
 
+export interface SceneInstanceIdentityFacts {
+  readonly runIdentity: RunIdentity
+  readonly currentDay: number
+  readonly sceneDefinitionId: string
+}
+
 function plain(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value) &&
     Object.getPrototypeOf(value) === Object.prototype
@@ -160,6 +166,28 @@ function same(left: unknown, right: unknown): boolean {
   return JSON.stringify(left) === JSON.stringify(right)
 }
 
+export function deriveSceneInstanceIdFromRunFacts(
+  input: SceneInstanceIdentityFacts,
+): string {
+  if (!exact(input, ['currentDay', 'runIdentity', 'sceneDefinitionId']) ||
+    !exact(input.runIdentity, ['rulesVersion', 'runId', 'seed']) ||
+    typeof input.runIdentity.runId !== 'string' || !input.runIdentity.runId.trim() ||
+    typeof input.runIdentity.seed !== 'string' || !input.runIdentity.seed.trim() ||
+    typeof input.runIdentity.rulesVersion !== 'string' || !input.runIdentity.rulesVersion.trim() ||
+    !Number.isSafeInteger(input.currentDay) || input.currentDay < 1 ||
+    typeof input.sceneDefinitionId !== 'string' || !input.sceneDefinitionId.trim()) {
+    invalid('场景实例身份派生事实无效')
+  }
+  return deepFreeze([
+    'scene',
+    input.runIdentity.runId,
+    input.runIdentity.seed,
+    input.runIdentity.rulesVersion,
+    String(input.currentDay),
+    input.sceneDefinitionId,
+  ].map((part) => encodeURIComponent(part)).join(':'))
+}
+
 export function deriveSceneInstanceId(
   hubInput: CurrentDayHubSnapshot,
   sceneDefinitionId: string,
@@ -169,15 +197,11 @@ export function deriveSceneInstanceId(
   if (typeof sceneDefinitionId !== 'string' || sceneDefinitionId.trim().length === 0) {
     invalid('正式场景定义ID无效')
   }
-  const identity = hub.continuity.runIdentity
-  return deepFreeze([
-    'scene',
-    identity.runId,
-    identity.seed,
-    identity.rulesVersion,
-    String(hub.continuity.currentDay),
+  return deriveSceneInstanceIdFromRunFacts({
+    runIdentity: hub.continuity.runIdentity,
+    currentDay: hub.continuity.currentDay,
     sceneDefinitionId,
-  ].map((part) => encodeURIComponent(part)).join(':'))
+  })
 }
 
 function runtimeFor(
@@ -251,6 +275,18 @@ export function restoreRunSceneLifecycleContext(
       input.runReturnCarryForward,
       dependencies.currentDayHub.returnDependencies,
     )
+    const actualSceneInstanceId = carryForward.continuity.sceneInstanceId
+    const expectedSceneInstanceId = deriveSceneInstanceIdFromRunFacts({
+      runIdentity: carryForward.continuity.runIdentity,
+      currentDay: carryForward.continuity.currentDay,
+      sceneDefinitionId: dependencies.content.sceneDefinitionId,
+    })
+    if (actualSceneInstanceId !== expectedSceneInstanceId) {
+      invalid('Run场景生命周期的场景实例ID不符合正式确定性派生结果')
+    }
+    if (carryForward.returnLedger.sceneInstanceIds.includes(actualSceneInstanceId)) {
+      invalid('Run场景生命周期的当前场景实例已经完成返回结算')
+    }
     if (!Number.isSafeInteger(input.maintenanceLaborRemaining) ||
       (input.maintenanceLaborRemaining as number) < 0 ||
       (input.maintenanceLaborRemaining as number) > config.maintenance.dailyBaseLabor.points) {

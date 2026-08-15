@@ -16,6 +16,7 @@ import {
   buildSceneLaunchTransitionPlan,
   createRunSceneSessionSnapshot,
   deriveSceneInstanceId,
+  deriveSceneInstanceIdFromRunFacts,
   getRunSceneRuntime,
   previewSceneLaunch,
   resolveRunSceneSessionReturn,
@@ -25,11 +26,13 @@ import {
   type SceneLaunchEffect,
 } from '../../core/scene-launch'
 import {
+  createInitialSceneExplorationSnapshot,
   createSceneExplorationSnapshot,
   resolveSceneBatteryCommand,
   resolveSceneMedicalCommand,
   resolveSceneMoveCommand,
 } from '../../core/scene-exploration'
+import { createSceneSearchState } from '../../core/scene-search'
 import {
   resolveRunFailureFromSceneSession,
   type RunTerminationDependencies,
@@ -38,6 +41,7 @@ import {
   HOSPITAL_EDGE_IDS,
   HOSPITAL_ITEM_IDS,
   HOSPITAL_NODE_IDS,
+  createHospitalSceneRuntimeBundle,
   hospitalHubSurvivalContentBindings,
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
@@ -192,6 +196,11 @@ function terminalSession(
 }
 
 describe('hospital formal Scene Launch and active Scene lifecycle', () => {
+  it('uses the DEC-029 hospital Scene definition identity', () => {
+    expect(hospitalSceneLaunchContent.sceneDefinitionId)
+      .toBe('scene_blockaded_hospital_emergency_floor_1')
+  })
+
   it('derives stable instance identity from Run, rule version, day, and formal scene content', () => {
     const start = hub()
     const sameA = deriveSceneInstanceId(start, hospitalSceneLaunchContent.sceneDefinitionId, currentDayHubDependencies)
@@ -199,6 +208,11 @@ describe('hospital formal Scene Launch and active Scene lifecycle', () => {
     const nextDay = deriveSceneInstanceId(hub({ day: 3 }), hospitalSceneLaunchContent.sceneDefinitionId, currentDayHubDependencies)
     const otherRun = deriveSceneInstanceId(hub({ runId: 'other-run' }), hospitalSceneLaunchContent.sceneDefinitionId, currentDayHubDependencies)
     expect(sameA).toBe(sameB)
+    expect(sameA).toBe(deriveSceneInstanceIdFromRunFacts({
+      runIdentity: start.continuity.runIdentity,
+      currentDay: start.continuity.currentDay,
+      sceneDefinitionId: hospitalSceneLaunchContent.sceneDefinitionId,
+    }))
     expect(nextDay).not.toBe(sameA)
     expect(otherRun).not.toBe(sameA)
   })
@@ -290,6 +304,96 @@ describe('hospital formal Scene Launch and active Scene lifecycle', () => {
       context: session.context,
       scene: { ...session.scene, sceneInstanceId: 'forged-scene-instance' },
     }, launchDependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+
+  it('rejects an internally consistent Session whose Scene ID is not the formal deterministic derivation', () => {
+    const launched = resolveSceneLaunch(
+      hub(),
+      { kind: 'launch-main-scene' },
+      launchDependencies,
+    ).session
+    const forgedSceneInstanceId = 'forged-but-internally-consistent-scene'
+    expect(forgedSceneInstanceId).not.toBe(deriveSceneInstanceIdFromRunFacts({
+      runIdentity: launched.context.runReturnCarryForward.continuity.runIdentity,
+      currentDay: launched.context.runReturnCarryForward.continuity.currentDay,
+      sceneDefinitionId: hospitalSceneLaunchContent.sceneDefinitionId,
+    }))
+    const forgedRuntime = createHospitalSceneRuntimeBundle(
+      launched.context.runReturnCarryForward.continuity.runIdentity.seed,
+      forgedSceneInstanceId,
+    )
+    const forgedScene = createInitialSceneExplorationSnapshot({
+      sceneInstanceId: forgedSceneInstanceId,
+      searchState: createSceneSearchState({
+        runSeed: launched.context.runReturnCarryForward.continuity.runIdentity.seed,
+        sceneInstanceId: forgedSceneInstanceId,
+        graph: forgedRuntime.dependencies.graph,
+        searchCatalog: forgedRuntime.dependencies.searchCatalog,
+        itemCatalog: forgedRuntime.dependencies.physicalCatalog,
+        itemResourceCatalog: forgedRuntime.dependencies.itemResourceCatalog,
+      }),
+      currentNodeId: forgedRuntime.entryNodeId,
+      remainingTime: forgedRuntime.dependencies.config.scene.totalTime,
+      enabledEdgeIds: forgedRuntime.initialEnabledEdgeIds,
+      backpack: launched.scene.backpack,
+      equipment: launched.scene.equipment,
+      quickSlots: launched.scene.quickSlots,
+      itemStates: launched.scene.itemStates,
+      condition: launched.scene.condition,
+      dailyMedicalUsage: launched.scene.dailyMedicalUsage,
+      runIntelLog: launched.scene.runIntelLog,
+    }, forgedRuntime.dependencies)
+    expect(forgedScene.sceneInstanceId).toBe(forgedSceneInstanceId)
+    const forgedContext = {
+      ...launched.context,
+      runReturnCarryForward: {
+        ...launched.context.runReturnCarryForward,
+        continuity: {
+          ...launched.context.runReturnCarryForward.continuity,
+          sceneInstanceId: forgedSceneInstanceId,
+        },
+      },
+    }
+    expect(() => createRunSceneSessionSnapshot({
+      context: forgedContext,
+      scene: forgedScene,
+    }, launchDependencies)).toThrowError(/确定性派生/)
+  })
+
+  it('rejects a Session whose current Scene is already returned through restore, Return, and termination', () => {
+    const launched = resolveSceneLaunch(
+      hub(),
+      { kind: 'launch-main-scene' },
+      launchDependencies,
+    ).session
+    const returnedCurrentContext = {
+      ...launched.context,
+      runReturnCarryForward: {
+        ...launched.context.runReturnCarryForward,
+        returnLedger: {
+          sceneInstanceIds: [
+            ...launched.context.runReturnCarryForward.returnLedger.sceneInstanceIds,
+            launched.scene.sceneInstanceId,
+          ].sort(),
+        },
+      },
+    }
+    expect(() => createRunSceneSessionSnapshot({
+      context: returnedCurrentContext,
+      scene: launched.scene,
+    }, launchDependencies)).toThrowError(/已经完成返回结算/)
+
+    const safeReturned = terminalSession(launched, 'safe-returned')
+    expect(() => resolveRunSceneSessionReturn({
+      context: returnedCurrentContext,
+      scene: safeReturned.scene,
+    }, launchDependencies)).toThrowError(/已经完成返回结算/)
+
+    const dead = terminalSession(launched, 'dead')
+    expect(() => resolveRunFailureFromSceneSession({
+      context: returnedCurrentContext,
+      scene: dead.scene,
+    }, terminationDependencies)).toThrowError(/已经完成返回结算/)
   })
 
   it('rejects second launch and a forged unused flag whose deterministic ID is already returned', () => {

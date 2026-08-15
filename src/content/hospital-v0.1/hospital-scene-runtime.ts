@@ -26,7 +26,7 @@ import { hospitalSliceV01RuleConfig } from './rule-config'
 import { hospitalMainSearchCatalog } from './search'
 import { hospitalSceneTaskEventCatalog } from './task-events'
 
-export const HOSPITAL_SCENE_DEFINITION_ID = 'scene_hospital_isolation_v0.1'
+export const HOSPITAL_SCENE_DEFINITION_ID = 'scene_blockaded_hospital_emergency_floor_1'
 
 export function createHospitalSceneRuntimeBundle(
   runSeed: string,

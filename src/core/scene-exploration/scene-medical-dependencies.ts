@@ -16,6 +16,7 @@ export function validateSceneMedicalDependencies(
     validateMedicalContentBindings(bindings, {
       physicalCatalog: dependencies.physicalCatalog,
       itemResourceCatalog: dependencies.itemResourceCatalog,
+      lifecycleCatalog: dependencies.lifecycleCatalog,
     })
   } catch (error) {
     if (error instanceof MedicalContentError) {

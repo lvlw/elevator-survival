@@ -6,6 +6,7 @@ import {
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
+  hospitalItemReturnLifecycleCatalog,
   hospitalItemResourceCatalog,
 } from '../items'
 import { hospitalSliceV01RuleConfig } from '../rule-config'
@@ -49,6 +50,7 @@ export function createHospitalSceneCombatDependencies(
       equipmentCatalog: hospitalItemEquipmentCatalog,
       quickSlotCatalog: hospitalItemQuickSlotCatalog,
       itemResourceCatalog: hospitalItemResourceCatalog,
+      lifecycleCatalog: hospitalItemReturnLifecycleCatalog,
       enemyCatalog: hospitalEnemyCatalog,
       bindings: hospitalCombatContentBindings,
     }),

@@ -11,6 +11,7 @@ import {
   resolveMainSearchCommand,
   resolveSceneMedicalCommand,
   resolveSceneMoveCommand,
+  SceneExplorationError,
   type SceneExplorationEffect,
   type SceneExplorationSnapshot,
   type UseSceneMedicalItemCommand,
@@ -24,6 +25,7 @@ import {
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
+  hospitalItemReturnLifecycleCatalog,
   hospitalItemResourceCatalog,
   hospitalItemSearchIlluminationCatalog,
   hospitalMainSearchCatalog,
@@ -40,6 +42,7 @@ const dependencies = {
   itemResourceCatalog: hospitalItemResourceCatalog,
   config,
   medicalBindings: hospitalSceneMedicalContentBindings,
+  lifecycleCatalog: hospitalItemReturnLifecycleCatalog,
 }
 
 const searchDependencies = {
@@ -151,6 +154,29 @@ function effectKinds(effects: readonly SceneExplorationEffect[]) {
 }
 
 describe('hospital non-combat scene medical', () => {
+  it('rejects a quest item forged into the formal medical bindings', () => {
+    expect(() => getAvailableSceneMedicalCommands(snapshot(), {
+      ...dependencies,
+      medicalBindings: {
+        ...hospitalSceneMedicalContentBindings,
+        bandageDefinitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase,
+      },
+    })).toThrowError(expect.objectContaining<Partial<SceneExplorationError>>({
+      code: 'INVALID_SCENE_MEDICAL_BINDINGS',
+    }))
+  })
+
+  it('rejects a missing lifecycle catalog instead of weakening medical binding validation', () => {
+    const missingLifecycle = { ...dependencies } as {
+      lifecycleCatalog?: unknown
+    } & Omit<typeof dependencies, 'lifecycleCatalog'>
+    delete missingLifecycle.lifecycleCatalog
+    expect(() => getAvailableSceneMedicalCommands(snapshot(), missingLifecycle as never))
+      .toThrowError(expect.objectContaining<Partial<SceneExplorationError>>({
+        code: 'INVALID_SCENE_MEDICAL_BINDINGS',
+      }))
+  })
+
   it('applies the confirmed bandage, painkiller, disinfectant, and first-aid-kit routes from versioned rules', () => {
     const bandageStart = snapshot({
       backpackItems: [item('bandage-stack', HOSPITAL_ITEM_IDS.bandage)],

@@ -60,6 +60,7 @@ import type {
   SceneCombatStateSnapshot,
 } from '../scene-combat'
 import type { RunIntelLogSnapshot } from '../run-intel'
+import type { ItemReturnLifecycleCatalog } from '../run-return'
 import type {
   SceneTaskEventCatalog,
   SceneTaskEventStateSnapshot,
@@ -126,6 +127,7 @@ export interface SceneExplorationDependencies {
 export interface SceneMedicalCommandDependencies
   extends SceneExplorationDependencies {
   readonly medicalBindings: SceneMedicalContentBindings
+  readonly lifecycleCatalog: ItemReturnLifecycleCatalog
 }
 
 export interface SceneBatteryCommandDependencies extends SceneExplorationDependencies {

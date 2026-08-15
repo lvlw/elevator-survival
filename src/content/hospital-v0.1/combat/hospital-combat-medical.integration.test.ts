@@ -23,6 +23,7 @@ import {
   createBackpackSnapshot,
   type ItemInstance,
 } from '../../../core/inventory'
+import { createQuickSlotProfileCatalog } from '../../../core/quick-slot'
 import {
   createFullItemState,
   createItemResourceCatalog,
@@ -34,8 +35,10 @@ import {
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
+  hospitalItemQuickSlotProfiles,
   hospitalItemResourceCatalog,
   hospitalItemResourceProfiles,
+  hospitalItemReturnLifecycleCatalog,
 } from '../items'
 import { hospitalSliceV01RuleConfig as config } from '../rule-config'
 import {
@@ -53,6 +56,7 @@ const baseDependencies = {
   equipmentCatalog: hospitalItemEquipmentCatalog,
   quickSlotCatalog: hospitalItemQuickSlotCatalog,
   itemResourceCatalog: hospitalItemResourceCatalog,
+  lifecycleCatalog: hospitalItemReturnLifecycleCatalog,
   enemyCatalog: hospitalEnemyCatalog,
   bindings: hospitalCombatContentBindings,
 } satisfies CombatDependencies
@@ -187,10 +191,32 @@ describe('hospital combat medical content binding', () => {
     ['unknown painkiller', { painkillerDefinitionId: 'missing' }],
     ['same binding', { painkillerDefinitionId: HOSPITAL_ITEM_IDS.bandage }],
     ['not quick-slot eligible', { bandageDefinitionId: HOSPITAL_ITEM_IDS.metalParts }],
+    ['quest item', { bandageDefinitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase }],
   ])('rejects %s', (_label, change) => {
     expect(() => validateCombatDependencies({
       ...baseDependencies,
       bindings: { ...hospitalCombatContentBindings, ...change },
+    })).toThrowError(expect.objectContaining({
+      code: 'COMBAT_CONTENT_BINDING_MISMATCH',
+    }))
+  })
+
+  it('rejects a quest medical binding even when its forged quick-slot profile is eligible', () => {
+    const quickSlotCatalog = createQuickSlotProfileCatalog(
+      hospitalItemQuickSlotProfiles.map((profile) =>
+        profile.definitionId === HOSPITAL_ITEM_IDS.sealedPathogenCase
+          ? { definitionId: profile.definitionId, kind: 'eligible' as const }
+          : profile,
+      ),
+      hospitalItemCatalog.definitionIds,
+    )
+    expect(() => validateCombatDependencies({
+      ...baseDependencies,
+      quickSlotCatalog,
+      bindings: {
+        ...hospitalCombatContentBindings,
+        bandageDefinitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase,
+      },
     })).toThrowError(expect.objectContaining({
       code: 'COMBAT_CONTENT_BINDING_MISMATCH',
     }))

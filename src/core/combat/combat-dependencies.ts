@@ -125,10 +125,12 @@ export function validateCombatDependencies(
       if (hasPhysicalDefinition) dependencies.physicalCatalog.get(definitionId)
       const quickSlot = dependencies.quickSlotCatalog.get(definitionId)
       const resource = dependencies.itemResourceCatalog.get(definitionId)
+      const lifecycle = dependencies.lifecycleCatalog.get(definitionId)
       if (
         !hasPhysicalDefinition ||
         quickSlot.kind !== 'eligible' ||
-        resource.kind !== 'none'
+        resource.kind !== 'none' ||
+        lifecycle.kind === 'quest'
       ) {
         bindingMismatch(`绑定战斗医疗物品资格或资源无效：${definitionId}`)
       }

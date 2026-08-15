@@ -4,6 +4,7 @@ import type { EquipmentProfileCatalog, EquipmentSnapshot } from '../equipment'
 import type { BackpackSnapshot, ItemCatalog } from '../inventory'
 import type { ItemResourceCatalog, ItemResourceKind, ItemStateCollectionSnapshot } from '../item-state'
 import type { QuickSlotProfileCatalog, QuickSlotSnapshot } from '../quick-slot'
+import type { ItemReturnLifecycleCatalog } from '../run-return'
 
 export type CombatRiskTier = 'none' | 'low' | 'medium' | 'high' | 'very-high'
 export type EnemyActionKind = 'scratch' | 'lunge-bite'
@@ -95,6 +96,7 @@ export interface CombatDependencies {
   readonly equipmentCatalog: EquipmentProfileCatalog
   readonly quickSlotCatalog: QuickSlotProfileCatalog
   readonly itemResourceCatalog: ItemResourceCatalog
+  readonly lifecycleCatalog: ItemReturnLifecycleCatalog
   readonly enemyCatalog: EnemyDefinitionCatalog
   readonly bindings: CombatContentBindings
 }

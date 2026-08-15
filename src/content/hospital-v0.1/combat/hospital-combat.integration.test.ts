@@ -34,6 +34,7 @@ import {
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
   hospitalItemResourceCatalog,
+  hospitalItemReturnLifecycleCatalog,
 } from '../items'
 import { hospitalSliceV01RuleConfig as config } from '../rule-config'
 
@@ -44,6 +45,7 @@ const baseDependencies = {
   equipmentCatalog: hospitalItemEquipmentCatalog,
   quickSlotCatalog: hospitalItemQuickSlotCatalog,
   itemResourceCatalog: hospitalItemResourceCatalog,
+  lifecycleCatalog: hospitalItemReturnLifecycleCatalog,
   enemyCatalog: hospitalEnemyCatalog,
   bindings: hospitalCombatContentBindings,
 }

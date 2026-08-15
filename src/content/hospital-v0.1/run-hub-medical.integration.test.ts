@@ -14,6 +14,8 @@ import {
   createRunHubMedicalSnapshot,
   getAvailableRunHubMedicalCommands,
   resolveRunHubMedicalCommand,
+  validateRunHubMedicalDependencies,
+  RunHubMedicalError,
   type RunHubMedicalSnapshot,
   type UseRunHubMedicalItemCommand,
 } from '../../core/run-hub-medical'
@@ -141,6 +143,18 @@ function resolve(snapshot: RunHubMedicalSnapshot, action: UseRunHubMedicalItemCo
 }
 
 describe('hospital Run hub medical', () => {
+  it('rejects a quest item forged into the formal medical bindings', () => {
+    expect(() => validateRunHubMedicalDependencies({
+      ...dependencies,
+      medicalBindings: {
+        ...hospitalSceneMedicalContentBindings,
+        bandageDefinitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase,
+      },
+    })).toThrowError(expect.objectContaining<Partial<RunHubMedicalError>>({
+      code: 'INVALID_INPUT',
+    }))
+  })
+
   it('consumes one unit from a warehouse bandage stack and retains its ItemState', () => {
     const start = hub({
       warehouse: [item('warehouse-bandage', HOSPITAL_ITEM_IDS.bandage, 3)],

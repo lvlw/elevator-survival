@@ -13,6 +13,7 @@ import {
 import type { DailyMedicalUsageSnapshot } from '../daily-state'
 import type { ItemCatalog } from '../inventory'
 import type { ItemResourceCatalog } from '../item-state'
+import type { ItemReturnLifecycleCatalog } from '../run-return'
 
 export type MedicalItemKind =
   | 'bandage'
@@ -34,9 +35,7 @@ export type MedicalTarget =
 export interface MedicalContentBindingDependencies {
   readonly physicalCatalog: ItemCatalog
   readonly itemResourceCatalog: ItemResourceCatalog
-  readonly lifecycleCatalog?: Readonly<{
-    get(definitionId: string): Readonly<{ kind: string }>
-  }>
+  readonly lifecycleCatalog: ItemReturnLifecycleCatalog
 }
 
 export type MedicalPrimaryEffect =
@@ -110,6 +109,28 @@ function exact(value: unknown, keys: readonly string[]): value is Record<string,
   return actual.length === expected.length && actual.every((key, index) => key === expected[index])
 }
 
+function getMedicalLifecycleKind(
+  definitionId: string,
+  dependencies: MedicalContentBindingDependencies,
+): string {
+  const catalog = dependencies.lifecycleCatalog
+  if (!catalog || typeof catalog.get !== 'function') {
+    throw new MedicalContentError('Medical content bindings require a lifecycle catalog')
+  }
+  try {
+    const profile = catalog.get(definitionId)
+    if (
+      !profile ||
+      (profile.kind !== 'ordinary' && profile.kind !== 'permission' && profile.kind !== 'quest')
+    ) {
+      throw new Error('invalid lifecycle profile')
+    }
+    return profile.kind
+  } catch {
+    throw new MedicalContentError(`Medical binding lifecycle definition is unavailable: ${definitionId}`)
+  }
+}
+
 export function validateMedicalContentBindings(
   bindings: MedicalContentBindings,
   dependencies: MedicalContentBindingDependencies,
@@ -134,7 +155,7 @@ export function validateMedicalContentBindings(
     if (dependencies.itemResourceCatalog.get(definitionId).kind !== 'none') {
       throw new MedicalContentError(`医疗绑定物品必须使用单位资源：${definitionId}`)
     }
-    if (dependencies.lifecycleCatalog?.get(definitionId).kind === 'quest') {
+    if (getMedicalLifecycleKind(definitionId, dependencies) === 'quest') {
       throw new MedicalContentError(`任务物品不能绑定为医疗物品：${definitionId}`)
     }
   }

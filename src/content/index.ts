@@ -14,10 +14,13 @@ export {
   hospitalItemResourceProfiles,
   hospitalItemSearchIlluminationCatalog,
   hospitalItemSearchIlluminationProfiles,
+  hospitalItemMaintenanceCatalog,
+  hospitalItemMaintenanceProfiles,
   hospitalItemReturnLifecycleCatalog,
   hospitalItemReturnLifecycleProfiles,
   hospitalSceneMedicalContentBindings,
   hospitalHubSurvivalContentBindings,
+  hospitalHubMaintenanceContentBindings,
 } from './hospital-v0.1/items'
 export {
   hospitalWorldThreatCatalog,

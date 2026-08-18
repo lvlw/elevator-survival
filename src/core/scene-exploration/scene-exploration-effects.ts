@@ -40,6 +40,7 @@ import { createMoveThroughSceneEdgeCommand } from './scene-move-command'
 import { buildSceneMoveTransitionPlan } from './scene-move-transition-plan'
 import { applySceneMedicalEffects } from './scene-medical-effect-application'
 import { applySceneBatteryEffects } from './scene-battery-effect-application'
+import { applySceneWithdrawalEffects } from './scene-withdrawal-effect-application'
 import { applySceneTaskEventEffects } from './scene-task-event-command'
 import type {
   SceneExplorationEffect,
@@ -74,6 +75,7 @@ function fail(
     | 'EFFECT_MEDICAL_MISMATCH'
     | 'EFFECT_BATTERY_MISMATCH'
     | 'EFFECT_TASK_EVENT_MISMATCH'
+    | 'EFFECT_WITHDRAWAL_MISMATCH'
     | 'INCOMPLETE_EFFECT_PLAN',
   message: string,
 ): never {
@@ -362,6 +364,12 @@ function applySceneExplorationEffectsInternal(
       : null
     if (!batteryDependencies) fail('EFFECT_BATTERY_MISMATCH', '场景电池 Effect 回放需要完整充能目录')
     return applySceneBatteryEffects(initialSnapshot, effects, batteryDependencies)
+  }
+  if (effects.some(({ kind }) => kind === 'scene-active-withdrawal-resolved')) {
+    if (!dependencies) {
+      fail('EFFECT_WITHDRAWAL_MISMATCH', '主动撤离Effect回放需要完整场景探索依赖')
+    }
+    return applySceneWithdrawalEffects(initialSnapshot, effects, dependencies)
   }
   if (effects.some(({ kind }) =>
     kind === 'scene-task-risk-resolved' ||

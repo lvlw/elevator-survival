@@ -35,6 +35,12 @@ export {
 } from './scene-move-resolution'
 export { createMoveThroughSceneEdgeCommand } from './scene-move-command'
 export { buildSceneMoveTransitionPlan } from './scene-move-transition-plan'
+export { createWithdrawFromSceneCommand } from './scene-withdrawal-command'
+export { buildSceneWithdrawalTransitionPlan } from './scene-withdrawal-transition-plan'
+export {
+  previewSceneWithdrawalCommand,
+  resolveSceneWithdrawalCommand,
+} from './scene-withdrawal-resolution'
 export {
   previewMainSearchCommand,
   resolveMainSearchCommand,
@@ -59,6 +65,7 @@ export type {
   MainSearchResolution,
   MainSearchTransitionPlan,
   MoveThroughSceneEdgeCommand,
+  WithdrawFromSceneCommand,
   NodeItemPickupEvaluation,
   NodeItemPickupPreview,
   NodeItemPickupResolution,
@@ -108,6 +115,10 @@ export type {
   SceneMovePreview,
   SceneMoveResolution,
   SceneMoveTransitionPlan,
+  SceneWithdrawalEvaluation,
+  SceneWithdrawalPreview,
+  SceneWithdrawalResolution,
+  SceneWithdrawalTransitionPlan,
   SearchIlluminationChoice,
   SceneCombatPlayerActionEvaluation,
   SceneCombatPlayerActionPreview,

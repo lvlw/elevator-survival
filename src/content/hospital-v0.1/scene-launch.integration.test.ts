@@ -20,6 +20,7 @@ import {
   getRunSceneRuntime,
   previewSceneLaunch,
   resolveRunSceneSessionReturn,
+  resolveRunSceneSessionWithdrawal,
   resolveSceneLaunch,
   type RunSceneSessionSnapshot,
   type SceneLaunchDependencies,
@@ -31,6 +32,9 @@ import {
   resolveSceneBatteryCommand,
   resolveSceneMedicalCommand,
   resolveSceneMoveCommand,
+  applySceneExplorationEffects,
+  createWithdrawFromSceneCommand,
+  resolveSceneWithdrawalCommand,
 } from '../../core/scene-exploration'
 import { createSceneSearchState } from '../../core/scene-search'
 import {
@@ -39,6 +43,7 @@ import {
 } from '../../core/run-termination'
 import {
   HOSPITAL_EDGE_IDS,
+  HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
   HOSPITAL_ITEM_IDS,
   HOSPITAL_NODE_IDS,
   createHospitalSceneRuntimeBundle,
@@ -59,6 +64,124 @@ const item = (instanceId: string, definitionId: string, quantity = 1): ItemInsta
   instanceId,
   definitionId,
   quantity,
+})
+
+describe('hospital formal active withdrawal', () => {
+  function sceneAt(
+    session: RunSceneSessionSnapshot,
+    currentNodeId: string,
+    remainingTime = 100,
+    condition = session.scene.condition,
+    enabledEdgeIds = HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
+  ) {
+    const runtime = getRunSceneRuntime(session, launchDependencies)
+    return createSceneExplorationSnapshot({
+      ...session.scene,
+      currentNodeId,
+      remainingTime,
+      enabledEdgeIds,
+      condition,
+      status: 'active',
+    }, runtime.dependencies)
+  }
+
+  it('validates an argument-free command and performs a zero-time safety confirmation', () => {
+    expect(createWithdrawFromSceneCommand({ kind: 'withdraw-from-scene' })).toEqual({ kind: 'withdraw-from-scene' })
+    expect(() => createWithdrawFromSceneCommand({ kind: 'withdraw-from-scene', route: [] })).toThrowError(expect.objectContaining({ code: 'INVALID_SCENE_WITHDRAWAL_COMMAND' }))
+    const session = resolveSceneLaunch(hub(), { kind: 'launch-main-scene' }, launchDependencies).session
+    const runtime = getRunSceneRuntime(session, launchDependencies)
+    const bleeding = createPlayerCondition({ ...session.scene.condition, bleeding: true }, config.combat.player)
+    const start = sceneAt(session, HOSPITAL_NODE_IDS.elevatorAnteroom, 0, bleeding)
+    const result = resolveSceneWithdrawalCommand(start, { kind: 'withdraw-from-scene' }, runtime.dependencies)
+    expect(result.snapshot).toMatchObject({ status: 'safe-returned', remainingTime: 0, currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom })
+    expect(result.snapshot.condition.currentHealth).toBe(bleeding.currentHealth)
+    expect(result.result.sceneOutcome).toBeNull()
+  })
+
+  it('returns along the current formal route once, including bleed/death and overtime terminal rules', () => {
+    const session = resolveSceneLaunch(hub(), { kind: 'launch-main-scene' }, launchDependencies).session
+    const runtime = getRunSceneRuntime(session, launchDependencies)
+    const start = sceneAt(session, HOSPITAL_NODE_IDS.specimenColdRoom, 40)
+    const result = resolveSceneWithdrawalCommand(start, { kind: 'withdraw-from-scene' }, runtime.dependencies)
+    expect(result.result.returnRoute.nodeIds).toEqual([
+      HOSPITAL_NODE_IDS.specimenColdRoom,
+      HOSPITAL_NODE_IDS.isolationCorridor,
+      HOSPITAL_NODE_IDS.emergencyHall,
+      HOSPITAL_NODE_IDS.elevatorAnteroom,
+    ])
+    expect(result.result.returnRoute.estimatedReturnTime).toBe(30)
+    expect(result.snapshot).toMatchObject({ status: 'safe-returned', remainingTime: 10, currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom })
+
+    const bleeding = createPlayerCondition({ ...start.condition, bleeding: true, currentHealth: 1 }, config.combat.player)
+    expect(resolveSceneWithdrawalCommand(sceneAt(session, HOSPITAL_NODE_IDS.specimenColdRoom, 30, bleeding), { kind: 'withdraw-from-scene' }, runtime.dependencies).snapshot.status).toBe('dead')
+    const deadSession = resolveRunSceneSessionWithdrawal(
+      createRunSceneSessionSnapshot({
+        context: session.context,
+        scene: sceneAt(session, HOSPITAL_NODE_IDS.specimenColdRoom, 30, bleeding),
+      }, launchDependencies),
+      { kind: 'withdraw-from-scene' },
+      launchDependencies,
+    ).session
+    expect(resolveRunFailureFromSceneSession(deadSession, terminationDependencies).snapshot.reason).toBe('health-depleted')
+    const overtime = resolveSceneWithdrawalCommand(sceneAt(session, HOSPITAL_NODE_IDS.specimenColdRoom, 20), { kind: 'withdraw-from-scene' }, runtime.dependencies)
+    expect(overtime.result.sceneOutcome?.overtimeDebt).toBe(10)
+    expect(overtime.result.sceneOutcome?.effectiveEmergencyReturnTime).toBe(10)
+    expect(overtime.snapshot.status).toBe('forced-returned')
+  })
+
+  it('uses the same strict Session provenance and rejects all withdrawal Effect tampering', () => {
+    const launched = resolveSceneLaunch(hub(), { kind: 'launch-main-scene' }, launchDependencies).session
+    const start = sceneAt(launched, HOSPITAL_NODE_IDS.specimenColdRoom, 100)
+    const runtime = getRunSceneRuntime(launched, launchDependencies)
+    const result = resolveSceneWithdrawalCommand(start, { kind: 'withdraw-from-scene' }, runtime.dependencies)
+    const effect = result.result.effects[0]
+    if (effect?.kind !== 'scene-active-withdrawal-resolved') throw new Error('缺少主动撤离Effect')
+    const tampered = [
+      { ...effect, routeNodeIds: [...effect.routeNodeIds].reverse() },
+      { ...effect, routeEdgeIds: [...effect.routeEdgeIds].reverse() },
+      { ...effect, estimatedReturnTime: 1 },
+      { ...effect, healthAfter: effect.healthAfter - 1 },
+      { ...effect, statusAfter: 'forced-returned' as const },
+    ]
+    for (const forged of tampered) {
+      expect(() => applySceneExplorationEffects(start, [forged], runtime.dependencies))
+        .toThrowError(expect.objectContaining({ code: 'EFFECT_WITHDRAWAL_MISMATCH' }))
+    }
+    expect(() => applySceneExplorationEffects(start, [], runtime.dependencies)).toThrow()
+    expect(() => applySceneExplorationEffects(start, [effect, effect], runtime.dependencies))
+      .toThrowError(expect.objectContaining({ code: 'EFFECT_WITHDRAWAL_MISMATCH' }))
+    const terminal = resolveRunSceneSessionWithdrawal(
+      createRunSceneSessionSnapshot({ context: launched.context, scene: start }, launchDependencies),
+      { kind: 'withdraw-from-scene' },
+      launchDependencies,
+    ).session
+    expect(terminal.context).toEqual(launched.context)
+    expect(terminal.context.runReturnCarryForward.returnLedger).toEqual(launched.context.runReturnCarryForward.returnLedger)
+    expect(terminal.scene.status).toBe('safe-returned')
+    expect(resolveRunSceneSessionReturn(terminal, launchDependencies).currentDayHub.dailyState.mainSceneUsedToday).toBe(true)
+  })
+
+  it('does not offer a combat, terminal, or unknown route as a voluntary return', () => {
+    const launched = resolveSceneLaunch(hub(), { kind: 'launch-main-scene' }, launchDependencies).session
+    const runtime = getRunSceneRuntime(launched, launchDependencies)
+    const isolated = sceneAt(
+      launched,
+      HOSPITAL_NODE_IDS.specimenColdRoom,
+      100,
+      launched.scene.condition,
+      [HOSPITAL_EDGE_IDS.isolationCorridorToSpecimenColdRoom],
+    )
+    expect(() => resolveSceneWithdrawalCommand(isolated, { kind: 'withdraw-from-scene' }, runtime.dependencies))
+      .toThrowError(expect.objectContaining({ code: 'ACTION_NOT_AVAILABLE' }))
+    const hall = resolveSceneMoveCommand(launched.scene, { edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall }, runtime.dependencies).snapshot
+    const security = resolveSceneMoveCommand(hall, { edgeId: HOSPITAL_EDGE_IDS.emergencyHallToSecurityOffice }, runtime.dependencies).snapshot
+    const combat = resolveSceneMoveCommand(security, { edgeId: HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor }, runtime.dependencies).snapshot
+    expect(combat.status).toBe('combat')
+    expect(() => resolveSceneWithdrawalCommand(combat, { kind: 'withdraw-from-scene' }, runtime.dependencies))
+      .toThrowError(expect.objectContaining({ code: 'SCENE_WITHDRAWAL_NOT_AVAILABLE' }))
+    expect(() => resolveSceneWithdrawalCommand(terminalSession(launched, 'safe-returned').scene, { kind: 'withdraw-from-scene' }, runtime.dependencies))
+      .toThrowError(expect.objectContaining({ code: 'SCENE_WITHDRAWAL_NOT_AVAILABLE' }))
+  })
 })
 
 const baseReturnDependencies = {

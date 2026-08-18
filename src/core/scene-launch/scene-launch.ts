@@ -20,12 +20,15 @@ import {
 import {
   createInitialSceneExplorationSnapshot,
   createSceneExplorationSnapshot,
+  resolveSceneWithdrawalCommand,
   type MainSearchCommandDependencies,
   type SceneBatteryCommandDependencies,
   type SceneExplorationSnapshot,
   type SceneMedicalCommandDependencies,
   type SceneObstacleCommandDependencies,
   type SceneTaskEventCommandDependencies,
+  type SceneWithdrawalResolution,
+  type WithdrawFromSceneCommand,
 } from '../scene-exploration'
 import { createSceneSearchState } from '../scene-search'
 import { createSatietySnapshot, type SatietySnapshot } from '../satiety'
@@ -133,6 +136,11 @@ export type SceneLaunchPreview =
 export interface RunSceneReturnResolution {
   readonly runReturn: RunReturnResult
   readonly currentDayHub: CurrentDayHubSnapshot
+}
+
+export interface RunSceneWithdrawalResolution {
+  readonly withdrawal: SceneWithdrawalResolution
+  readonly session: RunSceneSessionSnapshot
 }
 
 export interface SceneInstanceIdentityFacts {
@@ -349,6 +357,26 @@ export function getRunSceneRuntime(
 ): SceneRuntimeContentBundle {
   const session = createRunSceneSessionSnapshot(sessionInput, dependencies)
   return runtimeFor(session.context.runReturnCarryForward.continuity, dependencies)
+}
+
+/** Keeps Scene provenance intact while applying the formal non-combat return. */
+export function resolveRunSceneSessionWithdrawal(
+  sessionInput: RunSceneSessionSnapshot,
+  command: WithdrawFromSceneCommand,
+  dependencies: SceneLaunchDependencies,
+): RunSceneWithdrawalResolution {
+  const session = createRunSceneSessionSnapshot(sessionInput, dependencies)
+  const runtime = runtimeFor(session.context.runReturnCarryForward.continuity, dependencies)
+  const withdrawal = resolveSceneWithdrawalCommand(
+    session.scene,
+    command,
+    runtime.dependencies,
+  )
+  const terminalSession = createRunSceneSessionSnapshot({
+    context: session.context,
+    scene: withdrawal.snapshot,
+  }, dependencies)
+  return deepFreeze({ withdrawal, session: terminalSession })
 }
 
 export function createLaunchMainSceneCommand(input: unknown): LaunchMainSceneCommand {

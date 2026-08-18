@@ -157,12 +157,37 @@ export interface MoveThroughSceneEdgeCommand {
   readonly edgeId: string
 }
 
+/** A player-confirmed, non-combat return using the formal known route. */
+export interface WithdrawFromSceneCommand {
+  readonly kind: 'withdraw-from-scene'
+}
+
 export type SceneMoveHealthLossSource =
   | 'post-action-bleeding'
   | 'forced-return-base'
   | 'forced-return-bleeding'
 
 export type SceneExplorationEffect =
+  | Readonly<{
+      kind: 'scene-active-withdrawal-resolved'
+      command: WithdrawFromSceneCommand
+      fromNodeId: string
+      safetyNodeId: string
+      routeNodeIds: readonly string[]
+      routeEdgeIds: readonly string[]
+      estimatedReturnTime: number
+      remainingTimeBefore: number
+      remainingTimeAfter: number
+      overtimeDebt: number
+      postActionBleedingDamage: number
+      forcedReturnBaseDamage: number
+      forcedReturnBleedingDamage: number
+      forcedReturnTotalDamage: number
+      healthBefore: number
+      healthAfter: number
+      statusBefore: 'active'
+      statusAfter: 'safe-returned' | 'forced-returned' | 'dead'
+    }>
   | Readonly<{
       kind: 'scene-battery-consumed'
       command: UseSceneBatteryCommand
@@ -744,6 +769,28 @@ export interface SceneMoveTransitionPlan {
   readonly command: MoveThroughSceneEdgeCommand
   readonly metadata: Omit<SceneMoveEvaluation, 'effects' | 'snapshot'>
   readonly effects: readonly SceneExplorationEffect[]
+}
+
+export interface SceneWithdrawalEvaluation {
+  readonly returnRoute: ReturnRouteResult
+  readonly sceneOutcome: TimedSceneActionOutcome | null
+  readonly effects: readonly SceneExplorationEffect[]
+  readonly snapshot: SceneExplorationSnapshot
+}
+
+export interface SceneWithdrawalTransitionPlan {
+  readonly command: WithdrawFromSceneCommand
+  readonly metadata: Omit<SceneWithdrawalEvaluation, 'effects' | 'snapshot'>
+  readonly effects: readonly SceneExplorationEffect[]
+}
+
+export type SceneWithdrawalPreview =
+  | Readonly<{ canExecute: true; result: SceneWithdrawalEvaluation }>
+  | Readonly<{ canExecute: false; rejectionCode: SceneExplorationErrorCode }>
+
+export interface SceneWithdrawalResolution {
+  readonly result: SceneWithdrawalEvaluation
+  readonly snapshot: SceneExplorationSnapshot
 }
 
 export type SceneMoveEffect = SceneExplorationEffect

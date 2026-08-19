@@ -45,6 +45,21 @@ CurrentDayHub
 
 > 本节记录实现职责和状态所有权，不新增玩法数值或场景规则。
 
+## 当前最小 Run 持久化职责
+
+```text
+已完整提交的稳定 Hub / Scene Session / Run Failure
+→ 严格互斥的版本化 envelope
+→ 单一 Run 存档值
+→ 按 rulesVersion 选择正式依赖
+→ 调用 core 严格恢复入口
+```
+
+- 持久化层位于 `src/state/run-save/`，依赖 core 的正式构造与恢复规则；core 不反向依赖 state。
+- 当前只保存一个稳定 Run 阶段，不保存事务中间态、Effect 计划、预览、派生负载档位或返程估算。
+- 存档格式版本与玩法规则版本分离。未知格式或规则版本、身份审计不一致、损坏或伪造的正式快照均拒绝，不自动修复或迁移。
+- Run 与 Profile 生命周期继续分离；本边界不实现 Profile、完整 RunState、Zustand／UI 编排或命令成功后的自动存档调度。
+
 ## 场景时间结算职责
 
 ```text

@@ -8,6 +8,7 @@ import {
   createSceneExplorationSnapshot,
   getPlayerVisibleSceneTaskEvents,
   previewSceneTaskEventCommand,
+  resolveSceneInventoryCommand,
   resolveSceneTaskEventCommand,
   type PerformSceneTaskEventCommand,
 } from '../../core/scene-exploration'
@@ -26,6 +27,7 @@ import {
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
+  hospitalItemReturnLifecycleCatalog,
   hospitalItemResourceCatalog,
   hospitalMainSearchCatalog,
   hospitalSceneCombatEncounterCatalog,
@@ -45,6 +47,7 @@ function dependencies(runSeed = 'pathogen-case-seed') {
     equipmentCatalog: hospitalItemEquipmentCatalog,
     quickSlotCatalog: hospitalItemQuickSlotCatalog,
     itemResourceCatalog: hospitalItemResourceCatalog,
+    lifecycleCatalog: hospitalItemReturnLifecycleCatalog,
     config,
     edgeAccessCatalog: hospitalSceneEdgeAccessCatalog,
     taskEventCatalog: hospitalSceneTaskEventCatalog,
@@ -161,6 +164,33 @@ describe('hospital pathogen case retrieval', () => {
     expect(directResult.snapshot.runIntelLog.intelIds).toEqual([HOSPITAL_INTEL_IDS.pathogenCaseOrigin])
     expect(directResult.snapshot.taskEvents.entries).toEqual([{ eventId: EVENT_ID, status: 'completed' }])
     expect(directResult.result.effects.map(({ kind }) => kind)).toContain('scene-task-risk-resolved')
+  })
+
+  it('requires explicit quest confirmation to leave the extracted case at the current node', () => {
+    const start = scene({ coatIntegrity: null })
+    const extracted = resolveSceneTaskEventCommand(
+      start.snapshot,
+      command('cautious-extraction'),
+      start.deps,
+    ).snapshot
+    const caseId = extracted.backpack.items[0]!.instanceId
+    expect(() => resolveSceneInventoryCommand(
+      extracted,
+      { kind: 'drop-scene-backpack-item', instanceId: caseId },
+      start.deps,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    const dropped = resolveSceneInventoryCommand(
+      extracted,
+      { kind: 'confirm-drop-scene-quest-item', instanceId: caseId },
+      start.deps,
+    ).snapshot
+    expect(dropped.backpack.items).toEqual([])
+    expect(dropped.itemStates.states).toEqual([])
+    expect(dropped.sceneItems.nodeStates.find(
+      ({ nodeId }) => nodeId === HOSPITAL_NODE_IDS.specimenColdRoom,
+    )?.items).toContainEqual(expect.objectContaining({
+      item: expect.objectContaining({ instanceId: caseId, definitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase }),
+    }))
   })
 
   it('uses the coat once whenever it actually lowers risk, including the protected cautious zero-risk path', () => {

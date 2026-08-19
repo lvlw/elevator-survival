@@ -6,14 +6,10 @@ import {
   type PlayerHealthRules,
 } from '../condition'
 import {
-  addItemToBackpack,
   calculateBackpackWeightSubtotal,
-  createItemInstance,
 } from '../inventory'
 import {
   consumeCommittedResource,
-  createItemState,
-  createItemStateCollectionSnapshot,
   getItemState,
   replaceItemState,
 } from '../item-state'
@@ -41,6 +37,8 @@ import { buildSceneMoveTransitionPlan } from './scene-move-transition-plan'
 import { applySceneMedicalEffects } from './scene-medical-effect-application'
 import { applySceneBatteryEffects } from './scene-battery-effect-application'
 import { applySceneWithdrawalEffects } from './scene-withdrawal-effect-application'
+import { applySceneInventoryEffects } from './scene-inventory-command'
+import { planNodeItemPickupStacking } from './node-item-pickup-stacking'
 import { applySceneTaskEventEffects } from './scene-task-event-command'
 import type {
   SceneExplorationEffect,
@@ -371,6 +369,10 @@ function applySceneExplorationEffectsInternal(
     }
     return applySceneWithdrawalEffects(initialSnapshot, effects, dependencies)
   }
+  if (effects.some(({ kind }) => kind === 'scene-inventory-committed')) {
+    if (!dependencies) fail('EFFECT_RESOURCE_MISMATCH', '场景整理Effect需要完整依赖')
+    return applySceneInventoryEffects(initialSnapshot, effects, dependencies)
+  }
   if (effects.some(({ kind }) =>
     kind === 'scene-task-risk-resolved' ||
     kind === 'scene-task-item-acquired' ||
@@ -572,116 +574,38 @@ function applySceneExplorationEffectsInternal(
         if (effect.pickupKind !== expectedKind) {
           fail('EFFECT_PICKUP_MISMATCH', '拾取Effect类型与剩余数量不一致')
         }
-        const definition = dependencies.physicalCatalog.get(
-          effect.definitionId,
-        )
-        if (
-          (expectedKind === 'full' &&
-            effect.destinationInstanceId !== effect.sourceInstanceId) ||
-          (expectedKind === 'partial' &&
-            (effect.destinationInstanceId === effect.sourceInstanceId ||
-              definition.stacking.kind !== 'stackable' ||
-              source.state.resource.kind !== 'none'))
-        ) {
-          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect目标实例身份非法')
-        }
-        const knownIds = new Set<string>([
-          ...state.backpack.items.map((item) => item.instanceId),
-          ...Object.values(state.equipment)
-            .filter((item) => item !== null)
-            .map((item) => item.instanceId),
-          ...state.quickSlots.slots
-            .filter((item) => item !== null)
-            .map((item) => item.instanceId),
-        ])
-        for (const candidate of state.searchState.nodeStates) {
-          const entities =
-            candidate.kind === 'unsearched'
-              ? candidate.preparedOutcome.revealedItems
-              : []
-          for (const entity of entities) {
-            if (entity.item.instanceId !== effect.sourceInstanceId) {
-              knownIds.add(entity.item.instanceId)
-            }
-          }
-        }
-        for (const candidate of state.sceneItems.nodeStates) {
-          for (const entity of candidate.items) {
-            if (entity.item.instanceId !== effect.sourceInstanceId) {
-              knownIds.add(entity.item.instanceId)
-            }
-          }
-        }
-        if (
-          expectedKind === 'partial' &&
-          (typeof effect.destinationInstanceId !== 'string' ||
-            effect.destinationInstanceId.trim().length === 0 ||
-            knownIds.has(effect.destinationInstanceId))
-        ) {
-          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect目标实例ID重复或为空')
-        }
-        let destinationState
+        let expectedStacking
         try {
-          destinationState = createItemState(
-            effect.destinationItemState,
-            dependencies.itemResourceCatalog,
-          )
-        } catch {
-          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect目标资源状态非法')
-        }
-        if (
-          destinationState.instanceId !== effect.destinationInstanceId ||
-          destinationState.definitionId !== effect.definitionId ||
-          (expectedKind === 'full' &&
-            !sameValue(destinationState, source.state)) ||
-          (expectedKind === 'partial' &&
-            destinationState.resource.kind !== 'none')
-        ) {
-          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect目标资源状态被篡改')
-        }
-        const destinationItem = createItemInstance(
-          {
-            instanceId: effect.destinationInstanceId,
-            definitionId: effect.definitionId,
+          expectedStacking = planNodeItemPickupStacking({
+            snapshot: state,
+            source,
             quantity: effect.quantityPicked,
-          },
-          dependencies.physicalCatalog,
-        )
-        if (
-          !effect.destinationPlacement ||
-          typeof effect.destinationPlacement !== 'object' ||
-          !Number.isSafeInteger(effect.destinationPlacement.x) ||
-          effect.destinationPlacement.x < 0 ||
-          !Number.isSafeInteger(effect.destinationPlacement.y) ||
-          effect.destinationPlacement.y < 0 ||
-          typeof effect.destinationPlacement.rotated !== 'boolean'
-        ) {
-          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect目标摆放声明非法')
-        }
-        let backpack
-        try {
-          backpack = addItemToBackpack(
-            state.backpack,
-            destinationItem,
-            {
-              instanceId: effect.destinationInstanceId,
-              ...effect.destinationPlacement,
-            },
-            dependencies.physicalCatalog,
-          )
+            placement: effect.transfers.find(({ kind }) => kind === 'create-stack')?.placement ?? effect.destinationPlacement,
+            dependencies,
+          })
         } catch {
-          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect目标摆放非法')
+          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect无法重建正式堆叠计划')
         }
-        const weight = calculateBackpackWeightSubtotal(
-          backpack,
+        if (!sameValue(effect.transfers, expectedStacking.transfers)) {
+          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect堆叠分配被篡改')
+        }
+        const expectedFirstTransfer = expectedStacking.transfers[0]
+        if (
+          !expectedFirstTransfer ||
+          effect.destinationInstanceId !== expectedFirstTransfer.targetInstanceId ||
+          !sameValue(effect.destinationPlacement, expectedFirstTransfer.placement) ||
+          !sameValue(effect.destinationItemState, expectedFirstTransfer.itemState)
+        ) {
+          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect首个目标摘要被篡改')
+        }
+        const plannedWeight = calculateBackpackWeightSubtotal(
+          expectedStacking.backpack,
           dependencies.physicalCatalog,
         )
-        if (
-          !classifyLoad(weight, dependencies.config.backpack).canCarry
-        ) {
+        if (!classifyLoad(plannedWeight, dependencies.config.backpack).canCarry) {
           fail('EFFECT_PICKUP_MISMATCH', '拾取Effect导致无法携带')
         }
-        const sceneItems = removeSceneItemQuantity(
+        const plannedSceneItems = removeSceneItemQuantity(
           state.sceneItems,
           effect.nodeId,
           effect.sourceInstanceId,
@@ -692,30 +616,11 @@ function applySceneExplorationEffectsInternal(
             itemResourceCatalog: dependencies.itemResourceCatalog,
           },
         )
-        const carriedItems = [
-          ...backpack.items,
-          ...Object.values(state.equipment).filter(
-            (item): item is NonNullable<typeof item> => item !== null,
-          ),
-          ...state.quickSlots.slots.filter(
-            (item): item is NonNullable<typeof item> => item !== null,
-          ),
-        ]
-        let itemStates
-        try {
-          itemStates = createItemStateCollectionSnapshot(
-            [...state.itemStates.states, destinationState],
-            carriedItems,
-            dependencies.itemResourceCatalog,
-          )
-        } catch {
-          fail('EFFECT_PICKUP_MISMATCH', '拾取Effect无法建立随身资源状态')
-        }
         state = deepFreeze({
           ...state,
-          sceneItems,
-          backpack,
-          itemStates,
+          sceneItems: plannedSceneItems,
+          backpack: expectedStacking.backpack,
+          itemStates: expectedStacking.itemStates,
         })
         primaryKind = 'pickup'
         break

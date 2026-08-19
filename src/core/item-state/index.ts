@@ -2,6 +2,7 @@ export { createItemResourceCatalog } from './item-resource-catalog'
 export { ItemStateError, type ItemStateErrorCode } from './item-state-errors'
 export {
   consumeCommittedResource,
+  areItemStatesStackCompatible,
   createFullItemState,
   createItemState,
   previewCommittedResourceAction,

@@ -9,6 +9,7 @@ import {
   getAvailableSceneMedicalCommands,
   previewSceneMedicalCommand,
   resolveMainSearchCommand,
+  resolveSceneInventoryCommand,
   resolveSceneMedicalCommand,
   resolveSceneMoveCommand,
   SceneExplorationError,
@@ -154,6 +155,51 @@ function effectKinds(effects: readonly SceneExplorationEffect[]) {
 }
 
 describe('hospital non-combat scene medical', () => {
+  it('uses one manually split quick-slot unit, never auto-refills, and requires a second explicit transfer', () => {
+    const start = snapshot({
+      backpackItems: [item('bandage-stack', HOSPITAL_ITEM_IDS.bandage, 2)],
+      currentHealth: 10,
+      bleeding: true,
+      wounds: [{ id: 'manual-refill-wound', kind: 'laceration', treatment: 'untreated' }],
+    })
+    const slotted = resolveSceneInventoryCommand(start, {
+      kind: 'scene-backpack-to-quick-slot',
+      instanceId: 'bandage-stack',
+      targetSlotIndex: 0,
+    }, dependencies).snapshot
+    const firstUnit = slotted.quickSlots.slots[0]!
+    expect(firstUnit).toMatchObject({ definitionId: HOSPITAL_ITEM_IDS.bandage, quantity: 1 })
+    expect(firstUnit.instanceId).not.toBe('bandage-stack')
+    expect(slotted.backpack.items).toContainEqual({
+      instanceId: 'bandage-stack',
+      definitionId: HOSPITAL_ITEM_IDS.bandage,
+      quantity: 1,
+    })
+
+    const used = resolve(slotted, quickSlotCommand(0, {
+      kind: 'open-wound',
+      woundId: 'manual-refill-wound',
+    })).snapshot
+    expect(used.quickSlots.slots[0]).toBeNull()
+    expect(used.backpack.items).toContainEqual(expect.objectContaining({
+      instanceId: 'bandage-stack',
+      quantity: 1,
+    }))
+    expect(used.itemStates.states.some(({ instanceId }) => instanceId === firstUnit.instanceId)).toBe(false)
+
+    const manuallyRefilled = resolveSceneInventoryCommand(used, {
+      kind: 'scene-backpack-to-quick-slot',
+      instanceId: 'bandage-stack',
+      targetSlotIndex: 0,
+    }, dependencies).snapshot
+    expect(manuallyRefilled.backpack.items).toEqual([])
+    expect(manuallyRefilled.quickSlots.slots[0]).toEqual({
+      instanceId: 'bandage-stack',
+      definitionId: HOSPITAL_ITEM_IDS.bandage,
+      quantity: 1,
+    })
+  })
+
   it('rejects a quest item forged into the formal medical bindings', () => {
     expect(() => getAvailableSceneMedicalCommands(snapshot(), {
       ...dependencies,

@@ -1,3 +1,4 @@
+import { deriveStableSplitInstanceId } from '../inventory'
 import { RunLoadoutError } from './run-loadout-errors'
 
 export function createStableRunLoadoutSplitInstanceId(
@@ -10,5 +11,14 @@ export function createStableRunLoadoutSplitInstanceId(
   if (!Number.isSafeInteger(sourceQuantityBeforeSplit) || sourceQuantityBeforeSplit <= 1) {
     throw new RunLoadoutError('INVALID_INPUT', '拆分前数量必须大于1')
   }
-  return `run-loadout-split:${sourceInstanceId.length}:${sourceInstanceId}:${sourceQuantityBeforeSplit}`
+  try {
+    return deriveStableSplitInstanceId({
+      scope: 'run-loadout-split',
+      sourceInstanceId,
+      sourceQuantityBeforeSplit,
+      quantity: 1,
+    })
+  } catch {
+    throw new RunLoadoutError('INVALID_INPUT', '拆分身份输入无效')
+  }
 }

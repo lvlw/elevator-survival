@@ -13,6 +13,7 @@ export {
   previewBackpackPlacement,
 } from './backpack-layout'
 export { calculateBackpackWeightSubtotal } from './backpack-weight'
+export { deriveStableSplitInstanceId } from './stable-split-instance-id'
 export {
   createItemCatalog,
   createItemInstance,

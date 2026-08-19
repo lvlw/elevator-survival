@@ -1,16 +1,13 @@
 import { deepFreeze } from '../config'
 import {
-  addItemToBackpack,
   calculateBackpackWeightSubtotal,
-  createItemInstance,
   InventoryError,
 } from '../inventory'
-import { createItemState } from '../item-state'
 import { classifyLoad } from '../load'
 import { getSceneNodeItems } from '../scene-items'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { applySceneExplorationEffects } from './scene-exploration-effects'
-import { getScenePhysicalItemInstanceIds } from './scene-physical-items'
+import { planNodeItemPickupStacking } from './node-item-pickup-stacking'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
 import type {
   NodeItemPickupEvaluation,
@@ -41,6 +38,16 @@ function evaluate(
   dependencies: SceneExplorationDependencies,
 ): NodeItemPickupTransitionPlan {
   const snapshot = createSceneExplorationSnapshot(snapshotInput, dependencies)
+  if (
+    command === null ||
+    typeof command !== 'object' ||
+    Array.isArray(command) ||
+    Object.getPrototypeOf(command) !== Object.prototype ||
+    Object.keys(command).some((key) => !['nodeItemInstanceId', 'quantity', 'placement'].includes(key)) ||
+    Object.keys(command).length !== 3
+  ) {
+    fail('INVALID_EXTRACTED_INSTANCE_ID', '拾取命令不得由调用方提供新实例ID')
+  }
   if (snapshot.status !== 'active') {
     throw new SceneExplorationError('SCENE_NOT_ACTIVE', '场景已终止')
   }
@@ -62,6 +69,10 @@ function evaluate(
   if (
     !command.placement ||
     typeof command.placement !== 'object' ||
+    Array.isArray(command.placement) ||
+    Object.getPrototypeOf(command.placement) !== Object.prototype ||
+    Object.keys(command.placement).length !== 3 ||
+    Object.keys(command.placement).some((key) => !['x', 'y', 'rotated'].includes(key)) ||
     !Number.isSafeInteger(command.placement.x) ||
     command.placement.x < 0 ||
     !Number.isSafeInteger(command.placement.y) ||
@@ -100,75 +111,15 @@ function evaluate(
 
   const pickupKind =
     command.quantity === source.item.quantity ? 'full' : 'partial'
-  const definition = dependencies.physicalCatalog.get(
-    source.item.definitionId,
-  )
-  let destinationInstanceId: string
-  if (pickupKind === 'full') {
-    if (command.extractedInstanceId !== undefined) {
-      fail(
-        'INVALID_EXTRACTED_INSTANCE_ID',
-        '完整拾取不得提供新的物品实例ID',
-      )
-    }
-    destinationInstanceId = source.item.instanceId
-  } else {
-    if (definition.stacking.kind !== 'stackable') {
-      fail('PARTIAL_PICKUP_NOT_ALLOWED', '非堆叠物品不能部分拾取')
-    }
-    if (source.state.resource.kind !== 'none') {
-      fail('PARTIAL_PICKUP_NOT_ALLOWED', '带资源状态的物品不能部分拾取')
-    }
-    if (
-      typeof command.extractedInstanceId !== 'string' ||
-      command.extractedInstanceId.trim().length === 0
-    ) {
-      fail(
-        'INVALID_EXTRACTED_INSTANCE_ID',
-        '部分拾取必须由调用方提供新实例ID',
-      )
-    }
-    if (getScenePhysicalItemInstanceIds(snapshot).includes(command.extractedInstanceId)) {
-      fail(
-        'DUPLICATE_DESTINATION_INSTANCE',
-        '部分拾取的新实例ID已存在',
-      )
-    }
-    destinationInstanceId = command.extractedInstanceId
-  }
-
-  const destinationItem = createItemInstance(
-    {
-      instanceId: destinationInstanceId,
-      definitionId: source.item.definitionId,
-      quantity: command.quantity,
-    },
-    dependencies.physicalCatalog,
-  )
-  const destinationItemState =
-    pickupKind === 'full'
-      ? source.state
-      : createItemState(
-          {
-            instanceId: destinationInstanceId,
-            definitionId: source.item.definitionId,
-            resource: { kind: 'none' },
-          },
-          dependencies.itemResourceCatalog,
-        )
-  const destinationPlacement = {
-    x: command.placement.x,
-    y: command.placement.y,
-    rotated: command.placement.rotated,
-  }
-  let backpackAfter
+  let stackingPlan
   try {
-    backpackAfter = addItemToBackpack(
-      snapshot.backpack,
-      destinationItem,
-      { instanceId: destinationInstanceId, ...destinationPlacement },
-      dependencies.physicalCatalog,
-    )
+    stackingPlan = planNodeItemPickupStacking({
+      snapshot,
+      source,
+      quantity: command.quantity,
+      placement: command.placement,
+      dependencies,
+    })
   } catch (error) {
     if (error instanceof InventoryError) {
       fail('INVALID_BACKPACK_PLACEMENT', error.message)
@@ -180,7 +131,7 @@ function evaluate(
     dependencies.physicalCatalog,
   )
   const backpackWeightAfter = calculateBackpackWeightSubtotal(
-    backpackAfter,
+    stackingPlan.backpack,
     dependencies.physicalCatalog,
   )
   const loadAfter = classifyLoad(
@@ -194,6 +145,7 @@ function evaluate(
     )
   }
 
+  const firstTransfer = stackingPlan.transfers[0]!
   const effect: SceneExplorationEffect = {
     kind: 'scene-item-picked-up',
     nodeId: snapshot.currentNodeId,
@@ -202,29 +154,27 @@ function evaluate(
     quantityBefore: source.item.quantity,
     quantityPicked: command.quantity,
     quantityRemaining: source.item.quantity - command.quantity,
-    destinationInstanceId,
-    destinationPlacement,
-    destinationItemState,
+    destinationInstanceId: firstTransfer.targetInstanceId,
+    destinationPlacement: firstTransfer.placement,
+    destinationItemState: firstTransfer.itemState,
+    transfers: stackingPlan.transfers,
     pickupKind,
   }
   return deepFreeze({
     command: {
       nodeItemInstanceId: command.nodeItemInstanceId,
       quantity: command.quantity,
-      placement: { ...destinationPlacement },
-      ...(command.extractedInstanceId === undefined
-        ? {}
-        : { extractedInstanceId: command.extractedInstanceId }),
+      placement: { ...command.placement },
     },
     metadata: {
       nodeId: snapshot.currentNodeId,
       sourceInstanceId: source.item.instanceId,
-      destinationInstanceId,
+      destinationInstanceId: firstTransfer.targetInstanceId,
       definitionId: source.item.definitionId,
       quantityPicked: command.quantity,
       quantityRemaining: source.item.quantity - command.quantity,
       pickupKind,
-      destinationPlacement,
+      destinationPlacement: firstTransfer.placement,
       backpackWeightBefore,
       backpackWeightAfter,
       loadTierAfter: loadAfter.tier,

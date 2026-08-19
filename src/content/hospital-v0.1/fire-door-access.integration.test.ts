@@ -10,6 +10,7 @@ import {
   previewMainSearchCommand,
   previewNodeItemPickupCommand,
   previewSceneMoveCommand,
+  resolveSceneInventoryCommand,
   previewSceneObstacleOptionCommand,
   resolveMainSearchCommand,
   resolveNodeItemPickupCommand,
@@ -31,6 +32,7 @@ import {
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
+  hospitalItemReturnLifecycleCatalog,
   hospitalItemResourceCatalog,
   hospitalItemSearchIlluminationCatalog,
   hospitalMainSearchCatalog,
@@ -48,6 +50,7 @@ const dependencies = {
   equipmentCatalog: hospitalItemEquipmentCatalog,
   quickSlotCatalog: hospitalItemQuickSlotCatalog,
   itemResourceCatalog: hospitalItemResourceCatalog,
+  lifecycleCatalog: hospitalItemReturnLifecycleCatalog,
   searchCatalog: hospitalMainSearchCatalog,
   searchIlluminationCatalog: hospitalItemSearchIlluminationCatalog,
   edgeAccessCatalog: hospitalSceneEdgeAccessCatalog,
@@ -163,6 +166,27 @@ describe('hospital staff access and fire door', () => {
     expect(result.snapshot.backpack.items).toEqual(withCard.backpack.items)
     expect(result.snapshot.enabledEdgeIds).toEqual(withCard.enabledEdgeIds)
     expect(result.result.effects.map(({ kind }) => kind)).toEqual(['scene-node-changed', 'scene-time-resolved'])
+  })
+
+  it('loses and regains staff-passage access when the real card moves between backpack and current ground', () => {
+    const withCard = snapshot({ nodeId: HOSPITAL_NODE_IDS.securityOffice, withCard: true })
+    const cardId = withCard.backpack.items[0]!.instanceId
+    const dropped = resolveSceneInventoryCommand(
+      withCard,
+      { kind: 'drop-scene-backpack-item', instanceId: cardId },
+      dependencies,
+    ).snapshot
+    expect(getEffectiveEnabledEdgeIds(dropped, hospitalSceneEdgeAccessCatalog)).not.toContain(
+      HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,
+    )
+    const restored = resolveNodeItemPickupCommand(
+      dropped,
+      { nodeItemInstanceId: cardId, quantity: 1, placement: { x: 0, y: 0, rotated: false } },
+      dependencies,
+    ).snapshot
+    expect(getEffectiveEnabledEdgeIds(restored, hospitalSceneEdgeAccessCatalog)).toContain(
+      HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,
+    )
   })
 
   it('reads first encounter time from alert state and versioned configuration', () => {

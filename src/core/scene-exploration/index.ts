@@ -8,6 +8,7 @@ export {
 } from './scene-exploration-snapshot'
 export { getScenePhysicalItemInstanceIds } from './scene-physical-items'
 export { applySceneExplorationEffects } from './scene-exploration-effects'
+export { applySceneInventoryEffects } from './scene-inventory-command'
 export { applySceneBatteryEffects } from './scene-battery-effect-application'
 export { getAvailableSceneBatteryCommands } from './scene-battery-selectors'
 export { createUseSceneBatteryCommand } from './scene-battery-validation'
@@ -35,6 +36,12 @@ export {
 } from './scene-move-resolution'
 export { createMoveThroughSceneEdgeCommand } from './scene-move-command'
 export { buildSceneMoveTransitionPlan } from './scene-move-transition-plan'
+export {
+  createSceneInventoryCommand,
+  buildSceneInventoryTransitionPlan,
+  previewSceneInventoryCommand,
+  resolveSceneInventoryCommand,
+} from './scene-inventory-command'
 export { createWithdrawFromSceneCommand } from './scene-withdrawal-command'
 export { buildSceneWithdrawalTransitionPlan } from './scene-withdrawal-transition-plan'
 export {
@@ -65,6 +72,7 @@ export type {
   MainSearchResolution,
   MainSearchTransitionPlan,
   MoveThroughSceneEdgeCommand,
+  SceneInventoryCommand,
   WithdrawFromSceneCommand,
   NodeItemPickupEvaluation,
   NodeItemPickupPreview,

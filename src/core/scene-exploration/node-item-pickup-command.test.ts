@@ -3,15 +3,18 @@ import type { FrozenRuleConfig } from '../config'
 import { createPlayerCondition } from '../condition'
 import { createEquipmentProfileCatalog } from '../equipment'
 import {
+  calculateBackpackWeightSubtotal,
   createBackpackSnapshot,
   createItemCatalog,
   type ItemInstance,
 } from '../inventory'
 import {
   createFullItemState,
+  createItemState,
   createItemResourceCatalog,
 } from '../item-state'
 import { createQuickSlotProfileCatalog } from '../quick-slot'
+import { createItemReturnLifecycleCatalog } from '../run-return'
 import { createSceneGraph } from '../scene-graph'
 import {
   addSceneItems,
@@ -25,8 +28,12 @@ import {
 } from '../scene-search'
 import {
   applySceneExplorationEffects,
+  applySceneInventoryEffects,
+  buildSceneInventoryTransitionPlan,
   createSceneExplorationSnapshot,
   previewNodeItemPickupCommand,
+  previewSceneInventoryCommand,
+  resolveSceneInventoryCommand,
   resolveNodeItemPickupCommand,
   type PickUpRevealedNodeItemCommand,
   type SceneExplorationEffect,
@@ -59,7 +66,417 @@ const graph = createSceneGraph({
   ],
   edges: [],
 })
+
+describe('scene inventory organization and node-stack merge', () => {
+  it('fills multiple compatible stacks in placement order, then creates one deterministic remainder stack atomically', () => {
+    const original = snapshot()
+    const first = { instanceId: 'light-first', definitionId: 'light-stack', quantity: 3 }
+    const second = { instanceId: 'light-second', definitionId: 'light-stack', quantity: 3 }
+    const ground = { instanceId: 'light-ground', definitionId: 'light-stack', quantity: 4 }
+    const start = createSceneExplorationSnapshot({
+      ...original,
+      backpack: createBackpackSnapshot({
+        width: 6,
+        height: 4,
+        items: [second, first],
+        placements: [
+          { instanceId: second.instanceId, x: 1, y: 0, rotated: false },
+          { instanceId: first.instanceId, x: 0, y: 0, rotated: false },
+        ],
+      }, physicalCatalog),
+      itemStates: {
+        states: [first, second].map((item) => createFullItemState(item, resourceCatalog)),
+      },
+      sceneItems: addSceneItems(
+        original.sceneItems,
+        'current',
+        [{ item: ground, state: createFullItemState(ground, resourceCatalog) }],
+        { graph, itemCatalog: physicalCatalog, itemResourceCatalog: resourceCatalog },
+      ),
+    }, dependencies)
+    const beforeWeight = calculateBackpackWeightSubtotal(start.backpack, physicalCatalog)
+    const resolved = resolveNodeItemPickupCommand(start, {
+      nodeItemInstanceId: ground.instanceId,
+      quantity: 3,
+      placement: { x: 2, y: 0, rotated: false },
+    }, dependencies)
+    expect(resolved.result.effects[0]).toMatchObject({
+      transfers: [
+        { kind: 'merge-existing', targetInstanceId: first.instanceId, quantityBefore: 3, quantityMoved: 1, quantityAfter: 4 },
+        { kind: 'merge-existing', targetInstanceId: second.instanceId, quantityBefore: 3, quantityMoved: 1, quantityAfter: 4 },
+        { kind: 'create-stack', quantityBefore: 0, quantityMoved: 1, quantityAfter: 1 },
+      ],
+    })
+    const remainder = resolved.snapshot.backpack.items.find(
+      ({ instanceId }) => instanceId !== first.instanceId && instanceId !== second.instanceId,
+    )!
+    expect(remainder.instanceId).toContain('scene-node-pickup-split:pickup-scene')
+    expect(getSceneNodeItems(resolved.snapshot.sceneItems, 'current')).toContainEqual(
+      expect.objectContaining({
+        item: expect.objectContaining({ instanceId: ground.instanceId, quantity: 1 }),
+      }),
+    )
+    expect(calculateBackpackWeightSubtotal(resolved.snapshot.backpack, physicalCatalog)).toBe(beforeWeight)
+    expect(resolveNodeItemPickupCommand(start, {
+      nodeItemInstanceId: ground.instanceId,
+      quantity: 3,
+      placement: { x: 2, y: 0, rotated: false },
+    }, dependencies)).toEqual(resolved)
+  })
+
+  it('rejects missing, duplicate, reordered, or mutated multi-stack pickup transfers atomically', () => {
+    const original = snapshot()
+    const first = { instanceId: 'tamper-first', definitionId: 'light-stack', quantity: 3 }
+    const second = { instanceId: 'tamper-second', definitionId: 'light-stack', quantity: 3 }
+    const ground = { instanceId: 'tamper-ground', definitionId: 'light-stack', quantity: 3 }
+    const start = createSceneExplorationSnapshot({
+      ...original,
+      backpack: createBackpackSnapshot({
+        width: 6,
+        height: 4,
+        items: [second, first],
+        placements: [
+          { instanceId: second.instanceId, x: 1, y: 0, rotated: false },
+          { instanceId: first.instanceId, x: 0, y: 0, rotated: false },
+        ],
+      }, physicalCatalog),
+      itemStates: { states: [first, second].map((candidate) => createFullItemState(candidate, resourceCatalog)) },
+      sceneItems: addSceneItems(
+        original.sceneItems,
+        'current',
+        [{ item: ground, state: createFullItemState(ground, resourceCatalog) }],
+        { graph, itemCatalog: physicalCatalog, itemResourceCatalog: resourceCatalog },
+      ),
+    }, dependencies)
+    const resolved = resolveNodeItemPickupCommand(start, {
+      nodeItemInstanceId: ground.instanceId,
+      quantity: 3,
+      placement: { x: 2, y: 0, rotated: false },
+    }, dependencies)
+    const mutations: readonly ((transfers: Record<string, unknown>[]) => void)[] = [
+      (transfers) => { transfers.splice(1, 1) },
+      (transfers) => { transfers.push(structuredClone(transfers[0]!)) },
+      (transfers) => { transfers.reverse() },
+      (transfers) => { transfers[0]!.quantityMoved = 2 },
+      (transfers) => { transfers[0]!.targetInstanceId = 'forged-target' },
+      (transfers) => { transfers[0]!.placement = { x: 5, y: 3, rotated: false } },
+      (transfers) => {
+        transfers[0]!.itemState = {
+          ...(transfers[0]!.itemState as Record<string, unknown>),
+          definitionId: 'single',
+        }
+      },
+    ]
+    for (const mutate of mutations) {
+      const effects = structuredClone(resolved.result.effects) as SceneExplorationEffect[]
+      const pickup = effects[0] as Extract<SceneExplorationEffect, { kind: 'scene-item-picked-up' }>
+      const transfers = pickup.transfers as unknown as Record<string, unknown>[]
+      mutate(transfers)
+      expect(() => applySceneExplorationEffects(start, effects, dependencies)).toThrow()
+      expect(getSceneNodeItems(start.sceneItems, 'current')).toContainEqual(
+        expect.objectContaining({ item: ground }),
+      )
+      expect(start.backpack.items).toEqual([first, second])
+    }
+  })
+
+  it('merges a compatible node stack into the stable first backpack stack', () => {
+    const original = snapshot()
+    const carried = {
+      instanceId: 'carried-stack',
+      definitionId: 'stack',
+      quantity: 2,
+    }
+    const start = createSceneExplorationSnapshot(
+      {
+        ...original,
+        backpack: createBackpackSnapshot(
+          {
+            width: 6,
+            height: 4,
+            items: [carried],
+            placements: [
+              { instanceId: carried.instanceId, x: 4, y: 3, rotated: false },
+            ],
+          },
+          physicalCatalog,
+        ),
+        itemStates: { states: [createFullItemState(carried, resourceCatalog)] },
+      },
+      dependencies,
+    )
+
+    const result = resolveNodeItemPickupCommand(
+      start,
+      command(start, { quantity: 1, placement: { x: 0, y: 0, rotated: false } }),
+      dependencies,
+    )
+
+    expect(result.result.destinationInstanceId).toBe('carried-stack')
+    expect(result.snapshot.backpack.items).toEqual([
+      { ...carried, quantity: 3 },
+    ])
+    expect(result.snapshot.backpack.placements).toEqual([
+      { instanceId: carried.instanceId, x: 4, y: 3, rotated: false },
+    ])
+  })
+
+  it('never merges node items whose formal ItemState resource facts differ', () => {
+    const original = snapshot({ currentNodeId: 'other', searchedCurrent: false, searchedOther: true })
+    const carried = { instanceId: 'carried-resource', definitionId: 'resource', quantity: 1 }
+    const start = createSceneExplorationSnapshot({
+      ...original,
+      backpack: createBackpackSnapshot({
+        width: 6, height: 4, items: [carried],
+        placements: [{ instanceId: carried.instanceId, x: 3, y: 0, rotated: false }],
+      }, physicalCatalog),
+      itemStates: { states: [createItemState({ ...carried, resource: { kind: 'durability', current: 1 } }, resourceCatalog)] },
+    }, dependencies)
+    const source = sourceId(start, 'resource')
+    const result = resolveNodeItemPickupCommand(start, {
+      nodeItemInstanceId: source,
+      quantity: 3,
+      placement: { x: 0, y: 0, rotated: false },
+    }, dependencies)
+    expect(result.snapshot.backpack.items.map(({ instanceId }) => instanceId)).toEqual(
+      expect.arrayContaining(['carried-resource', source]),
+    )
+  })
+
+  it('organizes actual backpack and quick-slot items at zero scene time', () => {
+    const start = resolveNodeItemPickupCommand(
+      snapshot(),
+      command(snapshot()),
+      dependencies,
+    ).snapshot
+    const itemId = start.backpack.items[0]!.instanceId
+    const move = resolveSceneInventoryCommand(
+      start,
+      {
+        kind: 'move-scene-backpack-item',
+        instanceId: itemId,
+        placement: { instanceId: itemId, x: 2, y: 1, rotated: false },
+      },
+      dependencies,
+    ).snapshot
+    const quick = resolveSceneInventoryCommand(
+      move,
+      { kind: 'scene-backpack-to-quick-slot', instanceId: itemId, targetSlotIndex: 0 },
+      dependencies,
+    ).snapshot
+    const returned = resolveSceneInventoryCommand(
+      quick,
+      {
+        kind: 'scene-quick-slot-to-backpack',
+        sourceSlotIndex: 0,
+        placement: { x: 3, y: 2, rotated: false },
+      },
+      dependencies,
+    ).snapshot
+
+    expect(returned.backpack.items).toEqual(expect.arrayContaining([
+      { instanceId: itemId, definitionId: 'stack', quantity: 2 },
+      expect.objectContaining({ definitionId: 'stack', quantity: 1 }),
+    ]))
+    expect(returned.quickSlots.slots).toEqual([null, null])
+    expect(returned.remainingTime).toBe(start.remainingTime)
+    expect(returned.condition).toEqual(start.condition)
+  })
+
+  it('splits and merges none-resource stacks with core-derived identities', () => {
+    const picked = resolveNodeItemPickupCommand(snapshot(), command(snapshot()), dependencies).snapshot
+    const sourceId = picked.backpack.items[0]!.instanceId
+    const split = resolveSceneInventoryCommand(
+      picked,
+      {
+        kind: 'split-scene-backpack-stack',
+        sourceInstanceId: sourceId,
+        quantity: 1,
+        placement: { x: 1, y: 0, rotated: false },
+      },
+      dependencies,
+    ).snapshot
+    const splitItem = split.backpack.items.find((item) => item.instanceId !== sourceId)!
+    expect(splitItem.instanceId).toContain('scene-backpack-split:pickup-scene')
+    const merged = resolveSceneInventoryCommand(
+      split,
+      {
+        kind: 'merge-scene-backpack-stacks',
+        sourceInstanceId: splitItem.instanceId,
+        targetInstanceId: sourceId,
+        quantity: 1,
+      },
+      dependencies,
+    ).snapshot
+    expect(merged.backpack.items).toEqual([{ instanceId: sourceId, definitionId: 'stack', quantity: 3 }])
+    expect(merged.itemStates.states.map(({ instanceId }) => instanceId)).toEqual([sourceId])
+  })
+
+  it('drops an ordinary backpack item into the current node and rejects forged Effect snapshots', () => {
+    const picked = resolveNodeItemPickupCommand(snapshot(), command(snapshot()), dependencies).snapshot
+    const itemId = picked.backpack.items[0]!.instanceId
+    const plan = buildSceneInventoryTransitionPlan(
+      picked,
+      { kind: 'drop-scene-backpack-item', instanceId: itemId },
+      dependencies,
+    )
+    const result = resolveSceneInventoryCommand(picked, plan.command, dependencies).snapshot
+    expect(result.backpack.items).toEqual([])
+    expect(getSceneNodeItems(result.sceneItems, result.currentNodeId)).toContainEqual(
+      expect.objectContaining({ item: expect.objectContaining({ instanceId: itemId }) }),
+    )
+    expect(result.itemStates.states).toEqual([])
+    expect(result.remainingTime).toBe(picked.remainingTime)
+    expect(result.condition).toEqual(picked.condition)
+
+    const forged = structuredClone(plan.effects) as SceneExplorationEffect[]
+    ;(forged[0] as { snapshot: SceneExplorationSnapshot }).snapshot = picked
+    expect(() => applySceneInventoryEffects(picked, forged, dependencies)).toThrowError(
+      expect.objectContaining({ code: 'EFFECT_RESOURCE_MISMATCH' }),
+    )
+  })
+
+  it('moves one resource ItemState from backpack to ground and back without duplication', () => {
+    const original = snapshot({ currentNodeId: 'other', searchedCurrent: false, searchedOther: true })
+    const source = sourceId(original, 'resource')
+    const sourceQuantity = getSceneNodeItems(original.sceneItems, original.currentNodeId).find(
+      ({ item }) => item.instanceId === source,
+    )!.item.quantity
+    const picked = resolveNodeItemPickupCommand(original, {
+      nodeItemInstanceId: source,
+      quantity: sourceQuantity,
+      placement: { x: 0, y: 0, rotated: false },
+    }, dependencies).snapshot
+    const carriedState = picked.itemStates.states.find(({ instanceId }) => instanceId === source)!
+    const dropped = resolveSceneInventoryCommand(
+      picked,
+      { kind: 'drop-scene-backpack-item', instanceId: source },
+      dependencies,
+    ).snapshot
+    const ground = getSceneNodeItems(dropped.sceneItems, dropped.currentNodeId).find(
+      ({ item }) => item.instanceId === source,
+    )!
+    expect(dropped.itemStates.states.some(({ instanceId }) => instanceId === source)).toBe(false)
+    expect(ground).toEqual({
+      item: expect.objectContaining({ instanceId: source }),
+      state: carriedState,
+    })
+
+    const restored = resolveNodeItemPickupCommand(dropped, {
+      nodeItemInstanceId: source,
+      quantity: sourceQuantity,
+      placement: { x: 1, y: 0, rotated: false },
+    }, dependencies).snapshot
+    expect(getSceneNodeItems(restored.sceneItems, restored.currentNodeId).some(
+      ({ item }) => item.instanceId === source,
+    )).toBe(false)
+    expect(restored.itemStates.states.filter(({ instanceId }) => instanceId === source))
+      .toEqual([carriedState])
+    expect(restored.backpack.items).toContainEqual(expect.objectContaining({ instanceId: source }))
+  })
+
+  it('atomically rejects every tampered scene-inventory plan shape', () => {
+    const picked = resolveNodeItemPickupCommand(snapshot(), command(snapshot()), dependencies).snapshot
+    const itemId = picked.backpack.items[0]!.instanceId
+    const plan = buildSceneInventoryTransitionPlan(
+      picked,
+      { kind: 'move-scene-backpack-item', instanceId: itemId, placement: { instanceId: itemId, x: 1, y: 1, rotated: false } },
+      dependencies,
+    )
+    const before = structuredClone(picked)
+    const variants: readonly ((effects: SceneExplorationEffect[]) => void)[] = [
+      (effects) => effects.splice(0, 1),
+      (effects) => effects.push(effects[0]!),
+      (effects) => { ;(effects[0] as { command: { instanceId: string } }).command.instanceId = 'forged' },
+      (effects) => { ;(effects[0] as { command: { placement: { x: number } } }).command.placement.x = 5 },
+      (effects) => { ;(effects[0] as { snapshot: SceneExplorationSnapshot }).snapshot = picked },
+    ]
+    for (const mutate of variants) {
+      const effects = structuredClone(plan.effects) as SceneExplorationEffect[]
+      mutate(effects)
+      expect(() => applySceneInventoryEffects(picked, effects, dependencies)).toThrow()
+      expect(picked).toEqual(before)
+    }
+  })
+
+  it('audits and rejects tampering of every rule-bearing inventory fact', () => {
+    const picked = resolveNodeItemPickupCommand(snapshot(), command(snapshot()), dependencies).snapshot
+    const sourceId = picked.backpack.items[0]!.instanceId
+    const split = buildSceneInventoryTransitionPlan(picked, {
+      kind: 'split-scene-backpack-stack',
+      sourceInstanceId: sourceId,
+      quantity: 1,
+      placement: { x: 1, y: 0, rotated: false },
+    }, dependencies)
+    const splitItemId = split.snapshot.backpack.items.find(({ instanceId }) => instanceId !== sourceId)!.instanceId
+    const merge = buildSceneInventoryTransitionPlan(split.snapshot, {
+      kind: 'merge-scene-backpack-stacks',
+      sourceInstanceId: splitItemId,
+      targetInstanceId: sourceId,
+      quantity: 1,
+    }, dependencies)
+    const quick = buildSceneInventoryTransitionPlan(picked, {
+      kind: 'scene-backpack-to-quick-slot',
+      instanceId: sourceId,
+      targetSlotIndex: 0,
+    }, dependencies)
+    const dropped = buildSceneInventoryTransitionPlan(picked, {
+      kind: 'drop-scene-backpack-item',
+      instanceId: sourceId,
+    }, dependencies)
+    const cases = [
+      [split, 'splitInstanceId', 'forged-split'],
+      [split, 'quantityMoved', 2],
+      [split, 'targetPlacement', { instanceId: splitItemId, x: 5, y: 3, rotated: false }],
+      [merge, 'targetInstanceId', splitItemId],
+      [merge, 'mergeResult', 'partial'],
+      [merge, 'targetItemState', null],
+      [quick, 'quickSlotIndex', 1],
+      [dropped, 'nodeId', 'other'],
+      [dropped, 'dropLifecycleKind', 'quest'],
+      [dropped, 'sourceItemState', {
+        ...(dropped.effects[0] as Extract<SceneExplorationEffect, { kind: 'scene-inventory-committed' }>).audit.sourceItemState,
+        definitionId: 'single',
+      }],
+    ] as const
+    for (const [plan, field, value] of cases) {
+      const effects = structuredClone(plan.effects) as SceneExplorationEffect[]
+      Object.assign((effects[0] as Extract<SceneExplorationEffect, { kind: 'scene-inventory-committed' }>).audit, {
+        [field]: value,
+      })
+      const initial = plan === split ? picked : plan === merge ? split.snapshot : picked
+      expect(() => applySceneInventoryEffects(initial, effects, dependencies)).toThrowError(
+        expect.objectContaining({ code: 'EFFECT_RESOURCE_MISMATCH' }),
+      )
+    }
+  })
+
+  it('strictly rejects unknown inventory command fields and combat or terminal scenes', () => {
+    const start = snapshot()
+    expect(previewSceneInventoryCommand(
+      start,
+      { kind: 'drop-scene-backpack-item', instanceId: 'x', ignored: true },
+      dependencies,
+    )).toEqual({ canExecute: false, rejectionCode: 'INVALID_INPUT' })
+    for (const status of ['safe-returned', 'forced-returned', 'dead'] as const) {
+      expect(previewSceneInventoryCommand(
+        snapshot({ status }),
+        { kind: 'drop-scene-backpack-item', instanceId: 'x' },
+        dependencies,
+      )).toEqual({ canExecute: false, rejectionCode: 'SCENE_NOT_ACTIVE' })
+    }
+  })
+})
 const physicalCatalog = createItemCatalog([
+  {
+    id: 'light-stack',
+    name: '零重测试堆叠',
+    width: 1,
+    height: 1,
+    unitWeight: 0,
+    canRotate: true,
+    stacking: { kind: 'stackable', maxQuantity: 4 },
+  },
   {
     id: 'stack',
     name: '堆叠物',
@@ -108,6 +525,7 @@ const physicalCatalog = createItemCatalog([
 ])
 const resourceCatalog = createItemResourceCatalog(
   [
+    { definitionId: 'light-stack', kind: 'none' },
     { definitionId: 'stack', kind: 'none' },
     { definitionId: 'single', kind: 'none' },
     { definitionId: 'resource', kind: 'durability', maximum: 3 },
@@ -132,11 +550,18 @@ const quickSlotCatalog = createQuickSlotProfileCatalog(
   physicalCatalog.definitionIds.map((definitionId) => ({
     definitionId,
     kind:
-      definitionId === 'heavy-quick'
+      definitionId === 'heavy-quick' || definitionId === 'stack'
         ? 'eligible' as const
         : 'not-eligible' as const,
   })),
   physicalCatalog.definitionIds,
+)
+const lifecycleCatalog = createItemReturnLifecycleCatalog(
+  physicalCatalog.definitionIds.map((definitionId) => ({
+    definitionId,
+    kind: 'ordinary' as const,
+  })),
+  physicalCatalog,
 )
 const searchCatalog = createMainSearchDefinitionCatalog(
   [
@@ -187,6 +612,7 @@ const dependencies = {
   equipmentCatalog,
   quickSlotCatalog,
   itemResourceCatalog: resourceCatalog,
+  lifecycleCatalog,
   config,
 }
 
@@ -487,19 +913,18 @@ describe('node item pickup eligibility and identity', () => {
     expect(getSceneNodeItems(state.sceneItems, 'current')).toEqual([])
   })
 
-  it('partially picks up stackable none-state items with caller identity', () => {
+  it('partially picks up stackable none-state items with a core-derived identity', () => {
     const start = snapshot()
     const result = resolveNodeItemPickupCommand(
       start,
       command(start, {
         quantity: 1,
-        extractedInstanceId: 'caller-new-stack',
       }),
       dependencies,
     )
     expect(result.result.pickupKind).toBe('partial')
     expect(result.snapshot.backpack.items).toContainEqual({
-      instanceId: 'caller-new-stack',
+      instanceId: result.result.destinationInstanceId,
       definitionId: 'stack',
       quantity: 1,
     })
@@ -531,30 +956,20 @@ describe('node item pickup eligibility and identity', () => {
     ).toEqual({ canExecute: false, rejectionCode })
   })
 
-  it('requires and validates the caller-provided partial instance id', () => {
+  it('derives partial identities and rejects caller-provided identities', () => {
     const start = snapshot()
+    expect(previewNodeItemPickupCommand(start, command(start, { quantity: 1 }), dependencies).canExecute).toBe(true)
     expect(
       previewNodeItemPickupCommand(
         start,
-        command(start, { quantity: 1 }),
+        { ...command(start, {
+          quantity: 1,
+        }), extractedInstanceId: sourceId(start) } as unknown as PickUpRevealedNodeItemCommand,
         dependencies,
       ),
     ).toEqual({
       canExecute: false,
       rejectionCode: 'INVALID_EXTRACTED_INSTANCE_ID',
-    })
-    expect(
-      previewNodeItemPickupCommand(
-        start,
-        command(start, {
-          quantity: 1,
-          extractedInstanceId: sourceId(start),
-        }),
-        dependencies,
-      ),
-    ).toEqual({
-      canExecute: false,
-      rejectionCode: 'DUPLICATE_DESTINATION_INSTANCE',
     })
   })
 
@@ -563,7 +978,7 @@ describe('node item pickup eligibility and identity', () => {
     expect(
       previewNodeItemPickupCommand(
         start,
-        command(start, { extractedInstanceId: 'unused' }),
+        { ...command(start), extractedInstanceId: 'unused' } as unknown as PickUpRevealedNodeItemCommand,
         dependencies,
       ),
     ).toEqual({
@@ -584,7 +999,6 @@ describe('node item pickup eligibility and identity', () => {
         {
           nodeItemInstanceId: sourceId(start, 'resource'),
           quantity: 1,
-          extractedInstanceId: 'split-resource',
           placement: { x: 0, y: 0, rotated: false },
         },
         dependencies,
@@ -689,34 +1103,10 @@ describe('node item pickup eligibility and identity', () => {
     ).toBe(true)
   })
 
-  it.each([
-    ['backpack', 'backpack-weight', { backpackWeight: 1 }],
-    ['equipment', 'equipped-heavy', { withHeavyContainers: true }],
-    ['quick slot', 'quick-heavy', { withHeavyContainers: true }],
-    ['another node', 'other-node-id', { searchedOther: true }],
-  ])(
-    'rejects a partial destination id already used by %s',
-    (location, fixedId, options) => {
-      const start = snapshot(options)
-      const duplicateId =
-        location === 'another node'
-          ? getSceneNodeItems(start.sceneItems, 'other')[0].item.instanceId
-          : fixedId
-      expect(
-        previewNodeItemPickupCommand(
-          start,
-          command(start, {
-            quantity: 1,
-            extractedInstanceId: duplicateId,
-          }),
-          dependencies,
-        ),
-      ).toEqual({
-        canExecute: false,
-        rejectionCode: 'DUPLICATE_DESTINATION_INSTANCE',
-      })
-    },
-  )
+  it('rejects caller-provided partial identities before accepting a derived identity', () => {
+    const start = snapshot()
+    expect(previewNodeItemPickupCommand(start, { ...command(start, { quantity: 1 }), extractedInstanceId: 'forged' } as unknown as PickUpRevealedNodeItemCommand, dependencies)).toEqual({ canExecute: false, rejectionCode: 'INVALID_EXTRACTED_INSTANCE_ID' })
+  })
 
   it.each(['safe-returned', 'forced-returned', 'dead'] as const)(
     'rejects terminal status %s',
@@ -747,7 +1137,6 @@ describe('node item pickup backpack and load boundaries', () => {
       start,
       command(start, {
         quantity: 1,
-        extractedInstanceId: `picked-at-${weight}`,
       }),
       dependencies,
     )
@@ -783,7 +1172,6 @@ describe('node item pickup backpack and load boundaries', () => {
         start,
         command(start, {
           quantity: 1,
-          extractedInstanceId: 'too-heavy',
         }),
         dependencies,
       ),
@@ -794,7 +1182,7 @@ describe('node item pickup backpack and load boundaries', () => {
   it.each([
     [{ x: 6, y: 0, rotated: false }, 'out of bounds'],
     [{ x: 5, y: 3, rotated: false }, 'overlap'],
-  ])('rejects %s placement without changing the node', (placement) => {
+  ])('uses an existing compatible stack before considering an invalid requested placement', (placement) => {
     const start = snapshot({ backpackWeight: 1 })
     const before = structuredClone(start)
     expect(
@@ -802,15 +1190,11 @@ describe('node item pickup backpack and load boundaries', () => {
         start,
         command(start, {
           quantity: 1,
-          extractedInstanceId: 'bad-placement',
           placement,
         }),
         dependencies,
       ),
-    ).toEqual({
-      canExecute: false,
-      rejectionCode: 'INVALID_BACKPACK_PLACEMENT',
-    })
+    ).toEqual(expect.objectContaining({ canExecute: true }))
     expect(start).toEqual(before)
   })
 
@@ -838,7 +1222,6 @@ describe('node item pickup backpack and load boundaries', () => {
       start,
       command(start, {
         quantity: 1,
-        extractedInstanceId: 'light-pickup',
       }),
       dependencies,
     )
@@ -849,21 +1232,20 @@ describe('node item pickup backpack and load boundaries', () => {
     })
   })
 
-  it('does not auto-merge with an existing same-definition stack', () => {
+  it('merges a partial pickup into a compatible existing stack', () => {
     const start = snapshot({ backpackWeight: 1 })
     const result = resolveNodeItemPickupCommand(
       start,
       command(start, {
         quantity: 1,
-        extractedInstanceId: 'separate-stack',
         placement: { x: 0, y: 0, rotated: false },
       }),
       dependencies,
     )
-    expect(result.snapshot.backpack.items).toHaveLength(2)
-    expect(result.snapshot.backpack.items.map((item) => item.instanceId)).toContain(
-      'separate-stack',
-    )
+    expect(result.snapshot.backpack.items).toEqual([
+      { instanceId: 'backpack-weight', definitionId: 'stack', quantity: 2 },
+    ])
+    expect(result.result.destinationInstanceId).toBe('backpack-weight')
   })
 })
 
@@ -1029,7 +1411,6 @@ describe('node item pickup Effect replay and side effects', () => {
     const start = snapshot()
     const input = command(start, {
       quantity: 1,
-      extractedInstanceId: 'stable-new-id',
     })
     expect(resolveNodeItemPickupCommand(start, input, dependencies)).toEqual(
       resolveNodeItemPickupCommand(start, input, dependencies),
@@ -1040,7 +1421,6 @@ describe('node item pickup Effect replay and side effects', () => {
     const start = snapshot()
     const input = command(start, {
       quantity: 1,
-      extractedInstanceId: 'frozen-id',
     })
     const before = structuredClone(input)
     const result = resolveNodeItemPickupCommand(

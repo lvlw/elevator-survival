@@ -80,6 +80,19 @@ export function createItemState(
   })
 }
 
+/**
+ * Stack compatibility deliberately ignores instance identity: two distinct
+ * instances can only share a stack when every state fact other than identity
+ * is equal.
+ */
+export function areItemStatesStackCompatible(
+  left: Readonly<ItemState>,
+  right: Readonly<ItemState>,
+): boolean {
+  return left.definitionId === right.definitionId &&
+    JSON.stringify(left.resource) === JSON.stringify(right.resource)
+}
+
 export function previewCommittedResourceAction(
   state: Readonly<ItemState>,
   requestedCost: number,

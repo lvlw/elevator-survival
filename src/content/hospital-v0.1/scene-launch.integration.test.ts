@@ -6,7 +6,11 @@ import {
 } from '../../core/current-day-hub'
 import { resolveDailySettlement } from '../../core/daily-settlement'
 import { createEmptyEquipment } from '../../core/equipment'
-import { createBackpackSnapshot, type ItemInstance } from '../../core/inventory'
+import {
+  calculateBackpackWeightSubtotal,
+  createBackpackSnapshot,
+  type ItemInstance,
+} from '../../core/inventory'
 import { createFullItemState, createItemState } from '../../core/item-state'
 import { createQuickSlotSnapshot } from '../../core/quick-slot'
 import { createRunLoadoutSnapshot } from '../../core/run-loadout'
@@ -29,9 +33,13 @@ import {
 import {
   createInitialSceneExplorationSnapshot,
   createSceneExplorationSnapshot,
+  previewSceneWithdrawalCommand,
+  resolveNodeItemPickupCommand,
   resolveSceneBatteryCommand,
   resolveSceneMedicalCommand,
+  resolveSceneInventoryCommand,
   resolveSceneMoveCommand,
+  resolveSceneTaskEventCommand,
   applySceneExplorationEffects,
   createWithdrawFromSceneCommand,
   resolveSceneWithdrawalCommand,
@@ -43,9 +51,11 @@ import {
 } from '../../core/run-termination'
 import {
   HOSPITAL_EDGE_IDS,
+  HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
   HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
   HOSPITAL_ITEM_IDS,
   HOSPITAL_NODE_IDS,
+  HOSPITAL_TASK_EVENT_IDS,
   createHospitalSceneRuntimeBundle,
   hospitalHubSurvivalContentBindings,
   hospitalItemCatalog,
@@ -177,6 +187,11 @@ describe('hospital formal active withdrawal', () => {
     const security = resolveSceneMoveCommand(hall, { edgeId: HOSPITAL_EDGE_IDS.emergencyHallToSecurityOffice }, runtime.dependencies).snapshot
     const combat = resolveSceneMoveCommand(security, { edgeId: HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor }, runtime.dependencies).snapshot
     expect(combat.status).toBe('combat')
+    expect(() => resolveSceneInventoryCommand(
+      combat,
+      { kind: 'drop-scene-backpack-item', instanceId: 'carried-card' },
+      runtime.dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'SCENE_NOT_ACTIVE' }))
     expect(() => resolveSceneWithdrawalCommand(combat, { kind: 'withdraw-from-scene' }, runtime.dependencies))
       .toThrowError(expect.objectContaining({ code: 'SCENE_WITHDRAWAL_NOT_AVAILABLE' }))
     expect(() => resolveSceneWithdrawalCommand(terminalSession(launched, 'safe-returned').scene, { kind: 'withdraw-from-scene' }, runtime.dependencies))
@@ -220,6 +235,7 @@ interface HubOptions {
   readonly mainSceneUsedToday?: boolean
   readonly returnLedger?: readonly string[]
   readonly warehouse?: readonly ItemInstance[]
+  readonly backpackExtras?: readonly ItemInstance[]
 }
 
 function hub(options: HubOptions = {}): CurrentDayHubSnapshot {
@@ -230,7 +246,7 @@ function hub(options: HubOptions = {}): CurrentDayHubSnapshot {
   const card = item('carried-card', HOSPITAL_ITEM_IDS.isolationWardAccessCard)
   const flashlight = item('equipped-flashlight', HOSPITAL_ITEM_IDS.flashlight)
   const pipe = item('equipped-pipe', HOSPITAL_ITEM_IDS.metalPipe)
-  const backpackItems = [battery, bandage, card]
+  const backpackItems = [battery, bandage, card, ...(options.backpackExtras ?? [])]
   const carried = [...backpackItems, flashlight, pipe]
   const allItems = [...warehouse, ...carried]
   const runLoadout = createRunLoadoutSnapshot({
@@ -244,6 +260,12 @@ function hub(options: HubOptions = {}): CurrentDayHubSnapshot {
         { instanceId: battery.instanceId, x: 0, y: 0, rotated: false },
         { instanceId: bandage.instanceId, x: 1, y: 0, rotated: false },
         { instanceId: card.instanceId, x: 2, y: 0, rotated: false },
+        ...(options.backpackExtras ?? []).map((candidate, index) => ({
+          instanceId: candidate.instanceId,
+          x: index,
+          y: 1,
+          rotated: false,
+        })),
       ],
     }, hospitalItemCatalog),
     equipment: { weapon: pipe, armor: null, utility: flashlight },
@@ -319,6 +341,162 @@ function terminalSession(
 }
 
 describe('hospital formal Scene Launch and active Scene lifecycle', () => {
+  it('keeps a confirmed dropped pathogen case lost through real withdrawal and Run Return', () => {
+    const launched = resolveSceneLaunch(hub(), { kind: 'launch-main-scene' }, launchDependencies).session
+    const runtime = getRunSceneRuntime(launched, launchDependencies)
+    const encounter = launched.scene.combatState.encounters[0]
+    if (!encounter || encounter.kind !== 'dormant') throw new Error('缺少感染护工遭遇')
+    const atSpecimenRoom = createSceneExplorationSnapshot({
+      ...launched.scene,
+      currentNodeId: HOSPITAL_NODE_IDS.specimenColdRoom,
+      combatState: {
+        ...launched.scene.combatState,
+        encounters: [{
+          ...encounter,
+          enemy: {
+            ...encounter.enemy,
+            currentHealth: 0,
+            defeated: true,
+            hasBeenEncountered: true,
+          },
+        }],
+      },
+    }, runtime.dependencies)
+    const extracted = resolveSceneTaskEventCommand(atSpecimenRoom, {
+      eventId: HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval,
+      optionId: 'cautious-extraction',
+      placement: { x: 3, y: 0, rotated: false },
+    }, runtime.dependencies).snapshot
+    const pathogenCase = extracted.backpack.items.find(
+      ({ definitionId }) => definitionId === HOSPITAL_ITEM_IDS.sealedPathogenCase,
+    )!
+    const dropped = resolveSceneInventoryCommand(extracted, {
+      kind: 'confirm-drop-scene-quest-item',
+      instanceId: pathogenCase.instanceId,
+    }, runtime.dependencies).snapshot
+    expect(dropped.taskEvents.entries).toContainEqual({
+      eventId: HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval,
+      status: 'completed',
+    })
+    const withdrawal = resolveRunSceneSessionWithdrawal(
+      createRunSceneSessionSnapshot({ context: launched.context, scene: dropped }, launchDependencies),
+      { kind: 'withdraw-from-scene' },
+      launchDependencies,
+    )
+    expect(withdrawal.session.scene.status).toBe('safe-returned')
+    expect(withdrawal.session.scene.taskEvents.entries).toContainEqual({
+      eventId: HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval,
+      status: 'completed',
+    })
+
+    const returned = resolveRunSceneSessionReturn(withdrawal.session, launchDependencies)
+    expect(returned.runReturn.summary.lostSceneTaskInstanceIds).toEqual([pathogenCase.instanceId])
+    expect(returned.currentDayHub.runLoadout.taskStorage.items).toEqual([])
+    expect(returned.currentDayHub.runLoadout.warehouse.items.some(
+      ({ instanceId }) => instanceId === pathogenCase.instanceId,
+    )).toBe(false)
+    expect(returned.currentDayHub.runLoadout.backpack.items.some(
+      ({ instanceId }) => instanceId === pathogenCase.instanceId,
+    )).toBe(false)
+    expect(withdrawal.session.scene.sceneItems.nodeStates.flatMap(({ items }) => items).filter(
+      ({ item: candidate }) => candidate.instanceId === pathogenCase.instanceId,
+    )).toHaveLength(1)
+  })
+
+  it('recomputes withdrawal from post-drop weight and the latest living condition', () => {
+    const materialStacks = [0, 1, 2].map((index) =>
+      item(`withdrawal-metal-${index}`, HOSPITAL_ITEM_IDS.metalParts, 5),
+    )
+    const launched = resolveSceneLaunch(
+      hub({ backpackExtras: materialStacks }),
+      { kind: 'launch-main-scene' },
+      launchDependencies,
+    ).session
+    const runtime = getRunSceneRuntime(launched, launchDependencies)
+    const contused = createPlayerCondition({
+      ...launched.scene.condition,
+      minorContusions: 1,
+    }, config.combat.player)
+    const start = createSceneExplorationSnapshot({
+      ...launched.scene,
+      currentNodeId: HOSPITAL_NODE_IDS.specimenColdRoom,
+      remainingTime: 100,
+      condition: contused,
+      enabledEdgeIds: HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
+      status: 'active',
+    }, runtime.dependencies)
+    const beforeDrop = resolveSceneWithdrawalCommand(
+      start,
+      { kind: 'withdraw-from-scene' },
+      runtime.dependencies,
+    )
+    const dropped = resolveSceneInventoryCommand(start, {
+      kind: 'drop-scene-backpack-item',
+      instanceId: materialStacks[0]!.instanceId,
+    }, runtime.dependencies).snapshot
+    const afterDrop = resolveRunSceneSessionWithdrawal(
+      createRunSceneSessionSnapshot({ context: launched.context, scene: dropped }, launchDependencies),
+      { kind: 'withdraw-from-scene' },
+      launchDependencies,
+    )
+    expect(calculateBackpackWeightSubtotal(start.backpack, hospitalItemCatalog)).toBe(17)
+    expect(calculateBackpackWeightSubtotal(dropped.backpack, hospitalItemCatalog)).toBe(12)
+    expect(beforeDrop.result.returnRoute.estimatedReturnTime).toBe(49)
+    expect(afterDrop.withdrawal.result.returnRoute.estimatedReturnTime).toBe(44)
+    expect(afterDrop.session.scene.status).toBe('safe-returned')
+    expect(afterDrop.session.scene.condition.minorContusions).toBe(1)
+    expect(dropped.remainingTime).toBe(start.remainingTime)
+  })
+
+  it('uses the post-inventory permission state for terminal withdrawal instead of launch-time access', () => {
+    const launched = resolveSceneLaunch(hub(), { kind: 'launch-main-scene' }, launchDependencies).session
+    const runtime = getRunSceneRuntime(launched, launchDependencies)
+    const encounter = launched.scene.combatState.encounters[0]
+    if (!encounter || encounter.kind !== 'dormant') throw new Error('缺少感染护工遭遇')
+    const start = createSceneExplorationSnapshot({
+      ...launched.scene,
+      currentNodeId: HOSPITAL_NODE_IDS.isolationCorridor,
+      remainingTime: 100,
+      enabledEdgeIds: HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
+      status: 'active',
+      combatState: {
+        ...launched.scene.combatState,
+        encounters: [{
+          ...encounter,
+          enemy: {
+            ...encounter.enemy,
+            currentHealth: 0,
+            defeated: true,
+            hasBeenEncountered: true,
+          },
+        }],
+      },
+    }, runtime.dependencies)
+    const dropped = resolveSceneInventoryCommand(start, {
+      kind: 'drop-scene-backpack-item',
+      instanceId: 'carried-card',
+    }, runtime.dependencies).snapshot
+    expect(previewSceneWithdrawalCommand(
+      dropped,
+      { kind: 'withdraw-from-scene' },
+      runtime.dependencies,
+    )).toEqual({ canExecute: false, rejectionCode: 'ACTION_NOT_AVAILABLE' })
+    const restored = resolveNodeItemPickupCommand(dropped, {
+      nodeItemInstanceId: 'carried-card',
+      quantity: 1,
+      placement: { x: 2, y: 0, rotated: false },
+    }, runtime.dependencies).snapshot
+    const withdrawal = resolveRunSceneSessionWithdrawal(
+      createRunSceneSessionSnapshot({ context: launched.context, scene: restored }, launchDependencies),
+      { kind: 'withdraw-from-scene' },
+      launchDependencies,
+    )
+    expect(withdrawal.withdrawal.result.returnRoute.edgeIds).toContain(
+      HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,
+    )
+    expect(withdrawal.session.scene.status).toBe('safe-returned')
+  })
+
   it('uses the DEC-029 hospital Scene definition identity', () => {
     expect(hospitalSceneLaunchContent.sceneDefinitionId)
       .toBe('scene_blockaded_hospital_emergency_floor_1')

@@ -60,7 +60,10 @@ import type {
   SceneCombatStateSnapshot,
 } from '../scene-combat'
 import type { RunIntelLogSnapshot } from '../run-intel'
-import type { ItemReturnLifecycleCatalog } from '../run-return'
+import type {
+  ItemReturnLifecycleCatalog,
+  ItemReturnLifecycleKind,
+} from '../run-return'
 import type {
   SceneTaskEventCatalog,
   SceneTaskEventStateSnapshot,
@@ -122,6 +125,7 @@ export interface SceneExplorationDependencies {
   readonly sceneCombat?: SceneCombatDependencies
   readonly medicalBindings?: SceneMedicalContentBindings
   readonly taskEventCatalog?: SceneTaskEventCatalog
+  readonly lifecycleCatalog?: ItemReturnLifecycleCatalog
 }
 
 export interface SceneMedicalCommandDependencies
@@ -156,6 +160,35 @@ export interface SceneTaskEventCommandDependencies
 export interface MoveThroughSceneEdgeCommand {
   readonly edgeId: string
 }
+export type SceneInventoryCommand =
+  | Readonly<{ kind: 'move-scene-backpack-item'; instanceId: string; placement: BackpackPlacement }>
+  | Readonly<{ kind: 'split-scene-backpack-stack'; sourceInstanceId: string; quantity: number; placement: Omit<BackpackPlacement, 'instanceId'> }>
+  | Readonly<{ kind: 'merge-scene-backpack-stacks'; sourceInstanceId: string; targetInstanceId: string; quantity: number }>
+  | Readonly<{ kind: 'scene-backpack-to-quick-slot'; instanceId: string; targetSlotIndex: number }>
+  | Readonly<{ kind: 'scene-quick-slot-to-backpack'; sourceSlotIndex: number; placement: Omit<BackpackPlacement, 'instanceId'> }>
+  | Readonly<{ kind: 'drop-scene-backpack-item'; instanceId: string }>
+  | Readonly<{ kind: 'confirm-drop-scene-quest-item'; instanceId: string }>
+
+export interface SceneInventoryAudit {
+  readonly operationKind: SceneInventoryCommand['kind']
+  readonly sourceInstanceId: string
+  readonly targetInstanceId: string | null
+  readonly definitionId: string
+  readonly sourceQuantityBefore: number
+  readonly quantityMoved: number
+  readonly sourceQuantityAfter: number
+  readonly targetQuantityBefore: number | null
+  readonly targetQuantityAfter: number | null
+  readonly sourcePlacement: BackpackPlacement | null
+  readonly targetPlacement: BackpackPlacement | null
+  readonly splitInstanceId: string | null
+  readonly quickSlotIndex: number | null
+  readonly nodeId: string | null
+  readonly sourceItemState: ItemState
+  readonly targetItemState: ItemState | null
+  readonly mergeResult: 'full' | 'partial' | null
+  readonly dropLifecycleKind: ItemReturnLifecycleKind | null
+}
 
 /** A player-confirmed, non-combat return using the formal known route. */
 export interface WithdrawFromSceneCommand {
@@ -168,6 +201,12 @@ export type SceneMoveHealthLossSource =
   | 'forced-return-bleeding'
 
 export type SceneExplorationEffect =
+  | Readonly<{
+      kind: 'scene-inventory-committed'
+      command: SceneInventoryCommand
+      audit: SceneInventoryAudit
+      snapshot: SceneExplorationSnapshot
+    }>
   | Readonly<{
       kind: 'scene-active-withdrawal-resolved'
       command: WithdrawFromSceneCommand
@@ -289,6 +328,7 @@ export type SceneExplorationEffect =
       destinationInstanceId: string
       destinationPlacement: Omit<BackpackPlacement, 'instanceId'>
       destinationItemState: Readonly<ItemState>
+      transfers: readonly import('./node-item-pickup-stacking').NodePickupTransfer[]
       pickupKind: 'full' | 'partial'
     }>
   | Readonly<{
@@ -527,7 +567,6 @@ export interface PickUpRevealedNodeItemCommand {
   readonly nodeItemInstanceId: string
   readonly quantity: number
   readonly placement: Omit<BackpackPlacement, 'instanceId'>
-  readonly extractedInstanceId?: string
 }
 
 export interface PerformSceneObstacleOptionCommand {

@@ -13,6 +13,7 @@ import {
   resolveNodeItemPickupCommand,
   resolveSceneMoveCommand,
   type SceneExplorationEffect,
+  type SceneExplorationEffectCommandBinding,
   type SceneExplorationSnapshot,
 } from '../../core/scene-exploration'
 import { createSceneSearchState } from '../../core/scene-search'
@@ -57,6 +58,7 @@ function executeChecked(
     result: SuccessfulEvaluation
     snapshot: SceneExplorationSnapshot
   }>,
+  commandBinding?: SceneExplorationEffectCommandBinding,
 ): SceneExplorationSnapshot {
   expect(preview.canExecute).toBe(true)
   if (!preview.canExecute) {
@@ -69,6 +71,7 @@ function executeChecked(
       start,
       preview.result.effects,
       dependencies,
+      commandBinding,
     ),
   ).toEqual(resolution.snapshot)
   return resolution.snapshot
@@ -226,25 +229,27 @@ describe('hospital formal command chain', () => {
       .filter(({ item }) => item.instanceId !== metal.item.instanceId)
       .map(({ item }) => item.instanceId)
     const timeBeforeMetalPickup = current.remainingTime
+    const metalPickupCommand = {
+      nodeItemInstanceId: metal.item.instanceId,
+      quantity: 1,
+      placement: { x: 0, y: 0, rotated: false },
+    } as const
     const metalPreview = previewNodeItemPickupCommand(
       current,
-      {
-        nodeItemInstanceId: metal.item.instanceId,
-        quantity: 1,
-        placement: { x: 0, y: 0, rotated: false },
-      },
+      metalPickupCommand,
       dependencies,
     )
     const metalResolved = resolveNodeItemPickupCommand(
       current,
-      {
-        nodeItemInstanceId: metal.item.instanceId,
-        quantity: 1,
-        placement: { x: 0, y: 0, rotated: false },
-      },
+      metalPickupCommand,
       dependencies,
     )
-    current = executeChecked(current, metalPreview, metalResolved)
+    current = executeChecked(
+      current,
+      metalPreview,
+      metalResolved,
+      { kind: 'node-item-pickup', command: metalPickupCommand },
+    )
     expect(metalResolved.result.effects.map(({ kind }) => kind)).toEqual([
       'scene-item-picked-up',
     ])
@@ -323,25 +328,27 @@ describe('hospital formal command chain', () => {
       HOSPITAL_ITEM_IDS.bandage,
     )
     const timeBeforeBandagePickup = current.remainingTime
+    const bandagePickupCommand = {
+      nodeItemInstanceId: bandage.item.instanceId,
+      quantity: 1,
+      placement: { x: 1, y: 0, rotated: false },
+    } as const
     const bandagePreview = previewNodeItemPickupCommand(
       current,
-      {
-        nodeItemInstanceId: bandage.item.instanceId,
-        quantity: 1,
-        placement: { x: 1, y: 0, rotated: false },
-      },
+      bandagePickupCommand,
       dependencies,
     )
     const bandageResolved = resolveNodeItemPickupCommand(
       current,
-      {
-        nodeItemInstanceId: bandage.item.instanceId,
-        quantity: 1,
-        placement: { x: 1, y: 0, rotated: false },
-      },
+      bandagePickupCommand,
       dependencies,
     )
-    current = executeChecked(current, bandagePreview, bandageResolved)
+    current = executeChecked(
+      current,
+      bandagePreview,
+      bandageResolved,
+      { kind: 'node-item-pickup', command: bandagePickupCommand },
+    )
     expect(current.remainingTime).toBe(timeBeforeBandagePickup)
     expect(current.quickSlots.slots).toEqual([null, null])
     expect(current.backpack.items).toHaveLength(2)

@@ -38,11 +38,13 @@ import { applySceneMedicalEffects } from './scene-medical-effect-application'
 import { applySceneBatteryEffects } from './scene-battery-effect-application'
 import { applySceneWithdrawalEffects } from './scene-withdrawal-effect-application'
 import { applySceneInventoryEffects } from './scene-inventory-command'
+import { buildNodeItemPickupTransitionPlan } from './node-item-pickup-command'
 import { planNodeItemPickupStacking } from './node-item-pickup-stacking'
 import { applySceneTaskEventEffects } from './scene-task-event-command'
 import type {
   SceneExplorationEffect,
   SceneExplorationDependencies,
+  SceneExplorationEffectCommandBinding,
   SceneExplorationSnapshot,
   SceneObstacleCommandDependencies,
 } from './scene-exploration-types'
@@ -370,8 +372,7 @@ function applySceneExplorationEffectsInternal(
     return applySceneWithdrawalEffects(initialSnapshot, effects, dependencies)
   }
   if (effects.some(({ kind }) => kind === 'scene-inventory-committed')) {
-    if (!dependencies) fail('EFFECT_RESOURCE_MISMATCH', '场景整理Effect需要完整依赖')
-    return applySceneInventoryEffects(initialSnapshot, effects, dependencies)
+    fail('EFFECT_RESOURCE_MISMATCH', '场景整理Effect必须通过独立命令绑定应用')
   }
   if (effects.some(({ kind }) =>
     kind === 'scene-task-risk-resolved' ||
@@ -1067,10 +1068,41 @@ export function applySceneExplorationEffects(
   initialSnapshot: SceneExplorationSnapshot,
   effects: readonly SceneExplorationEffect[],
   rulesOrDependencies: PlayerHealthRules | SceneExplorationDependencies,
+  commandBinding?: SceneExplorationEffectCommandBinding,
 ): SceneExplorationSnapshot {
-  return applySceneExplorationEffectsInternal(
+  const dependencies = 'graph' in rulesOrDependencies
+    ? rulesOrDependencies
+    : null
+  if (effects.some(({ kind }) => kind === 'scene-inventory-committed')) {
+    if (!dependencies || commandBinding?.kind !== 'scene-inventory') {
+      fail('EFFECT_RESOURCE_MISMATCH', '场景整理Effect缺少独立规范化命令')
+    }
+    return applySceneInventoryEffects(
+      initialSnapshot,
+      commandBinding.command,
+      effects,
+      dependencies,
+    )
+  }
+  const hasPickup = effects.some(({ kind }) => kind === 'scene-item-picked-up')
+  const expectedPickupPlan = hasPickup && dependencies &&
+    commandBinding?.kind === 'node-item-pickup'
+    ? buildNodeItemPickupTransitionPlan(
+        initialSnapshot,
+        commandBinding.command,
+        dependencies,
+      )
+    : null
+  if (hasPickup && !expectedPickupPlan) {
+    fail('EFFECT_PICKUP_MISMATCH', '拾取Effect缺少独立规范化命令')
+  }
+  const snapshot = applySceneExplorationEffectsInternal(
     initialSnapshot,
     effects,
     rulesOrDependencies,
   )
+  if (expectedPickupPlan && !sameValue(effects, expectedPickupPlan.effects)) {
+    fail('EFFECT_PICKUP_MISMATCH', '拾取Effect与独立命令不一致')
+  }
+  return snapshot
 }

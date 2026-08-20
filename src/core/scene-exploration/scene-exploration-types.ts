@@ -169,6 +169,16 @@ export type SceneInventoryCommand =
   | Readonly<{ kind: 'drop-scene-backpack-item'; instanceId: string }>
   | Readonly<{ kind: 'confirm-drop-scene-quest-item'; instanceId: string }>
 
+export type SceneExplorationEffectCommandBinding =
+  | Readonly<{
+      kind: 'node-item-pickup'
+      command: PickUpRevealedNodeItemCommand
+    }>
+  | Readonly<{
+      kind: 'scene-inventory'
+      command: SceneInventoryCommand
+    }>
+
 export interface SceneInventoryAudit {
   readonly operationKind: SceneInventoryCommand['kind']
   readonly sourceInstanceId: string

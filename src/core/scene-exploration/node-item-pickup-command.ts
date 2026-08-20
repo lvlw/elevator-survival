@@ -32,7 +32,7 @@ function fail(
   throw new SceneExplorationError(code, message)
 }
 
-function evaluate(
+export function buildNodeItemPickupTransitionPlan(
   snapshotInput: SceneExplorationSnapshot,
   command: PickUpRevealedNodeItemCommand,
   dependencies: SceneExplorationDependencies,
@@ -192,6 +192,7 @@ function materializeEvaluation(
     initialSnapshot,
     plan.effects,
     dependencies,
+    { kind: 'node-item-pickup', command: plan.command },
   )
   return deepFreeze({
     ...plan.metadata,
@@ -210,7 +211,11 @@ export function previewNodeItemPickupCommand(
       snapshot,
       dependencies,
     )
-    const plan = evaluate(initialSnapshot, command, dependencies)
+    const plan = buildNodeItemPickupTransitionPlan(
+      initialSnapshot,
+      command,
+      dependencies,
+    )
     return deepFreeze({
       canExecute: true,
       result: materializeEvaluation(initialSnapshot, plan, dependencies),
@@ -232,7 +237,11 @@ export function resolveNodeItemPickupCommand(
     snapshot,
     dependencies,
   )
-  const plan = evaluate(initialSnapshot, command, dependencies)
+  const plan = buildNodeItemPickupTransitionPlan(
+    initialSnapshot,
+    command,
+    dependencies,
+  )
   const result = materializeEvaluation(
     initialSnapshot,
     plan,

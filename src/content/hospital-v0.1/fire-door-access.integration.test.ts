@@ -273,7 +273,7 @@ describe('hospital staff access and fire door', () => {
     const forced = resolveSceneObstacleOptionCommand(broken, option(HOSPITAL_FIRE_DOOR_OPTION_IDS.forceEntry), obstacleDependencies)
     expect(forced.result.riskTrace).toMatchObject({ riskPercent: 60, usedImpactProtection: false })
     expect(getItemState(forced.snapshot.itemStates, 'equipped-coat').resource).toEqual({ kind: 'integrity', current: 0 })
-    const start = snapshot({ remainingTime: 0, bleeding: true })
+    const start = snapshot({ remainingTime: 1, bleeding: true })
     const declined = resolveSceneObstacleOptionCommand(start, option(HOSPITAL_FIRE_DOOR_OPTION_IDS.decline), obstacleDependencies)
     expect(declined.result.actionTime).toBe(0)
     expect(declined.result.effects.map(({ kind }) => kind)).toEqual(['scene-obstacle-declined'])
@@ -298,7 +298,12 @@ describe('hospital staff access and fire door', () => {
     expect(pickupPreview.canExecute).toBe(true)
     if (!pickupPreview.canExecute) throw new Error('门禁卡拾取预览必须成功')
     expect(pickupPreview.result.effects).toEqual(pickupResolved.result.effects)
-    expect(applySceneExplorationEffects(current, pickupResolved.result.effects, dependencies)).toEqual(pickupResolved.snapshot)
+    expect(applySceneExplorationEffects(
+      current,
+      pickupResolved.result.effects,
+      dependencies,
+      { kind: 'node-item-pickup', command: pickupCommand },
+    )).toEqual(pickupResolved.snapshot)
     current = pickupResolved.snapshot
     const movePreview = previewSceneMoveCommand(current, { edgeId: HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor }, dependencies)
     const moved = resolveSceneMoveCommand(current, { edgeId: HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor }, dependencies)
@@ -329,7 +334,12 @@ describe('hospital staff access and fire door', () => {
     const pickupPreview = previewNodeItemPickupCommand(current, pickupCommand, dependencies)
     const pickupResolved = resolveNodeItemPickupCommand(current, pickupCommand, dependencies)
     expect(pickupPreview.canExecute && pickupPreview.result.effects).toEqual(pickupResolved.result.effects)
-    expect(applySceneExplorationEffects(current, pickupResolved.result.effects, dependencies)).toEqual(pickupResolved.snapshot)
+    expect(applySceneExplorationEffects(
+      current,
+      pickupResolved.result.effects,
+      dependencies,
+      { kind: 'node-item-pickup', command: pickupCommand },
+    )).toEqual(pickupResolved.snapshot)
     current = pickupResolved.snapshot
     const corridorPreview = previewSceneMoveCommand(current, { edgeId: HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor }, dependencies)
     const corridorMove = resolveSceneMoveCommand(current, { edgeId: HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor }, dependencies)

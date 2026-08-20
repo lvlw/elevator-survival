@@ -310,6 +310,21 @@ describe('scene exploration snapshot', () => {
     ).toThrowError(expect.objectContaining({ code: 'STATUS_HEALTH_CONFLICT' }))
   })
 
+  it('rejects active zero time outside a return safety node and accepts it at safety', () => {
+    expect(() => createSceneExplorationSnapshot(
+      { ...snapshot('middle', 1), remainingTime: 0 },
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_REMAINING_TIME' }))
+    expect(createSceneExplorationSnapshot(
+      snapshot('safe', 0),
+      dependencies,
+    )).toMatchObject({
+      status: 'active',
+      currentNodeId: 'safe',
+      remainingTime: 0,
+    })
+  })
+
   it('binds normalized backpack dimensions to the rule configuration without mutation', () => {
     const input = {
       ...snapshot(),

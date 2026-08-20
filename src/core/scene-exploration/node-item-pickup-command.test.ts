@@ -29,6 +29,7 @@ import {
 import {
   applySceneExplorationEffects,
   applySceneInventoryEffects,
+  buildNodeItemPickupTransitionPlan,
   buildSceneInventoryTransitionPlan,
   createSceneExplorationSnapshot,
   previewNodeItemPickupCommand,
@@ -172,7 +173,19 @@ describe('scene inventory organization and node-stack merge', () => {
       const pickup = effects[0] as Extract<SceneExplorationEffect, { kind: 'scene-item-picked-up' }>
       const transfers = pickup.transfers as unknown as Record<string, unknown>[]
       mutate(transfers)
-      expect(() => applySceneExplorationEffects(start, effects, dependencies)).toThrow()
+      expect(() => applySceneExplorationEffects(
+        start,
+        effects,
+        dependencies,
+        {
+          kind: 'node-item-pickup',
+          command: {
+            nodeItemInstanceId: ground.instanceId,
+            quantity: 3,
+            placement: { x: 2, y: 0, rotated: false },
+          },
+        },
+      )).toThrow()
       expect(getSceneNodeItems(start.sceneItems, 'current')).toContainEqual(
         expect.objectContaining({ item: ground }),
       )
@@ -283,6 +296,31 @@ describe('scene inventory organization and node-stack merge', () => {
     expect(returned.condition).toEqual(start.condition)
   })
 
+  it('allows zero-time inventory only through an already strict active safety snapshot', () => {
+    const initial = snapshot()
+    const picked = resolveNodeItemPickupCommand(
+      initial,
+      command(initial),
+      dependencies,
+    ).snapshot
+    const itemId = picked.backpack.items[0]!.instanceId
+    const atSafety = createSceneExplorationSnapshot({
+      ...picked,
+      currentNodeId: 'safe',
+      remainingTime: 0,
+    }, dependencies)
+    const moved = resolveSceneInventoryCommand(atSafety, {
+      kind: 'move-scene-backpack-item',
+      instanceId: itemId,
+      placement: { instanceId: itemId, x: 2, y: 1, rotated: false },
+    }, dependencies).snapshot
+    expect(moved).toMatchObject({
+      status: 'active',
+      currentNodeId: 'safe',
+      remainingTime: 0,
+    })
+  })
+
   it('splits and merges none-resource stacks with core-derived identities', () => {
     const picked = resolveNodeItemPickupCommand(snapshot(), command(snapshot()), dependencies).snapshot
     const sourceId = picked.backpack.items[0]!.instanceId
@@ -331,7 +369,12 @@ describe('scene inventory organization and node-stack merge', () => {
 
     const forged = structuredClone(plan.effects) as SceneExplorationEffect[]
     ;(forged[0] as { snapshot: SceneExplorationSnapshot }).snapshot = picked
-    expect(() => applySceneInventoryEffects(picked, forged, dependencies)).toThrowError(
+    expect(() => applySceneInventoryEffects(
+      picked,
+      plan.command,
+      forged,
+      dependencies,
+    )).toThrowError(
       expect.objectContaining({ code: 'EFFECT_RESOURCE_MISMATCH' }),
     )
   })
@@ -394,9 +437,75 @@ describe('scene inventory organization and node-stack merge', () => {
     for (const mutate of variants) {
       const effects = structuredClone(plan.effects) as SceneExplorationEffect[]
       mutate(effects)
-      expect(() => applySceneInventoryEffects(picked, effects, dependencies)).toThrow()
+      expect(() => applySceneInventoryEffects(
+        picked,
+        plan.command,
+        effects,
+        dependencies,
+      )).toThrow()
       expect(picked).toEqual(before)
     }
+  })
+
+  it('rejects an internally valid move Effect plan when bound to another move command', () => {
+    const initial = snapshot()
+    const picked = resolveNodeItemPickupCommand(
+      initial,
+      command(initial),
+      dependencies,
+    ).snapshot
+    const itemId = picked.backpack.items[0]!.instanceId
+    const original = buildSceneInventoryTransitionPlan(picked, {
+      kind: 'move-scene-backpack-item',
+      instanceId: itemId,
+      placement: { instanceId: itemId, x: 1, y: 1, rotated: false },
+    }, dependencies)
+    const forgedAsAnotherLegalMove = buildSceneInventoryTransitionPlan(picked, {
+      kind: 'move-scene-backpack-item',
+      instanceId: itemId,
+      placement: { instanceId: itemId, x: 2, y: 1, rotated: false },
+    }, dependencies)
+    expect(() => applySceneExplorationEffects(
+      picked,
+      forgedAsAnotherLegalMove.effects,
+      dependencies,
+      { kind: 'scene-inventory', command: original.command },
+    )).toThrowError(expect.objectContaining({ code: 'EFFECT_RESOURCE_MISMATCH' }))
+    expect(() => applySceneExplorationEffects(
+      picked,
+      original.effects,
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'EFFECT_RESOURCE_MISMATCH' }))
+  })
+
+  it('rejects a valid drop-B Effect plan when the independent command is drop-A', () => {
+    const initial = snapshot()
+    const withStack = resolveNodeItemPickupCommand(
+      initial,
+      command(initial),
+      dependencies,
+    ).snapshot
+    const withTwoItems = resolveNodeItemPickupCommand(withStack, {
+      nodeItemInstanceId: sourceId(withStack, 'single'),
+      quantity: 1,
+      placement: { x: 2, y: 0, rotated: false },
+    }, dependencies).snapshot
+    const [itemA, itemB] = withTwoItems.backpack.items
+    if (!itemA || !itemB) throw new Error('测试需要两个背包物品')
+    const dropA = buildSceneInventoryTransitionPlan(withTwoItems, {
+      kind: 'drop-scene-backpack-item',
+      instanceId: itemA.instanceId,
+    }, dependencies)
+    const dropB = buildSceneInventoryTransitionPlan(withTwoItems, {
+      kind: 'drop-scene-backpack-item',
+      instanceId: itemB.instanceId,
+    }, dependencies)
+    expect(() => applySceneExplorationEffects(
+      withTwoItems,
+      dropB.effects,
+      dependencies,
+      { kind: 'scene-inventory', command: dropA.command },
+    )).toThrowError(expect.objectContaining({ code: 'EFFECT_RESOURCE_MISMATCH' }))
   })
 
   it('audits and rejects tampering of every rule-bearing inventory fact', () => {
@@ -445,7 +554,12 @@ describe('scene inventory organization and node-stack merge', () => {
         [field]: value,
       })
       const initial = plan === split ? picked : plan === merge ? split.snapshot : picked
-      expect(() => applySceneInventoryEffects(initial, effects, dependencies)).toThrowError(
+      expect(() => applySceneInventoryEffects(
+        initial,
+        plan.command,
+        effects,
+        dependencies,
+      )).toThrowError(
         expect.objectContaining({ code: 'EFFECT_RESOURCE_MISMATCH' }),
       )
     }
@@ -793,6 +907,30 @@ const command = (
   ...overrides,
 })
 
+function zeroTimeSafetyGroundSnapshot(
+  bleeding = false,
+): SceneExplorationSnapshot {
+  const initial = snapshot({ bleeding })
+  const picked = resolveNodeItemPickupCommand(
+    initial,
+    command(initial),
+    dependencies,
+  ).snapshot
+  const itemId = picked.backpack.items[0]!.instanceId
+  const atSafety = createSceneExplorationSnapshot({
+    ...picked,
+    currentNodeId: 'safe',
+  }, dependencies)
+  const dropped = resolveSceneInventoryCommand(atSafety, {
+    kind: 'drop-scene-backpack-item',
+    instanceId: itemId,
+  }, dependencies).snapshot
+  return createSceneExplorationSnapshot({
+    ...dropped,
+    remainingTime: 0,
+  }, dependencies)
+}
+
 function replaceEffect(
   effect: SceneExplorationEffect,
   patch: Record<string, unknown>,
@@ -1095,8 +1233,8 @@ describe('node item pickup eligibility and identity', () => {
     ).toEqual({ canExecute: false, rejectionCode: 'UNKNOWN_NODE_ITEM' })
   })
 
-  it('allows pickup at zero remaining time while the scene is active', () => {
-    const start = snapshot({ remainingTime: 0 })
+  it('allows pickup at zero remaining time from a strict active safety node', () => {
+    const start = zeroTimeSafetyGroundSnapshot()
     expect(
       previewNodeItemPickupCommand(start, command(start), dependencies)
         .canExecute,
@@ -1270,6 +1408,7 @@ describe('node item pickup Effect replay and side effects', () => {
         start,
         resolution.result.effects,
         dependencies,
+        { kind: 'node-item-pickup', command: input },
       ),
     ).toEqual(resolution.snapshot)
   })
@@ -1297,9 +1436,10 @@ describe('node item pickup Effect replay and side effects', () => {
     ],
   ])('rejects tampered Effect field %s atomically', (field, value) => {
     const start = snapshot()
+    const input = command(start)
     const result = resolveNodeItemPickupCommand(
       start,
-      command(start),
+      input,
       dependencies,
     )
     const before = structuredClone(start)
@@ -1308,9 +1448,37 @@ describe('node item pickup Effect replay and side effects', () => {
         start,
         [replaceEffect(result.result.effects[0], { [field]: value })],
         dependencies,
+        { kind: 'node-item-pickup', command: input },
       ),
     ).toThrow()
     expect(start).toEqual(before)
+  })
+
+  it('rejects a coordinated legal quantity and placement rewrite bound to the original pickup command', () => {
+    const start = snapshot()
+    const original = command(start, {
+      quantity: 1,
+      placement: { x: 0, y: 0, rotated: false },
+    })
+    const forgedAsAnotherLegalPickup = buildNodeItemPickupTransitionPlan(
+      start,
+      command(start, {
+        quantity: 2,
+        placement: { x: 2, y: 1, rotated: false },
+      }),
+      dependencies,
+    )
+    expect(() => applySceneExplorationEffects(
+      start,
+      forgedAsAnotherLegalPickup.effects,
+      dependencies,
+      { kind: 'node-item-pickup', command: original },
+    )).toThrowError(expect.objectContaining({ code: 'EFFECT_PICKUP_MISMATCH' }))
+    expect(() => applySceneExplorationEffects(
+      start,
+      forgedAsAnotherLegalPickup.effects,
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'EFFECT_PICKUP_MISMATCH' }))
   })
 
   it.each([
@@ -1318,9 +1486,10 @@ describe('node item pickup Effect replay and side effects', () => {
     'scene-main-search-revealed',
   ])('rejects an appended non-pickup primary Effect: %s', (kind) => {
     const start = snapshot()
+    const input = command(start)
     const pickup = resolveNodeItemPickupCommand(
       start,
-      command(start),
+      input,
       dependencies,
     ).result.effects[0]
     const invalid =
@@ -1345,6 +1514,7 @@ describe('node item pickup Effect replay and side effects', () => {
         start,
         [pickup, invalid] as readonly SceneExplorationEffect[],
         dependencies,
+        { kind: 'node-item-pickup', command: input },
       ),
     ).toThrowError(
       expect.objectContaining({ code: 'INVALID_EFFECT_ORDER' }),
@@ -1353,9 +1523,10 @@ describe('node item pickup Effect replay and side effects', () => {
 
   it('rejects empty plans and any appended time Effect', () => {
     const start = snapshot()
+    const input = command(start)
     const effect = resolveNodeItemPickupCommand(
       start,
-      command(start),
+      input,
       dependencies,
     ).result.effects[0]
     expect(() =>
@@ -1375,6 +1546,7 @@ describe('node item pickup Effect replay and side effects', () => {
           },
         ],
         dependencies,
+        { kind: 'node-item-pickup', command: input },
       ),
     ).toThrowError(
       expect.objectContaining({ code: 'INVALID_EFFECT_ORDER' }),
@@ -1382,7 +1554,7 @@ describe('node item pickup Effect replay and side effects', () => {
   })
 
   it('does not change time, bleeding health, location, status, equipment, or quick slots', () => {
-    const start = snapshot({ remainingTime: 0, bleeding: true })
+    const start = zeroTimeSafetyGroundSnapshot(true)
     const result = resolveNodeItemPickupCommand(
       start,
       command(start),
@@ -1390,7 +1562,7 @@ describe('node item pickup Effect replay and side effects', () => {
     )
     expect(result.snapshot).toMatchObject({
       remainingTime: 0,
-      currentNodeId: 'current',
+      currentNodeId: 'safe',
       status: 'active',
       condition: { currentHealth: 12, bleeding: true },
       equipment: start.equipment,

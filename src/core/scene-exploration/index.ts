@@ -53,6 +53,7 @@ export {
   resolveMainSearchCommand,
 } from './main-search-command'
 export {
+  buildNodeItemPickupTransitionPlan,
   previewNodeItemPickupCommand,
   resolveNodeItemPickupCommand,
 } from './node-item-pickup-command'
@@ -86,6 +87,7 @@ export type {
   UseSceneBatteryCommand,
   SceneExplorationDependencies,
   SceneExplorationEffect,
+  SceneExplorationEffectCommandBinding,
   SceneExplorationSnapshot,
   SceneExplorationSnapshotInput,
   SceneExplorationInitialSnapshotInput,

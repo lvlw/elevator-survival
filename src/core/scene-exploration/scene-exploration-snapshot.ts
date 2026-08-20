@@ -109,16 +109,26 @@ export function createSceneExplorationSnapshot(
   if (alertState !== 'unalerted' && alertState !== 'alerted') {
     throw new SceneExplorationError('INVALID_INPUT', '场景警觉状态无效')
   }
-  if (
-    input.currentNodeId.trim().length === 0 ||
-    !dependencies.graph.nodes.some((node) => node.id === input.currentNodeId)
-  ) {
+  const currentNode = dependencies.graph.nodes.find(
+    (node) => node.id === input.currentNodeId,
+  )
+  if (input.currentNodeId.trim().length === 0 || !currentNode) {
     throw new SceneExplorationError('INVALID_CURRENT_NODE', '当前节点无效')
   }
   if (!Number.isSafeInteger(input.remainingTime) || input.remainingTime < 0) {
     throw new SceneExplorationError(
       'INVALID_REMAINING_TIME',
       '剩余时间必须是非负安全整数',
+    )
+  }
+  if (
+    input.status === 'active' &&
+    input.remainingTime === 0 &&
+    !currentNode.isReturnSafetyNode
+  ) {
+    throw new SceneExplorationError(
+      'INVALID_REMAINING_TIME',
+      '场景时间耗尽时，active场景必须位于正式返程安全节点',
     )
   }
   validateTraversalAvailability(dependencies.graph, {

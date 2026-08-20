@@ -566,6 +566,10 @@ describe('stable Run Save IO', () => {
     }), hospitalRunSaveRulesRegistry)).toThrowError(RunSaveError)
     expect(() => deserializeRunSave(mutateSerialized(sceneEnvelope, (draft) => {
       const payload = draft.payload as Record<string, unknown>
+      ;(payload.scene as Record<string, unknown>).remainingTime = 0
+    }), hospitalRunSaveRulesRegistry)).toThrowError(RunSaveError)
+    expect(() => deserializeRunSave(mutateSerialized(sceneEnvelope, (draft) => {
+      const payload = draft.payload as Record<string, unknown>
       const context = payload.context as Record<string, unknown>
       const carryForward = context.runReturnCarryForward as Record<string, unknown>
       const ledger = carryForward.returnLedger as Record<string, unknown>

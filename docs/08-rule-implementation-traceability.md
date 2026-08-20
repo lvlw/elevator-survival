@@ -7,7 +7,7 @@
 | 主题 | 相关 DEC | 配置路径 | 实现路径 | 主要测试路径 | 状态 | 说明 |
 | --- | --- | --- | --- | --- | --- | --- |
 | 版本化规则配置与 Run 绑定 | DEC-009、DEC-014 | `src/content/hospital-v0.1/rule-config.ts` | `src/core/config/`、`src/core/domain/run-identity.ts`、`src/content/rule-config-registry.ts` | `src/content/rule-config-registry.test.ts`、`src/core/domain/run-identity.test.ts` | 已实现 | 已实现最小 Run 身份与配置版本绑定，不是完整 RunState。 |
-| 唯一 Run 存档与稳定边界恢复 | DEC-009、DEC-014、DEC-027、DEC-028 | `metadata.rulesVersion`、`saveFormatVersion = 1` | `src/state/run-save/` | `src/state/run-save/run-save.integration.test.ts` | 已实现最小边界 | 已实现单槽、互斥稳定阶段、独立格式版本、规则版本注册表与 core 严格恢复；覆盖当前日中枢、active／combat／terminal Scene Session、返回与次日中枢、Run失败往返，以及损坏、伪造、非安全节点active零时间和未知版本拒绝。未实现 Profile、完整RunState、Zustand／UI编排、命令后自动存档、成功／放弃、存档迁移或多槽历史。 |
+| 唯一 Run 存档与稳定边界恢复 | DEC-009、DEC-014、DEC-027、DEC-028 | `metadata.rulesVersion`、`saveFormatVersion = 1` | `src/state/run-save/`、`src/state/command-execution/` | `src/state/run-save/run-save.integration.test.ts` | 已实现最小边界 | 已实现单槽、互斥稳定阶段、独立格式版本、规则版本注册表与 core 严格恢复；稳定命令执行边界仅在正式 handler 已生成最终快照后按策略复用唯一 Run Save，拒绝事务不写入，写入失败不回滚已提交结果。覆盖当前日中枢、active／combat／terminal Scene Session、返回与次日中枢、Run失败往返，以及损坏、伪造、非安全节点active零时间和未知版本拒绝。未实现 Profile、完整RunState、Zustand／UI编排、成功／放弃、存档迁移或多槽历史。 |
 | 确定性随机 | DEC-010 | 随机算法版本常量 | `src/core/random/` | `src/core/random/*.test.ts` | 已实现 | 命名子流和黄金输出已锁定；尚未接入完整内容生成。 |
 | 场景时间与超时债务 | DEC-024、DEC-030、DEC-035 | `scene.*` | `src/core/scene/timed-scene-action.ts` | `src/core/scene/timed-scene-action.test.ts` | 已实现 | 实现通用事务，不代表全部场景行动已实现。 |
 | 强制返程伤害 | DEC-033、DEC-035 | `forcedReturn.*` | `src/core/scene/forced-return.ts` | `src/core/scene/timed-scene-action.test.ts` | 已实现 | 与行动后流血使用独立配置。 |

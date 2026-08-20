@@ -15,6 +15,7 @@ export {
   hospitalRunSaveRulesRegistry,
   hospitalRunTerminationDependencies,
   hospitalSceneLaunchDependencies,
+  hospitalRunSuccessDependencies,
 } from './hospital-run-save-rules'
 export {
   createRunSaveRulesRegistry,

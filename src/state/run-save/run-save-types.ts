@@ -2,6 +2,7 @@ import type { CurrentDayHubSnapshot } from '../../core/current-day-hub'
 import type { RunIdentity } from '../../core/domain'
 import type { RunFailureSnapshot } from '../../core/run-termination'
 import type { RunSceneSessionSnapshot } from '../../core/scene-launch'
+import type { RunSuccessSnapshot } from '../../core/run-success'
 
 export const RUN_SAVE_FORMAT_VERSION = 1 as const
 
@@ -9,6 +10,7 @@ export type StableRunPhase =
   | Readonly<{ kind: 'current-day-hub'; payload: CurrentDayHubSnapshot }>
   | Readonly<{ kind: 'scene-session'; payload: RunSceneSessionSnapshot }>
   | Readonly<{ kind: 'run-failure'; payload: RunFailureSnapshot }>
+  | Readonly<{ kind: 'run-success'; payload: RunSuccessSnapshot }>
 
 export type RunSaveEnvelope =
   | Readonly<{
@@ -31,6 +33,13 @@ export type RunSaveEnvelope =
       rulesVersion: string
       runIdentity: RunIdentity
       payload: RunFailureSnapshot
+    }>
+  | Readonly<{
+      saveFormatVersion: typeof RUN_SAVE_FORMAT_VERSION
+      kind: 'run-success'
+      rulesVersion: string
+      runIdentity: RunIdentity
+      payload: RunSuccessSnapshot
     }>
 
 export interface RunSaveStorage {

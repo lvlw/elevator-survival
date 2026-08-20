@@ -15,6 +15,7 @@ import {
 import type { CurrentDayHubDependencies } from '../../core/current-day-hub'
 import type { RunTerminationDependencies } from '../../core/run-termination'
 import type { SceneLaunchDependencies } from '../../core/scene-launch'
+import type { RunSuccessDependencies } from '../../core/run-success'
 import { createRunSaveRulesRegistry } from './run-save-rules-registry'
 
 export const hospitalCurrentDayHubDependencies: CurrentDayHubDependencies = Object.freeze({
@@ -44,11 +45,16 @@ export const hospitalRunTerminationDependencies: RunTerminationDependencies = Ob
   sceneLaunch: hospitalSceneLaunchDependencies,
 })
 
+export const hospitalRunSuccessDependencies: RunSuccessDependencies = Object.freeze({
+  config: hospitalSliceV01RuleConfig,
+})
+
 export const hospitalRunSaveRulesRegistry = createRunSaveRulesRegistry([{
   rulesVersion: HOSPITAL_SLICE_RULES_VERSION,
   dependencies: Object.freeze({
     currentDayHub: hospitalCurrentDayHubDependencies,
     sceneLaunch: hospitalSceneLaunchDependencies,
     runTermination: hospitalRunTerminationDependencies,
+    runSuccess: hospitalRunSuccessDependencies,
   }),
 }])

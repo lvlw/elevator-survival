@@ -28,6 +28,7 @@ import {
   summarizeRunFailure,
   type RunFailureSnapshot,
 } from '../../core/run-termination'
+import { createRunSuccessSnapshot, type RunSuccessSnapshot } from '../../core/run-success'
 import {
   createRunSceneSessionSnapshot,
   getRunSceneRuntime,
@@ -50,6 +51,7 @@ import {
   hospitalCurrentDayHubDependencies,
   hospitalRunSaveRulesRegistry,
   hospitalRunTerminationDependencies,
+  hospitalRunSuccessDependencies,
   hospitalSceneLaunchDependencies,
   loadRunPhase,
   MemoryRunSaveStorage,
@@ -264,6 +266,24 @@ function dailyFailure(): RunFailureSnapshot {
     kind: 'daily-settlement-terminal',
     terminalSnapshot: settlement.outcome.snapshot,
   }, hospitalRunTerminationDependencies).snapshot
+}
+
+function successTerminal(): RunSuccessSnapshot {
+  return createRunSuccessSnapshot({
+    kind: 'run-success',
+    source: {
+      kind: 'future-success-resolver',
+      resolverId: 'future-main-objective-resolver',
+      auditId: 'run-save-success-terminal-audit',
+    },
+    reason: null,
+    runIdentity: {
+      runId: 'run-save-success-terminal',
+      seed: 'run-save-success-seed',
+      rulesVersion: config.metadata.rulesVersion,
+    },
+    terminalDay: config.dailySettlement.finalPlayableDay,
+  }, hospitalRunSuccessDependencies)
 }
 
 function mutateSerialized(
@@ -775,6 +795,17 @@ describe('stable Run Save IO', () => {
     )).toThrow()
   })
 
+  it('round-trips a strict terminal RunSuccess without active Run data', () => {
+    const success = successTerminal()
+    const restored = roundTrip({ kind: 'run-success', payload: success })
+    expect(restored).toEqual({ kind: 'run-success', payload: success })
+    if (restored.kind !== 'run-success') throw new Error('expected success terminal')
+    expect(restored.payload).toEqual(success)
+    expect(restored.payload).not.toHaveProperty('runLoadout')
+    expect(restored.payload).not.toHaveProperty('scene')
+    expect(restored.payload).not.toHaveProperty('effects')
+  })
+
   it('uses one exact versioned envelope without caches or parallel phase fields', () => {
     const envelope = JSON.parse(serializeRunSave(
       { kind: 'current-day-hub', payload: hub() },
@@ -899,6 +930,38 @@ describe('stable Run Save IO', () => {
     expect(() => deserializeRunSave(mutateSerialized(failureEnvelope, (draft) => {
       draft.kind = 'current-day-hub'
     }), hospitalRunSaveRulesRegistry)).toThrowError(RunSaveError)
+  })
+
+  it('rejects malformed, active, and failure-forged Success terminal saves', () => {
+    const envelope = JSON.parse(serializeRunSave(
+      { kind: 'run-success', payload: successTerminal() },
+      hospitalRunSaveRulesRegistry,
+    )) as RunSaveEnvelope
+    const corruptions: readonly ((draft: Record<string, unknown>) => void)[] = [
+      (draft) => {
+        const payload = draft.payload as Record<string, unknown>
+        delete payload.source
+      },
+      (draft) => { draft.extra = true },
+      (draft) => {
+        const payload = draft.payload as Record<string, unknown>
+        const identity = payload.runIdentity as Record<string, unknown>
+        identity.runId = ''
+      },
+      (draft) => {
+        const payload = draft.payload as Record<string, unknown>
+        payload.terminalDay = 0
+      },
+      (draft) => { draft.kind = 'current-day-hub' },
+      (draft) => { draft.kind = 'run-failure' },
+      (draft) => { draft.kind = 'unknown-terminal' },
+    ]
+    for (const mutate of corruptions) {
+      expect(() => deserializeRunSave(
+        mutateSerialized(envelope, mutate),
+        hospitalRunSaveRulesRegistry,
+      )).toThrowError(RunSaveError)
+    }
   })
 
   it('keeps the previous stable single value when the next storage write throws', () => {

@@ -4,7 +4,7 @@
 
 ## 当前最小 Run 持久化边界
 
-`run-save/` 只持久化已经由核心规则完整提交的稳定 Run 阶段：当前日中枢、Run Scene Session 或 Run 失败。三者使用互斥的 tagged union，并作为一个完整、版本化的值写入唯一 Run 存档槽。
+`run-save/` 只持久化已经由核心规则完整提交的稳定 Run 阶段：当前日中枢、Run Scene Session、Run 失败或 Run 成功终局。四者使用互斥的 tagged union，并作为一个完整、版本化的值写入唯一 Run 存档槽。
 
 读取顺序为严格 JSON 与 envelope 校验、存档格式版本校验、规则版本注册表分派，再调用对应 core 正式恢复入口。损坏、伪造、未知版本或不满足正式快照不变量的存档会失败，不会修复、升级或回退为新游戏。
 

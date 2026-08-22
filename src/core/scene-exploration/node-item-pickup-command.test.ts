@@ -57,6 +57,9 @@ const config = {
   medical: {
     disinfectant: { maxUsesPerDay: 1 },
   },
+  scene: {
+    totalTime: 100,
+  },
 } as unknown as FrozenRuleConfig
 
 const graph = createSceneGraph({

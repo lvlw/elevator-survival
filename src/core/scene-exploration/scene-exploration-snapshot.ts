@@ -115,10 +115,14 @@ export function createSceneExplorationSnapshot(
   if (input.currentNodeId.trim().length === 0 || !currentNode) {
     throw new SceneExplorationError('INVALID_CURRENT_NODE', '当前节点无效')
   }
-  if (!Number.isSafeInteger(input.remainingTime) || input.remainingTime < 0) {
+  if (
+    !Number.isSafeInteger(input.remainingTime) ||
+    input.remainingTime < 0 ||
+    input.remainingTime > dependencies.config.scene.totalTime
+  ) {
     throw new SceneExplorationError(
       'INVALID_REMAINING_TIME',
-      '剩余时间必须是非负安全整数',
+      '剩余时间必须是0到当前规则场景总时间之间的安全整数',
     )
   }
   if (

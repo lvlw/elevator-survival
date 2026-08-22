@@ -44,6 +44,7 @@ const config = {
     },
   },
   scene: {
+    totalTime: 100,
     postActionBleedingDamage: 1,
     travelTimeModifiers: { minorContusionTimeIncreasePercent: 10 },
   },
@@ -274,6 +275,7 @@ describe('scene exploration snapshot', () => {
   it.each([
     [{ currentNodeId: 'missing' }, 'INVALID_CURRENT_NODE'],
     [{ remainingTime: -1 }, 'INVALID_REMAINING_TIME'],
+    [{ remainingTime: 1.5 }, 'INVALID_REMAINING_TIME'],
     [{ enabledEdgeIds: ['safe-middle', 'safe-middle'] }, 'DUPLICATE_ENABLED_EDGE'],
   ])('rejects invalid snapshot %#', (change, code) => {
     expect(() =>
@@ -325,14 +327,68 @@ describe('scene exploration snapshot', () => {
     })
   })
 
+  it('bounds every Scene status to the current rule total time without repairing input', () => {
+    const totalTime = config.scene.totalTime
+    expect(createSceneExplorationSnapshot(
+      snapshot('safe', totalTime),
+      dependencies,
+    )).toMatchObject({ status: 'active', remainingTime: totalTime })
+    for (const remainingTime of [totalTime + 1, Number.MAX_SAFE_INTEGER]) {
+      expect(() => createSceneExplorationSnapshot(
+        { ...snapshot('safe', totalTime), remainingTime },
+        dependencies,
+      )).toThrowError(expect.objectContaining({ code: 'INVALID_REMAINING_TIME' }))
+    }
+    expect(createSceneExplorationSnapshot(
+      { ...snapshot('safe', totalTime), status: 'safe-returned' },
+      dependencies,
+    )).toMatchObject({ status: 'safe-returned', remainingTime: totalTime })
+    expect(() => createSceneExplorationSnapshot(
+      {
+        ...snapshot('safe', totalTime),
+        status: 'safe-returned',
+        remainingTime: totalTime + 1,
+      },
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_REMAINING_TIME' }))
+    expect(() => createSceneExplorationSnapshot(
+      {
+        ...snapshot('safe', totalTime),
+        status: 'combat',
+        remainingTime: totalTime + 1,
+      },
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_REMAINING_TIME' }))
+    expect(() => createSceneExplorationSnapshot(
+      {
+        ...snapshot('safe', 0),
+        status: 'forced-returned',
+        remainingTime: totalTime + 1,
+      },
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_REMAINING_TIME' }))
+    expect(() => createSceneExplorationSnapshot(
+      {
+        ...snapshot('middle', totalTime),
+        status: 'dead',
+        remainingTime: totalTime + 1,
+        condition: condition(0),
+      },
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_REMAINING_TIME' }))
+  })
+
   it('accepts living safe returns only at a formal safety node, including zero time', () => {
     expect(createSceneExplorationSnapshot(
-      { ...snapshot('safe', 10), status: 'safe-returned' },
+      {
+        ...snapshot('safe', config.scene.totalTime),
+        status: 'safe-returned',
+      },
       dependencies,
     )).toMatchObject({
       status: 'safe-returned',
       currentNodeId: 'safe',
-      remainingTime: 10,
+      remainingTime: config.scene.totalTime,
     })
     expect(createSceneExplorationSnapshot(
       { ...snapshot('safe', 0), status: 'safe-returned' },

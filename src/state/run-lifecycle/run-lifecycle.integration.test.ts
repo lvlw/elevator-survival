@@ -443,6 +443,19 @@ describe('strict Stable Run lifecycle command routing', () => {
         },
       }
     }],
+    ['over-budget safe return', () => {
+      const active = terminalSession(launch(), 'safe-returned')
+      return {
+        active,
+        forged: {
+          ...active,
+          scene: {
+            ...active.scene,
+            remainingTime: config.scene.totalTime + 1,
+          },
+        },
+      }
+    }],
   ] as const)('rejects forged %s during input canonicalization before Return or save', (_name, create) => {
     const { active, forged } = create()
     const tracked = trackedStorage({ kind: 'scene-session', payload: active })

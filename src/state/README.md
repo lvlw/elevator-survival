@@ -16,6 +16,6 @@ Success 仍是 DEC-028 定义的未来正式终局概念；当前规则版本没
 
 `run-lifecycle/` 严格解析并路由三个应用生命周期命令：启动主要场景、结束本日和结算终止 Scene。它只允许当前日中枢启动场景或结束本日，只允许经过 Scene strict restore 证明位于正式返程安全节点且玩家存活的安全／强制返回 Scene 进入正式 Return，其中强制返回必须处于零剩余时间；死亡 Scene 进入正式 RunFailure，活动与战斗 Scene 不能结算终止场景。
 
-Router 根据 canonical current phase 的 RunIdentity 从既有 Run Save registry 取得正式版本依赖，调用现有 Scene Launch、Run Return、Daily Settlement 与 RunFailure 入口，再委托 `executeStableRunCommand` 规范化结果、验证身份并写入唯一存档。returned Scene 的位置、时间与生命校验只存在于 Scene strict snapshot；Run Save 和生命周期结算复用该入口，Router 不复制或补算撤离规则。Router 不直接保存；`execution.phase` 是下一条命令的唯一状态输入，resolver result、summary 和 Effects 不形成第二份应用状态。
+Router 根据 canonical current phase 的 RunIdentity 从既有 Run Save registry 取得正式版本依赖，调用现有 Scene Launch、Run Return、Daily Settlement 与 RunFailure 入口，再委托 `executeStableRunCommand` 规范化结果、验证身份并写入唯一存档。returned Scene 的位置、时间与生命校验只存在于 Scene strict snapshot：`remainingTime` 必须是0到当前规则 `scene.totalTime` 之间的安全整数，超出范围会拒绝而不修复；Run Save 和生命周期结算复用该入口，Router 不复制或补算撤离规则。Router 不直接保存；`execution.phase` 是下一条命令的唯一状态输入，resolver result、summary 和 Effects 不形成第二份应用状态。
 
 当前仍未实现完整 Application command routing、全部 Hub／Scene 玩家 mutation 路由、Profile 持久化、完整 RunState、Zustand／UI 编排、Success Resolver、Run Abandon、New Run、多个存档槽、存档历史及迁移。

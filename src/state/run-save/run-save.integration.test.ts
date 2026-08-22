@@ -1123,6 +1123,32 @@ describe('stable Run Save IO', () => {
     }
   })
 
+  it('rejects over-budget active and returned Scene saves without replacing storage', () => {
+    const active = activeSceneWithInventoryHistory().session
+    const safeReturned = resolveRunSceneSessionWithdrawal(
+      active,
+      { kind: 'withdraw-from-scene' },
+      hospitalSceneLaunchDependencies,
+    ).session
+    for (const session of [active, safeReturned]) {
+      const envelope = JSON.parse(serializeRunSave(
+        { kind: 'scene-session', payload: session },
+        hospitalRunSaveRulesRegistry,
+      )) as RunSaveEnvelope
+      const serialized = mutateSerialized(envelope, (draft) => {
+        const payload = draft.payload as Record<string, unknown>
+        ;(payload.scene as Record<string, unknown>).remainingTime =
+          config.scene.totalTime + 1
+      })
+      const storage = new MemoryRunSaveStorage(serialized)
+      expect(() => loadRunPhase(storage, hospitalRunSaveRulesRegistry))
+        .toThrowError(expect.objectContaining<Partial<RunSaveError>>({
+          code: 'INVALID_STABLE_PHASE',
+        }))
+      expect(storage.read()).toBe(serialized)
+    }
+  })
+
   it('rejects duplicate physical identity, orphan ItemState, and failure forged as active Hub', () => {
     const hubEnvelope = JSON.parse(serializeRunSave(
       { kind: 'current-day-hub', payload: hub() },

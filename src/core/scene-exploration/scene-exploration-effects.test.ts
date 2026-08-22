@@ -34,6 +34,7 @@ const config = {
     },
   },
   scene: {
+    totalTime: 100,
     postActionBleedingDamage: 1,
     travelTimeModifiers: { minorContusionTimeIncreasePercent: 10 },
   },

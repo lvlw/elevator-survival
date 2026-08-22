@@ -25,6 +25,127 @@ body {
   padding: 2rem 1rem;
 }
 
+.console-layout {
+  width: min(100%, 96rem);
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+.run-status-bar,
+.console-panel {
+  border: 1px solid #354352;
+  background: #19212a;
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
+}
+
+.run-status-bar {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+  padding: 1rem;
+  border-left: 4px solid #9fc7b5;
+}
+
+.run-status-bar div,
+.slot-list div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.run-status-bar span,
+.slot-list dt,
+.item-list em {
+  color: #aebdcb;
+  font-size: 0.78rem;
+  font-style: normal;
+}
+
+.console-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.console-panel {
+  min-width: 0;
+  padding: 1.25rem;
+}
+
+.console-panel h2,
+.console-panel h3 {
+  margin-top: 0;
+}
+
+.console-panel h3 {
+  margin: 1.25rem 0 0.4rem;
+  color: #b7c2cd;
+  font-size: 0.9rem;
+}
+
+.slot-list,
+.item-list,
+.quick-slots {
+  margin: 0;
+  padding: 0;
+}
+
+.slot-list div {
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgb(159 199 181 / 15%);
+}
+
+.slot-list dd { margin: 0; }
+
+.item-list,
+.quick-slots {
+  list-style: none;
+}
+
+.item-list li,
+.quick-slots li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgb(159 199 181 / 12%);
+}
+
+.empty-copy { color: #aebdcb; }
+
+.combat-panel { border-color: #8a5b5b; }
+.terminal-panel { width: min(100%, 45rem); margin: 12vh auto; }
+
+.dev-inspector {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  width: min(28rem, calc(100vw - 2rem));
+}
+
+.dev-inspector button {
+  border: 1px solid #647789;
+  padding: 0.5rem 0.75rem;
+  color: #e8edf2;
+  background: #26323f;
+  cursor: pointer;
+}
+
+.dev-inspector pre {
+  max-height: 40vh;
+  overflow: auto;
+  margin: 0.5rem 0 0;
+  padding: 0.75rem;
+  color: #d8e8dc;
+  background: #0d1217;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .run-status-bar,
+  .console-grid { grid-template-columns: 1fr; }
+}
+
 .status-card {
   width: min(100%, 42rem);
   padding: clamp(1.5rem, 5vw, 3rem);

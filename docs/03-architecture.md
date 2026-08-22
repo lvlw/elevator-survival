@@ -63,7 +63,7 @@ CurrentDayHub
 - 普通状态变更命令不得改变 `runId`、`seed` 或 `rulesVersion`。正式 mutation 成功后必须且只调用一次唯一 Run Save；规则拒绝、非法输出和 RunIdentity 不连续均不写入。
 - 存储写入失败不回滚已经完成的内存规则结果；失败会连同已规范化的稳定结果显式返回，不重试 handler、玩法 Effects 或隐式保存。
 - Success 仍是 DEC-028 定义的未来正式终局概念；当前规则版本没有 Success Resolver 或主线成功条件，因此不能构造、保存或恢复 `run-success`。
-- Run 与 Profile 生命周期继续分离；当前已经实现无状态的 Headless Application 统一分派和最小 vanilla Store，但仍未实现完整 RunState、React UI 编排、Profile 持久化、Success Resolver、Run Abandon 或 New Run。
+- Run 与 Profile 生命周期继续分离；当前已经实现无状态的 Headless Application 统一分派、最小 vanilla Store 和只读 React 展示桥接，但仍未实现完整 RunState、Profile 持久化、Success Resolver、Run Abandon 或 New Run。
 
 ## Stable Run 统一 Application 分派
 
@@ -95,7 +95,21 @@ canonical StableRunPhase
 - Store 对外只暴露 `getState()`、`getInitialState()`、`subscribe()` 与 `dispatch()`；raw Zustand `setState` 保持私有，UI 不能任意替换 phase、生命、库存或战斗状态。
 - `dispatch()` 只调用 `executeStableRunApplicationCommand()`，不直接调用 specialized router、generic executor、core resolver 或 Run Save。成功与存储失败都将 `execution.phase` 更新为当前内存真相一次；规则拒绝不更新、不通知订阅者。
 - 存储失败后 Store 不回滚、不 reload、不重试；下一条命令从 committed in-memory phase 继续。Execution、result、Effects 和 persistence 状态只作为调用返回值，不进入 Store snapshot。
-- Store 不拥有玩法、持久化、Profile、多个 Run、派生 Hub／Scene／Combat／Inventory 状态或命令历史；React hooks、Provider 与 UI 尚未接入。
+- Store 不拥有玩法、持久化、Profile、多个 Run、派生 Hub／Scene／Combat／Inventory 状态或命令历史；React 只通过公开只读 Store 接口订阅 canonical phase，展示投影不保存、不随机、不在渲染或订阅期间发送命令。
+
+## 当前 React 只读展示职责
+
+```text
+StableRunStore public read API
+→ useSyncExternalStore
+→ pure player-visible ViewModel
+→ React presentation
+```
+
+- `src/ui/` 只读取 Store 对外的 `getState()`、`getInitialState()` 与 `subscribe()`；不访问 raw Zustand API，也不在渲染、订阅或开发检查器中发送命令、保存或改变状态。
+- 通用 ViewModel 通过显式白名单向普通玩家展示 Hub、Scene、Combat 与 Failure 信息。节点地面物品、当前可见导航、相对敌人生命阶段、当前意图和正式返程预览继续复用 core 查询；内部 Run 身份、实例 ID、隐藏搜索结果、精确敌人生命、风险百分比和未来行动序列不进入普通 ViewModel。
+- 医院 V1 的名称文案位于 UI 内容适配层；通用组件不硬编码医院物品、敌人或节点名称。开发环境的只读检查器可以查看严格 phase，但生产环境没有入口，且不提供 mutation。
+- 当前没有 New Run bootstrap、React Provider、真实玩家命令控件、完整 Application Store、UI 命令队列或终版美术。展示层可被未来其他渲染技术替换，只要继续读取 canonical phase 并发送正式命令。
 
 ## 当前最小 Stable Run 生命周期命令路由
 

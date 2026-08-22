@@ -51,6 +51,7 @@ import {
   createRunSaveRulesRegistry,
   deserializeRunSave,
   hospitalCurrentDayHubDependencies,
+  hospitalHubMaintenanceDependencies,
   hospitalRunSaveRulesRegistry,
   hospitalRunTerminationDependencies,
   hospitalSceneLaunchDependencies,
@@ -103,11 +104,16 @@ function createForeignRulesVersionDependencies() {
     currentDayHub: foreignCurrentDayHubDependencies,
     sceneLaunch: foreignSceneLaunchDependencies,
   })
+  const foreignHubMaintenanceDependencies = Object.freeze({
+    ...hospitalHubMaintenanceDependencies,
+    currentDayHub: foreignCurrentDayHubDependencies,
+  })
   const registry = createRunSaveRulesRegistry([
     {
       rulesVersion: config.metadata.rulesVersion,
       dependencies: Object.freeze({
         currentDayHub: hospitalCurrentDayHubDependencies,
+        hubMaintenance: hospitalHubMaintenanceDependencies,
         sceneLaunch: hospitalSceneLaunchDependencies,
         runTermination: hospitalRunTerminationDependencies,
       }),
@@ -116,6 +122,7 @@ function createForeignRulesVersionDependencies() {
       rulesVersion: FOREIGN_RULES_VERSION,
       dependencies: Object.freeze({
         currentDayHub: foreignCurrentDayHubDependencies,
+        hubMaintenance: foreignHubMaintenanceDependencies,
         sceneLaunch: foreignSceneLaunchDependencies,
         runTermination: foreignRunTerminationDependencies,
       }),

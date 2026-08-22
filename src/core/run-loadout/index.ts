@@ -1,6 +1,7 @@
 export {
   applyRunLoadoutEffects,
   buildRunLoadoutTransitionPlan,
+  createRunLoadoutCommand,
   resolveRunLoadoutCommand,
 } from './run-loadout-command'
 export {

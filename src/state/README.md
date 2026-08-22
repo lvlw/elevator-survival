@@ -18,7 +18,7 @@ Success 仍是 DEC-028 定义的未来正式终局概念；当前规则版本没
 
 Router 根据 canonical current phase 的 RunIdentity 从既有 Run Save registry 取得正式版本依赖，调用现有 Scene Launch、Run Return、Daily Settlement 与 RunFailure 入口，再委托 `executeStableRunCommand` 规范化结果、验证身份并写入唯一存档。returned Scene 的位置、时间与生命校验只存在于 Scene strict snapshot：`remainingTime` 必须是0到当前规则 `scene.totalTime` 之间的安全整数，超出范围会拒绝而不修复；Run Save 和生命周期结算复用该入口，Router 不复制或补算撤离规则。Router 不直接保存；`execution.phase` 是下一条命令的唯一状态输入，resolver result、summary 和 Effects 不形成第二份应用状态。
 
-当前仍未实现完整 Application command routing、全部 Hub／Scene 玩家 mutation 路由、Profile 持久化、完整 RunState、Zustand／UI 编排、Success Resolver、Run Abandon、New Run、多个存档槽、存档历史及迁移。
+当前仍未实现完整 Application Store／command bus、Profile 持久化、完整 RunState、Zustand／UI 编排、Success Resolver、Run Abandon、New Run、多个存档槽、存档历史及迁移。
 
 ## 当前基础 Scene mutation 路由
 
@@ -28,4 +28,12 @@ Router 只接受 canonical `scene-session`，按其中 RunIdentity 的 `rulesVer
 
 所有成功结果只由 `executeStableRunCommand` 写入唯一 Run Save 一次；规则拒绝不写入，存储失败返回已经规范化的 committed Scene Session，且不重跑 resolver。产生安全返回、强制返回或死亡时仍保存为 `scene-session`，不会自动进入 Hub 或 Run Failure；下一步必须显式调用生命周期结算。`execution.phase` 是下一命令的唯一正式状态输入。
 
-ongoing Combat 每个玩家命令后保存完整稳定 Scene Session；胜利、逃跑或战败也只提交 Scene Session，terminal Scene 不自动结算。战斗换装、完整战斗背包整理、Hub mutation、完整 Application Store、Zustand 与 UI 仍未接入本路由。
+ongoing Combat 每个玩家命令后保存完整稳定 Scene Session；胜利、逃跑或战败也只提交 Scene Session，terminal Scene 不自动结算。战斗换装、完整战斗背包整理、完整 Application Store、Zustand 与 UI 仍未接入本路由。
+
+## 当前基础 Hub mutation 路由
+
+`run-hub/` 严格解析并路由四类当前日中枢玩家命令：Run loadout、Hub medical、Hub survival 与 Hub maintenance。十类整备命令、医疗来源和目标、两类生存物品以及五类维护操作都复用各自 core constructor 与 resolver；Router 不拥有物品容器、ItemState、医疗效果、日级使用、饱食、威胁抑制、维护工时、材料、维修点或 waste 规则。
+
+Router 只接受 canonical `current-day-hub`，按其 RunIdentity 的 `rulesVersion` 从既有 Run Save registry 取得正式 CurrentDayHub 与 Hub Maintenance 依赖；维护依赖必须与该版本 CurrentDayHub 依赖同源。Router 不导入医院内容、不复制生命周期目录或内容绑定，也不局部拼接第二份 Hub 状态。
+
+所有成功结果只由 `executeStableRunCommand` 写入唯一 Run Save 一次；规则拒绝不写入，存储失败返回已经规范化的 committed Hub，且不重跑 resolver、Effect 或物品消费。`execution.phase` 是下一命令的唯一正式状态输入。Hub mutation 不推进日期、不启动 Scene、不执行 Daily Settlement；End Day 仍由 `run-lifecycle/` 的独立命令处理。制作、拆解、完整 Application Store、Zustand 与 UI 尚未实现。

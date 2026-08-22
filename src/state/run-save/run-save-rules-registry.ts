@@ -1,10 +1,12 @@
 import type { CurrentDayHubDependencies } from '../../core/current-day-hub'
+import type { HubMaintenanceDependencies } from '../../core/hub-maintenance'
 import type { RunTerminationDependencies } from '../../core/run-termination'
 import type { SceneLaunchDependencies } from '../../core/scene-launch'
 import { RunSaveError } from './run-save-errors'
 
 export interface RunSaveRuleDependencies {
   readonly currentDayHub: CurrentDayHubDependencies
+  readonly hubMaintenance: HubMaintenanceDependencies
   readonly sceneLaunch: SceneLaunchDependencies
   readonly runTermination: RunTerminationDependencies
 }
@@ -33,6 +35,8 @@ export function createRunSaveRulesRegistry(
       entry.dependencies.currentDayHub.returnDependencies.scene.config.metadata.rulesVersion
     if (
       configuredVersion !== entry.rulesVersion ||
+      !entry.dependencies.hubMaintenance ||
+      entry.dependencies.hubMaintenance.currentDayHub !== entry.dependencies.currentDayHub ||
       entry.dependencies.sceneLaunch.currentDayHub !== entry.dependencies.currentDayHub ||
       entry.dependencies.runTermination.currentDayHub !== entry.dependencies.currentDayHub ||
       entry.dependencies.runTermination.sceneLaunch !== entry.dependencies.sceneLaunch

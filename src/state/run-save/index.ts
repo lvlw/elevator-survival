@@ -14,6 +14,7 @@ export {
 } from './run-save-errors'
 export {
   hospitalCurrentDayHubDependencies,
+  hospitalHubMaintenanceDependencies,
   hospitalRunSaveRulesRegistry,
   hospitalRunTerminationDependencies,
   hospitalSceneLaunchDependencies,

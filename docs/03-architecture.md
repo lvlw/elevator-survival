@@ -88,7 +88,7 @@ CurrentDayHub
 - 终止 Scene 的位置、时间（包括 `remainingTime` 的0至当前 `scene.totalTime` 上限）和生命合法性属于 Scene strict snapshot invariant；Run Save 与 lifecycle settlement 都通过同一 Scene 恢复入口继承该校验，Router 不复制 returned 位置判断、时间上限或重新结算撤离。
 - 每次调用只执行一个生命周期命令。终止 Scene 不自动连锁到 Return，结束本日不自动启动次日场景；未来 UI 或 Application owner 何时发出下一命令仍未确定。
 - 生命周期 resolver 的返回值仅用于展示或审计；`StableRunCommandExecution.phase` 是下一条命令的唯一正式状态输入，result、summary、Effects 和 preview 不形成并行状态或持久化字段。
-- 本边界不是完整 Application command routing，尚未覆盖中枢医疗／维护／库存／生存物品或 Scene 移动、搜索、拾取、背包、医疗、充能、战斗、障碍和任务事件等玩家 mutation，也不创建 Store、完整 RunState、UI 或命令队列。
+- 本边界不是完整 Application command routing；Hub 与 Scene 的当前正式玩家 mutation 已由各自应用路由覆盖，但尚未创建 Store、完整 RunState、UI 或命令队列。
 
 ### 基础 Stable Run Scene mutation routing
 
@@ -97,7 +97,15 @@ CurrentDayHub
 - 移动、搜索、拾取、整理、障碍、任务事件、场景医疗、设备充能和战斗玩家行动都调用既有 core resolver，并把正式 resolution snapshot 与 canonical Session context 交给 `createRunSceneSessionSnapshot()` 重建唯一下一 Session；主动撤离直接调用 Session 级 `resolveRunSceneSessionWithdrawal()`。Combat 命令结构、CTB、敌人行动、确定性随机、资源消耗、逃跑、终局和场景时间换算仍由 `src/core/combat/` 与 Scene combat integration 拥有。RunIntel、每日医疗使用、携带容器、ItemState、任务事件、警觉和战斗状态只存在于新 Scene snapshot，不复制到 context。
 - Router 不直接调用 Run Save。每次只通过 `executeStableRunCommand()` 提交一个 mutation，由该通用边界验证 Run 身份连续性并执行唯一保存；规则拒绝不保存，写入失败返回已经规范化的 committed Scene Session，不重跑 resolver 或 Effect。
 - Scene action 产生 `safe-returned`、`forced-returned` 或 `dead` 时，本次执行仍停在已保存的 `scene-session`。返回 Hub 或进入 Run Failure 必须由下一条独立的 `settle-terminal-scene` 生命周期命令完成；`StableRunCommandExecution.phase` 是下一命令的唯一状态输入。
-- ongoing Combat 在每个玩家命令完整结算后保存一个稳定 Scene Session；胜利、逃跑或战败也只提交 Scene Session，terminal Scene 仍需后续显式生命周期命令结算。当前不支持战斗换装或完整背包整理；Hub mutation、完整 Application Store、UI 与命令队列仍未接入。
+- ongoing Combat 在每个玩家命令完整结算后保存一个稳定 Scene Session；胜利、逃跑或战败也只提交 Scene Session，terminal Scene 仍需后续显式生命周期命令结算。当前不支持战斗换装或完整背包整理；完整 Application Store、UI 与命令队列仍未接入。
+
+### 基础 Stable Run Hub mutation routing
+
+- `src/state/run-hub/` 是当前日中枢玩家 mutation 的唯一应用层映射，覆盖 Run loadout、Hub medical、Hub survival 与 Hub maintenance。外层命令只携带路由 tag 与一个由对应 core constructor 严格规范化的正式命令，不接受 snapshot、Effects、result、下一阶段、保存策略或 Run 身份。
+- Router 只接受 canonical `current-day-hub`，从其 RunIdentity 取得 `rulesVersion` 并使用既有 Run Save registry 的 `currentDayHub` 与 `hubMaintenance` 依赖。注册表要求维护依赖与同版本 CurrentDayHub 依赖拥有同一对象身份；Router 不导入医院具体内容，也不复制物品生命周期、医疗或维护内容绑定。
+- 四类命令分别调用既有 `resolveCurrentDayHubLoadoutCommand()`、`resolveCurrentDayHubMedicalCommand()`、`resolveHubSurvivalCommand()` 与 `resolveHubMaintenanceCommand()`；容器、目标资格、ItemInstance、ItemState、消耗、日级使用、工时、维修点与 waste 均由 core 拥有。resolver 返回的完整 CurrentDayHub snapshot 直接成为唯一下一阶段，不局部拼接并行 Hub 状态。
+- Router 不直接保存。每次成功 mutation 只经 `executeStableRunCommand()` 写入唯一 Run Save 一次；规则拒绝不写入，存储失败返回已规范化的 committed Hub 且不重跑 resolver、Effect 或消费。`execution.phase` 是下一命令的唯一正式状态输入。
+- Hub mutation 不推进日期、不启动 Scene、不中途执行 Daily Settlement，也不自动结束本日；End Day 仍是独立 `run-lifecycle` 命令。制作、拆解、完整 Application Store 与 UI 尚未实现。
 
 ## 场景时间结算职责
 

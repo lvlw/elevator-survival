@@ -1,6 +1,7 @@
 import {
   HOSPITAL_SLICE_RULES_VERSION,
   hospitalHubSurvivalContentBindings,
+  hospitalHubMaintenanceContentBindings,
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
@@ -13,6 +14,7 @@ import {
   hospitalWorldThreatCatalog,
 } from '../../content'
 import type { CurrentDayHubDependencies } from '../../core/current-day-hub'
+import type { HubMaintenanceDependencies } from '../../core/hub-maintenance'
 import type { RunTerminationDependencies } from '../../core/run-termination'
 import type { SceneLaunchDependencies } from '../../core/scene-launch'
 import { createRunSaveRulesRegistry } from './run-save-rules-registry'
@@ -39,6 +41,11 @@ export const hospitalSceneLaunchDependencies: SceneLaunchDependencies = Object.f
   content: hospitalSceneLaunchContent,
 })
 
+export const hospitalHubMaintenanceDependencies: HubMaintenanceDependencies = Object.freeze({
+  currentDayHub: hospitalCurrentDayHubDependencies,
+  contentBindings: hospitalHubMaintenanceContentBindings,
+})
+
 export const hospitalRunTerminationDependencies: RunTerminationDependencies = Object.freeze({
   currentDayHub: hospitalCurrentDayHubDependencies,
   sceneLaunch: hospitalSceneLaunchDependencies,
@@ -48,6 +55,7 @@ export const hospitalRunSaveRulesRegistry = createRunSaveRulesRegistry([{
   rulesVersion: HOSPITAL_SLICE_RULES_VERSION,
   dependencies: Object.freeze({
     currentDayHub: hospitalCurrentDayHubDependencies,
+    hubMaintenance: hospitalHubMaintenanceDependencies,
     sceneLaunch: hospitalSceneLaunchDependencies,
     runTermination: hospitalRunTerminationDependencies,
   }),

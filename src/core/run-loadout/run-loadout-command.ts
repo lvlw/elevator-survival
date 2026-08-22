@@ -107,7 +107,7 @@ function normalizeQuickSlotIndex(value: unknown, label: string): number {
   return value as number
 }
 
-function normalizeCommand(input: unknown): RunLoadoutCommand {
+export function createRunLoadoutCommand(input: unknown): RunLoadoutCommand {
   if (!isPlainObject(input) || typeof input.kind !== 'string') {
     invalid('Run整备命令结构无效')
   }
@@ -279,11 +279,11 @@ function unavailableFrom(error: unknown): never {
 
 function evaluate(
   snapshotInput: RunLoadoutSnapshot,
-  commandInput: RunLoadoutCommand,
+  commandInput: unknown,
   dependencies: RunLoadoutDependencies,
 ): RunLoadoutEvaluation {
   const snapshot = createRunLoadoutSnapshot(snapshotInput, dependencies)
-  const command = normalizeCommand(commandInput)
+  const command = createRunLoadoutCommand(commandInput)
   try {
     switch (command.kind) {
       case 'warehouse-to-backpack': {
@@ -643,7 +643,7 @@ function evaluate(
 
 export function buildRunLoadoutTransitionPlan(
   snapshot: RunLoadoutSnapshot,
-  command: RunLoadoutCommand,
+  command: unknown,
   dependencies: RunLoadoutDependencies,
 ): RunLoadoutTransitionPlan {
   const evaluation = evaluate(snapshot, command, dependencies)
@@ -663,7 +663,7 @@ export function buildRunLoadoutTransitionPlan(
 
 export function applyRunLoadoutEffects(
   snapshot: RunLoadoutSnapshot,
-  command: RunLoadoutCommand,
+  command: unknown,
   effects: readonly RunLoadoutEffect[],
   dependencies: RunLoadoutDependencies,
 ): RunLoadoutResolution {
@@ -676,7 +676,7 @@ export function applyRunLoadoutEffects(
 
 export function resolveRunLoadoutCommand(
   snapshot: RunLoadoutSnapshot,
-  command: RunLoadoutCommand,
+  command: unknown,
   dependencies: RunLoadoutDependencies,
 ): RunLoadoutResolution {
   const plan = buildRunLoadoutTransitionPlan(snapshot, command, dependencies)

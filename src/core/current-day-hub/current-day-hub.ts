@@ -259,7 +259,7 @@ export function createCurrentDayHubSnapshotFromReturn(
 
 export function resolveCurrentDayHubLoadoutCommand(
   snapshotInput: CurrentDayHubSnapshot,
-  command: RunLoadoutCommand,
+  command: unknown,
   dependencies: CurrentDayHubDependencies,
 ): Readonly<{ effects: readonly RunLoadoutEffect[]; snapshot: CurrentDayHubSnapshot }> {
   const snapshot = createCurrentDayHubSnapshot(snapshotInput, dependencies)
@@ -273,7 +273,7 @@ export function resolveCurrentDayHubLoadoutCommand(
 
 export function resolveCurrentDayHubMedicalCommand(
   snapshotInput: CurrentDayHubSnapshot,
-  command: UseRunHubMedicalItemCommand,
+  command: unknown,
   dependencies: CurrentDayHubDependencies,
 ): Readonly<{ effects: readonly RunHubMedicalEffect[]; snapshot: CurrentDayHubSnapshot }> {
   const snapshot = createCurrentDayHubSnapshot(snapshotInput, dependencies)

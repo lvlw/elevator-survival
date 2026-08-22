@@ -68,9 +68,9 @@ function normalizeTarget(value: unknown) {
 }
 
 export function createUseRunHubMedicalItemCommand(
-  input: UseRunHubMedicalItemCommand,
+  input: unknown,
 ): UseRunHubMedicalItemCommand {
-  const hasTarget = Boolean(input && typeof input === 'object' && !Array.isArray(input) && Object.prototype.hasOwnProperty.call(input, 'target'))
+  const hasTarget = Boolean(isPlainObject(input) && Object.prototype.hasOwnProperty.call(input, 'target'))
   if (!exact(input, hasTarget ? ['kind', 'source', 'target'] : ['kind', 'source']) || input.kind !== 'use-run-hub-medical-item') {
     invalid('中枢医疗命令结构无效')
   }
@@ -177,7 +177,7 @@ export function getAvailableRunHubMedicalCommands(
 
 export function buildRunHubMedicalTransitionPlan(
   snapshotInput: RunHubMedicalSnapshot,
-  commandInput: UseRunHubMedicalItemCommand,
+  commandInput: unknown,
   dependencies: RunHubMedicalDependencies,
 ): RunHubMedicalTransitionPlan {
   validateRunHubMedicalDependencies(dependencies)
@@ -250,7 +250,7 @@ export function buildRunHubMedicalTransitionPlan(
 
 export function applyRunHubMedicalEffects(
   snapshot: RunHubMedicalSnapshot,
-  command: UseRunHubMedicalItemCommand,
+  command: unknown,
   effects: readonly RunHubMedicalEffect[],
   dependencies: RunHubMedicalDependencies,
 ): RunHubMedicalResolution {
@@ -263,7 +263,7 @@ export function applyRunHubMedicalEffects(
 
 export function resolveRunHubMedicalCommand(
   snapshot: RunHubMedicalSnapshot,
-  command: UseRunHubMedicalItemCommand,
+  command: unknown,
   dependencies: RunHubMedicalDependencies,
 ): RunHubMedicalResolution {
   const plan = buildRunHubMedicalTransitionPlan(snapshot, command, dependencies)

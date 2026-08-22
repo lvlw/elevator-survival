@@ -71,3 +71,18 @@
 - 明确不做：本任务不引入 Phaser、第二状态容器或 UI 规则引擎。
 - 复查触发条件：进入地图表现、动画或替换渲染技术评估。
 - 覆盖关系：无。
+
+## UIR-006：开发期预览 harness
+
+- 状态：Confirmed
+- 日期：2026-08-23
+- 范围：开发环境的只读 React UI 预览
+- 问题：需要在尚未实现 New Run、Profile、真实启动流程和玩家命令控件前，验证 Hub、Scene、Combat 与 Failure 的展示，而不伪造活动 Run 或绕过正式恢复边界。
+- 已确认选择：仅开发环境中，默认 `App` 未注入正式 Store 时显示“开发预览 / 不是活动 Run / 使用内存状态”横幅和场景选择器。每个示例都通过正式医院构造器与 resolver 生成合法 canonical phase，再创建真实 `StableRunStore`；预览仅使用内存 `RunSaveStorage`，Store 创建时零写入。
+- 固定开发标识：Run ID 为 `dev-ui-preview`，seed 为 `dev-ui-preview-seed`。
+- 预览范围：Hub、Scene、Combat、Failure；选择器只切换彼此独立的合法 Store，不发送 gameplay command、不保存、不读取或修改真实存档。
+- 必须遵守的契约：不得使用类型断言、裸造非法 snapshot、raw Zustand `setState` 或 Store mutation；不是游戏入口、New Run、save slot、Profile、玩法拥有者或正式生命周期替代品。生产构建没有预览入口；生产环境未注入 Store 时保留诚实空白状态。
+- 可替换的视觉细节：横幅、选择器布局和示例文案。
+- 明确不做：New Run、自动启动、localStorage bootstrap、正式命令按钮、开发作弊操作或 UI 状态写入。
+- 复查触发条件：实现正式 New Run／Scene Launch 启动流程、真实存档选择或交互式玩家命令 UI。
+- 覆盖关系：无。

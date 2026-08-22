@@ -102,7 +102,12 @@ export type StableRunPlayerViewModel =
         status: 'active' | 'combat' | 'safe-returned' | 'forced-returned' | 'dead'
         remainingTime: number
         currentNodeName: string
-        accessibleNodeNames: readonly string[]
+        /**
+         * Current traversable adjacency only. This is not a complete player-known
+         * map: known-but-blocked routes require a future formal player-visible
+         * navigation query before they can be presented.
+         */
+        traversableAdjacentNodeNames: readonly string[]
         returnEstimate: number | null
         currentNodeSearchState: 'not-available' | 'available-unsearched' | 'searched'
         groundItems: readonly PlayerVisibleItemViewModel[]
@@ -224,7 +229,7 @@ function createSceneView(
       status: scene.status,
       remainingTime: scene.remainingTime,
       currentNodeName: current.name,
-      accessibleNodeNames: frozen(connected),
+      traversableAdjacentNodeNames: frozen(connected),
       returnEstimate: withdrawal?.canExecute === true
         ? withdrawal.result.returnRoute.estimatedReturnTime
         : null,

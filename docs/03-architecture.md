@@ -107,8 +107,8 @@ StableRunStore public read API
 ```
 
 - `src/ui/` 只读取 Store 对外的 `getState()`、`getInitialState()` 与 `subscribe()`；不访问 raw Zustand API，也不在渲染、订阅或开发检查器中发送命令、保存或改变状态。
-- 通用 ViewModel 通过显式白名单向普通玩家展示 Hub、Scene、Combat 与 Failure 信息。节点地面物品、当前可见导航、相对敌人生命阶段、当前意图和正式返程预览继续复用 core 查询；内部 Run 身份、实例 ID、隐藏搜索结果、精确敌人生命、风险百分比和未来行动序列不进入普通 ViewModel。
-- 医院 V1 的名称文案位于 UI 内容适配层；通用组件不硬编码医院物品、敌人或节点名称。开发环境的只读检查器可以查看严格 phase，但生产环境没有入口，且不提供 mutation。
+- 通用 ViewModel 通过显式白名单向普通玩家展示 Hub、Scene、Combat 与 Failure 信息。节点地面物品、**当前可通行相邻节点**、相对敌人生命阶段、当前意图和正式返程预览继续复用 core 查询；当前不构造完整玩家已知地图，已知但阻挡的路线与障碍等待未来正式玩家可见导航查询。内部 Run 身份、实例 ID、隐藏搜索结果、精确敌人生命、风险百分比和未来行动序列不进入普通 ViewModel。
+- 医院 V1 的名称文案位于 UI 内容适配层；通用组件不硬编码医院物品、敌人或节点名称。开发环境的只读检查器可以查看严格 phase，但生产环境没有入口，且不提供 mutation。开发环境默认 `App` 未注入 Store 时可动态加载独立内存态预览：它只用正式构造器生成合法 Hub／Scene／Combat／Failure Store，选择示例不发送 gameplay command、不保存，也不是 New Run 或正式游戏入口；生产环境仍保持诚实的未接入状态。
 - 当前没有 New Run bootstrap、React Provider、真实玩家命令控件、完整 Application Store、UI 命令队列或终版美术。展示层可被未来其他渲染技术替换，只要继续读取 canonical phase 并发送正式命令。
 
 ## 当前最小 Stable Run 生命周期命令路由

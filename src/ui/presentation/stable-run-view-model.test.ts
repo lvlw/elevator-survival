@@ -19,8 +19,8 @@ import { createFullItemState } from '../../core/item-state'
 import { createQuickSlotSnapshot } from '../../core/quick-slot'
 import { createRunLoadoutSnapshot } from '../../core/run-loadout'
 import { resolveRunFailure } from '../../core/run-termination'
-import { createSceneExplorationSnapshot } from '../../core/scene-exploration'
-import { resolveSceneLaunch } from '../../core/scene-launch'
+import { createSceneExplorationSnapshot, resolveSceneMoveCommand } from '../../core/scene-exploration'
+import { createRunSceneSessionSnapshot, getRunSceneRuntime, resolveSceneLaunch } from '../../core/scene-launch'
 import {
   hospitalCurrentDayHubDependencies,
   hospitalRunSaveRulesRegistry,
@@ -57,6 +57,23 @@ function scenePhase(): StableRunPhase {
   return { kind: 'scene-session', payload: resolveSceneLaunch(hub(), { kind: 'launch-main-scene' }, hospitalSceneLaunchDependencies).session }
 }
 
+function emergencyHallScenePhase(): StableRunPhase {
+  const session = resolveSceneLaunch(hub(), { kind: 'launch-main-scene' }, hospitalSceneLaunchDependencies).session
+  const runtime = getRunSceneRuntime(session, hospitalSceneLaunchDependencies)
+  const moved = resolveSceneMoveCommand(
+    session.scene,
+    { edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall },
+    runtime.dependencies,
+  )
+  return {
+    kind: 'scene-session',
+    payload: createRunSceneSessionSnapshot({
+      context: session.context,
+      scene: moved.snapshot,
+    }, hospitalSceneLaunchDependencies),
+  }
+}
+
 function combatPhase(): StableRunPhase {
   const session = resolveSceneLaunch(hub(), { kind: 'launch-main-scene' }, hospitalSceneLaunchDependencies).session
   const runtime = hospitalSceneLaunchDependencies.content.createRuntime(session.context.runReturnCarryForward.continuity.runIdentity.seed, session.scene.sceneInstanceId)
@@ -91,15 +108,33 @@ describe('stable Run player-visible ViewModel', () => {
     for (const hidden of ['ui-run', 'ui-seed', 'rulesVersion', 'instanceId', 'definitionId']) expect(JSON.stringify(model)).not.toContain(hidden)
   })
 
-  it('projects Scene navigation and formal return estimate without hidden search outcomes', () => {
+  it('projects current traversable adjacency and formal return estimate without hidden search outcomes', () => {
     const model = createStableRunPlayerViewModel(scenePhase(), dependencies)
     expect(model.kind).toBe('scene-session')
     if (model.kind !== 'scene-session') throw new Error('expected Scene')
     expect(model.scene.currentNodeName).toBe('电梯前室')
+    expect(model.scene.traversableAdjacentNodeNames).toEqual(['急诊大厅'])
     expect(model.scene.returnEstimate).toBe(0)
     expect(model.scene.currentNodeSearchState).toBe('not-available')
     expect(JSON.stringify(model)).not.toContain('preparedOutcome')
     expect(JSON.stringify(model)).not.toContain('randomTrace')
+  })
+
+  it('only presents currently traversable emergency-hall edges, not a player-known map', () => {
+    const model = createStableRunPlayerViewModel(emergencyHallScenePhase(), dependencies)
+    if (model.kind !== 'scene-session') throw new Error('expected Scene')
+
+    expect(model.scene.currentNodeName).toBe('急诊大厅')
+    expect(model.scene.traversableAdjacentNodeNames).toEqual([
+      '保安值班室',
+      '电梯前室',
+      '药房',
+    ])
+    // The unopened Fire Door means the isolation corridor is not traversable.
+    // Its absence does not declare it unknown, hidden, or nonexistent.
+    expect(model.scene.traversableAdjacentNodeNames).not.toContain('隔离走廊')
+    expect('accessibleNodeNames' in model.scene).toBe(false)
+    expect('knownNavigation' in model.scene).toBe(false)
   })
 
   it('projects combat as relative enemy information without exact enemy health or risk traces', () => {

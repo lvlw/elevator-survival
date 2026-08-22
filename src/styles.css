@@ -141,6 +141,37 @@ body {
   font-size: 0.75rem;
 }
 
+.development-preview-banner {
+  display: flex;
+  width: min(100%, 96rem);
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1rem auto 0;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid #8f7440;
+  color: #f2d694;
+  background: #2b2518;
+}
+
+.development-preview-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.development-preview-selector button {
+  border: 1px solid #9d8651;
+  padding: 0.35rem 0.55rem;
+  color: inherit;
+  background: #3a301b;
+  cursor: pointer;
+}
+
+.development-preview-selector button[aria-pressed="true"] {
+  background: #5b4920;
+}
+
 @media (max-width: 900px) {
   .run-status-bar,
   .console-grid { grid-template-columns: 1fr; }

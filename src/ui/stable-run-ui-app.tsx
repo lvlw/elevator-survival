@@ -86,7 +86,7 @@ function SceneView({ model }: Readonly<{ model: Extract<StableRunPlayerViewModel
   return <main className="console-layout">
     <StatusBar status={model.status} />
     <div className="console-grid">
-      <section className="console-panel"><h2>场景导航</h2><p>当前位置：<strong>{scene.currentNodeName}</strong></p><p>剩余时间：<strong>{scene.remainingTime}</strong></p><p>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></p><p>当前节点搜索：<strong>{scene.currentNodeSearchState}</strong></p><h3>可见相邻节点</h3><ItemList items={scene.accessibleNodeNames.map((name) => ({ name, quantity: 1, resource: null }))} empty="当前没有可见相邻节点" /><h3>当前节点地面物品</h3><ItemList items={scene.groundItems} empty="未发现地面物品" /></section>
+      <section className="console-panel"><h2>场景导航</h2><p>当前位置：<strong>{scene.currentNodeName}</strong></p><p>剩余时间：<strong>{scene.remainingTime}</strong></p><p>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></p><p>当前节点搜索：<strong>{scene.currentNodeSearchState}</strong></p><h3>当前可通行相邻节点</h3><ItemList items={scene.traversableAdjacentNodeNames.map((name) => ({ name, quantity: 1, resource: null }))} empty="暂无当前可通行相邻节点" /><p className="empty-copy">此列表不是场景路线总览；阻挡路线与障碍等待正式玩家可见导航查询接入。</p><h3>当前节点地面物品</h3><ItemList items={scene.groundItems} empty="未发现地面物品" /></section>
       <LoadoutPanel loadout={scene.loadout} />
       {scene.combat && <CombatPanel combat={scene.combat} />}
       {scene.status !== 'active' && <section className="console-panel"><h2>场景终局状态</h2><p>{scene.status}</p><p className="empty-copy">终局场景结算命令尚未由 UI 发出。</p></section>}

@@ -1,7 +1,12 @@
+import { lazy, Suspense } from 'react'
 import { appMetadata } from './app/app-metadata'
 import type { StableRunStore } from './state/run-store'
 import { StableRunUiApp } from './ui/stable-run-ui-app'
 import type { StableRunUiPresentationDependencies } from './ui/presentation'
+
+const DevelopmentUiPreviewHarness = import.meta.env.DEV
+  ? lazy(() => import('./ui/dev-preview/development-ui-preview'))
+  : null
 
 export interface AppProps {
   readonly store?: StableRunStore
@@ -14,6 +19,9 @@ export default function App({ store, presentationDependencies }: AppProps = {}) 
       store={store}
       presentationDependencies={presentationDependencies}
     />
+  }
+  if (DevelopmentUiPreviewHarness) {
+    return <Suspense fallback={<p>正在加载开发预览…</p>}><DevelopmentUiPreviewHarness /></Suspense>
   }
   return (
     <main className="app-shell">

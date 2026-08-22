@@ -49,11 +49,13 @@ export {
   resolveSceneWithdrawalCommand,
 } from './scene-withdrawal-resolution'
 export {
+  createPerformMainSearchCommand,
   previewMainSearchCommand,
   resolveMainSearchCommand,
 } from './main-search-command'
 export {
   buildNodeItemPickupTransitionPlan,
+  createPickUpRevealedNodeItemCommand,
   previewNodeItemPickupCommand,
   resolveNodeItemPickupCommand,
 } from './node-item-pickup-command'

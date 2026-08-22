@@ -30,6 +30,7 @@ import {
   applySceneExplorationEffects,
   applySceneInventoryEffects,
   buildNodeItemPickupTransitionPlan,
+  createPickUpRevealedNodeItemCommand,
   buildSceneInventoryTransitionPlan,
   createSceneExplorationSnapshot,
   previewNodeItemPickupCommand,
@@ -40,6 +41,37 @@ import {
   type SceneExplorationEffect,
   type SceneExplorationSnapshot,
 } from '.'
+
+describe('strict node pickup command boundary', () => {
+  const valid = {
+    nodeItemInstanceId: 'ground-item',
+    quantity: 1,
+    placement: { x: 0, y: 0, rotated: false },
+  } as const
+
+  it('creates a new deeply frozen normalized command', () => {
+    const command = createPickUpRevealedNodeItemCommand(valid)
+    expect(command).toEqual(valid)
+    expect(command).not.toBe(valid)
+    expect(command.placement).not.toBe(valid.placement)
+    expect(Object.isFrozen(command)).toBe(true)
+    expect(Object.isFrozen(command.placement)).toBe(true)
+  })
+
+  it.each([
+    null,
+    [],
+    { ...valid, extractedInstanceId: 'forged' },
+    { ...valid, placement: { ...valid.placement, extra: true } },
+    new (class PickupCommand {
+      public readonly nodeItemInstanceId = 'ground-item'
+      public readonly quantity = 1
+      public readonly placement = { x: 0, y: 0, rotated: false }
+    })(),
+  ])('rejects malformed command %#', (input) => {
+    expect(() => createPickUpRevealedNodeItemCommand(input)).toThrow()
+  })
+})
 
 const config = {
   combat: { player: { maxHealth: 12 } },

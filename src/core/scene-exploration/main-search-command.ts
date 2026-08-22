@@ -27,6 +27,42 @@ import type {
   SceneExplorationStatus,
 } from './scene-exploration-types'
 
+function exactCommand(
+  value: unknown,
+  keys: readonly string[],
+): value is Record<string, unknown> {
+  if (
+    value === null ||
+    typeof value !== 'object' ||
+    Array.isArray(value) ||
+    Object.getPrototypeOf(value) !== Object.prototype
+  ) {
+    return false
+  }
+  const actual = Object.keys(value).sort()
+  const expected = [...keys].sort()
+  return actual.length === expected.length &&
+    actual.every((key, index) => key === expected[index])
+}
+
+export function createPerformMainSearchCommand(
+  input: unknown,
+): PerformMainSearchCommand {
+  if (
+    !exactCommand(input, ['illumination']) ||
+    (
+      input.illumination !== 'use-equipped-flashlight' &&
+      input.illumination !== 'search-without-flashlight'
+    )
+  ) {
+    throw new SceneExplorationError(
+      'INVALID_ILLUMINATION_CHOICE',
+      '主要搜索命令必须只包含正式照明选择',
+    )
+  }
+  return deepFreeze({ illumination: input.illumination })
+}
+
 function graphFailure(error: unknown): never {
   if (!(error instanceof SceneGraphError)) throw error
   throw new SceneExplorationError(
@@ -82,10 +118,11 @@ function summarizeItems(
 
 function evaluate(
   snapshotInput: SceneExplorationSnapshot,
-  command: PerformMainSearchCommand,
+  commandInput: unknown,
   dependencies: MainSearchCommandDependencies,
 ): MainSearchTransitionPlan {
   const snapshot = createSceneExplorationSnapshot(snapshotInput, dependencies)
+  const command = createPerformMainSearchCommand(commandInput)
   if (snapshot.status !== 'active') {
     throw new SceneExplorationError('SCENE_NOT_ACTIVE', '场景已终止')
   }
@@ -96,15 +133,6 @@ function evaluate(
     throw new SceneExplorationError(
       'SCENE_TIME_EXHAUSTED',
       '场景时间已耗尽',
-    )
-  }
-  if (
-    command.illumination !== 'use-equipped-flashlight' &&
-    command.illumination !== 'search-without-flashlight'
-  ) {
-    throw new SceneExplorationError(
-      'INVALID_ILLUMINATION_CHOICE',
-      '主要搜索照明选择无效',
     )
   }
   if (!dependencies.searchCatalog.has(snapshot.currentNodeId)) {
@@ -375,7 +403,7 @@ function materializeEvaluation(
 
 export function previewMainSearchCommand(
   snapshot: SceneExplorationSnapshot,
-  command: PerformMainSearchCommand,
+  command: unknown,
   dependencies: MainSearchCommandDependencies,
 ): MainSearchPreview {
   try {
@@ -398,7 +426,7 @@ export function previewMainSearchCommand(
 
 export function resolveMainSearchCommand(
   snapshot: SceneExplorationSnapshot,
-  command: PerformMainSearchCommand,
+  command: unknown,
   dependencies: MainSearchCommandDependencies,
 ): MainSearchResolution {
   const initialSnapshot = createSceneExplorationSnapshot(

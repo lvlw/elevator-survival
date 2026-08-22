@@ -19,3 +19,13 @@ Success 仍是 DEC-028 定义的未来正式终局概念；当前规则版本没
 Router 根据 canonical current phase 的 RunIdentity 从既有 Run Save registry 取得正式版本依赖，调用现有 Scene Launch、Run Return、Daily Settlement 与 RunFailure 入口，再委托 `executeStableRunCommand` 规范化结果、验证身份并写入唯一存档。returned Scene 的位置、时间与生命校验只存在于 Scene strict snapshot：`remainingTime` 必须是0到当前规则 `scene.totalTime` 之间的安全整数，超出范围会拒绝而不修复；Run Save 和生命周期结算复用该入口，Router 不复制或补算撤离规则。Router 不直接保存；`execution.phase` 是下一条命令的唯一状态输入，resolver result、summary 和 Effects 不形成第二份应用状态。
 
 当前仍未实现完整 Application command routing、全部 Hub／Scene 玩家 mutation 路由、Profile 持久化、完整 RunState、Zustand／UI 编排、Success Resolver、Run Abandon、New Run、多个存档槽、存档历史及迁移。
+
+## 当前基础 Scene mutation 路由
+
+`run-scene/` 严格解析并路由五类 Scene 玩家命令：移动、主要搜索、节点地面物品拾取、Scene 背包／快捷栏整理和主动撤离。外层命令只包含路由 tag 与对应 core command；合法边、照明选择、拾取数量／摆放、整理变体和撤离资格仍由共享 core constructor 与 resolver 决定。
+
+Router 只接受 canonical `scene-session`，按其中 RunIdentity 的 `rulesVersion` 从既有 registry 获取正式 Scene runtime。移动、搜索、拾取和整理将 core resolution snapshot 与原 canonical context 重新交给严格 Session constructor；主动撤离调用既有 Session 级入口。Router 不导入医院内容、不复制 runtime、Session context、Scene mutable truth 或 Effect。
+
+所有成功结果只由 `executeStableRunCommand` 写入唯一 Run Save 一次；规则拒绝不写入，存储失败返回已经规范化的 committed Scene Session，且不重跑 resolver。产生安全返回、强制返回或死亡时仍保存为 `scene-session`，不会自动进入 Hub 或 Run Failure；下一步必须显式调用生命周期结算。`execution.phase` 是下一命令的唯一正式状态输入。
+
+障碍、任务事件、场景医疗、设备充能、战斗玩家行动、Hub mutation、完整 Application Store、Zustand 与 UI 仍未接入本路由。

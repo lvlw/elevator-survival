@@ -32,54 +32,72 @@ function fail(
   throw new SceneExplorationError(code, message)
 }
 
+function exactCommand(
+  value: unknown,
+  keys: readonly string[],
+): value is Record<string, unknown> {
+  if (
+    value === null ||
+    typeof value !== 'object' ||
+    Array.isArray(value) ||
+    Object.getPrototypeOf(value) !== Object.prototype
+  ) {
+    return false
+  }
+  const actual = Object.keys(value).sort()
+  const expected = [...keys].sort()
+  return actual.length === expected.length &&
+    actual.every((key, index) => key === expected[index])
+}
+
+export function createPickUpRevealedNodeItemCommand(
+  input: unknown,
+): PickUpRevealedNodeItemCommand {
+  if (!exactCommand(input, ['nodeItemInstanceId', 'quantity', 'placement'])) {
+    fail('INVALID_EXTRACTED_INSTANCE_ID', '拾取命令不得由调用方提供新实例ID')
+  }
+  if (
+    typeof input.nodeItemInstanceId !== 'string' ||
+    input.nodeItemInstanceId.trim().length === 0
+  ) {
+    throw new SceneExplorationError('UNKNOWN_NODE_ITEM', '节点物品实例ID不能为空')
+  }
+  if (!Number.isSafeInteger(input.quantity) || (input.quantity as number) <= 0) {
+    fail('INVALID_PICKUP_QUANTITY', '拾取数量必须是正安全整数')
+  }
+  if (
+    !exactCommand(input.placement, ['x', 'y', 'rotated']) ||
+    !Number.isSafeInteger(input.placement.x) ||
+    (input.placement.x as number) < 0 ||
+    !Number.isSafeInteger(input.placement.y) ||
+    (input.placement.y as number) < 0 ||
+    typeof input.placement.rotated !== 'boolean'
+  ) {
+    fail('INVALID_BACKPACK_PLACEMENT', '拾取目标摆放无效')
+  }
+  return deepFreeze({
+    nodeItemInstanceId: input.nodeItemInstanceId,
+    quantity: input.quantity as number,
+    placement: {
+      x: input.placement.x as number,
+      y: input.placement.y as number,
+      rotated: input.placement.rotated,
+    },
+  })
+}
+
 export function buildNodeItemPickupTransitionPlan(
   snapshotInput: SceneExplorationSnapshot,
-  command: PickUpRevealedNodeItemCommand,
+  commandInput: unknown,
   dependencies: SceneExplorationDependencies,
 ): NodeItemPickupTransitionPlan {
   const snapshot = createSceneExplorationSnapshot(snapshotInput, dependencies)
-  if (
-    command === null ||
-    typeof command !== 'object' ||
-    Array.isArray(command) ||
-    Object.getPrototypeOf(command) !== Object.prototype ||
-    Object.keys(command).some((key) => !['nodeItemInstanceId', 'quantity', 'placement'].includes(key)) ||
-    Object.keys(command).length !== 3
-  ) {
-    fail('INVALID_EXTRACTED_INSTANCE_ID', '拾取命令不得由调用方提供新实例ID')
-  }
+  const command = createPickUpRevealedNodeItemCommand(commandInput)
   if (snapshot.status !== 'active') {
     throw new SceneExplorationError('SCENE_NOT_ACTIVE', '场景已终止')
   }
   if (snapshot.condition.currentHealth === 0) {
     throw new SceneExplorationError('PLAYER_DEAD', '死亡玩家不能拾取物品')
-  }
-  if (
-    typeof command.nodeItemInstanceId !== 'string' ||
-    command.nodeItemInstanceId.trim().length === 0
-  ) {
-    throw new SceneExplorationError(
-      'UNKNOWN_NODE_ITEM',
-      '节点物品实例ID不能为空',
-    )
-  }
-  if (!Number.isSafeInteger(command.quantity) || command.quantity <= 0) {
-    fail('INVALID_PICKUP_QUANTITY', '拾取数量必须是正安全整数')
-  }
-  if (
-    !command.placement ||
-    typeof command.placement !== 'object' ||
-    Array.isArray(command.placement) ||
-    Object.getPrototypeOf(command.placement) !== Object.prototype ||
-    Object.keys(command.placement).length !== 3 ||
-    Object.keys(command.placement).some((key) => !['x', 'y', 'rotated'].includes(key)) ||
-    !Number.isSafeInteger(command.placement.x) ||
-    command.placement.x < 0 ||
-    !Number.isSafeInteger(command.placement.y) ||
-    command.placement.y < 0 ||
-    typeof command.placement.rotated !== 'boolean'
-  ) {
-    fail('INVALID_BACKPACK_PLACEMENT', '拾取目标摆放无效')
   }
 
   const source = getSceneNodeItems(
@@ -203,7 +221,7 @@ function materializeEvaluation(
 
 export function previewNodeItemPickupCommand(
   snapshot: SceneExplorationSnapshot,
-  command: PickUpRevealedNodeItemCommand,
+  command: unknown,
   dependencies: SceneExplorationDependencies,
 ): NodeItemPickupPreview {
   try {
@@ -230,7 +248,7 @@ export function previewNodeItemPickupCommand(
 
 export function resolveNodeItemPickupCommand(
   snapshot: SceneExplorationSnapshot,
-  command: PickUpRevealedNodeItemCommand,
+  command: unknown,
   dependencies: SceneExplorationDependencies,
 ): NodeItemPickupResolution {
   const initialSnapshot = createSceneExplorationSnapshot(

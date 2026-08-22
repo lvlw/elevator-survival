@@ -20,6 +20,7 @@ import {
 } from '../scene-search'
 import {
   applySceneExplorationEffects,
+  createPerformMainSearchCommand,
   createSceneExplorationSnapshot,
   previewMainSearchCommand,
   resolveMainSearchCommand,
@@ -355,6 +356,37 @@ const illuminated = {
 const lowLight = {
   illumination: 'search-without-flashlight',
 } as const
+
+describe('strict main search command boundary', () => {
+  it.each([illuminated, lowLight])('normalizes and freezes %j', (input) => {
+    const command = createPerformMainSearchCommand(input)
+    expect(command).toEqual(input)
+    expect(command).not.toBe(input)
+    expect(Object.isFrozen(command)).toBe(true)
+  })
+
+  it.each([
+    null,
+    [],
+    {},
+    { illumination: 'unknown' },
+    { illumination: 'search-without-flashlight', extra: true },
+    new (class SearchCommand {
+      public readonly illumination = 'search-without-flashlight'
+    })(),
+  ])('rejects malformed command %# in constructor, preview, and resolution', (input) => {
+    expect(() => createPerformMainSearchCommand(input)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_ILLUMINATION_CHOICE' }),
+    )
+    expect(previewMainSearchCommand(snapshot(), input, dependencies)).toEqual({
+      canExecute: false,
+      rejectionCode: 'INVALID_ILLUMINATION_CHOICE',
+    })
+    expect(() => resolveMainSearchCommand(snapshot(), input, dependencies)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_ILLUMINATION_CHOICE' }),
+    )
+  })
+})
 
 function replaceEffect(
   effects: readonly SceneExplorationEffect[],

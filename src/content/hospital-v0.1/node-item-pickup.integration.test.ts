@@ -119,8 +119,11 @@ function searchedSnapshot(
       alertState: 'unalerted',
       combatState: { encounters: [], usage: { metalPipeChargedStrikeUses: 0 } },
       status,
-      currentNodeId: nodeId,
-      remainingTime: 137,
+      currentNodeId:
+        status === 'safe-returned' || status === 'forced-returned'
+          ? HOSPITAL_NODE_IDS.elevatorAnteroom
+          : nodeId,
+      remainingTime: status === 'forced-returned' ? 0 : 137,
       enabledEdgeIds: HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
       backpack,
       equipment: { weapon: null, armor: null, utility: null },

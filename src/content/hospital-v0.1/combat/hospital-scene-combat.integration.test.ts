@@ -568,6 +568,8 @@ describe('hospital scene combat encounter lifecycle', () => {
     expect(() => createSceneExplorationSnapshot({
       ...started,
       status: 'forced-returned',
+      currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
+      remainingTime: 0,
     }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
 
     const dormantAtHall = scene()

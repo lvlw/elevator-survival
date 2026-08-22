@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   HOSPITAL_EDGE_IDS,
   HOSPITAL_ITEM_IDS,
+  HOSPITAL_NODE_IDS,
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
@@ -1075,6 +1076,51 @@ describe('stable Run Save IO', () => {
       const active = encounter.combat as Record<string, unknown>
       ;(active.enemy as Record<string, unknown>).currentHealth = 999
     }), hospitalRunSaveRulesRegistry)).toThrowError(RunSaveError)
+  })
+
+  it('rejects forged returned terminal Scene saves without repairing or replacing storage', () => {
+    const active = activeSceneWithInventoryHistory().session
+    const envelope = JSON.parse(serializeRunSave(
+      { kind: 'scene-session', payload: active },
+      hospitalRunSaveRulesRegistry,
+    )) as RunSaveEnvelope
+    const forgeries: readonly ((draft: Record<string, unknown>) => void)[] = [
+      (draft) => {
+        const payload = draft.payload as Record<string, unknown>
+        ;(payload.scene as Record<string, unknown>).status = 'safe-returned'
+      },
+      (draft) => {
+        const payload = draft.payload as Record<string, unknown>
+        const scene = payload.scene as Record<string, unknown>
+        scene.status = 'forced-returned'
+        scene.remainingTime = 0
+      },
+      (draft) => {
+        const payload = draft.payload as Record<string, unknown>
+        const scene = payload.scene as Record<string, unknown>
+        scene.status = 'forced-returned'
+        scene.currentNodeId = HOSPITAL_NODE_IDS.elevatorAnteroom
+        scene.remainingTime = 1
+      },
+      (draft) => {
+        const payload = draft.payload as Record<string, unknown>
+        const scene = payload.scene as Record<string, unknown>
+        scene.status = 'forced-returned'
+        scene.currentNodeId = HOSPITAL_NODE_IDS.elevatorAnteroom
+        scene.remainingTime = 0
+        ;(scene.condition as Record<string, unknown>).currentHealth = 0
+      },
+    ]
+
+    for (const forge of forgeries) {
+      const serialized = mutateSerialized(envelope, forge)
+      const storage = new MemoryRunSaveStorage(serialized)
+      expect(() => loadRunPhase(storage, hospitalRunSaveRulesRegistry))
+        .toThrowError(expect.objectContaining<Partial<RunSaveError>>({
+          code: 'INVALID_STABLE_PHASE',
+        }))
+      expect(storage.read()).toBe(serialized)
+    }
   })
 
   it('rejects duplicate physical identity, orphan ItemState, and failure forged as active Hub', () => {

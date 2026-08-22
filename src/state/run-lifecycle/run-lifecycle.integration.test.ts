@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   HOSPITAL_EDGE_IDS,
   HOSPITAL_ITEM_IDS,
+  HOSPITAL_NODE_IDS,
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
@@ -30,6 +31,7 @@ import {
   createRunSceneSessionSnapshot,
   deriveSceneInstanceId,
   getRunSceneRuntime,
+  resolveRunSceneSessionWithdrawal,
   resolveSceneLaunch,
   type RunSceneSessionSnapshot,
 } from '../../core/scene-launch'
@@ -178,6 +180,25 @@ function launch(start = hub()): RunSceneSessionSnapshot {
     { kind: 'launch-main-scene' },
     hospitalSceneLaunchDependencies,
   ).session
+}
+
+function activeSessionAtEmergencyHall(
+  remainingTime: number,
+  condition?: RunSceneSessionSnapshot['scene']['condition'],
+): RunSceneSessionSnapshot {
+  const launched = launch()
+  const runtime = getRunSceneRuntime(launched, hospitalSceneLaunchDependencies)
+  const scene = createSceneExplorationSnapshot({
+    ...launched.scene,
+    currentNodeId: HOSPITAL_NODE_IDS.emergencyHall,
+    remainingTime,
+    condition: condition ?? launched.scene.condition,
+    status: 'active',
+  }, runtime.dependencies)
+  return createRunSceneSessionSnapshot({
+    context: launched.context,
+    scene,
+  }, hospitalSceneLaunchDependencies)
 }
 
 function terminalSession(
@@ -400,6 +421,103 @@ describe('strict Stable Run lifecycle command routing', () => {
       expect(tracked.backing.read()).toBe(saved)
     },
   )
+
+  it.each([
+    ['non-safety safe return', () => {
+      const active = activeSessionAtEmergencyHall(20)
+      return {
+        active,
+        forged: {
+          ...active,
+          scene: { ...active.scene, status: 'safe-returned' as const },
+        },
+      }
+    }],
+    ['positive-time forced return', () => {
+      const active = launch()
+      return {
+        active,
+        forged: {
+          ...active,
+          scene: { ...active.scene, status: 'forced-returned' as const },
+        },
+      }
+    }],
+  ] as const)('rejects forged %s during input canonicalization before Return or save', (_name, create) => {
+    const { active, forged } = create()
+    const tracked = trackedStorage({ kind: 'scene-session', payload: active })
+    const previous = tracked.backing.read()
+    const returnResolver = vi.spyOn(sceneLaunchCore, 'resolveRunSceneSessionReturn')
+    expect(() => executeStableRunLifecycleCommand({
+      currentPhase: { kind: 'scene-session', payload: forged },
+      command: { kind: 'settle-terminal-scene' },
+      storage: tracked.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })).toThrowError(expect.objectContaining({ code: 'INVALID_STABLE_PHASE' }))
+    expect(returnResolver).not.toHaveBeenCalled()
+    expect(tracked.counters.writes).toBe(0)
+    expect(tracked.backing.read()).toBe(previous)
+  })
+
+  it.each([
+    ['safe-returned', 20],
+    ['forced-returned', 5],
+  ] as const)('settles a formally withdrawn %s Scene through Return', (status, remainingTime) => {
+    const active = activeSessionAtEmergencyHall(remainingTime)
+    const terminal = resolveRunSceneSessionWithdrawal(
+      active,
+      { kind: 'withdraw-from-scene' },
+      hospitalSceneLaunchDependencies,
+    ).session
+    expect(terminal.scene).toMatchObject({
+      status,
+      currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
+      ...(status === 'forced-returned' ? { remainingTime: 0 } : {}),
+    })
+    const tracked = trackedStorage({ kind: 'scene-session', payload: terminal })
+    const execution = executeStableRunLifecycleCommand({
+      currentPhase: { kind: 'scene-session', payload: terminal },
+      command: { kind: 'settle-terminal-scene' },
+      storage: tracked.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    expect(execution.phase.kind).toBe('current-day-hub')
+    expect(tracked.counters.writes).toBe(1)
+  })
+
+  it('settles a formal withdrawal death through RunFailure without ordinary Return', () => {
+    const launched = launch()
+    const fatalCondition = createPlayerCondition({
+      ...launched.scene.condition,
+      currentHealth: 1,
+      bleeding: true,
+      openWounds: [{
+        id: 'fatal-withdrawal-wound',
+        kind: 'laceration',
+        treatment: 'untreated',
+      }],
+    }, config.combat.player)
+    const active = activeSessionAtEmergencyHall(10, fatalCondition)
+    const terminal = resolveRunSceneSessionWithdrawal(
+      active,
+      { kind: 'withdraw-from-scene' },
+      hospitalSceneLaunchDependencies,
+    ).session
+    expect(terminal.scene.status).toBe('dead')
+    const tracked = trackedStorage({ kind: 'scene-session', payload: terminal })
+    const returnResolver = vi.spyOn(sceneLaunchCore, 'resolveRunSceneSessionReturn')
+    const execution = executeStableRunLifecycleCommand({
+      currentPhase: { kind: 'scene-session', payload: terminal },
+      command: { kind: 'settle-terminal-scene' },
+      storage: tracked.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    expect(execution.phase.kind).toBe('run-failure')
+    if (execution.phase.kind !== 'run-failure') throw new Error('expected RunFailure')
+    expect(execution.phase.payload.source.kind).toBe('scene-defeat')
+    expect(returnResolver).not.toHaveBeenCalled()
+    expect(tracked.counters.writes).toBe(1)
+  })
 
   it('routes a dead Scene only through formal RunFailure without extraction', () => {
     const terminal = terminalSession(launch(hub({ includeSample: true })), 'dead')

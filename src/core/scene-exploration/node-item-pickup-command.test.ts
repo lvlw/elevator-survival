@@ -574,7 +574,11 @@ describe('scene inventory organization and node-stack merge', () => {
     )).toEqual({ canExecute: false, rejectionCode: 'INVALID_INPUT' })
     for (const status of ['safe-returned', 'forced-returned', 'dead'] as const) {
       expect(previewSceneInventoryCommand(
-        snapshot({ status }),
+        snapshot({
+          status,
+          currentNodeId: status === 'dead' ? 'current' : 'safe',
+          remainingTime: status === 'forced-returned' ? 0 : 100,
+        }),
         { kind: 'drop-scene-backpack-item', instanceId: 'x' },
         dependencies,
       )).toEqual({ canExecute: false, rejectionCode: 'SCENE_NOT_ACTIVE' })
@@ -1249,7 +1253,11 @@ describe('node item pickup eligibility and identity', () => {
   it.each(['safe-returned', 'forced-returned', 'dead'] as const)(
     'rejects terminal status %s',
     (status) => {
-      const start = snapshot({ status })
+      const start = snapshot({
+        status,
+        currentNodeId: status === 'dead' ? 'current' : 'safe',
+        remainingTime: status === 'forced-returned' ? 0 : 100,
+      })
       expect(
         previewNodeItemPickupCommand(
           start,

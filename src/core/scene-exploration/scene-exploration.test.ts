@@ -325,6 +325,87 @@ describe('scene exploration snapshot', () => {
     })
   })
 
+  it('accepts living safe returns only at a formal safety node, including zero time', () => {
+    expect(createSceneExplorationSnapshot(
+      { ...snapshot('safe', 10), status: 'safe-returned' },
+      dependencies,
+    )).toMatchObject({
+      status: 'safe-returned',
+      currentNodeId: 'safe',
+      remainingTime: 10,
+    })
+    expect(createSceneExplorationSnapshot(
+      { ...snapshot('safe', 0), status: 'safe-returned' },
+      dependencies,
+    )).toMatchObject({
+      status: 'safe-returned',
+      currentNodeId: 'safe',
+      remainingTime: 0,
+    })
+    expect(() => createSceneExplorationSnapshot(
+      { ...snapshot('middle', 10), status: 'safe-returned' },
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_CURRENT_NODE' }))
+    expect(() => createSceneExplorationSnapshot(
+      {
+        ...snapshot('safe', 10),
+        status: 'safe-returned',
+        condition: condition(0),
+      },
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'STATUS_HEALTH_CONFLICT' }))
+  })
+
+  it('accepts forced returns only at a formal safety node with zero time and positive health', () => {
+    expect(createSceneExplorationSnapshot(
+      { ...snapshot('safe', 0), status: 'forced-returned' },
+      dependencies,
+    )).toMatchObject({
+      status: 'forced-returned',
+      currentNodeId: 'safe',
+      remainingTime: 0,
+    })
+    expect(() => createSceneExplorationSnapshot(
+      {
+        ...snapshot('middle', 1),
+        status: 'forced-returned',
+        remainingTime: 0,
+      },
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_CURRENT_NODE' }))
+    expect(() => createSceneExplorationSnapshot(
+      { ...snapshot('safe', 1), status: 'forced-returned' },
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'INVALID_REMAINING_TIME' }))
+    expect(() => createSceneExplorationSnapshot(
+      {
+        ...snapshot('safe', 0),
+        status: 'forced-returned',
+        condition: condition(0),
+      },
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'STATUS_HEALTH_CONFLICT' }))
+  })
+
+  it('keeps dead Scenes valid at non-safety nodes only when health is zero', () => {
+    expect(createSceneExplorationSnapshot(
+      {
+        ...snapshot('middle', 10),
+        status: 'dead',
+        condition: condition(0),
+      },
+      dependencies,
+    )).toMatchObject({
+      status: 'dead',
+      currentNodeId: 'middle',
+      condition: { currentHealth: 0 },
+    })
+    expect(() => createSceneExplorationSnapshot(
+      { ...snapshot('middle', 10), status: 'dead' },
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'STATUS_HEALTH_CONFLICT' }))
+  })
+
   it('binds normalized backpack dimensions to the rule configuration without mutation', () => {
     const input = {
       ...snapshot(),
@@ -470,7 +551,12 @@ describe('scene move evaluation', () => {
   it.each(['safe-returned', 'forced-returned', 'dead'] as const)('rejects movement after %s', (status) => {
     const currentHealth = status === 'dead' ? 0 : 12
     const terminal = createSceneExplorationSnapshot(
-      { ...snapshot(), status, condition: condition(currentHealth) },
+      {
+        ...snapshot(),
+        status,
+        remainingTime: status === 'forced-returned' ? 0 : 100,
+        condition: condition(currentHealth),
+      },
       dependencies,
     )
     expect(previewSceneMoveCommand(terminal, { edgeId: 'safe-middle' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'SCENE_NOT_ACTIVE' })

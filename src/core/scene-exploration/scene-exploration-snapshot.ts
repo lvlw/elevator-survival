@@ -131,6 +131,21 @@ export function createSceneExplorationSnapshot(
       '场景时间耗尽时，active场景必须位于正式返程安全节点',
     )
   }
+  if (
+    (input.status === 'safe-returned' || input.status === 'forced-returned') &&
+    !currentNode.isReturnSafetyNode
+  ) {
+    throw new SceneExplorationError(
+      'INVALID_CURRENT_NODE',
+      '已经返回的终局场景必须位于正式返程安全节点',
+    )
+  }
+  if (input.status === 'forced-returned' && input.remainingTime !== 0) {
+    throw new SceneExplorationError(
+      'INVALID_REMAINING_TIME',
+      '强制返回的终局场景必须处于零剩余时间',
+    )
+  }
   validateTraversalAvailability(dependencies.graph, {
     enabledEdgeIds: input.enabledEdgeIds,
   })
@@ -354,7 +369,7 @@ export function createSceneExplorationSnapshot(
     }
   }
   if (
-    ((input.status === 'active' || input.status === 'combat') && condition.currentHealth === 0) ||
+    (input.status !== 'dead' && condition.currentHealth === 0) ||
     (input.status === 'dead' && condition.currentHealth !== 0)
   ) {
     throw new SceneExplorationError(

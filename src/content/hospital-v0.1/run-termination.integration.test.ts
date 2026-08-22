@@ -514,6 +514,11 @@ describe('hospital Run failure termination coordinator', () => {
         terminalScene: createSceneExplorationSnapshot({
           ...scene(),
           status,
+          currentNodeId:
+            status === 'active'
+              ? HOSPITAL_NODE_IDS.emergencyHall
+              : HOSPITAL_NODE_IDS.elevatorAnteroom,
+          remainingTime: status === 'forced-returned' ? 0 : config.scene.totalTime,
         }, sceneDependencies),
       }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
     }
@@ -536,6 +541,7 @@ describe('hospital Run failure termination coordinator', () => {
       terminalScene: createSceneExplorationSnapshot({
         ...source.terminalScene,
         status: 'safe-returned',
+        currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
         condition: createPlayerCondition({
           ...source.terminalScene.condition,
           currentHealth: 1,

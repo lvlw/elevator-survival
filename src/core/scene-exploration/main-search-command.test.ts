@@ -463,7 +463,11 @@ describe('main search command eligibility and timing', () => {
   it.each([
     ['already searched', snapshot({ searched: true }), 'MAIN_SEARCH_ALREADY_COMPLETED'],
     ['not searchable', snapshot({ nodeId: 'safe' }), 'MAIN_SEARCH_NOT_AVAILABLE'],
-    ['inactive', snapshot({ status: 'forced-returned' }), 'SCENE_NOT_ACTIVE'],
+    ['inactive', snapshot({
+      nodeId: 'safe',
+      remainingTime: 0,
+      status: 'forced-returned',
+    }), 'SCENE_NOT_ACTIVE'],
     ['time exhausted', snapshot({ nodeId: 'safe', remainingTime: 0 }), 'SCENE_TIME_EXHAUSTED'],
     ['dead', snapshot({ status: 'dead' }), 'SCENE_NOT_ACTIVE'],
   ])('rejects %s without partial effects', (_name, input, code) => {

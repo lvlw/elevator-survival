@@ -533,6 +533,8 @@ describe('hospital non-combat scene medical', () => {
     const returned = createSceneExplorationSnapshot({
       ...active,
       status: 'forced-returned',
+      currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
+      remainingTime: 0,
     }, dependencies)
     expect(previewSceneMedicalCommand(returned, backpackCommand('bandage'), dependencies)).toEqual({
       canExecute: false,

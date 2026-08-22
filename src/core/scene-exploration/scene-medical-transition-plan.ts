@@ -89,7 +89,7 @@ function consumeFromBackpack(
 
 export function buildSceneMedicalTransitionPlan(
   snapshotInput: SceneExplorationSnapshot,
-  commandInput: UseSceneMedicalItemCommand,
+  commandInput: unknown,
   dependencies: SceneMedicalCommandDependencies,
 ): SceneMedicalTransitionPlan {
   validateSceneMedicalDependencies(dependencies)

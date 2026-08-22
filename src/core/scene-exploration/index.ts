@@ -25,6 +25,7 @@ export {
 } from './scene-medical-command'
 export { buildSceneMedicalTransitionPlan } from './scene-medical-transition-plan'
 export {
+  createPerformSceneTaskEventCommand,
   buildSceneTaskEventTransitionPlan,
   previewSceneTaskEventCommand,
   resolveSceneTaskEventCommand,
@@ -63,6 +64,7 @@ export {
   previewSceneObstacleOptionCommand,
   resolveSceneObstacleOptionCommand,
 } from './scene-obstacle-command'
+export { createPerformSceneObstacleOptionCommand } from '../scene-obstacle'
 export {
   previewSceneCombatPlayerAction,
   resolveSceneCombatPlayerAction,

@@ -35,7 +35,7 @@ function exact(value: unknown, keys: readonly string[]): value is Record<string,
   return actual.length === expected.length && actual.every((key, index) => key === expected[index])
 }
 
-function command(input: PerformSceneTaskEventCommand): PerformSceneTaskEventCommand {
+export function createPerformSceneTaskEventCommand(input: unknown): PerformSceneTaskEventCommand {
   const hasPlacement = !!input && typeof input === 'object' && !Array.isArray(input) && Object.prototype.hasOwnProperty.call(input, 'placement')
   if (!exact(input, hasPlacement ? ['eventId', 'optionId', 'placement'] : ['eventId', 'optionId']) ||
     typeof input.eventId !== 'string' || input.eventId.trim().length === 0 ||
@@ -90,11 +90,11 @@ function extractionRules(mode: 'direct' | 'cautious', dependencies: SceneTaskEve
 
 export function buildSceneTaskEventTransitionPlan(
   snapshotInput: SceneExplorationSnapshot,
-  commandInput: PerformSceneTaskEventCommand,
+  commandInput: unknown,
   dependencies: SceneTaskEventCommandDependencies,
 ): SceneTaskEventTransitionPlan {
   const snapshot = createSceneExplorationSnapshot(snapshotInput, dependencies)
-  const normalized = command(commandInput)
+  const normalized = createPerformSceneTaskEventCommand(commandInput)
   if (snapshot.status !== 'active') throw new SceneExplorationError('SCENE_NOT_ACTIVE', '当前场景状态不能执行任务事件')
   if (snapshot.condition.currentHealth === 0) throw new SceneExplorationError('PLAYER_DEAD', '死亡玩家不能执行任务事件')
   if (snapshot.remainingTime === 0) throw new SceneExplorationError('SCENE_TIME_EXHAUSTED', '场景时间耗尽后不能开始任务事件')
@@ -198,7 +198,7 @@ function materialize(initial: SceneExplorationSnapshot, plan: SceneTaskEventTran
   return deepFreeze({ ...plan.metadata, effects: plan.effects, snapshot })
 }
 
-export function previewSceneTaskEventCommand(snapshot: SceneExplorationSnapshot, input: PerformSceneTaskEventCommand, dependencies: SceneTaskEventCommandDependencies): SceneTaskEventPreview {
+export function previewSceneTaskEventCommand(snapshot: SceneExplorationSnapshot, input: unknown, dependencies: SceneTaskEventCommandDependencies): SceneTaskEventPreview {
   try {
     const initial = createSceneExplorationSnapshot(snapshot, dependencies)
     const plan = buildSceneTaskEventTransitionPlan(initial, input, dependencies)
@@ -209,7 +209,7 @@ export function previewSceneTaskEventCommand(snapshot: SceneExplorationSnapshot,
   }
 }
 
-export function resolveSceneTaskEventCommand(snapshot: SceneExplorationSnapshot, input: PerformSceneTaskEventCommand, dependencies: SceneTaskEventCommandDependencies): SceneTaskEventResolution {
+export function resolveSceneTaskEventCommand(snapshot: SceneExplorationSnapshot, input: unknown, dependencies: SceneTaskEventCommandDependencies): SceneTaskEventResolution {
   const initial = createSceneExplorationSnapshot(snapshot, dependencies)
   const plan = buildSceneTaskEventTransitionPlan(initial, input, dependencies)
   const result = materialize(initial, plan, dependencies)

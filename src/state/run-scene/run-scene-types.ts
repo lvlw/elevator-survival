@@ -2,10 +2,18 @@ import type {
   MainSearchResolution,
   MoveThroughSceneEdgeCommand,
   NodeItemPickupResolution,
+  PerformSceneObstacleOptionCommand,
+  PerformSceneTaskEventCommand,
   PerformMainSearchCommand,
   PickUpRevealedNodeItemCommand,
+  SceneBatteryResolution,
   SceneInventoryCommand,
+  SceneMedicalResolution,
   SceneMoveResolution,
+  SceneObstacleResolution,
+  SceneTaskEventResolution,
+  UseSceneBatteryCommand,
+  UseSceneMedicalItemCommand,
   WithdrawFromSceneCommand,
   resolveSceneInventoryCommand,
 } from '../../core/scene-exploration'
@@ -38,6 +46,22 @@ export type StableRunSceneCommand =
       kind: 'scene-withdraw'
       command: WithdrawFromSceneCommand
     }>
+  | Readonly<{
+      kind: 'scene-obstacle'
+      command: PerformSceneObstacleOptionCommand
+    }>
+  | Readonly<{
+      kind: 'scene-task-event'
+      command: PerformSceneTaskEventCommand
+    }>
+  | Readonly<{
+      kind: 'scene-medical'
+      command: UseSceneMedicalItemCommand
+    }>
+  | Readonly<{
+      kind: 'scene-battery'
+      command: UseSceneBatteryCommand
+    }>
 
 export type StableRunSceneResult =
   | SceneMoveResolution
@@ -45,6 +69,10 @@ export type StableRunSceneResult =
   | NodeItemPickupResolution
   | ReturnType<typeof resolveSceneInventoryCommand>
   | RunSceneWithdrawalResolution
+  | SceneObstacleResolution
+  | SceneTaskEventResolution
+  | SceneMedicalResolution
+  | SceneBatteryResolution
 
 export interface ExecuteStableRunSceneCommandInput {
   readonly currentPhase: StableRunPhase

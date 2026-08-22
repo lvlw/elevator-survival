@@ -1,8 +1,12 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   HOSPITAL_EDGE_IDS,
+  HOSPITAL_FIRE_DOOR_OPTION_IDS,
+  HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
   HOSPITAL_ITEM_IDS,
   HOSPITAL_NODE_IDS,
+  HOSPITAL_OBSTACLE_IDS,
+  HOSPITAL_TASK_EVENT_IDS,
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
@@ -29,6 +33,7 @@ import { addSceneItems, getSceneNodeItems } from '../../core/scene-items'
 import * as sceneCore from '../../core/scene-exploration'
 import {
   createSceneExplorationSnapshot,
+  type SceneExplorationSnapshot,
   type SceneInventoryCommand,
 } from '../../core/scene-exploration'
 import * as sceneLaunchCore from '../../core/scene-launch'
@@ -73,15 +78,18 @@ interface HubOptions {
   readonly quickSlots?: readonly (ItemInstance | null)[]
   readonly health?: number
   readonly bleeding?: boolean
+  readonly minorContusions?: number
+  readonly utility?: ItemInstance
 }
 
 function hub(options: HubOptions = {}): CurrentDayHubSnapshot {
   const flashlight = item('scene-router-flashlight', HOSPITAL_ITEM_IDS.flashlight)
+  const utility = options.utility ?? flashlight
   const backpackItems = options.backpackItems ?? []
   const quickSlots = options.quickSlots ?? [null, null]
   const carried = [
     ...backpackItems,
-    flashlight,
+    utility,
     ...quickSlots.filter((candidate): candidate is ItemInstance => candidate !== null),
   ]
   return createCurrentDayHubSnapshot({
@@ -103,7 +111,7 @@ function hub(options: HubOptions = {}): CurrentDayHubSnapshot {
         items: backpackItems,
         placements: options.placements ?? [],
       }, hospitalItemCatalog),
-      equipment: { weapon: null, armor: null, utility: flashlight },
+      equipment: { weapon: null, armor: null, utility },
       quickSlots: createQuickSlotSnapshot(
         quickSlots,
         config.backpack.quickSlotCount,
@@ -129,7 +137,7 @@ function hub(options: HubOptions = {}): CurrentDayHubSnapshot {
       openWounds: options.bleeding
         ? [{ id: 'scene-router-wound', kind: 'laceration', treatment: 'untreated' }]
         : [],
-      minorContusions: 0,
+      minorContusions: options.minorContusions ?? 0,
       painkillerActive: false,
       pendingInfectionExposures: 0,
     }, config.combat.player),
@@ -220,7 +228,36 @@ const legalCommands = Object.freeze([
     command: { kind: 'drop-scene-backpack-item', instanceId: 'backpack-item' },
   },
   { kind: 'scene-withdraw', command: { kind: 'withdraw-from-scene' } },
+  {
+    kind: 'scene-obstacle',
+    command: { obstacleId: HOSPITAL_OBSTACLE_IDS.isolationFireDoor, optionId: HOSPITAL_FIRE_DOOR_OPTION_IDS.decline },
+  },
+  {
+    kind: 'scene-task-event',
+    command: { eventId: HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval, optionId: 'decline' },
+  },
+  {
+    kind: 'scene-medical',
+    command: { source: { container: 'backpack', itemInstanceId: 'medical-item' } },
+  },
+  {
+    kind: 'scene-battery',
+    command: { batteryInstanceId: 'battery-item', targetInstanceId: 'flashlight-item' },
+  },
 ] as const)
+
+function phaseFromScene(
+  session: RunSceneSessionSnapshot,
+  scene: SceneExplorationSnapshot,
+): StableRunPhase {
+  return {
+    kind: 'scene-session',
+    payload: createRunSceneSessionSnapshot({
+      context: session.context,
+      scene,
+    }, hospitalSceneLaunchDependencies),
+  }
+}
 
 afterEach(() => {
   vi.restoreAllMocks()
@@ -806,5 +843,358 @@ describe('pickup identity, terminal action, and persistence failure routing', ()
     })).toThrow()
     expect(tracked.counters.writes).toBe(0)
     expect(tracked.backing.read()).toBe(previous)
+  })
+
+  it('routes obstacle decline, force entry, and keeps direct core risk facts through Save', () => {
+    const session = launch()
+    const runtime = getRunSceneRuntime(session, hospitalSceneLaunchDependencies)
+    const atDoor = sceneCore.resolveSceneMoveCommand(
+      session.scene,
+      { edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall },
+      runtime.dependencies,
+    ).snapshot
+    const start = phaseFromScene(session, atDoor)
+    const tracked = trackedStorage(start)
+    const forceCommand = {
+      kind: 'scene-obstacle' as const,
+      command: { obstacleId: HOSPITAL_OBSTACLE_IDS.isolationFireDoor, optionId: HOSPITAL_FIRE_DOOR_OPTION_IDS.forceEntry },
+    }
+    const direct = sceneCore.resolveSceneObstacleOptionCommand(atDoor, forceCommand.command, runtime.dependencies)
+    const forced = executeStableRunSceneCommand({ currentPhase: start, command: forceCommand, storage: tracked.storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    expect(requireScene(forced.phase).scene).toEqual(direct.snapshot)
+    expect(forced.result).toMatchObject({ result: { riskTrace: direct.result.riskTrace } })
+    expect(tracked.counters.writes).toBe(1)
+    expect(loadRunPhase(tracked.storage, hospitalRunSaveRulesRegistry)).toEqual(forced.phase)
+
+    const declineTracked = trackedStorage(start)
+    const declined = executeStableRunSceneCommand({
+      currentPhase: start,
+      command: { kind: 'scene-obstacle', command: { obstacleId: HOSPITAL_OBSTACLE_IDS.isolationFireDoor, optionId: HOSPITAL_FIRE_DOOR_OPTION_IDS.decline } },
+      storage: declineTracked.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    expect(requireScene(declined.phase).scene.remainingTime).toBe(atDoor.remainingTime)
+  })
+
+  it('routes an equipped-resource obstacle option and retains its spawned physical entity', () => {
+    const toolkit = item('router-toolkit', HOSPITAL_ITEM_IDS.toolkit)
+    const session = launch(hub({ utility: toolkit }))
+    const runtime = getRunSceneRuntime(session, hospitalSceneLaunchDependencies)
+    const atDoor = sceneCore.resolveSceneMoveCommand(session.scene, { edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall }, runtime.dependencies).snapshot
+    const start = phaseFromScene(session, atDoor)
+    const tracked = trackedStorage(start)
+    const execution = executeStableRunSceneCommand({
+      currentPhase: start,
+      command: { kind: 'scene-obstacle', command: { obstacleId: HOSPITAL_OBSTACLE_IDS.isolationFireDoor, optionId: HOSPITAL_FIRE_DOOR_OPTION_IDS.toolkit } },
+      storage: tracked.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const scene = requireScene(execution.phase).scene
+    expect(scene.itemStates.states.find(({ instanceId }) => instanceId === toolkit.instanceId)?.resource).toMatchObject({ kind: 'durability', current: 1 })
+    expect(getSceneNodeItems(scene.sceneItems, HOSPITAL_NODE_IDS.emergencyHall)).toHaveLength(1)
+    expect(tracked.counters.writes).toBe(1)
+  })
+
+  it('routes backpack and quick-slot medical items without copying daily usage into Session context', () => {
+    const bandage = item('router-bandage', HOSPITAL_ITEM_IDS.bandage)
+    const quickBandage = item('router-quick-bandage', HOSPITAL_ITEM_IDS.bandage)
+    for (const [source, start] of [
+      [{ container: 'backpack', itemInstanceId: bandage.instanceId }, launch(hub({ backpackItems: [bandage], placements: [{ instanceId: bandage.instanceId, x: 0, y: 0, rotated: false }], health: 10, bleeding: true }))],
+      [{ container: 'quick-slot', quickSlotIndex: 0 }, launch(hub({ quickSlots: [quickBandage, null], health: 10, bleeding: true }))],
+    ] as const) {
+      const tracked = trackedStorage({ kind: 'scene-session', payload: start })
+      const execution = executeStableRunSceneCommand({
+        currentPhase: { kind: 'scene-session', payload: start },
+        command: { kind: 'scene-medical', command: { source, target: { kind: 'open-wound', woundId: 'scene-router-wound' } } },
+        storage: tracked.storage,
+        rulesRegistry: hospitalRunSaveRulesRegistry,
+      })
+      expect(requireScene(execution.phase).scene.condition.bleeding).toBe(false)
+      expect('dailyMedicalUsage' in requireScene(execution.phase).context).toBe(false)
+      expect(tracked.counters.writes).toBe(1)
+      expect(loadRunPhase(tracked.storage, hospitalRunSaveRulesRegistry)).toEqual(execution.phase)
+    }
+  })
+
+  it('routes a real backpack battery to the equipped flashlight through Save', () => {
+    const battery = item('router-battery', HOSPITAL_ITEM_IDS.standardBattery)
+    const session = launch(hub({ backpackItems: [battery], placements: [{ instanceId: battery.instanceId, x: 0, y: 0, rotated: false }] }))
+    const flashlight = session.scene.equipment.utility
+    if (!flashlight) throw new Error('expected flashlight')
+    const depleted = createSceneExplorationSnapshot({
+      ...session.scene,
+      itemStates: { states: session.scene.itemStates.states.map((state) => state.instanceId === flashlight.instanceId ? { ...state, resource: { kind: 'charge', current: 0 } } : state) },
+    }, getRunSceneRuntime(session, hospitalSceneLaunchDependencies).dependencies)
+    const start = phaseFromScene(session, depleted)
+    const tracked = trackedStorage(start)
+    const execution = executeStableRunSceneCommand({
+      currentPhase: start,
+      command: { kind: 'scene-battery', command: { batteryInstanceId: battery.instanceId, targetInstanceId: flashlight.instanceId } },
+      storage: tracked.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    expect(requireScene(execution.phase).scene.backpack.items.some(({ instanceId }) => instanceId === battery.instanceId)).toBe(false)
+    expect(requireScene(execution.phase).scene.itemStates.states.find(({ instanceId }) => instanceId === flashlight.instanceId)?.resource).toMatchObject({ kind: 'charge', current: 3 })
+    expect(loadRunPhase(tracked.storage, hospitalRunSaveRulesRegistry)).toEqual(execution.phase)
+  })
+
+  it('keeps a terminal battery action as a saved Scene Session and does not auto-settle it', () => {
+    const battery = item('terminal-router-battery', HOSPITAL_ITEM_IDS.standardBattery)
+    const session = launch(hub({ backpackItems: [battery], placements: [{ instanceId: battery.instanceId, x: 0, y: 0, rotated: false }] }))
+    const flashlight = session.scene.equipment.utility
+    if (!flashlight) throw new Error('expected flashlight')
+    const runtime = getRunSceneRuntime(session, hospitalSceneLaunchDependencies)
+    const terminalReady = createSceneExplorationSnapshot({
+      ...session.scene,
+      remainingTime: 1,
+      itemStates: { states: session.scene.itemStates.states.map((state) => state.instanceId === flashlight.instanceId ? { ...state, resource: { kind: 'charge', current: 0 } } : state) },
+    }, runtime.dependencies)
+    const start = phaseFromScene(session, terminalReady)
+    const tracked = trackedStorage(start)
+    const execution = executeStableRunSceneCommand({
+      currentPhase: start,
+      command: { kind: 'scene-battery', command: { batteryInstanceId: battery.instanceId, targetInstanceId: flashlight.instanceId } },
+      storage: tracked.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    expect(execution.phase.kind).toBe('scene-session')
+    expect(requireScene(execution.phase).scene.status).toBe('forced-returned')
+    expect(loadRunPhase(tracked.storage, hospitalRunSaveRulesRegistry)).toEqual(execution.phase)
+  })
+
+  it('routes task-event decline from a formally defeated encounter and persists the Scene', () => {
+    const session = launch()
+    const encounter = session.scene.combatState.encounters[0]
+    if (!encounter || encounter.kind !== 'dormant') throw new Error('expected dormant encounter')
+    const prepared = createSceneExplorationSnapshot({
+      ...session.scene,
+      currentNodeId: HOSPITAL_NODE_IDS.specimenColdRoom,
+      enabledEdgeIds: HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
+      combatState: { ...session.scene.combatState, encounters: [{ ...encounter, enemy: { ...encounter.enemy, currentHealth: 0, defeated: true, hasBeenEncountered: true } }] },
+    }, getRunSceneRuntime(session, hospitalSceneLaunchDependencies).dependencies)
+    const start = phaseFromScene(session, prepared)
+    const tracked = trackedStorage(start)
+    const execution = executeStableRunSceneCommand({
+      currentPhase: start,
+      command: { kind: 'scene-task-event', command: { eventId: HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval, optionId: 'decline' } },
+      storage: tracked.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    expect(requireScene(execution.phase).scene.taskEvents.entries).toEqual([
+      { eventId: HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval, status: 'available' },
+    ])
+    expect(tracked.counters.writes).toBe(1)
+    expect(loadRunPhase(tracked.storage, hospitalRunSaveRulesRegistry)).toEqual(execution.phase)
+  })
+
+  it('routes sample extraction with its stable instance, Scene intel, and deterministic risk trace', () => {
+    const session = launch()
+    const encounter = session.scene.combatState.encounters[0]
+    if (!encounter || encounter.kind !== 'dormant') throw new Error('expected dormant encounter')
+    const runtime = getRunSceneRuntime(session, hospitalSceneLaunchDependencies)
+    const prepared = createSceneExplorationSnapshot({
+      ...session.scene,
+      currentNodeId: HOSPITAL_NODE_IDS.specimenColdRoom,
+      enabledEdgeIds: HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
+      combatState: { ...session.scene.combatState, encounters: [{ ...encounter, enemy: { ...encounter.enemy, currentHealth: 0, defeated: true, hasBeenEncountered: true } }] },
+    }, runtime.dependencies)
+    const start = phaseFromScene(session, prepared)
+    const tracked = trackedStorage(start)
+    const command = { eventId: HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval, optionId: 'cautious-extraction', placement: { x: 0, y: 0, rotated: false } }
+    const direct = sceneCore.resolveSceneTaskEventCommand(prepared, command, runtime.dependencies)
+    const execution = executeStableRunSceneCommand({ currentPhase: start, command: { kind: 'scene-task-event', command }, storage: tracked.storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    expect(requireScene(execution.phase).scene).toEqual(direct.snapshot)
+    expect(requireScene(execution.phase).scene.backpack.items[0]?.instanceId).toBe(direct.snapshot.backpack.items[0]?.instanceId)
+    expect(execution.result).toMatchObject({ result: { riskTrace: direct.result.riskTrace } })
+    expect(loadRunPhase(tracked.storage, hospitalRunSaveRulesRegistry)).toEqual(execution.phase)
+  })
+
+  it('routes the access-card obstacle option as a successful no-risk permission route', () => {
+    const card = item('router-access-card', HOSPITAL_ITEM_IDS.isolationWardAccessCard)
+    const session = launch(hub({ backpackItems: [card], placements: [{ instanceId: card.instanceId, x: 0, y: 0, rotated: false }] }))
+    const runtime = getRunSceneRuntime(session, hospitalSceneLaunchDependencies)
+    const atDoor = sceneCore.resolveSceneMoveCommand(session.scene, { edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall }, runtime.dependencies).snapshot
+    const start = phaseFromScene(session, atDoor)
+    const tracked = trackedStorage(start)
+    const execution = executeStableRunSceneCommand({
+      currentPhase: start,
+      command: { kind: 'scene-obstacle', command: { obstacleId: HOSPITAL_OBSTACLE_IDS.isolationFireDoor, optionId: HOSPITAL_FIRE_DOOR_OPTION_IDS.accessCard } },
+      storage: tracked.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    expect(execution.result).toMatchObject({ result: { riskTrace: null } })
+    expect(requireScene(execution.phase).scene.enabledEdgeIds).toContain(HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor)
+    expect(tracked.counters.writes).toBe(1)
+    expect(loadRunPhase(tracked.storage, hospitalRunSaveRulesRegistry)).toEqual(execution.phase)
+  })
+
+  it('keeps one random obstacle result committed when its only storage write fails', () => {
+    const session = launch()
+    const runtime = getRunSceneRuntime(session, hospitalSceneLaunchDependencies)
+    const atDoor = sceneCore.resolveSceneMoveCommand(session.scene, { edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall }, runtime.dependencies).snapshot
+    const start = phaseFromScene(session, atDoor)
+    const expected = sceneCore.resolveSceneObstacleOptionCommand(atDoor, {
+      obstacleId: HOSPITAL_OBSTACLE_IDS.isolationFireDoor,
+      optionId: HOSPITAL_FIRE_DOOR_OPTION_IDS.forceEntry,
+    }, runtime.dependencies)
+    const tracked = trackedStorage(start)
+    const previous = tracked.backing.read()
+    const resolver = vi.spyOn(sceneCore, 'resolveSceneObstacleOptionCommand')
+    tracked.failNextWrite()
+    const execution = executeStableRunSceneCommand({
+      currentPhase: start,
+      command: { kind: 'scene-obstacle', command: { obstacleId: HOSPITAL_OBSTACLE_IDS.isolationFireDoor, optionId: HOSPITAL_FIRE_DOOR_OPTION_IDS.forceEntry } },
+      storage: tracked.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    expect(execution.kind).toBe('executed-with-save-failure')
+    expect(resolver).toHaveBeenCalledTimes(1)
+    expect(tracked.counters.writes).toBe(1)
+    expect(tracked.backing.read()).toBe(previous)
+    expect(execution.result).toMatchObject({ result: { riskTrace: expected.result.riskTrace } })
+    expect(requireScene(execution.phase).scene).toEqual(expected.snapshot)
+  })
+
+  it('routes a minor-contusion medical target and rejects unavailable medical without saving', () => {
+    const firstAid = item('router-first-aid', HOSPITAL_ITEM_IDS.firstAidKit)
+    const session = launch(hub({
+      backpackItems: [firstAid],
+      placements: [{ instanceId: firstAid.instanceId, x: 0, y: 0, rotated: false }],
+      minorContusions: 1,
+    }))
+    const start: StableRunPhase = { kind: 'scene-session', payload: session }
+    const tracked = trackedStorage(start)
+    const treated = executeStableRunSceneCommand({
+      currentPhase: start,
+      command: { kind: 'scene-medical', command: { source: { container: 'backpack', itemInstanceId: firstAid.instanceId }, target: { kind: 'minor-contusion' } } },
+      storage: tracked.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    expect(requireScene(treated.phase).scene.condition.minorContusions).toBe(0)
+    expect(requireScene(treated.phase).scene.dailyMedicalUsage).toEqual(session.scene.dailyMedicalUsage)
+    expect('dailyMedicalUsage' in requireScene(treated.phase).context).toBe(false)
+    expect(loadRunPhase(tracked.storage, hospitalRunSaveRulesRegistry)).toEqual(treated.phase)
+
+    const unavailable = trackedStorage(start)
+    const previous = unavailable.backing.read()
+    expect(() => executeStableRunSceneCommand({
+      currentPhase: start,
+      command: { kind: 'scene-medical', command: { source: { container: 'backpack', itemInstanceId: 'missing-medical' } } },
+      storage: unavailable.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })).toThrow()
+    expect(unavailable.counters.writes).toBe(0)
+    expect(unavailable.backing.read()).toBe(previous)
+  })
+
+  it('leaves invalid and already-full battery rejection to core without saving', () => {
+    const battery = item('router-full-battery', HOSPITAL_ITEM_IDS.standardBattery)
+    const session = launch(hub({ backpackItems: [battery], placements: [{ instanceId: battery.instanceId, x: 0, y: 0, rotated: false }] }))
+    const target = session.scene.equipment.utility
+    if (!target) throw new Error('expected flashlight')
+    const start: StableRunPhase = { kind: 'scene-session', payload: session }
+    for (const command of [
+      { batteryInstanceId: 'missing-battery', targetInstanceId: target.instanceId },
+      { batteryInstanceId: battery.instanceId, targetInstanceId: target.instanceId },
+    ]) {
+      const tracked = trackedStorage(start)
+      const previous = tracked.backing.read()
+      expect(() => executeStableRunSceneCommand({ currentPhase: start, command: { kind: 'scene-battery', command }, storage: tracked.storage, rulesRegistry: hospitalRunSaveRulesRegistry })).toThrow()
+      expect(tracked.counters.writes).toBe(0)
+      expect(tracked.backing.read()).toBe(previous)
+    }
+  })
+
+  it('keeps a completed task-event Scene saved when core rejects a repeated extraction', () => {
+    const session = launch()
+    const encounter = session.scene.combatState.encounters[0]
+    if (!encounter || encounter.kind !== 'dormant') throw new Error('expected dormant encounter')
+    const runtime = getRunSceneRuntime(session, hospitalSceneLaunchDependencies)
+    const prepared = createSceneExplorationSnapshot({
+      ...session.scene,
+      currentNodeId: HOSPITAL_NODE_IDS.specimenColdRoom,
+      enabledEdgeIds: HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
+      combatState: { ...session.scene.combatState, encounters: [{ ...encounter, enemy: { ...encounter.enemy, currentHealth: 0, defeated: true, hasBeenEncountered: true } }] },
+    }, runtime.dependencies)
+    const start = phaseFromScene(session, prepared)
+    const tracked = trackedStorage(start)
+    const command = { eventId: HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval, optionId: 'cautious-extraction', placement: { x: 0, y: 0, rotated: false } }
+    const completed = executeStableRunSceneCommand({ currentPhase: start, command: { kind: 'scene-task-event', command }, storage: tracked.storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const previous = tracked.backing.read()
+    expect(() => executeStableRunSceneCommand({ currentPhase: completed.phase, command: { kind: 'scene-task-event', command }, storage: tracked.storage, rulesRegistry: hospitalRunSaveRulesRegistry })).toThrow()
+    expect(tracked.counters.writes).toBe(1)
+    expect(tracked.backing.read()).toBe(previous)
+  })
+
+  it('shares malformed-command rejection between each core preview and the application router', () => {
+    const session = launch()
+    const runtime = getRunSceneRuntime(session, hospitalSceneLaunchDependencies)
+    const atDoor = sceneCore.resolveSceneMoveCommand(session.scene, { edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall }, runtime.dependencies).snapshot
+    const cases = [
+      {
+        route: { kind: 'scene-obstacle', command: { obstacleId: HOSPITAL_OBSTACLE_IDS.isolationFireDoor, optionId: HOSPITAL_FIRE_DOOR_OPTION_IDS.decline, extra: true } },
+        preview: () => sceneCore.previewSceneObstacleOptionCommand(atDoor, { obstacleId: HOSPITAL_OBSTACLE_IDS.isolationFireDoor, optionId: HOSPITAL_FIRE_DOOR_OPTION_IDS.decline, extra: true }, runtime.dependencies),
+      },
+      {
+        route: { kind: 'scene-task-event', command: { eventId: HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval, optionId: 'decline', extra: true } },
+        preview: () => sceneCore.previewSceneTaskEventCommand(session.scene, { eventId: HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval, optionId: 'decline', extra: true }, runtime.dependencies),
+      },
+      {
+        route: { kind: 'scene-medical', command: { source: { container: 'backpack', itemInstanceId: 'missing' }, extra: true } },
+        preview: () => sceneCore.previewSceneMedicalCommand(session.scene, { source: { container: 'backpack', itemInstanceId: 'missing' }, extra: true }, runtime.dependencies),
+      },
+      {
+        route: { kind: 'scene-battery', command: { batteryInstanceId: 'battery', targetInstanceId: 'target', extra: true } },
+        preview: () => sceneCore.previewSceneBatteryCommand(session.scene, { batteryInstanceId: 'battery', targetInstanceId: 'target', extra: true }, runtime.dependencies),
+      },
+    ]
+    for (const entry of cases) {
+      expect(entry.preview()).toMatchObject({ canExecute: false })
+      expect(() => createStableRunSceneCommand(entry.route)).toThrowError(expect.objectContaining({ code: 'INVALID_COMMAND' }))
+    }
+  })
+
+  it('chains obstacle, medical, withdrawal, and lifecycle settlement only through execution phases', () => {
+    const card = item('chain-access-card', HOSPITAL_ITEM_IDS.isolationWardAccessCard)
+    const bandage = item('chain-interaction-bandage', HOSPITAL_ITEM_IDS.bandage)
+    let phase: StableRunPhase = { kind: 'current-day-hub', payload: hub({
+      backpackItems: [card, bandage],
+      placements: [{ instanceId: card.instanceId, x: 0, y: 0, rotated: false }, { instanceId: bandage.instanceId, x: 1, y: 0, rotated: false }],
+      health: 10,
+      bleeding: true,
+    }) }
+    const tracked = trackedStorage(phase)
+    const identity = phase.payload.continuity.runIdentity
+    let writes = 0
+    const launched = executeStableRunLifecycleCommand({ currentPhase: phase, command: { kind: 'launch-main-scene' }, storage: tracked.storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    phase = launched.phase
+    writes += 1
+    const sceneId = requireScene(phase).scene.sceneInstanceId
+    expect(loadRunPhase(tracked.storage, hospitalRunSaveRulesRegistry)).toEqual(phase)
+    const moved = executeStableRunSceneCommand({ currentPhase: phase, command: { kind: 'scene-move', command: { edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall } }, storage: tracked.storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    phase = moved.phase
+    writes += 1
+    const opened = executeStableRunSceneCommand({ currentPhase: phase, command: { kind: 'scene-obstacle', command: { obstacleId: HOSPITAL_OBSTACLE_IDS.isolationFireDoor, optionId: HOSPITAL_FIRE_DOOR_OPTION_IDS.accessCard } }, storage: tracked.storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    phase = opened.phase
+    writes += 1
+    const medical = executeStableRunSceneCommand({ currentPhase: phase, command: { kind: 'scene-medical', command: { source: { container: 'backpack', itemInstanceId: bandage.instanceId }, target: { kind: 'open-wound', woundId: 'scene-router-wound' } } }, storage: tracked.storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    phase = medical.phase
+    writes += 1
+    const withdrew = executeStableRunSceneCommand({ currentPhase: phase, command: { kind: 'scene-withdraw', command: { kind: 'withdraw-from-scene' } }, storage: tracked.storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    phase = withdrew.phase
+    writes += 1
+    expect(phase.kind).toBe('scene-session')
+    expect(requireScene(phase).scene.status).toBe('safe-returned')
+    expect(tracked.counters.writes).toBe(writes)
+    expect(loadRunPhase(tracked.storage, hospitalRunSaveRulesRegistry)).toEqual(phase)
+    expect(requireScene(phase).scene.sceneInstanceId).toBe(sceneId)
+    const settled = executeStableRunLifecycleCommand({ currentPhase: phase, command: { kind: 'settle-terminal-scene' }, storage: tracked.storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    phase = settled.phase
+    writes += 1
+    expect(phase.kind).toBe('current-day-hub')
+    if (phase.kind !== 'current-day-hub') throw new Error('expected CurrentDayHub after settlement')
+    expect(phase.payload.continuity.runIdentity).toEqual(identity)
+    expect(tracked.counters.writes).toBe(writes)
+    expect(loadRunPhase(tracked.storage, hospitalRunSaveRulesRegistry)).toEqual(phase)
   })
 })

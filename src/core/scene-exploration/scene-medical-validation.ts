@@ -39,7 +39,7 @@ function normalizeTarget(input: unknown): SceneMedicalTarget {
 }
 
 export function createUseSceneMedicalItemCommand(
-  input: UseSceneMedicalItemCommand,
+  input: unknown,
 ): UseSceneMedicalItemCommand {
   const hasTarget = Boolean(
     input &&

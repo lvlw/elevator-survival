@@ -92,12 +92,12 @@ CurrentDayHub
 
 ### 基础 Stable Run Scene mutation routing
 
-- `src/state/run-scene/` 是当前基础 Scene 玩家 mutation 的应用层映射，只覆盖移动、主要搜索、节点地面物品拾取、Scene 背包／快捷栏整理和主动撤离。外层命令只携带明确路由 tag 与一个经过对应 core constructor 规范化的正式命令，不接受结果、Effect、目标阶段或保存策略。
+- `src/state/run-scene/` 是当前基础 Scene 玩家 mutation 的应用层映射，覆盖移动、主要搜索、节点地面物品拾取、Scene 背包／快捷栏整理、主动撤离、障碍、任务事件、场景医疗与设备充能。外层命令只携带明确路由 tag 与一个经过对应 core constructor 规范化的正式命令，不接受结果、Effect、风险结果、目标阶段或保存策略。
 - Router 在通用 stable executor 完成当前阶段 canonicalization 后，从 canonical Scene Session 的 RunIdentity 取得 `rulesVersion`，再通过既有 Run Save registry 与 `getRunSceneRuntime()` 获取正式 runtime；它不导入具体医院内容、不缓存旧 runtime，也不从命令读取 Run 或 Scene 身份。
-- 移动、搜索、拾取和整理都调用既有 core resolver，并把正式 resolution snapshot 与 canonical Session context 交给 `createRunSceneSessionSnapshot()` 重建唯一下一 Session；主动撤离直接调用 Session 级 `resolveRunSceneSessionWithdrawal()`。RunIntel、每日医疗使用、携带容器、ItemState 和战斗状态只存在于新 Scene snapshot，不复制到 context。
+- 移动、搜索、拾取、整理、障碍、任务事件、场景医疗和设备充能都调用既有 core resolver，并把正式 resolution snapshot 与 canonical Session context 交给 `createRunSceneSessionSnapshot()` 重建唯一下一 Session；主动撤离直接调用 Session 级 `resolveRunSceneSessionWithdrawal()`。随机风险及命名子流继续只由 core 处理。RunIntel、每日医疗使用、携带容器、ItemState、任务事件、警觉和战斗状态只存在于新 Scene snapshot，不复制到 context。
 - Router 不直接调用 Run Save。每次只通过 `executeStableRunCommand()` 提交一个 mutation，由该通用边界验证 Run 身份连续性并执行唯一保存；规则拒绝不保存，写入失败返回已经规范化的 committed Scene Session，不重跑 resolver 或 Effect。
 - Scene action 产生 `safe-returned`、`forced-returned` 或 `dead` 时，本次执行仍停在已保存的 `scene-session`。返回 Hub 或进入 Run Failure 必须由下一条独立的 `settle-terminal-scene` 生命周期命令完成；`StableRunCommandExecution.phase` 是下一命令的唯一状态输入。
-- 本路由尚未覆盖障碍、任务事件、场景医疗、设备充能或战斗玩家行动，也未覆盖 Hub mutation、完整 Application Store、UI 或命令队列。
+- 本路由尚未覆盖战斗玩家行动，也未覆盖 Hub mutation、完整 Application Store、UI 或命令队列。
 
 ## 场景时间结算职责
 

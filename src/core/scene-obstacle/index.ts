@@ -1,4 +1,5 @@
 export { createSceneObstacleCatalog, SceneObstacleError } from './scene-obstacle-catalog'
+export { createPerformSceneObstacleOptionCommand } from './scene-obstacle-command'
 export {
   createSceneObstaclePrimaryPlan,
   createStableObstacleSpawnInstanceId,

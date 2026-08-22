@@ -9,6 +9,7 @@ import {
 } from '../random'
 import { createSceneItemSnapshot, createSearchItemState } from '../scene-search'
 import { SceneExplorationError } from '../scene-exploration/scene-exploration-errors'
+import { createPerformSceneObstacleOptionCommand } from './scene-obstacle-command'
 import type {
   PerformSceneObstacleOptionCommand,
   SceneExplorationEffect,
@@ -91,9 +92,10 @@ function resourceEffect(
 
 export function createSceneObstaclePrimaryPlan(
   snapshot: SceneExplorationSnapshot,
-  command: PerformSceneObstacleOptionCommand,
+  commandInput: unknown,
   dependencies: SceneObstacleCommandDependencies,
 ): SceneObstaclePrimaryPlan {
+  const command = createPerformSceneObstacleOptionCommand(commandInput)
   if (snapshot.status !== 'active') {
     throw new SceneExplorationError('SCENE_NOT_ACTIVE', '场景已终止')
   }

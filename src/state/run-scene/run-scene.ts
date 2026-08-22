@@ -1,13 +1,21 @@
 import {
   createMoveThroughSceneEdgeCommand,
+  createPerformSceneObstacleOptionCommand,
+  createPerformSceneTaskEventCommand,
   createPerformMainSearchCommand,
   createPickUpRevealedNodeItemCommand,
   createSceneInventoryCommand,
+  createUseSceneBatteryCommand,
+  createUseSceneMedicalItemCommand,
   createWithdrawFromSceneCommand,
   resolveMainSearchCommand,
   resolveNodeItemPickupCommand,
   resolveSceneInventoryCommand,
   resolveSceneMoveCommand,
+  resolveSceneBatteryCommand,
+  resolveSceneMedicalCommand,
+  resolveSceneObstacleOptionCommand,
+  resolveSceneTaskEventCommand,
   SceneExplorationError,
 } from '../../core/scene-exploration'
 import {
@@ -89,6 +97,30 @@ export function createStableRunSceneCommand(
         command: createWithdrawFromSceneCommand(input.command),
       })
     }
+    if (input.kind === 'scene-obstacle') {
+      return Object.freeze({
+        kind: input.kind,
+        command: createPerformSceneObstacleOptionCommand(input.command),
+      })
+    }
+    if (input.kind === 'scene-task-event') {
+      return Object.freeze({
+        kind: input.kind,
+        command: createPerformSceneTaskEventCommand(input.command),
+      })
+    }
+    if (input.kind === 'scene-medical') {
+      return Object.freeze({
+        kind: input.kind,
+        command: createUseSceneMedicalItemCommand(input.command),
+      })
+    }
+    if (input.kind === 'scene-battery') {
+      return Object.freeze({
+        kind: input.kind,
+        command: createUseSceneBatteryCommand(input.command),
+      })
+    }
   } catch (error) {
     if (error instanceof SceneExplorationError) invalidCommand()
     throw error
@@ -151,11 +183,35 @@ export function executeStableRunSceneCommand(
                 command.command,
                 runtime.dependencies,
               )
-            : resolveSceneInventoryCommand(
-                currentPhase.payload.scene,
-                command.command,
-                runtime.dependencies,
-              )
+            : command.kind === 'scene-inventory'
+              ? resolveSceneInventoryCommand(
+                  currentPhase.payload.scene,
+                  command.command,
+                  runtime.dependencies,
+                )
+              : command.kind === 'scene-obstacle'
+                ? resolveSceneObstacleOptionCommand(
+                    currentPhase.payload.scene,
+                    command.command,
+                    runtime.dependencies,
+                  )
+                : command.kind === 'scene-task-event'
+                  ? resolveSceneTaskEventCommand(
+                      currentPhase.payload.scene,
+                      command.command,
+                      runtime.dependencies,
+                    )
+                  : command.kind === 'scene-medical'
+                    ? resolveSceneMedicalCommand(
+                        currentPhase.payload.scene,
+                        command.command,
+                        runtime.dependencies,
+                      )
+                    : resolveSceneBatteryCommand(
+                        currentPhase.payload.scene,
+                        command.command,
+                        runtime.dependencies,
+                      )
       const session = createRunSceneSessionSnapshot({
         context: currentPhase.payload.context,
         scene: resolution.snapshot,

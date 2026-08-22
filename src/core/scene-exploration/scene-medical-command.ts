@@ -28,7 +28,7 @@ function materializeEvaluation(
 
 export function previewSceneMedicalCommand(
   snapshot: SceneExplorationSnapshot,
-  command: UseSceneMedicalItemCommand,
+  command: unknown,
   dependencies: SceneMedicalCommandDependencies,
 ): SceneMedicalPreview {
   try {
@@ -48,7 +48,7 @@ export function previewSceneMedicalCommand(
 
 export function resolveSceneMedicalCommand(
   snapshot: SceneExplorationSnapshot,
-  command: UseSceneMedicalItemCommand,
+  command: unknown,
   dependencies: SceneMedicalCommandDependencies,
 ): SceneMedicalResolution {
   const initialSnapshot = createSceneExplorationSnapshot(snapshot, dependencies)

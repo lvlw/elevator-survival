@@ -9,7 +9,7 @@ function materialize(snapshot: SceneExplorationSnapshot, plan: SceneBatteryTrans
   return deepFreeze({ ...plan.metadata, effects: plan.effects, snapshot: applySceneExplorationEffects(snapshot, plan.effects, dependencies) })
 }
 
-export function previewSceneBatteryCommand(snapshot: SceneExplorationSnapshot, command: UseSceneBatteryCommand, dependencies: SceneBatteryCommandDependencies): SceneBatteryPreview {
+export function previewSceneBatteryCommand(snapshot: SceneExplorationSnapshot, command: unknown, dependencies: SceneBatteryCommandDependencies): SceneBatteryPreview {
   try {
     const initial = createSceneExplorationSnapshot(snapshot, dependencies)
     const plan = buildSceneBatteryTransitionPlan(initial, command, dependencies)
@@ -20,7 +20,7 @@ export function previewSceneBatteryCommand(snapshot: SceneExplorationSnapshot, c
   }
 }
 
-export function resolveSceneBatteryCommand(snapshot: SceneExplorationSnapshot, command: UseSceneBatteryCommand, dependencies: SceneBatteryCommandDependencies): SceneBatteryResolution {
+export function resolveSceneBatteryCommand(snapshot: SceneExplorationSnapshot, command: unknown, dependencies: SceneBatteryCommandDependencies): SceneBatteryResolution {
   const initial = createSceneExplorationSnapshot(snapshot, dependencies)
   const plan = buildSceneBatteryTransitionPlan(initial, command, dependencies)
   const result = materialize(initial, plan, dependencies)

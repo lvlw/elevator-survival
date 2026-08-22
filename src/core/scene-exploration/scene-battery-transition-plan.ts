@@ -28,7 +28,7 @@ function addHealth(effects: SceneExplorationEffect[], source: 'post-action-bleed
   return healthBefore - actualLoss
 }
 
-export function buildSceneBatteryTransitionPlan(snapshotInput: SceneExplorationSnapshot, commandInput: UseSceneBatteryCommand, dependencies: SceneBatteryCommandDependencies): SceneBatteryTransitionPlan {
+export function buildSceneBatteryTransitionPlan(snapshotInput: SceneExplorationSnapshot, commandInput: unknown, dependencies: SceneBatteryCommandDependencies): SceneBatteryTransitionPlan {
   validateSceneBatteryDependencies(dependencies)
   const snapshot = createSceneExplorationSnapshot(snapshotInput, dependencies)
   const command = createUseSceneBatteryCommand(commandInput)

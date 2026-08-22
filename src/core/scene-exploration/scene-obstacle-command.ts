@@ -3,7 +3,7 @@ import { addMinorContusion, hasMinorContusions } from '../condition'
 import { calculateBackpackWeightSubtotal } from '../inventory'
 import { getEffectiveEnabledEdgeIds } from '../scene-access'
 import { findReturnRoute, SceneGraphError } from '../scene-graph'
-import { createSceneObstaclePrimaryPlan } from '../scene-obstacle'
+import { createPerformSceneObstacleOptionCommand, createSceneObstaclePrimaryPlan } from '../scene-obstacle'
 import { resolveTimedSceneAction } from '../scene'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { applySceneExplorationEffects } from './scene-exploration-effects'
@@ -36,10 +36,11 @@ function addHealthEffect(
 
 function evaluate(
   input: SceneExplorationSnapshot,
-  command: PerformSceneObstacleOptionCommand,
+  commandInput: unknown,
   dependencies: SceneObstacleCommandDependencies,
 ) {
   const snapshot = createSceneExplorationSnapshot(input, dependencies)
+  const command = createPerformSceneObstacleOptionCommand(commandInput)
   const primaryPlan = createSceneObstaclePrimaryPlan(
     snapshot,
     command,
@@ -154,11 +155,12 @@ function materialize(
 
 export function previewSceneObstacleOptionCommand(
   snapshot: SceneExplorationSnapshot,
-  command: PerformSceneObstacleOptionCommand,
+  commandInput: unknown,
   dependencies: SceneObstacleCommandDependencies,
 ): SceneObstaclePreview {
   try {
     const initial = createSceneExplorationSnapshot(snapshot, dependencies)
+    const command = createPerformSceneObstacleOptionCommand(commandInput)
     return deepFreeze({ canExecute: true, result: materialize(initial, evaluate(initial, command, dependencies), command, dependencies) })
   } catch (error) {
     if (error instanceof SceneExplorationError) return deepFreeze({ canExecute: false, rejectionCode: error.code })
@@ -168,10 +170,11 @@ export function previewSceneObstacleOptionCommand(
 
 export function resolveSceneObstacleOptionCommand(
   snapshot: SceneExplorationSnapshot,
-  command: PerformSceneObstacleOptionCommand,
+  commandInput: unknown,
   dependencies: SceneObstacleCommandDependencies,
 ): SceneObstacleResolution {
   const initial = createSceneExplorationSnapshot(snapshot, dependencies)
+  const command = createPerformSceneObstacleOptionCommand(commandInput)
   const result = materialize(initial, evaluate(initial, command, dependencies), command, dependencies)
   return deepFreeze({ result, snapshot: result.snapshot })
 }

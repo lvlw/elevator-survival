@@ -9,6 +9,7 @@ import {
   hospitalItemReturnLifecycleCatalog,
   hospitalSliceV01RuleConfig as config,
 } from '../../content'
+import { parseRuleConfig } from '../../core/config'
 import { createPlayerCondition } from '../../core/condition'
 import {
   applyHubSurvivalEffects,
@@ -28,7 +29,6 @@ import {
   summarizeRunFailure,
   type RunFailureSnapshot,
 } from '../../core/run-termination'
-import { createRunSuccessSnapshot, type RunSuccessSnapshot } from '../../core/run-success'
 import {
   createRunSceneSessionSnapshot,
   getRunSceneRuntime,
@@ -47,11 +47,11 @@ import {
 } from '../../core/scene-exploration'
 import {
   createBrowserRunSaveStorage,
+  createRunSaveRulesRegistry,
   deserializeRunSave,
   hospitalCurrentDayHubDependencies,
   hospitalRunSaveRulesRegistry,
   hospitalRunTerminationDependencies,
-  hospitalRunSuccessDependencies,
   hospitalSceneLaunchDependencies,
   loadRunPhase,
   MemoryRunSaveStorage,
@@ -62,13 +62,66 @@ import {
   type RunSaveEnvelope,
   type StableRunPhase,
 } from '.'
-import { executeStableRunCommand } from '../command-execution'
+import {
+  executeStableRunCommand,
+  StableRunCommandExecutionError,
+} from '../command-execution'
 
 const item = (instanceId: string, definitionId: string, quantity = 1): ItemInstance => ({
   instanceId,
   definitionId,
   quantity,
 })
+
+const FOREIGN_RULES_VERSION = 'hospital-slice-v0.1-command-identity-test'
+
+function createForeignRulesVersionDependencies() {
+  const configDraft = structuredClone(config)
+  const foreignConfig = parseRuleConfig({
+    ...configDraft,
+    metadata: {
+      ...configDraft.metadata,
+      rulesVersion: FOREIGN_RULES_VERSION,
+    },
+  } as unknown as Parameters<typeof parseRuleConfig>[0])
+  const foreignCurrentDayHubDependencies = Object.freeze({
+    ...hospitalCurrentDayHubDependencies,
+    returnDependencies: Object.freeze({
+      ...hospitalCurrentDayHubDependencies.returnDependencies,
+      scene: Object.freeze({
+        ...hospitalCurrentDayHubDependencies.returnDependencies.scene,
+        config: foreignConfig,
+      }),
+    }),
+  })
+  const foreignSceneLaunchDependencies = Object.freeze({
+    ...hospitalSceneLaunchDependencies,
+    currentDayHub: foreignCurrentDayHubDependencies,
+  })
+  const foreignRunTerminationDependencies = Object.freeze({
+    currentDayHub: foreignCurrentDayHubDependencies,
+    sceneLaunch: foreignSceneLaunchDependencies,
+  })
+  const registry = createRunSaveRulesRegistry([
+    {
+      rulesVersion: config.metadata.rulesVersion,
+      dependencies: Object.freeze({
+        currentDayHub: hospitalCurrentDayHubDependencies,
+        sceneLaunch: hospitalSceneLaunchDependencies,
+        runTermination: hospitalRunTerminationDependencies,
+      }),
+    },
+    {
+      rulesVersion: FOREIGN_RULES_VERSION,
+      dependencies: Object.freeze({
+        currentDayHub: foreignCurrentDayHubDependencies,
+        sceneLaunch: foreignSceneLaunchDependencies,
+        runTermination: foreignRunTerminationDependencies,
+      }),
+    },
+  ])
+  return Object.freeze({ foreignCurrentDayHubDependencies, registry })
+}
 
 function hub(overrides: Readonly<{
   condition?: CurrentDayHubSnapshot['playerCondition']
@@ -268,24 +321,6 @@ function dailyFailure(): RunFailureSnapshot {
   }, hospitalRunTerminationDependencies).snapshot
 }
 
-function successTerminal(): RunSuccessSnapshot {
-  return createRunSuccessSnapshot({
-    kind: 'run-success',
-    source: {
-      kind: 'future-success-resolver',
-      resolverId: 'future-main-objective-resolver',
-      auditId: 'run-save-success-terminal-audit',
-    },
-    reason: null,
-    runIdentity: {
-      runId: 'run-save-success-terminal',
-      seed: 'run-save-success-seed',
-      rulesVersion: config.metadata.rulesVersion,
-    },
-    terminalDay: config.dailySettlement.finalPlayableDay,
-  }, hospitalRunSuccessDependencies)
-}
-
 function mutateSerialized(
   envelope: RunSaveEnvelope,
   mutate: (draft: Record<string, unknown>) => void,
@@ -308,61 +343,97 @@ describe('stable Run Save IO', () => {
       clear: () => backingStorage.clear(),
     }
     const start = hub()
+    const mutableInput = structuredClone({
+      kind: 'current-day-hub' as const,
+      payload: start,
+    }) as StableRunPhase
+    let handlerReceivedCanonicalPhase = false
+    const rawHandlerOwnership: {
+      phase: Record<string, unknown> | null
+      output: Record<string, unknown> | null
+    } = { phase: null, output: null }
     const execution = executeStableRunCommand({
-      currentPhase: { kind: 'current-day-hub', payload: start },
+      currentPhase: mutableInput,
       handler: (currentPhase) => {
         if (currentPhase.kind !== 'current-day-hub') throw new Error('expected Hub')
+        handlerReceivedCanonicalPhase = Object.isFrozen(currentPhase) &&
+          Object.isFrozen(currentPhase.payload)
         const result = resolveHubSurvivalCommand(currentPhase.payload, {
           kind: 'use-hub-ration',
           source: { container: 'warehouse', itemInstanceId: 'stored-ration' },
         }, hospitalCurrentDayHubDependencies)
-        return {
-          result,
-          phase: { kind: 'current-day-hub' as const, payload: result.snapshot },
+        const rawPhase = {
+          kind: 'current-day-hub' as const,
+          payload: structuredClone(result.snapshot),
         }
+        const rawOutput = {
+          result,
+          phase: rawPhase,
+        }
+        rawHandlerOwnership.phase = rawPhase as unknown as Record<string, unknown>
+        rawHandlerOwnership.output = rawOutput as unknown as Record<string, unknown>
+        return rawOutput
       },
-      savePolicy: 'save-on-success',
       storage,
       rulesRegistry: hospitalRunSaveRulesRegistry,
     })
     expect(execution.kind).toBe('executed')
     expect(execution.persistence.kind).toBe('saved')
     expect(writes).toBe(1)
+    expect(handlerReceivedCanonicalPhase).toBe(true)
+    expect(Object.isFrozen(execution.phase)).toBe(true)
+    const rawHandlerPhase = rawHandlerOwnership.phase
+    const rawHandlerOutput = rawHandlerOwnership.output
+    expect(execution.phase).not.toBe(rawHandlerPhase)
+    if (execution.phase.kind !== 'current-day-hub' || !rawHandlerPhase || !rawHandlerOutput) {
+      throw new Error('expected canonical Hub output')
+    }
+    expect(execution.phase.payload).not.toBe(rawHandlerPhase.payload)
     expect(execution.phase).toEqual({
       kind: 'current-day-hub',
       payload: expect.objectContaining({ satiety: { current: 6 } }),
     })
     expect(loadRunPhase(storage, hospitalRunSaveRulesRegistry)).toEqual(execution.phase)
+    const rawPayload = rawHandlerPhase.payload as Record<string, unknown>
+    const rawSatiety = rawPayload.satiety as Record<string, unknown>
+    rawSatiety.current = 0
+    rawHandlerOutput.phase = { kind: 'current-day-hub', payload: start }
+    expect(execution.phase.payload.satiety.current).toBe(6)
+    expect(loadRunPhase(storage, hospitalRunSaveRulesRegistry)).toEqual(execution.phase)
+    expect(execution.phase.payload.runLoadout.warehouse.items)
+      .not.toContainEqual(expect.objectContaining({ instanceId: 'stored-ration' }))
     expect(loadRunPhase(storage, hospitalRunSaveRulesRegistry)).not.toEqual({
       kind: 'current-day-hub', payload: start,
     })
   })
 
-  it('supports an explicit successful no-save policy without creating a second save path', () => {
+  it('rejects a malformed current phase before invoking the handler or touching storage', () => {
     const storage = new MemoryRunSaveStorage()
     const start = hub()
-    const execution = executeStableRunCommand({
-      currentPhase: { kind: 'current-day-hub', payload: start },
-      handler: (currentPhase) => {
-        if (currentPhase.kind !== 'current-day-hub') throw new Error('expected Hub')
-        const result = resolveHubSurvivalCommand(currentPhase.payload, {
-          kind: 'use-hub-ration',
-          source: { container: 'warehouse', itemInstanceId: 'stored-ration' },
-        }, hospitalCurrentDayHubDependencies)
+    saveRunPhase(storage, { kind: 'current-day-hub', payload: start }, hospitalRunSaveRulesRegistry)
+    const previous = storage.read()
+    let handlerCalls = 0
+    const malformed = {
+      kind: 'current-day-hub',
+      payload: start,
+      extra: true,
+    } as unknown as StableRunPhase
+    expect(() => executeStableRunCommand({
+      currentPhase: malformed,
+      handler: () => {
+        handlerCalls += 1
         return {
-          result,
-          phase: { kind: 'current-day-hub' as const, payload: result.snapshot },
+          result: start,
+          phase: { kind: 'current-day-hub' as const, payload: start },
         }
       },
-      savePolicy: 'no-save',
       storage,
       rulesRegistry: hospitalRunSaveRulesRegistry,
-    })
-    expect(execution).toMatchObject({
-      kind: 'executed',
-      persistence: { kind: 'not-requested' },
-    })
-    expect(storage.read()).toBeNull()
+    })).toThrowError(expect.objectContaining<Partial<RunSaveError>>({
+      code: 'INVALID_STABLE_PHASE',
+    }))
+    expect(handlerCalls).toBe(0)
+    expect(storage.read()).toBe(previous)
   })
 
   it('does not save or mutate the current stable phase when a Hub command is rejected', () => {
@@ -383,7 +454,6 @@ describe('stable Run Save IO', () => {
           phase: { kind: 'current-day-hub' as const, payload: result.snapshot },
         }
       },
-      savePolicy: 'save-on-success',
       storage,
       rulesRegistry: hospitalRunSaveRulesRegistry,
     })).toThrowError(expect.objectContaining({ code: 'ACTION_NOT_AVAILABLE' }))
@@ -417,7 +487,6 @@ describe('stable Run Save IO', () => {
           phase: { kind: 'current-day-hub' as const, payload: result.snapshot },
         }
       },
-      savePolicy: 'save-on-success',
       storage,
       rulesRegistry: hospitalRunSaveRulesRegistry,
     })).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
@@ -428,14 +497,29 @@ describe('stable Run Save IO', () => {
   })
 
   it('reports a failed save after the command result commits and preserves the old stable value', () => {
-    const storage = new MemoryRunSaveStorage()
+    const backingStorage = new MemoryRunSaveStorage()
     const start = hub()
-    saveRunPhase(storage, { kind: 'current-day-hub', payload: start }, hospitalRunSaveRulesRegistry)
-    const previous = storage.read()
-    storage.failNextWrite()
+    saveRunPhase(
+      backingStorage,
+      { kind: 'current-day-hub', payload: start },
+      hospitalRunSaveRulesRegistry,
+    )
+    const previous = backingStorage.read()
+    backingStorage.failNextWrite()
+    let handlerCalls = 0
+    let writes = 0
+    const storage = {
+      read: () => backingStorage.read(),
+      write: (serialized: string) => {
+        writes += 1
+        backingStorage.write(serialized)
+      },
+      clear: () => backingStorage.clear(),
+    }
     const execution = executeStableRunCommand({
       currentPhase: { kind: 'current-day-hub', payload: start },
       handler: (currentPhase) => {
+        handlerCalls += 1
         if (currentPhase.kind !== 'current-day-hub') throw new Error('expected Hub')
         const result = resolveHubSurvivalCommand(currentPhase.payload, {
           kind: 'use-hub-ration',
@@ -446,7 +530,6 @@ describe('stable Run Save IO', () => {
           phase: { kind: 'current-day-hub' as const, payload: result.snapshot },
         }
       },
-      savePolicy: 'save-on-success',
       storage,
       rulesRegistry: hospitalRunSaveRulesRegistry,
     })
@@ -455,6 +538,8 @@ describe('stable Run Save IO', () => {
       phase: { kind: 'current-day-hub', payload: { satiety: { current: 6 } } },
       persistence: { kind: 'save-failed', error: { code: 'STORAGE_WRITE_FAILED' } },
     })
+    expect(handlerCalls).toBe(1)
+    expect(writes).toBe(1)
     expect(storage.read()).toBe(previous)
     expect(loadRunPhase(storage, hospitalRunSaveRulesRegistry)).toEqual({
       kind: 'current-day-hub', payload: start,
@@ -482,7 +567,6 @@ describe('stable Run Save IO', () => {
         }, hospitalSceneLaunchDependencies)
         return { result, phase: { kind: 'scene-session' as const, payload: session } }
       },
-      savePolicy: 'save-on-success',
       storage,
       rulesRegistry: hospitalRunSaveRulesRegistry,
     })
@@ -520,7 +604,6 @@ describe('stable Run Save IO', () => {
           phase: { kind: 'current-day-hub' as const, payload: result.currentDayHub },
         }
       },
-      savePolicy: 'save-on-success',
       storage,
       rulesRegistry: hospitalRunSaveRulesRegistry,
     })
@@ -559,12 +642,117 @@ describe('stable Run Save IO', () => {
           phase: { kind: 'run-failure' as const, payload: result.snapshot },
         }
       },
-      savePolicy: 'save-on-success',
       storage,
       rulesRegistry: hospitalRunSaveRulesRegistry,
     })
     expect(loadRunPhase(storage, hospitalRunSaveRulesRegistry)).toEqual(execution.phase)
     expect(execution.phase.kind).toBe('run-failure')
+  })
+
+  it('rejects terminal input before invoking the handler or touching storage', () => {
+    const storage = new MemoryRunSaveStorage()
+    const start = hub()
+    saveRunPhase(storage, { kind: 'current-day-hub', payload: start }, hospitalRunSaveRulesRegistry)
+    const previous = storage.read()
+    const failure = dailyFailure()
+    let handlerCalls = 0
+    expect(() => executeStableRunCommand({
+      currentPhase: { kind: 'run-failure', payload: failure },
+      handler: () => {
+        handlerCalls += 1
+        return {
+          result: failure,
+          phase: { kind: 'run-failure' as const, payload: failure },
+        }
+      },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })).toThrowError(expect.objectContaining<Partial<StableRunCommandExecutionError>>({
+      code: 'TERMINAL_PHASE',
+    }))
+    expect(handlerCalls).toBe(0)
+    expect(storage.read()).toBe(previous)
+  })
+
+  it('rejects an invalid handler output before storage and does not mask it as a write failure', () => {
+    const storage = new MemoryRunSaveStorage()
+    const start = hub()
+    saveRunPhase(storage, { kind: 'current-day-hub', payload: start }, hospitalRunSaveRulesRegistry)
+    const previous = storage.read()
+    let handlerCalls = 0
+    let caught: unknown
+    try {
+      executeStableRunCommand({
+        currentPhase: { kind: 'current-day-hub', payload: start },
+        handler: () => {
+          handlerCalls += 1
+          return {
+            result: start,
+            phase: {
+              kind: 'current-day-hub',
+              payload: start,
+              extra: true,
+            } as unknown as StableRunPhase,
+          }
+        },
+        storage,
+        rulesRegistry: hospitalRunSaveRulesRegistry,
+      })
+    } catch (error) {
+      caught = error
+    }
+    expect(caught).toEqual(expect.objectContaining<Partial<RunSaveError>>({
+      code: 'INVALID_STABLE_PHASE',
+    }))
+    expect(caught).not.toEqual(expect.objectContaining<Partial<RunSaveError>>({
+      code: 'STORAGE_WRITE_FAILED',
+    }))
+    expect(handlerCalls).toBe(1)
+    expect(storage.read()).toBe(previous)
+  })
+
+  it.each([
+    ['runId', 'foreign-run-identity'],
+    ['seed', 'foreign-run-seed'],
+    ['rulesVersion', FOREIGN_RULES_VERSION],
+  ] as const)('rejects a valid output phase with mismatched %s and preserves the old save', (
+    identityField,
+    foreignValue,
+  ) => {
+    const storage = new MemoryRunSaveStorage()
+    const start = hub()
+    const foreignRules = identityField === 'rulesVersion'
+      ? createForeignRulesVersionDependencies()
+      : null
+    const registry = foreignRules?.registry ?? hospitalRunSaveRulesRegistry
+    saveRunPhase(storage, { kind: 'current-day-hub', payload: start }, registry)
+    const previous = storage.read()
+    const foreignIdentity = {
+      ...start.continuity.runIdentity,
+      [identityField]: foreignValue,
+    }
+    const foreign = createCurrentDayHubSnapshot({
+      ...start,
+      continuity: {
+        ...start.continuity,
+        runIdentity: foreignIdentity,
+      },
+    }, foreignRules?.foreignCurrentDayHubDependencies ?? hospitalCurrentDayHubDependencies)
+    expect(() => executeStableRunCommand({
+      currentPhase: { kind: 'current-day-hub', payload: start },
+      handler: () => ({
+        result: foreign,
+        phase: { kind: 'current-day-hub' as const, payload: foreign },
+      }),
+      storage,
+      rulesRegistry: registry,
+    })).toThrowError(expect.objectContaining<Partial<StableRunCommandExecutionError>>({
+      code: 'RUN_IDENTITY_MISMATCH',
+    }))
+    expect(storage.read()).toBe(previous)
+    expect(loadRunPhase(storage, registry)).toEqual({
+      kind: 'current-day-hub', payload: start,
+    })
   })
 
   it('round-trips a complete CurrentDayHub and can continue into formal Scene Launch', () => {
@@ -795,17 +983,6 @@ describe('stable Run Save IO', () => {
     )).toThrow()
   })
 
-  it('round-trips a strict terminal RunSuccess without active Run data', () => {
-    const success = successTerminal()
-    const restored = roundTrip({ kind: 'run-success', payload: success })
-    expect(restored).toEqual({ kind: 'run-success', payload: success })
-    if (restored.kind !== 'run-success') throw new Error('expected success terminal')
-    expect(restored.payload).toEqual(success)
-    expect(restored.payload).not.toHaveProperty('runLoadout')
-    expect(restored.payload).not.toHaveProperty('scene')
-    expect(restored.payload).not.toHaveProperty('effects')
-  })
-
   it('uses one exact versioned envelope without caches or parallel phase fields', () => {
     const envelope = JSON.parse(serializeRunSave(
       { kind: 'current-day-hub', payload: hub() },
@@ -932,36 +1109,33 @@ describe('stable Run Save IO', () => {
     }), hospitalRunSaveRulesRegistry)).toThrowError(RunSaveError)
   })
 
-  it('rejects malformed, active, and failure-forged Success terminal saves', () => {
-    const envelope = JSON.parse(serializeRunSave(
-      { kind: 'run-success', payload: successTerminal() },
-      hospitalRunSaveRulesRegistry,
-    )) as RunSaveEnvelope
-    const corruptions: readonly ((draft: Record<string, unknown>) => void)[] = [
-      (draft) => {
-        const payload = draft.payload as Record<string, unknown>
-        delete payload.source
-      },
-      (draft) => { draft.extra = true },
-      (draft) => {
-        const payload = draft.payload as Record<string, unknown>
-        const identity = payload.runIdentity as Record<string, unknown>
-        identity.runId = ''
-      },
-      (draft) => {
-        const payload = draft.payload as Record<string, unknown>
-        payload.terminalDay = 0
-      },
-      (draft) => { draft.kind = 'current-day-hub' },
-      (draft) => { draft.kind = 'run-failure' },
-      (draft) => { draft.kind = 'unknown-terminal' },
-    ]
-    for (const mutate of corruptions) {
-      expect(() => deserializeRunSave(
-        mutateSerialized(envelope, mutate),
-        hospitalRunSaveRulesRegistry,
-      )).toThrowError(RunSaveError)
+  it('rejects a forged run-success envelope for the current rules version', () => {
+    const runIdentity = {
+      runId: 'forged-success-run',
+      seed: 'forged-success-seed',
+      rulesVersion: config.metadata.rulesVersion,
     }
+    const forged = JSON.stringify({
+      saveFormatVersion: RUN_SAVE_FORMAT_VERSION,
+      kind: 'run-success',
+      rulesVersion: config.metadata.rulesVersion,
+      runIdentity,
+      payload: {
+        kind: 'run-success',
+        source: {
+          kind: 'future-success-resolver',
+          resolverId: 'arbitrary-resolver',
+          auditId: 'arbitrary-audit',
+        },
+        reason: null,
+        runIdentity,
+        terminalDay: config.dailySettlement.finalPlayableDay,
+      },
+    })
+    expect(() => deserializeRunSave(forged, hospitalRunSaveRulesRegistry))
+      .toThrowError(expect.objectContaining<Partial<RunSaveError>>({
+        code: 'INVALID_ENVELOPE',
+      }))
   })
 
   it('keeps the previous stable single value when the next storage write throws', () => {

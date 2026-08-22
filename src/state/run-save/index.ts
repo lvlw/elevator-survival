@@ -1,8 +1,10 @@
 export {
   clearRunSave,
+  canonicalizeStableRunPhase,
   createRunSaveEnvelope,
   deserializeRunSave,
   loadRunPhase,
+  getStableRunPhaseIdentity,
   saveRunPhase,
   serializeRunSave,
 } from './run-save-codec'
@@ -15,7 +17,6 @@ export {
   hospitalRunSaveRulesRegistry,
   hospitalRunTerminationDependencies,
   hospitalSceneLaunchDependencies,
-  hospitalRunSuccessDependencies,
 } from './hospital-run-save-rules'
 export {
   createRunSaveRulesRegistry,

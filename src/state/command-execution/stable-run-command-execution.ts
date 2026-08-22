@@ -1,4 +1,6 @@
 import {
+  canonicalizeStableRunPhase,
+  getStableRunPhaseIdentity,
   RunSaveError,
   saveRunPhase,
   type RunSaveEnvelope,
@@ -7,8 +9,19 @@ import {
   type StableRunPhase,
 } from '../run-save'
 
-/** The only two persistence choices available after a formal command has committed. */
-export type StableRunCommandSavePolicy = 'save-on-success' | 'no-save'
+export type StableRunCommandExecutionErrorCode =
+  | 'TERMINAL_PHASE'
+  | 'RUN_IDENTITY_MISMATCH'
+
+export class StableRunCommandExecutionError extends Error {
+  public constructor(
+    public readonly code: StableRunCommandExecutionErrorCode,
+    message: string,
+  ) {
+    super(message)
+    this.name = 'StableRunCommandExecutionError'
+  }
+}
 
 /**
  * A lifecycle-specific adapter owns command parsing and core resolution.  This
@@ -24,7 +37,6 @@ export type StableRunCommandHandler<TResult> = (
 export interface ExecuteStableRunCommandInput<TResult> {
   readonly currentPhase: StableRunPhase
   readonly handler: StableRunCommandHandler<TResult>
-  readonly savePolicy: StableRunCommandSavePolicy
   readonly storage: RunSaveStorage
   readonly rulesRegistry: RunSaveRulesRegistry
 }
@@ -34,10 +46,7 @@ export type StableRunCommandExecution<TResult> =
       kind: 'executed'
       result: TResult
       phase: StableRunPhase
-      persistence: Readonly<
-        | { kind: 'saved'; envelope: RunSaveEnvelope }
-        | { kind: 'not-requested' }
-      >
+      persistence: Readonly<{ kind: 'saved'; envelope: RunSaveEnvelope }>
     }>
   | Readonly<{
       kind: 'executed-with-save-failure'
@@ -47,35 +56,52 @@ export type StableRunCommandExecution<TResult> =
     }>
 
 /**
- * Connects one already-formal command handler to the one stable Run save
- * boundary.  The handler is run first; if it rejects, this function never
- * touches storage.  A write failure is reported after its committed result and
- * never rolls that result back.
+ * Executes one state-changing formal command and persists its canonical stable
+ * phase. Terminal input is rejected before the handler; rejected handlers and
+ * invalid transitions never touch storage. A write failure is reported after
+ * the committed result and never rolls that result back.
  */
 export function executeStableRunCommand<TResult>(
   input: ExecuteStableRunCommandInput<TResult>,
 ): StableRunCommandExecution<TResult> {
-  const execution = input.handler(input.currentPhase)
-
-  if (input.savePolicy === 'no-save') {
-    return Object.freeze({
-      kind: 'executed',
-      result: execution.result,
-      phase: execution.phase,
-      persistence: Object.freeze({ kind: 'not-requested' }),
-    })
+  const currentPhase = canonicalizeStableRunPhase(
+    input.currentPhase,
+    input.rulesRegistry,
+  )
+  if (currentPhase.kind === 'run-failure') {
+    throw new StableRunCommandExecutionError(
+      'TERMINAL_PHASE',
+      'Run终止阶段不能执行普通状态变更命令',
+    )
+  }
+  const currentIdentity = getStableRunPhaseIdentity(currentPhase)
+  const execution = input.handler(currentPhase)
+  const nextPhase = canonicalizeStableRunPhase(
+    execution.phase,
+    input.rulesRegistry,
+  )
+  const nextIdentity = getStableRunPhaseIdentity(nextPhase)
+  if (
+    currentIdentity.runId !== nextIdentity.runId ||
+    currentIdentity.seed !== nextIdentity.seed ||
+    currentIdentity.rulesVersion !== nextIdentity.rulesVersion
+  ) {
+    throw new StableRunCommandExecutionError(
+      'RUN_IDENTITY_MISMATCH',
+      '状态变更命令不能切换Run身份',
+    )
   }
 
   try {
     const envelope = saveRunPhase(
       input.storage,
-      execution.phase,
+      nextPhase,
       input.rulesRegistry,
     )
     return Object.freeze({
       kind: 'executed',
       result: execution.result,
-      phase: execution.phase,
+      phase: nextPhase,
       persistence: Object.freeze({ kind: 'saved', envelope }),
     })
   } catch (error) {
@@ -86,7 +112,7 @@ export function executeStableRunCommand<TResult>(
       return Object.freeze({
         kind: 'executed-with-save-failure',
         result: execution.result,
-        phase: execution.phase,
+        phase: nextPhase,
         persistence: Object.freeze({ kind: 'save-failed', error }),
       })
     }

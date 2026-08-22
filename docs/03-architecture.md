@@ -48,17 +48,22 @@ CurrentDayHub
 ## 当前最小 Run 持久化职责
 
 ```text
-已完整提交的稳定 Hub / Scene Session / Run Failure
-→ 严格互斥的版本化 envelope
-→ 单一 Run 存档值
-→ 按 rulesVersion 选择正式依赖
-→ 调用 core 严格恢复入口
+正式稳定状态变更
+→ 严格规范化输入阶段
+→ 生命周期专用正式 handler
+→ 严格规范化输出阶段
+→ 校验 RunIdentity 连续性
+→ 唯一 saveRunPhase
 ```
 
 - 持久化层位于 `src/state/run-save/`，依赖 core 的正式构造与恢复规则；core 不反向依赖 state。
-- 当前只保存一个稳定 Run 阶段，不保存事务中间态、Effect 计划、预览、派生负载档位或返程估算。
+- 当前只保存当前日中枢、Scene Session 或 Run 失败三个互斥的稳定 Run 阶段，不保存事务中间态、Effect 计划、预览、派生负载档位或返程估算。
 - 存档格式版本与玩法规则版本分离。未知格式或规则版本、身份审计不一致、损坏或伪造的正式快照均拒绝，不自动修复或迁移。
-- Run 与 Profile 生命周期继续分离；本边界不实现 Profile、完整 RunState、Zustand／UI 编排或命令成功后的自动存档调度。
+- 当前最小 stable mutation execution boundary 在调用 handler 前严格规范化输入并拒绝终止阶段，在 handler 完整提交规则结果后严格规范化输出；输入和输出使用同一正式规范化入口。
+- 普通状态变更命令不得改变 `runId`、`seed` 或 `rulesVersion`。正式 mutation 成功后必须且只调用一次唯一 Run Save；规则拒绝、非法输出和 RunIdentity 不连续均不写入。
+- 存储写入失败不回滚已经完成的内存规则结果；失败会连同已规范化的稳定结果显式返回，不重试 handler、玩法 Effects 或隐式保存。
+- Success 仍是 DEC-028 定义的未来正式终局概念；当前规则版本没有 Success Resolver 或主线成功条件，因此不能构造、保存或恢复 `run-success`。
+- Run 与 Profile 生命周期继续分离；当前仍未实现完整 Application command routing、完整 RunState、Zustand／UI 编排、Profile 持久化、Success Resolver、Run Abandon 或 New Run。
 
 ## 场景时间结算职责
 

@@ -3,7 +3,6 @@ import { createCurrentDayHubSnapshot } from '../../core/current-day-hub'
 import { createRunIdentity, type RunIdentity } from '../../core/domain'
 import { restoreRunFailureSnapshot } from '../../core/run-termination'
 import { createRunSceneSessionSnapshot } from '../../core/scene-launch'
-import { createRunSuccessSnapshot } from '../../core/run-success'
 import { RunSaveError } from './run-save-errors'
 import type {
   RunSaveRuleDependencies,
@@ -48,9 +47,6 @@ function candidateIdentity(kind: StableRunPhase['kind'], payload: unknown): unkn
       ? carryForward.continuity
       : null
     return continuity?.runIdentity ?? null
-  }
-  if (kind === 'run-success') {
-    return payload.runIdentity ?? null
   }
   const source = plain(payload.source) ? payload.source : null
   if (source?.kind === 'scene-defeat') {
@@ -112,12 +108,6 @@ function restorePhase(
         payload: createRunSceneSessionSnapshot(payload as never, dependencies.sceneLaunch),
       })
     }
-    if (kind === 'run-success') {
-      return deepFreeze({
-        kind,
-        payload: createRunSuccessSnapshot(payload, dependencies.runSuccess),
-      })
-    }
     return deepFreeze({
       kind,
       payload: restoreRunFailureSnapshot(payload, dependencies.runTermination),
@@ -130,7 +120,7 @@ function restorePhase(
   }
 }
 
-function identityOf(phase: StableRunPhase): RunIdentity {
+export function getStableRunPhaseIdentity(phase: StableRunPhase): RunIdentity {
   const candidate = candidateIdentity(phase.kind, phase.payload)
   if (!candidate || !plain(candidate)) {
     throw new RunSaveError('INVALID_STABLE_PHASE', '稳定Run阶段缺少Run身份')
@@ -138,7 +128,7 @@ function identityOf(phase: StableRunPhase): RunIdentity {
   return candidate as unknown as RunIdentity
 }
 
-function restorePhaseFromUnknown(
+export function canonicalizeStableRunPhase(
   input: unknown,
   registry: RunSaveRulesRegistry,
 ): StableRunPhase {
@@ -147,7 +137,7 @@ function restorePhaseFromUnknown(
   }
   if (
     input.kind !== 'current-day-hub' && input.kind !== 'scene-session' &&
-    input.kind !== 'run-failure' && input.kind !== 'run-success'
+    input.kind !== 'run-failure'
   ) {
     throw new RunSaveError('INVALID_STABLE_PHASE', '稳定Run阶段类型无效')
   }
@@ -163,8 +153,8 @@ export function createRunSaveEnvelope(
   phaseInput: unknown,
   registry: RunSaveRulesRegistry,
 ): RunSaveEnvelope {
-  const phase = restorePhaseFromUnknown(phaseInput, registry)
-  const runIdentity = identityOf(phase)
+  const phase = canonicalizeStableRunPhase(phaseInput, registry)
+  const runIdentity = getStableRunPhaseIdentity(phase)
   return deepFreeze({
     saveFormatVersion: RUN_SAVE_FORMAT_VERSION,
     kind: phase.kind,
@@ -201,7 +191,7 @@ export function deserializeRunSave(
   }
   if (
     parsed.kind !== 'current-day-hub' && parsed.kind !== 'scene-session' &&
-    parsed.kind !== 'run-failure' && parsed.kind !== 'run-success'
+    parsed.kind !== 'run-failure'
   ) {
     throw new RunSaveError('INVALID_ENVELOPE', 'Run存档阶段类型无效')
   }
@@ -212,12 +202,11 @@ export function deserializeRunSave(
   if (auditIdentity.rulesVersion !== parsed.rulesVersion) {
     throw new RunSaveError('INVALID_ENVELOPE', 'Run存档envelope规则版本与身份不一致')
   }
-  const phase = restorePhase(
-    parsed.kind,
-    parsed.payload,
-    registry.get(parsed.rulesVersion),
+  const phase = canonicalizeStableRunPhase(
+    { kind: parsed.kind, payload: parsed.payload },
+    registry,
   )
-  const restoredIdentity = identityOf(phase)
+  const restoredIdentity = getStableRunPhaseIdentity(phase)
   if (
     restoredIdentity.rulesVersion !== parsed.rulesVersion ||
     !sameIdentity(restoredIdentity, auditIdentity)

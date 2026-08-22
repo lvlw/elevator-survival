@@ -1,14 +1,12 @@
 import type { CurrentDayHubDependencies } from '../../core/current-day-hub'
 import type { RunTerminationDependencies } from '../../core/run-termination'
 import type { SceneLaunchDependencies } from '../../core/scene-launch'
-import type { RunSuccessDependencies } from '../../core/run-success'
 import { RunSaveError } from './run-save-errors'
 
 export interface RunSaveRuleDependencies {
   readonly currentDayHub: CurrentDayHubDependencies
   readonly sceneLaunch: SceneLaunchDependencies
   readonly runTermination: RunTerminationDependencies
-  readonly runSuccess: RunSuccessDependencies
 }
 
 export interface RunSaveRulesRegistry {
@@ -37,8 +35,7 @@ export function createRunSaveRulesRegistry(
       configuredVersion !== entry.rulesVersion ||
       entry.dependencies.sceneLaunch.currentDayHub !== entry.dependencies.currentDayHub ||
       entry.dependencies.runTermination.currentDayHub !== entry.dependencies.currentDayHub ||
-      entry.dependencies.runTermination.sceneLaunch !== entry.dependencies.sceneLaunch ||
-      entry.dependencies.runSuccess.config.metadata.rulesVersion !== entry.rulesVersion
+      entry.dependencies.runTermination.sceneLaunch !== entry.dependencies.sceneLaunch
     ) {
       throw new RunSaveError('UNKNOWN_RULES_VERSION', '存档规则依赖与注册版本不一致')
     }

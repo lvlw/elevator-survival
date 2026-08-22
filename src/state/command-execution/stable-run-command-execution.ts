@@ -23,12 +23,17 @@ export class StableRunCommandExecutionError extends Error {
   }
 }
 
+export type NonTerminalStableRunPhase = Exclude<
+  StableRunPhase,
+  Readonly<{ kind: 'run-failure'; payload: unknown }>
+>
+
 /**
  * A lifecycle-specific adapter owns command parsing and core resolution.  This
  * boundary only receives its already committed stable Run phase.
  */
 export type StableRunCommandHandler<TResult> = (
-  currentPhase: StableRunPhase,
+  currentPhase: NonTerminalStableRunPhase,
 ) => Readonly<{
   result: TResult
   phase: StableRunPhase

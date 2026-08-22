@@ -65,6 +65,30 @@ CurrentDayHub
 - Success 仍是 DEC-028 定义的未来正式终局概念；当前规则版本没有 Success Resolver 或主线成功条件，因此不能构造、保存或恢复 `run-success`。
 - Run 与 Profile 生命周期继续分离；当前仍未实现完整 Application command routing、完整 RunState、Zustand／UI 编排、Profile 持久化、Success Resolver、Run Abandon 或 New Run。
 
+## 当前最小 Stable Run 生命周期命令路由
+
+```text
+严格解析 lifecycle command
+→ 验证 command 与 canonical current phase 的合法组合
+→ 按 current phase 的 RunIdentity 选择 rulesVersion 依赖
+→ 调用生命周期专用 core resolver
+→ 映射唯一 next StableRunPhase
+→ 委托 stable mutation execution boundary 规范化并保存
+```
+
+| 当前稳定阶段 | 生命周期命令 | 下一稳定阶段 |
+| --- | --- | --- |
+| 当前日中枢 | 启动主要场景 | Scene Session |
+| 当前日中枢 | 结束本日 | 次日中枢或 Run 失败 |
+| 安全／强制返回的 Scene Session | 结算终止场景 | 当前日中枢 |
+| 死亡 Scene Session | 结算终止场景 | Run 失败 |
+
+- `src/state/run-lifecycle/` 是当前最小生命周期 command／phase 映射的应用层所有者，只覆盖主要场景启动、终止场景结算与结束本日；活动或战斗 Scene 不允许执行终止场景结算。
+- Router 不拥有 Scene Launch、Return、Daily Settlement 或 Run Failure 规则，也不直接写存档；它按当前规范化阶段的 `rulesVersion` 读取正式依赖并调用既有 core resolver，随后委托唯一 stable mutation execution boundary。
+- 每次调用只执行一个生命周期命令。终止 Scene 不自动连锁到 Return，结束本日不自动启动次日场景；未来 UI 或 Application owner 何时发出下一命令仍未确定。
+- 生命周期 resolver 的返回值仅用于展示或审计；`StableRunCommandExecution.phase` 是下一条命令的唯一正式状态输入，result、summary、Effects 和 preview 不形成并行状态或持久化字段。
+- 本边界不是完整 Application command routing，尚未覆盖中枢医疗／维护／库存／生存物品或 Scene 移动、搜索、拾取、背包、医疗、充能、战斗、障碍和任务事件等玩家 mutation，也不创建 Store、完整 RunState、UI 或命令队列。
+
 ## 场景时间结算职责
 
 ```text

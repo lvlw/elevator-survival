@@ -63,7 +63,22 @@ CurrentDayHub
 - 普通状态变更命令不得改变 `runId`、`seed` 或 `rulesVersion`。正式 mutation 成功后必须且只调用一次唯一 Run Save；规则拒绝、非法输出和 RunIdentity 不连续均不写入。
 - 存储写入失败不回滚已经完成的内存规则结果；失败会连同已规范化的稳定结果显式返回，不重试 handler、玩法 Effects 或隐式保存。
 - Success 仍是 DEC-028 定义的未来正式终局概念；当前规则版本没有 Success Resolver 或主线成功条件，因此不能构造、保存或恢复 `run-success`。
-- Run 与 Profile 生命周期继续分离；当前仍未实现完整 Application command routing、完整 RunState、Zustand／UI 编排、Profile 持久化、Success Resolver、Run Abandon 或 New Run。
+- Run 与 Profile 生命周期继续分离；当前已经实现无状态的 Headless Application 统一分派，但仍未实现 Application Store、完整 RunState、Zustand／UI 编排、Profile 持久化、Success Resolver、Run Abandon 或 New Run。
+
+## Stable Run 统一 Application 分派
+
+```text
+严格解析 application command family
+→ 委托既有 lifecycle／scene／hub specialized router
+→ specialized router 委托唯一 stable mutation execution boundary
+→ 返回唯一 execution.phase
+```
+
+- `src/state/run-application/` 只是无状态 dispatch facade，只包装 lifecycle、scene 与 hub 三类既有正式应用命令；内部命令继续由对应 specialized constructor 严格规范化。
+- Dispatcher 不维护第四套 phase matrix，不拥有玩法规则、规则版本分派、随机数、Effect、状态或保存策略；它也不直接调用 generic executor、Run Save 或 `storage.write()`。
+- Lifecycle、Scene 与 Hub specialized router 继续拥有各自的应用层映射职责，generic executor 继续拥有 canonicalization、RunIdentity 连续性和唯一保存。每次 application dispatch 只委托一个 specialized router 一次。
+- `execution.phase` 是下一条命令的唯一正式状态。确定性重放只属于自动化验收，使用正式 registry、Run seed、稳定阶段与应用路由，不在存档或阶段中保存 command history、replay log 或序号。
+- 制作、拆解、Application Store、Zustand 与 React UI 仍未实现。
 
 ## 当前最小 Stable Run 生命周期命令路由
 
@@ -86,9 +101,9 @@ CurrentDayHub
 - `src/state/run-lifecycle/` 是当前最小生命周期 command／phase 映射的应用层所有者，只覆盖主要场景启动、终止场景结算与结束本日；活动或战斗 Scene 不允许执行终止场景结算。
 - Router 不拥有 Scene Launch、Return、Daily Settlement 或 Run Failure 规则，也不直接写存档；它按当前规范化阶段的 `rulesVersion` 读取正式依赖并调用既有 core resolver，随后委托唯一 stable mutation execution boundary。
 - 终止 Scene 的位置、时间（包括 `remainingTime` 的0至当前 `scene.totalTime` 上限）和生命合法性属于 Scene strict snapshot invariant；Run Save 与 lifecycle settlement 都通过同一 Scene 恢复入口继承该校验，Router 不复制 returned 位置判断、时间上限或重新结算撤离。
-- 每次调用只执行一个生命周期命令。终止 Scene 不自动连锁到 Return，结束本日不自动启动次日场景；未来 UI 或 Application owner 何时发出下一命令仍未确定。
+- 每次调用只执行一个生命周期命令。终止 Scene 不自动连锁到 Return，结束本日不自动启动次日场景；未来 Store 或 UI 何时发出下一命令仍未确定。
 - 生命周期 resolver 的返回值仅用于展示或审计；`StableRunCommandExecution.phase` 是下一条命令的唯一正式状态输入，result、summary、Effects 和 preview 不形成并行状态或持久化字段。
-- 本边界不是完整 Application command routing；Hub 与 Scene 的当前正式玩家 mutation 已由各自应用路由覆盖，但尚未创建 Store、完整 RunState、UI 或命令队列。
+- 本路由经统一 Application facade 对外分派，但尚未创建 Store、完整 RunState、UI 或命令队列。
 
 ### 基础 Stable Run Scene mutation routing
 

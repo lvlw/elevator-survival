@@ -12,13 +12,21 @@
 
 Success 仍是 DEC-028 定义的未来正式终局概念；当前规则版本没有 Success Resolver 或主线成功条件，因此不能构造、保存或恢复 `run-success`。
 
+## 当前统一 Application 分派
+
+`run-application/` 提供无状态的 Headless Application 统一入口，只包装并严格分派 lifecycle、scene 与 hub 三类既有正式应用命令。外层只接受 exact plain `{ kind, command }`，内部命令分别复用 `createStableRunLifecycleCommand`、`createStableRunSceneCommand` 与 `createStableRunHubCommand`，不复制第四套内部命令解析或 phase matrix。
+
+Dispatcher 每次只委托一个 specialized router 一次，不直接调用 `executeStableRunCommand`、Run Save 或 `storage.write()`。各 specialized router 继续拥有命令到 core resolver 的映射，generic executor 继续拥有 canonicalization、RunIdentity 连续性与唯一保存；`execution.phase` 仍是下一条命令的唯一正式状态。
+
+确定性 replay 只存在于自动化测试，使用正式 registry、Run seed、稳定阶段和统一 dispatcher；不会把 command history、replay log 或 sequence number 写入 StableRunPhase 或 Run Save。制作、拆解、Application Store、Zustand 与 React UI 仍未实现。
+
 ## 当前最小生命周期路由
 
 `run-lifecycle/` 严格解析并路由三个应用生命周期命令：启动主要场景、结束本日和结算终止 Scene。它只允许当前日中枢启动场景或结束本日，只允许经过 Scene strict restore 证明位于正式返程安全节点且玩家存活的安全／强制返回 Scene 进入正式 Return，其中强制返回必须处于零剩余时间；死亡 Scene 进入正式 RunFailure，活动与战斗 Scene 不能结算终止场景。
 
 Router 根据 canonical current phase 的 RunIdentity 从既有 Run Save registry 取得正式版本依赖，调用现有 Scene Launch、Run Return、Daily Settlement 与 RunFailure 入口，再委托 `executeStableRunCommand` 规范化结果、验证身份并写入唯一存档。returned Scene 的位置、时间与生命校验只存在于 Scene strict snapshot：`remainingTime` 必须是0到当前规则 `scene.totalTime` 之间的安全整数，超出范围会拒绝而不修复；Run Save 和生命周期结算复用该入口，Router 不复制或补算撤离规则。Router 不直接保存；`execution.phase` 是下一条命令的唯一状态输入，resolver result、summary 和 Effects 不形成第二份应用状态。
 
-当前仍未实现完整 Application Store／command bus、Profile 持久化、完整 RunState、Zustand／UI 编排、Success Resolver、Run Abandon、New Run、多个存档槽、存档历史及迁移。
+当前仍未实现 Application Store／command bus、Profile 持久化、完整 RunState、Zustand／UI 编排、Success Resolver、Run Abandon、New Run、多个存档槽、存档历史及迁移。
 
 ## 当前基础 Scene mutation 路由
 

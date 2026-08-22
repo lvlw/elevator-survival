@@ -1,6 +1,6 @@
 # State
 
-应用状态适配、持久化边界及 UI 与纯规则核心之间的协调。本阶段不创建正式 Store。
+应用状态适配、持久化边界及 UI 与纯规则核心之间的协调。当前已实现最小 Headless Stable Run Application Store；它只持有 canonical Run phase 并发送正式命令，不拥有玩法、Profile 或多个 Run，React UI 尚未接入，也不代表完整 Application framework 已完成。
 
 ## 当前最小 Run 持久化边界
 

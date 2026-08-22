@@ -209,6 +209,10 @@ describe('strict combat runtime facts', () => {
     { kind: 'use-quick-slot-item', quickSlotIndex: 0, targetOpenWoundId: ' ' },
     { kind: 'use-quick-slot-item', quickSlotIndex: 0, definitionId: 'bandage' },
     { kind: 'use-quick-slot-item', quickSlotIndex: 0, ctb: 80 },
+    { kind: 'use-quick-slot-item', quickSlotIndex: 0, damage: 1 },
+    { kind: 'use-quick-slot-item', quickSlotIndex: 0, resourceCost: 1 },
+    { kind: 'use-quick-slot-item', quickSlotIndex: 0, result: {} },
+    { kind: 'use-quick-slot-item', quickSlotIndex: 0, effects: [] },
   ])('rejects malformed quick-slot command %o', (command) => {
     expect(() => createCombatPlayerActionCommand(command as never)).toThrowError(
       expect.objectContaining({ code: 'INVALID_COMBAT_COMMAND' }),
@@ -227,6 +231,10 @@ describe('strict combat runtime facts', () => {
       kind: 'use-quick-slot-item',
       quickSlotIndex: 0,
     }),
+    new (class CombatCommand {
+      public readonly kind = 'use-quick-slot-item'
+      public readonly quickSlotIndex = 0
+    })(),
   ])(
     'rejects non-plain quick-slot command %o',
     (command) => {
@@ -245,6 +253,11 @@ describe('strict combat runtime facts', () => {
     { kind: 'defend', ctb: 1 },
     { kind: 'defend', target: 'enemy' },
     { kind: 'defend', resourceCost: 1 },
+    { kind: 'defend', result: {} },
+    { kind: 'defend', effects: [] },
+    new (class CombatCommand {
+      public readonly kind = 'defend'
+    })(),
   ])('rejects malformed command %o', (command) => {
     expect(() => createCombatPlayerActionCommand(command as never)).toThrowError(
       expect.objectContaining({ code: 'INVALID_COMBAT_COMMAND' }),

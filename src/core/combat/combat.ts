@@ -8,7 +8,6 @@ import { createCombatPlayerActionCommand } from './combat-validation'
 import type {
   CombatDependencies,
   CombatEncounterSnapshot,
-  CombatPlayerActionCommand,
   CombatPreview,
   CombatResolution,
 } from './combat-types'
@@ -18,7 +17,7 @@ export { selectEnemyHealthPhase } from './combat-selectors'
 
 export function resolveCombatPlayerAction(
   snapshot: CombatEncounterSnapshot,
-  commandInput: CombatPlayerActionCommand,
+  commandInput: unknown,
   dependencies: CombatDependencies,
 ): CombatResolution {
   validateCombatDependencies(dependencies)
@@ -38,7 +37,7 @@ export function resolveCombatPlayerAction(
 
 export function previewCombatPlayerAction(
   snapshot: CombatEncounterSnapshot,
-  command: CombatPlayerActionCommand,
+  command: unknown,
   dependencies: CombatDependencies,
 ): CombatPreview {
   try {

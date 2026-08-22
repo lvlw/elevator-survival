@@ -15,6 +15,7 @@ import {
   validateCombatDependencies,
   type CombatDependencies,
   type CombatEncounterSnapshot,
+  type CombatPlayerActionCommand,
   type EnemyPersistentCombatState,
 } from '../../../core/combat'
 import { createPlayerCondition } from '../../../core/condition'
@@ -122,7 +123,7 @@ function encounter(setup: Setup = {}) {
 function act(
   state: CombatEncounterSnapshot,
   kind: Exclude<
-    Parameters<typeof resolveCombatPlayerAction>[1],
+    CombatPlayerActionCommand,
     { kind: 'use-quick-slot-item' }
   >['kind'],
   dependencies: ReturnType<typeof encounter>['dependencies'],

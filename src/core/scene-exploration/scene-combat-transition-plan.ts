@@ -1,7 +1,6 @@
 import {
   convertCombatElapsedCtbToSceneTime,
   resolveCombatPlayerAction,
-  type CombatPlayerActionCommand,
 } from '../combat'
 import { deepFreeze } from '../config'
 import { hasMinorContusions } from '../condition'
@@ -39,7 +38,7 @@ function addHealthLoss(
 
 export function buildSceneCombatPlayerActionEffects(
   snapshotInput: SceneExplorationSnapshot,
-  command: CombatPlayerActionCommand,
+  command: unknown,
   dependencies: SceneExplorationDependencies,
 ): readonly SceneExplorationEffect[] {
   const snapshot = createSceneExplorationSnapshot(snapshotInput, dependencies)

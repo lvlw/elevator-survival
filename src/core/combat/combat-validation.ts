@@ -17,7 +17,7 @@ export function hasExactObjectKeys(
 }
 
 export function createCombatPlayerActionCommand(
-  input: CombatPlayerActionCommand,
+  input: unknown,
 ): CombatPlayerActionCommand {
   if (
     !input ||
@@ -27,48 +27,52 @@ export function createCombatPlayerActionCommand(
   ) {
     throw new CombatError('INVALID_COMBAT_COMMAND', '玩家战斗命令结构无效')
   }
-  if (input.kind === 'use-quick-slot-item') {
+  const candidate = input as Record<string, unknown>
+  if (candidate.kind === 'use-quick-slot-item') {
     const withTarget = Object.prototype.hasOwnProperty.call(
-      input,
+      candidate,
       'targetOpenWoundId',
     )
     if (
       !hasExactObjectKeys(
-        input,
+        candidate,
         withTarget
           ? ['kind', 'quickSlotIndex', 'targetOpenWoundId']
           : ['kind', 'quickSlotIndex'],
       ) ||
-      !Number.isSafeInteger(input.quickSlotIndex) ||
-      input.quickSlotIndex < 0 ||
+      !Number.isSafeInteger(candidate.quickSlotIndex) ||
+      (candidate.quickSlotIndex as number) < 0 ||
       (withTarget && (
-        typeof input.targetOpenWoundId !== 'string' ||
-        input.targetOpenWoundId.trim().length === 0
+        typeof candidate.targetOpenWoundId !== 'string' ||
+        candidate.targetOpenWoundId.trim().length === 0
       ))
     ) {
       throw new CombatError('INVALID_COMBAT_COMMAND', '快捷物品战斗命令结构无效')
     }
     return deepFreeze(withTarget
       ? {
-          kind: input.kind,
-          quickSlotIndex: input.quickSlotIndex,
-          targetOpenWoundId: input.targetOpenWoundId,
+          kind: 'use-quick-slot-item',
+          quickSlotIndex: candidate.quickSlotIndex as number,
+          targetOpenWoundId: candidate.targetOpenWoundId as string,
         }
-      : { kind: input.kind, quickSlotIndex: input.quickSlotIndex })
+      : {
+          kind: 'use-quick-slot-item',
+          quickSlotIndex: candidate.quickSlotIndex as number,
+        })
   }
-  if (!hasExactObjectKeys(input, ['kind'])) {
+  if (!hasExactObjectKeys(candidate, ['kind'])) {
     throw new CombatError('INVALID_COMBAT_COMMAND', '玩家战斗命令结构无效')
   }
   if (
-    input.kind !== 'metal-pipe-basic-attack' &&
-    input.kind !== 'metal-pipe-charged-strike' &&
-    input.kind !== 'defend' &&
-    input.kind !== 'temporary-attack' &&
-    input.kind !== 'escape'
+    candidate.kind !== 'metal-pipe-basic-attack' &&
+    candidate.kind !== 'metal-pipe-charged-strike' &&
+    candidate.kind !== 'defend' &&
+    candidate.kind !== 'temporary-attack' &&
+    candidate.kind !== 'escape'
   ) {
     throw new CombatError('INVALID_COMBAT_COMMAND', '未知玩家战斗命令')
   }
-  return deepFreeze({ kind: input.kind })
+  return deepFreeze({ kind: candidate.kind })
 }
 
 export function createTemporaryDefenseSnapshot(

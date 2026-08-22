@@ -1,5 +1,4 @@
 import { deepFreeze } from '../config'
-import type { CombatPlayerActionCommand } from '../combat'
 import { applySceneExplorationEffects } from './scene-exploration-effects'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
@@ -14,7 +13,7 @@ import type {
 
 function evaluate(
   snapshot: SceneExplorationSnapshot,
-  command: CombatPlayerActionCommand,
+  command: unknown,
   dependencies: SceneExplorationDependencies,
 ): SceneCombatPlayerActionEvaluation {
   const effects = buildSceneCombatPlayerActionEffects(snapshot, command, dependencies)
@@ -34,7 +33,7 @@ function evaluate(
 
 export function previewSceneCombatPlayerAction(
   snapshotInput: SceneExplorationSnapshot,
-  command: CombatPlayerActionCommand,
+  command: unknown,
   dependencies: SceneExplorationDependencies,
 ): SceneCombatPlayerActionPreview {
   try {
@@ -50,7 +49,7 @@ export function previewSceneCombatPlayerAction(
 
 export function resolveSceneCombatPlayerAction(
   snapshotInput: SceneExplorationSnapshot,
-  command: CombatPlayerActionCommand,
+  command: unknown,
   dependencies: SceneExplorationDependencies,
 ): SceneCombatPlayerActionResolution {
   const snapshot = createSceneExplorationSnapshot(snapshotInput, dependencies)

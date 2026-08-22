@@ -28,14 +28,13 @@ import type {
   CombatDependencies,
   CombatEffect,
   CombatEncounterSnapshot,
-  CombatPlayerActionCommand,
   CombatTransitionPlan,
   TemporaryDefenseSnapshot,
 } from './combat-types'
 
 export function buildCombatTransitionPlan(
   snapshot: CombatEncounterSnapshot,
-  commandInput: CombatPlayerActionCommand,
+  commandInput: unknown,
   dependencies: CombatDependencies,
 ): CombatTransitionPlan {
   validateCombatDependencies(dependencies)

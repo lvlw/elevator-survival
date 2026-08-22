@@ -244,6 +244,10 @@ const legalCommands = Object.freeze([
     kind: 'scene-battery',
     command: { batteryInstanceId: 'battery-item', targetInstanceId: 'flashlight-item' },
   },
+  {
+    kind: 'scene-combat-action',
+    command: { kind: 'defend' },
+  },
 ] as const)
 
 function phaseFromScene(

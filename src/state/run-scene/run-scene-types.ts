@@ -1,4 +1,7 @@
 import type {
+  CombatPlayerActionCommand,
+} from '../../core/combat'
+import type {
   MainSearchResolution,
   MoveThroughSceneEdgeCommand,
   NodeItemPickupResolution,
@@ -7,6 +10,7 @@ import type {
   PerformMainSearchCommand,
   PickUpRevealedNodeItemCommand,
   SceneBatteryResolution,
+  SceneCombatPlayerActionResolution,
   SceneInventoryCommand,
   SceneMedicalResolution,
   SceneMoveResolution,
@@ -62,6 +66,10 @@ export type StableRunSceneCommand =
       kind: 'scene-battery'
       command: UseSceneBatteryCommand
     }>
+  | Readonly<{
+      kind: 'scene-combat-action'
+      command: CombatPlayerActionCommand
+    }>
 
 export type StableRunSceneResult =
   | SceneMoveResolution
@@ -73,6 +81,7 @@ export type StableRunSceneResult =
   | SceneTaskEventResolution
   | SceneMedicalResolution
   | SceneBatteryResolution
+  | SceneCombatPlayerActionResolution
 
 export interface ExecuteStableRunSceneCommandInput {
   readonly currentPhase: StableRunPhase

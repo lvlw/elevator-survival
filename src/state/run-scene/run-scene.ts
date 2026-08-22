@@ -1,4 +1,8 @@
 import {
+  CombatError,
+  createCombatPlayerActionCommand,
+} from '../../core/combat'
+import {
   createMoveThroughSceneEdgeCommand,
   createPerformSceneObstacleOptionCommand,
   createPerformSceneTaskEventCommand,
@@ -13,6 +17,7 @@ import {
   resolveSceneInventoryCommand,
   resolveSceneMoveCommand,
   resolveSceneBatteryCommand,
+  resolveSceneCombatPlayerAction,
   resolveSceneMedicalCommand,
   resolveSceneObstacleOptionCommand,
   resolveSceneTaskEventCommand,
@@ -121,8 +126,17 @@ export function createStableRunSceneCommand(
         command: createUseSceneBatteryCommand(input.command),
       })
     }
+    if (input.kind === 'scene-combat-action') {
+      return Object.freeze({
+        kind: input.kind,
+        command: createCombatPlayerActionCommand(input.command),
+      })
+    }
   } catch (error) {
-    if (error instanceof SceneExplorationError) invalidCommand()
+    if (
+      error instanceof SceneExplorationError ||
+      error instanceof CombatError
+    ) invalidCommand()
     throw error
   }
   return invalidCommand()
@@ -207,11 +221,17 @@ export function executeStableRunSceneCommand(
                         command.command,
                         runtime.dependencies,
                       )
-                    : resolveSceneBatteryCommand(
-                        currentPhase.payload.scene,
-                        command.command,
-                        runtime.dependencies,
-                      )
+                    : command.kind === 'scene-battery'
+                      ? resolveSceneBatteryCommand(
+                          currentPhase.payload.scene,
+                          command.command,
+                          runtime.dependencies,
+                        )
+                      : resolveSceneCombatPlayerAction(
+                          currentPhase.payload.scene,
+                          command.command,
+                          runtime.dependencies,
+                        )
       const session = createRunSceneSessionSnapshot({
         context: currentPhase.payload.context,
         scene: resolution.snapshot,

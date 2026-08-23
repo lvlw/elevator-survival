@@ -76,10 +76,18 @@ export interface ObstacleRiskTrace {
   readonly usedImpactProtection: boolean
 }
 
+export interface SceneObstacleOutcomeMetadata {
+  readonly setsAlert: boolean
+  readonly alertReason: 'fire-door-force-entry' | 'fire-door-fire-axe' | null
+  readonly impactProtectionActive: boolean
+  readonly effectiveInjuryRiskPercent: number | null
+}
+
 export interface SceneObstaclePrimaryPlan {
   readonly obstacleId: string
   readonly optionId: string
   readonly actionTime: number
+  readonly outcomeMetadata: SceneObstacleOutcomeMetadata
   readonly riskTrace: ObstacleRiskTrace | null
   readonly primaryEffects: readonly import('../scene-exploration/scene-exploration-types').SceneExplorationEffect[]
 }

@@ -22,6 +22,7 @@ import {
 } from '../../core/scene-exploration'
 import { getSceneNodeItems } from '../../core/scene-items'
 import { createSceneSearchState } from '../../core/scene-search'
+import { createSceneObstaclePrimaryPlan } from '../../core/scene-obstacle'
 import {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
   HOSPITAL_EDGE_IDS,
@@ -241,6 +242,55 @@ describe('hospital staff access and fire door', () => {
     expect(fireAxe).toMatchObject({
       setsAlert: true,
       resourceChange: { resourceKind: 'durability', currentBefore: 2, currentAfter: 1 },
+    })
+  })
+
+  it.each([
+    [HOSPITAL_FIRE_DOOR_OPTION_IDS.accessCard, { withCard: true }, false],
+    [HOSPITAL_FIRE_DOOR_OPTION_IDS.crowbar, { utility: 'crowbar' as const }, false],
+    [HOSPITAL_FIRE_DOOR_OPTION_IDS.toolkit, { utility: 'toolkit' as const }, false],
+    [HOSPITAL_FIRE_DOOR_OPTION_IDS.fireAxe, { weapon: 'fireAxe' as const }, true],
+    [HOSPITAL_FIRE_DOOR_OPTION_IDS.forceEntry, {}, true],
+    [HOSPITAL_FIRE_DOOR_OPTION_IDS.decline, {}, false],
+  ])('uses shared alert metadata for option %s across plan, resolver, and safe preview', (
+    optionId,
+    setup,
+    expectedSetsAlert,
+  ) => {
+    const start = snapshot(setup)
+    const command = option(optionId)
+    const plan = createSceneObstaclePrimaryPlan(start, command, obstacleDependencies)
+    const resolved = resolveSceneObstacleOptionCommand(start, command, obstacleDependencies)
+    const safe = getPlayerVisibleSceneObstacles(start, obstacleDependencies)[0]!.options.find(
+      ({ command: candidate }) => candidate.optionId === optionId,
+    )
+    expect(plan.outcomeMetadata.setsAlert).toBe(expectedSetsAlert)
+    expect(resolved.snapshot.alertState === 'alerted').toBe(expectedSetsAlert)
+    expect(safe?.setsAlert).toBe(expectedSetsAlert)
+  })
+
+  it.each([
+    [false, 'high'],
+    [true, 'low'],
+  ] as const)('uses shared effective force-entry risk protected=%s for raw and safe previews', (
+    protectedByCoat,
+    expectedTier,
+  ) => {
+    const start = snapshot({ armor: protectedByCoat ? 'heavyCoat' : null })
+    const command = option(HOSPITAL_FIRE_DOOR_OPTION_IDS.forceEntry)
+    const plan = createSceneObstaclePrimaryPlan(start, command, obstacleDependencies)
+    const raw = previewSceneObstacleOptionCommand(start, command, obstacleDependencies)
+    if (!raw.canExecute) throw new Error('强行撞门正式预览必须成功')
+    const safe = getPlayerVisibleSceneObstacles(start, obstacleDependencies)[0]!.options.find(
+      ({ command: candidate }) => candidate.optionId === HOSPITAL_FIRE_DOOR_OPTION_IDS.forceEntry,
+    )
+    expect(plan.outcomeMetadata).toMatchObject({
+      impactProtectionActive: protectedByCoat,
+      effectiveInjuryRiskPercent: raw.result.riskTrace?.riskPercent,
+    })
+    expect(safe).toMatchObject({
+      impactProtectionActive: protectedByCoat,
+      injuryRiskTier: expectedTier,
     })
   })
 

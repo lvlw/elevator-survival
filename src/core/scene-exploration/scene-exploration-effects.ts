@@ -406,6 +406,7 @@ function applySceneExplorationEffectsInternal(
         effect.source.startsWith('fire-door-')),
   )
   let expectedObstacleActionTime: number | null = null
+  let expectedObstaclePlan: ReturnType<typeof createSceneObstaclePrimaryPlan> | null = null
   if (hasObstacleEffect) {
     const obstacleDependencies =
       dependencies && 'runSeed' in rulesOrDependencies
@@ -441,6 +442,7 @@ function applySceneExplorationEffectsInternal(
       },
       obstacleDependencies,
     )
+    expectedObstaclePlan = expected
     if (
       !sameValue(
         effects.slice(0, expected.primaryEffects.length),
@@ -762,16 +764,7 @@ function applySceneExplorationEffectsInternal(
         break
       }
       case 'scene-alert-changed': {
-        const obstacle = activeObstacleId
-          ? dependencies?.obstacleCatalog?.get(activeObstacleId)
-          : null
-        const option = obstacle?.options.find(({ id }) => id === activeObstacleOptionId)
-        const expectedReason =
-          option?.kind === 'force-entry'
-            ? 'fire-door-force-entry'
-            : option?.kind === 'equipped-resource' && option.setsAlert
-              ? 'fire-door-fire-axe'
-              : null
+        const expectedReason = expectedObstaclePlan?.outcomeMetadata.alertReason ?? null
         if (
           primaryKind !== 'obstacle' ||
           sawTime ||

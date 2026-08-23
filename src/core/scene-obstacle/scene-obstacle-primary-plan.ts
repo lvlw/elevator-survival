@@ -124,6 +124,12 @@ export function createSceneObstaclePrimaryPlan(
       obstacleId: obstacle.id,
       optionId: option.id,
       actionTime: 0,
+      outcomeMetadata: {
+        setsAlert: false,
+        alertReason: null,
+        impactProtectionActive: false,
+        effectiveInjuryRiskPercent: null,
+      },
       riskTrace: null,
       primaryEffects: [{
         kind: 'scene-obstacle-declined',
@@ -239,31 +245,49 @@ export function createSceneObstaclePrimaryPlan(
     })
   }
 
-  const setsAlert =
-    option.kind === 'force-entry' ||
-    (option.kind === 'equipped-resource' && option.setsAlert)
-  if (setsAlert && snapshot.alertState === 'unalerted') {
+  const impactProtectionActive = option.kind === 'force-entry' && effects.some(
+    (effect) =>
+      effect.kind === 'item-resource-consumed' &&
+      effect.source === 'fire-door-impact-protection',
+  )
+  const alertReason = option.kind === 'force-entry'
+    ? 'fire-door-force-entry' as const
+    : option.kind === 'equipped-resource' && option.setsAlert
+      ? 'fire-door-fire-axe' as const
+      : null
+  const outcomeMetadata = deepFreeze({
+    setsAlert: alertReason !== null,
+    alertReason,
+    impactProtectionActive,
+    effectiveInjuryRiskPercent: option.kind === 'force-entry'
+      ? impactProtectionActive
+        ? dependencies.config.scene.fireDoor.protectedForceEntryInjuryRiskPercent
+        : dependencies.config.scene.fireDoor.forceEntryInjuryRiskPercent
+      : null,
+  })
+  if (outcomeMetadata.setsAlert && snapshot.alertState === 'unalerted') {
+    if (outcomeMetadata.alertReason === null) {
+      throw new SceneExplorationError(
+        'UNKNOWN_OBSTACLE_OPTION',
+        '警觉障碍选项必须拥有正式警觉原因',
+      )
+    }
     effects.push({
       kind: 'scene-alert-changed',
       fromAlertState: 'unalerted',
       toAlertState: 'alerted',
-      reason:
-        option.kind === 'force-entry'
-          ? 'fire-door-force-entry'
-          : 'fire-door-fire-axe',
+      reason: outcomeMetadata.alertReason,
     })
   }
 
   if (option.kind === 'force-entry') {
-    const usedImpactProtection = effects.some(
-      (effect) =>
-        effect.kind === 'item-resource-consumed' &&
-        effect.source === 'fire-door-impact-protection',
-    )
-    const riskPercent = usedImpactProtection
-      ? dependencies.config.scene.fireDoor
-          .protectedForceEntryInjuryRiskPercent
-      : dependencies.config.scene.fireDoor.forceEntryInjuryRiskPercent
+    const riskPercent = outcomeMetadata.effectiveInjuryRiskPercent
+    if (riskPercent === null) {
+      throw new SceneExplorationError(
+        'UNKNOWN_OBSTACLE_OPTION',
+        '强行撞门必须拥有正式有效伤势风险',
+      )
+    }
     const streamId = createStreamId(
       'scene-obstacle',
       snapshot.sceneInstanceId,
@@ -285,7 +309,7 @@ export function createSceneObstaclePrimaryPlan(
       roll: draw.value,
       riskPercent,
       causedMinorContusion,
-      usedImpactProtection,
+      usedImpactProtection: outcomeMetadata.impactProtectionActive,
     })
     effects.push({
       kind: 'scene-obstacle-risk-resolved',
@@ -308,6 +332,7 @@ export function createSceneObstaclePrimaryPlan(
     obstacleId: obstacle.id,
     optionId: option.id,
     actionTime: dependencies.config.scene.fireDoor[option.timeKey],
+    outcomeMetadata,
     riskTrace,
     primaryEffects: effects,
   })

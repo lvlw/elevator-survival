@@ -715,6 +715,7 @@ export interface SceneObstacleEvaluation {
   readonly obstacleId: string
   readonly optionId: string
   readonly actionTime: number
+  readonly outcomeMetadata: import('../scene-obstacle').SceneObstacleOutcomeMetadata
   readonly riskTrace: ObstacleRiskTrace | null
   readonly returnRoute: ReturnRouteResult | null
   readonly sceneOutcome: TimedSceneActionOutcome | null

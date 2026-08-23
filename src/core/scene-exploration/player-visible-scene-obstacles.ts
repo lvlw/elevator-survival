@@ -82,10 +82,7 @@ export function getPlayerVisibleSceneObstacles(
       const raw = previewSceneObstacleOptionCommand(snapshot, command, dependencies)
       if (!raw.canExecute) return []
       const result = raw.result
-      const protectionActive = result.effects.some(
-        (effect) => effect.kind === 'item-resource-consumed' &&
-          effect.source === 'fire-door-impact-protection',
-      )
+      const metadata = result.outcomeMetadata
       const spawnedItems = result.effects.flatMap((effect) =>
         effect.kind === 'scene-item-spawned'
           ? [{
@@ -94,13 +91,6 @@ export function getPlayerVisibleSceneObstacles(
             }]
           : [],
       )
-      const setsAlert = option.kind === 'force-entry' ||
-        (option.kind === 'equipped-resource' && option.setsAlert)
-      const riskPercent = option.kind === 'force-entry'
-        ? protectionActive
-          ? dependencies.config.scene.fireDoor.protectedForceEntryInjuryRiskPercent
-          : dependencies.config.scene.fireDoor.forceEntryInjuryRiskPercent
-        : null
       const outcomes = option.kind === 'force-entry'
         ? ([
             deepFreeze({
@@ -133,13 +123,16 @@ export function getPlayerVisibleSceneObstacles(
         command,
         kind: option.kind,
         actionTime: result.actionTime,
-        setsAlert,
+        setsAlert: metadata.setsAlert,
         resourceChange: resourceChange(result.effects),
         spawnedItems: deepFreeze(spawnedItems),
-        injuryRiskTier: riskPercent === null
+        injuryRiskTier: metadata.effectiveInjuryRiskPercent === null
           ? null
-          : riskTierForPercent(riskPercent, dependencies.config),
-        impactProtectionActive: protectionActive,
+          : riskTierForPercent(
+              metadata.effectiveInjuryRiskPercent,
+              dependencies.config,
+            ),
+        impactProtectionActive: metadata.impactProtectionActive,
         outcomes: deepFreeze(outcomes),
       })]
     })

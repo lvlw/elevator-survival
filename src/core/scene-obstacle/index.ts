@@ -7,6 +7,7 @@ export {
 export type {
   FireDoorTimeKey,
   ObstacleRiskTrace,
+  SceneObstacleOutcomeMetadata,
   SceneObstacleCatalog,
   SceneObstacleCatalogDependencies,
   SceneObstacleDefinition,

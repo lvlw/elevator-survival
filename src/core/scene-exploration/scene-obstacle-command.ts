@@ -46,6 +46,7 @@ function evaluateTimedPlan(
   if (primaryPlan.actionTime === 0) {
     return deepFreeze({
       actionTime: 0,
+      outcomeMetadata: primaryPlan.outcomeMetadata,
       riskTrace: primaryPlan.riskTrace,
       returnRoute: null,
       sceneOutcome: null,
@@ -130,6 +131,7 @@ function evaluateTimedPlan(
   }
   return deepFreeze({
     actionTime,
+    outcomeMetadata: primaryPlan.outcomeMetadata,
     riskTrace: primaryPlan.riskTrace,
     returnRoute,
     sceneOutcome,
@@ -225,6 +227,7 @@ function materialize(
     obstacleId: command.obstacleId,
     optionId: command.optionId,
     actionTime: plan.actionTime,
+    outcomeMetadata: plan.outcomeMetadata,
     riskTrace: plan.riskTrace,
     returnRoute: plan.returnRoute,
     sceneOutcome: plan.sceneOutcome,

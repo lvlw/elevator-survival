@@ -15,7 +15,10 @@ export { createUseSceneBatteryCommand } from './scene-battery-validation'
 export { previewSceneBatteryCommand, resolveSceneBatteryCommand } from './scene-battery-command'
 export { buildSceneBatteryTransitionPlan } from './scene-battery-transition-plan'
 export { getPlayerVisibleSceneNodeState } from './player-visible-scene-node'
-export { getPlayerVisibleSceneCombatState } from './player-visible-scene-combat'
+export {
+  getPlayerVisibleSceneCombatActionOptions,
+  getPlayerVisibleSceneCombatState,
+} from './player-visible-scene-combat'
 export { getPlayerVisibleSceneObstacles } from './player-visible-scene-obstacles'
 export { getPlayerVisibleSceneTaskEvents } from './scene-task-event-selectors'
 export { getAvailableSceneMedicalCommands } from './scene-medical-selectors'

@@ -22,8 +22,30 @@ const definition: EnemyDefinition = {
   tags: ['infected'],
   weaknessTags: ['blunt-control'],
   actions: [
-    { id: 'scratch', kind: 'scratch' },
-    { id: 'bite', kind: 'lunge-bite' },
+    {
+      id: 'scratch',
+      kind: 'scratch',
+      playerVisible: {
+        category: 'basic-attack',
+        relativeSpeed: 'normal',
+        directDamageSeverity: 'medium',
+        mayCauseInjury: true,
+        mayCauseInfectionExposure: false,
+        mayCauseControl: false,
+      },
+    },
+    {
+      id: 'bite',
+      kind: 'lunge-bite',
+      playerVisible: {
+        category: 'special-attack',
+        relativeSpeed: 'slow',
+        directDamageSeverity: 'high',
+        mayCauseInjury: true,
+        mayCauseInfectionExposure: true,
+        mayCauseControl: false,
+      },
+    },
   ],
   actionCycle: ['scratch', 'bite'],
   initialIntentActionId: 'scratch',

@@ -230,7 +230,21 @@ describe('stable Run player-visible ViewModel', () => {
     if (model.kind !== 'scene-session' || model.scene.combat === null) throw new Error('expected combat model')
     expect(model.scene.combat.enemyName).toBe('感染护工')
     expect(model.scene.combat.enemyHealthStage).toBe('healthy')
-    for (const hidden of ['currentHealth', 'riskPercent', 'enemyInstanceId']) expect(JSON.stringify(model.scene.combat)).not.toContain(hidden)
+    expect(model.scene.combat).toMatchObject({
+      currentIntentCategory: 'basic-attack',
+      currentIntentRelativeSpeed: 'normal',
+      currentIntentDirectDamageSeverity: 'medium',
+      currentIntentMayCauseInjury: true,
+      currentIntentMayCauseInfectionExposure: false,
+      currentIntentMayCauseControl: false,
+      currentCtb: 0,
+      sceneTimeIfCombatEndedNow: 10,
+      minimumSceneTime: 10,
+    })
+    expect(model.status.condition.wounds).toEqual([
+      { kind: 'laceration', treatment: 'untreated', ordinal: 1 },
+    ])
+    for (const hidden of ['currentHealth', 'riskPercent', 'enemyInstanceId', 'woundId', 'ui-wound', 'nextCycleIndex']) expect(JSON.stringify(model.scene.combat)).not.toContain(hidden)
   })
 
   it('projects Run failure as a read-only terminal summary', () => {

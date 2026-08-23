@@ -2,7 +2,11 @@ import {
   getUntreatedOpenWoundCount,
   type PlayerConditionSnapshot,
 } from '../../core/condition'
-import { createPlayerVisibleCombatSnapshot } from '../../core/combat'
+import {
+  convertCombatElapsedCtbToSceneTime,
+  createPlayerVisibleCombatSnapshot,
+  selectEnemyHealthPhase,
+} from '../../core/combat'
 import {
   calculateBackpackWeightSubtotal,
   getItemDimensions,
@@ -54,6 +58,12 @@ export interface PlayerVisibleConditionViewModel {
   readonly treatedOpenWounds: number
   readonly minorContusions: number
   readonly painkillerActive: boolean
+  readonly pendingInfectionExposures: number
+  readonly wounds: readonly Readonly<{
+    kind: 'laceration' | 'puncture' | 'bite'
+    treatment: 'untreated' | 'treated'
+    ordinal: number
+  }>[]
 }
 
 export interface PlayerVisibleItemViewModel {
@@ -106,8 +116,18 @@ export interface PlayerVisibleCombatViewModel {
   readonly enemyName: string
   readonly enemyHealthStage: 'healthy' | 'wounded' | 'severely-wounded' | 'critical' | 'incapacitated'
   readonly currentIntent: string
+  readonly currentIntentCategory: 'basic-attack' | 'special-attack'
+  readonly currentIntentRelativeSpeed: 'normal' | 'slow'
+  readonly currentIntentDirectDamageSeverity: 'medium' | 'high'
+  readonly currentIntentMayCauseInjury: boolean
+  readonly currentIntentMayCauseInfectionExposure: boolean
+  readonly currentIntentMayCauseControl: boolean
+  readonly currentCtb: number
   readonly playerNextActionCtb: number
   readonly enemyNextActionCtb: number
+  readonly sceneRemainingTime: number
+  readonly sceneTimeIfCombatEndedNow: number
+  readonly minimumSceneTime: number
   readonly equipment: PlayerVisibleLoadoutViewModel['equipment']
   readonly quickSlots: PlayerVisibleLoadoutViewModel['quickSlots']
 }
@@ -125,6 +145,23 @@ export interface ReturnSummaryViewModel {
   readonly warehouseItems: readonly PlayerVisibleItemViewModel[]
   readonly taskItems: readonly PlayerVisibleItemViewModel[]
   readonly lostTaskItemCount: number
+}
+
+export interface CombatActionResultViewModel {
+  readonly playerAction: string
+  readonly playerHealthBefore: number
+  readonly playerHealthAfter: number
+  readonly enemyActionsResolved: number
+  readonly newWounds: readonly string[]
+  readonly treatedWounds: readonly string[]
+  readonly bleedingChanged: 'started' | 'stopped' | null
+  readonly infectionExposuresAdded: number
+  readonly weaponResourceChange: string | null
+  readonly armorResourceChange: string | null
+  readonly consumedQuickSlotCount: number
+  readonly enemyHealthStage: PlayerVisibleCombatViewModel['enemyHealthStage']
+  readonly outcome: 'continue' | 'victory' | 'escaped' | 'defeat' | 'forced-returned'
+  readonly sceneTimeCost: number | null
 }
 
 export type StableRunPlayerViewModel =
@@ -170,10 +207,20 @@ function frozen<T>(value: T): Readonly<T> {
   return Object.freeze(value)
 }
 
+function woundName(kind: 'laceration' | 'puncture' | 'bite'): string {
+  return kind === 'laceration' ? '撕裂伤' : kind === 'puncture' ? '穿刺伤' : '咬伤'
+}
+
 function conditionView(
   condition: PlayerConditionSnapshot,
   maximumHealth: number,
 ): PlayerVisibleConditionViewModel {
+  const kindCounts = new Map<string, number>()
+  const wounds = condition.openWounds.map(({ kind, treatment }) => {
+    const ordinal = (kindCounts.get(kind) ?? 0) + 1
+    kindCounts.set(kind, ordinal)
+    return frozen({ kind, treatment, ordinal })
+  })
   return frozen({
     currentHealth: condition.currentHealth,
     maximumHealth,
@@ -182,6 +229,8 @@ function conditionView(
     treatedOpenWounds: condition.openWounds.length - getUntreatedOpenWoundCount(condition),
     minorContusions: condition.minorContusions,
     painkillerActive: condition.painkillerActive,
+    pendingInfectionExposures: condition.pendingInfectionExposures,
+    wounds: frozen(wounds),
   })
 }
 
@@ -330,8 +379,26 @@ function createSceneView(
           enemyName: dependencies.labels.enemyName(activeEncounter.combat.enemy.definitionId),
           enemyHealthStage: visible.enemy.healthPhase,
           currentIntent: dependencies.labels.enemyIntentName(visible.enemy.currentIntentId),
+          currentIntentCategory: visible.enemy.currentIntentMetadata.category,
+          currentIntentRelativeSpeed: visible.enemy.currentIntentMetadata.relativeSpeed,
+          currentIntentDirectDamageSeverity:
+            visible.enemy.currentIntentMetadata.directDamageSeverity,
+          currentIntentMayCauseInjury:
+            visible.enemy.currentIntentMetadata.mayCauseInjury,
+          currentIntentMayCauseInfectionExposure:
+            visible.enemy.currentIntentMetadata.mayCauseInfectionExposure,
+          currentIntentMayCauseControl:
+            visible.enemy.currentIntentMetadata.mayCauseControl,
+          currentCtb: visible.player.currentCtb,
           playerNextActionCtb: visible.player.nextActionCtb,
           enemyNextActionCtb: visible.enemy.nextActionCtb,
+          sceneRemainingTime: scene.remainingTime,
+          sceneTimeIfCombatEndedNow: convertCombatElapsedCtbToSceneTime(
+            visible.player.currentCtb,
+            runtime.dependencies.config.combat.sceneTimeConversion,
+          ),
+          minimumSceneTime:
+            runtime.dependencies.config.combat.sceneTimeConversion.minimumSceneTime,
           equipment: loadoutView(activeEncounter.combat, runtime, dependencies.labels).equipment,
           quickSlots: loadoutView(activeEncounter.combat, runtime, dependencies.labels).quickSlots,
         })
@@ -437,5 +504,108 @@ export function createReturnSummaryViewModel(
     warehouseItems: byIds(hub.runLoadout.warehouse.items, summary.storedWarehouseInstanceIds),
     taskItems: byIds(hub.runLoadout.taskStorage.items, summary.storedTaskInstanceIds),
     lostTaskItemCount: summary.lostSceneTaskInstanceIds.length,
+  })
+}
+
+/**
+ * Compares two canonical Scene phases after one combat command. The returned
+ * value contains only facts that have already happened; no raw resolution,
+ * Effect, risk trace, instance identity, or exact enemy health is retained.
+ */
+export function createCombatActionResultViewModel(
+  before: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  after: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  playerAction: string,
+  dependencies: StableRunUiPresentationDependencies,
+): CombatActionResultViewModel {
+  const identity = getStableRunPhaseIdentity(after)
+  const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
+  const runtime = getRunSceneRuntime(after.payload, rules.sceneLaunch)
+  const beforeScene = before.payload.scene
+  const afterScene = after.payload.scene
+  const beforeEncounter = beforeScene.combatState.encounters.find(
+    ({ kind }) => kind === 'active',
+  )
+  if (beforeEncounter?.kind !== 'active') {
+    throw new Error('战斗结果投影缺少行动前活跃遭遇')
+  }
+  const afterEncounter = afterScene.combatState.encounters.find(
+    ({ encounterId }) => encounterId === beforeEncounter.encounterId,
+  )
+  if (!afterEncounter) throw new Error('战斗结果投影缺少行动后遭遇')
+  const afterEnemy = afterEncounter.kind === 'active'
+    ? afterEncounter.combat.enemy
+    : afterEncounter.enemy
+  const definition = runtime.dependencies.sceneCombat!.combat.enemyCatalog.get(
+    afterEnemy.definitionId,
+  )
+  const beforeCondition = beforeEncounter.combat.playerCondition
+  const afterCondition = afterScene.condition
+  const beforeWounds = new Map(beforeCondition.openWounds.map((wound) => [wound.id, wound]))
+  const newWounds = afterCondition.openWounds
+    .filter(({ id }) => !beforeWounds.has(id))
+    .map(({ kind }) => woundName(kind))
+  const treatedWounds = afterCondition.openWounds
+    .filter(({ id, treatment }) =>
+      treatment === 'treated' && beforeWounds.get(id)?.treatment === 'untreated')
+    .map(({ kind }) => woundName(kind))
+  const resource = (slot: 'weapon' | 'armor') => {
+    const beforeItem = beforeEncounter.combat.equipment[slot]
+    const afterItem = afterScene.equipment[slot]
+    if (!beforeItem || !afterItem || beforeItem.instanceId !== afterItem.instanceId) return null
+    const beforeState = beforeEncounter.combat.itemStates.states.find(
+      ({ instanceId }) => instanceId === beforeItem.instanceId,
+    )
+    const afterState = afterScene.itemStates.states.find(
+      ({ instanceId }) => instanceId === afterItem.instanceId,
+    )
+    if (
+      !beforeState || !afterState ||
+      beforeState.resource.kind === 'none' || afterState.resource.kind === 'none' ||
+      beforeState.resource.current === afterState.resource.current
+    ) return null
+    return `${beforeState.resource.current} → ${afterState.resource.current}`
+  }
+  const beforeQuickIds = new Set(beforeEncounter.combat.quickSlots.slots.flatMap(
+    (item) => item ? [item.instanceId] : [],
+  ))
+  const afterQuickIds = new Set(afterScene.quickSlots.slots.flatMap(
+    (item) => item ? [item.instanceId] : [],
+  ))
+  const enemyActionsResolved = afterEnemy.resolvedActionCount -
+    beforeEncounter.combat.enemy.resolvedActionCount
+  const outcome = afterScene.status === 'combat'
+    ? 'continue'
+    : afterScene.status === 'dead'
+      ? 'defeat'
+      : afterScene.status === 'forced-returned'
+        ? 'forced-returned'
+        : afterEnemy.defeated
+          ? 'victory'
+          : 'escaped'
+  return frozen({
+    playerAction,
+    playerHealthBefore: beforeCondition.currentHealth,
+    playerHealthAfter: afterCondition.currentHealth,
+    enemyActionsResolved,
+    newWounds: frozen(newWounds),
+    treatedWounds: frozen(treatedWounds),
+    bleedingChanged: beforeCondition.bleeding === afterCondition.bleeding
+      ? null
+      : afterCondition.bleeding ? 'started' : 'stopped',
+    infectionExposuresAdded:
+      afterCondition.pendingInfectionExposures -
+      beforeCondition.pendingInfectionExposures,
+    weaponResourceChange: resource('weapon'),
+    armorResourceChange: resource('armor'),
+    consumedQuickSlotCount: [...beforeQuickIds].filter((id) => !afterQuickIds.has(id)).length,
+    enemyHealthStage: selectEnemyHealthPhase(
+      afterEnemy.currentHealth,
+      definition.maxHealth,
+    ),
+    outcome,
+    sceneTimeCost: afterScene.status === 'combat'
+      ? null
+      : beforeScene.remainingTime - afterScene.remainingTime,
   })
 }

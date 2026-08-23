@@ -10,6 +10,7 @@ import {
   createReentryCombatEncounter,
   getAvailableCombatPlayerActions,
   previewCombatPlayerAction,
+  previewPlayerVisibleCombatAction,
   resolveCombatPlayerAction,
   selectEnemyHealthPhase,
   validateCombatDependencies,
@@ -132,6 +133,86 @@ function act(
 }
 
 describe('hospital infected orderly combat', () => {
+  it('keeps scratch player-safe previews identical across opposite hidden risk seeds', () => {
+    const risky = encounter({ runSeed: 'risk-2', coatIntegrity: null })
+    const safe = encounter({ runSeed: 'risk-0', coatIntegrity: null })
+    const command = { kind: 'metal-pipe-basic-attack' } as const
+    const riskyRaw = previewCombatPlayerAction(risky.snapshot, command, risky.dependencies)
+    const safeRaw = previewCombatPlayerAction(safe.snapshot, command, safe.dependencies)
+    if (!riskyRaw.canExecute || !safeRaw.canExecute) throw new Error('raw preview must execute')
+    expect(riskyRaw.snapshot.playerCondition.openWounds).toHaveLength(1)
+    expect(safeRaw.snapshot.playerCondition.openWounds).toHaveLength(0)
+
+    const riskyVisible = previewPlayerVisibleCombatAction(
+      risky.snapshot,
+      command,
+      risky.dependencies,
+    )
+    const safeVisible = previewPlayerVisibleCombatAction(
+      safe.snapshot,
+      command,
+      safe.dependencies,
+    )
+    expect(riskyVisible).toEqual(safeVisible)
+    expect(JSON.stringify(riskyVisible)).not.toMatch(
+      /riskPercent|roll|streamId|drawIndex|succeeded|currentHealth|nextCycleIndex|resolvedActionCount/,
+    )
+  })
+
+  it('keeps bite player-safe previews identical across opposite hidden injury and exposure seeds', () => {
+    const enemy = persistent({
+      currentIntentActionId: HOSPITAL_ENEMY_ACTION_IDS.orderlyLungeBite,
+      nextCycleIndex: 0,
+      resolvedActionCount: 1,
+      hasBeenEncountered: true,
+    })
+    const riskyBase = encounter({ runSeed: 'risk-2', coatIntegrity: null })
+    const safeBase = encounter({ runSeed: 'risk-3', coatIntegrity: null })
+    const risky = {
+      ...riskyBase,
+      snapshot: createCombatEncounterSnapshot({ ...riskyBase.snapshot, enemy }, riskyBase.dependencies),
+    }
+    const safe = {
+      ...safeBase,
+      snapshot: createCombatEncounterSnapshot({ ...safeBase.snapshot, enemy }, safeBase.dependencies),
+    }
+    const command = { kind: 'defend' } as const
+    const riskyRaw = previewCombatPlayerAction(risky.snapshot, command, risky.dependencies)
+    const safeRaw = previewCombatPlayerAction(safe.snapshot, command, safe.dependencies)
+    if (!riskyRaw.canExecute || !safeRaw.canExecute) throw new Error('raw preview must execute')
+    expect(riskyRaw.snapshot.playerCondition.openWounds).not.toEqual(
+      safeRaw.snapshot.playerCondition.openWounds,
+    )
+    expect(riskyRaw.snapshot.playerCondition.pendingInfectionExposures).not.toBe(
+      safeRaw.snapshot.playerCondition.pendingInfectionExposures,
+    )
+    expect(previewPlayerVisibleCombatAction(
+      risky.snapshot,
+      command,
+      risky.dependencies,
+    )).toEqual(previewPlayerVisibleCombatAction(
+      safe.snapshot,
+      command,
+      safe.dependencies,
+    ))
+  })
+
+  it('uses data-driven player-visible metadata for the current intent', () => {
+    const { snapshot, dependencies } = encounter()
+    const scratch = previewPlayerVisibleCombatAction(
+      snapshot,
+      { kind: 'metal-pipe-basic-attack' },
+      dependencies,
+    )
+    expect(scratch.currentIntent.metadata).toEqual({
+      category: 'basic-attack',
+      relativeSpeed: 'normal',
+      directDamageSeverity: 'medium',
+      mayCauseInjury: true,
+      mayCauseInfectionExposure: false,
+      mayCauseControl: false,
+    })
+  })
   it.each([
     ['risk-2', true, true],
     ['risk-1', true, false],

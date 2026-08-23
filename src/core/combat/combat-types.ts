@@ -9,9 +9,19 @@ import type { ItemReturnLifecycleCatalog } from '../run-return'
 export type CombatRiskTier = 'none' | 'low' | 'medium' | 'high' | 'very-high'
 export type EnemyActionKind = 'scratch' | 'lunge-bite'
 
+export interface PlayerVisibleEnemyIntentMetadata {
+  readonly category: 'basic-attack' | 'special-attack'
+  readonly relativeSpeed: 'normal' | 'slow'
+  readonly directDamageSeverity: 'medium' | 'high'
+  readonly mayCauseInjury: boolean
+  readonly mayCauseInfectionExposure: boolean
+  readonly mayCauseControl: boolean
+}
+
 export interface EnemyActionDefinition {
   readonly id: string
   readonly kind: EnemyActionKind
+  readonly playerVisible: PlayerVisibleEnemyIntentMetadata
 }
 
 export interface EnemyDefinition {
@@ -285,6 +295,66 @@ export type CombatPreview =
 export interface CombatResolution {
   readonly plan: CombatTransitionPlan
   readonly snapshot: CombatEncounterSnapshot
+}
+
+export type PlayerVisibleCombatActionPrimaryMetadata =
+  | Readonly<{
+      kind: 'attack'
+      actionCtb: number
+      requestedDamage: number
+      weaponDurabilityBefore: number | null
+      weaponDurabilityAfter: number | null
+      weaponDurabilityCost: number
+      enemyActionDelay: number
+    }>
+  | Readonly<{
+      kind: 'defend'
+      actionCtb: number
+      availableDirectAttackUses: 1
+      expiresAtPlayerActionCtb: number
+      doesNotPreventInfectionExposure: true
+    }>
+  | Readonly<{
+      kind: 'quick-slot-item'
+      actionCtb: number
+      quickSlotIndex: number
+      itemKind: 'bandage' | 'painkiller'
+      healthRecovery: number
+      stopsBleeding: boolean
+      treatsOpenWound: boolean
+      targetWound: Readonly<{
+        kind: OpenWoundSnapshot['kind']
+        ordinal: number
+      }> | null
+      activatesPainkiller: boolean
+    }>
+  | Readonly<{
+      kind: 'escape'
+      actionCtb: number
+      loadTier: 'normal' | 'loaded' | 'overloaded'
+      backpackWeight: number
+      baseCtb: number
+      untreatedOpenWoundCount: number
+      rawWoundCtb: number
+      painkillerReductionApplied: number
+      finalWoundCtb: number
+      completesAtCtb: number
+    }>
+
+export interface PlayerVisibleCombatActionPreview {
+  readonly primary: PlayerVisibleCombatActionPrimaryMetadata
+  readonly currentIntent: Readonly<{
+    readonly metadata: PlayerVisibleEnemyIntentMetadata
+    readonly actsBeforeNextPlayerDecision: boolean
+  }>
+  readonly postPlayerActionBleedingDamage: number
+  readonly playerHealthAfterOwnAction: number
+}
+
+export interface PlayerVisibleCombatActionOption {
+  /** Internal formal command; presentation projections must not serialize it. */
+  readonly command: CombatPlayerActionCommand
+  readonly preview: PlayerVisibleCombatActionPreview
 }
 
 export type CombatErrorCode =

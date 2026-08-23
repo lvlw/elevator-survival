@@ -1,5 +1,5 @@
 import {
-  convertCombatElapsedCtbToSceneTime,
+  evaluateCombatSceneTime,
   resolveCombatPlayerAction,
 } from '../combat'
 import { deepFreeze } from '../config'
@@ -65,9 +65,12 @@ export function buildSceneCombatPlayerActionEffects(
 
   const outcome = terminal.status
   const rules = dependencies.config.combat.sceneTimeConversion
-  const sceneTimeCost = convertCombatElapsedCtbToSceneTime(terminal.currentCtb, rules)
-  const remainingTimeAfter = Math.max(0, snapshot.remainingTime - sceneTimeCost)
-  const overtimeDebt = Math.max(0, sceneTimeCost - snapshot.remainingTime)
+  const time = evaluateCombatSceneTime(
+    terminal.currentCtb,
+    snapshot.remainingTime,
+    rules,
+  )
+  const { sceneTimeCost, remainingTimeAfter, overtimeDebt } = time
   effects.push({
     kind: 'scene-combat-time-resolved',
     encounterId: active.encounterId,

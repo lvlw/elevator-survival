@@ -26,9 +26,21 @@ export function createEnemyDefinitionCatalog(
     const actionIds = new Set<string>()
     for (const action of definition.actions) {
       if (
-        !action || Object.keys(action).sort().join('|') !== 'id|kind' ||
+        !action || Object.keys(action).sort().join('|') !== 'id|kind|playerVisible' ||
         typeof action.id !== 'string' || action.id.trim().length === 0 ||
         (action.kind !== 'scratch' && action.kind !== 'lunge-bite') ||
+        !action.playerVisible ||
+        Object.keys(action.playerVisible).sort().join('|') !==
+          'category|directDamageSeverity|mayCauseControl|mayCauseInfectionExposure|mayCauseInjury|relativeSpeed' ||
+        (action.playerVisible.category !== 'basic-attack' &&
+          action.playerVisible.category !== 'special-attack') ||
+        (action.playerVisible.relativeSpeed !== 'normal' &&
+          action.playerVisible.relativeSpeed !== 'slow') ||
+        (action.playerVisible.directDamageSeverity !== 'medium' &&
+          action.playerVisible.directDamageSeverity !== 'high') ||
+        typeof action.playerVisible.mayCauseInjury !== 'boolean' ||
+        typeof action.playerVisible.mayCauseInfectionExposure !== 'boolean' ||
+        typeof action.playerVisible.mayCauseControl !== 'boolean' ||
         actionIds.has(action.id)
       ) throw new CombatError('INVALID_ENEMY_DEFINITION', '敌人行动定义无效或重复')
       actionIds.add(action.id)
@@ -41,7 +53,10 @@ export function createEnemyDefinitionCatalog(
       ...definition,
       tags: [...definition.tags],
       weaknessTags: [...definition.weaknessTags],
-      actions: definition.actions.map((action) => ({ ...action })),
+      actions: definition.actions.map((action) => ({
+        ...action,
+        playerVisible: { ...action.playerVisible },
+      })),
       actionCycle: [...definition.actionCycle],
     }))
   }

@@ -36,6 +36,7 @@ export interface PlayerVisibleCombatSnapshot {
     healthPhase: ReturnType<typeof selectEnemyHealthPhase>
     nextActionCtb: number
     currentIntentId: string
+    currentIntentMetadata: import('./combat-types').PlayerVisibleEnemyIntentMetadata
   }>
   readonly legalCommands: readonly CombatPlayerActionCommand[]
   readonly legalActions: readonly CombatPlayerActionCommand['kind'][]
@@ -119,6 +120,7 @@ export function createPlayerVisibleCombatSnapshot(
       ),
       nextActionCtb: snapshot.enemyNextActionCtb,
       currentIntentId: currentAction.id,
+      currentIntentMetadata: currentAction.playerVisible,
     },
     legalCommands,
     legalActions,

@@ -1,7 +1,6 @@
 import { deepFreeze } from '../config'
 import {
   activatePainkiller,
-  calculateEscapeWoundCtbModifier,
   restoreHealth,
   stopBleeding,
   treatOpenWound,
@@ -24,6 +23,7 @@ import {
   createCombatPlayerActionCommand,
   createTemporaryDefenseSnapshot,
 } from './combat-validation'
+import { getCombatPlayerActionPrimaryMetadata } from './player-visible-combat-action'
 import type {
   CombatDependencies,
   CombatEffect,
@@ -71,6 +71,11 @@ export function buildCombatTransitionPlan(
   if (!isAvailable) {
     throw new CombatError('ACTION_NOT_AVAILABLE', '玩家战斗行动不可用')
   }
+  const primary = getCombatPlayerActionPrimaryMetadata(
+    snapshot,
+    command,
+    dependencies,
+  )
 
   const effects: CombatEffect[] = []
   let currentCtb = snapshot.currentCtb
@@ -141,40 +146,30 @@ export function buildCombatTransitionPlan(
   let escapeStartedAtCtb = 0
   let escapeCompletesAtCtb = 0
   if (command.kind === 'escape') {
-    const backpackWeight = calculateBackpackWeightSubtotal(
-      snapshot.backpack,
-      dependencies.physicalCatalog,
-    )
-    const load = classifyLoad(backpackWeight, dependencies.config.backpack)
-    if (!load.canCarry) {
-      throw new CombatError(
-        'CANNOT_ESCAPE_WHILE_UNCARRYABLE',
-        '无法携带状态不能开始逃跑',
-      )
+    if (primary.kind !== 'escape') {
+      throw new CombatError('INVALID_COMBAT_COMMAND', '逃跑行动元数据无效')
     }
-    const wound = calculateEscapeWoundCtbModifier(snapshot.playerCondition, {
-      escape: dependencies.config.combat.escape,
-      painkiller: dependencies.config.medical.painkiller,
-    })
-    const baseCtb = dependencies.config.combat.escape.baseCtb[load.tier]
-    actionCtb = baseCtb + wound.finalWoundCtb
+    actionCtb = primary.actionCtb
     escapeStartedAtCtb = currentCtb
-    escapeCompletesAtCtb = currentCtb + actionCtb
+    escapeCompletesAtCtb = primary.completesAtCtb
     isEscape = true
     effects.push({
       kind: 'combat-escape-preparation-locked',
       startedAtCtb: escapeStartedAtCtb,
-      loadTier: load.tier,
-      backpackWeight,
-      baseCtb,
-      untreatedOpenWoundCount: wound.untreatedOpenWoundCount,
-      rawWoundCtb: wound.rawWoundCtb,
-      painkillerReductionApplied: wound.painkillerReductionApplied,
-      finalWoundCtb: wound.finalWoundCtb,
+      loadTier: primary.loadTier,
+      backpackWeight: primary.backpackWeight,
+      baseCtb: primary.baseCtb,
+      untreatedOpenWoundCount: primary.untreatedOpenWoundCount,
+      rawWoundCtb: primary.rawWoundCtb,
+      painkillerReductionApplied: primary.painkillerReductionApplied,
+      finalWoundCtb: primary.finalWoundCtb,
       preparationCtb: actionCtb,
       completesAtCtb: escapeCompletesAtCtb,
     })
   } else if (command.kind === 'use-quick-slot-item') {
+    if (primary.kind !== 'quick-slot-item') {
+      throw new CombatError('INVALID_COMBAT_COMMAND', '快捷物品行动元数据无效')
+    }
     const item = snapshot.quickSlots.slots[command.quickSlotIndex]!
     const isBandage = item.definitionId === dependencies.bindings.bandageDefinitionId
     const source = isBandage ? 'combat-bandage' : 'combat-painkiller'
@@ -229,7 +224,7 @@ export function buildCombatTransitionPlan(
         })
         playerCondition = treatOpenWound(playerCondition, wound.id)
       }
-      actionCtb = dependencies.config.medical.bandage.combatCtb
+      actionCtb = primary.actionCtb
     } else {
       effects.push({
         kind: 'painkiller-changed',
@@ -238,36 +233,35 @@ export function buildCombatTransitionPlan(
         after: true,
       })
       playerCondition = activatePainkiller(playerCondition)
-      actionCtb = dependencies.config.medical.painkiller.combatCtb
+      actionCtb = primary.actionCtb
     }
   } else if (
     command.kind === 'metal-pipe-basic-attack' ||
     command.kind === 'metal-pipe-charged-strike'
   ) {
-    const rules = command.kind === 'metal-pipe-basic-attack'
-      ? dependencies.config.combat.metalPipe.basicAttack
-      : dependencies.config.combat.metalPipe.chargedStrike
-    consume('weapon', rules.durabilityCost, command.kind)
-    const actual = Math.min(enemyHealth, rules.damage)
+    if (primary.kind !== 'attack') {
+      throw new CombatError('INVALID_COMBAT_COMMAND', '武器行动元数据无效')
+    }
+    consume('weapon', primary.weaponDurabilityCost, command.kind)
+    const actual = Math.min(enemyHealth, primary.requestedDamage)
     effects.push({
       kind: 'enemy-health-lost',
       source: command.kind,
       healthBefore: enemyHealth,
-      requestedLoss: rules.damage,
+      requestedLoss: primary.requestedDamage,
       actualLoss: actual,
       healthAfter: enemyHealth - actual,
     })
     enemyHealth -= actual
-    actionCtb = rules.ctb
+    actionCtb = primary.actionCtb
     if (command.kind === 'metal-pipe-charged-strike') {
-      const chargedRules = dependencies.config.combat.metalPipe.chargedStrike
       effects.push({
         kind: 'enemy-action-delayed',
         enemyNextActionCtbBefore: enemyNext,
-        delay: chargedRules.enemyActionDelay,
-        enemyNextActionCtbAfter: enemyNext + chargedRules.enemyActionDelay,
+        delay: primary.enemyActionDelay,
+        enemyNextActionCtbAfter: enemyNext + primary.enemyActionDelay,
       })
-      enemyNext += chargedRules.enemyActionDelay
+      enemyNext += primary.enemyActionDelay
       effects.push({
         kind: 'combat-usage-changed',
         usage: 'metal-pipe-charged-strike',
@@ -277,20 +271,25 @@ export function buildCombatTransitionPlan(
       usage += 1
     }
   } else if (command.kind === 'temporary-attack') {
-    const rules = dependencies.config.combat.temporaryAttack
-    const actual = Math.min(enemyHealth, rules.damage)
+    if (primary.kind !== 'attack') {
+      throw new CombatError('INVALID_COMBAT_COMMAND', '临时攻击元数据无效')
+    }
+    const actual = Math.min(enemyHealth, primary.requestedDamage)
     effects.push({
       kind: 'enemy-health-lost',
       source: command.kind,
       healthBefore: enemyHealth,
-      requestedLoss: rules.damage,
+      requestedLoss: primary.requestedDamage,
       actualLoss: actual,
       healthAfter: enemyHealth - actual,
     })
     enemyHealth -= actual
-    actionCtb = rules.ctb
+    actionCtb = primary.actionCtb
   } else {
-    actionCtb = dependencies.config.combat.defend.ctb
+    if (primary.kind !== 'defend') {
+      throw new CombatError('INVALID_COMBAT_COMMAND', '防御行动元数据无效')
+    }
+    actionCtb = primary.actionCtb
     defense = createTemporaryDefenseSnapshot({
       activatedAtCtb: currentCtb,
       expiresAtPlayerActionCtb: currentCtb + actionCtb,

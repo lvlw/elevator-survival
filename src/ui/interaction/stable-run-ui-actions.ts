@@ -6,6 +6,7 @@ import {
   createWithdrawFromSceneCommand,
   getPlayerVisibleSceneNodeState,
   getPlayerVisibleSceneObstacles,
+  getPlayerVisibleSceneCombatActionOptions,
   previewMainSearchCommand,
   previewNodeItemPickupCommand,
   previewSceneMoveCommand,
@@ -13,6 +14,8 @@ import {
   type SearchIlluminationChoice,
   type SceneExplorationEffect,
 } from '../../core/scene-exploration'
+import type { PlayerVisibleCombatActionPreview } from '../../core/combat'
+import type { CombatPlayerActionCommand } from '../../core/combat'
 import type { TimedSceneActionOutcome } from '../../core/scene'
 import { previewBackpackPlacement } from '../../core/inventory'
 import {
@@ -40,6 +43,7 @@ export type StableRunUiActionKind =
   | 'scene-move'
   | 'scene-main-search'
   | 'scene-obstacle'
+  | 'scene-combat-action'
   | 'scene-withdraw'
   | 'settle-terminal-scene'
 
@@ -159,13 +163,199 @@ function timedOutcomeFacts(
 }
 
 function applicationSceneCommand(
-  kind: 'scene-move' | 'scene-main-search' | 'scene-node-item-pickup' | 'scene-withdraw' | 'scene-obstacle',
+  kind: 'scene-move' | 'scene-main-search' | 'scene-node-item-pickup' | 'scene-withdraw' | 'scene-obstacle' | 'scene-combat-action',
   command: unknown,
 ): StableRunApplicationCommand {
   return createStableRunApplicationCommand({
     kind: 'scene',
     command: { kind, command },
   })
+}
+
+function woundKindName(kind: 'laceration' | 'puncture' | 'bite'): string {
+  return kind === 'laceration' ? '撕裂伤' : kind === 'puncture' ? '穿刺伤' : '咬伤'
+}
+
+function combatActionLabel(
+  command: CombatPlayerActionCommand,
+  preview: PlayerVisibleCombatActionPreview,
+): string {
+  const { primary } = preview
+  if (command.kind === 'metal-pipe-basic-attack') return '挥击'
+  if (command.kind === 'metal-pipe-charged-strike') return '蓄力击打'
+  if (command.kind === 'temporary-attack') return '临时攻击'
+  if (command.kind === 'defend') return '防御'
+  if (command.kind === 'escape') return '逃跑'
+  if (primary.kind !== 'quick-slot-item') return '使用快捷物品'
+  const item = primary.itemKind === 'bandage' ? '绷带' : '止痛药'
+  return primary.targetWound
+    ? `使用${item} · 处理${woundKindName(primary.targetWound.kind)} ${primary.targetWound.ordinal}`
+    : `使用${item}`
+}
+
+function combatPreviewFacts(
+  preview: PlayerVisibleCombatActionPreview,
+): readonly StableRunUiActionPreviewFact[] {
+  const facts: StableRunUiActionPreviewFact[] = [
+    { label: '行动 CTB', value: String(preview.primary.actionCtb) },
+  ]
+  const primary = preview.primary
+  if (primary.kind === 'attack') {
+    facts.push({ label: '请求伤害', value: String(primary.requestedDamage) })
+    if (
+      primary.weaponDurabilityBefore !== null &&
+      primary.weaponDurabilityAfter !== null
+    ) facts.push({
+      label: '武器耐久',
+      value: `${primary.weaponDurabilityBefore} → ${primary.weaponDurabilityAfter}`,
+    })
+    if (primary.enemyActionDelay > 0) facts.push({
+      label: '敌人行动延后',
+      value: String(primary.enemyActionDelay),
+    })
+  } else if (primary.kind === 'defend') {
+    facts.push(
+      { label: '临时防御', value: '持续至下一次玩家行动前' },
+      { label: '可处理攻击', value: '一次符合条件的敌人直接攻击' },
+      { label: '感染暴露', value: '不负责阻止' },
+    )
+  } else if (primary.kind === 'quick-slot-item') {
+    facts.push(
+      { label: '快捷栏槽位', value: String(primary.quickSlotIndex + 1) },
+      { label: '消耗', value: '真实物品单位 ×1；使用后槽位为空' },
+    )
+    if (primary.healthRecovery > 0) facts.push({
+      label: '生命恢复',
+      value: String(primary.healthRecovery),
+    })
+    if (primary.stopsBleeding) facts.push({ label: '止血', value: '是' })
+    if (primary.targetWound) facts.push({
+      label: '处理伤口',
+      value: `${woundKindName(primary.targetWound.kind)} ${primary.targetWound.ordinal}`,
+    })
+    if (primary.activatesPainkiller) facts.push({ label: '镇痛', value: '生效' })
+  } else {
+    facts.push(
+      { label: '背包负重档位', value: loadTierName(primary.loadTier) },
+      { label: '基础准备 CTB', value: String(primary.baseCtb) },
+      { label: '伤口追加 CTB', value: String(primary.rawWoundCtb) },
+      { label: '镇痛抵消 CTB', value: String(primary.painkillerReductionApplied) },
+      { label: '最终伤口追加', value: String(primary.finalWoundCtb) },
+      { label: '最终准备 CTB', value: String(primary.actionCtb) },
+      { label: '脱离完成 CTB', value: String(primary.completesAtCtb) },
+    )
+  }
+  facts.push(
+    { label: '自身行动后流血损失', value: String(preview.postPlayerActionBleedingDamage) },
+    { label: '自身行动阶段后生命', value: String(preview.playerHealthAfterOwnAction) },
+    {
+      label: '当前公开意图',
+      value: preview.currentIntent.actsBeforeNextPlayerDecision
+        ? '将在下一次玩家决策（或脱离完成）前执行'
+        : '不会在下一次玩家决策（或脱离完成）前执行',
+    },
+  )
+  return Object.freeze(facts)
+}
+
+type PlayerVisibleSceneCombatOption = ReturnType<
+  typeof getPlayerVisibleSceneCombatActionOptions
+>[number]
+
+function combatTerminalFacts(
+  terminal: NonNullable<PlayerVisibleSceneCombatOption['terminal']>,
+): readonly StableRunUiActionPreviewFact[] {
+  const facts: StableRunUiActionPreviewFact[] = [
+    { label: '战斗结束累计 CTB', value: String(terminal.elapsedCtb) },
+    { label: '战斗场景时间', value: String(terminal.sceneTimeCost) },
+    { label: '结算后剩余时间', value: String(terminal.remainingTimeAfter) },
+  ]
+  if (terminal.overtimeDebt > 0) {
+    facts.push({ label: '超时债务', value: String(terminal.overtimeDebt) })
+  }
+  if (terminal.returnTime !== null) {
+    facts.push({ label: '预计返程时间', value: String(terminal.returnTime) })
+  }
+  if (
+    terminal.forcedReturnBaseDamage !== null &&
+    terminal.forcedReturnTotalDamageMin !== null &&
+    terminal.forcedReturnTotalDamageMax !== null
+  ) {
+    facts.push(
+      { label: '强制返程基础损耗', value: String(terminal.forcedReturnBaseDamage) },
+      {
+        label: '强制返程流血追加',
+        value: terminal.forcedReturnBleedingDamageMin === terminal.forcedReturnBleedingDamageMax
+          ? String(terminal.forcedReturnBleedingDamageMin)
+          : `${terminal.forcedReturnBleedingDamageMin}–${terminal.forcedReturnBleedingDamageMax}`,
+      },
+      {
+        label: '强制返程总损耗',
+        value: terminal.forcedReturnTotalDamageMin === terminal.forcedReturnTotalDamageMax
+          ? String(terminal.forcedReturnTotalDamageMin)
+          : `${terminal.forcedReturnTotalDamageMin}–${terminal.forcedReturnTotalDamageMax}`,
+      },
+    )
+  }
+  facts.push({ label: '死亡可能性', value: terminal.deathPossible ? '可能' : '未发现' })
+  return Object.freeze(facts)
+}
+
+function createCombatActions(
+  phase: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  dependencies: StableRunUiPresentationDependencies,
+): readonly StableRunUiAction[] {
+  const scene = phase.payload.scene
+  if (scene.status !== 'combat') return Object.freeze([])
+  const identity = getStableRunPhaseIdentity(phase)
+  const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
+  const runtime = getRunSceneRuntime(phase.payload, rules.sceneLaunch)
+  return Object.freeze(getPlayerVisibleSceneCombatActionOptions(
+    scene,
+    runtime.dependencies,
+  ).map((option) => {
+    const { command, preview, terminal } = option
+    const label = combatActionLabel(command, preview)
+    const target = command.kind === 'use-quick-slot-item'
+      ? `:${command.quickSlotIndex}:${command.targetOpenWoundId ?? 'none'}`
+      : ''
+    const warnings: string[] = []
+    if (
+      preview.primary.kind === 'attack' &&
+      preview.primary.weaponDurabilityBefore !== null &&
+      preview.primary.weaponDurabilityAfter === 0
+    ) warnings.push('本次行动后武器将损坏。')
+    if (preview.currentIntent.actsBeforeNextPlayerDecision) {
+      warnings.push('当前公开意图将在你下次决策或完成脱离前执行。')
+    }
+    const terminalWarnings = terminal === null
+      ? []
+      : [
+          ...(terminal.overtimeDebt > 0 ? ['战斗若在本次行动结束，将跨越场景时间零点。'] : []),
+          ...(terminal.deathPossible ? ['该终局分支存在死亡可能。'] : []),
+        ]
+    const branches = terminal?.conditional
+      ? [{
+          title: '若本次攻击使敌人失去能力',
+          facts: combatTerminalFacts(terminal),
+          warnings: terminalWarnings,
+        }]
+      : []
+    return Object.freeze({
+      id: `scene-combat-action:${command.kind}${target}`,
+      kind: 'scene-combat-action' as const,
+      label,
+      command: applicationSceneCommand('scene-combat-action', command),
+      preview: freezePreview(
+        `确认${label}`,
+        terminal !== null && !terminal.conditional
+          ? [...combatPreviewFacts(preview), ...combatTerminalFacts(terminal)]
+          : combatPreviewFacts(preview),
+        [...warnings, ...(terminal !== null && !terminal.conditional ? terminalWarnings : [])],
+        branches,
+      ),
+    })
+  }))
 }
 
 function riskTierName(
@@ -601,6 +791,7 @@ export function createStableRunUiInteractionModel(
       )
     : phase.kind === 'scene-session'
       ? [
+          ...createCombatActions(phase, dependencies),
           ...createMoveActions(phase, dependencies),
           ...createSearchActions(phase, dependencies),
           ...createObstacleActions(phase, dependencies),

@@ -81,6 +81,53 @@ function moveToEmergencyHall() {
   }
 }
 
+function combatPhaseWithPipeState(current: number, backpackSpare = false, remainingTime?: number) {
+  const scenario = createHospitalDevelopmentPreviewScenario('combat')
+  const phase = scenario.store.getState().phase
+  if (phase.kind !== 'scene-session') throw new Error('expected combat Scene')
+  const runtime = getRunSceneRuntime(phase.payload, hospitalSceneLaunchDependencies)
+  const pipe = phase.payload.scene.equipment.weapon
+  if (!pipe) throw new Error('expected equipped pipe')
+  const spare = item('ui-interaction-spare-pipe', HOSPITAL_ITEM_IDS.metalPipe)
+  const backpack = backpackSpare
+    ? createBackpackSnapshot({
+        width: runtime.dependencies.config.backpack.width,
+        height: runtime.dependencies.config.backpack.height,
+        items: [spare],
+        placements: [{ instanceId: spare.instanceId, x: 0, y: 0, rotated: false }],
+      }, hospitalItemCatalog)
+    : phase.payload.scene.backpack
+  const states = phase.payload.scene.itemStates.states.map((state) =>
+    state.instanceId === pipe.instanceId
+      ? { ...state, resource: { kind: 'durability' as const, current } }
+      : state)
+  if (backpackSpare) states.push(createFullItemState(spare, hospitalItemResourceCatalog))
+  const scene = createSceneExplorationSnapshot({
+    ...phase.payload.scene,
+    remainingTime: remainingTime ?? phase.payload.scene.remainingTime,
+    backpack,
+    itemStates: { states },
+    combatState: {
+      ...phase.payload.scene.combatState,
+      encounters: phase.payload.scene.combatState.encounters.map((encounter) =>
+        encounter.kind === 'active'
+          ? {
+              ...encounter,
+              combat: {
+                ...encounter.combat,
+                backpack,
+                itemStates: { states },
+              },
+            }
+          : encounter),
+    },
+  }, runtime.dependencies)
+  return {
+    kind: 'scene-session' as const,
+    payload: createRunSceneSessionSnapshot({ context: phase.payload.context, scene }, hospitalSceneLaunchDependencies),
+  }
+}
+
 function withEquippedItem(
   phase: ReturnType<typeof moveToEmergencyHall>,
   slot: 'weapon' | 'armor' | 'utility',
@@ -348,5 +395,95 @@ describe('stable Run UI interaction model', () => {
       command: { kind: 'scene-node-item-pickup', command: { quantity: 1, placement: { x: 0, y: 0, rotated: false } } },
     })
     expect(phase.payload.scene.remainingTime).toBe(timeBefore)
+  })
+
+  it('projects all formal combat commands through player-safe metadata only', () => {
+    const scenario = createHospitalDevelopmentPreviewScenario('combat')
+    const phase = scenario.store.getState().phase
+    const before = structuredClone(phase)
+    const interaction = createStableRunUiInteractionModel(phase, dependencies)
+    expect(interaction.actions.map(({ label }) => label)).toEqual(expect.arrayContaining([
+      '挥击',
+      '蓄力击打',
+      '防御',
+      '逃跑',
+      '使用绷带 · 处理撕裂伤 1',
+    ]))
+    expect(interaction.actions.every(({ kind }) => kind === 'scene-combat-action')).toBe(true)
+    const charged = interaction.actions.find(({ label }) => label === '蓄力击打')!
+    expect(charged.preview.facts).toEqual(expect.arrayContaining([
+      { label: '行动 CTB', value: '180' },
+      { label: '请求伤害', value: '6' },
+      { label: '武器耐久', value: '6 → 3' },
+      { label: '敌人行动延后', value: '200' },
+    ]))
+    const serialized = JSON.stringify(interaction)
+    for (const hidden of ['riskPercent', 'roll', 'streamId', 'drawIndex', 'succeeded', 'preparedOutcome', 'nextCycleIndex', 'resolvedActionCount']) {
+      expect(serialized).not.toContain(hidden)
+    }
+    expect(phase).toEqual(before)
+    expect(scenario.storage.writes).toBe(0)
+  })
+
+  it('allows DEC-036 charged break use and warns for durability 1 → 0', () => {
+    const interaction = createStableRunUiInteractionModel(
+      combatPhaseWithPipeState(1),
+      dependencies,
+    )
+    const charged = interaction.actions.find(({ label }) => label === '蓄力击打')
+    expect(charged?.preview.facts).toContainEqual({ label: '武器耐久', value: '1 → 0' })
+    expect(charged?.preview.warnings).toContain('本次行动后武器将损坏。')
+  })
+
+  it('uses DEC-037 slot-only temporary attack eligibility without touching a backpack spare', () => {
+    const phase = combatPhaseWithPipeState(0, true)
+    const interaction = createStableRunUiInteractionModel(phase, dependencies)
+    expect(interaction.actions.map(({ label }) => label)).toContain('临时攻击')
+    expect(interaction.actions.map(({ label }) => label)).not.toContain('挥击')
+    expect(interaction.actions.map(({ label }) => label)).not.toContain('蓄力击打')
+    const temporary = interaction.actions.find(({ label }) => label === '临时攻击')!
+    expect(temporary.preview.facts).toEqual(expect.arrayContaining([
+      { label: '行动 CTB', value: '140' },
+      { label: '请求伤害', value: '2' },
+    ]))
+    expect(temporary.preview.facts.some(({ label }) => label === '武器耐久')).toBe(false)
+  })
+
+  it('projects a near-zero attack terminal as a conditional branch without declaring victory', () => {
+    const interaction = createStableRunUiInteractionModel(
+      combatPhaseWithPipeState(6, false, 5),
+      dependencies,
+    )
+    const basic = interaction.actions.find(({ label }) => label === '挥击')!
+    expect(basic.preview.branches).toHaveLength(1)
+    expect(basic.preview.branches[0]).toEqual(expect.objectContaining({
+      title: '若本次攻击使敌人失去能力',
+      facts: expect.arrayContaining([
+        { label: '战斗场景时间', value: '10' },
+        { label: '结算后剩余时间', value: '0' },
+        { label: '超时债务', value: '5' },
+      ]),
+    }))
+    expect(basic.preview.facts).not.toContainEqual(expect.objectContaining({ label: '敌人剩余生命' }))
+    expect(JSON.stringify(basic.preview)).not.toContain('enemy.currentHealth')
+  })
+
+  it('projects the formal near-zero escape time, return loss range, and death possibility', () => {
+    const interaction = createStableRunUiInteractionModel(
+      combatPhaseWithPipeState(6, false, 5),
+      dependencies,
+    )
+    const escape = interaction.actions.find(({ label }) => label === '逃跑')!
+    expect(escape.preview.branches).toHaveLength(0)
+    expect(escape.preview.facts).toEqual(expect.arrayContaining([
+      { label: '战斗场景时间', value: '10' },
+      { label: '结算后剩余时间', value: '0' },
+      { label: '超时债务', value: '5' },
+      expect.objectContaining({ label: '预计返程时间' }),
+      expect.objectContaining({ label: '强制返程基础损耗' }),
+      expect.objectContaining({ label: '强制返程流血追加' }),
+      expect.objectContaining({ label: '强制返程总损耗' }),
+      expect.objectContaining({ label: '死亡可能性' }),
+    ]))
   })
 })

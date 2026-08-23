@@ -27,3 +27,23 @@ export function convertCombatElapsedCtbToSceneTime(
     Math.ceil(elapsedCtb / rules.ctbPerStep) * rules.sceneTimePerStep,
   )
 }
+
+export function evaluateCombatSceneTime(
+  elapsedCtb: number,
+  remainingTime: number,
+  rules: CombatSceneTimeConversionRules,
+): Readonly<{
+  sceneTimeCost: number
+  remainingTimeAfter: number
+  overtimeDebt: number
+}> {
+  if (!Number.isSafeInteger(remainingTime) || remainingTime < 0) {
+    throw new CombatError('INVALID_COMBAT_SNAPSHOT', '场景剩余时间必须是非负安全整数')
+  }
+  const sceneTimeCost = convertCombatElapsedCtbToSceneTime(elapsedCtb, rules)
+  return Object.freeze({
+    sceneTimeCost,
+    remainingTimeAfter: Math.max(0, remainingTime - sceneTimeCost),
+    overtimeDebt: Math.max(0, sceneTimeCost - remainingTime),
+  })
+}

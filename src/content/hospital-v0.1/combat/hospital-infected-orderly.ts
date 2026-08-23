@@ -21,8 +21,30 @@ export const hospitalInfectedOrderlyDefinition = {
   tags: ['infected', 'humanoid'],
   weaknessTags: ['blunt-control'],
   actions: [
-    { id: HOSPITAL_ENEMY_ACTION_IDS.orderlyScratch, kind: 'scratch' },
-    { id: HOSPITAL_ENEMY_ACTION_IDS.orderlyLungeBite, kind: 'lunge-bite' },
+    {
+      id: HOSPITAL_ENEMY_ACTION_IDS.orderlyScratch,
+      kind: 'scratch',
+      playerVisible: {
+        category: 'basic-attack',
+        relativeSpeed: 'normal',
+        directDamageSeverity: 'medium',
+        mayCauseInjury: true,
+        mayCauseInfectionExposure: false,
+        mayCauseControl: false,
+      },
+    },
+    {
+      id: HOSPITAL_ENEMY_ACTION_IDS.orderlyLungeBite,
+      kind: 'lunge-bite',
+      playerVisible: {
+        category: 'special-attack',
+        relativeSpeed: 'slow',
+        directDamageSeverity: 'high',
+        mayCauseInjury: true,
+        mayCauseInfectionExposure: true,
+        mayCauseControl: false,
+      },
+    },
   ],
   actionCycle: [
     HOSPITAL_ENEMY_ACTION_IDS.orderlyScratch,

@@ -55,6 +55,7 @@ import {
 import {
   createStableRunLifecycleCommand,
   executeStableRunLifecycleCommand,
+  getStableRunLifecycleCommandAvailability,
   StableRunLifecycleError,
   type StableRunLifecycleCommand,
 } from '.'
@@ -421,6 +422,18 @@ describe('strict Stable Run lifecycle command routing', () => {
       expect(tracked.backing.read()).toBe(saved)
     },
   )
+
+  it.each([
+    ['safe-returned', 'return-to-hub'],
+    ['forced-returned', 'return-to-hub'],
+    ['dead', 'run-failure'],
+  ] as const)('uses the lifecycle selector as the sole terminal route truth for %s', (status, settlementOutcome) => {
+    const phase = { kind: 'scene-session' as const, payload: terminalSession(launch(), status) }
+    expect(getStableRunLifecycleCommandAvailability(
+      phase,
+      { kind: 'settle-terminal-scene' },
+    )).toEqual({ canExecute: true, settlementOutcome })
+  })
 
   it.each([
     ['non-safety safe return', () => {

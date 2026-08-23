@@ -75,6 +75,13 @@ export interface PlayerVisibleLoadoutViewModel {
       width: number
       height: number
     }>[]
+    occupiedCells: readonly Readonly<{
+      x: number
+      y: number
+      name: string
+      quantity: number
+      isAnchor: boolean
+    }>[]
   }>
   readonly equipment: Readonly<{
     weapon: PlayerVisibleItemViewModel | null
@@ -227,9 +234,27 @@ function loadoutView(
       height: dimensions.height,
     })
   })
-  // This invokes the official geometry owner before projecting the read-only
-  // grid; it deliberately leaves all instance identities behind.
-  getOccupiedCells(input.backpack, runtime.dependencies.physicalCatalog)
+  const placementById = new Map(
+    input.backpack.placements.map((placement) => [placement.instanceId, placement]),
+  )
+  const occupiedCells = getOccupiedCells(
+    input.backpack,
+    runtime.dependencies.physicalCatalog,
+  ).map((cell) => {
+    const item = itemById.get(cell.instanceId)
+    const placement = placementById.get(cell.instanceId)
+    if (!item || !placement) {
+      throw new Error('正式背包占格引用未知物品或摆放')
+    }
+    const visible = itemView(item, input.itemStates, runtime, labels)
+    return frozen({
+      x: cell.x,
+      y: cell.y,
+      name: visible.name,
+      quantity: visible.quantity,
+      isAnchor: placement.x === cell.x && placement.y === cell.y,
+    })
+  })
   const backpackWeight = calculateBackpackWeightSubtotal(
     input.backpack,
     runtime.dependencies.physicalCatalog,
@@ -243,6 +268,7 @@ function loadoutView(
       width: input.backpack.width,
       height: input.backpack.height,
       items: frozen(gridItems),
+      occupiedCells: frozen(occupiedCells),
     }),
     equipment: frozen({ weapon: map(input.equipment.weapon), armor: map(input.equipment.armor), utility: map(input.equipment.utility) }),
     quickSlots: frozen(input.quickSlots.slots.map((item) => map(item))),

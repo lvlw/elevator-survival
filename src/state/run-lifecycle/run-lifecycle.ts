@@ -152,10 +152,7 @@ export function executeStableRunLifecycleCommand(
       if (command.kind !== 'settle-terminal-scene') {
         return unavailable('Scene Session只能执行终止场景结算生命周期命令')
       }
-      if (
-        currentPhase.payload.scene.status === 'safe-returned' ||
-        currentPhase.payload.scene.status === 'forced-returned'
-      ) {
+      if (availability.settlementOutcome === 'return-to-hub') {
         const result = resolveRunSceneSessionReturn(
           currentPhase.payload,
           dependencies.sceneLaunch,
@@ -165,7 +162,7 @@ export function executeStableRunLifecycleCommand(
           phase: { kind: 'current-day-hub', payload: result.currentDayHub },
         }
       }
-      if (currentPhase.payload.scene.status === 'dead') {
+      if (availability.settlementOutcome === 'run-failure') {
         const result = resolveRunFailureFromSceneSession(
           currentPhase.payload,
           dependencies.runTermination,

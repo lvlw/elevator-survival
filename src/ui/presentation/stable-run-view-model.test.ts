@@ -91,6 +91,40 @@ function nearZeroEmergencyHallScenePhase(): StableRunPhase {
   }
 }
 
+function fireAxeBackpackScenePhase(): StableRunPhase {
+  const phase = scenePhase()
+  if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+  const fireAxe = item('ui-fire-axe', HOSPITAL_ITEM_IDS.fireAxe)
+  const runtime = getRunSceneRuntime(phase.payload, hospitalSceneLaunchDependencies)
+  const backpack = createBackpackSnapshot({
+    ...phase.payload.scene.backpack,
+    items: [...phase.payload.scene.backpack.items, fireAxe],
+    placements: [...phase.payload.scene.backpack.placements, {
+      instanceId: fireAxe.instanceId,
+      x: 0,
+      y: 0,
+      rotated: false,
+    }],
+  }, hospitalItemCatalog)
+  const scene = createSceneExplorationSnapshot({
+    ...phase.payload.scene,
+    backpack,
+    itemStates: {
+      states: [...phase.payload.scene.itemStates.states, createFullItemState(
+        fireAxe,
+        hospitalItemResourceCatalog,
+      )],
+    },
+  }, runtime.dependencies)
+  return {
+    kind: 'scene-session',
+    payload: createRunSceneSessionSnapshot({
+      context: phase.payload.context,
+      scene,
+    }, hospitalSceneLaunchDependencies),
+  }
+}
+
 function combatPhase(): StableRunPhase {
   const session = resolveSceneLaunch(hub(), { kind: 'launch-main-scene' }, hospitalSceneLaunchDependencies).session
   const runtime = hospitalSceneLaunchDependencies.content.createRuntime(session.context.runReturnCarryForward.continuity.runIdentity.seed, session.scene.sceneInstanceId)
@@ -146,6 +180,21 @@ describe('stable Run player-visible ViewModel', () => {
     expect(model.scene.returnEstimate).toBeGreaterThan(0)
     expect(model.scene.returnAfterWithdrawalTime).toBe(0)
     expect(model.scene.returnRisk).toBe('forced-returned')
+  })
+
+  it('projects every formal 2×3 fire-axe footprint cell without internal item identity', () => {
+    const model = createStableRunPlayerViewModel(fireAxeBackpackScenePhase(), dependencies)
+    if (model.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(model.scene.loadout.backpackGrid.occupiedCells).toEqual([
+      { x: 0, y: 0, name: '消防斧', quantity: 1, isAnchor: true },
+      { x: 1, y: 0, name: '消防斧', quantity: 1, isAnchor: false },
+      { x: 0, y: 1, name: '消防斧', quantity: 1, isAnchor: false },
+      { x: 1, y: 1, name: '消防斧', quantity: 1, isAnchor: false },
+      { x: 0, y: 2, name: '消防斧', quantity: 1, isAnchor: false },
+      { x: 1, y: 2, name: '消防斧', quantity: 1, isAnchor: false },
+    ])
+    expect(JSON.stringify(model.scene.loadout.backpackGrid)).not.toContain('ui-fire-axe')
+    expect(JSON.stringify(model.scene.loadout.backpackGrid)).not.toContain(HOSPITAL_ITEM_IDS.fireAxe)
   })
 
   it('only presents currently traversable emergency-hall edges, not a player-known map', () => {

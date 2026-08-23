@@ -157,6 +157,7 @@ body {
 }
 
 button.grid-cell { cursor: pointer; }
+.occupied-cell { border-color: #788b9b; background: #253746; }
 button.grid-cell:hover,
 .candidate-cell { border-color: #9fc7b5; background: #294236; }
 

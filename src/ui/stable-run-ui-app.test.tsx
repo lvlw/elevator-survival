@@ -271,6 +271,36 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('主要搜索 · 使用手电筒')
   })
 
+  it('renders every formal multi-cell backpack footprint and lets a pickup draft select a non-anchor cell', () => {
+    const fireAxe = item('ui-grid-fire-axe', HOSPITAL_ITEM_IDS.fireAxe)
+    const ground = item('ui-grid-metal-parts', HOSPITAL_ITEM_IDS.metalParts)
+    const session = withGroundItem(
+      withBackpackItem(sceneSessionAtEmergencyHall(), fireAxe, 0, 0),
+      ground,
+    )
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: session },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    expect(container.querySelectorAll('[data-occupied="true"]')).toHaveLength(6)
+    expect(container.querySelectorAll('[data-occupied="false"]')).not.toHaveLength(0)
+    expect(container.textContent).toContain('消防斧 · 占用')
+
+    act(() => { button(container, '拾取 金属零件').click() })
+    const dialog = container.querySelector('[role="dialog"]')
+    if (!(dialog instanceof HTMLElement)) throw new Error('expected pickup dialog')
+    const occupiedCells = dialog.querySelectorAll<HTMLButtonElement>('button[data-occupied="true"]')
+    act(() => { occupiedCells[3]!.click() })
+    expect(container.textContent).toContain('目标格：2, 2')
+    expect(button(container, '确认拾取').disabled).toBe(true)
+    expect(storage.writes).toBe(0)
+  })
+
   it('wires Hub launch, Scene move, and flashlight main search through exactly one Store dispatch each', () => {
     const storage = new MemoryStorage()
     const store = createStableRunStore({ initialPhase: createHubPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })

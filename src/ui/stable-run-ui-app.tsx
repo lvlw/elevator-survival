@@ -86,18 +86,29 @@ function BackpackGrid({
   candidateCells?: readonly Readonly<{ x: number; y: number }>[]
 }>) {
   const candidate = new Set(candidateCells.map(({ x, y }) => `${x},${y}`))
-  const anchorItems = new Map(grid.items.map((item) => [`${item.x},${item.y}`, item]))
+  const occupiedByCell = new Map(
+    grid.occupiedCells.map((cell) => [`${cell.x},${cell.y}`, cell]),
+  )
   const cells = Array.from({ length: grid.width * grid.height }, (_, index) => ({
     x: index % grid.width,
     y: Math.floor(index / grid.width),
   }))
   return <div className="backpack-grid" style={{ gridTemplateColumns: `repeat(${grid.width}, minmax(0, 1fr))` }} aria-label={`背包网格 ${grid.width}×${grid.height}`}>
     {cells.map(({ x, y }) => {
-      const item = anchorItems.get(`${x},${y}`)
-      const label = item ? `${item.name} ×${item.quantity}` : `格子 ${x + 1},${y + 1}`
+      const occupied = occupiedByCell.get(`${x},${y}`)
+      const label = occupied
+        ? occupied.isAnchor
+          ? `${occupied.name} ×${occupied.quantity}`
+          : `${occupied.name} · 占用`
+        : `格子 ${x + 1},${y + 1}`
+      const className = [
+        'grid-cell',
+        occupied ? 'occupied-cell' : '',
+        candidate.has(`${x},${y}`) ? 'candidate-cell' : '',
+      ].filter(Boolean).join(' ')
       return onAnchor
-        ? <button key={`${x},${y}`} type="button" className={candidate.has(`${x},${y}`) ? 'grid-cell candidate-cell' : 'grid-cell'} onClick={() => onAnchor(x, y)}>{label}</button>
-        : <span key={`${x},${y}`} className={candidate.has(`${x},${y}`) ? 'grid-cell candidate-cell' : 'grid-cell'}>{label}</span>
+        ? <button key={`${x},${y}`} type="button" className={className} data-occupied={occupied ? 'true' : 'false'} onClick={() => onAnchor(x, y)}>{label}</button>
+        : <span key={`${x},${y}`} className={className} data-occupied={occupied ? 'true' : 'false'}>{label}</span>
     })}
   </div>
 }

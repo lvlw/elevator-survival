@@ -224,9 +224,9 @@ function combatPreviewFacts(
       { label: '快捷栏槽位', value: String(primary.quickSlotIndex + 1) },
       { label: '消耗', value: '真实物品单位 ×1；使用后槽位为空' },
     )
-    if (primary.healthRecovery > 0) facts.push({
+    if (primary.requestedHealthRecovery > 0) facts.push({
       label: '生命恢复',
-      value: String(primary.healthRecovery),
+      value: String(primary.actualHealthRecovery),
     })
     if (primary.stopsBleeding) facts.push({ label: '止血', value: '是' })
     if (primary.targetWound) facts.push({
@@ -244,17 +244,34 @@ function combatPreviewFacts(
       { label: '最终准备 CTB', value: String(primary.actionCtb) },
       { label: '脱离完成 CTB', value: String(primary.completesAtCtb) },
     )
+    const escape = preview.escapeConsequences
+    if (escape) facts.push(
+      {
+        label: '脱离完成流血损失',
+        value: escape.postPlayerActionBleedingDamageMin ===
+          escape.postPlayerActionBleedingDamageMax
+          ? String(escape.postPlayerActionBleedingDamageMin)
+          : `${escape.postPlayerActionBleedingDamageMin}–${escape.postPlayerActionBleedingDamageMax}`,
+      },
+      {
+        label: '脱离完成后生命',
+        value: escape.playerHealthAfterCompletionMin ===
+          escape.playerHealthAfterCompletionMax
+          ? String(escape.playerHealthAfterCompletionMin)
+          : `${escape.playerHealthAfterCompletionMin}–${escape.playerHealthAfterCompletionMax}`,
+      },
+    )
   }
-  facts.push(
+  if (primary.kind !== 'escape') facts.push(
     { label: '自身行动后流血损失', value: String(preview.postPlayerActionBleedingDamage) },
     { label: '自身行动阶段后生命', value: String(preview.playerHealthAfterOwnAction) },
-    {
-      label: '当前公开意图',
-      value: preview.currentIntent.actsBeforeNextPlayerDecision
-        ? '将在下一次玩家决策（或脱离完成）前执行'
-        : '不会在下一次玩家决策（或脱离完成）前执行',
-    },
   )
+  facts.push({
+    label: '当前公开意图',
+    value: preview.currentIntent.actsBeforeNextPlayerDecision
+      ? '将在下一次玩家决策（或脱离完成）前执行'
+      : '不会在下一次玩家决策（或脱离完成）前执行',
+  })
   return Object.freeze(facts)
 }
 

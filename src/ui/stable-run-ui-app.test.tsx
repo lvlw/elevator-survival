@@ -267,6 +267,13 @@ function combatPhase(options: Readonly<{
   quickPainkiller?: boolean
   alerted?: boolean
   healthy?: boolean
+  bleeding?: boolean
+  openWounds?: readonly Readonly<{
+    id: string
+    kind: 'laceration' | 'puncture' | 'bite'
+    treatment: 'untreated' | 'treated'
+  }>[]
+  enemyNextActionCtb?: number
 }> = {}) {
   const scenario = createHospitalDevelopmentPreviewScenario('combat')
   const phase = scenario.store.getState().phase
@@ -312,11 +319,11 @@ function combatPhase(options: Readonly<{
   if (options.quickPainkiller) {
     states.push(createFullItemState(painkiller, hospitalItemResourceCatalog))
   }
-  const condition = options.healthy
+  const condition = options.healthy || options.bleeding !== undefined || options.openWounds
     ? createPlayerCondition({
-        currentHealth: config.combat.player.maxHealth,
-        bleeding: false,
-        openWounds: [],
+        currentHealth: options.currentHealth ?? config.combat.player.maxHealth,
+        bleeding: options.bleeding ?? false,
+        openWounds: options.openWounds ?? [],
         minorContusions: 0,
         painkillerActive: false,
         pendingInfectionExposures: 0,
@@ -329,7 +336,8 @@ function combatPhase(options: Readonly<{
       }, config.combat.player)
   const combat = {
     ...active.combat,
-    enemyNextActionCtb: options.alerted ? 50 : active.combat.enemyNextActionCtb,
+    enemyNextActionCtb: options.enemyNextActionCtb ??
+      (options.alerted ? 50 : active.combat.enemyNextActionCtb),
     playerCondition: condition,
     backpack,
     quickSlots,
@@ -1443,6 +1451,54 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).not.toContain(label)
   })
 
+  it('uses one shared same-kind wound ordinal in status and the bandage target label', () => {
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: combatPhase({
+        bleeding: true,
+        openWounds: [
+          { id: 'treated-laceration-a', kind: 'laceration', treatment: 'treated' },
+          { id: 'untreated-laceration-b', kind: 'laceration', treatment: 'untreated' },
+        ],
+      }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    expect(container.textContent).toContain('撕裂伤 1 · 已处理')
+    expect(container.textContent).toContain('撕裂伤 2 · 未处理')
+    expect(container.textContent).toContain('使用绷带 · 处理撕裂伤 2')
+    expect(container.innerHTML).not.toContain('treated-laceration-a')
+    expect(container.innerHTML).not.toContain('untreated-laceration-b')
+  })
+
+  it('previews zero actual bandage healing at full health while keeping wound treatment legal', () => {
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: combatPhase({
+        bleeding: true,
+        openWounds: [{ id: 'full-health-wound', kind: 'laceration', treatment: 'untreated' }],
+      }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '使用绷带 · 处理撕裂伤 1').click() })
+    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
+    expect(preview).toContain('生命恢复0')
+    expect(preview).not.toContain('生命恢复1')
+    act(() => { button(container, '确认执行').click() })
+    const phase = store.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(phase.payload.scene.condition.currentHealth)
+      .toBeLessThanOrEqual(config.combat.player.maxHealth)
+    expect(phase.payload.scene.condition.openWounds[0]?.treatment).toBe('treated')
+  })
+
   it('uses only the real quick-slot bandage and never refills it from the backpack', () => {
     const storage = new MemoryStorage()
     const store = createStableRunStore({
@@ -1581,6 +1637,7 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('最终准备 CTB90')
     act(() => { button(container, '确认执行').click() })
     expect(storage.writes).toBe(1)
+    expect(container.textContent).toContain('实际 Scene 时间结算10')
     let phase = store.getState().phase
     if (phase.kind !== 'scene-session') throw new Error('expected Scene')
     expect(phase.payload.scene.status).toBe('active')
@@ -1660,7 +1717,49 @@ describe('StableRunUiApp', () => {
     expect(phase.kind).toBe('scene-session')
     if (phase.kind !== 'scene-session') throw new Error('expected terminal Scene')
     expect(['forced-returned', 'dead']).toContain(phase.payload.scene.status)
+    expect(container.textContent).toContain('实际 Scene 时间结算10')
     expect(container.textContent).not.toContain('电梯中枢')
     expect(container.textContent).not.toContain('Run 已终止')
+  })
+
+  it('shows the seed-independent new-bleeding escape range without a false death warning', () => {
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: combatPhase({ healthy: true, remainingTime: 5 }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '逃跑').click() })
+    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
+    expect(preview).toContain('脱离完成流血损失0–1')
+    expect(preview).toContain('脱离完成后生命')
+    expect(preview).toContain('强制返程流血追加0–')
+    expect(preview).toContain('死亡可能性未发现')
+    expect(preview).not.toContain('riskPercent')
+    expect(storage.writes).toBe(0)
+  })
+
+  it('shows escape death possible only when the formal safe branch can reach zero health', () => {
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: combatPhase({
+        currentHealth: 3,
+        bleeding: false,
+        openWounds: [],
+        remainingTime: 5,
+      }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '逃跑').click() })
+    expect(container.querySelector('[role="dialog"]')?.textContent)
+      .toContain('死亡可能性可能')
+    expect(storage.writes).toBe(0)
   })
 })

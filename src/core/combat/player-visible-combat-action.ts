@@ -1,17 +1,14 @@
 import { deepFreeze } from '../config'
-import {
-  calculateEscapeWoundCtbModifier,
-  restoreHealth,
-} from '../condition'
-import { calculateBackpackWeightSubtotal } from '../inventory'
-import { classifyLoad } from '../load'
 import { validateCombatDependencies } from './combat-dependencies'
+import { createCombatEnemyActionPrimaryPlan } from './combat-enemy-action-primary-plan'
+import { createCombatPlayerActionPrimaryPlan } from './combat-player-action-primary-plan'
 import {
   getAvailableCombatPlayerCommandsFromValidatedSnapshot,
   getCombatResourceState,
 } from './combat-selectors'
 import { createCombatEncounterSnapshot } from './combat-snapshot'
 import { CombatError } from './combat-errors'
+import { riskTierToPercent } from './combat-risk'
 import { createCombatPlayerActionCommand } from './combat-validation'
 import type {
   CombatDependencies,
@@ -19,7 +16,6 @@ import type {
   CombatPlayerActionCommand,
   PlayerVisibleCombatActionOption,
   PlayerVisibleCombatActionPreview,
-  PlayerVisibleCombatActionPrimaryMetadata,
 } from './combat-types'
 
 function commandsEqual(
@@ -36,113 +32,63 @@ function commandsEqual(
   )
 }
 
-export function getCombatPlayerActionPrimaryMetadata(
+function evaluateEscapeConsequences(
   snapshot: CombatEncounterSnapshot,
-  command: CombatPlayerActionCommand,
+  completesAtCtb: number,
   dependencies: CombatDependencies,
-): PlayerVisibleCombatActionPrimaryMetadata {
-  if (command.kind === 'escape') {
-    const backpackWeight = calculateBackpackWeightSubtotal(
-      snapshot.backpack,
-      dependencies.physicalCatalog,
+) {
+  const definition = dependencies.enemyCatalog.get(snapshot.enemy.definitionId)
+  let enemyNext = snapshot.enemyNextActionCtb
+  let intentId = snapshot.enemy.currentIntentActionId
+  let nextCycleIndex = snapshot.enemy.nextCycleIndex
+  const armorResource = getCombatResourceState(snapshot, 'armor')?.resource
+  let armorResourceCurrent = armorResource?.kind === 'integrity' ? armorResource.current : null
+  let defense = snapshot.temporaryDefense
+  let health = snapshot.playerCondition.currentHealth
+  let bleedingGuaranteed = snapshot.playerCondition.bleeding
+  let bleedingPossible = bleedingGuaranteed
+  let enemyActionsBeforeCompletion = 0
+  let deathPossible = false
+
+  while (enemyNext < completesAtCtb && health > 0) {
+    const action = definition.actions.find(({ id }) => id === intentId)!
+    const primary = createCombatEnemyActionPrimaryPlan(
+      snapshot, action, armorResourceCurrent, defense, dependencies,
     )
-    const load = classifyLoad(backpackWeight, dependencies.config.backpack)
-    if (!load.canCarry) {
-      throw new CombatError(
-        'CANNOT_ESCAPE_WHILE_UNCARRYABLE',
-        '无法携带状态不能开始逃跑',
-      )
+    health = Math.max(0, health - primary.requestedDirectDamage)
+    enemyActionsBeforeCompletion += 1
+    if (health === 0) {
+      deathPossible = true
+      break
     }
-    const wound = calculateEscapeWoundCtbModifier(snapshot.playerCondition, {
-      escape: dependencies.config.combat.escape,
-      painkiller: dependencies.config.medical.painkiller,
-    })
-    const baseCtb = dependencies.config.combat.escape.baseCtb[load.tier]
-    const actionCtb = baseCtb + wound.finalWoundCtb
-    return deepFreeze({
-      kind: 'escape',
-      actionCtb,
-      loadTier: load.tier,
-      backpackWeight,
-      baseCtb,
-      untreatedOpenWoundCount: wound.untreatedOpenWoundCount,
-      rawWoundCtb: wound.rawWoundCtb,
-      painkillerReductionApplied: wound.painkillerReductionApplied,
-      finalWoundCtb: wound.finalWoundCtb,
-      completesAtCtb: snapshot.currentCtb + actionCtb,
-    })
+    const injuryPercent = riskTierToPercent(primary.injuryFinalTier, dependencies.config)
+    if (injuryPercent > 0) bleedingPossible = true
+    if (injuryPercent === 100) bleedingGuaranteed = true
+    armorResourceCurrent = primary.armorAfter
+    defense = null
+    intentId = definition.actionCycle[nextCycleIndex]
+    nextCycleIndex = (nextCycleIndex + 1) % definition.actionCycle.length
+    enemyNext += primary.actionCtb
   }
 
-  if (command.kind === 'use-quick-slot-item') {
-    const item = snapshot.quickSlots.slots[command.quickSlotIndex]!
-    const isBandage = item.definitionId === dependencies.bindings.bandageDefinitionId
-    const targetWound = command.targetOpenWoundId === undefined
-      ? null
-      : (() => {
-          const sorted = snapshot.playerCondition.openWounds
-            .filter(({ treatment }) => treatment === 'untreated')
-            .slice()
-            .sort((left, right) => left.id.localeCompare(right.id))
-          const target = sorted.find(({ id }) => id === command.targetOpenWoundId)!
-          const sameKind = sorted.filter(({ kind }) => kind === target.kind)
-          return {
-            kind: target.kind,
-            ordinal: sameKind.findIndex(({ id }) => id === target.id) + 1,
-          }
-        })()
-    return deepFreeze({
-      kind: 'quick-slot-item',
-      actionCtb: isBandage
-        ? dependencies.config.medical.bandage.combatCtb
-        : dependencies.config.medical.painkiller.combatCtb,
-      quickSlotIndex: command.quickSlotIndex,
-      itemKind: isBandage ? 'bandage' : 'painkiller',
-      healthRecovery: isBandage
-        ? dependencies.config.medical.bandage.healthRecovery
-        : 0,
-      stopsBleeding: isBandage && dependencies.config.medical.bandage.stopsBleeding,
-      treatsOpenWound: isBandage && command.targetOpenWoundId !== undefined,
-      targetWound,
-      activatesPainkiller: !isBandage,
-    })
-  }
-
-  if (command.kind === 'defend') {
-    const actionCtb = dependencies.config.combat.defend.ctb
-    return deepFreeze({
-      kind: 'defend',
-      actionCtb,
-      availableDirectAttackUses: 1,
-      expiresAtPlayerActionCtb: snapshot.currentCtb + actionCtb,
-      doesNotPreventInfectionExposure: true,
-    })
-  }
-
-  const rules = command.kind === 'metal-pipe-basic-attack'
-    ? dependencies.config.combat.metalPipe.basicAttack
-    : command.kind === 'metal-pipe-charged-strike'
-      ? dependencies.config.combat.metalPipe.chargedStrike
-      : dependencies.config.combat.temporaryAttack
-  const weaponResource = getCombatResourceState(snapshot, 'weapon')?.resource
-  const durabilityBefore = command.kind === 'temporary-attack' ||
-    weaponResource?.kind !== 'durability'
-    ? null
-    : weaponResource.current
-  const durabilityCost = command.kind === 'temporary-attack'
-    ? 0
-    : rules.durabilityCost
+  const configuredBleedingDamage = dependencies.config.combat.postPlayerActionBleedingDamage
+  const bleedingDamageMin = bleedingGuaranteed
+    ? Math.min(health, configuredBleedingDamage)
+    : 0
+  const bleedingDamageMax = bleedingPossible
+    ? Math.min(health, configuredBleedingDamage)
+    : 0
+  const healthMin = Math.max(0, health - bleedingDamageMax)
+  const healthMax = Math.max(0, health - bleedingDamageMin)
   return deepFreeze({
-    kind: 'attack',
-    actionCtb: rules.ctb,
-    requestedDamage: rules.damage,
-    weaponDurabilityBefore: durabilityBefore,
-    weaponDurabilityAfter: durabilityBefore === null
-      ? null
-      : Math.max(0, durabilityBefore - durabilityCost),
-    weaponDurabilityCost: durabilityCost,
-    enemyActionDelay: command.kind === 'metal-pipe-charged-strike'
-      ? dependencies.config.combat.metalPipe.chargedStrike.enemyActionDelay
-      : 0,
+    enemyActionsBeforeCompletion,
+    postPlayerActionBleedingDamageMin: bleedingDamageMin,
+    postPlayerActionBleedingDamageMax: bleedingDamageMax,
+    playerHealthAfterCompletionMin: healthMin,
+    playerHealthAfterCompletionMax: healthMax,
+    bleedingAtCompletionPossible: bleedingPossible,
+    bleedingAtCompletionGuaranteed: bleedingGuaranteed,
+    deathPossibleBeforeForcedReturn: deathPossible || healthMin === 0,
   })
 }
 
@@ -160,7 +106,7 @@ export function previewPlayerVisibleCombatAction(
   ).some((available) => commandsEqual(available, command))) {
     throw new CombatError('ACTION_NOT_AVAILABLE', '玩家战斗行动不可用')
   }
-  const primary = getCombatPlayerActionPrimaryMetadata(
+  const primary = createCombatPlayerActionPrimaryPlan(
     snapshot,
     command,
     dependencies,
@@ -174,14 +120,9 @@ export function previewPlayerVisibleCombatAction(
   const playerDecisionCtb = primary.kind === 'escape'
     ? primary.completesAtCtb
     : snapshot.currentCtb + primary.actionCtb
-  let healthAfterOwnAction = snapshot.playerCondition.currentHealth
-  if (primary.kind === 'quick-slot-item' && primary.healthRecovery > 0) {
-    healthAfterOwnAction = restoreHealth(
-      snapshot.playerCondition,
-      primary.healthRecovery,
-      dependencies.config.combat.player,
-    ).healthAfter
-  }
+  const healthAfterOwnAction = primary.kind === 'quick-slot-item'
+    ? primary.healthAfterRecovery
+    : snapshot.playerCondition.currentHealth
   const stopsBleeding = primary.kind === 'quick-slot-item' && primary.stopsBleeding
   const bleedingDamage = snapshot.playerCondition.bleeding && !stopsBleeding
     ? Math.min(
@@ -197,6 +138,9 @@ export function previewPlayerVisibleCombatAction(
     },
     postPlayerActionBleedingDamage: bleedingDamage,
     playerHealthAfterOwnAction: healthAfterOwnAction - bleedingDamage,
+    escapeConsequences: primary.kind === 'escape'
+      ? evaluateEscapeConsequences(snapshot, primary.completesAtCtb, dependencies)
+      : null,
   })
 }
 

@@ -36,8 +36,11 @@ export {
 export { createPlayerVisibleCombatSnapshot } from './player-visible-combat'
 export type { PlayerVisibleCombatSnapshot } from './player-visible-combat'
 export {
-  getCombatPlayerActionPrimaryMetadata,
   getPlayerVisibleCombatActionOptions,
   previewPlayerVisibleCombatAction,
 } from './player-visible-combat-action'
+export {
+  createCombatPlayerActionPrimaryPlan,
+  createCombatPlayerActionPrimaryPlan as getCombatPlayerActionPrimaryMetadata,
+} from './combat-player-action-primary-plan'
 export type * from './combat-types'

@@ -1,4 +1,5 @@
 import {
+  getPlayerVisibleOpenWoundLabels,
   getUntreatedOpenWoundCount,
   type PlayerConditionSnapshot,
 } from '../../core/condition'
@@ -215,12 +216,7 @@ function conditionView(
   condition: PlayerConditionSnapshot,
   maximumHealth: number,
 ): PlayerVisibleConditionViewModel {
-  const kindCounts = new Map<string, number>()
-  const wounds = condition.openWounds.map(({ kind, treatment }) => {
-    const ordinal = (kindCounts.get(kind) ?? 0) + 1
-    kindCounts.set(kind, ordinal)
-    return frozen({ kind, treatment, ordinal })
-  })
+  const wounds = getPlayerVisibleOpenWoundLabels(condition.openWounds)
   return frozen({
     currentHealth: condition.currentHealth,
     maximumHealth,
@@ -516,6 +512,7 @@ export function createCombatActionResultViewModel(
   before: Extract<StableRunPhase, { kind: 'scene-session' }>,
   after: Extract<StableRunPhase, { kind: 'scene-session' }>,
   playerAction: string,
+  formalResolution: unknown,
   dependencies: StableRunUiPresentationDependencies,
 ): CombatActionResultViewModel {
   const identity = getStableRunPhaseIdentity(after)
@@ -583,6 +580,28 @@ export function createCombatActionResultViewModel(
         : afterEnemy.defeated
           ? 'victory'
           : 'escaped'
+  const resolutionRecord = formalResolution !== null &&
+    typeof formalResolution === 'object' &&
+    !Array.isArray(formalResolution)
+    ? formalResolution as Record<string, unknown>
+    : null
+  const evaluation = resolutionRecord?.result !== null &&
+    typeof resolutionRecord?.result === 'object' &&
+    !Array.isArray(resolutionRecord.result)
+    ? resolutionRecord.result as Record<string, unknown>
+    : null
+  const effects = Array.isArray(evaluation?.effects) ? evaluation.effects : []
+  const timeEffect = effects.find((effect) => {
+    if (effect === null || typeof effect !== 'object' || Array.isArray(effect)) return false
+    return (effect as Record<string, unknown>).kind === 'scene-combat-time-resolved'
+  })
+  const sceneTimeCost = timeEffect && typeof timeEffect === 'object' &&
+    Number.isSafeInteger((timeEffect as Record<string, unknown>).sceneTimeCost)
+    ? (timeEffect as Record<string, unknown>).sceneTimeCost as number
+    : null
+  if (afterScene.status !== 'combat' && sceneTimeCost === null) {
+    throw new Error('终局战斗结果缺少正式 Scene 时间结算事实')
+  }
   return frozen({
     playerAction,
     playerHealthBefore: beforeCondition.currentHealth,
@@ -604,8 +623,6 @@ export function createCombatActionResultViewModel(
       definition.maxHealth,
     ),
     outcome,
-    sceneTimeCost: afterScene.status === 'combat'
-      ? null
-      : beforeScene.remainingTime - afterScene.remainingTime,
+    sceneTimeCost,
   })
 }

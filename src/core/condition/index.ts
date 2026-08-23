@@ -14,6 +14,10 @@ export {
 export { ConditionError, type ConditionErrorCode } from './condition-errors'
 export { applyHealthLoss, restoreHealth } from './health-operations'
 export {
+  getPlayerVisibleOpenWoundLabels,
+  type PlayerVisibleOpenWoundLabel,
+} from './player-visible-wound-labels'
+export {
   activatePainkiller,
   addMinorContusion,
   addOpenWound,

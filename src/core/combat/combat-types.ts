@@ -297,14 +297,16 @@ export interface CombatResolution {
   readonly snapshot: CombatEncounterSnapshot
 }
 
-export type PlayerVisibleCombatActionPrimaryMetadata =
+export type CombatPlayerActionPrimaryPlan =
   | Readonly<{
       kind: 'attack'
       actionCtb: number
       requestedDamage: number
       weaponDurabilityBefore: number | null
       weaponDurabilityAfter: number | null
-      weaponDurabilityCost: number
+      weaponDurabilityRequestedCost: number
+      weaponDurabilityConsumed: number
+      weaponDurabilityDepleted: boolean
       enemyActionDelay: number
     }>
   | Readonly<{
@@ -319,7 +321,11 @@ export type PlayerVisibleCombatActionPrimaryMetadata =
       actionCtb: number
       quickSlotIndex: number
       itemKind: 'bandage' | 'painkiller'
-      healthRecovery: number
+      healthBeforeRecovery: number
+      requestedHealthRecovery: number
+      actualHealthRecovery: number
+      healthAfterRecovery: number
+      unusedHealthRecovery: number
       stopsBleeding: boolean
       treatsOpenWound: boolean
       targetWound: Readonly<{
@@ -341,6 +347,8 @@ export type PlayerVisibleCombatActionPrimaryMetadata =
       completesAtCtb: number
     }>
 
+export type PlayerVisibleCombatActionPrimaryMetadata = CombatPlayerActionPrimaryPlan
+
 export interface PlayerVisibleCombatActionPreview {
   readonly primary: PlayerVisibleCombatActionPrimaryMetadata
   readonly currentIntent: Readonly<{
@@ -349,6 +357,16 @@ export interface PlayerVisibleCombatActionPreview {
   }>
   readonly postPlayerActionBleedingDamage: number
   readonly playerHealthAfterOwnAction: number
+  readonly escapeConsequences: Readonly<{
+    enemyActionsBeforeCompletion: number
+    postPlayerActionBleedingDamageMin: number
+    postPlayerActionBleedingDamageMax: number
+    playerHealthAfterCompletionMin: number
+    playerHealthAfterCompletionMax: number
+    bleedingAtCompletionPossible: boolean
+    bleedingAtCompletionGuaranteed: boolean
+    deathPossibleBeforeForcedReturn: boolean
+  }> | null
 }
 
 export interface PlayerVisibleCombatActionOption {

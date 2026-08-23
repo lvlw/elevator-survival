@@ -425,6 +425,7 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
         beforePhase,
         execution.phase,
         pendingAction.label,
+        execution.result,
         presentationDependencies,
       ))
     }

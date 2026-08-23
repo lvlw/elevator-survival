@@ -83,6 +83,7 @@ export function getPlayerVisibleSceneCombatActionOptions(
       dependencies.config.combat.sceneTimeConversion,
     )
     if (time.remainingTimeAfter > 0) {
+      const escape = option.preview.escapeConsequences
       return {
         ...option,
         terminal: {
@@ -98,7 +99,7 @@ export function getPlayerVisibleSceneCombatActionOptions(
           forcedReturnBleedingDamageMax: null,
           forcedReturnTotalDamageMin: null,
           forcedReturnTotalDamageMax: null,
-          deathPossible: isEscape && option.preview.currentIntent.actsBeforeNextPlayerDecision,
+          deathPossible: escape?.deathPossibleBeforeForcedReturn ?? false,
         },
       }
     }
@@ -120,10 +121,10 @@ export function getPlayerVisibleSceneCombatActionOptions(
       hasMinorContusion: hasMinorContusions(active.combat.playerCondition),
       analgesiaActive: active.combat.playerCondition.painkillerActive,
     }, dependencies.config)
-    const definitelyBleeding = active.combat.playerCondition.bleeding
-    const injuryCouldStartBleeding = isEscape &&
-      option.preview.currentIntent.actsBeforeNextPlayerDecision &&
-      option.preview.currentIntent.metadata.mayCauseInjury
+    const escape = option.preview.escapeConsequences
+    const definitelyBleeding = escape?.bleedingAtCompletionGuaranteed ??
+      active.combat.playerCondition.bleeding
+    const bleedingPossible = escape?.bleedingAtCompletionPossible ?? definitelyBleeding
     const withoutBleeding = calculateForcedReturnDamage(
       time.overtimeDebt,
       route.estimatedReturnTime,
@@ -133,12 +134,13 @@ export function getPlayerVisibleSceneCombatActionOptions(
     const withBleeding = calculateForcedReturnDamage(
       time.overtimeDebt,
       route.estimatedReturnTime,
-      definitelyBleeding || injuryCouldStartBleeding,
+      bleedingPossible,
       dependencies.config.forcedReturn,
     )
     const bleedingMin = definitelyBleeding ? withBleeding.bleedingExtraDamage : 0
     const bleedingMax = withBleeding.bleedingExtraDamage
-    const healthAfterOwnAction = option.preview.playerHealthAfterOwnAction
+    const healthAfterWorstBranch = escape?.playerHealthAfterCompletionMin ??
+      option.preview.playerHealthAfterOwnAction
     return {
       ...option,
       terminal: {
@@ -154,9 +156,8 @@ export function getPlayerVisibleSceneCombatActionOptions(
         forcedReturnBleedingDamageMax: bleedingMax,
         forcedReturnTotalDamageMin: withoutBleeding.baseDamage + bleedingMin,
         forcedReturnTotalDamageMax: withoutBleeding.baseDamage + bleedingMax,
-        deathPossible: (
-          isEscape && option.preview.currentIntent.actsBeforeNextPlayerDecision
-        ) || healthAfterOwnAction <= withoutBleeding.baseDamage + bleedingMax,
+        deathPossible: (escape?.deathPossibleBeforeForcedReturn ?? false) ||
+          healthAfterWorstBranch <= withoutBleeding.baseDamage + bleedingMax,
       },
     }
   }))

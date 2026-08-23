@@ -8,6 +8,7 @@ import {
   createPlayerVisibleCombatSnapshot,
   getAvailableCombatPlayerCommands,
   previewCombatPlayerAction,
+  previewPlayerVisibleCombatAction,
   resolveCombatPlayerAction,
   validateCombatDependencies,
   type CombatDependencies,
@@ -405,6 +406,19 @@ describe('hospital combat bandage resolution', () => {
       enemyNextActionCtb: 80,
     })
     const result = resolveCombatPlayerAction(snapshot, useQuick(0, 'target'), dependencies)
+    const visible = previewPlayerVisibleCombatAction(
+      snapshot,
+      useQuick(0, 'target'),
+      dependencies,
+    )
+    expect(visible.primary).toMatchObject({
+      kind: 'quick-slot-item',
+      requestedHealthRecovery: 1,
+      actualHealthRecovery: 0,
+      healthBeforeRecovery: config.combat.player.maxHealth,
+      healthAfterRecovery: config.combat.player.maxHealth,
+      unusedHealthRecovery: 1,
+    })
     expect(result.plan.effects.find(({ kind }) => kind === 'player-health-restored')).toMatchObject({
       requestedRecovery: 1,
       actualRecovery: 0,

@@ -197,6 +197,90 @@ describe('hospital infected orderly combat', () => {
     ))
   })
 
+  it('keeps escape safe preview seed-independent while covering newly caused bleeding', () => {
+    const risky = encounter({ runSeed: 'risk-2', coatIntegrity: null, health: 12 })
+    const safe = encounter({ runSeed: 'risk-0', coatIntegrity: null, health: 12 })
+    const command = { kind: 'escape' } as const
+    const riskyRaw = previewCombatPlayerAction(risky.snapshot, command, risky.dependencies)
+    const safeRaw = previewCombatPlayerAction(safe.snapshot, command, safe.dependencies)
+    if (!riskyRaw.canExecute || !safeRaw.canExecute) throw new Error('raw preview must execute')
+    expect(riskyRaw.snapshot.playerCondition.bleeding).toBe(true)
+    expect(safeRaw.snapshot.playerCondition.bleeding).toBe(false)
+
+    const riskyVisible = previewPlayerVisibleCombatAction(
+      risky.snapshot, command, risky.dependencies,
+    )
+    const safeVisible = previewPlayerVisibleCombatAction(
+      safe.snapshot, command, safe.dependencies,
+    )
+    expect(riskyVisible).toEqual(safeVisible)
+    expect(riskyVisible.escapeConsequences).toMatchObject({
+      enemyActionsBeforeCompletion: 1,
+      postPlayerActionBleedingDamageMin: 0,
+      postPlayerActionBleedingDamageMax: 1,
+      playerHealthAfterCompletionMin: 8,
+      playerHealthAfterCompletionMax: 9,
+      bleedingAtCompletionPossible: true,
+      bleedingAtCompletionGuaranteed: false,
+      deathPossibleBeforeForcedReturn: false,
+    })
+  })
+
+  it('marks escape death possible only when a legal hidden branch can reach zero health', () => {
+    const healthy = encounter({ runSeed: 'risk-2', coatIntegrity: null, health: 12 })
+    const low = encounter({ runSeed: 'risk-2', coatIntegrity: null, health: 4 })
+    expect(previewPlayerVisibleCombatAction(
+      healthy.snapshot,
+      { kind: 'escape' },
+      healthy.dependencies,
+    ).escapeConsequences?.deathPossibleBeforeForcedReturn).toBe(false)
+    expect(previewPlayerVisibleCombatAction(
+      low.snapshot,
+      { kind: 'escape' },
+      low.dependencies,
+    ).escapeConsequences?.deathPossibleBeforeForcedReturn).toBe(true)
+  })
+
+  it('keeps existing bleeding definite and gives escape completion same-point priority', () => {
+    const bleeding = encounter({ coatIntegrity: null, health: 12, bleeding: true })
+    expect(previewPlayerVisibleCombatAction(
+      bleeding.snapshot,
+      { kind: 'escape' },
+      bleeding.dependencies,
+    ).escapeConsequences).toMatchObject({
+      postPlayerActionBleedingDamageMin: 1,
+      postPlayerActionBleedingDamageMax: 1,
+      bleedingAtCompletionGuaranteed: true,
+    })
+
+    const tiedSnapshot = createCombatEncounterSnapshot({
+      ...bleeding.snapshot,
+      playerCondition: createPlayerCondition({
+        ...bleeding.snapshot.playerCondition,
+        bleeding: false,
+      }, config.combat.player),
+      enemyNextActionCtb: 80,
+    }, bleeding.dependencies)
+    const visible = previewPlayerVisibleCombatAction(
+      tiedSnapshot,
+      { kind: 'escape' },
+      bleeding.dependencies,
+    )
+    expect(visible.escapeConsequences).toMatchObject({
+      enemyActionsBeforeCompletion: 0,
+      postPlayerActionBleedingDamageMin: 0,
+      postPlayerActionBleedingDamageMax: 0,
+      deathPossibleBeforeForcedReturn: false,
+    })
+    const raw = resolveCombatPlayerAction(
+      tiedSnapshot,
+      { kind: 'escape' },
+      bleeding.dependencies,
+    )
+    expect(raw.snapshot.status).toBe('escaped')
+    expect(raw.snapshot.enemy.resolvedActionCount).toBe(0)
+  })
+
   it('uses data-driven player-visible metadata for the current intent', () => {
     const { snapshot, dependencies } = encounter()
     const scratch = previewPlayerVisibleCombatAction(
@@ -364,10 +448,33 @@ describe('hospital infected orderly combat', () => {
 
   it.each([1, 2])('allows charged strike with durability %s and truncates to zero', (durability) => {
     const { snapshot, dependencies } = encounter({ pipeDurability: durability })
-    const result = act(snapshot, 'metal-pipe-charged-strike', dependencies).snapshot
+    const resolution = act(snapshot, 'metal-pipe-charged-strike', dependencies)
+    const result = resolution.snapshot
     expect(result.enemy.currentHealth).toBe(8)
     expect(getItemState(result.itemStates, 'pipe-equipped').resource).toEqual({ kind: 'durability', current: 0 })
     expect(getAvailableCombatPlayerActions(result, dependencies)).toContain('temporary-attack')
+    if (durability === 1) {
+      expect(previewPlayerVisibleCombatAction(
+        snapshot,
+        { kind: 'metal-pipe-charged-strike' },
+        dependencies,
+      ).primary).toMatchObject({
+        weaponDurabilityBefore: 1,
+        weaponDurabilityRequestedCost: 3,
+        weaponDurabilityConsumed: 1,
+        weaponDurabilityAfter: 0,
+        weaponDurabilityDepleted: true,
+        requestedDamage: 6,
+        enemyActionDelay: 200,
+      })
+      expect(resolution.plan.effects).toContainEqual(expect.objectContaining({
+        kind: 'item-resource-consumed',
+        requestedCost: 3,
+        consumed: 1,
+        currentBefore: 1,
+        currentAfter: 0,
+      }))
+    }
   })
 
   it('allows the final basic attack at durability one and then opens temporary attack', () => {

@@ -1,29 +1,23 @@
 import { deepFreeze } from '../config'
 import {
   activatePainkiller,
-  restoreHealth,
   stopBleeding,
   treatOpenWound,
 } from '../condition'
-import { calculateBackpackWeightSubtotal } from '../inventory'
 import { consumeCommittedResource, getItemState } from '../item-state'
-import { classifyLoad } from '../load'
 import { CombatError } from './combat-errors'
+import { createCombatEnemyActionPrimaryPlan } from './combat-enemy-action-primary-plan'
+import { createCombatPlayerActionPrimaryPlan } from './combat-player-action-primary-plan'
 import { validateCombatDependencies } from './combat-dependencies'
 import {
   getAvailableCombatPlayerCommandsFromValidatedSnapshot,
   getCombatResourceState,
 } from './combat-selectors'
-import {
-  addCombatRiskEffect,
-  createStableCombatWoundId,
-  reduceRiskTier,
-} from './combat-risk'
+import { addCombatRiskEffect, createStableCombatWoundId } from './combat-risk'
 import {
   createCombatPlayerActionCommand,
   createTemporaryDefenseSnapshot,
 } from './combat-validation'
-import { getCombatPlayerActionPrimaryMetadata } from './player-visible-combat-action'
 import type {
   CombatDependencies,
   CombatEffect,
@@ -42,18 +36,9 @@ export function buildCombatTransitionPlan(
   if (snapshot.status !== 'awaiting-player') {
     throw new CombatError('COMBAT_NOT_ACTIVE', '战斗不在玩家决策点')
   }
-  if (command.kind === 'escape') {
-    const weight = calculateBackpackWeightSubtotal(
-      snapshot.backpack,
-      dependencies.physicalCatalog,
-    )
-    if (!classifyLoad(weight, dependencies.config.backpack).canCarry) {
-      throw new CombatError(
-        'CANNOT_ESCAPE_WHILE_UNCARRYABLE',
-        '无法携带状态不能开始逃跑',
-      )
-    }
-  }
+  const escapePrimary = command.kind === 'escape'
+    ? createCombatPlayerActionPrimaryPlan(snapshot, command, dependencies)
+    : null
   const isAvailable = getAvailableCombatPlayerCommandsFromValidatedSnapshot(
     snapshot,
     dependencies,
@@ -71,10 +56,8 @@ export function buildCombatTransitionPlan(
   if (!isAvailable) {
     throw new CombatError('ACTION_NOT_AVAILABLE', '玩家战斗行动不可用')
   }
-  const primary = getCombatPlayerActionPrimaryMetadata(
-    snapshot,
-    command,
-    dependencies,
+  const primary = escapePrimary ?? createCombatPlayerActionPrimaryPlan(
+    snapshot, command, dependencies,
   )
 
   const effects: CombatEffect[] = []
@@ -171,7 +154,7 @@ export function buildCombatTransitionPlan(
       throw new CombatError('INVALID_COMBAT_COMMAND', '快捷物品行动元数据无效')
     }
     const item = snapshot.quickSlots.slots[command.quickSlotIndex]!
-    const isBandage = item.definitionId === dependencies.bindings.bandageDefinitionId
+    const isBandage = primary.itemKind === 'bandage'
     const source = isBandage ? 'combat-bandage' : 'combat-painkiller'
     effects.push({
       kind: 'combat-quick-slot-item-consumed',
@@ -184,23 +167,21 @@ export function buildCombatTransitionPlan(
       quantityAfter: 0,
     })
     if (isBandage) {
-      const recovery = restoreHealth(
-        playerCondition,
-        dependencies.config.medical.bandage.healthRecovery,
-        dependencies.config.combat.player,
-      )
       effects.push({
         kind: 'player-health-restored',
         source: 'combat-bandage',
-        healthBefore: recovery.healthBefore,
-        requestedRecovery: recovery.requestedRecovery,
-        actualRecovery: recovery.actualRecovery,
-        healthAfter: recovery.healthAfter,
-        unusedRecovery: recovery.unusedRecovery,
+        healthBefore: primary.healthBeforeRecovery,
+        requestedRecovery: primary.requestedHealthRecovery,
+        actualRecovery: primary.actualHealthRecovery,
+        healthAfter: primary.healthAfterRecovery,
+        unusedRecovery: primary.unusedHealthRecovery,
       })
-      playerCondition = recovery.state
-      playerHealth = recovery.healthAfter
-      if (bleeding && dependencies.config.medical.bandage.stopsBleeding) {
+      playerCondition = {
+        ...playerCondition,
+        currentHealth: primary.healthAfterRecovery,
+      }
+      playerHealth = primary.healthAfterRecovery
+      if (bleeding && primary.stopsBleeding) {
         effects.push({
           kind: 'bleeding-changed',
           before: true,
@@ -210,7 +191,7 @@ export function buildCombatTransitionPlan(
         playerCondition = stopBleeding(playerCondition)
         bleeding = false
       }
-      if (command.targetOpenWoundId) {
+      if (primary.treatsOpenWound && command.targetOpenWoundId) {
         const wound = playerCondition.openWounds.find(
           ({ id }) => id === command.targetOpenWoundId,
         )!
@@ -242,7 +223,7 @@ export function buildCombatTransitionPlan(
     if (primary.kind !== 'attack') {
       throw new CombatError('INVALID_COMBAT_COMMAND', '武器行动元数据无效')
     }
-    consume('weapon', primary.weaponDurabilityCost, command.kind)
+    consume('weapon', primary.weaponDurabilityRequestedCost, command.kind)
     const actual = Math.min(enemyHealth, primary.requestedDamage)
     effects.push({
       kind: 'enemy-health-lost',
@@ -292,8 +273,8 @@ export function buildCombatTransitionPlan(
     actionCtb = primary.actionCtb
     defense = createTemporaryDefenseSnapshot({
       activatedAtCtb: currentCtb,
-      expiresAtPlayerActionCtb: currentCtb + actionCtb,
-      availableDirectAttackUses: 1,
+      expiresAtPlayerActionCtb: primary.expiresAtPlayerActionCtb,
+      availableDirectAttackUses: primary.availableDirectAttackUses,
     })
     effects.push({
       kind: 'temporary-defense-activated',
@@ -361,36 +342,20 @@ export function buildCombatTransitionPlan(
   )
   while (enemyNext < playerNext && playerHealth > 0 && enemyHealth > 0) {
     const action = definition.actions.find(({ id }) => id === intentId)!
-    const actionRules = action.kind === 'scratch'
-      ? dependencies.config.combat.infectedOrderly.actions.scratch
-      : dependencies.config.combat.infectedOrderly.actions.lungeBite
-    const armor = snapshot.equipment.armor
-    const armorState = armor
-      ? getItemState(snapshot.itemStates, armor.instanceId)
-      : null
-    const usedHeavyCoat =
-      armor?.definitionId === dependencies.bindings.heavyCoatDefinitionId &&
-      armorState?.resource.kind === 'integrity' &&
-      (armorResourceCurrent ?? 0) >= 1
+    const enemyPrimary = createCombatEnemyActionPrimaryPlan(
+      snapshot, action, armorResourceCurrent, defense, dependencies,
+    )
+    const usedHeavyCoat = enemyPrimary.usedHeavyCoat
     const activeDefense = defense
-    const usedDefense = activeDefense !== null
+    const usedDefense = enemyPrimary.usedDefense
     if (usedHeavyCoat) {
       consume(
         'armor',
-        dependencies.config.combat.heavyCoat.integrityCostPerAttack,
+        enemyPrimary.armorRequestedCost,
         'enemy-direct-attack-protection',
       )
     }
-    let damage = Math.max(
-      0,
-      actionRules.damage - (usedHeavyCoat
-        ? dependencies.config.combat.heavyCoat.directDamageReduction
-        : 0),
-    )
-    if (usedDefense) {
-      damage = Math.ceil(
-        damage * dependencies.config.combat.defend.remainingDamagePercent / 100,
-      )
+    if (activeDefense !== null) {
       effects.push({
         kind: 'temporary-defense-consumed',
         before: activeDefense,
@@ -399,6 +364,7 @@ export function buildCombatTransitionPlan(
       })
       defense = null
     }
+    const damage = enemyPrimary.requestedDirectDamage
     const actual = Math.min(playerHealth, damage)
     effects.push({
       kind: 'player-health-lost',
@@ -430,23 +396,14 @@ export function buildCombatTransitionPlan(
       break
     }
 
-    const injuryTier = reduceRiskTier(
-      actionRules.injuryRiskTier,
-      (usedHeavyCoat
-        ? dependencies.config.combat.heavyCoat.injuryRiskTierReduction
-        : 0) +
-      (usedDefense
-        ? dependencies.config.combat.defend.injuryRiskTierReduction
-        : 0),
-    )
     const injury = addCombatRiskEffect(
       effects,
       snapshot,
       action.id,
       resolvedActionCount,
       'injury',
-      actionRules.injuryRiskTier,
-      injuryTier,
+      enemyPrimary.injuryOriginalTier,
+      enemyPrimary.injuryFinalTier,
       usedHeavyCoat,
       usedDefense,
       dependencies,
@@ -474,21 +431,15 @@ export function buildCombatTransitionPlan(
         bleeding = true
       }
     }
-    if (actionRules.exposureRiskTier !== 'none') {
-      const exposureTier = reduceRiskTier(
-        actionRules.exposureRiskTier,
-        usedHeavyCoat
-          ? dependencies.config.combat.heavyCoat.exposureRiskTierReduction
-          : 0,
-      )
+    if (enemyPrimary.exposureOriginalTier !== 'none') {
       const exposure = addCombatRiskEffect(
         effects,
         snapshot,
         action.id,
         resolvedActionCount,
         'infection-exposure',
-        actionRules.exposureRiskTier,
-        exposureTier,
+        enemyPrimary.exposureOriginalTier,
+        enemyPrimary.exposureFinalTier,
         usedHeavyCoat,
         false,
         dependencies,
@@ -518,7 +469,7 @@ export function buildCombatTransitionPlan(
     intentId = nextIntentId
     nextCycleIndex = followingIndex
     resolvedActionCount += 1
-    const nextEnemy = enemyNext + actionRules.ctb
+    const nextEnemy = enemyNext + enemyPrimary.actionCtb
     effects.push({
       kind: 'combat-ctb-position-changed',
       reason: 'enemy-action-resolved',

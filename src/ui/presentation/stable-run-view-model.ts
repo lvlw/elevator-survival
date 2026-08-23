@@ -4,6 +4,16 @@ import {
 } from '../../core/condition'
 import { createPlayerVisibleCombatSnapshot } from '../../core/combat'
 import {
+  calculateBackpackWeightSubtotal,
+  getItemDimensions,
+  getOccupiedCells,
+  type BackpackSnapshot,
+  type ItemCatalog,
+} from '../../core/inventory'
+import { classifyLoad } from '../../core/load'
+import type { FrozenRuleConfig } from '../../core/config'
+import type { RunReturnSummary } from '../../core/run-return'
+import {
   getRunSceneRuntime,
   type RunSceneSessionSnapshot,
 } from '../../core/scene-launch'
@@ -51,6 +61,21 @@ export interface PlayerVisibleItemViewModel {
 
 export interface PlayerVisibleLoadoutViewModel {
   readonly backpack: readonly PlayerVisibleItemViewModel[]
+  readonly backpackWeight: number
+  readonly loadTier: 'normal' | 'loaded' | 'overloaded' | 'cannot-carry'
+  readonly backpackGrid: Readonly<{
+    width: number
+    height: number
+    items: readonly Readonly<{
+      name: string
+      quantity: number
+      x: number
+      y: number
+      rotated: boolean
+      width: number
+      height: number
+    }>[]
+  }>
   readonly equipment: Readonly<{
     weapon: PlayerVisibleItemViewModel | null
     armor: PlayerVisibleItemViewModel | null
@@ -79,11 +104,18 @@ export interface PlayerVisibleCombatViewModel {
 
 type ItemPresentationRuntime = Readonly<{
   dependencies: Readonly<{
-    physicalCatalog: Readonly<{
-      get(definitionId: string): Readonly<{ name: string }>
-    }>
+    physicalCatalog: ItemCatalog
+    config: FrozenRuleConfig
   }>
 }>
+
+export interface ReturnSummaryViewModel {
+  readonly returnKind: 'safe' | 'forced'
+  readonly remainingHealth: number
+  readonly warehouseItems: readonly PlayerVisibleItemViewModel[]
+  readonly taskItems: readonly PlayerVisibleItemViewModel[]
+  readonly lostTaskItemCount: number
+}
 
 export type StableRunPlayerViewModel =
   | Readonly<{
@@ -166,7 +198,7 @@ function itemView(
 
 function loadoutView(
   input: Readonly<{
-    backpack: { items: readonly Readonly<{ definitionId: string; quantity: number; instanceId: string }>[] }
+    backpack: BackpackSnapshot
     equipment: { weapon: Readonly<{ definitionId: string; quantity: number; instanceId: string }> | null; armor: Readonly<{ definitionId: string; quantity: number; instanceId: string }> | null; utility: Readonly<{ definitionId: string; quantity: number; instanceId: string }> | null }
     quickSlots: { slots: readonly (Readonly<{ definitionId: string; quantity: number; instanceId: string }> | null)[] }
     itemStates: Readonly<{ states: readonly Readonly<{ instanceId: string; definitionId: string; resource: { kind: 'none' } | { kind: 'durability' | 'integrity' | 'charge'; current: number } }>[] }>
@@ -176,8 +208,42 @@ function loadoutView(
 ): PlayerVisibleLoadoutViewModel {
   const map = (item: typeof input.equipment.weapon) =>
     item === null ? null : itemView(item, input.itemStates, runtime, labels)
+  const itemById = new Map(input.backpack.items.map((item) => [item.instanceId, item]))
+  const gridItems = input.backpack.placements.map((placement) => {
+    const item = itemById.get(placement.instanceId)
+    if (!item) throw new Error('正式背包摆放引用未知物品')
+    const dimensions = getItemDimensions(
+      runtime.dependencies.physicalCatalog.get(item.definitionId),
+      placement.rotated,
+    )
+    const visible = itemView(item, input.itemStates, runtime, labels)
+    return frozen({
+      name: visible.name,
+      quantity: visible.quantity,
+      x: placement.x,
+      y: placement.y,
+      rotated: placement.rotated,
+      width: dimensions.width,
+      height: dimensions.height,
+    })
+  })
+  // This invokes the official geometry owner before projecting the read-only
+  // grid; it deliberately leaves all instance identities behind.
+  getOccupiedCells(input.backpack, runtime.dependencies.physicalCatalog)
+  const backpackWeight = calculateBackpackWeightSubtotal(
+    input.backpack,
+    runtime.dependencies.physicalCatalog,
+  )
+  const load = classifyLoad(backpackWeight, runtime.dependencies.config.backpack)
   return frozen({
     backpack: frozen(input.backpack.items.map((item) => itemView(item, input.itemStates, runtime, labels))),
+    backpackWeight,
+    loadTier: load.tier,
+    backpackGrid: frozen({
+      width: input.backpack.width,
+      height: input.backpack.height,
+      items: frozen(gridItems),
+    }),
     equipment: frozen({ weapon: map(input.equipment.weapon), armor: map(input.equipment.armor), utility: map(input.equipment.utility) }),
     quickSlots: frozen(input.quickSlots.slots.map((item) => map(item))),
   })
@@ -284,7 +350,7 @@ export function createStableRunPlayerViewModel(
   const threatStage = getWorldThreatStage(hub.worldThreat, rules.currentDayHub.worldThreatCatalog)
   const items = rules.currentDayHub.returnDependencies.scene
   const pseudoRuntime: ItemPresentationRuntime = frozen({
-    dependencies: frozen({ physicalCatalog: items.physicalCatalog }),
+    dependencies: frozen({ physicalCatalog: items.physicalCatalog, config: items.config }),
   })
   return frozen({
     kind: 'current-day-hub',
@@ -301,5 +367,38 @@ export function createStableRunPlayerViewModel(
       warehouse: frozen(hub.runLoadout.warehouse.items.map((item) => itemView(item, hub.runLoadout.itemStates, pseudoRuntime, dependencies.labels))),
       taskStorage: frozen(hub.runLoadout.taskStorage.items.map((item) => itemView(item, hub.runLoadout.itemStates, pseudoRuntime, dependencies.labels))),
     }),
+  })
+}
+
+/**
+ * Projects the core's completed return audit into a small player-visible
+ * overlay. It never decides a destination or carries an instance ID onward.
+ */
+export function createReturnSummaryViewModel(
+  summary: RunReturnSummary,
+  phase: Extract<StableRunPhase, { kind: 'current-day-hub' }>,
+  dependencies: StableRunUiPresentationDependencies,
+): ReturnSummaryViewModel {
+  const identity = getStableRunPhaseIdentity(phase)
+  const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
+  const hub = phase.payload
+  const runtime: ItemPresentationRuntime = frozen({
+    dependencies: frozen({
+      physicalCatalog: rules.currentDayHub.returnDependencies.scene.physicalCatalog,
+      config: rules.currentDayHub.returnDependencies.scene.config,
+    }),
+  })
+  const byIds = (
+    items: readonly Readonly<{ instanceId: string; definitionId: string; quantity: number }>[],
+    instanceIds: readonly string[],
+  ) => frozen(items.filter((item) => instanceIds.includes(item.instanceId)).map(
+    (item) => itemView(item, hub.runLoadout.itemStates, runtime, dependencies.labels),
+  ))
+  return frozen({
+    returnKind: summary.returnKind,
+    remainingHealth: summary.remainingHealth,
+    warehouseItems: byIds(hub.runLoadout.warehouse.items, summary.storedWarehouseInstanceIds),
+    taskItems: byIds(hub.runLoadout.taskStorage.items, summary.storedTaskInstanceIds),
+    lostTaskItemCount: summary.lostSceneTaskInstanceIds.length,
   })
 }

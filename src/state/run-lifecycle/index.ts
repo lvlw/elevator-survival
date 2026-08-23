@@ -5,6 +5,7 @@ export {
 export {
   createStableRunLifecycleCommand,
   executeStableRunLifecycleCommand,
+  getStableRunLifecycleCommandAvailability,
 } from './run-lifecycle'
 export type {
   ExecuteStableRunLifecycleCommandInput,

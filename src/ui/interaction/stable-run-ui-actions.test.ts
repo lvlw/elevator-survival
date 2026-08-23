@@ -10,6 +10,7 @@ import { createBackpackSnapshot, type ItemInstance } from '../../core/inventory'
 import { createFullItemState } from '../../core/item-state'
 import {
   createSceneExplorationSnapshot,
+  resolveMainSearchCommand,
   resolveSceneMoveCommand,
 } from '../../core/scene-exploration'
 import {
@@ -19,7 +20,10 @@ import {
 import { hospitalRunSaveRulesRegistry, hospitalSceneLaunchDependencies } from '../../state/run-save'
 import { createHospitalDevelopmentPreviewScenario } from '../dev-preview/hospital-preview-scenarios'
 import { hospitalV01UiLabels } from '../hospital-v0.1'
-import { createStableRunUiInteractionModel } from './stable-run-ui-actions'
+import {
+  createStableRunUiInteractionModel,
+  previewStableRunUiPickupDraft,
+} from './stable-run-ui-actions'
 
 const dependencies = {
   rulesRegistry: hospitalRunSaveRulesRegistry,
@@ -86,6 +90,18 @@ function withRemainingTime(
     ...phase.payload.scene,
     remainingTime,
   }, runtime.dependencies)
+  return {
+    kind: 'scene-session' as const,
+    payload: createRunSceneSessionSnapshot({ context: phase.payload.context, scene }, hospitalSceneLaunchDependencies),
+  }
+}
+
+function searchedEmergencyHall() {
+  const phase = moveToEmergencyHall()
+  const runtime = getRunSceneRuntime(phase.payload, hospitalSceneLaunchDependencies)
+  const scene = resolveMainSearchCommand(phase.payload.scene, {
+    illumination: 'use-equipped-flashlight',
+  }, runtime.dependencies).snapshot
   return {
     kind: 'scene-session' as const,
     payload: createRunSceneSessionSnapshot({ context: phase.payload.context, scene }, hospitalSceneLaunchDependencies),
@@ -178,5 +194,31 @@ describe('stable Run UI interaction model', () => {
     ]
     expect(move?.preview.facts.map(({ label }) => label)).toEqual(expect.arrayContaining(expectedLabels))
     expect(search?.preview.facts.map(({ label }) => label)).toEqual(expect.arrayContaining(expectedLabels))
+  })
+
+  it('offers only revealed ground items and delegates explicit quantity and placement to the formal pickup preview', () => {
+    const phase = searchedEmergencyHall()
+    const timeBefore = phase.payload.scene.remainingTime
+    const interaction = createStableRunUiInteractionModel(phase, dependencies)
+    expect(interaction.pickupOpportunities.length).toBeGreaterThan(0)
+    const opportunity = interaction.pickupOpportunities.find(({ name }) => name === '金属零件')!
+    expect(opportunity.name).toBe('金属零件')
+    const preview = previewStableRunUiPickupDraft(phase, {
+      opportunityId: opportunity.id,
+      quantity: 1,
+      x: 0,
+      y: 0,
+      rotated: false,
+    }, dependencies)
+    expect(preview).toMatchObject({ canExecute: true })
+    expect(preview?.facts).toEqual(expect.arrayContaining([
+      { label: '背包负重', value: '0 → 1' },
+      { label: '拾取后负重状态', value: '正常' },
+    ]))
+    expect(preview?.command).toMatchObject({
+      kind: 'scene',
+      command: { kind: 'scene-node-item-pickup', command: { quantity: 1, placement: { x: 0, y: 0, rotated: false } } },
+    })
+    expect(phase.payload.scene.remainingTime).toBe(timeBefore)
   })
 })

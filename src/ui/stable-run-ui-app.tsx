@@ -1,15 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { StableRunStore } from '../state/run-store'
 import {
   createStableRunUiInteractionModel,
+  previewStableRunUiPickupDraft,
   type StableRunUiAction,
   type StableRunUiActionPreviewViewModel,
+  type StableRunUiPickupOpportunity,
 } from './interaction'
 import {
+  createReturnSummaryViewModel,
   createStableRunPlayerViewModel,
   type PlayerVisibleItemViewModel,
   type PlayerVisibleLoadoutViewModel,
   type PlayerVisibleStatusBarViewModel,
+  type ReturnSummaryViewModel,
   type StableRunPlayerViewModel,
   type StableRunUiPresentationDependencies,
 } from './presentation'
@@ -62,8 +66,40 @@ function LoadoutPanel({ loadout }: Readonly<{ loadout: PlayerVisibleLoadoutViewM
     <h3>快捷栏</h3>
     <ol className="quick-slots">{loadout.quickSlots.map((item, index) => <li key={index}>{item ? `${item.name} ×${item.quantity}` : '空'}</li>)}</ol>
     <h3>背包</h3>
+    <p>背包负重：<strong>{loadout.backpackWeight}</strong> · 负重状态：<strong>{loadTierName(loadout.loadTier)}</strong></p>
+    <BackpackGrid grid={loadout.backpackGrid} />
     <ItemList items={loadout.backpack} empty="背包为空" />
   </section>
+}
+
+function loadTierName(tier: PlayerVisibleLoadoutViewModel['loadTier']): string {
+  return tier === 'normal' ? '正常' : tier === 'loaded' ? '负载' : tier === 'overloaded' ? '超载' : '无法携带'
+}
+
+function BackpackGrid({
+  grid,
+  onAnchor,
+  candidateCells = [],
+}: Readonly<{
+  grid: PlayerVisibleLoadoutViewModel['backpackGrid']
+  onAnchor?: (x: number, y: number) => void
+  candidateCells?: readonly Readonly<{ x: number; y: number }>[]
+}>) {
+  const candidate = new Set(candidateCells.map(({ x, y }) => `${x},${y}`))
+  const anchorItems = new Map(grid.items.map((item) => [`${item.x},${item.y}`, item]))
+  const cells = Array.from({ length: grid.width * grid.height }, (_, index) => ({
+    x: index % grid.width,
+    y: Math.floor(index / grid.width),
+  }))
+  return <div className="backpack-grid" style={{ gridTemplateColumns: `repeat(${grid.width}, minmax(0, 1fr))` }} aria-label={`背包网格 ${grid.width}×${grid.height}`}>
+    {cells.map(({ x, y }) => {
+      const item = anchorItems.get(`${x},${y}`)
+      const label = item ? `${item.name} ×${item.quantity}` : `格子 ${x + 1},${y + 1}`
+      return onAnchor
+        ? <button key={`${x},${y}`} type="button" className={candidate.has(`${x},${y}`) ? 'grid-cell candidate-cell' : 'grid-cell'} onClick={() => onAnchor(x, y)}>{label}</button>
+        : <span key={`${x},${y}`} className={candidate.has(`${x},${y}`) ? 'grid-cell candidate-cell' : 'grid-cell'}>{label}</span>
+    })}
+  </div>
 }
 
 function ActionPanel({
@@ -118,22 +154,72 @@ function SceneView({
   model,
   actions,
   onPreview,
+  pickupOpportunities,
+  onPickup,
 }: Readonly<{
   model: Extract<StableRunPlayerViewModel, { kind: 'scene-session' }>
   actions: readonly StableRunUiAction[]
   onPreview(actionId: string): void
+  pickupOpportunities: readonly StableRunUiPickupOpportunity[]
+  onPickup(opportunityId: string): void
 }>) {
   const { scene } = model
   return <main className="console-layout">
     <StatusBar status={model.status} />
     <div className="console-grid">
-      <section className="console-panel"><h2>场景导航</h2><p>当前位置：<strong>{scene.currentNodeName}</strong></p><p>剩余时间：<strong>{scene.remainingTime}</strong></p><p>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></p><p>返程后预计剩余：<strong>{scene.returnAfterWithdrawalTime ?? '当前不可预览'}</strong></p>{scene.returnRisk === 'forced-returned' && <p className="preview-warning">当前返程将进入强制返程。</p>}{scene.returnRisk === 'dead' && <p className="preview-warning">当前返程将导致生命归零。</p>}<p>当前节点搜索：<strong>{scene.currentNodeSearchState}</strong></p><h3>当前可通行相邻节点</h3><ItemList items={scene.traversableAdjacentNodeNames.map((name) => ({ name, quantity: 1, resource: null }))} empty="暂无当前可通行相邻节点" /><p className="empty-copy">此列表不是场景路线总览；阻挡路线与障碍等待正式玩家可见导航查询接入。</p><h3>当前节点地面物品</h3><ItemList items={scene.groundItems} empty="未发现地面物品" /></section>
+      <section className="console-panel"><h2>场景导航</h2><p>当前位置：<strong>{scene.currentNodeName}</strong></p><p>剩余时间：<strong>{scene.remainingTime}</strong></p><p>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></p><p>返程后预计剩余：<strong>{scene.returnAfterWithdrawalTime ?? '当前不可预览'}</strong></p>{scene.returnRisk === 'forced-returned' && <p className="preview-warning">当前返程将进入强制返程。</p>}{scene.returnRisk === 'dead' && <p className="preview-warning">当前返程将导致生命归零。</p>}<p>当前节点搜索：<strong>{scene.currentNodeSearchState}</strong></p><h3>当前可通行相邻节点</h3><ItemList items={scene.traversableAdjacentNodeNames.map((name) => ({ name, quantity: 1, resource: null }))} empty="暂无当前可通行相邻节点" /><p className="empty-copy">此列表不是场景路线总览；阻挡路线与障碍等待正式玩家可见导航查询接入。</p><h3>当前节点地面物品</h3><ItemList items={scene.groundItems} empty="未发现地面物品" />{pickupOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onPickup(opportunity.id)}>拾取 {opportunity.name}</button>)}</section>
       <LoadoutPanel loadout={scene.loadout} />
       <ActionPanel actions={actions} onPreview={onPreview} />
       {scene.combat && <CombatPanel combat={scene.combat} />}
-      {scene.status !== 'active' && <section className="console-panel"><h2>场景终局状态</h2><p>{scene.status}</p><p className="empty-copy">终局场景结算命令尚未由 UI 发出。</p></section>}
+      {scene.status !== 'active' && <section className="console-panel"><h2>场景终局状态</h2><p>{scene.status}</p><p className="empty-copy">请确认终局场景结算；该操作不会自动推进日期。</p></section>}
     </div>
   </main>
+}
+
+function PickupDialog({
+  opportunity,
+  loadout,
+  preview,
+  quantity,
+  x,
+  y,
+  rotated,
+  onQuantity,
+  onRotate,
+  onAnchor,
+  onCancel,
+  onConfirm,
+}: Readonly<{
+  opportunity: StableRunUiPickupOpportunity
+  loadout: PlayerVisibleLoadoutViewModel
+  preview: ReturnType<typeof previewStableRunUiPickupDraft>
+  quantity: number
+  x: number
+  y: number
+  rotated: boolean
+  onQuantity(value: number): void
+  onRotate(value: boolean): void
+  onAnchor(x: number, y: number): void
+  onCancel(): void
+  onConfirm(): void
+}>) {
+  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="pickup-title">
+    <h2 id="pickup-title">拾取 {opportunity.name}</h2>
+    <p>地面剩余数量：<strong>{opportunity.groundQuantity}</strong></p>
+    <label>本次拾取数量 <input aria-label="本次拾取数量" type="number" min="1" max={opportunity.groundQuantity} value={quantity} onChange={(event) => onQuantity(Number(event.target.value))} /></label>
+    {opportunity.canRotate && <label><input aria-label="旋转物品" type="checkbox" checked={rotated} onChange={(event) => onRotate(event.target.checked)} />旋转</label>}
+    <p>目标格：{x + 1}, {y + 1}</p>
+    <BackpackGrid grid={loadout.backpackGrid} candidateCells={preview?.candidateCells} onAnchor={onAnchor} />
+    {preview?.canExecute ? <dl className="preview-facts">{preview.facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl> : <p className="preview-warning">{preview?.rejection ?? '状态已变化，请重新选择。'}</p>}
+    <div className="preview-controls"><button type="button" onClick={onCancel}>取消</button><button type="button" className="confirm-action" disabled={!preview?.canExecute} onClick={onConfirm}>确认拾取</button></div>
+  </section></div>
+}
+
+function ReturnSummaryDialog({ summary, onClose }: Readonly<{ summary: ReturnSummaryViewModel; onClose(): void }>) {
+  const kind = summary.returnKind === 'safe' ? '安全' : '强制'
+  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="return-summary-title">
+    <h2 id="return-summary-title">返回摘要</h2><p>返回类型：<strong>{kind}</strong></p><p>剩余生命：<strong>{summary.remainingHealth}</strong></p><h3>带回普通／权限物品</h3><ItemList items={summary.warehouseItems} empty="无" /><h3>带回任务物品</h3><ItemList items={summary.taskItems} empty="无" />{summary.lostTaskItemCount > 0 && <p>遗失任务物品：{summary.lostTaskItemCount}</p>}<div className="preview-controls"><button type="button" onClick={onClose}>关闭摘要</button></div>
+  </section></div>
 }
 
 function ActionPreviewDialog({
@@ -179,8 +265,26 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
   const model = createStableRunPlayerViewModel(snapshot.phase, presentationDependencies)
   const interaction = createStableRunUiInteractionModel(snapshot.phase, presentationDependencies)
   const [pendingActionId, setPendingActionId] = useState<string | null>(null)
+  const [pendingPickupId, setPendingPickupId] = useState<string | null>(null)
+  const [pickupQuantity, setPickupQuantity] = useState(1)
+  const [pickupX, setPickupX] = useState(0)
+  const [pickupY, setPickupY] = useState(0)
+  const [pickupRotated, setPickupRotated] = useState(false)
+  const [returnSummary, setReturnSummary] = useState<ReturnSummaryViewModel | null>(null)
   const [persistenceFeedback, setPersistenceFeedback] = useState<string | null>(null)
   const pendingAction = interaction.actions.find(({ id }) => id === pendingActionId) ?? null
+  const pendingPickup = interaction.pickupOpportunities.find(({ id }) => id === pendingPickupId) ?? null
+  const pickupPreview = pendingPickup === null ? null : previewStableRunUiPickupDraft(snapshot.phase, {
+    opportunityId: pendingPickup.id,
+    quantity: pickupQuantity,
+    x: pickupX,
+    y: pickupY,
+    rotated: pickupRotated,
+  }, presentationDependencies)
+
+  useEffect(() => {
+    if (pendingPickupId !== null && pendingPickup === null) setPendingPickupId(null)
+  }, [pendingPickup, pendingPickupId])
 
   const confirm = () => {
     if (!pendingAction) return
@@ -189,17 +293,48 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
     setPersistenceFeedback(execution.kind === 'executed'
       ? '✓ 操作已执行并保存'
       : '⚠ 保存失败：本次操作已在当前会话中生效，请勿刷新页面。')
+    if (
+      pendingAction.kind === 'settle-terminal-scene' &&
+      execution.phase.kind === 'current-day-hub' &&
+      'runReturn' in execution.result
+    ) {
+      setReturnSummary(createReturnSummaryViewModel(
+        execution.result.runReturn.summary,
+        execution.phase,
+        presentationDependencies,
+      ))
+    }
+  }
+  const openPickup = (opportunityId: string) => {
+    const opportunity = interaction.pickupOpportunities.find(({ id }) => id === opportunityId)
+    if (!opportunity) return
+    setPendingActionId(null)
+    setPickupQuantity(opportunity.groundQuantity)
+    setPickupX(0)
+    setPickupY(0)
+    setPickupRotated(false)
+    setPendingPickupId(opportunityId)
+  }
+  const confirmPickup = () => {
+    if (!pickupPreview?.canExecute || pickupPreview.command === null) return
+    const execution = store.dispatch(pickupPreview.command)
+    setPendingPickupId(null)
+    setPersistenceFeedback(execution.kind === 'executed'
+      ? '✓ 操作已执行并保存'
+      : '⚠ 保存失败：本次操作已在当前会话中生效，请勿刷新页面。')
   }
   return <>
     {persistenceFeedback && <p className="persistence-feedback" role="status">{persistenceFeedback}</p>}
     {model.kind === 'current-day-hub' && <HubView model={model} actions={interaction.actions} onPreview={setPendingActionId} />}
-    {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} onPreview={setPendingActionId} />}
+    {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} onPreview={setPendingActionId} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} />}
     {model.kind === 'run-failure' && <FailureView model={model} />}
     {pendingAction && <ActionPreviewDialog
       preview={pendingAction.preview}
       onCancel={() => setPendingActionId(null)}
       onConfirm={confirm}
     />}
+    {pendingPickup && model.kind === 'scene-session' && <PickupDialog opportunity={pendingPickup} loadout={model.scene.loadout} preview={pickupPreview} quantity={pickupQuantity} x={pickupX} y={pickupY} rotated={pickupRotated} onQuantity={setPickupQuantity} onRotate={setPickupRotated} onAnchor={(x, y) => { setPickupX(x); setPickupY(y) }} onCancel={() => setPendingPickupId(null)} onConfirm={confirmPickup} />}
+    {returnSummary && <ReturnSummaryDialog summary={returnSummary} onClose={() => setReturnSummary(null)} />}
     {import.meta.env.DEV && <DevInspector phase={snapshot.phase} />}
   </>
 }

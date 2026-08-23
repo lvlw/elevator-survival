@@ -33,6 +33,42 @@ function unavailable(message: string): never {
   throw new StableRunLifecycleError('COMMAND_NOT_AVAILABLE', message)
 }
 
+/**
+ * The single application-level lifecycle route eligibility source. It is
+ * deliberately narrower than gameplay validation: the core resolver still
+ * owns launch, return, settlement, and failure rules.
+ */
+export function getStableRunLifecycleCommandAvailability(
+  currentPhase: ExecuteStableRunLifecycleCommandInput['currentPhase'],
+  commandInput: unknown,
+): Readonly<{
+  canExecute: boolean
+  settlementOutcome: 'return-to-hub' | 'run-failure' | null
+}> {
+  const command = createStableRunLifecycleCommand(commandInput)
+  if (currentPhase.kind === 'current-day-hub') {
+    return Object.freeze({
+      canExecute: command.kind === 'launch-main-scene' || command.kind === 'end-day',
+      settlementOutcome: null,
+    })
+  }
+  if (currentPhase.kind === 'run-failure') {
+    return Object.freeze({ canExecute: false, settlementOutcome: null })
+  }
+  if (command.kind !== 'settle-terminal-scene') {
+    return Object.freeze({ canExecute: false, settlementOutcome: null })
+  }
+  const status = currentPhase.payload.scene.status
+  return Object.freeze({
+    canExecute: status === 'safe-returned' || status === 'forced-returned' || status === 'dead',
+    settlementOutcome: status === 'dead'
+      ? 'run-failure'
+      : status === 'safe-returned' || status === 'forced-returned'
+        ? 'return-to-hub'
+        : null,
+  })
+}
+
 export function createStableRunLifecycleCommand(
   input: unknown,
 ): StableRunLifecycleCommand {
@@ -103,6 +139,16 @@ export function executeStableRunLifecycleCommand(
         return unavailable('当前日中枢不能结算终止场景')
       }
 
+      const availability = getStableRunLifecycleCommandAvailability(
+        currentPhase,
+        command,
+      )
+      if (!availability.canExecute) {
+        if (command.kind !== 'settle-terminal-scene') {
+          return unavailable('Scene Session只能执行终止场景结算生命周期命令')
+        }
+        return unavailable('活动或战斗中的Scene不能执行终止场景结算')
+      }
       if (command.kind !== 'settle-terminal-scene') {
         return unavailable('Scene Session只能执行终止场景结算生命周期命令')
       }

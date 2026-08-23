@@ -136,6 +136,29 @@ body {
 .action-button:hover,
 .preview-controls button:hover { background: #31495c; }
 .preview-controls .confirm-action { border-color: #9fc7b5; background: #284638; }
+.preview-controls button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.backpack-grid {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0.6rem 0;
+}
+
+.grid-cell {
+  min-height: 2.2rem;
+  padding: 0.25rem;
+  overflow: hidden;
+  border: 1px solid #415363;
+  color: #c8d2dc;
+  background: #111820;
+  font: inherit;
+  font-size: 0.72rem;
+  text-overflow: ellipsis;
+}
+
+button.grid-cell { cursor: pointer; }
+button.grid-cell:hover,
+.candidate-cell { border-color: #9fc7b5; background: #294236; }
 
 .preview-backdrop {
   position: fixed;

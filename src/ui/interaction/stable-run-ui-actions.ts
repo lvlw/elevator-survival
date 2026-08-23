@@ -1,9 +1,11 @@
 import {
   createPerformMainSearchCommand,
+  createPerformSceneObstacleOptionCommand,
   createMoveThroughSceneEdgeCommand,
   createPickUpRevealedNodeItemCommand,
   createWithdrawFromSceneCommand,
   getPlayerVisibleSceneNodeState,
+  getPlayerVisibleSceneObstacles,
   previewMainSearchCommand,
   previewNodeItemPickupCommand,
   previewSceneMoveCommand,
@@ -37,6 +39,7 @@ export type StableRunUiActionKind =
   | 'launch-main-scene'
   | 'scene-move'
   | 'scene-main-search'
+  | 'scene-obstacle'
   | 'scene-withdraw'
   | 'settle-terminal-scene'
 
@@ -78,6 +81,11 @@ export interface StableRunUiActionPreviewViewModel {
   readonly title: string
   readonly facts: readonly StableRunUiActionPreviewFact[]
   readonly warnings: readonly string[]
+  readonly branches: readonly Readonly<{
+    title: string
+    facts: readonly StableRunUiActionPreviewFact[]
+    warnings: readonly string[]
+  }>[]
 }
 
 export interface StableRunUiAction {
@@ -98,11 +106,17 @@ function freezePreview(
   title: string,
   facts: readonly StableRunUiActionPreviewFact[],
   warnings: readonly string[] = [],
+  branches: StableRunUiActionPreviewViewModel['branches'] = [],
 ): StableRunUiActionPreviewViewModel {
   return Object.freeze({
     title,
     facts: Object.freeze(facts.map((fact) => Object.freeze({ ...fact }))),
     warnings: Object.freeze([...warnings]),
+    branches: Object.freeze(branches.map((branch) => Object.freeze({
+      title: branch.title,
+      facts: Object.freeze(branch.facts.map((fact) => Object.freeze({ ...fact }))),
+      warnings: Object.freeze([...branch.warnings]),
+    }))),
   })
 }
 
@@ -145,13 +159,37 @@ function timedOutcomeFacts(
 }
 
 function applicationSceneCommand(
-  kind: 'scene-move' | 'scene-main-search' | 'scene-node-item-pickup' | 'scene-withdraw',
+  kind: 'scene-move' | 'scene-main-search' | 'scene-node-item-pickup' | 'scene-withdraw' | 'scene-obstacle',
   command: unknown,
 ): StableRunApplicationCommand {
   return createStableRunApplicationCommand({
     kind: 'scene',
     command: { kind, command },
   })
+}
+
+function riskTierName(
+  tier: 'none' | 'low' | 'medium' | 'high' | 'very-high',
+): string {
+  return tier === 'none'
+    ? '无'
+    : tier === 'low'
+      ? '低'
+      : tier === 'medium'
+        ? '中'
+        : tier === 'high'
+          ? '高'
+          : '极高'
+}
+
+function outcomeName(kind: TimedSceneActionOutcome['kind']): string {
+  return kind === 'continue'
+    ? '继续探索'
+    : kind === 'forced-return'
+      ? '强制返回'
+      : kind === 'death'
+        ? '死亡'
+        : '安全返回'
 }
 
 function loadTierName(tier: 'normal' | 'loaded' | 'overloaded'): string {
@@ -286,6 +324,114 @@ function createSearchActions(
       })),
     })]
   }))
+}
+
+function obstacleOutcomeFacts(
+  actionTime: number,
+  outcome: TimedSceneActionOutcome,
+  returnEstimate: number,
+): readonly StableRunUiActionPreviewFact[] {
+  return Object.freeze([
+    { label: '行动耗时', value: String(actionTime) },
+    { label: '行动后剩余时间', value: String(outcome.clock.remainingTime) },
+    { label: '行动后预计返程', value: String(returnEstimate) },
+    { label: '预计结果', value: outcomeName(outcome.kind) },
+    ...timedOutcomeFacts(outcome),
+  ])
+}
+
+function createObstacleActions(
+  phase: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  dependencies: StableRunUiPresentationDependencies,
+): readonly StableRunUiAction[] {
+  const identity = getStableRunPhaseIdentity(phase)
+  const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
+  const runtime = getRunSceneRuntime(phase.payload, rules.sceneLaunch)
+  const scene = phase.payload.scene
+  if (scene.status !== 'active') return Object.freeze([])
+
+  return Object.freeze(getPlayerVisibleSceneObstacles(scene, runtime.dependencies).flatMap(
+    (obstacle) => obstacle.options.map((option) => {
+      const optionName = dependencies.labels.obstacleOptionName(option.command.optionId)
+      const facts: StableRunUiActionPreviewFact[] = [
+        { label: '处理方式', value: optionName },
+        { label: '是否触发警觉', value: option.setsAlert ? '是' : '否' },
+      ]
+      if (option.resourceChange) {
+        const definition = runtime.dependencies.physicalCatalog.get(
+          option.resourceChange.definitionId,
+        )
+        facts.push({
+          label: dependencies.labels.itemName(
+            option.resourceChange.definitionId,
+            definition.name,
+          ),
+          value: `${option.resourceChange.currentBefore} → ${option.resourceChange.currentAfter}`,
+        })
+      }
+      for (const spawned of option.spawnedItems) {
+        const definition = runtime.dependencies.physicalCatalog.get(spawned.definitionId)
+        facts.push({
+          label: '节点地面产物',
+          value: `${dependencies.labels.itemName(spawned.definitionId, definition.name)} ×${spawned.quantity}`,
+        })
+      }
+      if (option.injuryRiskTier !== null) {
+        facts.push({ label: '轻度挫伤风险', value: riskTierName(option.injuryRiskTier) })
+        facts.push({
+          label: '冲击防护',
+          value: option.impactProtectionActive ? '当前防护装备生效' : '未生效',
+        })
+      }
+
+      const deterministic = option.outcomes.find(({ kind }) => kind === 'deterministic')
+      const warnings = deterministic
+        ? sceneOutcomeWarnings({
+            outcome: deterministic.sceneOutcome,
+            returnEstimate: deterministic.returnRoute.estimatedReturnTime,
+          })
+        : []
+      if (deterministic) {
+        facts.push(...obstacleOutcomeFacts(
+          option.actionTime,
+          deterministic.sceneOutcome,
+          deterministic.returnRoute.estimatedReturnTime,
+        ))
+      } else {
+        facts.push({ label: '行动耗时', value: String(option.actionTime) })
+      }
+
+      const branches = option.outcomes.flatMap((branch) => branch.kind === 'deterministic'
+        ? []
+        : [{
+            title: branch.kind === 'minor-contusion' ? '若产生轻度挫伤' : '若未产生轻度挫伤',
+            facts: obstacleOutcomeFacts(
+              option.actionTime,
+              branch.sceneOutcome,
+              branch.returnRoute.estimatedReturnTime,
+            ),
+            warnings: sceneOutcomeWarnings({
+              outcome: branch.sceneOutcome,
+              returnEstimate: branch.returnRoute.estimatedReturnTime,
+            }),
+          }])
+      return Object.freeze({
+        id: `scene-obstacle:${option.command.obstacleId}:${option.command.optionId}`,
+        kind: 'scene-obstacle' as const,
+        label: `${dependencies.labels.obstacleName(obstacle.obstacleId)} · ${optionName}`,
+        command: applicationSceneCommand(
+          'scene-obstacle',
+          createPerformSceneObstacleOptionCommand(option.command),
+        ),
+        preview: freezePreview(
+          `确认${optionName}`,
+          facts,
+          warnings,
+          branches,
+        ),
+      })
+    }),
+  ))
 }
 
 function createWithdrawalAction(
@@ -457,6 +603,7 @@ export function createStableRunUiInteractionModel(
       ? [
           ...createMoveActions(phase, dependencies),
           ...createSearchActions(phase, dependencies),
+          ...createObstacleActions(phase, dependencies),
           ...[createWithdrawalAction(phase, dependencies), createSettlementAction(phase)].filter(
             (action): action is StableRunUiAction => action !== null,
           ),

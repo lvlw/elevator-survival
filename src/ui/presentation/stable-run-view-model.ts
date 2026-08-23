@@ -19,6 +19,7 @@ import {
 } from '../../core/scene-launch'
 import {
   getPlayerVisibleSceneNodeState,
+  getPlayerVisibleSceneObstacles,
   previewSceneWithdrawalCommand,
 } from '../../core/scene-exploration'
 import { getWorldThreatStage } from '../../core/world-threat'
@@ -36,6 +37,8 @@ export interface StableRunUiLabels {
   enemyIntentName(intentId: string): string
   worldThreatStageName(stageId: string): string
   failureReason(reason: string): string
+  obstacleName(obstacleId: string): string
+  obstacleOptionName(optionId: string): string
 }
 
 export interface StableRunUiPresentationDependencies {
@@ -152,6 +155,7 @@ export type StableRunPlayerViewModel =
         returnAfterWithdrawalTime: number | null
         returnRisk: 'safe-returned' | 'forced-returned' | 'dead' | null
         currentNodeSearchState: 'not-available' | 'available-unsearched' | 'searched'
+        currentObstacles: readonly Readonly<{ name: string }>[]
         groundItems: readonly PlayerVisibleItemViewModel[]
         loadout: PlayerVisibleLoadoutViewModel
         combat: PlayerVisibleCombatViewModel | null
@@ -298,6 +302,12 @@ function createSceneView(
   const connected = getCurrentTraversableAdjacentEdges(scene, runtime)
     .map(({ destinationNodeName }) => destinationNodeName)
   const playerNode = getPlayerVisibleSceneNodeState(scene, scene.currentNodeId)
+  const currentObstacles = getPlayerVisibleSceneObstacles(
+    scene,
+    runtime.dependencies,
+  ).map(({ obstacleId }) => frozen({
+    name: dependencies.labels.obstacleName(obstacleId),
+  }))
   const withdrawal = scene.status === 'active'
     ? previewSceneWithdrawalCommand(scene, { kind: 'withdraw-from-scene' }, runtime.dependencies)
     : null
@@ -349,6 +359,7 @@ function createSceneView(
       returnAfterWithdrawalTime: returnPreview?.remainingTimeAfter ?? null,
       returnRisk: returnPreview?.statusAfter ?? null,
       currentNodeSearchState: playerNode.search.kind,
+      currentObstacles: frozen(currentObstacles),
       groundItems: frozen(playerNode.groundItems.map((item) => itemView(item, scene.itemStates, runtime, dependencies.labels))),
       loadout: loadoutView(scene, runtime, dependencies.labels),
       combat,

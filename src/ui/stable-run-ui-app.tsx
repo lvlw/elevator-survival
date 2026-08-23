@@ -178,11 +178,11 @@ function SceneView({
   return <main className="console-layout">
     <StatusBar status={model.status} />
     <div className="console-grid">
-      <section className="console-panel"><h2>场景导航</h2><p>当前位置：<strong>{scene.currentNodeName}</strong></p><p>剩余时间：<strong>{scene.remainingTime}</strong></p><p>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></p><p>返程后预计剩余：<strong>{scene.returnAfterWithdrawalTime ?? '当前不可预览'}</strong></p>{scene.returnRisk === 'forced-returned' && <p className="preview-warning">当前返程将进入强制返程。</p>}{scene.returnRisk === 'dead' && <p className="preview-warning">当前返程将导致生命归零。</p>}<p>当前节点搜索：<strong>{scene.currentNodeSearchState}</strong></p><h3>当前可通行相邻节点</h3><ItemList items={scene.traversableAdjacentNodeNames.map((name) => ({ name, quantity: 1, resource: null }))} empty="暂无当前可通行相邻节点" /><p className="empty-copy">此列表不是场景路线总览；阻挡路线与障碍等待正式玩家可见导航查询接入。</p><h3>当前节点地面物品</h3><ItemList items={scene.groundItems} empty="未发现地面物品" />{pickupOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onPickup(opportunity.id)}>拾取 {opportunity.name}</button>)}</section>
+      <section className="console-panel"><h2>场景导航</h2><p>当前位置：<strong>{scene.currentNodeName}</strong></p><p>剩余时间：<strong>{scene.remainingTime}</strong></p><p>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></p><p>返程后预计剩余：<strong>{scene.returnAfterWithdrawalTime ?? '当前不可预览'}</strong></p>{scene.returnRisk === 'forced-returned' && <p className="preview-warning">当前返程将进入强制返程。</p>}{scene.returnRisk === 'dead' && <p className="preview-warning">当前返程将导致生命归零。</p>}<p>当前节点搜索：<strong>{scene.currentNodeSearchState}</strong></p><h3>当前可通行相邻节点</h3><ItemList items={scene.traversableAdjacentNodeNames.map((name) => ({ name, quantity: 1, resource: null }))} empty="暂无当前可通行相邻节点" /><h3>当前明显障碍</h3><ItemList items={scene.currentObstacles.map(({ name }) => ({ name, quantity: 1, resource: null }))} empty="当前没有需要处理的明显障碍" /><h3>当前节点地面物品</h3><ItemList items={scene.groundItems} empty="未发现地面物品" />{pickupOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onPickup(opportunity.id)}>拾取 {opportunity.name}</button>)}</section>
       <LoadoutPanel loadout={scene.loadout} />
       <ActionPanel actions={actions} onPreview={onPreview} />
       {scene.combat && <CombatPanel combat={scene.combat} />}
-      {scene.status !== 'active' && <section className="console-panel"><h2>场景终局状态</h2><p>{scene.status}</p><p className="empty-copy">请确认终局场景结算；该操作不会自动推进日期。</p></section>}
+      {scene.status !== 'active' && scene.status !== 'combat' && <section className="console-panel"><h2>场景终局状态</h2><p>{scene.status}</p><p className="empty-copy">请确认终局场景结算；该操作不会自动推进日期。</p></section>}
     </div>
   </main>
 }
@@ -251,6 +251,15 @@ function ActionPreviewDialog({
       {preview.warnings.length > 0 && <ul className="preview-warnings">
         {preview.warnings.map((warning) => <li key={warning}>{warning}</li>)}
       </ul>}
+      {preview.branches.map((branch) => <section key={branch.title} className="preview-branch">
+        <h3>{branch.title}</h3>
+        <dl className="preview-facts">{branch.facts.map((fact) => <div key={fact.label}>
+          <dt>{fact.label}</dt><dd>{fact.value}</dd>
+        </div>)}</dl>
+        {branch.warnings.length > 0 && <ul className="preview-warnings">
+          {branch.warnings.map((warning) => <li key={warning}>{warning}</li>)}
+        </ul>}
+      </section>)}
       <div className="preview-controls">
         <button type="button" onClick={onCancel}>取消</button>
         <button type="button" className="confirm-action" onClick={onConfirm}>确认执行</button>

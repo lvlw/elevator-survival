@@ -18,6 +18,7 @@ import type {
   SceneObstaclePreview,
   SceneObstacleResolution,
 } from './scene-exploration-types'
+import type { SceneObstaclePrimaryPlan } from '../scene-obstacle'
 
 function addHealthEffect(
   effects: SceneExplorationEffect[],
@@ -34,31 +35,25 @@ function addHealthEffect(
   return healthAfter
 }
 
-function evaluate(
-  input: SceneExplorationSnapshot,
-  commandInput: unknown,
+function evaluateTimedPlan(
+  snapshot: SceneExplorationSnapshot,
+  command: PerformSceneObstacleOptionCommand,
+  primaryPlan: SceneObstaclePrimaryPlan,
+  primaryEffects: readonly SceneExplorationEffect[],
+  conditionAfter: SceneExplorationSnapshot['condition'],
   dependencies: SceneObstacleCommandDependencies,
 ) {
-  const snapshot = createSceneExplorationSnapshot(input, dependencies)
-  const command = createPerformSceneObstacleOptionCommand(commandInput)
-  const primaryPlan = createSceneObstaclePrimaryPlan(
-    snapshot,
-    command,
-    dependencies,
-  )
   if (primaryPlan.actionTime === 0) {
     return deepFreeze({
       actionTime: 0,
-      riskTrace: null,
-      effects: primaryPlan.primaryEffects,
+      riskTrace: primaryPlan.riskTrace,
+      returnRoute: null,
+      sceneOutcome: null,
+      effects: primaryEffects,
     })
   }
   const obstacle = dependencies.obstacleCatalog.get(command.obstacleId)
-  const effects: SceneExplorationEffect[] = [...primaryPlan.primaryEffects]
-  const riskTrace = primaryPlan.riskTrace
-  const conditionAfter = riskTrace?.causedMinorContusion
-    ? addMinorContusion(snapshot.condition)
-    : snapshot.condition
+  const effects: SceneExplorationEffect[] = [...primaryEffects]
   const actionTime = primaryPlan.actionTime
   const backpackWeight = calculateBackpackWeightSubtotal(snapshot.backpack, dependencies.physicalCatalog)
   const enabledAfter = [...getEffectiveEnabledEdgeIds(snapshot, dependencies.edgeAccessCatalog), obstacle.edgeId]
@@ -133,7 +128,90 @@ function evaluate(
       reason: status === 'dead' ? 'death' : status === 'safe-returned' ? 'safe-return' : 'forced-return',
     })
   }
-  return deepFreeze({ actionTime, riskTrace, effects })
+  return deepFreeze({
+    actionTime,
+    riskTrace: primaryPlan.riskTrace,
+    returnRoute,
+    sceneOutcome,
+    effects,
+  })
+}
+
+function evaluate(
+  input: SceneExplorationSnapshot,
+  commandInput: unknown,
+  dependencies: SceneObstacleCommandDependencies,
+) {
+  const snapshot = createSceneExplorationSnapshot(input, dependencies)
+  const command = createPerformSceneObstacleOptionCommand(commandInput)
+  const primaryPlan = createSceneObstaclePrimaryPlan(
+    snapshot,
+    command,
+    dependencies,
+  )
+  const riskTrace = primaryPlan.riskTrace
+  const conditionAfter = riskTrace?.causedMinorContusion
+    ? addMinorContusion(snapshot.condition)
+    : snapshot.condition
+  return evaluateTimedPlan(
+    snapshot,
+    command,
+    primaryPlan,
+    primaryPlan.primaryEffects,
+    conditionAfter,
+    dependencies,
+  )
+}
+
+/**
+ * Builds one hypothetical force-entry outcome using the same formal timed
+ * action evaluator as resolution. Hidden deterministic risk facts are removed
+ * before the branch is returned.
+ */
+export function previewSceneObstacleOutcomeBranch(
+  input: SceneExplorationSnapshot,
+  commandInput: unknown,
+  causedMinorContusion: boolean,
+  dependencies: SceneObstacleCommandDependencies,
+) {
+  const snapshot = createSceneExplorationSnapshot(input, dependencies)
+  const command = createPerformSceneObstacleOptionCommand(commandInput)
+  const primaryPlan = createSceneObstaclePrimaryPlan(snapshot, command, dependencies)
+  const option = dependencies.obstacleCatalog.get(command.obstacleId).options.find(
+    ({ id }) => id === command.optionId,
+  )
+  if (option?.kind !== 'force-entry') {
+    throw new SceneExplorationError(
+      'UNKNOWN_OBSTACLE_OPTION',
+      '只有风险障碍选项能够生成结果分支',
+    )
+  }
+  const safePrimaryEffects = primaryPlan.primaryEffects.filter(
+    (effect) => effect.kind !== 'scene-obstacle-risk-resolved' &&
+      effect.kind !== 'minor-contusion-added',
+  )
+  const conditionAfter = causedMinorContusion
+    ? addMinorContusion(snapshot.condition)
+    : snapshot.condition
+  const result = evaluateTimedPlan(
+    snapshot,
+    command,
+    primaryPlan,
+    safePrimaryEffects,
+    conditionAfter,
+    dependencies,
+  )
+  if (!result.returnRoute || !result.sceneOutcome) {
+    throw new SceneExplorationError(
+      'UNKNOWN_OBSTACLE_OPTION',
+      '风险障碍选项必须产生正式时间结算',
+    )
+  }
+  return deepFreeze({
+    actionTime: result.actionTime,
+    returnRoute: result.returnRoute,
+    sceneOutcome: result.sceneOutcome,
+  })
 }
 
 function materialize(
@@ -148,6 +226,8 @@ function materialize(
     optionId: command.optionId,
     actionTime: plan.actionTime,
     riskTrace: plan.riskTrace,
+    returnRoute: plan.returnRoute,
+    sceneOutcome: plan.sceneOutcome,
     effects: plan.effects,
     snapshot,
   })

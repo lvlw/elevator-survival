@@ -169,8 +169,19 @@ describe('stable Run player-visible ViewModel', () => {
     expect(model.scene.returnAfterWithdrawalTime).toBe(200)
     expect(model.scene.returnRisk).toBe('safe-returned')
     expect(model.scene.currentNodeSearchState).toBe('not-available')
+    expect(model.scene.currentObstacles).toEqual([])
     expect(JSON.stringify(model)).not.toContain('preparedOutcome')
     expect(JSON.stringify(model)).not.toContain('randomTrace')
+  })
+
+  it('projects only the labelled current obvious obstacle without internal identities', () => {
+    const model = createStableRunPlayerViewModel(emergencyHallScenePhase(), dependencies)
+    if (model.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(model.scene.currentObstacles).toEqual([{ name: '隔离区防火门' }])
+    const visible = JSON.stringify(model.scene.currentObstacles)
+    for (const hidden of ['obstacle_isolation_fire_door', 'option_', 'obstacleId', 'optionId']) {
+      expect(visible).not.toContain(hidden)
+    }
   })
 
   it('projects formal forced-return risk from the current withdrawal preview', () => {

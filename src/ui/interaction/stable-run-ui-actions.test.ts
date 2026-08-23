@@ -81,6 +81,60 @@ function moveToEmergencyHall() {
   }
 }
 
+function withEquippedItem(
+  phase: ReturnType<typeof moveToEmergencyHall>,
+  slot: 'weapon' | 'armor' | 'utility',
+  definitionId: string,
+) {
+  const runtime = getRunSceneRuntime(phase.payload, hospitalSceneLaunchDependencies)
+  const equipped = item(`ui-interaction-${slot}`, definitionId)
+  const replaced = phase.payload.scene.equipment[slot]
+  const scene = createSceneExplorationSnapshot({
+    ...phase.payload.scene,
+    equipment: { ...phase.payload.scene.equipment, [slot]: equipped },
+    itemStates: {
+      states: [
+        ...phase.payload.scene.itemStates.states.filter(
+          ({ instanceId }) => instanceId !== replaced?.instanceId,
+        ),
+        createFullItemState(equipped, hospitalItemResourceCatalog),
+      ],
+    },
+  }, runtime.dependencies)
+  return {
+    kind: 'scene-session' as const,
+    payload: createRunSceneSessionSnapshot({ context: phase.payload.context, scene }, hospitalSceneLaunchDependencies),
+  }
+}
+
+function withCardAtEmergencyHall(remainingTime?: number) {
+  const phase = moveToEmergencyHall()
+  const runtime = getRunSceneRuntime(phase.payload, hospitalSceneLaunchDependencies)
+  const card = item('ui-interaction-hall-card', HOSPITAL_ITEM_IDS.isolationWardAccessCard)
+  const backpack = createBackpackSnapshot({
+    ...phase.payload.scene.backpack,
+    items: [...phase.payload.scene.backpack.items, card],
+    placements: [...phase.payload.scene.backpack.placements, {
+      instanceId: card.instanceId,
+      x: 0,
+      y: 0,
+      rotated: false,
+    }],
+  }, hospitalItemCatalog)
+  const scene = createSceneExplorationSnapshot({
+    ...phase.payload.scene,
+    ...(remainingTime === undefined ? {} : { remainingTime }),
+    backpack,
+    itemStates: {
+      states: [...phase.payload.scene.itemStates.states, createFullItemState(card, hospitalItemResourceCatalog)],
+    },
+  }, runtime.dependencies)
+  return {
+    kind: 'scene-session' as const,
+    payload: createRunSceneSessionSnapshot({ context: phase.payload.context, scene }, hospitalSceneLaunchDependencies),
+  }
+}
+
 function withRemainingTime(
   phase: ReturnType<typeof moveToEmergencyHall>,
   remainingTime: number,
@@ -169,6 +223,80 @@ describe('stable Run UI interaction model', () => {
       expect(visible).not.toContain(forbidden)
     }
     expect(phase.payload.scene.currentNodeId).toBe(HOSPITAL_NODE_IDS.emergencyHall)
+  })
+
+  it('routes only formally executable fire-door options into safe labelled previews', () => {
+    const base = createStableRunUiInteractionModel(moveToEmergencyHall(), dependencies)
+    const obstacleActions = base.actions.filter(({ kind }) => kind === 'scene-obstacle')
+    expect(obstacleActions.map(({ label }) => label)).toEqual([
+      '隔离区防火门 · 强行撞门',
+      '隔离区防火门 · 放弃处理',
+    ])
+    const force = obstacleActions[0]!
+    expect(force.preview.facts).toEqual(expect.arrayContaining([
+      { label: '是否触发警觉', value: '是' },
+      { label: '轻度挫伤风险', value: '低' },
+      { label: '冲击防护', value: '当前防护装备生效' },
+    ]))
+    expect(force.preview.branches.map(({ title }) => title)).toEqual([
+      '若未产生轻度挫伤',
+      '若产生轻度挫伤',
+    ])
+    const decline = obstacleActions[1]!
+    expect(decline.preview.facts).toEqual(expect.arrayContaining([
+      { label: '行动耗时', value: '0' },
+      { label: '是否触发警觉', value: '否' },
+    ]))
+    expect(decline.command).toMatchObject({
+      kind: 'scene',
+      command: { kind: 'scene-obstacle', command: expect.any(Object) },
+    })
+    const visible = JSON.stringify(obstacleActions.map(({ label, preview }) => ({ label, preview })))
+    for (const hidden of ['riskPercent', 'riskTrace', 'roll', 'streamId', 'drawIndex', 'causedMinorContusion', 'snapshot', 'effects', 'obstacleId', 'optionId']) {
+      expect(visible).not.toContain(hidden)
+    }
+  })
+
+  it('derives all equipment/card option availability and resource facts from formal previews', () => {
+    const cases = [
+      [withCardAtEmergencyHall(), '使用门禁卡', null],
+      [withEquippedItem(moveToEmergencyHall(), 'utility', HOSPITAL_ITEM_IDS.crowbar), '使用撬棍', '3 → 2'],
+      [withEquippedItem(moveToEmergencyHall(), 'utility', HOSPITAL_ITEM_IDS.toolkit), '使用工具箱', '2 → 1'],
+      [withEquippedItem(moveToEmergencyHall(), 'weapon', HOSPITAL_ITEM_IDS.fireAxe), '使用消防斧', '2 → 1'],
+    ] as const
+    for (const [phase, optionName, resource] of cases) {
+      const action = createStableRunUiInteractionModel(phase, dependencies).actions.find(
+        ({ label }) => label === `隔离区防火门 · ${optionName}`,
+      )
+      expect(action).toBeDefined()
+      if (resource) expect(action?.preview.facts).toContainEqual(expect.objectContaining({ value: resource }))
+    }
+    const toolkit = createStableRunUiInteractionModel(cases[2][0], dependencies).actions.find(
+      ({ label }) => label === '隔离区防火门 · 使用工具箱',
+    )
+    expect(toolkit?.preview.facts).toContainEqual({ label: '节点地面产物', value: '电子元件 ×1' })
+  })
+
+  it('projects deterministic and uncertain near-zero obstacle outcomes without hidden rolls', () => {
+    const card = createStableRunUiInteractionModel(withCardAtEmergencyHall(5), dependencies).actions.find(
+      ({ label }) => label === '隔离区防火门 · 使用门禁卡',
+    )
+    expect(card?.preview.facts).toEqual(expect.arrayContaining([
+      { label: '行动后剩余时间', value: '0' },
+      { label: '超时债务', value: '5' },
+      { label: '预计结果', value: '强制返回' },
+    ]))
+    const force = createStableRunUiInteractionModel(
+      withRemainingTime(moveToEmergencyHall(), 5),
+      dependencies,
+    ).actions.find(({ label }) => label === '隔离区防火门 · 强行撞门')
+    expect(force?.preview.branches).toHaveLength(2)
+    for (const branch of force?.preview.branches ?? []) {
+      expect(branch.facts).toEqual(expect.arrayContaining([
+        { label: '行动后剩余时间', value: '0' },
+        { label: '超时债务', value: '15' },
+      ]))
+    }
   })
 
   it('warns when a continuing action falls below its formal return estimate', () => {

@@ -173,6 +173,8 @@ button.grid-cell:hover,
 
 .preview-dialog {
   width: min(100%, 34rem);
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
   padding: 1.25rem;
   border: 1px solid #9fc7b5;
   background: #19212a;

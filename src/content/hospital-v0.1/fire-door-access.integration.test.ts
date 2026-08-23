@@ -7,6 +7,7 @@ import {
   applySceneExplorationEffects,
   createInitialSceneExplorationSnapshot,
   getPlayerVisibleSceneNodeState,
+  getPlayerVisibleSceneObstacles,
   previewMainSearchCommand,
   previewNodeItemPickupCommand,
   previewSceneMoveCommand,
@@ -211,6 +212,92 @@ describe('hospital staff access and fire door', () => {
     expect(resolved.snapshot.enabledEdgeIds).toContain(HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor)
     expect(resolved.snapshot.alertState).toBe(alerted ? 'alerted' : 'unalerted')
     expect(previewSceneObstacleOptionCommand(resolved.snapshot, option(optionId), obstacleDependencies)).toMatchObject({ canExecute: false, rejectionCode: 'OBSTACLE_ALREADY_RESOLVED' })
+  })
+
+  it('exposes only formally executable fire-door options at the unresolved current endpoint', () => {
+    const defaultOptions = getPlayerVisibleSceneObstacles(snapshot(), obstacleDependencies)[0]!.options
+    expect(defaultOptions.map(({ command }) => command.optionId)).toEqual([
+      HOSPITAL_FIRE_DOOR_OPTION_IDS.forceEntry,
+      HOSPITAL_FIRE_DOOR_OPTION_IDS.decline,
+    ])
+    expect(getPlayerVisibleSceneObstacles(snapshot({ withCard: true }), obstacleDependencies)[0]!.options.map(({ command }) => command.optionId)).toContain(HOSPITAL_FIRE_DOOR_OPTION_IDS.accessCard)
+    expect(getPlayerVisibleSceneObstacles(snapshot({ utility: 'crowbar' }), obstacleDependencies)[0]!.options.map(({ command }) => command.optionId)).toContain(HOSPITAL_FIRE_DOOR_OPTION_IDS.crowbar)
+    expect(getPlayerVisibleSceneObstacles(snapshot({ utility: 'toolkit' }), obstacleDependencies)[0]!.options.map(({ command }) => command.optionId)).toContain(HOSPITAL_FIRE_DOOR_OPTION_IDS.toolkit)
+    expect(getPlayerVisibleSceneObstacles(snapshot({ weapon: 'fireAxe' }), obstacleDependencies)[0]!.options.map(({ command }) => command.optionId)).toContain(HOSPITAL_FIRE_DOOR_OPTION_IDS.fireAxe)
+    expect(getPlayerVisibleSceneObstacles(snapshot({ nodeId: HOSPITAL_NODE_IDS.securityOffice }), obstacleDependencies)).toEqual([])
+  })
+
+  it('projects deterministic resource, alert, and toolkit ground-grant facts without resolving', () => {
+    const toolkit = getPlayerVisibleSceneObstacles(snapshot({ utility: 'toolkit' }), obstacleDependencies)[0]!.options.find(({ command }) => command.optionId === HOSPITAL_FIRE_DOOR_OPTION_IDS.toolkit)!
+    expect(toolkit).toMatchObject({
+      actionTime: config.scene.fireDoor.toolkitTime,
+      setsAlert: false,
+      resourceChange: { resourceKind: 'durability', currentBefore: 2, currentAfter: 1 },
+      spawnedItems: [{ definitionId: HOSPITAL_ITEM_IDS.electronicComponents, quantity: 1 }],
+      injuryRiskTier: null,
+      outcomes: [{ kind: 'deterministic' }],
+    })
+    const fireAxe = getPlayerVisibleSceneObstacles(snapshot({ weapon: 'fireAxe' }), obstacleDependencies)[0]!.options.find(({ command }) => command.optionId === HOSPITAL_FIRE_DOOR_OPTION_IDS.fireAxe)!
+    expect(fireAxe).toMatchObject({
+      setsAlert: true,
+      resourceChange: { resourceKind: 'durability', currentBefore: 2, currentAfter: 1 },
+    })
+  })
+
+  it('keeps force-entry safe preview identical across opposite hidden outcomes', () => {
+    const start = snapshot({ remainingTime: 15 })
+    const injuredDependencies = { ...obstacleDependencies, runSeed: 'door-risk-0' }
+    const safeDependencies = { ...obstacleDependencies, runSeed: 'door-risk-2' }
+    const injuredRaw = previewSceneObstacleOptionCommand(start, option(HOSPITAL_FIRE_DOOR_OPTION_IDS.forceEntry), injuredDependencies)
+    const safeRaw = previewSceneObstacleOptionCommand(start, option(HOSPITAL_FIRE_DOOR_OPTION_IDS.forceEntry), safeDependencies)
+    expect(injuredRaw.canExecute && injuredRaw.result.riskTrace?.causedMinorContusion).toBe(true)
+    expect(safeRaw.canExecute && safeRaw.result.riskTrace?.causedMinorContusion).toBe(false)
+    const injuredVisible = getPlayerVisibleSceneObstacles(start, injuredDependencies)
+    const safeVisible = getPlayerVisibleSceneObstacles(start, safeDependencies)
+    expect(injuredVisible).toEqual(safeVisible)
+    const forceEntry = injuredVisible[0]!.options.find(({ command }) => command.optionId === HOSPITAL_FIRE_DOOR_OPTION_IDS.forceEntry)!
+    expect(forceEntry).toMatchObject({
+      injuryRiskTier: 'high',
+      impactProtectionActive: false,
+      setsAlert: true,
+      outcomes: [
+        { kind: 'no-minor-contusion' },
+        { kind: 'minor-contusion' },
+      ],
+    })
+    expect(forceEntry.outcomes[0]!.returnRoute.estimatedReturnTime).toBe(10)
+    expect(forceEntry.outcomes[1]!.returnRoute.estimatedReturnTime).toBe(11)
+    for (const hidden of ['riskTrace', 'riskPercent', 'roll', 'streamId', 'drawIndex', 'causedMinorContusion']) {
+      expect(JSON.stringify(forceEntry)).not.toContain(hidden)
+    }
+  })
+
+  it('reads protected force-entry tier and integrity change from formal configuration and Effects', () => {
+    const forceEntry = getPlayerVisibleSceneObstacles(snapshot({ armor: 'heavyCoat' }), obstacleDependencies)[0]!.options.find(({ command }) => command.optionId === HOSPITAL_FIRE_DOOR_OPTION_IDS.forceEntry)!
+    expect(forceEntry).toMatchObject({
+      injuryRiskTier: 'low',
+      impactProtectionActive: true,
+      resourceChange: { resourceKind: 'integrity', currentBefore: 4, currentAfter: 3 },
+    })
+  })
+
+  it('projects formal near-zero deterministic and uncertain overtime consequences', () => {
+    const card = getPlayerVisibleSceneObstacles(snapshot({ withCard: true, remainingTime: 5 }), obstacleDependencies)[0]!.options.find(({ command }) => command.optionId === HOSPITAL_FIRE_DOOR_OPTION_IDS.accessCard)!
+    expect(card.outcomes[0]!.sceneOutcome).toMatchObject({
+      kind: 'forced-return',
+      clock: { remainingTime: 0 },
+      overtimeDebt: 5,
+    })
+    const forceEntry = getPlayerVisibleSceneObstacles(snapshot({ remainingTime: 5 }), obstacleDependencies)[0]!.options.find(({ command }) => command.optionId === HOSPITAL_FIRE_DOOR_OPTION_IDS.forceEntry)!
+    expect(forceEntry.outcomes).toHaveLength(2)
+    expect(forceEntry.outcomes.map(({ sceneOutcome }) => sceneOutcome.overtimeDebt)).toEqual([15, 15])
+    expect(forceEntry.outcomes.map(({ returnRoute }) => returnRoute.estimatedReturnTime)).toEqual([10, 11])
+  })
+
+  it('removes a formally resolved obstacle from the player-visible query', () => {
+    const start = snapshot({ withCard: true })
+    const opened = resolveSceneObstacleOptionCommand(start, option(HOSPITAL_FIRE_DOOR_OPTION_IDS.accessCard), obstacleDependencies).snapshot
+    expect(getPlayerVisibleSceneObstacles(opened, obstacleDependencies)).toEqual([])
   })
 
   it('spawns stable toolkit electronics on the current ground before search and allows explicit pickup', () => {

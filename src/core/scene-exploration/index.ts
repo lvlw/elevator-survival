@@ -16,6 +16,7 @@ export { previewSceneBatteryCommand, resolveSceneBatteryCommand } from './scene-
 export { buildSceneBatteryTransitionPlan } from './scene-battery-transition-plan'
 export { getPlayerVisibleSceneNodeState } from './player-visible-scene-node'
 export { getPlayerVisibleSceneCombatState } from './player-visible-scene-combat'
+export { getPlayerVisibleSceneObstacles } from './player-visible-scene-obstacles'
 export { getPlayerVisibleSceneTaskEvents } from './scene-task-event-selectors'
 export { getAvailableSceneMedicalCommands } from './scene-medical-selectors'
 export { createUseSceneMedicalItemCommand } from './scene-medical-validation'
@@ -122,6 +123,9 @@ export type {
   SceneTaskEventTransitionPlan,
   PlayerVisibleSceneTaskEvent,
   PlayerVisibleSceneTaskEventOption,
+  PlayerVisibleSceneObstacle,
+  PlayerVisibleSceneObstacleOption,
+  PlayerVisibleSceneObstacleOutcomeBranch,
   SceneTaskRiskTier,
   SceneMoveEffect,
   SceneMoveEvaluation,

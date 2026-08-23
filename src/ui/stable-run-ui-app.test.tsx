@@ -3,8 +3,10 @@ import { createRoot } from 'react-dom/client'
 import { afterEach, describe, expect, it } from 'vitest'
 import {
   HOSPITAL_EDGE_IDS,
+  HOSPITAL_FIRE_DOOR_OPTION_IDS,
   HOSPITAL_ITEM_IDS,
   HOSPITAL_NODE_IDS,
+  HOSPITAL_OBSTACLE_IDS,
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
@@ -164,6 +166,40 @@ function withBackpackItem(session: ReturnType<typeof sceneSessionAtEmergencyHall
   return createRunSceneSessionSnapshot({ context: session.context, scene }, hospitalSceneLaunchDependencies)
 }
 
+function withEquippedItem(
+  session: ReturnType<typeof sceneSessionAtEmergencyHall>,
+  slot: 'weapon' | 'armor' | 'utility',
+  equippedItem: ItemInstance,
+) {
+  const runtime = getRunSceneRuntime(session, hospitalSceneLaunchDependencies)
+  const replaced = session.scene.equipment[slot]
+  const scene = createSceneExplorationSnapshot({
+    ...session.scene,
+    equipment: { ...session.scene.equipment, [slot]: equippedItem },
+    itemStates: {
+      states: [
+        ...session.scene.itemStates.states.filter(
+          ({ instanceId }) => instanceId !== replaced?.instanceId,
+        ),
+        createFullItemState(equippedItem, hospitalItemResourceCatalog),
+      ],
+    },
+  }, runtime.dependencies)
+  return createRunSceneSessionSnapshot({ context: session.context, scene }, hospitalSceneLaunchDependencies)
+}
+
+function withRemainingTime(
+  session: ReturnType<typeof sceneSessionAtEmergencyHall>,
+  remainingTime: number,
+) {
+  const runtime = getRunSceneRuntime(session, hospitalSceneLaunchDependencies)
+  const scene = createSceneExplorationSnapshot({
+    ...session.scene,
+    remainingTime,
+  }, runtime.dependencies)
+  return createRunSceneSessionSnapshot({ context: session.context, scene }, hospitalSceneLaunchDependencies)
+}
+
 function terminalSafeSession() {
   const launched = resolveSceneLaunch(
     createHubPhase().payload,
@@ -271,6 +307,32 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('主要搜索 · 使用手电筒')
   })
 
+  it('keeps unresolved fire-door rendering and Preview opening side-effect free in StrictMode', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: sceneSessionAtEmergencyHall() },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    const before = inner.getState()
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StrictMode><StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} /></StrictMode>) })
+    expect(container.textContent).toContain('当前明显障碍')
+    expect(container.textContent).toContain('隔离区防火门')
+    expect(container.textContent).toContain('隔离区防火门 · 强行撞门')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(inner.getState()).toBe(before)
+    act(() => { button(container, '隔离区防火门 · 强行撞门').click() })
+    expect(container.textContent).toContain('若未产生轻度挫伤')
+    expect(container.textContent).toContain('若产生轻度挫伤')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(inner.getState()).toBe(before)
+  })
+
   it('renders every formal multi-cell backpack footprint and lets a pickup draft select a non-anchor cell', () => {
     const fireAxe = item('ui-grid-fire-axe', HOSPITAL_ITEM_IDS.fireAxe)
     const ground = item('ui-grid-metal-parts', HOSPITAL_ITEM_IDS.metalParts)
@@ -350,6 +412,176 @@ describe('StableRunUiApp', () => {
     expect(phase.payload.scene.equipment.utility?.definitionId).toBe(HOSPITAL_ITEM_IDS.flashlight)
     expect(phase.payload.scene.itemStates.states.find((state) => state.instanceId === phase.payload.scene.equipment.utility?.instanceId)?.resource).toMatchObject({ kind: 'charge', current: 2 })
     expect(phase.payload.scene.backpack.items).toHaveLength(0)
+  })
+
+  it('completes Hub → fire door → alerted isolation combat through four explicit commands', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: createHubPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    for (const label of ['进入 封锁医院·急诊楼一层', '前往 急诊大厅']) {
+      act(() => { button(container, label).click() })
+      act(() => { button(container, '确认执行').click() })
+    }
+    expect(container.textContent).toContain('隔离区防火门')
+    expect(container.textContent).not.toContain('前往 隔离走廊')
+
+    act(() => { button(container, '隔离区防火门 · 强行撞门').click() })
+    const forcePreview = container.querySelector('[role="dialog"]')?.textContent ?? ''
+    expect(forcePreview).toContain('轻度挫伤风险高')
+    expect(forcePreview).toContain('若未产生轻度挫伤')
+    expect(forcePreview).toContain('若产生轻度挫伤')
+    for (const hidden of ['riskPercent', 'riskTrace', 'roll', 'streamId', 'drawIndex', 'causedMinorContusion']) {
+      expect(container.innerHTML).not.toContain(hidden)
+    }
+    act(() => { button(container, '确认执行').click() })
+    expect(container.textContent).not.toContain('隔离区防火门 · 强行撞门')
+    expect(container.textContent).toContain('前往 隔离走廊')
+
+    act(() => { button(container, '前往 隔离走廊').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(4)
+    expect(storage.writes).toBe(4)
+    const phase = inner.getState().phase
+    expect(phase.kind).toBe('scene-session')
+    if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(phase.payload.scene.status).toBe('combat')
+    const active = phase.payload.scene.combatState.encounters.find(({ kind }) => kind === 'active')
+    expect(active?.kind === 'active' && active.combat.enemyNextActionCtb).toBe(50)
+    expect(container.textContent).toContain('感染护工')
+    expect(container.textContent).toContain('抓挠')
+    expect(container.textContent).toContain('敌人 CTB 50')
+    expect(container.textContent).toContain('战斗命令尚未接入此展示层')
+    expect(container.textContent).not.toContain('场景终局状态')
+  })
+
+  it('uses a real backpack access card without consuming it or setting alert', () => {
+    const card = item('ui-fire-door-card', HOSPITAL_ITEM_IDS.isolationWardAccessCard)
+    const session = withBackpackItem(sceneSessionAtEmergencyHall(), card)
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: session },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '隔离区防火门 · 使用门禁卡').click() })
+    expect(container.textContent).toContain('行动耗时10')
+    expect(container.textContent).toContain('是否触发警觉否')
+    act(() => { button(container, '确认执行').click() })
+    expect(storage.writes).toBe(1)
+    const phase = store.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(phase.payload.scene.backpack.items).toContainEqual(card)
+    expect(phase.payload.scene.equipment.weapon?.instanceId).not.toBe(card.instanceId)
+    expect(phase.payload.scene.quickSlots.slots).not.toContainEqual(card)
+    expect(phase.payload.scene.alertState).toBe('unalerted')
+    expect(phase.payload.scene.enabledEdgeIds).toContain(HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor)
+
+    act(() => { button(container, '前往 隔离走廊').click() })
+    act(() => { button(container, '确认执行').click() })
+    const combatPhase = store.getState().phase
+    if (combatPhase.kind !== 'scene-session') throw new Error('expected combat Scene')
+    const active = combatPhase.payload.scene.combatState.encounters.find(({ kind }) => kind === 'active')
+    expect(active?.kind === 'active' && active.combat.enemyNextActionCtb).toBe(70)
+  })
+
+  it('keeps toolkit output on the current ground until a separate explicit Pickup', () => {
+    const toolkit = item('ui-fire-door-toolkit', HOSPITAL_ITEM_IDS.toolkit)
+    const session = withEquippedItem(sceneSessionAtEmergencyHall(), 'utility', toolkit)
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: session },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '隔离区防火门 · 使用工具箱').click() })
+    expect(container.textContent).toContain('工具箱2 → 1')
+    expect(container.textContent).toContain('节点地面产物电子元件 ×1')
+    act(() => { button(container, '确认执行').click() })
+    expect(storage.writes).toBe(1)
+    let phase = store.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(phase.payload.scene.backpack.items.some(({ definitionId }) => definitionId === HOSPITAL_ITEM_IDS.electronicComponents)).toBe(false)
+    expect(phase.payload.scene.quickSlots.slots.some((candidate) => candidate?.definitionId === HOSPITAL_ITEM_IDS.electronicComponents)).toBe(false)
+    expect(container.textContent).toContain('拾取 电子元件')
+    expect(getItemState(phase.payload.scene.itemStates, toolkit.instanceId).resource).toEqual({ kind: 'durability', current: 1 })
+    act(() => { button(container, '拾取 电子元件').click() })
+    act(() => { button(container, '确认拾取').click() })
+    expect(storage.writes).toBe(2)
+    phase = store.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(phase.payload.scene.backpack.items.some(({ definitionId }) => definitionId === HOSPITAL_ITEM_IDS.electronicComponents)).toBe(true)
+  })
+
+  it.each([
+    ['utility' as const, HOSPITAL_ITEM_IDS.crowbar, '使用撬棍', 2, 'unalerted' as const],
+    ['weapon' as const, HOSPITAL_ITEM_IDS.fireAxe, '使用消防斧', 1, 'alerted' as const],
+  ])('commits the equipped %s fire-door route with formal resource and alert results', (
+    slot,
+    definitionId,
+    optionName,
+    resourceAfter,
+    alertState,
+  ) => {
+    const equipped = item(`ui-fire-door-${slot}`, definitionId)
+    const session = withEquippedItem(sceneSessionAtEmergencyHall(), slot, equipped)
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: session },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, `隔离区防火门 · ${optionName}`).click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(storage.writes).toBe(1)
+    const phase = store.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(phase.payload.scene.alertState).toBe(alertState)
+    expect(phase.payload.scene.enabledEdgeIds).toContain(HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor)
+    expect(getItemState(phase.payload.scene.itemStates, equipped.instanceId).resource).toMatchObject({
+      kind: 'durability',
+      current: resourceAfter,
+    })
+  })
+
+  it('executes formal decline as one persisted command while Cancel remains presentation-only', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: sceneSessionAtEmergencyHall() },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    const before = inner.getState().phase
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '隔离区防火门 · 放弃处理').click() })
+    act(() => { button(container, '取消').click() })
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    act(() => { button(container, '隔离区防火门 · 放弃处理').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    const phase = inner.getState().phase
+    if (phase.kind !== 'scene-session' || before.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(phase.payload.scene.remainingTime).toBe(before.payload.scene.remainingTime)
+    expect(phase.payload.scene.enabledEdgeIds).not.toContain(HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor)
+    expect(phase.payload.scene.alertState).toBe('unalerted')
+    expect(container.textContent).toContain('隔离区防火门 · 放弃处理')
   })
 
   it('keeps the committed Scene after a launch save failure without retrying or rolling back', () => {
@@ -713,6 +945,91 @@ describe('StableRunUiApp', () => {
     const phase = store.getState().phase
     if (phase.kind !== 'scene-session') throw new Error('expected terminal Scene')
     expect(phase.payload.scene.status).toBe('safe-returned')
+  })
+
+  it('closes a stale fire-door Preview after an external formal obstacle command resolves it', () => {
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: sceneSessionAtEmergencyHall() },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '隔离区防火门 · 强行撞门').click() })
+    expect(container.querySelector('[aria-labelledby="action-preview-title"]')).not.toBeNull()
+    act(() => {
+      store.dispatch({
+        kind: 'scene',
+        command: {
+          kind: 'scene-obstacle',
+          command: {
+            obstacleId: HOSPITAL_OBSTACLE_IDS.isolationFireDoor,
+            optionId: HOSPITAL_FIRE_DOOR_OPTION_IDS.forceEntry,
+          },
+        },
+      })
+    })
+    expect(storage.writes).toBe(1)
+    expect(container.querySelector('[aria-labelledby="action-preview-title"]')).toBeNull()
+    expect(container.textContent).not.toContain('隔离区防火门 · 强行撞门')
+    expect(container.textContent).toContain('前往 隔离走廊')
+  })
+
+  it('keeps the committed obstacle Scene after one failed save without retry, rollback, or reload', () => {
+    const storage = new FailingStorage()
+    const inner = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: sceneSessionAtEmergencyHall() },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '隔离区防火门 · 强行撞门').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    const phase = inner.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(phase.payload.scene.enabledEdgeIds).toContain(HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor)
+    expect(phase.payload.scene.alertState).toBe('alerted')
+    expect(container.textContent).toContain('保存失败')
+    expect(container.textContent).toContain('前往 隔离走廊')
+  })
+
+  it('previews and commits a near-zero card option as one terminal Scene without auto-settlement', () => {
+    const card = item('ui-near-zero-card', HOSPITAL_ITEM_IDS.isolationWardAccessCard)
+    const session = withRemainingTime(
+      withBackpackItem(sceneSessionAtEmergencyHall(), card),
+      5,
+    )
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: session },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '隔离区防火门 · 使用门禁卡').click() })
+    for (const fact of ['行动后剩余时间0', '超时债务5', '强制返程基础损耗', '强制返程流血追加', '强制返程总损耗', '行动后生命', '预计结果强制返回']) {
+      expect(container.textContent).toContain(fact)
+    }
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    const phase = inner.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(['forced-returned', 'dead']).toContain(phase.payload.scene.status)
+    expect(container.textContent).not.toContain('电梯中枢')
+    expect(container.textContent).toContain('场景终局状态')
   })
 
   it('refreshes formal return facts from the canonical post-pickup Scene', () => {

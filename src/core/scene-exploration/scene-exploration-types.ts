@@ -716,8 +716,41 @@ export interface SceneObstacleEvaluation {
   readonly optionId: string
   readonly actionTime: number
   readonly riskTrace: ObstacleRiskTrace | null
+  readonly returnRoute: ReturnRouteResult | null
+  readonly sceneOutcome: TimedSceneActionOutcome | null
   readonly effects: readonly SceneExplorationEffect[]
   readonly snapshot: SceneExplorationSnapshot
+}
+
+export interface PlayerVisibleSceneObstacleOutcomeBranch {
+  readonly kind: 'deterministic' | 'no-minor-contusion' | 'minor-contusion'
+  readonly returnRoute: ReturnRouteResult
+  readonly sceneOutcome: TimedSceneActionOutcome
+}
+
+export interface PlayerVisibleSceneObstacleOption {
+  readonly command: PerformSceneObstacleOptionCommand
+  readonly kind: 'backpack-item' | 'equipped-resource' | 'force-entry' | 'decline'
+  readonly actionTime: number
+  readonly setsAlert: boolean
+  readonly resourceChange: Readonly<{
+    definitionId: string
+    resourceKind: Exclude<ItemResourceKind, 'none'>
+    currentBefore: number
+    currentAfter: number
+  }> | null
+  readonly spawnedItems: readonly Readonly<{
+    definitionId: string
+    quantity: number
+  }>[]
+  readonly injuryRiskTier: 'none' | 'low' | 'medium' | 'high' | 'very-high' | null
+  readonly impactProtectionActive: boolean
+  readonly outcomes: readonly PlayerVisibleSceneObstacleOutcomeBranch[]
+}
+
+export interface PlayerVisibleSceneObstacle {
+  readonly obstacleId: string
+  readonly options: readonly PlayerVisibleSceneObstacleOption[]
 }
 
 export type SceneObstaclePreview =

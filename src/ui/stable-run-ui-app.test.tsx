@@ -245,4 +245,53 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('场景终局状态')
     expect(container.textContent).not.toContain('电梯中枢')
   })
+
+  it('shows formal return risk and full over-time Search preview facts without automatic settlement', () => {
+    const launched = resolveSceneLaunch(
+      createHubPhase().payload,
+      { kind: 'launch-main-scene' },
+      hospitalSceneLaunchDependencies,
+    ).session
+    const runtime = getRunSceneRuntime(launched, hospitalSceneLaunchDependencies)
+    const hall = resolveSceneMoveCommand(launched.scene, {
+      edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall,
+    }, runtime.dependencies).snapshot
+    const nearZeroScene = createSceneExplorationSnapshot({
+      ...hall,
+      remainingTime: 5,
+    }, runtime.dependencies)
+    const session = createRunSceneSessionSnapshot({
+      context: launched.context,
+      scene: nearZeroScene,
+    }, hospitalSceneLaunchDependencies)
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: session },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+
+    expect(container.textContent).toContain('剩余时间：5')
+    expect(container.textContent).toContain('预计返程：')
+    expect(container.textContent).toContain('返程后预计剩余：0')
+    expect(container.textContent).toContain('当前返程将进入强制返程。')
+
+    act(() => { button(container, '主要搜索 · 使用手电筒').click() })
+    for (const fact of ['超时债务', '有效紧急撤离时间', '强制返程基础损耗', '强制返程流血追加', '强制返程总损耗', '行动后生命', '死亡风险']) {
+      expect(container.textContent).toContain(fact)
+    }
+    expect(container.textContent).not.toContain('金属零件')
+    expect(storage.writes).toBe(0)
+
+    act(() => { button(container, '确认执行').click() })
+    expect(storage.writes).toBe(1)
+    const phase = store.getState().phase
+    expect(phase.kind).toBe('scene-session')
+    if (phase.kind !== 'scene-session') throw new Error('expected terminal Scene session')
+    expect(phase.payload.scene.status).toBe('forced-returned')
+    expect(container.textContent).not.toContain('电梯中枢')
+  })
 })

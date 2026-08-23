@@ -6,6 +6,7 @@ import {
   type SearchIlluminationChoice,
   type SceneExplorationEffect,
 } from '../../core/scene-exploration'
+import type { TimedSceneActionOutcome } from '../../core/scene'
 import {
   createLaunchMainSceneCommand,
   getRunSceneRuntime,
@@ -69,11 +70,7 @@ function freezePreview(
 }
 
 function sceneOutcomeWarnings(input: Readonly<{
-  outcome: Readonly<{
-    kind: string
-    overtimeDebt: number
-    clock: Readonly<{ remainingTime: number }>
-  }>
+  outcome: TimedSceneActionOutcome
   returnEstimate: number
 }>): readonly string[] {
   const warnings: string[] = []
@@ -81,10 +78,33 @@ function sceneOutcomeWarnings(input: Readonly<{
   if (input.outcome.kind === 'forced-return') warnings.push('行动完成后将进入强制返程。')
   if (input.outcome.kind === 'death') warnings.push('行动完成后生命将归零。')
   if (
-    input.outcome.kind === 'active' &&
+    input.outcome.kind === 'continue' &&
     input.outcome.clock.remainingTime < input.returnEstimate
   ) warnings.push('行动后剩余时间低于预计安全返程线。')
   return Object.freeze(warnings)
+}
+
+/**
+ * Player-facing allow-list of the formal timed-action result. No time or
+ * forced-return formula is reimplemented in the interaction layer.
+ */
+function timedOutcomeFacts(
+  outcome: TimedSceneActionOutcome,
+): readonly StableRunUiActionPreviewFact[] {
+  const healthFact: StableRunUiActionPreviewFact = {
+    label: '行动后生命',
+    value: String(outcome.vitals.currentHealth),
+  }
+  if (outcome.overtimeDebt === 0) return Object.freeze([healthFact])
+  return Object.freeze([
+    { label: '超时债务', value: String(outcome.overtimeDebt) },
+    { label: '有效紧急撤离时间', value: String(outcome.effectiveEmergencyReturnTime) },
+    { label: '强制返程基础损耗', value: String(outcome.forcedReturnBaseDamage) },
+    { label: '强制返程流血追加', value: String(outcome.forcedReturnBleedingDamage) },
+    { label: '强制返程总损耗', value: String(outcome.forcedReturnTotalDamage) },
+    healthFact,
+    { label: '死亡风险', value: outcome.isDead ? '将死亡' : '可生还' },
+  ])
 }
 
 function applicationSceneCommand(
@@ -150,7 +170,7 @@ function createMoveActions(
         { label: '行动前剩余时间', value: String(time.before) },
         { label: '行动后剩余时间', value: String(time.after) },
         { label: '行动后预计返程', value: String(result.returnRoute.estimatedReturnTime) },
-        { label: '行动后生命', value: String(result.snapshot.condition.currentHealth) },
+        ...timedOutcomeFacts(outcome),
       ], sceneOutcomeWarnings({
         outcome,
         returnEstimate: result.returnRoute.estimatedReturnTime,
@@ -213,6 +233,7 @@ function createSearchActions(
       label: '照明资源',
       value: `${resource.currentBefore} → ${resource.currentAfter}`,
     })
+    facts.push(...timedOutcomeFacts(result.sceneOutcome))
     return [Object.freeze({
       id: `scene-main-search:${illumination}`,
       kind: 'scene-main-search' as const,

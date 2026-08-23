@@ -107,9 +107,11 @@ export type StableRunPlayerViewModel =
          * Current traversable adjacency only. This is not a complete player-known
          * map: known-but-blocked routes require a future formal player-visible
          * navigation query before they can be presented.
-         */
+        */
         traversableAdjacentNodeNames: readonly string[]
         returnEstimate: number | null
+        returnAfterWithdrawalTime: number | null
+        returnRisk: 'safe-returned' | 'forced-returned' | 'dead' | null
         currentNodeSearchState: 'not-available' | 'available-unsearched' | 'searched'
         groundItems: readonly PlayerVisibleItemViewModel[]
         loadout: PlayerVisibleLoadoutViewModel
@@ -181,6 +183,17 @@ function loadoutView(
   })
 }
 
+function projectFormalReturnRisk(
+  status: 'active' | 'combat' | 'safe-returned' | 'forced-returned' | 'dead',
+): 'safe-returned' | 'forced-returned' | 'dead' {
+  if (
+    status === 'safe-returned' ||
+    status === 'forced-returned' ||
+    status === 'dead'
+  ) return status
+  throw new Error('正式主动返程预览必须生成终局场景状态')
+}
+
 function createSceneView(
   session: RunSceneSessionSnapshot,
   dependencies: StableRunUiPresentationDependencies,
@@ -195,6 +208,13 @@ function createSceneView(
   const playerNode = getPlayerVisibleSceneNodeState(scene, scene.currentNodeId)
   const withdrawal = scene.status === 'active'
     ? previewSceneWithdrawalCommand(scene, { kind: 'withdraw-from-scene' }, runtime.dependencies)
+    : null
+  const returnPreview = withdrawal?.canExecute === true
+    ? frozen({
+        estimatedReturnTime: withdrawal.result.returnRoute.estimatedReturnTime,
+        remainingTimeAfter: withdrawal.result.snapshot.remainingTime,
+        statusAfter: projectFormalReturnRisk(withdrawal.result.snapshot.status),
+      })
     : null
   const activeEncounter = scene.combatState.encounters.find((encounter) => encounter.kind === 'active')
   const combat = activeEncounter?.kind === 'active'
@@ -233,9 +253,9 @@ function createSceneView(
       remainingTime: scene.remainingTime,
       currentNodeName: current.name,
       traversableAdjacentNodeNames: frozen(connected),
-      returnEstimate: withdrawal?.canExecute === true
-        ? withdrawal.result.returnRoute.estimatedReturnTime
-        : null,
+      returnEstimate: returnPreview?.estimatedReturnTime ?? null,
+      returnAfterWithdrawalTime: returnPreview?.remainingTimeAfter ?? null,
+      returnRisk: returnPreview?.statusAfter ?? null,
       currentNodeSearchState: playerNode.search.kind,
       groundItems: frozen(playerNode.groundItems.map((item) => itemView(item, scene.itemStates, runtime, dependencies.labels))),
       loadout: loadoutView(scene, runtime, dependencies.labels),

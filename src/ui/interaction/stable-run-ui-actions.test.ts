@@ -65,6 +65,33 @@ function moveToSecurityOffice() {
   }
 }
 
+function moveToEmergencyHall() {
+  const phase = launchScene()
+  const runtime = getRunSceneRuntime(phase.payload, hospitalSceneLaunchDependencies)
+  const scene = resolveSceneMoveCommand(phase.payload.scene, {
+    edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall,
+  }, runtime.dependencies).snapshot
+  return {
+    kind: 'scene-session' as const,
+    payload: createRunSceneSessionSnapshot({ context: phase.payload.context, scene }, hospitalSceneLaunchDependencies),
+  }
+}
+
+function withRemainingTime(
+  phase: ReturnType<typeof moveToEmergencyHall>,
+  remainingTime: number,
+) {
+  const runtime = getRunSceneRuntime(phase.payload, hospitalSceneLaunchDependencies)
+  const scene = createSceneExplorationSnapshot({
+    ...phase.payload.scene,
+    remainingTime,
+  }, runtime.dependencies)
+  return {
+    kind: 'scene-session' as const,
+    payload: createRunSceneSessionSnapshot({ context: phase.payload.context, scene }, hospitalSceneLaunchDependencies),
+  }
+}
+
 describe('stable Run UI interaction model', () => {
   it('derives a frozen, repeatable, safe Launch action from the formal launch preview', () => {
     const scenario = createHospitalDevelopmentPreviewScenario('hub')
@@ -122,9 +149,34 @@ describe('stable Run UI interaction model', () => {
     const flashlightSearch = interaction.actions.find(({ label }) => label === '主要搜索 · 使用手电筒')
     expect(flashlightSearch?.preview.facts).toContainEqual({ label: '照明资源', value: '3 → 2' })
     const visible = JSON.stringify(interaction.actions.map(({ id, kind, label, preview }) => ({ id, kind, label, preview })))
-    for (const forbidden of ['金属零件', 'preparedOutcome', 'revealedItemSummary', 'revealedIntelIds', 'randomTrace', 'riskPercent']) {
+    for (const forbidden of ['金属零件', 'preparedOutcome', 'revealedItemSummary', 'revealedIntelIds', 'instanceId', 'randomTrace', 'riskPercent']) {
       expect(visible).not.toContain(forbidden)
     }
     expect(phase.payload.scene.currentNodeId).toBe(HOSPITAL_NODE_IDS.emergencyHall)
+  })
+
+  it('warns when a continuing action falls below its formal return estimate', () => {
+    const phase = withRemainingTime(moveToEmergencyHall(), 25)
+    const interaction = createStableRunUiInteractionModel(phase, dependencies)
+    const search = interaction.actions.find(({ label }) => label === '主要搜索 · 使用手电筒')
+    expect(search?.preview.warnings).toContain('行动后剩余时间低于预计安全返程线。')
+  })
+
+  it('projects the complete formal over-time consequence allow-list for Move and Search', () => {
+    const phase = withRemainingTime(moveToEmergencyHall(), 5)
+    const interaction = createStableRunUiInteractionModel(phase, dependencies)
+    const move = interaction.actions.find(({ label }) => label === '前往 电梯前室')
+    const search = interaction.actions.find(({ label }) => label === '主要搜索 · 使用手电筒')
+    const expectedLabels = [
+      '超时债务',
+      '有效紧急撤离时间',
+      '强制返程基础损耗',
+      '强制返程流血追加',
+      '强制返程总损耗',
+      '行动后生命',
+      '死亡风险',
+    ]
+    expect(move?.preview.facts.map(({ label }) => label)).toEqual(expect.arrayContaining(expectedLabels))
+    expect(search?.preview.facts.map(({ label }) => label)).toEqual(expect.arrayContaining(expectedLabels))
   })
 })

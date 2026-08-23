@@ -74,6 +74,23 @@ function emergencyHallScenePhase(): StableRunPhase {
   }
 }
 
+function nearZeroEmergencyHallScenePhase(): StableRunPhase {
+  const phase = emergencyHallScenePhase()
+  if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+  const runtime = getRunSceneRuntime(phase.payload, hospitalSceneLaunchDependencies)
+  const scene = createSceneExplorationSnapshot({
+    ...phase.payload.scene,
+    remainingTime: 5,
+  }, runtime.dependencies)
+  return {
+    kind: 'scene-session',
+    payload: createRunSceneSessionSnapshot({
+      context: phase.payload.context,
+      scene,
+    }, hospitalSceneLaunchDependencies),
+  }
+}
+
 function combatPhase(): StableRunPhase {
   const session = resolveSceneLaunch(hub(), { kind: 'launch-main-scene' }, hospitalSceneLaunchDependencies).session
   const runtime = hospitalSceneLaunchDependencies.content.createRuntime(session.context.runReturnCarryForward.continuity.runIdentity.seed, session.scene.sceneInstanceId)
@@ -108,16 +125,27 @@ describe('stable Run player-visible ViewModel', () => {
     for (const hidden of ['ui-run', 'ui-seed', 'rulesVersion', 'instanceId', 'definitionId']) expect(JSON.stringify(model)).not.toContain(hidden)
   })
 
-  it('projects current traversable adjacency and formal return estimate without hidden search outcomes', () => {
+  it('projects current traversable adjacency and formal return preview without hidden search outcomes', () => {
     const model = createStableRunPlayerViewModel(scenePhase(), dependencies)
     expect(model.kind).toBe('scene-session')
     if (model.kind !== 'scene-session') throw new Error('expected Scene')
     expect(model.scene.currentNodeName).toBe('电梯前室')
     expect(model.scene.traversableAdjacentNodeNames).toEqual(['急诊大厅'])
     expect(model.scene.returnEstimate).toBe(0)
+    expect(model.scene.returnAfterWithdrawalTime).toBe(200)
+    expect(model.scene.returnRisk).toBe('safe-returned')
     expect(model.scene.currentNodeSearchState).toBe('not-available')
     expect(JSON.stringify(model)).not.toContain('preparedOutcome')
     expect(JSON.stringify(model)).not.toContain('randomTrace')
+  })
+
+  it('projects formal forced-return risk from the current withdrawal preview', () => {
+    const model = createStableRunPlayerViewModel(nearZeroEmergencyHallScenePhase(), dependencies)
+    if (model.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(model.scene.remainingTime).toBe(5)
+    expect(model.scene.returnEstimate).toBeGreaterThan(0)
+    expect(model.scene.returnAfterWithdrawalTime).toBe(0)
+    expect(model.scene.returnRisk).toBe('forced-returned')
   })
 
   it('only presents currently traversable emergency-hall edges, not a player-known map', () => {

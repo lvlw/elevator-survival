@@ -195,6 +195,7 @@ function combatActionLabel(
 
 function combatPreviewFacts(
   preview: PlayerVisibleCombatActionPreview,
+  includeEscapeCompletionFacts = true,
 ): readonly StableRunUiActionPreviewFact[] {
   const facts: StableRunUiActionPreviewFact[] = [
     { label: '行动 CTB', value: String(preview.primary.actionCtb) },
@@ -242,10 +243,10 @@ function combatPreviewFacts(
       { label: '镇痛抵消 CTB', value: String(primary.painkillerReductionApplied) },
       { label: '最终伤口追加', value: String(primary.finalWoundCtb) },
       { label: '最终准备 CTB', value: String(primary.actionCtb) },
-      { label: '脱离完成 CTB', value: String(primary.completesAtCtb) },
     )
     const escape = preview.escapeConsequences
-    if (escape) facts.push(
+    if (escape && includeEscapeCompletionFacts) facts.push(
+      { label: '脱离完成 CTB', value: String(primary.completesAtCtb) },
       {
         label: '脱离完成流血损失',
         value: escape.postPlayerActionBleedingDamageMin ===
@@ -280,42 +281,109 @@ type PlayerVisibleSceneCombatOption = ReturnType<
 >[number]
 
 function combatTerminalFacts(
-  terminal: NonNullable<PlayerVisibleSceneCombatOption['terminal']>,
+  completion: NonNullable<NonNullable<PlayerVisibleSceneCombatOption['terminal']>['completion']>,
+  deathRisk: NonNullable<PlayerVisibleSceneCombatOption['terminal']>['deathRisk'],
 ): readonly StableRunUiActionPreviewFact[] {
   const facts: StableRunUiActionPreviewFact[] = [
-    { label: '战斗结束累计 CTB', value: String(terminal.elapsedCtb) },
-    { label: '战斗场景时间', value: String(terminal.sceneTimeCost) },
-    { label: '结算后剩余时间', value: String(terminal.remainingTimeAfter) },
+    { label: '完成节点', value: completion.nodeName },
+    { label: '当前剩余 Scene 时间', value: String(completion.currentRemainingTime) },
+    { label: '战斗结束累计 CTB', value: String(completion.elapsedCtb) },
+    { label: '战斗场景时间', value: String(completion.sceneTimeCost) },
+    { label: '结算后剩余时间', value: String(completion.remainingTimeAfter) },
+    {
+      label: '战斗完成后生命',
+      value: rangeValue(
+        completion.combatCompletionHealthMin,
+        completion.combatCompletionHealthMax,
+      ),
+    },
   ]
-  if (terminal.overtimeDebt > 0) {
-    facts.push({ label: '超时债务', value: String(terminal.overtimeDebt) })
+  if (completion.overtimeDebt > 0) {
+    facts.push({ label: '超时债务', value: String(completion.overtimeDebt) })
   }
-  if (terminal.returnTime !== null) {
-    facts.push({ label: '预计返程时间', value: String(terminal.returnTime) })
+  if (completion.returnTimeMin !== null && completion.returnTimeMax !== null) {
+    facts.push({
+      label: '预计返程时间',
+      value: rangeValue(completion.returnTimeMin, completion.returnTimeMax),
+    })
   }
   if (
-    terminal.forcedReturnBaseDamage !== null &&
-    terminal.forcedReturnTotalDamageMin !== null &&
-    terminal.forcedReturnTotalDamageMax !== null
+    completion.effectiveEmergencyReturnTimeMin !== null &&
+    completion.effectiveEmergencyReturnTimeMax !== null &&
+    completion.forcedReturnBaseDamageMin !== null &&
+    completion.forcedReturnBaseDamageMax !== null &&
+    completion.forcedReturnBleedingDamageMin !== null &&
+    completion.forcedReturnBleedingDamageMax !== null &&
+    completion.forcedReturnTotalDamageMin !== null &&
+    completion.forcedReturnTotalDamageMax !== null &&
+    completion.forcedReturnHealthMin !== null &&
+    completion.forcedReturnHealthMax !== null
   ) {
     facts.push(
-      { label: '强制返程基础损耗', value: String(terminal.forcedReturnBaseDamage) },
+      {
+        label: '有效紧急撤离时间',
+        value: rangeValue(
+          completion.effectiveEmergencyReturnTimeMin,
+          completion.effectiveEmergencyReturnTimeMax,
+        ),
+      },
+      {
+        label: '强制返程基础损耗',
+        value: rangeValue(
+          completion.forcedReturnBaseDamageMin,
+          completion.forcedReturnBaseDamageMax,
+        ),
+      },
       {
         label: '强制返程流血追加',
-        value: terminal.forcedReturnBleedingDamageMin === terminal.forcedReturnBleedingDamageMax
-          ? String(terminal.forcedReturnBleedingDamageMin)
-          : `${terminal.forcedReturnBleedingDamageMin}–${terminal.forcedReturnBleedingDamageMax}`,
+        value: rangeValue(
+          completion.forcedReturnBleedingDamageMin,
+          completion.forcedReturnBleedingDamageMax,
+        ),
       },
       {
         label: '强制返程总损耗',
-        value: terminal.forcedReturnTotalDamageMin === terminal.forcedReturnTotalDamageMax
-          ? String(terminal.forcedReturnTotalDamageMin)
-          : `${terminal.forcedReturnTotalDamageMin}–${terminal.forcedReturnTotalDamageMax}`,
+        value: rangeValue(
+          completion.forcedReturnTotalDamageMin,
+          completion.forcedReturnTotalDamageMax,
+        ),
+      },
+      {
+        label: '强制返程后生命',
+        value: rangeValue(
+          completion.forcedReturnHealthMin,
+          completion.forcedReturnHealthMax,
+        ),
       },
     )
   }
-  facts.push({ label: '死亡可能性', value: terminal.deathPossible ? '可能' : '未发现' })
+  facts.push({
+    label: '死亡风险',
+    value: deathRisk === 'guaranteed'
+      ? '将死亡'
+      : deathRisk === 'possible'
+        ? '可能'
+        : '未发现',
+  })
+  if (completion.survivingResult !== null) facts.push({
+    label: '生还结果',
+    value: completion.survivingResult === 'active-scene'
+      ? '继续 active Scene'
+      : 'forced-returned Scene',
+  })
+  if (completion.forcedReturnTargetNodeName !== null) facts.push({
+    label: '强制返程目标',
+    value: completion.forcedReturnTargetNodeName,
+  })
+  facts.push({
+    label: '生命周期结算',
+    value: '本次仅保存 Scene Session；后续由独立 settle-terminal-scene 命令处理',
+  })
   return Object.freeze(facts)
+}
+
+function rangeValue(minimum: number, maximum: number): string {
+  return minimum === maximum ? String(minimum) : `${minimum}–${maximum}`
 }
 
 function createCombatActions(
@@ -348,16 +416,51 @@ function createCombatActions(
     const terminalWarnings = terminal === null
       ? []
       : [
-          ...(terminal.overtimeDebt > 0 ? ['战斗若在本次行动结束，将跨越场景时间零点。'] : []),
-          ...(terminal.deathPossible ? ['该终局分支存在死亡可能。'] : []),
+          ...(terminal.completion?.overtimeDebt
+            ? ['战斗若在本次行动结束，将跨越场景时间零点。']
+            : []),
+          ...(terminal.deathRisk === 'possible' ? ['该终局存在玩家死亡分支。'] : []),
+          ...(terminal.deathRisk === 'guaranteed' ? ['玩家将在本次行动结算中死亡。'] : []),
+          ...(terminal.deathPriority && isAttackCommand(command)
+            ? ['玩家死亡优先于任何潜在胜利，不会提交战斗胜利。']
+            : []),
         ]
-    const branches = terminal?.conditional
+    const completionFacts = terminal?.completion
+      ? combatTerminalFacts(terminal.completion, terminal.deathRisk)
+      : []
+    const completionBranches = terminal?.conditional && terminal.completion
       ? [{
-          title: '若本次攻击使敌人失去能力',
-          facts: combatTerminalFacts(terminal),
+          title: terminal.condition === 'enemy-incapacitated'
+            ? '若本次攻击使敌人失去能力'
+            : '若成功完成脱离',
+          facts: completionFacts,
           warnings: terminalWarnings,
         }]
       : []
+    const escapeDefeatBranches = terminal?.defeatBeforeEscapeCompletionRisk === 'possible'
+      ? [{
+          title: '若在脱离完成前战败',
+          facts: [
+            { label: '脱离结果', value: '不完成脱离' },
+            { label: '节点变化', value: '不返回脱离节点' },
+            { label: '强制返程', value: '不进入强制返程' },
+            { label: '战败场景时间', value: '按实际终止 CTB 正式结算' },
+          ],
+          warnings: ['玩家死亡优先于脱离完成。'],
+        }]
+      : []
+    const branches = [...completionBranches, ...escapeDefeatBranches]
+    const noCompletionDeathFacts = terminal && !terminal.completion
+      ? [{
+          label: '死亡风险',
+          value: terminal.deathRisk === 'guaranteed' ? '将死亡' : '可能',
+        }]
+      : []
+    const baseCombatFacts = combatPreviewFacts(
+      preview,
+      terminal?.defeatBeforeEscapeCompletionRisk !== 'guaranteed' ||
+        terminal.completion !== null,
+    )
     return Object.freeze({
       id: `scene-combat-action:${command.kind}${target}`,
       kind: 'scene-combat-action' as const,
@@ -366,13 +469,25 @@ function createCombatActions(
       preview: freezePreview(
         `确认${label}`,
         terminal !== null && !terminal.conditional
-          ? [...combatPreviewFacts(preview), ...combatTerminalFacts(terminal)]
-          : combatPreviewFacts(preview),
-        [...warnings, ...(terminal !== null && !terminal.conditional ? terminalWarnings : [])],
+          ? [...baseCombatFacts, ...completionFacts, ...noCompletionDeathFacts]
+          : baseCombatFacts,
+        [
+          ...warnings,
+          ...(terminal !== null && !terminal.conditional ? terminalWarnings : []),
+          ...(terminal?.defeatBeforeEscapeCompletionRisk === 'guaranteed'
+            ? ['玩家将在脱离完成前战败，不会返回脱离节点，也不会进入强制返程。']
+            : []),
+        ],
         branches,
       ),
     })
   }))
+}
+
+function isAttackCommand(command: CombatPlayerActionCommand): boolean {
+  return command.kind === 'metal-pipe-basic-attack' ||
+    command.kind === 'metal-pipe-charged-strike' ||
+    command.kind === 'temporary-attack'
 }
 
 function riskTierName(

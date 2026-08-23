@@ -274,6 +274,7 @@ function combatPhase(options: Readonly<{
     treatment: 'untreated' | 'treated'
   }>[]
   enemyNextActionCtb?: number
+  enemyHealth?: number
 }> = {}) {
   const scenario = createHospitalDevelopmentPreviewScenario('combat')
   const phase = scenario.store.getState().phase
@@ -336,6 +337,13 @@ function combatPhase(options: Readonly<{
       }, config.combat.player)
   const combat = {
     ...active.combat,
+    enemy: options.enemyHealth === undefined
+      ? active.combat.enemy
+      : {
+          ...active.combat.enemy,
+          currentHealth: options.enemyHealth,
+          defeated: false,
+        },
     enemyNextActionCtb: options.enemyNextActionCtb ??
       (options.alerted ? 50 : active.combat.enemyNextActionCtb),
     playerCondition: condition,
@@ -1706,11 +1714,20 @@ describe('StableRunUiApp', () => {
     act(() => { button(container, '逃跑').click() })
     const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
     expect(preview).toContain('战斗场景时间10')
+    expect(preview).toContain('完成节点急诊大厅')
+    expect(preview).toContain('当前剩余 Scene 时间5')
     expect(preview).toContain('结算后剩余时间0')
     expect(preview).toContain('超时债务5')
-    expect(preview).toContain('预计返程时间')
-    expect(preview).toContain('强制返程总损耗')
-    expect(preview).toContain('死亡可能性')
+    expect(preview).toContain('预计返程时间11')
+    expect(preview).toContain('有效紧急撤离时间16')
+    expect(preview).toContain('强制返程基础损耗1')
+    expect(preview).toContain('强制返程流血追加1')
+    expect(preview).toContain('强制返程总损耗2')
+    expect(preview).toContain('强制返程后生命4')
+    expect(preview).toContain('死亡风险未发现')
+    expect(preview).toContain('生还结果forced-returned Scene')
+    expect(preview).toContain('强制返程目标电梯前室')
+    expect(preview).toContain('后续由独立 settle-terminal-scene 命令处理')
     act(() => { button(container, '确认执行').click() })
     expect(storage.writes).toBe(1)
     const phase = store.getState().phase
@@ -1737,7 +1754,8 @@ describe('StableRunUiApp', () => {
     expect(preview).toContain('脱离完成流血损失0–1')
     expect(preview).toContain('脱离完成后生命')
     expect(preview).toContain('强制返程流血追加0–')
-    expect(preview).toContain('死亡可能性未发现')
+    expect(preview).toContain('强制返程后生命7–9')
+    expect(preview).toContain('死亡风险未发现')
     expect(preview).not.toContain('riskPercent')
     expect(storage.writes).toBe(0)
   })
@@ -1758,8 +1776,53 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '逃跑').click() })
-    expect(container.querySelector('[role="dialog"]')?.textContent)
-      .toContain('死亡可能性可能')
+    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
+    expect(preview).toContain('若成功完成脱离')
+    expect(preview).toContain('若在脱离完成前战败')
+    expect(preview).toContain('死亡风险将死亡')
+    expect(preview).toContain('不返回脱离节点')
+    expect(preview).toContain('不进入强制返程')
+    expect(preview).toContain('按实际终止 CTB 正式结算')
+    expect(preview).not.toContain('生还结果forced-returned Scene')
     expect(storage.writes).toBe(0)
+  })
+
+  it('makes last-hit bleeding death override a hidden potential victory and saves one dead Scene', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: combatPhase({
+        currentHealth: 1,
+        bleeding: true,
+        enemyHealth: 4,
+        remainingTime: 100,
+      }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    act(() => { button(container, '挥击').click() })
+    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
+    expect(preview).toContain('自身行动阶段后生命0')
+    expect(preview).toContain('死亡风险将死亡')
+    expect(preview).toContain('玩家死亡优先于任何潜在胜利')
+    expect(preview).not.toContain('若本次攻击使敌人失去能力')
+    expect(preview).not.toContain('敌人剩余生命')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    const phase = inner.getState().phase
+    expect(phase.kind).toBe('scene-session')
+    if (phase.kind !== 'scene-session') throw new Error('expected dead Scene')
+    expect(phase.payload.scene.status).toBe('dead')
+    expect(container.textContent).toContain('实际 Scene 时间结算10')
+    expect(container.textContent).toContain('结算战败')
+    expect(container.textContent).not.toContain('Run 已终止')
   })
 })

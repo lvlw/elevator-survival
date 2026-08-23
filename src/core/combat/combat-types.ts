@@ -365,6 +365,11 @@ export interface PlayerVisibleCombatActionPreview {
     playerHealthAfterCompletionMax: number
     bleedingAtCompletionPossible: boolean
     bleedingAtCompletionGuaranteed: boolean
+    playerHealthBeforeCompletionBleeding: number
+    nonBleedingCompletionHealth: number | null
+    bleedingCompletionHealth: number | null
+    deathBeforeCompletion: boolean
+    survivalAtCompletionPossible: boolean
     deathPossibleBeforeForcedReturn: boolean
   }> | null
 }

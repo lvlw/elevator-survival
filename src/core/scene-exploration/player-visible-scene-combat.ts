@@ -17,6 +17,74 @@ import type {
   SceneExplorationSnapshot,
 } from './scene-exploration-types'
 
+export type PlayerVisibleCombatDeathRisk = 'none' | 'possible' | 'guaranteed'
+
+export interface PlayerVisibleCombatTerminalCompletion {
+  readonly outcome: 'victory' | 'escaped' | 'defeat'
+  readonly nodeName: string
+  readonly elapsedCtb: number
+  readonly currentRemainingTime: number
+  readonly sceneTimeCost: number
+  readonly remainingTimeAfter: number
+  readonly overtimeDebt: number
+  readonly combatCompletionHealthMin: number
+  readonly combatCompletionHealthMax: number
+  readonly returnTimeMin: number | null
+  readonly returnTimeMax: number | null
+  readonly effectiveEmergencyReturnTimeMin: number | null
+  readonly effectiveEmergencyReturnTimeMax: number | null
+  readonly forcedReturnBaseDamageMin: number | null
+  readonly forcedReturnBaseDamageMax: number | null
+  readonly forcedReturnBleedingDamageMin: number | null
+  readonly forcedReturnBleedingDamageMax: number | null
+  readonly forcedReturnTotalDamageMin: number | null
+  readonly forcedReturnTotalDamageMax: number | null
+  readonly forcedReturnHealthMin: number | null
+  readonly forcedReturnHealthMax: number | null
+  readonly survivingResult: 'active-scene' | 'forced-returned-scene' | null
+  readonly forcedReturnTargetNodeName: string | null
+}
+
+export interface PlayerVisibleCombatTerminalPreview {
+  readonly conditional: boolean
+  readonly condition: 'enemy-incapacitated' | 'escape-survived' | null
+  readonly deathRisk: PlayerVisibleCombatDeathRisk
+  readonly deathPriority: boolean
+  readonly defeatBeforeEscapeCompletionRisk: PlayerVisibleCombatDeathRisk
+  readonly completion: PlayerVisibleCombatTerminalCompletion | null
+}
+
+interface SurvivingCompletionBranch {
+  readonly health: number
+  readonly bleeding: boolean
+}
+
+function nodeName(
+  nodeId: string,
+  dependencies: SceneExplorationDependencies,
+): string {
+  return dependencies.graph.nodes.find(({ id }) => id === nodeId)!.name
+}
+
+function noForcedReturnFacts() {
+  return {
+    returnTimeMin: null,
+    returnTimeMax: null,
+    effectiveEmergencyReturnTimeMin: null,
+    effectiveEmergencyReturnTimeMax: null,
+    forcedReturnBaseDamageMin: null,
+    forcedReturnBaseDamageMax: null,
+    forcedReturnBleedingDamageMin: null,
+    forcedReturnBleedingDamageMax: null,
+    forcedReturnTotalDamageMin: null,
+    forcedReturnTotalDamageMax: null,
+    forcedReturnHealthMin: null,
+    forcedReturnHealthMax: null,
+    survivingResult: null,
+    forcedReturnTargetNodeName: null,
+  } as const
+}
+
 export function getPlayerVisibleSceneCombatState(
   snapshotInput: SceneExplorationSnapshot,
   dependencies: SceneExplorationDependencies,
@@ -42,21 +110,7 @@ export function getPlayerVisibleSceneCombatActionOptions(
 ): readonly Readonly<{
   command: PlayerVisibleCombatActionOption['command']
   preview: PlayerVisibleCombatActionOption['preview']
-  terminal: Readonly<{
-    conditional: boolean
-    outcome: 'victory-if-incapacitated' | 'escape-if-survived'
-    elapsedCtb: number
-    sceneTimeCost: number
-    remainingTimeAfter: number
-    overtimeDebt: number
-    returnTime: number | null
-    forcedReturnBaseDamage: number | null
-    forcedReturnBleedingDamageMin: number | null
-    forcedReturnBleedingDamageMax: number | null
-    forcedReturnTotalDamageMin: number | null
-    forcedReturnTotalDamageMax: number | null
-    deathPossible: boolean
-  }> | null
+  terminal: PlayerVisibleCombatTerminalPreview | null
 }>[] {
   const snapshot = createSceneExplorationSnapshot(snapshotInput, dependencies)
   if (snapshot.status !== 'combat' || !dependencies.sceneCombat) {
@@ -74,6 +128,74 @@ export function getPlayerVisibleSceneCombatActionOptions(
     const isAttack = option.preview.primary.kind === 'attack'
     const isEscape = option.preview.primary.kind === 'escape'
     if (!isAttack && !isEscape) return { ...option, terminal: null }
+    const escape = option.preview.escapeConsequences
+    const defeatBeforeEscapeCompletionRisk: PlayerVisibleCombatDeathRisk = !isEscape
+      ? 'none'
+      : escape?.deathBeforeCompletion || !escape?.survivalAtCompletionPossible
+        ? 'guaranteed'
+        : escape.playerHealthAfterCompletionMin === 0
+          ? 'possible'
+          : 'none'
+    if (isAttack && option.preview.playerHealthAfterOwnAction === 0) {
+      const elapsedCtb = active.combat.currentCtb
+      const time = evaluateCombatSceneTime(
+        elapsedCtb,
+        snapshot.remainingTime,
+        dependencies.config.combat.sceneTimeConversion,
+      )
+      return {
+        ...option,
+        terminal: {
+          conditional: false,
+          condition: null,
+          deathRisk: 'guaranteed' as const,
+          deathPriority: true,
+          defeatBeforeEscapeCompletionRisk: 'none' as const,
+          completion: {
+            outcome: 'defeat' as const,
+            nodeName: nodeName(active.nodeId, dependencies),
+            elapsedCtb,
+            currentRemainingTime: snapshot.remainingTime,
+            ...time,
+            combatCompletionHealthMin: 0,
+            combatCompletionHealthMax: 0,
+            ...noForcedReturnFacts(),
+          },
+        },
+      }
+    }
+    const completionBranches: SurvivingCompletionBranch[] = isEscape
+      ? [
+          ...(escape?.nonBleedingCompletionHealth !== null &&
+          escape?.nonBleedingCompletionHealth !== undefined &&
+          escape.nonBleedingCompletionHealth > 0
+            ? [{ health: escape.nonBleedingCompletionHealth, bleeding: false }]
+            : []),
+          ...(escape?.bleedingCompletionHealth !== null &&
+          escape?.bleedingCompletionHealth !== undefined &&
+          escape.bleedingCompletionHealth > 0
+            ? [{ health: escape.bleedingCompletionHealth, bleeding: true }]
+            : []),
+        ]
+      : option.preview.playerHealthAfterOwnAction > 0
+        ? [{
+            health: option.preview.playerHealthAfterOwnAction,
+            bleeding: active.combat.playerCondition.bleeding,
+          }]
+        : []
+    if (completionBranches.length === 0) {
+      return {
+        ...option,
+        terminal: {
+          conditional: false,
+          condition: null,
+          deathRisk: 'guaranteed' as const,
+          deathPriority: true,
+          defeatBeforeEscapeCompletionRisk,
+          completion: null,
+        },
+      }
+    }
     const elapsedCtb = isEscape
       ? option.preview.primary.completesAtCtb
       : active.combat.currentCtb
@@ -82,28 +204,40 @@ export function getPlayerVisibleSceneCombatActionOptions(
       snapshot.remainingTime,
       dependencies.config.combat.sceneTimeConversion,
     )
+    const finalNodeId = isEscape ? active.returnNodeId : active.nodeId
+    const completionHealths = completionBranches.map(({ health }) => health)
+    const baseCompletion = {
+      outcome: isEscape ? 'escaped' as const : 'victory' as const,
+      nodeName: nodeName(finalNodeId, dependencies),
+      elapsedCtb,
+      currentRemainingTime: snapshot.remainingTime,
+      ...time,
+      combatCompletionHealthMin: Math.min(...completionHealths),
+      combatCompletionHealthMax: Math.max(...completionHealths),
+    }
     if (time.remainingTimeAfter > 0) {
-      const escape = option.preview.escapeConsequences
       return {
         ...option,
         terminal: {
-          conditional: isAttack,
-          outcome: isAttack
-            ? 'victory-if-incapacitated' as const
-            : 'escape-if-survived' as const,
-          elapsedCtb,
-          ...time,
-          returnTime: null,
-          forcedReturnBaseDamage: null,
-          forcedReturnBleedingDamageMin: null,
-          forcedReturnBleedingDamageMax: null,
-          forcedReturnTotalDamageMin: null,
-          forcedReturnTotalDamageMax: null,
-          deathPossible: escape?.deathPossibleBeforeForcedReturn ?? false,
+          conditional: isAttack || defeatBeforeEscapeCompletionRisk !== 'none',
+          condition: isAttack
+            ? 'enemy-incapacitated' as const
+            : defeatBeforeEscapeCompletionRisk !== 'none'
+              ? 'escape-survived' as const
+              : null,
+          deathRisk: defeatBeforeEscapeCompletionRisk === 'possible'
+            ? 'possible' as const
+            : 'none' as const,
+          deathPriority: defeatBeforeEscapeCompletionRisk !== 'none',
+          defeatBeforeEscapeCompletionRisk,
+          completion: {
+            ...baseCompletion,
+            ...noForcedReturnFacts(),
+            survivingResult: 'active-scene' as const,
+          },
         },
       }
     }
-    const finalNodeId = isEscape ? active.returnNodeId : active.nodeId
     const backpackWeight = calculateBackpackWeightSubtotal(
       active.combat.backpack,
       dependencies.physicalCatalog,
@@ -121,43 +255,63 @@ export function getPlayerVisibleSceneCombatActionOptions(
       hasMinorContusion: hasMinorContusions(active.combat.playerCondition),
       analgesiaActive: active.combat.playerCondition.painkillerActive,
     }, dependencies.config)
-    const escape = option.preview.escapeConsequences
-    const definitelyBleeding = escape?.bleedingAtCompletionGuaranteed ??
-      active.combat.playerCondition.bleeding
-    const bleedingPossible = escape?.bleedingAtCompletionPossible ?? definitelyBleeding
-    const withoutBleeding = calculateForcedReturnDamage(
-      time.overtimeDebt,
-      route.estimatedReturnTime,
-      false,
-      dependencies.config.forcedReturn,
+    const forcedBranches = completionBranches.map((branch) => {
+      const damage = calculateForcedReturnDamage(
+        time.overtimeDebt,
+        route.estimatedReturnTime,
+        branch.bleeding,
+        dependencies.config.forcedReturn,
+      )
+      return {
+        damage,
+        finalHealth: Math.max(0, branch.health - damage.totalDamage),
+      }
+    })
+    const effectiveTimes = forcedBranches.map(
+      ({ damage }) => damage.effectiveEmergencyReturnTime,
     )
-    const withBleeding = calculateForcedReturnDamage(
-      time.overtimeDebt,
-      route.estimatedReturnTime,
-      bleedingPossible,
-      dependencies.config.forcedReturn,
-    )
-    const bleedingMin = definitelyBleeding ? withBleeding.bleedingExtraDamage : 0
-    const bleedingMax = withBleeding.bleedingExtraDamage
-    const healthAfterWorstBranch = escape?.playerHealthAfterCompletionMin ??
-      option.preview.playerHealthAfterOwnAction
+    const baseDamages = forcedBranches.map(({ damage }) => damage.baseDamage)
+    const bleedingDamages = forcedBranches.map(({ damage }) => damage.bleedingExtraDamage)
+    const totalDamages = forcedBranches.map(({ damage }) => damage.totalDamage)
+    const finalHealths = forcedBranches.map(({ finalHealth }) => finalHealth)
+    const survivesForcedReturn = finalHealths.some((health) => health > 0)
+    const diesInAnyBranch = defeatBeforeEscapeCompletionRisk !== 'none' ||
+      finalHealths.some((health) => health === 0)
     return {
       ...option,
       terminal: {
-        conditional: isAttack,
-        outcome: isAttack
-          ? 'victory-if-incapacitated' as const
-          : 'escape-if-survived' as const,
-        elapsedCtb,
-        ...time,
-        returnTime: route.estimatedReturnTime,
-        forcedReturnBaseDamage: withoutBleeding.baseDamage,
-        forcedReturnBleedingDamageMin: bleedingMin,
-        forcedReturnBleedingDamageMax: bleedingMax,
-        forcedReturnTotalDamageMin: withoutBleeding.baseDamage + bleedingMin,
-        forcedReturnTotalDamageMax: withoutBleeding.baseDamage + bleedingMax,
-        deathPossible: (escape?.deathPossibleBeforeForcedReturn ?? false) ||
-          healthAfterWorstBranch <= withoutBleeding.baseDamage + bleedingMax,
+        conditional: isAttack || diesInAnyBranch,
+        condition: isAttack
+          ? 'enemy-incapacitated' as const
+          : diesInAnyBranch
+            ? 'escape-survived' as const
+            : null,
+        deathRisk: !survivesForcedReturn
+          ? 'guaranteed' as const
+          : diesInAnyBranch
+            ? 'possible' as const
+            : 'none' as const,
+        deathPriority: diesInAnyBranch,
+        defeatBeforeEscapeCompletionRisk,
+        completion: {
+          ...baseCompletion,
+          returnTimeMin: route.estimatedReturnTime,
+          returnTimeMax: route.estimatedReturnTime,
+          effectiveEmergencyReturnTimeMin: Math.min(...effectiveTimes),
+          effectiveEmergencyReturnTimeMax: Math.max(...effectiveTimes),
+          forcedReturnBaseDamageMin: Math.min(...baseDamages),
+          forcedReturnBaseDamageMax: Math.max(...baseDamages),
+          forcedReturnBleedingDamageMin: Math.min(...bleedingDamages),
+          forcedReturnBleedingDamageMax: Math.max(...bleedingDamages),
+          forcedReturnTotalDamageMin: Math.min(...totalDamages),
+          forcedReturnTotalDamageMax: Math.max(...totalDamages),
+          forcedReturnHealthMin: Math.min(...finalHealths),
+          forcedReturnHealthMax: Math.max(...finalHealths),
+          survivingResult: survivesForcedReturn
+            ? 'forced-returned-scene' as const
+            : null,
+          forcedReturnTargetNodeName: nodeName(route.safetyNodeId, dependencies),
+        },
       },
     }
   }))

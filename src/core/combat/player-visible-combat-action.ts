@@ -1,5 +1,9 @@
 import { deepFreeze } from '../config'
 import { validateCombatDependencies } from './combat-dependencies'
+import {
+  enemyActsBeforePlayerCompletion,
+  evaluateCombatPostPlayerActionBleeding,
+} from './combat-action-checkpoints'
 import { createCombatEnemyActionPrimaryPlan } from './combat-enemy-action-primary-plan'
 import { createCombatPlayerActionPrimaryPlan } from './combat-player-action-primary-plan'
 import {
@@ -50,7 +54,8 @@ function evaluateEscapeConsequences(
   let enemyActionsBeforeCompletion = 0
   let deathPossible = false
 
-  while (enemyNext < completesAtCtb && health > 0) {
+  let deathBeforeCompletion = false
+  while (enemyActsBeforePlayerCompletion(enemyNext, completesAtCtb) && health > 0) {
     const action = definition.actions.find(({ id }) => id === intentId)!
     const primary = createCombatEnemyActionPrimaryPlan(
       snapshot, action, armorResourceCurrent, defense, dependencies,
@@ -59,6 +64,7 @@ function evaluateEscapeConsequences(
     enemyActionsBeforeCompletion += 1
     if (health === 0) {
       deathPossible = true
+      deathBeforeCompletion = true
       break
     }
     const injuryPercent = riskTierToPercent(primary.injuryFinalTier, dependencies.config)
@@ -72,14 +78,26 @@ function evaluateEscapeConsequences(
   }
 
   const configuredBleedingDamage = dependencies.config.combat.postPlayerActionBleedingDamage
-  const bleedingDamageMin = bleedingGuaranteed
-    ? Math.min(health, configuredBleedingDamage)
-    : 0
-  const bleedingDamageMax = bleedingPossible
-    ? Math.min(health, configuredBleedingDamage)
-    : 0
-  const healthMin = Math.max(0, health - bleedingDamageMax)
-  const healthMax = Math.max(0, health - bleedingDamageMin)
+  const withoutBleeding = evaluateCombatPostPlayerActionBleeding(
+    health, false, configuredBleedingDamage,
+  )
+  const withBleeding = evaluateCombatPostPlayerActionBleeding(
+    health, true, configuredBleedingDamage,
+  )
+  const bleedingDamageMin = bleedingGuaranteed ? withBleeding.actualLoss : 0
+  const bleedingDamageMax = bleedingPossible ? withBleeding.actualLoss : 0
+  const nonBleedingCompletionHealth = !deathBeforeCompletion && !bleedingGuaranteed
+    ? withoutBleeding.healthAfter
+    : null
+  const bleedingCompletionHealth = !deathBeforeCompletion && bleedingPossible
+    ? withBleeding.healthAfter
+    : null
+  const completionHealths = [
+    nonBleedingCompletionHealth,
+    bleedingCompletionHealth,
+  ].filter((value): value is number => value !== null)
+  const healthMin = completionHealths.length === 0 ? 0 : Math.min(...completionHealths)
+  const healthMax = completionHealths.length === 0 ? 0 : Math.max(...completionHealths)
   return deepFreeze({
     enemyActionsBeforeCompletion,
     postPlayerActionBleedingDamageMin: bleedingDamageMin,
@@ -88,6 +106,11 @@ function evaluateEscapeConsequences(
     playerHealthAfterCompletionMax: healthMax,
     bleedingAtCompletionPossible: bleedingPossible,
     bleedingAtCompletionGuaranteed: bleedingGuaranteed,
+    playerHealthBeforeCompletionBleeding: health,
+    nonBleedingCompletionHealth,
+    bleedingCompletionHealth,
+    deathBeforeCompletion,
+    survivalAtCompletionPossible: completionHealths.some((value) => value > 0),
     deathPossibleBeforeForcedReturn: deathPossible || healthMin === 0,
   })
 }
@@ -124,20 +147,22 @@ export function previewPlayerVisibleCombatAction(
     ? primary.healthAfterRecovery
     : snapshot.playerCondition.currentHealth
   const stopsBleeding = primary.kind === 'quick-slot-item' && primary.stopsBleeding
-  const bleedingDamage = snapshot.playerCondition.bleeding && !stopsBleeding
-    ? Math.min(
-        healthAfterOwnAction,
-        dependencies.config.combat.postPlayerActionBleedingDamage,
-      )
-    : 0
+  const bleedingCheckpoint = evaluateCombatPostPlayerActionBleeding(
+    healthAfterOwnAction,
+    snapshot.playerCondition.bleeding && !stopsBleeding,
+    dependencies.config.combat.postPlayerActionBleedingDamage,
+  )
   return deepFreeze({
     primary,
     currentIntent: {
       metadata: intent.playerVisible,
-      actsBeforeNextPlayerDecision: adjustedEnemyCtb < playerDecisionCtb,
+      actsBeforeNextPlayerDecision: enemyActsBeforePlayerCompletion(
+        adjustedEnemyCtb,
+        playerDecisionCtb,
+      ),
     },
-    postPlayerActionBleedingDamage: bleedingDamage,
-    playerHealthAfterOwnAction: healthAfterOwnAction - bleedingDamage,
+    postPlayerActionBleedingDamage: bleedingCheckpoint.actualLoss,
+    playerHealthAfterOwnAction: bleedingCheckpoint.healthAfter,
     escapeConsequences: primary.kind === 'escape'
       ? evaluateEscapeConsequences(snapshot, primary.completesAtCtb, dependencies)
       : null,

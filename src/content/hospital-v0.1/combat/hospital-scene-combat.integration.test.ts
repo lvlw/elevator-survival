@@ -10,6 +10,7 @@ import {
   applySceneExplorationEffects,
   createInitialSceneExplorationSnapshot,
   createSceneExplorationSnapshot,
+  getPlayerVisibleSceneCombatActionOptions,
   getPlayerVisibleSceneCombatState,
   previewMainSearchCommand,
   resolveSceneCombatPlayerAction,
@@ -342,6 +343,64 @@ describe('hospital scene combat encounter lifecycle', () => {
     expect(forced.snapshot.status).toBe('forced-returned')
     expect(forced.snapshot.currentNodeId).toBe(HOSPITAL_NODE_IDS.elevatorAnteroom)
     expect(forced.snapshot.remainingTime).toBe(0)
+  })
+
+  it('keeps DEC-035 terminal escape ranges identical across opposite hidden injury seeds', () => {
+    const started = enter(scene({ remainingTime: 15 }))
+    const riskyDependencies = {
+      ...dependencies,
+      sceneCombat: createHospitalSceneCombatDependencies('scene-terminal-risk-1', sceneInstanceId),
+    }
+    const safeDependencies = {
+      ...dependencies,
+      sceneCombat: createHospitalSceneCombatDependencies('scene-terminal-risk-0', sceneInstanceId),
+    }
+    const riskyRaw = resolveSceneCombatPlayerAction(
+      started,
+      { kind: 'escape' },
+      riskyDependencies,
+    ).snapshot
+    const safeRaw = resolveSceneCombatPlayerAction(
+      started,
+      { kind: 'escape' },
+      safeDependencies,
+    ).snapshot
+    expect(riskyRaw.condition.bleeding).toBe(true)
+    expect(safeRaw.condition.bleeding).toBe(false)
+
+    const riskyVisible = getPlayerVisibleSceneCombatActionOptions(
+      started,
+      riskyDependencies,
+    ).find(({ command }) => command.kind === 'escape')
+    const safeVisible = getPlayerVisibleSceneCombatActionOptions(
+      started,
+      safeDependencies,
+    ).find(({ command }) => command.kind === 'escape')
+    expect(riskyVisible).toEqual(safeVisible)
+    expect(riskyVisible?.terminal).toMatchObject({
+      deathRisk: 'none',
+      completion: {
+        nodeName: '急诊大厅',
+        currentRemainingTime: 5,
+        sceneTimeCost: 10,
+        overtimeDebt: 5,
+        combatCompletionHealthMin: 8,
+        combatCompletionHealthMax: 9,
+        effectiveEmergencyReturnTimeMin: 15,
+        effectiveEmergencyReturnTimeMax: 15,
+        forcedReturnBleedingDamageMin: 0,
+        forcedReturnBleedingDamageMax: 1,
+        forcedReturnTotalDamageMin: 1,
+        forcedReturnTotalDamageMax: 2,
+        forcedReturnHealthMin: 6,
+        forcedReturnHealthMax: 8,
+        survivingResult: 'forced-returned-scene',
+        forcedReturnTargetNodeName: '电梯前室',
+      },
+    })
+    expect(JSON.stringify(riskyVisible)).not.toMatch(
+      /riskPercent|roll|streamId|drawIndex|succeeded|enemyInstanceId|woundId|nextCycleIndex|resolvedActionCount/,
+    )
   })
 
   it('uses alerted first timing and exposes only a player-safe combat projection', () => {

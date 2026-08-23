@@ -6,6 +6,10 @@ import {
 } from '../condition'
 import { consumeCommittedResource, getItemState } from '../item-state'
 import { CombatError } from './combat-errors'
+import {
+  enemyActsBeforePlayerCompletion,
+  evaluateCombatPostPlayerActionBleeding,
+} from './combat-action-checkpoints'
 import { createCombatEnemyActionPrimaryPlan } from './combat-enemy-action-primary-plan'
 import { createCombatPlayerActionPrimaryPlan } from './combat-player-action-primary-plan'
 import { validateCombatDependencies } from './combat-dependencies'
@@ -284,17 +288,20 @@ export function buildCombatTransitionPlan(
   }
 
   if (!isEscape && bleeding) {
-    const requested = dependencies.config.combat.postPlayerActionBleedingDamage
-    const actual = Math.min(playerHealth, requested)
+    const checkpoint = evaluateCombatPostPlayerActionBleeding(
+      playerHealth,
+      bleeding,
+      dependencies.config.combat.postPlayerActionBleedingDamage,
+    )
     effects.push({
       kind: 'player-health-lost',
       source: 'post-player-action-bleeding',
-      healthBefore: playerHealth,
-      requestedLoss: requested,
-      actualLoss: actual,
-      healthAfter: playerHealth - actual,
+      healthBefore: checkpoint.healthBefore,
+      requestedLoss: checkpoint.requestedLoss,
+      actualLoss: checkpoint.actualLoss,
+      healthAfter: checkpoint.healthAfter,
     })
-    playerHealth -= actual
+    playerHealth = checkpoint.healthAfter
   }
   if (playerHealth === 0) {
     if (defense) {
@@ -340,7 +347,11 @@ export function buildCombatTransitionPlan(
   const definition = dependencies.enemyCatalog.get(
     dependencies.bindings.enemyDefinitionId,
   )
-  while (enemyNext < playerNext && playerHealth > 0 && enemyHealth > 0) {
+  while (
+    enemyActsBeforePlayerCompletion(enemyNext, playerNext) &&
+    playerHealth > 0 &&
+    enemyHealth > 0
+  ) {
     const action = definition.actions.find(({ id }) => id === intentId)!
     const enemyPrimary = createCombatEnemyActionPrimaryPlan(
       snapshot, action, armorResourceCurrent, defense, dependencies,
@@ -502,17 +513,20 @@ export function buildCombatTransitionPlan(
       enemyNextActionCtbAfter: enemyNext,
     })
     if (bleeding) {
-      const requested = dependencies.config.combat.postPlayerActionBleedingDamage
-      const actual = Math.min(playerHealth, requested)
+      const checkpoint = evaluateCombatPostPlayerActionBleeding(
+        playerHealth,
+        bleeding,
+        dependencies.config.combat.postPlayerActionBleedingDamage,
+      )
       effects.push({
         kind: 'player-health-lost',
         source: 'post-player-action-bleeding',
-        healthBefore: playerHealth,
-        requestedLoss: requested,
-        actualLoss: actual,
-        healthAfter: playerHealth - actual,
+        healthBefore: checkpoint.healthBefore,
+        requestedLoss: checkpoint.requestedLoss,
+        actualLoss: checkpoint.actualLoss,
+        healthAfter: checkpoint.healthAfter,
       })
-      playerHealth -= actual
+      playerHealth = checkpoint.healthAfter
     }
     effects.push({
       kind: 'combat-status-changed',

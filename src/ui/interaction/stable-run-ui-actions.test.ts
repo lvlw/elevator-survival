@@ -477,13 +477,19 @@ describe('stable Run UI interaction model', () => {
     expect(escape.preview.branches).toHaveLength(0)
     expect(escape.preview.facts).toEqual(expect.arrayContaining([
       { label: '战斗场景时间', value: '10' },
+      { label: '完成节点', value: '急诊大厅' },
+      { label: '当前剩余 Scene 时间', value: '5' },
       { label: '结算后剩余时间', value: '0' },
       { label: '超时债务', value: '5' },
-      expect.objectContaining({ label: '预计返程时间' }),
-      expect.objectContaining({ label: '强制返程基础损耗' }),
-      expect.objectContaining({ label: '强制返程流血追加' }),
-      expect.objectContaining({ label: '强制返程总损耗' }),
-      expect.objectContaining({ label: '死亡可能性' }),
+      { label: '预计返程时间', value: '11' },
+      { label: '有效紧急撤离时间', value: '16' },
+      { label: '强制返程基础损耗', value: '1' },
+      { label: '强制返程流血追加', value: '1' },
+      { label: '强制返程总损耗', value: '2' },
+      { label: '强制返程后生命', value: '4' },
+      { label: '死亡风险', value: '未发现' },
+      { label: '生还结果', value: 'forced-returned Scene' },
+      { label: '强制返程目标', value: '电梯前室' },
     ]))
   })
 })

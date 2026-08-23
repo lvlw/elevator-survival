@@ -6,6 +6,11 @@ export {
 } from './combat'
 export { applyCombatEffects } from './combat-effect-application'
 export {
+  enemyActsBeforePlayerCompletion,
+  evaluateCombatPostPlayerActionBleeding,
+  type CombatPostPlayerActionBleedingEvaluation,
+} from './combat-action-checkpoints'
+export {
   convertCombatElapsedCtbToSceneTime,
   evaluateCombatSceneTime,
 } from './combat-scene-time'

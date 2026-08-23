@@ -3,7 +3,6 @@ import {
   type PlayerConditionSnapshot,
 } from '../../core/condition'
 import { createPlayerVisibleCombatSnapshot } from '../../core/combat'
-import { getItemState } from '../../core/item-state'
 import {
   getRunSceneRuntime,
   type RunSceneSessionSnapshot,
@@ -18,8 +17,10 @@ import {
   type RunSaveRulesRegistry,
   type StableRunPhase,
 } from '../../state/run-save'
+import { getCurrentTraversableAdjacentEdges } from '../interaction/current-traversable-adjacent-edges'
 
 export interface StableRunUiLabels {
+  sceneName(sceneDefinitionId: string): string
   itemName(definitionId: string, fallback: string): string
   enemyName(definitionId: string): string
   enemyIntentName(intentId: string): string
@@ -146,11 +147,16 @@ function itemView(
   labels: StableRunUiLabels,
 ): PlayerVisibleItemViewModel {
   const definition = runtime.dependencies.physicalCatalog.get(item.definitionId)
-  const state = getItemState(itemStates, item.instanceId)
+  // Ordinary ground items may have no mutable resource state. ItemState is
+  // still mandatory for resource-bearing carried items, but presentation must
+  // not invent one merely to render a newly revealed physical item.
+  const state = itemStates.states.find(
+    ({ instanceId }) => instanceId === item.instanceId,
+  )
   return frozen({
     name: labels.itemName(item.definitionId, definition.name),
     quantity: item.quantity,
-    resource: state.resource.kind === 'none'
+    resource: !state || state.resource.kind === 'none'
       ? null
       : frozen({ kind: state.resource.kind, current: state.resource.current }),
   })
@@ -184,11 +190,8 @@ function createSceneView(
   const runtime = getRunSceneRuntime(session, rules.sceneLaunch)
   const scene = session.scene
   const current = runtime.dependencies.graph.nodes.find(({ id }) => id === scene.currentNodeId)!
-  const connected = runtime.dependencies.graph.edges
-    .filter(({ id, from, to }) => scene.enabledEdgeIds.includes(id) && (from === current.id || to === current.id))
-    .map(({ from, to }) => (from === current.id ? to : from))
-    .map((id) => runtime.dependencies.graph.nodes.find((node) => node.id === id)!.name)
-    .sort()
+  const connected = getCurrentTraversableAdjacentEdges(scene, runtime)
+    .map(({ destinationNodeName }) => destinationNodeName)
   const playerNode = getPlayerVisibleSceneNodeState(scene, scene.currentNodeId)
   const withdrawal = scene.status === 'active'
     ? previewSceneWithdrawalCommand(scene, { kind: 'withdraw-from-scene' }, runtime.dependencies)

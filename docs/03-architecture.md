@@ -78,7 +78,7 @@ CurrentDayHub
 - Dispatcher 不维护第四套 phase matrix，不拥有玩法规则、规则版本分派、随机数、Effect、状态或保存策略；它也不直接调用 generic executor、Run Save 或 `storage.write()`。
 - Lifecycle、Scene 与 Hub specialized router 继续拥有各自的应用层映射职责，generic executor 继续拥有 canonicalization、RunIdentity 连续性和唯一保存。每次 application dispatch 只委托一个 specialized router 一次。
 - `execution.phase` 是下一条命令的唯一正式状态。确定性重放只属于自动化验收，使用正式 registry、Run seed、稳定阶段与应用路由，不在存档或阶段中保存 command history、replay log 或序号。
-- 制作、拆解与 React gameplay command wiring 尚未实现；当前只读 React 展示桥接见后文。
+- 制作、拆解与大部分 React gameplay command wiring 尚未实现；当前已接入启动主要场景、活动场景移动和主要搜索的确认式 UI，展示与交互边界见后文。
 
 ## 最小 Stable Run Application Store
 
@@ -97,7 +97,7 @@ canonical StableRunPhase
 - 存储失败后 Store 不回滚、不 reload、不重试；下一条命令从 committed in-memory phase 继续。Execution、result、Effects 和 persistence 状态只作为调用返回值，不进入 Store snapshot。
 - Store 不拥有玩法、持久化、Profile、多个 Run、派生 Hub／Scene／Combat／Inventory 状态或命令历史；React 只通过公开只读 Store 接口订阅 canonical phase，展示投影不保存、不随机、不在渲染或订阅期间发送命令。
 
-## 当前 React 只读展示职责
+## 当前 React 展示与第一批命令职责
 
 ```text
 StableRunStore public read API
@@ -106,10 +106,11 @@ StableRunStore public read API
 → React presentation
 ```
 
-- `src/ui/` 只读取 Store 对外的 `getState()`、`getInitialState()` 与 `subscribe()`；不访问 raw Zustand API，也不在渲染、订阅或开发检查器中发送命令、保存或改变状态。
+- `src/ui/` 只读取 Store 对外的 `getState()`、`getInitialState()` 与 `subscribe()`；不访问 raw Zustand API，也不在渲染、订阅或开发检查器中发送命令、保存或改变状态。已接入的确认按钮只调用公开 `Store.dispatch()`，不直接调用 application／specialized executor、core resolver 或保存接口。
 - 通用 ViewModel 通过显式白名单向普通玩家展示 Hub、Scene、Combat 与 Failure 信息。节点地面物品、**当前可通行相邻节点**、相对敌人生命阶段、当前意图和正式返程预览继续复用 core 查询；当前不构造完整玩家已知地图，已知但阻挡的路线与障碍等待未来正式玩家可见导航查询。内部 Run 身份、实例 ID、隐藏搜索结果、精确敌人生命、风险百分比和未来行动序列不进入普通 ViewModel。
 - 医院 V1 的名称文案位于 UI 内容适配层；通用组件不硬编码医院物品、敌人或节点名称。开发环境的只读检查器可以查看严格 phase，但生产环境没有入口，且不提供 mutation。开发环境默认 `App` 未注入 Store 时可动态加载独立内存态预览：它只用正式构造器生成合法 Hub／Scene／Combat／Failure Store，选择示例不发送 gameplay command、不保存，也不是 New Run 或正式游戏入口；生产环境仍保持诚实的未接入状态。
-- 当前没有 New Run bootstrap、React Provider、真实玩家命令控件、完整 Application Store、UI 命令队列或终版美术。展示层可被未来其他渲染技术替换，只要继续读取 canonical phase 并发送正式命令。
+- `src/ui/interaction/` 从 canonical phase、正式 registry、标签和纯 core preview 生成第一批安全行动：主要场景启动、活动场景移动与主要搜索。显示与移动复用同一有效通行边查询；Preview 只显式投影玩家可见的时间、返程和资源事实，不保存原始快照、Effects 或隐藏搜索结果。确认后每次只发出一条 `Store.dispatch()`，终局 Scene 不自动继续结算。
+- 当前没有 New Run bootstrap、React Provider、完整 Application Store、UI 命令队列或终版美术。除上述三类命令外，拾取、整理、撤离、障碍、任务事件、医疗、充能、战斗、中枢操作与日结算的 React command UI 尚未接入。展示层可被未来其他渲染技术替换，只要继续读取 canonical phase 并发送正式命令。
 
 ## 当前最小 Stable Run 生命周期命令路由
 
@@ -132,9 +133,9 @@ StableRunStore public read API
 - `src/state/run-lifecycle/` 是当前最小生命周期 command／phase 映射的应用层所有者，只覆盖主要场景启动、终止场景结算与结束本日；活动或战斗 Scene 不允许执行终止场景结算。
 - Router 不拥有 Scene Launch、Return、Daily Settlement 或 Run Failure 规则，也不直接写存档；它按当前规范化阶段的 `rulesVersion` 读取正式依赖并调用既有 core resolver，随后委托唯一 stable mutation execution boundary。
 - 终止 Scene 的位置、时间（包括 `remainingTime` 的0至当前 `scene.totalTime` 上限）和生命合法性属于 Scene strict snapshot invariant；Run Save 与 lifecycle settlement 都通过同一 Scene 恢复入口继承该校验，Router 不复制 returned 位置判断、时间上限或重新结算撤离。
-- 每次调用只执行一个生命周期命令。最小 Store 只在调用方显式 `dispatch()` 时发出一条 command；终止 Scene 不自动连锁到 Return，结束本日不自动启动次日场景。React UI 何时触发下一 command 尚未接入。
+- 每次调用只执行一个生命周期命令。最小 Store 只在调用方显式 `dispatch()` 时发出一条 command；终止 Scene 不自动连锁到 Return，结束本日不自动启动次日场景。React 当前只接入主要场景启动，且只在玩家确认 Preview 后发出该命令；其余生命周期 command UI 尚未接入。
 - 生命周期 resolver 的返回值仅用于展示或审计；`StableRunCommandExecution.phase` 是下一条命令的唯一正式状态输入，result、summary、Effects 和 preview 不形成并行状态或持久化字段。
-- 本路由经统一 Application facade 对外分派，最小 Store 已通过该 facade 接入；完整 RunState、React gameplay command UI 与命令队列尚未实现。
+- 本路由经统一 Application facade 对外分派，最小 Store 已通过该 facade 接入；React 已接入主要场景启动，完整 RunState、其余 lifecycle command UI 与命令队列尚未实现。
 
 ### 基础 Stable Run Scene mutation routing
 
@@ -143,7 +144,7 @@ StableRunStore public read API
 - 移动、搜索、拾取、整理、障碍、任务事件、场景医疗、设备充能和战斗玩家行动都调用既有 core resolver，并把正式 resolution snapshot 与 canonical Session context 交给 `createRunSceneSessionSnapshot()` 重建唯一下一 Session；主动撤离直接调用 Session 级 `resolveRunSceneSessionWithdrawal()`。Combat 命令结构、CTB、敌人行动、确定性随机、资源消耗、逃跑、终局和场景时间换算仍由 `src/core/combat/` 与 Scene combat integration 拥有。RunIntel、每日医疗使用、携带容器、ItemState、任务事件、警觉和战斗状态只存在于新 Scene snapshot，不复制到 context。
 - Router 不直接调用 Run Save。每次只通过 `executeStableRunCommand()` 提交一个 mutation，由该通用边界验证 Run 身份连续性并执行唯一保存；规则拒绝不保存，写入失败返回已经规范化的 committed Scene Session，不重跑 resolver 或 Effect。
 - Scene action 产生 `safe-returned`、`forced-returned` 或 `dead` 时，本次执行仍停在已保存的 `scene-session`。返回 Hub 或进入 Run Failure 必须由下一条独立的 `settle-terminal-scene` 生命周期命令完成；`StableRunCommandExecution.phase` 是下一命令的唯一状态输入。
-- ongoing Combat 在每个玩家命令完整结算后保存一个稳定 Scene Session；胜利、逃跑或战败也只提交 Scene Session，terminal Scene 仍需后续显式生命周期命令结算。当前不支持战斗换装或完整背包整理；最小 Store 已通过统一 dispatcher 接入，React gameplay command UI 与命令队列仍未接入。
+- ongoing Combat 在每个玩家命令完整结算后保存一个稳定 Scene Session；胜利、逃跑或战败也只提交 Scene Session，terminal Scene 仍需后续显式生命周期命令结算。当前不支持战斗换装或完整背包整理；最小 Store 已通过统一 dispatcher 接入，React 只接入活动 Scene 的移动和主要搜索，Combat command UI 与命令队列仍未接入。
 
 ### 基础 Stable Run Hub mutation routing
 

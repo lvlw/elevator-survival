@@ -116,6 +116,52 @@ body {
 .combat-panel { border-color: #8a5b5b; }
 .terminal-panel { width: min(100%, 45rem); margin: 12vh auto; }
 
+.action-panel { border-color: #597d92; }
+.action-list,
+.preview-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.action-button,
+.preview-controls button {
+  border: 1px solid #647f93;
+  padding: 0.65rem 0.85rem;
+  color: inherit;
+  background: #243544;
+  cursor: pointer;
+}
+
+.action-button:hover,
+.preview-controls button:hover { background: #31495c; }
+.preview-controls .confirm-action { border-color: #9fc7b5; background: #284638; }
+
+.preview-backdrop {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgb(0 0 0 / 58%);
+}
+
+.preview-dialog {
+  width: min(100%, 34rem);
+  padding: 1.25rem;
+  border: 1px solid #9fc7b5;
+  background: #19212a;
+  box-shadow: 0 1rem 4rem rgb(0 0 0 / 45%);
+}
+
+.preview-facts { margin: 1rem 0; }
+.preview-facts div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.45rem 0; border-bottom: 1px solid rgb(159 199 181 / 15%); }
+.preview-facts dt { color: #aebdcb; }
+.preview-facts dd { margin: 0; text-align: right; }
+.preview-warnings { margin: 1rem 0; padding: 0.7rem 0.9rem 0.7rem 2rem; border-left: 3px solid #d6ab65; color: #f2d694; background: #30281c; }
+.persistence-feedback { position: fixed; z-index: 5; top: 1rem; right: 1rem; max-width: 30rem; margin: 0; padding: 0.65rem 0.85rem; border: 1px solid #9fc7b5; background: #21372d; }
+
 .dev-inspector {
   position: fixed;
   right: 1rem;

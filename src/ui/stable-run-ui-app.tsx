@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import type { StableRunStore } from '../state/run-store'
 import {
+  createStableRunUiInteractionModel,
+  type StableRunUiAction,
+  type StableRunUiActionPreviewViewModel,
+} from './interaction'
+import {
   createStableRunPlayerViewModel,
   type PlayerVisibleItemViewModel,
   type PlayerVisibleLoadoutViewModel,
@@ -61,12 +66,40 @@ function LoadoutPanel({ loadout }: Readonly<{ loadout: PlayerVisibleLoadoutViewM
   </section>
 }
 
-function HubView({ model }: Readonly<{ model: Extract<StableRunPlayerViewModel, { kind: 'current-day-hub' }> }>) {
+function ActionPanel({
+  actions,
+  onPreview,
+}: Readonly<{
+  actions: readonly StableRunUiAction[]
+  onPreview(actionId: string): void
+}>) {
+  if (actions.length === 0) return null
+  return <section className="console-panel action-panel" aria-labelledby="actions-heading">
+    <h2 id="actions-heading">可执行行动</h2>
+    <div className="action-list">{actions.map((action) => <button
+      key={action.id}
+      type="button"
+      className="action-button"
+      onClick={() => onPreview(action.id)}
+    >{action.label}</button>)}</div>
+  </section>
+}
+
+function HubView({
+  model,
+  actions,
+  onPreview,
+}: Readonly<{
+  model: Extract<StableRunPlayerViewModel, { kind: 'current-day-hub' }>
+  actions: readonly StableRunUiAction[]
+  onPreview(actionId: string): void
+}>) {
   return <main className="console-layout">
     <StatusBar status={model.status} />
     <div className="console-grid">
       <LoadoutPanel loadout={model.loadout} />
       <section className="console-panel"><h2>电梯中枢</h2><p>当前为只读策略控制台。中枢操作将在后续 UI 任务接入。</p><dl className="slot-list"><div><dt>维护工时</dt><dd>{model.hub.maintenanceLaborRemaining}</dd></div></dl><h3>仓库</h3><ItemList items={model.hub.warehouse} empty="仓库为空" /><h3>任务储存区</h3><ItemList items={model.hub.taskStorage} empty="暂无任务物品" /></section>
+      <ActionPanel actions={actions} onPreview={onPreview} />
     </div>
   </main>
 }
@@ -81,17 +114,52 @@ function CombatPanel({ combat }: Readonly<{ combat: NonNullable<Extract<StableRu
   </section>
 }
 
-function SceneView({ model }: Readonly<{ model: Extract<StableRunPlayerViewModel, { kind: 'scene-session' }> }>) {
+function SceneView({
+  model,
+  actions,
+  onPreview,
+}: Readonly<{
+  model: Extract<StableRunPlayerViewModel, { kind: 'scene-session' }>
+  actions: readonly StableRunUiAction[]
+  onPreview(actionId: string): void
+}>) {
   const { scene } = model
   return <main className="console-layout">
     <StatusBar status={model.status} />
     <div className="console-grid">
       <section className="console-panel"><h2>场景导航</h2><p>当前位置：<strong>{scene.currentNodeName}</strong></p><p>剩余时间：<strong>{scene.remainingTime}</strong></p><p>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></p><p>当前节点搜索：<strong>{scene.currentNodeSearchState}</strong></p><h3>当前可通行相邻节点</h3><ItemList items={scene.traversableAdjacentNodeNames.map((name) => ({ name, quantity: 1, resource: null }))} empty="暂无当前可通行相邻节点" /><p className="empty-copy">此列表不是场景路线总览；阻挡路线与障碍等待正式玩家可见导航查询接入。</p><h3>当前节点地面物品</h3><ItemList items={scene.groundItems} empty="未发现地面物品" /></section>
       <LoadoutPanel loadout={scene.loadout} />
+      <ActionPanel actions={actions} onPreview={onPreview} />
       {scene.combat && <CombatPanel combat={scene.combat} />}
       {scene.status !== 'active' && <section className="console-panel"><h2>场景终局状态</h2><p>{scene.status}</p><p className="empty-copy">终局场景结算命令尚未由 UI 发出。</p></section>}
     </div>
   </main>
+}
+
+function ActionPreviewDialog({
+  preview,
+  onCancel,
+  onConfirm,
+}: Readonly<{
+  preview: StableRunUiActionPreviewViewModel
+  onCancel(): void
+  onConfirm(): void
+}>) {
+  return <div className="preview-backdrop" role="presentation">
+    <section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="action-preview-title">
+      <h2 id="action-preview-title">{preview.title}</h2>
+      <dl className="preview-facts">{preview.facts.map((fact) => <div key={fact.label}>
+        <dt>{fact.label}</dt><dd>{fact.value}</dd>
+      </div>)}</dl>
+      {preview.warnings.length > 0 && <ul className="preview-warnings">
+        {preview.warnings.map((warning) => <li key={warning}>{warning}</li>)}
+      </ul>}
+      <div className="preview-controls">
+        <button type="button" onClick={onCancel}>取消</button>
+        <button type="button" className="confirm-action" onClick={onConfirm}>确认执行</button>
+      </div>
+    </section>
+  </div>
 }
 
 function FailureView({ model }: Readonly<{ model: Extract<StableRunPlayerViewModel, { kind: 'run-failure' }> }>) {
@@ -109,10 +177,29 @@ function DevInspector({ phase }: Readonly<{ phase: unknown }>) {
 export function StableRunUiApp({ store, presentationDependencies }: StableRunUiAppProps) {
   const snapshot = useStableRunStoreSnapshot(store)
   const model = createStableRunPlayerViewModel(snapshot.phase, presentationDependencies)
+  const interaction = createStableRunUiInteractionModel(snapshot.phase, presentationDependencies)
+  const [pendingActionId, setPendingActionId] = useState<string | null>(null)
+  const [persistenceFeedback, setPersistenceFeedback] = useState<string | null>(null)
+  const pendingAction = interaction.actions.find(({ id }) => id === pendingActionId) ?? null
+
+  const confirm = () => {
+    if (!pendingAction) return
+    const execution = store.dispatch(pendingAction.command)
+    setPendingActionId(null)
+    setPersistenceFeedback(execution.kind === 'executed'
+      ? '✓ 操作已执行并保存'
+      : '⚠ 保存失败：本次操作已在当前会话中生效，请勿刷新页面。')
+  }
   return <>
-    {model.kind === 'current-day-hub' && <HubView model={model} />}
-    {model.kind === 'scene-session' && <SceneView model={model} />}
+    {persistenceFeedback && <p className="persistence-feedback" role="status">{persistenceFeedback}</p>}
+    {model.kind === 'current-day-hub' && <HubView model={model} actions={interaction.actions} onPreview={setPendingActionId} />}
+    {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} onPreview={setPendingActionId} />}
     {model.kind === 'run-failure' && <FailureView model={model} />}
+    {pendingAction && <ActionPreviewDialog
+      preview={pendingAction.preview}
+      onCancel={() => setPendingActionId(null)}
+      onConfirm={confirm}
+    />}
     {import.meta.env.DEV && <DevInspector phase={snapshot.phase} />}
   </>
 }

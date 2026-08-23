@@ -1,6 +1,7 @@
 import {
   HOSPITAL_ENEMY_ACTION_IDS,
   HOSPITAL_ENEMY_IDS,
+  HOSPITAL_SCENE_DEFINITION_ID,
   hospitalItemCatalog,
 } from '../../content'
 import type { StableRunUiLabels } from '../presentation'
@@ -16,6 +17,11 @@ const worldThreatLabels: Readonly<Record<string, string>> = Object.freeze({
 
 /** Hospital V1 owns display copy only; it never owns gameplay state or rules. */
 export const hospitalV01UiLabels: StableRunUiLabels = Object.freeze({
+  sceneName(sceneDefinitionId: string): string {
+    return sceneDefinitionId === HOSPITAL_SCENE_DEFINITION_ID
+      ? '封锁医院·急诊楼一层'
+      : '未知场景'
+  },
   itemName(definitionId: string, fallback: string): string {
     return hospitalItemCatalog.has(definitionId)
       ? hospitalItemCatalog.get(definitionId).name

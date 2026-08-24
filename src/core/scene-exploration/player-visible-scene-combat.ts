@@ -50,7 +50,8 @@ export interface PlayerVisibleCombatTerminalPreview {
   readonly condition: 'enemy-incapacitated' | 'escape-survived' | null
   readonly deathRisk: PlayerVisibleCombatDeathRisk
   readonly deathPriority: boolean
-  readonly defeatBeforeEscapeCompletionRisk: PlayerVisibleCombatDeathRisk
+  readonly preCompletionDefeatRisk: PlayerVisibleCombatDeathRisk
+  readonly completionCheckpointDeathRisk: PlayerVisibleCombatDeathRisk
   readonly completion: PlayerVisibleCombatTerminalCompletion | null
 }
 
@@ -129,13 +130,16 @@ export function getPlayerVisibleSceneCombatActionOptions(
     const isEscape = option.preview.primary.kind === 'escape'
     if (!isAttack && !isEscape) return { ...option, terminal: null }
     const escape = option.preview.escapeConsequences
-    const defeatBeforeEscapeCompletionRisk: PlayerVisibleCombatDeathRisk = !isEscape
+    const preCompletionDefeatRisk: PlayerVisibleCombatDeathRisk = isEscape &&
+      escape?.preCompletionDeath
+      ? 'guaranteed'
+      : 'none'
+    const completionCheckpointDeathRisk: PlayerVisibleCombatDeathRisk = !isEscape ||
+      !escape?.completionCheckpointDeathPossible
       ? 'none'
-      : escape?.deathBeforeCompletion || !escape?.survivalAtCompletionPossible
+      : escape.completionCheckpointDeathGuaranteed
         ? 'guaranteed'
-        : escape.playerHealthAfterCompletionMin === 0
-          ? 'possible'
-          : 'none'
+        : 'possible'
     if (isAttack && option.preview.playerHealthAfterOwnAction === 0) {
       const elapsedCtb = active.combat.currentCtb
       const time = evaluateCombatSceneTime(
@@ -150,7 +154,8 @@ export function getPlayerVisibleSceneCombatActionOptions(
           condition: null,
           deathRisk: 'guaranteed' as const,
           deathPriority: true,
-          defeatBeforeEscapeCompletionRisk: 'none' as const,
+          preCompletionDefeatRisk: 'none' as const,
+          completionCheckpointDeathRisk: 'none' as const,
           completion: {
             outcome: 'defeat' as const,
             nodeName: nodeName(active.nodeId, dependencies),
@@ -184,6 +189,27 @@ export function getPlayerVisibleSceneCombatActionOptions(
           }]
         : []
     if (completionBranches.length === 0) {
+      const defeatCtb = preCompletionDefeatRisk === 'guaranteed'
+        ? escape?.preCompletionDeathCtb ?? null
+        : completionCheckpointDeathRisk === 'guaranteed' && isEscape
+          ? option.preview.primary.completesAtCtb
+          : null
+      const completion = defeatCtb !== null
+        ? {
+            outcome: 'defeat' as const,
+            nodeName: nodeName(active.nodeId, dependencies),
+            elapsedCtb: defeatCtb,
+            currentRemainingTime: snapshot.remainingTime,
+            ...evaluateCombatSceneTime(
+              defeatCtb,
+              snapshot.remainingTime,
+              dependencies.config.combat.sceneTimeConversion,
+            ),
+            combatCompletionHealthMin: 0,
+            combatCompletionHealthMax: 0,
+            ...noForcedReturnFacts(),
+          }
+        : null
       return {
         ...option,
         terminal: {
@@ -191,8 +217,9 @@ export function getPlayerVisibleSceneCombatActionOptions(
           condition: null,
           deathRisk: 'guaranteed' as const,
           deathPriority: true,
-          defeatBeforeEscapeCompletionRisk,
-          completion: null,
+          preCompletionDefeatRisk,
+          completionCheckpointDeathRisk,
+          completion,
         },
       }
     }
@@ -219,17 +246,18 @@ export function getPlayerVisibleSceneCombatActionOptions(
       return {
         ...option,
         terminal: {
-          conditional: isAttack || defeatBeforeEscapeCompletionRisk !== 'none',
+          conditional: isAttack || completionCheckpointDeathRisk === 'possible',
           condition: isAttack
             ? 'enemy-incapacitated' as const
-            : defeatBeforeEscapeCompletionRisk !== 'none'
+            : completionCheckpointDeathRisk === 'possible'
               ? 'escape-survived' as const
               : null,
-          deathRisk: defeatBeforeEscapeCompletionRisk === 'possible'
+          deathRisk: completionCheckpointDeathRisk === 'possible'
             ? 'possible' as const
             : 'none' as const,
-          deathPriority: defeatBeforeEscapeCompletionRisk !== 'none',
-          defeatBeforeEscapeCompletionRisk,
+          deathPriority: completionCheckpointDeathRisk !== 'none',
+          preCompletionDefeatRisk,
+          completionCheckpointDeathRisk,
           completion: {
             ...baseCompletion,
             ...noForcedReturnFacts(),
@@ -275,7 +303,7 @@ export function getPlayerVisibleSceneCombatActionOptions(
     const totalDamages = forcedBranches.map(({ damage }) => damage.totalDamage)
     const finalHealths = forcedBranches.map(({ finalHealth }) => finalHealth)
     const survivesForcedReturn = finalHealths.some((health) => health > 0)
-    const diesInAnyBranch = defeatBeforeEscapeCompletionRisk !== 'none' ||
+    const diesInAnyBranch = completionCheckpointDeathRisk !== 'none' ||
       finalHealths.some((health) => health === 0)
     return {
       ...option,
@@ -292,7 +320,8 @@ export function getPlayerVisibleSceneCombatActionOptions(
             ? 'possible' as const
             : 'none' as const,
         deathPriority: diesInAnyBranch,
-        defeatBeforeEscapeCompletionRisk,
+        preCompletionDefeatRisk,
+        completionCheckpointDeathRisk,
         completion: {
           ...baseCompletion,
           returnTimeMin: route.estimatedReturnTime,

@@ -285,7 +285,10 @@ function combatTerminalFacts(
   deathRisk: NonNullable<PlayerVisibleSceneCombatOption['terminal']>['deathRisk'],
 ): readonly StableRunUiActionPreviewFact[] {
   const facts: StableRunUiActionPreviewFact[] = [
-    { label: '完成节点', value: completion.nodeName },
+    {
+      label: completion.outcome === 'defeat' ? '战败节点' : '完成节点',
+      value: completion.nodeName,
+    },
     { label: '当前剩余 Scene 时间', value: String(completion.currentRemainingTime) },
     { label: '战斗结束累计 CTB', value: String(completion.elapsedCtb) },
     { label: '战斗场景时间', value: String(completion.sceneTimeCost) },
@@ -375,10 +378,19 @@ function combatTerminalFacts(
     label: '强制返程目标',
     value: completion.forcedReturnTargetNodeName,
   })
-  facts.push({
-    label: '生命周期结算',
-    value: '本次仅保存 Scene Session；后续由独立 settle-terminal-scene 命令处理',
-  })
+  if (completion.survivingResult === 'active-scene') {
+    facts.push({ label: '后续流程', value: '继续当前 active Scene' })
+  } else if (completion.survivingResult === 'forced-returned-scene') {
+    facts.push({
+      label: '生命周期结算',
+      value: '本次仅保存 forced-returned Scene Session；后续由独立 settle-terminal-scene 命令处理',
+    })
+  } else if (completion.outcome === 'defeat' || deathRisk === 'guaranteed') {
+    facts.push({
+      label: '生命周期结算',
+      value: '本次仅保存 dead Scene Session；后续由独立 settle-terminal-scene 命令进入 Run Failure',
+    })
+  }
   return Object.freeze(facts)
 }
 
@@ -424,6 +436,9 @@ function createCombatActions(
           ...(terminal.deathPriority && isAttackCommand(command)
             ? ['玩家死亡优先于任何潜在胜利，不会提交战斗胜利。']
             : []),
+          ...(terminal.completionCheckpointDeathRisk === 'guaranteed'
+            ? ['脱离完成主要效果后，行动后流血将使生命归零；玩家死亡优先于逃跑成功。']
+            : []),
         ]
     const completionFacts = terminal?.completion
       ? combatTerminalFacts(terminal.completion, terminal.deathRisk)
@@ -437,7 +452,7 @@ function createCombatActions(
           warnings: terminalWarnings,
         }]
       : []
-    const escapeDefeatBranches = terminal?.defeatBeforeEscapeCompletionRisk === 'possible'
+    const preCompletionDefeatBranches = terminal?.preCompletionDefeatRisk === 'possible'
       ? [{
           title: '若在脱离完成前战败',
           facts: [
@@ -449,17 +464,51 @@ function createCombatActions(
           warnings: ['玩家死亡优先于脱离完成。'],
         }]
       : []
-    const branches = [...completionBranches, ...escapeDefeatBranches]
-    const noCompletionDeathFacts = terminal && !terminal.completion
+    const completionCheckpointDeathBranches = terminal?.completionCheckpointDeathRisk === 'possible'
       ? [{
-          label: '死亡风险',
-          value: terminal.deathRisk === 'guaranteed' ? '将死亡' : '可能',
+          title: '若在脱离完成检查点因流血战败',
+          facts: [
+            {
+              label: '脱离完成 CTB',
+              value: String(
+                preview.primary.kind === 'escape'
+                  ? preview.primary.completesAtCtb
+                  : preview.primary.actionCtb,
+              ),
+            },
+            { label: '主要效果', value: '到达已锁定脱离完成检查点' },
+            { label: '完成后流血', value: '生命归零' },
+            { label: '逃跑结果', value: '玩家死亡优先，不提交逃跑成功' },
+            { label: '节点变化', value: '不返回脱离节点' },
+            { label: '强制返程', value: '不进入强制返程' },
+            {
+              label: '生命周期结算',
+              value: '本次仅保存 dead Scene Session；后续由独立 settle-terminal-scene 命令进入 Run Failure',
+            },
+          ],
+          warnings: ['该分支在脱离完成检查点结算，不属于脱离完成前战败。'],
         }]
+      : []
+    const branches = [
+      ...completionBranches,
+      ...preCompletionDefeatBranches,
+      ...completionCheckpointDeathBranches,
+    ]
+    const noCompletionDeathFacts = terminal && !terminal.completion
+      ? [
+          {
+            label: '死亡风险',
+            value: terminal.deathRisk === 'guaranteed' ? '将死亡' : '可能',
+          },
+          {
+            label: '生命周期结算',
+            value: '本次仅保存 dead Scene Session；后续由独立 settle-terminal-scene 命令进入 Run Failure',
+          },
+        ]
       : []
     const baseCombatFacts = combatPreviewFacts(
       preview,
-      terminal?.defeatBeforeEscapeCompletionRisk !== 'guaranteed' ||
-        terminal.completion !== null,
+      terminal?.preCompletionDefeatRisk !== 'guaranteed',
     )
     return Object.freeze({
       id: `scene-combat-action:${command.kind}${target}`,
@@ -474,7 +523,7 @@ function createCombatActions(
         [
           ...warnings,
           ...(terminal !== null && !terminal.conditional ? terminalWarnings : []),
-          ...(terminal?.defeatBeforeEscapeCompletionRisk === 'guaranteed'
+          ...(terminal?.preCompletionDefeatRisk === 'guaranteed'
             ? ['玩家将在脱离完成前战败，不会返回脱离节点，也不会进入强制返程。']
             : []),
         ],

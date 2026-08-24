@@ -262,6 +262,7 @@ function combatPhase(options: Readonly<{
   remainingTime?: number
   currentHealth?: number
   weaponDurability?: number
+  armorIntegrity?: number | null
   backpackBandage?: boolean
   backpackSparePipe?: boolean
   quickPainkiller?: boolean
@@ -300,6 +301,7 @@ function combatPhase(options: Readonly<{
         })),
       }, hospitalItemCatalog)
   const weaponId = phase.payload.scene.equipment.weapon?.instanceId
+  const armorId = phase.payload.scene.equipment.armor?.instanceId
   const painkiller = item('react-combat-painkiller', HOSPITAL_ITEM_IDS.painkiller)
   const previousQuick = phase.payload.scene.quickSlots.slots[0]
   const quickSlots = options.quickPainkiller
@@ -311,11 +313,14 @@ function combatPhase(options: Readonly<{
       )
     : phase.payload.scene.quickSlots
   const states = phase.payload.scene.itemStates.states
+    .filter((state) => options.armorIntegrity !== null || state.instanceId !== armorId)
     .filter((state) => !options.quickPainkiller || state.instanceId !== previousQuick?.instanceId)
     .map((state) =>
-    state.instanceId === weaponId && options.weaponDurability !== undefined
-      ? { ...state, resource: { kind: 'durability' as const, current: options.weaponDurability } }
-      : state)
+      state.instanceId === weaponId && options.weaponDurability !== undefined
+        ? { ...state, resource: { kind: 'durability' as const, current: options.weaponDurability } }
+        : state.instanceId === armorId && typeof options.armorIntegrity === 'number'
+          ? { ...state, resource: { kind: 'integrity' as const, current: options.armorIntegrity } }
+          : state)
   states.push(...extras.map((candidate) => createFullItemState(candidate, hospitalItemResourceCatalog)))
   if (options.quickPainkiller) {
     states.push(createFullItemState(painkiller, hospitalItemResourceCatalog))
@@ -335,6 +340,9 @@ function combatPhase(options: Readonly<{
         ...phase.payload.scene.condition,
         currentHealth: options.currentHealth,
       }, config.combat.player)
+  const equipment = options.armorIntegrity === null
+    ? { ...phase.payload.scene.equipment, armor: null }
+    : phase.payload.scene.equipment
   const combat = {
     ...active.combat,
     enemy: options.enemyHealth === undefined
@@ -348,6 +356,7 @@ function combatPhase(options: Readonly<{
       (options.alerted ? 50 : active.combat.enemyNextActionCtb),
     playerCondition: condition,
     backpack,
+    equipment,
     quickSlots,
     itemStates: { states },
   }
@@ -357,6 +366,7 @@ function combatPhase(options: Readonly<{
     remainingTime: options.remainingTime ?? phase.payload.scene.remainingTime,
     condition,
     backpack,
+    equipment,
     quickSlots,
     itemStates: { states },
     combatState: {
@@ -1636,25 +1646,36 @@ describe('StableRunUiApp', () => {
 
   it('escapes, saves once, and re-enters with the persistent enemy at CTB 50', () => {
     const storage = new MemoryStorage()
-    const store = createStableRunStore({ initialPhase: combatPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const inner = createStableRunStore({ initialPhase: combatPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
-    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '逃跑').click() })
-    expect(container.textContent).toContain('基础准备 CTB80')
-    expect(container.textContent).toContain('最终准备 CTB90')
+    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
+    expect(preview).toContain('基础准备 CTB80')
+    expect(preview).toContain('最终准备 CTB90')
+    expect(preview).toContain('生还结果继续 active Scene')
+    expect(preview).toContain('后续流程继续当前 active Scene')
+    expect(preview).not.toContain('settle-terminal-scene')
     act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
     expect(container.textContent).toContain('实际 Scene 时间结算10')
-    let phase = store.getState().phase
+    let phase = inner.getState().phase
     if (phase.kind !== 'scene-session') throw new Error('expected Scene')
     expect(phase.payload.scene.status).toBe('active')
     expect(phase.payload.scene.currentNodeId).toBe(HOSPITAL_NODE_IDS.emergencyHall)
     act(() => { button(container, '关闭结果').click() })
     act(() => { button(container, '前往 隔离走廊').click() })
     act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(2)
     expect(storage.writes).toBe(2)
-    phase = store.getState().phase
+    expect(notifications).toBe(2)
+    phase = inner.getState().phase
     if (phase.kind !== 'scene-session') throw new Error('expected reentry Scene')
     const active = phase.payload.scene.combatState.encounters.find(({ kind }) => kind === 'active')
     expect(active?.kind === 'active' && active.combat.enemyNextActionCtb).toBe(50)
@@ -1701,16 +1722,52 @@ describe('StableRunUiApp', () => {
     expect(active?.kind === 'active' && active.combat.currentCtb).toBe(100)
   })
 
+  it('keeps a normal potential victory in active Scene without terminal settlement text', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: combatPhase({ enemyHealth: 4, healthy: true, remainingTime: 100 }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    act(() => { button(container, '挥击').click() })
+    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
+    expect(preview).toContain('若本次攻击使敌人失去能力')
+    expect(preview).toContain('生还结果继续 active Scene')
+    expect(preview).toContain('后续流程继续当前 active Scene')
+    expect(preview).not.toContain('settle-terminal-scene')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    const phase = inner.getState().phase
+    expect(phase.kind).toBe('scene-session')
+    if (phase.kind !== 'scene-session') throw new Error('expected active Scene')
+    expect(phase.payload.scene.status).toBe('active')
+  })
+
   it('keeps near-zero Combat terminal resolution in one terminal Scene session', () => {
     const storage = new MemoryStorage()
-    const store = createStableRunStore({
+    const inner = createStableRunStore({
       initialPhase: combatPhase({ remainingTime: 5 }),
       storage,
       rulesRegistry: hospitalRunSaveRulesRegistry,
     })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
-    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '逃跑').click() })
     const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
     expect(preview).toContain('战斗场景时间10')
@@ -1729,8 +1786,10 @@ describe('StableRunUiApp', () => {
     expect(preview).toContain('强制返程目标电梯前室')
     expect(preview).toContain('后续由独立 settle-terminal-scene 命令处理')
     act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
-    const phase = store.getState().phase
+    expect(notifications).toBe(1)
+    const phase = inner.getState().phase
     expect(phase.kind).toBe('scene-session')
     if (phase.kind !== 'scene-session') throw new Error('expected terminal Scene')
     expect(['forced-returned', 'dead']).toContain(phase.payload.scene.status)
@@ -1760,7 +1819,7 @@ describe('StableRunUiApp', () => {
     expect(storage.writes).toBe(0)
   })
 
-  it('shows escape death possible only when the formal safe branch can reach zero health', () => {
+  it('separates possible completion-checkpoint bleeding death from pre-completion defeat', () => {
     const storage = new MemoryStorage()
     const store = createStableRunStore({
       initialPhase: combatPhase({
@@ -1778,13 +1837,102 @@ describe('StableRunUiApp', () => {
     act(() => { button(container, '逃跑').click() })
     const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
     expect(preview).toContain('若成功完成脱离')
-    expect(preview).toContain('若在脱离完成前战败')
+    expect(preview).toContain('若在脱离完成检查点因流血战败')
     expect(preview).toContain('死亡风险将死亡')
     expect(preview).toContain('不返回脱离节点')
     expect(preview).toContain('不进入强制返程')
-    expect(preview).toContain('按实际终止 CTB 正式结算')
+    expect(preview).toContain('玩家死亡优先，不提交逃跑成功')
+    expect(preview).not.toContain('若在脱离完成前战败')
     expect(preview).not.toContain('生还结果forced-returned Scene')
     expect(storage.writes).toBe(0)
+  })
+
+  it('shows existing-bleeding death at escape completion CTB 80 and saves one dead Scene', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: combatPhase({
+        currentHealth: 4,
+        bleeding: true,
+        armorIntegrity: null,
+        remainingTime: 100,
+      }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    act(() => { button(container, '逃跑').click() })
+    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
+    expect(preview).toContain('脱离完成 CTB80')
+    expect(preview).toContain('脱离完成流血损失1')
+    expect(preview).toContain('脱离完成后生命0')
+    expect(preview).toContain('战斗结束累计 CTB80')
+    expect(preview).toContain('战斗场景时间10')
+    expect(preview).toContain('脱离完成主要效果后，行动后流血将使生命归零')
+    expect(preview).toContain('玩家死亡优先于逃跑成功')
+    expect(preview).toContain('本次仅保存 dead Scene Session')
+    expect(preview).toContain('settle-terminal-scene 命令进入 Run Failure')
+    expect(preview).not.toContain('脱离完成前战败')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    const phase = inner.getState().phase
+    expect(phase.kind).toBe('scene-session')
+    if (phase.kind !== 'scene-session') throw new Error('expected dead Scene')
+    expect(phase.payload.scene.status).toBe('dead')
+    expect(container.textContent).toContain('实际 Scene 时间结算10')
+    expect(container.textContent).not.toContain('Run 已终止')
+  })
+
+  it('keeps true direct-damage defeat labeled before escape completion at CTB 70', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: combatPhase({
+        currentHealth: 1,
+        healthy: true,
+        armorIntegrity: null,
+        remainingTime: 100,
+      }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    act(() => { button(container, '逃跑').click() })
+    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
+    expect(preview).toContain('玩家将在脱离完成前战败')
+    expect(preview).toContain('战败节点隔离走廊')
+    expect(preview).toContain('战斗结束累计 CTB70')
+    expect(preview).toContain('战斗场景时间10')
+    expect(preview).toContain('本次仅保存 dead Scene Session')
+    expect(preview).not.toContain('若成功完成脱离')
+    expect(preview).not.toContain('脱离完成 CTB80')
+    expect(preview).not.toContain('脱离完成主要效果后')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    const phase = inner.getState().phase
+    expect(phase.kind).toBe('scene-session')
+    if (phase.kind !== 'scene-session') throw new Error('expected dead Scene')
+    expect(phase.payload.scene.status).toBe('dead')
   })
 
   it('makes last-hit bleeding death override a hidden potential victory and saves one dead Scene', () => {
@@ -1800,6 +1948,8 @@ describe('StableRunUiApp', () => {
       rulesRegistry: hospitalRunSaveRulesRegistry,
     })
     const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
@@ -1809,6 +1959,8 @@ describe('StableRunUiApp', () => {
     expect(preview).toContain('自身行动阶段后生命0')
     expect(preview).toContain('死亡风险将死亡')
     expect(preview).toContain('玩家死亡优先于任何潜在胜利')
+    expect(preview).toContain('本次仅保存 dead Scene Session')
+    expect(preview).toContain('settle-terminal-scene 命令进入 Run Failure')
     expect(preview).not.toContain('若本次攻击使敌人失去能力')
     expect(preview).not.toContain('敌人剩余生命')
     expect(tracked.commands).toHaveLength(0)
@@ -1817,6 +1969,7 @@ describe('StableRunUiApp', () => {
     act(() => { button(container, '确认执行').click() })
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
     const phase = inner.getState().phase
     expect(phase.kind).toBe('scene-session')
     if (phase.kind !== 'scene-session') throw new Error('expected dead Scene')

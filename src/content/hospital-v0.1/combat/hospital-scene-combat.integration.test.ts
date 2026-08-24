@@ -314,8 +314,23 @@ describe('hospital scene combat encounter lifecycle', () => {
   })
 
   it('makes enemy death during escape preparation terminal at the actual CTB', () => {
+    const started = enter(scene({ health: 1 }))
+    const preview = getPlayerVisibleSceneCombatActionOptions(
+      started,
+      dependencies,
+    ).find(({ command }) => command.kind === 'escape')
+    expect(preview?.terminal).toMatchObject({
+      deathRisk: 'guaranteed',
+      preCompletionDefeatRisk: 'guaranteed',
+      completionCheckpointDeathRisk: 'none',
+      completion: {
+        outcome: 'defeat',
+        elapsedCtb: 70,
+        sceneTimeCost: 10,
+      },
+    })
     const defeated = resolveSceneCombatPlayerAction(
-      enter(scene({ health: 1 })),
+      started,
       { kind: 'escape' },
       dependencies,
     )
@@ -396,6 +411,57 @@ describe('hospital scene combat encounter lifecycle', () => {
         forcedReturnHealthMax: 8,
         survivingResult: 'forced-returned-scene',
         forcedReturnTargetNodeName: '电梯前室',
+      },
+    })
+    expect(JSON.stringify(riskyVisible)).not.toMatch(
+      /riskPercent|roll|streamId|drawIndex|succeeded|enemyInstanceId|woundId|nextCycleIndex|resolvedActionCount/,
+    )
+  })
+
+  it('keeps possible completion-checkpoint death terminal preview identical across opposite seeds', () => {
+    const started = enter(scene({ health: 4, remainingTime: 100 }))
+    const riskyDependencies = {
+      ...dependencies,
+      sceneCombat: createHospitalSceneCombatDependencies('scene-terminal-risk-1', sceneInstanceId),
+    }
+    const safeDependencies = {
+      ...dependencies,
+      sceneCombat: createHospitalSceneCombatDependencies('scene-terminal-risk-0', sceneInstanceId),
+    }
+    const riskyRaw = resolveSceneCombatPlayerAction(
+      started,
+      { kind: 'escape' },
+      riskyDependencies,
+    ).snapshot
+    const safeRaw = resolveSceneCombatPlayerAction(
+      started,
+      { kind: 'escape' },
+      safeDependencies,
+    ).snapshot
+    expect(riskyRaw.status).toBe('dead')
+    expect(safeRaw.status).toBe('active')
+
+    const riskyVisible = getPlayerVisibleSceneCombatActionOptions(
+      started,
+      riskyDependencies,
+    ).find(({ command }) => command.kind === 'escape')
+    const safeVisible = getPlayerVisibleSceneCombatActionOptions(
+      started,
+      safeDependencies,
+    ).find(({ command }) => command.kind === 'escape')
+    expect(riskyVisible).toEqual(safeVisible)
+    expect(riskyVisible?.terminal).toMatchObject({
+      deathRisk: 'possible',
+      preCompletionDefeatRisk: 'none',
+      completionCheckpointDeathRisk: 'possible',
+      completion: {
+        outcome: 'escaped',
+        nodeName: '急诊大厅',
+        elapsedCtb: 80,
+        sceneTimeCost: 10,
+        combatCompletionHealthMin: 1,
+        combatCompletionHealthMax: 1,
+        survivingResult: 'active-scene',
       },
     })
     expect(JSON.stringify(riskyVisible)).not.toMatch(

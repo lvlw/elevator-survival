@@ -222,23 +222,105 @@ describe('hospital infected orderly combat', () => {
       playerHealthAfterCompletionMax: 9,
       bleedingAtCompletionPossible: true,
       bleedingAtCompletionGuaranteed: false,
-      deathPossibleBeforeForcedReturn: false,
+      preCompletionDeath: false,
+      preCompletionDeathCtb: null,
+      completionCheckpointDeathPossible: false,
+      completionCheckpointDeathGuaranteed: false,
+      survivedCompletionPossible: true,
     })
   })
 
-  it('marks escape death possible only when a legal hidden branch can reach zero health', () => {
+  it('classifies a legal hidden completion-bleeding death separately from pre-completion death', () => {
     const healthy = encounter({ runSeed: 'risk-2', coatIntegrity: null, health: 12 })
     const low = encounter({ runSeed: 'risk-2', coatIntegrity: null, health: 4 })
     expect(previewPlayerVisibleCombatAction(
       healthy.snapshot,
       { kind: 'escape' },
       healthy.dependencies,
-    ).escapeConsequences?.deathPossibleBeforeForcedReturn).toBe(false)
+    ).escapeConsequences).toMatchObject({
+      preCompletionDeath: false,
+      preCompletionDeathCtb: null,
+      completionCheckpointDeathPossible: false,
+    })
     expect(previewPlayerVisibleCombatAction(
       low.snapshot,
       { kind: 'escape' },
       low.dependencies,
-    ).escapeConsequences?.deathPossibleBeforeForcedReturn).toBe(true)
+    ).escapeConsequences).toMatchObject({
+      preCompletionDeath: false,
+      preCompletionDeathCtb: null,
+      completionCheckpointDeathPossible: true,
+      completionCheckpointDeathGuaranteed: false,
+      survivedCompletionPossible: true,
+    })
+  })
+
+  it('resolves existing-bleeding death at the escape completion checkpoint CTB 80', () => {
+    const prepared = encounter({ coatIntegrity: null, health: 4, bleeding: true })
+    const visible = previewPlayerVisibleCombatAction(
+      prepared.snapshot,
+      { kind: 'escape' },
+      prepared.dependencies,
+    )
+    expect(visible.escapeConsequences).toMatchObject({
+      enemyActionsBeforeCompletion: 1,
+      playerHealthBeforeCompletionBleeding: 1,
+      postPlayerActionBleedingDamageMin: 1,
+      postPlayerActionBleedingDamageMax: 1,
+      playerHealthAfterCompletionMin: 0,
+      playerHealthAfterCompletionMax: 0,
+      preCompletionDeath: false,
+      preCompletionDeathCtb: null,
+      completionCheckpointDeathPossible: true,
+      completionCheckpointDeathGuaranteed: true,
+      survivedCompletionPossible: false,
+    })
+
+    const resolved = resolveCombatPlayerAction(
+      prepared.snapshot,
+      { kind: 'escape' },
+      prepared.dependencies,
+    )
+    expect(resolved.snapshot).toMatchObject({ status: 'defeat', currentCtb: 80 })
+    const escapeIndex = resolved.plan.effects.findIndex(
+      ({ kind }) => kind === 'combat-escape-completed',
+    )
+    const bleedingIndex = resolved.plan.effects.findIndex(
+      (effect) => effect.kind === 'player-health-lost' &&
+        effect.source === 'post-player-action-bleeding',
+    )
+    const defeatIndex = resolved.plan.effects.findIndex(
+      (effect) => effect.kind === 'combat-status-changed' && effect.to === 'defeat',
+    )
+    expect(escapeIndex).toBeLessThan(bleedingIndex)
+    expect(bleedingIndex).toBeLessThan(defeatIndex)
+  })
+
+  it('keeps possible completion-checkpoint bleeding death seed-independent', () => {
+    const risky = encounter({ runSeed: 'risk-2', coatIntegrity: null, health: 4 })
+    const safe = encounter({ runSeed: 'risk-0', coatIntegrity: null, health: 4 })
+    const command = { kind: 'escape' } as const
+    const riskyRaw = resolveCombatPlayerAction(risky.snapshot, command, risky.dependencies)
+    const safeRaw = resolveCombatPlayerAction(safe.snapshot, command, safe.dependencies)
+    expect(riskyRaw.snapshot).toMatchObject({ status: 'defeat', currentCtb: 80 })
+    expect(safeRaw.snapshot).toMatchObject({ status: 'escaped', currentCtb: 80 })
+
+    const riskyVisible = previewPlayerVisibleCombatAction(
+      risky.snapshot, command, risky.dependencies,
+    )
+    const safeVisible = previewPlayerVisibleCombatAction(
+      safe.snapshot, command, safe.dependencies,
+    )
+    expect(riskyVisible).toEqual(safeVisible)
+    expect(riskyVisible.escapeConsequences).toMatchObject({
+      playerHealthAfterCompletionMin: 0,
+      playerHealthAfterCompletionMax: 1,
+      preCompletionDeath: false,
+      preCompletionDeathCtb: null,
+      completionCheckpointDeathPossible: true,
+      completionCheckpointDeathGuaranteed: false,
+      survivedCompletionPossible: true,
+    })
   })
 
   it('keeps existing bleeding definite and gives escape completion same-point priority', () => {
@@ -270,7 +352,9 @@ describe('hospital infected orderly combat', () => {
       enemyActionsBeforeCompletion: 0,
       postPlayerActionBleedingDamageMin: 0,
       postPlayerActionBleedingDamageMax: 0,
-      deathPossibleBeforeForcedReturn: false,
+      preCompletionDeath: false,
+      completionCheckpointDeathPossible: false,
+      completionCheckpointDeathGuaranteed: false,
     })
     const raw = resolveCombatPlayerAction(
       tiedSnapshot,

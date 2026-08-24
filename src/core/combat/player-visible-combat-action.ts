@@ -52,9 +52,8 @@ function evaluateEscapeConsequences(
   let bleedingGuaranteed = snapshot.playerCondition.bleeding
   let bleedingPossible = bleedingGuaranteed
   let enemyActionsBeforeCompletion = 0
-  let deathPossible = false
-
-  let deathBeforeCompletion = false
+  let preCompletionDeath = false
+  let preCompletionDeathCtb: number | null = null
   while (enemyActsBeforePlayerCompletion(enemyNext, completesAtCtb) && health > 0) {
     const action = definition.actions.find(({ id }) => id === intentId)!
     const primary = createCombatEnemyActionPrimaryPlan(
@@ -63,8 +62,8 @@ function evaluateEscapeConsequences(
     health = Math.max(0, health - primary.requestedDirectDamage)
     enemyActionsBeforeCompletion += 1
     if (health === 0) {
-      deathPossible = true
-      deathBeforeCompletion = true
+      preCompletionDeath = true
+      preCompletionDeathCtb = enemyNext
       break
     }
     const injuryPercent = riskTierToPercent(primary.injuryFinalTier, dependencies.config)
@@ -86,10 +85,10 @@ function evaluateEscapeConsequences(
   )
   const bleedingDamageMin = bleedingGuaranteed ? withBleeding.actualLoss : 0
   const bleedingDamageMax = bleedingPossible ? withBleeding.actualLoss : 0
-  const nonBleedingCompletionHealth = !deathBeforeCompletion && !bleedingGuaranteed
+  const nonBleedingCompletionHealth = !preCompletionDeath && !bleedingGuaranteed
     ? withoutBleeding.healthAfter
     : null
-  const bleedingCompletionHealth = !deathBeforeCompletion && bleedingPossible
+  const bleedingCompletionHealth = !preCompletionDeath && bleedingPossible
     ? withBleeding.healthAfter
     : null
   const completionHealths = [
@@ -98,6 +97,10 @@ function evaluateEscapeConsequences(
   ].filter((value): value is number => value !== null)
   const healthMin = completionHealths.length === 0 ? 0 : Math.min(...completionHealths)
   const healthMax = completionHealths.length === 0 ? 0 : Math.max(...completionHealths)
+  const completionCheckpointDeathPossible = !preCompletionDeath &&
+    completionHealths.some((value) => value === 0)
+  const completionCheckpointDeathGuaranteed = completionCheckpointDeathPossible &&
+    completionHealths.every((value) => value === 0)
   return deepFreeze({
     enemyActionsBeforeCompletion,
     postPlayerActionBleedingDamageMin: bleedingDamageMin,
@@ -109,9 +112,11 @@ function evaluateEscapeConsequences(
     playerHealthBeforeCompletionBleeding: health,
     nonBleedingCompletionHealth,
     bleedingCompletionHealth,
-    deathBeforeCompletion,
-    survivalAtCompletionPossible: completionHealths.some((value) => value > 0),
-    deathPossibleBeforeForcedReturn: deathPossible || healthMin === 0,
+    preCompletionDeath,
+    preCompletionDeathCtb,
+    completionCheckpointDeathPossible,
+    completionCheckpointDeathGuaranteed,
+    survivedCompletionPossible: completionHealths.some((value) => value > 0),
   })
 }
 

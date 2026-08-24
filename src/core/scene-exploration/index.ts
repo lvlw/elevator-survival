@@ -21,6 +21,9 @@ export {
 } from './player-visible-scene-combat'
 export { getPlayerVisibleSceneObstacles } from './player-visible-scene-obstacles'
 export { getPlayerVisibleSceneTaskEvents } from './scene-task-event-selectors'
+export {
+  previewPlayerVisibleSceneTaskEventCommand,
+} from './player-visible-scene-task-event'
 export { getAvailableSceneMedicalCommands } from './scene-medical-selectors'
 export { createUseSceneMedicalItemCommand } from './scene-medical-validation'
 export {
@@ -125,6 +128,8 @@ export type {
   SceneTaskEventResolution,
   SceneTaskEventTransitionPlan,
   PlayerVisibleSceneTaskEvent,
+  PlayerVisibleSceneTaskEventCommandEvaluation,
+  PlayerVisibleSceneTaskEventCommandPreview,
   PlayerVisibleSceneTaskEventOption,
   PlayerVisibleSceneObstacle,
   PlayerVisibleSceneObstacleOption,

@@ -4,6 +4,8 @@ import {
   HOSPITAL_FIRE_DOOR_OPTION_IDS,
   HOSPITAL_OBSTACLE_IDS,
   HOSPITAL_SCENE_DEFINITION_ID,
+  HOSPITAL_TASK_EVENT_IDS,
+  HOSPITAL_TASK_EVENT_OPTION_IDS,
   hospitalItemCatalog,
 } from '../../content'
 import type { StableRunUiLabels } from '../presentation'
@@ -24,6 +26,12 @@ const obstacleOptionLabels: Readonly<Record<string, string>> = Object.freeze({
   [HOSPITAL_FIRE_DOOR_OPTION_IDS.fireAxe]: '使用消防斧',
   [HOSPITAL_FIRE_DOOR_OPTION_IDS.forceEntry]: '强行撞门',
   [HOSPITAL_FIRE_DOOR_OPTION_IDS.decline]: '放弃处理',
+})
+
+const taskEventOptionLabels: Readonly<Record<string, string>> = Object.freeze({
+  [HOSPITAL_TASK_EVENT_OPTION_IDS.cautiousExtraction]: '谨慎检查并提取',
+  [HOSPITAL_TASK_EVENT_OPTION_IDS.directExtraction]: '直接取出',
+  [HOSPITAL_TASK_EVENT_OPTION_IDS.decline]: '放弃提取',
 })
 
 /** Hospital V1 owns display copy only; it never owns gameplay state or rules. */
@@ -61,5 +69,13 @@ export const hospitalV01UiLabels: StableRunUiLabels = Object.freeze({
   },
   obstacleOptionName(optionId: string): string {
     return obstacleOptionLabels[optionId] ?? '未知处理方案'
+  },
+  taskEventName(eventId: string): string {
+    return eventId === HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval
+      ? '密封病原样本箱提取'
+      : '未知任务事件'
+  },
+  taskEventOptionName(optionId: string): string {
+    return taskEventOptionLabels[optionId] ?? '未知任务事件选项'
   },
 })

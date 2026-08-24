@@ -10,6 +10,10 @@ export {
   createStableSceneTaskEventItemInstanceId,
   getSceneTaskEventStatus,
 } from './scene-task-event-state'
+export {
+  createSceneTaskEventPrimaryPlan,
+  getSceneTaskEventOptionPrimaryMetadata,
+} from './scene-task-event-primary-plan'
 export type {
   SceneTaskEventCatalog,
   SceneTaskEventDefinition,
@@ -18,3 +22,7 @@ export type {
   SceneTaskEventStateSnapshot,
   SceneTaskEventStatus,
 } from './scene-task-event-types'
+export type {
+  SceneTaskEventOptionPrimaryMetadata,
+  SceneTaskEventPrimaryPlan,
+} from './scene-task-event-primary-plan'

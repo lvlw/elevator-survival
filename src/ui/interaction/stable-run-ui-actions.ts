@@ -1,18 +1,22 @@
 import {
   createPerformMainSearchCommand,
   createPerformSceneObstacleOptionCommand,
+  createPerformSceneTaskEventCommand,
   createMoveThroughSceneEdgeCommand,
   createPickUpRevealedNodeItemCommand,
   createWithdrawFromSceneCommand,
   getPlayerVisibleSceneNodeState,
   getPlayerVisibleSceneObstacles,
+  getPlayerVisibleSceneTaskEvents,
   getPlayerVisibleSceneCombatActionOptions,
   previewMainSearchCommand,
   previewNodeItemPickupCommand,
   previewSceneMoveCommand,
+  previewPlayerVisibleSceneTaskEventCommand,
   previewSceneWithdrawalCommand,
   type SearchIlluminationChoice,
   type SceneExplorationEffect,
+  type SceneTaskRiskTier,
 } from '../../core/scene-exploration'
 import type { PlayerVisibleCombatActionPreview } from '../../core/combat'
 import type { CombatPlayerActionCommand } from '../../core/combat'
@@ -43,6 +47,7 @@ export type StableRunUiActionKind =
   | 'scene-move'
   | 'scene-main-search'
   | 'scene-obstacle'
+  | 'scene-task-event'
   | 'scene-combat-action'
   | 'scene-withdraw'
   | 'settle-terminal-scene'
@@ -69,6 +74,33 @@ export interface StableRunUiPickupPreview {
   readonly command: StableRunApplicationCommand | null
   readonly facts: readonly StableRunUiActionPreviewFact[]
   readonly candidateCells: readonly Readonly<{ x: number; y: number }> []
+}
+
+/** Internal option reference; it never contains the generated task item ID. */
+export interface StableRunUiTaskEventOpportunity {
+  readonly id: string
+  readonly label: string
+  readonly eventName: string
+  readonly outputName: string
+  readonly width: number
+  readonly height: number
+  readonly unitWeight: number
+  readonly canRotate: boolean
+}
+
+export interface StableRunUiTaskEventDraft {
+  readonly opportunityId: string
+  readonly x: number
+  readonly y: number
+  readonly rotated: boolean
+}
+
+export interface StableRunUiTaskEventPreview {
+  readonly canExecute: boolean
+  readonly rejection: string | null
+  readonly command: StableRunApplicationCommand | null
+  readonly preview: StableRunUiActionPreviewViewModel | null
+  readonly candidateCells: readonly Readonly<{ x: number; y: number }>[]
 }
 
 export interface StableRunUiActionPreviewFact {
@@ -104,6 +136,7 @@ export interface StableRunUiAction {
 export interface StableRunUiInteractionModel {
   readonly actions: readonly StableRunUiAction[]
   readonly pickupOpportunities: readonly StableRunUiPickupOpportunity[]
+  readonly taskEventOpportunities: readonly StableRunUiTaskEventOpportunity[]
 }
 
 function freezePreview(
@@ -163,7 +196,7 @@ function timedOutcomeFacts(
 }
 
 function applicationSceneCommand(
-  kind: 'scene-move' | 'scene-main-search' | 'scene-node-item-pickup' | 'scene-withdraw' | 'scene-obstacle' | 'scene-combat-action',
+  kind: 'scene-move' | 'scene-main-search' | 'scene-node-item-pickup' | 'scene-withdraw' | 'scene-obstacle' | 'scene-task-event' | 'scene-combat-action',
   command: unknown,
 ): StableRunApplicationCommand {
   return createStableRunApplicationCommand({
@@ -805,6 +838,253 @@ function createObstacleActions(
   ))
 }
 
+function taskEventFacts(
+  result: Extract<
+    ReturnType<typeof previewPlayerVisibleSceneTaskEventCommand>,
+    { readonly canExecute: true }
+  >['result'],
+  outputName: string,
+): readonly StableRunUiActionPreviewFact[] {
+  if (result.kind === 'decline') {
+    return Object.freeze([
+      { label: '处理方式', value: '放弃提取' },
+      { label: '行动耗时', value: '0' },
+      { label: '取得样本箱', value: '否' },
+      { label: '污染风险', value: '无' },
+      { label: '场景时间', value: '保持不变' },
+      { label: '任务事件', value: '仍可稍后重新选择' },
+    ])
+  }
+  if (!result.output || !result.returnRoute || !result.sceneOutcome) {
+    throw new Error('正式任务事件安全 Preview 缺少提取结果')
+  }
+  const outcome = result.sceneOutcome
+  const facts: StableRunUiActionPreviewFact[] = [
+    {
+      label: '处理方式',
+      value: result.extractionMode === 'cautious' ? '谨慎检查并提取' : '直接取出',
+    },
+    { label: '行动耗时', value: String(result.actionTime) },
+    { label: '污染风险', value: riskTierName(result.effectiveRiskTier) },
+    {
+      label: '厚实外套保护',
+      value: result.impactProtection.active ? '生效' : '未生效',
+    },
+  ]
+  if (
+    result.impactProtection.active &&
+    result.impactProtection.integrityBefore !== null &&
+    result.impactProtection.integrityAfter !== null
+  ) {
+    facts.push({
+      label: '外套完整度',
+      value: `${result.impactProtection.integrityBefore} → ${result.impactProtection.integrityAfter}`,
+    })
+  }
+  facts.push(
+    { label: '取得', value: `${outputName} ×${result.output.quantity}` },
+    {
+      label: '样本箱尺寸',
+      value: `${result.output.width}×${result.output.height}`,
+    },
+    { label: '样本箱重量', value: String(result.output.unitWeight) },
+    {
+      label: '背包负重',
+      value: `${result.backpackWeightBefore} → ${result.backpackWeightAfter}`,
+    },
+    { label: '取得后负重档位', value: loadTierName(result.loadTierAfter) },
+    {
+      label: '样本来源情报',
+      value: result.originIntelWillBeRecorded ? '将记录' : '已记录',
+    },
+    {
+      label: '可能感染暴露',
+      value: result.possibleExposureAmount === 0
+        ? '无'
+        : `未结算感染暴露 +${result.possibleExposureAmount}`,
+    },
+    { label: '行动前剩余时间', value: String(result.remainingTimeBefore) },
+    { label: '行动后剩余时间', value: String(outcome.clock.remainingTime) },
+    { label: '行动后预计返程时间', value: String(result.returnRoute.estimatedReturnTime) },
+    {
+      label: '行动后返程预计剩余',
+      value: String(result.estimatedRemainingTimeAfterReturn),
+    },
+    ...timedOutcomeFacts(outcome).map((fact) =>
+      outcome.overtimeDebt > 0 && fact.label === '行动后生命'
+        ? { ...fact, label: '强制返程后生命' }
+        : fact),
+  )
+  if (outcome.overtimeDebt > 0) {
+    facts.push({ label: '完成节点', value: result.completionNodeName })
+  }
+  return Object.freeze(facts)
+}
+
+function taskEventWarnings(
+  result: Extract<
+    ReturnType<typeof previewPlayerVisibleSceneTaskEventCommand>,
+    { readonly canExecute: true }
+  >['result'],
+): readonly string[] {
+  if (!result.sceneOutcome || !result.returnRoute) return Object.freeze([])
+  const warnings = [...sceneOutcomeWarnings({
+    outcome: result.sceneOutcome,
+    returnEstimate: result.returnRoute.estimatedReturnTime,
+  })]
+  if (result.sceneOutcome.kind === 'forced-return') {
+    warnings.push('若生还，本次只保存 forced-returned Scene；样本箱仍在 Scene 随身状态中，后续显式返程结算才会安全转入任务储存区。')
+  }
+  if (result.sceneOutcome.kind === 'death') {
+    warnings.push('本次行动后玩家将死亡；样本箱不会安全入库，也不会进入中枢。')
+  } else {
+    warnings.push('取得样本箱不等于安全提取或主任务完成；必须安全返回后才会转入任务储存区。')
+  }
+  return Object.freeze(warnings)
+}
+
+function taskEventContext(
+  phase: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  dependencies: StableRunUiPresentationDependencies,
+) {
+  const identity = getStableRunPhaseIdentity(phase)
+  const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
+  const runtime = getRunSceneRuntime(phase.payload, rules.sceneLaunch)
+  return { runtime, scene: phase.payload.scene }
+}
+
+function createTaskEventInteraction(
+  phase: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  dependencies: StableRunUiPresentationDependencies,
+): Readonly<{
+  actions: readonly StableRunUiAction[]
+  opportunities: readonly StableRunUiTaskEventOpportunity[]
+}> {
+  const { runtime, scene } = taskEventContext(phase, dependencies)
+  if (scene.status !== 'active') {
+    return Object.freeze({ actions: Object.freeze([]), opportunities: Object.freeze([]) })
+  }
+  const actions: StableRunUiAction[] = []
+  const opportunities: StableRunUiTaskEventOpportunity[] = []
+  for (const event of getPlayerVisibleSceneTaskEvents(scene, runtime.dependencies)) {
+    const definition = runtime.dependencies.taskEventCatalog.get(event.eventId)
+    const outputDefinition = runtime.dependencies.physicalCatalog.get(
+      definition.outputDefinitionId,
+    )
+    for (const option of event.options) {
+      const label = dependencies.labels.taskEventOptionName(option.optionId)
+      if (option.requiresBackpackPlacement) {
+        opportunities.push(Object.freeze({
+          id: `${event.eventId}:${option.optionId}`,
+          label,
+          eventName: dependencies.labels.taskEventName(event.eventId),
+          outputName: dependencies.labels.itemName(
+            outputDefinition.id,
+            outputDefinition.name,
+          ),
+          width: outputDefinition.width,
+          height: outputDefinition.height,
+          unitWeight: outputDefinition.unitWeight,
+          canRotate: outputDefinition.canRotate,
+        }))
+        continue
+      }
+      const command = createPerformSceneTaskEventCommand({
+        eventId: event.eventId,
+        optionId: option.optionId,
+      })
+      const safe = previewPlayerVisibleSceneTaskEventCommand(
+        scene,
+        command,
+        runtime.dependencies,
+      )
+      if (!safe.canExecute) continue
+      actions.push(Object.freeze({
+        id: `scene-task-event:${event.eventId}:${option.optionId}`,
+        kind: 'scene-task-event',
+        label,
+        command: applicationSceneCommand('scene-task-event', command),
+        preview: freezePreview(
+          `确认${label}`,
+          taskEventFacts(safe.result, dependencies.labels.itemName(
+            outputDefinition.id,
+            outputDefinition.name,
+          )),
+        ),
+      }))
+    }
+  }
+  return Object.freeze({
+    actions: Object.freeze(actions),
+    opportunities: Object.freeze(opportunities),
+  })
+}
+
+/**
+ * Rebuilds a task-event placement preview from the current canonical Scene.
+ * It never stores raw risk facts and never derives the output instance ID.
+ */
+export function previewStableRunUiTaskEventDraft(
+  phase: StableRunPhase,
+  draft: StableRunUiTaskEventDraft,
+  dependencies: StableRunUiPresentationDependencies,
+): StableRunUiTaskEventPreview | null {
+  if (phase.kind !== 'scene-session' || phase.payload.scene.status !== 'active') return null
+  const interaction = createTaskEventInteraction(phase, dependencies)
+  const opportunity = interaction.opportunities.find(({ id }) => id === draft.opportunityId)
+  if (!opportunity) return null
+  const separator = draft.opportunityId.lastIndexOf(':')
+  if (separator <= 0) return null
+  const eventId = draft.opportunityId.slice(0, separator)
+  const optionId = draft.opportunityId.slice(separator + 1)
+  const { runtime, scene } = taskEventContext(phase, dependencies)
+  let command
+  try {
+    command = createPerformSceneTaskEventCommand({
+      eventId,
+      optionId,
+      placement: { x: draft.x, y: draft.y, rotated: draft.rotated },
+    })
+  } catch {
+    return Object.freeze({
+      canExecute: false,
+      rejection: '样本箱放置参数无效。',
+      command: null,
+      preview: null,
+      candidateCells: Object.freeze([]),
+    })
+  }
+  const safe = previewPlayerVisibleSceneTaskEventCommand(
+    scene,
+    command,
+    runtime.dependencies,
+  )
+  if (!safe.canExecute) {
+    return Object.freeze({
+      canExecute: false,
+      rejection: safe.rejectionCode === 'ACTION_NOT_AVAILABLE'
+        ? '当前背包布局、位置或负重无法放置样本箱。'
+        : '任务事件状态已变化，请重新选择。',
+      command: null,
+      preview: null,
+      candidateCells: Object.freeze([]),
+    })
+  }
+  return Object.freeze({
+    canExecute: true,
+    rejection: null,
+    command: applicationSceneCommand('scene-task-event', command),
+    preview: freezePreview(
+      `确认${opportunity.label}`,
+      taskEventFacts(safe.result, opportunity.outputName),
+      taskEventWarnings(safe.result),
+    ),
+    candidateCells: Object.freeze(
+      safe.result.output?.placementCells.map(({ x, y }) => Object.freeze({ x, y })) ?? [],
+    ),
+  })
+}
+
 function createWithdrawalAction(
   phase: Extract<StableRunPhase, { kind: 'scene-session' }>,
   dependencies: StableRunUiPresentationDependencies,
@@ -966,6 +1246,9 @@ export function createStableRunUiInteractionModel(
   phase: StableRunPhase,
   dependencies: StableRunUiPresentationDependencies,
 ): StableRunUiInteractionModel {
+  const taskEvents = phase.kind === 'scene-session'
+    ? createTaskEventInteraction(phase, dependencies)
+    : Object.freeze({ actions: Object.freeze([]), opportunities: Object.freeze([]) })
   const actions = phase.kind === 'current-day-hub'
     ? [createLaunchAction(phase, dependencies)].filter(
         (action): action is StableRunUiAction => action !== null,
@@ -976,6 +1259,7 @@ export function createStableRunUiInteractionModel(
           ...createMoveActions(phase, dependencies),
           ...createSearchActions(phase, dependencies),
           ...createObstacleActions(phase, dependencies),
+          ...taskEvents.actions,
           ...[createWithdrawalAction(phase, dependencies), createSettlementAction(phase)].filter(
             (action): action is StableRunUiAction => action !== null,
           ),
@@ -984,5 +1268,9 @@ export function createStableRunUiInteractionModel(
   const opportunities = phase.kind === 'scene-session'
     ? pickupOpportunities(phase, dependencies)
     : Object.freeze([])
-  return Object.freeze({ actions: Object.freeze(actions), pickupOpportunities: opportunities })
+  return Object.freeze({
+    actions: Object.freeze(actions),
+    pickupOpportunities: opportunities,
+    taskEventOpportunities: taskEvents.opportunities,
+  })
 }

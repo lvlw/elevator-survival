@@ -68,6 +68,7 @@ export {
 } from './rule-config-registry'
 export {
   HOSPITAL_TASK_EVENT_IDS,
+  HOSPITAL_TASK_EVENT_OPTION_IDS,
   hospitalPathogenCaseRetrievalDefinition,
   hospitalSceneTaskEventCatalog,
 } from './hospital-v0.1/task-events'

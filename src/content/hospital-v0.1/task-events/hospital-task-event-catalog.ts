@@ -16,6 +16,12 @@ export const HOSPITAL_TASK_EVENT_IDS = Object.freeze({
   pathogenCaseRetrieval: 'event_hospital_pathogen_case_retrieval',
 } as const)
 
+export const HOSPITAL_TASK_EVENT_OPTION_IDS = Object.freeze({
+  cautiousExtraction: 'cautious-extraction',
+  directExtraction: 'direct-extraction',
+  decline: 'decline',
+} as const)
+
 export const hospitalPathogenCaseRetrievalDefinition = Object.freeze({
   id: HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval,
   nodeId: HOSPITAL_NODE_IDS.specimenColdRoom,
@@ -29,9 +35,9 @@ export const hospitalPathogenCaseRetrievalDefinition = Object.freeze({
     resourceKind: 'integrity' as const,
   },
   options: [
-    { id: 'cautious-extraction', kind: 'extract' as const, extractionMode: 'cautious' as const },
-    { id: 'direct-extraction', kind: 'extract' as const, extractionMode: 'direct' as const },
-    { id: 'decline', kind: 'decline' as const },
+    { id: HOSPITAL_TASK_EVENT_OPTION_IDS.cautiousExtraction, kind: 'extract' as const, extractionMode: 'cautious' as const },
+    { id: HOSPITAL_TASK_EVENT_OPTION_IDS.directExtraction, kind: 'extract' as const, extractionMode: 'direct' as const },
+    { id: HOSPITAL_TASK_EVENT_OPTION_IDS.decline, kind: 'decline' as const },
   ],
 })
 

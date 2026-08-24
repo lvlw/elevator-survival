@@ -1,8 +1,10 @@
 export {
   createCombatActionResultViewModel,
+  createTaskEventResultViewModel,
   createReturnSummaryViewModel,
   createStableRunPlayerViewModel,
   type CombatActionResultViewModel,
+  type TaskEventResultViewModel,
   type PlayerVisibleCombatViewModel,
   type PlayerVisibleConditionViewModel,
   type PlayerVisibleItemViewModel,

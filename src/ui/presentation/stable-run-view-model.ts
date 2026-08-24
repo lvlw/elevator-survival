@@ -44,6 +44,8 @@ export interface StableRunUiLabels {
   failureReason(reason: string): string
   obstacleName(obstacleId: string): string
   obstacleOptionName(optionId: string): string
+  taskEventName(eventId: string): string
+  taskEventOptionName(optionId: string): string
 }
 
 export interface StableRunUiPresentationDependencies {
@@ -163,6 +165,22 @@ export interface CombatActionResultViewModel {
   readonly enemyHealthStage: PlayerVisibleCombatViewModel['enemyHealthStage']
   readonly outcome: 'continue' | 'victory' | 'escaped' | 'defeat' | 'forced-returned'
   readonly sceneTimeCost: number | null
+}
+
+export interface TaskEventResultViewModel {
+  readonly action: string
+  readonly taskItemName: string | null
+  readonly taskItemQuantity: number
+  readonly eventCompleted: boolean
+  readonly infectionExposuresAdded: number
+  readonly armorResourceChange: string | null
+  readonly originIntelRecorded: boolean
+  readonly remainingTimeBefore: number
+  readonly remainingTimeAfter: number
+  readonly backpackWeightBefore: number
+  readonly backpackWeightAfter: number
+  readonly sceneStatus: 'active' | 'forced-returned' | 'dead'
+  readonly safelyStored: false
 }
 
 export type StableRunPlayerViewModel =
@@ -624,5 +642,78 @@ export function createCombatActionResultViewModel(
     ),
     outcome,
     sceneTimeCost,
+  })
+}
+
+/**
+ * Projects only already-committed task-event state changes. Generated item
+ * identities, random traces, effects, and the previous Scene are not retained.
+ */
+export function createTaskEventResultViewModel(
+  before: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  after: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  action: string,
+  dependencies: StableRunUiPresentationDependencies,
+): TaskEventResultViewModel {
+  const identity = getStableRunPhaseIdentity(after)
+  const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
+  const runtime = getRunSceneRuntime(after.payload, rules.sceneLaunch)
+  const beforeScene = before.payload.scene
+  const afterScene = after.payload.scene
+  const beforeIds = new Set(beforeScene.backpack.items.map(({ instanceId }) => instanceId))
+  const taskItem = afterScene.backpack.items.find((item) =>
+    !beforeIds.has(item.instanceId) &&
+    runtime.dependencies.lifecycleCatalog?.get(item.definitionId).kind === 'quest')
+  const armorBefore = beforeScene.equipment.armor
+  const armorAfter = afterScene.equipment.armor
+  const resource = (scene: typeof beforeScene, instanceId: string) =>
+    scene.itemStates.states.find((state) => state.instanceId === instanceId)?.resource
+  const beforeArmorResource = armorBefore ? resource(beforeScene, armorBefore.instanceId) : null
+  const afterArmorResource = armorAfter ? resource(afterScene, armorAfter.instanceId) : null
+  const armorResourceChange = armorBefore && armorAfter &&
+    armorBefore.instanceId === armorAfter.instanceId &&
+    beforeArmorResource?.kind === 'integrity' &&
+    afterArmorResource?.kind === 'integrity' &&
+    beforeArmorResource.current !== afterArmorResource.current
+    ? `${beforeArmorResource.current} → ${afterArmorResource.current}`
+    : null
+  const beforeIntel = new Set(beforeScene.runIntelLog.intelIds)
+  const eventCompleted = afterScene.taskEvents.entries.some((entry) =>
+    entry.status === 'completed' &&
+    beforeScene.taskEvents.entries.find(({ eventId }) => eventId === entry.eventId)?.status === 'available')
+  const taskDefinition = taskItem
+    ? runtime.dependencies.physicalCatalog.get(taskItem.definitionId)
+    : null
+  if (
+    afterScene.status !== 'active' &&
+    afterScene.status !== 'forced-returned' &&
+    afterScene.status !== 'dead'
+  ) {
+    throw new Error('任务事件结果必须保持在 active 或 terminal Scene')
+  }
+  return frozen({
+    action,
+    taskItemName: taskItem && taskDefinition
+      ? dependencies.labels.itemName(taskItem.definitionId, taskDefinition.name)
+      : null,
+    taskItemQuantity: taskItem?.quantity ?? 0,
+    eventCompleted,
+    infectionExposuresAdded:
+      afterScene.condition.pendingInfectionExposures -
+      beforeScene.condition.pendingInfectionExposures,
+    armorResourceChange,
+    originIntelRecorded: afterScene.runIntelLog.intelIds.some((id) => !beforeIntel.has(id)),
+    remainingTimeBefore: beforeScene.remainingTime,
+    remainingTimeAfter: afterScene.remainingTime,
+    backpackWeightBefore: calculateBackpackWeightSubtotal(
+      beforeScene.backpack,
+      runtime.dependencies.physicalCatalog,
+    ),
+    backpackWeightAfter: calculateBackpackWeightSubtotal(
+      afterScene.backpack,
+      runtime.dependencies.physicalCatalog,
+    ),
+    sceneStatus: afterScene.status,
+    safelyStored: false,
   })
 }

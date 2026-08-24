@@ -7,6 +7,7 @@ import {
   createInitialSceneExplorationSnapshot,
   createSceneExplorationSnapshot,
   getPlayerVisibleSceneTaskEvents,
+  previewPlayerVisibleSceneTaskEventCommand,
   previewSceneTaskEventCommand,
   resolveSceneInventoryCommand,
   resolveSceneTaskEventCommand,
@@ -16,7 +17,10 @@ import {
   createSceneSearchState,
   revealPreparedMainSearchOutcome,
 } from '../../core/scene-search'
-import { createSceneTaskEventCatalog } from '../../core/scene-task-event'
+import {
+  createSceneTaskEventCatalog,
+  getSceneTaskEventOptionPrimaryMetadata,
+} from '../../core/scene-task-event'
 import {
   HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
   HOSPITAL_INTEL_IDS,
@@ -247,6 +251,118 @@ describe('hospital pathogen case retrieval', () => {
     expect(replayed.result.riskTrace).toEqual(successful.result.riskTrace)
     expect(failed.result.riskTrace).toMatchObject({ roll: 96, exposureAdded: 0 })
     expect(successful.result.riskTrace?.streamId).toContain('scene-task-event')
+  })
+
+  it('uses one primary metadata owner for formal resolution and player-safe option projection', () => {
+    const start = scene({ coatIntegrity: 1 })
+    const metadata = getSceneTaskEventOptionPrimaryMetadata(
+      start.snapshot,
+      EVENT_ID,
+      'direct-extraction',
+      start.deps,
+    )
+    const formal = resolveSceneTaskEventCommand(
+      start.snapshot,
+      command('direct-extraction'),
+      start.deps,
+    )
+    const visible = getPlayerVisibleSceneTaskEvents(start.snapshot, start.deps)[0]?.options
+      .find(({ optionId }) => optionId === 'direct-extraction')
+    expect(metadata).toMatchObject({
+      rawRiskTier: 'high',
+      effectiveRiskTier: 'medium',
+      impactProtectionActive: true,
+      armorResourceBefore: 1,
+      armorResourceAfter: 0,
+    })
+    expect(formal.result.riskTrace).toMatchObject({
+      rawRiskPercent: metadata.rawRiskPercent,
+      effectiveRiskPercent: metadata.effectiveRiskPercent,
+      protectionApplied: metadata.impactProtectionActive,
+    })
+    expect(visible).toMatchObject({
+      effectiveRiskTier: metadata.effectiveRiskTier,
+      impactProtectionActive: metadata.impactProtectionActive,
+    })
+  })
+
+  it('keeps opposite direct contamination outcomes identical in the player-safe preview', () => {
+    const exposed = scene({ runSeed: 'pathogen-case-seed', coatIntegrity: null })
+    const clear = scene({ runSeed: 'beta', coatIntegrity: null })
+    const exposedFormal = resolveSceneTaskEventCommand(
+      exposed.snapshot,
+      command('direct-extraction'),
+      exposed.deps,
+    )
+    const clearFormal = resolveSceneTaskEventCommand(
+      clear.snapshot,
+      command('direct-extraction'),
+      clear.deps,
+    )
+    expect(exposedFormal.result.riskTrace?.exposureAdded).toBe(1)
+    expect(clearFormal.result.riskTrace?.exposureAdded).toBe(0)
+    const exposedSafe = previewPlayerVisibleSceneTaskEventCommand(
+      exposed.snapshot,
+      command('direct-extraction'),
+      exposed.deps,
+    )
+    const clearSafe = previewPlayerVisibleSceneTaskEventCommand(
+      clear.snapshot,
+      command('direct-extraction'),
+      clear.deps,
+    )
+    expect(exposedSafe).toEqual(clearSafe)
+    expect(JSON.stringify(exposedSafe)).not.toMatch(
+      /riskPercent|roll|streamId|drawIndex|succeeded|exposureAdded|sceneInstanceId|instanceId|randomTrace|effects|snapshot/i,
+    )
+  })
+
+  it('keeps cautious seed variation hidden and treats protected cautious extraction as deterministic no-risk', () => {
+    const first = scene({ runSeed: 'pathogen-case-seed', coatIntegrity: null })
+    const second = scene({ runSeed: 'beta', coatIntegrity: null })
+    const cautiousExposures = [first, second].map(({ snapshot, deps }) =>
+      resolveSceneTaskEventCommand(
+        snapshot,
+        command('cautious-extraction'),
+        deps,
+      ).result.riskTrace?.exposureAdded)
+    expect(new Set(cautiousExposures)).toEqual(new Set([0, 1]))
+    expect(previewPlayerVisibleSceneTaskEventCommand(
+      first.snapshot,
+      command('cautious-extraction'),
+      first.deps,
+    )).toEqual(previewPlayerVisibleSceneTaskEventCommand(
+      second.snapshot,
+      command('cautious-extraction'),
+      second.deps,
+    ))
+
+    const protectedFirst = scene({ runSeed: 'pathogen-case-seed', coatIntegrity: 1 })
+    const protectedSecond = scene({ runSeed: 'beta', coatIntegrity: 1 })
+    const firstPreview = previewPlayerVisibleSceneTaskEventCommand(
+      protectedFirst.snapshot,
+      command('cautious-extraction'),
+      protectedFirst.deps,
+    )
+    const secondPreview = previewPlayerVisibleSceneTaskEventCommand(
+      protectedSecond.snapshot,
+      command('cautious-extraction'),
+      protectedSecond.deps,
+    )
+    expect(firstPreview).toEqual(secondPreview)
+    expect(firstPreview).toMatchObject({
+      canExecute: true,
+      result: {
+        effectiveRiskTier: 'none',
+        possibleExposureAmount: 0,
+        impactProtection: { active: true, integrityBefore: 1, integrityAfter: 0 },
+      },
+    })
+    expect(resolveSceneTaskEventCommand(
+      protectedFirst.snapshot,
+      command('cautious-extraction'),
+      protectedFirst.deps,
+    ).result.riskTrace).toMatchObject({ roll: null, exposureAdded: 0 })
   })
 
   it('declining remains available and has no time, random, item, intel, or state effect', () => {

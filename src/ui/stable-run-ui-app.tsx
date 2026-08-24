@@ -3,20 +3,24 @@ import type { StableRunStore } from '../state/run-store'
 import {
   createStableRunUiInteractionModel,
   previewStableRunUiPickupDraft,
+  previewStableRunUiTaskEventDraft,
   type StableRunUiAction,
   type StableRunUiActionPreviewViewModel,
   type StableRunUiPickupOpportunity,
+  type StableRunUiTaskEventOpportunity,
 } from './interaction'
 import {
   createReturnSummaryViewModel,
   createCombatActionResultViewModel,
   createStableRunPlayerViewModel,
+  createTaskEventResultViewModel,
   type PlayerVisibleItemViewModel,
   type PlayerVisibleCombatViewModel,
   type PlayerVisibleLoadoutViewModel,
   type PlayerVisibleStatusBarViewModel,
   type ReturnSummaryViewModel,
   type CombatActionResultViewModel,
+  type TaskEventResultViewModel,
   type StableRunPlayerViewModel,
   type StableRunUiPresentationDependencies,
 } from './presentation'
@@ -232,18 +236,22 @@ function SceneView({
   onPreview,
   pickupOpportunities,
   onPickup,
+  taskEventOpportunities,
+  onTaskEvent,
 }: Readonly<{
   model: Extract<StableRunPlayerViewModel, { kind: 'scene-session' }>
   actions: readonly StableRunUiAction[]
   onPreview(actionId: string): void
   pickupOpportunities: readonly StableRunUiPickupOpportunity[]
   onPickup(opportunityId: string): void
+  taskEventOpportunities: readonly StableRunUiTaskEventOpportunity[]
+  onTaskEvent(opportunityId: string): void
 }>) {
   const { scene } = model
   return <main className="console-layout">
     <StatusBar status={model.status} />
     <div className="console-grid">
-      <section className="console-panel"><h2>场景导航</h2><p>当前位置：<strong>{scene.currentNodeName}</strong></p><p>剩余时间：<strong>{scene.remainingTime}</strong></p><p>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></p><p>返程后预计剩余：<strong>{scene.returnAfterWithdrawalTime ?? '当前不可预览'}</strong></p>{scene.returnRisk === 'forced-returned' && <p className="preview-warning">当前返程将进入强制返程。</p>}{scene.returnRisk === 'dead' && <p className="preview-warning">当前返程将导致生命归零。</p>}<p>当前节点搜索：<strong>{scene.currentNodeSearchState}</strong></p><h3>当前可通行相邻节点</h3><ItemList items={scene.traversableAdjacentNodeNames.map((name) => ({ name, quantity: 1, resource: null }))} empty="暂无当前可通行相邻节点" /><h3>当前明显障碍</h3><ItemList items={scene.currentObstacles.map(({ name }) => ({ name, quantity: 1, resource: null }))} empty="当前没有需要处理的明显障碍" /><h3>当前节点地面物品</h3><ItemList items={scene.groundItems} empty="未发现地面物品" />{pickupOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onPickup(opportunity.id)}>拾取 {opportunity.name}</button>)}</section>
+      <section className="console-panel"><h2>场景导航</h2><p>当前位置：<strong>{scene.currentNodeName}</strong></p><p>剩余时间：<strong>{scene.remainingTime}</strong></p><p>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></p><p>返程后预计剩余：<strong>{scene.returnAfterWithdrawalTime ?? '当前不可预览'}</strong></p>{scene.returnRisk === 'forced-returned' && <p className="preview-warning">当前返程将进入强制返程。</p>}{scene.returnRisk === 'dead' && <p className="preview-warning">当前返程将导致生命归零。</p>}<p>当前节点搜索：<strong>{scene.currentNodeSearchState}</strong></p><h3>当前可通行相邻节点</h3><ItemList items={scene.traversableAdjacentNodeNames.map((name) => ({ name, quantity: 1, resource: null }))} empty="暂无当前可通行相邻节点" /><h3>当前明显障碍</h3><ItemList items={scene.currentObstacles.map(({ name }) => ({ name, quantity: 1, resource: null }))} empty="当前没有需要处理的明显障碍" /><h3>当前节点地面物品</h3><ItemList items={scene.groundItems} empty="未发现地面物品" />{pickupOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onPickup(opportunity.id)}>拾取 {opportunity.name}</button>)}{taskEventOpportunities.length > 0 && <><h3>任务事件</h3>{taskEventOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onTaskEvent(opportunity.id)}>{opportunity.label}</button>)}</>}</section>
       {scene.status === 'combat'
         ? <CombatLoadoutPanel loadout={scene.loadout} />
         : <LoadoutPanel loadout={scene.loadout} />}
@@ -252,6 +260,44 @@ function SceneView({
       {scene.status !== 'active' && scene.status !== 'combat' && <section className="console-panel"><h2>场景终局状态</h2><p>{scene.status}</p><p className="empty-copy">请确认终局场景结算；该操作不会自动推进日期。</p></section>}
     </div>
   </main>
+}
+
+function TaskEventDialog({
+  opportunity,
+  loadout,
+  preview,
+  x,
+  y,
+  rotated,
+  onRotate,
+  onAnchor,
+  onCancel,
+  onConfirm,
+}: Readonly<{
+  opportunity: StableRunUiTaskEventOpportunity
+  loadout: PlayerVisibleLoadoutViewModel
+  preview: ReturnType<typeof previewStableRunUiTaskEventDraft>
+  x: number | null
+  y: number | null
+  rotated: boolean
+  onRotate(value: boolean): void
+  onAnchor(x: number, y: number): void
+  onCancel(): void
+  onConfirm(): void
+}>) {
+  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="task-event-title">
+    <h2 id="task-event-title">{opportunity.eventName} · {opportunity.label}</h2>
+    <p>取得：<strong>{opportunity.outputName}</strong> · {opportunity.width}×{opportunity.height} · 重量 {opportunity.unitWeight}</p>
+    {opportunity.canRotate && <label><input aria-label="旋转样本箱" type="checkbox" checked={rotated} onChange={(event) => onRotate(event.target.checked)} />旋转</label>}
+    <p>目标格：{x === null || y === null ? '尚未选择' : `${x + 1}, ${y + 1}`}</p>
+    <BackpackGrid grid={loadout.backpackGrid} candidateCells={preview?.candidateCells} onAnchor={onAnchor} />
+    {preview?.canExecute && preview.preview
+      ? <><dl className="preview-facts">{preview.preview.facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>{preview.preview.warnings.length > 0 && <ul className="preview-warnings">{preview.preview.warnings.map((warning) => <li key={warning}>{warning}</li>)}</ul>}</>
+      : <p className="preview-warning">{x === null || y === null
+        ? '请在背包网格中明确选择样本箱放置位置。'
+        : preview?.rejection ?? '状态已变化，请重新选择。'}</p>}
+    <div className="preview-controls"><button type="button" onClick={onCancel}>取消</button><button type="button" className="confirm-action" disabled={!preview?.canExecute} onClick={onConfirm}>确认提取</button></div>
+  </section></div>
 }
 
 function PickupDialog({
@@ -334,6 +380,30 @@ function CombatActionResultDialog({
   </section></div>
 }
 
+function TaskEventResultDialog({
+  result,
+  onClose,
+}: Readonly<{ result: TaskEventResultViewModel; onClose(): void }>) {
+  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="task-event-result-title">
+    <h2 id="task-event-result-title">任务事件结果</h2>
+    <dl className="preview-facts">
+      <div><dt>处理方式</dt><dd>{result.action}</dd></div>
+      <div><dt>样本箱</dt><dd>{result.taskItemName ? `${result.taskItemName} ×${result.taskItemQuantity} 已进入背包` : '本次未取得'}</dd></div>
+      <div><dt>事件状态</dt><dd>{result.eventCompleted ? '提取已完成' : '仍可稍后重新选择'}</dd></div>
+      <div><dt>实际新增感染暴露</dt><dd>{result.infectionExposuresAdded > 0 ? `+${result.infectionExposuresAdded}` : '0'}</dd></div>
+      {result.armorResourceChange && <div><dt>外套完整度</dt><dd>{result.armorResourceChange}</dd></div>}
+      <div><dt>样本来源情报</dt><dd>{result.originIntelRecorded ? '已记录' : '无新增'}</dd></div>
+      <div><dt>Scene 时间</dt><dd>{result.remainingTimeBefore} → {result.remainingTimeAfter}</dd></div>
+      <div><dt>背包负重</dt><dd>{result.backpackWeightBefore} → {result.backpackWeightAfter}</dd></div>
+      <div><dt>当前 Scene 状态</dt><dd>{result.sceneStatus}</dd></div>
+      <div><dt>安全入库</dt><dd>否；仍需安全返回并显式结算</dd></div>
+    </dl>
+    {result.sceneStatus === 'dead' && <p className="preview-warning">玩家已经死亡，样本箱不会安全入库。</p>}
+    {result.sceneStatus === 'forced-returned' && <p className="preview-warning">已进入强制返程终局；下一步需显式完成返程结算。</p>}
+    <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
+  </section></div>
+}
+
 function ActionPreviewDialog({
   preview,
   onCancel,
@@ -387,15 +457,21 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
   const interaction = createStableRunUiInteractionModel(snapshot.phase, presentationDependencies)
   const [pendingActionId, setPendingActionId] = useState<string | null>(null)
   const [pendingPickupId, setPendingPickupId] = useState<string | null>(null)
+  const [pendingTaskEventId, setPendingTaskEventId] = useState<string | null>(null)
   const [pickupQuantity, setPickupQuantity] = useState(1)
   const [pickupX, setPickupX] = useState(0)
   const [pickupY, setPickupY] = useState(0)
   const [pickupRotated, setPickupRotated] = useState(false)
+  const [taskEventX, setTaskEventX] = useState<number | null>(null)
+  const [taskEventY, setTaskEventY] = useState<number | null>(null)
+  const [taskEventRotated, setTaskEventRotated] = useState(false)
   const [returnSummary, setReturnSummary] = useState<ReturnSummaryViewModel | null>(null)
   const [combatActionResult, setCombatActionResult] = useState<CombatActionResultViewModel | null>(null)
+  const [taskEventResult, setTaskEventResult] = useState<TaskEventResultViewModel | null>(null)
   const [persistenceFeedback, setPersistenceFeedback] = useState<string | null>(null)
   const pendingAction = interaction.actions.find(({ id }) => id === pendingActionId) ?? null
   const pendingPickup = interaction.pickupOpportunities.find(({ id }) => id === pendingPickupId) ?? null
+  const pendingTaskEvent = interaction.taskEventOpportunities.find(({ id }) => id === pendingTaskEventId) ?? null
   const pickupPreview = pendingPickup === null ? null : previewStableRunUiPickupDraft(snapshot.phase, {
     opportunityId: pendingPickup.id,
     quantity: pickupQuantity,
@@ -403,10 +479,20 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
     y: pickupY,
     rotated: pickupRotated,
   }, presentationDependencies)
+  const taskEventPreview = pendingTaskEvent === null || taskEventX === null || taskEventY === null ? null : previewStableRunUiTaskEventDraft(snapshot.phase, {
+    opportunityId: pendingTaskEvent.id,
+    x: taskEventX,
+    y: taskEventY,
+    rotated: taskEventRotated,
+  }, presentationDependencies)
 
   useEffect(() => {
     if (pendingPickupId !== null && pendingPickup === null) setPendingPickupId(null)
   }, [pendingPickup, pendingPickupId])
+
+  useEffect(() => {
+    if (pendingTaskEventId !== null && pendingTaskEvent === null) setPendingTaskEventId(null)
+  }, [pendingTaskEvent, pendingTaskEventId])
 
   const confirm = () => {
     if (!pendingAction) return
@@ -426,6 +512,18 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
         execution.phase,
         pendingAction.label,
         execution.result,
+        presentationDependencies,
+      ))
+    }
+    if (
+      pendingAction.kind === 'scene-task-event' &&
+      beforePhase.kind === 'scene-session' &&
+      execution.phase.kind === 'scene-session'
+    ) {
+      setTaskEventResult(createTaskEventResultViewModel(
+        beforePhase,
+        execution.phase,
+        pendingAction.label,
         presentationDependencies,
       ))
     }
@@ -459,10 +557,37 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
       ? '✓ 操作已执行并保存'
       : '⚠ 保存失败：本次操作已在当前会话中生效，请勿刷新页面。')
   }
+  const openTaskEvent = (opportunityId: string) => {
+    const opportunity = interaction.taskEventOpportunities.find(({ id }) => id === opportunityId)
+    if (!opportunity) return
+    setPendingActionId(null)
+    setPendingPickupId(null)
+    setTaskEventX(null)
+    setTaskEventY(null)
+    setTaskEventRotated(false)
+    setPendingTaskEventId(opportunityId)
+  }
+  const confirmTaskEvent = () => {
+    if (!taskEventPreview?.canExecute || taskEventPreview.command === null || !pendingTaskEvent) return
+    const beforePhase = snapshot.phase
+    const execution = store.dispatch(taskEventPreview.command)
+    setPendingTaskEventId(null)
+    setPersistenceFeedback(execution.kind === 'executed'
+      ? '✓ 操作已执行并保存'
+      : '⚠ 保存失败：本次操作已在当前会话中生效，请勿刷新页面。')
+    if (beforePhase.kind === 'scene-session' && execution.phase.kind === 'scene-session') {
+      setTaskEventResult(createTaskEventResultViewModel(
+        beforePhase,
+        execution.phase,
+        pendingTaskEvent.label,
+        presentationDependencies,
+      ))
+    }
+  }
   return <>
     {persistenceFeedback && <p className="persistence-feedback" role="status">{persistenceFeedback}</p>}
     {model.kind === 'current-day-hub' && <HubView model={model} actions={interaction.actions} onPreview={setPendingActionId} />}
-    {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} onPreview={setPendingActionId} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} />}
+    {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} onPreview={setPendingActionId} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} taskEventOpportunities={interaction.taskEventOpportunities} onTaskEvent={openTaskEvent} />}
     {model.kind === 'run-failure' && <FailureView model={model} />}
     {pendingAction && <ActionPreviewDialog
       preview={pendingAction.preview}
@@ -470,8 +595,10 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
       onConfirm={confirm}
     />}
     {pendingPickup && model.kind === 'scene-session' && <PickupDialog opportunity={pendingPickup} loadout={model.scene.loadout} preview={pickupPreview} quantity={pickupQuantity} x={pickupX} y={pickupY} rotated={pickupRotated} onQuantity={setPickupQuantity} onRotate={setPickupRotated} onAnchor={(x, y) => { setPickupX(x); setPickupY(y) }} onCancel={() => setPendingPickupId(null)} onConfirm={confirmPickup} />}
+    {pendingTaskEvent && model.kind === 'scene-session' && <TaskEventDialog opportunity={pendingTaskEvent} loadout={model.scene.loadout} preview={taskEventPreview} x={taskEventX} y={taskEventY} rotated={taskEventRotated} onRotate={setTaskEventRotated} onAnchor={(x, y) => { setTaskEventX(x); setTaskEventY(y) }} onCancel={() => setPendingTaskEventId(null)} onConfirm={confirmTaskEvent} />}
     {returnSummary && <ReturnSummaryDialog summary={returnSummary} onClose={() => setReturnSummary(null)} />}
     {combatActionResult && <CombatActionResultDialog result={combatActionResult} onClose={() => setCombatActionResult(null)} />}
+    {taskEventResult && <TaskEventResultDialog result={taskEventResult} onClose={() => setTaskEventResult(null)} />}
     {import.meta.env.DEV && <DevInspector phase={snapshot.phase} />}
   </>
 }

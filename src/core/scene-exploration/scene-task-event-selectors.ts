@@ -1,20 +1,15 @@
-import { getItemState } from '../item-state'
-import { getSceneTaskEventStatus } from '../scene-task-event'
+import {
+  getSceneTaskEventOptionPrimaryMetadata,
+  getSceneTaskEventStatus,
+} from '../scene-task-event'
+import { SceneExplorationError } from './scene-exploration-errors'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
 import type {
   PlayerVisibleSceneTaskEvent,
   PlayerVisibleSceneTaskEventOption,
   SceneExplorationSnapshot,
   SceneTaskEventCommandDependencies,
-  SceneTaskRiskTier,
 } from './scene-exploration-types'
-
-function riskTier(percent: number): SceneTaskRiskTier {
-  if (percent === 0) return 'none'
-  if (percent <= 20) return 'low'
-  if (percent <= 40) return 'medium'
-  return 'high'
-}
 
 export function getPlayerVisibleSceneTaskEvents(
   input: SceneExplorationSnapshot,
@@ -39,25 +34,25 @@ export function getPlayerVisibleSceneTaskEvents(
       result.push({ eventId, status, options: [] })
       continue
     }
-    const armor = snapshot.equipment.armor
-    const state = armor?.definitionId === event.impactProtection.definitionId ? getItemState(snapshot.itemStates, armor.instanceId) : null
-    const activeCoat = state?.resource.kind === 'integrity' && state.resource.current >= 1
-    const options: PlayerVisibleSceneTaskEventOption[] = event.options.map((option) => {
-      if (option.kind === 'decline') return { optionId: option.id, kind: 'decline', actionTime: 0, effectiveRiskTier: 'none', impactProtectionActive: false, requiresBackpackPlacement: false }
-      const raw = option.extractionMode === 'direct'
-        ? dependencies.config.scene.pathogenCaseRetrieval.directContaminationRiskPercent
-        : dependencies.config.scene.pathogenCaseRetrieval.cautiousContaminationRiskPercent
-      const protectedRisk = option.extractionMode === 'direct'
-        ? dependencies.config.scene.pathogenCaseRetrieval.protectedDirectContaminationRiskPercent
-        : dependencies.config.scene.pathogenCaseRetrieval.protectedCautiousContaminationRiskPercent
-      const protectedActive = activeCoat && protectedRisk < raw
-      return {
-        optionId: option.id,
-        kind: 'extract',
-        actionTime: option.extractionMode === 'direct' ? dependencies.config.scene.extractionTime.direct : dependencies.config.scene.extractionTime.cautious,
-        effectiveRiskTier: riskTier(protectedActive ? protectedRisk : raw),
-        impactProtectionActive: protectedActive,
-        requiresBackpackPlacement: true,
+    const options: PlayerVisibleSceneTaskEventOption[] = event.options.flatMap((option) => {
+      try {
+        const metadata = getSceneTaskEventOptionPrimaryMetadata(
+          snapshot,
+          event.id,
+          option.id,
+          dependencies,
+        )
+        return [{
+          optionId: metadata.optionId,
+          kind: metadata.kind,
+          actionTime: metadata.actionTime,
+          effectiveRiskTier: metadata.effectiveRiskTier,
+          impactProtectionActive: metadata.impactProtectionActive,
+          requiresBackpackPlacement: metadata.requiresBackpackPlacement,
+        }]
+      } catch (error) {
+        if (error instanceof SceneExplorationError) return []
+        throw error
       }
     })
     result.push({ eventId, status, options })

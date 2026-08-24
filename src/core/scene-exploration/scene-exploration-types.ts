@@ -634,6 +634,50 @@ export interface PlayerVisibleSceneTaskEvent {
   readonly options: readonly PlayerVisibleSceneTaskEventOption[]
 }
 
+export interface PlayerVisibleSceneTaskEventCommandEvaluation {
+  readonly eventId: string
+  readonly optionId: string
+  readonly kind: 'extract' | 'decline'
+  readonly extractionMode: 'direct' | 'cautious' | null
+  readonly actionTime: number
+  readonly remainingTimeBefore: number
+  readonly effectiveRiskTier: SceneTaskRiskTier
+  readonly impactProtection: Readonly<{
+    active: boolean
+    armorDefinitionId: string | null
+    integrityBefore: number | null
+    integrityAfter: number | null
+  }>
+  readonly possibleExposureAmount: number
+  readonly output: Readonly<{
+    definitionId: string
+    quantity: number
+    width: number
+    height: number
+    unitWeight: number
+    placementCells: readonly Readonly<{ x: number; y: number }>[]
+  }> | null
+  readonly originIntelWillBeRecorded: boolean
+  readonly completionNodeName: string
+  readonly backpackWeightBefore: number
+  readonly backpackWeightAfter: number
+  readonly loadTierAfter: 'normal' | 'loaded' | 'overloaded'
+  readonly returnRoute: ReturnRouteResult | null
+  readonly sceneOutcome: TimedSceneActionOutcome | null
+  readonly estimatedRemainingTimeAfterReturn: number | null
+  readonly eventRemainsAvailable: boolean
+}
+
+export type PlayerVisibleSceneTaskEventCommandPreview =
+  | Readonly<{
+      canExecute: true
+      result: PlayerVisibleSceneTaskEventCommandEvaluation
+    }>
+  | Readonly<{
+      canExecute: false
+      rejectionCode: SceneExplorationErrorCode
+    }>
+
 export interface SceneTaskEventEvaluation {
   readonly eventId: string
   readonly optionId: string

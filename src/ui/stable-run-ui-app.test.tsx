@@ -3,10 +3,12 @@ import { createRoot } from 'react-dom/client'
 import { afterEach, describe, expect, it } from 'vitest'
 import {
   HOSPITAL_EDGE_IDS,
+  HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
   HOSPITAL_FIRE_DOOR_OPTION_IDS,
   HOSPITAL_ITEM_IDS,
   HOSPITAL_NODE_IDS,
   HOSPITAL_OBSTACLE_IDS,
+  HOSPITAL_TASK_EVENT_IDS,
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
@@ -48,7 +50,10 @@ import { createStableRunStore, type StableRunStore } from '../state/run-store'
 import { hospitalV01UiLabels } from './hospital-v0.1'
 import { StableRunUiApp } from './stable-run-ui-app'
 import { createHospitalDevelopmentPreviewScenario } from './dev-preview/hospital-preview-scenarios'
-import { createStableRunUiInteractionModel } from './interaction'
+import {
+  createStableRunUiInteractionModel,
+  previewStableRunUiTaskEventDraft,
+} from './interaction'
 
 Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true })
 
@@ -70,7 +75,7 @@ class FailingStorage extends MemoryStorage {
 
 const item = (instanceId: string, definitionId: string): ItemInstance => ({ instanceId, definitionId, quantity: 1 })
 
-function createHubPhase(options: Readonly<{ combatReady?: boolean }> = {}) {
+function createHubPhase(options: Readonly<{ combatReady?: boolean; seed?: string }> = {}) {
   const flashlight = item('react-flashlight', HOSPITAL_ITEM_IDS.flashlight)
   const ration = item('react-ration', HOSPITAL_ITEM_IDS.ration)
   const pipe = item('react-metal-pipe', HOSPITAL_ITEM_IDS.metalPipe)
@@ -81,7 +86,7 @@ function createHubPhase(options: Readonly<{ combatReady?: boolean }> = {}) {
   return {
     kind: 'current-day-hub' as const,
     payload: createCurrentDayHubSnapshot({
-      continuity: { runIdentity: { runId: 'react-ui-run', seed: 'react-ui-seed', rulesVersion: config.metadata.rulesVersion }, currentDay: 2, sceneInstanceId: 'returned-before-react-ui' },
+      continuity: { runIdentity: { runId: 'react-ui-run', seed: options.seed ?? 'react-ui-seed', rulesVersion: config.metadata.rulesVersion }, currentDay: 2, sceneInstanceId: 'returned-before-react-ui' },
       runLoadout: createRunLoadoutSnapshot({
         warehouse: { items: [ration] }, taskStorage: { items: [] },
         backpack: createBackpackSnapshot({ width: config.backpack.width, height: config.backpack.height, items: [], placements: [] }, hospitalItemCatalog),
@@ -384,6 +389,98 @@ function combatPhase(options: Readonly<{
   }
 }
 
+function taskEventPhase(options: Readonly<{
+  seed?: string
+  remainingTime?: number
+  currentHealth?: number
+  bleeding?: boolean
+  coatIntegrity?: number | null
+  materialWeight?: number
+}> = {}) {
+  const launched = resolveSceneLaunch(
+    createHubPhase({ combatReady: true, seed: options.seed }).payload,
+    { kind: 'launch-main-scene' },
+    hospitalSceneLaunchDependencies,
+  ).session
+  const runtime = getRunSceneRuntime(launched, hospitalSceneLaunchDependencies)
+  const encounter = launched.scene.combatState.encounters[0]
+  if (!encounter || encounter.kind !== 'dormant') throw new Error('expected dormant orderly encounter')
+  const coat = options.coatIntegrity === null ? null : launched.scene.equipment.armor
+  const materialItems: ItemInstance[] = []
+  let remainingWeight = options.materialWeight ?? 0
+  while (remainingWeight > 0) {
+    const quantity = Math.min(remainingWeight, 5)
+    materialItems.push({
+      instanceId: `react-task-material-${materialItems.length}`,
+      definitionId: HOSPITAL_ITEM_IDS.metalParts,
+      quantity,
+    })
+    remainingWeight -= quantity
+  }
+  const backpack = createBackpackSnapshot({
+    width: config.backpack.width,
+    height: config.backpack.height,
+    items: materialItems,
+    placements: materialItems.map(({ instanceId }, index) => ({
+      instanceId,
+      x: index,
+      y: 0,
+      rotated: false,
+    })),
+  }, hospitalItemCatalog)
+  const retainedIds = new Set([
+    ...Object.values({ ...launched.scene.equipment, armor: coat })
+      .filter((candidate): candidate is ItemInstance => candidate !== null)
+      .map(({ instanceId }) => instanceId),
+    ...launched.scene.quickSlots.slots
+      .filter((candidate): candidate is ItemInstance => candidate !== null)
+      .map(({ instanceId }) => instanceId),
+  ])
+  const itemStates = [
+    ...launched.scene.itemStates.states
+      .filter(({ instanceId }) => retainedIds.has(instanceId))
+      .map((state) => state.instanceId === coat?.instanceId && options.coatIntegrity !== undefined
+        ? { ...state, resource: { kind: 'integrity' as const, current: options.coatIntegrity ?? 0 } }
+        : state),
+    ...materialItems.map((candidate) => createFullItemState(candidate, hospitalItemResourceCatalog)),
+  ]
+  const condition = createPlayerCondition({
+    ...launched.scene.condition,
+    currentHealth: options.currentHealth ?? launched.scene.condition.currentHealth,
+    bleeding: options.bleeding ?? launched.scene.condition.bleeding,
+  }, config.combat.player)
+  const scene = createSceneExplorationSnapshot({
+    ...launched.scene,
+    status: 'active',
+    currentNodeId: HOSPITAL_NODE_IDS.specimenColdRoom,
+    enabledEdgeIds: HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
+    remainingTime: options.remainingTime ?? launched.scene.remainingTime,
+    condition,
+    backpack,
+    equipment: { ...launched.scene.equipment, armor: coat },
+    itemStates: { states: itemStates },
+    combatState: {
+      ...launched.scene.combatState,
+      encounters: [{
+        ...encounter,
+        enemy: {
+          ...encounter.enemy,
+          currentHealth: 0,
+          defeated: true,
+          hasBeenEncountered: true,
+        },
+      }],
+    },
+  }, runtime.dependencies)
+  return {
+    kind: 'scene-session' as const,
+    payload: createRunSceneSessionSnapshot({
+      context: launched.context,
+      scene,
+    }, hospitalSceneLaunchDependencies),
+  }
+}
+
 const uiDependencies = {
   rulesRegistry: hospitalRunSaveRulesRegistry,
   labels: hospitalV01UiLabels,
@@ -551,7 +648,7 @@ describe('StableRunUiApp', () => {
     expect(phase.payload.scene.backpack.items).toHaveLength(0)
   })
 
-  it('completes Hub → fire door → infected orderly victory through seven explicit commands', () => {
+  it('completes the explicit Hub → fire door → orderly victory → cold-room extraction UI chain', () => {
     const storage = new MemoryStorage()
     const inner = createStableRunStore({ initialPhase: createHubPhase({ combatReady: true }), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
     const tracked = trackedStore(inner)
@@ -623,6 +720,32 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).not.toContain('感染护工')
     expect(container.textContent).toContain('前往 标本冷藏室')
     expect(container.textContent).not.toContain('提取样本箱')
+
+    act(() => { button(container, '前往 标本冷藏室').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(container.textContent).toContain('谨慎检查并提取')
+    expect(container.textContent).toContain('直接取出')
+    expect(container.textContent).toContain('放弃提取')
+    act(() => { button(container, '谨慎检查并提取').click() })
+    act(() => { button(container, '格子 1,1').click() })
+    expect(container.textContent).toContain('样本箱尺寸2×2')
+    expect(container.textContent).toContain('污染风险无')
+    expect(tracked.commands).toHaveLength(8)
+    expect(storage.writes).toBe(8)
+    act(() => { button(container, '确认提取').click() })
+    expect(tracked.commands).toHaveLength(9)
+    expect(storage.writes).toBe(9)
+    expect(notifications).toBe(9)
+    const extracted = inner.getState().phase
+    if (extracted.kind !== 'scene-session') throw new Error('expected extracted Scene')
+    expect(extracted.payload.scene.status).toBe('active')
+    expect(extracted.payload.scene.currentNodeId).toBe(HOSPITAL_NODE_IDS.specimenColdRoom)
+    expect(extracted.payload.scene.backpack.items).toContainEqual(expect.objectContaining({
+      definitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase,
+      quantity: 1,
+    }))
+    expect(extracted.payload.context.runReturnCarryForward.storedInventory.taskStorage.items).toEqual([])
+    expect(container.textContent).not.toContain('电梯中枢')
   })
 
   it('uses a real backpack access card without consuming it or setting alert', () => {
@@ -1977,5 +2100,337 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('实际 Scene 时间结算10')
     expect(container.textContent).toContain('结算战败')
     expect(container.textContent).not.toContain('Run 已终止')
+  })
+
+  it('previews and confirms cautious sample extraction with explicit 2×2 placement and no hidden risk leak', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: taskEventPhase({ coatIntegrity: 1 }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const before = inner.getState()
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StrictMode><StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} /></StrictMode>) })
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+    expect(inner.getState()).toBe(before)
+    expect(container.textContent).toContain('谨慎检查并提取')
+    expect(container.textContent).toContain('直接取出')
+    expect(container.textContent).toContain('放弃提取')
+
+    act(() => { button(container, '谨慎检查并提取').click() })
+    expect(container.textContent).toContain('请在背包网格中明确选择样本箱放置位置')
+    expect(button(container, '确认提取').disabled).toBe(true)
+    act(() => { button(container, '格子 1,1').click() })
+    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
+    expect(preview).toContain('污染风险无')
+    expect(preview).toContain('厚实外套保护生效')
+    expect(preview).toContain('外套完整度1 → 0')
+    expect(preview).toContain('密封病原样本箱 ×1')
+    expect(preview).toContain('样本箱尺寸2×2')
+    expect(preview).toContain('样本箱重量4')
+    expect(preview).toContain('可能感染暴露无')
+    expect(preview).toContain('取得样本箱不等于安全提取或主任务完成')
+    expect(preview).not.toMatch(/riskPercent|roll|streamId|drawIndex|succeeded|sceneInstanceId|runSeed|runId|rulesVersion|instanceId|RANDOM_ALGORITHM_VERSION|20%|40%|60%/i)
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+
+    act(() => { button(container, '确认提取').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    const phase = inner.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(phase.payload.scene.status).toBe('active')
+    expect(phase.payload.scene.currentNodeId).toBe(HOSPITAL_NODE_IDS.specimenColdRoom)
+    expect(phase.payload.scene.backpack.items).toContainEqual(expect.objectContaining({
+      definitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase,
+      quantity: 1,
+    }))
+    expect(phase.payload.context.runReturnCarryForward.storedInventory.taskStorage.items).toEqual([])
+    expect(phase.payload.scene.taskEvents.entries).toContainEqual({
+      eventId: HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval,
+      status: 'completed',
+    })
+    expect(getItemState(phase.payload.scene.itemStates, phase.payload.scene.equipment.armor!.instanceId).resource)
+      .toEqual({ kind: 'integrity', current: 0 })
+    expect(phase.payload.scene.condition.pendingInfectionExposures).toBe(0)
+    expect(container.textContent).toContain('实际新增感染暴露0')
+    expect(container.textContent).toContain('安全入库否；仍需安全返回并显式结算')
+    expect(container.textContent).not.toContain('任务完成')
+    act(() => { button(container, '关闭结果').click() })
+    expect(container.querySelectorAll('.backpack-grid [data-occupied="true"]')).toHaveLength(4)
+    expect(container.textContent).not.toContain('谨慎检查并提取')
+    expect(container.textContent).not.toContain('直接取出')
+    expect(container.textContent).toContain('主动撤离')
+  })
+
+  it('keeps opposite-seed direct extraction previews identical while committed exposure may differ', () => {
+    const render = (seed: string) => {
+      const storage = new MemoryStorage()
+      const store = createStableRunStore({
+        initialPhase: taskEventPhase({ seed, coatIntegrity: null }),
+        storage,
+        rulesRegistry: hospitalRunSaveRulesRegistry,
+      })
+      const container = document.createElement('div')
+      const root = createRoot(container); roots.push(root)
+      act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+      act(() => { button(container, '直接取出').click() })
+      act(() => { button(container, '格子 1,1').click() })
+      const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
+      return { storage, store, container, preview }
+    }
+    const first = render('pathogen-case-seed')
+    const second = render('beta')
+    expect(first.preview).toBe(second.preview)
+    expect(first.preview).toContain('污染风险高')
+    expect(first.preview).toContain('可能感染暴露未结算感染暴露 +1')
+    expect(first.preview).not.toMatch(/20%|40%|60%|roll|stream|draw|succeeded|exposureAdded/i)
+    act(() => { button(first.container, '确认提取').click() })
+    act(() => { button(second.container, '确认提取').click() })
+    const exposures = [first.store, second.store].map((store) => {
+      const phase = store.getState().phase
+      if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+      return phase.payload.scene.condition.pendingInfectionExposures
+    })
+    expect(new Set(exposures)).toEqual(new Set([0, 1]))
+    expect(first.storage.writes).toBe(1)
+    expect(second.storage.writes).toBe(1)
+  })
+
+  it('keeps decline repeatable with one formal dispatch and no extraction side effects', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: taskEventPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '放弃提取').click() })
+    expect(container.textContent).toContain('任务事件仍可稍后重新选择')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    const phase = inner.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(phase.payload.scene.status).toBe('active')
+    expect(phase.payload.scene.remainingTime).toBe(config.scene.totalTime)
+    expect(phase.payload.scene.backpack.items).toEqual([])
+    expect(phase.payload.scene.condition.pendingInfectionExposures).toBe(0)
+    expect(phase.payload.scene.taskEvents.entries).toContainEqual({
+      eventId: HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval,
+      status: 'available',
+    })
+    act(() => { button(container, '关闭结果').click() })
+    expect(container.textContent).toContain('放弃提取')
+  })
+
+  it('rejects overlapping, out-of-bounds, and over-carry task placement without dispatch or save', () => {
+    const cases = [
+      { phase: taskEventPhase({ materialWeight: 1 }), anchor: '金属零件 ×1' },
+      { phase: taskEventPhase(), anchor: '格子 6,4' },
+      { phase: taskEventPhase({ materialWeight: 25 }), anchor: '格子 1,2' },
+    ] as const
+    for (const entry of cases) {
+      const storage = new MemoryStorage()
+      const inner = createStableRunStore({ initialPhase: entry.phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+      const tracked = trackedStore(inner)
+      let notifications = 0
+      inner.subscribe(() => { notifications += 1 })
+      const before = inner.getState()
+      const container = document.createElement('div')
+      const root = createRoot(container); roots.push(root)
+      act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+      act(() => { button(container, '直接取出').click() })
+      if (entry.anchor !== null) act(() => { button(container, entry.anchor).click() })
+      expect(container.textContent).toContain('当前背包布局、位置或负重无法放置样本箱')
+      expect(button(container, '确认提取').disabled).toBe(true)
+      expect(tracked.commands).toHaveLength(0)
+      expect(storage.writes).toBe(0)
+      expect(notifications).toBe(0)
+      expect(inner.getState()).toBe(before)
+    }
+  })
+
+  it('keeps a near-zero extraction as one terminal Scene before explicit task-storage settlement', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: taskEventPhase({ remainingTime: 5, coatIntegrity: null }), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '直接取出').click() })
+    act(() => { button(container, '格子 1,1').click() })
+    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
+    expect(preview).toContain('行动前剩余时间5')
+    expect(preview).toContain('行动耗时10')
+    expect(preview).toContain('行动后剩余时间0')
+    expect(preview).toContain('超时债务5')
+    expect(preview).toContain('完成节点标本冷藏室')
+    expect(preview).toContain('有效紧急撤离时间')
+    expect(preview).toContain('强制返程基础损耗')
+    expect(preview).toContain('强制返程流血追加')
+    expect(preview).toContain('强制返程总损耗')
+    expect(preview).toContain('强制返程后生命')
+    expect(preview).toContain('死亡风险')
+    expect(preview).toContain('后续显式返程结算才会安全转入任务储存区')
+    act(() => { button(container, '确认提取').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    let phase = inner.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected terminal Scene')
+    expect(phase.payload.scene.status).toBe('forced-returned')
+    const caseBeforeReturn = phase.payload.scene.backpack.items.find(
+      ({ definitionId }) => definitionId === HOSPITAL_ITEM_IDS.sealedPathogenCase,
+    )
+    expect(caseBeforeReturn).toBeDefined()
+    expect(phase.payload.context.runReturnCarryForward.storedInventory.taskStorage.items).toEqual([])
+    expect(container.textContent).not.toContain('电梯中枢')
+    act(() => { button(container, '关闭结果').click() })
+    act(() => { button(container, '完成返程结算').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(2)
+    expect(storage.writes).toBe(2)
+    expect(notifications).toBe(2)
+    phase = inner.getState().phase
+    if (phase.kind !== 'current-day-hub') throw new Error('expected Hub')
+    const stored = phase.payload.runLoadout.taskStorage.items.find(
+      ({ definitionId }) => definitionId === HOSPITAL_ITEM_IDS.sealedPathogenCase,
+    )
+    expect(stored?.instanceId).toBe(caseBeforeReturn?.instanceId)
+    expect(phase.payload.runLoadout.warehouse.items).not.toContainEqual(expect.objectContaining({
+      definitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase,
+    }))
+    expect(container.textContent).toContain('带回任务物品密封病原样本箱 ×1')
+    expect(container.textContent).toContain('任务储存区')
+  })
+
+  it('retains an acquired case in a dead Scene after post-action bleeding without safe extraction', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: taskEventPhase({ currentHealth: 1, bleeding: true, remainingTime: 20, coatIntegrity: null }), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '直接取出').click() })
+    act(() => { button(container, '格子 1,1').click() })
+    expect(container.textContent).toContain('本次行动后玩家将死亡')
+    expect(container.textContent).toContain('样本箱不会安全入库')
+    act(() => { button(container, '确认提取').click() })
+    const phase = inner.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected dead Scene')
+    expect(phase.payload.scene.status).toBe('dead')
+    expect(phase.payload.scene.backpack.items).toContainEqual(expect.objectContaining({
+      definitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase,
+    }))
+    expect(phase.payload.context.runReturnCarryForward.storedInventory.taskStorage.items).toEqual([])
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(container.textContent).toContain('玩家已经死亡，样本箱不会安全入库')
+    expect(container.textContent).not.toContain('电梯中枢')
+  })
+
+  it('shows broken-coat direct risk and keeps overtime forced-return death in the terminal Scene', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: taskEventPhase({
+        currentHealth: 2,
+        remainingTime: 5,
+        coatIntegrity: 0,
+      }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '直接取出').click() })
+    act(() => { button(container, '格子 1,1').click() })
+    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
+    expect(preview).toContain('污染风险高')
+    expect(preview).toContain('厚实外套保护未生效')
+    expect(preview).not.toContain('外套完整度0 →')
+    expect(preview).toContain('强制返程后生命0')
+    expect(preview).toContain('死亡风险将死亡')
+    act(() => { button(container, '确认提取').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    const phase = inner.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected dead Scene')
+    expect(phase.payload.scene.status).toBe('dead')
+    expect(phase.payload.scene.backpack.items).toContainEqual(expect.objectContaining({
+      definitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase,
+    }))
+    expect(phase.payload.context.runReturnCarryForward.storedInventory.taskStorage.items).toEqual([])
+    expect(container.textContent).toContain('玩家已经死亡，样本箱不会安全入库')
+  })
+
+  it('closes a stale extraction preview after another formal command completes the event', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: taskEventPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={inner} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '直接取出').click() })
+    expect(container.querySelector('[role="dialog"]')).not.toBeNull()
+    const interaction = createStableRunUiInteractionModel(inner.getState().phase, uiDependencies)
+    const opportunity = interaction.taskEventOpportunities.find(({ label }) => label === '谨慎检查并提取')
+    if (!opportunity) throw new Error('expected cautious task event')
+    const safe = previewStableRunUiTaskEventDraft(inner.getState().phase, {
+      opportunityId: opportunity.id,
+      x: 0,
+      y: 0,
+      rotated: false,
+    }, uiDependencies)
+    if (!safe?.canExecute || !safe.command) throw new Error('expected formal task event command')
+    act(() => { inner.dispatch(safe.command!) })
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
+    expect(container.textContent).not.toContain('确认提取')
+    expect(container.textContent).not.toContain('直接取出')
+    expect(storage.writes).toBe(1)
+  })
+
+  it('keeps one committed task-event random outcome after save failure without retry or reroll', () => {
+    const storage = new FailingStorage()
+    const inner = createStableRunStore({ initialPhase: taskEventPhase({ coatIntegrity: null }), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '直接取出').click() })
+    act(() => { button(container, '格子 1,1').click() })
+    act(() => { button(container, '确认提取').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    expect(container.textContent).toContain('保存失败')
+    const phase = inner.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected committed Scene')
+    expect(phase.payload.scene.taskEvents.entries).toContainEqual({
+      eventId: HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval,
+      status: 'completed',
+    })
+    expect(phase.payload.scene.backpack.items).toContainEqual(expect.objectContaining({
+      definitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase,
+    }))
+    expect(phase.payload.scene.condition.pendingInfectionExposures).toBeGreaterThanOrEqual(0)
   })
 })

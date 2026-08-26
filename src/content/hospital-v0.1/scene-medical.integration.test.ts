@@ -211,14 +211,46 @@ describe('hospital non-combat scene medical', () => {
     ]) expect(serialized).not.toContain(hidden)
   })
 
-  it('uses the formal post-primary state and DEC-035 outcome in the safe medical preview', () => {
+  it('separates the medical completion node from the forced-return destination', () => {
+    const start = snapshot({
+      backpackItems: [item('hidden-forced-bandage', HOSPITAL_ITEM_IDS.bandage)],
+      currentHealth: 10,
+      remainingTime: 5,
+      currentNodeId: HOSPITAL_NODE_IDS.emergencyHall,
+    })
+    const preview = previewPlayerVisibleSceneMedicalCommand(
+      start,
+      backpackCommand('hidden-forced-bandage'),
+      dependencies,
+    )
+    expect(preview).toMatchObject({
+      canExecute: true,
+      result: {
+        completionNodeName: '急诊大厅',
+        finalSceneStatus: 'forced-returned',
+        returnContinuation: {
+          kind: 'terminal-returned',
+          terminalStatus: 'forced-returned',
+          destinationNodeName: '电梯前室',
+        },
+      },
+    })
+    const resolved = resolve(start, backpackCommand('hidden-forced-bandage'))
+    expect(resolved.snapshot).toMatchObject({
+      status: 'forced-returned',
+      currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
+    })
+  })
+
+  it('does not project a return continuation after positive-time post-action bleeding death', () => {
     const preview = previewPlayerVisibleSceneMedicalCommand(snapshot({
       backpackItems: [item('hidden-disinfectant', HOSPITAL_ITEM_IDS.disinfectant)],
       currentHealth: 1,
       bleeding: true,
       wounds: [{ id: 'hidden-bleeding-wound', kind: 'puncture', treatment: 'untreated' }],
       pendingInfectionExposures: 1,
-      remainingTime: 5,
+      remainingTime: 100,
+      currentNodeId: HOSPITAL_NODE_IDS.emergencyHall,
     }), backpackCommand('hidden-disinfectant'), dependencies)
     expect(preview).toMatchObject({
       canExecute: true,
@@ -230,17 +262,34 @@ describe('hospital non-combat scene medical', () => {
         disinfectantUsesBefore: 0,
         disinfectantUsesAfter: 1,
         actionTime: 10,
-        remainingTimeBefore: 5,
-        remainingTimeAfter: 0,
+        remainingTimeBefore: 100,
+        remainingTimeAfter: 90,
         postActionBleedingDamage: 1,
         finalHealth: 0,
         finalSceneStatus: 'dead',
+        completionNodeName: '急诊大厅',
+        returnContinuation: { kind: 'unavailable-due-to-death' },
         sceneOutcome: {
           kind: 'death',
-          overtimeDebt: 5,
+          overtimeDebt: 0,
           isDead: true,
         },
       },
+    })
+    const resolved = resolve(snapshot({
+      backpackItems: [item('positive-time-disinfectant', HOSPITAL_ITEM_IDS.disinfectant)],
+      currentHealth: 1,
+      bleeding: true,
+      wounds: [{ id: 'positive-time-wound', kind: 'puncture', treatment: 'untreated' }],
+      pendingInfectionExposures: 1,
+      remainingTime: 100,
+      currentNodeId: HOSPITAL_NODE_IDS.emergencyHall,
+    }), backpackCommand('positive-time-disinfectant'))
+    expect(resolved.snapshot).toMatchObject({
+      status: 'dead',
+      currentNodeId: HOSPITAL_NODE_IDS.emergencyHall,
+      remainingTime: 90,
+      condition: { currentHealth: 0, pendingInfectionExposures: 0 },
     })
   })
 

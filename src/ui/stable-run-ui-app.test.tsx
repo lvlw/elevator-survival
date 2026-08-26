@@ -2652,14 +2652,74 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('实际生命恢复0')
     expect(container.textContent).toContain('镇痛将生效')
     expect(container.textContent).toContain(`行动后预计返程${beforeReturn.result.returnRoute.baseReturnTime}`)
+    expect(container.textContent).not.toContain('settle-terminal-scene')
+    expect(container.textContent).not.toContain('terminal Scene Session')
     act(() => { button(container, '确认执行').click() })
     const after = store.getState().phase
     if (after.kind !== 'scene-session') throw new Error('expected Scene session')
     expect(after.payload.scene.condition).toMatchObject({ currentHealth: 9, painkillerActive: true })
     expect(container.textContent).toContain('镇痛已生效')
+    expect(container.textContent).toContain('本次医疗完成后可继续探索')
+    expect(container.textContent).not.toContain('settle-terminal-scene')
+    expect(container.textContent).not.toContain('terminal Scene Session')
     expect([...container.querySelectorAll('button')].some(
       (candidate) => candidate.textContent === '使用止痛药 · 背包格 3,1',
     )).toBe(false)
+  })
+
+  it('separates a non-safety medical completion node from its forced-return destination', () => {
+    const phase = sceneMedicalPhase({
+      backpack: [{ item: item('forced-hall-bandage', HOSPITAL_ITEM_IDS.bandage), x: 0, y: 0 }],
+      currentHealth: 10,
+      remainingTime: 5,
+      currentNodeId: HOSPITAL_NODE_IDS.emergencyHall,
+    })
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({
+      initialPhase: phase,
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '使用绷带 · 背包格 1,1').click() })
+    const preview = container.textContent ?? ''
+    expect(preview).toContain('完成节点急诊大厅')
+    expect(preview).toContain('强制返程目标电梯前室')
+    expect(preview).toContain('最终 Scene 状态forced-returned')
+    expect(preview).toContain('后续需要显式完成返程结算')
+    for (const hidden of [
+      'forced-hall-bandage',
+      'sceneInstanceId',
+      'runId',
+      'runSeed',
+      'rulesVersion',
+      'effects',
+      'snapshot',
+    ]) expect(container.innerHTML).not.toContain(hidden)
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    const after = tracked.store.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected forced-returned Scene session')
+    expect(after.payload.scene).toMatchObject({
+      status: 'forced-returned',
+      currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
+    })
+    const result = container.textContent ?? ''
+    expect(result).toContain('完成节点急诊大厅')
+    expect(result).toContain('当前节点电梯前室')
+    expect(result).toContain('当前为 forced-returned Scene Session')
+    for (const hidden of [
+      'forced-hall-bandage',
+      'sceneInstanceId',
+      'runId',
+      'runSeed',
+      'rulesVersion',
+      'effects',
+      'snapshot',
+    ]) expect(container.innerHTML).not.toContain(hidden)
   })
 
   it('commits disinfectant before post-action bleeding death and leaves terminal settlement explicit', () => {
@@ -2669,7 +2729,8 @@ describe('StableRunUiApp', () => {
       bleeding: true,
       openWounds: [{ id: 'scene-fatal-wound', kind: 'bite', treatment: 'untreated' }],
       pendingInfectionExposures: 1,
-      remainingTime: 30,
+      remainingTime: 100,
+      currentNodeId: HOSPITAL_NODE_IDS.emergencyHall,
     })
     const storage = new MemoryStorage()
     const tracked = trackedStore(createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
@@ -2678,8 +2739,22 @@ describe('StableRunUiApp', () => {
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '使用消毒剂 · 背包格 1,3').click() })
     expect(container.textContent).toContain('未结算感染暴露1 → 0')
+    expect(container.textContent).toContain('行动后剩余时间90')
     expect(container.textContent).toContain('行动后流血损失1')
     expect(container.textContent).toContain('行动完成后生命将归零')
+    expect(container.textContent).toContain('返程延续不适用；行动后流血致死')
+    expect(container.textContent).not.toContain('行动后返程预计剩余90')
+    expect(container.textContent).not.toContain('强制返程目标')
+    for (const hidden of [
+      'scene-disinfectant',
+      'scene-fatal-wound',
+      'sceneInstanceId',
+      'runId',
+      'runSeed',
+      'rulesVersion',
+      'effects',
+      'snapshot',
+    ]) expect(container.innerHTML).not.toContain(hidden)
     act(() => { button(container, '确认执行').click() })
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
@@ -2687,12 +2762,28 @@ describe('StableRunUiApp', () => {
     if (after.kind !== 'scene-session') throw new Error('expected dead Scene session')
     expect(after.payload.scene).toMatchObject({
       status: 'dead',
+      currentNodeId: HOSPITAL_NODE_IDS.emergencyHall,
+      remainingTime: 90,
       condition: { currentHealth: 0, pendingInfectionExposures: 0 },
       dailyMedicalUsage: { disinfectantUsesToday: 1 },
     })
     expect(after.payload.scene.backpack.items).toEqual([])
     expect(container.textContent).toContain('当前为 dead Scene Session')
     expect(container.textContent).toContain('结算战败')
+    expect(container.textContent).toContain('完成节点急诊大厅')
+    expect(container.textContent).toContain('当前节点急诊大厅')
+    expect(container.textContent).not.toContain('行动后预计返程')
+    expect(container.textContent).not.toContain('强制返程目标')
+    for (const hidden of [
+      'scene-disinfectant',
+      'scene-fatal-wound',
+      'sceneInstanceId',
+      'runId',
+      'runSeed',
+      'rulesVersion',
+      'effects',
+      'snapshot',
+    ]) expect(container.innerHTML).not.toContain(hidden)
     expect(tracked.commands).toHaveLength(1)
   })
 
@@ -2793,11 +2884,14 @@ describe('StableRunUiApp', () => {
       act(() => { button(container, '使用绷带 · 背包格 1,1').click() })
       if (remainingTime === 10) {
         expect(container.textContent).toContain('最终 Scene 状态safe-returned')
+        expect(container.textContent).toContain('本次只保存 safe-returned Scene Session')
+        expect(container.textContent).toContain('settle-terminal-scene')
         expect(container.textContent).not.toContain('超时债务')
       } else {
         expect(container.textContent).toContain('超时债务5')
         expect(container.textContent).toContain('有效紧急撤离时间5')
         expect(container.textContent).toContain('强制返程总损耗1')
+        expect(container.textContent).toContain('本次只保存 forced-returned Scene Session')
       }
       act(() => { button(container, '确认执行').click() })
       const after = store.getState().phase
@@ -2805,6 +2899,11 @@ describe('StableRunUiApp', () => {
       expect(after.payload.scene.status).toBe(expectedStatus)
       expect(storage.writes).toBe(1)
       expect(container.textContent).toContain('完成返程结算')
+      expect(container.textContent).toContain(
+        remainingTime === 10
+          ? '当前为 safe-returned Scene Session；下一步需要显式完成返程结算'
+          : '当前为 forced-returned Scene Session；下一步需要显式完成返程结算',
+      )
     }
   })
 

@@ -1,6 +1,7 @@
 import { deepFreeze } from '../config'
 import { getPlayerVisibleOpenWoundLabels } from '../condition'
 import type { TimedSceneActionOutcome } from '../scene'
+import type { ReturnRouteResult } from '../scene-graph'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
 import type { SceneExplorationErrorCode } from './scene-exploration-errors'
 import { previewSceneMedicalCommand } from './scene-medical-command'
@@ -35,6 +36,20 @@ export type PlayerVisibleSceneMedicalTarget =
     }>
   | Readonly<{ kind: 'minor-contusion' }>
 
+export type PlayerVisibleSceneMedicalReturnContinuation =
+  | Readonly<{
+      kind: 'available'
+      estimatedReturnTime: number
+      estimatedRemainingTimeAfterReturn: number
+    }>
+  | Readonly<{
+      kind: 'terminal-returned'
+      terminalStatus: 'safe-returned' | 'forced-returned'
+      estimatedReturnTime: number
+      destinationNodeName: string
+    }>
+  | Readonly<{ kind: 'unavailable-due-to-death' }>
+
 export interface PlayerVisibleSceneMedicalEvaluation {
   readonly medicalItem: SceneMedicalItemKind
   readonly source: PlayerVisibleSceneMedicalSource
@@ -58,8 +73,7 @@ export interface PlayerVisibleSceneMedicalEvaluation {
   readonly remainingTimeBefore: number
   readonly remainingTimeAfter: number
   readonly postActionBleedingDamage: number
-  readonly returnEstimateAfterAction: number
-  readonly estimatedRemainingTimeAfterReturn: number | null
+  readonly returnContinuation: PlayerVisibleSceneMedicalReturnContinuation
   readonly sceneOutcome: TimedSceneActionOutcome
   readonly finalHealth: number
   readonly finalSceneStatus: SceneExplorationStatus
@@ -120,17 +134,47 @@ function projectTarget(
   })
 }
 
-function estimatedRemainingAfterReturn(
-  snapshot: SceneExplorationSnapshot,
+function nodeName(
+  nodeId: string,
   dependencies: SceneMedicalCommandDependencies,
-): number | null {
-  if (snapshot.status !== 'active') return snapshot.remainingTime
+): string {
+  const node = dependencies.graph.nodes.find(({ id }) => id === nodeId)
+  if (!node) throw new Error('正式探索医疗结果引用未知节点')
+  return node.name
+}
+
+function projectReturnContinuation(
+  snapshot: SceneExplorationSnapshot,
+  returnRoute: ReturnRouteResult,
+  dependencies: SceneMedicalCommandDependencies,
+): PlayerVisibleSceneMedicalReturnContinuation {
+  if (snapshot.status === 'dead') {
+    return deepFreeze({ kind: 'unavailable-due-to-death' })
+  }
+  if (
+    snapshot.status === 'safe-returned' ||
+    snapshot.status === 'forced-returned'
+  ) {
+    return deepFreeze({
+      kind: 'terminal-returned',
+      terminalStatus: snapshot.status,
+      estimatedReturnTime: returnRoute.estimatedReturnTime,
+      destinationNodeName: nodeName(returnRoute.safetyNodeId, dependencies),
+    })
+  }
   const withdrawal = previewSceneWithdrawalCommand(
     snapshot,
     { kind: 'withdraw-from-scene' },
     dependencies,
   )
-  return withdrawal.canExecute ? withdrawal.result.snapshot.remainingTime : null
+  if (!withdrawal.canExecute) {
+    throw new Error('正式探索医疗后的活动场景缺少返程预览')
+  }
+  return deepFreeze({
+    kind: 'available',
+    estimatedReturnTime: withdrawal.result.returnRoute.estimatedReturnTime,
+    estimatedRemainingTimeAfterReturn: withdrawal.result.snapshot.remainingTime,
+  })
 }
 
 /**
@@ -159,11 +203,6 @@ export function previewPlayerVisibleSceneMedicalCommand(
   const dailyUsage = findEffect(result.effects, 'daily-medical-usage-changed')
   const time = findEffect(result.effects, 'scene-time-resolved')
   if (!consumed || !time) throw new Error('正式探索医疗计划缺少消费或时间事实')
-
-  const completionNode = dependencies.graph.nodes.find(
-    ({ id }) => id === result.snapshot.currentNodeId,
-  )
-  if (!completionNode) throw new Error('正式探索医疗结果引用未知节点')
 
   return deepFreeze({
     canExecute: true,
@@ -194,15 +233,15 @@ export function previewPlayerVisibleSceneMedicalCommand(
       remainingTimeBefore: time.remainingTimeBefore,
       remainingTimeAfter: time.remainingTimeAfter,
       postActionBleedingDamage: result.sceneOutcome.postActionBleedingDamage,
-      returnEstimateAfterAction: result.returnRoute.estimatedReturnTime,
-      estimatedRemainingTimeAfterReturn: estimatedRemainingAfterReturn(
+      returnContinuation: projectReturnContinuation(
         result.snapshot,
+        result.returnRoute,
         dependencies,
       ),
       sceneOutcome: result.sceneOutcome,
       finalHealth: result.sceneOutcome.vitals.currentHealth,
       finalSceneStatus: result.snapshot.status,
-      completionNodeName: completionNode.name,
+      completionNodeName: nodeName(snapshot.currentNodeId, dependencies),
     },
   })
 }

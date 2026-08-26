@@ -421,7 +421,9 @@ function SceneMedicalResultDialog({
       <div><dt>最终生命</dt><dd>{result.finalHealth}</dd></div>
       <div><dt>行动后流血损失</dt><dd>{result.postActionBleedingDamage}</dd></div>
       <div><dt>Scene 时间</dt><dd>{result.remainingTimeBefore} → {result.remainingTimeAfter}</dd></div>
-      <div><dt>行动后预计返程</dt><dd>{result.returnEstimateAfterAction}</dd></div>
+      <div><dt>完成节点</dt><dd>{result.completionNodeName}</dd></div>
+      <div><dt>当前节点</dt><dd>{result.finalNodeName}</dd></div>
+      {result.returnEstimateAfterAction !== null && <div><dt>行动后预计返程</dt><dd>{result.returnEstimateAfterAction}</dd></div>}
       <div><dt>当前 Scene 状态</dt><dd>{result.sceneStatus}</dd></div>
       {result.forcedReturnDamage > 0 && <div><dt>强制返程总损耗</dt><dd>{result.forcedReturnDamage}</dd></div>}
       {result.infectionExposureBefore !== result.infectionExposureAfter && <div><dt>未结算感染暴露</dt><dd>{result.infectionExposureBefore} → {result.infectionExposureAfter}</dd></div>}
@@ -432,6 +434,8 @@ function SceneMedicalResultDialog({
     {result.woundRemoved && <p>已移除：{result.woundRemoved}</p>}
     {result.minorContusionRemoved && <p>已移除：轻度挫伤</p>}
     {result.painkillerActivated && <p>镇痛已生效</p>}
+    {result.nextStep === 'continue-exploration' && <p>本次医疗完成后可继续探索。</p>}
+    {result.sceneStatus === 'safe-returned' && <p className="preview-warning">当前为 safe-returned Scene Session；下一步需要显式完成返程结算。</p>}
     {result.sceneStatus === 'forced-returned' && <p className="preview-warning">当前为 forced-returned Scene Session；下一步需要显式完成返程结算。</p>}
     {result.sceneStatus === 'dead' && <p className="preview-warning">当前为 dead Scene Session；下一步需要显式结算战败。</p>}
     <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
@@ -572,6 +576,7 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
         execution.phase,
         pendingAction.label,
         execution.result,
+        presentationDependencies,
       ))
     }
     if (

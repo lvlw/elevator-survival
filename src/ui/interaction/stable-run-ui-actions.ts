@@ -301,18 +301,34 @@ function medicalPreviewFacts(
     { label: '行动前剩余时间', value: String(result.remainingTimeBefore) },
     { label: '行动后剩余时间', value: String(result.remainingTimeAfter) },
     { label: '行动后流血损失', value: String(result.postActionBleedingDamage) },
-    { label: '行动后预计返程', value: String(result.returnEstimateAfterAction) },
-    {
-      label: '行动后返程预计剩余',
-      value: result.estimatedRemainingTimeAfterReturn === null
-        ? '当前不可预览'
-        : String(result.estimatedRemainingTimeAfterReturn),
-    },
     { label: '完成节点', value: result.completionNodeName },
     { label: '最终生命', value: String(result.finalHealth) },
     { label: '最终 Scene 状态', value: result.finalSceneStatus },
     ...timedOutcomeFacts(result.sceneOutcome),
   )
+  if (result.returnContinuation.kind === 'available') {
+    facts.push(
+      {
+        label: '行动后预计返程',
+        value: String(result.returnContinuation.estimatedReturnTime),
+      },
+      {
+        label: '行动后返程预计剩余',
+        value: String(result.returnContinuation.estimatedRemainingTimeAfterReturn),
+      },
+    )
+  } else if (result.returnContinuation.kind === 'terminal-returned') {
+    facts.push(
+      {
+        label: result.returnContinuation.terminalStatus === 'forced-returned'
+          ? '强制返程目标'
+          : '安全返回目标',
+        value: result.returnContinuation.destinationNodeName,
+      },
+    )
+  } else {
+    facts.push({ label: '返程延续', value: '不适用；行动后流血致死' })
+  }
   return Object.freeze(facts)
 }
 
@@ -321,10 +337,15 @@ function medicalPreviewWarnings(
 ): readonly string[] {
   const warnings = [...sceneOutcomeWarnings({
     outcome: result.sceneOutcome,
-    returnEstimate: result.returnEstimateAfterAction,
+    returnEstimate: result.returnContinuation.kind === 'unavailable-due-to-death'
+      ? 0
+      : result.returnContinuation.estimatedReturnTime,
   })]
   if (result.finalSceneStatus === 'forced-returned') {
     warnings.push('本次只保存 forced-returned Scene Session；后续需要显式完成返程结算。')
+  }
+  if (result.finalSceneStatus === 'safe-returned') {
+    warnings.push('本次只保存 safe-returned Scene Session；后续由显式 settle-terminal-scene 命令完成返程结算。')
   }
   if (result.finalSceneStatus === 'dead') {
     warnings.push('本次只保存 dead Scene Session；后续需要显式结算战败。')

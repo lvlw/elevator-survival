@@ -205,9 +205,12 @@ export interface SceneMedicalResultViewModel {
   readonly disinfectantUsesAfter: number
   readonly remainingTimeBefore: number
   readonly remainingTimeAfter: number
-  readonly returnEstimateAfterAction: number
+  readonly returnEstimateAfterAction: number | null
   readonly forcedReturnDamage: number
   readonly sceneStatus: 'active' | 'safe-returned' | 'forced-returned' | 'dead'
+  readonly completionNodeName: string
+  readonly finalNodeName: string
+  readonly nextStep: 'continue-exploration' | 'settle-return' | 'settle-failure'
 }
 
 export type StableRunPlayerViewModel =
@@ -792,6 +795,7 @@ export function createSceneMedicalResultViewModel(
   after: Extract<StableRunPhase, { kind: 'scene-session' }>,
   action: string,
   formalResolution: unknown,
+  dependencies: StableRunUiPresentationDependencies,
 ): SceneMedicalResultViewModel {
   const resolution = requireSceneMedicalResolution(formalResolution)
   const effects = resolution.result.effects
@@ -822,6 +826,14 @@ export function createSceneMedicalResultViewModel(
       })()
   if (afterScene.status === 'combat') {
     throw new Error('探索医疗结果不能进入战斗状态')
+  }
+  const identity = getStableRunPhaseIdentity(before)
+  const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
+  const runtime = getRunSceneRuntime(before.payload, rules.sceneLaunch)
+  const visibleNodeName = (nodeId: string) => {
+    const node = runtime.dependencies.graph.nodes.find(({ id }) => id === nodeId)
+    if (!node) throw new Error('探索医疗结果引用未知节点')
+    return node.name
   }
 
   return frozen({
@@ -856,8 +868,17 @@ export function createSceneMedicalResultViewModel(
       dailyUsage?.usesAfter ?? afterScene.dailyMedicalUsage.disinfectantUsesToday,
     remainingTimeBefore: time.remainingTimeBefore,
     remainingTimeAfter: time.remainingTimeAfter,
-    returnEstimateAfterAction: resolution.result.returnRoute.estimatedReturnTime,
+    returnEstimateAfterAction: afterScene.status === 'dead'
+      ? null
+      : resolution.result.returnRoute.estimatedReturnTime,
     forcedReturnDamage: resolution.result.sceneOutcome.forcedReturnTotalDamage,
     sceneStatus: afterScene.status,
+    completionNodeName: visibleNodeName(beforeScene.currentNodeId),
+    finalNodeName: visibleNodeName(afterScene.currentNodeId),
+    nextStep: afterScene.status === 'active'
+      ? 'continue-exploration'
+      : afterScene.status === 'dead'
+        ? 'settle-failure'
+        : 'settle-return',
   })
 }

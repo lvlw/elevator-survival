@@ -24,6 +24,13 @@ export { getPlayerVisibleSceneTaskEvents } from './scene-task-event-selectors'
 export {
   previewPlayerVisibleSceneTaskEventCommand,
 } from './player-visible-scene-task-event'
+export {
+  previewPlayerVisibleSceneMedicalCommand,
+  type PlayerVisibleSceneMedicalEvaluation,
+  type PlayerVisibleSceneMedicalPreview,
+  type PlayerVisibleSceneMedicalSource,
+  type PlayerVisibleSceneMedicalTarget,
+} from './player-visible-scene-medical'
 export { getAvailableSceneMedicalCommands } from './scene-medical-selectors'
 export { createUseSceneMedicalItemCommand } from './scene-medical-validation'
 export {

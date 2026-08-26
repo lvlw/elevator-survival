@@ -8,6 +8,7 @@ import {
   createSceneExplorationSnapshot,
   getAvailableSceneMedicalCommands,
   previewSceneMedicalCommand,
+  previewPlayerVisibleSceneMedicalCommand,
   resolveMainSearchCommand,
   resolveSceneInventoryCommand,
   resolveSceneMedicalCommand,
@@ -155,6 +156,94 @@ function effectKinds(effects: readonly SceneExplorationEffect[]) {
 }
 
 describe('hospital non-combat scene medical', () => {
+  it('projects formal medical, container, target, and timed facts without identities or raw plans', () => {
+    const start = snapshot({
+      backpackItems: [
+        item('hidden-bandage-a', HOSPITAL_ITEM_IDS.bandage, 2),
+        item('hidden-bandage-b', HOSPITAL_ITEM_IDS.bandage),
+      ],
+      quickSlots: [HOSPITAL_ITEM_IDS.bandage, null],
+      currentHealth: config.combat.player.maxHealth,
+      bleeding: true,
+      wounds: [
+        { id: 'hidden-a-treated-wound', kind: 'laceration', treatment: 'treated' },
+        { id: 'hidden-b-target-wound', kind: 'laceration', treatment: 'untreated' },
+      ],
+    })
+    const preview = previewPlayerVisibleSceneMedicalCommand(
+      start,
+      backpackCommand('hidden-bandage-b', {
+        kind: 'open-wound',
+        woundId: 'hidden-b-target-wound',
+      }),
+      dependencies,
+    )
+    expect(preview).toMatchObject({
+      canExecute: true,
+      result: {
+        medicalItem: 'bandage',
+        source: { container: 'backpack', column: 3, row: 1 },
+        target: {
+          kind: 'open-wound',
+          woundKind: 'laceration',
+          treatment: 'untreated',
+          ordinal: 2,
+        },
+        quantityBefore: 1,
+        quantityAfter: 0,
+        actualHealthRecovery: 0,
+        bleedingBefore: true,
+        bleedingAfterPrimaryEffect: false,
+        woundChange: 'treated',
+        postActionBleedingDamage: 0,
+        finalSceneStatus: 'active',
+      },
+    })
+    const serialized = JSON.stringify(preview)
+    for (const hidden of [
+      'hidden-bandage-a',
+      'hidden-bandage-b',
+      'hidden-a-treated-wound',
+      'hidden-b-target-wound',
+      'effects',
+      'snapshot',
+      'transitionPlan',
+    ]) expect(serialized).not.toContain(hidden)
+  })
+
+  it('uses the formal post-primary state and DEC-035 outcome in the safe medical preview', () => {
+    const preview = previewPlayerVisibleSceneMedicalCommand(snapshot({
+      backpackItems: [item('hidden-disinfectant', HOSPITAL_ITEM_IDS.disinfectant)],
+      currentHealth: 1,
+      bleeding: true,
+      wounds: [{ id: 'hidden-bleeding-wound', kind: 'puncture', treatment: 'untreated' }],
+      pendingInfectionExposures: 1,
+      remainingTime: 5,
+    }), backpackCommand('hidden-disinfectant'), dependencies)
+    expect(preview).toMatchObject({
+      canExecute: true,
+      result: {
+        medicalItem: 'disinfectant',
+        infectionExposureBefore: 1,
+        actualInfectionExposureReduction: 1,
+        infectionExposureAfter: 0,
+        disinfectantUsesBefore: 0,
+        disinfectantUsesAfter: 1,
+        actionTime: 10,
+        remainingTimeBefore: 5,
+        remainingTimeAfter: 0,
+        postActionBleedingDamage: 1,
+        finalHealth: 0,
+        finalSceneStatus: 'dead',
+        sceneOutcome: {
+          kind: 'death',
+          overtimeDebt: 5,
+          isDead: true,
+        },
+      },
+    })
+  })
+
   it('uses one manually split quick-slot unit, never auto-refills, and requires a second explicit transfer', () => {
     const start = snapshot({
       backpackItems: [item('bandage-stack', HOSPITAL_ITEM_IDS.bandage, 2)],

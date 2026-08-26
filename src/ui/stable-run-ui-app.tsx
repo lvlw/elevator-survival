@@ -12,6 +12,7 @@ import {
 import {
   createReturnSummaryViewModel,
   createCombatActionResultViewModel,
+  createSceneMedicalResultViewModel,
   createStableRunPlayerViewModel,
   createTaskEventResultViewModel,
   type PlayerVisibleItemViewModel,
@@ -20,6 +21,7 @@ import {
   type PlayerVisibleStatusBarViewModel,
   type ReturnSummaryViewModel,
   type CombatActionResultViewModel,
+  type SceneMedicalResultViewModel,
   type TaskEventResultViewModel,
   type StableRunPlayerViewModel,
   type StableRunUiPresentationDependencies,
@@ -404,6 +406,38 @@ function TaskEventResultDialog({
   </section></div>
 }
 
+function SceneMedicalResultDialog({
+  result,
+  onClose,
+}: Readonly<{ result: SceneMedicalResultViewModel; onClose(): void }>) {
+  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="scene-medical-result-title">
+    <h2 id="scene-medical-result-title">场景医疗结果</h2>
+    <dl className="preview-facts">
+      <div><dt>行动</dt><dd>{result.action}</dd></div>
+      <div><dt>来源</dt><dd>{result.source}</dd></div>
+      <div><dt>消耗</dt><dd>{result.itemConsumed}</dd></div>
+      <div><dt>生命（主要效果）</dt><dd>{result.healthBefore} → {result.healthAfterPrimaryEffect}</dd></div>
+      <div><dt>实际恢复</dt><dd>{result.actualHealthRecovery}</dd></div>
+      <div><dt>最终生命</dt><dd>{result.finalHealth}</dd></div>
+      <div><dt>行动后流血损失</dt><dd>{result.postActionBleedingDamage}</dd></div>
+      <div><dt>Scene 时间</dt><dd>{result.remainingTimeBefore} → {result.remainingTimeAfter}</dd></div>
+      <div><dt>行动后预计返程</dt><dd>{result.returnEstimateAfterAction}</dd></div>
+      <div><dt>当前 Scene 状态</dt><dd>{result.sceneStatus}</dd></div>
+      {result.forcedReturnDamage > 0 && <div><dt>强制返程总损耗</dt><dd>{result.forcedReturnDamage}</dd></div>}
+      {result.infectionExposureBefore !== result.infectionExposureAfter && <div><dt>未结算感染暴露</dt><dd>{result.infectionExposureBefore} → {result.infectionExposureAfter}</dd></div>}
+      {result.disinfectantUsesBefore !== result.disinfectantUsesAfter && <div><dt>今日消毒剂</dt><dd>{result.disinfectantUsesBefore} → {result.disinfectantUsesAfter}</dd></div>}
+    </dl>
+    {result.bleedingStopped && <p>流血：已停止</p>}
+    {result.woundTreated && <p>已处理：{result.woundTreated}</p>}
+    {result.woundRemoved && <p>已移除：{result.woundRemoved}</p>}
+    {result.minorContusionRemoved && <p>已移除：轻度挫伤</p>}
+    {result.painkillerActivated && <p>镇痛已生效</p>}
+    {result.sceneStatus === 'forced-returned' && <p className="preview-warning">当前为 forced-returned Scene Session；下一步需要显式完成返程结算。</p>}
+    {result.sceneStatus === 'dead' && <p className="preview-warning">当前为 dead Scene Session；下一步需要显式结算战败。</p>}
+    <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
+  </section></div>
+}
+
 function ActionPreviewDialog({
   preview,
   onCancel,
@@ -468,6 +502,7 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
   const [returnSummary, setReturnSummary] = useState<ReturnSummaryViewModel | null>(null)
   const [combatActionResult, setCombatActionResult] = useState<CombatActionResultViewModel | null>(null)
   const [taskEventResult, setTaskEventResult] = useState<TaskEventResultViewModel | null>(null)
+  const [sceneMedicalResult, setSceneMedicalResult] = useState<SceneMedicalResultViewModel | null>(null)
   const [persistenceFeedback, setPersistenceFeedback] = useState<string | null>(null)
   const pendingAction = interaction.actions.find(({ id }) => id === pendingActionId) ?? null
   const pendingPickup = interaction.pickupOpportunities.find(({ id }) => id === pendingPickupId) ?? null
@@ -525,6 +560,18 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
         execution.phase,
         pendingAction.label,
         presentationDependencies,
+      ))
+    }
+    if (
+      pendingAction.kind === 'scene-medical' &&
+      beforePhase.kind === 'scene-session' &&
+      execution.phase.kind === 'scene-session'
+    ) {
+      setSceneMedicalResult(createSceneMedicalResultViewModel(
+        beforePhase,
+        execution.phase,
+        pendingAction.label,
+        execution.result,
       ))
     }
     if (
@@ -599,6 +646,7 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
     {returnSummary && <ReturnSummaryDialog summary={returnSummary} onClose={() => setReturnSummary(null)} />}
     {combatActionResult && <CombatActionResultDialog result={combatActionResult} onClose={() => setCombatActionResult(null)} />}
     {taskEventResult && <TaskEventResultDialog result={taskEventResult} onClose={() => setTaskEventResult(null)} />}
+    {sceneMedicalResult && <SceneMedicalResultDialog result={sceneMedicalResult} onClose={() => setSceneMedicalResult(null)} />}
     {import.meta.env.DEV && <DevInspector phase={snapshot.phase} />}
   </>
 }

@@ -216,6 +216,92 @@ function withRemainingTime(
   return createRunSceneSessionSnapshot({ context: session.context, scene }, hospitalSceneLaunchDependencies)
 }
 
+function sceneMedicalPhase(options: Readonly<{
+  backpack?: readonly Readonly<{
+    item: ItemInstance
+    x: number
+    y: number
+  }>[]
+  quickSlots?: readonly (ItemInstance | null)[]
+  currentHealth?: number
+  bleeding?: boolean
+  openWounds?: readonly Readonly<{
+    id: string
+    kind: 'laceration' | 'puncture' | 'bite'
+    treatment: 'untreated' | 'treated'
+  }>[]
+  minorContusions?: number
+  painkillerActive?: boolean
+  pendingInfectionExposures?: number
+  disinfectantUsesToday?: number
+  remainingTime?: number
+  currentNodeId?: string
+}> = {}) {
+  const session = sceneSessionAtEmergencyHall()
+  const runtime = getRunSceneRuntime(session, hospitalSceneLaunchDependencies)
+  const backpackEntries = options.backpack ?? []
+  const quickSlots = options.quickSlots ?? [null, null]
+  const backpack = createBackpackSnapshot({
+    width: config.backpack.width,
+    height: config.backpack.height,
+    items: backpackEntries.map(({ item: carried }) => carried),
+    placements: backpackEntries.map(({ item: carried, x, y }) => ({
+      instanceId: carried.instanceId,
+      x,
+      y,
+      rotated: false,
+    })),
+  }, hospitalItemCatalog)
+  const quick = createQuickSlotSnapshot(
+    quickSlots,
+    config.backpack.quickSlotCount,
+    hospitalItemCatalog,
+    hospitalItemQuickSlotCatalog,
+  )
+  const equipmentIds = new Set(Object.values(session.scene.equipment)
+    .filter((candidate): candidate is ItemInstance => candidate !== null)
+    .map(({ instanceId }) => instanceId))
+  const newItems = [
+    ...backpack.items,
+    ...quick.slots.filter((candidate): candidate is ItemInstance => candidate !== null),
+  ]
+  const condition = createPlayerCondition({
+    currentHealth: options.currentHealth ?? config.combat.player.maxHealth,
+    bleeding: options.bleeding ?? false,
+    openWounds: options.openWounds ?? [],
+    minorContusions: options.minorContusions ?? 0,
+    painkillerActive: options.painkillerActive ?? false,
+    pendingInfectionExposures: options.pendingInfectionExposures ?? 0,
+  }, config.combat.player)
+  const scene = createSceneExplorationSnapshot({
+    ...session.scene,
+    currentNodeId: options.currentNodeId ?? session.scene.currentNodeId,
+    remainingTime: options.remainingTime ?? session.scene.remainingTime,
+    backpack,
+    quickSlots: quick,
+    condition,
+    dailyMedicalUsage: {
+      disinfectantUsesToday: options.disinfectantUsesToday ?? 0,
+    },
+    itemStates: {
+      states: [
+        ...session.scene.itemStates.states.filter(({ instanceId }) => equipmentIds.has(instanceId)),
+        ...newItems.map((carried) => createFullItemState(
+          carried,
+          hospitalItemResourceCatalog,
+        )),
+      ],
+    },
+  }, runtime.dependencies)
+  return {
+    kind: 'scene-session' as const,
+    payload: createRunSceneSessionSnapshot({
+      context: session.context,
+      scene,
+    }, hospitalSceneLaunchDependencies),
+  }
+}
+
 function terminalSafeSession() {
   const launched = resolveSceneLaunch(
     createHubPhase().payload,
@@ -2432,5 +2518,402 @@ describe('StableRunUiApp', () => {
       definitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase,
     }))
     expect(phase.payload.scene.condition.pendingInfectionExposures).toBeGreaterThanOrEqual(0)
+  })
+
+  it('maps every formal non-combat medical source and target to identity-safe player actions', () => {
+    const phase = sceneMedicalPhase({
+      backpack: [
+        { item: { ...item('hidden-bandage-a', HOSPITAL_ITEM_IDS.bandage), quantity: 2 }, x: 0, y: 0 },
+        { item: item('hidden-bandage-b', HOSPITAL_ITEM_IDS.bandage), x: 3, y: 1 },
+      ],
+      quickSlots: [item('hidden-quick-bandage', HOSPITAL_ITEM_IDS.bandage), null],
+      bleeding: true,
+      openWounds: [
+        { id: 'hidden-a-treated-wound', kind: 'laceration', treatment: 'treated' },
+        { id: 'hidden-b-target-wound', kind: 'laceration', treatment: 'untreated' },
+      ],
+    })
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    const labels = [
+      '使用绷带 · 背包格 1,1 · 处理撕裂伤 2',
+      '使用绷带 · 背包格 4,2 · 处理撕裂伤 2',
+      '使用绷带 · 快捷栏1 · 处理撕裂伤 2',
+    ]
+    for (const label of labels) expect(button(container, label)).toBeInstanceOf(HTMLButtonElement)
+    act(() => { button(container, labels[1]!).click() })
+    expect(container.textContent).toContain('实际生命恢复0')
+    expect(container.textContent).toContain('流血（主要效果）是 → 否')
+    expect(container.textContent).toContain('处理伤口撕裂伤 2')
+    expect(container.textContent).toContain('行动后流血损失0')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    const html = container.innerHTML
+    for (const hidden of [
+      'hidden-bandage-a',
+      'hidden-bandage-b',
+      'hidden-quick-bandage',
+      'hidden-a-treated-wound',
+      'hidden-b-target-wound',
+      'itemInstanceId',
+      'woundId',
+      'sceneInstanceId',
+      'rulesVersion',
+      'transitionPlan',
+    ]) expect(html).not.toContain(hidden)
+  })
+
+  it('consumes only the selected quick-slot bandage and never refills it from the backpack', () => {
+    const phase = sceneMedicalPhase({
+      backpack: [{ item: { ...item('scene-backpack-bandage', HOSPITAL_ITEM_IDS.bandage), quantity: 2 }, x: 0, y: 0 }],
+      quickSlots: [item('scene-quick-bandage', HOSPITAL_ITEM_IDS.bandage), null],
+      currentHealth: 10,
+      bleeding: true,
+      openWounds: [{ id: 'scene-bandage-wound', kind: 'puncture', treatment: 'untreated' }],
+    })
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '使用绷带 · 快捷栏1 · 处理穿刺伤 1').click() })
+    act(() => { button(container, '确认执行').click() })
+    const after = store.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(after.payload.scene.quickSlots.slots[0]).toBeNull()
+    expect(after.payload.scene.backpack.items).toContainEqual(expect.objectContaining({
+      instanceId: 'scene-backpack-bandage',
+      quantity: 2,
+    }))
+    expect(after.payload.scene.condition).toMatchObject({
+      currentHealth: 11,
+      bleeding: false,
+      openWounds: [expect.objectContaining({ treatment: 'treated' })],
+    })
+    expect(storage.writes).toBe(1)
+    expect(container.textContent).toContain('场景医疗结果')
+    expect(container.textContent).toContain('来源快捷栏1')
+    expect(container.textContent).toContain('流血：已停止')
+  })
+
+  it('consumes one real unit from the selected backpack medical stack', () => {
+    const phase = sceneMedicalPhase({
+      backpack: [{
+        item: { ...item('scene-bandage-stack', HOSPITAL_ITEM_IDS.bandage), quantity: 2 },
+        x: 2,
+        y: 1,
+      }],
+      currentHealth: 10,
+    })
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '使用绷带 · 背包格 3,2').click() })
+    expect(container.textContent).toContain('物品数量2 → 1')
+    act(() => { button(container, '确认执行').click() })
+    const after = store.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(after.payload.scene.backpack.items).toEqual([{
+      instanceId: 'scene-bandage-stack',
+      definitionId: HOSPITAL_ITEM_IDS.bandage,
+      quantity: 1,
+    }])
+    expect(getItemState(after.payload.scene.itemStates, 'scene-bandage-stack')).toMatchObject({
+      definitionId: HOSPITAL_ITEM_IDS.bandage,
+      resource: { kind: 'none' },
+    })
+  })
+
+  it('previews and commits painkiller without healing while using the post-analgesia return route', () => {
+    const phase = sceneMedicalPhase({
+      backpack: [{ item: item('scene-painkiller', HOSPITAL_ITEM_IDS.painkiller), x: 2, y: 0 }],
+      currentHealth: 9,
+      minorContusions: 1,
+    })
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const beforeReturn = previewSceneWithdrawalCommand(
+      phase.payload.scene,
+      createWithdrawFromSceneCommand({ kind: 'withdraw-from-scene' }),
+      getRunSceneRuntime(phase.payload, hospitalSceneLaunchDependencies).dependencies,
+    )
+    if (!beforeReturn.canExecute) throw new Error('expected withdrawal preview')
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '使用止痛药 · 背包格 3,1').click() })
+    expect(container.textContent).toContain('实际生命恢复0')
+    expect(container.textContent).toContain('镇痛将生效')
+    expect(container.textContent).toContain(`行动后预计返程${beforeReturn.result.returnRoute.baseReturnTime}`)
+    act(() => { button(container, '确认执行').click() })
+    const after = store.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(after.payload.scene.condition).toMatchObject({ currentHealth: 9, painkillerActive: true })
+    expect(container.textContent).toContain('镇痛已生效')
+    expect([...container.querySelectorAll('button')].some(
+      (candidate) => candidate.textContent === '使用止痛药 · 背包格 3,1',
+    )).toBe(false)
+  })
+
+  it('commits disinfectant before post-action bleeding death and leaves terminal settlement explicit', () => {
+    const phase = sceneMedicalPhase({
+      backpack: [{ item: item('scene-disinfectant', HOSPITAL_ITEM_IDS.disinfectant), x: 0, y: 2 }],
+      currentHealth: 1,
+      bleeding: true,
+      openWounds: [{ id: 'scene-fatal-wound', kind: 'bite', treatment: 'untreated' }],
+      pendingInfectionExposures: 1,
+      remainingTime: 30,
+    })
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '使用消毒剂 · 背包格 1,3').click() })
+    expect(container.textContent).toContain('未结算感染暴露1 → 0')
+    expect(container.textContent).toContain('行动后流血损失1')
+    expect(container.textContent).toContain('行动完成后生命将归零')
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    const after = tracked.store.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected dead Scene session')
+    expect(after.payload.scene).toMatchObject({
+      status: 'dead',
+      condition: { currentHealth: 0, pendingInfectionExposures: 0 },
+      dailyMedicalUsage: { disinfectantUsesToday: 1 },
+    })
+    expect(after.payload.scene.backpack.items).toEqual([])
+    expect(container.textContent).toContain('当前为 dead Scene Session')
+    expect(container.textContent).toContain('结算战败')
+    expect(tracked.commands).toHaveLength(1)
+  })
+
+  it('commits painkiller activation before post-action bleeding death', () => {
+    const phase = sceneMedicalPhase({
+      backpack: [{ item: item('fatal-scene-painkiller', HOSPITAL_ITEM_IDS.painkiller), x: 1, y: 0 }],
+      currentHealth: 1,
+      bleeding: true,
+      openWounds: [{ id: 'fatal-painkiller-wound', kind: 'puncture', treatment: 'untreated' }],
+    })
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '使用止痛药 · 背包格 2,1').click() })
+    expect(container.textContent).toContain('镇痛将生效')
+    expect(container.textContent).toContain('行动后流血损失1')
+    act(() => { button(container, '确认执行').click() })
+    const after = store.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected dead Scene session')
+    expect(after.payload.scene).toMatchObject({
+      status: 'dead',
+      condition: { currentHealth: 0, painkillerActive: true },
+    })
+    expect(after.payload.scene.backpack.items).toEqual([])
+    expect(storage.writes).toBe(1)
+  })
+
+  it('keeps first-aid target truth for treated wounds and contusions without generic auto-stop-bleeding', () => {
+    const phase = sceneMedicalPhase({
+      backpack: [
+        { item: item('scene-first-aid-a', HOSPITAL_ITEM_IDS.firstAidKit), x: 0, y: 0 },
+        { item: item('scene-first-aid-b', HOSPITAL_ITEM_IDS.firstAidKit), x: 2, y: 0 },
+      ],
+      currentHealth: 8,
+      bleeding: true,
+      openWounds: [
+        { id: 'scene-treated-wound', kind: 'laceration', treatment: 'treated' },
+        { id: 'scene-untreated-wound', kind: 'bite', treatment: 'untreated' },
+      ],
+      minorContusions: 1,
+    })
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    expect(button(container, '使用急救包 · 背包格 1,1 · 移除撕裂伤 1')).toBeInstanceOf(HTMLButtonElement)
+    act(() => { button(container, '使用急救包 · 背包格 3,1 · 移除轻度挫伤').click() })
+    expect(container.textContent).toContain('行动后流血损失1')
+    act(() => { button(container, '确认执行').click() })
+    const after = store.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(after.payload.scene.condition).toMatchObject({ minorContusions: 0, bleeding: true, currentHealth: 11 })
+    expect(container.textContent).toContain('已移除：轻度挫伤')
+  })
+
+  it('uses the formal first-aid last-untreated-wound rule before post-action bleeding', () => {
+    const phase = sceneMedicalPhase({
+      backpack: [{ item: item('scene-last-wound-first-aid', HOSPITAL_ITEM_IDS.firstAidKit), x: 1, y: 1 }],
+      currentHealth: config.combat.player.maxHealth,
+      bleeding: true,
+      openWounds: [{ id: 'scene-last-open-wound', kind: 'bite', treatment: 'untreated' }],
+    })
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '使用急救包 · 背包格 2,2 · 移除咬伤 1').click() })
+    expect(container.textContent).toContain('实际生命恢复0')
+    expect(container.textContent).toContain('流血（主要效果）是 → 否')
+    expect(container.textContent).toContain('行动后流血损失0')
+    act(() => { button(container, '确认执行').click() })
+    const after = store.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(after.payload.scene.condition).toMatchObject({
+      currentHealth: config.combat.player.maxHealth,
+      bleeding: false,
+      openWounds: [],
+    })
+  })
+
+  it('distinguishes exact-zero safety return from near-zero overtime medical return', () => {
+    const make = (remainingTime: number) => sceneMedicalPhase({
+      backpack: [{ item: item(`scene-exact-bandage-${remainingTime}`, HOSPITAL_ITEM_IDS.bandage), x: 0, y: 0 }],
+      currentHealth: 10,
+      currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
+      remainingTime,
+    })
+    for (const [remainingTime, expectedStatus] of [[10, 'safe-returned'], [5, 'forced-returned']] as const) {
+      const storage = new MemoryStorage()
+      const store = createStableRunStore({ initialPhase: make(remainingTime), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+      const container = document.createElement('div')
+      const root = createRoot(container); roots.push(root)
+      act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+      act(() => { button(container, '使用绷带 · 背包格 1,1').click() })
+      if (remainingTime === 10) {
+        expect(container.textContent).toContain('最终 Scene 状态safe-returned')
+        expect(container.textContent).not.toContain('超时债务')
+      } else {
+        expect(container.textContent).toContain('超时债务5')
+        expect(container.textContent).toContain('有效紧急撤离时间5')
+        expect(container.textContent).toContain('强制返程总损耗1')
+      }
+      act(() => { button(container, '确认执行').click() })
+      const after = store.getState().phase
+      if (after.kind !== 'scene-session') throw new Error('expected terminal Scene')
+      expect(after.payload.scene.status).toBe(expectedStatus)
+      expect(storage.writes).toBe(1)
+      expect(container.textContent).toContain('完成返程结算')
+    }
+  })
+
+  it('invalidates stale medical source, target, and daily-state previews after canonical changes', () => {
+    const cases = [
+      {
+        phase: sceneMedicalPhase({
+          backpack: [{ item: item('stale-source-bandage', HOSPITAL_ITEM_IDS.bandage), x: 0, y: 0 }],
+          currentHealth: 10,
+        }),
+        openLabel: '使用绷带 · 背包格 1,1',
+        externalLabel: '使用绷带 · 背包格 1,1',
+      },
+      {
+        phase: sceneMedicalPhase({
+          backpack: [
+            { item: item('stale-target-bandage-a', HOSPITAL_ITEM_IDS.bandage), x: 0, y: 0 },
+            { item: item('stale-target-bandage-b', HOSPITAL_ITEM_IDS.bandage), x: 2, y: 0 },
+          ],
+          bleeding: true,
+          openWounds: [{ id: 'stale-target-wound', kind: 'laceration', treatment: 'untreated' }],
+        }),
+        openLabel: '使用绷带 · 背包格 1,1 · 处理撕裂伤 1',
+        externalLabel: '使用绷带 · 背包格 3,1 · 处理撕裂伤 1',
+      },
+      {
+        phase: sceneMedicalPhase({
+          backpack: [
+            { item: item('stale-daily-disinfectant-a', HOSPITAL_ITEM_IDS.disinfectant), x: 0, y: 0 },
+            { item: item('stale-daily-disinfectant-b', HOSPITAL_ITEM_IDS.disinfectant), x: 2, y: 0 },
+          ],
+          pendingInfectionExposures: 2,
+        }),
+        openLabel: '使用消毒剂 · 背包格 1,1',
+        externalLabel: '使用消毒剂 · 背包格 3,1',
+      },
+      {
+        phase: sceneMedicalPhase({
+          backpack: [
+            { item: item('stale-analgesia-painkiller-a', HOSPITAL_ITEM_IDS.painkiller), x: 0, y: 0 },
+            { item: item('stale-analgesia-painkiller-b', HOSPITAL_ITEM_IDS.painkiller), x: 2, y: 0 },
+          ],
+          minorContusions: 1,
+        }),
+        openLabel: '使用止痛药 · 背包格 1,1',
+        externalLabel: '使用止痛药 · 背包格 3,1',
+      },
+    ]
+    for (const { phase, openLabel, externalLabel } of cases) {
+      const storage = new MemoryStorage()
+      const store = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+      const interaction = createStableRunUiInteractionModel(store.getState().phase, uiDependencies)
+      const external = interaction.actions.find(({ label }) => label === externalLabel)
+      if (!external) throw new Error('expected external medical action')
+      const container = document.createElement('div')
+      const root = createRoot(container); roots.push(root)
+      act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+      act(() => { button(container, openLabel).click() })
+      expect(container.querySelector('[role="dialog"]')).not.toBeNull()
+      act(() => { store.dispatch(external.command) })
+      expect(container.querySelector('[role="dialog"]')).toBeNull()
+      expect(storage.writes).toBe(1)
+    }
+  })
+
+  it('retains committed disinfectant effects after one failed save without retry or rollback', () => {
+    const phase = sceneMedicalPhase({
+      backpack: [{ item: item('failed-save-disinfectant', HOSPITAL_ITEM_IDS.disinfectant), x: 0, y: 0 }],
+      pendingInfectionExposures: 2,
+    })
+    const storage = new FailingStorage()
+    const inner = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '使用消毒剂 · 背包格 1,1').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    const after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected committed Scene')
+    expect(after.payload.scene.condition.pendingInfectionExposures).toBe(1)
+    expect(after.payload.scene.dailyMedicalUsage.disinfectantUsesToday).toBe(1)
+    expect(after.payload.scene.backpack.items).toEqual([])
+    expect(container.textContent).toContain('保存失败')
+  })
+
+  it('keeps Scene Medical StrictMode mount and Preview side-effect free', () => {
+    const phase = sceneMedicalPhase({
+      backpack: [{ item: item('strict-medical-bandage', HOSPITAL_ITEM_IDS.bandage), x: 0, y: 0 }],
+      currentHealth: 10,
+    })
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    const before = inner.getState()
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StrictMode><StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} /></StrictMode>) })
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(inner.getState()).toBe(before)
+    act(() => { button(container, '使用绷带 · 背包格 1,1').click() })
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(inner.getState()).toBe(before)
   })
 })

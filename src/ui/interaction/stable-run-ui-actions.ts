@@ -2,21 +2,26 @@ import {
   createPerformMainSearchCommand,
   createPerformSceneObstacleOptionCommand,
   createPerformSceneTaskEventCommand,
+  createUseSceneMedicalItemCommand,
   createMoveThroughSceneEdgeCommand,
   createPickUpRevealedNodeItemCommand,
   createWithdrawFromSceneCommand,
   getPlayerVisibleSceneNodeState,
   getPlayerVisibleSceneObstacles,
   getPlayerVisibleSceneTaskEvents,
+  getAvailableSceneMedicalCommands,
   getPlayerVisibleSceneCombatActionOptions,
   previewMainSearchCommand,
   previewNodeItemPickupCommand,
   previewSceneMoveCommand,
   previewPlayerVisibleSceneTaskEventCommand,
+  previewPlayerVisibleSceneMedicalCommand,
   previewSceneWithdrawalCommand,
   type SearchIlluminationChoice,
   type SceneExplorationEffect,
   type SceneTaskRiskTier,
+  type PlayerVisibleSceneMedicalEvaluation,
+  type UseSceneMedicalItemCommand,
 } from '../../core/scene-exploration'
 import type { PlayerVisibleCombatActionPreview } from '../../core/combat'
 import type { CombatPlayerActionCommand } from '../../core/combat'
@@ -48,6 +53,7 @@ export type StableRunUiActionKind =
   | 'scene-main-search'
   | 'scene-obstacle'
   | 'scene-task-event'
+  | 'scene-medical'
   | 'scene-combat-action'
   | 'scene-withdraw'
   | 'settle-terminal-scene'
@@ -196,13 +202,134 @@ function timedOutcomeFacts(
 }
 
 function applicationSceneCommand(
-  kind: 'scene-move' | 'scene-main-search' | 'scene-node-item-pickup' | 'scene-withdraw' | 'scene-obstacle' | 'scene-task-event' | 'scene-combat-action',
+  kind: 'scene-move' | 'scene-main-search' | 'scene-node-item-pickup' | 'scene-withdraw' | 'scene-obstacle' | 'scene-task-event' | 'scene-medical' | 'scene-combat-action',
   command: unknown,
 ): StableRunApplicationCommand {
   return createStableRunApplicationCommand({
     kind: 'scene',
     command: { kind, command },
   })
+}
+
+function medicalItemName(kind: PlayerVisibleSceneMedicalEvaluation['medicalItem']): string {
+  return kind === 'bandage'
+    ? '绷带'
+    : kind === 'painkiller'
+      ? '止痛药'
+      : kind === 'disinfectant'
+        ? '消毒剂'
+        : '急救包'
+}
+
+function medicalSourceLabel(result: PlayerVisibleSceneMedicalEvaluation): string {
+  return result.source.container === 'backpack'
+    ? `背包格 ${result.source.column},${result.source.row}`
+    : `快捷栏${result.source.slotNumber}`
+}
+
+function medicalTargetLabel(result: PlayerVisibleSceneMedicalEvaluation): string | null {
+  if (result.target.kind === 'none') return null
+  if (result.target.kind === 'minor-contusion') return '轻度挫伤'
+  return `${woundKindName(result.target.woundKind)} ${result.target.ordinal}`
+}
+
+function medicalActionId(command: UseSceneMedicalItemCommand): string {
+  const source = command.source.container === 'backpack'
+    ? `backpack:${command.source.itemInstanceId}`
+    : `quick-slot:${command.source.quickSlotIndex}`
+  const target = command.target?.kind === 'open-wound'
+    ? `open-wound:${command.target.woundId}`
+    : command.target?.kind ?? 'none'
+  return `scene-medical:${source}:${target}`
+}
+
+function medicalActionLabel(result: PlayerVisibleSceneMedicalEvaluation): string {
+  const item = medicalItemName(result.medicalItem)
+  const source = medicalSourceLabel(result)
+  const target = medicalTargetLabel(result)
+  if (!target) return `使用${item} · ${source}`
+  return result.medicalItem === 'bandage'
+    ? `使用${item} · ${source} · 处理${target}`
+    : `使用${item} · ${source} · 移除${target}`
+}
+
+function medicalPreviewFacts(
+  result: PlayerVisibleSceneMedicalEvaluation,
+): readonly StableRunUiActionPreviewFact[] {
+  const facts: StableRunUiActionPreviewFact[] = [
+    { label: '使用', value: medicalItemName(result.medicalItem) },
+    { label: '来源', value: medicalSourceLabel(result) },
+    { label: '物品数量', value: `${result.quantityBefore} → ${result.quantityAfter}` },
+    { label: '行动时间', value: String(result.actionTime) },
+    {
+      label: '生命（主要效果）',
+      value: `${result.healthBefore} → ${result.healthAfterPrimaryEffect}`,
+    },
+    { label: '实际生命恢复', value: String(result.actualHealthRecovery) },
+    {
+      label: '流血（主要效果）',
+      value: `${result.bleedingBefore ? '是' : '否'} → ${result.bleedingAfterPrimaryEffect ? '是' : '否'}`,
+    },
+  ]
+  const target = medicalTargetLabel(result)
+  if (target) facts.push({
+    label: result.woundChange === 'treated' ? '处理伤口' : '移除轻伤',
+    value: target,
+  })
+  if (result.minorContusionRemoved) facts.push({ label: '轻度挫伤', value: '移除1个' })
+  if (result.painkillerActivated) facts.push({ label: '镇痛', value: '将生效' })
+  if (
+    result.medicalItem === 'disinfectant' ||
+    result.actualInfectionExposureReduction > 0
+  ) {
+    facts.push(
+      {
+        label: '未结算感染暴露',
+        value: `${result.infectionExposureBefore} → ${result.infectionExposureAfter}`,
+      },
+      {
+        label: '实际暴露减少',
+        value: String(result.actualInfectionExposureReduction),
+      },
+      {
+        label: '今日消毒剂',
+        value: `${result.disinfectantUsesBefore} → ${result.disinfectantUsesAfter}`,
+      },
+    )
+  }
+  facts.push(
+    { label: '行动前剩余时间', value: String(result.remainingTimeBefore) },
+    { label: '行动后剩余时间', value: String(result.remainingTimeAfter) },
+    { label: '行动后流血损失', value: String(result.postActionBleedingDamage) },
+    { label: '行动后预计返程', value: String(result.returnEstimateAfterAction) },
+    {
+      label: '行动后返程预计剩余',
+      value: result.estimatedRemainingTimeAfterReturn === null
+        ? '当前不可预览'
+        : String(result.estimatedRemainingTimeAfterReturn),
+    },
+    { label: '完成节点', value: result.completionNodeName },
+    { label: '最终生命', value: String(result.finalHealth) },
+    { label: '最终 Scene 状态', value: result.finalSceneStatus },
+    ...timedOutcomeFacts(result.sceneOutcome),
+  )
+  return Object.freeze(facts)
+}
+
+function medicalPreviewWarnings(
+  result: PlayerVisibleSceneMedicalEvaluation,
+): readonly string[] {
+  const warnings = [...sceneOutcomeWarnings({
+    outcome: result.sceneOutcome,
+    returnEstimate: result.returnEstimateAfterAction,
+  })]
+  if (result.finalSceneStatus === 'forced-returned') {
+    warnings.push('本次只保存 forced-returned Scene Session；后续需要显式完成返程结算。')
+  }
+  if (result.finalSceneStatus === 'dead') {
+    warnings.push('本次只保存 dead Scene Session；后续需要显式结算战败。')
+  }
+  return Object.freeze(warnings)
 }
 
 function woundKindName(kind: 'laceration' | 'puncture' | 'bite'): string {
@@ -1085,6 +1212,40 @@ export function previewStableRunUiTaskEventDraft(
   })
 }
 
+function createMedicalActions(
+  phase: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  dependencies: StableRunUiPresentationDependencies,
+): readonly StableRunUiAction[] {
+  const identity = getStableRunPhaseIdentity(phase)
+  const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
+  const runtime = getRunSceneRuntime(phase.payload, rules.sceneLaunch)
+  const scene = phase.payload.scene
+  return Object.freeze(getAvailableSceneMedicalCommands(
+    scene,
+    runtime.dependencies,
+  ).flatMap((commandInput) => {
+    const command = createUseSceneMedicalItemCommand(commandInput)
+    const preview = previewPlayerVisibleSceneMedicalCommand(
+      scene,
+      command,
+      runtime.dependencies,
+    )
+    if (!preview.canExecute) return []
+    const result = preview.result
+    return [Object.freeze({
+      id: medicalActionId(command),
+      kind: 'scene-medical' as const,
+      label: medicalActionLabel(result),
+      command: applicationSceneCommand('scene-medical', command),
+      preview: freezePreview(
+        `确认使用${medicalItemName(result.medicalItem)}`,
+        medicalPreviewFacts(result),
+        medicalPreviewWarnings(result),
+      ),
+    })]
+  }))
+}
+
 function createWithdrawalAction(
   phase: Extract<StableRunPhase, { kind: 'scene-session' }>,
   dependencies: StableRunUiPresentationDependencies,
@@ -1260,6 +1421,7 @@ export function createStableRunUiInteractionModel(
           ...createSearchActions(phase, dependencies),
           ...createObstacleActions(phase, dependencies),
           ...taskEvents.actions,
+          ...createMedicalActions(phase, dependencies),
           ...[createWithdrawalAction(phase, dependencies), createSettlementAction(phase)].filter(
             (action): action is StableRunUiAction => action !== null,
           ),

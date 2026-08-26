@@ -1,10 +1,12 @@
 export {
   createCombatActionResultViewModel,
   createTaskEventResultViewModel,
+  createSceneMedicalResultViewModel,
   createReturnSummaryViewModel,
   createStableRunPlayerViewModel,
   type CombatActionResultViewModel,
   type TaskEventResultViewModel,
+  type SceneMedicalResultViewModel,
   type PlayerVisibleCombatViewModel,
   type PlayerVisibleConditionViewModel,
   type PlayerVisibleItemViewModel,

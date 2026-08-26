@@ -26,6 +26,8 @@ import {
   getPlayerVisibleSceneNodeState,
   getPlayerVisibleSceneObstacles,
   previewSceneWithdrawalCommand,
+  type SceneExplorationEffect,
+  type SceneMedicalResolution,
 } from '../../core/scene-exploration'
 import { getWorldThreatStage } from '../../core/world-threat'
 import {
@@ -181,6 +183,31 @@ export interface TaskEventResultViewModel {
   readonly backpackWeightAfter: number
   readonly sceneStatus: 'active' | 'forced-returned' | 'dead'
   readonly safelyStored: false
+}
+
+export interface SceneMedicalResultViewModel {
+  readonly action: string
+  readonly source: string
+  readonly itemConsumed: number
+  readonly healthBefore: number
+  readonly healthAfterPrimaryEffect: number
+  readonly finalHealth: number
+  readonly actualHealthRecovery: number
+  readonly bleedingStopped: boolean
+  readonly postActionBleedingDamage: number
+  readonly woundTreated: string | null
+  readonly woundRemoved: string | null
+  readonly minorContusionRemoved: boolean
+  readonly painkillerActivated: boolean
+  readonly infectionExposureBefore: number
+  readonly infectionExposureAfter: number
+  readonly disinfectantUsesBefore: number
+  readonly disinfectantUsesAfter: number
+  readonly remainingTimeBefore: number
+  readonly remainingTimeAfter: number
+  readonly returnEstimateAfterAction: number
+  readonly forcedReturnDamage: number
+  readonly sceneStatus: 'active' | 'safe-returned' | 'forced-returned' | 'dead'
 }
 
 export type StableRunPlayerViewModel =
@@ -715,5 +742,122 @@ export function createTaskEventResultViewModel(
     ),
     sceneStatus: afterScene.status,
     safelyStored: false,
+  })
+}
+
+function requireSceneMedicalResolution(value: unknown): SceneMedicalResolution {
+  if (
+    value === null ||
+    typeof value !== 'object' ||
+    Array.isArray(value) ||
+    !('result' in value) ||
+    !('snapshot' in value)
+  ) throw new Error('探索医疗结果投影缺少正式 resolution')
+  const result = (value as { result?: unknown }).result
+  if (
+    result === null ||
+    typeof result !== 'object' ||
+    Array.isArray(result) ||
+    !Array.isArray((result as { effects?: unknown }).effects)
+  ) throw new Error('探索医疗结果投影缺少正式 Effect 事实')
+  return value as SceneMedicalResolution
+}
+
+function medicalResultEffect<TKind extends SceneExplorationEffect['kind']>(
+  effects: readonly SceneExplorationEffect[],
+  kind: TKind,
+): Extract<SceneExplorationEffect, { readonly kind: TKind }> | undefined {
+  return effects.find(
+    (effect): effect is Extract<SceneExplorationEffect, { readonly kind: TKind }> =>
+      effect.kind === kind,
+  )
+}
+
+function medicalResultWoundLabel(
+  before: PlayerConditionSnapshot,
+  woundId: string,
+): string {
+  const index = before.openWounds.findIndex(({ id }) => id === woundId)
+  const visible = getPlayerVisibleOpenWoundLabels(before.openWounds)[index]
+  if (!visible) throw new Error('探索医疗结果引用未知伤口')
+  return `${woundName(visible.kind)} ${visible.ordinal}`
+}
+
+/**
+ * Sanitizes one already-committed Scene Medical resolution. Raw Effects are
+ * inspected only during projection and never retained in the returned model.
+ */
+export function createSceneMedicalResultViewModel(
+  before: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  after: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  action: string,
+  formalResolution: unknown,
+): SceneMedicalResultViewModel {
+  const resolution = requireSceneMedicalResolution(formalResolution)
+  const effects = resolution.result.effects
+  const consumed = medicalResultEffect(effects, 'scene-medical-item-consumed')
+  const time = medicalResultEffect(effects, 'scene-time-resolved')
+  if (!consumed || !time) throw new Error('探索医疗结果缺少消费或时间事实')
+
+  const beforeScene = before.payload.scene
+  const afterScene = after.payload.scene
+  const health = medicalResultEffect(effects, 'scene-health-restored')
+  const bleeding = medicalResultEffect(effects, 'scene-bleeding-changed')
+  const treated = medicalResultEffect(effects, 'scene-open-wound-treated')
+  const removed = medicalResultEffect(effects, 'scene-open-wound-removed')
+  const exposure = medicalResultEffect(effects, 'scene-infection-exposure-reduced')
+  const dailyUsage = medicalResultEffect(effects, 'daily-medical-usage-changed')
+  const postActionBleeding = effects
+    .filter((effect): effect is Extract<SceneExplorationEffect, { readonly kind: 'health-lost' }> =>
+      effect.kind === 'health-lost' && effect.source === 'post-action-bleeding')
+    .reduce((total, effect) => total + effect.actualLoss, 0)
+  const source = consumed.sourceContainer === 'quick-slot'
+    ? `快捷栏${(consumed.sourceSlotIndex ?? 0) + 1}`
+    : (() => {
+        const placement = beforeScene.backpack.placements.find(
+          ({ instanceId }) => instanceId === consumed.instanceId,
+        )
+        if (!placement) throw new Error('探索医疗结果缺少背包来源摆放')
+        return `背包格 ${placement.x + 1},${placement.y + 1}`
+      })()
+  if (afterScene.status === 'combat') {
+    throw new Error('探索医疗结果不能进入战斗状态')
+  }
+
+  return frozen({
+    action,
+    source,
+    itemConsumed: consumed.quantityConsumed,
+    healthBefore: health?.healthBefore ?? beforeScene.condition.currentHealth,
+    healthAfterPrimaryEffect: health?.healthAfter ?? beforeScene.condition.currentHealth,
+    finalHealth: afterScene.condition.currentHealth,
+    actualHealthRecovery: health?.actualRecovery ?? 0,
+    bleedingStopped: Boolean(bleeding?.before && !bleeding.after),
+    postActionBleedingDamage: postActionBleeding,
+    woundTreated: treated
+      ? medicalResultWoundLabel(beforeScene.condition, treated.woundId)
+      : null,
+    woundRemoved: removed
+      ? medicalResultWoundLabel(beforeScene.condition, removed.woundId)
+      : null,
+    minorContusionRemoved: Boolean(
+      medicalResultEffect(effects, 'scene-minor-contusion-removed'),
+    ),
+    painkillerActivated: Boolean(
+      medicalResultEffect(effects, 'scene-painkiller-changed'),
+    ),
+    infectionExposureBefore:
+      exposure?.exposuresBefore ?? beforeScene.condition.pendingInfectionExposures,
+    infectionExposureAfter:
+      exposure?.exposuresAfter ?? afterScene.condition.pendingInfectionExposures,
+    disinfectantUsesBefore:
+      dailyUsage?.usesBefore ?? beforeScene.dailyMedicalUsage.disinfectantUsesToday,
+    disinfectantUsesAfter:
+      dailyUsage?.usesAfter ?? afterScene.dailyMedicalUsage.disinfectantUsesToday,
+    remainingTimeBefore: time.remainingTimeBefore,
+    remainingTimeAfter: time.remainingTimeAfter,
+    returnEstimateAfterAction: resolution.result.returnRoute.estimatedReturnTime,
+    forcedReturnDamage: resolution.result.sceneOutcome.forcedReturnTotalDamage,
+    sceneStatus: afterScene.status,
   })
 }

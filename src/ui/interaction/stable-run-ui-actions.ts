@@ -327,7 +327,12 @@ function medicalPreviewFacts(
       },
     )
   } else {
-    facts.push({ label: '返程延续', value: '不适用；行动后流血致死' })
+    const deathReason = result.sceneOutcome.forcedReturnTotalDamage > 0
+      ? '紧急返程损耗导致死亡，未能完成安全返程'
+      : result.sceneOutcome.postActionBleedingDamage > 0
+        ? '行动后流血导致死亡，无法进入返程阶段'
+        : '玩家死亡，无法继续返程'
+    facts.push({ label: '返程延续', value: deathReason })
   }
   return Object.freeze(facts)
 }

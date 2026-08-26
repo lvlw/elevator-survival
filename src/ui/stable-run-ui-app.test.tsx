@@ -2742,7 +2742,7 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('行动后剩余时间90')
     expect(container.textContent).toContain('行动后流血损失1')
     expect(container.textContent).toContain('行动完成后生命将归零')
-    expect(container.textContent).toContain('返程延续不适用；行动后流血致死')
+    expect(container.textContent).toContain('返程延续行动后流血导致死亡，无法进入返程阶段')
     expect(container.textContent).not.toContain('行动后返程预计剩余90')
     expect(container.textContent).not.toContain('强制返程目标')
     for (const hidden of [
@@ -2785,6 +2785,84 @@ describe('StableRunUiApp', () => {
       'snapshot',
     ]) expect(container.innerHTML).not.toContain(hidden)
     expect(tracked.commands).toHaveLength(1)
+  })
+
+  it('attributes a no-bleed near-zero medical death to formal emergency-return damage', () => {
+    const phase = sceneMedicalPhase({
+      backpack: [{ item: item('hidden-return-death-painkiller', HOSPITAL_ITEM_IDS.painkiller), x: 1, y: 0 }],
+      currentHealth: 1,
+      bleeding: false,
+      minorContusions: 1,
+      remainingTime: 5,
+      currentNodeId: HOSPITAL_NODE_IDS.emergencyHall,
+    })
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: phase,
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    act(() => { button(container, '使用止痛药 · 背包格 2,1').click() })
+    const preview = container.textContent ?? ''
+    expect(preview).toContain('镇痛将生效')
+    expect(preview).toContain('行动后流血损失0')
+    expect(preview).toContain('超时债务5')
+    expect(preview).toContain('强制返程总损耗1')
+    expect(preview).toContain('死亡风险将死亡')
+    expect(preview).toContain('完成节点急诊大厅')
+    expect(preview).toContain('最终 Scene 状态dead')
+    expect(preview).toContain('返程延续紧急返程损耗导致死亡，未能完成安全返程')
+    expect(preview).not.toContain('行动后流血致死')
+    expect(preview).not.toContain('行动后流血导致死亡')
+    expect(preview).not.toContain('强制返程目标电梯前室')
+    for (const hidden of [
+      'hidden-return-death-painkiller',
+      'sceneInstanceId',
+      'runId',
+      'runSeed',
+      'rulesVersion',
+      'effects',
+      'snapshot',
+    ]) expect(container.innerHTML).not.toContain(hidden)
+
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    const after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected dead Scene session')
+    expect(after.payload.scene).toMatchObject({
+      status: 'dead',
+      currentNodeId: HOSPITAL_NODE_IDS.emergencyHall,
+      remainingTime: 0,
+      condition: {
+        currentHealth: 0,
+        bleeding: false,
+        painkillerActive: true,
+      },
+    })
+    expect(after.payload.scene.backpack.items).toEqual([])
+    expect(container.textContent).toContain('当前为 dead Scene Session')
+    expect(container.textContent).toContain('完成节点急诊大厅')
+    expect(container.textContent).toContain('当前节点急诊大厅')
+    expect(container.textContent).not.toContain('当前节点电梯前室')
+    expect(tracked.commands).toHaveLength(1)
+    for (const hidden of [
+      'hidden-return-death-painkiller',
+      'sceneInstanceId',
+      'runId',
+      'runSeed',
+      'rulesVersion',
+      'effects',
+      'snapshot',
+    ]) expect(container.innerHTML).not.toContain(hidden)
   })
 
   it('commits painkiller activation before post-action bleeding death', () => {

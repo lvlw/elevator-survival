@@ -21,11 +21,13 @@ import {
 } from '../../core/current-day-hub'
 import { resolveDailySettlement } from '../../core/daily-settlement'
 import {
+  calculateBackpackWeightSubtotal,
   createBackpackSnapshot,
   type BackpackPlacement,
   type ItemInstance,
 } from '../../core/inventory'
-import { createFullItemState } from '../../core/item-state'
+import { createFullItemState, getItemState } from '../../core/item-state'
+import { classifyLoad } from '../../core/load'
 import { createQuickSlotSnapshot } from '../../core/quick-slot'
 import { createRunLoadoutSnapshot } from '../../core/run-loadout'
 import { resolveRunFailure } from '../../core/run-termination'
@@ -654,6 +656,118 @@ describe('all formal Scene inventory variants through the Stable Run router', ()
         ({ item: candidate }) => candidate.instanceId === command.instanceId,
       )).toBe(true)
     }
+  })
+})
+
+describe('Scene quick-slot to backpack carry limit', () => {
+  function carryLimitSession(backpackWeight: 27 | 28): RunSceneSessionSnapshot {
+    const stackQuantities = backpackWeight === 27
+      ? [4, 4, 4, 4, 4, 4, 3]
+      : [4, 4, 4, 4, 4, 4, 4]
+    const backpackItems = stackQuantities.map((quantity, index) => item(
+      `carry-limit-battery-${index}`,
+      HOSPITAL_ITEM_IDS.standardBattery,
+      quantity,
+    ))
+    const placements = backpackItems.map((candidate, index) => ({
+      instanceId: candidate.instanceId,
+      x: index % config.backpack.width,
+      y: Math.floor(index / config.backpack.width),
+      rotated: false,
+    }))
+    return launch(hub({
+      backpackItems,
+      placements,
+      quickSlots: [item(
+        'carry-limit-quick-bandage',
+        HOSPITAL_ITEM_IDS.bandage,
+      ), null],
+    }))
+  }
+
+  const command = {
+    kind: 'scene-quick-slot-to-backpack' as const,
+    sourceSlotIndex: 0,
+    placement: { x: 1, y: 1, rotated: false },
+  }
+
+  it('allows the configured carryable overloaded boundary and preserves identity', () => {
+    const session = carryLimitSession(27)
+    const runtime = getRunSceneRuntime(session, hospitalSceneLaunchDependencies)
+    const before = session.scene
+    const quickItem = before.quickSlots.slots[0]!
+    const quickState = getItemState(before.itemStates, quickItem.instanceId)
+
+    const preview = sceneCore.previewSceneInventoryCommand(
+      before,
+      command,
+      runtime.dependencies,
+    )
+    expect(preview.canExecute).toBe(true)
+
+    const resolution = sceneCore.resolveSceneInventoryCommand(
+      before,
+      command,
+      runtime.dependencies,
+    )
+    const after = resolution.snapshot
+    const backpackWeight = calculateBackpackWeightSubtotal(
+      after.backpack,
+      hospitalItemCatalog,
+    )
+    expect(backpackWeight).toBe(28)
+    expect(classifyLoad(backpackWeight, config.backpack)).toMatchObject({
+      tier: 'overloaded',
+      canCarry: true,
+    })
+    expect(after.quickSlots.slots[0]).toBeNull()
+    expect(after.backpack.items.find(
+      ({ instanceId }) => instanceId === quickItem.instanceId,
+    )).toEqual(quickItem)
+    expect(getItemState(after.itemStates, quickItem.instanceId)).toEqual(quickState)
+    expect(after.remainingTime).toBe(before.remainingTime)
+    expect(after.condition.currentHealth).toBe(before.condition.currentHealth)
+    expect(after.status).toBe('active')
+  })
+
+  it('rejects the configured cannot-carry boundary consistently in Preview and Resolution', () => {
+    const session = carryLimitSession(28)
+    const runtime = getRunSceneRuntime(session, hospitalSceneLaunchDependencies)
+    const before = session.scene
+    const beforeQuickItem = before.quickSlots.slots[0]
+    const beforeBackpack = before.backpack
+    const beforeItemStates = before.itemStates
+
+    expect(sceneCore.previewSceneInventoryCommand(
+      before,
+      command,
+      runtime.dependencies,
+    )).toEqual({ canExecute: false, rejectionCode: 'CANNOT_CARRY' })
+    expect(() => sceneCore.resolveSceneInventoryCommand(
+      before,
+      command,
+      runtime.dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'CANNOT_CARRY' }))
+    expect(before.quickSlots.slots[0]).toBe(beforeQuickItem)
+    expect(before.backpack).toBe(beforeBackpack)
+    expect(before.itemStates).toBe(beforeItemStates)
+  })
+
+  it('rejects cannot-carry through Stable Run without committing or saving', () => {
+    const session = carryLimitSession(28)
+    const phase: StableRunPhase = { kind: 'scene-session', payload: session }
+    const tracked = trackedStorage(phase)
+    const savedBefore = tracked.backing.read()
+
+    expect(() => executeStableRunSceneCommand({
+      currentPhase: phase,
+      command: { kind: 'scene-inventory', command },
+      storage: tracked.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })).toThrowError(expect.objectContaining({ code: 'CANNOT_CARRY' }))
+    expect(tracked.counters.writes).toBe(0)
+    expect(tracked.backing.read()).toBe(savedBefore)
+    expect(phase).toEqual({ kind: 'scene-session', payload: session })
   })
 })
 

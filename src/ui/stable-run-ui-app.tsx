@@ -12,6 +12,7 @@ import {
 import {
   createReturnSummaryViewModel,
   createCombatActionResultViewModel,
+  createSceneBatteryResultViewModel,
   createSceneMedicalResultViewModel,
   createStableRunPlayerViewModel,
   createTaskEventResultViewModel,
@@ -21,6 +22,7 @@ import {
   type PlayerVisibleStatusBarViewModel,
   type ReturnSummaryViewModel,
   type CombatActionResultViewModel,
+  type SceneBatteryResultViewModel,
   type SceneMedicalResultViewModel,
   type TaskEventResultViewModel,
   type StableRunPlayerViewModel,
@@ -442,6 +444,42 @@ function SceneMedicalResultDialog({
   </section></div>
 }
 
+function SceneBatteryResultDialog({
+  result,
+  onClose,
+}: Readonly<{ result: SceneBatteryResultViewModel; onClose(): void }>) {
+  const resource = result.resourceKind === 'charge'
+    ? '电量'
+    : result.resourceKind === 'durability'
+      ? '耐久'
+      : '完整度'
+  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="scene-battery-result-title">
+    <h2 id="scene-battery-result-title">场景充能结果</h2>
+    <dl className="preview-facts">
+      <div><dt>行动</dt><dd>{result.action}</dd></div>
+      <div><dt>来源</dt><dd>{result.source}</dd></div>
+      <div><dt>目标</dt><dd>{result.target}</dd></div>
+      <div><dt>电池数量</dt><dd>{result.quantityBefore} → {result.quantityAfter}</dd></div>
+      <div><dt>{resource}</dt><dd>{result.resourceBefore} → {result.resourceAfter}</dd></div>
+      <div><dt>实际恢复</dt><dd>{result.actualRecovery}</dd></div>
+      <div><dt>未使用恢复量</dt><dd>{result.unusedRecovery}</dd></div>
+      <div><dt>Scene 时间</dt><dd>{result.remainingTimeBefore} → {result.remainingTimeAfter}</dd></div>
+      <div><dt>行动后流血损失</dt><dd>{result.postActionBleedingDamage}</dd></div>
+      <div><dt>最终生命</dt><dd>{result.finalHealth}</dd></div>
+      <div><dt>完成节点</dt><dd>{result.completionNodeName}</dd></div>
+      <div><dt>当前节点</dt><dd>{result.finalNodeName}</dd></div>
+      {result.returnEstimateAfterAction !== null && <div><dt>行动后预计返程</dt><dd>{result.returnEstimateAfterAction}</dd></div>}
+      {result.forcedReturnDamage > 0 && <div><dt>强制返程总损耗</dt><dd>{result.forcedReturnDamage}</dd></div>}
+      <div><dt>当前 Scene 状态</dt><dd>{result.sceneStatus}</dd></div>
+    </dl>
+    {result.nextStep === 'continue-exploration' && <p>本次充能完成后可继续探索。</p>}
+    {result.sceneStatus === 'safe-returned' && <p className="preview-warning">当前为 safe-returned Scene Session；下一步需要显式完成返程结算。</p>}
+    {result.sceneStatus === 'forced-returned' && <p className="preview-warning">当前为 forced-returned Scene Session；下一步需要显式完成返程结算。</p>}
+    {result.sceneStatus === 'dead' && <p className="preview-warning">当前为 dead Scene Session；下一步需要显式结算战败。</p>}
+    <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
+  </section></div>
+}
+
 function ActionPreviewDialog({
   preview,
   onCancel,
@@ -507,6 +545,7 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
   const [combatActionResult, setCombatActionResult] = useState<CombatActionResultViewModel | null>(null)
   const [taskEventResult, setTaskEventResult] = useState<TaskEventResultViewModel | null>(null)
   const [sceneMedicalResult, setSceneMedicalResult] = useState<SceneMedicalResultViewModel | null>(null)
+  const [sceneBatteryResult, setSceneBatteryResult] = useState<SceneBatteryResultViewModel | null>(null)
   const [persistenceFeedback, setPersistenceFeedback] = useState<string | null>(null)
   const pendingAction = interaction.actions.find(({ id }) => id === pendingActionId) ?? null
   const pendingPickup = interaction.pickupOpportunities.find(({ id }) => id === pendingPickupId) ?? null
@@ -572,6 +611,19 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
       execution.phase.kind === 'scene-session'
     ) {
       setSceneMedicalResult(createSceneMedicalResultViewModel(
+        beforePhase,
+        execution.phase,
+        pendingAction.label,
+        execution.result,
+        presentationDependencies,
+      ))
+    }
+    if (
+      pendingAction.kind === 'scene-battery' &&
+      beforePhase.kind === 'scene-session' &&
+      execution.phase.kind === 'scene-session'
+    ) {
+      setSceneBatteryResult(createSceneBatteryResultViewModel(
         beforePhase,
         execution.phase,
         pendingAction.label,
@@ -652,6 +704,7 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
     {combatActionResult && <CombatActionResultDialog result={combatActionResult} onClose={() => setCombatActionResult(null)} />}
     {taskEventResult && <TaskEventResultDialog result={taskEventResult} onClose={() => setTaskEventResult(null)} />}
     {sceneMedicalResult && <SceneMedicalResultDialog result={sceneMedicalResult} onClose={() => setSceneMedicalResult(null)} />}
+    {sceneBatteryResult && <SceneBatteryResultDialog result={sceneBatteryResult} onClose={() => setSceneBatteryResult(null)} />}
     {import.meta.env.DEV && <DevInspector phase={snapshot.phase} />}
   </>
 }

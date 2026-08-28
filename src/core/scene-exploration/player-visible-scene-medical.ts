@@ -1,12 +1,14 @@
 import { deepFreeze } from '../config'
 import { getPlayerVisibleOpenWoundLabels } from '../condition'
 import type { TimedSceneActionOutcome } from '../scene'
-import type { ReturnRouteResult } from '../scene-graph'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
 import type { SceneExplorationErrorCode } from './scene-exploration-errors'
 import { previewSceneMedicalCommand } from './scene-medical-command'
 import { createUseSceneMedicalItemCommand } from './scene-medical-validation'
-import { previewSceneWithdrawalCommand } from './scene-withdrawal-resolution'
+import {
+  projectPlayerVisibleTimedSceneAction,
+  type PlayerVisibleTimedSceneReturnContinuation,
+} from './player-visible-timed-scene-action'
 import type {
   SceneExplorationEffect,
   SceneExplorationSnapshot,
@@ -36,20 +38,6 @@ export type PlayerVisibleSceneMedicalTarget =
     }>
   | Readonly<{ kind: 'minor-contusion' }>
 
-export type PlayerVisibleSceneMedicalReturnContinuation =
-  | Readonly<{
-      kind: 'available'
-      estimatedReturnTime: number
-      estimatedRemainingTimeAfterReturn: number
-    }>
-  | Readonly<{
-      kind: 'terminal-returned'
-      terminalStatus: 'safe-returned' | 'forced-returned'
-      estimatedReturnTime: number
-      destinationNodeName: string
-    }>
-  | Readonly<{ kind: 'unavailable-due-to-death' }>
-
 export interface PlayerVisibleSceneMedicalEvaluation {
   readonly medicalItem: SceneMedicalItemKind
   readonly source: PlayerVisibleSceneMedicalSource
@@ -73,7 +61,7 @@ export interface PlayerVisibleSceneMedicalEvaluation {
   readonly remainingTimeBefore: number
   readonly remainingTimeAfter: number
   readonly postActionBleedingDamage: number
-  readonly returnContinuation: PlayerVisibleSceneMedicalReturnContinuation
+  readonly returnContinuation: PlayerVisibleTimedSceneReturnContinuation
   readonly sceneOutcome: TimedSceneActionOutcome
   readonly finalHealth: number
   readonly finalSceneStatus: SceneExplorationStatus
@@ -134,49 +122,6 @@ function projectTarget(
   })
 }
 
-function nodeName(
-  nodeId: string,
-  dependencies: SceneMedicalCommandDependencies,
-): string {
-  const node = dependencies.graph.nodes.find(({ id }) => id === nodeId)
-  if (!node) throw new Error('正式探索医疗结果引用未知节点')
-  return node.name
-}
-
-function projectReturnContinuation(
-  snapshot: SceneExplorationSnapshot,
-  returnRoute: ReturnRouteResult,
-  dependencies: SceneMedicalCommandDependencies,
-): PlayerVisibleSceneMedicalReturnContinuation {
-  if (snapshot.status === 'dead') {
-    return deepFreeze({ kind: 'unavailable-due-to-death' })
-  }
-  if (
-    snapshot.status === 'safe-returned' ||
-    snapshot.status === 'forced-returned'
-  ) {
-    return deepFreeze({
-      kind: 'terminal-returned',
-      terminalStatus: snapshot.status,
-      estimatedReturnTime: returnRoute.estimatedReturnTime,
-      destinationNodeName: nodeName(returnRoute.safetyNodeId, dependencies),
-    })
-  }
-  const withdrawal = previewSceneWithdrawalCommand(
-    snapshot,
-    { kind: 'withdraw-from-scene' },
-    dependencies,
-  )
-  if (!withdrawal.canExecute) {
-    throw new Error('正式探索医疗后的活动场景缺少返程预览')
-  }
-  return deepFreeze({
-    kind: 'available',
-    estimatedReturnTime: withdrawal.result.returnRoute.estimatedReturnTime,
-    estimatedRemainingTimeAfterReturn: withdrawal.result.snapshot.remainingTime,
-  })
-}
-
 /**
  * Projects the formal Scene Medical transaction into confirmation-safe facts.
  * It deliberately exposes no item/wound identity, Effect, plan, or snapshot.
@@ -203,6 +148,12 @@ export function previewPlayerVisibleSceneMedicalCommand(
   const dailyUsage = findEffect(result.effects, 'daily-medical-usage-changed')
   const time = findEffect(result.effects, 'scene-time-resolved')
   if (!consumed || !time) throw new Error('正式探索医疗计划缺少消费或时间事实')
+  const timedProjection = projectPlayerVisibleTimedSceneAction(
+    snapshot,
+    result.snapshot,
+    result.returnRoute,
+    dependencies,
+  )
 
   return deepFreeze({
     canExecute: true,
@@ -233,15 +184,11 @@ export function previewPlayerVisibleSceneMedicalCommand(
       remainingTimeBefore: time.remainingTimeBefore,
       remainingTimeAfter: time.remainingTimeAfter,
       postActionBleedingDamage: result.sceneOutcome.postActionBleedingDamage,
-      returnContinuation: projectReturnContinuation(
-        result.snapshot,
-        result.returnRoute,
-        dependencies,
-      ),
+      returnContinuation: timedProjection.returnContinuation,
       sceneOutcome: result.sceneOutcome,
       finalHealth: result.sceneOutcome.vitals.currentHealth,
       finalSceneStatus: result.snapshot.status,
-      completionNodeName: nodeName(snapshot.currentNodeId, dependencies),
+      completionNodeName: timedProjection.completionNodeName,
     },
   })
 }

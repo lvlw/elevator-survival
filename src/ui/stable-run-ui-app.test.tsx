@@ -302,6 +302,51 @@ function sceneMedicalPhase(options: Readonly<{
   }
 }
 
+function sceneBatteryPhase(options: Readonly<{
+  batteries?: readonly Readonly<{ item: ItemInstance; x: number; y: number }>[]
+  backpackFlashlight?: Readonly<{ item: ItemInstance; x: number; y: number }> | null
+  extraBackpack?: readonly Readonly<{ item: ItemInstance; x: number; y: number }>[]
+  charge?: number
+  currentHealth?: number
+  bleeding?: boolean
+  remainingTime?: number
+  currentNodeId?: string
+}> = {}) {
+  const batteries = options.batteries ?? [{
+    item: item('react-scene-battery', HOSPITAL_ITEM_IDS.standardBattery),
+    x: 0,
+    y: 0,
+  }]
+  const backpackFlashlight = options.backpackFlashlight ?? null
+  const phase = sceneMedicalPhase({
+    backpack: [
+      ...batteries,
+      ...(backpackFlashlight ? [backpackFlashlight] : []),
+      ...(options.extraBackpack ?? []),
+    ],
+    currentHealth: options.currentHealth,
+    bleeding: options.bleeding,
+    remainingTime: options.remainingTime,
+    currentNodeId: options.currentNodeId,
+  })
+  const runtime = getRunSceneRuntime(phase.payload, hospitalSceneLaunchDependencies)
+  const targetId = backpackFlashlight?.item.instanceId ?? phase.payload.scene.equipment.utility?.instanceId
+  if (!targetId) throw new Error('expected Scene battery target')
+  const scene = createSceneExplorationSnapshot({
+    ...phase.payload.scene,
+    itemStates: {
+      states: phase.payload.scene.itemStates.states.map((state) =>
+        state.definitionId === HOSPITAL_ITEM_IDS.flashlight
+          ? { ...state, resource: { kind: 'charge' as const, current: options.charge ?? 0 } }
+          : state),
+    },
+  }, runtime.dependencies)
+  return {
+    kind: 'scene-session' as const,
+    payload: createRunSceneSessionSnapshot({ context: phase.payload.context, scene }, hospitalSceneLaunchDependencies),
+  }
+}
+
 function terminalSafeSession() {
   const launched = resolveSceneLaunch(
     createHubPhase().payload,
@@ -3082,15 +3127,292 @@ describe('StableRunUiApp', () => {
     const inner = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
     const tracked = trackedStore(inner)
     const before = inner.getState()
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StrictMode><StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} /></StrictMode>) })
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
     expect(inner.getState()).toBe(before)
     act(() => { button(container, '使用绷带 · 背包格 1,1').click() })
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
+    expect(inner.getState()).toBe(before)
+  })
+
+  it('maps every formal Scene Battery pair to explicit identity-safe actions and previews without side effects', () => {
+    const phase = sceneBatteryPhase({
+      batteries: [
+        { item: { ...item('hidden-battery-a', HOSPITAL_ITEM_IDS.standardBattery), quantity: 2 }, x: 0, y: 0 },
+        { item: item('hidden-battery-b', HOSPITAL_ITEM_IDS.standardBattery), x: 1, y: 0 },
+      ],
+      backpackFlashlight: {
+        item: item('hidden-pack-flashlight', HOSPITAL_ITEM_IDS.flashlight),
+        x: 2,
+        y: 0,
+      },
+      charge: 2,
+    })
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    const before = inner.getState()
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    const labels = [
+      '使用通用电池 · 背包格 1,1 → 手电筒 · 背包格 3,1',
+      '使用通用电池 · 背包格 1,1 → 手电筒 · 实用装备位',
+      '使用通用电池 · 背包格 2,1 → 手电筒 · 背包格 3,1',
+      '使用通用电池 · 背包格 2,1 → 手电筒 · 实用装备位',
+    ]
+    for (const label of labels) expect(button(container, label)).toBeInstanceOf(HTMLButtonElement)
+    act(() => { button(container, labels[1]!).click() })
+    expect(container.textContent).toContain('电池数量2 → 1')
+    expect(container.textContent).toContain('电量2 → 3')
+    expect(container.textContent).toContain('实际恢复1')
+    expect(container.textContent).toContain('未使用恢复量2')
+    expect(container.textContent).toContain('行动时间10')
+    expect(container.textContent).toContain('完成节点急诊大厅')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+    expect(inner.getState()).toBe(before)
+    for (const hidden of [
+      'hidden-battery-a',
+      'hidden-battery-b',
+      'hidden-pack-flashlight',
+      'batteryInstanceId',
+      'targetInstanceId',
+      'effects',
+      'snapshot',
+      'sceneInstanceId',
+      'runSeed',
+      'rulesVersion',
+    ]) expect(container.innerHTML).not.toContain(hidden)
+
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    const after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(after.payload.scene.backpack.items).toContainEqual({
+      instanceId: 'hidden-battery-a',
+      definitionId: HOSPITAL_ITEM_IDS.standardBattery,
+      quantity: 1,
+    })
+    expect(getItemState(after.payload.scene.itemStates, 'hidden-battery-a').resource).toEqual({ kind: 'none' })
+    expect(getItemState(after.payload.scene.itemStates, after.payload.scene.equipment.utility!.instanceId).resource).toEqual({ kind: 'charge', current: 3 })
+    expect(container.textContent).toContain('场景充能结果')
+    expect(container.textContent).toContain('本次充能完成后可继续探索')
+    expect(notifications).toBe(1)
+    for (const hidden of [
+      'hidden-battery-a',
+      'hidden-battery-b',
+      'hidden-pack-flashlight',
+      'batteryInstanceId',
+      'targetInstanceId',
+      'effects',
+      'snapshot',
+    ]) expect(container.innerHTML).not.toContain(hidden)
+  })
+
+  it('uses the post-consumption backpack truth for load and return Preview', () => {
+    const metal = [5, 5, 5, 1].map((quantity, index) => ({
+      item: { ...item(`battery-load-metal-${index}`, HOSPITAL_ITEM_IDS.metalParts), quantity },
+      x: index + 1,
+      y: 0,
+    }))
+    const phase = sceneBatteryPhase({
+      batteries: [{ item: item('battery-load-source', HOSPITAL_ITEM_IDS.standardBattery), x: 0, y: 0 }],
+      extraBackpack: metal,
+      charge: 0,
+    })
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '使用通用电池 · 背包格 1,1 → 手电筒 · 实用装备位').click() })
+    expect(container.textContent).toContain('背包负重17 → 16')
+    expect(container.textContent).toContain('行动后负重状态正常')
+    expect(container.textContent).toContain('行动时间10')
+    expect(container.textContent).toContain('行动后预计返程10')
+  })
+
+  it('keeps exact-zero, overtime, and death Scene Battery terminal semantics explicit', () => {
+    const cases = [
+      {
+        phase: sceneBatteryPhase({ remainingTime: 10, currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom }),
+        status: 'safe-returned',
+        preview: ['最终 Scene 状态safe-returned', '本次只保存 safe-returned Scene Session'],
+      },
+      {
+        phase: sceneBatteryPhase({ remainingTime: 5, currentNodeId: HOSPITAL_NODE_IDS.emergencyHall }),
+        status: 'forced-returned',
+        preview: ['超时债务5', '强制返程目标电梯前室', '本次只保存 forced-returned Scene Session'],
+      },
+      {
+        phase: sceneBatteryPhase({ remainingTime: 5, currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom }),
+        status: 'forced-returned',
+        preview: ['超时债务5', '有效紧急撤离时间5', '本次只保存 forced-returned Scene Session'],
+      },
+      {
+        phase: sceneBatteryPhase({ currentHealth: 1, bleeding: true, remainingTime: 50 }),
+        status: 'dead',
+        preview: ['行动后流血损失1', '返程延续行动后流血导致死亡，无法进入返程阶段'],
+      },
+      {
+        phase: sceneBatteryPhase({ currentHealth: 1, bleeding: false, remainingTime: 5 }),
+        status: 'dead',
+        preview: ['强制返程总损耗1', '返程延续紧急返程损耗导致死亡，未能完成安全返程'],
+      },
+    ] as const
+    for (const entry of cases) {
+      const storage = new MemoryStorage()
+      const tracked = trackedStore(createStableRunStore({ initialPhase: entry.phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+      const container = document.createElement('div')
+      const root = createRoot(container); roots.push(root)
+      act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+      act(() => { button(container, '使用通用电池 · 背包格 1,1 → 手电筒 · 实用装备位').click() })
+      for (const text of entry.preview) expect(container.textContent).toContain(text)
+      if (entry.status === 'dead') expect(container.textContent).not.toContain('强制返程目标电梯前室')
+      act(() => { button(container, '确认执行').click() })
+      expect(tracked.commands).toHaveLength(1)
+      expect(storage.writes).toBe(1)
+      const after = tracked.store.getState().phase
+      if (after.kind !== 'scene-session') throw new Error('expected terminal Scene')
+      expect(after.payload.scene.status).toBe(entry.status)
+      expect(container.textContent).toContain(entry.status === 'dead' ? '结算战败' : '完成返程结算')
+      expect(tracked.commands).toHaveLength(1)
+    }
+  })
+
+  it('does not offer Scene Battery actions for full targets or unavailable Scene states', () => {
+    const full = sceneBatteryPhase({ charge: 3 })
+    expect(createStableRunUiInteractionModel(full, uiDependencies).actions.some(
+      ({ kind }) => kind === 'scene-battery',
+    )).toBe(false)
+    const noBattery = sceneMedicalPhase()
+    expect(createStableRunUiInteractionModel(noBattery, uiDependencies).actions.some(
+      ({ kind }) => kind === 'scene-battery',
+    )).toBe(false)
+    const timeZero = sceneBatteryPhase({ remainingTime: 0, currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom })
+    expect(createStableRunUiInteractionModel(timeZero, uiDependencies).actions.some(
+      ({ kind }) => kind === 'scene-battery',
+    )).toBe(false)
+    expect(createStableRunUiInteractionModel(combatPhase(), uiDependencies).actions.some(
+      ({ kind }) => kind === 'scene-battery',
+    )).toBe(false)
+    for (const terminal of [terminalSafeSession(), terminalDeadSession()]) {
+      expect(createStableRunUiInteractionModel({ kind: 'scene-session', payload: terminal }, uiDependencies).actions.some(
+        ({ kind }) => kind === 'scene-battery',
+      )).toBe(false)
+    }
+  })
+
+  it('invalidates stale Scene Battery source and full-target Previews', () => {
+    const phase = sceneBatteryPhase({
+      batteries: [
+        { item: item('stale-battery-a', HOSPITAL_ITEM_IDS.standardBattery), x: 0, y: 0 },
+        { item: item('stale-battery-b', HOSPITAL_ITEM_IDS.standardBattery), x: 1, y: 0 },
+      ],
+      charge: 0,
+    })
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const interaction = createStableRunUiInteractionModel(phase, uiDependencies)
+    const external = interaction.actions.find(({ label }) => label.startsWith('使用通用电池 · 背包格 2,1'))
+    if (!external) throw new Error('expected second battery action')
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '使用通用电池 · 背包格 1,1 → 手电筒 · 实用装备位').click() })
+    expect(container.querySelector('[role="dialog"]')).not.toBeNull()
+    act(() => { store.dispatch(external.command) })
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
+    expect(storage.writes).toBe(1)
+    expect(createStableRunUiInteractionModel(store.getState().phase, uiDependencies).actions.some(
+      ({ kind }) => kind === 'scene-battery',
+    )).toBe(false)
+
+    const sourcePhase = sceneBatteryPhase({
+      batteries: [{ item: item('stale-single-battery', HOSPITAL_ITEM_IDS.standardBattery), x: 0, y: 0 }],
+      backpackFlashlight: {
+        item: item('stale-source-pack-flashlight', HOSPITAL_ITEM_IDS.flashlight),
+        x: 2,
+        y: 0,
+      },
+      charge: 0,
+    })
+    const sourceStorage = new MemoryStorage()
+    const sourceStore = createStableRunStore({ initialPhase: sourcePhase, storage: sourceStorage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const sourceInteraction = createStableRunUiInteractionModel(sourcePhase, uiDependencies)
+    const sourceExternal = sourceInteraction.actions.find(({ label }) =>
+      label.endsWith('手电筒 · 背包格 3,1'))
+    if (!sourceExternal) throw new Error('expected alternate target action')
+    const sourceContainer = document.createElement('div')
+    const sourceRoot = createRoot(sourceContainer); roots.push(sourceRoot)
+    act(() => { sourceRoot.render(<StableRunUiApp store={sourceStore} presentationDependencies={uiDependencies} />) })
+    act(() => { button(sourceContainer, '使用通用电池 · 背包格 1,1 → 手电筒 · 实用装备位').click() })
+    expect(sourceContainer.querySelector('[role="dialog"]')).not.toBeNull()
+    act(() => { sourceStore.dispatch(sourceExternal.command) })
+    expect(sourceContainer.querySelector('[role="dialog"]')).toBeNull()
+    expect(sourceStorage.writes).toBe(1)
+    const sourceAfter = sourceStore.getState().phase
+    if (sourceAfter.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(sourceAfter.payload.scene.backpack.items.some(
+      ({ instanceId }) => instanceId === 'stale-single-battery',
+    )).toBe(false)
+    expect(getItemState(sourceAfter.payload.scene.itemStates, sourceAfter.payload.scene.equipment.utility!.instanceId).resource).toEqual({ kind: 'charge', current: 0 })
+  })
+
+  it('retains committed Scene Battery effects after one failed save without retry or rollback', () => {
+    const phase = sceneBatteryPhase({ charge: 0 })
+    const storage = new FailingStorage()
+    const inner = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '使用通用电池 · 背包格 1,1 → 手电筒 · 实用装备位').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    const after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected committed Scene')
+    expect(after.payload.scene.backpack.items).toEqual([])
+    expect(getItemState(after.payload.scene.itemStates, after.payload.scene.equipment.utility!.instanceId).resource).toEqual({ kind: 'charge', current: 3 })
+    expect(container.textContent).toContain('保存失败')
+  })
+
+  it('keeps Scene Battery StrictMode mount and Preview side-effect free', () => {
+    const phase = sceneBatteryPhase()
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    const before = inner.getState()
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StrictMode><StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} /></StrictMode>) })
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+    expect(inner.getState()).toBe(before)
+    act(() => { button(container, '使用通用电池 · 背包格 1,1 → 手电筒 · 实用装备位').click() })
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
     expect(inner.getState()).toBe(before)
   })
 })

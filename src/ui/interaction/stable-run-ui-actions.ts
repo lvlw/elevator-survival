@@ -2,6 +2,7 @@ import {
   createPerformMainSearchCommand,
   createPerformSceneObstacleOptionCommand,
   createPerformSceneTaskEventCommand,
+  createUseSceneBatteryCommand,
   createUseSceneMedicalItemCommand,
   createMoveThroughSceneEdgeCommand,
   createPickUpRevealedNodeItemCommand,
@@ -9,18 +10,22 @@ import {
   getPlayerVisibleSceneNodeState,
   getPlayerVisibleSceneObstacles,
   getPlayerVisibleSceneTaskEvents,
+  getAvailableSceneBatteryCommands,
   getAvailableSceneMedicalCommands,
   getPlayerVisibleSceneCombatActionOptions,
   previewMainSearchCommand,
   previewNodeItemPickupCommand,
   previewSceneMoveCommand,
   previewPlayerVisibleSceneTaskEventCommand,
+  previewPlayerVisibleSceneBatteryCommand,
   previewPlayerVisibleSceneMedicalCommand,
   previewSceneWithdrawalCommand,
   type SearchIlluminationChoice,
   type SceneExplorationEffect,
   type SceneTaskRiskTier,
+  type PlayerVisibleSceneBatteryEvaluation,
   type PlayerVisibleSceneMedicalEvaluation,
+  type UseSceneBatteryCommand,
   type UseSceneMedicalItemCommand,
 } from '../../core/scene-exploration'
 import type { PlayerVisibleCombatActionPreview } from '../../core/combat'
@@ -54,6 +59,7 @@ export type StableRunUiActionKind =
   | 'scene-obstacle'
   | 'scene-task-event'
   | 'scene-medical'
+  | 'scene-battery'
   | 'scene-combat-action'
   | 'scene-withdraw'
   | 'settle-terminal-scene'
@@ -202,13 +208,21 @@ function timedOutcomeFacts(
 }
 
 function applicationSceneCommand(
-  kind: 'scene-move' | 'scene-main-search' | 'scene-node-item-pickup' | 'scene-withdraw' | 'scene-obstacle' | 'scene-task-event' | 'scene-medical' | 'scene-combat-action',
+  kind: 'scene-move' | 'scene-main-search' | 'scene-node-item-pickup' | 'scene-withdraw' | 'scene-obstacle' | 'scene-task-event' | 'scene-medical' | 'scene-battery' | 'scene-combat-action',
   command: unknown,
 ): StableRunApplicationCommand {
   return createStableRunApplicationCommand({
     kind: 'scene',
     command: { kind, command },
   })
+}
+
+function timedSceneDeathReason(outcome: TimedSceneActionOutcome): string {
+  return outcome.forcedReturnTotalDamage > 0
+    ? '紧急返程损耗导致死亡，未能完成安全返程'
+    : outcome.postActionBleedingDamage > 0
+      ? '行动后流血导致死亡，无法进入返程阶段'
+      : '玩家死亡，无法继续返程'
 }
 
 function medicalItemName(kind: PlayerVisibleSceneMedicalEvaluation['medicalItem']): string {
@@ -327,14 +341,107 @@ function medicalPreviewFacts(
       },
     )
   } else {
-    const deathReason = result.sceneOutcome.forcedReturnTotalDamage > 0
-      ? '紧急返程损耗导致死亡，未能完成安全返程'
-      : result.sceneOutcome.postActionBleedingDamage > 0
-        ? '行动后流血导致死亡，无法进入返程阶段'
-        : '玩家死亡，无法继续返程'
-    facts.push({ label: '返程延续', value: deathReason })
+    facts.push({ label: '返程延续', value: timedSceneDeathReason(result.sceneOutcome) })
   }
   return Object.freeze(facts)
+}
+
+function batteryLocationLabel(
+  location: PlayerVisibleSceneBatteryEvaluation['source'] | PlayerVisibleSceneBatteryEvaluation['target'],
+): string {
+  if (location.container === 'backpack') {
+    return `背包格 ${location.column},${location.row}`
+  }
+  return location.equipmentSlot === 'weapon'
+    ? '武器位'
+    : location.equipmentSlot === 'armor'
+      ? '防具位'
+      : '实用装备位'
+}
+
+function batteryResourceName(
+  kind: PlayerVisibleSceneBatteryEvaluation['resourceKind'],
+): string {
+  return kind === 'charge' ? '电量' : kind === 'durability' ? '耐久' : '完整度'
+}
+
+function batteryActionId(command: UseSceneBatteryCommand): string {
+  return `scene-battery:${command.batteryInstanceId}:${command.targetInstanceId}`
+}
+
+function batteryPreviewFacts(
+  result: PlayerVisibleSceneBatteryEvaluation,
+  sourceName: string,
+  targetName: string,
+): readonly StableRunUiActionPreviewFact[] {
+  const facts: StableRunUiActionPreviewFact[] = [
+    { label: '使用', value: sourceName },
+    { label: '来源', value: batteryLocationLabel(result.source) },
+    { label: '目标', value: `${targetName} · ${batteryLocationLabel(result.target)}` },
+    { label: '电池数量', value: `${result.quantityBefore} → ${result.quantityAfter}` },
+    {
+      label: batteryResourceName(result.resourceKind),
+      value: `${result.resourceBefore} → ${result.resourceAfter}`,
+    },
+    { label: '实际恢复', value: String(result.actualRecovery) },
+    { label: '未使用恢复量', value: String(result.unusedRecovery) },
+    { label: '行动时间', value: String(result.actionTime) },
+    { label: '行动前剩余时间', value: String(result.remainingTimeBefore) },
+    { label: '行动后剩余时间', value: String(result.remainingTimeAfter) },
+    { label: '行动后流血损失', value: String(result.postActionBleedingDamage) },
+    { label: '完成节点', value: result.completionNodeName },
+    {
+      label: '背包负重',
+      value: `${result.backpackWeightBefore} → ${result.backpackWeightAfter}`,
+    },
+    { label: '行动后负重状态', value: loadTierName(result.loadTierAfter) },
+    { label: '最终生命', value: String(result.finalHealth) },
+    { label: '最终 Scene 状态', value: result.finalSceneStatus },
+    ...timedOutcomeFacts(result.sceneOutcome),
+  ]
+  if (result.returnContinuation.kind === 'available') {
+    facts.push(
+      {
+        label: '行动后预计返程',
+        value: String(result.returnContinuation.estimatedReturnTime),
+      },
+      {
+        label: '行动后返程预计剩余',
+        value: String(result.returnContinuation.estimatedRemainingTimeAfterReturn),
+      },
+    )
+  } else if (result.returnContinuation.kind === 'terminal-returned') {
+    facts.push({
+      label: result.returnContinuation.terminalStatus === 'forced-returned'
+        ? '强制返程目标'
+        : '安全返回目标',
+      value: result.returnContinuation.destinationNodeName,
+    })
+  } else {
+    facts.push({ label: '返程延续', value: timedSceneDeathReason(result.sceneOutcome) })
+  }
+  return Object.freeze(facts)
+}
+
+function batteryPreviewWarnings(
+  result: PlayerVisibleSceneBatteryEvaluation,
+): readonly string[] {
+  const warnings = [...sceneOutcomeWarnings({
+    outcome: result.sceneOutcome,
+    returnEstimate: result.returnContinuation.kind === 'unavailable-due-to-death'
+      ? 0
+      : result.returnContinuation.estimatedReturnTime,
+  })]
+  if (result.finalSceneStatus === 'forced-returned') {
+    warnings.push('本次只保存 forced-returned Scene Session；后续需要显式完成返程结算。')
+  }
+  if (result.finalSceneStatus === 'safe-returned') {
+    warnings.push('本次只保存 safe-returned Scene Session；后续由显式 settle-terminal-scene 命令完成返程结算。')
+  }
+  if (result.finalSceneStatus === 'dead') {
+    warnings.push('本次只保存 dead Scene Session；后续需要显式结算战败。')
+  }
+  return Object.freeze(warnings)
 }
 
 function medicalPreviewWarnings(
@@ -1272,6 +1379,54 @@ function createMedicalActions(
   }))
 }
 
+function createBatteryActions(
+  phase: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  dependencies: StableRunUiPresentationDependencies,
+): readonly StableRunUiAction[] {
+  const identity = getStableRunPhaseIdentity(phase)
+  const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
+  const runtime = getRunSceneRuntime(phase.payload, rules.sceneLaunch)
+  const scene = phase.payload.scene
+  return Object.freeze(getAvailableSceneBatteryCommands(
+    scene,
+    runtime.dependencies,
+  ).flatMap((commandInput) => {
+    const command = createUseSceneBatteryCommand(commandInput)
+    const preview = previewPlayerVisibleSceneBatteryCommand(
+      scene,
+      command,
+      runtime.dependencies,
+    )
+    if (!preview.canExecute) return []
+    const result = preview.result
+    const sourceDefinition = runtime.dependencies.physicalCatalog.get(
+      result.source.definitionId,
+    )
+    const targetDefinition = runtime.dependencies.physicalCatalog.get(
+      result.target.definitionId,
+    )
+    const sourceName = dependencies.labels.itemName(
+      result.source.definitionId,
+      sourceDefinition.name,
+    )
+    const targetName = dependencies.labels.itemName(
+      result.target.definitionId,
+      targetDefinition.name,
+    )
+    return [Object.freeze({
+      id: batteryActionId(command),
+      kind: 'scene-battery' as const,
+      label: `使用${sourceName} · ${batteryLocationLabel(result.source)} → ${targetName} · ${batteryLocationLabel(result.target)}`,
+      command: applicationSceneCommand('scene-battery', command),
+      preview: freezePreview(
+        `确认使用${sourceName}充能${targetName}`,
+        batteryPreviewFacts(result, sourceName, targetName),
+        batteryPreviewWarnings(result),
+      ),
+    })]
+  }))
+}
+
 function createWithdrawalAction(
   phase: Extract<StableRunPhase, { kind: 'scene-session' }>,
   dependencies: StableRunUiPresentationDependencies,
@@ -1448,6 +1603,7 @@ export function createStableRunUiInteractionModel(
           ...createObstacleActions(phase, dependencies),
           ...taskEvents.actions,
           ...createMedicalActions(phase, dependencies),
+          ...createBatteryActions(phase, dependencies),
           ...[createWithdrawalAction(phase, dependencies), createSettlementAction(phase)].filter(
             (action): action is StableRunUiAction => action !== null,
           ),

@@ -14,6 +14,18 @@ export { getAvailableSceneBatteryCommands } from './scene-battery-selectors'
 export { createUseSceneBatteryCommand } from './scene-battery-validation'
 export { previewSceneBatteryCommand, resolveSceneBatteryCommand } from './scene-battery-command'
 export { buildSceneBatteryTransitionPlan } from './scene-battery-transition-plan'
+export {
+  previewPlayerVisibleSceneBatteryCommand,
+  type PlayerVisibleSceneBatteryEvaluation,
+  type PlayerVisibleSceneBatteryPreview,
+  type PlayerVisibleSceneBatterySource,
+  type PlayerVisibleSceneBatteryTarget,
+} from './player-visible-scene-battery'
+export {
+  projectPlayerVisibleTimedSceneAction,
+  type PlayerVisibleTimedSceneActionProjection,
+  type PlayerVisibleTimedSceneReturnContinuation,
+} from './player-visible-timed-scene-action'
 export { getPlayerVisibleSceneNodeState } from './player-visible-scene-node'
 export {
   getPlayerVisibleSceneCombatActionOptions,

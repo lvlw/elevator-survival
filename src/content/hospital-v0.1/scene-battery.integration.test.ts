@@ -6,6 +6,7 @@ import {
   applySceneExplorationEffects,
   createInitialSceneExplorationSnapshot,
   getAvailableSceneBatteryCommands,
+  previewPlayerVisibleSceneBatteryCommand,
   previewSceneBatteryCommand,
   resolveSceneBatteryCommand,
   type SceneExplorationSnapshot,
@@ -81,8 +82,13 @@ describe('hospital scene battery recharge', () => {
 
   it('keeps a stack instance and reports capped recovery without moving the target', () => {
     const start = snapshot({ backpack: [item('battery', HOSPITAL_ITEM_IDS.standardBattery, 2), item('pack-flashlight', HOSPITAL_ITEM_IDS.flashlight)], charge: 2 })
+    const targetPlacement = start.backpack.placements.find(({ instanceId }) => instanceId === 'pack-flashlight')
     const result = resolveSceneBatteryCommand(start, command('battery', 'pack-flashlight'), dependencies)
     expect(result.snapshot.backpack.items.find(({ instanceId }) => instanceId === 'battery')?.quantity).toBe(1)
+    expect(result.snapshot.backpack.items.find(({ instanceId }) => instanceId === 'pack-flashlight')).toEqual(
+      start.backpack.items.find(({ instanceId }) => instanceId === 'pack-flashlight'),
+    )
+    expect(result.snapshot.backpack.placements.find(({ instanceId }) => instanceId === 'pack-flashlight')).toEqual(targetPlacement)
     expect(getItemState(result.snapshot.itemStates, 'pack-flashlight').resource).toEqual({ kind: 'charge', current: 3 })
     expect(result.result.effects[1]).toMatchObject({ actualRecovery: 1, unusedRecovery: 2, targetContainer: 'backpack' })
   })
@@ -123,5 +129,129 @@ describe('hospital scene battery recharge', () => {
     ;(tampered[1] as { actualRecovery: number }).actualRecovery = 1
     expect(() => applySceneExplorationEffects(start, tampered, dependencies)).toThrow(/Effect/)
     expect(start.backpack.items).toHaveLength(1)
+  })
+
+  it('projects identity-safe battery facts for equipped and backpack targets', () => {
+    const equippedStart = snapshot({
+      backpack: [item('hidden-battery-stack', HOSPITAL_ITEM_IDS.standardBattery, 2)],
+      equippedFlashlight: true,
+      charge: 2,
+    })
+    const equipped = previewPlayerVisibleSceneBatteryCommand(
+      equippedStart,
+      command('hidden-battery-stack'),
+      dependencies,
+    )
+    expect(equipped).toMatchObject({
+      canExecute: true,
+      result: {
+        source: { container: 'backpack', column: 1, row: 1 },
+        target: { container: 'equipment', equipmentSlot: 'utility' },
+        quantityBefore: 2,
+        quantityAfter: 1,
+        resourceBefore: 2,
+        actualRecovery: 1,
+        resourceAfter: 3,
+        unusedRecovery: 2,
+        actionTime: 10,
+        finalSceneStatus: 'active',
+        completionNodeName: '急诊大厅',
+      },
+    })
+    const safeJson = JSON.stringify(equipped)
+    for (const hidden of [
+      'hidden-battery-stack',
+      'equipped-flashlight',
+      'effects',
+      'snapshot',
+      'batteryInstanceId',
+      'targetInstanceId',
+    ]) expect(safeJson).not.toContain(hidden)
+
+    const backpackStart = snapshot({
+      backpack: [
+        item('hidden-pack-battery', HOSPITAL_ITEM_IDS.standardBattery),
+        item('hidden-pack-flashlight', HOSPITAL_ITEM_IDS.flashlight),
+      ],
+      charge: 0,
+    })
+    expect(previewPlayerVisibleSceneBatteryCommand(
+      backpackStart,
+      command('hidden-pack-battery', 'hidden-pack-flashlight'),
+      dependencies,
+    )).toMatchObject({
+      canExecute: true,
+      result: {
+        source: { container: 'backpack', column: 1, row: 1 },
+        target: { container: 'backpack', column: 2, row: 1 },
+      },
+    })
+  })
+
+  it('shares completion, return-continuation, and death-stage safe semantics', () => {
+    const forced = previewPlayerVisibleSceneBatteryCommand(snapshot({
+      backpack: [item('forced-battery', HOSPITAL_ITEM_IDS.standardBattery)],
+      equippedFlashlight: true,
+      remainingTime: 5,
+      nodeId: HOSPITAL_NODE_IDS.emergencyHall,
+    }), command('forced-battery'), dependencies)
+    expect(forced).toMatchObject({
+      canExecute: true,
+      result: {
+        completionNodeName: '急诊大厅',
+        finalSceneStatus: 'forced-returned',
+        returnContinuation: {
+          kind: 'terminal-returned',
+          terminalStatus: 'forced-returned',
+          destinationNodeName: '电梯前室',
+        },
+      },
+    })
+
+    const exactSafety = previewPlayerVisibleSceneBatteryCommand(snapshot({
+      backpack: [item('safe-battery', HOSPITAL_ITEM_IDS.standardBattery)],
+      equippedFlashlight: true,
+      remainingTime: 10,
+      nodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
+    }), command('safe-battery'), dependencies)
+    expect(exactSafety).toMatchObject({
+      canExecute: true,
+      result: {
+        finalSceneStatus: 'safe-returned',
+        returnContinuation: { kind: 'terminal-returned', terminalStatus: 'safe-returned' },
+      },
+    })
+
+    const bleedingDeath = previewPlayerVisibleSceneBatteryCommand(snapshot({
+      backpack: [item('bleeding-death-battery', HOSPITAL_ITEM_IDS.standardBattery)],
+      equippedFlashlight: true,
+      health: 1,
+      bleeding: true,
+    }), command('bleeding-death-battery'), dependencies)
+    expect(bleedingDeath).toMatchObject({
+      canExecute: true,
+      result: {
+        finalSceneStatus: 'dead',
+        sceneOutcome: { postActionBleedingDamage: 1, forcedReturnTotalDamage: 0 },
+        returnContinuation: { kind: 'unavailable-due-to-death' },
+      },
+    })
+
+    const returnDeath = previewPlayerVisibleSceneBatteryCommand(snapshot({
+      backpack: [item('return-death-battery', HOSPITAL_ITEM_IDS.standardBattery)],
+      equippedFlashlight: true,
+      health: 1,
+      remainingTime: 5,
+      nodeId: HOSPITAL_NODE_IDS.emergencyHall,
+    }), command('return-death-battery'), dependencies)
+    expect(returnDeath).toMatchObject({
+      canExecute: true,
+      result: {
+        completionNodeName: '急诊大厅',
+        finalSceneStatus: 'dead',
+        sceneOutcome: { postActionBleedingDamage: 0, forcedReturnTotalDamage: 1 },
+        returnContinuation: { kind: 'unavailable-due-to-death' },
+      },
+    })
   })
 })

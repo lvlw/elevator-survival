@@ -27,6 +27,7 @@ import {
   getPlayerVisibleSceneObstacles,
   previewSceneWithdrawalCommand,
   type SceneExplorationEffect,
+  type SceneBatteryResolution,
   type SceneMedicalResolution,
 } from '../../core/scene-exploration'
 import { getWorldThreatStage } from '../../core/world-threat'
@@ -205,6 +206,29 @@ export interface SceneMedicalResultViewModel {
   readonly disinfectantUsesAfter: number
   readonly remainingTimeBefore: number
   readonly remainingTimeAfter: number
+  readonly returnEstimateAfterAction: number | null
+  readonly forcedReturnDamage: number
+  readonly sceneStatus: 'active' | 'safe-returned' | 'forced-returned' | 'dead'
+  readonly completionNodeName: string
+  readonly finalNodeName: string
+  readonly nextStep: 'continue-exploration' | 'settle-return' | 'settle-failure'
+}
+
+export interface SceneBatteryResultViewModel {
+  readonly action: string
+  readonly source: string
+  readonly target: string
+  readonly quantityBefore: number
+  readonly quantityAfter: number
+  readonly resourceKind: 'durability' | 'integrity' | 'charge'
+  readonly resourceBefore: number
+  readonly actualRecovery: number
+  readonly resourceAfter: number
+  readonly unusedRecovery: number
+  readonly remainingTimeBefore: number
+  readonly remainingTimeAfter: number
+  readonly postActionBleedingDamage: number
+  readonly finalHealth: number
   readonly returnEstimateAfterAction: number | null
   readonly forcedReturnDamage: number
   readonly sceneStatus: 'active' | 'safe-returned' | 'forced-returned' | 'dead'
@@ -766,6 +790,24 @@ function requireSceneMedicalResolution(value: unknown): SceneMedicalResolution {
   return value as SceneMedicalResolution
 }
 
+function requireSceneBatteryResolution(value: unknown): SceneBatteryResolution {
+  if (
+    value === null ||
+    typeof value !== 'object' ||
+    Array.isArray(value) ||
+    !('result' in value) ||
+    !('snapshot' in value)
+  ) throw new Error('场景充能结果投影缺少正式 resolution')
+  const result = (value as { result?: unknown }).result
+  if (
+    result === null ||
+    typeof result !== 'object' ||
+    Array.isArray(result) ||
+    !Array.isArray((result as { effects?: unknown }).effects)
+  ) throw new Error('场景充能结果投影缺少正式 Effect 事实')
+  return value as SceneBatteryResolution
+}
+
 function medicalResultEffect<TKind extends SceneExplorationEffect['kind']>(
   effects: readonly SceneExplorationEffect[],
   kind: TKind,
@@ -835,7 +877,6 @@ export function createSceneMedicalResultViewModel(
     if (!node) throw new Error('探索医疗结果引用未知节点')
     return node.name
   }
-
   return frozen({
     action,
     source,
@@ -868,6 +909,85 @@ export function createSceneMedicalResultViewModel(
       dailyUsage?.usesAfter ?? afterScene.dailyMedicalUsage.disinfectantUsesToday,
     remainingTimeBefore: time.remainingTimeBefore,
     remainingTimeAfter: time.remainingTimeAfter,
+    returnEstimateAfterAction: afterScene.status === 'dead'
+      ? null
+      : resolution.result.returnRoute.estimatedReturnTime,
+    forcedReturnDamage: resolution.result.sceneOutcome.forcedReturnTotalDamage,
+    sceneStatus: afterScene.status,
+    completionNodeName: visibleNodeName(beforeScene.currentNodeId),
+    finalNodeName: visibleNodeName(afterScene.currentNodeId),
+    nextStep: afterScene.status === 'active'
+      ? 'continue-exploration'
+      : afterScene.status === 'dead'
+        ? 'settle-failure'
+        : 'settle-return',
+  })
+}
+
+/**
+ * Sanitizes one committed Scene Battery resolution. Item identities and raw
+ * Effects are used only during projection and never retained by React state.
+ */
+export function createSceneBatteryResultViewModel(
+  before: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  after: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  action: string,
+  formalResolution: unknown,
+  dependencies: StableRunUiPresentationDependencies,
+): SceneBatteryResultViewModel {
+  const resolution = requireSceneBatteryResolution(formalResolution)
+  const effects = resolution.result.effects
+  const consumed = medicalResultEffect(effects, 'scene-battery-consumed')
+  const restored = medicalResultEffect(effects, 'scene-device-resource-restored')
+  const time = medicalResultEffect(effects, 'scene-time-resolved')
+  if (!consumed || !restored || !time) {
+    throw new Error('场景充能结果缺少消费、恢复或时间事实')
+  }
+
+  const beforeScene = before.payload.scene
+  const afterScene = after.payload.scene
+  const identity = getStableRunPhaseIdentity(before)
+  const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
+  const runtime = getRunSceneRuntime(before.payload, rules.sceneLaunch)
+  const itemName = (definitionId: string) => {
+    const definition = runtime.dependencies.physicalCatalog.get(definitionId)
+    return dependencies.labels.itemName(definitionId, definition.name)
+  }
+  const itemLocation = (instanceId: string): string => {
+    const placement = beforeScene.backpack.placements.find(
+      (candidate) => candidate.instanceId === instanceId,
+    )
+    if (placement) return `背包格 ${placement.x + 1},${placement.y + 1}`
+    const slot = (['weapon', 'armor', 'utility'] as const).find(
+      (candidate) => beforeScene.equipment[candidate]?.instanceId === instanceId,
+    )
+    if (!slot) throw new Error('场景充能结果引用未知携带物品')
+    return slot === 'weapon' ? '武器位' : slot === 'armor' ? '防具位' : '实用装备位'
+  }
+  const visibleNodeName = (nodeId: string) => {
+    const node = runtime.dependencies.graph.nodes.find(({ id }) => id === nodeId)
+    if (!node) throw new Error('场景充能结果引用未知节点')
+    return node.name
+  }
+  if (afterScene.status === 'combat') {
+    throw new Error('场景充能结果不能进入战斗状态')
+  }
+
+  return frozen({
+    action,
+    source: `${itemName(consumed.definitionId)} · ${itemLocation(consumed.instanceId)}`,
+    target: `${itemName(restored.targetDefinitionId)} · ${itemLocation(restored.targetInstanceId)}`,
+    quantityBefore: consumed.quantityBefore,
+    quantityAfter: consumed.quantityAfter,
+    resourceKind: restored.resourceKind,
+    resourceBefore: restored.resourceBefore,
+    actualRecovery: restored.actualRecovery,
+    resourceAfter: restored.resourceAfter,
+    unusedRecovery: restored.unusedRecovery,
+    remainingTimeBefore: time.remainingTimeBefore,
+    remainingTimeAfter: time.remainingTimeAfter,
+    postActionBleedingDamage: resolution.result.sceneOutcome.postActionBleedingDamage,
+    finalHealth: afterScene.condition.currentHealth,
     returnEstimateAfterAction: afterScene.status === 'dead'
       ? null
       : resolution.result.returnRoute.estimatedReturnTime,

@@ -34,6 +34,7 @@ import {
   buildSceneInventoryTransitionPlan,
   createSceneExplorationSnapshot,
   previewNodeItemPickupCommand,
+  previewPlayerVisibleSceneInventoryCommand,
   previewSceneInventoryCommand,
   resolveSceneInventoryCommand,
   resolveNodeItemPickupCommand,
@@ -331,6 +332,48 @@ describe('scene inventory organization and node-stack merge', () => {
     expect(returned.condition).toEqual(start.condition)
   })
 
+  it('projects formal Scene Inventory facts without raw audit, Effects, snapshots, or identities', () => {
+    const picked = resolveNodeItemPickupCommand(
+      snapshot({ bleeding: true }),
+      command(snapshot({ bleeding: true })),
+      dependencies,
+    ).snapshot
+    const carried = picked.backpack.items[0]!
+    const preview = previewPlayerVisibleSceneInventoryCommand(picked, {
+      kind: 'move-scene-backpack-item',
+      instanceId: carried.instanceId,
+      placement: { instanceId: carried.instanceId, x: 2, y: 1, rotated: false },
+    }, dependencies)
+    expect(preview).toMatchObject({
+      canExecute: true,
+      result: {
+        operationKind: 'move-scene-backpack-item',
+        source: { container: 'backpack', column: 1, row: 1 },
+        target: { container: 'backpack', column: 3, row: 2 },
+        backpackWeightBefore: 3,
+        backpackWeightAfter: 3,
+        remainingTimeBefore: 100,
+        remainingTimeAfter: 100,
+        healthBefore: 12,
+        healthAfter: 12,
+        bleedingBefore: true,
+        bleedingAfter: true,
+      },
+    })
+    const visible = JSON.stringify(preview)
+    for (const hidden of [
+      carried.instanceId,
+      'sourceInstanceId',
+      'targetInstanceId',
+      'splitInstanceId',
+      'SceneInventoryAudit',
+      'audit',
+      'effects',
+      'snapshot',
+      'sceneInstanceId',
+    ]) expect(visible).not.toContain(hidden)
+  })
+
   it('allows zero-time inventory only through an already strict active safety snapshot', () => {
     const initial = snapshot()
     const picked = resolveNodeItemPickupCommand(
@@ -607,6 +650,13 @@ describe('scene inventory organization and node-stack merge', () => {
       { kind: 'drop-scene-backpack-item', instanceId: 'x', ignored: true },
       dependencies,
     )).toEqual({ canExecute: false, rejectionCode: 'INVALID_INPUT' })
+    const picked = resolveNodeItemPickupCommand(start, command(start), dependencies).snapshot
+    const carried = picked.backpack.items[0]!
+    expect(previewSceneInventoryCommand(picked, {
+      kind: 'move-scene-backpack-item',
+      instanceId: carried.instanceId,
+      placement: { instanceId: carried.instanceId, x: 6, y: 4, rotated: false },
+    }, dependencies)).toEqual({ canExecute: false, rejectionCode: 'INVALID_INPUT' })
     for (const status of ['safe-returned', 'forced-returned', 'dead'] as const) {
       expect(previewSceneInventoryCommand(
         snapshot({

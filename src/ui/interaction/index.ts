@@ -5,6 +5,7 @@ export {
 export {
   createStableRunUiInteractionModel,
   previewStableRunUiPickupDraft,
+  previewStableRunUiSceneInventoryDraft,
   previewStableRunUiTaskEventDraft,
   type StableRunUiAction,
   type StableRunUiActionKind,
@@ -14,6 +15,10 @@ export {
   type StableRunUiPickupDraft,
   type StableRunUiPickupOpportunity,
   type StableRunUiPickupPreview,
+  type StableRunUiInventoryDraft,
+  type StableRunUiInventoryOperation,
+  type StableRunUiInventoryOpportunity,
+  type StableRunUiInventoryPreview,
   type StableRunUiTaskEventDraft,
   type StableRunUiTaskEventOpportunity,
   type StableRunUiTaskEventPreview,

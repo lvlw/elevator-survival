@@ -2,6 +2,7 @@ import {
   createPerformMainSearchCommand,
   createPerformSceneObstacleOptionCommand,
   createPerformSceneTaskEventCommand,
+  createSceneInventoryCommand,
   createUseSceneBatteryCommand,
   createUseSceneMedicalItemCommand,
   createMoveThroughSceneEdgeCommand,
@@ -19,12 +20,15 @@ import {
   previewPlayerVisibleSceneTaskEventCommand,
   previewPlayerVisibleSceneBatteryCommand,
   previewPlayerVisibleSceneMedicalCommand,
+  previewPlayerVisibleSceneInventoryCommand,
   previewSceneWithdrawalCommand,
   type SearchIlluminationChoice,
   type SceneExplorationEffect,
   type SceneTaskRiskTier,
   type PlayerVisibleSceneBatteryEvaluation,
   type PlayerVisibleSceneMedicalEvaluation,
+  type PlayerVisibleSceneInventoryEvaluation,
+  type SceneInventoryCommand,
   type UseSceneBatteryCommand,
   type UseSceneMedicalItemCommand,
 } from '../../core/scene-exploration'
@@ -60,6 +64,7 @@ export type StableRunUiActionKind =
   | 'scene-task-event'
   | 'scene-medical'
   | 'scene-battery'
+  | 'scene-inventory'
   | 'scene-combat-action'
   | 'scene-withdraw'
   | 'settle-terminal-scene'
@@ -115,6 +120,48 @@ export interface StableRunUiTaskEventPreview {
   readonly candidateCells: readonly Readonly<{ x: number; y: number }>[]
 }
 
+export type StableRunUiInventoryOperation =
+  | 'move'
+  | 'split'
+  | 'merge'
+  | 'backpack-to-quick-slot'
+  | 'quick-slot-to-backpack'
+  | 'drop'
+
+/** Internal source reference; its id is never rendered into ordinary DOM. */
+export interface StableRunUiInventoryOpportunity {
+  readonly id: string
+  readonly sourceInstanceId: string
+  readonly sourceSlotIndex: number | null
+  readonly container: 'backpack' | 'quick-slot'
+  readonly name: string
+  readonly sourceLabel: string
+  readonly quantity: number
+  readonly canRotate: boolean
+  readonly requiresQuestDropConfirmation: boolean
+  readonly operations: readonly StableRunUiInventoryOperation[]
+}
+
+export interface StableRunUiInventoryDraft {
+  readonly opportunityId: string
+  readonly operation: StableRunUiInventoryOperation
+  readonly quantity: number | null
+  readonly targetOpportunityId: string | null
+  readonly targetSlotIndex: number | null
+  readonly x: number | null
+  readonly y: number | null
+  readonly rotated: boolean
+}
+
+export interface StableRunUiInventoryPreview {
+  readonly canExecute: boolean
+  readonly rejection: string | null
+  readonly command: StableRunApplicationCommand | null
+  readonly preview: StableRunUiActionPreviewViewModel | null
+  readonly candidateCells: readonly Readonly<{ x: number; y: number }>[]
+  readonly questDropWarning: boolean
+}
+
 export interface StableRunUiActionPreviewFact {
   readonly label: string
   readonly value: string
@@ -149,6 +196,7 @@ export interface StableRunUiInteractionModel {
   readonly actions: readonly StableRunUiAction[]
   readonly pickupOpportunities: readonly StableRunUiPickupOpportunity[]
   readonly taskEventOpportunities: readonly StableRunUiTaskEventOpportunity[]
+  readonly inventoryOpportunities: readonly StableRunUiInventoryOpportunity[]
 }
 
 function freezePreview(
@@ -208,7 +256,7 @@ function timedOutcomeFacts(
 }
 
 function applicationSceneCommand(
-  kind: 'scene-move' | 'scene-main-search' | 'scene-node-item-pickup' | 'scene-withdraw' | 'scene-obstacle' | 'scene-task-event' | 'scene-medical' | 'scene-battery' | 'scene-combat-action',
+  kind: 'scene-move' | 'scene-main-search' | 'scene-node-item-pickup' | 'scene-withdraw' | 'scene-obstacle' | 'scene-task-event' | 'scene-medical' | 'scene-battery' | 'scene-inventory' | 'scene-combat-action',
   command: unknown,
 ): StableRunApplicationCommand {
   return createStableRunApplicationCommand({
@@ -1488,6 +1536,278 @@ function createSettlementAction(
   })
 }
 
+function inventoryOperationName(operation: StableRunUiInventoryOperation): string {
+  return operation === 'move'
+    ? '移动／旋转'
+    : operation === 'split'
+      ? '拆分堆叠'
+      : operation === 'merge'
+        ? '合并堆叠'
+        : operation === 'backpack-to-quick-slot'
+          ? '放入快捷栏'
+          : operation === 'quick-slot-to-backpack'
+            ? '放回背包'
+            : '放到当前节点'
+}
+
+function inventoryLocationLabel(
+  location: PlayerVisibleSceneInventoryEvaluation['source'],
+): string {
+  return location.container === 'backpack'
+    ? `背包格 ${location.column},${location.row}`
+    : location.container === 'quick-slot'
+      ? `快捷栏${location.slotNumber}`
+      : `当前节点 · ${location.nodeName}`
+}
+
+function inventoryOpportunities(
+  phase: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  dependencies: StableRunUiPresentationDependencies,
+): readonly StableRunUiInventoryOpportunity[] {
+  const scene = phase.payload.scene
+  if (scene.status !== 'active') return Object.freeze([])
+  const identity = getStableRunPhaseIdentity(phase)
+  const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
+  const runtime = getRunSceneRuntime(phase.payload, rules.sceneLaunch)
+  const lifecycle = runtime.dependencies.lifecycleCatalog
+  if (!lifecycle) throw new Error('场景整理交互缺少正式物品生命周期目录')
+  const placementById = new Map(
+    scene.backpack.placements.map((placement) => [placement.instanceId, placement]),
+  )
+  const backpack = [...scene.backpack.items]
+    .sort((left, right) => {
+      const leftPlacement = placementById.get(left.instanceId)!
+      const rightPlacement = placementById.get(right.instanceId)!
+      return leftPlacement.y - rightPlacement.y ||
+        leftPlacement.x - rightPlacement.x ||
+        left.instanceId.localeCompare(right.instanceId)
+    })
+    .map((item): StableRunUiInventoryOpportunity => {
+      const definition = runtime.dependencies.physicalCatalog.get(item.definitionId)
+      const placement = placementById.get(item.instanceId)
+      if (!placement) throw new Error('场景整理来源缺少正式背包摆放')
+      const name = dependencies.labels.itemName(item.definitionId, definition.name)
+      return Object.freeze({
+        id: `backpack:${item.instanceId}`,
+        sourceInstanceId: item.instanceId,
+        sourceSlotIndex: null,
+        container: 'backpack',
+        name,
+        sourceLabel: `${name}${item.quantity > 1 ? ` ×${item.quantity}` : ''} · 背包格 ${placement.x + 1},${placement.y + 1}`,
+        quantity: item.quantity,
+        canRotate: definition.canRotate,
+        requiresQuestDropConfirmation: lifecycle.get(item.definitionId).kind === 'quest',
+        operations: Object.freeze([
+          'move',
+          'split',
+          'merge',
+          'backpack-to-quick-slot',
+          'drop',
+        ] as const),
+      })
+    })
+  const quickSlots = scene.quickSlots.slots.flatMap(
+    (item, sourceSlotIndex): readonly StableRunUiInventoryOpportunity[] => {
+      if (!item) return []
+      const definition = runtime.dependencies.physicalCatalog.get(item.definitionId)
+      const name = dependencies.labels.itemName(item.definitionId, definition.name)
+      return [Object.freeze({
+        id: `quick-slot:${sourceSlotIndex}:${item.instanceId}`,
+        sourceInstanceId: item.instanceId,
+        sourceSlotIndex,
+        container: 'quick-slot' as const,
+        name,
+        sourceLabel: `快捷栏${sourceSlotIndex + 1} · ${name}`,
+        quantity: item.quantity,
+        canRotate: definition.canRotate,
+        requiresQuestDropConfirmation: false,
+        operations: Object.freeze(['quick-slot-to-backpack'] as const),
+      })]
+    },
+  )
+  return Object.freeze([...backpack, ...quickSlots])
+}
+
+function inventoryDraftCommand(
+  source: StableRunUiInventoryOpportunity,
+  draft: StableRunUiInventoryDraft,
+  opportunities: readonly StableRunUiInventoryOpportunity[],
+): SceneInventoryCommand | null {
+  if (draft.operation === 'move') {
+    if (draft.x === null || draft.y === null || source.container !== 'backpack') return null
+    return createSceneInventoryCommand({
+      kind: 'move-scene-backpack-item',
+      instanceId: source.sourceInstanceId,
+      placement: {
+        instanceId: source.sourceInstanceId,
+        x: draft.x,
+        y: draft.y,
+        rotated: draft.rotated,
+      },
+    })
+  }
+  if (draft.operation === 'split') {
+    if (
+      draft.quantity === null || draft.x === null || draft.y === null ||
+      source.container !== 'backpack'
+    ) return null
+    return createSceneInventoryCommand({
+      kind: 'split-scene-backpack-stack',
+      sourceInstanceId: source.sourceInstanceId,
+      quantity: draft.quantity,
+      placement: { x: draft.x, y: draft.y, rotated: draft.rotated },
+    })
+  }
+  if (draft.operation === 'merge') {
+    const target = opportunities.find(({ id }) => id === draft.targetOpportunityId)
+    if (
+      draft.quantity === null || source.container !== 'backpack' ||
+      !target || target.container !== 'backpack'
+    ) return null
+    return createSceneInventoryCommand({
+      kind: 'merge-scene-backpack-stacks',
+      sourceInstanceId: source.sourceInstanceId,
+      targetInstanceId: target.sourceInstanceId,
+      quantity: draft.quantity,
+    })
+  }
+  if (draft.operation === 'backpack-to-quick-slot') {
+    if (draft.targetSlotIndex === null || source.container !== 'backpack') return null
+    return createSceneInventoryCommand({
+      kind: 'scene-backpack-to-quick-slot',
+      instanceId: source.sourceInstanceId,
+      targetSlotIndex: draft.targetSlotIndex,
+    })
+  }
+  if (draft.operation === 'quick-slot-to-backpack') {
+    if (
+      draft.x === null || draft.y === null || source.container !== 'quick-slot' ||
+      source.sourceSlotIndex === null
+    ) return null
+    return createSceneInventoryCommand({
+      kind: 'scene-quick-slot-to-backpack',
+      sourceSlotIndex: source.sourceSlotIndex,
+      placement: { x: draft.x, y: draft.y, rotated: draft.rotated },
+    })
+  }
+  if (source.container !== 'backpack') return null
+  return createSceneInventoryCommand({
+    kind: source.requiresQuestDropConfirmation
+      ? 'confirm-drop-scene-quest-item'
+      : 'drop-scene-backpack-item',
+    instanceId: source.sourceInstanceId,
+  })
+}
+
+function inventoryPreviewFacts(
+  result: PlayerVisibleSceneInventoryEvaluation,
+  name: string,
+): readonly StableRunUiActionPreviewFact[] {
+  const facts: StableRunUiActionPreviewFact[] = [
+    { label: '操作', value: inventoryOperationName(
+      result.operationKind === 'move-scene-backpack-item'
+        ? 'move'
+        : result.operationKind === 'split-scene-backpack-stack'
+          ? 'split'
+          : result.operationKind === 'merge-scene-backpack-stacks'
+            ? 'merge'
+            : result.operationKind === 'scene-backpack-to-quick-slot'
+              ? 'backpack-to-quick-slot'
+              : result.operationKind === 'scene-quick-slot-to-backpack'
+                ? 'quick-slot-to-backpack'
+                : 'drop',
+    ) },
+    { label: '物品', value: name },
+    { label: '来源', value: inventoryLocationLabel(result.source) },
+    { label: '目标', value: inventoryLocationLabel(result.target) },
+    { label: '转移数量', value: String(result.quantityMoved) },
+    { label: '来源数量', value: `${result.sourceQuantityBefore} → ${result.sourceQuantityAfter}` },
+  ]
+  if (result.targetQuantityBefore !== null && result.targetQuantityAfter !== null) {
+    facts.push({
+      label: '目标数量',
+      value: `${result.targetQuantityBefore} → ${result.targetQuantityAfter}`,
+    })
+  }
+  if (result.rotated !== null) {
+    facts.push({ label: '旋转', value: result.rotated ? '是' : '否' })
+  }
+  facts.push(
+    { label: '背包负重', value: `${result.backpackWeightBefore} → ${result.backpackWeightAfter}` },
+    { label: '负重状态', value: `${loadTierName(result.loadTierBefore)} → ${loadTierName(result.loadTierAfter)}` },
+    { label: 'Scene 时间', value: `${result.remainingTimeBefore} → ${result.remainingTimeAfter}（不消耗）` },
+  )
+  if (result.returnAfter.canExecute) {
+    facts.push(
+      { label: '整理后预计返程', value: String(result.returnAfter.estimatedReturnTime) },
+      { label: '整理后返程预计剩余', value: String(result.returnAfter.remainingTimeAfterReturn) },
+    )
+  }
+  return Object.freeze(facts.map((fact) => Object.freeze(fact)))
+}
+
+/** Rebuilds every draft against the latest canonical Scene and formal Preview. */
+export function previewStableRunUiSceneInventoryDraft(
+  phase: StableRunPhase,
+  draft: StableRunUiInventoryDraft,
+  dependencies: StableRunUiPresentationDependencies,
+): StableRunUiInventoryPreview | null {
+  if (phase.kind !== 'scene-session' || phase.payload.scene.status !== 'active') return null
+  const opportunities = inventoryOpportunities(phase, dependencies)
+  const source = opportunities.find(({ id }) => id === draft.opportunityId)
+  if (!source || !source.operations.includes(draft.operation)) return null
+  let command: SceneInventoryCommand | null
+  try {
+    command = inventoryDraftCommand(source, draft, opportunities)
+  } catch {
+    command = null
+  }
+  if (!command) return null
+  const identity = getStableRunPhaseIdentity(phase)
+  const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
+  const runtime = getRunSceneRuntime(phase.payload, rules.sceneLaunch)
+  const safe = previewPlayerVisibleSceneInventoryCommand(
+    phase.payload.scene,
+    command,
+    runtime.dependencies,
+  )
+  if (!safe.canExecute) {
+    return Object.freeze({
+      canExecute: false,
+      rejection: safe.rejectionCode === 'CANNOT_CARRY'
+        ? '该操作会使背包进入无法携带状态。'
+        : '当前来源、目标、数量或摆放无法执行，请重新选择。',
+      command: null,
+      preview: null,
+      candidateCells: Object.freeze([]),
+      questDropWarning: source.requiresQuestDropConfirmation,
+    })
+  }
+  const definition = runtime.dependencies.physicalCatalog.get(safe.result.definitionId)
+  const name = dependencies.labels.itemName(safe.result.definitionId, definition.name)
+  const warnings = safe.result.questDropWarning
+    ? [
+        '这是任务物品。',
+        '确认后物品将留在当前节点；如果结束本次探索时仍未重新携带，将视为遗失。',
+        '只有重新拾取并安全返回后，才会进入任务储存区并计入任务进度。',
+      ]
+    : safe.result.returnAfter.canExecute
+      ? []
+      : ['整理后当前无可执行主动返程预览。']
+  return Object.freeze({
+    canExecute: true,
+    rejection: null,
+    command: applicationSceneCommand('scene-inventory', command),
+    preview: freezePreview(
+      `确认${inventoryOperationName(draft.operation)}`,
+      inventoryPreviewFacts(safe.result, name),
+      warnings,
+    ),
+    candidateCells: safe.result.candidateCells,
+    questDropWarning: safe.result.questDropWarning,
+  })
+}
+
 function pickupOpportunities(
   phase: Extract<StableRunPhase, { kind: 'scene-session' }>,
   dependencies: StableRunUiPresentationDependencies,
@@ -1612,9 +1932,13 @@ export function createStableRunUiInteractionModel(
   const opportunities = phase.kind === 'scene-session'
     ? pickupOpportunities(phase, dependencies)
     : Object.freeze([])
+  const inventory = phase.kind === 'scene-session'
+    ? inventoryOpportunities(phase, dependencies)
+    : Object.freeze([])
   return Object.freeze({
     actions: Object.freeze(actions),
     pickupOpportunities: opportunities,
     taskEventOpportunities: taskEvents.opportunities,
+    inventoryOpportunities: inventory,
   })
 }

@@ -25,8 +25,10 @@ import {
 import {
   getPlayerVisibleSceneNodeState,
   getPlayerVisibleSceneObstacles,
+  previewPlayerVisibleSceneInventoryCommand,
   previewSceneWithdrawalCommand,
   type SceneExplorationEffect,
+  type PlayerVisibleSceneInventoryLocation,
   type SceneBatteryResolution,
   type SceneMedicalResolution,
 } from '../../core/scene-exploration'
@@ -235,6 +237,32 @@ export interface SceneBatteryResultViewModel {
   readonly completionNodeName: string
   readonly finalNodeName: string
   readonly nextStep: 'continue-exploration' | 'settle-return' | 'settle-failure'
+}
+
+export interface SceneInventoryResultViewModel {
+  readonly action: string
+  readonly itemName: string
+  readonly source: string
+  readonly target: string
+  readonly quantityMoved: number
+  readonly sourceQuantityBefore: number
+  readonly sourceQuantityAfter: number
+  readonly targetQuantityBefore: number | null
+  readonly targetQuantityAfter: number | null
+  readonly backpackWeightBefore: number
+  readonly backpackWeightAfter: number
+  readonly loadTierBefore: 'normal' | 'loaded' | 'overloaded'
+  readonly loadTierAfter: 'normal' | 'loaded' | 'overloaded'
+  readonly remainingTimeBefore: number
+  readonly remainingTimeAfter: number
+  readonly healthBefore: number
+  readonly healthAfter: number
+  readonly bleedingBefore: boolean
+  readonly bleedingAfter: boolean
+  readonly currentNodeName: string
+  readonly returnEstimateAfter: number | null
+  readonly returnRemainingAfter: number | null
+  readonly questDrop: boolean
 }
 
 export type StableRunPlayerViewModel =
@@ -1000,5 +1028,94 @@ export function createSceneBatteryResultViewModel(
       : afterScene.status === 'dead'
         ? 'settle-failure'
         : 'settle-return',
+  })
+}
+
+function inventoryLocationLabel(location: PlayerVisibleSceneInventoryLocation): string {
+  return location.container === 'backpack'
+    ? `背包格 ${location.column},${location.row}`
+    : location.container === 'quick-slot'
+      ? `快捷栏${location.slotNumber}`
+      : `当前节点 · ${location.nodeName}`
+}
+
+/**
+ * Reprojects one committed Scene Inventory command through the same formal,
+ * player-safe Preview boundary. Raw audit facts and item identities are never
+ * retained by the returned presentation model.
+ */
+export function createSceneInventoryResultViewModel(
+  before: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  after: Extract<StableRunPhase, { kind: 'scene-session' }>,
+  action: string,
+  formalResolution: unknown,
+  dependencies: StableRunUiPresentationDependencies,
+): SceneInventoryResultViewModel {
+  if (
+    formalResolution === null ||
+    typeof formalResolution !== 'object' ||
+    Array.isArray(formalResolution)
+  ) throw new Error('场景整理结果缺少正式 resolution')
+  const result = (formalResolution as { result?: unknown }).result
+  if (result === null || typeof result !== 'object' || Array.isArray(result)) {
+    throw new Error('场景整理结果缺少正式 transaction')
+  }
+  const command = (result as { command?: unknown }).command
+  if (!command) throw new Error('场景整理结果缺少独立命令事实')
+
+  const identity = getStableRunPhaseIdentity(before)
+  const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
+  const runtime = getRunSceneRuntime(before.payload, rules.sceneLaunch)
+  const safe = previewPlayerVisibleSceneInventoryCommand(
+    before.payload.scene,
+    command,
+    runtime.dependencies,
+  )
+  if (!safe.canExecute) throw new Error('已提交的场景整理命令无法重新安全投影')
+  const projected = safe.result
+  const afterScene = after.payload.scene
+  const actualWeight = calculateBackpackWeightSubtotal(
+    afterScene.backpack,
+    runtime.dependencies.physicalCatalog,
+  )
+  if (
+    actualWeight !== projected.backpackWeightAfter ||
+    afterScene.remainingTime !== projected.remainingTimeAfter ||
+    afterScene.condition.currentHealth !== projected.healthAfter ||
+    afterScene.condition.bleeding !== projected.bleedingAfter
+  ) throw new Error('场景整理安全结果与已提交 Scene 不一致')
+  const definition = runtime.dependencies.physicalCatalog.get(projected.definitionId)
+  const node = runtime.dependencies.graph.nodes.find(
+    ({ id }) => id === afterScene.currentNodeId,
+  )
+  if (!node) throw new Error('场景整理结果引用未知当前节点')
+  return frozen({
+    action,
+    itemName: dependencies.labels.itemName(projected.definitionId, definition.name),
+    source: inventoryLocationLabel(projected.source),
+    target: inventoryLocationLabel(projected.target),
+    quantityMoved: projected.quantityMoved,
+    sourceQuantityBefore: projected.sourceQuantityBefore,
+    sourceQuantityAfter: projected.sourceQuantityAfter,
+    targetQuantityBefore: projected.targetQuantityBefore,
+    targetQuantityAfter: projected.targetQuantityAfter,
+    backpackWeightBefore: projected.backpackWeightBefore,
+    backpackWeightAfter: projected.backpackWeightAfter,
+    loadTierBefore: projected.loadTierBefore,
+    loadTierAfter: projected.loadTierAfter,
+    remainingTimeBefore: projected.remainingTimeBefore,
+    remainingTimeAfter: projected.remainingTimeAfter,
+    healthBefore: projected.healthBefore,
+    healthAfter: projected.healthAfter,
+    bleedingBefore: projected.bleedingBefore,
+    bleedingAfter: projected.bleedingAfter,
+    currentNodeName: node.name,
+    returnEstimateAfter: projected.returnAfter.canExecute
+      ? projected.returnAfter.estimatedReturnTime
+      : null,
+    returnRemainingAfter: projected.returnAfter.canExecute
+      ? projected.returnAfter.remainingTimeAfterReturn
+      : null,
+    questDrop: projected.questDropWarning,
   })
 }

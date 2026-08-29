@@ -39,6 +39,7 @@ import {
   resolveSceneMoveCommand,
 } from '../core/scene-exploration'
 import { addSceneItems } from '../core/scene-items'
+import { getSceneNodeItems } from '../core/scene-items'
 import { createSceneItemSnapshot } from '../core/scene-search'
 import {
   hospitalCurrentDayHubDependencies,
@@ -52,6 +53,7 @@ import { StableRunUiApp } from './stable-run-ui-app'
 import { createHospitalDevelopmentPreviewScenario } from './dev-preview/hospital-preview-scenarios'
 import {
   createStableRunUiInteractionModel,
+  previewStableRunUiSceneInventoryDraft,
   previewStableRunUiTaskEventDraft,
 } from './interaction'
 
@@ -344,6 +346,59 @@ function sceneBatteryPhase(options: Readonly<{
   return {
     kind: 'scene-session' as const,
     payload: createRunSceneSessionSnapshot({ context: phase.payload.context, scene }, hospitalSceneLaunchDependencies),
+  }
+}
+
+function sceneInventoryPhase(options: Readonly<{
+  backpack?: readonly Readonly<{ item: ItemInstance; x: number; y: number; rotated?: boolean }>[]
+  quickSlots?: readonly (ItemInstance | null)[]
+  resourceCurrent?: Readonly<Record<string, number>>
+  currentHealth?: number
+  bleeding?: boolean
+  remainingTime?: number
+  currentNodeId?: string
+}> = {}) {
+  const base = sceneMedicalPhase({
+    backpack: (options.backpack ?? []).map(({ item: carried, x, y }) => ({
+      item: carried,
+      x,
+      y,
+    })),
+    quickSlots: options.quickSlots,
+    currentHealth: options.currentHealth,
+    bleeding: options.bleeding,
+    remainingTime: options.remainingTime,
+    currentNodeId: options.currentNodeId,
+  })
+  const runtime = getRunSceneRuntime(base.payload, hospitalSceneLaunchDependencies)
+  const rotatedById = new Map((options.backpack ?? []).map(
+    ({ item: carried, rotated }) => [carried.instanceId, rotated ?? false],
+  ))
+  const backpack = createBackpackSnapshot({
+    ...base.payload.scene.backpack,
+    placements: base.payload.scene.backpack.placements.map((placement) => ({
+      ...placement,
+      rotated: rotatedById.get(placement.instanceId) ?? placement.rotated,
+    })),
+  }, hospitalItemCatalog)
+  const scene = createSceneExplorationSnapshot({
+    ...base.payload.scene,
+    backpack,
+    itemStates: {
+      states: base.payload.scene.itemStates.states.map((state) => {
+        const current = options.resourceCurrent?.[state.instanceId]
+        return current === undefined || state.resource.kind === 'none'
+          ? state
+          : { ...state, resource: { ...state.resource, current } }
+      }),
+    },
+  }, runtime.dependencies)
+  return {
+    kind: 'scene-session' as const,
+    payload: createRunSceneSessionSnapshot({
+      context: base.payload.context,
+      scene,
+    }, hospitalSceneLaunchDependencies),
   }
 }
 
@@ -3414,5 +3469,360 @@ describe('StableRunUiApp', () => {
     expect(storage.writes).toBe(0)
     expect(notifications).toBe(0)
     expect(inner.getState()).toBe(before)
+  })
+
+  it('moves and rotates the same resource item at zero time without post-action bleeding', () => {
+    const flashlight = item('inventory-hidden-flashlight', HOSPITAL_ITEM_IDS.flashlight)
+    const phase = sceneInventoryPhase({
+      backpack: [{ item: flashlight, x: 0, y: 0 }],
+      resourceCurrent: { [flashlight.instanceId]: 1 },
+      currentHealth: 1,
+      bleeding: true,
+      remainingTime: 50,
+    })
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    act(() => { button(container, '整理 手电筒 · 背包格 1,1').click() })
+    act(() => { button(container, '移动／旋转').click() })
+    act(() => { input(container, '旋转整理物品').click() })
+    act(() => { button(container, '格子 3,2').click() })
+    expect(container.textContent).toContain('背包负重1 → 1')
+    expect(container.textContent).toContain('Scene 时间50 → 50（不消耗）')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+
+    act(() => { button(container, '确认整理').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    const after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(after.payload.scene.backpack.items).toContainEqual(flashlight)
+    expect(after.payload.scene.backpack.placements).toContainEqual({
+      instanceId: flashlight.instanceId,
+      x: 2,
+      y: 1,
+      rotated: true,
+    })
+    expect(getItemState(after.payload.scene.itemStates, flashlight.instanceId).resource)
+      .toEqual({ kind: 'charge', current: 1 })
+    expect(after.payload.scene).toMatchObject({
+      status: 'active',
+      remainingTime: 50,
+      condition: { currentHealth: 1, bleeding: true },
+    })
+    expect(container.textContent).toContain('场景整理结果')
+    for (const hidden of [
+      flashlight.instanceId,
+      'instanceId',
+      'sourceInstanceId',
+      'targetInstanceId',
+      'splitInstanceId',
+      'SceneInventoryAudit',
+      'effects',
+      'snapshot',
+      'sceneInstanceId',
+      'runSeed',
+      'rulesVersion',
+    ]) expect(container.innerHTML).not.toContain(hidden)
+  })
+
+  it('executes explicit split, partial merge, and full merge as three separate transactions', () => {
+    const source = { ...item('inventory-merge-source', HOSPITAL_ITEM_IDS.bandage), quantity: 3 }
+    const target = item('inventory-merge-target', HOSPITAL_ITEM_IDS.bandage)
+    const phase = sceneInventoryPhase({ backpack: [
+      { item: source, x: 0, y: 0 },
+      { item: target, x: 2, y: 0 },
+    ] })
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    act(() => { button(container, '整理 绷带 ×3 · 背包格 1,1').click() })
+    act(() => { button(container, '拆分堆叠').click() })
+    act(() => { setInputValue(input(container, '整理数量'), '1') })
+    act(() => { button(container, '格子 2,1').click() })
+    act(() => { button(container, '确认整理').click() })
+    act(() => { button(container, '关闭结果').click() })
+    let after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    const split = after.payload.scene.backpack.items.find(
+      ({ instanceId }) => instanceId !== source.instanceId && instanceId !== target.instanceId,
+    )!
+    expect(split).toMatchObject({ definitionId: HOSPITAL_ITEM_IDS.bandage, quantity: 1 })
+    expect(split.instanceId).toContain('scene-backpack-split:')
+    expect(after.payload.scene.backpack.items.find(({ instanceId }) => instanceId === source.instanceId)?.quantity).toBe(2)
+
+    act(() => { button(container, '整理 绷带 ×2 · 背包格 1,1').click() })
+    act(() => { button(container, '合并堆叠').click() })
+    act(() => { setInputValue(input(container, '整理数量'), '1') })
+    act(() => { button(container, '绷带 · 背包格 3,1').click() })
+    act(() => { button(container, '确认整理').click() })
+    act(() => { button(container, '关闭结果').click() })
+    after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(after.payload.scene.backpack.items.find(({ instanceId }) => instanceId === source.instanceId)?.quantity).toBe(1)
+    expect(after.payload.scene.backpack.items.find(({ instanceId }) => instanceId === target.instanceId)?.quantity).toBe(2)
+
+    act(() => { button(container, '整理 绷带 · 背包格 1,1').click() })
+    act(() => { button(container, '合并堆叠').click() })
+    act(() => { setInputValue(input(container, '整理数量'), '1') })
+    act(() => { button(container, '绷带 ×2 · 背包格 3,1').click() })
+    act(() => { button(container, '确认整理').click() })
+    after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(after.payload.scene.backpack.items.some(({ instanceId }) => instanceId === source.instanceId)).toBe(false)
+    expect(after.payload.scene.itemStates.states.some(({ instanceId }) => instanceId === source.instanceId)).toBe(false)
+    expect(after.payload.scene.backpack.items.find(({ instanceId }) => instanceId === target.instanceId)?.quantity).toBe(3)
+    expect(after.payload.scene.backpack.items).toContainEqual(split)
+    expect(after.payload.scene.remainingTime).toBe(phase.payload.scene.remainingTime)
+    expect(tracked.commands).toHaveLength(3)
+    expect(storage.writes).toBe(3)
+  })
+
+  it('moves one real stack unit through an explicit quick slot and refreshes load and return facts', () => {
+    const metal = [0, 1, 2].map((index) => ({
+      item: { ...item(`inventory-weight-metal-${index}`, HOSPITAL_ITEM_IDS.metalParts), quantity: 5 },
+      x: index,
+      y: 0,
+    }))
+    const bandage = { ...item('inventory-weight-bandage', HOSPITAL_ITEM_IDS.bandage), quantity: 2 }
+    const phase = sceneInventoryPhase({ backpack: [
+      ...metal,
+      { item: bandage, x: 3, y: 0 },
+    ] })
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    act(() => { button(container, '整理 绷带 ×2 · 背包格 4,1').click() })
+    act(() => { button(container, '放入快捷栏').click() })
+    act(() => { button(container, '快捷栏2 · 空').click() })
+    expect(container.textContent).toContain('背包负重17 → 16')
+    expect(container.textContent).toContain('负重状态负载 → 正常')
+    act(() => { button(container, '确认整理').click() })
+    act(() => { button(container, '关闭结果').click() })
+    let after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    const quick = after.payload.scene.quickSlots.slots[1]!
+    expect(quick.instanceId).not.toBe(bandage.instanceId)
+    expect(after.payload.scene.backpack.items.find(({ instanceId }) => instanceId === bandage.instanceId)?.quantity).toBe(1)
+
+    act(() => { button(container, '整理 快捷栏2 · 绷带').click() })
+    act(() => { button(container, '放回背包').click() })
+    act(() => { button(container, '格子 5,1').click() })
+    expect(container.textContent).toContain('背包负重16 → 17')
+    expect(container.textContent).toContain('负重状态正常 → 负载')
+    act(() => { button(container, '确认整理').click() })
+    after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(after.payload.scene.quickSlots.slots[1]).toBeNull()
+    expect(after.payload.scene.backpack.items).toContainEqual(quick)
+    expect(getItemState(after.payload.scene.itemStates, quick.instanceId).instanceId).toBe(quick.instanceId)
+    expect(tracked.commands).toHaveLength(2)
+    expect(storage.writes).toBe(2)
+  })
+
+  it('preserves a resource item identity through ordinary node drop and explicit Pickup', () => {
+    const flashlight = item('inventory-drop-flashlight', HOSPITAL_ITEM_IDS.flashlight)
+    const phase = sceneInventoryPhase({
+      backpack: [{ item: flashlight, x: 0, y: 0 }],
+      resourceCurrent: { [flashlight.instanceId]: 1 },
+    })
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '整理 手电筒 · 背包格 1,1').click() })
+    act(() => { button(container, '放到当前节点').click() })
+    expect(container.textContent).toContain('整个物品实例／整个堆叠')
+    act(() => { button(container, '确认整理').click() })
+    act(() => { button(container, '关闭结果').click() })
+    let after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    const ground = getSceneNodeItems(after.payload.scene.sceneItems, after.payload.scene.currentNodeId)
+    expect(ground).toContainEqual({
+      item: flashlight,
+      state: expect.objectContaining({
+        instanceId: flashlight.instanceId,
+        resource: { kind: 'charge', current: 1 },
+      }),
+    })
+    act(() => { button(container, '拾取 手电筒').click() })
+    act(() => { button(container, '格子 1,1').click() })
+    act(() => { button(container, '确认拾取').click() })
+    after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(after.payload.scene.backpack.items).toContainEqual(flashlight)
+    expect(getItemState(after.payload.scene.itemStates, flashlight.instanceId).resource)
+      .toEqual({ kind: 'charge', current: 1 })
+    expect(tracked.commands).toHaveLength(2)
+    expect(storage.writes).toBe(2)
+  })
+
+  it('requires the formal quest warning and preserves the same task item through drop and re-pickup', () => {
+    const sample = item('inventory-hidden-sample', HOSPITAL_ITEM_IDS.sealedPathogenCase)
+    const phase = sceneInventoryPhase({ backpack: [{ item: sample, x: 0, y: 0 }] })
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '整理 密封病原样本箱 · 背包格 1,1').click() })
+    act(() => { button(container, '放到当前节点').click() })
+    expect(container.textContent).toContain('这是任务物品。')
+    expect(container.textContent).toContain('只有重新拾取并安全返回后')
+    act(() => { button(container, '确认整理').click() })
+    act(() => { button(container, '关闭结果').click() })
+    let after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(after.payload.scene.backpack.items).not.toContainEqual(sample)
+    expect(getSceneNodeItems(after.payload.scene.sceneItems, after.payload.scene.currentNodeId))
+      .toContainEqual(expect.objectContaining({ item: sample }))
+    expect(after.payload.context.runReturnCarryForward.storedInventory.taskStorage.items).toEqual([])
+    act(() => { button(container, '拾取 密封病原样本箱').click() })
+    act(() => { button(container, '格子 1,1').click() })
+    act(() => { button(container, '确认拾取').click() })
+    after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(after.payload.scene.backpack.items).toContainEqual(sample)
+    expect(after.payload.context.runReturnCarryForward.storedInventory.taskStorage.items).toEqual([])
+    expect(tracked.commands).toHaveLength(2)
+    expect(storage.writes).toBe(2)
+    expect(container.innerHTML).not.toContain(sample.instanceId)
+  })
+
+  it('drops a permission card as a physical item and immediately refreshes access truth', () => {
+    const card = item('inventory-permission-card', HOSPITAL_ITEM_IDS.isolationWardAccessCard)
+    const phase = sceneInventoryPhase({
+      backpack: [{ item: card, x: 0, y: 0 }],
+      currentNodeId: HOSPITAL_NODE_IDS.securityOffice,
+    })
+    expect(createStableRunUiInteractionModel(phase, uiDependencies).actions.map(({ label }) => label))
+      .toContain('前往 隔离走廊')
+    const intelBefore = phase.payload.scene.runIntelLog
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '整理 隔离区门禁卡 · 背包格 1,1').click() })
+    act(() => { button(container, '放到当前节点').click() })
+    expect(container.textContent).not.toContain('这是任务物品。')
+    act(() => { button(container, '确认整理').click() })
+    const after = store.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(getSceneNodeItems(after.payload.scene.sceneItems, after.payload.scene.currentNodeId))
+      .toContainEqual(expect.objectContaining({ item: card }))
+    expect(after.payload.scene.runIntelLog).toEqual(intelBefore)
+    expect(createStableRunUiInteractionModel(after, uiDependencies).actions.map(({ label }) => label))
+      .not.toContain('前往 隔离走廊')
+  })
+
+  it('keeps the formal 28-to-29 quick-slot rejection presentation-only', () => {
+    const heavy = [5, 5, 5, 5, 5, 3].map((quantity, index) => ({
+      item: { ...item(`inventory-carry-${index}`, HOSPITAL_ITEM_IDS.metalParts), quantity },
+      x: index,
+      y: 0,
+    }))
+    const quick = item('inventory-carry-quick', HOSPITAL_ITEM_IDS.bandage)
+    const phase = sceneInventoryPhase({ backpack: heavy, quickSlots: [quick, null] })
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '整理 快捷栏1 · 绷带').click() })
+    act(() => { button(container, '放回背包').click() })
+    act(() => { button(container, '格子 1,2').click() })
+    expect(container.textContent).toContain('无法携带状态')
+    expect(button(container, '确认整理').disabled).toBe(true)
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+  })
+
+  it('retains one committed quick-slot split after save failure without retry or duplication', () => {
+    const bandage = { ...item('inventory-failed-bandage', HOSPITAL_ITEM_IDS.bandage), quantity: 2 }
+    const phase = sceneInventoryPhase({ backpack: [{ item: bandage, x: 0, y: 0 }] })
+    const storage = new FailingStorage()
+    const inner = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '整理 绷带 ×2 · 背包格 1,1').click() })
+    act(() => { button(container, '放入快捷栏').click() })
+    act(() => { button(container, '快捷栏1 · 空').click() })
+    act(() => { button(container, '确认整理').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    const after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene session')
+    expect(after.payload.scene.backpack.items).toContainEqual({ ...bandage, quantity: 1 })
+    const quick = after.payload.scene.quickSlots.slots[0]!
+    expect(quick).toMatchObject({ definitionId: HOSPITAL_ITEM_IDS.bandage, quantity: 1 })
+    expect(quick.instanceId).not.toBe(bandage.instanceId)
+    expect(after.payload.scene.itemStates.states.filter(
+      ({ instanceId }) => instanceId === quick.instanceId,
+    )).toHaveLength(1)
+    expect(container.textContent).toContain('保存失败')
+  })
+
+  it('keeps StrictMode Inventory selection side-effect free and closes a stale source', () => {
+    const flashlight = item('inventory-stale-flashlight', HOSPITAL_ITEM_IDS.flashlight)
+    const phase = sceneInventoryPhase({ backpack: [{ item: flashlight, x: 0, y: 0 }] })
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const before = inner.getState()
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StrictMode><StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} /></StrictMode>) })
+    act(() => { button(container, '整理 手电筒 · 背包格 1,1').click() })
+    act(() => { button(container, '放到当前节点').click() })
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+    expect(inner.getState()).toBe(before)
+
+    const opportunity = createStableRunUiInteractionModel(phase, uiDependencies)
+      .inventoryOpportunities.find(({ sourceInstanceId }) => sourceInstanceId === flashlight.instanceId)!
+    const external = previewStableRunUiSceneInventoryDraft(phase, {
+      opportunityId: opportunity.id,
+      operation: 'drop',
+      quantity: null,
+      targetOpportunityId: null,
+      targetSlotIndex: null,
+      x: null,
+      y: null,
+      rotated: false,
+    }, uiDependencies)
+    if (!external?.canExecute || !external.command) throw new Error('expected formal external drop')
+    act(() => { inner.dispatch(external.command) })
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
   })
 })

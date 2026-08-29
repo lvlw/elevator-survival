@@ -78,7 +78,7 @@ CurrentDayHub
 - Dispatcher 不维护第四套 phase matrix，不拥有玩法规则、规则版本分派、随机数、Effect、状态或保存策略；它也不直接调用 generic executor、Run Save 或 `storage.write()`。
 - Lifecycle、Scene 与 Hub specialized router 继续拥有各自的应用层映射职责，generic executor 继续拥有 canonicalization、RunIdentity 连续性和唯一保存。每次 application dispatch 只委托一个 specialized router 一次。
 - `execution.phase` 是下一条命令的唯一正式状态。确定性重放只属于自动化验收，使用正式 registry、Run seed、稳定阶段与应用路由，不在存档或阶段中保存 command history、replay log 或序号。
-- 制作、拆解与大部分 React gameplay command wiring 尚未实现；当前已接入启动主要场景、活动场景移动、主要搜索、节点拾取、主动撤离、终止场景结算、医院防火门障碍、感染护工战斗行动与医院样本箱任务事件的确认式 UI，展示与交互边界见后文。
+- 制作、拆解与大部分 React gameplay command wiring 尚未实现；当前已接入启动主要场景、活动场景移动、主要搜索、节点拾取、七种 Scene 背包／快捷栏整理、主动撤离、终止场景结算、医院防火门障碍、感染护工战斗行动与医院样本箱任务事件的确认式 UI，展示与交互边界见后文。
 
 ## 最小 Stable Run Application Store
 
@@ -109,8 +109,8 @@ StableRunStore public read API
 - `src/ui/` 只读取 Store 对外的 `getState()`、`getInitialState()` 与 `subscribe()`；不访问 raw Zustand API，也不在渲染、订阅或开发检查器中发送命令、保存或改变状态。已接入的确认按钮只调用公开 `Store.dispatch()`，不直接调用 application／specialized executor、core resolver 或保存接口。
 - 通用 ViewModel 通过显式白名单向普通玩家展示 Hub、Scene、Combat 与 Failure 信息。节点地面物品、**当前可通行相邻节点**、当前节点明显障碍、相对敌人生命阶段、当前意图和正式返程预览继续复用 core 查询；当前不构造完整玩家已知地图。障碍只投影当前 active Scene、当前节点、尚未解决的正式障碍，选项资格由 core Preview 决定。内部 Run 身份、实例 ID、隐藏搜索结果、障碍随机轨迹、精确敌人生命、风险百分比和未来行动序列不进入普通 ViewModel。
 - 医院 V1 的名称文案位于 UI 内容适配层；通用组件不硬编码医院物品、敌人或节点名称。开发环境的只读检查器可以查看严格 phase，但生产环境没有入口，且不提供 mutation。开发环境默认 `App` 未注入 Store 时可动态加载独立内存态预览：它只用正式构造器生成合法 Hub／Scene／Combat／Failure Store，选择示例不发送 gameplay command、不保存，也不是 New Run 或正式游戏入口；生产环境仍保持诚实的未接入状态。
-- `src/ui/interaction/` 从 canonical phase、正式 registry、标签和纯 core preview 生成安全行动：主要场景启动、活动场景移动、主要搜索、显式节点物品拾取、主动撤离、医院防火门、感染护工战斗行动、医院样本箱任务事件、Scene 非战斗医疗与 Scene 非战斗电池充能。拾取及任务物提取草稿只保存玩家明确选择的数量、坐标与旋转，调用对应正式 Preview；背包网格只投影正式几何并作为 anchor 选择，不自动摆放、整理、拆分或创建实例身份。Scene 医疗与充能行动完全来自各自正式 selector，保留玩家明确选择的真实容器来源和目标；二者共用中性的正时间 Scene 行动安全投影，区分完成节点、返程目标、行动后流血死亡和紧急返程死亡。player-safe Preview 只对白名单投影同源主要效果、时间、流血、返程与终局事实，不携带原始 Preview、Effects、物品／伤口身份或 resulting snapshot。确认后每次只发出一条 `Store.dispatch()`；医疗、充能、撤离、战斗或任务事件产生的 terminal Scene 先保存 Scene Session，结算仍由下一条显式 lifecycle command 完成。
-- 成功返回后的 Return Summary、Combat Action Result、Task Event Result、Scene Medical Result 与 Scene Battery Result 只将 execution 前后的 canonical phase 及已发生的正式结果立即投影为本地、玩家可见的展示模型；它们不是 Scene、Combat、Run Return、Hub、任务进度、医疗、充能或 inventory 的状态 owner，关闭不发送命令。当前没有 New Run bootstrap、React Provider、完整 Application Store、UI 命令队列或终版美术。医院防火门、感染护工战斗行动、医院样本箱提取、Scene 非战斗医疗与 Scene 非战斗电池充能已接入正式安全 Preview 与确认分派；Scene 整理、中枢操作与日结算的 React command UI 尚未接入。React 不拥有医疗／充能资格、效果、目标合法性、时间、流血、返程或终局规则；展示层可被未来其他渲染技术替换，只要继续读取 canonical phase 并发送正式命令。
+- `src/ui/interaction/` 从 canonical phase、正式 registry、标签和纯 core preview 生成安全行动：主要场景启动、活动场景移动、主要搜索、显式节点物品拾取、七种 Scene 背包／快捷栏整理、主动撤离、医院防火门、感染护工战斗行动、医院样本箱任务事件、Scene 非战斗医疗与 Scene 非战斗电池充能。拾取、任务物提取及 Scene 整理草稿只保存玩家明确选择的数量、目标、快捷栏、坐标与旋转，调用对应正式 Preview；背包网格只投影正式几何并作为 anchor 选择，不自动摆放、整理、拆分、合并、补充或创建实例身份。Scene 整理的 player-safe Preview 白名单投影正式容器变化、数量、负重档位、零时间与即时返程估算，不携带实例 ID、审计、Effects 或 resulting snapshot；任务物放到节点必须显式确认。Scene 医疗与充能行动完全来自各自正式 selector，保留玩家明确选择的真实容器来源和目标；二者共用中性的正时间 Scene 行动安全投影，区分完成节点、返程目标、行动后流血死亡和紧急返程死亡。player-safe Preview 只对白名单投影同源主要效果、时间、流血、返程与终局事实。确认后每次只发出一条 `Store.dispatch()`；医疗、充能、撤离、战斗或任务事件产生的 terminal Scene 先保存 Scene Session，结算仍由下一条显式 lifecycle command 完成。
+- 成功返回后的 Return Summary、Combat Action Result、Task Event Result、Scene Medical Result、Scene Battery Result 与 Scene Inventory Result 只将 execution 前后的 canonical phase 及已发生的正式结果立即投影为本地、玩家可见的展示模型；它们不是 Scene、Combat、Run Return、Hub、任务进度、医疗、充能或 inventory 的状态 owner，关闭不发送命令。当前没有 New Run bootstrap、React Provider、完整 Application Store、UI 命令队列或终版美术。医院防火门、感染护工战斗行动、医院样本箱提取、Scene 非战斗医疗、Scene 非战斗电池充能与非战斗 Scene 整理已接入正式安全 Preview 与确认分派；中枢操作与日结算的 React command UI 尚未接入。React 不拥有 inventory、医疗／充能资格、效果、目标合法性、时间、流血、返程或终局规则；展示层可被未来其他渲染技术替换，只要继续读取 canonical phase 并发送正式命令。
 
 ## 当前最小 Stable Run 生命周期命令路由
 

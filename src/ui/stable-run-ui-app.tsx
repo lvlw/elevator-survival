@@ -3,10 +3,13 @@ import type { StableRunStore } from '../state/run-store'
 import {
   createStableRunUiInteractionModel,
   previewStableRunUiPickupDraft,
+  previewStableRunUiSceneInventoryDraft,
   previewStableRunUiTaskEventDraft,
   type StableRunUiAction,
   type StableRunUiActionPreviewViewModel,
   type StableRunUiPickupOpportunity,
+  type StableRunUiInventoryOperation,
+  type StableRunUiInventoryOpportunity,
   type StableRunUiTaskEventOpportunity,
 } from './interaction'
 import {
@@ -14,6 +17,7 @@ import {
   createCombatActionResultViewModel,
   createSceneBatteryResultViewModel,
   createSceneMedicalResultViewModel,
+  createSceneInventoryResultViewModel,
   createStableRunPlayerViewModel,
   createTaskEventResultViewModel,
   type PlayerVisibleItemViewModel,
@@ -24,6 +28,7 @@ import {
   type CombatActionResultViewModel,
   type SceneBatteryResultViewModel,
   type SceneMedicalResultViewModel,
+  type SceneInventoryResultViewModel,
   type TaskEventResultViewModel,
   type StableRunPlayerViewModel,
   type StableRunUiPresentationDependencies,
@@ -242,6 +247,8 @@ function SceneView({
   onPickup,
   taskEventOpportunities,
   onTaskEvent,
+  inventoryOpportunities,
+  onInventory,
 }: Readonly<{
   model: Extract<StableRunPlayerViewModel, { kind: 'scene-session' }>
   actions: readonly StableRunUiAction[]
@@ -250,12 +257,14 @@ function SceneView({
   onPickup(opportunityId: string): void
   taskEventOpportunities: readonly StableRunUiTaskEventOpportunity[]
   onTaskEvent(opportunityId: string): void
+  inventoryOpportunities: readonly StableRunUiInventoryOpportunity[]
+  onInventory(opportunityId: string): void
 }>) {
   const { scene } = model
   return <main className="console-layout">
     <StatusBar status={model.status} />
     <div className="console-grid">
-      <section className="console-panel"><h2>场景导航</h2><p>当前位置：<strong>{scene.currentNodeName}</strong></p><p>剩余时间：<strong>{scene.remainingTime}</strong></p><p>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></p><p>返程后预计剩余：<strong>{scene.returnAfterWithdrawalTime ?? '当前不可预览'}</strong></p>{scene.returnRisk === 'forced-returned' && <p className="preview-warning">当前返程将进入强制返程。</p>}{scene.returnRisk === 'dead' && <p className="preview-warning">当前返程将导致生命归零。</p>}<p>当前节点搜索：<strong>{scene.currentNodeSearchState}</strong></p><h3>当前可通行相邻节点</h3><ItemList items={scene.traversableAdjacentNodeNames.map((name) => ({ name, quantity: 1, resource: null }))} empty="暂无当前可通行相邻节点" /><h3>当前明显障碍</h3><ItemList items={scene.currentObstacles.map(({ name }) => ({ name, quantity: 1, resource: null }))} empty="当前没有需要处理的明显障碍" /><h3>当前节点地面物品</h3><ItemList items={scene.groundItems} empty="未发现地面物品" />{pickupOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onPickup(opportunity.id)}>拾取 {opportunity.name}</button>)}{taskEventOpportunities.length > 0 && <><h3>任务事件</h3>{taskEventOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onTaskEvent(opportunity.id)}>{opportunity.label}</button>)}</>}</section>
+      <section className="console-panel"><h2>场景导航</h2><p>当前位置：<strong>{scene.currentNodeName}</strong></p><p>剩余时间：<strong>{scene.remainingTime}</strong></p><p>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></p><p>返程后预计剩余：<strong>{scene.returnAfterWithdrawalTime ?? '当前不可预览'}</strong></p>{scene.returnRisk === 'forced-returned' && <p className="preview-warning">当前返程将进入强制返程。</p>}{scene.returnRisk === 'dead' && <p className="preview-warning">当前返程将导致生命归零。</p>}<p>当前节点搜索：<strong>{scene.currentNodeSearchState}</strong></p><h3>当前可通行相邻节点</h3><ItemList items={scene.traversableAdjacentNodeNames.map((name) => ({ name, quantity: 1, resource: null }))} empty="暂无当前可通行相邻节点" /><h3>当前明显障碍</h3><ItemList items={scene.currentObstacles.map(({ name }) => ({ name, quantity: 1, resource: null }))} empty="当前没有需要处理的明显障碍" /><h3>当前节点地面物品</h3><ItemList items={scene.groundItems} empty="未发现地面物品" />{pickupOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onPickup(opportunity.id)}>拾取 {opportunity.name}</button>)}{taskEventOpportunities.length > 0 && <><h3>任务事件</h3>{taskEventOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onTaskEvent(opportunity.id)}>{opportunity.label}</button>)}</>}{inventoryOpportunities.length > 0 && <><h3>场景整理</h3>{inventoryOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onInventory(opportunity.id)}>整理 {opportunity.sourceLabel}</button>)}</>}</section>
       {scene.status === 'combat'
         ? <CombatLoadoutPanel loadout={scene.loadout} />
         : <LoadoutPanel loadout={scene.loadout} />}
@@ -340,6 +349,116 @@ function PickupDialog({
     <BackpackGrid grid={loadout.backpackGrid} candidateCells={preview?.candidateCells} onAnchor={onAnchor} />
     {preview?.canExecute ? <dl className="preview-facts">{preview.facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl> : <p className="preview-warning">{preview?.rejection ?? '状态已变化，请重新选择。'}</p>}
     <div className="preview-controls"><button type="button" onClick={onCancel}>取消</button><button type="button" className="confirm-action" disabled={!preview?.canExecute} onClick={onConfirm}>确认拾取</button></div>
+  </section></div>
+}
+
+function inventoryOperationLabel(operation: StableRunUiInventoryOperation): string {
+  return operation === 'move'
+    ? '移动／旋转'
+    : operation === 'split'
+      ? '拆分堆叠'
+      : operation === 'merge'
+        ? '合并堆叠'
+        : operation === 'backpack-to-quick-slot'
+          ? '放入快捷栏'
+          : operation === 'quick-slot-to-backpack'
+            ? '放回背包'
+            : '放到当前节点'
+}
+
+function SceneInventoryDialog({
+  opportunity,
+  opportunities,
+  loadout,
+  operation,
+  quantity,
+  targetOpportunityId,
+  targetSlotIndex,
+  x,
+  y,
+  rotated,
+  preview,
+  onOperation,
+  onQuantity,
+  onTargetOpportunity,
+  onTargetSlot,
+  onAnchor,
+  onRotate,
+  onCancel,
+  onConfirm,
+}: Readonly<{
+  opportunity: StableRunUiInventoryOpportunity
+  opportunities: readonly StableRunUiInventoryOpportunity[]
+  loadout: PlayerVisibleLoadoutViewModel
+  operation: StableRunUiInventoryOperation | null
+  quantity: number | null
+  targetOpportunityId: string | null
+  targetSlotIndex: number | null
+  x: number | null
+  y: number | null
+  rotated: boolean
+  preview: ReturnType<typeof previewStableRunUiSceneInventoryDraft>
+  onOperation(value: StableRunUiInventoryOperation): void
+  onQuantity(value: number | null): void
+  onTargetOpportunity(value: string): void
+  onTargetSlot(value: number): void
+  onAnchor(x: number, y: number): void
+  onRotate(value: boolean): void
+  onCancel(): void
+  onConfirm(): void
+}>) {
+  const needsPlacement = operation === 'move' || operation === 'split' ||
+    operation === 'quick-slot-to-backpack'
+  const mergeTargets = opportunities.filter(
+    (candidate) => candidate.container === 'backpack' && candidate.id !== opportunity.id,
+  )
+  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="scene-inventory-title">
+    <h2 id="scene-inventory-title">场景整理</h2>
+    <p>来源：<strong>{opportunity.sourceLabel}</strong></p>
+    <div className="preview-controls" aria-label="整理操作">
+      {opportunity.operations.map((candidate) => <button key={candidate} type="button" className={operation === candidate ? 'confirm-action' : ''} onClick={() => onOperation(candidate)}>{inventoryOperationLabel(candidate)}</button>)}
+    </div>
+    {(operation === 'split' || operation === 'merge') && <label>明确数量 <input aria-label="整理数量" type="number" min="1" value={quantity ?? ''} onChange={(event) => onQuantity(event.target.value === '' ? null : Number(event.target.value))} /></label>}
+    {operation === 'merge' && <><h3>明确目标堆叠</h3><div className="preview-controls">{mergeTargets.map((target) => <button key={target.id} type="button" className={targetOpportunityId === target.id ? 'confirm-action' : ''} onClick={() => onTargetOpportunity(target.id)}>{target.sourceLabel}</button>)}</div></>}
+    {operation === 'backpack-to-quick-slot' && <><h3>明确目标快捷栏</h3><div className="preview-controls">{loadout.quickSlots.map((slot, index) => <button key={index} type="button" className={targetSlotIndex === index ? 'confirm-action' : ''} onClick={() => onTargetSlot(index)}>快捷栏{index + 1} · {slot?.name ?? '空'}</button>)}</div></>}
+    {needsPlacement && <>
+      {opportunity.canRotate && <label><input aria-label="旋转整理物品" type="checkbox" checked={rotated} onChange={(event) => onRotate(event.target.checked)} />旋转</label>}
+      <p>目标格：{x === null || y === null ? '尚未选择' : `${x + 1}, ${y + 1}`}</p>
+      <BackpackGrid grid={loadout.backpackGrid} candidateCells={preview?.candidateCells} onAnchor={onAnchor} />
+    </>}
+    {operation === 'drop' && <p>本操作会把整个物品实例／整个堆叠放到当前节点，不会自动拆分。</p>}
+    {preview?.canExecute && preview.preview
+      ? <><dl className="preview-facts">{preview.preview.facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>{preview.preview.warnings.length > 0 && <ul className="preview-warnings">{preview.preview.warnings.map((warning) => <li key={warning}>{warning}</li>)}</ul>}</>
+      : <p className="preview-warning">{operation === null
+        ? '请明确选择一项整理操作。'
+        : preview?.rejection ?? '请明确选择数量、目标快捷栏、目标堆叠或背包放置位置。'}</p>}
+    <div className="preview-controls"><button type="button" onClick={onCancel}>取消</button><button type="button" className="confirm-action" disabled={!preview?.canExecute} onClick={onConfirm}>确认整理</button></div>
+  </section></div>
+}
+
+function SceneInventoryResultDialog({
+  result,
+  onClose,
+}: Readonly<{ result: SceneInventoryResultViewModel; onClose(): void }>) {
+  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="scene-inventory-result-title">
+    <h2 id="scene-inventory-result-title">场景整理结果</h2>
+    <p><strong>{result.action}</strong></p>
+    <dl className="preview-facts">
+      <div><dt>物品</dt><dd>{result.itemName}</dd></div>
+      <div><dt>来源</dt><dd>{result.source}</dd></div>
+      <div><dt>目标</dt><dd>{result.target}</dd></div>
+      <div><dt>转移数量</dt><dd>{result.quantityMoved}</dd></div>
+      <div><dt>来源数量</dt><dd>{result.sourceQuantityBefore} → {result.sourceQuantityAfter}</dd></div>
+      {result.targetQuantityBefore !== null && result.targetQuantityAfter !== null && <div><dt>目标数量</dt><dd>{result.targetQuantityBefore} → {result.targetQuantityAfter}</dd></div>}
+      <div><dt>背包负重</dt><dd>{result.backpackWeightBefore} → {result.backpackWeightAfter}</dd></div>
+      <div><dt>Scene 时间</dt><dd>{result.remainingTimeBefore} → {result.remainingTimeAfter}（不消耗）</dd></div>
+      <div><dt>生命</dt><dd>{result.healthBefore} → {result.healthAfter}</dd></div>
+      <div><dt>当前节点</dt><dd>{result.currentNodeName}</dd></div>
+      <div><dt>整理后预计返程</dt><dd>{result.returnEstimateAfter ?? '当前不可预览'}</dd></div>
+      <div><dt>整理后返程预计剩余</dt><dd>{result.returnRemainingAfter ?? '当前不可预览'}</dd></div>
+    </dl>
+    {result.questDrop && <p className="preview-warning">任务物品当前留在场景节点，尚未安全进入任务储存区。</p>}
+    <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
   </section></div>
 }
 
@@ -534,6 +653,7 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
   const [pendingActionId, setPendingActionId] = useState<string | null>(null)
   const [pendingPickupId, setPendingPickupId] = useState<string | null>(null)
   const [pendingTaskEventId, setPendingTaskEventId] = useState<string | null>(null)
+  const [pendingInventoryId, setPendingInventoryId] = useState<string | null>(null)
   const [pickupQuantity, setPickupQuantity] = useState(1)
   const [pickupX, setPickupX] = useState(0)
   const [pickupY, setPickupY] = useState(0)
@@ -541,15 +661,24 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
   const [taskEventX, setTaskEventX] = useState<number | null>(null)
   const [taskEventY, setTaskEventY] = useState<number | null>(null)
   const [taskEventRotated, setTaskEventRotated] = useState(false)
+  const [inventoryOperation, setInventoryOperation] = useState<StableRunUiInventoryOperation | null>(null)
+  const [inventoryQuantity, setInventoryQuantity] = useState<number | null>(null)
+  const [inventoryTargetId, setInventoryTargetId] = useState<string | null>(null)
+  const [inventoryTargetSlot, setInventoryTargetSlot] = useState<number | null>(null)
+  const [inventoryX, setInventoryX] = useState<number | null>(null)
+  const [inventoryY, setInventoryY] = useState<number | null>(null)
+  const [inventoryRotated, setInventoryRotated] = useState(false)
   const [returnSummary, setReturnSummary] = useState<ReturnSummaryViewModel | null>(null)
   const [combatActionResult, setCombatActionResult] = useState<CombatActionResultViewModel | null>(null)
   const [taskEventResult, setTaskEventResult] = useState<TaskEventResultViewModel | null>(null)
   const [sceneMedicalResult, setSceneMedicalResult] = useState<SceneMedicalResultViewModel | null>(null)
   const [sceneBatteryResult, setSceneBatteryResult] = useState<SceneBatteryResultViewModel | null>(null)
+  const [sceneInventoryResult, setSceneInventoryResult] = useState<SceneInventoryResultViewModel | null>(null)
   const [persistenceFeedback, setPersistenceFeedback] = useState<string | null>(null)
   const pendingAction = interaction.actions.find(({ id }) => id === pendingActionId) ?? null
   const pendingPickup = interaction.pickupOpportunities.find(({ id }) => id === pendingPickupId) ?? null
   const pendingTaskEvent = interaction.taskEventOpportunities.find(({ id }) => id === pendingTaskEventId) ?? null
+  const pendingInventory = interaction.inventoryOpportunities.find(({ id }) => id === pendingInventoryId) ?? null
   const pickupPreview = pendingPickup === null ? null : previewStableRunUiPickupDraft(snapshot.phase, {
     opportunityId: pendingPickup.id,
     quantity: pickupQuantity,
@@ -563,6 +692,18 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
     y: taskEventY,
     rotated: taskEventRotated,
   }, presentationDependencies)
+  const inventoryPreview = pendingInventory === null || inventoryOperation === null
+    ? null
+    : previewStableRunUiSceneInventoryDraft(snapshot.phase, {
+        opportunityId: pendingInventory.id,
+        operation: inventoryOperation,
+        quantity: inventoryQuantity,
+        targetOpportunityId: inventoryTargetId,
+        targetSlotIndex: inventoryTargetSlot,
+        x: inventoryX,
+        y: inventoryY,
+        rotated: inventoryRotated,
+      }, presentationDependencies)
 
   useEffect(() => {
     if (pendingPickupId !== null && pendingPickup === null) setPendingPickupId(null)
@@ -571,6 +712,10 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
   useEffect(() => {
     if (pendingTaskEventId !== null && pendingTaskEvent === null) setPendingTaskEventId(null)
   }, [pendingTaskEvent, pendingTaskEventId])
+
+  useEffect(() => {
+    if (pendingInventoryId !== null && pendingInventory === null) setPendingInventoryId(null)
+  }, [pendingInventory, pendingInventoryId])
 
   const confirm = () => {
     if (!pendingAction) return
@@ -688,10 +833,58 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
       ))
     }
   }
+  const openInventory = (opportunityId: string) => {
+    const opportunity = interaction.inventoryOpportunities.find(({ id }) => id === opportunityId)
+    if (!opportunity) return
+    setPendingActionId(null)
+    setPendingPickupId(null)
+    setPendingTaskEventId(null)
+    setInventoryOperation(null)
+    setInventoryQuantity(null)
+    setInventoryTargetId(null)
+    setInventoryTargetSlot(null)
+    setInventoryX(null)
+    setInventoryY(null)
+    setInventoryRotated(false)
+    setPendingInventoryId(opportunityId)
+  }
+  const selectInventoryOperation = (operation: StableRunUiInventoryOperation) => {
+    setInventoryOperation(operation)
+    setInventoryQuantity(null)
+    setInventoryTargetId(null)
+    setInventoryTargetSlot(null)
+    setInventoryX(null)
+    setInventoryY(null)
+    setInventoryRotated(false)
+  }
+  const confirmInventory = () => {
+    if (
+      !inventoryPreview?.canExecute ||
+      inventoryPreview.command === null ||
+      !pendingInventory ||
+      inventoryOperation === null
+    ) return
+    const beforePhase = snapshot.phase
+    const action = `${inventoryOperationLabel(inventoryOperation)} · ${pendingInventory.sourceLabel}`
+    const execution = store.dispatch(inventoryPreview.command)
+    setPendingInventoryId(null)
+    setPersistenceFeedback(execution.kind === 'executed'
+      ? '✓ 操作已执行并保存'
+      : '⚠ 保存失败：本次操作已在当前会话中生效，请勿刷新页面。')
+    if (beforePhase.kind === 'scene-session' && execution.phase.kind === 'scene-session') {
+      setSceneInventoryResult(createSceneInventoryResultViewModel(
+        beforePhase,
+        execution.phase,
+        action,
+        execution.result,
+        presentationDependencies,
+      ))
+    }
+  }
   return <>
     {persistenceFeedback && <p className="persistence-feedback" role="status">{persistenceFeedback}</p>}
     {model.kind === 'current-day-hub' && <HubView model={model} actions={interaction.actions} onPreview={setPendingActionId} />}
-    {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} onPreview={setPendingActionId} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} taskEventOpportunities={interaction.taskEventOpportunities} onTaskEvent={openTaskEvent} />}
+    {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} onPreview={setPendingActionId} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} taskEventOpportunities={interaction.taskEventOpportunities} onTaskEvent={openTaskEvent} inventoryOpportunities={interaction.inventoryOpportunities} onInventory={openInventory} />}
     {model.kind === 'run-failure' && <FailureView model={model} />}
     {pendingAction && <ActionPreviewDialog
       preview={pendingAction.preview}
@@ -700,11 +893,13 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
     />}
     {pendingPickup && model.kind === 'scene-session' && <PickupDialog opportunity={pendingPickup} loadout={model.scene.loadout} preview={pickupPreview} quantity={pickupQuantity} x={pickupX} y={pickupY} rotated={pickupRotated} onQuantity={setPickupQuantity} onRotate={setPickupRotated} onAnchor={(x, y) => { setPickupX(x); setPickupY(y) }} onCancel={() => setPendingPickupId(null)} onConfirm={confirmPickup} />}
     {pendingTaskEvent && model.kind === 'scene-session' && <TaskEventDialog opportunity={pendingTaskEvent} loadout={model.scene.loadout} preview={taskEventPreview} x={taskEventX} y={taskEventY} rotated={taskEventRotated} onRotate={setTaskEventRotated} onAnchor={(x, y) => { setTaskEventX(x); setTaskEventY(y) }} onCancel={() => setPendingTaskEventId(null)} onConfirm={confirmTaskEvent} />}
+    {pendingInventory && model.kind === 'scene-session' && <SceneInventoryDialog opportunity={pendingInventory} opportunities={interaction.inventoryOpportunities} loadout={model.scene.loadout} operation={inventoryOperation} quantity={inventoryQuantity} targetOpportunityId={inventoryTargetId} targetSlotIndex={inventoryTargetSlot} x={inventoryX} y={inventoryY} rotated={inventoryRotated} preview={inventoryPreview} onOperation={selectInventoryOperation} onQuantity={setInventoryQuantity} onTargetOpportunity={setInventoryTargetId} onTargetSlot={setInventoryTargetSlot} onAnchor={(x, y) => { setInventoryX(x); setInventoryY(y) }} onRotate={setInventoryRotated} onCancel={() => setPendingInventoryId(null)} onConfirm={confirmInventory} />}
     {returnSummary && <ReturnSummaryDialog summary={returnSummary} onClose={() => setReturnSummary(null)} />}
     {combatActionResult && <CombatActionResultDialog result={combatActionResult} onClose={() => setCombatActionResult(null)} />}
     {taskEventResult && <TaskEventResultDialog result={taskEventResult} onClose={() => setTaskEventResult(null)} />}
     {sceneMedicalResult && <SceneMedicalResultDialog result={sceneMedicalResult} onClose={() => setSceneMedicalResult(null)} />}
     {sceneBatteryResult && <SceneBatteryResultDialog result={sceneBatteryResult} onClose={() => setSceneBatteryResult(null)} />}
+    {sceneInventoryResult && <SceneInventoryResultDialog result={sceneInventoryResult} onClose={() => setSceneInventoryResult(null)} />}
     {import.meta.env.DEV && <DevInspector phase={snapshot.phase} />}
   </>
 }

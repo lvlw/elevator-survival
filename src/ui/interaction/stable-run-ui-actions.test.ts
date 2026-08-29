@@ -4,13 +4,16 @@ import {
   HOSPITAL_ITEM_IDS,
   HOSPITAL_NODE_IDS,
   hospitalItemCatalog,
+  hospitalItemQuickSlotCatalog,
   hospitalItemResourceCatalog,
 } from '../../content'
 import { createBackpackSnapshot, type ItemInstance } from '../../core/inventory'
 import { createFullItemState } from '../../core/item-state'
+import { createQuickSlotSnapshot } from '../../core/quick-slot'
 import {
   createSceneExplorationSnapshot,
   resolveMainSearchCommand,
+  resolveSceneInventoryCommand,
   resolveSceneMoveCommand,
 } from '../../core/scene-exploration'
 import {
@@ -23,6 +26,7 @@ import { hospitalV01UiLabels } from '../hospital-v0.1'
 import {
   createStableRunUiInteractionModel,
   previewStableRunUiPickupDraft,
+  previewStableRunUiSceneInventoryDraft,
 } from './stable-run-ui-actions'
 
 const dependencies = {
@@ -206,6 +210,61 @@ function searchedEmergencyHall() {
   return {
     kind: 'scene-session' as const,
     payload: createRunSceneSessionSnapshot({ context: phase.payload.context, scene }, hospitalSceneLaunchDependencies),
+  }
+}
+
+function sceneInventoryPhase() {
+  const phase = moveToEmergencyHall()
+  const runtime = getRunSceneRuntime(phase.payload, hospitalSceneLaunchDependencies)
+  const bandageA = { instanceId: 'ui-inventory-bandage-a', definitionId: HOSPITAL_ITEM_IDS.bandage, quantity: 2 }
+  const bandageB = { instanceId: 'ui-inventory-bandage-b', definitionId: HOSPITAL_ITEM_IDS.bandage, quantity: 1 }
+  const flashlight = item('ui-inventory-flashlight', HOSPITAL_ITEM_IDS.flashlight)
+  const sample = item('ui-inventory-sample', HOSPITAL_ITEM_IDS.sealedPathogenCase)
+  const quick = item('ui-inventory-quick-painkiller', HOSPITAL_ITEM_IDS.painkiller)
+  const carried = [bandageA, bandageB, flashlight, sample]
+  const backpack = createBackpackSnapshot({
+    width: runtime.dependencies.config.backpack.width,
+    height: runtime.dependencies.config.backpack.height,
+    items: carried,
+    placements: [
+      { instanceId: bandageA.instanceId, x: 0, y: 0, rotated: false },
+      { instanceId: bandageB.instanceId, x: 1, y: 0, rotated: false },
+      { instanceId: flashlight.instanceId, x: 2, y: 0, rotated: false },
+      { instanceId: sample.instanceId, x: 3, y: 0, rotated: false },
+    ],
+  }, hospitalItemCatalog)
+  const quickSlots = createQuickSlotSnapshot(
+    [quick, null],
+    runtime.dependencies.config.backpack.quickSlotCount,
+    hospitalItemCatalog,
+    hospitalItemQuickSlotCatalog,
+  )
+  const equipmentIds = new Set(Object.values(phase.payload.scene.equipment)
+    .filter((candidate): candidate is ItemInstance => candidate !== null)
+    .map(({ instanceId }) => instanceId))
+  const scene = createSceneExplorationSnapshot({
+    ...phase.payload.scene,
+    backpack,
+    quickSlots,
+    itemStates: {
+      states: [
+        ...phase.payload.scene.itemStates.states.filter(({ instanceId }) => equipmentIds.has(instanceId)),
+        ...[...carried, quick].map((candidate) => createFullItemState(candidate, hospitalItemResourceCatalog)),
+      ],
+    },
+  }, runtime.dependencies)
+  return {
+    phase: {
+      kind: 'scene-session' as const,
+      payload: createRunSceneSessionSnapshot({ context: phase.payload.context, scene }, hospitalSceneLaunchDependencies),
+    },
+    ids: {
+      bandageA: bandageA.instanceId,
+      bandageB: bandageB.instanceId,
+      flashlight: flashlight.instanceId,
+      sample: sample.instanceId,
+      quick: quick.instanceId,
+    },
   }
 }
 
@@ -491,5 +550,198 @@ describe('stable Run UI interaction model', () => {
       { label: '生还结果', value: 'forced-returned Scene' },
       { label: '强制返程目标', value: '电梯前室' },
     ]))
+  })
+
+  it('builds identity-safe Scene Inventory opportunities only for an active Scene', () => {
+    const { phase, ids } = sceneInventoryPhase()
+    const interaction = createStableRunUiInteractionModel(phase, dependencies)
+    expect(interaction.inventoryOpportunities.map(({ sourceLabel }) => sourceLabel)).toEqual([
+      '绷带 ×2 · 背包格 1,1',
+      '绷带 · 背包格 2,1',
+      '手电筒 · 背包格 3,1',
+      '密封病原样本箱 · 背包格 4,1',
+      '快捷栏1 · 止痛药',
+    ])
+    expect(interaction.inventoryOpportunities.find(
+      ({ sourceInstanceId }) => sourceInstanceId === ids.sample,
+    )?.requiresQuestDropConfirmation).toBe(true)
+    const visible = JSON.stringify(interaction.inventoryOpportunities.map(
+      ({ name, sourceLabel, quantity, canRotate, operations }) => ({
+        name,
+        sourceLabel,
+        quantity,
+        canRotate,
+        operations,
+      }),
+    ))
+    for (const hidden of Object.values(ids)) expect(visible).not.toContain(hidden)
+
+    const combat = createStableRunUiInteractionModel(combatPhaseWithPipeState(6), dependencies)
+    expect(combat.inventoryOpportunities).toEqual([])
+  })
+
+  it('routes all seven formal Scene Inventory commands through player-safe previews', () => {
+    const { phase, ids } = sceneInventoryPhase()
+    const interaction = createStableRunUiInteractionModel(phase, dependencies)
+    const opportunity = (instanceId: string) => interaction.inventoryOpportunities.find(
+      ({ sourceInstanceId }) => sourceInstanceId === instanceId,
+    )!
+    const base = {
+      quantity: null,
+      targetOpportunityId: null,
+      targetSlotIndex: null,
+      x: null,
+      y: null,
+      rotated: false,
+    }
+    const drafts = [
+      { ...base, opportunityId: opportunity(ids.flashlight).id, operation: 'move' as const, x: 0, y: 2, rotated: true },
+      { ...base, opportunityId: opportunity(ids.bandageA).id, operation: 'split' as const, quantity: 1, x: 5, y: 0 },
+      { ...base, opportunityId: opportunity(ids.bandageB).id, operation: 'merge' as const, quantity: 1, targetOpportunityId: opportunity(ids.bandageA).id },
+      { ...base, opportunityId: opportunity(ids.bandageA).id, operation: 'backpack-to-quick-slot' as const, targetSlotIndex: 1 },
+      { ...base, opportunityId: opportunity(ids.quick).id, operation: 'quick-slot-to-backpack' as const, x: 5, y: 3 },
+      { ...base, opportunityId: opportunity(ids.flashlight).id, operation: 'drop' as const },
+      { ...base, opportunityId: opportunity(ids.sample).id, operation: 'drop' as const },
+    ]
+    const previews = drafts.map((draft) =>
+      previewStableRunUiSceneInventoryDraft(phase, draft, dependencies))
+    expect(previews.every((preview) => preview?.canExecute)).toBe(true)
+    expect(previews.map((preview) => {
+      const application = preview?.command
+      return application?.kind === 'scene' && application.command.kind === 'scene-inventory'
+        ? application.command.command.kind
+        : null
+    })).toEqual([
+      'move-scene-backpack-item',
+      'split-scene-backpack-stack',
+      'merge-scene-backpack-stacks',
+      'scene-backpack-to-quick-slot',
+      'scene-quick-slot-to-backpack',
+      'drop-scene-backpack-item',
+      'confirm-drop-scene-quest-item',
+    ])
+    expect(previews[6]?.questDropWarning).toBe(true)
+    expect(previews[6]?.preview?.warnings).toContain('这是任务物品。')
+    const visible = JSON.stringify(previews.map((preview) => preview?.preview))
+    for (const hidden of [
+      ...Object.values(ids),
+      'instanceId',
+      'sourceInstanceId',
+      'targetInstanceId',
+      'splitInstanceId',
+      'audit',
+      'effects',
+      'snapshot',
+      'transitionPlan',
+    ]) expect(visible).not.toContain(hidden)
+  })
+
+  it('keeps invalid Inventory drafts behind the formal Preview boundary', () => {
+    const { phase, ids } = sceneInventoryPhase()
+    const opportunities = createStableRunUiInteractionModel(phase, dependencies).inventoryOpportunities
+    const source = opportunities.find(({ sourceInstanceId }) => sourceInstanceId === ids.bandageA)!
+    const incompatible = opportunities.find(({ sourceInstanceId }) => sourceInstanceId === ids.flashlight)!
+    const invalid = previewStableRunUiSceneInventoryDraft(phase, {
+      opportunityId: source.id,
+      operation: 'merge',
+      quantity: 1,
+      targetOpportunityId: incompatible.id,
+      targetSlotIndex: null,
+      x: null,
+      y: null,
+      rotated: false,
+    }, dependencies)
+    expect(invalid).toMatchObject({ canExecute: false, command: null })
+  })
+
+  it('revalidates stale merge targets, quick slots, placements, and source coordinates', () => {
+    const { phase, ids } = sceneInventoryPhase()
+    const runtime = getRunSceneRuntime(phase.payload, hospitalSceneLaunchDependencies)
+    const initial = createStableRunUiInteractionModel(phase, dependencies).inventoryOpportunities
+    const byId = (instanceId: string) => initial.find(
+      ({ sourceInstanceId }) => sourceInstanceId === instanceId,
+    )!
+    const base = {
+      quantity: null,
+      targetOpportunityId: null,
+      targetSlotIndex: null,
+      x: null,
+      y: null,
+      rotated: false,
+    }
+
+    const targetDroppedScene = resolveSceneInventoryCommand(phase.payload.scene, {
+      kind: 'drop-scene-backpack-item',
+      instanceId: ids.bandageA,
+    }, runtime.dependencies).snapshot
+    const targetDropped = {
+      kind: 'scene-session' as const,
+      payload: createRunSceneSessionSnapshot({
+        context: phase.payload.context,
+        scene: targetDroppedScene,
+      }, hospitalSceneLaunchDependencies),
+    }
+    expect(previewStableRunUiSceneInventoryDraft(targetDropped, {
+      ...base,
+      opportunityId: byId(ids.bandageB).id,
+      operation: 'merge',
+      quantity: 1,
+      targetOpportunityId: byId(ids.bandageA).id,
+    }, dependencies)).toBeNull()
+
+    const slotFilledScene = resolveSceneInventoryCommand(phase.payload.scene, {
+      kind: 'scene-backpack-to-quick-slot',
+      instanceId: ids.bandageB,
+      targetSlotIndex: 1,
+    }, runtime.dependencies).snapshot
+    const slotFilled = {
+      kind: 'scene-session' as const,
+      payload: createRunSceneSessionSnapshot({
+        context: phase.payload.context,
+        scene: slotFilledScene,
+      }, hospitalSceneLaunchDependencies),
+    }
+    expect(previewStableRunUiSceneInventoryDraft(slotFilled, {
+      ...base,
+      opportunityId: byId(ids.bandageA).id,
+      operation: 'backpack-to-quick-slot',
+      targetSlotIndex: 1,
+    }, dependencies)).toMatchObject({ canExecute: false, command: null })
+
+    const occupiedScene = resolveSceneInventoryCommand(phase.payload.scene, {
+      kind: 'move-scene-backpack-item',
+      instanceId: ids.bandageB,
+      placement: { instanceId: ids.bandageB, x: 5, y: 3, rotated: false },
+    }, runtime.dependencies).snapshot
+    const occupied = {
+      kind: 'scene-session' as const,
+      payload: createRunSceneSessionSnapshot({
+        context: phase.payload.context,
+        scene: occupiedScene,
+      }, hospitalSceneLaunchDependencies),
+    }
+    expect(previewStableRunUiSceneInventoryDraft(occupied, {
+      ...base,
+      opportunityId: byId(ids.bandageA).id,
+      operation: 'move',
+      x: 5,
+      y: 3,
+    }, dependencies)).toMatchObject({ canExecute: false, command: null })
+
+    const sourceMovedScene = resolveSceneInventoryCommand(phase.payload.scene, {
+      kind: 'move-scene-backpack-item',
+      instanceId: ids.bandageA,
+      placement: { instanceId: ids.bandageA, x: 5, y: 2, rotated: false },
+    }, runtime.dependencies).snapshot
+    const sourceMoved = {
+      kind: 'scene-session' as const,
+      payload: createRunSceneSessionSnapshot({
+        context: phase.payload.context,
+        scene: sourceMovedScene,
+      }, hospitalSceneLaunchDependencies),
+    }
+    expect(createStableRunUiInteractionModel(sourceMoved, dependencies).inventoryOpportunities.find(
+      ({ sourceInstanceId }) => sourceInstanceId === ids.bandageA,
+    )?.sourceLabel).toBe('绷带 ×2 · 背包格 6,3')
   })
 })

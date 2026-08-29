@@ -69,6 +69,13 @@ export {
   previewSceneInventoryCommand,
   resolveSceneInventoryCommand,
 } from './scene-inventory-command'
+export {
+  previewPlayerVisibleSceneInventoryCommand,
+  type PlayerVisibleSceneInventoryEvaluation,
+  type PlayerVisibleSceneInventoryLocation,
+  type PlayerVisibleSceneInventoryPreview,
+  type PlayerVisibleSceneInventoryReturnProjection,
+} from './player-visible-scene-inventory'
 export { createWithdrawFromSceneCommand } from './scene-withdrawal-command'
 export { buildSceneWithdrawalTransitionPlan } from './scene-withdrawal-transition-plan'
 export {

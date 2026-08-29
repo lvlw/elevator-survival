@@ -1,6 +1,6 @@
 import { deepFreeze } from '../config'
 import { areItemStatesStackCompatible, createItemState, createItemStateCollectionSnapshot, getItemState, removeItemState } from '../item-state'
-import { addItemToBackpack, calculateBackpackWeightSubtotal, createBackpackSnapshot, createItemInstance, deriveStableSplitInstanceId, moveBackpackItem, removeItemFromBackpack } from '../inventory'
+import { addItemToBackpack, calculateBackpackWeightSubtotal, createBackpackSnapshot, createItemInstance, deriveStableSplitInstanceId, InventoryError, moveBackpackItem, removeItemFromBackpack } from '../inventory'
 import { classifyLoad } from '../load'
 import { createQuickSlotSnapshot } from '../quick-slot'
 import { addSceneItems } from '../scene-items'
@@ -243,6 +243,9 @@ export function previewSceneInventoryCommand(snapshot: SceneExplorationSnapshot,
   } catch (error) {
     if (error instanceof SceneExplorationError) {
       return deepFreeze({ canExecute: false as const, rejectionCode: error.code })
+    }
+    if (error instanceof InventoryError) {
+      return deepFreeze({ canExecute: false as const, rejectionCode: 'INVALID_INPUT' as const })
     }
     throw error
   }

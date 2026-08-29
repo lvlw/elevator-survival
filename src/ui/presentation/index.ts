@@ -21,3 +21,7 @@ export {
   type StableRunUiLabels,
   type StableRunUiPresentationDependencies,
 } from './stable-run-view-model'
+export {
+  createHubLoadoutResultViewModel,
+  type HubLoadoutResultViewModel,
+} from './hub-loadout-result-view-model'

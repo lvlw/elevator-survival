@@ -55,6 +55,10 @@ import {
 } from '../../state/run-lifecycle'
 import type { StableRunUiPresentationDependencies } from '../presentation'
 import { getCurrentTraversableAdjacentEdges } from './current-traversable-adjacent-edges'
+import {
+  getStableRunUiHubLoadoutOpportunities,
+  type StableRunUiHubLoadoutOpportunity,
+} from './hub-loadout-interaction'
 
 export type StableRunUiActionKind =
   | 'launch-main-scene'
@@ -197,6 +201,7 @@ export interface StableRunUiInteractionModel {
   readonly pickupOpportunities: readonly StableRunUiPickupOpportunity[]
   readonly taskEventOpportunities: readonly StableRunUiTaskEventOpportunity[]
   readonly inventoryOpportunities: readonly StableRunUiInventoryOpportunity[]
+  readonly hubLoadoutOpportunities: readonly StableRunUiHubLoadoutOpportunity[]
 }
 
 function freezePreview(
@@ -1935,10 +1940,12 @@ export function createStableRunUiInteractionModel(
   const inventory = phase.kind === 'scene-session'
     ? inventoryOpportunities(phase, dependencies)
     : Object.freeze([])
+  const hubLoadout = getStableRunUiHubLoadoutOpportunities(phase, dependencies)
   return Object.freeze({
     actions: Object.freeze(actions),
     pickupOpportunities: opportunities,
     taskEventOpportunities: taskEvents.opportunities,
     inventoryOpportunities: inventory,
+    hubLoadoutOpportunities: hubLoadout,
   })
 }

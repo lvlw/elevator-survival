@@ -22,6 +22,8 @@ import {
   createRunLoadoutCommand,
   createRunLoadoutSnapshot,
   createRunLoadoutSnapshotFromReturn,
+  previewRunLoadoutCommand,
+  previewPlayerVisibleRunLoadoutCommand,
   projectRunStoredInventoryFromRunLoadout,
   createStableRunLoadoutBackpackSplitInstanceId,
   createStableRunLoadoutSplitInstanceId,
@@ -204,6 +206,84 @@ function resolve(
 }
 
 describe('hospital Run loadout inventory management', () => {
+  it('uses one formal preview truth and projects only player-safe loadout facts', () => {
+    const start = loadout()
+    const command = {
+      kind: 'warehouse-to-backpack' as const,
+      instanceId: 'warehouse-bandages',
+      placement: placement('warehouse-bandages', 0, 0),
+    }
+    const formal = previewRunLoadoutCommand(start, command, loadoutDependencies)
+    const safe = previewPlayerVisibleRunLoadoutCommand(start, command, loadoutDependencies)
+    expect(formal.canExecute).toBe(true)
+    expect(safe.canExecute).toBe(true)
+    if (!formal.canExecute || !safe.canExecute) throw new Error('expected executable preview')
+    expect(safe.result).toMatchObject({
+      operationKind: command.kind,
+      definitionId: HOSPITAL_ITEM_IDS.bandage,
+      source: { container: 'warehouse', ordinal: 1 },
+      target: { container: 'backpack', column: 1, row: 1 },
+      quantityMoved: 3,
+      sourceQuantityBefore: 3,
+      sourceQuantityAfter: 0,
+      targetQuantityBefore: 0,
+      targetQuantityAfter: 3,
+    })
+    expect(safe.result.backpackWeightAfter).toBe(
+      calculateBackpackWeightSubtotal(formal.result.snapshot.backpack, hospitalItemCatalog),
+    )
+    const serialized = JSON.stringify(safe)
+    expect(serialized).not.toContain('warehouse-bandages')
+    expect(serialized).not.toContain('effects')
+    expect(serialized).not.toContain('snapshot')
+    expect(serialized).not.toContain('runId')
+    expect(Object.isFrozen(safe)).toBe(true)
+    expect(Object.isFrozen(safe.result)).toBe(true)
+  })
+
+  it('keeps formal and player-safe rejection codes aligned', () => {
+    const start = loadout()
+    const invalid = {
+      kind: 'warehouse-to-backpack' as const,
+      instanceId: 'warehouse-pipe',
+      placement: placement('warehouse-pipe', 99, 99),
+    }
+    expect(previewRunLoadoutCommand(start, invalid, loadoutDependencies)).toEqual({
+      canExecute: false,
+      rejectionCode: 'ACTION_NOT_AVAILABLE',
+    })
+    expect(previewPlayerVisibleRunLoadoutCommand(start, invalid, loadoutDependencies)).toEqual({
+      canExecute: false,
+      rejectionCode: 'ACTION_NOT_AVAILABLE',
+    })
+  })
+
+  it('rejects an equipment swap whose canonical final backpack enters cannot-carry', () => {
+    const incoming = item('cannot-carry-incoming-pipe', HOSPITAL_ITEM_IDS.metalPipe)
+    const displaced = item('cannot-carry-equipped-axe', HOSPITAL_ITEM_IDS.fireAxe)
+    const materialStacks = [5, 5, 5, 5, 4].map((quantity, index) =>
+      item(`cannot-carry-material-${index}`, HOSPITAL_ITEM_IDS.metalParts, quantity),
+    )
+    const start = loadout({
+      warehouse: [], taskStorage: [],
+      backpackItems: [...materialStacks, incoming],
+      placements: [
+        ...materialStacks.map(({ instanceId }, index) => placement(instanceId, index, 0)),
+        placement(incoming.instanceId, 5, 0),
+      ],
+      equipment: createEquipmentSnapshot({ weapon: displaced, armor: null, utility: null }, hospitalItemCatalog, hospitalItemEquipmentCatalog),
+    })
+    expect(calculateBackpackWeightSubtotal(start.backpack, hospitalItemCatalog)).toBe(27)
+    const command = {
+      kind: 'swap-backpack-equipped' as const,
+      backpackInstanceId: incoming.instanceId,
+      targetSlot: 'weapon' as const,
+      displacedPlacement: placement(displaced.instanceId, 0, 1),
+    }
+    expect(previewRunLoadoutCommand(start, command, loadoutDependencies)).toEqual({ canExecute: false, rejectionCode: 'CANNOT_CARRY' })
+    expect(previewPlayerVisibleRunLoadoutCommand(start, command, loadoutDependencies)).toEqual({ canExecute: false, rejectionCode: 'CANNOT_CARRY' })
+    expect(() => resolve(start, command)).toThrowError(expect.objectContaining({ code: 'CANNOT_CARRY' }))
+  })
   it('enters loadout from a Run return without changing instances, quantities, or resources', () => {
     const returned = returnSnapshot()
     const before = structuredClone(returned)

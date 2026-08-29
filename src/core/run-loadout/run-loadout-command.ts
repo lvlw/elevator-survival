@@ -884,3 +884,24 @@ export function resolveRunLoadoutCommand(
   const plan = buildRunLoadoutTransitionPlan(snapshot, command, dependencies)
   return applyRunLoadoutEffects(snapshot, command, plan.effects, dependencies)
 }
+
+export function previewRunLoadoutCommand(
+  snapshot: RunLoadoutSnapshot,
+  command: unknown,
+  dependencies: RunLoadoutDependencies,
+) {
+  try {
+    return deepFreeze({
+      canExecute: true as const,
+      result: buildRunLoadoutTransitionPlan(snapshot, command, dependencies),
+    })
+  } catch (error) {
+    if (error instanceof RunLoadoutError) {
+      return deepFreeze({
+        canExecute: false as const,
+        rejectionCode: error.code,
+      })
+    }
+    throw error
+  }
+}

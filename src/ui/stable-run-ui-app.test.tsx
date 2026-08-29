@@ -53,6 +53,7 @@ import { StableRunUiApp } from './stable-run-ui-app'
 import { createHospitalDevelopmentPreviewScenario } from './dev-preview/hospital-preview-scenarios'
 import {
   createStableRunUiInteractionModel,
+  previewStableRunUiHubLoadoutDraft,
   previewStableRunUiSceneInventoryDraft,
   previewStableRunUiTaskEventDraft,
 } from './interaction'
@@ -108,10 +109,78 @@ function createHubPhase(options: Readonly<{ combatReady?: boolean; seed?: string
   }
 }
 
+function createHubLoadoutPhase(options: Readonly<{ bothQuickSlots?: boolean }> = {}) {
+  const warehouseBandage = { ...item('hub-ui-warehouse-bandage', HOSPITAL_ITEM_IDS.bandage), quantity: 3 }
+  const warehousePipe = item('hub-ui-warehouse-pipe', HOSPITAL_ITEM_IDS.metalPipe)
+  const backpackBandage = { ...item('hub-ui-backpack-bandage', HOSPITAL_ITEM_IDS.bandage), quantity: 2 }
+  const backpackPainkiller = item('hub-ui-backpack-painkiller', HOSPITAL_ITEM_IDS.painkiller)
+  const backpackPipe = item('hub-ui-backpack-pipe', HOSPITAL_ITEM_IDS.metalPipe)
+  const backpackBandageTarget = item('hub-ui-backpack-bandage-target', HOSPITAL_ITEM_IDS.bandage)
+  const backpackCoat = item('hub-ui-backpack-coat', HOSPITAL_ITEM_IDS.heavyCoat)
+  const backpackCoatSecond = item('hub-ui-backpack-coat-second', HOSPITAL_ITEM_IDS.heavyCoat)
+  const equippedPipe = item('hub-ui-equipped-pipe', HOSPITAL_ITEM_IDS.metalPipe)
+  const quickBandage = item('hub-ui-quick-bandage', HOSPITAL_ITEM_IDS.bandage)
+  const quickPainkiller = item('hub-ui-quick-painkiller', HOSPITAL_ITEM_IDS.painkiller)
+  const taskItem = item('hub-ui-task-case', HOSPITAL_ITEM_IDS.sealedPathogenCase)
+  const owned = [warehouseBandage, warehousePipe, backpackBandage, backpackPainkiller, backpackPipe, backpackBandageTarget, backpackCoat, backpackCoatSecond, equippedPipe, quickBandage, taskItem, ...(options.bothQuickSlots ? [quickPainkiller] : [])]
+  return {
+    kind: 'current-day-hub' as const,
+    payload: createCurrentDayHubSnapshot({
+      continuity: { runIdentity: { runId: 'hub-loadout-ui-run', seed: 'hub-loadout-ui-seed', rulesVersion: config.metadata.rulesVersion }, currentDay: 2, sceneInstanceId: 'hub-loadout-returned-scene' },
+      runLoadout: createRunLoadoutSnapshot({
+        warehouse: { items: [warehouseBandage, warehousePipe] }, taskStorage: { items: [taskItem] },
+        backpack: createBackpackSnapshot({ width: config.backpack.width, height: config.backpack.height, items: [backpackBandage, backpackPainkiller, backpackPipe, backpackBandageTarget, backpackCoat, backpackCoatSecond], placements: [
+          { instanceId: backpackBandage.instanceId, x: 0, y: 0, rotated: false },
+          { instanceId: backpackPainkiller.instanceId, x: 1, y: 0, rotated: false },
+          { instanceId: backpackPipe.instanceId, x: 2, y: 0, rotated: false },
+          { instanceId: backpackBandageTarget.instanceId, x: 3, y: 0, rotated: false },
+          { instanceId: backpackCoat.instanceId, x: 4, y: 0, rotated: false },
+          { instanceId: backpackCoatSecond.instanceId, x: 3, y: 2, rotated: false },
+        ] }, hospitalItemCatalog),
+        equipment: { weapon: equippedPipe, armor: null, utility: null },
+        quickSlots: createQuickSlotSnapshot([quickBandage, options.bothQuickSlots ? quickPainkiller : null], config.backpack.quickSlotCount, hospitalItemCatalog, hospitalItemQuickSlotCatalog),
+        itemStates: { states: owned.map((candidate) => createFullItemState(candidate, hospitalItemResourceCatalog)) },
+      }, { physicalCatalog: hospitalItemCatalog, equipmentCatalog: hospitalItemEquipmentCatalog, quickSlotCatalog: hospitalItemQuickSlotCatalog, itemResourceCatalog: hospitalItemResourceCatalog, lifecycleCatalog: hospitalItemReturnLifecycleCatalog, backpackRules: config.backpack }),
+      playerCondition: createPlayerCondition({ currentHealth: config.combat.player.maxHealth, bleeding: false, openWounds: [], minorContusions: 0, painkillerActive: false, pendingInfectionExposures: 0 }, config.combat.player),
+      runIntelLog: { intelIds: [] },
+      dailyState: { medicalUsage: { disinfectantUsesToday: 0 }, threatSuppression: { usesToday: 0, suppressionAmountToday: 0 }, maintenanceLaborRemaining: config.maintenance.dailyBaseLabor.points, mainSceneUsedToday: false },
+      worldThreat: { definitionId: config.worldThreat.definitionId, progress: 0 }, satiety: { current: 4 }, returnLedger: { sceneInstanceIds: ['hub-loadout-returned-scene'] },
+    }, hospitalCurrentDayHubDependencies),
+  }
+}
+
+function createHubLoadoutLaunchPhase() {
+  const pipe = item('hub-launch-pipe', HOSPITAL_ITEM_IDS.metalPipe)
+  const bandage = { ...item('hub-launch-bandage', HOSPITAL_ITEM_IDS.bandage), quantity: 2 }
+  return {
+    kind: 'current-day-hub' as const,
+    payload: createCurrentDayHubSnapshot({
+      continuity: { runIdentity: { runId: 'hub-launch-run', seed: 'hub-launch-seed', rulesVersion: config.metadata.rulesVersion }, currentDay: 2, sceneInstanceId: 'hub-launch-returned' },
+      runLoadout: createRunLoadoutSnapshot({
+        warehouse: { items: [pipe, bandage] }, taskStorage: { items: [] },
+        backpack: createBackpackSnapshot({ width: config.backpack.width, height: config.backpack.height, items: [], placements: [] }, hospitalItemCatalog),
+        equipment: { weapon: null, armor: null, utility: null },
+        quickSlots: createQuickSlotSnapshot([null, null], config.backpack.quickSlotCount, hospitalItemCatalog, hospitalItemQuickSlotCatalog),
+        itemStates: { states: [pipe, bandage].map((candidate) => createFullItemState(candidate, hospitalItemResourceCatalog)) },
+      }, { physicalCatalog: hospitalItemCatalog, equipmentCatalog: hospitalItemEquipmentCatalog, quickSlotCatalog: hospitalItemQuickSlotCatalog, itemResourceCatalog: hospitalItemResourceCatalog, lifecycleCatalog: hospitalItemReturnLifecycleCatalog, backpackRules: config.backpack }),
+      playerCondition: createPlayerCondition({ currentHealth: config.combat.player.maxHealth, bleeding: false, openWounds: [], minorContusions: 0, painkillerActive: false, pendingInfectionExposures: 0 }, config.combat.player),
+      runIntelLog: { intelIds: [] }, dailyState: { medicalUsage: { disinfectantUsesToday: 0 }, threatSuppression: { usesToday: 0, suppressionAmountToday: 0 }, maintenanceLaborRemaining: config.maintenance.dailyBaseLabor.points, mainSceneUsedToday: false },
+      worldThreat: { definitionId: config.worldThreat.definitionId, progress: 0 }, satiety: { current: 4 }, returnLedger: { sceneInstanceIds: ['hub-launch-returned'] },
+    }, hospitalCurrentDayHubDependencies),
+  }
+}
+
 function button(container: HTMLElement, label: string): HTMLButtonElement {
   const result = [...container.querySelectorAll('button')]
     .find((candidate) => candidate.textContent === label)
   if (!result) throw new Error(`expected button: ${label}`)
+  return result
+}
+
+function buttonContaining(container: HTMLElement, label: string): HTMLButtonElement {
+  const result = [...container.querySelectorAll('button')]
+    .find((candidate) => candidate.textContent?.includes(label))
+  if (!result) throw new Error(`expected button containing: ${label}; found ${container.textContent}`)
   return result
 }
 
@@ -3624,7 +3693,7 @@ describe('StableRunUiApp', () => {
 
     act(() => { button(container, '整理 快捷栏2 · 绷带').click() })
     act(() => { button(container, '放回背包').click() })
-    act(() => { button(container, '格子 5,1').click() })
+    act(() => { button(container, '格子 1,2').click() })
     expect(container.textContent).toContain('背包负重16 → 17')
     expect(container.textContent).toContain('负重状态正常 → 负载')
     act(() => { button(container, '确认整理').click() })
@@ -3824,5 +3893,309 @@ describe('StableRunUiApp', () => {
     expect(container.querySelector('[role="dialog"]')).toBeNull()
     expect(storage.writes).toBe(1)
     expect(notifications).toBe(1)
+  })
+
+  it('projects all twelve formal Hub loadout operations without task-storage actions', () => {
+    const phase = createHubLoadoutPhase()
+    const opportunities = createStableRunUiInteractionModel(phase, uiDependencies).hubLoadoutOpportunities
+    const operations = new Set(opportunities.flatMap(({ operations }) => operations))
+    expect([...operations].sort()).toEqual([
+      'backpack-to-quick-slot', 'backpack-to-warehouse', 'equip-from-backpack',
+      'merge-backpack-stacks', 'move-backpack-item', 'move-quick-slot-item',
+      'quick-slot-to-backpack', 'split-backpack-stack', 'swap-backpack-equipped',
+      'swap-quick-slot-items', 'unequip-to-backpack', 'warehouse-to-backpack',
+    ])
+    expect(opportunities.some(({ sourceInstanceId }) => sourceInstanceId === 'hub-ui-task-case')).toBe(false)
+    expect(createStableRunUiInteractionModel({ kind: 'scene-session', payload: sceneSessionAtEmergencyHall() }, uiDependencies).hubLoadoutOpportunities).toEqual([])
+  })
+
+  it('forms a formal hub-loadout application command for every one of the twelve UI operations', () => {
+    const base = createHubLoadoutPhase()
+    const opportunities = createStableRunUiInteractionModel(base, uiDependencies).hubLoadoutOpportunities
+    const byId = (instanceId: string) => opportunities.find((candidate) => candidate.sourceInstanceId === instanceId)!
+    const targetBandage = byId('hub-ui-backpack-bandage-target')
+    const equipped = byId('hub-ui-equipped-pipe')
+    const drafts = [
+      { source: byId('hub-ui-warehouse-bandage'), operation: 'warehouse-to-backpack', x: 0, y: 2 },
+      { source: byId('hub-ui-backpack-painkiller'), operation: 'backpack-to-warehouse' },
+      { source: byId('hub-ui-backpack-painkiller'), operation: 'move-backpack-item', x: 1, y: 2 },
+      { source: byId('hub-ui-backpack-bandage'), operation: 'split-backpack-stack', quantity: 1, x: 3, y: 1 },
+      { source: byId('hub-ui-backpack-bandage'), operation: 'merge-backpack-stacks', quantity: 1, targetOpportunityId: targetBandage.id },
+      { source: byId('hub-ui-backpack-coat'), operation: 'equip-from-backpack', targetEquipmentSlot: 'armor' },
+      { source: equipped, operation: 'unequip-to-backpack', x: 0, y: 1 },
+      { source: byId('hub-ui-backpack-pipe'), operation: 'swap-backpack-equipped', targetOpportunityId: equipped.id, x: 0, y: 1 },
+      { source: byId('hub-ui-backpack-painkiller'), operation: 'backpack-to-quick-slot', targetQuickSlotIndex: 1 },
+      { source: byId('hub-ui-quick-bandage'), operation: 'quick-slot-to-backpack', x: 0, y: 2 },
+      { source: byId('hub-ui-quick-bandage'), operation: 'move-quick-slot-item', targetQuickSlotIndex: 1 },
+    ] as const
+    const commandKinds: string[] = []
+    for (const candidate of drafts) {
+      const preview = previewStableRunUiHubLoadoutDraft(base, {
+        opportunityId: candidate.source.id,
+        operation: candidate.operation,
+        quantity: 'quantity' in candidate ? candidate.quantity : null,
+        targetOpportunityId: 'targetOpportunityId' in candidate ? candidate.targetOpportunityId : null,
+        targetEquipmentSlot: 'targetEquipmentSlot' in candidate ? candidate.targetEquipmentSlot : null,
+        targetQuickSlotIndex: 'targetQuickSlotIndex' in candidate ? candidate.targetQuickSlotIndex : null,
+        x: 'x' in candidate ? candidate.x : null,
+        y: 'y' in candidate ? candidate.y : null,
+        rotated: false,
+      }, uiDependencies)
+      expect(preview?.canExecute, candidate.operation).toBe(true)
+      if (!preview?.command || preview.command.kind !== 'hub' || preview.command.command.kind !== 'hub-loadout') throw new Error(`missing ${candidate.operation}`)
+      commandKinds.push(preview.command.command.command.kind)
+    }
+    const swapPhase = createHubLoadoutPhase({ bothQuickSlots: true })
+    const swapOpportunities = createStableRunUiInteractionModel(swapPhase, uiDependencies).hubLoadoutOpportunities
+    const quick = swapOpportunities.find(({ sourceInstanceId }) => sourceInstanceId === 'hub-ui-quick-bandage')!
+    const swap = previewStableRunUiHubLoadoutDraft(swapPhase, {
+      opportunityId: quick.id, operation: 'swap-quick-slot-items', quantity: null,
+      targetOpportunityId: null, targetEquipmentSlot: null, targetQuickSlotIndex: 1,
+      x: null, y: null, rotated: false,
+    }, uiDependencies)
+    expect(swap?.canExecute).toBe(true)
+    if (!swap?.command || swap.command.kind !== 'hub' || swap.command.command.kind !== 'hub-loadout') throw new Error('missing quick swap')
+    commandKinds.push(swap.command.command.command.kind)
+    expect(commandKinds.sort()).toEqual([
+      'backpack-to-quick-slot', 'backpack-to-warehouse', 'equip-from-backpack',
+      'merge-backpack-stacks', 'move-backpack-item', 'move-quick-slot-item',
+      'quick-slot-to-backpack', 'split-backpack-stack', 'swap-backpack-equipped',
+      'swap-quick-slot-items', 'unequip-to-backpack', 'warehouse-to-backpack',
+    ])
+  })
+
+  it('runs one explicit warehouse-to-backpack Hub command with preview, one dispatch, and one save', () => {
+    const phase = createHubLoadoutPhase()
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    expect(container.textContent).toContain('任务储存区（只读）')
+    expect(container.innerHTML).not.toContain('hub-ui-task-case')
+    act(() => { button(container, '整备 仓库条目1 · 绷带 ×3').click() })
+    act(() => { button(container, '取出至背包').click() })
+    act(() => { button(container, '格子 1,2').click() })
+    expect(container.textContent).toContain('场景时间')
+    expect(container.textContent).toContain('0（电梯中枢整备）')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    act(() => { button(container, '取消').click() })
+    expect(tracked.commands).toHaveLength(0)
+    act(() => { button(container, '整备 仓库条目1 · 绷带 ×3').click() })
+    act(() => { button(container, '取出至背包').click() })
+    act(() => { button(container, '格子 1,2').click() })
+    act(() => { button(container, '确认整备').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(tracked.commands[0]).toMatchObject({ kind: 'hub', command: { kind: 'hub-loadout', command: { kind: 'warehouse-to-backpack' } } })
+    expect(storage.writes).toBe(1)
+    const after = tracked.store.getState().phase
+    if (after.kind !== 'current-day-hub') throw new Error('expected Hub')
+    expect(after.payload.runLoadout.backpack.items).toContainEqual(expect.objectContaining({ instanceId: 'hub-ui-warehouse-bandage', quantity: 3 }))
+    expect(after.payload.runLoadout.warehouse.items.some(({ instanceId }) => instanceId === 'hub-ui-warehouse-bandage')).toBe(false)
+    expect(container.textContent).toContain('中枢整备结果')
+    for (const hidden of [
+      'hub-ui-warehouse-bandage', 'hub-ui-backpack-painkiller', 'hub-loadout-ui-run',
+      'hub-loadout-ui-seed', config.metadata.rulesVersion, 'instanceId', 'effects',
+      'snapshot', 'transitionPlan', 'RunLoadoutOperation',
+    ]) expect(container.innerHTML).not.toContain(hidden)
+  })
+
+  it.each([
+    ['backpack-to-warehouse', false, ['整备 止痛药 · 背包格 2,1', '存入仓库']],
+    ['move-backpack-item', false, ['整备 止痛药 · 背包格 2,1', '移动／旋转', '格子 1,2']],
+    ['split-backpack-stack', false, ['整备 绷带 ×2 · 背包格 1,1', '拆分堆叠', 'quantity:1', '格子 4,2']],
+    ['merge-backpack-stacks', false, ['整备 绷带 ×2 · 背包格 1,1', '合并堆叠', 'quantity:1', '绷带 · 背包格 4,1']],
+    ['equip-from-backpack', false, ['整备 厚实外套 · 背包格 5,1', '装备', '防具位']],
+    ['unequip-to-backpack', false, ['整备 武器位 · 金属管', '卸下至背包', '格子 1,2']],
+    ['swap-backpack-equipped', false, ['整备 金属管 · 背包格 3,1', '交换装备', '武器位 · 金属管', '格子 1,2']],
+    ['backpack-to-quick-slot', false, ['整备 止痛药 · 背包格 2,1', '放入快捷栏', '快捷栏2 · 空']],
+    ['quick-slot-to-backpack', false, ['整备 快捷栏1 · 绷带', '放回背包', '格子 1,2']],
+    ['move-quick-slot-item', false, ['整备 快捷栏1 · 绷带', '移动快捷栏物品', '快捷栏2 · 空']],
+    ['swap-quick-slot-items', true, ['整备 快捷栏1 · 绷带', '交换快捷栏物品', '快捷栏2 · 止痛药']],
+  ] as const)('routes the %s representative DOM flow through one formal command', (kind, bothQuickSlots, steps) => {
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({ initialPhase: createHubLoadoutPhase({ bothQuickSlots }), storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    for (const step of steps) {
+      if (step.startsWith('quantity:')) {
+        act(() => { setInputValue(input(container, '中枢整备数量'), step.slice('quantity:'.length)) })
+      } else {
+        act(() => { button(container, step).click() })
+      }
+    }
+    expect(button(container, '确认整备').disabled, kind).toBe(false)
+    act(() => { button(container, '确认整备').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(tracked.commands[0]).toMatchObject({ kind: 'hub', command: { kind: 'hub-loadout', command: { kind } } })
+    expect(storage.writes).toBe(1)
+    expect(tracked.store.getState().phase.kind).toBe('current-day-hub')
+  })
+
+  it('keeps Hub loadout StrictMode previews side-effect free and preserves committed state on save failure', () => {
+    const storage = new FailingStorage()
+    const inner = createStableRunStore({ initialPhase: createHubLoadoutPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StrictMode><StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} /></StrictMode>) })
+    act(() => { button(container, '整备 止痛药 · 背包格 2,1').click() })
+    act(() => { button(container, '放入快捷栏').click() })
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+    act(() => { button(container, '快捷栏1 · 绷带').click() })
+    expect(container.textContent).toContain('当前来源、目标、资格、数量或摆放无法执行')
+    expect(button(container, '确认整备').disabled).toBe(true)
+    act(() => { button(container, '取消').click() })
+    act(() => { button(container, '整备 止痛药 · 背包格 2,1').click() })
+    act(() => { button(container, '存入仓库').click() })
+    act(() => { button(container, '确认整备').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    const after = inner.getState().phase
+    if (after.kind !== 'current-day-hub') throw new Error('expected Hub')
+    expect(after.payload.runLoadout.warehouse.items).toContainEqual(expect.objectContaining({ instanceId: 'hub-ui-backpack-painkiller' }))
+    expect(container.textContent).toContain('保存失败')
+  })
+
+  it('retains one formal Hub backpack split and ItemState after a failed save without retry', () => {
+    const storage = new FailingStorage()
+    const inner = createStableRunStore({ initialPhase: createHubLoadoutPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '整备 绷带 ×2 · 背包格 1,1').click() })
+    act(() => { button(container, '拆分堆叠').click() })
+    act(() => { setInputValue(input(container, '中枢整备数量'), '1') })
+    act(() => { button(container, '格子 4,2').click() })
+    act(() => { button(container, '确认整备').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    const after = inner.getState().phase
+    if (after.kind !== 'current-day-hub') throw new Error('expected Hub')
+    expect(after.payload.runLoadout.backpack.items.find(({ instanceId }) => instanceId === 'hub-ui-backpack-bandage')?.quantity).toBe(1)
+    const splits = after.payload.runLoadout.backpack.items.filter(({ definitionId, instanceId }) => definitionId === HOSPITAL_ITEM_IDS.bandage && instanceId !== 'hub-ui-backpack-bandage' && instanceId !== 'hub-ui-backpack-bandage-target')
+    expect(splits).toHaveLength(1)
+    expect(splits[0].quantity).toBe(1)
+    expect(after.payload.runLoadout.itemStates.states.filter(({ instanceId }) => instanceId === splits[0].instanceId)).toHaveLength(1)
+    expect(container.textContent).toContain('保存失败')
+  })
+
+  it('keeps Hub loadout identities through four explicit saves and the following Scene Launch', () => {
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({ initialPhase: createHubLoadoutLaunchPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    const perform = (steps: readonly string[]) => {
+      for (const step of steps) act(() => { buttonContaining(container, step).click() })
+      act(() => { button(container, '确认整备').click() })
+      act(() => { button(container, '关闭结果').click() })
+    }
+    perform(['整备 仓库条目2 · 金属管', '取出至背包', '格子 1,1'])
+    perform(['整备 金属管 · 背包格 1,1', '装备', '武器位'])
+    perform(['整备 仓库条目1 · 绷带 ×2', '取出至背包', '格子 2,1'])
+    perform(['整备 绷带 ×2 · 背包格 2,1', '放入快捷栏', '快捷栏1 · 空'])
+    expect(tracked.commands).toHaveLength(4)
+    expect(storage.writes).toBe(4)
+    act(() => { button(container, '进入 封锁医院·急诊楼一层').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(5)
+    expect(storage.writes).toBe(5)
+    const scene = tracked.store.getState().phase
+    if (scene.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(scene.payload.scene.equipment.weapon?.instanceId).toBe('hub-launch-pipe')
+    const quick = scene.payload.scene.quickSlots.slots[0]
+    expect(quick?.definitionId).toBe(HOSPITAL_ITEM_IDS.bandage)
+    expect(quick?.quantity).toBe(1)
+    expect(scene.payload.scene.itemStates.states.some(({ instanceId }) => instanceId === 'hub-launch-pipe')).toBe(true)
+    expect(quick && scene.payload.scene.itemStates.states.some(({ instanceId }) => instanceId === quick.instanceId)).toBe(true)
+    expect(createStableRunUiInteractionModel(scene, uiDependencies).hubLoadoutOpportunities).toEqual([])
+  })
+
+  it('rebuilds Hub drafts from the latest canonical phase and closes a removed source', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: createHubLoadoutPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={inner} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '整备 仓库条目1 · 绷带 ×3').click() })
+    act(() => { button(container, '取出至背包').click() })
+    act(() => { button(container, '格子 1,2').click() })
+    expect(button(container, '确认整备').disabled).toBe(false)
+    const phase = inner.getState().phase
+    const opportunities = createStableRunUiInteractionModel(phase, uiDependencies).hubLoadoutOpportunities
+    const painkiller = opportunities.find(({ sourceInstanceId }) => sourceInstanceId === 'hub-ui-backpack-painkiller')!
+    const occupy = previewStableRunUiHubLoadoutDraft(phase, {
+      opportunityId: painkiller.id, operation: 'move-backpack-item', quantity: null,
+      targetOpportunityId: null, targetEquipmentSlot: null, targetQuickSlotIndex: null,
+      x: 0, y: 1, rotated: false,
+    }, uiDependencies)
+    if (!occupy?.command) throw new Error('expected external move')
+    act(() => { inner.dispatch(occupy.command!) })
+    expect(container.textContent).toContain('当前来源、目标、资格、数量或摆放无法执行')
+    expect(button(container, '确认整备').disabled).toBe(true)
+    act(() => { button(container, '取消').click() })
+    act(() => { button(container, '整备 仓库条目2 · 金属管').click() })
+    act(() => { button(container, '取出至背包').click() })
+    const latest = inner.getState().phase
+    const pipe = createStableRunUiInteractionModel(latest, uiDependencies).hubLoadoutOpportunities.find(({ sourceInstanceId }) => sourceInstanceId === 'hub-ui-warehouse-pipe')!
+    const remove = previewStableRunUiHubLoadoutDraft(latest, {
+      opportunityId: pipe.id, operation: 'warehouse-to-backpack', quantity: null,
+      targetOpportunityId: null, targetEquipmentSlot: null, targetQuickSlotIndex: null,
+      x: 1, y: 1, rotated: false,
+    }, uiDependencies)
+    if (!remove?.command) throw new Error('expected external warehouse transfer')
+    act(() => { inner.dispatch(remove.command!) })
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
+    expect(storage.writes).toBe(2)
+  })
+
+  it('invalidates stale merge, equipment, and quick-slot targets against the latest Hub', () => {
+    const executeExternal = (phase: ReturnType<typeof createHubLoadoutPhase>, draft: Parameters<typeof previewStableRunUiHubLoadoutDraft>[1]) => {
+      const storage = new MemoryStorage()
+      const store = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+      const preview = previewStableRunUiHubLoadoutDraft(phase, draft, uiDependencies)
+      if (!preview?.command) throw new Error('expected external Hub command')
+      store.dispatch(preview.command)
+      return store.getState().phase
+    }
+
+    const mergePhase = createHubLoadoutPhase()
+    const mergeOpportunities = createStableRunUiInteractionModel(mergePhase, uiDependencies).hubLoadoutOpportunities
+    const mergeSource = mergeOpportunities.find(({ sourceInstanceId }) => sourceInstanceId === 'hub-ui-backpack-bandage')!
+    const mergeTarget = mergeOpportunities.find(({ sourceInstanceId }) => sourceInstanceId === 'hub-ui-backpack-bandage-target')!
+    const mergeDraft = { opportunityId: mergeSource.id, operation: 'merge-backpack-stacks' as const, quantity: 1, targetOpportunityId: mergeTarget.id, targetEquipmentSlot: null, targetQuickSlotIndex: null, x: null, y: null, rotated: false }
+    expect(previewStableRunUiHubLoadoutDraft(mergePhase, mergeDraft, uiDependencies)?.canExecute).toBe(true)
+    const afterTargetRemoved = executeExternal(mergePhase, { opportunityId: mergeTarget.id, operation: 'backpack-to-warehouse', quantity: null, targetOpportunityId: null, targetEquipmentSlot: null, targetQuickSlotIndex: null, x: null, y: null, rotated: false })
+    expect(previewStableRunUiHubLoadoutDraft(afterTargetRemoved, mergeDraft, uiDependencies)?.canExecute).toBe(false)
+
+    const equipmentPhase = createHubLoadoutPhase()
+    const equipmentOpportunities = createStableRunUiInteractionModel(equipmentPhase, uiDependencies).hubLoadoutOpportunities
+    const firstCoat = equipmentOpportunities.find(({ sourceInstanceId }) => sourceInstanceId === 'hub-ui-backpack-coat')!
+    const secondCoat = equipmentOpportunities.find(({ sourceInstanceId }) => sourceInstanceId === 'hub-ui-backpack-coat-second')!
+    const equipDraft = { opportunityId: firstCoat.id, operation: 'equip-from-backpack' as const, quantity: null, targetOpportunityId: null, targetEquipmentSlot: 'armor' as const, targetQuickSlotIndex: null, x: null, y: null, rotated: false }
+    expect(previewStableRunUiHubLoadoutDraft(equipmentPhase, equipDraft, uiDependencies)?.canExecute).toBe(true)
+    const afterArmorOccupied = executeExternal(equipmentPhase, { ...equipDraft, opportunityId: secondCoat.id })
+    expect(previewStableRunUiHubLoadoutDraft(afterArmorOccupied, equipDraft, uiDependencies)?.canExecute).toBe(false)
+
+    const quickPhase = createHubLoadoutPhase()
+    const quickOpportunities = createStableRunUiInteractionModel(quickPhase, uiDependencies).hubLoadoutOpportunities
+    const quickSource = quickOpportunities.find(({ sourceInstanceId }) => sourceInstanceId === 'hub-ui-quick-bandage')!
+    const painkiller = quickOpportunities.find(({ sourceInstanceId }) => sourceInstanceId === 'hub-ui-backpack-painkiller')!
+    const moveDraft = { opportunityId: quickSource.id, operation: 'move-quick-slot-item' as const, quantity: null, targetOpportunityId: null, targetEquipmentSlot: null, targetQuickSlotIndex: 1, x: null, y: null, rotated: false }
+    expect(previewStableRunUiHubLoadoutDraft(quickPhase, moveDraft, uiDependencies)?.canExecute).toBe(true)
+    const afterQuickOccupied = executeExternal(quickPhase, { ...moveDraft, opportunityId: painkiller.id, operation: 'backpack-to-quick-slot' })
+    expect(previewStableRunUiHubLoadoutDraft(afterQuickOccupied, moveDraft, uiDependencies)?.canExecute).toBe(false)
   })
 })

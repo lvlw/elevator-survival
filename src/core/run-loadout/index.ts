@@ -2,8 +2,15 @@ export {
   applyRunLoadoutEffects,
   buildRunLoadoutTransitionPlan,
   createRunLoadoutCommand,
+  previewRunLoadoutCommand,
   resolveRunLoadoutCommand,
 } from './run-loadout-command'
+export {
+  previewPlayerVisibleRunLoadoutCommand,
+  type PlayerVisibleRunLoadoutEvaluation,
+  type PlayerVisibleRunLoadoutLocation,
+  type PlayerVisibleRunLoadoutPreview,
+} from './player-visible-run-loadout'
 export {
   createRunLoadoutDependenciesFromReturn,
   createRunLoadoutSnapshot,

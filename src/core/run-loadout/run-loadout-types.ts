@@ -77,6 +77,22 @@ export type RunLoadoutCommand =
       placement: BackpackPlacement
     }>
   | Readonly<{
+      kind: 'split-backpack-stack'
+      sourceInstanceId: string
+      quantity: number
+      placement: Readonly<{
+        x: number
+        y: number
+        rotated: boolean
+      }>
+    }>
+  | Readonly<{
+      kind: 'merge-backpack-stacks'
+      sourceInstanceId: string
+      targetInstanceId: string
+      quantity: number
+    }>
+  | Readonly<{
       kind: 'equip-from-backpack'
       instanceId: string
       targetSlot: EquipmentSlotKind
@@ -126,6 +142,8 @@ export interface RunLoadoutOperation {
   readonly targetQuickSlotIndex: number | null
   readonly displacedInstanceId: string | null
   readonly splitInstanceId: string | null
+  readonly targetInstanceId?: string
+  readonly mergeResult?: 'partial' | 'full'
 }
 
 export type RunLoadoutEffect =

@@ -10,6 +10,7 @@ import {
 import { createPlayerCondition } from '../../core/condition'
 import {
   createCurrentDayHubSnapshot,
+  resolveCurrentDayHubLoadoutCommand,
   type CurrentDayHubSnapshot,
 } from '../../core/current-day-hub'
 import { resolveDailySettlement } from '../../core/daily-settlement'
@@ -33,6 +34,7 @@ import {
 import { createQuickSlotSnapshot } from '../../core/quick-slot'
 import {
   createRunLoadoutSnapshot,
+  createStableRunLoadoutBackpackSplitInstanceId,
   createStableRunLoadoutSplitInstanceId,
   type RunLoadoutCommand,
 } from '../../core/run-loadout'
@@ -303,7 +305,7 @@ describe('strict Stable Run Hub application commands', () => {
   })
 })
 
-describe('all ten formal Run Loadout commands through the Hub router', () => {
+describe('all twelve formal Run Loadout commands through the Hub router', () => {
   interface Case {
     readonly name: string
     readonly start: () => CurrentDayHubSnapshot
@@ -314,6 +316,9 @@ describe('all ten formal Run Loadout commands through the Hub router', () => {
   const pipeB = item('pipe-b', HOSPITAL_ITEM_IDS.metalPipe)
   const bandages = item('bandages', HOSPITAL_ITEM_IDS.bandage, 3)
   const painkiller = item('painkiller', HOSPITAL_ITEM_IDS.painkiller)
+  const splitBandages = item('split-bandages', HOSPITAL_ITEM_IDS.bandage, 3)
+  const mergeSource = item('merge-source', HOSPITAL_ITEM_IDS.bandage)
+  const mergeTarget = item('merge-target', HOSPITAL_ITEM_IDS.bandage)
 
   const cases: readonly Case[] = [
     {
@@ -333,6 +338,43 @@ describe('all ten formal Run Loadout commands through the Hub router', () => {
       start: () => hub({ backpack: [painkiller] }),
       command: { kind: 'move-backpack-item', instanceId: painkiller.instanceId, placement: placement(painkiller.instanceId, 2, 1) },
       assert: (next) => expect(next.runLoadout.backpack.placements).toContainEqual(placement(painkiller.instanceId, 2, 1)),
+    },
+    {
+      name: 'split-backpack-stack',
+      start: () => hub({ backpack: [splitBandages] }),
+      command: {
+        kind: 'split-backpack-stack',
+        sourceInstanceId: splitBandages.instanceId,
+        quantity: 1,
+        placement: { x: 1, y: 0, rotated: false },
+      },
+      assert: (next) => {
+        const splitId = createStableRunLoadoutBackpackSplitInstanceId(
+          splitBandages.instanceId,
+          splitBandages.quantity,
+          1,
+        )
+        expect(next.runLoadout.backpack.items).toEqual(expect.arrayContaining([
+          { ...splitBandages, quantity: 2 },
+          { instanceId: splitId, definitionId: splitBandages.definitionId, quantity: 1 },
+        ]))
+      },
+    },
+    {
+      name: 'merge-backpack-stacks',
+      start: () => hub({ backpack: [mergeSource, mergeTarget] }),
+      command: {
+        kind: 'merge-backpack-stacks',
+        sourceInstanceId: mergeSource.instanceId,
+        targetInstanceId: mergeTarget.instanceId,
+        quantity: 1,
+      },
+      assert: (next) => {
+        expect(next.runLoadout.backpack.items).toContainEqual({ ...mergeTarget, quantity: 2 })
+        expect(next.runLoadout.backpack.items.some(
+          ({ instanceId }) => instanceId === mergeSource.instanceId,
+        )).toBe(false)
+      },
     },
     {
       name: 'equip-from-backpack',
@@ -393,6 +435,66 @@ describe('all ten formal Run Loadout commands through the Hub router', () => {
       expect(candidate.definitionId).toBeDefined()
     }
     assertSaved(execution, storage)
+  })
+
+  it('resolves split and merge through the direct CurrentDayHub boundary before Stable Run routing', () => {
+    const start = hub({ backpack: [splitBandages] })
+    const split = resolveCurrentDayHubLoadoutCommand(start, {
+      kind: 'split-backpack-stack',
+      sourceInstanceId: splitBandages.instanceId,
+      quantity: 1,
+      placement: { x: 1, y: 0, rotated: false },
+    }, hospitalCurrentDayHubDependencies)
+    const splitId = createStableRunLoadoutBackpackSplitInstanceId(
+      splitBandages.instanceId,
+      splitBandages.quantity,
+      1,
+    )
+    const merged = resolveCurrentDayHubLoadoutCommand(split.snapshot, {
+      kind: 'merge-backpack-stacks',
+      sourceInstanceId: splitId,
+      targetInstanceId: splitBandages.instanceId,
+      quantity: 1,
+    }, hospitalCurrentDayHubDependencies)
+    expect(merged.snapshot.runLoadout.backpack.items).toContainEqual(splitBandages)
+    expect(merged.snapshot.runLoadout.backpack.items).toHaveLength(1)
+    expect(getItemState(merged.snapshot.runLoadout.itemStates, splitBandages.instanceId))
+      .toEqual(getItemState(start.runLoadout.itemStates, splitBandages.instanceId))
+  })
+
+  it('rejects invalid Stable Run split and merge commands atomically without saving', () => {
+    const start = hub({ backpack: [mergeSource, mergeTarget] })
+    const storage = new TrackedStorage()
+    saveRunPhase(storage, { kind: 'current-day-hub', payload: start }, hospitalRunSaveRulesRegistry)
+    const persisted = storage.read()
+    storage.resetWrites()
+    for (const command of [
+      {
+        kind: 'hub-loadout' as const,
+        command: {
+          kind: 'split-backpack-stack' as const,
+          sourceInstanceId: mergeSource.instanceId,
+          quantity: 1,
+          placement: { x: 2, y: 0, rotated: false },
+        },
+      },
+      {
+        kind: 'hub-loadout' as const,
+        command: {
+          kind: 'merge-backpack-stacks' as const,
+          sourceInstanceId: mergeSource.instanceId,
+          targetInstanceId: mergeTarget.instanceId,
+          quantity: 2,
+        },
+      },
+    ]) {
+      expect(() => execute(start, command, storage)).toThrowError(
+        expect.objectContaining({ code: 'ACTION_NOT_AVAILABLE' }),
+      )
+      expect(storage.writes).toBe(0)
+      expect(storage.read()).toBe(persisted)
+      expect(start.runLoadout.backpack.items).toEqual([mergeSource, mergeTarget])
+    }
   })
 
   it('leaves task storage and all core placement/eligibility/load rules to core with no save', () => {

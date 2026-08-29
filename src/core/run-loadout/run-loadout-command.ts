@@ -8,14 +8,18 @@ import {
 import {
   addItemToBackpack,
   calculateBackpackWeightSubtotal,
+  createBackpackSnapshot,
+  createItemInstance,
   moveBackpackItem,
   removeItemFromBackpack,
   type BackpackPlacement,
   type ItemInstance,
 } from '../inventory'
 import {
+  areItemStatesStackCompatible,
   createItemState,
   getItemState,
+  removeItemState,
   type ItemStateCollectionSnapshot,
 } from '../item-state'
 import { classifyLoad } from '../load'
@@ -28,7 +32,10 @@ import {
 } from '../quick-slot'
 import { RunLoadoutError } from './run-loadout-errors'
 import { createRunLoadoutSnapshot } from './run-loadout-snapshot'
-import { createStableRunLoadoutSplitInstanceId } from './stable-split-instance-id'
+import {
+  createStableRunLoadoutBackpackSplitInstanceId,
+  createStableRunLoadoutSplitInstanceId,
+} from './stable-split-instance-id'
 import type {
   RunLoadoutCommand,
   RunLoadoutDependencies,
@@ -93,6 +100,35 @@ function normalizePlacement(value: unknown): BackpackPlacement {
   })
 }
 
+function normalizePlacementAnchor(value: unknown): Readonly<{
+  x: number
+  y: number
+  rotated: boolean
+}> {
+  if (
+    !exact(value, ['rotated', 'x', 'y']) ||
+    !Number.isSafeInteger(value.x) ||
+    !Number.isSafeInteger(value.y) ||
+    (value.x as number) < 0 ||
+    (value.y as number) < 0 ||
+    typeof value.rotated !== 'boolean'
+  ) {
+    invalid('背包目标摆放结构无效')
+  }
+  return deepFreeze({
+    x: value.x as number,
+    y: value.y as number,
+    rotated: value.rotated,
+  })
+}
+
+function normalizePositiveQuantity(value: unknown, label: string): number {
+  if (!Number.isSafeInteger(value) || (value as number) <= 0) {
+    invalid(`${label}必须是正安全整数`)
+  }
+  return value as number
+}
+
 function normalizeSlot(value: unknown, label: string): EquipmentSlotKind {
   if (typeof value !== 'string' || !EQUIPMENT_SLOTS.includes(value as EquipmentSlotKind)) {
     invalid(`${label}无效`)
@@ -131,6 +167,26 @@ export function createRunLoadoutCommand(input: unknown): RunLoadoutCommand {
         kind: input.kind,
         instanceId: assertNonEmptyId(input.instanceId, '背包物品实例ID'),
         placement: normalizePlacement(input.placement),
+      })
+    case 'split-backpack-stack':
+      if (!exact(input, ['kind', 'placement', 'quantity', 'sourceInstanceId'])) {
+        invalid('背包堆叠拆分命令字段无效')
+      }
+      return deepFreeze({
+        kind: input.kind,
+        sourceInstanceId: assertNonEmptyId(input.sourceInstanceId, '拆分来源实例ID'),
+        quantity: normalizePositiveQuantity(input.quantity, '拆分数量'),
+        placement: normalizePlacementAnchor(input.placement),
+      })
+    case 'merge-backpack-stacks':
+      if (!exact(input, ['kind', 'quantity', 'sourceInstanceId', 'targetInstanceId'])) {
+        invalid('背包堆叠合并命令字段无效')
+      }
+      return deepFreeze({
+        kind: input.kind,
+        sourceInstanceId: assertNonEmptyId(input.sourceInstanceId, '合并来源实例ID'),
+        targetInstanceId: assertNonEmptyId(input.targetInstanceId, '合并目标实例ID'),
+        quantity: normalizePositiveQuantity(input.quantity, '合并数量'),
       })
     case 'equip-from-backpack':
       if (!exact(input, ['instanceId', 'kind', 'targetSlot'])) invalid('装备命令字段无效')
@@ -376,6 +432,152 @@ function evaluate(
             targetQuickSlotIndex: null,
             displacedInstanceId: null,
             splitInstanceId: null,
+          }),
+        })
+      }
+      case 'split-backpack-stack': {
+        const source = findItem(snapshot.backpack.items, command.sourceInstanceId, '背包拆分来源')
+        const definition = dependencies.physicalCatalog.get(source.definitionId)
+        const sourceState = getItemState(snapshot.itemStates, source.instanceId)
+        if (
+          definition.stacking.kind !== 'stackable' ||
+          source.quantity <= 1 ||
+          command.quantity >= source.quantity ||
+          sourceState.resource.kind !== 'none'
+        ) {
+          unavailable('背包堆叠拆分条件不满足')
+        }
+        const splitInstanceId = createStableRunLoadoutBackpackSplitInstanceId(
+          source.instanceId,
+          source.quantity,
+          command.quantity,
+        )
+        if (allInstanceIds(snapshot).has(splitInstanceId)) {
+          unavailable('确定性背包拆分实例ID已存在')
+        }
+        const sourcePlacement = snapshot.backpack.placements.find(
+          ({ instanceId }) => instanceId === source.instanceId,
+        )
+        if (!sourcePlacement) unavailable('背包拆分来源缺少摆放')
+        let backpack = createBackpackSnapshot({
+          ...snapshot.backpack,
+          items: snapshot.backpack.items.map((candidate) =>
+            candidate.instanceId === source.instanceId
+              ? { ...candidate, quantity: candidate.quantity - command.quantity }
+              : candidate,
+          ),
+        }, dependencies.physicalCatalog)
+        const splitItem = createItemInstance({
+          instanceId: splitInstanceId,
+          definitionId: source.definitionId,
+          quantity: command.quantity,
+        }, dependencies.physicalCatalog)
+        const targetPlacement = {
+          instanceId: splitInstanceId,
+          ...command.placement,
+        }
+        backpack = addItemToBackpack(
+          backpack,
+          splitItem,
+          targetPlacement,
+          dependencies.physicalCatalog,
+        )
+        const next = nextSnapshot(snapshot, dependencies, {
+          backpack,
+          itemStates: {
+            states: [
+              ...snapshot.itemStates.states,
+              createItemState({
+                instanceId: splitInstanceId,
+                definitionId: source.definitionId,
+                resource: { kind: 'none' },
+              }, dependencies.itemResourceCatalog),
+            ],
+          },
+        })
+        return deepFreeze({
+          snapshot: next,
+          operation: makeOperation({
+            commandKind: command.kind,
+            source: 'backpack',
+            destination: 'backpack',
+            instanceId: source.instanceId,
+            definitionId: source.definitionId,
+            quantity: command.quantity,
+            placement: targetPlacement,
+            equipmentSlot: null,
+            sourceQuickSlotIndex: null,
+            targetQuickSlotIndex: null,
+            displacedInstanceId: null,
+            splitInstanceId,
+            targetInstanceId: splitInstanceId,
+          }),
+        })
+      }
+      case 'merge-backpack-stacks': {
+        const source = findItem(snapshot.backpack.items, command.sourceInstanceId, '背包合并来源')
+        const target = findItem(snapshot.backpack.items, command.targetInstanceId, '背包合并目标')
+        const definition = dependencies.physicalCatalog.get(source.definitionId)
+        if (
+          source.instanceId === target.instanceId ||
+          source.definitionId !== target.definitionId ||
+          definition.stacking.kind !== 'stackable' ||
+          command.quantity > source.quantity ||
+          target.quantity + command.quantity > (
+            definition.stacking.kind === 'stackable'
+              ? definition.stacking.maxQuantity
+              : 0
+          ) ||
+          !areItemStatesStackCompatible(
+            getItemState(snapshot.itemStates, source.instanceId),
+            getItemState(snapshot.itemStates, target.instanceId),
+          )
+        ) {
+          unavailable('背包堆叠合并条件不满足')
+        }
+        const fullMerge = command.quantity === source.quantity
+        const backpack = createBackpackSnapshot({
+          ...snapshot.backpack,
+          items: snapshot.backpack.items.flatMap((candidate) => {
+            if (candidate.instanceId === target.instanceId) {
+              return [{ ...candidate, quantity: candidate.quantity + command.quantity }]
+            }
+            if (candidate.instanceId === source.instanceId) {
+              return fullMerge
+                ? []
+                : [{ ...candidate, quantity: candidate.quantity - command.quantity }]
+            }
+            return [candidate]
+          }),
+          placements: snapshot.backpack.placements.filter(
+            ({ instanceId }) => !(fullMerge && instanceId === source.instanceId),
+          ),
+        }, dependencies.physicalCatalog)
+        const next = nextSnapshot(snapshot, dependencies, {
+          backpack,
+          itemStates: fullMerge
+            ? removeItemState(snapshot.itemStates, source.instanceId)
+            : snapshot.itemStates,
+        })
+        return deepFreeze({
+          snapshot: next,
+          operation: makeOperation({
+            commandKind: command.kind,
+            source: 'backpack',
+            destination: 'backpack',
+            instanceId: source.instanceId,
+            definitionId: source.definitionId,
+            quantity: command.quantity,
+            placement: snapshot.backpack.placements.find(
+              ({ instanceId }) => instanceId === target.instanceId,
+            ) ?? null,
+            equipmentSlot: null,
+            sourceQuickSlotIndex: null,
+            targetQuickSlotIndex: null,
+            displacedInstanceId: null,
+            splitInstanceId: null,
+            targetInstanceId: target.instanceId,
+            mergeResult: fullMerge ? 'full' : 'partial',
           }),
         })
       }

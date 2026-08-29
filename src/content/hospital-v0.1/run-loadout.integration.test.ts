@@ -2,20 +2,28 @@ import { describe, expect, it } from 'vitest'
 import { createPlayerCondition } from '../../core/condition'
 import { createEmptyEquipment, createEquipmentSnapshot } from '../../core/equipment'
 import {
+  calculateBackpackWeightSubtotal,
   createBackpackSnapshot,
   createEmptyBackpack,
   type BackpackPlacement,
   type ItemInstance,
 } from '../../core/inventory'
-import { createFullItemState, createItemState } from '../../core/item-state'
-import { createEmptyQuickSlots } from '../../core/quick-slot'
+import {
+  createFullItemState,
+  createItemResourceCatalog,
+  createItemState,
+  getItemState,
+} from '../../core/item-state'
+import { createEmptyQuickSlots, createQuickSlotSnapshot } from '../../core/quick-slot'
 import {
   applyRunLoadoutEffects,
   buildRunLoadoutTransitionPlan,
   createRunLoadoutDependenciesFromReturn,
+  createRunLoadoutCommand,
   createRunLoadoutSnapshot,
   createRunLoadoutSnapshotFromReturn,
   projectRunStoredInventoryFromRunLoadout,
+  createStableRunLoadoutBackpackSplitInstanceId,
   createStableRunLoadoutSplitInstanceId,
   resolveRunLoadoutCommand,
   type RunLoadoutCommand,
@@ -28,6 +36,7 @@ import {
   hospitalItemQuickSlotCatalog,
   hospitalItemQuickSlotProfiles,
   hospitalItemResourceCatalog,
+  hospitalItemResourceProfiles,
   hospitalItemReturnLifecycleCatalog,
   hospitalSliceV01RuleConfig as config,
   hospitalSliceV01SceneGraph,
@@ -417,6 +426,268 @@ describe('hospital Run loadout inventory management', () => {
     expect(backInBackpack.quickSlots.slots[0]).toBeNull()
   })
 
+  it('keeps the existing quick-slot split identity byte-for-byte and uses a separate backpack split scope', () => {
+    expect(createStableRunLoadoutSplitInstanceId('warehouse-bandages', 3))
+      .toBe('run-loadout-split:18:warehouse-bandages:3')
+    expect(createStableRunLoadoutBackpackSplitInstanceId('warehouse-bandages', 3, 1))
+      .toBe('run-loadout-backpack-split:18:warehouse-bandages:3')
+    expect(createStableRunLoadoutBackpackSplitInstanceId('warehouse-bandages', 3, 2))
+      .toBe('run-loadout-backpack-split:18:warehouse-bandages:3:2')
+  })
+
+  it('strictly normalizes and freezes explicit backpack split and merge commands', () => {
+    const split = createRunLoadoutCommand({
+      kind: 'split-backpack-stack',
+      sourceInstanceId: 'source',
+      quantity: 2,
+      placement: { x: 1, y: 2, rotated: false },
+    })
+    const merge = createRunLoadoutCommand({
+      kind: 'merge-backpack-stacks',
+      sourceInstanceId: 'source',
+      targetInstanceId: 'target',
+      quantity: 1,
+    })
+    expect(Object.isFrozen(split)).toBe(true)
+    expect(Object.isFrozen(split.kind === 'split-backpack-stack' ? split.placement : null)).toBe(true)
+    expect(Object.isFrozen(merge)).toBe(true)
+    for (const invalid of [
+      { ...split, extra: true },
+      { ...merge, quantity: 0 },
+      { ...merge, targetInstanceId: '' },
+      { ...split, placement: { ...split.kind === 'split-backpack-stack' ? split.placement : {}, instanceId: 'forged' } },
+    ]) {
+      expect(() => createRunLoadoutCommand(invalid)).toThrowError(
+        expect.objectContaining({ code: 'INVALID_INPUT' }),
+      )
+    }
+  })
+
+  it('splits explicit quantities without changing total quantity, weight, source identity, or source state', () => {
+    const source = item('split-source', HOSPITAL_ITEM_IDS.metalParts, 5)
+    const start = loadout({
+      warehouse: [],
+      taskStorage: [],
+      backpackItems: [source],
+      placements: [placement(source.instanceId, 0, 0)],
+    })
+    const weightBefore = calculateBackpackWeightSubtotal(start.backpack, hospitalItemCatalog)
+    for (const quantity of [1, 2]) {
+      const splitId = createStableRunLoadoutBackpackSplitInstanceId(
+        source.instanceId,
+        source.quantity,
+        quantity,
+      )
+      const result = resolve(start, {
+        kind: 'split-backpack-stack',
+        sourceInstanceId: source.instanceId,
+        quantity,
+        placement: { x: quantity, y: 0, rotated: false },
+      }).snapshot
+      expect(result.backpack.items).toEqual(expect.arrayContaining([
+        { ...source, quantity: source.quantity - quantity },
+        { instanceId: splitId, definitionId: source.definitionId, quantity },
+      ]))
+      expect(result.backpack.placements).toEqual(expect.arrayContaining([
+        placement(source.instanceId, 0, 0),
+        placement(splitId, quantity, 0),
+      ]))
+      expect(getItemState(result.itemStates, source.instanceId))
+        .toEqual(getItemState(start.itemStates, source.instanceId))
+      expect(getItemState(result.itemStates, splitId).resource).toEqual({ kind: 'none' })
+      expect(result.backpack.items.reduce((sum, candidate) => sum + candidate.quantity, 0)).toBe(5)
+      expect(calculateBackpackWeightSubtotal(result.backpack, hospitalItemCatalog)).toBe(weightBefore)
+    }
+    expect(start.backpack.items).toEqual([source])
+  })
+
+  it('rejects invalid split quantities, non-stackable sources, resource-bearing stacks, and occupied placements', () => {
+    const source = item('split-invalid-source', HOSPITAL_ITEM_IDS.bandage, 3)
+    const blocker = item('split-blocker', HOSPITAL_ITEM_IDS.painkiller)
+    const start = loadout({
+      warehouse: [],
+      taskStorage: [],
+      backpackItems: [source, blocker],
+      placements: [placement(source.instanceId, 0, 0), placement(blocker.instanceId, 1, 0)],
+    })
+    for (const command of [
+      { kind: 'split-backpack-stack', sourceInstanceId: source.instanceId, quantity: 3, placement: { x: 2, y: 0, rotated: false } },
+      { kind: 'split-backpack-stack', sourceInstanceId: source.instanceId, quantity: 1, placement: { x: 1, y: 0, rotated: false } },
+      { kind: 'split-backpack-stack', sourceInstanceId: 'pipe', quantity: 1, placement: { x: 2, y: 0, rotated: false } },
+    ] as const) {
+      const candidate = command.sourceInstanceId === 'pipe'
+        ? loadout({
+            warehouse: [],
+            taskStorage: [],
+            backpackItems: [item('pipe', HOSPITAL_ITEM_IDS.metalPipe)],
+            placements: [placement('pipe', 0, 0)],
+          })
+        : start
+      expect(() => resolve(candidate, command)).toThrowError(
+        expect.objectContaining({ code: 'ACTION_NOT_AVAILABLE' }),
+      )
+    }
+
+    const resourceCatalog = createItemResourceCatalog(
+      hospitalItemResourceProfiles.map((profile) =>
+        profile.definitionId === HOSPITAL_ITEM_IDS.bandage
+          ? { definitionId: profile.definitionId, kind: 'durability' as const, maximum: 2 }
+          : profile,
+      ),
+      hospitalItemCatalog.definitionIds,
+    )
+    const resourceDependencies = { ...loadoutDependencies, itemResourceCatalog: resourceCatalog }
+    const resourceSource = item('resource-stack', HOSPITAL_ITEM_IDS.bandage, 3)
+    const resourceSnapshot = createRunLoadoutSnapshot({
+      warehouse: { items: [] },
+      taskStorage: { items: [] },
+      backpack: createBackpackSnapshot({
+        width: config.backpack.width,
+        height: config.backpack.height,
+        items: [resourceSource],
+        placements: [placement(resourceSource.instanceId, 0, 0)],
+      }, hospitalItemCatalog),
+      equipment: createEmptyEquipment(hospitalItemCatalog, hospitalItemEquipmentCatalog),
+      quickSlots: createEmptyQuickSlots(config.backpack.quickSlotCount, hospitalItemCatalog, hospitalItemQuickSlotCatalog),
+      itemStates: { states: [createItemState({
+        instanceId: resourceSource.instanceId,
+        definitionId: resourceSource.definitionId,
+        resource: { kind: 'durability', current: 1 },
+      }, resourceCatalog)] },
+    }, resourceDependencies)
+    expect(() => resolveRunLoadoutCommand(resourceSnapshot, {
+      kind: 'split-backpack-stack',
+      sourceInstanceId: resourceSource.instanceId,
+      quantity: 1,
+      placement: { x: 1, y: 0, rotated: false },
+    }, resourceDependencies)).toThrowError(expect.objectContaining({ code: 'ACTION_NOT_AVAILABLE' }))
+  })
+
+  it.each(['warehouse', 'task-storage', 'backpack', 'equipment', 'quick-slots'] as const)(
+    'rejects a deterministic backpack split identity collision in %s',
+    (container) => {
+      const source = item('collision-source', HOSPITAL_ITEM_IDS.bandage, 3)
+      const splitId = createStableRunLoadoutBackpackSplitInstanceId(source.instanceId, 3, 1)
+      const collision = container === 'task-storage'
+        ? item(splitId, HOSPITAL_ITEM_IDS.sealedPathogenCase)
+        : container === 'equipment'
+          ? item(splitId, HOSPITAL_ITEM_IDS.metalPipe)
+          : container === 'quick-slots'
+            ? item(splitId, HOSPITAL_ITEM_IDS.painkiller)
+            : item(splitId, HOSPITAL_ITEM_IDS.bandage)
+      const start = loadout({
+        warehouse: container === 'warehouse' ? [collision] : [],
+        taskStorage: container === 'task-storage' ? [collision] : [],
+        backpackItems: container === 'backpack' ? [source, collision] : [source],
+        placements: container === 'backpack'
+          ? [placement(source.instanceId, 0, 0), placement(collision.instanceId, 2, 0)]
+          : [placement(source.instanceId, 0, 0)],
+        equipment: container === 'equipment'
+          ? createEquipmentSnapshot({ weapon: collision, armor: null, utility: null }, hospitalItemCatalog, hospitalItemEquipmentCatalog)
+          : undefined,
+        quickSlots: container === 'quick-slots'
+          ? createQuickSlotSnapshot([collision, null], config.backpack.quickSlotCount, hospitalItemCatalog, hospitalItemQuickSlotCatalog)
+          : undefined,
+      })
+      const before = structuredClone(start)
+      expect(() => resolve(start, {
+        kind: 'split-backpack-stack',
+        sourceInstanceId: source.instanceId,
+        quantity: 1,
+        placement: { x: 1, y: 0, rotated: false },
+      })).toThrowError(expect.objectContaining({ code: 'ACTION_NOT_AVAILABLE' }))
+      expect(start).toEqual(before)
+    },
+  )
+
+  it('merges stacks partially and fully while preserving target identity, placement, state, and total weight', () => {
+    const source = item('merge-source', HOSPITAL_ITEM_IDS.metalParts, 2)
+    const target = item('merge-target', HOSPITAL_ITEM_IDS.metalParts, 2)
+    const start = loadout({
+      warehouse: [],
+      taskStorage: [],
+      backpackItems: [source, target],
+      placements: [placement(source.instanceId, 0, 0), placement(target.instanceId, 1, 0)],
+    })
+    const targetState = getItemState(start.itemStates, target.instanceId)
+    const weightBefore = calculateBackpackWeightSubtotal(start.backpack, hospitalItemCatalog)
+    const partial = resolve(start, {
+      kind: 'merge-backpack-stacks',
+      sourceInstanceId: source.instanceId,
+      targetInstanceId: target.instanceId,
+      quantity: 1,
+    }).snapshot
+    expect(partial.backpack.items).toEqual(expect.arrayContaining([
+      { ...source, quantity: 1 },
+      { ...target, quantity: 3 },
+    ]))
+    expect(partial.backpack.placements).toEqual(start.backpack.placements)
+    expect(getItemState(partial.itemStates, source.instanceId)).toBeDefined()
+    expect(getItemState(partial.itemStates, target.instanceId)).toEqual(targetState)
+    expect(calculateBackpackWeightSubtotal(partial.backpack, hospitalItemCatalog)).toBe(weightBefore)
+
+    const full = resolve(partial, {
+      kind: 'merge-backpack-stacks',
+      sourceInstanceId: source.instanceId,
+      targetInstanceId: target.instanceId,
+      quantity: 1,
+    }).snapshot
+    expect(full.backpack.items).toContainEqual({ ...target, quantity: 4 })
+    expect(full.backpack.items.some(({ instanceId }) => instanceId === source.instanceId)).toBe(false)
+    expect(full.backpack.placements).toEqual([placement(target.instanceId, 1, 0)])
+    expect(() => getItemState(full.itemStates, source.instanceId)).toThrow()
+    expect(getItemState(full.itemStates, target.instanceId)).toEqual(targetState)
+    expect(calculateBackpackWeightSubtotal(full.backpack, hospitalItemCatalog)).toBe(weightBefore)
+  })
+
+  it('rejects invalid merge identities, definitions, quantities, maxima, and incompatible ItemState atomically', () => {
+    const source = item('merge-invalid-source', HOSPITAL_ITEM_IDS.bandage, 2)
+    const target = item('merge-invalid-target', HOSPITAL_ITEM_IDS.bandage, 2)
+    const other = item('merge-other', HOSPITAL_ITEM_IDS.painkiller)
+    const start = loadout({
+      warehouse: [],
+      taskStorage: [],
+      backpackItems: [source, target, other],
+      placements: [placement(source.instanceId, 0, 0), placement(target.instanceId, 1, 0), placement(other.instanceId, 2, 0)],
+    })
+    const before = structuredClone(start)
+    for (const command of [
+      { kind: 'merge-backpack-stacks', sourceInstanceId: source.instanceId, targetInstanceId: source.instanceId, quantity: 1 },
+      { kind: 'merge-backpack-stacks', sourceInstanceId: source.instanceId, targetInstanceId: other.instanceId, quantity: 1 },
+      { kind: 'merge-backpack-stacks', sourceInstanceId: source.instanceId, targetInstanceId: target.instanceId, quantity: 3 },
+      { kind: 'merge-backpack-stacks', sourceInstanceId: source.instanceId, targetInstanceId: target.instanceId, quantity: 2 },
+    ] as const) {
+      expect(() => resolve(start, command)).toThrowError(
+        expect.objectContaining({ code: 'ACTION_NOT_AVAILABLE' }),
+      )
+      expect(start).toEqual(before)
+    }
+
+    const resourceCatalog = createItemResourceCatalog(
+      hospitalItemResourceProfiles.map((profile) =>
+        profile.definitionId === HOSPITAL_ITEM_IDS.bandage
+          ? { definitionId: profile.definitionId, kind: 'durability' as const, maximum: 2 }
+          : profile,
+      ),
+      hospitalItemCatalog.definitionIds,
+    )
+    const resourceDependencies = { ...loadoutDependencies, itemResourceCatalog: resourceCatalog }
+    const incompatible = createRunLoadoutSnapshot({
+      ...start,
+      itemStates: { states: [
+        createItemState({ ...source, resource: { kind: 'durability', current: 1 } }, resourceCatalog),
+        createItemState({ ...target, resource: { kind: 'durability', current: 2 } }, resourceCatalog),
+        createItemState({ ...other, resource: { kind: 'none' } }, resourceCatalog),
+      ] },
+    }, resourceDependencies)
+    expect(() => resolveRunLoadoutCommand(incompatible, {
+      kind: 'merge-backpack-stacks',
+      sourceInstanceId: source.instanceId,
+      targetInstanceId: target.instanceId,
+      quantity: 1,
+    }, resourceDependencies)).toThrowError(expect.objectContaining({ code: 'ACTION_NOT_AVAILABLE' }))
+  })
+
   it('keeps task storage read-only and rejects unknown convenience commands', () => {
     const start = loadout()
     const before = structuredClone(start)
@@ -541,5 +812,105 @@ describe('hospital Run loadout inventory management', () => {
       [...splitPlan.effects].reverse(),
       loadoutDependencies,
     )).toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
+  })
+
+  it('binds backpack split and merge Effects to the independent command and exact committed state', () => {
+    const source = item('effect-source', HOSPITAL_ITEM_IDS.metalParts, 3)
+    const target = item('effect-target', HOSPITAL_ITEM_IDS.metalParts)
+    const start = loadout({
+      warehouse: [],
+      taskStorage: [],
+      backpackItems: [source, target],
+      placements: [placement(source.instanceId, 0, 0), placement(target.instanceId, 1, 0)],
+    })
+    const splitCommand: RunLoadoutCommand = {
+      kind: 'split-backpack-stack',
+      sourceInstanceId: source.instanceId,
+      quantity: 1,
+      placement: { x: 2, y: 0, rotated: false },
+    }
+    const splitPlan = buildRunLoadoutTransitionPlan(start, splitCommand, loadoutDependencies)
+    const splitId = createStableRunLoadoutBackpackSplitInstanceId(source.instanceId, 3, 1)
+    const operationTamper = (changes: Record<string, unknown>) => splitPlan.effects.map((effect) =>
+      effect.kind === 'run-loadout-operation-applied'
+        ? { ...effect, operation: { ...effect.operation, ...changes } }
+        : effect,
+    )
+    const snapshotTamper = splitPlan.effects.map((effect) =>
+      effect.kind === 'run-loadout-state-committed'
+        ? {
+            ...effect,
+            snapshot: {
+              ...effect.snapshot,
+              backpack: {
+                ...effect.snapshot.backpack,
+                items: effect.snapshot.backpack.items.map((candidate) =>
+                  candidate.instanceId === splitId
+                    ? { ...candidate, quantity: 2 }
+                    : candidate,
+                ),
+              },
+            },
+          }
+        : effect,
+    )
+    const itemStateTamper = splitPlan.effects.map((effect) =>
+      effect.kind === 'run-loadout-state-committed'
+        ? {
+            ...effect,
+            itemStates: {
+              states: effect.itemStates.states.filter(
+                ({ instanceId }) => instanceId !== splitId,
+              ),
+            },
+          }
+        : effect,
+    )
+    for (const effects of [
+      operationTamper({ quantity: 2 }),
+      operationTamper({ splitInstanceId: 'forged-split' }),
+      operationTamper({ targetInstanceId: 'forged-target' }),
+      operationTamper({ placement: placement(splitId, 3, 0) }),
+      snapshotTamper,
+      itemStateTamper,
+    ]) {
+      expect(() => applyRunLoadoutEffects(start, splitCommand, effects, loadoutDependencies))
+        .toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
+    }
+    expect(() => applyRunLoadoutEffects(start, {
+      ...splitCommand,
+      quantity: 2,
+    }, splitPlan.effects, loadoutDependencies)).toThrowError(
+      expect.objectContaining({ code: 'EFFECT_MISMATCH' }),
+    )
+
+    const split = splitPlan.snapshot
+    const mergeCommand: RunLoadoutCommand = {
+      kind: 'merge-backpack-stacks',
+      sourceInstanceId: splitId,
+      targetInstanceId: target.instanceId,
+      quantity: 1,
+    }
+    const mergePlan = buildRunLoadoutTransitionPlan(split, mergeCommand, loadoutDependencies)
+    const changedMergeTarget = mergePlan.effects.map((effect) =>
+      effect.kind === 'run-loadout-operation-applied'
+        ? { ...effect, operation: { ...effect.operation, targetInstanceId: source.instanceId } }
+        : effect,
+    )
+    const changedMergeResult = mergePlan.effects.map((effect) =>
+      effect.kind === 'run-loadout-operation-applied'
+        ? { ...effect, operation: { ...effect.operation, mergeResult: 'partial' as const } }
+        : effect,
+    )
+    expect(() => applyRunLoadoutEffects(split, mergeCommand, changedMergeTarget, loadoutDependencies))
+      .toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
+    expect(() => applyRunLoadoutEffects(split, mergeCommand, changedMergeResult, loadoutDependencies))
+      .toThrowError(expect.objectContaining({ code: 'EFFECT_MISMATCH' }))
+    expect(() => applyRunLoadoutEffects(split, {
+      ...mergeCommand,
+      targetInstanceId: source.instanceId,
+    }, mergePlan.effects, loadoutDependencies)).toThrowError(
+      expect.objectContaining({ code: 'EFFECT_MISMATCH' }),
+    )
   })
 })

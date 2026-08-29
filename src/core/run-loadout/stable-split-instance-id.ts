@@ -22,3 +22,23 @@ export function createStableRunLoadoutSplitInstanceId(
     throw new RunLoadoutError('INVALID_INPUT', '拆分身份输入无效')
   }
 }
+
+export function createStableRunLoadoutBackpackSplitInstanceId(
+  sourceInstanceId: string,
+  sourceQuantityBeforeSplit: number,
+  quantity: number,
+): string {
+  if (typeof sourceInstanceId !== 'string' || sourceInstanceId.trim().length === 0) {
+    throw new RunLoadoutError('INVALID_INPUT', '背包拆分来源实例ID不能为空')
+  }
+  try {
+    return deriveStableSplitInstanceId({
+      scope: 'run-loadout-backpack-split',
+      sourceInstanceId,
+      sourceQuantityBeforeSplit,
+      quantity,
+    })
+  } catch {
+    throw new RunLoadoutError('INVALID_INPUT', '背包拆分身份输入无效')
+  }
+}

@@ -11,7 +11,10 @@ export {
   projectRunStoredInventoryFromRunLoadout,
 } from './run-loadout-snapshot'
 export { RunLoadoutError, type RunLoadoutErrorCode } from './run-loadout-errors'
-export { createStableRunLoadoutSplitInstanceId } from './stable-split-instance-id'
+export {
+  createStableRunLoadoutBackpackSplitInstanceId,
+  createStableRunLoadoutSplitInstanceId,
+} from './stable-split-instance-id'
 export type {
   RunLoadoutBackpackRules,
   RunLoadoutCommand,

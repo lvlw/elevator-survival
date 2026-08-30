@@ -25,8 +25,6 @@ export interface PlayerVisibleHubSurvivalResult {
   readonly suppressionAmountAfter: number
   readonly infectionExposuresBefore: number
   readonly infectionExposuresAfter: number
-  readonly worldThreatProgressBefore: number
-  readonly worldThreatProgressAfter: number
   readonly hubSceneTime: 0
 }
 
@@ -59,6 +57,12 @@ export function previewPlayerVisibleHubSurvivalCommand(
   const suppression = plan.effects.find(
     (candidate) => candidate.kind === 'hub-threat-suppression-changed',
   )
+  if (
+    plan.command.kind === 'use-hub-infection-suppressant' &&
+    plan.snapshot.worldThreat.progress !== snapshot.worldThreat.progress
+  ) {
+    throw new Error('正式感染抑制剂计划不得立即改变已有感染进展')
+  }
   return deepFreeze({
     canExecute: true as const,
     result: {
@@ -80,8 +84,6 @@ export function previewPlayerVisibleHubSurvivalCommand(
       suppressionAmountAfter: plan.snapshot.dailyState.threatSuppression.suppressionAmountToday,
       infectionExposuresBefore: snapshot.playerCondition.pendingInfectionExposures,
       infectionExposuresAfter: plan.snapshot.playerCondition.pendingInfectionExposures,
-      worldThreatProgressBefore: snapshot.worldThreat.progress,
-      worldThreatProgressAfter: plan.snapshot.worldThreat.progress,
       hubSceneTime: 0,
     },
   })

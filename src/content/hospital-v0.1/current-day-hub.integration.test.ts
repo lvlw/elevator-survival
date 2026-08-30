@@ -375,13 +375,16 @@ describe('hospital current-day hub', () => {
 
   it('previews suppressant from the formal plan without exposing identity or changing threat facts', () => {
     const suppressant = item('hidden-suppressant-instance', HOSPITAL_ITEM_IDS.infectionSuppressant, 2)
-    const start = hub({ warehouse: [suppressant], pendingExposures: 1, progress: 10 })
+    const start = hub({ warehouse: [suppressant], pendingExposures: 1, progress: 73 })
     const action = survival('use-hub-infection-suppressant', {
       container: 'warehouse', itemInstanceId: suppressant.instanceId,
     })
     const formal = previewHubSurvivalCommand(start, action, dependencies)
     const safe = previewPlayerVisibleHubSurvivalCommand(start, action, dependencies)
     expect(formal.canExecute).toBe(true)
+    if (!formal.canExecute) throw new Error('expected formal suppressant Preview')
+    expect(start.worldThreat.progress).toBe(73)
+    expect(formal.result.snapshot.worldThreat.progress).toBe(73)
     expect(safe).toMatchObject({
       canExecute: true,
       result: {
@@ -395,15 +398,16 @@ describe('hospital current-day hub', () => {
         suppressionAmountAfter: 15,
         infectionExposuresBefore: 1,
         infectionExposuresAfter: 1,
-        worldThreatProgressBefore: 10,
-        worldThreatProgressAfter: 10,
         hubSceneTime: 0,
       },
     })
     expect(start.runLoadout.warehouse.items[0].quantity).toBe(2)
     expect(start.dailyState.threatSuppression).toEqual({ usesToday: 0, suppressionAmountToday: 0 })
     const serialized = JSON.stringify(safe)
-    for (const hidden of ['hidden-suppressant-instance', 'instanceId', 'effects', 'snapshot']) {
+    for (const hidden of [
+      'hidden-suppressant-instance', 'instanceId', 'effects', 'snapshot',
+      'worldThreatProgress', 'worldThreat.progress', '73',
+    ]) {
       expect(serialized).not.toContain(hidden)
     }
   })

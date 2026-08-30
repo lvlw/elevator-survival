@@ -737,10 +737,10 @@ function HubSurvivalResultDialog({ result, onClose }: Readonly<{
       <div><dt>来源数量</dt><dd>{result.sourceQuantityBefore} → {result.sourceQuantityAfter}</dd></div>
       {ration
         ? <><div><dt>饱食</dt><dd>{result.satietyBefore} → {result.satietyAfter}</dd></div><div><dt>实际恢复饱食</dt><dd>{result.satietyRestored}</dd></div></>
-        : <><div><dt>当日抑制剂使用</dt><dd>{result.suppressionUsesBefore} → {result.suppressionUsesAfter}</dd></div><div><dt>当日威胁抑制量</dt><dd>{result.suppressionAmountBefore} → {result.suppressionAmountAfter}</dd></div><div><dt>未结算感染暴露</dt><dd>{result.infectionExposuresBefore} → {result.infectionExposuresAfter}</dd></div><div><dt>已有感染进展</dt><dd>{result.worldThreatProgressBefore} → {result.worldThreatProgressAfter}</dd></div></>}
+        : <><div><dt>当日抑制剂使用</dt><dd>{result.suppressionUsesBefore} → {result.suppressionUsesAfter}</dd></div><div><dt>当日威胁抑制量</dt><dd>{result.suppressionAmountBefore} → {result.suppressionAmountAfter}</dd></div><div><dt>未结算感染暴露</dt><dd>{result.infectionExposuresBefore} → {result.infectionExposuresAfter}</dd></div></>}
       <div><dt>中枢场景时间</dt><dd>0</dd></div>
     </dl>
-    {!ration && <p className="preview-warning">抑制剂将在每日结算时减少当日感染增加；现有进展和暴露未被立即清除。</p>}
+    {!ration && <p className="preview-warning">抑制剂将在每日结算时减少当日感染增加；现有感染进展未被本次操作立即降低，暴露也未被清除。</p>}
     <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
   </section></div>
 }

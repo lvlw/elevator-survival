@@ -53,10 +53,12 @@ import { StableRunUiApp } from './stable-run-ui-app'
 import { createHospitalDevelopmentPreviewScenario } from './dev-preview/hospital-preview-scenarios'
 import {
   createStableRunUiInteractionModel,
+  previewStableRunUiHubCareCommand,
   previewStableRunUiHubLoadoutDraft,
   previewStableRunUiSceneInventoryDraft,
   previewStableRunUiTaskEventDraft,
 } from './interaction'
+import { createHubSurvivalResultViewModel } from './presentation'
 
 Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true })
 
@@ -156,6 +158,7 @@ function createHubCarePhase(options: Readonly<{
   fullSatiety?: boolean
   disinfectantUsed?: boolean
   suppressantUsed?: boolean
+  progress?: number
 }> = {}) {
   const warehouseBandage = { ...item('hub-care-bandage', HOSPITAL_ITEM_IDS.bandage), quantity: 2 }
   const warehouseFirstAid = item('hub-care-first-aid', HOSPITAL_ITEM_IDS.firstAidKit)
@@ -201,7 +204,7 @@ function createHubCarePhase(options: Readonly<{
         maintenanceLaborRemaining: config.maintenance.dailyBaseLabor.points,
         mainSceneUsedToday: false,
       },
-      worldThreat: { definitionId: config.worldThreat.definitionId, progress: options.noExposureOrProgress ? 0 : 10 },
+      worldThreat: { definitionId: config.worldThreat.definitionId, progress: options.noExposureOrProgress ? 0 : options.progress ?? 10 },
       satiety: { current: options.fullSatiety ? config.dailySettlement.maxSatiety : 4 },
       returnLedger: { sceneInstanceIds: ['hub-care-returned-scene'] },
     }, hospitalCurrentDayHubDependencies),
@@ -4333,7 +4336,11 @@ describe('StableRunUiApp', () => {
     ['感染抑制剂', '使用感染抑制剂 · 仓库条目 4'],
   ] as const)('confirms one formal Hub %s survival command and preserves its semantic boundary', (name, actionLabel) => {
     const storage = new MemoryStorage()
-    const tracked = trackedStore(createStableRunStore({ initialPhase: createHubCarePhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+    const tracked = trackedStore(createStableRunStore({
+      initialPhase: createHubCarePhase({ progress: name === '感染抑制剂' ? 73 : undefined }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    }))
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
@@ -4342,6 +4349,11 @@ describe('StableRunUiApp', () => {
     if (name === '感染抑制剂') {
       expect(container.textContent).toContain('不会立即降低已有感染进展')
       expect(container.textContent).toContain('不会清除暴露')
+      expect(container.textContent).toContain('当日威胁抑制量')
+      expect(container.textContent).toContain('未结算感染暴露')
+      expect(container.innerHTML).not.toContain('73')
+      expect(container.innerHTML).not.toContain('worldThreatProgress')
+      expect(container.innerHTML).not.toContain('worldThreat.progress')
     } else {
       expect(container.textContent).toContain('不恢复生命')
     }
@@ -4357,12 +4369,56 @@ describe('StableRunUiApp', () => {
     } else {
       expect(after.payload.dailyState.threatSuppression).toEqual({ usesToday: 1, suppressionAmountToday: 15 })
       expect(after.payload.playerCondition.pendingInfectionExposures).toBe(2)
-      expect(after.payload.worldThreat.progress).toBe(10)
+      expect(after.payload.worldThreat.progress).toBe(73)
+      expect(container.textContent).toContain('现有感染进展未被本次操作立即降低')
+      expect(container.innerHTML).not.toContain('73')
+      expect(container.innerHTML).not.toContain('worldThreatProgress')
+      expect(container.innerHTML).not.toContain('worldThreat.progress')
     }
     expect(container.textContent).toContain('中枢生存补给结果')
     act(() => { button(container, '关闭结果').click() })
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
+  })
+
+  it('keeps exact infection progress internal while verifying Suppressant result consistency', () => {
+    const before = createHubCarePhase({ progress: 73 })
+    const action = createStableRunUiInteractionModel(before, uiDependencies).actions
+      .find(({ label }) => label === '使用感染抑制剂 · 仓库条目 4')
+    if (!action) throw new Error('expected formal Suppressant action')
+    const safe = previewStableRunUiHubCareCommand(before, action.command, uiDependencies)
+    if (safe?.kind !== 'hub-survival') throw new Error('expected safe Hub survival Preview')
+    expect(safe.result).not.toHaveProperty('worldThreatProgressBefore')
+    expect(safe.result).not.toHaveProperty('worldThreatProgressAfter')
+    expect(JSON.stringify(safe)).not.toContain('73')
+    const store = createStableRunStore({
+      initialPhase: before,
+      storage: new MemoryStorage(),
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    store.dispatch(action.command)
+    const after = store.getState().phase
+    expect(after.kind).toBe('current-day-hub')
+    expect(() => createHubSurvivalResultViewModel(
+      before,
+      after,
+      action.label,
+      safe.result,
+    )).not.toThrow()
+    if (after.kind !== 'current-day-hub') throw new Error('expected Hub')
+    const forged = {
+      kind: 'current-day-hub' as const,
+      payload: createCurrentDayHubSnapshot({
+        ...after.payload,
+        worldThreat: { ...after.payload.worldThreat, progress: 74 },
+      }, hospitalCurrentDayHubDependencies),
+    }
+    expect(() => createHubSurvivalResultViewModel(
+      before,
+      forged,
+      action.label,
+      safe.result,
+    )).toThrow(/日级状态不一致/)
   })
 
   it('omits formally unavailable preventive, repeated, full-satiety, and no-threat Hub actions', () => {

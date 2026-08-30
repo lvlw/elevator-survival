@@ -145,7 +145,7 @@ export function createHubSurvivalResultViewModel(
     after.payload.dailyState.threatSuppression.usesToday !== preview.suppressionUsesAfter ||
     after.payload.dailyState.threatSuppression.suppressionAmountToday !== preview.suppressionAmountAfter ||
     after.payload.playerCondition.pendingInfectionExposures !== preview.infectionExposuresAfter ||
-    after.payload.worldThreat.progress !== preview.worldThreatProgressAfter
+    after.payload.worldThreat.progress !== before.payload.worldThreat.progress
   ) throw new Error('中枢生存结果与正式提交后的日级状态不一致')
   return Object.freeze({ actionLabel, ...preview })
 }

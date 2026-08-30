@@ -155,7 +155,6 @@ function survivalPreview(result: PlayerVisibleHubSurvivalResult): StableRunUiAct
       { label: '当日抑制剂使用', value: `${result.suppressionUsesBefore} → ${result.suppressionUsesAfter}` },
       { label: '当日威胁抑制量', value: `${result.suppressionAmountBefore} → ${result.suppressionAmountAfter}` },
       { label: '未结算感染暴露', value: `${result.infectionExposuresBefore} → ${result.infectionExposuresAfter}` },
-      { label: '已有感染进展', value: `${result.worldThreatProgressBefore} → ${result.worldThreatProgressAfter}` },
     )
     warnings.push('抑制剂只在每日结算时减少当日感染增加；不会立即降低已有感染进展，也不会清除暴露。')
   }

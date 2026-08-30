@@ -36,3 +36,15 @@ export {
   previewStableRunUiHubCareCommand,
   type StableRunUiHubCareSafeResult,
 } from './hub-care-interaction'
+export {
+  getStableRunUiHubMaintenanceOpportunities,
+  hubMaintenanceLocationLabel,
+  hubMaintenanceResultFacts,
+  previewStableRunUiHubMaintenanceDraft,
+  type StableRunUiHubMaintenanceDraft,
+  type StableRunUiHubMaintenanceOperation,
+  type StableRunUiHubMaintenanceOpportunity,
+  type StableRunUiHubMaintenancePreview,
+  type StableRunUiHubMaintenanceSource,
+  type StableRunUiHubMaintenanceTarget,
+} from './hub-maintenance-interaction'

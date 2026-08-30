@@ -4,6 +4,7 @@ import {
   createStableRunUiInteractionModel,
   previewStableRunUiHubLoadoutDraft,
   previewStableRunUiHubCareCommand,
+  previewStableRunUiHubMaintenanceDraft,
   previewStableRunUiPickupDraft,
   previewStableRunUiSceneInventoryDraft,
   previewStableRunUiTaskEventDraft,
@@ -15,6 +16,7 @@ import {
   type StableRunUiTaskEventOpportunity,
   type StableRunUiHubLoadoutOperation,
   type StableRunUiHubLoadoutOpportunity,
+  type StableRunUiHubMaintenanceOpportunity,
 } from './interaction'
 import {
   createReturnSummaryViewModel,
@@ -27,6 +29,7 @@ import {
   createHubLoadoutResultViewModel,
   createHubMedicalResultViewModel,
   createHubSurvivalResultViewModel,
+  createHubMaintenanceResultViewModel,
   type PlayerVisibleItemViewModel,
   type PlayerVisibleCombatViewModel,
   type PlayerVisibleLoadoutViewModel,
@@ -42,6 +45,7 @@ import {
   type HubLoadoutResultViewModel,
   type HubMedicalResultViewModel,
   type HubSurvivalResultViewModel,
+  type HubMaintenanceResultViewModel,
 } from './presentation'
 import { useStableRunStoreSnapshot } from './run-store/use-stable-run-store-snapshot'
 
@@ -199,18 +203,22 @@ function HubView({
   onPreview,
   loadoutOpportunities,
   onLoadout,
+  maintenanceOpportunities,
+  onMaintenance,
 }: Readonly<{
   model: Extract<StableRunPlayerViewModel, { kind: 'current-day-hub' }>
   actions: readonly StableRunUiAction[]
   onPreview(actionId: string): void
   loadoutOpportunities: readonly StableRunUiHubLoadoutOpportunity[]
   onLoadout(opportunityId: string): void
+  maintenanceOpportunities: readonly StableRunUiHubMaintenanceOpportunity[]
+  onMaintenance(operation: StableRunUiHubMaintenanceOpportunity['operation']): void
 }>) {
   return <main className="console-layout">
     <StatusBar status={model.status} />
     <div className="console-grid">
       <LoadoutPanel loadout={model.loadout} />
-      <section className="console-panel"><h2>电梯中枢</h2><p>已接入主要场景启动、显式整备、中枢医疗与生存补给；维护和结束本日将在后续 UI 任务接入。</p><dl className="slot-list"><div><dt>维护工时</dt><dd>{model.hub.maintenanceLaborRemaining}</dd></div></dl><h3>仓库</h3><ItemList items={model.hub.warehouse} empty="仓库为空" />{loadoutOpportunities.filter(({ container }) => container === 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}<h3>任务储存区（只读）</h3><ItemList items={model.hub.taskStorage} empty="暂无任务物品" /></section>
+      <section className="console-panel"><h2>电梯中枢</h2><p>已接入主要场景启动、显式整备、中枢医疗、生存补给与装备维护；结束本日将在后续 UI 任务接入。</p><dl className="slot-list"><div><dt>维护工时</dt><dd>{model.hub.maintenanceLaborRemaining}</dd></div></dl>{maintenanceOpportunities.length > 0 && <><h3>装备维护</h3><div className="action-list">{maintenanceOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onMaintenance(opportunity.operation)}>{opportunity.label}</button>)}</div></>}<h3>仓库</h3><ItemList items={model.hub.warehouse} empty="仓库为空" />{loadoutOpportunities.filter(({ container }) => container === 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}<h3>任务储存区（只读）</h3><ItemList items={model.hub.taskStorage} empty="暂无任务物品" /></section>
       {loadoutOpportunities.some(({ container }) => container !== 'warehouse') && <section className="console-panel"><h2>当前携带物整理</h2>{loadoutOpportunities.filter(({ container }) => container !== 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}</section>}
       <ActionPanel actions={actions} onPreview={onPreview} />
     </div>
@@ -552,6 +560,59 @@ function HubLoadoutResultDialog({ result, onClose }: Readonly<{ result: HubLoado
   </section></div>
 }
 
+function HubMaintenanceDialog({
+  opportunity, allocations, targetId, materialSourceId, secondaryMaterialSourceId,
+  preview, onAllocation, onTarget, onMaterialSource, onSecondaryMaterialSource,
+  onCancel, onConfirm,
+}: Readonly<{
+  opportunity: StableRunUiHubMaintenanceOpportunity
+  allocations: Readonly<Record<string, number>>
+  targetId: string | null
+  materialSourceId: string | null
+  secondaryMaterialSourceId: string | null
+  preview: ReturnType<typeof previewStableRunUiHubMaintenanceDraft>
+  onAllocation(targetId: string, points: number): void
+  onTarget(targetId: string): void
+  onMaterialSource(sourceId: string): void
+  onSecondaryMaterialSource(sourceId: string): void
+  onCancel(): void
+  onConfirm(): void
+}>) {
+  const usesAllocations = opportunity.operation === 'allocate-base-maintenance-labor' || opportunity.operation === 'repair-with-metal-parts'
+  const needsMaterial = opportunity.operation !== 'allocate-base-maintenance-labor'
+  const needsSecondMaterial = opportunity.operation === 'repair-toolkit'
+  const primarySources = needsSecondMaterial
+    ? opportunity.sources.filter(({ material }) => material === 'metal-parts')
+    : opportunity.sources
+  const secondarySources = opportunity.sources.filter(({ material }) => material === 'electronic-components')
+  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="hub-maintenance-title">
+    <h2 id="hub-maintenance-title">{opportunity.label}</h2>
+    {opportunity.operation === 'allocate-base-maintenance-labor' && <p>剩余基础维护工时：<strong>{opportunity.maintenanceLaborRemaining}</strong>。每个目标必须显式分配正整数工时，且不能产生浪费。</p>}
+    {opportunity.generatedRepair !== null && <p>本次材料／操作可生成维修量：<strong>{opportunity.generatedRepair}</strong></p>}
+    <h3>{usesAllocations ? '明确目标与分配' : '明确维护目标'}</h3>
+    <div className="maintenance-target-list">{opportunity.targets.map((target) => <div key={target.id}>
+      {usesAllocations
+        ? <label>{target.name} · {target.locationLabel} · {target.resourceKind === 'durability' ? '耐久' : target.resourceKind === 'integrity' ? '完整度' : '电量'} {target.current}/{target.maximum} <input aria-label={`分配 ${target.name} ${target.locationLabel}`} type="number" min="0" value={allocations[target.id] ?? 0} onChange={(event) => onAllocation(target.id, Number(event.target.value))} /></label>
+        : <button type="button" className={targetId === target.id ? 'confirm-action' : 'action-button'} onClick={() => onTarget(target.id)}>{target.name} · {target.locationLabel} · {target.resourceKind === 'durability' ? '耐久' : target.resourceKind === 'integrity' ? '完整度' : '电量'} {target.current}/{target.maximum}</button>}
+    </div>)}</div>
+    {needsMaterial && <><h3>明确材料来源</h3><div className="preview-controls">{primarySources.map((source) => <button key={source.id} type="button" className={materialSourceId === source.id ? 'confirm-action' : ''} onClick={() => onMaterialSource(source.id)}>{source.name} ×{source.quantity} · {source.locationLabel}</button>)}</div></>}
+    {needsSecondMaterial && <><h3>明确电子元件来源</h3><div className="preview-controls">{secondarySources.map((source) => <button key={source.id} type="button" className={secondaryMaterialSourceId === source.id ? 'confirm-action' : ''} onClick={() => onSecondaryMaterialSource(source.id)}>{source.name} ×{source.quantity} · {source.locationLabel}</button>)}</div></>}
+    {preview?.canExecute
+      ? <><dl className="preview-facts">{preview.facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>{preview.warnings.length > 0 && <ul className="preview-warnings">{preview.warnings.map((warning) => <li key={warning}>{warning}</li>)}</ul>}</>
+      : <p className="preview-warning">{preview?.rejection ?? '请完整选择维护目标、分配和材料来源。'}</p>}
+    <div className="preview-controls"><button type="button" onClick={onCancel}>取消</button><button type="button" className="confirm-action" disabled={!preview?.canExecute} onClick={onConfirm}>确认维护</button></div>
+  </section></div>
+}
+
+function HubMaintenanceResultDialog({ result, onClose }: Readonly<{ result: HubMaintenanceResultViewModel; onClose(): void }>) {
+  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="hub-maintenance-result-title">
+    <h2 id="hub-maintenance-result-title">{result.title}</h2>
+    <dl className="preview-facts">{result.facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>
+    {result.warnings.length > 0 && <ul className="preview-warnings">{result.warnings.map((warning) => <li key={warning}>{warning}</li>)}</ul>}
+    <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
+  </section></div>
+}
+
 function ReturnSummaryDialog({ summary, onClose }: Readonly<{ summary: ReturnSummaryViewModel; onClose(): void }>) {
   const kind = summary.returnKind === 'safe' ? '安全' : '强制'
   return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="return-summary-title">
@@ -801,6 +862,7 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
   const [pendingTaskEventId, setPendingTaskEventId] = useState<string | null>(null)
   const [pendingInventoryId, setPendingInventoryId] = useState<string | null>(null)
   const [pendingHubLoadoutId, setPendingHubLoadoutId] = useState<string | null>(null)
+  const [pendingHubMaintenanceOperation, setPendingHubMaintenanceOperation] = useState<StableRunUiHubMaintenanceOpportunity['operation'] | null>(null)
   const [pickupQuantity, setPickupQuantity] = useState(1)
   const [pickupX, setPickupX] = useState(0)
   const [pickupY, setPickupY] = useState(0)
@@ -823,6 +885,10 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
   const [hubLoadoutX, setHubLoadoutX] = useState<number | null>(null)
   const [hubLoadoutY, setHubLoadoutY] = useState<number | null>(null)
   const [hubLoadoutRotated, setHubLoadoutRotated] = useState(false)
+  const [hubMaintenanceAllocations, setHubMaintenanceAllocations] = useState<Readonly<Record<string, number>>>({})
+  const [hubMaintenanceTargetId, setHubMaintenanceTargetId] = useState<string | null>(null)
+  const [hubMaintenanceMaterialSourceId, setHubMaintenanceMaterialSourceId] = useState<string | null>(null)
+  const [hubMaintenanceSecondarySourceId, setHubMaintenanceSecondarySourceId] = useState<string | null>(null)
   const [returnSummary, setReturnSummary] = useState<ReturnSummaryViewModel | null>(null)
   const [combatActionResult, setCombatActionResult] = useState<CombatActionResultViewModel | null>(null)
   const [taskEventResult, setTaskEventResult] = useState<TaskEventResultViewModel | null>(null)
@@ -832,12 +898,14 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
   const [hubLoadoutResult, setHubLoadoutResult] = useState<HubLoadoutResultViewModel | null>(null)
   const [hubMedicalResult, setHubMedicalResult] = useState<HubMedicalResultViewModel | null>(null)
   const [hubSurvivalResult, setHubSurvivalResult] = useState<HubSurvivalResultViewModel | null>(null)
+  const [hubMaintenanceResult, setHubMaintenanceResult] = useState<HubMaintenanceResultViewModel | null>(null)
   const [persistenceFeedback, setPersistenceFeedback] = useState<string | null>(null)
   const pendingAction = interaction.actions.find(({ id }) => id === pendingActionId) ?? null
   const pendingPickup = interaction.pickupOpportunities.find(({ id }) => id === pendingPickupId) ?? null
   const pendingTaskEvent = interaction.taskEventOpportunities.find(({ id }) => id === pendingTaskEventId) ?? null
   const pendingInventory = interaction.inventoryOpportunities.find(({ id }) => id === pendingInventoryId) ?? null
   const pendingHubLoadout = interaction.hubLoadoutOpportunities.find(({ id }) => id === pendingHubLoadoutId) ?? null
+  const pendingHubMaintenance = interaction.hubMaintenanceOpportunities.find(({ operation }) => operation === pendingHubMaintenanceOperation) ?? null
   const pickupPreview = pendingPickup === null ? null : previewStableRunUiPickupDraft(snapshot.phase, {
     opportunityId: pendingPickup.id,
     quantity: pickupQuantity,
@@ -876,6 +944,15 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
         y: hubLoadoutY,
         rotated: hubLoadoutRotated,
       }, presentationDependencies)
+  const hubMaintenancePreview = pendingHubMaintenance === null
+    ? null
+    : previewStableRunUiHubMaintenanceDraft(snapshot.phase, {
+        operation: pendingHubMaintenance.operation,
+        allocations: Object.entries(hubMaintenanceAllocations).map(([targetId, points]) => ({ targetId, points })),
+        targetId: hubMaintenanceTargetId,
+        materialSourceId: hubMaintenanceMaterialSourceId,
+        secondaryMaterialSourceId: hubMaintenanceSecondarySourceId,
+      }, presentationDependencies)
 
   useEffect(() => {
     if (pendingActionId !== null && pendingAction === null) setPendingActionId(null)
@@ -896,6 +973,10 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
   useEffect(() => {
     if (pendingHubLoadoutId !== null && pendingHubLoadout === null) setPendingHubLoadoutId(null)
   }, [pendingHubLoadout, pendingHubLoadoutId])
+
+  useEffect(() => {
+    if (pendingHubMaintenanceOperation !== null && pendingHubMaintenance === null) setPendingHubMaintenanceOperation(null)
+  }, [pendingHubMaintenance, pendingHubMaintenanceOperation])
 
   const confirm = () => {
     if (!pendingAction) return
@@ -1129,9 +1210,30 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
     setPersistenceFeedback(execution.kind === 'executed' ? '✓ 操作已执行并保存' : '⚠ 保存失败：本次操作已在当前会话中生效，请勿刷新页面。')
     if (execution.phase.kind === 'current-day-hub') setHubLoadoutResult(createHubLoadoutResultViewModel(execution.phase, action, safeResult, presentationDependencies))
   }
+  const openHubMaintenance = (operation: StableRunUiHubMaintenanceOpportunity['operation']) => {
+    if (!interaction.hubMaintenanceOpportunities.some((candidate) => candidate.operation === operation)) return
+    setPendingActionId(null)
+    setPendingHubLoadoutId(null)
+    setHubMaintenanceAllocations({})
+    setHubMaintenanceTargetId(null)
+    setHubMaintenanceMaterialSourceId(null)
+    setHubMaintenanceSecondarySourceId(null)
+    setPendingHubMaintenanceOperation(operation)
+  }
+  const confirmHubMaintenance = () => {
+    if (!hubMaintenancePreview?.canExecute || !hubMaintenancePreview.command || !hubMaintenancePreview.safeResult) return
+    const beforePhase = snapshot.phase
+    const safeResult = hubMaintenancePreview.safeResult
+    const execution = store.dispatch(hubMaintenancePreview.command)
+    setPendingHubMaintenanceOperation(null)
+    setPersistenceFeedback(execution.kind === 'executed' ? '✓ 操作已执行并保存' : '⚠ 保存失败：本次操作已在当前会话中生效，请勿刷新页面。')
+    if (execution.phase.kind === 'current-day-hub') {
+      setHubMaintenanceResult(createHubMaintenanceResultViewModel(beforePhase, execution.phase, safeResult, presentationDependencies))
+    }
+  }
   return <>
     {persistenceFeedback && <p className="persistence-feedback" role="status">{persistenceFeedback}</p>}
-    {model.kind === 'current-day-hub' && <HubView model={model} actions={interaction.actions} onPreview={setPendingActionId} loadoutOpportunities={interaction.hubLoadoutOpportunities} onLoadout={openHubLoadout} />}
+    {model.kind === 'current-day-hub' && <HubView model={model} actions={interaction.actions} onPreview={setPendingActionId} loadoutOpportunities={interaction.hubLoadoutOpportunities} onLoadout={openHubLoadout} maintenanceOpportunities={interaction.hubMaintenanceOpportunities} onMaintenance={openHubMaintenance} />}
     {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} onPreview={setPendingActionId} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} taskEventOpportunities={interaction.taskEventOpportunities} onTaskEvent={openTaskEvent} inventoryOpportunities={interaction.inventoryOpportunities} onInventory={openInventory} />}
     {model.kind === 'run-failure' && <FailureView model={model} />}
     {pendingAction && <ActionPreviewDialog
@@ -1143,6 +1245,7 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
     {pendingTaskEvent && model.kind === 'scene-session' && <TaskEventDialog opportunity={pendingTaskEvent} loadout={model.scene.loadout} preview={taskEventPreview} x={taskEventX} y={taskEventY} rotated={taskEventRotated} onRotate={setTaskEventRotated} onAnchor={(x, y) => { setTaskEventX(x); setTaskEventY(y) }} onCancel={() => setPendingTaskEventId(null)} onConfirm={confirmTaskEvent} />}
     {pendingInventory && model.kind === 'scene-session' && <SceneInventoryDialog opportunity={pendingInventory} opportunities={interaction.inventoryOpportunities} loadout={model.scene.loadout} operation={inventoryOperation} quantity={inventoryQuantity} targetOpportunityId={inventoryTargetId} targetSlotIndex={inventoryTargetSlot} x={inventoryX} y={inventoryY} rotated={inventoryRotated} preview={inventoryPreview} onOperation={selectInventoryOperation} onQuantity={setInventoryQuantity} onTargetOpportunity={setInventoryTargetId} onTargetSlot={setInventoryTargetSlot} onAnchor={(x, y) => { setInventoryX(x); setInventoryY(y) }} onRotate={setInventoryRotated} onCancel={() => setPendingInventoryId(null)} onConfirm={confirmInventory} />}
     {pendingHubLoadout && model.kind === 'current-day-hub' && <HubLoadoutDialog opportunity={pendingHubLoadout} opportunities={interaction.hubLoadoutOpportunities} loadout={model.loadout} operation={hubLoadoutOperation} quantity={hubLoadoutQuantity} targetOpportunityId={hubLoadoutTargetId} targetEquipmentSlot={hubLoadoutEquipmentSlot} targetQuickSlotIndex={hubLoadoutQuickSlot} x={hubLoadoutX} y={hubLoadoutY} rotated={hubLoadoutRotated} preview={hubLoadoutPreview} onOperation={selectHubLoadoutOperation} onQuantity={setHubLoadoutQuantity} onTargetOpportunity={setHubLoadoutTargetId} onTargetEquipmentSlot={setHubLoadoutEquipmentSlot} onTargetQuickSlotIndex={setHubLoadoutQuickSlot} onAnchor={(x, y) => { setHubLoadoutX(x); setHubLoadoutY(y) }} onRotate={setHubLoadoutRotated} onCancel={() => setPendingHubLoadoutId(null)} onConfirm={confirmHubLoadout} />}
+    {pendingHubMaintenance && model.kind === 'current-day-hub' && <HubMaintenanceDialog opportunity={pendingHubMaintenance} allocations={hubMaintenanceAllocations} targetId={hubMaintenanceTargetId} materialSourceId={hubMaintenanceMaterialSourceId} secondaryMaterialSourceId={hubMaintenanceSecondarySourceId} preview={hubMaintenancePreview} onAllocation={(targetId, points) => setHubMaintenanceAllocations((current) => ({ ...current, [targetId]: points }))} onTarget={setHubMaintenanceTargetId} onMaterialSource={setHubMaintenanceMaterialSourceId} onSecondaryMaterialSource={setHubMaintenanceSecondarySourceId} onCancel={() => setPendingHubMaintenanceOperation(null)} onConfirm={confirmHubMaintenance} />}
     {returnSummary && <ReturnSummaryDialog summary={returnSummary} onClose={() => setReturnSummary(null)} />}
     {combatActionResult && <CombatActionResultDialog result={combatActionResult} onClose={() => setCombatActionResult(null)} />}
     {taskEventResult && <TaskEventResultDialog result={taskEventResult} onClose={() => setTaskEventResult(null)} />}
@@ -1152,6 +1255,7 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
     {hubLoadoutResult && <HubLoadoutResultDialog result={hubLoadoutResult} onClose={() => setHubLoadoutResult(null)} />}
     {hubMedicalResult && <HubMedicalResultDialog result={hubMedicalResult} onClose={() => setHubMedicalResult(null)} />}
     {hubSurvivalResult && <HubSurvivalResultDialog result={hubSurvivalResult} onClose={() => setHubSurvivalResult(null)} />}
+    {hubMaintenanceResult && <HubMaintenanceResultDialog result={hubMaintenanceResult} onClose={() => setHubMaintenanceResult(null)} />}
     {import.meta.env.DEV && <DevInspector phase={snapshot.phase} />}
   </>
 }

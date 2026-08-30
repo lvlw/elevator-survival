@@ -60,6 +60,10 @@ import {
   type StableRunUiHubLoadoutOpportunity,
 } from './hub-loadout-interaction'
 import { getStableRunUiHubCareActions } from './hub-care-interaction'
+import {
+  getStableRunUiHubMaintenanceOpportunities,
+  type StableRunUiHubMaintenanceOpportunity,
+} from './hub-maintenance-interaction'
 
 export type StableRunUiActionKind =
   | 'launch-main-scene'
@@ -205,6 +209,7 @@ export interface StableRunUiInteractionModel {
   readonly taskEventOpportunities: readonly StableRunUiTaskEventOpportunity[]
   readonly inventoryOpportunities: readonly StableRunUiInventoryOpportunity[]
   readonly hubLoadoutOpportunities: readonly StableRunUiHubLoadoutOpportunity[]
+  readonly hubMaintenanceOpportunities: readonly StableRunUiHubMaintenanceOpportunity[]
 }
 
 function freezePreview(
@@ -1947,11 +1952,13 @@ export function createStableRunUiInteractionModel(
     ? inventoryOpportunities(phase, dependencies)
     : Object.freeze([])
   const hubLoadout = getStableRunUiHubLoadoutOpportunities(phase, dependencies)
+  const hubMaintenance = getStableRunUiHubMaintenanceOpportunities(phase, dependencies)
   return Object.freeze({
     actions: Object.freeze(actions),
     pickupOpportunities: opportunities,
     taskEventOpportunities: taskEvents.opportunities,
     inventoryOpportunities: inventory,
     hubLoadoutOpportunities: hubLoadout,
+    hubMaintenanceOpportunities: hubMaintenance,
   })
 }

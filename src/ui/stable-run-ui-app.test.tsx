@@ -23,7 +23,7 @@ import {
   deriveStableSplitInstanceId,
   type ItemInstance,
 } from '../core/inventory'
-import { createFullItemState, getItemState } from '../core/item-state'
+import { createFullItemState, createItemState, getItemState } from '../core/item-state'
 import { createQuickSlotSnapshot } from '../core/quick-slot'
 import { createRunLoadoutSnapshot } from '../core/run-loadout'
 import {
@@ -55,8 +55,10 @@ import {
   createStableRunUiInteractionModel,
   previewStableRunUiHubCareCommand,
   previewStableRunUiHubLoadoutDraft,
+  previewStableRunUiHubMaintenanceDraft,
   previewStableRunUiSceneInventoryDraft,
   previewStableRunUiTaskEventDraft,
+  type StableRunUiHubMaintenanceOpportunity,
 } from './interaction'
 import { createHubSurvivalResultViewModel } from './presentation'
 
@@ -207,6 +209,65 @@ function createHubCarePhase(options: Readonly<{
       worldThreat: { definitionId: config.worldThreat.definitionId, progress: options.noExposureOrProgress ? 0 : options.progress ?? 10 },
       satiety: { current: options.fullSatiety ? config.dailySettlement.maxSatiety : 4 },
       returnLedger: { sceneInstanceIds: ['hub-care-returned-scene'] },
+    }, hospitalCurrentDayHubDependencies),
+  }
+}
+
+function createHubMaintenancePhase() {
+  const pipe = item('hub-maintenance-pipe', HOSPITAL_ITEM_IDS.metalPipe)
+  const axe = item('hub-maintenance-axe', HOSPITAL_ITEM_IDS.fireAxe)
+  const metal = { ...item('hub-maintenance-metal', HOSPITAL_ITEM_IDS.metalParts), quantity: 2 }
+  const electronic = item('hub-maintenance-electronic', HOSPITAL_ITEM_IDS.electronicComponents)
+  const flashlight = item('hub-maintenance-flashlight', HOSPITAL_ITEM_IDS.flashlight)
+  const coat = item('hub-maintenance-coat', HOSPITAL_ITEM_IDS.heavyCoat)
+  const fabric = item('hub-maintenance-fabric', HOSPITAL_ITEM_IDS.fabric)
+  const toolkit = item('hub-maintenance-toolkit', HOSPITAL_ITEM_IDS.toolkit)
+  const battery = item('hub-maintenance-battery', HOSPITAL_ITEM_IDS.standardBattery)
+  const owned = [pipe, axe, metal, electronic, flashlight, coat, fabric, toolkit, battery]
+  const resourceCurrent: Readonly<Record<string, number>> = {
+    [pipe.instanceId]: 3,
+    [axe.instanceId]: 1,
+    [flashlight.instanceId]: 0,
+    [coat.instanceId]: 2,
+    [toolkit.instanceId]: 0,
+  }
+  const states = owned.map((candidate) => {
+    const current = resourceCurrent[candidate.instanceId]
+    if (current === undefined) return createFullItemState(candidate, hospitalItemResourceCatalog)
+    const profile = hospitalItemResourceCatalog.get(candidate.definitionId)
+    if (profile.kind === 'none') throw new Error('expected resource item')
+    return createItemState({
+      instanceId: candidate.instanceId,
+      definitionId: candidate.definitionId,
+      resource: { kind: profile.kind, current },
+    }, hospitalItemResourceCatalog)
+  })
+  return {
+    kind: 'current-day-hub' as const,
+    payload: createCurrentDayHubSnapshot({
+      continuity: { runIdentity: { runId: 'hub-maintenance-ui-run', seed: 'hub-maintenance-ui-seed', rulesVersion: config.metadata.rulesVersion }, currentDay: 2, sceneInstanceId: 'hub-maintenance-returned' },
+      runLoadout: createRunLoadoutSnapshot({
+        warehouse: { items: [pipe, axe, metal, electronic, flashlight] },
+        taskStorage: { items: [] },
+        backpack: createBackpackSnapshot({
+          width: config.backpack.width,
+          height: config.backpack.height,
+          items: [coat, fabric],
+          placements: [
+            { instanceId: coat.instanceId, x: 0, y: 0, rotated: false },
+            { instanceId: fabric.instanceId, x: 2, y: 0, rotated: false },
+          ],
+        }, hospitalItemCatalog),
+        equipment: { weapon: null, armor: null, utility: toolkit },
+        quickSlots: createQuickSlotSnapshot([battery, null], config.backpack.quickSlotCount, hospitalItemCatalog, hospitalItemQuickSlotCatalog),
+        itemStates: { states },
+      }, { physicalCatalog: hospitalItemCatalog, equipmentCatalog: hospitalItemEquipmentCatalog, quickSlotCatalog: hospitalItemQuickSlotCatalog, itemResourceCatalog: hospitalItemResourceCatalog, lifecycleCatalog: hospitalItemReturnLifecycleCatalog, backpackRules: config.backpack }),
+      playerCondition: createPlayerCondition({ currentHealth: config.combat.player.maxHealth, bleeding: false, openWounds: [], minorContusions: 0, painkillerActive: false, pendingInfectionExposures: 0 }, config.combat.player),
+      runIntelLog: { intelIds: [] },
+      dailyState: { medicalUsage: { disinfectantUsesToday: 0 }, threatSuppression: { usesToday: 0, suppressionAmountToday: 0 }, maintenanceLaborRemaining: 3, mainSceneUsedToday: false },
+      worldThreat: { definitionId: config.worldThreat.definitionId, progress: 0 },
+      satiety: { current: 4 },
+      returnLedger: { sceneInstanceIds: ['hub-maintenance-returned'] },
     }, hospitalCurrentDayHubDependencies),
   }
 }
@@ -4572,5 +4633,150 @@ describe('StableRunUiApp', () => {
     })
     expect(phase.payload.scene.quickSlots.slots[0]).toBeNull()
     expect(phase.payload.scene.backpack.items.some(({ instanceId }) => instanceId === 'hub-care-painkiller')).toBe(true)
+  })
+
+  it('projects all five formal Hub maintenance operations without exposing the fire axe as a repair target', () => {
+    const phase = createHubMaintenancePhase()
+    const interaction = createStableRunUiInteractionModel(phase, uiDependencies)
+    expect(interaction.hubMaintenanceOpportunities.map(({ operation }) => operation)).toEqual([
+      'allocate-base-maintenance-labor',
+      'repair-with-metal-parts',
+      'repair-with-fabric',
+      'repair-toolkit',
+      'charge-flashlight',
+    ])
+    expect(interaction.hubMaintenanceOpportunities.flatMap(({ targets }) => targets.map(({ definitionId }) => definitionId)))
+      .not.toContain(HOSPITAL_ITEM_IDS.fireAxe)
+    expect(interaction.hubMaintenanceOpportunities.flatMap(({ targets }) => targets.map(({ locationLabel }) => locationLabel)))
+      .toEqual(expect.arrayContaining(['仓库条目 5', '背包格 1,1', '实用装备位']))
+  })
+
+  it('builds player-safe formal previews for labor, metal, fabric, toolkit, and flashlight maintenance', () => {
+    const phase = createHubMaintenancePhase()
+    const opportunities = createStableRunUiInteractionModel(phase, uiDependencies).hubMaintenanceOpportunities
+    const opportunity = (kind: StableRunUiHubMaintenanceOpportunity['operation']) => opportunities.find(({ operation }) => operation === kind)!
+    const target = (kind: StableRunUiHubMaintenanceOpportunity['operation'], definitionId: string) => opportunity(kind).targets.find((candidate) => candidate.definitionId === definitionId)!.id
+    const source = (kind: StableRunUiHubMaintenanceOpportunity['operation'], material: string) => opportunity(kind).sources.find((candidate) => candidate.material === material)!.id
+    const drafts = [
+      { operation: 'allocate-base-maintenance-labor' as const, allocations: [{ targetId: target('allocate-base-maintenance-labor', HOSPITAL_ITEM_IDS.metalPipe), points: 1 }], targetId: null, materialSourceId: null, secondaryMaterialSourceId: null },
+      { operation: 'repair-with-metal-parts' as const, allocations: [{ targetId: target('repair-with-metal-parts', HOSPITAL_ITEM_IDS.metalPipe), points: 5 }], targetId: null, materialSourceId: source('repair-with-metal-parts', 'metal-parts'), secondaryMaterialSourceId: null },
+      { operation: 'repair-with-fabric' as const, allocations: [], targetId: target('repair-with-fabric', HOSPITAL_ITEM_IDS.heavyCoat), materialSourceId: source('repair-with-fabric', 'fabric'), secondaryMaterialSourceId: null },
+      { operation: 'repair-toolkit' as const, allocations: [], targetId: target('repair-toolkit', HOSPITAL_ITEM_IDS.toolkit), materialSourceId: source('repair-toolkit', 'metal-parts'), secondaryMaterialSourceId: source('repair-toolkit', 'electronic-components') },
+      { operation: 'charge-flashlight' as const, allocations: [], targetId: target('charge-flashlight', HOSPITAL_ITEM_IDS.flashlight), materialSourceId: source('charge-flashlight', 'standard-battery'), secondaryMaterialSourceId: null },
+    ]
+    const previews = drafts.map((draft) => previewStableRunUiHubMaintenanceDraft(phase, draft, uiDependencies))
+    expect(previews.every((preview) => preview?.canExecute)).toBe(true)
+    expect(previews.map((preview) => preview?.safeResult?.hubSceneTime)).toEqual([0, 0, 0, 0, 0])
+    expect(previews[2]?.safeResult?.repair).toEqual({ family: 'textile', generated: 4, actual: 2, wasted: 2 })
+    expect(previews[4]?.safeResult?.targets[0]).toMatchObject({ before: 0, requested: 3, actual: 3, after: 3, unused: 0 })
+    const serialized = JSON.stringify(previews.map((preview) => preview?.safeResult))
+    expect(serialized).not.toContain('instanceId')
+    expect(serialized).not.toContain('effects')
+    expect(serialized).not.toContain('runId')
+    expect(serialized).not.toContain('rulesVersion')
+  })
+
+  it('confirms one explicit base-labor allocation through one Store dispatch and one save', () => {
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({ initialPhase: createHubMaintenancePhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '分配基础维护工时').click() })
+    const allocation = input(container, '分配 金属管 仓库条目 5')
+    act(() => { setInputValue(allocation, '2') })
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    act(() => { button(container, '确认维护').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    const phase = tracked.store.getState().phase
+    if (phase.kind !== 'current-day-hub') throw new Error('expected Hub')
+    expect(phase.payload.dailyState.maintenanceLaborRemaining).toBe(1)
+    expect(getItemState(phase.payload.runLoadout.itemStates, 'hub-maintenance-pipe').resource).toEqual({ kind: 'durability', current: 5 })
+    expect(container.textContent).toContain('中枢维护结果')
+  })
+
+  it('keeps Hub maintenance StrictMode draft and Preview side-effect free', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: createHubMaintenancePhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StrictMode><StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} /></StrictMode>) })
+    act(() => { button(container, '为手电筒充能').click() })
+    act(() => { buttonContaining(container, '手电筒 · 仓库条目 3').click() })
+    act(() => { buttonContaining(container, '通用电池 ×1 · 快捷栏1').click() })
+    expect(container.textContent).toContain('电量 1')
+    for (const hidden of ['hub-maintenance-flashlight', 'hub-maintenance-battery', 'instanceId', 'HubMaintenanceEffect', 'effects', 'snapshot', 'hub-maintenance-ui-run', 'hub-maintenance-ui-seed', 'rulesVersion']) {
+      expect(container.textContent).not.toContain(hidden)
+    }
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+  })
+
+  it('closes a Hub maintenance draft after a formal launch phase change', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: createHubMaintenancePhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '为手电筒充能').click() })
+    expect(container.textContent).toContain('明确维护目标')
+    act(() => { inner.dispatch({ kind: 'lifecycle', command: { kind: 'launch-main-scene' } }) })
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(1)
+  })
+
+  it('carries a formally repaired equipped toolkit into Scene Launch with the same identity and resource', () => {
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({ initialPhase: createHubMaintenancePhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '维修工具箱').click() })
+    act(() => { buttonContaining(container, '工具箱 · 实用装备位').click() })
+    act(() => { button(container, '金属零件 ×2 · 仓库条目 4').click() })
+    act(() => { button(container, '电子元件 ×1 · 仓库条目 2').click() })
+    act(() => { button(container, '确认维护').click() })
+    act(() => { button(container, '关闭结果').click() })
+    act(() => { buttonContaining(container, '进入 封锁医院').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(2)
+    expect(storage.writes).toBe(2)
+    const phase = tracked.store.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(phase.payload.scene.equipment.utility?.instanceId).toBe('hub-maintenance-toolkit')
+    expect(getItemState(phase.payload.scene.itemStates, 'hub-maintenance-toolkit').resource).toEqual({ kind: 'durability', current: 1 })
+  })
+
+  it('keeps a committed multi-material toolkit repair after one failed save without retry', () => {
+    const storage = new FailingStorage()
+    const inner = createStableRunStore({ initialPhase: createHubMaintenancePhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '维修工具箱').click() })
+    act(() => { buttonContaining(container, '工具箱 · 实用装备位').click() })
+    act(() => { buttonContaining(container, '金属零件 ×2 · 仓库条目 4').click() })
+    act(() => { buttonContaining(container, '电子元件 ×1 · 仓库条目 2').click() })
+    act(() => { button(container, '确认维护').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    const phase = inner.getState().phase
+    if (phase.kind !== 'current-day-hub') throw new Error('expected Hub')
+    expect(getItemState(phase.payload.runLoadout.itemStates, 'hub-maintenance-toolkit').resource).toEqual({ kind: 'durability', current: 1 })
+    expect(phase.payload.runLoadout.warehouse.items.find(({ instanceId }) => instanceId === 'hub-maintenance-metal')?.quantity).toBe(1)
+    expect(phase.payload.runLoadout.warehouse.items.some(({ instanceId }) => instanceId === 'hub-maintenance-electronic')).toBe(false)
+    expect(container.textContent).toContain('保存失败')
   })
 })

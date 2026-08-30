@@ -31,3 +31,11 @@ export {
   type HubMaintenanceTargetCandidate,
   type HubMaintenanceTransitionPlan,
 } from './hub-maintenance'
+export {
+  previewPlayerVisibleHubMaintenance,
+  type PlayerVisibleHubMaintenanceEvaluation,
+  type PlayerVisibleHubMaintenanceMaterialResult,
+  type PlayerVisibleHubMaintenanceResult,
+  type PlayerVisibleHubMaintenanceTargetLocation,
+  type PlayerVisibleHubMaintenanceTargetResult,
+} from './player-visible-hub-maintenance'

@@ -31,3 +31,7 @@ export {
   type HubMedicalResultViewModel,
   type HubSurvivalResultViewModel,
 } from './hub-care-result-view-model'
+export {
+  createHubMaintenanceResultViewModel,
+  type HubMaintenanceResultViewModel,
+} from './hub-maintenance-result-view-model'

@@ -9,6 +9,13 @@ export {
   resolveDailySettlement,
   type DailySettlementErrorCode,
 } from './daily-settlement'
+export {
+  previewPlayerVisibleDailySettlement,
+  type PlayerVisibleDailySettlementEvaluation,
+  type PlayerVisibleDailySettlementFailureStage,
+  type PlayerVisibleDailySettlementPreview,
+  type PlayerVisibleDailySettlementRejection,
+} from './player-visible-daily-settlement'
 export type {
   DailyHealthRecoveryCalculation,
   DailySettlementDependencies,

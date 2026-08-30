@@ -4,6 +4,7 @@ export {
 } from './current-traversable-adjacent-edges'
 export {
   createStableRunUiInteractionModel,
+  previewStableRunUiEndDay,
   previewStableRunUiPickupDraft,
   previewStableRunUiSceneInventoryDraft,
   previewStableRunUiTaskEventDraft,
@@ -12,6 +13,7 @@ export {
   type StableRunUiActionPreviewFact,
   type StableRunUiActionPreviewViewModel,
   type StableRunUiInteractionModel,
+  type StableRunUiEndDayPreview,
   type StableRunUiPickupDraft,
   type StableRunUiPickupOpportunity,
   type StableRunUiPickupPreview,

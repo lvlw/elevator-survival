@@ -35,3 +35,7 @@ export {
   createHubMaintenanceResultViewModel,
   type HubMaintenanceResultViewModel,
 } from './hub-maintenance-result-view-model'
+export {
+  createDailySettlementResultViewModel,
+  type DailySettlementResultViewModel,
+} from './daily-settlement-result-view-model'

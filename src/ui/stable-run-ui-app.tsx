@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import type { StableRunStore } from '../state/run-store'
 import {
   createStableRunUiInteractionModel,
+  previewStableRunUiEndDay,
   previewStableRunUiHubLoadoutDraft,
   previewStableRunUiHubCareCommand,
   previewStableRunUiHubMaintenanceDraft,
@@ -30,6 +31,7 @@ import {
   createHubMedicalResultViewModel,
   createHubSurvivalResultViewModel,
   createHubMaintenanceResultViewModel,
+  createDailySettlementResultViewModel,
   type PlayerVisibleItemViewModel,
   type PlayerVisibleCombatViewModel,
   type PlayerVisibleLoadoutViewModel,
@@ -46,6 +48,7 @@ import {
   type HubMedicalResultViewModel,
   type HubSurvivalResultViewModel,
   type HubMaintenanceResultViewModel,
+  type DailySettlementResultViewModel,
 } from './presentation'
 import { useStableRunStoreSnapshot } from './run-store/use-stable-run-store-snapshot'
 
@@ -218,7 +221,7 @@ function HubView({
     <StatusBar status={model.status} />
     <div className="console-grid">
       <LoadoutPanel loadout={model.loadout} />
-      <section className="console-panel"><h2>电梯中枢</h2><p>已接入主要场景启动、显式整备、中枢医疗、生存补给与装备维护；结束本日将在后续 UI 任务接入。</p><dl className="slot-list"><div><dt>维护工时</dt><dd>{model.hub.maintenanceLaborRemaining}</dd></div></dl>{maintenanceOpportunities.length > 0 && <><h3>装备维护</h3><div className="action-list">{maintenanceOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onMaintenance(opportunity.operation)}>{opportunity.label}</button>)}</div></>}<h3>仓库</h3><ItemList items={model.hub.warehouse} empty="仓库为空" />{loadoutOpportunities.filter(({ container }) => container === 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}<h3>任务储存区（只读）</h3><ItemList items={model.hub.taskStorage} empty="暂无任务物品" /></section>
+      <section className="console-panel"><h2>电梯中枢</h2><p>已接入主要场景启动、显式整备、中枢医疗、生存补给、装备维护与每日结算。</p><dl className="slot-list"><div><dt>维护工时</dt><dd>{model.hub.maintenanceLaborRemaining}</dd></div></dl>{maintenanceOpportunities.length > 0 && <><h3>装备维护</h3><div className="action-list">{maintenanceOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onMaintenance(opportunity.operation)}>{opportunity.label}</button>)}</div></>}<h3>仓库</h3><ItemList items={model.hub.warehouse} empty="仓库为空" />{loadoutOpportunities.filter(({ container }) => container === 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}<h3>任务储存区（只读）</h3><ItemList items={model.hub.taskStorage} empty="暂无任务物品" /></section>
       {loadoutOpportunities.some(({ container }) => container !== 'warehouse') && <section className="console-panel"><h2>当前携带物整理</h2>{loadoutOpportunities.filter(({ container }) => container !== 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}</section>}
       <ActionPanel actions={actions} onPreview={onPreview} />
     </div>
@@ -806,6 +809,37 @@ function HubSurvivalResultDialog({ result, onClose }: Readonly<{
   </section></div>
 }
 
+function DailySettlementResultDialog({ result, onClose }: Readonly<{
+  result: DailySettlementResultViewModel
+  onClose(): void
+}>) {
+  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="daily-settlement-result-title">
+    <h2 id="daily-settlement-result-title">{result.title}</h2>
+    <dl className="preview-facts">
+      <div><dt>日期</dt><dd>{result.nextDay === null ? `第 ${result.currentDay} 日终止` : `第 ${result.currentDay} 日 → 第 ${result.nextDay} 日`}</dd></div>
+      <div><dt>生命</dt><dd>{result.healthBefore} → {result.healthAfter}</dd></div>
+      <div><dt>持续危险损失</dt><dd>{result.continuousDangerHealthLoss}</dd></div>
+      {result.worldThreatStageBefore !== null && <div><dt>世界威胁阶段</dt><dd>{result.worldThreatStageBefore} → {result.worldThreatStageAfter}</dd></div>}
+      {result.pendingExposuresBefore !== null && <div><dt>未结算感染暴露</dt><dd>{result.pendingExposuresBefore} → {result.pendingExposuresAfter}</dd></div>}
+      {result.suppressionApplied !== null && <div><dt>当日威胁抑制</dt><dd>{result.suppressionApplied}</dd></div>}
+      {result.satietyBefore !== null && <div><dt>饱食</dt><dd>{result.satietyBefore} → {result.satietyAfter}</dd></div>}
+      {result.deprivationHealthLoss !== null && <div><dt>匮乏损失</dt><dd>{result.deprivationHealthLoss}</dd></div>}
+      {result.recoveryActual !== null && <div><dt>当日生命恢复</dt><dd>{result.recoveryBlockedByBleeding ? '被未处理流血阻断' : `+${result.recoveryActual}`}</dd></div>}
+      {result.minorContusionsBefore !== null && <div><dt>轻度挫伤</dt><dd>{result.minorContusionsBefore} → {result.minorContusionsAfter}</dd></div>}
+      {result.treatedOpenWoundsRemoved !== null && <div><dt>已处理伤口移除</dt><dd>{result.treatedOpenWoundsRemoved}</dd></div>}
+      {result.untreatedOpenWoundsRetained !== null && <div><dt>未处理伤口保留</dt><dd>{result.untreatedOpenWoundsRetained}</dd></div>}
+      {result.painkillerBefore !== null && <div><dt>镇痛</dt><dd>{result.painkillerBefore ? '生效' : '无'} → {result.painkillerAfter ? '生效' : '无'}</dd></div>}
+      {result.disinfectantUsesBefore !== null && <div><dt>消毒剂日使用次数</dt><dd>{result.disinfectantUsesBefore} → {result.disinfectantUsesAfter}</dd></div>}
+      {result.threatSuppressionUsesBefore !== null && <div><dt>抑制剂日使用次数</dt><dd>{result.threatSuppressionUsesBefore} → {result.threatSuppressionUsesAfter}</dd></div>}
+      {result.maintenanceLaborBefore !== null && <div><dt>维护工时</dt><dd>{result.maintenanceLaborBefore} → {result.maintenanceLaborAfter}</dd></div>}
+      {result.mainSceneUsedAfter !== null && <div><dt>次日主要场景</dt><dd>{result.mainSceneUsedAfter ? '已使用' : '尚未进入'}</dd></div>}
+    </dl>
+    {result.outcome === 'health-depleted' && <p className="preview-warning">生命在日结算中耗尽，Run 已结束。</p>}
+    {result.outcome === 'world-threat-terminal' && <p className="preview-warning">世界威胁进入终末阶段，Run 已结束。</p>}
+    <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
+  </section></div>
+}
+
 function ActionPreviewDialog({
   preview,
   onCancel,
@@ -899,6 +933,7 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
   const [hubMedicalResult, setHubMedicalResult] = useState<HubMedicalResultViewModel | null>(null)
   const [hubSurvivalResult, setHubSurvivalResult] = useState<HubSurvivalResultViewModel | null>(null)
   const [hubMaintenanceResult, setHubMaintenanceResult] = useState<HubMaintenanceResultViewModel | null>(null)
+  const [dailySettlementResult, setDailySettlementResult] = useState<DailySettlementResultViewModel | null>(null)
   const [persistenceFeedback, setPersistenceFeedback] = useState<string | null>(null)
   const pendingAction = interaction.actions.find(({ id }) => id === pendingActionId) ?? null
   const pendingPickup = interaction.pickupOpportunities.find(({ id }) => id === pendingPickupId) ?? null
@@ -988,7 +1023,14 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
           presentationDependencies,
         )
       : null
+    const endDayPreview = pendingAction.kind === 'end-day'
+      ? previewStableRunUiEndDay(beforePhase, presentationDependencies)
+      : null
     if ((pendingAction.kind === 'hub-medical' || pendingAction.kind === 'hub-survival') && !hubCarePreview) {
+      setPendingActionId(null)
+      return
+    }
+    if (pendingAction.kind === 'end-day' && (!endDayPreview || !endDayPreview.canExecute)) {
       setPendingActionId(null)
       return
     }
@@ -1081,6 +1123,14 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
         execution.phase,
         pendingAction.label,
         hubCarePreview.result,
+      ))
+    }
+    if (pendingAction.kind === 'end-day' && endDayPreview?.canExecute) {
+      setDailySettlementResult(createDailySettlementResultViewModel(
+        beforePhase,
+        execution.phase,
+        endDayPreview.result,
+        presentationDependencies,
       ))
     }
   }
@@ -1256,6 +1306,7 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
     {hubMedicalResult && <HubMedicalResultDialog result={hubMedicalResult} onClose={() => setHubMedicalResult(null)} />}
     {hubSurvivalResult && <HubSurvivalResultDialog result={hubSurvivalResult} onClose={() => setHubSurvivalResult(null)} />}
     {hubMaintenanceResult && <HubMaintenanceResultDialog result={hubMaintenanceResult} onClose={() => setHubMaintenanceResult(null)} />}
+    {dailySettlementResult && <DailySettlementResultDialog result={dailySettlementResult} onClose={() => setDailySettlementResult(null)} />}
     {import.meta.env.DEV && <DevInspector phase={snapshot.phase} />}
   </>
 }

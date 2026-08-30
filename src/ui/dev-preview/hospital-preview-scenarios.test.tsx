@@ -17,6 +17,7 @@ afterEach(() => { act(() => { while (roots.length > 0) roots.pop()!.unmount() })
 
 const expectedPhaseKinds: Readonly<Record<DevelopmentPreviewScenarioKind, string>> = {
   hub: 'current-day-hub',
+  'hub-returned': 'current-day-hub',
   'hub-maintenance': 'current-day-hub',
   scene: 'scene-session',
   combat: 'scene-session',
@@ -25,6 +26,7 @@ const expectedPhaseKinds: Readonly<Record<DevelopmentPreviewScenarioKind, string
 
 const expectedUiHeadings: Readonly<Record<DevelopmentPreviewScenarioKind, string>> = {
   hub: '电梯中枢',
+  'hub-returned': '结束本日',
   'hub-maintenance': '装备维护',
   scene: '场景导航',
   combat: '战斗',
@@ -32,7 +34,7 @@ const expectedUiHeadings: Readonly<Record<DevelopmentPreviewScenarioKind, string
 }
 
 describe('development UI preview scenarios', () => {
-  it.each<DevelopmentPreviewScenarioKind>(['hub', 'hub-maintenance', 'scene', 'combat', 'failure'])(
+  it.each<DevelopmentPreviewScenarioKind>(['hub', 'hub-returned', 'hub-maintenance', 'scene', 'combat', 'failure'])(
     'creates and renders the %s example through a real strict-restored Store without saving',
     (kind) => {
       const scenario = createHospitalDevelopmentPreviewScenario(kind)

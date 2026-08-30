@@ -7,6 +7,7 @@ import {
   createDailySettlementTerminalSnapshot,
   createEndDayCommand,
   previewDailySettlement,
+  previewPlayerVisibleDailySettlement,
   resolveDailySettlement,
   type DailySettlementEffect,
 } from '../../core/daily-settlement'
@@ -143,6 +144,158 @@ function success(snapshot: CurrentDayHubSnapshot) {
 }
 
 describe('hospital daily settlement', () => {
+  it('projects an allow-listed player-visible daily settlement without exact threat or wound identities', () => {
+    const start = hub({
+      health: 8,
+      exposures: 1,
+      progress: 10,
+      satiety: 4,
+      contusions: 1,
+      painkiller: true,
+      wounds: [
+        { id: 'safe-projection-treated-id', kind: 'laceration', treatment: 'treated' },
+        { id: 'safe-projection-untreated-id', kind: 'bite', treatment: 'untreated' },
+      ],
+      suppressionUses: 1,
+      suppressionAmount: 15,
+      disinfectantUses: 1,
+      maintenance: 2,
+      mainSceneUsedToday: true,
+    })
+    const preview = previewPlayerVisibleDailySettlement(start, dependencies)
+    expect(preview.canExecute).toBe(true)
+    if (!preview.canExecute) throw new Error('expected player-visible settlement')
+    expect(preview.result).toMatchObject({
+      currentDay: 2,
+      nextDay: 3,
+      outcome: 'next-day',
+      worldThreat: {
+        stageBeforeId: 'latent',
+        stageAfterId: 'latent',
+        pendingExposuresBefore: 1,
+        pendingExposuresAfter: 0,
+        suppressionApplied: 15,
+      },
+      satiety: { before: 4, after: 2 },
+      cleanup: {
+        minorContusionsBefore: 1,
+        minorContusionsAfter: 0,
+        treatedOpenWoundsRemoved: 1,
+        untreatedOpenWoundsRetained: 1,
+        painkillerBefore: true,
+        painkillerAfter: false,
+      },
+      dailyReset: {
+        disinfectantUsesBefore: 1,
+        disinfectantUsesAfter: 0,
+        threatSuppressionUsesBefore: 1,
+        threatSuppressionUsesAfter: 0,
+        maintenanceLaborBefore: 2,
+        maintenanceLaborAfter: 3,
+        mainSceneUsedBefore: true,
+        mainSceneUsedAfter: false,
+      },
+    })
+    const serialized = JSON.stringify(preview)
+    for (const hidden of [
+      'progressBefore', 'progressAfter', 'safe-projection-treated-id',
+      'safe-projection-untreated-id', 'effects', 'snapshot', 'runId', 'seed',
+      'rulesVersion',
+    ]) {
+      expect(serialized).not.toContain(hidden)
+    }
+    expect(Object.isFrozen(preview.result)).toBe(true)
+  })
+
+  it('stops the safe projection after unresolved bleeding causes terminal health depletion', () => {
+    const preview = previewPlayerVisibleDailySettlement(hub({
+      health: 2,
+      bleeding: true,
+      exposures: 2,
+      contusions: 1,
+      mainSceneUsedToday: true,
+    }), dependencies)
+    expect(preview).toMatchObject({
+      canExecute: true,
+      result: {
+        outcome: 'health-depleted',
+        failureStage: 'continuous-danger',
+        healthBefore: 2,
+        healthAfter: 0,
+        worldThreat: null,
+        satiety: null,
+        deprivation: null,
+        recovery: null,
+        cleanup: null,
+        dailyReset: null,
+      },
+    })
+  })
+
+  it('stops the safe projection at world-threat terminal without pretending later stages ran', () => {
+    const preview = previewPlayerVisibleDailySettlement(hub({
+      progress: 100,
+      exposures: 1,
+      satiety: 6,
+      mainSceneUsedToday: true,
+    }), dependencies)
+    expect(preview).toMatchObject({
+      canExecute: true,
+      result: {
+        outcome: 'world-threat-terminal',
+        failureStage: 'world-threat',
+        worldThreat: { stageBeforeId: 'critical', stageAfterId: 'terminal' },
+        satiety: null,
+        deprivation: null,
+        recovery: null,
+        cleanup: null,
+        dailyReset: null,
+      },
+    })
+  })
+
+  it('identifies deprivation as the formal health-depletion stage in the safe projection', () => {
+    const preview = previewPlayerVisibleDailySettlement(hub({
+      health: 1,
+      satiety: 2,
+      mainSceneUsedToday: true,
+    }), dependencies)
+    expect(preview).toMatchObject({
+      canExecute: true,
+      result: {
+        outcome: 'health-depleted',
+        failureStage: 'deprivation',
+        continuousDanger: { healthLoss: 0 },
+        worldThreat: { pendingExposuresBefore: 0, pendingExposuresAfter: 0 },
+        satiety: { before: 2, after: 0 },
+        deprivation: { active: true, healthLoss: 1, healthAfter: 0 },
+        recovery: null,
+        cleanup: null,
+        dailyReset: null,
+      },
+    })
+  })
+
+  it('returns player-safe formal rejection reasons before the main scene and on day seven', () => {
+    expect(previewPlayerVisibleDailySettlement(
+      hub({ mainSceneUsedToday: false }),
+      dependencies,
+    )).toEqual({ canExecute: false, rejection: 'main-scene-required' })
+    expect(previewPlayerVisibleDailySettlement(
+      hub({ day: 7, mainSceneUsedToday: true }),
+      dependencies,
+    )).toEqual({ canExecute: false, rejection: 'final-day-resolution-required' })
+  })
+
+  it('rethrows unknown Daily Settlement failures instead of presenting them as ordinary rejection', () => {
+    expect(() => previewPlayerVisibleDailySettlement(hub({
+      exposures: Number.MAX_SAFE_INTEGER,
+      mainSceneUsedToday: true,
+    }), dependencies)).toThrowError(expect.objectContaining({
+      code: 'SAFE_INTEGER_OVERFLOW',
+    }))
+  })
+
   it('runs the ordinary no-threat baseline from day one to day two', () => {
     const { result, snapshot } = success(hub({
       day: 1,

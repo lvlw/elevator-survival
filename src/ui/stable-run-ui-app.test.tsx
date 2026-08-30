@@ -53,6 +53,7 @@ import { StableRunUiApp } from './stable-run-ui-app'
 import { createHospitalDevelopmentPreviewScenario } from './dev-preview/hospital-preview-scenarios'
 import {
   createStableRunUiInteractionModel,
+  previewStableRunUiEndDay,
   previewStableRunUiHubCareCommand,
   previewStableRunUiHubLoadoutDraft,
   previewStableRunUiHubMaintenanceDraft,
@@ -60,7 +61,10 @@ import {
   previewStableRunUiTaskEventDraft,
   type StableRunUiHubMaintenanceOpportunity,
 } from './interaction'
-import { createHubSurvivalResultViewModel } from './presentation'
+import {
+  createDailySettlementResultViewModel,
+  createHubSurvivalResultViewModel,
+} from './presentation'
 
 Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true })
 
@@ -82,7 +86,23 @@ class FailingStorage extends MemoryStorage {
 
 const item = (instanceId: string, definitionId: string): ItemInstance => ({ instanceId, definitionId, quantity: 1 })
 
-function createHubPhase(options: Readonly<{ combatReady?: boolean; seed?: string }> = {}) {
+function createHubPhase(options: Readonly<{
+  combatReady?: boolean
+  seed?: string
+  day?: number
+  mainSceneUsedToday?: boolean
+  health?: number
+  bleeding?: boolean
+  exposures?: number
+  progress?: number
+  satiety?: number
+  contusions?: number
+  painkiller?: boolean
+  suppressionUses?: number
+  suppressionAmount?: number
+  disinfectantUses?: number
+  maintenance?: number
+}> = {}) {
   const flashlight = item('react-flashlight', HOSPITAL_ITEM_IDS.flashlight)
   const ration = item('react-ration', HOSPITAL_ITEM_IDS.ration)
   const pipe = item('react-metal-pipe', HOSPITAL_ITEM_IDS.metalPipe)
@@ -93,7 +113,7 @@ function createHubPhase(options: Readonly<{ combatReady?: boolean; seed?: string
   return {
     kind: 'current-day-hub' as const,
     payload: createCurrentDayHubSnapshot({
-      continuity: { runIdentity: { runId: 'react-ui-run', seed: options.seed ?? 'react-ui-seed', rulesVersion: config.metadata.rulesVersion }, currentDay: 2, sceneInstanceId: 'returned-before-react-ui' },
+      continuity: { runIdentity: { runId: 'react-ui-run', seed: options.seed ?? 'react-ui-seed', rulesVersion: config.metadata.rulesVersion }, currentDay: options.day ?? 2, sceneInstanceId: 'returned-before-react-ui' },
       runLoadout: createRunLoadoutSnapshot({
         warehouse: { items: [ration] }, taskStorage: { items: [] },
         backpack: createBackpackSnapshot({ width: config.backpack.width, height: config.backpack.height, items: [], placements: [] }, hospitalItemCatalog),
@@ -105,10 +125,10 @@ function createHubPhase(options: Readonly<{ combatReady?: boolean; seed?: string
         quickSlots: createQuickSlotSnapshot([null, null], config.backpack.quickSlotCount, hospitalItemCatalog, hospitalItemQuickSlotCatalog),
         itemStates: { states: owned.map((candidate) => createFullItemState(candidate, hospitalItemResourceCatalog)) },
       }, { physicalCatalog: hospitalItemCatalog, equipmentCatalog: hospitalItemEquipmentCatalog, quickSlotCatalog: hospitalItemQuickSlotCatalog, itemResourceCatalog: hospitalItemResourceCatalog, lifecycleCatalog: hospitalItemReturnLifecycleCatalog, backpackRules: config.backpack }),
-      playerCondition: createPlayerCondition({ currentHealth: config.combat.player.maxHealth, bleeding: false, openWounds: [], minorContusions: 0, painkillerActive: false, pendingInfectionExposures: 0 }, config.combat.player),
+      playerCondition: createPlayerCondition({ currentHealth: options.health ?? config.combat.player.maxHealth, bleeding: options.bleeding ?? false, openWounds: [], minorContusions: options.contusions ?? 0, painkillerActive: options.painkiller ?? false, pendingInfectionExposures: options.exposures ?? 0 }, config.combat.player),
       runIntelLog: { intelIds: [] },
-      dailyState: { medicalUsage: { disinfectantUsesToday: 0 }, threatSuppression: { usesToday: 0, suppressionAmountToday: 0 }, maintenanceLaborRemaining: config.maintenance.dailyBaseLabor.points, mainSceneUsedToday: false },
-      worldThreat: { definitionId: config.worldThreat.definitionId, progress: 0 }, satiety: { current: 4 }, returnLedger: { sceneInstanceIds: ['returned-before-react-ui'] },
+      dailyState: { medicalUsage: { disinfectantUsesToday: options.disinfectantUses ?? 0 }, threatSuppression: { usesToday: options.suppressionUses ?? 0, suppressionAmountToday: options.suppressionAmount ?? 0 }, maintenanceLaborRemaining: options.maintenance ?? config.maintenance.dailyBaseLabor.points, mainSceneUsedToday: options.mainSceneUsedToday ?? false },
+      worldThreat: { definitionId: config.worldThreat.definitionId, progress: options.progress ?? 0 }, satiety: { current: options.satiety ?? 4 }, returnLedger: { sceneInstanceIds: ['returned-before-react-ui'] },
     }, hospitalCurrentDayHubDependencies),
   }
 }
@@ -1335,6 +1355,11 @@ describe('StableRunUiApp', () => {
     expect(phase.payload.scene.status).toBe('forced-returned')
     expect(container.textContent).toContain('场景终局状态')
     expect(container.textContent).not.toContain('电梯中枢')
+    act(() => { button(container, '完成返程结算').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(storage.writes).toBe(2)
+    expect(store.getState().phase.kind).toBe('current-day-hub')
+    expect(container.textContent).toContain('结束本日')
   })
 
   it('shows formal return risk and full over-time Search preview facts without automatic settlement', () => {
@@ -1447,6 +1472,7 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('返回摘要')
     expect(container.textContent).toContain('金属零件 ×1')
     act(() => { button(container, '关闭摘要').click() })
+    expect(container.textContent).toContain('结束本日')
     expect(store.getState().phase).toBe(phase)
     expect(storage.writes).toBe(6)
     expect(notifications).toBe(6)
@@ -4959,5 +4985,359 @@ describe('StableRunUiApp', () => {
     expect(phase.payload.runLoadout.warehouse.items.find(({ instanceId }) => instanceId === 'hub-maintenance-metal')?.quantity).toBe(1)
     expect(phase.payload.runLoadout.warehouse.items.some(({ instanceId }) => instanceId === 'hub-maintenance-electronic')).toBe(false)
     expect(container.textContent).toContain('保存失败')
+  })
+
+  it('offers End Day only after the main scene and commits one normal settlement command and save', () => {
+    const beforeScene = createStableRunUiInteractionModel(createHubPhase(), uiDependencies)
+    expect(beforeScene.actions.some(({ kind }) => kind === 'end-day')).toBe(false)
+
+    const storage = new MemoryStorage()
+    const initial = createHubPhase({
+      mainSceneUsedToday: true,
+      health: 8,
+      exposures: 1,
+      progress: 10,
+      satiety: 4,
+      contusions: 1,
+      painkiller: true,
+      suppressionUses: 1,
+      suppressionAmount: 15,
+      disinfectantUses: 1,
+      maintenance: 1,
+    })
+    const tracked = trackedStore(createStableRunStore({ initialPhase: initial, storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+    let notifications = 0
+    tracked.store.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '结束本日').click() })
+    expect(container.textContent).toContain('确认结束本日')
+    expect(container.textContent).toContain('第 2 日')
+    expect(container.textContent).toContain('推进至第 3 日')
+    expect(container.textContent).toContain('未结算感染暴露')
+    expect(container.textContent).toContain('维护工时')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+    for (const hidden of ['progressBefore', 'progressAfter', 'react-ui-run', 'react-ui-seed', 'rulesVersion', 'effects', 'snapshot']) {
+      expect(container.textContent).not.toContain(hidden)
+    }
+
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toEqual([{
+      kind: 'lifecycle',
+      command: { kind: 'end-day' },
+    }])
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    const phase = tracked.store.getState().phase
+    expect(phase.kind).toBe('current-day-hub')
+    if (phase.kind !== 'current-day-hub') throw new Error('expected next-day Hub')
+    expect(phase.payload.continuity.currentDay).toBe(3)
+    expect(phase.payload.dailyState.mainSceneUsedToday).toBe(false)
+    expect(container.textContent).toContain('第 2 日结算完成')
+    expect(container.textContent).toContain('第 2 日 → 第 3 日')
+  })
+
+  it('builds the normal Daily Settlement Result only from the committed next-day phase', () => {
+    const before = createHubPhase({ mainSceneUsedToday: true, health: 8 })
+    const preview = previewStableRunUiEndDay(before, uiDependencies)
+    expect(preview.canExecute).toBe(true)
+    if (!preview.canExecute) throw new Error('expected End Day preview')
+    const store = createStableRunStore({
+      initialPhase: before,
+      storage: new MemoryStorage(),
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    store.dispatch(preview.action.command)
+    const after = store.getState().phase
+    const result = createDailySettlementResultViewModel(
+      before,
+      after,
+      preview.result,
+      uiDependencies,
+    )
+    expect(after.kind).toBe('current-day-hub')
+    expect(result).toMatchObject({
+      outcome: 'next-day',
+      currentDay: 2,
+      nextDay: 3,
+      healthBefore: 8,
+      healthAfter: preview.result.healthAfter,
+      mainSceneUsedAfter: false,
+    })
+  })
+
+  it('binds Run Failure Daily Settlement Result to the committed terminal reason', () => {
+    const before = createHubPhase({
+      mainSceneUsedToday: true,
+      health: 2,
+      bleeding: true,
+    })
+    const preview = previewStableRunUiEndDay(before, uiDependencies)
+    expect(preview.canExecute).toBe(true)
+    if (!preview.canExecute) throw new Error('expected terminal End Day preview')
+    const store = createStableRunStore({
+      initialPhase: before,
+      storage: new MemoryStorage(),
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    store.dispatch(preview.action.command)
+    const after = store.getState().phase
+    const result = createDailySettlementResultViewModel(
+      before,
+      after,
+      preview.result,
+      uiDependencies,
+    )
+    expect(after).toMatchObject({
+      kind: 'run-failure',
+      payload: { reason: 'health-depleted' },
+    })
+    expect(result).toMatchObject({
+      outcome: 'health-depleted',
+      nextDay: null,
+      healthAfter: 0,
+    })
+  })
+
+  it('throws an implementation error when the Daily Settlement Result does not match the committed phase', () => {
+    const normalBefore = createHubPhase({ mainSceneUsedToday: true })
+    const normalPreview = previewStableRunUiEndDay(normalBefore, uiDependencies)
+    expect(normalPreview.canExecute).toBe(true)
+    if (!normalPreview.canExecute) throw new Error('expected normal End Day preview')
+    expect(() => createDailySettlementResultViewModel(
+      normalBefore,
+      normalBefore,
+      normalPreview.result,
+      uiDependencies,
+    )).toThrowError('日结算结果与 canonical phase 不一致：次日中枢或日期不匹配')
+
+    const bleedingBefore = createHubPhase({
+      mainSceneUsedToday: true,
+      health: 2,
+      bleeding: true,
+    })
+    const bleedingPreview = previewStableRunUiEndDay(bleedingBefore, uiDependencies)
+    expect(bleedingPreview.canExecute).toBe(true)
+    if (!bleedingPreview.canExecute) throw new Error('expected bleeding terminal preview')
+    const threatBefore = createHubPhase({
+      mainSceneUsedToday: true,
+      progress: 100,
+      exposures: 1,
+    })
+    const threatPreview = previewStableRunUiEndDay(threatBefore, uiDependencies)
+    expect(threatPreview.canExecute).toBe(true)
+    if (!threatPreview.canExecute) throw new Error('expected threat terminal preview')
+    const threatStore = createStableRunStore({
+      initialPhase: threatBefore,
+      storage: new MemoryStorage(),
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    threatStore.dispatch(threatPreview.action.command)
+    expect(() => createDailySettlementResultViewModel(
+      bleedingBefore,
+      threatStore.getState().phase,
+      bleedingPreview.result,
+      uiDependencies,
+    )).toThrowError('日结算结果与 canonical phase 不一致：失败原因不匹配')
+  })
+
+  it('closes Daily Settlement Result without dispatch or save', () => {
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({
+      initialPhase: createHubPhase({ mainSceneUsedToday: true }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    }))
+    let notifications = 0
+    tracked.store.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '结束本日').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    act(() => { button(container, '关闭结果').click() })
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+  })
+
+  it('renders terminal bleeding settlement truth and skips all unexecuted later stages', () => {
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({
+      initialPhase: createHubPhase({
+        mainSceneUsedToday: true,
+        health: 2,
+        bleeding: true,
+        exposures: 2,
+        satiety: 2,
+      }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '结束本日').click() })
+    const previewText = container.querySelector('[role="dialog"]')?.textContent ?? ''
+    expect(previewText).toContain('未处理流血损失 2')
+    expect(previewText).toContain('Run Failure · 生命耗尽')
+    expect(previewText).not.toContain('世界威胁阶段')
+    expect(previewText).not.toContain('饱食')
+    expect(previewText).not.toContain('次日主要场景')
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(tracked.store.getState().phase.kind).toBe('run-failure')
+    expect(container.textContent).toContain('生命在日结算中耗尽')
+  })
+
+  it('renders formal world-threat terminal settlement without exact progress', () => {
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({
+      initialPhase: createHubPhase({
+        mainSceneUsedToday: true,
+        progress: 100,
+        exposures: 1,
+        satiety: 6,
+      }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '结束本日').click() })
+    expect(container.textContent).toContain('危急 → 感染终末')
+    expect(container.textContent).toContain('Run Failure · 世界威胁终末')
+    expect(container.textContent).not.toContain('progress')
+    expect(container.textContent).not.toContain('125')
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.store.getState().phase.kind).toBe('run-failure')
+    expect(container.textContent).toContain('世界威胁进入终末阶段')
+  })
+
+  it('hides ordinary End Day on day seven without dispatching or creating day eight', () => {
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({
+      initialPhase: createHubPhase({ day: 7, mainSceneUsedToday: true }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    expect(container.textContent).not.toContain('结束本日')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    const phase = tracked.store.getState().phase
+    expect(phase.kind).toBe('current-day-hub')
+    if (phase.kind === 'current-day-hub') expect(phase.payload.continuity.currentDay).toBe(7)
+  })
+
+  it('keeps formal End Day rejection codes out of the ordinary DOM', () => {
+    for (const initialPhase of [
+      createHubPhase({ mainSceneUsedToday: false }),
+      createHubPhase({ day: 7, mainSceneUsedToday: true }),
+    ]) {
+      const storage = new MemoryStorage()
+      const tracked = trackedStore(createStableRunStore({
+        initialPhase,
+        storage,
+        rulesRegistry: hospitalRunSaveRulesRegistry,
+      }))
+      const container = document.createElement('div')
+      const root = createRoot(container); roots.push(root)
+      act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+      expect(container.textContent).not.toContain('结束本日')
+      expect(container.textContent).not.toContain('MAIN_SCENE_REQUIRED')
+      expect(container.textContent).not.toContain('FINAL_DAY_RESOLUTION_REQUIRED')
+      expect(container.textContent).not.toContain('rejection')
+      expect(tracked.commands).toHaveLength(0)
+      expect(storage.writes).toBe(0)
+    }
+  })
+
+  it('keeps End Day StrictMode preview side-effect free and closes it after a canonical phase change', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: createHubPhase({ mainSceneUsedToday: true }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StrictMode><StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} /></StrictMode>) })
+    act(() => { button(container, '结束本日').click() })
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+    act(() => { inner.dispatch({ kind: 'lifecycle', command: { kind: 'end-day' } }) })
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+  })
+
+  it('keeps one committed End Day result after save failure without retry, reload, or rollback', () => {
+    const storage = new FailingStorage()
+    const tracked = trackedStore(createStableRunStore({
+      initialPhase: createHubPhase({ mainSceneUsedToday: true, health: 8 }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    }))
+    let notifications = 0
+    tracked.store.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '结束本日').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    const phase = tracked.store.getState().phase
+    expect(phase.kind).toBe('current-day-hub')
+    if (phase.kind === 'current-day-hub') expect(phase.payload.continuity.currentDay).toBe(3)
+    expect(container.textContent).toContain('保存失败')
+    expect(container.textContent).toContain('第 2 日结算完成')
+  })
+
+  it('keeps one committed terminal End Day result after save failure', () => {
+    const storage = new FailingStorage()
+    const tracked = trackedStore(createStableRunStore({
+      initialPhase: createHubPhase({
+        mainSceneUsedToday: true,
+        health: 2,
+        bleeding: true,
+      }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    }))
+    let notifications = 0
+    tracked.store.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '结束本日').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    expect(tracked.store.getState().phase).toMatchObject({
+      kind: 'run-failure',
+      payload: { reason: 'health-depleted' },
+    })
+    expect(container.textContent).toContain('保存失败')
+    expect(container.textContent).toContain('生命在日结算中耗尽')
   })
 })

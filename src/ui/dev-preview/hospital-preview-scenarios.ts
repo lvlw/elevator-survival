@@ -30,7 +30,7 @@ import {
 import { createStableRunStore, type StableRunStore } from '../../state/run-store'
 import { MemoryPreviewStorage } from './memory-preview-storage'
 
-export type DevelopmentPreviewScenarioKind = 'hub' | 'hub-maintenance' | 'scene' | 'combat' | 'failure'
+export type DevelopmentPreviewScenarioKind = 'hub' | 'hub-returned' | 'hub-maintenance' | 'scene' | 'combat' | 'failure'
 
 export interface DevelopmentPreviewScenario {
   readonly kind: DevelopmentPreviewScenarioKind
@@ -164,6 +164,25 @@ function createPreviewHub() {
   }, hospitalCurrentDayHubDependencies)
 }
 
+function createReturnedPreviewHub() {
+  const hub = createPreviewHub()
+  return createCurrentDayHubSnapshot({
+    ...hub,
+    playerCondition: {
+      ...hub.playerCondition,
+      pendingInfectionExposures: 1,
+    },
+    dailyState: {
+      ...hub.dailyState,
+      medicalUsage: { disinfectantUsesToday: 1 },
+      threatSuppression: { usesToday: 1, suppressionAmountToday: 15 },
+      maintenanceLaborRemaining: 1,
+      mainSceneUsedToday: true,
+    },
+    worldThreat: { ...hub.worldThreat, progress: 10 },
+  }, hospitalCurrentDayHubDependencies)
+}
+
 function createPreviewScene(): StableRunPhase {
   return {
     kind: 'scene-session',
@@ -245,6 +264,7 @@ function createPreviewFailure(): StableRunPhase {
 
 function phaseFor(kind: DevelopmentPreviewScenarioKind): StableRunPhase {
   if (kind === 'hub') return { kind: 'current-day-hub', payload: createPreviewHub() }
+  if (kind === 'hub-returned') return { kind: 'current-day-hub', payload: createReturnedPreviewHub() }
   if (kind === 'hub-maintenance') return { kind: 'current-day-hub', payload: createMaintenancePreviewHub() }
   if (kind === 'scene') return createPreviewScene()
   if (kind === 'combat') return createPreviewCombat()
@@ -253,6 +273,7 @@ function phaseFor(kind: DevelopmentPreviewScenarioKind): StableRunPhase {
 
 const labels: Readonly<Record<DevelopmentPreviewScenarioKind, string>> = Object.freeze({
   hub: '查看 Hub 示例',
+  'hub-returned': '查看已返程 Hub 示例',
   'hub-maintenance': '查看 Hub 维护示例',
   scene: '查看 Scene 示例',
   combat: '查看 Combat 示例',

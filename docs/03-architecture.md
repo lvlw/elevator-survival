@@ -78,7 +78,7 @@ CurrentDayHub
 - Dispatcher 不维护第四套 phase matrix，不拥有玩法规则、规则版本分派、随机数、Effect、状态或保存策略；它也不直接调用 generic executor、Run Save 或 `storage.write()`。
 - Lifecycle、Scene 与 Hub specialized router 继续拥有各自的应用层映射职责，generic executor 继续拥有 canonicalization、RunIdentity 连续性和唯一保存。每次 application dispatch 只委托一个 specialized router 一次。
 - `execution.phase` 是下一条命令的唯一正式状态。确定性重放只属于自动化验收，使用正式 registry、Run seed、稳定阶段与应用路由，不在存档或阶段中保存 command history、replay log 或序号。
-- 制作、拆解与部分 React gameplay command wiring 尚未实现；当前已接入启动主要场景、活动场景移动、主要搜索、节点拾取、七种 Scene 背包／快捷栏整理、主动撤离、终止场景结算、医院防火门障碍、感染护工战斗行动、医院样本箱任务事件及当前日中枢维护的确认式 UI，展示与交互边界见后文。
+- 制作、拆解与部分 React gameplay command wiring 尚未实现；当前已接入启动主要场景、活动场景移动、主要搜索、节点拾取、七种 Scene 背包／快捷栏整理、主动撤离、终止场景结算、结束本日、医院防火门障碍、感染护工战斗行动、医院样本箱任务事件及当前日中枢维护的确认式 UI，展示与交互边界见后文。
 
 ## 最小 Stable Run Application Store
 
@@ -110,7 +110,7 @@ StableRunStore public read API
 - 通用 ViewModel 通过显式白名单向普通玩家展示 Hub、Scene、Combat 与 Failure 信息。节点地面物品、**当前可通行相邻节点**、当前节点明显障碍、相对敌人生命阶段、当前意图和正式返程预览继续复用 core 查询；当前不构造完整玩家已知地图。障碍只投影当前 active Scene、当前节点、尚未解决的正式障碍，选项资格由 core Preview 决定。内部 Run 身份、实例 ID、隐藏搜索结果、障碍随机轨迹、精确敌人生命、风险百分比和未来行动序列不进入普通 ViewModel。
 - 医院 V1 的名称文案位于 UI 内容适配层；通用组件不硬编码医院物品、敌人或节点名称。开发环境的只读检查器可以查看严格 phase，但生产环境没有入口，且不提供 mutation。开发环境默认 `App` 未注入 Store 时可动态加载独立内存态预览：它只用正式构造器生成合法 Hub／Scene／Combat／Failure Store，选择示例不发送 gameplay command、不保存，也不是 New Run 或正式游戏入口；生产环境仍保持诚实的未接入状态。
 - `src/ui/interaction/` 从 canonical phase、正式 registry、标签和纯 core preview 生成安全行动：主要场景启动、当前日中枢 Run Loadout、中枢医疗与生存补给、活动场景移动、主要搜索、显式节点物品拾取、七种 Scene 背包／快捷栏整理、主动撤离、医院防火门、感染护工战斗行动、医院样本箱任务事件、Scene 非战斗医疗与 Scene 非战斗电池充能。拾取、任务物提取及 Scene 整理草稿只保存玩家明确选择的数量、目标、快捷栏、坐标与旋转，调用对应正式 Preview；背包网格只投影正式几何并作为 anchor 选择，不自动摆放、整理、拆分、合并、补充或创建实例身份。Scene 整理的 player-safe Preview 白名单投影正式容器变化、数量、负重档位、零时间与即时返程估算，不携带实例 ID、审计、Effects 或 resulting snapshot；任务物放到节点必须显式确认。Scene 医疗与充能行动完全来自各自正式 selector，保留玩家明确选择的真实容器来源和目标；二者共用中性的正时间 Scene 行动安全投影，区分完成节点、返程目标、行动后流血死亡和紧急返程死亡。中枢医疗与生存行动同样只展开正式 selector 返回的真实仓库、背包或快捷栏来源及明确伤势目标，并通过同源零时间 Preview 展示物品消费、医疗效果、每日使用、饱食和威胁抑制事实；不自动寻找来源、目标或补充快捷栏。player-safe Preview 只对白名单投影同源主要效果、时间、流血、返程与终局事实。确认后每次只发出一条 `Store.dispatch()`；医疗、充能、撤离、战斗或任务事件产生的 terminal Scene 先保存 Scene Session，结算仍由下一条显式 lifecycle command 完成。
-- 成功返回后的 Return Summary、Combat Action Result、Task Event Result、Scene Medical Result、Scene Battery Result、Scene Inventory Result、Hub Loadout Result、Hub Medical Result、Hub Survival Result 与 Hub Maintenance Result 只将 execution 前后的 canonical phase 及已发生的正式结果立即投影为本地、玩家可见的展示模型；它们不是 Scene、Combat、Run Return、Hub、任务进度、医疗、维护、充能、饱食、威胁抑制或 inventory 的状态 owner，关闭不发送命令。当前没有 New Run bootstrap、React Provider、完整 Application Store、UI 命令队列或终版美术。医院防火门、感染护工战斗行动、医院样本箱提取、Scene 非战斗医疗、Scene 非战斗电池充能、非战斗 Scene 整理、当前日中枢十二种显式 Run Loadout 整备、中枢医疗、中枢生存补给与五类中枢维护已接入正式安全 Preview 与确认分派；日结算的 React command UI 尚未接入。React 不拥有 inventory、装备／快捷栏资格、医疗／充能／维护资格、材料兼容、资源恢复、浪费、日工时、目标合法性、时间、流血、返程或终局规则；展示层可被未来其他渲染技术替换，只要继续读取 canonical phase 并发送正式命令。
+- 成功返回后的 Return Summary、Combat Action Result、Task Event Result、Scene Medical Result、Scene Battery Result、Scene Inventory Result、Hub Loadout Result、Hub Medical Result、Hub Survival Result、Hub Maintenance Result 与 Daily Settlement Result 只将 execution 前后的 canonical phase 及已发生的正式结果立即投影为本地、玩家可见的展示模型；它们不是 Scene、Combat、Run Return、Hub、任务进度、医疗、维护、充能、饱食、威胁抑制、日结算或 inventory 的状态 owner，关闭不发送命令。当前没有 New Run bootstrap、React Provider、完整 Application Store、UI 命令队列或终版美术。医院防火门、感染护工战斗行动、医院样本箱提取、Scene 非战斗医疗、Scene 非战斗电池充能、非战斗 Scene 整理、当前日中枢十二种显式 Run Loadout 整备、中枢医疗、中枢生存补给、五类中枢维护与普通日结算已接入正式安全 Preview 与确认分派。日结算 player-safe 投影只公开已执行阶段的日期、生命、相对世界威胁阶段、暴露、饱食、恢复、轻伤清理和日级资源重置结果，不公开精确世界威胁进展、伤口身份、Effects、计划或快照；早期终止不伪装后续阶段已执行。React 不拥有 inventory、装备／快捷栏资格、医疗／充能／维护资格、材料兼容、资源恢复、浪费、日工时、目标合法性、时间、流血、返程、日结算或终局规则；展示层可被未来其他渲染技术替换，只要继续读取 canonical phase 并发送正式命令。
 
 ## 当前最小 Stable Run 生命周期命令路由
 
@@ -134,9 +134,9 @@ StableRunStore public read API
 - Router 不拥有 Scene Launch、Return、Daily Settlement 或 Run Failure 规则，也不直接写存档；它按当前规范化阶段的 `rulesVersion` 读取正式依赖并调用既有 core resolver，随后委托唯一 stable mutation execution boundary。
 - 结束本日资格由 Daily Settlement 正式计划读取 `DailyRunState.mainSceneUsedToday`：规范化当前日中枢与结束本日命令后，先拒绝尚未使用当天主要场景的状态，再检查第七日终局边界。安全或强制返回都保留该日级事实；任务是否完成不构成结束本日的额外资格条件。Preview、Resolution、生命周期路由与 Store 共用这一 core 门禁，拒绝时不提交 Effects 或存档。
 - 终止 Scene 的位置、时间（包括 `remainingTime` 的0至当前 `scene.totalTime` 上限）和生命合法性属于 Scene strict snapshot invariant；Run Save 与 lifecycle settlement 都通过同一 Scene 恢复入口继承该校验，Router 不复制 returned 位置判断、时间上限或重新结算撤离。
-- 每次调用只执行一个生命周期命令。最小 Store 只在调用方显式 `dispatch()` 时发出一条 command；终止 Scene 不自动连锁到 Return，结束本日不自动启动次日场景。React 已接入主要场景启动和终止 Scene 的显式结算；两者都只在玩家确认 Preview 后发出命令。
+- 每次调用只执行一个生命周期命令。最小 Store 只在调用方显式 `dispatch()` 时发出一条 command；终止 Scene 不自动连锁到 Return，结束本日不自动启动次日场景。React 已接入主要场景启动、终止 Scene 显式结算和普通结束本日；三者都只在玩家确认正式安全 Preview 后发出命令。
 - 生命周期 resolver 的返回值仅用于展示或审计；`StableRunCommandExecution.phase` 是下一条命令的唯一正式状态输入，result、summary、Effects 和 preview 不形成并行状态或持久化字段。
-- 本路由经统一 Application facade 对外分派，最小 Store 已通过该 facade 接入；React 已接入主要场景启动，完整 RunState、其余 lifecycle command UI 与命令队列尚未实现。
+- 本路由经统一 Application facade 对外分派，最小 Store 已通过该 facade 接入；React 已接入主要场景启动、终止 Scene 结算与普通结束本日，完整 RunState、Day 7 最终解析、Success／Abandon／New Run UI 与命令队列尚未实现。
 
 ### 基础 Stable Run Scene mutation routing
 
@@ -153,7 +153,7 @@ StableRunStore public read API
 - Router 只接受 canonical `current-day-hub`，从其 RunIdentity 取得 `rulesVersion` 并使用既有 Run Save registry 的 `currentDayHub` 与 `hubMaintenance` 依赖。注册表要求维护依赖与同版本 CurrentDayHub 依赖拥有同一对象身份；Router 不导入医院具体内容，也不复制物品生命周期、医疗或维护内容绑定。
 - 四类命令分别调用既有 `resolveCurrentDayHubLoadoutCommand()`、`resolveCurrentDayHubMedicalCommand()`、`resolveHubSurvivalCommand()` 与 `resolveHubMaintenanceCommand()`；容器、目标资格、ItemInstance、ItemState、消耗、日级使用、工时、维修点与 waste 均由 core 拥有。resolver 返回的完整 CurrentDayHub snapshot 直接成为唯一下一阶段，不局部拼接并行 Hub 状态。
 - Router 不直接保存。每次成功 mutation 只经 `executeStableRunCommand()` 写入唯一 Run Save 一次；规则拒绝不写入，存储失败返回已规范化的 committed Hub 且不重跑 resolver、Effect 或消费。`execution.phase` 是下一命令的唯一正式状态输入。
-- Hub mutation 不推进日期、不启动 Scene、不中途执行 Daily Settlement，也不自动结束本日；End Day 仍是独立 `run-lifecycle` 命令。最小 Store 已通过统一 dispatcher 接入；Run Loadout 的仓库、背包、装备栏与快捷栏显式整理，以及中枢医疗、中枢生存补给和中枢维护已接入 React。维护资格、目标范围、材料兼容、资源恢复、浪费、日工时与 Effect 结算均由 core 正式计划拥有；React 只显式选择来源、目标和分配，读取 player-safe Preview 后分派一次正式命令并展示已提交结果。以上 Hub 操作均为零场景时间、一次显式命令和一次保存。制作、拆解及结束本日对应 React gameplay command UI 尚未实现。
+- Hub mutation 不推进日期、不启动 Scene、不中途执行 Daily Settlement，也不自动结束本日；End Day 仍是独立 `run-lifecycle` 命令。最小 Store 已通过统一 dispatcher 接入；Run Loadout 的仓库、背包、装备栏与快捷栏显式整理，以及中枢医疗、中枢生存补给、中枢维护和普通结束本日已接入 React。维护资格、目标范围、材料兼容、资源恢复、浪费、日工时与 Effect 结算均由 core 正式计划拥有；React 只显式选择来源、目标和分配，读取 player-safe Preview 后分派一次正式命令并展示已提交结果。Hub mutation 均为零场景时间；End Day 则继续由独立日结算计划推进日期或产生 Run Failure。每次确认只提交一条命令并保存一次。制作、拆解、Day 7 最终解析及其他终局 UI 尚未实现。
 
 ## 场景时间结算职责
 

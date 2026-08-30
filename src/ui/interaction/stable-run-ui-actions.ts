@@ -34,6 +34,11 @@ import {
 } from '../../core/scene-exploration'
 import type { PlayerVisibleCombatActionPreview } from '../../core/combat'
 import type { CombatPlayerActionCommand } from '../../core/combat'
+import {
+  previewPlayerVisibleDailySettlement,
+  type PlayerVisibleDailySettlementEvaluation,
+  type PlayerVisibleDailySettlementRejection,
+} from '../../core/daily-settlement'
 import type { TimedSceneActionOutcome } from '../../core/scene'
 import { previewBackpackPlacement } from '../../core/inventory'
 import {
@@ -67,6 +72,7 @@ import {
 
 export type StableRunUiActionKind =
   | 'launch-main-scene'
+  | 'end-day'
   | 'scene-move'
   | 'scene-main-search'
   | 'scene-obstacle'
@@ -211,6 +217,17 @@ export interface StableRunUiInteractionModel {
   readonly hubLoadoutOpportunities: readonly StableRunUiHubLoadoutOpportunity[]
   readonly hubMaintenanceOpportunities: readonly StableRunUiHubMaintenanceOpportunity[]
 }
+
+export type StableRunUiEndDayPreview =
+  | Readonly<{
+      canExecute: true
+      action: StableRunUiAction
+      result: PlayerVisibleDailySettlementEvaluation
+    }>
+  | Readonly<{
+      canExecute: false
+      rejection: PlayerVisibleDailySettlementRejection | 'wrong-phase'
+    }>
 
 function freezePreview(
   title: string,
@@ -944,6 +961,143 @@ function createLaunchAction(
       { label: '场景初始时间', value: String(initialScene.remainingTime) },
       { label: '今日主要场景', value: '确认后将被使用' },
     ]),
+  })
+}
+
+function endDayFacts(
+  result: PlayerVisibleDailySettlementEvaluation,
+  dependencies: StableRunUiPresentationDependencies,
+): readonly StableRunUiActionPreviewFact[] {
+  const facts: StableRunUiActionPreviewFact[] = [
+    { label: '当前日期', value: `第 ${result.currentDay} 日` },
+    {
+      label: '结算结果',
+      value: result.outcome === 'next-day'
+        ? `推进至第 ${result.nextDay} 日`
+        : result.outcome === 'health-depleted'
+          ? 'Run Failure · 生命耗尽'
+          : 'Run Failure · 世界威胁终末',
+    },
+    { label: '生命', value: `${result.healthBefore} → ${result.healthAfter}` },
+    {
+      label: '持续危险',
+      value: result.continuousDanger.healthLoss > 0
+        ? `未处理流血损失 ${result.continuousDanger.healthLoss}`
+        : '无生命损失',
+    },
+  ]
+  if (result.worldThreat) {
+    facts.push(
+      {
+        label: '世界威胁阶段',
+        value: `${dependencies.labels.worldThreatStageName(result.worldThreat.stageBeforeId)} → ${dependencies.labels.worldThreatStageName(result.worldThreat.stageAfterId)}`,
+      },
+      {
+        label: '未结算感染暴露',
+        value: `${result.worldThreat.pendingExposuresBefore} → ${result.worldThreat.pendingExposuresAfter}`,
+      },
+      { label: '当日威胁抑制', value: String(result.worldThreat.suppressionApplied) },
+    )
+  }
+  if (result.satiety) {
+    facts.push({ label: '饱食', value: `${result.satiety.before} → ${result.satiety.after}` })
+  }
+  if (result.deprivation) {
+    facts.push({
+      label: '匮乏损失',
+      value: result.deprivation.healthLoss > 0
+        ? `生命 -${result.deprivation.healthLoss}`
+        : '无',
+    })
+  }
+  if (result.recovery) {
+    facts.push({
+      label: '当日生命恢复',
+      value: result.recovery.blockedByBleeding
+        ? '被未处理流血阻断'
+        : `${result.recovery.healthBefore} → ${result.recovery.healthAfter}（实际 +${result.recovery.actual}）`,
+    })
+  }
+  if (result.cleanup) {
+    facts.push(
+      {
+        label: '轻度挫伤清理',
+        value: `${result.cleanup.minorContusionsBefore} → ${result.cleanup.minorContusionsAfter}`,
+      },
+      { label: '已处理伤口移除', value: String(result.cleanup.treatedOpenWoundsRemoved) },
+      { label: '未处理伤口保留', value: String(result.cleanup.untreatedOpenWoundsRetained) },
+      {
+        label: '镇痛状态',
+        value: `${result.cleanup.painkillerBefore ? '生效' : '无'} → ${result.cleanup.painkillerAfter ? '生效' : '无'}`,
+      },
+    )
+  }
+  if (result.dailyReset) {
+    facts.push(
+      {
+        label: '消毒剂日使用次数',
+        value: `${result.dailyReset.disinfectantUsesBefore} → ${result.dailyReset.disinfectantUsesAfter}`,
+      },
+      {
+        label: '抑制剂日使用次数',
+        value: `${result.dailyReset.threatSuppressionUsesBefore} → ${result.dailyReset.threatSuppressionUsesAfter}`,
+      },
+      {
+        label: '维护工时',
+        value: `${result.dailyReset.maintenanceLaborBefore} → ${result.dailyReset.maintenanceLaborAfter}`,
+      },
+      {
+        label: '次日主要场景',
+        value: result.dailyReset.mainSceneUsedAfter ? '已使用' : '尚未进入',
+      },
+    )
+  }
+  return Object.freeze(facts.map((fact) => Object.freeze(fact)))
+}
+
+function endDayWarnings(result: PlayerVisibleDailySettlementEvaluation): readonly string[] {
+  const warnings: string[] = []
+  if (result.continuousDanger.healthLoss > 0) {
+    warnings.push(`未处理流血将在日结算开始时造成 ${result.continuousDanger.healthLoss} 点生命损失。`)
+  }
+  if (result.deprivation?.healthLoss) {
+    warnings.push(`饱食不足将造成 ${result.deprivation.healthLoss} 点生命损失。`)
+  }
+  if (result.outcome === 'health-depleted') warnings.push('本次结算将因生命耗尽进入 Run Failure。')
+  if (result.outcome === 'world-threat-terminal') warnings.push('本次结算将因世界威胁进入终末阶段而进入 Run Failure。')
+  return Object.freeze(warnings)
+}
+
+/** Rebuilds the formal safe settlement preview from the canonical phase. */
+export function previewStableRunUiEndDay(
+  phase: StableRunPhase,
+  dependencies: StableRunUiPresentationDependencies,
+): StableRunUiEndDayPreview {
+  if (phase.kind !== 'current-day-hub') {
+    return Object.freeze({ canExecute: false, rejection: 'wrong-phase' })
+  }
+  const identity = getStableRunPhaseIdentity(phase)
+  const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
+  const safe = previewPlayerVisibleDailySettlement(
+    phase.payload,
+    rules.currentDayHub,
+  )
+  if (!safe.canExecute) return safe
+  const command = createStableRunLifecycleCommand({ kind: 'end-day' })
+  return Object.freeze({
+    canExecute: true,
+    result: safe.result,
+    action: Object.freeze({
+      id: 'end-day',
+      kind: 'end-day',
+      label: '结束本日',
+      command: createStableRunApplicationCommand({ kind: 'lifecycle', command }),
+      preview: freezePreview(
+        '确认结束本日',
+        endDayFacts(safe.result, dependencies),
+        endDayWarnings(safe.result),
+      ),
+    }),
   })
 }
 
@@ -1930,6 +2084,10 @@ export function createStableRunUiInteractionModel(
           (action): action is StableRunUiAction => action !== null,
         ),
         ...getStableRunUiHubCareActions(phase, dependencies),
+        ...(() => {
+          const endDay = previewStableRunUiEndDay(phase, dependencies)
+          return endDay.canExecute ? [endDay.action] : []
+        })(),
       ]
     : phase.kind === 'scene-session'
       ? [

@@ -13,6 +13,7 @@ const scenarios: readonly Readonly<{
   label: string
 }>[] = Object.freeze([
   { kind: 'hub', label: 'Hub 示例' },
+  { kind: 'hub-returned', label: '已返程 Hub 示例' },
   { kind: 'hub-maintenance', label: 'Hub 维护示例' },
   { kind: 'scene', label: 'Scene 示例' },
   { kind: 'combat', label: 'Combat 示例' },

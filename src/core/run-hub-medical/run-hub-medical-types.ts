@@ -12,6 +12,7 @@ import type {
   RunLoadoutDependencies,
   RunLoadoutSnapshot,
 } from '../run-loadout'
+import type { RunHubMedicalErrorCode } from './run-hub-medical-errors'
 
 export interface RunHubMedicalDependencies {
   readonly runLoadout: RunLoadoutDependencies
@@ -88,3 +89,14 @@ export interface RunHubMedicalResolution {
   readonly effects: readonly RunHubMedicalEffect[]
   readonly snapshot: RunHubMedicalSnapshot
 }
+
+export type RunHubMedicalEvaluation =
+  | Readonly<{
+      canExecute: true
+      result: RunHubMedicalTransitionPlan
+    }>
+  | Readonly<{
+      canExecute: false
+      rejectionCode: RunHubMedicalErrorCode
+      rejectionMessage: string
+    }>

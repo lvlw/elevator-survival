@@ -3,6 +3,7 @@ import type { StableRunStore } from '../state/run-store'
 import {
   createStableRunUiInteractionModel,
   previewStableRunUiHubLoadoutDraft,
+  previewStableRunUiHubCareCommand,
   previewStableRunUiPickupDraft,
   previewStableRunUiSceneInventoryDraft,
   previewStableRunUiTaskEventDraft,
@@ -24,6 +25,8 @@ import {
   createStableRunPlayerViewModel,
   createTaskEventResultViewModel,
   createHubLoadoutResultViewModel,
+  createHubMedicalResultViewModel,
+  createHubSurvivalResultViewModel,
   type PlayerVisibleItemViewModel,
   type PlayerVisibleCombatViewModel,
   type PlayerVisibleLoadoutViewModel,
@@ -37,6 +40,8 @@ import {
   type StableRunPlayerViewModel,
   type StableRunUiPresentationDependencies,
   type HubLoadoutResultViewModel,
+  type HubMedicalResultViewModel,
+  type HubSurvivalResultViewModel,
 } from './presentation'
 import { useStableRunStoreSnapshot } from './run-store/use-stable-run-store-snapshot'
 
@@ -205,7 +210,7 @@ function HubView({
     <StatusBar status={model.status} />
     <div className="console-grid">
       <LoadoutPanel loadout={model.loadout} />
-      <section className="console-panel"><h2>电梯中枢</h2><p>已接入主要场景启动与显式整备；医疗、维护和生存操作将在后续 UI 任务接入。</p><dl className="slot-list"><div><dt>维护工时</dt><dd>{model.hub.maintenanceLaborRemaining}</dd></div></dl><h3>仓库</h3><ItemList items={model.hub.warehouse} empty="仓库为空" />{loadoutOpportunities.filter(({ container }) => container === 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}<h3>任务储存区（只读）</h3><ItemList items={model.hub.taskStorage} empty="暂无任务物品" /></section>
+      <section className="console-panel"><h2>电梯中枢</h2><p>已接入主要场景启动、显式整备、中枢医疗与生存补给；维护和结束本日将在后续 UI 任务接入。</p><dl className="slot-list"><div><dt>维护工时</dt><dd>{model.hub.maintenanceLaborRemaining}</dd></div></dl><h3>仓库</h3><ItemList items={model.hub.warehouse} empty="仓库为空" />{loadoutOpportunities.filter(({ container }) => container === 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}<h3>任务储存区（只读）</h3><ItemList items={model.hub.taskStorage} empty="暂无任务物品" /></section>
       {loadoutOpportunities.some(({ container }) => container !== 'warehouse') && <section className="console-panel"><h2>当前携带物整理</h2>{loadoutOpportunities.filter(({ container }) => container !== 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}</section>}
       <ActionPanel actions={actions} onPreview={onPreview} />
     </div>
@@ -684,6 +689,62 @@ function SceneBatteryResultDialog({
   </section></div>
 }
 
+function hubSourceLabel(source: HubMedicalResultViewModel['source']): string {
+  return source.container === 'warehouse'
+    ? `仓库条目 ${source.ordinal}`
+    : source.container === 'backpack'
+      ? `背包格 ${source.column},${source.row}`
+      : `快捷栏${source.slotNumber}`
+}
+
+function hubMedicalItemLabel(item: HubMedicalResultViewModel['medicalItem']): string {
+  return item === 'bandage' ? '绷带' : item === 'painkiller' ? '止痛药' : item === 'disinfectant' ? '消毒剂' : '急救包'
+}
+
+function HubMedicalResultDialog({ result, onClose }: Readonly<{
+  result: HubMedicalResultViewModel
+  onClose(): void
+}>) {
+  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="hub-medical-result-title">
+    <h2 id="hub-medical-result-title">中枢医疗结果</h2>
+    <p><strong>{result.action}</strong></p>
+    <dl className="preview-facts">
+      <div><dt>物品</dt><dd>{hubMedicalItemLabel(result.medicalItem)}</dd></div>
+      <div><dt>来源</dt><dd>{hubSourceLabel(result.source)}</dd></div>
+      <div><dt>来源数量</dt><dd>{result.sourceQuantityBefore} → {result.sourceQuantityAfter}</dd></div>
+      <div><dt>生命</dt><dd>{result.healthBefore} → {result.healthAfter}</dd></div>
+      <div><dt>流血</dt><dd>{result.bleedingBefore ? '是' : '否'} → {result.bleedingAfter ? '是' : '否'}</dd></div>
+      <div><dt>轻度挫伤</dt><dd>{result.minorContusionsBefore} → {result.minorContusionsAfter}</dd></div>
+      <div><dt>镇痛</dt><dd>{result.painkillerBefore ? '生效' : '无'} → {result.painkillerAfter ? '生效' : '无'}</dd></div>
+      <div><dt>未结算感染暴露</dt><dd>{result.infectionExposuresBefore} → {result.infectionExposuresAfter}</dd></div>
+      <div><dt>当日消毒剂使用</dt><dd>{result.disinfectantUsesBefore} → {result.disinfectantUsesAfter}</dd></div>
+      <div><dt>中枢场景时间</dt><dd>0</dd></div>
+    </dl>
+    <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
+  </section></div>
+}
+
+function HubSurvivalResultDialog({ result, onClose }: Readonly<{
+  result: HubSurvivalResultViewModel
+  onClose(): void
+}>) {
+  const ration = result.action === 'use-hub-ration'
+  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="hub-survival-result-title">
+    <h2 id="hub-survival-result-title">中枢生存补给结果</h2>
+    <p><strong>{result.actionLabel}</strong></p>
+    <dl className="preview-facts">
+      <div><dt>来源</dt><dd>{hubSourceLabel(result.source)}</dd></div>
+      <div><dt>来源数量</dt><dd>{result.sourceQuantityBefore} → {result.sourceQuantityAfter}</dd></div>
+      {ration
+        ? <><div><dt>饱食</dt><dd>{result.satietyBefore} → {result.satietyAfter}</dd></div><div><dt>实际恢复饱食</dt><dd>{result.satietyRestored}</dd></div></>
+        : <><div><dt>当日抑制剂使用</dt><dd>{result.suppressionUsesBefore} → {result.suppressionUsesAfter}</dd></div><div><dt>当日威胁抑制量</dt><dd>{result.suppressionAmountBefore} → {result.suppressionAmountAfter}</dd></div><div><dt>未结算感染暴露</dt><dd>{result.infectionExposuresBefore} → {result.infectionExposuresAfter}</dd></div><div><dt>已有感染进展</dt><dd>{result.worldThreatProgressBefore} → {result.worldThreatProgressAfter}</dd></div></>}
+      <div><dt>中枢场景时间</dt><dd>0</dd></div>
+    </dl>
+    {!ration && <p className="preview-warning">抑制剂将在每日结算时减少当日感染增加；现有进展和暴露未被立即清除。</p>}
+    <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
+  </section></div>
+}
+
 function ActionPreviewDialog({
   preview,
   onCancel,
@@ -769,6 +830,8 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
   const [sceneBatteryResult, setSceneBatteryResult] = useState<SceneBatteryResultViewModel | null>(null)
   const [sceneInventoryResult, setSceneInventoryResult] = useState<SceneInventoryResultViewModel | null>(null)
   const [hubLoadoutResult, setHubLoadoutResult] = useState<HubLoadoutResultViewModel | null>(null)
+  const [hubMedicalResult, setHubMedicalResult] = useState<HubMedicalResultViewModel | null>(null)
+  const [hubSurvivalResult, setHubSurvivalResult] = useState<HubSurvivalResultViewModel | null>(null)
   const [persistenceFeedback, setPersistenceFeedback] = useState<string | null>(null)
   const pendingAction = interaction.actions.find(({ id }) => id === pendingActionId) ?? null
   const pendingPickup = interaction.pickupOpportunities.find(({ id }) => id === pendingPickupId) ?? null
@@ -815,6 +878,10 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
       }, presentationDependencies)
 
   useEffect(() => {
+    if (pendingActionId !== null && pendingAction === null) setPendingActionId(null)
+  }, [pendingAction, pendingActionId])
+
+  useEffect(() => {
     if (pendingPickupId !== null && pendingPickup === null) setPendingPickupId(null)
   }, [pendingPickup, pendingPickupId])
 
@@ -833,6 +900,17 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
   const confirm = () => {
     if (!pendingAction) return
     const beforePhase = snapshot.phase
+    const hubCarePreview = pendingAction.kind === 'hub-medical' || pendingAction.kind === 'hub-survival'
+      ? previewStableRunUiHubCareCommand(
+          beforePhase,
+          pendingAction.command,
+          presentationDependencies,
+        )
+      : null
+    if ((pendingAction.kind === 'hub-medical' || pendingAction.kind === 'hub-survival') && !hubCarePreview) {
+      setPendingActionId(null)
+      return
+    }
     const execution = store.dispatch(pendingAction.command)
     setPendingActionId(null)
     setPersistenceFeedback(execution.kind === 'executed'
@@ -898,6 +976,30 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
         execution.result.runReturn.summary,
         execution.phase,
         presentationDependencies,
+      ))
+    }
+    if (
+      pendingAction.kind === 'hub-medical' &&
+      hubCarePreview?.kind === 'hub-medical' &&
+      execution.phase.kind === 'current-day-hub'
+    ) {
+      setHubMedicalResult(createHubMedicalResultViewModel(
+        beforePhase,
+        execution.phase,
+        pendingAction.label,
+        hubCarePreview.result,
+      ))
+    }
+    if (
+      pendingAction.kind === 'hub-survival' &&
+      hubCarePreview?.kind === 'hub-survival' &&
+      execution.phase.kind === 'current-day-hub'
+    ) {
+      setHubSurvivalResult(createHubSurvivalResultViewModel(
+        beforePhase,
+        execution.phase,
+        pendingAction.label,
+        hubCarePreview.result,
       ))
     }
   }
@@ -1048,6 +1150,8 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
     {sceneBatteryResult && <SceneBatteryResultDialog result={sceneBatteryResult} onClose={() => setSceneBatteryResult(null)} />}
     {sceneInventoryResult && <SceneInventoryResultDialog result={sceneInventoryResult} onClose={() => setSceneInventoryResult(null)} />}
     {hubLoadoutResult && <HubLoadoutResultDialog result={hubLoadoutResult} onClose={() => setHubLoadoutResult(null)} />}
+    {hubMedicalResult && <HubMedicalResultDialog result={hubMedicalResult} onClose={() => setHubMedicalResult(null)} />}
+    {hubSurvivalResult && <HubSurvivalResultDialog result={hubSurvivalResult} onClose={() => setHubSurvivalResult(null)} />}
     {import.meta.env.DEV && <DevInspector phase={snapshot.phase} />}
   </>
 }

@@ -59,6 +59,7 @@ import {
   getStableRunUiHubLoadoutOpportunities,
   type StableRunUiHubLoadoutOpportunity,
 } from './hub-loadout-interaction'
+import { getStableRunUiHubCareActions } from './hub-care-interaction'
 
 export type StableRunUiActionKind =
   | 'launch-main-scene'
@@ -72,6 +73,8 @@ export type StableRunUiActionKind =
   | 'scene-combat-action'
   | 'scene-withdraw'
   | 'settle-terminal-scene'
+  | 'hub-medical'
+  | 'hub-survival'
 
 /** An internal reference only; ordinary player ViewModels never expose it. */
 export interface StableRunUiPickupOpportunity {
@@ -1917,9 +1920,12 @@ export function createStableRunUiInteractionModel(
     ? createTaskEventInteraction(phase, dependencies)
     : Object.freeze({ actions: Object.freeze([]), opportunities: Object.freeze([]) })
   const actions = phase.kind === 'current-day-hub'
-    ? [createLaunchAction(phase, dependencies)].filter(
-        (action): action is StableRunUiAction => action !== null,
-      )
+    ? [
+        ...[createLaunchAction(phase, dependencies)].filter(
+          (action): action is StableRunUiAction => action !== null,
+        ),
+        ...getStableRunUiHubCareActions(phase, dependencies),
+      ]
     : phase.kind === 'scene-session'
       ? [
           ...createCombatActions(phase, dependencies),

@@ -13,6 +13,8 @@ import {
   buildRunHubMedicalTransitionPlan,
   createRunHubMedicalSnapshot,
   getAvailableRunHubMedicalCommands,
+  previewRunHubMedicalCommand,
+  previewPlayerVisibleRunHubMedicalCommand,
   resolveRunHubMedicalCommand,
   validateRunHubMedicalDependencies,
   RunHubMedicalError,
@@ -316,6 +318,64 @@ describe('hospital Run hub medical', () => {
       command({ container: 'quick-slot', quickSlotIndex: 0 }, { kind: 'open-wound', woundId: 'wound-a' }),
     ]))
     expect(Object.isFrozen(available)).toBe(true)
+  })
+
+  it('previews the formal plan and projects a wound ordinal without applying or exposing identities', () => {
+    const start = hub({
+      backpackItems: [item('hidden-bandage-instance', HOSPITAL_ITEM_IDS.bandage, 2)],
+      currentHealth: 10,
+      bleeding: true,
+      wounds: [
+        { id: 'hidden-wound-a', kind: 'laceration', treatment: 'treated' },
+        { id: 'hidden-wound-b', kind: 'laceration', treatment: 'untreated' },
+      ],
+    })
+    const action = command(
+      { container: 'backpack', itemInstanceId: 'hidden-bandage-instance' },
+      { kind: 'open-wound', woundId: 'hidden-wound-b' },
+    )
+    const formal = previewRunHubMedicalCommand(start, action, dependencies)
+    const safe = previewPlayerVisibleRunHubMedicalCommand(start, action, dependencies)
+    expect(formal.canExecute).toBe(true)
+    expect(safe).toMatchObject({
+      canExecute: true,
+      result: {
+        medicalItem: 'bandage',
+        source: { container: 'backpack', column: 1, row: 1 },
+        sourceQuantityBefore: 2,
+        sourceQuantityAfter: 1,
+        target: { kind: 'open-wound', woundKind: 'laceration', ordinal: 2 },
+        healthBefore: 10,
+        healthAfter: 11,
+        bleedingBefore: true,
+        bleedingAfter: false,
+        hubSceneTime: 0,
+      },
+    })
+    expect(start.runLoadout.backpack.items[0].quantity).toBe(2)
+    expect(start.playerCondition.openWounds[1]).toMatchObject({ id: 'hidden-wound-b', treatment: 'untreated' })
+    const serialized = JSON.stringify(safe)
+    for (const hidden of ['hidden-bandage-instance', 'hidden-wound-a', 'hidden-wound-b', 'instanceId', 'woundId', 'effects', 'snapshot']) {
+      expect(serialized).not.toContain(hidden)
+    }
+  })
+
+  it('returns the same formal rejection from raw and player-safe previews without mutation', () => {
+    const start = hub({
+      warehouse: [item('preventive-painkiller', HOSPITAL_ITEM_IDS.painkiller)],
+    })
+    const action = command({ container: 'warehouse', itemInstanceId: 'preventive-painkiller' })
+    expect(previewRunHubMedicalCommand(start, action, dependencies)).toMatchObject({
+      canExecute: false,
+      rejectionCode: 'ACTION_NOT_AVAILABLE',
+    })
+    expect(previewPlayerVisibleRunHubMedicalCommand(start, action, dependencies)).toMatchObject({
+      canExecute: false,
+      rejectionCode: 'ACTION_NOT_AVAILABLE',
+    })
+    expect(start.runLoadout.warehouse.items).toEqual([
+      item('preventive-painkiller', HOSPITAL_ITEM_IDS.painkiller),
+    ])
   })
 
   it('rejects task storage, equipment-shaped, malformed, and tampered medical transactions atomically', () => {

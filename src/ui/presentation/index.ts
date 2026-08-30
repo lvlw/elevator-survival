@@ -25,3 +25,9 @@ export {
   createHubLoadoutResultViewModel,
   type HubLoadoutResultViewModel,
 } from './hub-loadout-result-view-model'
+export {
+  createHubMedicalResultViewModel,
+  createHubSurvivalResultViewModel,
+  type HubMedicalResultViewModel,
+  type HubSurvivalResultViewModel,
+} from './hub-care-result-view-model'

@@ -278,9 +278,9 @@ describe('stable Run UI interaction model', () => {
 
     expect(first).toEqual(second)
     expect(Object.isFrozen(first)).toBe(true)
-    expect(first.actions).toHaveLength(1)
-    expect(first.actions[0]?.kind).toBe('launch-main-scene')
-    expect(first.actions[0]?.preview.facts).toEqual(expect.arrayContaining([
+    const launch = first.actions.find(({ kind }) => kind === 'launch-main-scene')
+    expect(launch).toBeDefined()
+    expect(launch?.preview.facts).toEqual(expect.arrayContaining([
       { label: '当前游戏日', value: '第 2 日' },
       { label: '今日主要场景', value: '确认后将被使用' },
     ]))

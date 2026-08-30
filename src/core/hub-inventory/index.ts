@@ -8,3 +8,7 @@ export {
   type HubItemSource,
   type ResolvedHubItemSource,
 } from './hub-inventory'
+export {
+  getPlayerVisibleHubItemSource,
+  type PlayerVisibleHubItemSource,
+} from './player-visible-hub-item-source'

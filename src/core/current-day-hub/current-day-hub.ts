@@ -116,6 +116,14 @@ export interface HubSurvivalTransitionPlan {
   readonly snapshot: CurrentDayHubSnapshot
 }
 
+export type HubSurvivalEvaluation =
+  | Readonly<{ canExecute: true; result: HubSurvivalTransitionPlan }>
+  | Readonly<{
+      canExecute: false
+      rejectionCode: CurrentDayHubError['code']
+      rejectionMessage: string
+    }>
+
 export class CurrentDayHubError extends Error {
   public readonly code: 'INVALID_INPUT' | 'ACTION_NOT_AVAILABLE' | 'EFFECT_MISMATCH'
   public constructor(code: CurrentDayHubError['code'], message: string) {
@@ -428,6 +436,33 @@ export function resolveHubSurvivalCommand(
 ) {
   const plan = buildHubSurvivalTransitionPlan(snapshot, command, dependencies)
   return applyHubSurvivalEffects(snapshot, plan.command, plan.effects, dependencies)
+}
+
+/** Builds the formal Hub survival plan without applying it. */
+export function previewHubSurvivalCommand(
+  snapshot: CurrentDayHubSnapshot,
+  command: unknown,
+  dependencies: CurrentDayHubDependencies,
+): HubSurvivalEvaluation {
+  try {
+    return deepFreeze({
+      canExecute: true as const,
+      result: buildHubSurvivalTransitionPlan(
+        snapshot,
+        createHubSurvivalCommand(command),
+        dependencies,
+      ),
+    })
+  } catch (error) {
+    if (error instanceof CurrentDayHubError) {
+      return deepFreeze({
+        canExecute: false as const,
+        rejectionCode: error.code,
+        rejectionMessage: error.message,
+      })
+    }
+    throw error
+  }
 }
 
 /** Projects the one formal pre-Return carry-forward aggregate from stable Hub facts. */

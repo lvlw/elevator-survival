@@ -7,6 +7,7 @@ export {
   createHubSurvivalCommand,
   projectRunReturnCarryForwardFromCurrentDayHub,
   getAvailableHubSurvivalCommands,
+  previewHubSurvivalCommand,
   resolveCurrentDayHubLoadoutCommand,
   resolveCurrentDayHubMedicalCommand,
   resolveHubSurvivalCommand,
@@ -18,4 +19,10 @@ export {
   type HubSurvivalContentBindings,
   type HubSurvivalEffect,
   type HubSurvivalTransitionPlan,
+  type HubSurvivalEvaluation,
 } from './current-day-hub'
+export {
+  previewPlayerVisibleHubSurvivalCommand,
+  type PlayerVisibleHubSurvivalEvaluation,
+  type PlayerVisibleHubSurvivalResult,
+} from './player-visible-hub-survival'

@@ -31,3 +31,8 @@ export {
   type StableRunUiHubLoadoutOpportunity,
   type StableRunUiHubLoadoutPreview,
 } from './hub-loadout-interaction'
+export {
+  getStableRunUiHubCareActions,
+  previewStableRunUiHubCareCommand,
+  type StableRunUiHubCareSafeResult,
+} from './hub-care-interaction'

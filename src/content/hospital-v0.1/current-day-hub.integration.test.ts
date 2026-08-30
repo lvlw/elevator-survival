@@ -7,6 +7,8 @@ import {
   createCurrentDayHubSnapshotFromReturn,
   createHubSurvivalCommand,
   getAvailableHubSurvivalCommands,
+  previewHubSurvivalCommand,
+  previewPlayerVisibleHubSurvivalCommand,
   resolveCurrentDayHubLoadoutCommand,
   resolveCurrentDayHubMedicalCommand,
   resolveHubSurvivalCommand,
@@ -369,6 +371,71 @@ describe('hospital current-day hub', () => {
     expect(result.snapshot.runLoadout.warehouse.items[0].quantity).toBe(1)
     expect(getItemState(result.snapshot.runLoadout.itemStates, 'suppressant-stack').resource).toEqual({ kind: 'none' })
     expect(() => resolveHubSurvivalCommand(result.snapshot, command, dependencies)).toThrow(/不符合正式规则/)
+  })
+
+  it('previews suppressant from the formal plan without exposing identity or changing threat facts', () => {
+    const suppressant = item('hidden-suppressant-instance', HOSPITAL_ITEM_IDS.infectionSuppressant, 2)
+    const start = hub({ warehouse: [suppressant], pendingExposures: 1, progress: 10 })
+    const action = survival('use-hub-infection-suppressant', {
+      container: 'warehouse', itemInstanceId: suppressant.instanceId,
+    })
+    const formal = previewHubSurvivalCommand(start, action, dependencies)
+    const safe = previewPlayerVisibleHubSurvivalCommand(start, action, dependencies)
+    expect(formal.canExecute).toBe(true)
+    expect(safe).toMatchObject({
+      canExecute: true,
+      result: {
+        action: 'use-hub-infection-suppressant',
+        source: { container: 'warehouse', ordinal: 1 },
+        sourceQuantityBefore: 2,
+        sourceQuantityAfter: 1,
+        suppressionUsesBefore: 0,
+        suppressionUsesAfter: 1,
+        suppressionAmountBefore: 0,
+        suppressionAmountAfter: 15,
+        infectionExposuresBefore: 1,
+        infectionExposuresAfter: 1,
+        worldThreatProgressBefore: 10,
+        worldThreatProgressAfter: 10,
+        hubSceneTime: 0,
+      },
+    })
+    expect(start.runLoadout.warehouse.items[0].quantity).toBe(2)
+    expect(start.dailyState.threatSuppression).toEqual({ usesToday: 0, suppressionAmountToday: 0 })
+    const serialized = JSON.stringify(safe)
+    for (const hidden of ['hidden-suppressant-instance', 'instanceId', 'effects', 'snapshot']) {
+      expect(serialized).not.toContain(hidden)
+    }
+  })
+
+  it('previews ration restoration and shares formal rejection at maximum satiety', () => {
+    const ration = item('preview-ration', HOSPITAL_ITEM_IDS.ration)
+    const start = hub({ backpack: [ration], satiety: 5 })
+    const action = survival('use-hub-ration', {
+      container: 'backpack', itemInstanceId: ration.instanceId,
+    })
+    expect(previewPlayerVisibleHubSurvivalCommand(start, action, dependencies)).toMatchObject({
+      canExecute: true,
+      result: {
+        source: { container: 'backpack', column: 1, row: 1 },
+        satietyBefore: 5,
+        satietyRestored: 1,
+        satietyAfter: 6,
+      },
+    })
+    const full = hub({ warehouse: [ration], satiety: 6 })
+    const unavailable = survival('use-hub-ration', {
+      container: 'warehouse', itemInstanceId: ration.instanceId,
+    })
+    expect(previewHubSurvivalCommand(full, unavailable, dependencies)).toMatchObject({
+      canExecute: false,
+      rejectionCode: 'ACTION_NOT_AVAILABLE',
+    })
+    expect(previewPlayerVisibleHubSurvivalCommand(full, unavailable, dependencies)).toMatchObject({
+      canExecute: false,
+      rejectionCode: 'ACTION_NOT_AVAILABLE',
+    })
+    expect(full.runLoadout.warehouse.items).toEqual([ration])
   })
 
   it('allows suppressant for existing progress and removes a quick-slot unit without refill', () => {

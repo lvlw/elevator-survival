@@ -149,6 +149,65 @@ function createHubLoadoutPhase(options: Readonly<{ bothQuickSlots?: boolean }> =
   }
 }
 
+function createHubCarePhase(options: Readonly<{
+  fullHealth?: boolean
+  noInjuries?: boolean
+  noExposureOrProgress?: boolean
+  fullSatiety?: boolean
+  disinfectantUsed?: boolean
+  suppressantUsed?: boolean
+}> = {}) {
+  const warehouseBandage = { ...item('hub-care-bandage', HOSPITAL_ITEM_IDS.bandage), quantity: 2 }
+  const warehouseFirstAid = item('hub-care-first-aid', HOSPITAL_ITEM_IDS.firstAidKit)
+  const warehouseRation = item('hub-care-ration', HOSPITAL_ITEM_IDS.ration)
+  const warehouseSuppressant = item('hub-care-suppressant', HOSPITAL_ITEM_IDS.infectionSuppressant)
+  const backpackPainkiller = item('hub-care-painkiller', HOSPITAL_ITEM_IDS.painkiller)
+  const quickDisinfectant = item('hub-care-disinfectant', HOSPITAL_ITEM_IDS.disinfectant)
+  const taskCase = item('hub-care-task-case', HOSPITAL_ITEM_IDS.sealedPathogenCase)
+  const owned = [warehouseBandage, warehouseFirstAid, warehouseRation, warehouseSuppressant, backpackPainkiller, quickDisinfectant, taskCase]
+  const noInjuries = options.noInjuries ?? false
+  return {
+    kind: 'current-day-hub' as const,
+    payload: createCurrentDayHubSnapshot({
+      continuity: { runIdentity: { runId: 'hub-care-ui-run', seed: 'hub-care-ui-seed', rulesVersion: config.metadata.rulesVersion }, currentDay: 2, sceneInstanceId: 'hub-care-returned-scene' },
+      runLoadout: createRunLoadoutSnapshot({
+        warehouse: { items: [warehouseBandage, warehouseFirstAid, warehouseRation, warehouseSuppressant] },
+        taskStorage: { items: [taskCase] },
+        backpack: createBackpackSnapshot({
+          width: config.backpack.width,
+          height: config.backpack.height,
+          items: [backpackPainkiller],
+          placements: [{ instanceId: backpackPainkiller.instanceId, x: 0, y: 0, rotated: false }],
+        }, hospitalItemCatalog),
+        equipment: { weapon: null, armor: null, utility: null },
+        quickSlots: createQuickSlotSnapshot([quickDisinfectant, null], config.backpack.quickSlotCount, hospitalItemCatalog, hospitalItemQuickSlotCatalog),
+        itemStates: { states: owned.map((candidate) => createFullItemState(candidate, hospitalItemResourceCatalog)) },
+      }, { physicalCatalog: hospitalItemCatalog, equipmentCatalog: hospitalItemEquipmentCatalog, quickSlotCatalog: hospitalItemQuickSlotCatalog, itemResourceCatalog: hospitalItemResourceCatalog, lifecycleCatalog: hospitalItemReturnLifecycleCatalog, backpackRules: config.backpack }),
+      playerCondition: createPlayerCondition({
+        currentHealth: options.fullHealth ? config.combat.player.maxHealth : 8,
+        bleeding: !noInjuries,
+        openWounds: noInjuries ? [] : [
+          { id: 'hub-care-wound-a', kind: 'laceration', treatment: 'untreated' },
+          { id: 'hub-care-wound-b', kind: 'puncture', treatment: 'untreated' },
+        ],
+        minorContusions: noInjuries ? 0 : 1,
+        painkillerActive: false,
+        pendingInfectionExposures: options.noExposureOrProgress ? 0 : 2,
+      }, config.combat.player),
+      runIntelLog: { intelIds: [] },
+      dailyState: {
+        medicalUsage: { disinfectantUsesToday: options.disinfectantUsed ? 1 : 0 },
+        threatSuppression: { usesToday: options.suppressantUsed ? 1 : 0, suppressionAmountToday: options.suppressantUsed ? config.worldThreat.suppressant.dailyReduction : 0 },
+        maintenanceLaborRemaining: config.maintenance.dailyBaseLabor.points,
+        mainSceneUsedToday: false,
+      },
+      worldThreat: { definitionId: config.worldThreat.definitionId, progress: options.noExposureOrProgress ? 0 : 10 },
+      satiety: { current: options.fullSatiety ? config.dailySettlement.maxSatiety : 4 },
+      returnLedger: { sceneInstanceIds: ['hub-care-returned-scene'] },
+    }, hospitalCurrentDayHubDependencies),
+  }
+}
+
 function createHubLoadoutLaunchPhase() {
   const pipe = item('hub-launch-pipe', HOSPITAL_ITEM_IDS.metalPipe)
   const bandage = { ...item('hub-launch-bandage', HOSPITAL_ITEM_IDS.bandage), quantity: 2 }
@@ -4197,5 +4256,265 @@ describe('StableRunUiApp', () => {
     expect(previewStableRunUiHubLoadoutDraft(quickPhase, moveDraft, uiDependencies)?.canExecute).toBe(true)
     const afterQuickOccupied = executeExternal(quickPhase, { ...moveDraft, opportunityId: painkiller.id, operation: 'backpack-to-quick-slot' })
     expect(previewStableRunUiHubLoadoutDraft(afterQuickOccupied, moveDraft, uiDependencies)?.canExecute).toBe(false)
+  })
+
+  it('derives every Hub medical and survival action from formal selectors without exposing identities', () => {
+    const phase = createHubCarePhase()
+    const model = createStableRunUiInteractionModel(phase, uiDependencies)
+    const medical = model.actions.filter(({ kind }) => kind === 'hub-medical')
+    const survival = model.actions.filter(({ kind }) => kind === 'hub-survival')
+    expect(medical.some(({ label }) => label === '使用绷带 · 仓库条目 1 · 撕裂伤 1')).toBe(true)
+    expect(medical.some(({ label }) => label === '使用绷带 · 仓库条目 1 · 穿刺伤 1')).toBe(true)
+    expect(medical.some(({ label }) => label === '使用止痛药 · 背包格 1,1')).toBe(true)
+    expect(medical.some(({ label }) => label === '使用消毒剂 · 快捷栏1')).toBe(true)
+    expect(medical.some(({ label }) => label === '使用急救包 · 仓库条目 2 · 轻度挫伤')).toBe(true)
+    expect(survival.map(({ label }) => label)).toEqual(expect.arrayContaining([
+      '使用压缩口粮 · 仓库条目 3',
+      '使用感染抑制剂 · 仓库条目 4',
+    ]))
+    const serialized = JSON.stringify({
+      actions: model.actions.map(({ kind, label, preview }) => ({ kind, label, preview })),
+    })
+    for (const hidden of [
+      'hub-care-bandage', 'hub-care-wound-a', 'hub-care-task-case',
+      'instanceId', 'woundId', 'runId', 'rulesVersion', 'effects', 'snapshot',
+    ]) expect(serialized).not.toContain(hidden)
+  })
+
+  it.each([
+    ['绷带', '使用绷带 · 仓库条目 1 · 撕裂伤 1'],
+    ['止痛药', '使用止痛药 · 背包格 1,1'],
+    ['消毒剂', '使用消毒剂 · 快捷栏1'],
+    ['急救包', '使用急救包 · 仓库条目 2 · 轻度挫伤'],
+  ] as const)('confirms one formal Hub %s medical command and one save', (_name, actionLabel) => {
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({ initialPhase: createHubCarePhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, actionLabel).click() })
+    expect(container.textContent).toContain('中枢场景时间')
+    expect(container.textContent).toContain('明确来源')
+    for (const hidden of [
+      'hub-care-bandage', 'hub-care-painkiller', 'hub-care-disinfectant',
+      'hub-care-wound-a', 'hub-care-task-case', 'instanceId', 'woundId',
+      'runId', 'rulesVersion', 'effects', 'snapshot',
+    ]) expect(container.innerHTML).not.toContain(hidden)
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(tracked.commands[0]).toMatchObject({ kind: 'hub', command: { kind: 'hub-medical' } })
+    expect(storage.writes).toBe(1)
+    expect(container.textContent).toContain('中枢医疗结果')
+    const after = tracked.store.getState().phase
+    if (after.kind !== 'current-day-hub') throw new Error('expected Hub')
+    if (_name === '绷带') {
+      expect(after.payload.playerCondition).toMatchObject({ currentHealth: 9, bleeding: false })
+      expect(after.payload.runLoadout.warehouse.items.find(({ instanceId }) => instanceId === 'hub-care-bandage')?.quantity).toBe(1)
+      expect(getItemState(after.payload.runLoadout.itemStates, 'hub-care-bandage').resource).toEqual({ kind: 'none' })
+    } else if (_name === '止痛药') {
+      expect(after.payload.playerCondition.painkillerActive).toBe(true)
+      expect(after.payload.runLoadout.backpack.items).toEqual([])
+    } else if (_name === '消毒剂') {
+      expect(after.payload.playerCondition.pendingInfectionExposures).toBe(1)
+      expect(after.payload.dailyState.medicalUsage.disinfectantUsesToday).toBe(1)
+      expect(after.payload.runLoadout.quickSlots.slots[0]).toBeNull()
+    } else {
+      expect(after.payload.playerCondition).toMatchObject({ currentHealth: 12, minorContusions: 0 })
+    }
+    act(() => { button(container, '关闭结果').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+  })
+
+  it.each([
+    ['压缩口粮', '使用压缩口粮 · 仓库条目 3'],
+    ['感染抑制剂', '使用感染抑制剂 · 仓库条目 4'],
+  ] as const)('confirms one formal Hub %s survival command and preserves its semantic boundary', (name, actionLabel) => {
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({ initialPhase: createHubCarePhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, actionLabel).click() })
+    expect(tracked.commands).toHaveLength(0)
+    if (name === '感染抑制剂') {
+      expect(container.textContent).toContain('不会立即降低已有感染进展')
+      expect(container.textContent).toContain('不会清除暴露')
+    } else {
+      expect(container.textContent).toContain('不恢复生命')
+    }
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(tracked.commands[0]).toMatchObject({ kind: 'hub', command: { kind: 'hub-survival' } })
+    expect(storage.writes).toBe(1)
+    const after = tracked.store.getState().phase
+    if (after.kind !== 'current-day-hub') throw new Error('expected Hub')
+    if (name === '压缩口粮') {
+      expect(after.payload.satiety.current).toBe(6)
+      expect(after.payload.playerCondition.currentHealth).toBe(8)
+    } else {
+      expect(after.payload.dailyState.threatSuppression).toEqual({ usesToday: 1, suppressionAmountToday: 15 })
+      expect(after.payload.playerCondition.pendingInfectionExposures).toBe(2)
+      expect(after.payload.worldThreat.progress).toBe(10)
+    }
+    expect(container.textContent).toContain('中枢生存补给结果')
+    act(() => { button(container, '关闭结果').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+  })
+
+  it('omits formally unavailable preventive, repeated, full-satiety, and no-threat Hub actions', () => {
+    const phase = createHubCarePhase({
+      fullHealth: true,
+      noInjuries: true,
+      noExposureOrProgress: true,
+      fullSatiety: true,
+      disinfectantUsed: true,
+      suppressantUsed: true,
+    })
+    const actions = createStableRunUiInteractionModel(phase, uiDependencies).actions
+    expect(actions.filter(({ kind }) => kind === 'hub-medical')).toEqual([])
+    expect(actions.filter(({ kind }) => kind === 'hub-survival')).toEqual([])
+  })
+
+  it('keeps Hub care StrictMode Preview side-effect free and closes a stale source after a formal phase change', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: createHubCarePhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StrictMode><StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} /></StrictMode>) })
+    act(() => { button(container, '使用绷带 · 仓库条目 1 · 撕裂伤 1').click() })
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+    act(() => { button(container, '取消').click() })
+    expect(tracked.commands).toHaveLength(0)
+    act(() => { button(container, '使用绷带 · 仓库条目 1 · 撕裂伤 1').click() })
+    act(() => {
+      inner.dispatch({
+        kind: 'hub',
+        command: {
+          kind: 'hub-loadout',
+          command: {
+            kind: 'warehouse-to-backpack',
+            instanceId: 'hub-care-bandage',
+            placement: { instanceId: 'hub-care-bandage', x: 2, y: 0, rotated: false },
+          },
+        },
+      })
+    })
+    expect(container.textContent).not.toContain('确认使用绷带')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+  })
+
+  it('closes a stale medical wound target after another formal Hub medical command removes it', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: createHubCarePhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '使用绷带 · 仓库条目 1 · 撕裂伤 1').click() })
+    expect(container.textContent).toContain('确认使用绷带')
+    const external = createStableRunUiInteractionModel(inner.getState().phase, uiDependencies).actions
+      .find(({ label }) => label === '使用绷带 · 仓库条目 1 · 撕裂伤 1')
+    if (!external) throw new Error('expected formal bandage action')
+    act(() => { inner.dispatch(external.command) })
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(1)
+  })
+
+  it('closes a stale survival Preview after a formal Hub survival command removes its eligibility', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: createHubCarePhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '使用压缩口粮 · 仓库条目 3').click() })
+    expect(container.textContent).toContain('确认使用压缩口粮')
+    const external = createStableRunUiInteractionModel(inner.getState().phase, uiDependencies).actions
+      .find(({ label }) => label === '使用压缩口粮 · 仓库条目 3')
+    if (!external) throw new Error('expected formal ration action')
+    act(() => { inner.dispatch(external.command) })
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(1)
+  })
+
+  it.each([
+    ['medical', '使用绷带 · 仓库条目 1 · 撕裂伤 1'],
+    ['survival', '使用压缩口粮 · 仓库条目 3'],
+  ] as const)('keeps one committed Hub %s action after save failure without retry or reload', (_kind, actionLabel) => {
+    const storage = new FailingStorage()
+    const inner = createStableRunStore({ initialPhase: createHubCarePhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, actionLabel).click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    expect(inner.getState().phase.kind).toBe('current-day-hub')
+    expect(container.textContent).toContain('保存失败')
+    if (_kind === 'medical') {
+      const phase = inner.getState().phase
+      if (phase.kind !== 'current-day-hub') throw new Error('expected Hub')
+      expect(phase.payload.playerCondition.bleeding).toBe(false)
+      expect(phase.payload.runLoadout.warehouse.items.find(({ instanceId }) => instanceId === 'hub-care-bandage')?.quantity).toBe(1)
+    } else {
+      const phase = inner.getState().phase
+      if (phase.kind !== 'current-day-hub') throw new Error('expected Hub')
+      expect(phase.payload.satiety.current).toBe(6)
+    }
+  })
+
+  it('carries committed Hub medical usage, condition, satiety, suppression, and item consumption into Scene Launch', () => {
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({ initialPhase: createHubCarePhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    for (const label of [
+      '使用绷带 · 仓库条目 1 · 撕裂伤 1',
+      '使用消毒剂 · 快捷栏1',
+      '使用感染抑制剂 · 仓库条目 4',
+      '使用压缩口粮 · 仓库条目 3',
+    ]) {
+      act(() => { button(container, label).click() })
+      act(() => { button(container, '确认执行').click() })
+      act(() => { button(container, '关闭结果').click() })
+    }
+    act(() => { button(container, '进入 封锁医院·急诊楼一层').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(5)
+    expect(storage.writes).toBe(5)
+    const phase = tracked.store.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected Scene Session')
+    expect(phase.payload.scene.condition).toMatchObject({
+      currentHealth: 9,
+      bleeding: false,
+      pendingInfectionExposures: 1,
+    })
+    expect(phase.payload.scene.dailyMedicalUsage.disinfectantUsesToday).toBe(1)
+    expect(phase.payload.context.satiety.current).toBe(6)
+    expect(phase.payload.context.threatSuppression).toEqual({
+      usesToday: 1,
+      suppressionAmountToday: 15,
+    })
+    expect(phase.payload.scene.quickSlots.slots[0]).toBeNull()
+    expect(phase.payload.scene.backpack.items.some(({ instanceId }) => instanceId === 'hub-care-painkiller')).toBe(true)
   })
 })

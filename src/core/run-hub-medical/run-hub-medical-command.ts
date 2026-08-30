@@ -23,6 +23,7 @@ import type {
   RunHubMedicalEffect,
   RunHubMedicalItemSource,
   RunHubMedicalResolution,
+  RunHubMedicalEvaluation,
   RunHubMedicalSnapshot,
   RunHubMedicalTransitionPlan,
   UseRunHubMedicalItemCommand,
@@ -268,4 +269,31 @@ export function resolveRunHubMedicalCommand(
 ): RunHubMedicalResolution {
   const plan = buildRunHubMedicalTransitionPlan(snapshot, command, dependencies)
   return applyRunHubMedicalEffects(snapshot, plan.command, plan.effects, dependencies)
+}
+
+/**
+ * Builds the same frozen plan used by formal resolution without applying it.
+ * Only the Hub medical domain rejection is converted to a preview result;
+ * unexpected dependency or programming errors continue to surface.
+ */
+export function previewRunHubMedicalCommand(
+  snapshot: RunHubMedicalSnapshot,
+  command: unknown,
+  dependencies: RunHubMedicalDependencies,
+): RunHubMedicalEvaluation {
+  try {
+    return deepFreeze({
+      canExecute: true as const,
+      result: buildRunHubMedicalTransitionPlan(snapshot, command, dependencies),
+    })
+  } catch (error) {
+    if (error instanceof RunHubMedicalError) {
+      return deepFreeze({
+        canExecute: false as const,
+        rejectionCode: error.code,
+        rejectionMessage: error.message,
+      })
+    }
+    throw error
+  }
 }

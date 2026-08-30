@@ -82,6 +82,7 @@ interface HubOptions {
   readonly bleeding?: boolean
   readonly minorContusions?: number
   readonly utility?: ItemInstance
+  readonly mainSceneUsedToday?: boolean
 }
 
 function hub(options: HubOptions = {}): CurrentDayHubSnapshot {
@@ -148,7 +149,7 @@ function hub(options: HubOptions = {}): CurrentDayHubSnapshot {
       medicalUsage: { disinfectantUsesToday: 0 },
       threatSuppression: { usesToday: 0, suppressionAmountToday: 0 },
       maintenanceLaborRemaining: 3,
-      mainSceneUsedToday: false,
+      mainSceneUsedToday: options.mainSceneUsedToday ?? false,
     },
     worldThreat: { definitionId: config.worldThreat.definitionId, progress: 0 },
     satiety: { current: 6 },
@@ -166,7 +167,7 @@ function launch(start = hub()): RunSceneSessionSnapshot {
 
 function failurePhase(): StableRunPhase {
   const settlement = resolveDailySettlement(
-    hub({ health: 1, bleeding: true }),
+    hub({ health: 1, bleeding: true, mainSceneUsedToday: true }),
     { kind: 'end-day' },
     hospitalCurrentDayHubDependencies,
   )

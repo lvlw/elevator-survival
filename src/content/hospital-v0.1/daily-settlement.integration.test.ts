@@ -124,7 +124,7 @@ function hub(options: HubOptions = {}): CurrentDayHubSnapshot {
         suppressionAmountToday: options.suppressionAmount ?? 0,
       },
       maintenanceLaborRemaining: options.maintenance ?? 1,
-      mainSceneUsedToday: options.mainSceneUsedToday ?? false,
+      mainSceneUsedToday: options.mainSceneUsedToday ?? true,
     },
     worldThreat: {
       definitionId: config.worldThreat.definitionId,
@@ -461,8 +461,36 @@ describe('hospital daily settlement', () => {
     expect(snapshot.dailyState.mainSceneUsedToday).toBe(false)
   })
 
-  it('blocks ordinary End Day on day seven before producing effects or day eight', () => {
-    const start = hub({ day: 7 })
+  it('rejects End Day before the main scene in both Preview and Resolution without mutation', () => {
+    const start = hub({ mainSceneUsedToday: false })
+    const before = JSON.stringify(start)
+    expect(() => previewDailySettlement(start, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'MAIN_SCENE_REQUIRED' }))
+    expect(() => resolveDailySettlement(start, { kind: 'end-day' }, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'MAIN_SCENE_REQUIRED' }))
+    expect(JSON.stringify(start)).toBe(before)
+  })
+
+  it('checks the main-scene gate before the Day 7 final resolver guard', () => {
+    const beforeMainScene = hub({ day: 7, mainSceneUsedToday: false })
+    expect(() => buildDailySettlementTransitionPlan(
+      beforeMainScene,
+      { kind: 'end-day' },
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'MAIN_SCENE_REQUIRED' }))
+
+    const afterMainScene = hub({ day: 7, mainSceneUsedToday: true })
+    const before = JSON.stringify(afterMainScene)
+    expect(() => buildDailySettlementTransitionPlan(
+      afterMainScene,
+      { kind: 'end-day' },
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'FINAL_DAY_RESOLUTION_REQUIRED' }))
+    expect(JSON.stringify(afterMainScene)).toBe(before)
+  })
+
+  it('blocks ordinary End Day on day seven after the main scene before producing effects or day eight', () => {
+    const start = hub({ day: 7, mainSceneUsedToday: true })
     const before = JSON.stringify(start)
     expect(() => buildDailySettlementTransitionPlan(start, { kind: 'end-day' }, dependencies))
       .toThrowError(expect.objectContaining({ code: 'FINAL_DAY_RESOLUTION_REQUIRED' }))

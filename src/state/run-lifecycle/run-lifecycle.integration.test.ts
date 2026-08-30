@@ -255,8 +255,8 @@ function combatSession(): RunSceneSessionSnapshot {
 function failurePhase(kind: 'health' | 'world-threat'): RunFailureSnapshot {
   const settlement = resolveDailySettlement(
     kind === 'health'
-      ? hub({ health: 1, bleeding: true })
-      : hub({ progress: 119 }),
+      ? hub({ health: 1, bleeding: true, mainSceneUsedToday: true })
+      : hub({ progress: 119, mainSceneUsedToday: true }),
     { kind: 'end-day' },
     hospitalCurrentDayHubDependencies,
   )
@@ -511,6 +511,41 @@ describe('strict Stable Run lifecycle command routing', () => {
     expect(tracked.counters.writes).toBe(1)
   })
 
+  it.each([
+    ['safe-returned', 20],
+    ['forced-returned', 5],
+  ] as const)('allows End Day after an incomplete-task %s Return', (_status, remainingTime) => {
+    const active = activeSessionAtEmergencyHall(remainingTime)
+    const terminal = resolveRunSceneSessionWithdrawal(
+      active,
+      { kind: 'withdraw-from-scene' },
+      hospitalSceneLaunchDependencies,
+    ).session
+    const tracked = trackedStorage({ kind: 'scene-session', payload: terminal })
+    const returned = executeStableRunLifecycleCommand({
+      currentPhase: { kind: 'scene-session', payload: terminal },
+      command: { kind: 'settle-terminal-scene' },
+      storage: tracked.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    expect(returned.phase.kind).toBe('current-day-hub')
+    if (returned.phase.kind !== 'current-day-hub') throw new Error('expected returned Hub')
+    expect(returned.phase.payload.dailyState.mainSceneUsedToday).toBe(true)
+    expect(returned.phase.payload.runLoadout.taskStorage.items).toEqual([])
+
+    const settled = executeStableRunLifecycleCommand({
+      currentPhase: returned.phase,
+      command: { kind: 'end-day' },
+      storage: tracked.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    expect(settled.phase.kind).toBe('current-day-hub')
+    if (settled.phase.kind !== 'current-day-hub') throw new Error('expected next-day Hub')
+    expect(settled.phase.payload.continuity.currentDay).toBe(3)
+    expect(settled.phase.payload.dailyState.mainSceneUsedToday).toBe(false)
+    expect(tracked.counters.writes).toBe(2)
+  })
+
   it('settles a formal withdrawal death through RunFailure without ordinary Return', () => {
     const launched = launch()
     const fatalCondition = createPlayerCondition({
@@ -591,7 +626,7 @@ describe('strict Stable Run lifecycle command routing', () => {
     [1, 2],
     [6, 7],
   ] as const)('routes ordinary Day %i End Day to Day %i Hub', (day, nextDay) => {
-    const start = hub({ day })
+    const start = hub({ day, mainSceneUsedToday: true })
     const tracked = trackedStorage({ kind: 'current-day-hub', payload: start })
     const execution = executeStableRunLifecycleCommand({
       currentPhase: { kind: 'current-day-hub', payload: start },
@@ -611,7 +646,7 @@ describe('strict Stable Run lifecycle command routing', () => {
     ['health-depleted', { health: 1, bleeding: true }],
     ['world-threat-terminal', { progress: 119 }],
   ] as const)('routes daily %s through formal RunFailure', (reason, options) => {
-    const start = hub(options)
+    const start = hub({ ...options, mainSceneUsedToday: true })
     const tracked = trackedStorage({ kind: 'current-day-hub', payload: start })
     const execution = executeStableRunLifecycleCommand({
       currentPhase: { kind: 'current-day-hub', payload: start },
@@ -628,7 +663,7 @@ describe('strict Stable Run lifecycle command routing', () => {
   })
 
   it('propagates the Day 7 final resolver guard without saving or creating Day 8', () => {
-    const start = hub({ day: 7 })
+    const start = hub({ day: 7, mainSceneUsedToday: true })
     const tracked = trackedStorage({ kind: 'current-day-hub', payload: start })
     const previous = tracked.backing.read()
     expect(() => executeStableRunLifecycleCommand({
@@ -642,6 +677,22 @@ describe('strict Stable Run lifecycle command routing', () => {
     expect(loadRunPhase(tracked.storage, hospitalRunSaveRulesRegistry)).toEqual({
       kind: 'current-day-hub', payload: start,
     })
+  })
+
+  it('rejects pre-scene End Day through the formal core gate without saving', () => {
+    const start = hub({ mainSceneUsedToday: false })
+    const phase = { kind: 'current-day-hub' as const, payload: start }
+    const tracked = trackedStorage(phase)
+    const previous = tracked.backing.read()
+    expect(() => executeStableRunLifecycleCommand({
+      currentPhase: phase,
+      command: { kind: 'end-day' },
+      storage: tracked.storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })).toThrowError(expect.objectContaining({ code: 'MAIN_SCENE_REQUIRED' }))
+    expect(tracked.counters.writes).toBe(0)
+    expect(tracked.backing.read()).toBe(previous)
+    expect(phase.payload).toBe(start)
   })
 
   it.each([
@@ -748,7 +799,7 @@ describe('strict Stable Run lifecycle command routing', () => {
   })
 
   it('does not replay Daily Settlement or RunFailure when its single save fails', () => {
-    const start = hub({ health: 1, bleeding: true })
+    const start = hub({ health: 1, bleeding: true, mainSceneUsedToday: true })
     const tracked = trackedStorage({ kind: 'current-day-hub', payload: start })
     const previous = tracked.backing.read()
     tracked.backing.failNextWrite()

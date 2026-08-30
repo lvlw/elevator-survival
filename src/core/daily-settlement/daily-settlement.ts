@@ -43,6 +43,7 @@ const MAX_SAFE = BigInt(Number.MAX_SAFE_INTEGER)
 
 export type DailySettlementErrorCode =
   | 'INVALID_INPUT'
+  | 'MAIN_SCENE_REQUIRED'
   | 'FINAL_DAY_RESOLUTION_REQUIRED'
   | 'EFFECT_MISMATCH'
   | 'SAFE_INTEGER_OVERFLOW'
@@ -288,6 +289,12 @@ export function buildDailySettlementTransitionPlan(
   }
   const command = createEndDayCommand(commandInput)
   const config = configOf(dependencies)
+  if (!snapshot.dailyState.mainSceneUsedToday) {
+    throw new DailySettlementError(
+      'MAIN_SCENE_REQUIRED',
+      '当天必须先完成主要场景并返回电梯中枢，才能结束本日',
+    )
+  }
   if (snapshot.continuity.currentDay === config.dailySettlement.finalPlayableDay) {
     throw new DailySettlementError(
       'FINAL_DAY_RESOLUTION_REQUIRED',

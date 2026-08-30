@@ -124,6 +124,7 @@ interface HubOptions {
   readonly satiety?: number
   readonly warehouse?: readonly ItemInstance[]
   readonly taskStorage?: readonly ItemInstance[]
+  readonly mainSceneUsedToday?: boolean
 }
 
 function hub(options: HubOptions = {}): CurrentDayHubSnapshot {
@@ -188,7 +189,7 @@ function hub(options: HubOptions = {}): CurrentDayHubSnapshot {
       medicalUsage: { disinfectantUsesToday: 0 },
       threatSuppression: { usesToday: 0, suppressionAmountToday: 0 },
       maintenanceLaborRemaining: config.maintenance.dailyBaseLabor.points,
-      mainSceneUsedToday: false,
+      mainSceneUsedToday: options.mainSceneUsedToday ?? false,
     },
     worldThreat: {
       definitionId: config.worldThreat.definitionId,
@@ -450,11 +451,13 @@ describe('hospital Run failure termination coordinator', () => {
       health: 2,
       bleeding: true,
       wounds: [{ id: 'daily-wound', kind: 'laceration', treatment: 'untreated' }],
+      mainSceneUsedToday: true,
     }))
     const deprivationTerminal = terminalFromDaily(hub({
       health: 1,
       satiety: 2,
       progress: 0,
+      mainSceneUsedToday: true,
     }))
     for (const terminalSnapshot of [bleedingTerminal, deprivationTerminal]) {
       const result = resolveRunFailure({
@@ -476,6 +479,7 @@ describe('hospital Run failure termination coordinator', () => {
       progress: 100,
       exposures: 1,
       satiety: 6,
+      mainSceneUsedToday: true,
     }))
     const result = resolveRunFailure({
       kind: 'daily-settlement-terminal',
@@ -598,6 +602,7 @@ describe('hospital Run failure termination coordinator', () => {
       health: 2,
       bleeding: true,
       wounds: [{ id: 'strict-daily-wound', kind: 'laceration', treatment: 'untreated' }],
+      mainSceneUsedToday: true,
     }))
     expect(() => resolveRunFailure({
       kind: 'daily-settlement-terminal',

@@ -126,12 +126,13 @@ StableRunStore public read API
 | 当前稳定阶段 | 生命周期命令 | 下一稳定阶段 |
 | --- | --- | --- |
 | 当前日中枢 | 启动主要场景 | Scene Session |
-| 当前日中枢 | 结束本日 | 次日中枢或 Run 失败 |
+| 当前日中枢（当天主要场景已使用） | 结束本日 | 次日中枢或 Run 失败 |
 | 安全／强制返回的 Scene Session | 结算终止场景 | 当前日中枢 |
 | 死亡 Scene Session | 结算终止场景 | Run 失败 |
 
 - `src/state/run-lifecycle/` 是当前最小生命周期 command／phase 映射的应用层所有者，只覆盖主要场景启动、终止场景结算与结束本日；活动或战斗 Scene 不允许执行终止场景结算。
 - Router 不拥有 Scene Launch、Return、Daily Settlement 或 Run Failure 规则，也不直接写存档；它按当前规范化阶段的 `rulesVersion` 读取正式依赖并调用既有 core resolver，随后委托唯一 stable mutation execution boundary。
+- 结束本日资格由 Daily Settlement 正式计划读取 `DailyRunState.mainSceneUsedToday`：规范化当前日中枢与结束本日命令后，先拒绝尚未使用当天主要场景的状态，再检查第七日终局边界。安全或强制返回都保留该日级事实；任务是否完成不构成结束本日的额外资格条件。Preview、Resolution、生命周期路由与 Store 共用这一 core 门禁，拒绝时不提交 Effects 或存档。
 - 终止 Scene 的位置、时间（包括 `remainingTime` 的0至当前 `scene.totalTime` 上限）和生命合法性属于 Scene strict snapshot invariant；Run Save 与 lifecycle settlement 都通过同一 Scene 恢复入口继承该校验，Router 不复制 returned 位置判断、时间上限或重新结算撤离。
 - 每次调用只执行一个生命周期命令。最小 Store 只在调用方显式 `dispatch()` 时发出一条 command；终止 Scene 不自动连锁到 Return，结束本日不自动启动次日场景。React 已接入主要场景启动和终止 Scene 的显式结算；两者都只在玩家确认 Preview 后发出命令。
 - 生命周期 resolver 的返回值仅用于展示或审计；`StableRunCommandExecution.phase` 是下一条命令的唯一正式状态输入，result、summary、Effects 和 preview 不形成并行状态或持久化字段。

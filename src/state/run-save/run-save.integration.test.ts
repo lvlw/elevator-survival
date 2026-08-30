@@ -134,6 +134,7 @@ function createForeignRulesVersionDependencies() {
 function hub(overrides: Readonly<{
   condition?: CurrentDayHubSnapshot['playerCondition']
   day?: number
+  mainSceneUsedToday?: boolean
 }> = {}): CurrentDayHubSnapshot {
   const warehouse = item('stored-ration', HOSPITAL_ITEM_IDS.ration)
   const bandage = item('carried-bandages', HOSPITAL_ITEM_IDS.bandage, 2)
@@ -211,7 +212,7 @@ function hub(overrides: Readonly<{
       medicalUsage: { disinfectantUsesToday: 1 },
       threatSuppression: { usesToday: 1, suppressionAmountToday: 15 },
       maintenanceLaborRemaining: 2,
-      mainSceneUsedToday: false,
+      mainSceneUsedToday: overrides.mainSceneUsedToday ?? false,
     },
     worldThreat: { definitionId: config.worldThreat.definitionId, progress: 20 },
     satiety: { current: 5 },
@@ -318,7 +319,7 @@ function dailyFailure(): RunFailureSnapshot {
     pendingInfectionExposures: 0,
   }, config.combat.player)
   const settlement = resolveDailySettlement(
-    hub({ condition: fatalCondition }),
+    hub({ condition: fatalCondition, mainSceneUsedToday: true }),
     { kind: 'end-day' },
     hospitalCurrentDayHubDependencies,
   )
@@ -632,7 +633,10 @@ describe('stable Run Save IO', () => {
       pendingInfectionExposures: 0,
     }, config.combat.player)
     const execution = executeStableRunCommand({
-      currentPhase: { kind: 'current-day-hub', payload: hub({ condition: fatalCondition }) },
+      currentPhase: {
+        kind: 'current-day-hub',
+        payload: hub({ condition: fatalCondition, mainSceneUsedToday: true }),
+      },
       handler: (currentPhase) => {
         if (currentPhase.kind !== 'current-day-hub') throw new Error('expected Hub')
         const settlement = resolveDailySettlement(
@@ -948,7 +952,7 @@ describe('stable Run Save IO', () => {
 
   it('round-trips only the already committed next-day settlement result', () => {
     const settlement = resolveDailySettlement(
-      hub(),
+      hub({ mainSceneUsedToday: true }),
       { kind: 'end-day' },
       hospitalCurrentDayHubDependencies,
     )

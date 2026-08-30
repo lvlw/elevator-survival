@@ -490,6 +490,23 @@ describe('strict Stable Run application command boundary', () => {
     }
     expect(storage.writes).toBe(0)
   })
+
+  it('propagates the pre-scene End Day gate without saving or mutating the phase', () => {
+    const storage = new TrackedStorage()
+    const start = hub({ mainSceneUsedToday: false })
+    const phase = { kind: 'current-day-hub' as const, payload: start }
+    saveRunPhase(storage, phase, hospitalRunSaveRulesRegistry)
+    const previous = storage.read()
+    storage.resetWrites()
+    const before = JSON.stringify(phase)
+    expect(() => dispatch(phase, {
+      kind: 'lifecycle',
+      command: { kind: 'end-day' },
+    }, storage)).toThrowError(expect.objectContaining({ code: 'MAIN_SCENE_REQUIRED' }))
+    expect(storage.writes).toBe(0)
+    expect(storage.read()).toBe(previous)
+    expect(JSON.stringify(phase)).toBe(before)
+  })
 })
 
 describe('unified application deterministic replay', () => {

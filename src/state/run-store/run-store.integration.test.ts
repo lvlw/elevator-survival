@@ -358,6 +358,29 @@ describe('Stable Run Store dispatch and subscriber semantics', () => {
     expect(storage.writes).toBe(0)
   })
 
+  it('keeps pre-scene End Day rejection out of storage and subscriber notifications', () => {
+    const storage = new TrackedStorage()
+    const phase = {
+      kind: 'current-day-hub',
+      payload: hub({ mainSceneUsedToday: false }),
+    } as const
+    saveRunPhase(storage, phase, hospitalRunSaveRulesRegistry)
+    const previous = storage.read()
+    storage.resetWrites()
+    const store = createStore(phase, storage)
+    const before = store.getState()
+    let notifications = 0
+    store.subscribe(() => { notifications += 1 })
+    expect(() => store.dispatch({
+      kind: 'lifecycle',
+      command: { kind: 'end-day' },
+    })).toThrowError(expect.objectContaining({ code: 'MAIN_SCENE_REQUIRED' }))
+    expect(store.getState()).toBe(before)
+    expect(notifications).toBe(0)
+    expect(storage.writes).toBe(0)
+    expect(storage.read()).toBe(previous)
+  })
+
   it('keeps a RunFailure Store readable and delegates mutation rejection', () => {
     const storage = new TrackedStorage()
     const store = createStore(failurePhase(), storage)

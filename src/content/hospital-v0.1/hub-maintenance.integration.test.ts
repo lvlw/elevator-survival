@@ -515,7 +515,12 @@ describe('hospital Current-Day Hub maintenance', () => {
 
   it('uses the sole daily labor state and resets it only through the existing successful daily settlement', () => {
     const pipe = item('pipe', HOSPITAL_ITEM_IDS.metalPipe)
-    const start = hub({ warehouse: [pipe], resourceCurrent: { pipe: 5 }, labor: 1 })
+    const start = hub({
+      warehouse: [pipe],
+      resourceCurrent: { pipe: 5 },
+      labor: 1,
+      mainSceneUsedToday: true,
+    })
     const repaired = resolve(start, {
       kind: 'allocate-base-maintenance-labor',
       allocations: [{ target: warehouseTarget(pipe.instanceId), points: 1 }],

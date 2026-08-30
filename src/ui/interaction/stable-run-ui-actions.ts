@@ -1056,7 +1056,9 @@ function endDayFacts(
 }
 
 function endDayWarnings(result: PlayerVisibleDailySettlementEvaluation): readonly string[] {
-  const warnings: string[] = []
+  const warnings: string[] = [
+    '结束本日后会立即执行日结算并保存结果，不能返回本日继续整备。',
+  ]
   if (result.continuousDanger.healthLoss > 0) {
     warnings.push(`未处理流血将在日结算开始时造成 ${result.continuousDanger.healthLoss} 点生命损失。`)
   }

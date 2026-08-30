@@ -16,8 +16,9 @@ import {
   hospitalItemReturnLifecycleCatalog,
   hospitalSliceV01RuleConfig as config,
 } from '../content'
-import { createPlayerCondition } from '../core/condition'
-import { createCurrentDayHubSnapshot } from '../core/current-day-hub'
+import { createPlayerCondition, type OpenWoundSnapshot } from '../core/condition'
+import { createCurrentDayHubSnapshot, type CurrentDayHubSnapshot } from '../core/current-day-hub'
+import type { DailySettlementTerminalSnapshot } from '../core/daily-settlement'
 import {
   createBackpackSnapshot,
   deriveStableSplitInstanceId,
@@ -45,6 +46,7 @@ import {
   hospitalCurrentDayHubDependencies,
   hospitalRunSaveRulesRegistry,
   hospitalSceneLaunchDependencies,
+  type StableRunPhase,
   type RunSaveStorage,
 } from '../state/run-save'
 import { createStableRunStore, type StableRunStore } from '../state/run-store'
@@ -102,6 +104,7 @@ function createHubPhase(options: Readonly<{
   suppressionAmount?: number
   disinfectantUses?: number
   maintenance?: number
+  wounds?: readonly OpenWoundSnapshot[]
 }> = {}) {
   const flashlight = item('react-flashlight', HOSPITAL_ITEM_IDS.flashlight)
   const ration = item('react-ration', HOSPITAL_ITEM_IDS.ration)
@@ -125,7 +128,7 @@ function createHubPhase(options: Readonly<{
         quickSlots: createQuickSlotSnapshot([null, null], config.backpack.quickSlotCount, hospitalItemCatalog, hospitalItemQuickSlotCatalog),
         itemStates: { states: owned.map((candidate) => createFullItemState(candidate, hospitalItemResourceCatalog)) },
       }, { physicalCatalog: hospitalItemCatalog, equipmentCatalog: hospitalItemEquipmentCatalog, quickSlotCatalog: hospitalItemQuickSlotCatalog, itemResourceCatalog: hospitalItemResourceCatalog, lifecycleCatalog: hospitalItemReturnLifecycleCatalog, backpackRules: config.backpack }),
-      playerCondition: createPlayerCondition({ currentHealth: options.health ?? config.combat.player.maxHealth, bleeding: options.bleeding ?? false, openWounds: [], minorContusions: options.contusions ?? 0, painkillerActive: options.painkiller ?? false, pendingInfectionExposures: options.exposures ?? 0 }, config.combat.player),
+      playerCondition: createPlayerCondition({ currentHealth: options.health ?? config.combat.player.maxHealth, bleeding: options.bleeding ?? false, openWounds: options.wounds ?? [], minorContusions: options.contusions ?? 0, painkillerActive: options.painkiller ?? false, pendingInfectionExposures: options.exposures ?? 0 }, config.combat.player),
       runIntelLog: { intelIds: [] },
       dailyState: { medicalUsage: { disinfectantUsesToday: options.disinfectantUses ?? 0 }, threatSuppression: { usesToday: options.suppressionUses ?? 0, suppressionAmountToday: options.suppressionAmount ?? 0 }, maintenanceLaborRemaining: options.maintenance ?? config.maintenance.dailyBaseLabor.points, mainSceneUsedToday: options.mainSceneUsedToday ?? false },
       worldThreat: { definitionId: config.worldThreat.definitionId, progress: options.progress ?? 0 }, satiety: { current: options.satiety ?? 4 }, returnLedger: { sceneInstanceIds: ['returned-before-react-ui'] },
@@ -913,6 +916,55 @@ function taskEventPhase(options: Readonly<{
       scene,
     }, hospitalSceneLaunchDependencies),
   }
+}
+
+type DailySettlementFinalFacts = CurrentDayHubSnapshot | DailySettlementTerminalSnapshot
+
+function replaceDailySettlementFinalFacts(
+  phase: StableRunPhase,
+  replace: (facts: DailySettlementFinalFacts) => DailySettlementFinalFacts,
+): StableRunPhase {
+  if (phase.kind === 'current-day-hub') {
+    return { kind: 'current-day-hub', payload: replace(phase.payload) as CurrentDayHubSnapshot }
+  }
+  if (phase.kind === 'run-failure' && phase.payload.source.kind === 'daily-settlement-terminal') {
+    return {
+      kind: 'run-failure',
+      payload: {
+        ...phase.payload,
+        source: {
+          ...phase.payload.source,
+          terminalSnapshot: replace(phase.payload.source.terminalSnapshot) as DailySettlementTerminalSnapshot,
+        },
+      },
+    }
+  }
+  throw new Error('expected Daily Settlement committed phase')
+}
+
+function replaceDailySettlementIdentity(
+  phase: StableRunPhase,
+  identity: Partial<{ runId: string; seed: string; rulesVersion: string }>,
+): StableRunPhase {
+  return replaceDailySettlementFinalFacts(phase, (facts) => ({
+    ...facts,
+    continuity: {
+      ...facts.continuity,
+      runIdentity: { ...facts.continuity.runIdentity, ...identity },
+    },
+  }))
+}
+
+function committedDailySettlement(before: ReturnType<typeof createHubPhase>) {
+  const preview = previewStableRunUiEndDay(before, uiDependencies)
+  if (!preview.canExecute) throw new Error('expected executable End Day preview')
+  const store = createStableRunStore({
+    initialPhase: before,
+    storage: new MemoryStorage(),
+    rulesRegistry: hospitalRunSaveRulesRegistry,
+  })
+  store.dispatch(preview.action.command)
+  return { preview: preview.result, after: store.getState().phase }
 }
 
 const uiDependencies = {
@@ -5017,6 +5069,7 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('推进至第 3 日')
     expect(container.textContent).toContain('未结算感染暴露')
     expect(container.textContent).toContain('维护工时')
+    expect(container.textContent).toContain('结束本日后会立即执行日结算并保存结果，不能返回本日继续整备。')
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
     expect(notifications).toBe(0)
@@ -5144,6 +5197,187 @@ describe('StableRunUiApp', () => {
     )).toThrowError('日结算结果与 canonical phase 不一致：失败原因不匹配')
   })
 
+  it('rejects a formal Daily Settlement Preview paired with mismatched before facts', () => {
+    const original = createHubPhase({
+      mainSceneUsedToday: true,
+      health: 8,
+      satiety: 4,
+      contusions: 1,
+      painkiller: true,
+      disinfectantUses: 1,
+      suppressionUses: 1,
+      suppressionAmount: 15,
+      maintenance: 1,
+    })
+    const { preview, after } = committedDailySettlement(original)
+    const mismatches = [
+      createHubPhase({ mainSceneUsedToday: true, health: 7, satiety: 4, contusions: 1, painkiller: true, disinfectantUses: 1, suppressionUses: 1, suppressionAmount: 15, maintenance: 1 }),
+      createHubPhase({ mainSceneUsedToday: true, health: 8, satiety: 5, contusions: 1, painkiller: true, disinfectantUses: 1, suppressionUses: 1, suppressionAmount: 15, maintenance: 1 }),
+      createHubPhase({ mainSceneUsedToday: true, health: 8, satiety: 4, contusions: 0, painkiller: true, disinfectantUses: 1, suppressionUses: 1, suppressionAmount: 15, maintenance: 1 }),
+      createHubPhase({ mainSceneUsedToday: true, health: 8, satiety: 4, contusions: 1, painkiller: true, disinfectantUses: 1, suppressionUses: 1, suppressionAmount: 15, maintenance: 2 }),
+    ]
+    for (const mismatchedBefore of mismatches) {
+      expect(() => createDailySettlementResultViewModel(
+        mismatchedBefore,
+        after,
+        preview,
+        uiDependencies,
+      )).toThrowError(/日结算结果与 canonical phase 不一致/)
+    }
+  })
+
+  it('rejects runId, seed, or rulesVersion changes without exposing identity values', () => {
+    const before = createHubPhase({ mainSceneUsedToday: true })
+    const { preview, after } = committedDailySettlement(before)
+    for (const changedIdentity of [
+      { runId: 'forged-run' },
+      { seed: 'forged-seed' },
+      { rulesVersion: 'forged-rules' },
+    ]) {
+      let message = ''
+      try {
+        createDailySettlementResultViewModel(
+          before,
+          replaceDailySettlementIdentity(after, changedIdentity),
+          preview,
+          uiDependencies,
+        )
+      } catch (error) {
+        message = error instanceof Error ? error.message : String(error)
+      }
+      expect(message).toBe('日结算结果与 canonical phase 不一致：Run 身份不一致')
+      expect(message).not.toContain('forged')
+      expect(message).not.toContain('react-ui')
+    }
+  })
+
+  it('rejects every mismatched normal injury-cleanup result, including wound identity and kind replacement', () => {
+    const treated: OpenWoundSnapshot = { id: 'private-treated-wound', kind: 'laceration', treatment: 'treated' }
+    const untreated: OpenWoundSnapshot = { id: 'private-untreated-wound', kind: 'puncture', treatment: 'untreated' }
+    const before = createHubPhase({
+      mainSceneUsedToday: true,
+      health: 8,
+      bleeding: true,
+      contusions: 1,
+      painkiller: true,
+      wounds: [treated, untreated],
+    })
+    const { preview, after } = committedDailySettlement(before)
+    const corruptions = [
+      (facts: DailySettlementFinalFacts): DailySettlementFinalFacts => ({ ...facts, playerCondition: { ...facts.playerCondition, minorContusions: 1 } }),
+      (facts: DailySettlementFinalFacts): DailySettlementFinalFacts => ({ ...facts, playerCondition: { ...facts.playerCondition, painkillerActive: true } }),
+      (facts: DailySettlementFinalFacts): DailySettlementFinalFacts => ({ ...facts, playerCondition: { ...facts.playerCondition, bleeding: !facts.playerCondition.bleeding } }),
+      (facts: DailySettlementFinalFacts): DailySettlementFinalFacts => ({ ...facts, playerCondition: { ...facts.playerCondition, openWounds: [...facts.playerCondition.openWounds, treated] } }),
+      (facts: DailySettlementFinalFacts): DailySettlementFinalFacts => ({ ...facts, playerCondition: { ...facts.playerCondition, openWounds: [] } }),
+      (facts: DailySettlementFinalFacts): DailySettlementFinalFacts => ({ ...facts, playerCondition: { ...facts.playerCondition, openWounds: [{ ...untreated, id: 'forged-wound', kind: 'bite' }] } }),
+    ]
+    for (const corrupt of corruptions) {
+      expect(() => createDailySettlementResultViewModel(
+        before,
+        replaceDailySettlementFinalFacts(after, corrupt),
+        preview,
+        uiDependencies,
+      )).toThrowError('日结算结果与 canonical phase 不一致：伤势清理结果不匹配')
+    }
+    const serialized = JSON.stringify(createDailySettlementResultViewModel(before, after, preview, uiDependencies))
+    for (const hidden of ['private-treated-wound', 'private-untreated-wound', 'react-ui-run', 'react-ui-seed', 'rulesVersion', 'progressBefore', 'progressAfter']) {
+      expect(serialized).not.toContain(hidden)
+    }
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({
+      initialPhase: before,
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '结束本日').click() })
+    act(() => { button(container, '确认执行').click() })
+    for (const hidden of ['private-treated-wound', 'private-untreated-wound', 'react-ui-run', 'react-ui-seed', 'rulesVersion', 'progressBefore', 'progressAfter']) {
+      expect(container.innerHTML).not.toContain(hidden)
+    }
+  })
+
+  it('rejects forbidden changes after continuous-danger, world-threat, and deprivation terminals', () => {
+    const wound: OpenWoundSnapshot = { id: 'private-terminal-wound', kind: 'bite', treatment: 'untreated' }
+    const continuousBefore = createHubPhase({
+      mainSceneUsedToday: true,
+      health: 2,
+      bleeding: true,
+      satiety: 4,
+      contusions: 1,
+      painkiller: true,
+      wounds: [wound],
+      maintenance: 1,
+    })
+    const continuous = committedDailySettlement(continuousBefore)
+    expect(continuous.preview.failureStage).toBe('continuous-danger')
+    const continuousCorruptions = [
+      (facts: DailySettlementFinalFacts): DailySettlementFinalFacts => ({ ...facts, satiety: { current: facts.satiety.current + 1 } }),
+      (facts: DailySettlementFinalFacts): DailySettlementFinalFacts => ({ ...facts, worldThreat: { ...facts.worldThreat, progress: facts.worldThreat.progress + 1 } }),
+      (facts: DailySettlementFinalFacts): DailySettlementFinalFacts => ({ ...facts, dailyState: { ...facts.dailyState, maintenanceLaborRemaining: facts.dailyState.maintenanceLaborRemaining + 1 } }),
+    ]
+    for (const corrupt of continuousCorruptions) {
+      expect(() => createDailySettlementResultViewModel(
+        continuousBefore,
+        replaceDailySettlementFinalFacts(continuous.after, corrupt),
+        continuous.preview,
+        uiDependencies,
+      )).toThrowError(/未执行的.+阶段状态发生变化/)
+    }
+
+    const threatBefore = createHubPhase({
+      mainSceneUsedToday: true,
+      progress: 100,
+      exposures: 1,
+      satiety: 4,
+      contusions: 1,
+      painkiller: true,
+      wounds: [wound],
+      maintenance: 1,
+    })
+    const threat = committedDailySettlement(threatBefore)
+    expect(threat.preview.failureStage).toBe('world-threat')
+    const threatCorruptions = [
+      (facts: DailySettlementFinalFacts): DailySettlementFinalFacts => ({ ...facts, satiety: { current: facts.satiety.current + 1 } }),
+      (facts: DailySettlementFinalFacts): DailySettlementFinalFacts => ({ ...facts, playerCondition: { ...facts.playerCondition, minorContusions: 0 } }),
+      (facts: DailySettlementFinalFacts): DailySettlementFinalFacts => ({ ...facts, dailyState: { ...facts.dailyState, maintenanceLaborRemaining: facts.dailyState.maintenanceLaborRemaining + 1 } }),
+    ]
+    for (const corrupt of threatCorruptions) {
+      expect(() => createDailySettlementResultViewModel(
+        threatBefore,
+        replaceDailySettlementFinalFacts(threat.after, corrupt),
+        threat.preview,
+        uiDependencies,
+      )).toThrowError(/未执行的.+阶段状态发生变化/)
+    }
+
+    const deprivationBefore = createHubPhase({
+      mainSceneUsedToday: true,
+      health: 1,
+      satiety: 2,
+      contusions: 1,
+      painkiller: true,
+      wounds: [wound],
+      maintenance: 1,
+    })
+    const deprivation = committedDailySettlement(deprivationBefore)
+    expect(deprivation.preview.failureStage).toBe('deprivation')
+    const deprivationCorruptions = [
+      (facts: DailySettlementFinalFacts): DailySettlementFinalFacts => ({ ...facts, playerCondition: { ...facts.playerCondition, painkillerActive: false } }),
+      (facts: DailySettlementFinalFacts): DailySettlementFinalFacts => ({ ...facts, dailyState: { ...facts.dailyState, maintenanceLaborRemaining: facts.dailyState.maintenanceLaborRemaining + 1 } }),
+    ]
+    for (const corrupt of deprivationCorruptions) {
+      expect(() => createDailySettlementResultViewModel(
+        deprivationBefore,
+        replaceDailySettlementFinalFacts(deprivation.after, corrupt),
+        deprivation.preview,
+        uiDependencies,
+      )).toThrowError(/未执行的.+阶段状态发生变化/)
+    }
+  })
+
   it('closes Daily Settlement Result without dispatch or save', () => {
     const storage = new MemoryStorage()
     const tracked = trackedStore(createStableRunStore({
@@ -5188,6 +5422,7 @@ describe('StableRunUiApp', () => {
     const previewText = container.querySelector('[role="dialog"]')?.textContent ?? ''
     expect(previewText).toContain('未处理流血损失 2')
     expect(previewText).toContain('Run Failure · 生命耗尽')
+    expect(previewText).toContain('结束本日后会立即执行日结算并保存结果，不能返回本日继续整备。')
     expect(previewText).not.toContain('世界威胁阶段')
     expect(previewText).not.toContain('饱食')
     expect(previewText).not.toContain('次日主要场景')
@@ -5216,6 +5451,7 @@ describe('StableRunUiApp', () => {
     act(() => { button(container, '结束本日').click() })
     expect(container.textContent).toContain('危急 → 感染终末')
     expect(container.textContent).toContain('Run Failure · 世界威胁终末')
+    expect(container.textContent).toContain('结束本日后会立即执行日结算并保存结果，不能返回本日继续整备。')
     expect(container.textContent).not.toContain('progress')
     expect(container.textContent).not.toContain('125')
     act(() => { button(container, '确认执行').click() })
@@ -5277,6 +5513,11 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StrictMode><StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} /></StrictMode>) })
+    act(() => { button(container, '结束本日').click() })
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+    act(() => { button(container, '取消').click() })
     act(() => { button(container, '结束本日').click() })
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)

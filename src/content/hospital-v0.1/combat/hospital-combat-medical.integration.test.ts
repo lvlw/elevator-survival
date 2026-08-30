@@ -330,10 +330,6 @@ describe('hospital combat medical command eligibility', () => {
 
   it.each([
     HOSPITAL_ITEM_IDS.disinfectant,
-    HOSPITAL_ITEM_IDS.firstAidKit,
-    HOSPITAL_ITEM_IDS.infectionSuppressant,
-    HOSPITAL_ITEM_IDS.ration,
-    HOSPITAL_ITEM_IDS.standardBattery,
   ])('does not expose the quick-slot eligible noncombat item %s', (definitionId) => {
     const { snapshot, dependencies } = createMedicalEncounter({
       health: 10,
@@ -362,7 +358,7 @@ describe('hospital combat bandage resolution', () => {
       health: 8,
       bleeding: true,
       openWounds: [wound('target'), wound('other', 'bite')],
-      quickSlots: [HOSPITAL_ITEM_IDS.bandage, HOSPITAL_ITEM_IDS.ration],
+      quickSlots: [HOSPITAL_ITEM_IDS.bandage, HOSPITAL_ITEM_IDS.painkiller],
       backpackDefinitions: [HOSPITAL_ITEM_IDS.bandage],
       enemyNextActionCtb: 80,
       pendingInfectionExposures: 2,
@@ -377,7 +373,7 @@ describe('hospital combat bandage resolution', () => {
     ])
     expect(result.snapshot.quickSlots.slots).toEqual([
       null,
-      expect.objectContaining({ definitionId: HOSPITAL_ITEM_IDS.ration }),
+      expect.objectContaining({ definitionId: HOSPITAL_ITEM_IDS.painkiller }),
     ])
     expect(() => getItemState(result.snapshot.itemStates, 'quick-0')).toThrow()
     expect(result.snapshot.backpack).toEqual(snapshot.backpack)

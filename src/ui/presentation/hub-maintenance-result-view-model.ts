@@ -43,6 +43,35 @@ function allItems(phase: Extract<StableRunPhase, { kind: 'current-day-hub' }>) {
   ]
 }
 
+function itemAfterTarget(
+  before: Extract<StableRunPhase, { kind: 'current-day-hub' }>,
+  after: Extract<StableRunPhase, { kind: 'current-day-hub' }>,
+  location: PlayerVisibleHubMaintenanceTargetLocation,
+  instanceId: string,
+) {
+  if (location.container === 'warehouse') {
+    return after.payload.runLoadout.warehouse.items.find((item) => item.instanceId === instanceId) ?? null
+  }
+  if (location.container === 'equipment') {
+    const item = after.payload.runLoadout.equipment[location.slot]
+    return item?.instanceId === instanceId ? item : null
+  }
+  const beforePlacement = before.payload.runLoadout.backpack.placements.find(
+    (placement) => placement.instanceId === instanceId,
+  )
+  const afterPlacement = after.payload.runLoadout.backpack.placements.find(
+    (placement) => placement.instanceId === instanceId,
+  )
+  if (
+    !beforePlacement ||
+    !afterPlacement ||
+    beforePlacement.x !== afterPlacement.x ||
+    beforePlacement.y !== afterPlacement.y ||
+    beforePlacement.rotated !== afterPlacement.rotated
+  ) return null
+  return after.payload.runLoadout.backpack.items.find((item) => item.instanceId === instanceId) ?? null
+}
+
 export function createHubMaintenanceResultViewModel(
   before: StableRunPhase,
   after: StableRunPhase,
@@ -60,7 +89,7 @@ export function createHubMaintenanceResultViewModel(
     if (!beforeItem || beforeItem.definitionId !== target.definitionId) {
       throw new Error('中枢维护结果与正式提交前目标不一致')
     }
-    const afterItem = itemAtTarget(after, target.location)
+    const afterItem = itemAfterTarget(before, after, target.location, beforeItem.instanceId)
     if (!afterItem || afterItem.definitionId !== target.definitionId) {
       throw new Error('中枢维护改变了目标物品身份或容器生命周期')
     }

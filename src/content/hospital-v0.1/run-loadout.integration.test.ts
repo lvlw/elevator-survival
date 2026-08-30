@@ -506,6 +506,32 @@ describe('hospital Run loadout inventory management', () => {
     expect(backInBackpack.quickSlots.slots[0]).toBeNull()
   })
 
+  it.each([
+    HOSPITAL_ITEM_IDS.firstAidKit,
+    HOSPITAL_ITEM_IDS.ration,
+    HOSPITAL_ITEM_IDS.infectionSuppressant,
+    HOSPITAL_ITEM_IDS.standardBattery,
+  ])('rejects moving the formally ineligible hospital item %s from backpack to quick slot', (definitionId) => {
+    const forbidden = item(`forbidden-quick-${definitionId}`, definitionId)
+    const start = loadout({
+      warehouse: [],
+      taskStorage: [],
+      backpackItems: [forbidden],
+      placements: [placement(forbidden.instanceId, 0, 0)],
+    })
+    const command = {
+      kind: 'backpack-to-quick-slot' as const,
+      instanceId: forbidden.instanceId,
+      targetSlotIndex: 0,
+    }
+    expect(previewRunLoadoutCommand(start, command, loadoutDependencies)).toEqual({
+      canExecute: false,
+      rejectionCode: 'ACTION_NOT_AVAILABLE',
+    })
+    expect(() => resolveRunLoadoutCommand(start, command, loadoutDependencies))
+      .toThrowError(expect.objectContaining({ code: 'ACTION_NOT_AVAILABLE' }))
+  })
+
   it('keeps the existing quick-slot split identity byte-for-byte and uses a separate backpack split scope', () => {
     expect(createStableRunLoadoutSplitInstanceId('warehouse-bandages', 3))
       .toBe('run-loadout-split:18:warehouse-bandages:3')

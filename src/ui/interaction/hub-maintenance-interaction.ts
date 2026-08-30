@@ -1,6 +1,7 @@
 import {
   createHubMaintenanceCommand,
   getAvailableHubMaintenanceActions,
+  HubMaintenanceError,
   previewPlayerVisibleHubMaintenance,
   type HubMaintenanceActionCandidate,
   type HubMaintenanceCommand,
@@ -179,12 +180,15 @@ function buildCommand(
   const target = opportunity.targets.find(({ id }) => id === draft.targetId)
   const source = opportunity.sources.find(({ id }) => id === draft.materialSourceId)
   const secondary = opportunity.sources.find(({ id }) => id === draft.secondaryMaterialSourceId)
-  const allocations = draft.allocations.flatMap((allocation) => {
+  const allocations: { target: HubMaintenanceTarget; points: number }[] = []
+  for (const allocation of draft.allocations) {
+    if (allocation.points === 0) continue
     const candidate = opportunity.targets.find(({ id }) => id === allocation.targetId)
-    return candidate && Number.isSafeInteger(allocation.points) && allocation.points > 0
-      ? [{ target: candidate.target, points: allocation.points }]
-      : []
-  })
+    if (!candidate || !Number.isSafeInteger(allocation.points) || allocation.points < 1) {
+      throw new HubMaintenanceError('INVALID_INPUT', '维护分配必须引用当前目标并使用正安全整数')
+    }
+    allocations.push({ target: candidate.target, points: allocation.points })
+  }
   if (draft.operation === 'allocate-base-maintenance-labor') {
     return allocations.length > 0 ? createHubMaintenanceCommand({ kind: draft.operation, allocations }) : null
   }
@@ -262,7 +266,12 @@ export function previewStableRunUiHubMaintenanceDraft(
   const opportunity = getStableRunUiHubMaintenanceOpportunities(phase, dependencies).find(({ operation }) => operation === draft.operation)
   if (!opportunity) return null
   let command: HubMaintenanceCommand | null = null
-  try { command = buildCommand(opportunity, draft) } catch { command = null }
+  try {
+    command = buildCommand(opportunity, draft)
+  } catch (error) {
+    if (error instanceof HubMaintenanceError) command = null
+    else throw error
+  }
   const title = `确认${operationLabel(draft.operation)}`
   if (!command) return Object.freeze({ canExecute: false, rejection: '请明确选择目标、数量与材料来源。', command: null, title, facts: Object.freeze([]), warnings: Object.freeze([]), safeResult: null })
   const safe = previewPlayerVisibleHubMaintenance(phase.payload, command, rules(phase, dependencies))

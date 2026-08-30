@@ -442,11 +442,11 @@ describe('hospital current-day hub', () => {
     expect(full.runLoadout.warehouse.items).toEqual([ration])
   })
 
-  it('allows suppressant for existing progress and removes a quick-slot unit without refill', () => {
-    const suppressant = item('quick-suppressant', HOSPITAL_ITEM_IDS.infectionSuppressant)
-    const start = hub({ quickSlots: [suppressant, null], progress: 10 })
-    const result = resolveHubSurvivalCommand(start, survival('use-hub-infection-suppressant', { container: 'quick-slot', quickSlotIndex: 0 }), dependencies)
-    expect(result.snapshot.runLoadout.quickSlots.slots).toEqual([null, null])
+  it('allows suppressant for existing progress and consumes the explicit backpack source', () => {
+    const suppressant = item('backpack-suppressant', HOSPITAL_ITEM_IDS.infectionSuppressant)
+    const start = hub({ backpack: [suppressant], progress: 10 })
+    const result = resolveHubSurvivalCommand(start, survival('use-hub-infection-suppressant', { container: 'backpack', itemInstanceId: suppressant.instanceId }), dependencies)
+    expect(result.snapshot.runLoadout.backpack.items).toEqual([])
     expect(result.snapshot.runLoadout.itemStates.states).toEqual([])
     expect(result.snapshot.worldThreat.progress).toBe(10)
     expect(result.snapshot.continuity).toEqual(start.continuity)

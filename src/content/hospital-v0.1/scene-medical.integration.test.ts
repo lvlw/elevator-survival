@@ -409,13 +409,13 @@ describe('hospital non-combat scene medical', () => {
     ])
 
     const firstAid = resolve(snapshot({
-      quickSlots: [HOSPITAL_ITEM_IDS.firstAidKit, null],
+      backpackItems: [item('first-aid-quick-slot-corrective', HOSPITAL_ITEM_IDS.firstAidKit)],
       currentHealth: 8,
       bleeding: true,
       wounds: [{ id: 'wound-b', kind: 'bite', treatment: 'untreated' }],
-    }), quickSlotCommand(0, { kind: 'open-wound', woundId: 'wound-b' }))
+    }), backpackCommand('first-aid-quick-slot-corrective', { kind: 'open-wound', woundId: 'wound-b' }))
     expect(firstAid.snapshot.condition).toMatchObject({ currentHealth: 12, bleeding: false, openWounds: [] })
-    expect(firstAid.snapshot.quickSlots.slots[0]).toBeNull()
+    expect(firstAid.snapshot.backpack.items).toEqual([])
     expect(firstAid.result.actionTime).toBe(config.medical.firstAidKit.sceneTime)
 
     const firstAidContusion = resolve(snapshot({

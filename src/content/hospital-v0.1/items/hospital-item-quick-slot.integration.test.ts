@@ -63,7 +63,7 @@ const carried = (
   )
 
 describe('hospital quick-slot eligibility', () => {
-  it('uses exactly two slots and covers all 18 items as 7 eligible plus 11 ineligible', () => {
+  it('uses exactly two slots and covers all 18 items as 3 eligible plus 15 ineligible', () => {
     expect(config.backpack.quickSlotCount).toBe(2)
     expect(hospitalItemQuickSlotProfiles).toHaveLength(18)
     expect(hospitalItemQuickSlotCatalog.definitionIds).toEqual(
@@ -73,18 +73,18 @@ describe('hospital quick-slot eligibility', () => {
       hospitalItemQuickSlotCatalog.definitionIds.filter(
         (id) => hospitalItemQuickSlotCatalog.get(id).kind === 'eligible',
       ),
-    ).toHaveLength(7)
+    ).toHaveLength(3)
     expect(
       hospitalItemQuickSlotCatalog.definitionIds.filter(
         (id) => hospitalItemQuickSlotCatalog.get(id).kind === 'not-eligible',
       ),
-    ).toHaveLength(11)
+    ).toHaveLength(15)
   })
 
   it.each([
     HOSPITAL_ITEM_IDS.bandage,
-    HOSPITAL_ITEM_IDS.firstAidKit,
-    HOSPITAL_ITEM_IDS.standardBattery,
+    HOSPITAL_ITEM_IDS.disinfectant,
+    HOSPITAL_ITEM_IDS.painkiller,
   ])('allows %s', (definitionId) => {
     expect(hospitalItemQuickSlotCatalog.get(definitionId).kind).toBe('eligible')
   })
@@ -93,6 +93,10 @@ describe('hospital quick-slot eligibility', () => {
     HOSPITAL_ITEM_IDS.metalPipe,
     HOSPITAL_ITEM_IDS.flashlight,
     HOSPITAL_ITEM_IDS.metalParts,
+    HOSPITAL_ITEM_IDS.firstAidKit,
+    HOSPITAL_ITEM_IDS.ration,
+    HOSPITAL_ITEM_IDS.infectionSuppressant,
+    HOSPITAL_ITEM_IDS.standardBattery,
     HOSPITAL_ITEM_IDS.isolationWardAccessCard,
     HOSPITAL_ITEM_IDS.sealedPathogenCase,
   ])('rejects %s', (definitionId) => {
@@ -111,6 +115,25 @@ describe('hospital quick-slot eligibility', () => {
 })
 
 describe('hospital quick-slot container integration', () => {
+  it.each([
+    HOSPITAL_ITEM_IDS.firstAidKit,
+    HOSPITAL_ITEM_IDS.ration,
+    HOSPITAL_ITEM_IDS.infectionSuppressant,
+    HOSPITAL_ITEM_IDS.standardBattery,
+  ])('strict restore rejects %s in a quick slot', (definitionId) => {
+    expect(() => createCarriedItemContainersSnapshot(
+      createBackpackSnapshot({
+        width: config.backpack.width,
+        height: config.backpack.height,
+        items: [],
+        placements: [],
+      }, hospitalItemCatalog),
+      createEmptyEquipment(hospitalItemCatalog, hospitalItemEquipmentCatalog),
+      { slots: [item('forged-quick-item', definitionId), null] },
+      dependencies,
+    )).toThrowError(expect.objectContaining({ code: 'NOT_ELIGIBLE' }))
+  })
+
   it('extracts one bandage from three and lowers backpack weight by one', () => {
     const input = carried(
       [item('bandages', HOSPITAL_ITEM_IDS.bandage, 3)],
@@ -135,20 +158,18 @@ describe('hospital quick-slot container integration', () => {
     expect(calculateBackpackWeightSubtotal(result.backpack, hospitalItemCatalog)).toBe(2)
   })
 
-  it('moves one first-aid kit, releases two cells, and preserves its instance id', () => {
+  it('rejects moving a first-aid kit into a quick slot', () => {
     const input = carried(
       [item('kit', HOSPITAL_ITEM_IDS.firstAidKit)],
       [at('kit', 0, 0)],
     )
-    const result = moveOneBackpackItemToQuickSlot(
+    expect(() => moveOneBackpackItemToQuickSlot(
       input,
       { backpackInstanceId: 'kit', targetSlotIndex: 1 },
       dependencies,
-    )
+    )).toThrowError(expect.objectContaining({ code: 'NOT_ELIGIBLE' }))
     expect(getOccupiedCellCount(input.backpack, hospitalItemCatalog)).toBe(2)
-    expect(getOccupiedCellCount(result.backpack, hospitalItemCatalog)).toBe(0)
-    expect(calculateBackpackWeightSubtotal(result.backpack, hospitalItemCatalog)).toBe(0)
-    expect(result.quickSlots.slots[1]?.instanceId).toBe('kit')
+    expect(calculateBackpackWeightSubtotal(input.backpack, hospitalItemCatalog)).toBe(2)
   })
 
   it('changes loaded 17 to normal 16 when one bandage enters a quick slot', () => {

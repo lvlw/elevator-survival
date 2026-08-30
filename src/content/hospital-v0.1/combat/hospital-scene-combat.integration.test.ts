@@ -744,7 +744,7 @@ describe('hospital scene combat encounter lifecycle', () => {
     const started = enter(scene({
       health: 8,
       bleeding: true,
-      quickSlots: [HOSPITAL_ITEM_IDS.bandage, HOSPITAL_ITEM_IDS.ration],
+      quickSlots: [HOSPITAL_ITEM_IDS.bandage, HOSPITAL_ITEM_IDS.painkiller],
     }))
     const beforeTime = started.remainingTime
     const beforeNode = started.currentNodeId
@@ -760,7 +760,7 @@ describe('hospital scene combat encounter lifecycle', () => {
     expect(result.snapshot.backpack).toEqual(beforeBackpack)
     expect(result.snapshot.quickSlots.slots[0]).toBeNull()
     expect(result.snapshot.quickSlots.slots[1]).toMatchObject({
-      definitionId: HOSPITAL_ITEM_IDS.ration,
+      definitionId: HOSPITAL_ITEM_IDS.painkiller,
     })
     expect(result.snapshot.itemStates.states.some(
       ({ instanceId }) => instanceId === 'scene-quick-0',

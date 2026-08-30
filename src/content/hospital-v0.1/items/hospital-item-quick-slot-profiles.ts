@@ -5,11 +5,7 @@ import { HOSPITAL_ITEM_IDS } from './hospital-item-ids'
 const eligible = [
   HOSPITAL_ITEM_IDS.bandage,
   HOSPITAL_ITEM_IDS.disinfectant,
-  HOSPITAL_ITEM_IDS.firstAidKit,
   HOSPITAL_ITEM_IDS.painkiller,
-  HOSPITAL_ITEM_IDS.ration,
-  HOSPITAL_ITEM_IDS.infectionSuppressant,
-  HOSPITAL_ITEM_IDS.standardBattery,
 ]
 
 const notEligible = [
@@ -19,6 +15,10 @@ const notEligible = [
   HOSPITAL_ITEM_IDS.crowbar,
   HOSPITAL_ITEM_IDS.flashlight,
   HOSPITAL_ITEM_IDS.toolkit,
+  HOSPITAL_ITEM_IDS.firstAidKit,
+  HOSPITAL_ITEM_IDS.ration,
+  HOSPITAL_ITEM_IDS.infectionSuppressant,
+  HOSPITAL_ITEM_IDS.standardBattery,
   HOSPITAL_ITEM_IDS.metalParts,
   HOSPITAL_ITEM_IDS.electronicComponents,
   HOSPITAL_ITEM_IDS.fabric,

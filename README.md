@@ -4,11 +4,11 @@
 
 ## 当前阶段
 
-医院纵向切片的纯 TypeScript 规则核心、稳定 Run phase、最小单槽存档、Headless Application、vanilla StableRunStore，以及在已注入合法 Store 时的 React 一日交互闭环已实现。现有闭环包括中枢整备、医院探索、战斗、撤离与返回结算、中枢医疗／生存／维护及每日结算。
+医院纵向切片的纯 TypeScript 规则核心、稳定 Run phase、最小单槽存档、Headless Application、vanilla StableRunStore、React 一日交互闭环，以及生产浏览器单槽严格加载与恢复入口已实现。现有闭环包括中枢整备、医院探索、战斗、撤离与返回结算、中枢医疗／生存／维护及每日结算；合法 Hub、Scene 与 Run Failure 存档会自动恢复。
 
 ## 仍待完成
 
-生产默认网页入口尚未接入活动 Run 的浏览器存储、严格加载／恢复、Store 创建与 presentation dependencies 注入；New Run、Profile 持久化、Run Abandon、Day 7 Final Resolver、Success、Crafting、Salvage、完整七日世界及终版视觉也尚未实现。因此项目还未到达从生产网页冷启动进行正式 Playability Review 的节点。
+New Run constructor 与 UI、Production RunIdentity／Web Crypto adapter、Profile 持久化、Run Abandon、Day 7 Final Resolver、Success、Crafting、Salvage、完整七日世界及终版视觉尚未实现。无存档时默认入口会诚实显示 `no-run`，不会自动创建或伪造 Run；因此项目仍未到达从全新生产网页完成医院一日 Playability Review 的节点。
 
 ## 开发
 
@@ -19,6 +19,8 @@ npm run typecheck
 npm run test:run
 npm run build
 ```
+
+开发环境默认同样执行真实浏览器存档恢复。仅在需要观察固定内存示例时显式打开 `/?dev-ui-preview=1`；该入口不会读写真实 Run 存档，且不会进入生产构建。
 
 - `src/core`：纯 TypeScript 规则与结算。
 - `src/content`：版本化内容配置。

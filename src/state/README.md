@@ -1,6 +1,6 @@
 # State
 
-应用状态适配、持久化边界及 UI 与纯规则核心之间的协调。当前已实现最小 Headless Stable Run Application Store、React `useSyncExternalStore` 桥接与 `StableRunUiApp`；Store 只持有 canonical Run phase 并发送正式命令，不拥有玩法、Profile 或多个 Run。生产 bootstrap、Provider 或等价应用编排仍未接入，当前边界不代表完整 Application framework。
+应用状态适配、持久化边界及 UI 与纯规则核心之间的协调。当前已实现最小 Headless Stable Run Application Store、React `useSyncExternalStore` 桥接、`StableRunUiApp`，以及 Browser Storage → strict load → 单个 Store → Production App Shell 的默认恢复编排；Store 只持有 canonical Run phase 并发送正式命令，不拥有玩法、Profile 或多个 Run。New Run 与完整 RunState 仍未实现，当前边界不代表完整 Application framework。
 
 ## 当前最小 Run 持久化边界
 
@@ -18,7 +18,7 @@ Success 仍是 DEC-028 定义的未来正式终局概念；当前规则版本没
 
 Dispatcher 每次只委托一个 specialized router 一次，不直接调用 `executeStableRunCommand`、Run Save 或 `storage.write()`。各 specialized router 继续拥有命令到 core resolver 的映射，generic executor 继续拥有 canonicalization、RunIdentity 连续性与唯一保存；`execution.phase` 仍是下一条命令的唯一正式状态。
 
-确定性 replay 只存在于自动化测试，使用正式 registry、Run seed、稳定阶段和统一 dispatcher；不会把 command history、replay log 或 sequence number 写入 StableRunPhase 或 Run Save。现有 lifecycle、scene 与 hub 命令已由 Store 和 React UI 通过本 facade 调用；Crafting、Salvage 命令及 UI，以及生产 bootstrap 仍未实现。
+确定性 replay 只存在于自动化测试，使用正式 registry、Run seed、稳定阶段和统一 dispatcher；不会把 command history、replay log 或 sequence number 写入 StableRunPhase 或 Run Save。现有 lifecycle、scene 与 hub 命令已由 Store 和 React UI 通过本 facade 调用；Production Bootstrap 复用同一 registry，Crafting、Salvage 命令及 UI 仍未实现。
 
 ## 当前最小 Stable Run Store
 
@@ -34,7 +34,7 @@ Store 对外只暴露 `getState`、`getInitialState`、`subscribe` 与 `dispatch
 
 Router 根据 canonical current phase 的 RunIdentity 从既有 Run Save registry 取得正式版本依赖，调用现有 Scene Launch、Run Return、Daily Settlement 与 RunFailure 入口，再委托 `executeStableRunCommand` 规范化结果、验证身份并写入唯一存档。returned Scene 的位置、时间与生命校验只存在于 Scene strict snapshot：`remainingTime` 必须是0到当前规则 `scene.totalTime` 之间的安全整数，超出范围会拒绝而不修复；Run Save 和生命周期结算复用该入口，Router 不复制或补算撤离规则。Router 不直接保存；`execution.phase` 是下一条命令的唯一状态输入，resolver result、summary 和 Effects 不形成第二份应用状态。
 
-三类现有 lifecycle 命令 `launch-main-scene`、`settle-terminal-scene` 和 `end-day` 已接入 React 确认式交互。当前仍未实现 command bus、Profile 持久化、完整 RunState、生产 bootstrap／Provider 编排、Day 7 Final Resolver、Success Resolver、Run Abandon、New Run、多个存档槽、存档历史及迁移。
+三类现有 lifecycle 命令 `launch-main-scene`、`settle-terminal-scene` 和 `end-day` 已接入 React 确认式交互。Production App Shell 已能严格恢复 Hub、Scene 与 Run Failure，显示 `no-run`／玩家安全的阻塞错误，并执行显式 clear 或 read retry；当前仍未实现 command bus、Profile 持久化、完整 RunState、Day 7 Final Resolver、Success Resolver、Run Abandon、New Run、多个存档槽、存档历史及迁移。
 
 ## 当前基础 Scene mutation 路由
 

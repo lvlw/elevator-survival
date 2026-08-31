@@ -1,6 +1,6 @@
 # State
 
-应用状态适配、持久化边界及 UI 与纯规则核心之间的协调。当前已实现最小 Headless Stable Run Application Store；它只持有 canonical Run phase 并发送正式命令，不拥有玩法、Profile 或多个 Run，React UI 尚未接入，也不代表完整 Application framework 已完成。
+应用状态适配、持久化边界及 UI 与纯规则核心之间的协调。当前已实现最小 Headless Stable Run Application Store、React `useSyncExternalStore` 桥接与 `StableRunUiApp`；Store 只持有 canonical Run phase 并发送正式命令，不拥有玩法、Profile 或多个 Run。生产 bootstrap、Provider 或等价应用编排仍未接入，当前边界不代表完整 Application framework。
 
 ## 当前最小 Run 持久化边界
 
@@ -18,7 +18,7 @@ Success 仍是 DEC-028 定义的未来正式终局概念；当前规则版本没
 
 Dispatcher 每次只委托一个 specialized router 一次，不直接调用 `executeStableRunCommand`、Run Save 或 `storage.write()`。各 specialized router 继续拥有命令到 core resolver 的映射，generic executor 继续拥有 canonicalization、RunIdentity 连续性与唯一保存；`execution.phase` 仍是下一条命令的唯一正式状态。
 
-确定性 replay 只存在于自动化测试，使用正式 registry、Run seed、稳定阶段和统一 dispatcher；不会把 command history、replay log 或 sequence number 写入 StableRunPhase 或 Run Save。制作、拆解与 React UI 仍未实现。
+确定性 replay 只存在于自动化测试，使用正式 registry、Run seed、稳定阶段和统一 dispatcher；不会把 command history、replay log 或 sequence number 写入 StableRunPhase 或 Run Save。现有 lifecycle、scene 与 hub 命令已由 Store 和 React UI 通过本 facade 调用；Crafting、Salvage 命令及 UI，以及生产 bootstrap 仍未实现。
 
 ## 当前最小 Stable Run Store
 
@@ -26,7 +26,7 @@ Dispatcher 每次只委托一个 specialized router 一次，不直接调用 `ex
 
 Store 对外只暴露 `getState`、`getInitialState`、`subscribe` 与 `dispatch`，不暴露 raw Zustand `setState`。创建时调用 `canonicalizeStableRunPhase` 且不写存档；从 storage 创建只调用 `loadRunPhase`，无存档返回 `null`，损坏存档抛错并保持原值。
 
-`dispatch` 只调用统一 `executeStableRunApplicationCommand`。成功或存储失败都用返回的 `execution.phase` 更新 Store 一次；规则拒绝不更新。存储失败后 committed in-memory phase 仍是当前真相，Store 不回滚、不 reload、不 retry，下一命令从该内存阶段继续。Execution、result、Effects 与 persistence response 不进入 Store snapshot。React hook、Provider 和 UI 尚未实现。
+`dispatch` 只调用统一 `executeStableRunApplicationCommand`。成功或存储失败都用返回的 `execution.phase` 更新 Store 一次；规则拒绝不更新。存储失败后 committed in-memory phase 仍是当前真相，Store 不回滚、不 reload、不 retry，下一命令从该内存阶段继续。Execution、result、Effects 与 persistence response 不进入 Store snapshot。React hook 和只读展示／确认式命令 UI 已实现；生产 Provider 或等价 bootstrap 编排仍未接入。
 
 ## 当前最小生命周期路由
 
@@ -34,7 +34,7 @@ Store 对外只暴露 `getState`、`getInitialState`、`subscribe` 与 `dispatch
 
 Router 根据 canonical current phase 的 RunIdentity 从既有 Run Save registry 取得正式版本依赖，调用现有 Scene Launch、Run Return、Daily Settlement 与 RunFailure 入口，再委托 `executeStableRunCommand` 规范化结果、验证身份并写入唯一存档。returned Scene 的位置、时间与生命校验只存在于 Scene strict snapshot：`remainingTime` 必须是0到当前规则 `scene.totalTime` 之间的安全整数，超出范围会拒绝而不修复；Run Save 和生命周期结算复用该入口，Router 不复制或补算撤离规则。Router 不直接保存；`execution.phase` 是下一条命令的唯一状态输入，resolver result、summary 和 Effects 不形成第二份应用状态。
 
-当前仍未实现 command bus、Profile 持久化、完整 RunState、React UI 编排、Success Resolver、Run Abandon、New Run、多个存档槽、存档历史及迁移。
+三类现有 lifecycle 命令 `launch-main-scene`、`settle-terminal-scene` 和 `end-day` 已接入 React 确认式交互。当前仍未实现 command bus、Profile 持久化、完整 RunState、生产 bootstrap／Provider 编排、Day 7 Final Resolver、Success Resolver、Run Abandon、New Run、多个存档槽、存档历史及迁移。
 
 ## 当前基础 Scene mutation 路由
 
@@ -44,7 +44,7 @@ Router 只接受 canonical `scene-session`，按其中 RunIdentity 的 `rulesVer
 
 所有成功结果只由 `executeStableRunCommand` 写入唯一 Run Save 一次；规则拒绝不写入，存储失败返回已经规范化的 committed Scene Session，且不重跑 resolver。产生安全返回、强制返回或死亡时仍保存为 `scene-session`，不会自动进入 Hub 或 Run Failure；下一步必须显式调用生命周期结算。`execution.phase` 是下一命令的唯一正式状态输入。
 
-ongoing Combat 每个玩家命令后保存完整稳定 Scene Session；胜利、逃跑或战败也只提交 Scene Session，terminal Scene 不自动结算。最小 Store 已通过统一 dispatcher 接入；战斗换装、完整战斗背包整理与 UI 仍未接入本路由。
+ongoing Combat 每个玩家命令后保存完整稳定 Scene Session；胜利、逃跑或战败也只提交 Scene Session，terminal Scene 不自动结算。十类现有 Scene router 命令均已通过最小 Store 与 React 确认式 UI 接入。战斗换装、完整战斗背包整理、战利品和多目标仍未实现，不属于当前路由缺陷。
 
 ## 当前基础 Hub mutation 路由
 
@@ -52,4 +52,4 @@ ongoing Combat 每个玩家命令后保存完整稳定 Scene Session；胜利、
 
 Router 只接受 canonical `current-day-hub`，按其 RunIdentity 的 `rulesVersion` 从既有 Run Save registry 取得正式 CurrentDayHub 与 Hub Maintenance 依赖；维护依赖必须与该版本 CurrentDayHub 依赖同源。Router 不导入医院内容、不复制生命周期目录或内容绑定，也不局部拼接第二份 Hub 状态。
 
-所有成功结果只由 `executeStableRunCommand` 写入唯一 Run Save 一次；规则拒绝不写入，存储失败返回已经规范化的 committed Hub，且不重跑 resolver、Effect 或物品消费。`execution.phase` 是下一命令的唯一正式状态输入。Hub mutation 不推进日期、不启动 Scene、不执行 Daily Settlement；End Day 仍由 `run-lifecycle/` 的独立命令处理。最小 Store 已通过统一 dispatcher 接入；制作、拆解与 UI 尚未实现。
+所有成功结果只由 `executeStableRunCommand` 写入唯一 Run Save 一次；规则拒绝不写入，存储失败返回已经规范化的 committed Hub，且不重跑 resolver、Effect 或物品消费。`execution.phase` 是下一命令的唯一正式状态输入。Hub mutation 不推进日期、不启动 Scene、不执行 Daily Settlement；End Day 仍由 `run-lifecycle/` 的独立命令处理。Run Loadout、Hub Medical、Hub Survival 和 Hub Maintenance 已通过最小 Store 与 React 确认式 UI 接入；Crafting、Salvage 命令及 UI 仍未实现。

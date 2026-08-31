@@ -2,7 +2,13 @@
 
 > 一款以异常电梯为中枢、进入不同灾难世界完成限时生存任务的网页单人策略 Roguelite 游戏。
 
-项目已完成纯 TypeScript 规则内核的基础模块，包括版本化配置、确定性随机、场景事务、节点图、背包、物品资源、装备和玩家条件状态。React UI、完整 Run 编排、战斗、医院完整交互流程和存档仍未完成，当前纵向切片尚不可游玩。
+## 当前阶段
+
+医院纵向切片的纯 TypeScript 规则核心、稳定 Run phase、最小单槽存档、Headless Application、vanilla StableRunStore，以及在已注入合法 Store 时的 React 一日交互闭环已实现。现有闭环包括中枢整备、医院探索、战斗、撤离与返回结算、中枢医疗／生存／维护及每日结算。
+
+## 仍待完成
+
+生产默认网页入口尚未接入活动 Run 的浏览器存储、严格加载／恢复、Store 创建与 presentation dependencies 注入；New Run、Profile 持久化、Run Abandon、Day 7 Final Resolver、Success、Crafting、Salvage、完整七日世界及终版视觉也尚未实现。因此项目还未到达从生产网页冷启动进行正式 Playability Review 的节点。
 
 ## 开发
 

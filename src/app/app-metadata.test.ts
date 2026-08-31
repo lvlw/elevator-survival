@@ -10,7 +10,8 @@ describe('appMetadata', () => {
     expect(appMetadata.verticalSliceVersion).toBe('v0.1')
   })
 
-  it('describes a non-empty engineering stage', () => {
-    expect(appMetadata.stage.trim()).not.toHaveLength(0)
+  it('describes the implemented hospital-day loop and the missing production bootstrap', () => {
+    expect(appMetadata.stage).toBe('医院一日规则与正式交互闭环已实现，生产启动入口尚未接入')
+    expect(appMetadata.stage).not.toContain('规则内核尚未实现')
   })
 })

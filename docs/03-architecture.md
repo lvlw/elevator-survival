@@ -78,7 +78,7 @@ CurrentDayHub
 - Dispatcher 不维护第四套 phase matrix，不拥有玩法规则、规则版本分派、随机数、Effect、状态或保存策略；它也不直接调用 generic executor、Run Save 或 `storage.write()`。
 - Lifecycle、Scene 与 Hub specialized router 继续拥有各自的应用层映射职责，generic executor 继续拥有 canonicalization、RunIdentity 连续性和唯一保存。每次 application dispatch 只委托一个 specialized router 一次。
 - `execution.phase` 是下一条命令的唯一正式状态。确定性重放只属于自动化验收，使用正式 registry、Run seed、稳定阶段与应用路由，不在存档或阶段中保存 command history、replay log 或序号。
-- 制作、拆解与部分 React gameplay command wiring 尚未实现；当前已接入启动主要场景、活动场景移动、主要搜索、节点拾取、七种 Scene 背包／快捷栏整理、主动撤离、终止场景结算、结束本日、医院防火门障碍、感染护工战斗行动、医院样本箱任务事件及当前日中枢维护的确认式 UI，展示与交互边界见后文。
+- 现有 lifecycle、Scene 与 Hub application command 均已通过最小 Store 接入 React 确认式 UI，展示与交互边界见后文。Crafting、Salvage、Production Bootstrap、New Run 与完整应用编排仍未实现。
 
 ## 最小 Stable Run Application Store
 

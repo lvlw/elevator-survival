@@ -65,6 +65,46 @@ CurrentDayHub
 - Success 仍是 DEC-028 定义的未来正式终局概念；当前规则版本没有 Success Resolver 或主线成功条件，因此不能构造、保存或恢复 `run-success`。
 - Run 与 Profile 生命周期继续分离；当前已经实现无状态的 Headless Application 统一分派、最小 vanilla Store 和只读 React 展示桥接，但仍未实现完整 RunState、Profile 持久化、Success Resolver、Run Abandon 或 New Run。
 
+## Production Bootstrap、App Shell 与 New Run 职责
+
+### Production Composition Root
+
+Production Composition Root 负责创建 Browser Run Save adapter，提供规则版本 registry、presentation dependencies 和 Production RunIdentity 环境适配器，执行一次严格 bootstrap，并向 App 注入唯一 Store 或应用 Shell 状态。它不拥有 gameplay rule、Run phase mutation、New Run 初始值、save schema、Daily Settlement 或 Profile。
+
+### Production App Shell
+
+Production App Shell 只允许拥有 `loading`、`ready(store)`、`no-run`、`load-error`，以及尚未确认的 New Run 实用装备选择草稿。它不复制 canonical gameplay facts，也不保存生命、日期、库存、任务、场景、战斗或 Failure reason 作为第二份状态。
+
+### Strict Bootstrap
+
+```text
+Browser Run Save Storage
+→ loadRunPhase / createStableRunStoreFromStorage
+→ exactly one Store / null / error
+```
+
+- Bootstrap 复用既有 Browser adapter、save codec、规则 registry 与 strict restore，不实现第二套 JSON 解析、格式判断、版本判断或 phase 恢复。
+- 合法进行中 phase 自动进入正式 UI；合法 `run-failure` 进入 Failure View；无存档进入 `no-run`；损坏、不兼容或存储读取失败进入阻塞错误。
+- 损坏存档 clear 是显式应用恢复操作，不与 Run Abandon、Run Failure 或 New Run 共用语义。可读取但无法恢复的存档只有在不可逆 Preview 后确认才尝试清除一次；存储读取失败不假定 clear 可用。
+- DEV Preview 是显式、独立的 DEV-only 入口，不再是默认 application bootstrap；它继续使用 `MemoryRunSaveStorage`、正式 constructor 和合法 canonical phase。
+
+### New Run Application Boundary
+
+```text
+已确认的初始实用装备选择
+→ 调用一次 RunIdentity 环境适配器
+→ 正式、版本绑定的 initial phase constructor
+→ 一次唯一保存尝试
+→ 建立一个 StableRunStore
+```
+
+- New Run 创建新生命周期，不是对既有 StableRunPhase 的普通 lifecycle、Hub 或 Scene command mutation。
+- 环境适配器是环境熵的唯一入口；Production 使用 Web Crypto，测试注入固定输出。core、React render／effect／subscription、Store 与医院内容均不生成身份。
+- 正式 constructor 拥有完整 Day 1 `CurrentDayHub` 初始状态；React 不拼装生命、库存、ItemState、任务、世界威胁、每日状态、装备或快捷栏。
+- 从 `run-failure` 创建新 Run 时，直接写入新的完整 stable phase，不先 clear。首次保存失败后，单个新 Store 继续持有 committed in-memory initial phase；不回滚、重试、reload、重新生成身份或建立第二个 Store。
+
+> 本节只记录职责，不固定最终类名、函数名、熵字节长度、编码或目录结构。Production Bootstrap、Production RunIdentity adapter、正式 initial phase constructor、New Run application boundary 与对应 UI 当前均尚未实现。
+
 ## Stable Run 统一 Application 分派
 
 ```text
@@ -108,7 +148,7 @@ StableRunStore public read API
 
 - `src/ui/` 只读取 Store 对外的 `getState()`、`getInitialState()` 与 `subscribe()`；不访问 raw Zustand API，也不在渲染、订阅或开发检查器中发送命令、保存或改变状态。已接入的确认按钮只调用公开 `Store.dispatch()`，不直接调用 application／specialized executor、core resolver 或保存接口。
 - 通用 ViewModel 通过显式白名单向普通玩家展示 Hub、Scene、Combat 与 Failure 信息。节点地面物品、**当前可通行相邻节点**、当前节点明显障碍、相对敌人生命阶段、当前意图和正式返程预览继续复用 core 查询；当前不构造完整玩家已知地图。障碍只投影当前 active Scene、当前节点、尚未解决的正式障碍，选项资格由 core Preview 决定。内部 Run 身份、实例 ID、隐藏搜索结果、障碍随机轨迹、精确敌人生命、风险百分比和未来行动序列不进入普通 ViewModel。
-- 医院 V1 的名称文案位于 UI 内容适配层；通用组件不硬编码医院物品、敌人或节点名称。开发环境的只读检查器可以查看严格 phase，但生产环境没有入口，且不提供 mutation。开发环境默认 `App` 未注入 Store 时可动态加载独立内存态预览：它只用正式构造器生成合法 Hub／Scene／Combat／Failure Store，选择示例不发送 gameplay command、不保存，也不是 New Run 或正式游戏入口；生产环境仍保持诚实的未接入状态。
+- 医院 V1 的名称文案位于 UI 内容适配层；通用组件不硬编码医院物品、敌人或节点名称。开发环境的只读检查器可以查看严格 phase，但生产环境没有入口，且不提供 mutation。当前实现仍在开发环境默认 `App` 未注入 Store 时动态加载独立内存态预览；根据 UIR-007，该行为必须改为显式 DEV-only 入口，开发与生产的默认入口都应执行真实 Production Bootstrap。预览继续只用正式构造器生成合法 Hub／Scene／Combat／Failure Store，选择示例不发送 gameplay command、不保存，也不是 New Run 或正式游戏入口。
 - `src/ui/interaction/` 从 canonical phase、正式 registry、标签和纯 core preview 生成安全行动：主要场景启动、当前日中枢 Run Loadout、中枢医疗与生存补给、活动场景移动、主要搜索、显式节点物品拾取、七种 Scene 背包／快捷栏整理、主动撤离、医院防火门、感染护工战斗行动、医院样本箱任务事件、Scene 非战斗医疗与 Scene 非战斗电池充能。拾取、任务物提取及 Scene 整理草稿只保存玩家明确选择的数量、目标、快捷栏、坐标与旋转，调用对应正式 Preview；背包网格只投影正式几何并作为 anchor 选择，不自动摆放、整理、拆分、合并、补充或创建实例身份。Scene 整理的 player-safe Preview 白名单投影正式容器变化、数量、负重档位、零时间与即时返程估算，不携带实例 ID、审计、Effects 或 resulting snapshot；任务物放到节点必须显式确认。Scene 医疗与充能行动完全来自各自正式 selector，保留玩家明确选择的真实容器来源和目标；二者共用中性的正时间 Scene 行动安全投影，区分完成节点、返程目标、行动后流血死亡和紧急返程死亡。中枢医疗与生存行动同样只展开正式 selector 返回的真实仓库、背包或快捷栏来源及明确伤势目标，并通过同源零时间 Preview 展示物品消费、医疗效果、每日使用、饱食和威胁抑制事实；不自动寻找来源、目标或补充快捷栏。player-safe Preview 只对白名单投影同源主要效果、时间、流血、返程与终局事实。确认后每次只发出一条 `Store.dispatch()`；医疗、充能、撤离、战斗或任务事件产生的 terminal Scene 先保存 Scene Session，结算仍由下一条显式 lifecycle command 完成。
 - 成功返回后的 Return Summary、Combat Action Result、Task Event Result、Scene Medical Result、Scene Battery Result、Scene Inventory Result、Hub Loadout Result、Hub Medical Result、Hub Survival Result、Hub Maintenance Result 与 Daily Settlement Result 只将 execution 前后的 canonical phase 及已发生的正式结果立即投影为本地、玩家可见的展示模型；它们不是 Scene、Combat、Run Return、Hub、任务进度、医疗、维护、充能、饱食、威胁抑制、日结算或 inventory 的状态 owner，关闭不发送命令。当前没有 New Run bootstrap、React Provider、完整 Application Store、UI 命令队列或终版美术。医院防火门、感染护工战斗行动、医院样本箱提取、Scene 非战斗医疗、Scene 非战斗电池充能、非战斗 Scene 整理、当前日中枢十二种显式 Run Loadout 整备、中枢医疗、中枢生存补给、五类中枢维护与普通日结算已接入正式安全 Preview 与确认分派。日结算 player-safe 投影只公开已执行阶段的日期、生命、相对世界威胁阶段、暴露、饱食、恢复、轻伤清理和日级资源重置结果，不公开精确世界威胁进展、伤口身份、Effects、计划或快照；早期终止不伪装后续阶段已执行。React 不拥有 inventory、装备／快捷栏资格、医疗／充能／维护资格、材料兼容、资源恢复、浪费、日工时、目标合法性、时间、流血、返程、日结算或终局规则；展示层可被未来其他渲染技术替换，只要继续读取 canonical phase 并发送正式命令。
 

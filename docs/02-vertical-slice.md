@@ -99,6 +99,19 @@
 
 > 医院纵向切片的时间、风险、战斗和强制返程测试参数按 DEC-030 至 DEC-033 执行；完整游戏平衡仍待设计。
 
+## Production Playability 启动与 New Run 验收
+
+- 生产网页冷启动严格读取唯一 Run 槽，并能恢复合法的 `current-day-hub`、`scene-session` 和 `run-failure`。
+- `current-day-hub` 与 `scene-session` 自动进入对应正式玩法 UI，不增加无实际选择价值的 Continue 页面；`run-failure` 只恢复终止摘要，不能恢复成活动 Run。
+- 无存档进入 New Run Setup，不自动创建默认 Run。
+- 损坏或不兼容存档进入阻塞错误并保留原值；只有玩家显式确认后，才清除可读取但无法恢复的存档。底层存储读取失败不得自动清除或回退为无存档。
+- 活动 Hub 或 Scene 不提供 New Run，不得以覆盖存档绕过未来正式 Run Abandon。
+- 医院一日 New Run 只可从无存档或合法 `run-failure` 进入，使用新的 RunIdentity、新 seed 和新状态，不继承旧 Run 的物品、任务、情报、日期、场景或玩家状态。
+- New Run 必须由玩家显式从撬棍、手电筒、工具箱中三选一；根据 DEC-041 使用固定基础角色，不显示、保存或应用专长。
+- 一次 New Run Confirm 只生成一次身份和一个完整 Day 1 `CurrentDayHub`，只尝试保存一次并只建立一个 `StableRunStore`；从 `run-failure` 创建时直接覆盖唯一槽，不先清除旧终止存档。
+- 首次保存失败时保留已建立的新 Run 作为当前会话内存真相，不回滚、重试、重新生成身份或建立第二个 Store，并明确提示刷新可能丢失未持久化的新 Run。
+- 最终生产链需要验证：创建新 Run → 完成正式命令并保存 → 刷新网页 → strict resume 同一 canonical phase。本任务只冻结该验收方向，不代表链路已经实现。
+
 ## 后续内容依赖
 
 - 完整七日内容；

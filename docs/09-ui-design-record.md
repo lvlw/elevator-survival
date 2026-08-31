@@ -86,3 +86,20 @@
 - 明确不做：New Run、自动启动、localStorage bootstrap、正式命令按钮、开发作弊操作或 UI 状态写入。
 - 复查触发条件：实现正式 New Run／Scene Launch 启动流程、真实存档选择或交互式玩家命令 UI。
 - 覆盖关系：无。
+
+## UIR-007：正式 Production Bootstrap 与显式 DEV Preview 入口
+
+- 状态：Confirmed
+- 日期：2026-08-31
+- 范围：默认网页入口、启动 loading、合法 Run 自动恢复、`no-run`、`load-error`、损坏存档清理、New Run Setup、`run-failure` → New Run，以及显式 DEV Preview 入口。
+- 问题：当前开发环境默认 App 在未注入 Store 时自动进入 DEV Preview，而生产入口尚未编排严格单槽恢复、错误阻塞与 New Run Setup；需要让默认入口反映真实生产生命周期，同时保留安全、显式的开发预览。
+- 已确认选择：开发与生产默认入口均执行真实 Production Bootstrap。默认 App 不再因为开发环境且未注入 Store 就自动进入 DEV Preview；DEV Preview 仍只存在于开发构建，但必须通过显式 DEV-only 入口触发。显式入口可以采用 query、独立 dev route、独立 dev entry 或其他不会进入生产构建的方式，具体形式属于可替换实现细节。
+- 启动展示：启动期间可以显示“正在恢复 Run…”。加载过程保持0 gameplay dispatch、0 Run Save write、0 Run Save clear、0 RunIdentity generation。合法 Run 自动进入正式 UI，不显示 Continue 页面。
+- `no-run`：无存档时显示“开始新的医院 Run”。在 New Run 尚未实现的短暂工程阶段，可以继续显示诚实的未接入说明；接入后展示固定初始装备摘要、实用装备三选一、专长暂缓说明和最终确认。
+- `load-error`：损坏或不兼容存档显示玩家可理解的阻塞错误，不显示 raw save 或内部身份。清理继续采用 UIR-003 的点击 → 不可逆 Preview → Confirm；提示必须说明该操作会删除当前无法恢复的唯一 Run 存档，之后无法恢复其内容。取消不清理。
+- Failure 与 New Run：合法 Failure View 继续显示终止摘要，可以通过“开始新的 Run”进入 New Run Setup。最终确认前说明新 Run 将替换唯一 Run 槽中的当前终止摘要；当前尚未实现 Profile 历史持久化，不得暗示该终止已经写入永久历史。活动 Hub 或 Scene 中不得显示 New Run。
+- DEV Preview：UIR-006 的 DEV-only、内存 Storage、正式 constructor／resolver、合法 canonical phase、固定 dev Run ID／seed、无 gameplay mutation、无真实存档读写、无 raw `setState` 和生产构建无入口继续有效。UIR-007 只局部覆盖 UIR-006 的开发环境默认 App 无 Store 时自动进入 Preview；新的有效规则是默认入口走真实 Bootstrap，DEV Preview 只能显式进入。
+- 必须遵守的契约：App Shell 不拥有 gameplay truth；加载错误不能静默回退；New Run setup 草稿不是 Run 状态；身份生成不能发生在 render；StrictMode 不能导致重复读取后的写入、重复清理、重复身份生成或重复 New Run；普通 DOM 不显示 raw save、runId、seed、rulesVersion 或内部存档结构。
+- 可替换的视觉细节：loading 动画、卡片布局、错误图标、New Run 选项控件、DEV 入口形式和按钮文案的非语义细节。
+- 明确不做：存档选择器、多个 Run slot、云存档、存档迁移 UI、存档修复器、Run Abandon、Profile 历史、成功终局、Day 7 Final Resolver、专长选择或玩家 seed 输入。
+- 覆盖关系：UIR-007 局部覆盖 UIR-006 的默认进入方式；UIR-006 的 DEV-only、安全构造、内存存储、无 mutation 与生产无入口等约束继续有效。

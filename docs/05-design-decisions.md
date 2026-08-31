@@ -2041,3 +2041,93 @@
   - 自动选择隐藏默认专长。
   - 取消 DEC-005。
   - 以上方案本轮均未采用。
+
+## DEC-042：生产入口采用严格单槽恢复与显式存档清理
+
+- 状态：已确认
+- 日期：2026-08-31
+- 背景：
+  - 当前已经存在唯一 Run Save slot、Browser Run Save adapter、严格 save envelope／`rulesVersion` 恢复、`createStableRunStoreFromStorage()`、CurrentDayHub／Scene Session／Run Failure 三种稳定阶段，以及正式 React `StableRunUiApp`。
+  - 默认 `main.tsx` 尚未完成 Browser Storage → strict load → Store 建立 → presentation dependencies 注入 → 正式 UI 的应用层编排。
+  - 当前开发环境中，默认 App 未注入 Store 时会进入 DEV Preview；生产环境无 Store 时只显示诚实的未接入状态。
+  - Production Bootstrap 缺失的是应用层编排，不是重新设计 Run Save 或复制一套恢复算法。
+- 决策：
+  - 默认网页入口在开发和生产环境中都执行真实 Production Bootstrap。启动流程为 Browser Run Save Storage → strict load → `ready`／`no-run`／`load-error`。
+  - 启动过程不得创建 gameplay state、执行 gameplay command、写入或清除存档、生成 RunIdentity 或 seed。
+  - 合法 `current-day-hub` 或 `scene-session` 存档必须自动创建唯一 `StableRunStore` 并直接进入正式 `StableRunUiApp`；不增加 Continue、存档选择、恢复点选择或回滚选项。
+  - 合法 `run-failure` 存档必须严格恢复、创建唯一 `StableRunStore` 并显示正式 Failure View 与终止摘要；不得恢复成活动 Hub，也不得继续探索、整备或日结算。恢复终止摘要不等于继续终止 Run。
+  - strict load 返回 `null` 时进入 `no-run`／New Run Setup，不得自动创建默认 Run。
+  - `INVALID_JSON`、`INVALID_ENVELOPE`、`UNKNOWN_SAVE_FORMAT`、`UNKNOWN_RULES_VERSION`、`INVALID_STABLE_PHASE` 必须进入阻塞的 `load-error`，保留原存档值，不自动修复、迁移、清除、回退为无存档或创建新 Run。
+  - 普通玩家界面只展示安全的错误类别或说明，不展示 raw serialized save、内部 snapshot、RunIdentity、内部堆栈或完整内部 error code。
+  - 对上述可读取但无法恢复的存档，玩家可以执行“清除无法恢复的 Run 存档”应用恢复操作：不可逆 Preview 后显式 Confirm，且只尝试一次 `storage.clear()`。取消或打开 Preview 均不清理；清理失败不得伪装成功或进入 `no-run`。
+  - 显式清理不是 Run Abandon、Run Failure、Profile reset 或 New Run，不生成 Run 终止摘要。
+  - `STORAGE_READ_FAILED` 表示底层存储当前不可读取；默认只允许重新尝试加载或重新加载页面，不得假定 `clear()` 可用，也不得自动进入无存档状态。
+  - 严格恢复为 `current-day-hub` 或 `scene-session` 时不提供 New Run 操作，避免绕过尚未实现的 Run Abandon。合法 `run-failure` 可以进入 New Run Setup，但这是创建另一局，不是继续失败 Run。
+  - Production App Shell 可以拥有 `loading`、`ready(store)`、`no-run`、`load-error`。这些是应用编排状态，不写入 StableRunPhase、Run Save、Profile、Hub、Scene 或 Daily State，也不复制生命、日期、库存、任务、场景、战斗或 Failure reason 作为第二份长期真相。
+- 理由：
+  - 单槽存档下额外 Continue 页面没有实际选择价值。
+  - 严格恢复应继续暴露损坏、版本不兼容或实现错误，不能通过静默回退为新游戏隐藏问题。
+  - 活动 Run 禁止 New Run，避免以覆盖存档模拟 Run Abandon。
+  - 终止摘要仍是合法稳定阶段，可以恢复用于展示，但不能恢复为活动玩法状态。
+  - 应用 Shell 状态与 canonical Run phase 分离，避免 React 成为第二个 gameplay state owner。
+- 影响：
+  - 默认 `main.tsx` 未来需要接入 Production Bootstrap。
+  - DEV Preview 未来不能继续作为默认开发首页，而必须改为显式 DEV-only 入口。
+  - 需要 player-safe `load-error` 展示和显式清理交互。
+  - 应用层需要区分 no-save、invalid／incompatible save、storage read failure 与 valid terminal save。
+  - 本决策不修改 Run Save schema、`rulesVersion` 或 `saveFormatVersion`。
+- 替代方案：
+  - 每次启动都显示 Continue。
+  - 加载失败时自动清除并开始新 Run。
+  - 开发环境永远默认进入 DEV Preview。
+  - 允许 active Run 直接被 New Run 覆盖。
+  - 终止 Run 不可读取，因此直接丢弃终止摘要。
+  - 以上方案本轮均未采用。
+
+## DEC-043：医院一日 New Run 采用显式环境身份与原子创建事务
+
+- 状态：已确认
+- 日期：2026-08-31
+- 背景：
+  - 纵向切片要求玩家能够创建使用新状态和新种子的 Run，并且新 Run 不继承旧 Run 的物品、任务、情报或状态。
+  - 当前尚无正式 New Run constructor、身份生成适配器、创建事务或 New Run UI。
+  - DEC-041 已确认医院一日暂缓专长，因此 New Run 不能为专长创建占位字段、默认值或隐藏效果。
+- 决策：
+  - New Run Setup 只允许从 `no-run` 或合法 `run-failure` 进入，不得从 `current-day-hub` 或 `scene-session` 进入。未来 active Run 的主动退出必须经过独立正式 Run Abandon 设计与实现。
+  - 医院一日 New Run Setup 当前只要求玩家显式从撬棍、手电筒、工具箱中选择一件初始实用装备；不得自动、随机、按浏览器环境或按旧 Run 选择，也不得用无提示的默认勾选替代显式选择。
+  - 固定初始内容继续为：武器位金属管、防具位厚实外套、实用装备位为玩家三选一、快捷位1为绷带×1、快捷位2为空、背包基本为空。完整 Day 1 状态必须由正式、版本绑定的初始构造入口生成，React 不得手工拼装所有字段。
+  - 根据 DEC-041，医院一日 New Run 使用固定基础角色，不显示专长选择、不保存专长字段、不应用默认或隐藏专长效果。可以显示专长在当前医院一日验证版本中暂缓、将在完整七日感染世界里程碑前补回的非交互说明。
+  - 不得增加 `specialization: none`、`specializationId: null`、`default-specialization` 或无效果专长选择。
+  - New Run 使用一个显式、可注入的应用环境适配器生成 `runId` 与 `seed`。该适配器只在玩家最终确认创建 New Run 时调用一次；测试注入固定输出，Production adapter 使用 Web Crypto 安全熵。
+  - core、React render／effect／subscription、`StableRunStore` 和医院 content 均不得读取或生成环境熵。禁止使用 `Math.random()`、`Date.now()`、`new Date()`、`performance.now()`、`crypto.randomUUID()`、UUID library、系统时间拼接或递增的全局进程计数器生成身份。
+  - 普通医院一日 UI 不要求玩家输入 seed。Production 环境没有可用 Web Crypto 时必须明确阻塞 New Run 创建，不得降级到时间或 `Math.random()`。
+  - 本决策不固定熵字节长度、hex／base64url 编码、具体函数名或文件名；这些属于不改变生命周期语义的工程细节，但实现必须有稳定测试和明确碰撞防护。
+  - 医院一日 New Run 的正式结果是 Day 1 `CurrentDayHub`：`mainSceneUsedToday = false`，绑定当前正式 `rulesVersion`，使用新的 RunIdentity 与 seed、固定基础角色、无专长字段和正式初始配装。
+  - 完整初始 phase 必须由纯 TypeScript 正式 constructor／factory 和版本化医院内容／规则依赖生成。React 不得独立拼装生命、饱食、world threat、daily state、库存、ItemState、任务储存区、RunIntel、return ledger、装备或快捷栏；不得把 DEV Preview fixture 当作正式 New Run constructor。
+  - 一次 New Run Confirm 必须等价于一次最终确认、一次 RunIdentity 生成、一个完整 canonical initial phase、一次保存尝试和一个 `StableRunStore` 建立。
+  - 不得保存只有身份、只有装备选择、未完成 setup draft、部分库存或缺少完整 ItemState 的半成品。New Run setup 本地草稿只允许保存尚未确认的实用装备选择；它不是 Run 状态，不写入 Run Save。
+  - 从合法 `run-failure` 创建 New Run 时，直接用一次正式写入覆盖唯一 Run slot，不得先 `storage.clear()` 再 `storage.write()`，以免清除成功而写入失败时同时丢失旧终止摘要和新 Run。
+  - 完整初始 phase 已生成但首次保存失败时，新 Run 的 committed in-memory phase 与已建立的单个 `StableRunStore` 保持为当前会话真相，并显示“保存失败，本次新 Run 已在当前会话中建立，请勿刷新页面”。不得回滚、重新生成身份或初始 phase、自动重试或 reload、建立第二个 Store，或回到旧 `run-failure`。
+  - 首次保存失败后刷新页面可能恢复旧 terminal save 或无存档，这是未持久化成功的真实后果，不得伪装为已经保存。
+  - 新 Run 不得继承旧局的 Run 仓库、任务储存区、背包、装备／快捷栏实例、ItemState、任务状态、RunIntel、return ledger、当前日期、Scene Session、世界威胁、伤势、感染暴露、饱食、Daily State、随机游标或场景身份。
+  - 当前尚无 Profile 持久化；本事务不创建或修改 Profile 历史。未来 Profile 与 Hub 跨局继承继续由各自正式生命周期决定。
+- 理由：
+  - 环境熵只应进入明确的新局创建边界，不能偷偷影响既有 deterministic core。
+  - 一次确认只建立一个身份和一个初始状态，防止 StrictMode 或重渲染生成多个 Run。
+  - 正式 constructor 统一拥有初始状态真相，避免 React、测试和内容分别拼一套初始 Run。
+  - 覆盖终止存档时不先 clear，避免事务停在没有任何稳定存档的状态。
+  - 保存失败沿用当前项目已经确认的 committed-in-memory 语义。
+- 影响：
+  - 后续实现需要独立的 Production RunIdentity 环境适配器、版本绑定的医院初始 phase constructor、原子 New Run 应用边界及 player-safe Setup／Result 展示。
+  - New Run 创建不是对既有 StableRunPhase 的普通 lifecycle／Hub／Scene mutation，不进入现有 application command union。
+  - 不修改当前 `rulesVersion`、`saveFormatVersion` 或 Run Save schema。
+- 替代方案：
+  - 由 React 直接调用随机源。
+  - 使用 `Date.now()` 或 UUID 创建身份。
+  - 让玩家在普通 UI 输入 seed。
+  - 自动替玩家选择实用装备。
+  - 使用 DEV Preview Store 作为正式 New Run。
+  - 先 clear 终止存档，再保存新 Run。
+  - 保存失败后重新生成身份或自动重试。
+  - 为未来专长增加 null 占位字段。
+  - 以上方案本轮均未采用。

@@ -1,4 +1,5 @@
 export {
+  HOSPITAL_NEW_RUN_INITIAL_LOADOUT_DEFINITION,
   HOSPITAL_NEW_RUN_UTILITY_DEFINITION_IDS,
   HospitalNewRunError,
   createHospitalNewRunInitialCurrentDayHub,

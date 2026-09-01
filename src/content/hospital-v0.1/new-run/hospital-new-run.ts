@@ -30,6 +30,14 @@ export const HOSPITAL_NEW_RUN_UTILITY_DEFINITION_IDS = Object.freeze([
   HOSPITAL_ITEM_IDS.toolkit,
 ] as const)
 
+/** Shared versioned content truth for the fixed hospital Day 1 loadout. */
+export const HOSPITAL_NEW_RUN_INITIAL_LOADOUT_DEFINITION = deepFreeze({
+  weaponDefinitionId: HOSPITAL_ITEM_IDS.metalPipe,
+  armorDefinitionId: HOSPITAL_ITEM_IDS.heavyCoat,
+  quickSlotDefinitionIds: [HOSPITAL_ITEM_IDS.bandage, null] as const,
+  backpackDefinitionIds: [] as const,
+})
+
 export type HospitalNewRunUtilityDefinitionId =
   typeof HOSPITAL_NEW_RUN_UTILITY_DEFINITION_IDS[number]
 
@@ -155,13 +163,13 @@ export function createHospitalNewRunInitialCurrentDayHub(
   const weapon = initialItem(
     runIdentity,
     'initial-weapon',
-    HOSPITAL_ITEM_IDS.metalPipe,
+    HOSPITAL_NEW_RUN_INITIAL_LOADOUT_DEFINITION.weaponDefinitionId,
     dependencies,
   )
   const armor = initialItem(
     runIdentity,
     'initial-armor',
-    HOSPITAL_ITEM_IDS.heavyCoat,
+    HOSPITAL_NEW_RUN_INITIAL_LOADOUT_DEFINITION.armorDefinitionId,
     dependencies,
   )
   const utility = initialItem(
@@ -173,7 +181,7 @@ export function createHospitalNewRunInitialCurrentDayHub(
   const bandage = initialItem(
     runIdentity,
     'initial-quick-slot-0',
-    HOSPITAL_ITEM_IDS.bandage,
+    HOSPITAL_NEW_RUN_INITIAL_LOADOUT_DEFINITION.quickSlotDefinitionIds[0]!,
     dependencies,
   )
   const config = dependencies.returnDependencies.scene.config

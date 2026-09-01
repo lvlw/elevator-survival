@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { bootstrapProductionRun } from './production-bootstrap'
 import {
   createProductionBrowserRunSaveStorage,
+  createProductionHospitalNewRunDependencies,
   productionPresentationDependencies,
 } from './production-composition'
 
@@ -33,5 +34,14 @@ describe('production browser composition', () => {
       canClear: false,
     })
     expect(getItem).toHaveBeenCalledTimes(1)
+  })
+
+  it('creates New Run dependencies without entropy and shares storage and registry', () => {
+    const getRandomValues = vi.spyOn(globalThis.crypto, 'getRandomValues')
+    const storage = createProductionBrowserRunSaveStorage()
+    const dependencies = createProductionHospitalNewRunDependencies(storage)
+    expect(dependencies.storage).toBe(storage)
+    expect(dependencies.rulesRegistry).toBe(productionPresentationDependencies.rulesRegistry)
+    expect(getRandomValues).not.toHaveBeenCalled()
   })
 })

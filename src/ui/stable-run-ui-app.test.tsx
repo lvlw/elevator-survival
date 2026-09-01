@@ -977,6 +977,49 @@ afterEach(() => {
   act(() => { while (roots.length > 0) roots.pop()!.unmount() })
 })
 
+describe('Failure New Run Setup request boundary', () => {
+  it('shows the request only for Failure with an injected callback and preserves the Store', () => {
+    const scenario = createHospitalDevelopmentPreviewScenario('failure')
+    const before = scenario.store.getState().phase
+    let requests = 0
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp
+      store={scenario.store}
+      presentationDependencies={uiDependencies}
+      onRequestNewRunSetup={() => { requests += 1 }}
+    />) })
+    act(() => button(container, '开始新的 Run').click())
+    expect(requests).toBe(1)
+    expect(scenario.store.getState().phase).toBe(before)
+    expect(scenario.storage.writes).toBe(0)
+  })
+
+  it.each(['hub', 'scene'] as const)('does not expose New Run from active %s', (kind) => {
+    const scenario = createHospitalDevelopmentPreviewScenario(kind)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp
+      store={scenario.store}
+      presentationDependencies={uiDependencies}
+      onRequestNewRunSetup={() => { throw new Error('must not be available') }}
+    />) })
+    expect(container.textContent).not.toContain('开始新的 Run')
+  })
+
+  it('keeps the DEV-style Failure view without a formal entry when no callback is injected', () => {
+    const scenario = createHospitalDevelopmentPreviewScenario('failure')
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp
+      store={scenario.store}
+      presentationDependencies={uiDependencies}
+    />) })
+    expect(container.textContent).toContain('Run 已终止')
+    expect(container.textContent).not.toContain('开始新的 Run')
+  })
+})
+
 describe('StableRunUiApp', () => {
   it('rerenders real React output when the real Store phase changes', () => {
     const storage = new MemoryStorage()

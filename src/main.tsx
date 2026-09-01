@@ -4,6 +4,7 @@ import App from './App'
 import { selectApplicationEntry } from './app/application-entry'
 import {
   createProductionBrowserRunSaveStorage,
+  createProductionHospitalNewRunDependencies,
   productionPresentationDependencies,
 } from './app/production-composition'
 import { bootstrapProductionRun } from './app/production-bootstrap'
@@ -29,6 +30,7 @@ if (entry === 'development-preview' && import.meta.env.DEV) {
   })
 } else {
   const storage = createProductionBrowserRunSaveStorage()
+  const newRunDependencies = createProductionHospitalNewRunDependencies(storage)
   const initialBootstrapResult = bootstrapProductionRun({
     storage,
     rulesRegistry: hospitalRunSaveRulesRegistry,
@@ -38,5 +40,6 @@ if (entry === 'development-preview' && import.meta.env.DEV) {
     storage={storage}
     rulesRegistry={hospitalRunSaveRulesRegistry}
     presentationDependencies={productionPresentationDependencies}
+    newRunDependencies={newRunDependencies}
   />)
 }

@@ -4,11 +4,11 @@
 
 ## 当前阶段
 
-医院纵向切片的纯 TypeScript 规则核心、稳定 Run phase、最小单槽存档、Headless Application、vanilla StableRunStore、React 一日交互闭环，以及生产浏览器单槽严格加载与恢复入口已实现。Headless 医院一日 New Run 已具备共享场景身份、严格 Day 1 初始中枢、Web Crypto 身份材料与原子创建／首次保存边界；现有玩法闭环包括中枢整备、医院探索、战斗、撤离与返回结算、中枢医疗／生存／维护及每日结算。
+医院纵向切片的纯 TypeScript 规则核心、稳定 Run phase、最小单槽存档、Headless Application、vanilla StableRunStore、React 一日交互闭环，以及生产浏览器单槽严格加载与恢复入口已实现。生产入口已接入无存档与失败终止来源的医院一日 New Run Setup、实用装备显式三选一、Preview／Confirm、Web Crypto 身份材料、原子创建与首次保存失败提示；现有玩法闭环包括中枢整备、医院探索、战斗、撤离与返回结算、中枢医疗／生存／维护及每日结算。医院一日已到达正式 Production Playability Review 技术节点，Owner 体验验收尚未进行。
 
 ## 仍待完成
 
-New Run Setup React UI、Production App Shell 的创建新局接线、Profile 持久化、Run Abandon、Day 7 Final Resolver、Success、Crafting、Salvage、完整七日世界及终版视觉尚未实现。无存档时默认入口仍诚实显示 `no-run`，不会自动创建或伪造 Run；因此项目仍未到达从全新生产网页完成医院一日 Playability Review 的节点。
+Profile 持久化、Run Abandon、Day 7 Final Resolver、Success、Crafting、Salvage、完整七日世界及终版视觉尚未实现。无存档时默认入口显示正式 New Run Setup，但不会自动创建或伪造 Run；只有玩家完成显式选择并确认后才会建立 Day 1 中枢并尝试保存。当前状态不代表完整 V1 或完整七日内容已经完成。
 
 ## 开发
 

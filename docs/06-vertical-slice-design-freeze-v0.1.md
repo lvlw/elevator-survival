@@ -315,7 +315,7 @@
 
 侦察、工程、生存三个专长的正式效果、状态所有权、Modifier 接入、保存恢复和 UI 尚未实现。根据 DEC-041，它们不阻塞医院一日 Production Playability，但必须在完整七日感染世界里程碑完成并通过验收前补回；专长未实现时不得将完整七日里程碑标记为正式完成。
 
-Production Bootstrap、严格恢复 UI、损坏存档显式清理 UI、Production RunIdentity adapter、正式医院一日 Headless New Run constructor／原子创建事务、Day 1 pre-first-launch Hub strict restore 特殊分支及首次 Launch identity consistency tests 已经实现。New Run Setup React UI 与浏览器点击创建新局仍未实现；不得将 DEV Preview fixture 计为正式 New Run UI。
+Production Bootstrap、严格恢复 UI、损坏存档显式清理 UI、Production RunIdentity adapter、正式医院一日 Headless New Run constructor／原子创建事务、Day 1 pre-first-launch Hub strict restore 特殊分支、首次 Launch identity consistency tests，以及无存档／Failure 来源的 New Run Setup、显式实用装备三选一、Preview／Confirm 与首次保存失败提示已经实现。默认生产入口已可从干净浏览器创建医院一日 Run 并刷新严格恢复；DEV Preview fixture 仍不计为正式 New Run UI。该技术入口达到 Production Playability Review 节点，不代表 Owner 体验验收、完整 V1 或完整七日内容已经完成。
 
 ## 20. 配置参数与规则语义边界
 

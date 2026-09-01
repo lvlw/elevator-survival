@@ -55,6 +55,7 @@ import { useStableRunStoreSnapshot } from './run-store/use-stable-run-store-snap
 export interface StableRunUiAppProps {
   readonly store: StableRunStore
   readonly presentationDependencies: StableRunUiPresentationDependencies
+  readonly onRequestNewRunSetup?: () => void
 }
 
 function conditionSummary(status: PlayerVisibleStatusBarViewModel): string {
@@ -875,8 +876,14 @@ function ActionPreviewDialog({
   </div>
 }
 
-function FailureView({ model }: Readonly<{ model: Extract<StableRunPlayerViewModel, { kind: 'run-failure' }> }>) {
-  return <main className="console-layout"><section className="console-panel terminal-panel"><p className="eyebrow">Run 已终止</p><h1>失败</h1><p>第 {model.failure.currentDay} 日 · {model.failure.reason}</p><p>此终局为只读状态，尚未接入新 Run 或 Profile 流程。</p></section></main>
+function FailureView({
+  model,
+  onRequestNewRunSetup,
+}: Readonly<{
+  model: Extract<StableRunPlayerViewModel, { kind: 'run-failure' }>
+  onRequestNewRunSetup?: () => void
+}>) {
+  return <main className="console-layout"><section className="console-panel terminal-panel"><p className="eyebrow">Run 已终止</p><h1>失败</h1><p>第 {model.failure.currentDay} 日 · {model.failure.reason}</p><p>此终局为只读状态，不能继续当前 Run。</p>{onRequestNewRunSetup && <button type="button" className="action-button" onClick={onRequestNewRunSetup}>开始新的 Run</button>}</section></main>
 }
 
 function DevInspector({ phase }: Readonly<{ phase: unknown }>) {
@@ -887,7 +894,11 @@ function DevInspector({ phase }: Readonly<{ phase: unknown }>) {
   </aside>
 }
 
-export function StableRunUiApp({ store, presentationDependencies }: StableRunUiAppProps) {
+export function StableRunUiApp({
+  store,
+  presentationDependencies,
+  onRequestNewRunSetup,
+}: StableRunUiAppProps) {
   const snapshot = useStableRunStoreSnapshot(store)
   const model = createStableRunPlayerViewModel(snapshot.phase, presentationDependencies)
   const interaction = createStableRunUiInteractionModel(snapshot.phase, presentationDependencies)
@@ -1285,7 +1296,10 @@ export function StableRunUiApp({ store, presentationDependencies }: StableRunUiA
     {persistenceFeedback && <p className="persistence-feedback" role="status">{persistenceFeedback}</p>}
     {model.kind === 'current-day-hub' && <HubView model={model} actions={interaction.actions} onPreview={setPendingActionId} loadoutOpportunities={interaction.hubLoadoutOpportunities} onLoadout={openHubLoadout} maintenanceOpportunities={interaction.hubMaintenanceOpportunities} onMaintenance={openHubMaintenance} />}
     {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} onPreview={setPendingActionId} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} taskEventOpportunities={interaction.taskEventOpportunities} onTaskEvent={openTaskEvent} inventoryOpportunities={interaction.inventoryOpportunities} onInventory={openInventory} />}
-    {model.kind === 'run-failure' && <FailureView model={model} />}
+    {model.kind === 'run-failure' && <FailureView
+      model={model}
+      onRequestNewRunSetup={onRequestNewRunSetup}
+    />}
     {pendingAction && <ActionPreviewDialog
       preview={pendingAction.preview}
       onCancel={() => setPendingActionId(null)}

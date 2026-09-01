@@ -20,6 +20,7 @@ import type { SceneLaunchDependencies } from '../../core/scene-launch'
 import { createRunSaveRulesRegistry } from './run-save-rules-registry'
 
 export const hospitalCurrentDayHubDependencies: CurrentDayHubDependencies = Object.freeze({
+  mainSceneDefinitionId: hospitalSceneLaunchContent.sceneDefinitionId,
   returnDependencies: Object.freeze({
     scene: Object.freeze({
       graph: hospitalSliceV01SceneGraph,

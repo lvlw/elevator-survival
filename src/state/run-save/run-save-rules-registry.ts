@@ -35,6 +35,8 @@ export function createRunSaveRulesRegistry(
       entry.dependencies.currentDayHub.returnDependencies.scene.config.metadata.rulesVersion
     if (
       configuredVersion !== entry.rulesVersion ||
+      entry.dependencies.currentDayHub.mainSceneDefinitionId !==
+        entry.dependencies.sceneLaunch.content.sceneDefinitionId ||
       !entry.dependencies.hubMaintenance ||
       entry.dependencies.hubMaintenance.currentDayHub !== entry.dependencies.currentDayHub ||
       entry.dependencies.sceneLaunch.currentDayHub !== entry.dependencies.currentDayHub ||

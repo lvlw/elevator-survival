@@ -5,7 +5,6 @@ export {
   createLaunchMainSceneCommand,
   createRunSceneSessionSnapshot,
   deriveSceneInstanceId,
-  deriveSceneInstanceIdFromRunFacts,
   getRunSceneRuntime,
   projectRunReturnInputFromRunSceneSession,
   previewSceneLaunch,
@@ -19,7 +18,6 @@ export {
   type RunSceneReturnResolution,
   type RunSceneWithdrawalResolution,
   type RunSceneSessionSnapshot,
-  type SceneInstanceIdentityFacts,
   type SceneLaunchContentDefinition,
   type SceneLaunchDependencies,
   type SceneLaunchEffect,
@@ -27,3 +25,7 @@ export {
   type SceneLaunchPreview,
   type SceneRuntimeContentBundle,
 } from './scene-launch'
+export {
+  deriveSceneInstanceIdFromRunFacts,
+  type SceneInstanceIdentityFacts,
+} from '../domain'

@@ -6,7 +6,10 @@ import {
   type CurrentDayHubDependencies,
   type CurrentDayHubSnapshot,
 } from '../current-day-hub'
-import { bindRunPhaseContinuityToScene, type RunIdentity } from '../domain'
+import {
+  bindRunPhaseContinuityToScene,
+  deriveSceneInstanceIdFromRunFacts,
+} from '../domain'
 import type { ItemState } from '../item-state'
 import {
   assertNoRunStorageScenePhysicalItemConflicts,
@@ -143,12 +146,6 @@ export interface RunSceneWithdrawalResolution {
   readonly session: RunSceneSessionSnapshot
 }
 
-export interface SceneInstanceIdentityFacts {
-  readonly runIdentity: RunIdentity
-  readonly currentDay: number
-  readonly sceneDefinitionId: string
-}
-
 function plain(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value) &&
     Object.getPrototypeOf(value) === Object.prototype
@@ -172,28 +169,6 @@ function unavailable(message: string): never {
 
 function same(left: unknown, right: unknown): boolean {
   return JSON.stringify(left) === JSON.stringify(right)
-}
-
-export function deriveSceneInstanceIdFromRunFacts(
-  input: SceneInstanceIdentityFacts,
-): string {
-  if (!exact(input, ['currentDay', 'runIdentity', 'sceneDefinitionId']) ||
-    !exact(input.runIdentity, ['rulesVersion', 'runId', 'seed']) ||
-    typeof input.runIdentity.runId !== 'string' || !input.runIdentity.runId.trim() ||
-    typeof input.runIdentity.seed !== 'string' || !input.runIdentity.seed.trim() ||
-    typeof input.runIdentity.rulesVersion !== 'string' || !input.runIdentity.rulesVersion.trim() ||
-    !Number.isSafeInteger(input.currentDay) || input.currentDay < 1 ||
-    typeof input.sceneDefinitionId !== 'string' || !input.sceneDefinitionId.trim()) {
-    invalid('场景实例身份派生事实无效')
-  }
-  return deepFreeze([
-    'scene',
-    input.runIdentity.runId,
-    input.runIdentity.seed,
-    input.runIdentity.rulesVersion,
-    String(input.currentDay),
-    input.sceneDefinitionId,
-  ].map((part) => encodeURIComponent(part)).join(':'))
 }
 
 export function deriveSceneInstanceId(
@@ -410,6 +385,11 @@ export function buildSceneLaunchTransitionPlan(
     dependencies.content.sceneDefinitionId,
     dependencies.currentDayHub,
   )
+  const isInitialDayOneHub = hub.continuity.currentDay === 1 &&
+    !hub.dailyState.mainSceneUsedToday && hub.returnLedger.sceneInstanceIds.length === 0
+  if (isInitialDayOneHub && sceneInstanceId !== hub.continuity.sceneInstanceId) {
+    invalid('首次出发前Day 1中枢的预绑定场景实例与正式派生结果不一致')
+  }
   if (hub.returnLedger.sceneInstanceIds.includes(sceneInstanceId)) {
     unavailable('派生出的正式场景实例已经完成过返回结算')
   }

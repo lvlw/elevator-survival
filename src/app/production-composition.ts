@@ -6,12 +6,32 @@ import {
 } from '../state/run-save'
 import { hospitalV01UiLabels } from '../ui/hospital-v0.1'
 import type { StableRunUiPresentationDependencies } from '../ui/presentation'
+import { HOSPITAL_SLICE_RULES_VERSION } from '../content'
+import {
+  createProductionRunIdentityMaterialSource,
+  type HospitalNewRunTransactionDependencies,
+} from './new-run'
 
 export const productionPresentationDependencies: StableRunUiPresentationDependencies =
   Object.freeze({
     rulesRegistry: hospitalRunSaveRulesRegistry,
     labels: hospitalV01UiLabels,
   })
+
+export const productionRunIdentityMaterialSource =
+  createProductionRunIdentityMaterialSource()
+
+/** Prepares Headless New Run dependencies without consuming identity entropy. */
+export function createProductionHospitalNewRunDependencies(
+  storage: RunSaveStorage,
+): HospitalNewRunTransactionDependencies {
+  return Object.freeze({
+    identityMaterialSource: productionRunIdentityMaterialSource,
+    rulesRegistry: hospitalRunSaveRulesRegistry,
+    storage,
+    rulesVersion: HOSPITAL_SLICE_RULES_VERSION,
+  })
+}
 
 /**
  * Creates the sole production browser adapter. Access to localStorage remains

@@ -212,6 +212,7 @@ const baseReturnDependencies = {
 }
 
 const currentDayHubDependencies = {
+  mainSceneDefinitionId: hospitalSceneLaunchContent.sceneDefinitionId,
   returnDependencies: baseReturnDependencies,
   medicalBindings: hospitalSceneMedicalContentBindings,
   survivalBindings: hospitalHubSurvivalContentBindings,

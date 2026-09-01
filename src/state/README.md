@@ -1,6 +1,6 @@
 # State
 
-应用状态适配、持久化边界及 UI 与纯规则核心之间的协调。当前已实现最小 Headless Stable Run Application Store、React `useSyncExternalStore` 桥接、`StableRunUiApp`，以及 Browser Storage → strict load → 单个 Store → Production App Shell 的默认恢复编排；Store 只持有 canonical Run phase 并发送正式命令，不拥有玩法、Profile 或多个 Run。New Run 与完整 RunState 仍未实现，当前边界不代表完整 Application framework。
+应用状态适配、持久化边界及 UI 与纯规则核心之间的协调。当前已实现最小 Headless Stable Run Application Store、React `useSyncExternalStore` 桥接、`StableRunUiApp`，以及 Browser Storage → strict load → 单个 Store → Production App Shell 的默认恢复编排；Store 只持有 canonical Run phase 并发送正式命令，不拥有玩法、Profile 或多个 Run。独立 Headless New Run 事务可以建立一个新 Store 并尝试首次保存，但 New Run Setup React UI 与完整 RunState 仍未实现，当前边界不代表完整 Application framework。
 
 ## 当前最小 Run 持久化边界
 
@@ -34,7 +34,7 @@ Store 对外只暴露 `getState`、`getInitialState`、`subscribe` 与 `dispatch
 
 Router 根据 canonical current phase 的 RunIdentity 从既有 Run Save registry 取得正式版本依赖，调用现有 Scene Launch、Run Return、Daily Settlement 与 RunFailure 入口，再委托 `executeStableRunCommand` 规范化结果、验证身份并写入唯一存档。returned Scene 的位置、时间与生命校验只存在于 Scene strict snapshot：`remainingTime` 必须是0到当前规则 `scene.totalTime` 之间的安全整数，超出范围会拒绝而不修复；Run Save 和生命周期结算复用该入口，Router 不复制或补算撤离规则。Router 不直接保存；`execution.phase` 是下一条命令的唯一状态输入，resolver result、summary 和 Effects 不形成第二份应用状态。
 
-三类现有 lifecycle 命令 `launch-main-scene`、`settle-terminal-scene` 和 `end-day` 已接入 React 确认式交互。Production App Shell 已能严格恢复 Hub、Scene 与 Run Failure，显示 `no-run`／玩家安全的阻塞错误，并执行显式 clear 或 read retry；当前仍未实现 command bus、Profile 持久化、完整 RunState、Day 7 Final Resolver、Success Resolver、Run Abandon、New Run、多个存档槽、存档历史及迁移。
+三类现有 lifecycle 命令 `launch-main-scene`、`settle-terminal-scene` 和 `end-day` 已接入 React 确认式交互。Production App Shell 已能严格恢复 Hub、Scene 与 Run Failure，显示 `no-run`／玩家安全的阻塞错误，并执行显式 clear 或 read retry；Headless New Run core／应用事务已经实现，当前仍未实现其 React Setup UI、command bus、Profile 持久化、完整 RunState、Day 7 Final Resolver、Success Resolver、Run Abandon、多个存档槽、存档历史及迁移。
 
 ## 当前基础 Scene mutation 路由
 

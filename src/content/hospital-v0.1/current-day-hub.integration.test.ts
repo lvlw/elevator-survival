@@ -44,6 +44,7 @@ import {
   hospitalItemResourceCatalog,
   hospitalItemReturnLifecycleCatalog,
   hospitalMainSearchCatalog,
+  hospitalSceneLaunchContent,
   hospitalSceneMedicalContentBindings,
   hospitalSliceV01RuleConfig as config,
   hospitalSliceV01SceneGraph,
@@ -65,6 +66,7 @@ const returnDependencies: RunReturnDependencies = {
 }
 
 const dependencies = {
+  mainSceneDefinitionId: hospitalSceneLaunchContent.sceneDefinitionId,
   returnDependencies,
   medicalBindings: hospitalSceneMedicalContentBindings,
   survivalBindings: hospitalHubSurvivalContentBindings,

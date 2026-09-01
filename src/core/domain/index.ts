@@ -13,3 +13,8 @@ export {
   restoreRuleBoundRunPhaseContinuity,
   type RunPhaseContinuitySnapshot,
 } from './run-phase-continuity'
+export {
+  deriveSceneInstanceIdFromRunFacts,
+  SceneInstanceIdentityError,
+  type SceneInstanceIdentityFacts,
+} from './scene-instance-identity'

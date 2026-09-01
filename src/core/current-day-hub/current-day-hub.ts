@@ -1,6 +1,7 @@
 import { deepFreeze, type FrozenRuleConfig } from '../config'
 import { createPlayerCondition, type PlayerConditionSnapshot } from '../condition'
 import {
+  deriveSceneInstanceIdFromRunFacts,
   hasSameRunPhaseContinuity,
   restoreRuleBoundRunPhaseContinuity,
   type RunPhaseContinuitySnapshot,
@@ -61,6 +62,7 @@ export interface HubSurvivalContentBindings {
 }
 
 export interface CurrentDayHubDependencies {
+  readonly mainSceneDefinitionId: string
   readonly returnDependencies: RunReturnDependencies
   readonly medicalBindings: MedicalContentBindings
   readonly survivalBindings: HubSurvivalContentBindings
@@ -151,6 +153,8 @@ function invalid(message: string): never { throw new CurrentDayHubError('INVALID
 function unavailable(message: string): never { throw new CurrentDayHubError('ACTION_NOT_AVAILABLE', message) }
 
 export function validateHubSurvivalContentBindings(dependencies: CurrentDayHubDependencies): void {
+  if (typeof dependencies.mainSceneDefinitionId !== 'string' ||
+    !dependencies.mainSceneDefinitionId.trim()) invalid('当前规则版本主要场景定义ID无效')
   const bindings = dependencies.survivalBindings
   if (!exact(bindings, ['infectionSuppressantDefinitionId', 'rationDefinitionId']) ||
     typeof bindings.infectionSuppressantDefinitionId !== 'string' || !bindings.infectionSuppressantDefinitionId.trim() ||
@@ -194,8 +198,22 @@ export function createCurrentDayHubSnapshot(
     if (getWorldThreatStage(worldThreat, dependencies.worldThreatCatalog).terminal) {
       invalid('终末世界威胁不能恢复为活动当前日中枢状态')
     }
+    const dailyState = createDailyRunStateSnapshot(input.dailyState, config)
     const returnLedger = createRunReturnLedgerSnapshot(input.returnLedger as RunReturnLedgerSnapshot)
-    if (!returnLedger.sceneInstanceIds.includes(continuity.sceneInstanceId)) {
+    const initialHub = continuity.currentDay === 1 && !dailyState.mainSceneUsedToday
+    if (initialHub) {
+      const expectedSceneInstanceId = deriveSceneInstanceIdFromRunFacts({
+        runIdentity: continuity.runIdentity,
+        currentDay: 1,
+        sceneDefinitionId: dependencies.mainSceneDefinitionId,
+      })
+      if (returnLedger.sceneInstanceIds.length !== 0) {
+        invalid('首次出发前Day 1中枢的返回记录必须为空')
+      }
+      if (continuity.sceneInstanceId !== expectedSceneInstanceId) {
+        invalid('首次出发前Day 1中枢的场景实例ID不符合正式派生结果')
+      }
+    } else if (!returnLedger.sceneInstanceIds.includes(continuity.sceneInstanceId)) {
       invalid('当前日中枢返回记录缺少连续性绑定的场景')
     }
     return deepFreeze({
@@ -206,7 +224,7 @@ export function createCurrentDayHubSnapshot(
       ),
       playerCondition,
       runIntelLog: createRunIntelLogSnapshot(input.runIntelLog as RunIntelLogSnapshot),
-      dailyState: createDailyRunStateSnapshot(input.dailyState, config),
+      dailyState,
       worldThreat,
       satiety: createSatietySnapshot(input.satiety, config),
       returnLedger,

@@ -95,6 +95,7 @@ const returnDependencies: RunReturnDependencies = {
   lifecycleCatalog: hospitalItemReturnLifecycleCatalog,
 }
 const currentDayHubDependencies = {
+  mainSceneDefinitionId: hospitalSceneLaunchContent.sceneDefinitionId,
   returnDependencies,
   medicalBindings: hospitalSceneMedicalContentBindings,
   survivalBindings: hospitalHubSurvivalContentBindings,

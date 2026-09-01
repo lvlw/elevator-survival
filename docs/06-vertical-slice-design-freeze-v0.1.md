@@ -10,8 +10,8 @@
 | 分支 | `main` |
 | 原始冻结基线提交 | `4ed53d8dfbc18ed2080041c9879389b39df4f22f` |
 | 原始冻结基线日志 | `4ed53d8 docs: fix temporary attack eligibility` |
-| 后续冻结修订 | DEC-038、DEC-039、DEC-040、DEC-041、DEC-042、DEC-043 及对应一致性同步 |
-| 当前适用决策 | DEC-001 至 DEC-043 |
+| 后续冻结修订 | DEC-038、DEC-039、DEC-040、DEC-041、DEC-042、DEC-043、DEC-044 及对应一致性同步 |
+| 当前适用决策 | DEC-001 至 DEC-044 |
 | 当前冻结状态 | 已冻结，可进入实现 |
 | 目的 | 汇总医院纵向切片的规则快照、纸面回归结论、实现入口与变更边界 |
 
@@ -82,6 +82,8 @@
 ```
 
 医院一日 New Run 使用新的 RunIdentity、seed 和完整初始状态，由玩家显式从撬棍、手电筒、工具箱中三选一；使用固定基础角色，并根据 DEC-041 不保存或应用专长。一次确认只建立一个完整 Day 1 phase、尝试保存一次并建立一个 Store。活动 Run 不提供 New Run；从合法 `run-failure` 创建时直接覆盖唯一存档槽，不先清除终止摘要。
+
+根据 DEC-044，医院一日 Day 1 initial Hub 预绑定由新 RunIdentity、Day 1 和正式医院主场景定义确定性派生的首日 Scene identity，同时保持 Return Ledger 为空。该 ID 是首次出发前的生命周期锚点，不表示 Scene 已启动或返回；首次 Launch 必须验证并使用同一个 identity，只有首次安全／强制返回完成正式 Return Settlement 后才将其写入 Ledger。该冻结当前只覆盖医院一日的单一正式主要场景；完整七日若出现多个首日候选场景，identity 的绑定时点必须另行复查。
 
 ## 6. 地图与节点快照
 
@@ -313,7 +315,7 @@
 
 侦察、工程、生存三个专长的正式效果、状态所有权、Modifier 接入、保存恢复和 UI 尚未实现。根据 DEC-041，它们不阻塞医院一日 Production Playability，但必须在完整七日感染世界里程碑完成并通过验收前补回；专长未实现时不得将完整七日里程碑标记为正式完成。
 
-Production Bootstrap、严格恢复 UI、损坏存档显式清理 UI、Production RunIdentity adapter、正式医院一日 New Run constructor／创建事务及 New Run UI 尚未实现。底层 Browser Run Save adapter、严格 load 和 Store-from-storage 基础已经存在，但不得将 DEV Preview fixture 计为正式启动或 New Run 实现。
+Production Bootstrap、严格恢复 UI 与损坏存档显式清理 UI 已经实现。Production RunIdentity adapter、正式医院一日 New Run constructor／创建事务、Day 1 pre-first-launch Hub strict restore 特殊分支、New Run UI 及首次 Launch identity consistency tests 尚未实现；不得将 DEV Preview fixture 计为正式 New Run 实现。
 
 ## 20. 配置参数与规则语义边界
 
@@ -377,6 +379,9 @@ Production Bootstrap、严格恢复 UI、损坏存档显式清理 UI、Productio
 - 电池恢复3、上限3及使用上下文正确。
 - 七日与抽象三十日维护预算通过。
 - 保存和回放保持Run绑定配置版本。
+- Day 1 initial Hub 使用正式派生的预绑定 Scene identity、空 Return Ledger，并能在首次 Launch 前保存和严格恢复。
+- 首次 Launch 复用预绑定 identity 且不写 Ledger；首次真实 Return Settlement 后 Ledger 才记录该 ID。
+- 错误预绑定 identity、Day 2+ 空 Ledger、已使用主要场景却空 Ledger及预填伪造返回记录均严格拒绝且不修复。
 
 ## 24. 正式冻结声明
 

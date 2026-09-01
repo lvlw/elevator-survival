@@ -2131,3 +2131,57 @@
   - 保存失败后重新生成身份或自动重试。
   - 为未来专长增加 null 占位字段。
   - 以上方案本轮均未采用。
+
+## DEC-044：Day 1 初始 Hub 预绑定首日场景身份，Return Ledger 仅记录真实返回
+
+- 状态：已确认
+- 日期：2026-09-01
+- 背景：
+  - DEC-043 已确认医院一日 New Run 通过原子创建事务直接生成完整 Day 1 `CurrentDayHub`，且 `mainSceneUsedToday = false`。
+  - 当前连续性结构要求 `sceneInstanceId` 为非空字符串，而既有 `CurrentDayHub` 严格恢复无条件要求 Return Ledger 包含该 ID；该要求适用于从 Scene 正式返回后形成的 Hub，却无法如实表达尚未启动或返回任何 Scene 的首日初始 Hub。
+  - 为满足既有结构而伪造返回记录、使用占位 ID、放宽任意非空 ID 或增加新的持久化阶段，都会破坏 Return Ledger 的真实历史语义或扩大存档边界。
+- 决策：
+  - 本决策当前只适用于医院一日 Production Playability Milestone，即 `hospital-slice-v0.1` 当前只有一个正式主要场景的 New Run；不得未经复查推广为完整七日的多候选场景选择、多世界通用 New Run 或所有日期的预绑定规则。
+  - 医院一日 New Run 创建的 Day 1 `CurrentDayHub` 必须预绑定正式首日 Scene identity。该 identity 只使用新的 RunIdentity、Day 1 和当前规则版本对应的正式医院主场景 definition ID，通过唯一确定性规则派生。
+  - 合法 `CurrentDayHub` 存在两个互斥形态：
+    - Day 1 首次出发前 Hub 必须同时满足：`currentDay = 1`、`dailyState.mainSceneUsedToday = false`、`returnLedger.sceneInstanceIds = []`，且 `continuity.sceneInstanceId` 等于正式 Day 1 场景身份派生结果。
+    - 除上述首次出发前形态外，普通返回后或次日 Hub 的 Return Ledger 必须继续包含 `continuity.sceneInstanceId`；该 ID 表示当前 Hub 生命周期所承接的最近一次正式返回 Scene identity。
+  - Day 1 首次出发前 Hub 表示首日主场景身份已经预绑定，但 Scene 尚未启动、尚未返回。预绑定 ID 不是返回记录、历史 Scene、占位字符串或 DEV fixture identity。
+  - 首次出发前 Hub 从 New Run Confirm 后建立，并持续到第一次正式 `launch-main-scene`。在首次 Launch 前执行合法 Hub 整备或 Loadout 后，只要日期、每日主要场景使用事实和空 Ledger 不变，该 Hub 仍属于同一合法形态，必须可以保存和严格恢复。
+  - `RunReturnLedgerSnapshot` 只记录已经完成正式 Run Return Settlement 的 Scene identity。只有生还的 `safe-returned` 或 `forced-returned` Scene Session 经 `settle-terminal-scene`、`resolveRunReturn()` 并提交 `CurrentDayHub` 后，才能增加 Return Ledger 记录。
+  - New Run 创建、场景身份预绑定、Scene Launch、进入节点、Scene 中保存、战斗胜利、战斗逃跑、Scene 死亡、Run Failure 和仅生成 Return Preview 均不得写入 Return Ledger。Return Ledger 不是已知、曾生成、预定或可启动 Scene identity 的集合。
+  - New Run initial constructor、`CurrentDayHub` strict restore 与 Scene Launch 必须共享一个纯 TypeScript 的正式场景身份派生 owner。正式输入为 RunIdentity、`currentDay` 和 `sceneDefinitionId`；相同输入必须产生相同 `sceneInstanceId`。本决策不固定最终函数名或文件位置。
+  - 正式主场景的 `sceneDefinitionId` 必须由当前 `rulesVersion` 对应的版本化医院内容依赖显式提供；通用 core 不得硬编码医院场景 ID，也不得从 React 文案、URL、DEV Preview 或旧 Save 字符串推断。
+  - 首次正式 Scene Launch 必须重新派生 Day 1 Scene identity，验证它与 Hub 预绑定的 `continuity.sceneInstanceId` 相等，验证该 ID 不在 Return Ledger 中，以同一 ID 建立 Scene Session，并将 `mainSceneUsedToday` 从 `false` 改为 `true`。
+  - Scene Launch 不得生成第二个 Scene ID、覆盖不一致的预绑定 ID、自动修复 Hub continuity、写入 Return Ledger、重新生成 RunIdentity 或 seed。后续 Scene runtime 和确定性随机继续使用同一 Run seed 与 `sceneInstanceId`。
+  - 首次 Scene 安全或强制返回并完成正式 Return Settlement 后，Return Ledger 才首次记录该 Day 1 Scene identity；此时 Day 1 返回后 Hub 属于普通 Hub 形态，`mainSceneUsedToday = true` 且 Ledger 包含生命周期锚点。
+  - 成功日结算生成 Day 2 Hub 后，`mainSceneUsedToday` 重置为 `false`，但 Ledger 继续保留真实 Day 1 返回记录；Day 2 Scene identity 仍在正式 Launch 时按 Day 2 派生。本决策不改变每天只能使用一次主要场景、返回后不能重新打开当日 Scene及只有成功日结算才推进日期的规则。
+  - Strict `CurrentDayHub` restore 只在以下条件全部成立时接受空 Ledger：Day 1、`mainSceneUsedToday = false`、Ledger 恰好为空、预绑定 ID 等于正式 Day 1 派生结果，且其余 Hub 结构通过全部既有严格校验。其余合法 Hub 继续要求 Ledger 包含 `continuity.sceneInstanceId`。
+  - 严格恢复必须拒绝 Day 2+ 空 Ledger、`mainSceneUsedToday = true` 且 Ledger 为空、错误或旧 Run 的预绑定 ID、空／`null`／占位／任意 ID、预填尚未返回的 Day 1 ID，以及以伪造 Ledger 掩盖 ID 不一致；不得在加载时补 Ledger、改写 ID、修复、迁移或降级。
+  - 本决策不增加新的 `StableRunPhase` kind，不增加 `pre-run`、`pre-scene`、`new-run` 或 `initial-hub` 等持久化 tag，不把 `sceneInstanceId` 改为 `null` 或 optional，不增加占位字段，也不改变 Return Ledger、Run Save envelope、`rulesVersion` 或 `saveFormatVersion`。
+  - 从 `no-run` 或 `run-failure` 创建的新 Run，其预绑定 Scene identity 只能来自新的 RunIdentity、Day 1 和正式场景定义；不得继承旧 Run 的 continuity、Return Ledger、Scene Session、随机游标、搜索、事件或敌人状态。
+  - 预绑定 Scene identity 是内部生命周期事实，普通 New Run Setup、Hub UI、Preview、ARIA、`title` 和 `data-*` 不得展示 `sceneInstanceId`、Run identity、seed、`rulesVersion` 或 Return Ledger 内部 ID。
+  - 完整七日未来若在 Day 1 提供多个候选主要场景，必须在该设计冻结前复查 Scene identity 应在选择前还是选择后绑定；DEC-044 当前不回答该未来问题。
+- 理由：
+  - 保持 Return Ledger 的语义真实，避免把尚未发生的返回伪装为历史事实。
+  - 让 New Run 可以直接形成完整、可保存、可严格恢复的 Day 1 `CurrentDayHub`，并让首次 Launch 前刷新仍恢复同一个 canonical initial Hub。
+  - 避免为初始状态增加 `null`、sentinel 或新的 phase kind。
+  - 让首次 Launch 与后续确定性 Scene runtime 共享同一个 Scene identity 真相。
+  - 保持 New Run、Scene Launch、Run Return 和 Strict Restore 之间的生命周期闭环。
+- 影响：
+  - 后续 ENG-RUN-001 需要实现正式医院初始 phase constructor。
+  - `CurrentDayHub` strict restore 需要支持严格受限的 Day 1 pre-first-launch 分支。
+  - Scene identity derivation 需要成为 New Run、Hub restore 与 Scene Launch 的共享规则真相，Scene Launch 必须验证预绑定 identity。
+  - Run Return 继续是写入 Return Ledger 的唯一正式路径。
+  - New Run 可以在首次 Launch 前进行合法 Hub Loadout，保存并刷新后仍恢复同一个初始 Hub。
+  - 需要增加 New Run、strict restore、Scene Launch 和 Return Ledger 的跨模块测试。
+- 替代方案：
+  - 在初始 Return Ledger 中伪造一条已返回 Scene。
+  - 使用旧 Run 的最后一个 Scene identity。
+  - 将 `sceneInstanceId` 改成 `null` 或 optional。
+  - 使用 `not-started` 等 sentinel 字符串。
+  - 新增独立持久化 pre-scene phase。
+  - 直到玩家点击 Launch 才首次生成 Scene identity，并使此前保存的 Hub 不具备正式 Scene anchor。
+  - 放宽恢复为任意非空 `sceneInstanceId`。
+  - 加载时自动修复 Scene identity 或 Return Ledger。
+  - 以上方案均未采用。

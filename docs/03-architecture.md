@@ -42,6 +42,10 @@ CurrentDayHub
 - Run Scene Session 聚合 Scene 快照与 Scene 自身不修改的 Run 日级 context。Scene 中会变化的每日医疗使用、Run 情报、随身物品和 ItemState 只存在于 Scene 快照，不复制到 context。
 - 生还返回与死亡终止都从同一严格 Session provenance 投影；返回读取终局 Scene 的情报和每日医疗使用，终止不能在 Scene 死亡后从旧中枢重新拼装另一套上下文。
 - Session 恢复使用完整 runtime 校验 Scene、context、场景实例绑定和 Run storage／Scene 物理实例唯一性；Scene strict snapshot 要求 `remainingTime` 是0到当前 `rulesVersion` 的 `scene.totalTime` 之间的安全整数，超出范围的状态会拒绝而不修复。它还要求 `safe-returned`／`forced-returned` 位于正式返程安全节点、returned 玩家存活，并要求 `forced-returned` 的剩余时间为0。死亡 Scene 只要求生命为0，可以位于任意正式节点；损坏状态不会自动修复。
+- `continuity.sceneInstanceId` 是当前 Hub 生命周期的场景锚点，不能无条件解释为“最近已经返回的 Scene”。在医院一日当前范围内，Day 1 pre-first-launch Hub 的锚点是预绑定、即将首次启动的正式首日 Scene identity；普通返回后或次日 Hub 的锚点则是最近完成 Return Settlement 的 Scene identity。两种语义由严格状态条件区分，不增加第二个字段。
+- Run Return Settlement 是 Return Ledger 新记录的唯一 owner。New Run、CurrentDayHub、Scene Launch、React 和 Store 均不得预填、伪造或提前写入返回记录；Scene 死亡和 Run Failure 也不写入。
+- New Run initial constructor、`CurrentDayHub` strict restore 与 Scene Launch 必须共享一个纯 TypeScript 的确定性 Scene identity derivation owner，输入为 RunIdentity、`currentDay` 与 `sceneDefinitionId`。正式场景定义由当前 `rulesVersion` 对应的版本化内容依赖显式注入，generic core 不硬编码医院 ID。
+- Strict `CurrentDayHub` restore 必须区分两个分支：Day 1、`mainSceneUsedToday = false`、空 Return Ledger 且 Scene identity 等于正式 Day 1 派生结果的 pre-first-launch Hub；以及继续要求 Ledger 包含生命周期锚点的普通返回后／次日 Hub。恢复不得自动补 Ledger、覆盖 identity、迁移或修复非法状态。
 
 > 本节记录实现职责和状态所有权，不新增玩法数值或场景规则。
 
@@ -69,7 +73,7 @@ CurrentDayHub
 
 ### Production Composition Root
 
-Production Composition Root 负责创建 Browser Run Save adapter，提供规则版本 registry、presentation dependencies 和 Production RunIdentity 环境适配器，执行一次严格 bootstrap，并向 App 注入唯一 Store 或应用 Shell 状态。它不拥有 gameplay rule、Run phase mutation、New Run 初始值、save schema、Daily Settlement 或 Profile。
+Production Composition Root 负责创建 Browser Run Save adapter，提供规则版本 registry 与 presentation dependencies，执行一次严格 bootstrap，并向 App 注入唯一 Store 或应用 Shell 状态。后续 New Run 实现还需在该环境边界提供 Production RunIdentity adapter；Composition Root 不拥有 gameplay rule、Run phase mutation、New Run 初始值、save schema、Daily Settlement 或 Profile。
 
 ### Production App Shell
 
@@ -101,9 +105,11 @@ Browser Run Save Storage
 - New Run 创建新生命周期，不是对既有 StableRunPhase 的普通 lifecycle、Hub 或 Scene command mutation。
 - 环境适配器是环境熵的唯一入口；Production 使用 Web Crypto，测试注入固定输出。core、React render／effect／subscription、Store 与医院内容均不生成身份。
 - 正式 constructor 拥有完整 Day 1 `CurrentDayHub` 初始状态；React 不拼装生命、库存、ItemState、任务、世界威胁、每日状态、装备或快捷栏。
+- 医院一日正式 initial phase constructor 必须以共享 Scene identity derivation 和版本化正式医院场景定义生成预绑定的 Day 1 `continuity.sceneInstanceId`，并创建空 Return Ledger。它不生成 Scene Session、不执行 Scene Launch，也不伪造 Return。
+- 首次 Launch 必须重新派生并验证预绑定 identity，然后以同一 ID 建立 Scene Session；Launch 只切换当日主要场景使用事实，不写入 Return Ledger。首次真实 Return Settlement 后才记录该 ID。
 - 从 `run-failure` 创建新 Run 时，直接写入新的完整 stable phase，不先 clear。首次保存失败后，单个新 Store 继续持有 committed in-memory initial phase；不回滚、重试、reload、重新生成身份或建立第二个 Store。
 
-> 本节只记录职责，不固定最终类名、函数名、熵字节长度、编码或目录结构。Production Bootstrap、严格恢复 App Shell、玩家安全启动错误、显式清理与显式 DEV Preview 入口已经实现；Production RunIdentity adapter、正式 initial phase constructor、New Run application boundary 与对应 UI 仍未实现。
+> 本节只记录职责，不固定最终类名、函数名、熵字节长度、编码或目录结构。Production Bootstrap、严格恢复 App Shell、玩家安全启动错误、显式清理与显式 DEV Preview 入口已经实现；DEC-044 已冻结初始 Hub 预绑定 identity 与真实 Return Ledger 语义，但 `e8adcbae` 基线尚未实现 Production RunIdentity adapter、正式 initial phase constructor、Day 1 pre-first-launch Hub strict restore 分支、首次 Launch identity 一致性测试、New Run application boundary 或对应 UI。
 
 ## Stable Run 统一 Application 分派
 

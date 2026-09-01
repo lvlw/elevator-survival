@@ -743,6 +743,8 @@ S / A / B / C / D / E / F
 
 根据 DEC-043，医院一日 New Run 只可从无存档或合法失败终止摘要进入，使用新的 RunIdentity、新 seed 和新状态，并通过一次确认、一次身份生成、一个完整初始状态和一次保存尝试原子建立。失败终止存档由新 Run 的完整状态直接覆盖，不先清除；医院一日专长继续按 DEC-041 暂缓，初始实用装备仍由玩家显式三选一。
 
+根据 DEC-044，医院一日 New Run 确认后直接形成可保存的 Day 1 `CurrentDayHub`。首次出发前 Hub 已通过新 RunIdentity、Day 1 和正式医院主场景定义确定性预绑定首日 Scene identity，但这不表示 Scene 已经启动或返回；初始 Return Ledger 保持为空，只记录以后真实完成的返回结算。刷新发生在首次 Launch 前时，严格恢复同一个 Day 1 initial Hub；首次 Launch 重新派生并验证同一个预绑定 identity，且不会写入 Return Ledger。该规则当前只覆盖单一正式主要场景的医院一日里程碑，完整七日若提供多个首日候选场景，identity 的绑定时点仍需复查。
+
 首版本地Web游戏不投入复杂反作弊。
 
 ### Run 生命周期与终止
@@ -988,6 +990,8 @@ React组件不能直接编写核心游戏结算规则。
 
 Production App Shell 的 loading、ready、no-run 和 load-error 只属于应用编排，不进入上述玩法状态。New Run Setup 中尚未确认的实用装备选择也不是单局状态，不写入 Run 存档；正式 New Run 只能由版本绑定的初始状态构造边界生成完整 Day 1 状态，不能由界面或开发预览拼装。
 
+医院一日的完整 Day 1 单局状态在首次出发前已经包含确定性预绑定的首日 Scene identity 与空 Return Ledger。预绑定 identity 是当前 Hub 的生命周期锚点，不是已启动 Scene 或返回历史；Return Ledger 只有在正式 Return Settlement 后才增加记录。首次 Launch 前的合法中枢整备、保存与严格恢复必须继续保持同一个预绑定 identity 和空 Ledger。
+
 ---
 
 ## 28. 首版明确不做
@@ -1121,6 +1125,8 @@ Production App Shell 的 loading、ready、no-run 和 load-error 只属于应用
 > 根据 DEC-041，当前医院一日 Production Playability Milestone 使用固定基础角色，暂缓专长选择和效果。下列“选择一个专长”仍是完整七日感染世界和完整首版的正式流程要求；三种专长必须在完整七日感染世界里程碑完成前补回。
 
 > 根据 DEC-042 与 DEC-043，生产冷启动将严格恢复唯一合法存档；无存档或合法失败终止摘要可以进入医院一日 New Run Setup，活动 Run 不提供 New Run。新 Run 使用新身份、新种子与新状态，通过一次原子创建事务建立；损坏或不兼容存档不会静默回退为新 Run。
+
+> 根据 DEC-044，医院一日 New Run 建立的 Day 1 `CurrentDayHub` 预绑定唯一正式首日 Scene identity 且 Return Ledger 为空。首次 Launch 前刷新应恢复同一 Hub，不自动启动 Scene；首次 Launch 验证并使用该 identity，首次真实返回结算后 Ledger 才记录它。完整七日的首日多场景选择与 identity 绑定时点仍待未来设计冻结。
 
 第一段可玩验证可以是：
 

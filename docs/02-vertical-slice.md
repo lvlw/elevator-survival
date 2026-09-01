@@ -112,6 +112,30 @@
 - 首次保存失败时保留已建立的新 Run 作为当前会话内存真相，不回滚、重试、重新生成身份或建立第二个 Store，并明确提示刷新可能丢失未持久化的新 Run。
 - 最终生产链需要验证：创建新 Run → 完成正式命令并保存 → 刷新网页 → strict resume 同一 canonical phase。本任务只冻结该验收方向，不代表链路已经实现。
 
+### New Run 初始 Hub
+
+- New Run Confirm 后得到完整 Day 1 `CurrentDayHub`，其中 `dailyState.mainSceneUsedToday = false`，Return Ledger 恰好为空。
+- `continuity.sceneInstanceId` 是使用新 RunIdentity、Day 1 和当前规则版本的正式医院 Scene definition ID 确定性派生的预绑定 identity。
+- 预绑定 identity 只表示首日主场景的生命周期锚点，不表示 Scene 已启动或已返回，也不得作为伪造记录预填进 Return Ledger。
+- 首次 Launch 前执行合法 Hub Loadout 或整备后，只要上述日期、使用事实与空 Ledger 不变，仍必须可以保存和严格恢复同一个 initial Hub。
+
+### 首次 Launch 前恢复
+
+- 验收链必须覆盖：New Run 创建并保存 → 不启动 Scene → 刷新网页 → strict resume 同一 Day 1 `CurrentDayHub`。
+- 恢复后预绑定 Scene identity 不改变，Return Ledger 仍为空，不自动 Launch，也不自动生成第二个 Store。
+
+### 首次 Launch 与返回
+
+- 首次 `launch-main-scene` 必须从正式依赖重新派生并验证同一个 Scene identity；建立的 Scene Session 使用该 identity，Launch 本身不写入 Return Ledger。
+- 首次 Scene 安全或强制返回并完成正式 Return Settlement 后，Return Ledger 才首次记录该 Scene identity。
+- 返回后 `mainSceneUsedToday = true`，不能重新打开当日主要场景；成功日结算生成次日 Hub 后才重置当日使用事实。
+
+### 非法初始 Hub
+
+- 错误、旧 Run、空、占位或任意预绑定 identity 必须拒绝，不自动修复或覆盖。
+- Day 2+ 且 Return Ledger 为空，或 `mainSceneUsedToday = true` 且 Ledger 为空，必须拒绝。
+- 预填尚未返回的 Day 1 Scene identity 不能作为正常 New Run 状态；伪造 Ledger 记录不能掩盖 Scene identity 不一致。
+
 ## 后续内容依赖
 
 - 完整七日内容；

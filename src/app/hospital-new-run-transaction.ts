@@ -61,6 +61,7 @@ export class HospitalNewRunTransactionError extends Error {
     | 'ORIGIN_NOT_AVAILABLE'
     | 'IDENTITY_UNAVAILABLE'
     | 'IDENTITY_REUSED'
+    | 'OUTPUT_IDENTITY_MISMATCH'
 
   public constructor(code: HospitalNewRunTransactionError['code'], message: string) {
     super(message)
@@ -106,11 +107,24 @@ function normalizeOrigin(
 function normalizeMaterial(input: unknown): Readonly<{ runId: string; seed: string }> {
   if (!exact(input, ['runId', 'seed']) ||
     typeof input.runId !== 'string' || !input.runId.trim() ||
-    typeof input.seed !== 'string' || !input.seed.trim() ||
-    input.runId === input.seed) {
+    typeof input.seed !== 'string' || !input.seed.trim()) {
     throw new HospitalNewRunTransactionError('IDENTITY_UNAVAILABLE', 'New Run身份材料无效')
   }
   return Object.freeze({ runId: input.runId, seed: input.seed })
+}
+
+function sameRunIdentity(left: RunIdentity, right: RunIdentity): boolean {
+  return left.runId === right.runId &&
+    left.seed === right.seed &&
+    left.rulesVersion === right.rulesVersion
+}
+
+function sameStableRunPhase(left: StableRunPhase, right: StableRunPhase): boolean {
+  return JSON.stringify(left) === JSON.stringify(right)
+}
+
+function outputIdentityMismatch(message: string): never {
+  throw new HospitalNewRunTransactionError('OUTPUT_IDENTITY_MISMATCH', message)
 }
 
 /** Creates one new Run lifecycle; this is deliberately not a gameplay command. */
@@ -135,26 +149,29 @@ export function executeHospitalNewRunTransaction(
     throw new HospitalNewRunTransactionError('INVALID_INPUT', 'New Run场景内容依赖不一致')
   }
 
-  let material: Readonly<{ runId: string; seed: string }>
+  let runIdentity: RunIdentity
   try {
-    material = normalizeMaterial(
+    const material = normalizeMaterial(
       dependencies.identityMaterialSource.generateRunIdentityMaterial(),
     )
+    runIdentity = createRunIdentity({
+      ...material,
+      rulesVersion: dependencies.rulesVersion,
+    }, (rulesVersion) => dependencies.rulesRegistry.has(rulesVersion))
   } catch (error) {
     if (error instanceof HospitalNewRunTransactionError) throw error
     throw new HospitalNewRunTransactionError(
       'IDENTITY_UNAVAILABLE',
-      error instanceof Error ? error.message : 'New Run身份生成失败',
+      'New Run身份生成失败',
     )
   }
+  if (runIdentity.runId === runIdentity.seed) {
+    throw new HospitalNewRunTransactionError('IDENTITY_UNAVAILABLE', 'New Run身份材料无效')
+  }
   if (previousIdentity &&
-    (material.runId === previousIdentity.runId || material.seed === previousIdentity.seed)) {
+    (runIdentity.runId === previousIdentity.runId || runIdentity.seed === previousIdentity.seed)) {
     throw new HospitalNewRunTransactionError('IDENTITY_REUSED', 'New Run不能复用旧Run身份')
   }
-  const runIdentity = createRunIdentity({
-    ...material,
-    rulesVersion: dependencies.rulesVersion,
-  }, (rulesVersion) => dependencies.rulesRegistry.has(rulesVersion))
   const createInitialPhase = dependencies.createInitialPhase ??
     createHospitalNewRunInitialCurrentDayHub
   const payload = createInitialPhase({
@@ -166,7 +183,10 @@ export function executeHospitalNewRunTransaction(
     payload,
   }, dependencies.rulesRegistry)
   if (phase.kind !== 'current-day-hub') {
-    throw new HospitalNewRunTransactionError('INVALID_INPUT', 'New Run初始阶段类型无效')
+    outputIdentityMismatch('New Run初始阶段输出不一致')
+  }
+  if (!sameRunIdentity(getStableRunPhaseIdentity(phase), runIdentity)) {
+    outputIdentityMismatch('New Run初始阶段身份与生成身份不一致')
   }
   const createStore = dependencies.createStore ?? createStableRunStore
   const store = createStore({
@@ -174,18 +194,30 @@ export function executeHospitalNewRunTransaction(
     storage: dependencies.storage,
     rulesRegistry: dependencies.rulesRegistry,
   })
-  const canonicalPhase = store.getState().phase
-  if (canonicalPhase.kind !== 'current-day-hub') {
-    throw new HospitalNewRunTransactionError('INVALID_INPUT', 'New Run Store阶段类型无效')
+  const storePhase = store.getState().phase
+  let verifiedStorePhase: StableRunPhase
+  try {
+    verifiedStorePhase = canonicalizeStableRunPhase(
+      storePhase,
+      dependencies.rulesRegistry,
+    )
+  } catch {
+    outputIdentityMismatch('New Run Store阶段输出不一致')
+  }
+  if (storePhase.kind !== 'current-day-hub' ||
+    verifiedStorePhase.kind !== 'current-day-hub' ||
+    !sameRunIdentity(getStableRunPhaseIdentity(verifiedStorePhase), runIdentity) ||
+    !sameStableRunPhase(verifiedStorePhase, phase)) {
+    outputIdentityMismatch('New Run Store阶段与初始阶段不一致')
   }
   try {
-    saveRunPhase(dependencies.storage, canonicalPhase, dependencies.rulesRegistry)
-    return Object.freeze({ kind: 'created-and-saved', phase: canonicalPhase, store })
+    saveRunPhase(dependencies.storage, storePhase, dependencies.rulesRegistry)
+    return Object.freeze({ kind: 'created-and-saved', phase: storePhase, store })
   } catch (error) {
     if (error instanceof RunSaveError && error.code === 'STORAGE_WRITE_FAILED') {
       return Object.freeze({
         kind: 'created-with-save-failure',
-        phase: canonicalPhase,
+        phase: storePhase,
         store,
       })
     }

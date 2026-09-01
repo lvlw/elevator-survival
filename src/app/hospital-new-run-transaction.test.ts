@@ -6,12 +6,16 @@ import {
   createHospitalNewRunInitialCurrentDayHub,
 } from '../content'
 import { createPlayerCondition } from '../core/condition'
-import { createCurrentDayHubSnapshot } from '../core/current-day-hub'
+import {
+  createCurrentDayHubSnapshot,
+  resolveCurrentDayHubLoadoutCommand,
+} from '../core/current-day-hub'
 import { resolveDailySettlement } from '../core/daily-settlement'
 import { resolveRunFailure } from '../core/run-termination'
 import { resolveSceneLaunch } from '../core/scene-launch'
 import {
   createRunSaveRulesRegistry,
+  canonicalizeStableRunPhase,
   hospitalCurrentDayHubDependencies,
   hospitalRunSaveRulesRegistry,
   hospitalRunTerminationDependencies,
@@ -91,6 +95,8 @@ function transactionHarness(options: Readonly<{
   material?: Readonly<{ runId: string; seed: string }>
   identityMaterialSource?: HospitalNewRunTransactionDependencies['identityMaterialSource']
   storage?: TrackedStorage
+  createInitialPhase?: NonNullable<HospitalNewRunTransactionDependencies['createInitialPhase']>
+  createStore?: NonNullable<HospitalNewRunTransactionDependencies['createStore']>
 }> = {}) {
   const counters = { identity: 0, constructor: 0, stores: 0, dispatches: 0 }
   const storage = options.storage ?? new TrackedStorage()
@@ -107,11 +113,14 @@ function transactionHarness(options: Readonly<{
     rulesVersion: HOSPITAL_SLICE_RULES_VERSION,
     createInitialPhase: (input, currentDayHubDependencies) => {
       counters.constructor += 1
-      return createHospitalNewRunInitialCurrentDayHub(input, currentDayHubDependencies)
+      return (options.createInitialPhase ?? createHospitalNewRunInitialCurrentDayHub)(
+        input,
+        currentDayHubDependencies,
+      )
     },
     createStore: (input) => {
       counters.stores += 1
-      const store = createStableRunStore(input)
+      const store = (options.createStore ?? createStableRunStore)(input)
       return Object.freeze({
         ...store,
         dispatch: (command: unknown) => {
@@ -228,6 +237,138 @@ describe('Headless atomic hospital New Run transaction', () => {
       dependencies: harness.dependencies,
     })).toThrowError(expect.objectContaining({ code: 'IDENTITY_REUSED' }))
     expect(harness.counters).toEqual({ identity: 1, constructor: 0, stores: 0, dispatches: 0 })
+    expect(harness.storage).toMatchObject({ reads: 0, writes: 0, clears: 0 })
+  })
+
+  it.each([
+    { runId: ' old-run-id ', seed: 'fresh-seed' },
+    { runId: 'fresh-run', seed: ' old-seed ' },
+  ])('rejects whitespace-wrapped old identity after canonicalization', (material) => {
+    const harness = transactionHarness({ material })
+    expect(() => executeHospitalNewRunTransaction({
+      origin: failurePhase(),
+      setup: { utilityDefinitionId: HOSPITAL_ITEM_IDS.crowbar },
+      dependencies: harness.dependencies,
+    })).toThrowError(expect.objectContaining({ code: 'IDENTITY_REUSED' }))
+    expect(harness.counters).toEqual({ identity: 1, constructor: 0, stores: 0, dispatches: 0 })
+    expect(harness.storage).toMatchObject({ reads: 0, writes: 0, clears: 0 })
+  })
+
+  it('rejects runId and seed that become equal only after canonicalization', () => {
+    const harness = transactionHarness({ material: { runId: 'same ', seed: 'same' } })
+    expect(() => executeHospitalNewRunTransaction({
+      origin: { kind: 'no-run' },
+      setup: { utilityDefinitionId: HOSPITAL_ITEM_IDS.crowbar },
+      dependencies: harness.dependencies,
+    })).toThrowError(expect.objectContaining({ code: 'IDENTITY_UNAVAILABLE' }))
+    expect(harness.counters).toEqual({ identity: 1, constructor: 0, stores: 0, dispatches: 0 })
+    expect(harness.storage).toMatchObject({ reads: 0, writes: 0, clears: 0 })
+  })
+
+  it('canonicalizes legal whitespace identity material before construction and saving', () => {
+    const harness = transactionHarness({
+      material: { runId: ' new-run-id ', seed: ' new-seed ' },
+    })
+    const { result } = execute({ kind: 'no-run' }, harness)
+    expect(result.phase.payload.continuity.runIdentity).toEqual({
+      runId: 'new-run-id',
+      seed: 'new-seed',
+      rulesVersion: HOSPITAL_SLICE_RULES_VERSION,
+    })
+    expect(harness.counters).toEqual({ identity: 1, constructor: 1, stores: 1, dispatches: 0 })
+    expect(harness.storage).toMatchObject({ reads: 0, writes: 1, clears: 0 })
+  })
+
+  it('rejects a legal initial factory phase whose identity differs from the generated identity', () => {
+    const harness = transactionHarness({
+      createInitialPhase: (_input, dependencies) =>
+        createHospitalNewRunInitialCurrentDayHub({
+          runIdentity: {
+            runId: 'factory-run-c',
+            seed: 'factory-seed-c',
+            rulesVersion: HOSPITAL_SLICE_RULES_VERSION,
+          },
+          utilityDefinitionId: HOSPITAL_ITEM_IDS.flashlight,
+        }, dependencies),
+    })
+    let caught: unknown
+    try {
+      execute({ kind: 'no-run' }, harness)
+    } catch (error) {
+      caught = error
+    }
+    expect(caught).toMatchObject({ code: 'OUTPUT_IDENTITY_MISMATCH' })
+    expect(caught).toBeInstanceOf(HospitalNewRunTransactionError)
+    expect(String(caught)).not.toContain('factory-run-c')
+    expect(String(caught)).not.toContain('factory-seed-c')
+    expect(String(caught)).not.toContain('new-run-id')
+    expect(String(caught)).not.toContain('new-seed')
+    expect(harness.counters).toEqual({ identity: 1, constructor: 1, stores: 0, dispatches: 0 })
+    expect(harness.storage).toMatchObject({ reads: 0, writes: 0, clears: 0 })
+  })
+
+  it('rejects a Store that holds a legal phase with a different identity before saving', () => {
+    const harness = transactionHarness({
+      createStore: (input) => createStableRunStore({
+        ...input,
+        initialPhase: {
+          kind: 'current-day-hub',
+          payload: createHospitalNewRunInitialCurrentDayHub({
+            runIdentity: {
+              runId: 'store-run-c',
+              seed: 'store-seed-c',
+              rulesVersion: HOSPITAL_SLICE_RULES_VERSION,
+            },
+            utilityDefinitionId: HOSPITAL_ITEM_IDS.flashlight,
+          }, hospitalCurrentDayHubDependencies),
+        },
+      }),
+    })
+    let caught: unknown
+    try {
+      execute({ kind: 'no-run' }, harness)
+    } catch (error) {
+      caught = error
+    }
+    expect(caught).toMatchObject({ code: 'OUTPUT_IDENTITY_MISMATCH' })
+    expect(String(caught)).not.toContain('store-run-c')
+    expect(String(caught)).not.toContain('store-seed-c')
+    expect(String(caught)).not.toContain('new-run-id')
+    expect(String(caught)).not.toContain('new-seed')
+    expect(harness.counters).toEqual({ identity: 1, constructor: 1, stores: 1, dispatches: 0 })
+    expect(harness.storage).toMatchObject({ reads: 0, writes: 0, clears: 0 })
+  })
+
+  it('rejects a Store with the same identity but a different legal Hub payload', () => {
+    const harness = transactionHarness({
+      createStore: (input) => {
+        const phase = canonicalizeStableRunPhase(input.initialPhase, input.rulesRegistry)
+        if (phase.kind !== 'current-day-hub') throw new Error('expected Hub')
+        const bandage = phase.payload.runLoadout.quickSlots.slots[0]
+        if (!bandage) throw new Error('expected initial bandage')
+        const mutated = resolveCurrentDayHubLoadoutCommand(
+          phase.payload,
+          {
+            kind: 'quick-slot-to-backpack',
+            sourceSlotIndex: 0,
+            placement: {
+              instanceId: bandage.instanceId,
+              x: 0,
+              y: 0,
+              rotated: false,
+            },
+          },
+          hospitalCurrentDayHubDependencies,
+        ).snapshot
+        return createStableRunStore({
+          ...input,
+          initialPhase: { kind: 'current-day-hub', payload: mutated },
+        })
+      },
+    })
+    expect(() => execute({ kind: 'no-run' }, harness))
+      .toThrowError(expect.objectContaining({ code: 'OUTPUT_IDENTITY_MISMATCH' }))
+    expect(harness.counters).toEqual({ identity: 1, constructor: 1, stores: 1, dispatches: 0 })
     expect(harness.storage).toMatchObject({ reads: 0, writes: 0, clears: 0 })
   })
 

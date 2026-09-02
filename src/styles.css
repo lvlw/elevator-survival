@@ -171,11 +171,18 @@ body {
 
 button.grid-cell { cursor: pointer; }
 .occupied-cell { border-color: #788b9b; background: #253746; }
-button.grid-cell:hover,
-.candidate-cell { border-color: #9fc7b5; background: #294236; }
+button.grid-cell:not(.selected-footprint-cell):not(.invalid-placement-cell):hover {
+  border-color: #9fc7b5;
+  background: #1c2b32;
+}
+.candidate-cell {
+  border-color: #6f897d;
+  border-style: dashed;
+  box-shadow: inset 0 0 0 1px rgb(159 199 181 / 10%);
+}
 .selected-anchor-cell { outline: 2px solid #f2d694; outline-offset: -2px; }
-.selected-footprint-cell { border-color: #d6ab65; background: #514322; }
-.invalid-placement-cell { border-color: #bb6868; background: #4a2626; }
+.selected-footprint-cell { border-color: #d6ab65; border-style: solid; background: #514322; box-shadow: none; }
+.invalid-placement-cell { border-color: #bb6868; border-style: solid; background: #4a2626; box-shadow: none; }
 
 .preview-backdrop {
   position: fixed;

@@ -920,7 +920,7 @@ function createCombatActions(
       kind: 'scene-combat-action' as const,
       label,
       contextNote: command.kind === 'temporary-attack'
-        ? '当前装备武器已无法执行攻击，因此可以使用临时攻击。'
+        ? '当前没有可用的武器攻击，因此可以使用临时攻击。'
         : undefined,
       command: applicationSceneCommand('scene-combat-action', command),
       preview: freezePreview(

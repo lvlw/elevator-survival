@@ -704,6 +704,7 @@ function combatPhase(options: Readonly<{
   remainingTime?: number
   currentHealth?: number
   weaponDurability?: number
+  weaponEquipped?: boolean
   armorIntegrity?: number | null
   backpackBandage?: boolean
   backpackSparePipe?: boolean
@@ -755,6 +756,7 @@ function combatPhase(options: Readonly<{
       )
     : phase.payload.scene.quickSlots
   const states = phase.payload.scene.itemStates.states
+    .filter((state) => options.weaponEquipped !== false || state.instanceId !== weaponId)
     .filter((state) => options.armorIntegrity !== null || state.instanceId !== armorId)
     .filter((state) => !options.quickPainkiller || state.instanceId !== previousQuick?.instanceId)
     .map((state) =>
@@ -782,9 +784,11 @@ function combatPhase(options: Readonly<{
         ...phase.payload.scene.condition,
         currentHealth: options.currentHealth,
       }, config.combat.player)
-  const equipment = options.armorIntegrity === null
-    ? { ...phase.payload.scene.equipment, armor: null }
-    : phase.payload.scene.equipment
+  const equipment = {
+    ...phase.payload.scene.equipment,
+    ...(options.armorIntegrity === null ? { armor: null } : {}),
+    ...(options.weaponEquipped === false ? { weapon: null } : {}),
+  }
   const combat = {
     ...active.combat,
     enemy: options.enemyHealth === undefined
@@ -1121,6 +1125,38 @@ describe('StableRunUiApp', () => {
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
     expect(inner.getState()).toBe(before)
+  })
+
+  it('renders all empty-backpack 1×1 anchors as light candidates with only one selected cell', () => {
+    const ground = item('ui-grid-empty-backpack-metal-parts', HOSPITAL_ITEM_IDS.metalParts)
+    const session = withGroundItem(sceneSessionAtEmergencyHall(), ground)
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: session },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '拾取 金属零件').click() })
+    const dialog = container.querySelector('[role="dialog"]')
+    if (!(dialog instanceof HTMLElement)) throw new Error('expected pickup dialog')
+    const candidates = [...dialog.querySelectorAll<HTMLElement>('.candidate-cell')]
+    const selected = candidates.filter((cell) => cell.classList.contains('selected-footprint-cell'))
+    const unselected = candidates.filter((cell) => !cell.classList.contains('selected-footprint-cell'))
+    expect(candidates).toHaveLength(24)
+    expect(selected).toHaveLength(1)
+    expect(unselected).toHaveLength(23)
+    expect(unselected.every((cell) =>
+      !cell.classList.contains('selected-anchor-cell') &&
+      !cell.classList.contains('invalid-placement-cell'))).toBe(true)
+    expect(selected[0]?.classList.contains('selected-anchor-cell')).toBe(true)
+    expect(selected[0]?.className).not.toBe(unselected[0]?.className)
+    expect(dialog.querySelectorAll('.selected-anchor-cell')).toHaveLength(1)
+    expect(dialog.querySelectorAll('.selected-footprint-cell')).toHaveLength(1)
+    expect(dialog.querySelectorAll('.invalid-placement-cell')).toHaveLength(0)
+    expect(storage.writes).toBe(0)
   })
 
   it('renders every formal multi-cell backpack footprint and lets a pickup draft select a non-anchor cell', () => {
@@ -2306,7 +2342,7 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     expect(container.textContent).toContain('临时攻击')
-    expect(container.textContent).toContain('当前装备武器已无法执行攻击，因此可以使用临时攻击')
+    expect(container.textContent).toContain('当前没有可用的武器攻击，因此可以使用临时攻击')
     expect(container.textContent).not.toContain('挥击')
     act(() => { button(container, '临时攻击').click() })
     act(() => { button(container, '确认执行').click() })
@@ -2317,6 +2353,31 @@ describe('StableRunUiApp', () => {
     expect(phase.payload.scene.itemStates.states.find(
       ({ instanceId }) => instanceId === spareBefore.instanceId,
     )).toEqual(spareStateBefore)
+  })
+
+  it.each([
+    ['without a backpack spare', false],
+    ['with a usable backpack spare', true],
+  ] as const)('explains temporary attack for an empty weapon slot %s', (_label, backpackSparePipe) => {
+    const phaseBefore = combatPhase({ weaponEquipped: false, backpackSparePipe })
+    const backpackBefore = phaseBefore.payload.scene.backpack
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: phaseBefore,
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    expect(container.textContent).toContain('临时攻击')
+    expect(container.textContent).toContain('当前没有可用的武器攻击，因此可以使用临时攻击')
+    expect(container.textContent).not.toContain('挥击')
+    expect(container.textContent).not.toContain('蓄力击打')
+    const phaseAfter = store.getState().phase
+    if (phaseAfter.kind !== 'scene-session') throw new Error('expected combat Scene')
+    expect(phaseAfter.payload.scene.backpack).toEqual(backpackBefore)
+    expect(storage.writes).toBe(0)
   })
 
   it('fully resolves a durability-one charged strike before refreshing to temporary attack', () => {
@@ -2742,6 +2803,7 @@ describe('StableRunUiApp', () => {
     expect(container.querySelectorAll('[role="dialog"] .candidate-cell').length).toBeGreaterThan(1)
     expect(container.querySelectorAll('[role="dialog"] .selected-footprint-cell')).toHaveLength(0)
     act(() => { button(container, '格子 1,1').click() })
+    expect(container.querySelectorAll('[role="dialog"] .candidate-cell').length).toBeGreaterThan(1)
     expect(container.querySelectorAll('[role="dialog"] .selected-anchor-cell')).toHaveLength(1)
     expect(container.querySelectorAll('[role="dialog"] .selected-footprint-cell')).toHaveLength(4)
     const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''

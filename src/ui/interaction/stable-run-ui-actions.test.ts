@@ -85,7 +85,7 @@ function moveToEmergencyHall() {
   }
 }
 
-function combatPhaseWithPipeState(current: number, backpackSpare = false, remainingTime?: number) {
+function combatPhaseWithPipeState(current: number | null, backpackSpare = false, remainingTime?: number) {
   const scenario = createHospitalDevelopmentPreviewScenario('combat')
   const phase = scenario.store.getState().phase
   if (phase.kind !== 'scene-session') throw new Error('expected combat Scene')
@@ -101,15 +101,21 @@ function combatPhaseWithPipeState(current: number, backpackSpare = false, remain
         placements: [{ instanceId: spare.instanceId, x: 0, y: 0, rotated: false }],
       }, hospitalItemCatalog)
     : phase.payload.scene.backpack
-  const states = phase.payload.scene.itemStates.states.map((state) =>
-    state.instanceId === pipe.instanceId
-      ? { ...state, resource: { kind: 'durability' as const, current } }
-      : state)
+  const equipment = current === null
+    ? { ...phase.payload.scene.equipment, weapon: null }
+    : phase.payload.scene.equipment
+  const states = phase.payload.scene.itemStates.states
+    .filter((state) => current !== null || state.instanceId !== pipe.instanceId)
+    .map((state) =>
+      state.instanceId === pipe.instanceId && current !== null
+        ? { ...state, resource: { kind: 'durability' as const, current } }
+        : state)
   if (backpackSpare) states.push(createFullItemState(spare, hospitalItemResourceCatalog))
   const scene = createSceneExplorationSnapshot({
     ...phase.payload.scene,
     remainingTime: remainingTime ?? phase.payload.scene.remainingTime,
     backpack,
+    equipment,
     itemStates: { states },
     combatState: {
       ...phase.payload.scene.combatState,
@@ -120,6 +126,7 @@ function combatPhaseWithPipeState(current: number, backpackSpare = false, remain
               combat: {
                 ...encounter.combat,
                 backpack,
+                equipment,
                 itemStates: { states },
               },
             }
@@ -494,19 +501,25 @@ describe('stable Run UI interaction model', () => {
     expect(charged?.preview.warnings).toContain('⚠ 本次攻击后金属管将损坏。')
   })
 
-  it('uses DEC-037 slot-only temporary attack eligibility without touching a backpack spare', () => {
-    const phase = combatPhaseWithPipeState(0, true)
+  it.each([
+    ['empty weapon slot without a spare', null, false],
+    ['empty weapon slot with a backpack spare', null, true],
+    ['broken equipped weapon', 0, false],
+  ] as const)('uses DEC-037 slot-only temporary attack eligibility for %s', (_label, weaponState, backpackSpare) => {
+    const phase = combatPhaseWithPipeState(weaponState, backpackSpare)
+    const spareBefore = backpackSpare ? phase.payload.scene.backpack.items[0] : null
     const interaction = createStableRunUiInteractionModel(phase, dependencies)
     expect(interaction.actions.map(({ label }) => label)).toContain('临时攻击')
     expect(interaction.actions.map(({ label }) => label)).not.toContain('挥击')
     expect(interaction.actions.map(({ label }) => label)).not.toContain('蓄力击打')
     const temporary = interaction.actions.find(({ label }) => label === '临时攻击')!
-    expect(temporary.contextNote).toBe('当前装备武器已无法执行攻击，因此可以使用临时攻击。')
+    expect(temporary.contextNote).toBe('当前没有可用的武器攻击，因此可以使用临时攻击。')
     expect(temporary.preview.facts).toEqual(expect.arrayContaining([
       { label: '行动时间刻度', value: '140' },
       { label: '预计造成伤害', value: '2' },
     ]))
     expect(temporary.preview.facts.some(({ label }) => label === '武器耐久')).toBe(false)
+    expect(phase.payload.scene.backpack.items[0] ?? null).toEqual(spareBefore)
   })
 
   it('projects a near-zero attack terminal as a conditional branch without declaring victory', () => {

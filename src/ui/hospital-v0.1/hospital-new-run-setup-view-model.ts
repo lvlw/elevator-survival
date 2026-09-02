@@ -21,14 +21,35 @@ export interface HospitalNewRunSetupViewModel {
   readonly utilityOptions: readonly Readonly<{
     key: HospitalNewRunUtilityOptionKey
     name: string
+    purpose: string
+    cost: string
+    limitation: string
   }>[]
   readonly specializationNotice: string
 }
 
 const utilityDefinitions = Object.freeze([
-  Object.freeze({ key: 'crowbar' as const, definitionId: HOSPITAL_ITEM_IDS.crowbar }),
-  Object.freeze({ key: 'flashlight' as const, definitionId: HOSPITAL_ITEM_IDS.flashlight }),
-  Object.freeze({ key: 'toolkit' as const, definitionId: HOSPITAL_ITEM_IDS.toolkit }),
+  Object.freeze({
+    key: 'crowbar' as const,
+    definitionId: HOSPITAL_ITEM_IDS.crowbar,
+    purpose: '较安静、可控地处理隔离区防火门。',
+    cost: '使用会消耗撬棍耐久。',
+    limitation: '属于开门用实用装备，不提供金属管的战斗攻击。',
+  }),
+  Object.freeze({
+    key: 'flashlight' as const,
+    definitionId: HOSPITAL_ITEM_IDS.flashlight,
+    purpose: '为三个低照明搜索节点提供照明，使搜索更快。',
+    cost: '照明搜索会消耗照明次数。',
+    limitation: '不会增加物品数量、提高稀有掉落概率或改变搜索随机结果。',
+  }),
+  Object.freeze({
+    key: 'toolkit' as const,
+    definitionId: HOSPITAL_ITEM_IDS.toolkit,
+    purpose: '处理隔离区防火门，并在成功后揭示电子元件。',
+    cost: '操作比撬棍更慢，并消耗工具箱耐久。',
+    limitation: '是专业复合工具，不是更快的开门方案。',
+  }),
 ])
 
 if (
@@ -58,8 +79,15 @@ export function createHospitalNewRunSetupViewModel(): HospitalNewRunSetupViewMod
     quickSlots: Object.freeze(quickSlots),
     backpackSummary: HOSPITAL_NEW_RUN_INITIAL_LOADOUT_DEFINITION
       .backpackDefinitionIds.length === 0 ? '无额外物品' : '已有初始物品',
-    utilityOptions: Object.freeze(utilityDefinitions.map(({ key, definitionId }) =>
-      Object.freeze({ key, name: itemName(definitionId) }))),
+    utilityOptions: Object.freeze(utilityDefinitions.map(({
+      key, definitionId, purpose, cost, limitation,
+    }) => Object.freeze({
+      key,
+      name: itemName(definitionId),
+      purpose,
+      cost,
+      limitation,
+    }))),
     specializationNotice:
       '专长系统在当前医院一日验证版本中暂缓，将在完整七日感染世界里程碑前补回。',
   })

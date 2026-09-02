@@ -1,5 +1,5 @@
 export const appMetadata = {
   name: '电梯求生',
   verticalSliceVersion: 'v0.1',
-  stage: '生产冷启动与医院一日 New Run 已接入，准备进行 Playability Review',
+  stage: 'Owner Playability Review Round 1 已完成；首轮玩家信息与交互清晰度修复已完成；等待 Owner Round 2 复测',
 } as const

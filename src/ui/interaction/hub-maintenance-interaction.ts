@@ -77,7 +77,7 @@ function rules(phase: Extract<StableRunPhase, { kind: 'current-day-hub' }>, depe
 
 function operationLabel(kind: StableRunUiHubMaintenanceOperation): string {
   return kind === 'allocate-base-maintenance-labor'
-    ? '分配基础维护工时'
+    ? '使用今日基础维修点'
     : kind === 'repair-with-metal-parts'
       ? '使用金属零件维修'
       : kind === 'repair-with-fabric'
@@ -230,7 +230,7 @@ export function hubMaintenanceResultFacts(
   const physical = dependencies.rulesRegistry.get(rulesVersion).currentDayHub.returnDependencies.scene.physicalCatalog
   const facts: { label: string; value: string }[] = [{ label: '操作', value: operationLabel(result.operation) }]
   if (result.labor) facts.push(
-    { label: '维护工时', value: `${result.labor.before} → ${result.labor.after}` },
+    { label: '今日剩余维修点', value: `${result.labor.before} → ${result.labor.after}` },
     { label: '本次使用工时', value: String(result.labor.used) },
   )
   for (const [index, target] of result.targets.entries()) {

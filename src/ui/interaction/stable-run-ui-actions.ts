@@ -40,7 +40,7 @@ import {
   type PlayerVisibleDailySettlementRejection,
 } from '../../core/daily-settlement'
 import type { TimedSceneActionOutcome } from '../../core/scene'
-import { previewBackpackPlacement } from '../../core/inventory'
+import { getItemDimensions } from '../../core/inventory'
 import {
   createLaunchMainSceneCommand,
   getRunSceneRuntime,
@@ -108,6 +108,7 @@ export interface StableRunUiPickupPreview {
   readonly command: StableRunApplicationCommand | null
   readonly facts: readonly StableRunUiActionPreviewFact[]
   readonly candidateCells: readonly Readonly<{ x: number; y: number }> []
+  readonly selectedFootprintCells: readonly Readonly<{ x: number; y: number }> []
 }
 
 /** Internal option reference; it never contains the generated task item ID. */
@@ -124,8 +125,8 @@ export interface StableRunUiTaskEventOpportunity {
 
 export interface StableRunUiTaskEventDraft {
   readonly opportunityId: string
-  readonly x: number
-  readonly y: number
+  readonly x: number | null
+  readonly y: number | null
   readonly rotated: boolean
 }
 
@@ -135,6 +136,7 @@ export interface StableRunUiTaskEventPreview {
   readonly command: StableRunApplicationCommand | null
   readonly preview: StableRunUiActionPreviewViewModel | null
   readonly candidateCells: readonly Readonly<{ x: number; y: number }>[]
+  readonly selectedFootprintCells: readonly Readonly<{ x: number; y: number }>[]
 }
 
 export type StableRunUiInventoryOperation =
@@ -176,6 +178,7 @@ export interface StableRunUiInventoryPreview {
   readonly command: StableRunApplicationCommand | null
   readonly preview: StableRunUiActionPreviewViewModel | null
   readonly candidateCells: readonly Readonly<{ x: number; y: number }>[]
+  readonly selectedFootprintCells: readonly Readonly<{ x: number; y: number }>[]
   readonly questDropWarning: boolean
 }
 
@@ -204,9 +207,22 @@ export interface StableRunUiAction {
   readonly id: string
   readonly kind: StableRunUiActionKind
   readonly label: string
+  readonly contextNote?: string
   /** Internal formal command; React submits it only after explicit confirm. */
   readonly command: StableRunApplicationCommand
   readonly preview: StableRunUiActionPreviewViewModel
+}
+
+function sceneStatusLabel(status: 'active' | 'combat' | 'safe-returned' | 'forced-returned' | 'dead'): string {
+  return status === 'active'
+    ? '探索中'
+    : status === 'combat'
+      ? '战斗中'
+      : status === 'safe-returned'
+        ? '安全返回'
+        : status === 'forced-returned'
+          ? '强制返程'
+          : '已死亡'
 }
 
 export interface StableRunUiInteractionModel {
@@ -395,7 +411,7 @@ function medicalPreviewFacts(
     { label: '行动后流血损失', value: String(result.postActionBleedingDamage) },
     { label: '完成节点', value: result.completionNodeName },
     { label: '最终生命', value: String(result.finalHealth) },
-    { label: '最终 Scene 状态', value: result.finalSceneStatus },
+    { label: '最终场景状态', value: sceneStatusLabel(result.finalSceneStatus) },
     ...timedOutcomeFacts(result.sceneOutcome),
   )
   if (result.returnContinuation.kind === 'available') {
@@ -474,7 +490,7 @@ function batteryPreviewFacts(
     },
     { label: '行动后负重状态', value: loadTierName(result.loadTierAfter) },
     { label: '最终生命', value: String(result.finalHealth) },
-    { label: '最终 Scene 状态', value: result.finalSceneStatus },
+    { label: '最终场景状态', value: sceneStatusLabel(result.finalSceneStatus) },
     ...timedOutcomeFacts(result.sceneOutcome),
   ]
   if (result.returnContinuation.kind === 'available') {
@@ -511,13 +527,13 @@ function batteryPreviewWarnings(
       : result.returnContinuation.estimatedReturnTime,
   })]
   if (result.finalSceneStatus === 'forced-returned') {
-    warnings.push('本次只保存 forced-returned Scene Session；后续需要显式完成返程结算。')
+    warnings.push('本次行动完成后将进入强制返程；之后需要显式完成返程结算。')
   }
   if (result.finalSceneStatus === 'safe-returned') {
-    warnings.push('本次只保存 safe-returned Scene Session；后续由显式 settle-terminal-scene 命令完成返程结算。')
+    warnings.push('本次行动完成后将安全返回；之后需要显式完成返程结算。')
   }
   if (result.finalSceneStatus === 'dead') {
-    warnings.push('本次只保存 dead Scene Session；后续需要显式结算战败。')
+    warnings.push('本次行动后生命将归零，场景结束，本局失败。')
   }
   return Object.freeze(warnings)
 }
@@ -532,13 +548,13 @@ function medicalPreviewWarnings(
       : result.returnContinuation.estimatedReturnTime,
   })]
   if (result.finalSceneStatus === 'forced-returned') {
-    warnings.push('本次只保存 forced-returned Scene Session；后续需要显式完成返程结算。')
+    warnings.push('本次医疗完成后将进入强制返程；之后需要显式完成返程结算。')
   }
   if (result.finalSceneStatus === 'safe-returned') {
-    warnings.push('本次只保存 safe-returned Scene Session；后续由显式 settle-terminal-scene 命令完成返程结算。')
+    warnings.push('本次医疗完成后将安全返回；之后需要显式完成返程结算。')
   }
   if (result.finalSceneStatus === 'dead') {
-    warnings.push('本次只保存 dead Scene Session；后续需要显式结算战败。')
+    warnings.push('本次医疗后生命将归零，场景结束，本局失败。')
   }
   return Object.freeze(warnings)
 }
@@ -568,12 +584,10 @@ function combatPreviewFacts(
   preview: PlayerVisibleCombatActionPreview,
   includeEscapeCompletionFacts = true,
 ): readonly StableRunUiActionPreviewFact[] {
-  const facts: StableRunUiActionPreviewFact[] = [
-    { label: '行动 CTB', value: String(preview.primary.actionCtb) },
-  ]
+  const facts: StableRunUiActionPreviewFact[] = []
   const primary = preview.primary
   if (primary.kind === 'attack') {
-    facts.push({ label: '请求伤害', value: String(primary.requestedDamage) })
+    facts.push({ label: '预计造成伤害', value: String(primary.requestedDamage) })
     if (
       primary.weaponDurabilityBefore !== null &&
       primary.weaponDurabilityAfter !== null
@@ -609,15 +623,15 @@ function combatPreviewFacts(
   } else {
     facts.push(
       { label: '背包负重档位', value: loadTierName(primary.loadTier) },
-      { label: '基础准备 CTB', value: String(primary.baseCtb) },
-      { label: '伤口追加 CTB', value: String(primary.rawWoundCtb) },
-      { label: '镇痛抵消 CTB', value: String(primary.painkillerReductionApplied) },
+      { label: '基础脱离准备', value: String(primary.baseCtb) },
+      { label: '伤口追加准备', value: String(primary.rawWoundCtb) },
+      { label: '镇痛抵消准备', value: String(primary.painkillerReductionApplied) },
       { label: '最终伤口追加', value: String(primary.finalWoundCtb) },
-      { label: '最终准备 CTB', value: String(primary.actionCtb) },
+      { label: '最终脱离准备时间', value: String(primary.actionCtb) },
     )
     const escape = preview.escapeConsequences
     if (escape && includeEscapeCompletionFacts) facts.push(
-      { label: '脱离完成 CTB', value: String(primary.completesAtCtb) },
+      { label: '脱离完成时间点', value: String(primary.completesAtCtb) },
       {
         label: '脱离完成流血损失',
         value: escape.postPlayerActionBleedingDamageMin ===
@@ -639,11 +653,12 @@ function combatPreviewFacts(
     { label: '自身行动阶段后生命', value: String(preview.playerHealthAfterOwnAction) },
   )
   facts.push({
-    label: '当前公开意图',
+    label: '下一次决策前的敌人行动',
     value: preview.currentIntent.actsBeforeNextPlayerDecision
-      ? '将在下一次玩家决策（或脱离完成）前执行'
-      : '不会在下一次玩家决策（或脱离完成）前执行',
+      ? '敌人会先行动'
+      : '敌人不会先行动',
   })
+  facts.push({ label: '行动时间刻度', value: String(preview.primary.actionCtb) })
   return Object.freeze(facts)
 }
 
@@ -660,8 +675,8 @@ function combatTerminalFacts(
       label: completion.outcome === 'defeat' ? '战败节点' : '完成节点',
       value: completion.nodeName,
     },
-    { label: '当前剩余 Scene 时间', value: String(completion.currentRemainingTime) },
-    { label: '战斗结束累计 CTB', value: String(completion.elapsedCtb) },
+    { label: '当前剩余场景时间', value: String(completion.currentRemainingTime) },
+    { label: '战斗结束累计行动时间', value: String(completion.elapsedCtb) },
     { label: '战斗场景时间', value: String(completion.sceneTimeCost) },
     { label: '结算后剩余时间', value: String(completion.remainingTimeAfter) },
     {
@@ -742,24 +757,24 @@ function combatTerminalFacts(
   if (completion.survivingResult !== null) facts.push({
     label: '生还结果',
     value: completion.survivingResult === 'active-scene'
-      ? '继续 active Scene'
-      : 'forced-returned Scene',
+      ? '继续探索'
+      : '进入强制返程',
   })
   if (completion.forcedReturnTargetNodeName !== null) facts.push({
     label: '强制返程目标',
     value: completion.forcedReturnTargetNodeName,
   })
   if (completion.survivingResult === 'active-scene') {
-    facts.push({ label: '后续流程', value: '继续当前 active Scene' })
+    facts.push({ label: '后续流程', value: '继续当前场景探索' })
   } else if (completion.survivingResult === 'forced-returned-scene') {
     facts.push({
-      label: '生命周期结算',
-      value: '本次仅保存 forced-returned Scene Session；后续由独立 settle-terminal-scene 命令处理',
+      label: '后续流程',
+      value: '本次行动进入强制返程；之后需要显式完成返程结算',
     })
   } else if (completion.outcome === 'defeat' || deathRisk === 'guaranteed') {
     facts.push({
-      label: '生命周期结算',
-      value: '本次仅保存 dead Scene Session；后续由独立 settle-terminal-scene 命令进入 Run Failure',
+      label: '结果',
+      value: '本次行动后生命归零，战斗结束，本局失败',
     })
   }
   return Object.freeze(facts)
@@ -778,6 +793,18 @@ function createCombatActions(
   const identity = getStableRunPhaseIdentity(phase)
   const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
   const runtime = getRunSceneRuntime(phase.payload, rules.sceneLaunch)
+  const activeEncounter = scene.combatState.encounters.find(
+    (encounter) => encounter.kind === 'active',
+  )
+  if (activeEncounter?.kind !== 'active') return Object.freeze([])
+  const combatCondition = activeEncounter.combat.playerCondition
+  const equippedWeapon = scene.equipment.weapon
+  const weaponName = equippedWeapon === null
+    ? '当前武器'
+    : dependencies.labels.itemName(
+        equippedWeapon.definitionId,
+        runtime.dependencies.physicalCatalog.get(equippedWeapon.definitionId).name,
+      )
   return Object.freeze(getPlayerVisibleSceneCombatActionOptions(
     scene,
     runtime.dependencies,
@@ -792,9 +819,13 @@ function createCombatActions(
       preview.primary.kind === 'attack' &&
       preview.primary.weaponDurabilityBefore !== null &&
       preview.primary.weaponDurabilityAfter === 0
-    ) warnings.push('本次行动后武器将损坏。')
+    ) warnings.push(`⚠ 本次攻击后${weaponName}将损坏。`)
     if (preview.currentIntent.actsBeforeNextPlayerDecision) {
-      warnings.push('当前公开意图将在你下次决策或完成脱离前执行。')
+      warnings.push(
+        command.kind === 'escape'
+          ? '敌人将在你完成脱离前行动。'
+          : '当前公开意图将在你下次决策前执行。',
+      )
     }
     const terminalWarnings = terminal === null
       ? []
@@ -808,7 +839,10 @@ function createCombatActions(
             ? ['玩家死亡优先于任何潜在胜利，不会提交战斗胜利。']
             : []),
           ...(terminal.completionCheckpointDeathRisk === 'guaranteed'
-            ? ['脱离完成主要效果后，行动后流血将使生命归零；玩家死亡优先于逃跑成功。']
+            ? [
+                '⚠ 逃跑仍会死亡。',
+                `你当前只有 ${combatCondition.currentHealth} HP${combatCondition.bleeding ? ' 且正在流血' : ''}。即使完成脱离准备，行动完成后仍会结算流血伤害，生命将降至 0，因此本局失败。`,
+              ]
             : []),
         ]
     const completionFacts = terminal?.completion
@@ -830,7 +864,7 @@ function createCombatActions(
             { label: '脱离结果', value: '不完成脱离' },
             { label: '节点变化', value: '不返回脱离节点' },
             { label: '强制返程', value: '不进入强制返程' },
-            { label: '战败场景时间', value: '按实际终止 CTB 正式结算' },
+            { label: '战败场景时间', value: '按实际终止行动时间正式结算' },
           ],
           warnings: ['玩家死亡优先于脱离完成。'],
         }]
@@ -840,7 +874,7 @@ function createCombatActions(
           title: '若在脱离完成检查点因流血战败',
           facts: [
             {
-              label: '脱离完成 CTB',
+              label: '脱离完成时间点',
               value: String(
                 preview.primary.kind === 'escape'
                   ? preview.primary.completesAtCtb
@@ -853,8 +887,8 @@ function createCombatActions(
             { label: '节点变化', value: '不返回脱离节点' },
             { label: '强制返程', value: '不进入强制返程' },
             {
-              label: '生命周期结算',
-              value: '本次仅保存 dead Scene Session；后续由独立 settle-terminal-scene 命令进入 Run Failure',
+              label: '结果',
+              value: '生命归零，战斗结束，本局失败',
             },
           ],
           warnings: ['该分支在脱离完成检查点结算，不属于脱离完成前战败。'],
@@ -872,8 +906,8 @@ function createCombatActions(
             value: terminal.deathRisk === 'guaranteed' ? '将死亡' : '可能',
           },
           {
-            label: '生命周期结算',
-            value: '本次仅保存 dead Scene Session；后续由独立 settle-terminal-scene 命令进入 Run Failure',
+            label: '结果',
+            value: '生命归零，战斗结束，本局失败',
           },
         ]
       : []
@@ -885,6 +919,9 @@ function createCombatActions(
       id: `scene-combat-action:${command.kind}${target}`,
       kind: 'scene-combat-action' as const,
       label,
+      contextNote: command.kind === 'temporary-attack'
+        ? '当前装备武器已无法执行攻击，因此可以使用临时攻击。'
+        : undefined,
       command: applicationSceneCommand('scene-combat-action', command),
       preview: freezePreview(
         `确认${label}`,
@@ -975,8 +1012,8 @@ function endDayFacts(
       value: result.outcome === 'next-day'
         ? `推进至第 ${result.nextDay} 日`
         : result.outcome === 'health-depleted'
-          ? 'Run Failure · 生命耗尽'
-          : 'Run Failure · 世界威胁终末',
+          ? '本局失败 · 生命耗尽'
+          : '本局失败 · 世界威胁终末',
     },
     { label: '生命', value: `${result.healthBefore} → ${result.healthAfter}` },
     {
@@ -1065,8 +1102,8 @@ function endDayWarnings(result: PlayerVisibleDailySettlementEvaluation): readonl
   if (result.deprivation?.healthLoss) {
     warnings.push(`饱食不足将造成 ${result.deprivation.healthLoss} 点生命损失。`)
   }
-  if (result.outcome === 'health-depleted') warnings.push('本次结算将因生命耗尽进入 Run Failure。')
-  if (result.outcome === 'world-threat-terminal') warnings.push('本次结算将因世界威胁进入终末阶段而进入 Run Failure。')
+  if (result.outcome === 'health-depleted') warnings.push('本次结算将因生命耗尽而结束本局。')
+  if (result.outcome === 'world-threat-terminal') warnings.push('本次结算将因世界威胁进入终末阶段而结束本局。')
   return Object.freeze(warnings)
 }
 
@@ -1193,6 +1230,12 @@ function createSearchActions(
       label: '照明资源',
       value: `${resource.currentBefore} → ${resource.currentAfter}`,
     })
+    if (illumination === 'use-equipped-flashlight') {
+      facts.push({
+        label: '照明影响',
+        value: '只缩短搜索耗时，不改变本节点已经确定的物资结果',
+      })
+    }
     facts.push(...timedOutcomeFacts(result.sceneOutcome))
     return [Object.freeze({
       id: `scene-main-search:${illumination}`,
@@ -1410,7 +1453,7 @@ function taskEventWarnings(
     returnEstimate: result.returnRoute.estimatedReturnTime,
   })]
   if (result.sceneOutcome.kind === 'forced-return') {
-    warnings.push('若生还，本次只保存 forced-returned Scene；样本箱仍在 Scene 随身状态中，后续显式返程结算才会安全转入任务储存区。')
+    warnings.push('若生还，本次将进入强制返程；样本箱仍由玩家携带，后续显式完成返程结算后才会安全转入任务储存区。')
   }
   if (result.sceneOutcome.kind === 'death') {
     warnings.push('本次行动后玩家将死亡；样本箱不会安全入库，也不会进入中枢。')
@@ -1515,6 +1558,43 @@ export function previewStableRunUiTaskEventDraft(
   const eventId = draft.opportunityId.slice(0, separator)
   const optionId = draft.opportunityId.slice(separator + 1)
   const { runtime, scene } = taskEventContext(phase, dependencies)
+  const candidateCells = Object.freeze(Array.from(
+    { length: scene.backpack.width * scene.backpack.height },
+    (_, index) => Object.freeze({ x: index % scene.backpack.width, y: Math.floor(index / scene.backpack.width) }),
+  ).filter(({ x, y }) => {
+    try {
+      return previewPlayerVisibleSceneTaskEventCommand(scene, createPerformSceneTaskEventCommand({
+        eventId,
+        optionId,
+        placement: { x, y, rotated: draft.rotated },
+      }), runtime.dependencies).canExecute
+    } catch {
+      return false
+    }
+  }))
+  const width = draft.rotated ? opportunity.height : opportunity.width
+  const height = draft.rotated ? opportunity.width : opportunity.height
+  const selectedFootprintCells = Object.freeze(
+    draft.x === null || draft.y === null
+      ? []
+      : Array.from(
+          { length: width * height },
+          (_, index) => Object.freeze({
+            x: draft.x! + index % width,
+            y: draft.y! + Math.floor(index / width),
+          }),
+        ),
+  )
+  if (draft.x === null || draft.y === null) {
+    return Object.freeze({
+      canExecute: false,
+      rejection: '请明确选择样本箱放置位置。',
+      command: null,
+      preview: null,
+      candidateCells,
+      selectedFootprintCells,
+    })
+  }
   let command
   try {
     command = createPerformSceneTaskEventCommand({
@@ -1528,7 +1608,8 @@ export function previewStableRunUiTaskEventDraft(
       rejection: '样本箱放置参数无效。',
       command: null,
       preview: null,
-      candidateCells: Object.freeze([]),
+      candidateCells,
+      selectedFootprintCells,
     })
   }
   const safe = previewPlayerVisibleSceneTaskEventCommand(
@@ -1544,7 +1625,8 @@ export function previewStableRunUiTaskEventDraft(
         : '任务事件状态已变化，请重新选择。',
       command: null,
       preview: null,
-      candidateCells: Object.freeze([]),
+      candidateCells,
+      selectedFootprintCells,
     })
   }
   return Object.freeze({
@@ -1556,8 +1638,9 @@ export function previewStableRunUiTaskEventDraft(
       taskEventFacts(safe.result, opportunity.outputName),
       taskEventWarnings(safe.result),
     ),
-    candidateCells: Object.freeze(
-      safe.result.output?.placementCells.map(({ x, y }) => Object.freeze({ x, y })) ?? [],
+    candidateCells,
+    selectedFootprintCells: Object.freeze(
+      safe.result.output?.placementCells.map(({ x, y }) => Object.freeze({ x, y })) ?? selectedFootprintCells,
     ),
   })
 }
@@ -1664,9 +1747,10 @@ function createWithdrawalAction(
   return Object.freeze({
     id: 'scene-withdraw',
     kind: 'scene-withdraw',
-    label: '主动撤离',
+    label: result.snapshot.status === 'safe-returned' ? '主动返程' : '冒险返程',
     command: applicationSceneCommand('scene-withdraw', command),
-    preview: freezePreview('确认主动撤离', [
+    preview: freezePreview(
+      result.snapshot.status === 'safe-returned' ? '确认主动返程' : '确认冒险返程', [
       { label: '返程路线', value: route },
       { label: '预计返程时间', value: String(result.returnRoute.estimatedReturnTime) },
       { label: '当前剩余时间', value: String(scene.remainingTime) },
@@ -1674,10 +1758,20 @@ function createWithdrawalAction(
       { label: '返程后生命', value: String(result.snapshot.condition.currentHealth) },
       { label: '预计结果', value: result.snapshot.status === 'safe-returned' ? '安全返回' : result.snapshot.status === 'forced-returned' ? '强制返回' : '死亡' },
       ...(outcome ? timedOutcomeFacts(outcome) : []),
-    ], outcome ? sceneOutcomeWarnings({
-      outcome,
-      returnEstimate: result.returnRoute.estimatedReturnTime,
-    }) : []),
+    ], [
+      ...(result.snapshot.status === 'safe-returned'
+        ? ['预计可以安全返回。']
+        : result.snapshot.status === 'forced-returned'
+          ? [
+              '时间不足以正常返程；你仍可主动开始返程，但将进入强制返程结算。',
+              `预计强制返程损耗：${outcome?.forcedReturnTotalDamage ?? 0} HP；预计结果：可以生还。`,
+            ]
+          : ['⚠ 当前返程将导致死亡。']),
+      ...(outcome ? sceneOutcomeWarnings({
+        outcome,
+        returnEstimate: result.returnRoute.estimatedReturnTime,
+      }) : []),
+    ]),
   })
 }
 
@@ -1700,7 +1794,7 @@ function createSettlementAction(
             { label: '结果', value: '进入电梯中枢' },
             { label: '日期', value: '不会因此推进' },
           ]
-        : [{ label: '结果', value: '进入 Run Failure' }],
+        : [{ label: '结果', value: '本局失败' }],
     ),
   })
 }
@@ -1904,7 +1998,7 @@ function inventoryPreviewFacts(
   facts.push(
     { label: '背包负重', value: `${result.backpackWeightBefore} → ${result.backpackWeightAfter}` },
     { label: '负重状态', value: `${loadTierName(result.loadTierBefore)} → ${loadTierName(result.loadTierAfter)}` },
-    { label: 'Scene 时间', value: `${result.remainingTimeBefore} → ${result.remainingTimeAfter}（不消耗）` },
+    { label: '场景时间', value: `${result.remainingTimeBefore} → ${result.remainingTimeAfter}（不消耗）` },
   )
   if (result.returnAfter.canExecute) {
     facts.push(
@@ -1935,6 +2029,22 @@ export function previewStableRunUiSceneInventoryDraft(
   const identity = getStableRunPhaseIdentity(phase)
   const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
   const runtime = getRunSceneRuntime(phase.payload, rules.sceneLaunch)
+  const needsPlacement = ['move', 'split', 'quick-slot-to-backpack'].includes(draft.operation)
+  const candidateCells = Object.freeze(needsPlacement ? Array.from(
+    { length: phase.payload.scene.backpack.width * phase.payload.scene.backpack.height },
+    (_, index) => Object.freeze({ x: index % phase.payload.scene.backpack.width, y: Math.floor(index / phase.payload.scene.backpack.width) }),
+  ).filter(({ x, y }) => {
+    try {
+      const candidate = inventoryDraftCommand(source, { ...draft, x, y }, opportunities)
+      return candidate !== null && previewPlayerVisibleSceneInventoryCommand(
+        phase.payload.scene,
+        candidate,
+        runtime.dependencies,
+      ).canExecute
+    } catch {
+      return false
+    }
+  }) : [])
   const safe = previewPlayerVisibleSceneInventoryCommand(
     phase.payload.scene,
     command,
@@ -1948,7 +2058,8 @@ export function previewStableRunUiSceneInventoryDraft(
         : '当前来源、目标、数量或摆放无法执行，请重新选择。',
       command: null,
       preview: null,
-      candidateCells: Object.freeze([]),
+      candidateCells,
+      selectedFootprintCells: Object.freeze([]),
       questDropWarning: source.requiresQuestDropConfirmation,
     })
   }
@@ -1972,7 +2083,8 @@ export function previewStableRunUiSceneInventoryDraft(
       inventoryPreviewFacts(safe.result, name),
       warnings,
     ),
-    candidateCells: safe.result.candidateCells,
+    candidateCells,
+    selectedFootprintCells: safe.result.candidateCells,
     questDropWarning: safe.result.questDropWarning,
   })
 }
@@ -2016,12 +2128,32 @@ export function previewStableRunUiPickupDraft(
   ).groundItems.find((item) => item.instanceId === draft.opportunityId)
   if (!source) return null
   const placement = { x: draft.x, y: draft.y, rotated: draft.rotated }
-  const geometry = previewBackpackPlacement(
-    phase.payload.scene.backpack,
-    source,
-    { ...placement, instanceId: source.instanceId },
-    runtime.dependencies.physicalCatalog,
+  const candidateCells = Object.freeze(Array.from(
+    { length: phase.payload.scene.backpack.width * phase.payload.scene.backpack.height },
+    (_, index) => Object.freeze({ x: index % phase.payload.scene.backpack.width, y: Math.floor(index / phase.payload.scene.backpack.width) }),
+  ).filter(({ x, y }) => {
+    try {
+      const candidate = createPickUpRevealedNodeItemCommand({
+        nodeItemInstanceId: source.instanceId,
+        quantity: draft.quantity,
+        placement: { x, y, rotated: draft.rotated },
+      })
+      return previewNodeItemPickupCommand(phase.payload.scene, candidate, runtime.dependencies).canExecute
+    } catch {
+      return false
+    }
+  }))
+  const dimensions = getItemDimensions(
+    runtime.dependencies.physicalCatalog.get(source.definitionId),
+    draft.rotated,
   )
+  const selectedFootprintCells = Object.freeze(Array.from(
+    { length: dimensions.width * dimensions.height },
+    (_, index) => Object.freeze({
+      x: draft.x + index % dimensions.width,
+      y: draft.y + Math.floor(index / dimensions.width),
+    }),
+  ))
   let command
   try {
     command = createPickUpRevealedNodeItemCommand({
@@ -2035,7 +2167,8 @@ export function previewStableRunUiPickupDraft(
       rejection: '拾取参数无效。',
       command: null,
       facts: Object.freeze([]),
-      candidateCells: Object.freeze([]),
+      candidateCells,
+      selectedFootprintCells,
     })
   }
   const preview = previewNodeItemPickupCommand(
@@ -2049,7 +2182,8 @@ export function previewStableRunUiPickupDraft(
       rejection: '该数量或摆放无法执行，请调整选择。',
       command: null,
       facts: Object.freeze([]),
-      candidateCells: Object.freeze(geometry.cells.map(({ x, y }) => Object.freeze({ x, y }))),
+      candidateCells,
+      selectedFootprintCells,
     })
   }
   const result = preview.result
@@ -2065,7 +2199,8 @@ export function previewStableRunUiPickupDraft(
       { label: '背包负重', value: `${result.backpackWeightBefore} → ${result.backpackWeightAfter}` },
       { label: '拾取后负重状态', value: loadTierName(result.loadTierAfter) },
     ]),
-    candidateCells: Object.freeze(geometry.cells.map(({ x, y }) => Object.freeze({ x, y }))),
+    candidateCells,
+    selectedFootprintCells,
   })
 }
 

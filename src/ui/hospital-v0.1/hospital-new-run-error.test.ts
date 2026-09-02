@@ -9,14 +9,14 @@ describe('hospital New Run player-safe error whitelist', () => {
       'private unavailable message',
     ))).toEqual({
       kind: 'player-error',
-      message: '当前无法安全生成新的 Run 身份，请重新确认后再试。',
+      message: '当前无法安全生成新一局，请重新确认后再试。',
     })
     expect(mapPlayerSafeHospitalNewRunError(new HospitalNewRunTransactionError(
       'IDENTITY_REUSED',
       'private reused message',
     ))).toEqual({
       kind: 'player-error',
-      message: '本次生成的 Run 身份不可用，请重新明确确认创建。',
+      message: '本次生成的新一局身份不可用，请重新明确确认创建。',
     })
     expect(mapPlayerSafeHospitalNewRunError(new HospitalNewRunTransactionError(
       'ORIGIN_NOT_AVAILABLE',

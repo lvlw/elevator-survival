@@ -471,8 +471,8 @@ describe('stable Run UI interaction model', () => {
     expect(interaction.actions.every(({ kind }) => kind === 'scene-combat-action')).toBe(true)
     const charged = interaction.actions.find(({ label }) => label === '蓄力击打')!
     expect(charged.preview.facts).toEqual(expect.arrayContaining([
-      { label: '行动 CTB', value: '180' },
-      { label: '请求伤害', value: '6' },
+      { label: '行动时间刻度', value: '180' },
+      { label: '预计造成伤害', value: '6' },
       { label: '武器耐久', value: '6 → 3' },
       { label: '敌人行动延后', value: '200' },
     ]))
@@ -491,7 +491,7 @@ describe('stable Run UI interaction model', () => {
     )
     const charged = interaction.actions.find(({ label }) => label === '蓄力击打')
     expect(charged?.preview.facts).toContainEqual({ label: '武器耐久', value: '1 → 0' })
-    expect(charged?.preview.warnings).toContain('本次行动后武器将损坏。')
+    expect(charged?.preview.warnings).toContain('⚠ 本次攻击后金属管将损坏。')
   })
 
   it('uses DEC-037 slot-only temporary attack eligibility without touching a backpack spare', () => {
@@ -501,9 +501,10 @@ describe('stable Run UI interaction model', () => {
     expect(interaction.actions.map(({ label }) => label)).not.toContain('挥击')
     expect(interaction.actions.map(({ label }) => label)).not.toContain('蓄力击打')
     const temporary = interaction.actions.find(({ label }) => label === '临时攻击')!
+    expect(temporary.contextNote).toBe('当前装备武器已无法执行攻击，因此可以使用临时攻击。')
     expect(temporary.preview.facts).toEqual(expect.arrayContaining([
-      { label: '行动 CTB', value: '140' },
-      { label: '请求伤害', value: '2' },
+      { label: '行动时间刻度', value: '140' },
+      { label: '预计造成伤害', value: '2' },
     ]))
     expect(temporary.preview.facts.some(({ label }) => label === '武器耐久')).toBe(false)
   })
@@ -537,7 +538,7 @@ describe('stable Run UI interaction model', () => {
     expect(escape.preview.facts).toEqual(expect.arrayContaining([
       { label: '战斗场景时间', value: '10' },
       { label: '完成节点', value: '急诊大厅' },
-      { label: '当前剩余 Scene 时间', value: '5' },
+      { label: '当前剩余场景时间', value: '5' },
       { label: '结算后剩余时间', value: '0' },
       { label: '超时债务', value: '5' },
       { label: '预计返程时间', value: '11' },
@@ -547,7 +548,7 @@ describe('stable Run UI interaction model', () => {
       { label: '强制返程总损耗', value: '2' },
       { label: '强制返程后生命', value: '4' },
       { label: '死亡风险', value: '未发现' },
-      { label: '生还结果', value: 'forced-returned Scene' },
+      { label: '生还结果', value: '进入强制返程' },
       { label: '强制返程目标', value: '电梯前室' },
     ]))
   })

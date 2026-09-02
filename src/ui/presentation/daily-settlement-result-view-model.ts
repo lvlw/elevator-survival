@@ -199,7 +199,7 @@ export function createDailySettlementResultViewModel(
   return Object.freeze({
     title: preview.outcome === 'next-day'
       ? `第 ${preview.currentDay} 日结算完成`
-      : 'Run 结束',
+      : '本局结束',
     outcome: preview.outcome,
     currentDay: preview.currentDay,
     nextDay: preview.nextDay,

@@ -20,9 +20,27 @@ describe('player-safe hospital New Run Setup model', () => {
       ],
       backpackSummary: '无额外物品',
       utilityOptions: [
-        { key: 'crowbar', name: '撬棍' },
-        { key: 'flashlight', name: '手电筒' },
-        { key: 'toolkit', name: '工具箱' },
+      {
+        key: 'crowbar',
+        name: '撬棍',
+        purpose: '较安静、可控地处理隔离区防火门。',
+        cost: '使用会消耗撬棍耐久。',
+        limitation: '属于开门用实用装备，不提供金属管的战斗攻击。',
+      },
+      {
+        key: 'flashlight',
+        name: '手电筒',
+        purpose: '为三个低照明搜索节点提供照明，使搜索更快。',
+        cost: '照明搜索会消耗照明次数。',
+        limitation: '不会增加物品数量、提高稀有掉落概率或改变搜索随机结果。',
+      },
+      {
+        key: 'toolkit',
+        name: '工具箱',
+        purpose: '处理隔离区防火门，并在成功后揭示电子元件。',
+        cost: '操作比撬棍更慢，并消耗工具箱耐久。',
+        limitation: '是专业复合工具，不是更快的开门方案。',
+      },
       ],
       specializationNotice:
         '专长系统在当前医院一日验证版本中暂缓，将在完整七日感染世界里程碑前补回。',

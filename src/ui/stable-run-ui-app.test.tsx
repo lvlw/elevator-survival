@@ -989,7 +989,7 @@ describe('Failure New Run Setup request boundary', () => {
       presentationDependencies={uiDependencies}
       onRequestNewRunSetup={() => { requests += 1 }}
     />) })
-    act(() => button(container, '开始新的 Run').click())
+    act(() => button(container, '开始新一局').click())
     expect(requests).toBe(1)
     expect(scenario.store.getState().phase).toBe(before)
     expect(scenario.storage.writes).toBe(0)
@@ -1004,7 +1004,7 @@ describe('Failure New Run Setup request boundary', () => {
       presentationDependencies={uiDependencies}
       onRequestNewRunSetup={() => { throw new Error('must not be available') }}
     />) })
-    expect(container.textContent).not.toContain('开始新的 Run')
+    expect(container.textContent).not.toContain('开始新一局')
   })
 
   it('keeps the DEV-style Failure view without a formal entry when no callback is injected', () => {
@@ -1015,12 +1015,34 @@ describe('Failure New Run Setup request boundary', () => {
       store={scenario.store}
       presentationDependencies={uiDependencies}
     />) })
-    expect(container.textContent).toContain('Run 已终止')
-    expect(container.textContent).not.toContain('开始新的 Run')
+    expect(container.textContent).toContain('本局已终止')
+    expect(container.textContent).not.toContain('开始新一局')
   })
 })
 
 describe('StableRunUiApp', () => {
+  it.each(['hub', 'scene', 'combat', 'failure'] as const)(
+    'keeps internal lifecycle and resource enums out of the ordinary %s DOM',
+    (kind) => {
+      const scenario = createHospitalDevelopmentPreviewScenario(kind)
+      const container = document.createElement('div')
+      const root = createRoot(container); roots.push(root)
+      act(() => { root.render(<StableRunUiApp store={scenario.store} presentationDependencies={uiDependencies} />) })
+      for (const internal of [
+        'durability',
+        'integrity',
+        'charge',
+        'not-available',
+        'available-unsearched',
+        'safe-returned',
+        'forced-returned',
+        'dead Scene Session',
+        'settle-terminal-scene',
+        'Run Failure',
+      ]) expect(container.innerHTML).not.toContain(internal)
+    },
+  )
+
   it('rerenders real React output when the real Store phase changes', () => {
     const storage = new MemoryStorage()
     const store = createStableRunStore({ initialPhase: createHubPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
@@ -1030,6 +1052,11 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     expect(container.textContent).toContain('电梯中枢')
+    expect(container.textContent).toContain('取得密封病原样本箱并安全带回电梯')
+    expect(container.textContent).toContain('样本箱进入任务储存区才计入任务进度')
+    expect(container.textContent).toContain('第 2 日及之后仍可用于工程回归测试')
+    expect(container.textContent).toContain('今日基础维修点3 / 3')
+    expect(container.textContent).toContain('照明 3 / 3')
     act(() => { store.dispatch({ kind: 'lifecycle', command: { kind: 'launch-main-scene' } }) })
     expect(container.textContent).toContain('场景导航')
     expect(storage.writes).toBe(1)
@@ -1119,8 +1146,13 @@ describe('StableRunUiApp', () => {
     act(() => { button(container, '拾取 金属零件').click() })
     const dialog = container.querySelector('[role="dialog"]')
     if (!(dialog instanceof HTMLElement)) throw new Error('expected pickup dialog')
+    expect(dialog.querySelectorAll('.candidate-cell').length).toBeGreaterThan(1)
+    expect(dialog.querySelectorAll('.selected-footprint-cell')).toHaveLength(1)
     const occupiedCells = dialog.querySelectorAll<HTMLButtonElement>('button[data-occupied="true"]')
     act(() => { occupiedCells[3]!.click() })
+    expect(dialog.querySelectorAll('.selected-anchor-cell')).toHaveLength(1)
+    expect(dialog.querySelectorAll('.selected-footprint-cell')).toHaveLength(1)
+    expect(dialog.querySelectorAll('.invalid-placement-cell')).toHaveLength(1)
     expect(container.textContent).toContain('目标格：2, 2')
     expect(button(container, '确认拾取').disabled).toBe(true)
     expect(storage.writes).toBe(0)
@@ -1218,20 +1250,20 @@ describe('StableRunUiApp', () => {
     expect(active?.kind === 'active' && active.combat.enemyNextActionCtb).toBe(50)
     expect(container.textContent).toContain('感染护工')
     expect(container.textContent).toContain('抓挠')
-    expect(container.textContent).toContain('敌人下次行动 CTB 50')
+    expect(container.textContent).toContain('敌人下次行动 50')
     expect(container.textContent).toContain('类别基础攻击')
     expect(container.textContent).toContain('相对速度普通')
     expect(container.textContent).toContain('主要危险中等直接伤害')
     expect(container.textContent).toContain('挥击')
     expect(container.textContent).toContain('蓄力击打')
     expect(container.textContent).not.toContain('背包网格')
-    expect(container.textContent).not.toContain('场景终局状态')
+    expect(container.textContent).not.toContain('场景结果')
 
     for (const label of ['挥击', '蓄力击打', '挥击']) {
       act(() => { button(container, label).click() })
       const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
-      expect(preview).toContain('行动 CTB')
-      expect(preview).toContain('请求伤害')
+      expect(preview).toContain('行动时间刻度')
+      expect(preview).toContain('预计造成伤害')
       for (const hidden of ['riskPercent', 'roll', 'streamId', 'drawIndex', 'succeeded', 'enemyInstanceId', 'sceneInstanceId', 'nextCycleIndex', 'resolvedActionCount']) {
         expect(container.innerHTML).not.toContain(hidden)
       }
@@ -1448,7 +1480,7 @@ describe('StableRunUiApp', () => {
     const phase = store.getState().phase
     if (phase.kind !== 'scene-session') throw new Error('expected terminal Scene session')
     expect(phase.payload.scene.status).toBe('forced-returned')
-    expect(container.textContent).toContain('场景终局状态')
+    expect(container.textContent).toContain('场景结果')
     expect(container.textContent).not.toContain('电梯中枢')
     act(() => { button(container, '完成返程结算').click() })
     act(() => { button(container, '确认执行').click() })
@@ -1506,6 +1538,41 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).not.toContain('电梯中枢')
   })
 
+  it('explains when a player-started return completes under forced-return rules', () => {
+    const launched = resolveSceneLaunch(
+      createHubPhase().payload,
+      { kind: 'launch-main-scene' },
+      hospitalSceneLaunchDependencies,
+    ).session
+    const runtime = getRunSceneRuntime(launched, hospitalSceneLaunchDependencies)
+    const hall = resolveSceneMoveCommand(launched.scene, {
+      edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall,
+    }, runtime.dependencies).snapshot
+    const session = createRunSceneSessionSnapshot({
+      context: launched.context,
+      scene: createSceneExplorationSnapshot({ ...hall, remainingTime: 5 }, runtime.dependencies),
+    }, hospitalSceneLaunchDependencies)
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: session },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+
+    act(() => { button(container, '冒险返程').click() })
+    expect(container.textContent).toContain('预计强制返程损耗')
+    act(() => { button(container, '确认执行').click() })
+    act(() => { button(container, '完成返程结算').click() })
+    act(() => { button(container, '确认执行').click() })
+
+    expect(storage.writes).toBe(2)
+    expect(store.getState().phase.kind).toBe('current-day-hub')
+    expect(container.textContent).toContain('你主动开始返程，但由于剩余时间不足，最终按强制返程规则完成')
+  })
+
   it('completes the explicit Hub → Search → Pickup → Withdraw → Settle return chain without auto-pickup or auto-settlement', () => {
     const storage = new MemoryStorage()
     const store = createStableRunStore({ initialPhase: createHubPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
@@ -1544,7 +1611,7 @@ describe('StableRunUiApp', () => {
     )?.items ?? []
     expect(remainingGround.some(({ item }) => item.instanceId === sourceInstanceId)).toBe(false)
 
-    act(() => { button(container, '主动撤离').click() })
+    act(() => { button(container, '主动返程').click() })
     expect(container.textContent).toContain('返程路线')
     expect(container.textContent).toContain('预计返程时间')
     act(() => { button(container, '确认执行').click() })
@@ -1566,6 +1633,9 @@ describe('StableRunUiApp', () => {
     expect(phase.payload.runLoadout.warehouse.items).toContainEqual(expect.objectContaining({ instanceId: sourceInstanceId, definitionId: HOSPITAL_ITEM_IDS.metalParts }))
     expect(container.textContent).toContain('返回摘要')
     expect(container.textContent).toContain('金属零件 ×1')
+    for (const internal of ['safe-returned', 'forced-returned', 'dead Scene Session', 'settle-terminal-scene', 'Run Failure']) {
+      expect(container.innerHTML).not.toContain(internal)
+    }
     act(() => { button(container, '关闭摘要').click() })
     expect(container.textContent).toContain('结束本日')
     expect(store.getState().phase).toBe(phase)
@@ -1760,7 +1830,7 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
-    act(() => { button(container, '主动撤离').click() })
+    act(() => { button(container, '主动返程').click() })
     expect(container.querySelector('[aria-labelledby="action-preview-title"]')).not.toBeNull()
     act(() => {
       store.dispatch({ kind: 'scene', command: { kind: 'scene-withdraw', command: { kind: 'withdraw-from-scene' } } })
@@ -1854,7 +1924,7 @@ describe('StableRunUiApp', () => {
     if (phase.kind !== 'scene-session') throw new Error('expected Scene')
     expect(['forced-returned', 'dead']).toContain(phase.payload.scene.status)
     expect(container.textContent).not.toContain('电梯中枢')
-    expect(container.textContent).toContain('场景终局状态')
+    expect(container.textContent).toContain('场景结果')
   })
 
   it('refreshes formal return facts from the canonical post-pickup Scene', () => {
@@ -1896,7 +1966,7 @@ describe('StableRunUiApp', () => {
     )
     if (!formalReturn.canExecute) throw new Error('expected formal withdrawal preview')
     expect(container.textContent).toContain(`预计返程：${formalReturn.result.returnRoute.estimatedReturnTime}`)
-    act(() => { button(container, '主动撤离').click() })
+    act(() => { button(container, '主动返程').click() })
     expect(container.textContent).toContain(`预计返程时间${formalReturn.result.returnRoute.estimatedReturnTime}`)
     expect(container.textContent).not.toBe(beforeReturn)
   })
@@ -1961,7 +2031,7 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
-    act(() => { button(container, '主动撤离').click() })
+    act(() => { button(container, '主动返程').click() })
     expect(container.textContent).toContain('预计返程时间0')
     expect(container.textContent).toContain('安全返回')
     act(() => { button(container, '确认执行').click() })
@@ -1986,7 +2056,7 @@ describe('StableRunUiApp', () => {
     const activeRoot = createRoot(activeContainer); roots.push(activeRoot)
     act(() => { activeRoot.render(<StrictMode><StableRunUiApp store={activeStore} presentationDependencies={uiDependencies} /></StrictMode>) })
     expect(activeContainer.textContent).toContain('拾取 消防斧')
-    expect(activeContainer.textContent).toContain('主动撤离')
+    expect(activeContainer.textContent).toContain('主动返程')
     expect(activeStore.getState()).toBe(activeBefore)
     expect(activeStorage.writes).toBe(0)
     act(() => { button(activeContainer, '拾取 消防斧').click() })
@@ -2039,7 +2109,7 @@ describe('StableRunUiApp', () => {
     act(() => { button(container, '拾取 消防斧').click() })
     assertHidden()
     act(() => { button(container, '取消').click() })
-    act(() => { button(container, '主动撤离').click() })
+    act(() => { button(container, '主动返程').click() })
     assertHidden()
     act(() => { button(container, '确认执行').click() })
     act(() => { button(container, '完成返程结算').click() })
@@ -2210,7 +2280,7 @@ describe('StableRunUiApp', () => {
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '使用止痛药').click() })
     const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
-    expect(preview).toContain('行动 CTB80')
+    expect(preview).toContain('行动时间刻度80')
     expect(preview).toContain('镇痛生效')
     expect(preview).not.toContain('生命恢复')
     expect(preview).not.toContain('处理伤口')
@@ -2236,6 +2306,7 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     expect(container.textContent).toContain('临时攻击')
+    expect(container.textContent).toContain('当前装备武器已无法执行攻击，因此可以使用临时攻击')
     expect(container.textContent).not.toContain('挥击')
     act(() => { button(container, '临时攻击').click() })
     act(() => { button(container, '确认执行').click() })
@@ -2259,8 +2330,9 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '蓄力击打').click() })
-    expect(container.textContent).toContain('本次行动后武器将损坏')
+    expect(container.textContent).toContain('本次攻击后金属管将损坏')
     act(() => { button(container, '确认执行').click() })
+    expect(container.textContent).toContain('金属管已损坏。武器攻击已不可用。临时攻击现已可用。')
     act(() => { button(container, '关闭结果').click() })
     expect(storage.writes).toBe(1)
     const phase = store.getState().phase
@@ -2313,16 +2385,17 @@ describe('StableRunUiApp', () => {
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '逃跑').click() })
     const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
-    expect(preview).toContain('基础准备 CTB80')
-    expect(preview).toContain('最终准备 CTB90')
-    expect(preview).toContain('生还结果继续 active Scene')
-    expect(preview).toContain('后续流程继续当前 active Scene')
+    expect(preview).toContain('基础脱离准备80')
+    expect(preview).toContain('最终脱离准备时间90')
+    expect(preview).toContain('敌人将在你完成脱离前行动。')
+    expect(preview).toContain('生还结果继续探索')
+    expect(preview).toContain('后续流程继续当前场景探索')
     expect(preview).not.toContain('settle-terminal-scene')
     act(() => { button(container, '确认执行').click() })
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
     expect(notifications).toBe(1)
-    expect(container.textContent).toContain('实际 Scene 时间结算10')
+    expect(container.textContent).toContain('实际场景时间结算10')
     let phase = inner.getState().phase
     if (phase.kind !== 'scene-session') throw new Error('expected Scene')
     expect(phase.payload.scene.status).toBe('active')
@@ -2358,7 +2431,7 @@ describe('StableRunUiApp', () => {
     if (phase.kind !== 'scene-session') throw new Error('expected dead Scene')
     expect(phase.payload.scene.status).toBe('dead')
     expect(container.textContent).toContain('结算战败')
-    expect(container.textContent).not.toContain('Run 已终止')
+    expect(container.textContent).not.toContain('本局已终止')
   })
 
   it('keeps one committed Combat mutation after a save failure without retry or rollback', () => {
@@ -2397,8 +2470,8 @@ describe('StableRunUiApp', () => {
     act(() => { button(container, '挥击').click() })
     const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
     expect(preview).toContain('若本次攻击使敌人失去能力')
-    expect(preview).toContain('生还结果继续 active Scene')
-    expect(preview).toContain('后续流程继续当前 active Scene')
+    expect(preview).toContain('生还结果继续探索')
+    expect(preview).toContain('后续流程继续当前场景探索')
     expect(preview).not.toContain('settle-terminal-scene')
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
@@ -2430,7 +2503,7 @@ describe('StableRunUiApp', () => {
     const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
     expect(preview).toContain('战斗场景时间10')
     expect(preview).toContain('完成节点急诊大厅')
-    expect(preview).toContain('当前剩余 Scene 时间5')
+    expect(preview).toContain('当前剩余场景时间5')
     expect(preview).toContain('结算后剩余时间0')
     expect(preview).toContain('超时债务5')
     expect(preview).toContain('预计返程时间11')
@@ -2440,9 +2513,9 @@ describe('StableRunUiApp', () => {
     expect(preview).toContain('强制返程总损耗2')
     expect(preview).toContain('强制返程后生命4')
     expect(preview).toContain('死亡风险未发现')
-    expect(preview).toContain('生还结果forced-returned Scene')
+    expect(preview).toContain('生还结果进入强制返程')
     expect(preview).toContain('强制返程目标电梯前室')
-    expect(preview).toContain('后续由独立 settle-terminal-scene 命令处理')
+    expect(preview).toContain('之后需要显式完成返程结算')
     act(() => { button(container, '确认执行').click() })
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
@@ -2451,9 +2524,9 @@ describe('StableRunUiApp', () => {
     expect(phase.kind).toBe('scene-session')
     if (phase.kind !== 'scene-session') throw new Error('expected terminal Scene')
     expect(['forced-returned', 'dead']).toContain(phase.payload.scene.status)
-    expect(container.textContent).toContain('实际 Scene 时间结算10')
+    expect(container.textContent).toContain('实际场景时间结算10')
     expect(container.textContent).not.toContain('电梯中枢')
-    expect(container.textContent).not.toContain('Run 已终止')
+    expect(container.textContent).not.toContain('本局已终止')
   })
 
   it('shows the seed-independent new-bleeding escape range without a false death warning', () => {
@@ -2501,16 +2574,18 @@ describe('StableRunUiApp', () => {
     expect(preview).toContain('不进入强制返程')
     expect(preview).toContain('玩家死亡优先，不提交逃跑成功')
     expect(preview).not.toContain('若在脱离完成前战败')
-    expect(preview).not.toContain('生还结果forced-returned Scene')
+    expect(preview).not.toContain('生还结果进入强制返程')
     expect(storage.writes).toBe(0)
   })
 
-  it('shows existing-bleeding death at escape completion CTB 80 and saves one dead Scene', () => {
+  it('explains that escaping with 1 HP and an untreated bleeding wound still ends in death', () => {
     const storage = new MemoryStorage()
     const inner = createStableRunStore({
       initialPhase: combatPhase({
-        currentHealth: 4,
+        currentHealth: 1,
         bleeding: true,
+        openWounds: [{ id: 'react-escape-fatal-wound', kind: 'laceration', treatment: 'untreated' }],
+        enemyNextActionCtb: 200,
         armorIntegrity: null,
         remainingTime: 100,
       }),
@@ -2526,15 +2601,17 @@ describe('StableRunUiApp', () => {
 
     act(() => { button(container, '逃跑').click() })
     const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
-    expect(preview).toContain('脱离完成 CTB80')
+    expect(preview).toContain('脱离完成时间点90')
     expect(preview).toContain('脱离完成流血损失1')
     expect(preview).toContain('脱离完成后生命0')
-    expect(preview).toContain('战斗结束累计 CTB80')
+    expect(preview).toContain('战斗结束累计行动时间90')
     expect(preview).toContain('战斗场景时间10')
-    expect(preview).toContain('脱离完成主要效果后，行动后流血将使生命归零')
-    expect(preview).toContain('玩家死亡优先于逃跑成功')
-    expect(preview).toContain('本次仅保存 dead Scene Session')
-    expect(preview).toContain('settle-terminal-scene 命令进入 Run Failure')
+    expect(preview).toContain('⚠ 逃跑仍会死亡')
+    expect(preview).toContain('你当前只有 1 HP 且正在流血')
+    expect(preview).toContain('行动完成后仍会结算流血伤害')
+    expect(preview).toContain('本次行动后生命归零')
+    expect(preview).toContain('战斗结束，本局失败')
+    expect(preview).not.toContain('敌人将在你完成脱离前行动')
     expect(preview).not.toContain('脱离完成前战败')
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
@@ -2547,8 +2624,8 @@ describe('StableRunUiApp', () => {
     expect(phase.kind).toBe('scene-session')
     if (phase.kind !== 'scene-session') throw new Error('expected dead Scene')
     expect(phase.payload.scene.status).toBe('dead')
-    expect(container.textContent).toContain('实际 Scene 时间结算10')
-    expect(container.textContent).not.toContain('Run 已终止')
+    expect(container.textContent).toContain('实际场景时间结算10')
+    expect(container.textContent).not.toContain('本局已终止')
   })
 
   it('keeps true direct-damage defeat labeled before escape completion at CTB 70', () => {
@@ -2574,11 +2651,11 @@ describe('StableRunUiApp', () => {
     const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
     expect(preview).toContain('玩家将在脱离完成前战败')
     expect(preview).toContain('战败节点隔离走廊')
-    expect(preview).toContain('战斗结束累计 CTB70')
+    expect(preview).toContain('战斗结束累计行动时间70')
     expect(preview).toContain('战斗场景时间10')
-    expect(preview).toContain('本次仅保存 dead Scene Session')
+    expect(preview).toContain('本次行动后生命归零')
     expect(preview).not.toContain('若成功完成脱离')
-    expect(preview).not.toContain('脱离完成 CTB80')
+    expect(preview).not.toContain('脱离完成时间点80')
     expect(preview).not.toContain('脱离完成主要效果后')
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
@@ -2617,8 +2694,8 @@ describe('StableRunUiApp', () => {
     expect(preview).toContain('自身行动阶段后生命0')
     expect(preview).toContain('死亡风险将死亡')
     expect(preview).toContain('玩家死亡优先于任何潜在胜利')
-    expect(preview).toContain('本次仅保存 dead Scene Session')
-    expect(preview).toContain('settle-terminal-scene 命令进入 Run Failure')
+    expect(preview).toContain('本次行动后生命归零')
+    expect(preview).toContain('战斗结束，本局失败')
     expect(preview).not.toContain('若本次攻击使敌人失去能力')
     expect(preview).not.toContain('敌人剩余生命')
     expect(tracked.commands).toHaveLength(0)
@@ -2632,9 +2709,9 @@ describe('StableRunUiApp', () => {
     expect(phase.kind).toBe('scene-session')
     if (phase.kind !== 'scene-session') throw new Error('expected dead Scene')
     expect(phase.payload.scene.status).toBe('dead')
-    expect(container.textContent).toContain('实际 Scene 时间结算10')
+    expect(container.textContent).toContain('实际场景时间结算10')
     expect(container.textContent).toContain('结算战败')
-    expect(container.textContent).not.toContain('Run 已终止')
+    expect(container.textContent).not.toContain('本局已终止')
   })
 
   it('previews and confirms cautious sample extraction with explicit 2×2 placement and no hidden risk leak', () => {
@@ -2662,7 +2739,11 @@ describe('StableRunUiApp', () => {
     act(() => { button(container, '谨慎检查并提取').click() })
     expect(container.textContent).toContain('请在背包网格中明确选择样本箱放置位置')
     expect(button(container, '确认提取').disabled).toBe(true)
+    expect(container.querySelectorAll('[role="dialog"] .candidate-cell').length).toBeGreaterThan(1)
+    expect(container.querySelectorAll('[role="dialog"] .selected-footprint-cell')).toHaveLength(0)
     act(() => { button(container, '格子 1,1').click() })
+    expect(container.querySelectorAll('[role="dialog"] .selected-anchor-cell')).toHaveLength(1)
+    expect(container.querySelectorAll('[role="dialog"] .selected-footprint-cell')).toHaveLength(4)
     const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
     expect(preview).toContain('污染风险无')
     expect(preview).toContain('厚实外套保护生效')
@@ -2704,7 +2785,7 @@ describe('StableRunUiApp', () => {
     expect(container.querySelectorAll('.backpack-grid [data-occupied="true"]')).toHaveLength(4)
     expect(container.textContent).not.toContain('谨慎检查并提取')
     expect(container.textContent).not.toContain('直接取出')
-    expect(container.textContent).toContain('主动撤离')
+    expect(container.textContent).toContain('主动返程')
   })
 
   it('keeps opposite-seed direct extraction previews identical while committed exposure may differ', () => {
@@ -2822,7 +2903,7 @@ describe('StableRunUiApp', () => {
     expect(preview).toContain('强制返程总损耗')
     expect(preview).toContain('强制返程后生命')
     expect(preview).toContain('死亡风险')
-    expect(preview).toContain('后续显式返程结算才会安全转入任务储存区')
+    expect(preview).toContain('后续显式完成返程结算后才会安全转入任务储存区')
     act(() => { button(container, '确认提取').click() })
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
@@ -3136,8 +3217,8 @@ describe('StableRunUiApp', () => {
     const preview = container.textContent ?? ''
     expect(preview).toContain('完成节点急诊大厅')
     expect(preview).toContain('强制返程目标电梯前室')
-    expect(preview).toContain('最终 Scene 状态forced-returned')
-    expect(preview).toContain('后续需要显式完成返程结算')
+    expect(preview).toContain('最终场景状态强制返程')
+    expect(preview).toContain('之后需要显式完成返程结算')
     for (const hidden of [
       'forced-hall-bandage',
       'sceneInstanceId',
@@ -3159,7 +3240,7 @@ describe('StableRunUiApp', () => {
     const result = container.textContent ?? ''
     expect(result).toContain('完成节点急诊大厅')
     expect(result).toContain('当前节点电梯前室')
-    expect(result).toContain('当前为 forced-returned Scene Session')
+    expect(result).toContain('已完成强制返程')
     for (const hidden of [
       'forced-hall-bandage',
       'sceneInstanceId',
@@ -3217,7 +3298,7 @@ describe('StableRunUiApp', () => {
       dailyMedicalUsage: { disinfectantUsesToday: 1 },
     })
     expect(after.payload.scene.backpack.items).toEqual([])
-    expect(container.textContent).toContain('当前为 dead Scene Session')
+    expect(container.textContent).toContain('玩家已死亡')
     expect(container.textContent).toContain('结算战败')
     expect(container.textContent).toContain('完成节点急诊大厅')
     expect(container.textContent).toContain('当前节点急诊大厅')
@@ -3266,7 +3347,7 @@ describe('StableRunUiApp', () => {
     expect(preview).toContain('强制返程总损耗1')
     expect(preview).toContain('死亡风险将死亡')
     expect(preview).toContain('完成节点急诊大厅')
-    expect(preview).toContain('最终 Scene 状态dead')
+    expect(preview).toContain('最终场景状态已死亡')
     expect(preview).toContain('返程延续紧急返程损耗导致死亡，未能完成安全返程')
     expect(preview).not.toContain('行动后流血致死')
     expect(preview).not.toContain('行动后流血导致死亡')
@@ -3298,7 +3379,7 @@ describe('StableRunUiApp', () => {
       },
     })
     expect(after.payload.scene.backpack.items).toEqual([])
-    expect(container.textContent).toContain('当前为 dead Scene Session')
+    expect(container.textContent).toContain('玩家已死亡')
     expect(container.textContent).toContain('完成节点急诊大厅')
     expect(container.textContent).toContain('当前节点急诊大厅')
     expect(container.textContent).not.toContain('当前节点电梯前室')
@@ -3410,15 +3491,14 @@ describe('StableRunUiApp', () => {
       act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
       act(() => { button(container, '使用绷带 · 背包格 1,1').click() })
       if (remainingTime === 10) {
-        expect(container.textContent).toContain('最终 Scene 状态safe-returned')
-        expect(container.textContent).toContain('本次只保存 safe-returned Scene Session')
-        expect(container.textContent).toContain('settle-terminal-scene')
+        expect(container.textContent).toContain('最终场景状态安全返回')
+        expect(container.textContent).toContain('本次医疗完成后将安全返回')
         expect(container.textContent).not.toContain('超时债务')
       } else {
         expect(container.textContent).toContain('超时债务5')
         expect(container.textContent).toContain('有效紧急撤离时间5')
         expect(container.textContent).toContain('强制返程总损耗1')
-        expect(container.textContent).toContain('本次只保存 forced-returned Scene Session')
+        expect(container.textContent).toContain('本次医疗完成后将进入强制返程')
       }
       act(() => { button(container, '确认执行').click() })
       const after = store.getState().phase
@@ -3428,8 +3508,8 @@ describe('StableRunUiApp', () => {
       expect(container.textContent).toContain('完成返程结算')
       expect(container.textContent).toContain(
         remainingTime === 10
-          ? '当前为 safe-returned Scene Session；下一步需要显式完成返程结算'
-          : '当前为 forced-returned Scene Session；下一步需要显式完成返程结算',
+          ? '已安全回到电梯前室；下一步需要显式完成返程结算'
+          : '已完成强制返程；下一步需要显式完成返程结算',
       )
     }
   })
@@ -3654,17 +3734,17 @@ describe('StableRunUiApp', () => {
       {
         phase: sceneBatteryPhase({ remainingTime: 10, currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom }),
         status: 'safe-returned',
-        preview: ['最终 Scene 状态safe-returned', '本次只保存 safe-returned Scene Session'],
+        preview: ['最终场景状态安全返回', '本次行动完成后将安全返回'],
       },
       {
         phase: sceneBatteryPhase({ remainingTime: 5, currentNodeId: HOSPITAL_NODE_IDS.emergencyHall }),
         status: 'forced-returned',
-        preview: ['超时债务5', '强制返程目标电梯前室', '本次只保存 forced-returned Scene Session'],
+        preview: ['超时债务5', '强制返程目标电梯前室', '本次行动完成后将进入强制返程'],
       },
       {
         phase: sceneBatteryPhase({ remainingTime: 5, currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom }),
         status: 'forced-returned',
-        preview: ['超时债务5', '有效紧急撤离时间5', '本次只保存 forced-returned Scene Session'],
+        preview: ['超时债务5', '有效紧急撤离时间5', '本次行动完成后将进入强制返程'],
       },
       {
         phase: sceneBatteryPhase({ currentHealth: 1, bleeding: true, remainingTime: 50 }),
@@ -3843,7 +3923,7 @@ describe('StableRunUiApp', () => {
     act(() => { input(container, '旋转整理物品').click() })
     act(() => { button(container, '格子 3,2').click() })
     expect(container.textContent).toContain('背包负重1 → 1')
-    expect(container.textContent).toContain('Scene 时间50 → 50（不消耗）')
+    expect(container.textContent).toContain('场景时间50 → 50（不消耗）')
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
     expect(notifications).toBe(0)
@@ -4072,6 +4152,11 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    expect(container.textContent).toContain('当前可通行路线')
+    expect(container.textContent).toContain('隔离走廊')
+    expect(container.textContent).toContain('工作人员通道')
+    expect(container.textContent).toContain('门禁卡已授权')
+    expect(container.textContent).toContain('移动耗时')
     act(() => { button(container, '整理 隔离区门禁卡 · 背包格 1,1').click() })
     act(() => { button(container, '放到当前节点').click() })
     expect(container.textContent).not.toContain('这是任务物品。')
@@ -4883,12 +4968,16 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
-    act(() => { button(container, '分配基础维护工时').click() })
+    expect(container.textContent).toContain('今日基础维修点3 / 3')
+    expect(container.textContent).toContain('每使用1点，恢复指定装备1点对应资源')
+    expect(container.textContent).toContain('今日未用点数不累积到次日')
+    act(() => { button(container, '使用今日基础维修点').click() })
     act(() => { setInputValue(input(container, '分配 金属管 仓库条目 6'), '1') })
     act(() => { setInputValue(input(container, '分配 厚实外套 背包格 1,1'), '1.5') })
     expect(button(container, '确认维护').disabled).toBe(true)
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
+    expect(container.textContent).toContain('今日剩余维修点：3')
   })
 
   it('invalidates stale maintenance drafts without shrinking them into another legal command', () => {
@@ -4984,9 +5073,10 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
-    act(() => { button(container, '分配基础维护工时').click() })
+    act(() => { button(container, '使用今日基础维修点').click() })
     const allocation = input(container, '分配 金属管 仓库条目 6')
     act(() => { setInputValue(allocation, '2') })
+    expect(container.textContent).toContain('今日剩余维修点3 → 1')
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
     act(() => { button(container, '确认维护').click() })
@@ -5134,6 +5224,9 @@ describe('StableRunUiApp', () => {
     expect(phase.payload.dailyState.mainSceneUsedToday).toBe(false)
     expect(container.textContent).toContain('第 2 日结算完成')
     expect(container.textContent).toContain('第 2 日 → 第 3 日')
+    for (const internal of ['safe-returned', 'forced-returned', 'dead Scene Session', 'settle-terminal-scene', 'Run Failure']) {
+      expect(container.innerHTML).not.toContain(internal)
+    }
   })
 
   it('builds the normal Daily Settlement Result only from the committed next-day phase', () => {
@@ -5464,7 +5557,7 @@ describe('StableRunUiApp', () => {
     act(() => { button(container, '结束本日').click() })
     const previewText = container.querySelector('[role="dialog"]')?.textContent ?? ''
     expect(previewText).toContain('未处理流血损失 2')
-    expect(previewText).toContain('Run Failure · 生命耗尽')
+    expect(previewText).toContain('本局失败 · 生命耗尽')
     expect(previewText).toContain('结束本日后会立即执行日结算并保存结果，不能返回本日继续整备。')
     expect(previewText).not.toContain('世界威胁阶段')
     expect(previewText).not.toContain('饱食')
@@ -5493,7 +5586,7 @@ describe('StableRunUiApp', () => {
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '结束本日').click() })
     expect(container.textContent).toContain('危急 → 感染终末')
-    expect(container.textContent).toContain('Run Failure · 世界威胁终末')
+    expect(container.textContent).toContain('本局失败 · 世界威胁终末')
     expect(container.textContent).toContain('结束本日后会立即执行日结算并保存结果，不能返回本日继续整备。')
     expect(container.textContent).not.toContain('progress')
     expect(container.textContent).not.toContain('125')

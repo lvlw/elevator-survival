@@ -11,6 +11,8 @@ export interface CurrentTraversableAdjacentEdge {
   readonly edgeId: string
   readonly destinationNodeId: string
   readonly destinationNodeName: string
+  /** Present only when the current canonical backpack satisfies formal access metadata. */
+  readonly accessGrantDefinitionId: string | null
 }
 
 export function getCurrentTraversableAdjacentEdges(
@@ -35,7 +37,20 @@ export function getCurrentTraversableAdjacentEdges(
       if (!destinationNodeName) {
         throw new Error('正式场景图缺少可通行相邻节点名称')
       }
-      return Object.freeze({ edgeId: id, destinationNodeId, destinationNodeName })
+      const profile = runtime.dependencies.edgeAccessCatalog?.has(id)
+        ? runtime.dependencies.edgeAccessCatalog.get(id)
+        : null
+      const accessGrantDefinitionId = profile && scene.backpack.items.some(
+        ({ definitionId }) => definitionId === profile.requiredDefinitionId,
+      )
+        ? profile.requiredDefinitionId
+        : null
+      return Object.freeze({
+        edgeId: id,
+        destinationNodeId,
+        destinationNodeName,
+        accessGrantDefinitionId,
+      })
     })
     .sort((left, right) =>
       left.destinationNodeName.localeCompare(right.destinationNodeName) ||

@@ -17,6 +17,7 @@ import {
 } from '../../core/inventory'
 import { classifyLoad } from '../../core/load'
 import type { FrozenRuleConfig } from '../../core/config'
+import type { ItemResourceCatalog } from '../../core/item-state'
 import type { RunReturnSummary } from '../../core/run-return'
 import {
   getRunSceneRuntime,
@@ -25,7 +26,10 @@ import {
 import {
   getPlayerVisibleSceneNodeState,
   getPlayerVisibleSceneObstacles,
+  getPlayerVisibleSceneCombatActionOptions,
+  createMoveThroughSceneEdgeCommand,
   previewPlayerVisibleSceneInventoryCommand,
+  previewSceneMoveCommand,
   previewSceneWithdrawalCommand,
   type SceneExplorationEffect,
   type PlayerVisibleSceneInventoryLocation,
@@ -43,6 +47,14 @@ import { getCurrentTraversableAdjacentEdges } from '../interaction/current-trave
 export interface StableRunUiLabels {
   sceneName(sceneDefinitionId: string): string
   itemName(definitionId: string, fallback: string): string
+  itemResourceName(
+    definitionId: string,
+    resourceKind: 'durability' | 'integrity' | 'charge',
+  ): string
+  sceneRouteName(edgeId: string): string
+  sceneRouteAccessReason(requiredDefinitionId: string): string
+  primaryMissionBriefing(): Readonly<{ objective: string; completion: string }>
+  dayScopeNotice(currentDay: number): string | null
   enemyName(definitionId: string): string
   enemyIntentName(intentId: string): string
   worldThreatStageName(stageId: string): string
@@ -77,7 +89,12 @@ export interface PlayerVisibleConditionViewModel {
 export interface PlayerVisibleItemViewModel {
   readonly name: string
   readonly quantity: number
-  readonly resource: Readonly<{ kind: 'durability' | 'integrity' | 'charge'; current: number }> | null
+  readonly resource: Readonly<{
+    kind: 'durability' | 'integrity' | 'charge'
+    label: string
+    current: number
+    maximum: number
+  }> | null
 }
 
 export interface PlayerVisibleLoadoutViewModel {
@@ -136,6 +153,7 @@ export interface PlayerVisibleCombatViewModel {
   readonly sceneRemainingTime: number
   readonly sceneTimeIfCombatEndedNow: number
   readonly minimumSceneTime: number
+  readonly enemyTimingBeforeNextDecision: 'will-act' | 'will-not-act' | 'depends-on-action'
   readonly equipment: PlayerVisibleLoadoutViewModel['equipment']
   readonly quickSlots: PlayerVisibleLoadoutViewModel['quickSlots']
 }
@@ -143,12 +161,14 @@ export interface PlayerVisibleCombatViewModel {
 type ItemPresentationRuntime = Readonly<{
   dependencies: Readonly<{
     physicalCatalog: ItemCatalog
+    itemResourceCatalog: ItemResourceCatalog
     config: FrozenRuleConfig
   }>
 }>
 
 export interface ReturnSummaryViewModel {
   readonly returnKind: 'safe' | 'forced'
+  readonly voluntarilyStarted: boolean
   readonly remainingHealth: number
   readonly warehouseItems: readonly PlayerVisibleItemViewModel[]
   readonly taskItems: readonly PlayerVisibleItemViewModel[]
@@ -170,6 +190,9 @@ export interface CombatActionResultViewModel {
   readonly enemyHealthStage: PlayerVisibleCombatViewModel['enemyHealthStage']
   readonly outcome: 'continue' | 'victory' | 'escaped' | 'defeat' | 'forced-returned'
   readonly sceneTimeCost: number | null
+  readonly weaponBecameBroken: boolean
+  readonly weaponName: string | null
+  readonly temporaryAttackAvailable: boolean
 }
 
 export interface TaskEventResultViewModel {
@@ -272,6 +295,9 @@ export type StableRunPlayerViewModel =
       loadout: PlayerVisibleLoadoutViewModel
       hub: Readonly<{
         maintenanceLaborRemaining: number
+        maintenanceLaborTotal: number
+        mission: Readonly<{ objective: string; completion: string }>
+        dayScopeNotice: string | null
         warehouse: readonly PlayerVisibleItemViewModel[]
         taskStorage: readonly PlayerVisibleItemViewModel[]
       }>
@@ -289,6 +315,12 @@ export type StableRunPlayerViewModel =
          * navigation query before they can be presented.
         */
         traversableAdjacentNodeNames: readonly string[]
+        traversableRoutes: readonly Readonly<{
+          destinationNodeName: string
+          routeName: string
+          accessReason: string | null
+          movementTime: number
+        }>[]
         returnEstimate: number | null
         returnAfterWithdrawalTime: number | null
         returnRisk: 'safe-returned' | 'forced-returned' | 'dead' | null
@@ -343,12 +375,24 @@ function itemView(
   const state = itemStates.states.find(
     ({ instanceId }) => instanceId === item.instanceId,
   )
+  const resource = !state || state.resource.kind === 'none'
+    ? null
+    : (() => {
+        const profile = runtime.dependencies.itemResourceCatalog.get(item.definitionId)
+        if (profile.kind === 'none' || profile.kind !== state.resource.kind) {
+          throw new Error('正式物品资源状态与资源目录不一致')
+        }
+        return frozen({
+          kind: state.resource.kind,
+          label: labels.itemResourceName(item.definitionId, state.resource.kind),
+          current: state.resource.current,
+          maximum: profile.maximum,
+        })
+      })()
   return frozen({
     name: labels.itemName(item.definitionId, definition.name),
     quantity: item.quantity,
-    resource: !state || state.resource.kind === 'none'
-      ? null
-      : frozen({ kind: state.resource.kind, current: state.resource.current }),
+    resource,
   })
 }
 
@@ -444,8 +488,24 @@ function createSceneView(
   const runtime = getRunSceneRuntime(session, rules.sceneLaunch)
   const scene = session.scene
   const current = runtime.dependencies.graph.nodes.find(({ id }) => id === scene.currentNodeId)!
-  const connected = getCurrentTraversableAdjacentEdges(scene, runtime)
-    .map(({ destinationNodeName }) => destinationNodeName)
+  const traversableRoutes = scene.status === 'active'
+    ? getCurrentTraversableAdjacentEdges(scene, runtime).flatMap((edge) => {
+        const move = previewSceneMoveCommand(
+          scene,
+          createMoveThroughSceneEdgeCommand({ edgeId: edge.edgeId }),
+          runtime.dependencies,
+        )
+        if (!move.canExecute) return []
+        return [frozen({
+          destinationNodeName: edge.destinationNodeName,
+          routeName: dependencies.labels.sceneRouteName(edge.edgeId),
+          accessReason: edge.accessGrantDefinitionId === null
+            ? null
+            : dependencies.labels.sceneRouteAccessReason(edge.accessGrantDefinitionId),
+          movementTime: move.result.finalMovementTime,
+        })]
+      })
+    : []
   const playerNode = getPlayerVisibleSceneNodeState(scene, scene.currentNodeId)
   const currentObstacles = getPlayerVisibleSceneObstacles(
     scene,
@@ -471,6 +531,15 @@ function createSceneView(
           { encounterId: activeEncounter.encounterId, nodeId: activeEncounter.nodeId, engagement: activeEncounter.engagement },
           runtime.dependencies.sceneCombat!.combat,
         )
+        const actionTimings = getPlayerVisibleSceneCombatActionOptions(
+          scene,
+          runtime.dependencies,
+        ).map(({ preview }) => preview.currentIntent.actsBeforeNextPlayerDecision)
+        const enemyTimingBeforeNextDecision: PlayerVisibleCombatViewModel['enemyTimingBeforeNextDecision'] = actionTimings.every(Boolean)
+          ? 'will-act'
+          : actionTimings.every((value) => !value)
+            ? 'will-not-act'
+            : 'depends-on-action'
         return frozen({
           enemyName: dependencies.labels.enemyName(activeEncounter.combat.enemy.definitionId),
           enemyHealthStage: visible.enemy.healthPhase,
@@ -495,6 +564,7 @@ function createSceneView(
           ),
           minimumSceneTime:
             runtime.dependencies.config.combat.sceneTimeConversion.minimumSceneTime,
+          enemyTimingBeforeNextDecision,
           equipment: loadoutView(activeEncounter.combat, runtime, dependencies.labels).equipment,
           quickSlots: loadoutView(activeEncounter.combat, runtime, dependencies.labels).quickSlots,
         })
@@ -517,7 +587,8 @@ function createSceneView(
       status: scene.status,
       remainingTime: scene.remainingTime,
       currentNodeName: current.name,
-      traversableAdjacentNodeNames: frozen(connected),
+      traversableAdjacentNodeNames: frozen(traversableRoutes.map(({ destinationNodeName }) => destinationNodeName)),
+      traversableRoutes: frozen(traversableRoutes),
       returnEstimate: returnPreview?.estimatedReturnTime ?? null,
       returnAfterWithdrawalTime: returnPreview?.remainingTimeAfter ?? null,
       returnRisk: returnPreview?.statusAfter ?? null,
@@ -550,7 +621,11 @@ export function createStableRunPlayerViewModel(
   const threatStage = getWorldThreatStage(hub.worldThreat, rules.currentDayHub.worldThreatCatalog)
   const items = rules.currentDayHub.returnDependencies.scene
   const pseudoRuntime: ItemPresentationRuntime = frozen({
-    dependencies: frozen({ physicalCatalog: items.physicalCatalog, config: items.config }),
+    dependencies: frozen({
+      physicalCatalog: items.physicalCatalog,
+      itemResourceCatalog: items.itemResourceCatalog,
+      config: items.config,
+    }),
   })
   return frozen({
     kind: 'current-day-hub',
@@ -564,6 +639,9 @@ export function createStableRunPlayerViewModel(
     loadout: loadoutView(hub.runLoadout, pseudoRuntime, dependencies.labels),
     hub: frozen({
       maintenanceLaborRemaining: hub.dailyState.maintenanceLaborRemaining,
+      maintenanceLaborTotal: items.config.maintenance.dailyBaseLabor.points,
+      mission: dependencies.labels.primaryMissionBriefing(),
+      dayScopeNotice: dependencies.labels.dayScopeNotice(hub.continuity.currentDay),
       warehouse: frozen(hub.runLoadout.warehouse.items.map((item) => itemView(item, hub.runLoadout.itemStates, pseudoRuntime, dependencies.labels))),
       taskStorage: frozen(hub.runLoadout.taskStorage.items.map((item) => itemView(item, hub.runLoadout.itemStates, pseudoRuntime, dependencies.labels))),
     }),
@@ -578,6 +656,7 @@ export function createReturnSummaryViewModel(
   summary: RunReturnSummary,
   phase: Extract<StableRunPhase, { kind: 'current-day-hub' }>,
   dependencies: StableRunUiPresentationDependencies,
+  voluntarilyStarted = false,
 ): ReturnSummaryViewModel {
   const identity = getStableRunPhaseIdentity(phase)
   const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
@@ -585,6 +664,7 @@ export function createReturnSummaryViewModel(
   const runtime: ItemPresentationRuntime = frozen({
     dependencies: frozen({
       physicalCatalog: rules.currentDayHub.returnDependencies.scene.physicalCatalog,
+      itemResourceCatalog: rules.currentDayHub.returnDependencies.scene.itemResourceCatalog,
       config: rules.currentDayHub.returnDependencies.scene.config,
     }),
   })
@@ -596,6 +676,7 @@ export function createReturnSummaryViewModel(
   ))
   return frozen({
     returnKind: summary.returnKind,
+    voluntarilyStarted,
     remainingHealth: summary.remainingHealth,
     warehouseItems: byIds(hub.runLoadout.warehouse.items, summary.storedWarehouseInstanceIds),
     taskItems: byIds(hub.runLoadout.taskStorage.items, summary.storedTaskInstanceIds),
@@ -702,6 +783,22 @@ export function createCombatActionResultViewModel(
   if (afterScene.status !== 'combat' && sceneTimeCost === null) {
     throw new Error('终局战斗结果缺少正式 Scene 时间结算事实')
   }
+  const beforeWeapon = beforeEncounter.combat.equipment.weapon
+  const afterWeapon = afterScene.equipment.weapon
+  const beforeWeaponState = beforeWeapon && beforeEncounter.combat.itemStates.states.find(
+    ({ instanceId }) => instanceId === beforeWeapon.instanceId,
+  )
+  const afterWeaponState = afterWeapon && afterScene.itemStates.states.find(
+    ({ instanceId }) => instanceId === afterWeapon.instanceId,
+  )
+  const weaponBecameBroken = Boolean(
+    beforeWeapon && afterWeapon && beforeWeapon.instanceId === afterWeapon.instanceId &&
+    beforeWeaponState?.resource.kind === 'durability' && beforeWeaponState.resource.current > 0 &&
+    afterWeaponState?.resource.kind === 'durability' && afterWeaponState.resource.current === 0,
+  )
+  const temporaryAttackAvailable = afterScene.status === 'combat' &&
+    getPlayerVisibleSceneCombatActionOptions(afterScene, runtime.dependencies)
+      .some(({ command }) => command.kind === 'temporary-attack')
   return frozen({
     playerAction,
     playerHealthBefore: beforeCondition.currentHealth,
@@ -724,6 +821,14 @@ export function createCombatActionResultViewModel(
     ),
     outcome,
     sceneTimeCost,
+    weaponBecameBroken,
+    weaponName: beforeWeapon
+      ? dependencies.labels.itemName(
+          beforeWeapon.definitionId,
+          runtime.dependencies.physicalCatalog.get(beforeWeapon.definitionId).name,
+        )
+      : null,
+    temporaryAttackAvailable,
   })
 }
 

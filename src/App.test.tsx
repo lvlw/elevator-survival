@@ -90,7 +90,7 @@ function renderApp(
 
 function radio(container: HTMLElement, label: string): HTMLInputElement {
   const found = [...container.querySelectorAll('label')]
-    .find((candidate) => candidate.textContent?.trim() === label)
+    .find((candidate) => candidate.textContent?.trim().startsWith(label))
     ?.querySelector('input')
   if (!(found instanceof HTMLInputElement)) throw new Error(`missing radio: ${label}`)
   return found
@@ -159,12 +159,21 @@ describe('Production App Shell stable states', () => {
     const storage = new UiStorage(null)
     const harness = newRunHarness(storage)
     const container = renderApp(storage, undefined, false, harness.dependencies)
-    expect(container.textContent).toContain('开始新的医院 Run')
+    expect(container.textContent).toContain('开始新的医院行动')
     expect(container.textContent).toContain('专长系统在当前医院一日验证版本中暂缓')
-    expect(button(container, '预览新的 Run').disabled).toBe(true)
+    expect(container.textContent).toContain('较安静、可控地处理隔离区防火门')
+    expect(container.textContent).toContain('属于开门用实用装备，不提供金属管的战斗攻击')
+    expect(container.textContent).toContain('为三个低照明搜索节点提供照明，使搜索更快')
+    expect(container.textContent).toContain('不会增加物品数量、提高稀有掉落概率或改变搜索随机结果')
+    expect(container.textContent).toContain('处理隔离区防火门，并在成功后揭示电子元件')
+    expect(container.textContent).toContain('操作比撬棍更慢，并消耗工具箱耐久')
+    expect(button(container, '预览新一局').disabled).toBe(true)
     expect([...container.querySelectorAll('input[type="radio"]')]
       .every((candidate) => !(candidate as HTMLInputElement).checked)).toBe(true)
     expect(container.textContent).not.toContain('开发预览')
+    for (const internal of ['Run', 'Scene', 'CTB', 'safe-returned', 'forced-returned']) {
+      expect(container.textContent).not.toContain(internal)
+    }
     expect(harness.counters).toEqual({ identity: 0, constructor: 0, stores: 0, dispatches: 0 })
     expect(storage).toMatchObject({ reads: 1, writes: 0, clears: 0 })
   })
@@ -172,13 +181,16 @@ describe('Production App Shell stable states', () => {
   it.each([
     ['hub', '电梯中枢'],
     ['scene', '当前位置：电梯前室'],
-    ['failure', 'Run 已终止'],
+    ['failure', '本局已终止'],
   ] as const)('renders a strictly resumed %s Store', (kind, visibleText) => {
     const storage = new UiStorage(savedScenario(kind))
     const container = renderApp(storage)
     expect(container.textContent).toContain(visibleText)
     expect(container.textContent).not.toContain('当前没有活动 Run')
     expect(storage).toMatchObject({ reads: 1, writes: 0, clears: 0 })
+    for (const internal of ['Run Failure', 'dead Scene Session', 'settle-terminal-scene']) {
+      expect(container.textContent).not.toContain(internal)
+    }
   })
 
   it('does not repeat bootstrap work under StrictMode', () => {
@@ -233,7 +245,7 @@ describe('Production hospital New Run Setup', () => {
     )
 
     expect(container.textContent).toContain('电梯中枢')
-    expect(container.textContent).not.toContain('开始新的 Run')
+    expect(container.textContent).not.toContain('开始新一局')
     act(() => {
       store.dispatch({ kind: 'lifecycle', command: { kind: 'end-day' } })
     })
@@ -242,19 +254,19 @@ describe('Production hospital New Run Setup', () => {
       kind: 'run-failure',
       payload: { reason: 'health-depleted' },
     })
-    expect(container.textContent).toContain('Run 已终止')
-    expect(container.textContent).toContain('开始新的 Run')
+    expect(container.textContent).toContain('本局已终止')
+    expect(container.textContent).toContain('开始新一局')
     expect(activeStoreDispatches).toBe(1)
     expect(storage).toMatchObject({ writes: 1, clears: 0 })
 
-    act(() => button(container, '开始新的 Run').click())
-    expect(container.textContent).toContain('开始新的医院 Run')
+    act(() => button(container, '开始新一局').click())
+    expect(container.textContent).toContain('开始新的医院行动')
     expect(harness.counters).toEqual({ identity: 0, constructor: 0, stores: 0, dispatches: 0 })
     expect(activeStoreDispatches).toBe(1)
     expect(storage).toMatchObject({ writes: 1, clears: 0 })
 
     act(() => button(container, '返回终止摘要').click())
-    expect(container.textContent).toContain('Run 已终止')
+    expect(container.textContent).toContain('本局已终止')
     expect(store.getState().phase).toBe(failurePhase)
     expect(harness.counters).toEqual({ identity: 0, constructor: 0, stores: 0, dispatches: 0 })
     expect(activeStoreDispatches).toBe(1)
@@ -279,7 +291,7 @@ describe('Production hospital New Run Setup', () => {
       false,
       harness.dependencies,
     )
-    const request = button(container, '开始新的 Run')
+    const request = button(container, '开始新一局')
 
     current = Object.freeze({ phase: active })
     act(() => request.click())
@@ -295,13 +307,13 @@ describe('Production hospital New Run Setup', () => {
     const harness = newRunHarness(storage)
     const container = renderApp(storage, undefined, true, harness.dependencies)
     act(() => radio(container, '手电筒').click())
-    act(() => button(container, '预览新的 Run').click())
-    expect(container.textContent).toContain('确认创建新的医院 Run')
+    act(() => button(container, '预览新一局').click())
+    expect(container.textContent).toContain('确认开始新的医院行动')
     expect(container.textContent).toContain('初始实用装备手电筒')
     expect(harness.counters).toEqual({ identity: 0, constructor: 0, stores: 0, dispatches: 0 })
     expect(storage).toMatchObject({ reads: 1, writes: 0, clears: 0 })
     act(() => button(container, '取消').click())
-    expect(container.textContent).not.toContain('确认创建新的医院 Run')
+    expect(container.textContent).not.toContain('确认开始新的医院行动')
     expect(harness.counters).toEqual({ identity: 0, constructor: 0, stores: 0, dispatches: 0 })
     expect(storage).toMatchObject({ reads: 1, writes: 0, clears: 0 })
   })
@@ -315,12 +327,14 @@ describe('Production hospital New Run Setup', () => {
     const harness = newRunHarness(storage)
     const container = renderApp(storage, undefined, false, harness.dependencies)
     act(() => radio(container, choice).click())
-    act(() => button(container, '预览新的 Run').click())
+    act(() => button(container, '预览新一局').click())
     act(() => button(container, '确认创建').click())
     expect(container.textContent).toContain('第 1 日')
     expect(container.textContent).toContain('金属管')
     expect(container.textContent).toContain('厚实外套')
     expect(container.textContent).toContain(expected)
+    expect(container.textContent).toContain('取得密封病原样本箱并安全带回电梯')
+    expect(container.textContent).not.toContain('第 2 日及之后仍可用于工程回归测试')
     expect(container.textContent).toContain('绷带 ×1')
     expect(container.textContent).toContain('主场景尚未进入')
     expect(container.textContent).toContain('进入 封锁医院·急诊楼一层')
@@ -334,7 +348,7 @@ describe('Production hospital New Run Setup', () => {
     const harness = newRunHarness(storage)
     const container = renderApp(storage, undefined, true, harness.dependencies)
     act(() => radio(container, '工具箱').click())
-    act(() => button(container, '预览新的 Run').click())
+    act(() => button(container, '预览新一局').click())
     const confirm = button(container, '确认创建')
     act(() => {
       confirm.click()
@@ -354,10 +368,10 @@ describe('Production hospital New Run Setup', () => {
     const originalStore = initial.store
     const originalPhase = originalStore.getState().phase
     const container = renderApp(storage, initial, false, harness.dependencies)
-    act(() => button(container, '开始新的 Run').click())
+    act(() => button(container, '开始新一局').click())
     expect(container.textContent).toContain('返回终止摘要')
     act(() => button(container, '返回终止摘要').click())
-    expect(container.textContent).toContain('Run 已终止')
+    expect(container.textContent).toContain('本局已终止')
     expect(originalStore.getState().phase).toBe(originalPhase)
     expect(harness.counters).toEqual({ identity: 0, constructor: 0, stores: 0, dispatches: 0 })
     expect(storage).toMatchObject({ reads: 1, writes: 0, clears: 0, value: oldSave })
@@ -368,16 +382,16 @@ describe('Production hospital New Run Setup', () => {
     const storage = new UiStorage(oldSave)
     const harness = newRunHarness(storage)
     const container = renderApp(storage, undefined, false, harness.dependencies)
-    act(() => button(container, '开始新的 Run').click())
+    act(() => button(container, '开始新一局').click())
     act(() => radio(container, '撬棍').click())
-    act(() => button(container, '预览新的 Run').click())
-    expect(container.textContent).toContain('新 Run 将替换唯一 Run 槽中的当前终止摘要')
-    expect(container.textContent).toContain('尚未实现 Profile 历史持久化')
+    act(() => button(container, '预览新一局').click())
+    expect(container.textContent).toContain('新一局将替换当前保存的终止摘要')
+    expect(container.textContent).toContain('尚未实现跨局历史记录')
     expect(storage.value).toBe(oldSave)
     act(() => button(container, '确认创建').click())
     expect(container.textContent).toContain('第 1 日')
     expect(container.textContent).toContain('撬棍')
-    expect(container.textContent).not.toContain('Run 已终止')
+    expect(container.textContent).not.toContain('本局已终止')
     expect(harness.counters).toEqual({ identity: 1, constructor: 1, stores: 1, dispatches: 0 })
     expect(storage).toMatchObject({ reads: 1, writes: 1, clears: 0 })
     expect(storage.value).not.toBe(oldSave)
@@ -391,17 +405,17 @@ describe('Production hospital New Run Setup', () => {
     storage.writeFailures = 1
     const harness = newRunHarness(storage)
     const container = renderApp(storage, undefined, false, harness.dependencies)
-    if (oldSave !== null) act(() => button(container, '开始新的 Run').click())
+    if (oldSave !== null) act(() => button(container, '开始新一局').click())
     act(() => radio(container, '手电筒').click())
-    act(() => button(container, '预览新的 Run').click())
+    act(() => button(container, '预览新一局').click())
     act(() => button(container, '确认创建').click())
     expect(container.textContent).toContain('第 1 日')
-    expect(container.textContent).toContain('保存失败：本次新 Run 已在当前会话中建立')
+    expect(container.textContent).toContain('保存失败：新一局已在当前会话中建立')
     expect(storage.value).toBe(oldSave)
     expect(harness.counters).toEqual({ identity: 1, constructor: 1, stores: 1, dispatches: 0 })
     expect(storage).toMatchObject({ reads: 1, writes: 1, clears: 0 })
     act(() => button(container, '关闭提示').click())
-    expect(container.textContent).not.toContain('保存失败：本次新 Run 已在当前会话中建立')
+    expect(container.textContent).not.toContain('保存失败：新一局已在当前会话中建立')
     expect(harness.counters).toEqual({ identity: 1, constructor: 1, stores: 1, dispatches: 0 })
     expect(storage).toMatchObject({ reads: 1, writes: 1, clears: 0 })
   })
@@ -415,9 +429,9 @@ describe('Production hospital New Run Setup', () => {
     )
     const container = renderApp(storage, undefined, false, harness.dependencies)
     act(() => radio(container, '工具箱').click())
-    act(() => button(container, '预览新的 Run').click())
+    act(() => button(container, '预览新一局').click())
     act(() => button(container, '确认创建').click())
-    expect(container.textContent).toContain('当前无法安全生成新的 Run 身份，请重新确认后再试')
+    expect(container.textContent).toContain('当前无法安全生成新一局，请重新确认后再试')
     for (const secret of [
       'IDENTITY_UNAVAILABLE',
       'private-new-run-id',
@@ -438,11 +452,11 @@ describe('Production hospital New Run Setup', () => {
       { runId: 'fresh-run-after-retry', seed: 'fresh-seed-after-retry' },
     ])
     const container = renderApp(storage, undefined, false, harness.dependencies)
-    act(() => button(container, '开始新的 Run').click())
+    act(() => button(container, '开始新一局').click())
     act(() => radio(container, '撬棍').click())
-    act(() => button(container, '预览新的 Run').click())
+    act(() => button(container, '预览新一局').click())
     act(() => button(container, '确认创建').click())
-    expect(container.textContent).toContain('本次生成的 Run 身份不可用，请重新明确确认创建')
+    expect(container.textContent).toContain('本次生成的新一局身份不可用，请重新明确确认创建')
     expect(container.innerHTML).not.toContain('IDENTITY_REUSED')
     expect(harness.counters).toEqual({ identity: 1, constructor: 0, stores: 0, dispatches: 0 })
     expect(storage).toMatchObject({ reads: 1, writes: 0, clears: 0, value: oldSave })
@@ -470,13 +484,13 @@ describe('Production hospital New Run Setup', () => {
       false,
       harness.dependencies,
     )
-    act(() => button(container, '开始新的 Run').click())
+    act(() => button(container, '开始新一局').click())
     act(() => radio(container, '工具箱').click())
-    act(() => button(container, '预览新的 Run').click())
+    act(() => button(container, '预览新一局').click())
     current = Object.freeze({ phase: active })
     act(() => button(container, '确认创建').click())
     expect(container.textContent).toContain('电梯中枢')
-    expect(container.textContent).not.toContain('确认创建新的医院 Run')
+    expect(container.textContent).not.toContain('确认开始新的医院行动')
     expect(harness.counters).toEqual({ identity: 0, constructor: 0, stores: 0, dispatches: 0 })
     expect(storage).toMatchObject({ writes: 0, clears: 0 })
   })
@@ -486,7 +500,7 @@ describe('Production hospital New Run Setup', () => {
     const harness = newRunHarness(storage)
     const container = renderApp(storage, undefined, false, harness.dependencies)
     act(() => radio(container, '手电筒').click())
-    act(() => button(container, '预览新的 Run').click())
+    act(() => button(container, '预览新一局').click())
     for (const secret of [
       'private-new-run-id',
       'private-new-seed',
@@ -502,7 +516,7 @@ describe('Production hospital New Run Setup', () => {
     const storage = new UiStorage(savedScenario('failure'))
     const harness = newRunHarness(storage)
     const container = renderApp(storage, undefined, false, harness.dependencies)
-    act(() => button(container, '开始新的 Run').click())
+    act(() => button(container, '开始新一局').click())
     for (const secret of [
       'dev-ui-preview',
       'dev-ui-preview-seed',
@@ -548,7 +562,7 @@ describe('player-safe load error UI', () => {
     const storage = new UiStorage('private serialized save')
     storage.failRead = true
     const container = renderApp(storage)
-    expect(container.textContent).toContain('当前无法读取浏览器 Run 存档')
+    expect(container.textContent).toContain('当前无法读取浏览器中的本局存档')
     expect(container.textContent).toContain('重新尝试读取')
     expect(container.textContent).not.toContain('清除无法恢复的存档')
     expect(container.innerHTML).not.toContain('read-secret-message')
@@ -557,7 +571,7 @@ describe('player-safe load error UI', () => {
     storage.failRead = false
     storage.value = null
     act(() => button(container, '重新尝试读取').click())
-    expect(container.textContent).toContain('开始新的医院 Run')
+    expect(container.textContent).toContain('开始新的医院行动')
     expect(storage).toMatchObject({ reads: 2, writes: 0, clears: 0 })
   })
 
@@ -566,7 +580,7 @@ describe('player-safe load error UI', () => {
     storage.failRead = true
     const container = renderApp(storage)
     act(() => button(container, '重新尝试读取').click())
-    expect(container.textContent).toContain('当前无法读取浏览器 Run 存档')
+    expect(container.textContent).toContain('当前无法读取浏览器中的本局存档')
     expect(storage.reads).toBe(2)
 
     storage.failRead = false
@@ -598,7 +612,7 @@ describe('explicit unrecoverable save clearing', () => {
     const container = renderApp(storage, initial, true)
     act(() => button(container, '清除无法恢复的存档').click())
     act(() => button(container, '确认清除').click())
-    expect(container.textContent).toContain('开始新的医院 Run')
+    expect(container.textContent).toContain('开始新的医院行动')
     expect(storage.value).toBeNull()
     expect(storage).toMatchObject({ reads: 1, writes: 0, clears: 1 })
   })
@@ -617,7 +631,7 @@ describe('explicit unrecoverable save clearing', () => {
     act(() => button(container, '清除无法恢复的存档').click())
     expect(storage.clears).toBe(1)
     act(() => button(container, '确认清除').click())
-    expect(container.textContent).toContain('开始新的医院 Run')
+    expect(container.textContent).toContain('开始新的医院行动')
     expect(storage.clears).toBe(2)
     expect(storage.writes).toBe(0)
   })

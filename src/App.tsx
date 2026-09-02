@@ -37,14 +37,14 @@ function loadErrorCopy(error: ProductionLoadError): Readonly<{
 }> {
   if (error.category === 'corrupt-save') return {
     heading: '存档内容损坏，无法严格恢复',
-    detail: '原存档仍然保留。你可以显式清除这份无法恢复的唯一 Run 存档。',
+    detail: '原存档仍然保留。你可以显式清除这份无法恢复的本局存档。',
   }
   if (error.category === 'incompatible-save') return {
     heading: '存档版本与当前游戏不兼容',
-    detail: '原存档仍然保留。你可以显式清除这份无法恢复的唯一 Run 存档。',
+    detail: '原存档仍然保留。你可以显式清除这份无法恢复的本局存档。',
   }
   return {
-    heading: '当前无法读取浏览器 Run 存档',
+    heading: '当前无法读取浏览器中的本局存档',
     detail: '存档没有被清除。请检查浏览器存储权限后重新尝试读取。',
   }
 }
@@ -78,8 +78,8 @@ function NewRunSetupView({
   return <main className="app-shell">
     <article className="status-card" aria-labelledby="new-run-heading">
       <p className="eyebrow">{appMetadata.verticalSliceVersion}</p>
-      <h1 id="new-run-heading">开始新的医院 Run</h1>
-      <p className="subtitle">从电梯中枢开始 Day 1</p>
+      <h1 id="new-run-heading">开始新的医院行动</h1>
+      <p className="subtitle">从电梯中枢开始第 1 日</p>
       <section aria-labelledby="initial-loadout-heading">
         <h2 id="initial-loadout-heading">固定初始配装</h2>
         <dl className="slot-list">
@@ -94,15 +94,17 @@ function NewRunSetupView({
       </section>
       <fieldset>
         <legend>显式选择一件初始实用装备</legend>
-        {newRunSetupModel.utilityOptions.map((option) => <label key={option.key}>
-          <input
-            type="radio"
-            name="new-run-utility"
-            value={option.key}
-            checked={selectedUtility === option.key}
-            onChange={() => onSelectUtility(option.key)}
-          />
-          {option.name}
+        {newRunSetupModel.utilityOptions.map((option) => <label key={option.key} className="utility-option-card">
+          <span><input
+              type="radio"
+              name="new-run-utility"
+              value={option.key}
+              checked={selectedUtility === option.key}
+              onChange={() => onSelectUtility(option.key)}
+            /> <strong>{option.name}</strong></span>
+          <span>{option.purpose}</span>
+          <span>代价：{option.cost}</span>
+          <span>限制：{option.limitation}</span>
         </label>)}
       </fieldset>
       <p className="empty-copy">{newRunSetupModel.specializationNotice}</p>
@@ -114,7 +116,7 @@ function NewRunSetupView({
           className="confirm-action"
           disabled={selectedUtility === null}
           onClick={onOpenPreview}
-        >预览新的 Run</button>
+        >预览新一局</button>
       </div>
       {selected && <div className="preview-backdrop" role="presentation">
         <section
@@ -123,21 +125,21 @@ function NewRunSetupView({
           aria-modal="true"
           aria-labelledby="new-run-preview-heading"
         >
-          <h2 id="new-run-preview-heading">确认创建新的医院 Run</h2>
+          <h2 id="new-run-preview-heading">确认开始新的医院行动</h2>
           <dl className="preview-facts">
             <div><dt>固定武器</dt><dd>{newRunSetupModel.fixedWeaponName}</dd></div>
             <div><dt>固定防具</dt><dd>{newRunSetupModel.fixedArmorName}</dd></div>
             <div><dt>初始实用装备</dt><dd>{selected.name}</dd></div>
             <div><dt>快捷位 1</dt><dd>{newRunSetupModel.quickSlots[0]?.itemName} ×1</dd></div>
-            <div><dt>起点</dt><dd>Day 1 · 电梯中枢</dd></div>
+            <div><dt>起点</dt><dd>第 1 日 · 电梯中枢</dd></div>
             <div><dt>创建后</dt><dd>立即尝试保存</dd></div>
           </dl>
           <p>{newRunSetupModel.specializationNotice}</p>
           <ul className="preview-warnings">
-            <li>确认后将生成完整 Day 1 状态并立即尝试保存。</li>
+              <li>确认后将生成完整第 1 日状态并立即尝试保存。</li>
             {fromFailure && <>
-              <li>新 Run 将替换唯一 Run 槽中的当前终止摘要。</li>
-              <li>当前尚未实现 Profile 历史持久化，请勿将本次终止摘要理解为永久历史。</li>
+              <li>新一局将替换当前保存的终止摘要。</li>
+              <li>当前尚未实现跨局历史记录，请勿将本次终止摘要理解为永久历史。</li>
             </>}
           </ul>
           {playerError && <p role="alert">{playerError}</p>}
@@ -272,7 +274,7 @@ export default function App({
 
   if (shellState.kind === 'ready') return <>
     {newRunSaveFailed && <p className="persistence-feedback" role="alert">
-      保存失败：本次新 Run 已在当前会话中建立，请勿刷新页面。刷新后可能恢复此前的终止摘要或无存档状态。
+      保存失败：新一局已在当前会话中建立，请勿刷新页面。刷新后可能恢复此前的终止摘要或无存档状态。
       <button type="button" onClick={() => setNewRunSaveFailed(false)}>关闭提示</button>
     </p>}
     <StableRunUiApp
@@ -304,7 +306,7 @@ export default function App({
 
   return <main className="app-shell">
     <article className="status-card" aria-labelledby="load-error-heading">
-      <p className="eyebrow">Run 存档恢复</p>
+      <p className="eyebrow">本局存档恢复</p>
       <h1 id="load-error-heading">{copy.heading}</h1>
       <p>{copy.detail}</p>
       {clearFailed && <p role="alert">存档清除失败，请稍后重新确认。</p>}
@@ -319,8 +321,8 @@ export default function App({
         aria-modal="true"
         aria-labelledby="clear-save-heading"
       >
-        <h2 id="clear-save-heading">确认清除唯一 Run 存档</h2>
-        <p>该操作会删除当前无法恢复的唯一 Run 存档，删除后无法恢复其中内容。</p>
+        <h2 id="clear-save-heading">确认清除本局存档</h2>
+        <p>该操作会删除当前无法恢复的本局存档，删除后无法恢复其中内容。</p>
         <button type="button" onClick={() => setShowClearPreview(false)}>取消</button>
         <button type="button" onClick={confirmClear}>确认清除</button>
       </section>}

@@ -11,11 +11,11 @@ export function mapPlayerSafeHospitalNewRunError(
   if (error instanceof HospitalNewRunTransactionError) {
     if (error.code === 'IDENTITY_UNAVAILABLE') return Object.freeze({
       kind: 'player-error',
-      message: '当前无法安全生成新的 Run 身份，请重新确认后再试。',
+      message: '当前无法安全生成新一局，请重新确认后再试。',
     })
     if (error.code === 'IDENTITY_REUSED') return Object.freeze({
       kind: 'player-error',
-      message: '本次生成的 Run 身份不可用，请重新明确确认创建。',
+      message: '本次生成的新一局身份不可用，请重新明确确认创建。',
     })
     if (error.code === 'ORIGIN_NOT_AVAILABLE') {
       return Object.freeze({ kind: 'stale-origin' })

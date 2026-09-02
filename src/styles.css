@@ -124,6 +124,19 @@ body {
   gap: 0.65rem;
 }
 
+.action-group + .action-group { margin-top: 1rem; }
+.action-entry { display: grid; gap: 0.3rem; align-content: start; }
+.action-entry small { max-width: 20rem; color: #aebdcb; line-height: 1.45; }
+.mission-briefing { margin-bottom: 1rem; padding: 0.8rem; border-left: 3px solid #9fc7b5; background: #15241e; }
+.mission-briefing h3 { margin-top: 0; }
+.route-list { display: grid; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+.route-list li { display: grid; grid-template-columns: minmax(7rem, 1fr) minmax(7rem, 1fr); gap: 0.25rem 0.75rem; padding: 0.65rem; border: 1px solid #415363; background: #111820; }
+.route-list em { color: #9fc7b5; font-style: normal; }
+.obstacle-block { margin-top: 1rem; padding-top: 0.2rem; border-top: 1px dashed #6b5c4a; }
+.combat-decision-summary { padding: 0.65rem; border-left: 3px solid #d6ab65; background: #30281c; }
+.technical-details { color: #aebdcb; }
+.technical-details summary { cursor: pointer; }
+
 .action-button,
 .preview-controls button {
   border: 1px solid #647f93;
@@ -160,6 +173,9 @@ button.grid-cell { cursor: pointer; }
 .occupied-cell { border-color: #788b9b; background: #253746; }
 button.grid-cell:hover,
 .candidate-cell { border-color: #9fc7b5; background: #294236; }
+.selected-anchor-cell { outline: 2px solid #f2d694; outline-offset: -2px; }
+.selected-footprint-cell { border-color: #d6ab65; background: #514322; }
+.invalid-placement-cell { border-color: #bb6868; background: #4a2626; }
 
 .preview-backdrop {
   position: fixed;

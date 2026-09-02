@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { StableRunStore } from '../state/run-store'
 import {
   createStableRunUiInteractionModel,
@@ -72,9 +72,39 @@ function conditionSummary(status: PlayerVisibleStatusBarViewModel): string {
   ].filter((entry): entry is string => entry !== null).join(' · ')
 }
 
+function itemResourceText(item: PlayerVisibleItemViewModel): string | null {
+  return item.resource
+    ? `${item.resource.label} ${item.resource.current} / ${item.resource.maximum}`
+    : null
+}
+
+function sceneStatusName(
+  status: Extract<StableRunPlayerViewModel, { kind: 'scene-session' }>['scene']['status'],
+): string {
+  return status === 'active'
+    ? '探索中'
+    : status === 'combat'
+      ? '战斗中'
+      : status === 'safe-returned'
+        ? '安全返回'
+        : status === 'forced-returned'
+          ? '强制返程'
+          : '已死亡'
+}
+
+function searchStateName(
+  state: Extract<StableRunPlayerViewModel, { kind: 'scene-session' }>['scene']['currentNodeSearchState'],
+): string {
+  return state === 'not-available'
+    ? '此处无主要搜索'
+    : state === 'available-unsearched'
+      ? '可以搜索'
+      : '已经搜索'
+}
+
 function StatusBar({ status }: Readonly<{ status: PlayerVisibleStatusBarViewModel }>) {
   return (
-    <header className="run-status-bar" aria-label="Run 状态">
+    <header className="run-status-bar" aria-label="本局状态">
       <div><span>第 {status.currentDay} 日</span><strong>{status.condition.currentHealth} / {status.condition.maximumHealth} HP</strong></div>
       <div><span>状态</span><strong>{conditionSummary(status)}</strong></div>
       <div><span>世界威胁</span><strong>{status.worldThreatStage}</strong></div>
@@ -87,7 +117,7 @@ function StatusBar({ status }: Readonly<{ status: PlayerVisibleStatusBarViewMode
 function ItemList({ items, empty = '无' }: Readonly<{ items: readonly PlayerVisibleItemViewModel[]; empty?: string }>) {
   if (items.length === 0) return <p className="empty-copy">{empty}</p>
   return <ul className="item-list">{items.map((item, index) => (
-    <li key={`${item.name}-${index}`}><span>{item.name} ×{item.quantity}</span>{item.resource && <em>{item.resource.kind} {item.resource.current}</em>}</li>
+    <li key={`${item.name}-${index}`}><span>{item.name} ×{item.quantity}</span>{item.resource && <em>{itemResourceText(item)}</em>}</li>
   ))}</ul>
 }
 
@@ -99,7 +129,7 @@ function LoadoutPanel({ loadout }: Readonly<{ loadout: PlayerVisibleLoadoutViewM
   ] as const
   return <section className="console-panel" aria-labelledby="loadout-heading">
     <h2 id="loadout-heading">携带与装备</h2>
-    <dl className="slot-list">{slots.map(([label, item]) => <div key={label}><dt>{label}</dt><dd>{item ? <>{item.name}{item.resource && ` · ${item.resource.kind} ${item.resource.current}`}</> : '空'}</dd></div>)}</dl>
+    <dl className="slot-list">{slots.map(([label, item]) => <div key={label}><dt>{label}</dt><dd>{item ? <>{item.name}{item.resource && ` · ${itemResourceText(item)}`}</> : '空'}</dd></div>)}</dl>
     <h3>快捷栏</h3>
     <ol className="quick-slots">{loadout.quickSlots.map((item, index) => <li key={index}>{item ? `${item.name} ×${item.quantity}` : '空'}</li>)}</ol>
     <h3>背包</h3>
@@ -139,7 +169,7 @@ function CombatLoadoutPanel({ loadout }: Readonly<{ loadout: PlayerVisibleLoadou
   return <section className="console-panel" aria-labelledby="combat-loadout-heading">
     <h2 id="combat-loadout-heading">战斗携带状态</h2>
     <p>背包负重：<strong>{loadout.backpackWeight}</strong> · 负重状态：<strong>{loadTierName(loadout.loadTier)}</strong></p>
-    <dl className="slot-list">{slots.map(([label, item]) => <div key={label}><dt>{label}</dt><dd>{item ? <>{item.name}{item.resource && ` · ${item.resource.kind} ${item.resource.current}`}</> : '空'}</dd></div>)}</dl>
+    <dl className="slot-list">{slots.map(([label, item]) => <div key={label}><dt>{label}</dt><dd>{item ? <>{item.name}{item.resource && ` · ${itemResourceText(item)}`}</> : '空'}</dd></div>)}</dl>
     <h3>快捷栏</h3>
     <ol className="quick-slots">{loadout.quickSlots.map((item, index) => <li key={index}>{item ? `${item.name} ×${item.quantity}` : '空'}</li>)}</ol>
   </section>
@@ -149,12 +179,19 @@ function BackpackGrid({
   grid,
   onAnchor,
   candidateCells = [],
+  selectedFootprintCells = [],
+  selectedAnchor = null,
+  placementValid = null,
 }: Readonly<{
   grid: PlayerVisibleLoadoutViewModel['backpackGrid']
   onAnchor?: (x: number, y: number) => void
   candidateCells?: readonly Readonly<{ x: number; y: number }>[]
+  selectedFootprintCells?: readonly Readonly<{ x: number; y: number }>[]
+  selectedAnchor?: Readonly<{ x: number; y: number }> | null
+  placementValid?: boolean | null
 }>) {
   const candidate = new Set(candidateCells.map(({ x, y }) => `${x},${y}`))
+  const selectedFootprint = new Set(selectedFootprintCells.map(({ x, y }) => `${x},${y}`))
   const occupiedByCell = new Map(
     grid.occupiedCells.map((cell) => [`${cell.x},${cell.y}`, cell]),
   )
@@ -174,6 +211,11 @@ function BackpackGrid({
         'grid-cell',
         occupied ? 'occupied-cell' : '',
         candidate.has(`${x},${y}`) ? 'candidate-cell' : '',
+        selectedFootprint.has(`${x},${y}`) ? 'selected-footprint-cell' : '',
+        selectedAnchor?.x === x && selectedAnchor.y === y ? 'selected-anchor-cell' : '',
+        selectedAnchor?.x === x && selectedAnchor.y === y && placementValid === false
+          ? 'invalid-placement-cell'
+          : '',
       ].filter(Boolean).join(' ')
       return onAnchor
         ? <button key={`${x},${y}`} type="button" className={className} data-occupied={occupied ? 'true' : 'false'} onClick={() => onAnchor(x, y)}>{label}</button>
@@ -190,14 +232,26 @@ function ActionPanel({
   onPreview(actionId: string): void
 }>) {
   if (actions.length === 0) return null
+  const groups = [
+    { title: '移动与返程', kinds: ['scene-move', 'scene-withdraw', 'settle-terminal-scene'] },
+    { title: '搜索与任务', kinds: ['scene-main-search', 'scene-obstacle', 'scene-task-event'] },
+    { title: '医疗与补给', kinds: ['scene-medical', 'scene-battery', 'hub-medical', 'hub-survival'] },
+    { title: '战斗行动', kinds: ['scene-combat-action'] },
+    { title: '本日流程', kinds: ['launch-main-scene', 'end-day'] },
+  ] as const
+  const grouped = groups.map((group) => ({
+    ...group,
+    actions: actions.filter((action) => group.kinds.some((kind) => kind === action.kind)),
+  })).filter(({ actions: entries }) => entries.length > 0)
   return <section className="console-panel action-panel" aria-labelledby="actions-heading">
     <h2 id="actions-heading">可执行行动</h2>
-    <div className="action-list">{actions.map((action) => <button
-      key={action.id}
-      type="button"
-      className="action-button"
-      onClick={() => onPreview(action.id)}
-    >{action.label}</button>)}</div>
+    {grouped.map((group) => <section className="action-group" key={group.title}>
+      <h3>{group.title}</h3>
+      <div className="action-list">{group.actions.map((action) => <div className="action-entry" key={action.id}>
+        <button type="button" className="action-button" onClick={() => onPreview(action.id)}>{action.label}</button>
+        {action.contextNote && <small>{action.contextNote}</small>}
+      </div>)}</div>
+    </section>)}
   </section>
 }
 
@@ -222,7 +276,7 @@ function HubView({
     <StatusBar status={model.status} />
     <div className="console-grid">
       <LoadoutPanel loadout={model.loadout} />
-      <section className="console-panel"><h2>电梯中枢</h2><p>已接入主要场景启动、显式整备、中枢医疗、生存补给、装备维护与每日结算。</p><dl className="slot-list"><div><dt>维护工时</dt><dd>{model.hub.maintenanceLaborRemaining}</dd></div></dl>{maintenanceOpportunities.length > 0 && <><h3>装备维护</h3><div className="action-list">{maintenanceOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onMaintenance(opportunity.operation)}>{opportunity.label}</button>)}</div></>}<h3>仓库</h3><ItemList items={model.hub.warehouse} empty="仓库为空" />{loadoutOpportunities.filter(({ container }) => container === 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}<h3>任务储存区（只读）</h3><ItemList items={model.hub.taskStorage} empty="暂无任务物品" /></section>
+      <section className="console-panel"><h2>电梯中枢</h2><div className="mission-briefing"><h3>当前任务</h3><p><strong>{model.hub.mission.objective}</strong></p><p>{model.hub.mission.completion}</p></div>{model.hub.dayScopeNotice && <p className="preview-warning">{model.hub.dayScopeNotice}</p>}<dl className="slot-list"><div><dt>今日基础维修点</dt><dd>{model.hub.maintenanceLaborRemaining} / {model.hub.maintenanceLaborTotal}</dd></div></dl><p className="empty-copy">每使用1点，恢复指定装备1点对应资源；今日未用点数不累积到次日。</p>{maintenanceOpportunities.length > 0 && <><h3>装备维护</h3><div className="action-list">{maintenanceOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onMaintenance(opportunity.operation)}>{opportunity.label}</button>)}</div></>}<h3>仓库</h3><ItemList items={model.hub.warehouse} empty="仓库为空" />{loadoutOpportunities.filter(({ container }) => container === 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}<h3>任务储存区（只读）</h3><ItemList items={model.hub.taskStorage} empty="暂无任务物品" /></section>
       {loadoutOpportunities.some(({ container }) => container !== 'warehouse') && <section className="console-panel"><h2>当前携带物整理</h2>{loadoutOpportunities.filter(({ container }) => container !== 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}</section>}
       <ActionPanel actions={actions} onPreview={onPreview} />
     </div>
@@ -244,6 +298,7 @@ function CombatPanel({
   return <section className="console-panel combat-panel" aria-labelledby="combat-heading">
     <h2 id="combat-heading">战斗</h2>
     <p><strong>{combat.enemyName}</strong> · 相对生命：{enemyHealthStageName(combat.enemyHealthStage)}</p>
+    <p className="combat-decision-summary">下次决策前敌人：<strong>{combat.enemyTimingBeforeNextDecision === 'will-act' ? '会行动' : combat.enemyTimingBeforeNextDecision === 'will-not-act' ? '不会行动' : '取决于你选择的行动'}</strong></p>
     <p>当前意图：<strong>{combat.currentIntent}</strong></p>
     <dl className="slot-list">
       <div><dt>类别</dt><dd>{category}</dd></div>
@@ -253,10 +308,10 @@ function CombatPanel({
       <div><dt>可能感染暴露</dt><dd>{combat.currentIntentMayCauseInfectionExposure ? '是' : '否'}</dd></div>
       <div><dt>可能控制／延后</dt><dd>{combat.currentIntentMayCauseControl ? '是' : '否'}</dd></div>
     </dl>
-    <p>当前 CTB {combat.currentCtb} ／ 玩家下次行动 CTB {combat.playerNextActionCtb} ／ 敌人下次行动 CTB {combat.enemyNextActionCtb}</p>
-    <p>当前 Scene 剩余时间：<strong>{combat.sceneRemainingTime}</strong></p>
-    <p>若此刻结束，预计结算 Scene 时间：<strong>{combat.sceneTimeIfCombatEndedNow}</strong>（最低 {combat.minimumSceneTime}）</p>
-    <p className="empty-copy">战斗实际 Scene 时间将在战斗结束时一次结算。</p>
+    <p>当前场景剩余时间：<strong>{combat.sceneRemainingTime}</strong></p>
+    <p>若此刻结束，预计结算场景时间：<strong>{combat.sceneTimeIfCombatEndedNow}</strong>（最低 {combat.minimumSceneTime}）</p>
+    <details className="technical-details"><summary>查看行动时间细节</summary><p>当前时间刻度 {combat.currentCtb} ／ 玩家下次行动 {combat.playerNextActionCtb} ／ 敌人下次行动 {combat.enemyNextActionCtb}</p></details>
+    <p className="empty-copy">战斗实际场景时间将在战斗结束时一次结算。</p>
     <h3>玩家伤势</h3>
     {condition.wounds.length === 0
       ? <p className="empty-copy">无开放伤口</p>
@@ -291,13 +346,13 @@ function SceneView({
   return <main className="console-layout">
     <StatusBar status={model.status} />
     <div className="console-grid">
-      <section className="console-panel"><h2>场景导航</h2><p>当前位置：<strong>{scene.currentNodeName}</strong></p><p>剩余时间：<strong>{scene.remainingTime}</strong></p><p>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></p><p>返程后预计剩余：<strong>{scene.returnAfterWithdrawalTime ?? '当前不可预览'}</strong></p>{scene.returnRisk === 'forced-returned' && <p className="preview-warning">当前返程将进入强制返程。</p>}{scene.returnRisk === 'dead' && <p className="preview-warning">当前返程将导致生命归零。</p>}<p>当前节点搜索：<strong>{scene.currentNodeSearchState}</strong></p><h3>当前可通行相邻节点</h3><ItemList items={scene.traversableAdjacentNodeNames.map((name) => ({ name, quantity: 1, resource: null }))} empty="暂无当前可通行相邻节点" /><h3>当前明显障碍</h3><ItemList items={scene.currentObstacles.map(({ name }) => ({ name, quantity: 1, resource: null }))} empty="当前没有需要处理的明显障碍" /><h3>当前节点地面物品</h3><ItemList items={scene.groundItems} empty="未发现地面物品" />{pickupOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onPickup(opportunity.id)}>拾取 {opportunity.name}</button>)}{taskEventOpportunities.length > 0 && <><h3>任务事件</h3>{taskEventOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onTaskEvent(opportunity.id)}>{opportunity.label}</button>)}</>}{inventoryOpportunities.length > 0 && <><h3>场景整理</h3>{inventoryOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onInventory(opportunity.id)}>整理 {opportunity.sourceLabel}</button>)}</>}</section>
+      <section className="console-panel"><h2>场景导航</h2><p>当前位置：<strong>{scene.currentNodeName}</strong></p><p>剩余时间：<strong>{scene.remainingTime}</strong></p><p>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></p><p>返程后预计剩余：<strong>{scene.returnAfterWithdrawalTime ?? '当前不可预览'}</strong></p>{scene.returnRisk === 'forced-returned' && <p className="preview-warning">当前返程将进入强制返程。</p>}{scene.returnRisk === 'dead' && <p className="preview-warning">当前返程将导致生命归零。</p>}<p>当前节点搜索：<strong>{searchStateName(scene.currentNodeSearchState)}</strong></p><h3>当前可通行路线</h3>{scene.traversableRoutes.length === 0 ? <p className="empty-copy">暂无当前可通行相邻地点</p> : <ul className="route-list">{scene.traversableRoutes.map((route) => <li key={`${route.routeName}-${route.destinationNodeName}`}><strong>{route.destinationNodeName}</strong><span>{route.routeName}</span>{route.accessReason && <em>{route.accessReason}</em>}<span>移动耗时 {route.movementTime}</span></li>)}</ul>}<div className="obstacle-block"><h3>当前明显障碍</h3><ItemList items={scene.currentObstacles.map(({ name }) => ({ name, quantity: 1, resource: null }))} empty="当前没有需要处理的明显障碍" /></div><h3>当前节点地面物品</h3><ItemList items={scene.groundItems} empty="未发现地面物品" />{pickupOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onPickup(opportunity.id)}>拾取 {opportunity.name}</button>)}{taskEventOpportunities.length > 0 && <><h3>任务事件</h3>{taskEventOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onTaskEvent(opportunity.id)}>{opportunity.label}</button>)}</>}{inventoryOpportunities.length > 0 && <><h3>场景整理</h3>{inventoryOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onInventory(opportunity.id)}>整理 {opportunity.sourceLabel}</button>)}</>}</section>
       {scene.status === 'combat'
         ? <CombatLoadoutPanel loadout={scene.loadout} />
         : <LoadoutPanel loadout={scene.loadout} />}
       <ActionPanel actions={actions} onPreview={onPreview} />
       {scene.combat && <CombatPanel combat={scene.combat} condition={model.status.condition} />}
-      {scene.status !== 'active' && scene.status !== 'combat' && <section className="console-panel"><h2>场景终局状态</h2><p>{scene.status}</p><p className="empty-copy">请确认终局场景结算；该操作不会自动推进日期。</p></section>}
+      {scene.status !== 'active' && scene.status !== 'combat' && <section className="console-panel"><h2>场景结果</h2><p>{sceneStatusName(scene.status)}</p><p className="empty-copy">请显式确认返程或战败结算；本步不会自动推进日期。</p></section>}
     </div>
   </main>
 }
@@ -330,7 +385,7 @@ function TaskEventDialog({
     <p>取得：<strong>{opportunity.outputName}</strong> · {opportunity.width}×{opportunity.height} · 重量 {opportunity.unitWeight}</p>
     {opportunity.canRotate && <label><input aria-label="旋转样本箱" type="checkbox" checked={rotated} onChange={(event) => onRotate(event.target.checked)} />旋转</label>}
     <p>目标格：{x === null || y === null ? '尚未选择' : `${x + 1}, ${y + 1}`}</p>
-    <BackpackGrid grid={loadout.backpackGrid} candidateCells={preview?.candidateCells} onAnchor={onAnchor} />
+    <BackpackGrid grid={loadout.backpackGrid} candidateCells={preview?.candidateCells} selectedFootprintCells={preview?.selectedFootprintCells} selectedAnchor={x === null || y === null ? null : { x, y }} placementValid={preview?.canExecute ?? false} onAnchor={onAnchor} />
     {preview?.canExecute && preview.preview
       ? <><dl className="preview-facts">{preview.preview.facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>{preview.preview.warnings.length > 0 && <ul className="preview-warnings">{preview.preview.warnings.map((warning) => <li key={warning}>{warning}</li>)}</ul>}</>
       : <p className="preview-warning">{x === null || y === null
@@ -373,7 +428,7 @@ function PickupDialog({
     <label>本次拾取数量 <input aria-label="本次拾取数量" type="number" min="1" max={opportunity.groundQuantity} value={quantity} onChange={(event) => onQuantity(Number(event.target.value))} /></label>
     {opportunity.canRotate && <label><input aria-label="旋转物品" type="checkbox" checked={rotated} onChange={(event) => onRotate(event.target.checked)} />旋转</label>}
     <p>目标格：{x + 1}, {y + 1}</p>
-    <BackpackGrid grid={loadout.backpackGrid} candidateCells={preview?.candidateCells} onAnchor={onAnchor} />
+    <BackpackGrid grid={loadout.backpackGrid} candidateCells={preview?.candidateCells} selectedFootprintCells={preview?.selectedFootprintCells} selectedAnchor={x === null || y === null ? null : { x, y }} placementValid={preview?.canExecute ?? false} onAnchor={onAnchor} />
     {preview?.canExecute ? <dl className="preview-facts">{preview.facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl> : <p className="preview-warning">{preview?.rejection ?? '状态已变化，请重新选择。'}</p>}
     <div className="preview-controls"><button type="button" onClick={onCancel}>取消</button><button type="button" className="confirm-action" disabled={!preview?.canExecute} onClick={onConfirm}>确认拾取</button></div>
   </section></div>
@@ -451,7 +506,7 @@ function SceneInventoryDialog({
     {needsPlacement && <>
       {opportunity.canRotate && <label><input aria-label="旋转整理物品" type="checkbox" checked={rotated} onChange={(event) => onRotate(event.target.checked)} />旋转</label>}
       <p>目标格：{x === null || y === null ? '尚未选择' : `${x + 1}, ${y + 1}`}</p>
-      <BackpackGrid grid={loadout.backpackGrid} candidateCells={preview?.candidateCells} onAnchor={onAnchor} />
+      <BackpackGrid grid={loadout.backpackGrid} candidateCells={preview?.candidateCells} selectedFootprintCells={preview?.selectedFootprintCells} selectedAnchor={x === null || y === null ? null : { x, y }} placementValid={preview?.canExecute ?? false} onAnchor={onAnchor} />
     </>}
     {operation === 'drop' && <p>本操作会把整个物品实例／整个堆叠放到当前节点，不会自动拆分。</p>}
     {preview?.canExecute && preview.preview
@@ -478,7 +533,7 @@ function SceneInventoryResultDialog({
       <div><dt>来源数量</dt><dd>{result.sourceQuantityBefore} → {result.sourceQuantityAfter}</dd></div>
       {result.targetQuantityBefore !== null && result.targetQuantityAfter !== null && <div><dt>目标数量</dt><dd>{result.targetQuantityBefore} → {result.targetQuantityAfter}</dd></div>}
       <div><dt>背包负重</dt><dd>{result.backpackWeightBefore} → {result.backpackWeightAfter}</dd></div>
-      <div><dt>Scene 时间</dt><dd>{result.remainingTimeBefore} → {result.remainingTimeAfter}（不消耗）</dd></div>
+      <div><dt>场景时间</dt><dd>{result.remainingTimeBefore} → {result.remainingTimeAfter}（不消耗）</dd></div>
       <div><dt>生命</dt><dd>{result.healthBefore} → {result.healthAfter}</dd></div>
       <div><dt>当前节点</dt><dd>{result.currentNodeName}</dd></div>
       <div><dt>整理后预计返程</dt><dd>{result.returnEstimateAfter ?? '当前不可预览'}</dd></div>
@@ -550,7 +605,7 @@ function HubLoadoutDialog({
     {operation === 'equip-from-backpack' && <><h3>明确装备槽</h3><div className="preview-controls">{(['weapon', 'armor', 'utility'] as const).map((slot) => <button key={slot} type="button" className={targetEquipmentSlot === slot ? 'confirm-action' : ''} onClick={() => onTargetEquipmentSlot(slot)}>{slot === 'weapon' ? '武器位' : slot === 'armor' ? '防具位' : '实用装备位'}</button>)}</div></>}
     {operation === 'swap-backpack-equipped' && <><h3>明确被替换装备</h3><div className="preview-controls">{equipmentTargets.map((target) => <button key={target.id} type="button" className={targetOpportunityId === target.id ? 'confirm-action' : ''} onClick={() => onTargetOpportunity(target.id)}>{target.sourceLabel}</button>)}</div><p>下方选择的是被替换装备放回背包的位置。</p></>}
     {(operation === 'backpack-to-quick-slot' || operation === 'move-quick-slot-item' || operation === 'swap-quick-slot-items') && <><h3>明确目标快捷栏</h3><div className="preview-controls">{loadout.quickSlots.map((slot, index) => <button key={index} type="button" className={targetQuickSlotIndex === index ? 'confirm-action' : ''} onClick={() => onTargetQuickSlotIndex(index)}>快捷栏{index + 1} · {slot?.name ?? '空'}</button>)}</div></>}
-    {needsPlacement && <>{opportunity.canRotate && <label><input aria-label="旋转中枢整备物品" type="checkbox" checked={rotated} onChange={(event) => onRotate(event.target.checked)} />旋转</label>}<p>目标格：{x === null || y === null ? '尚未选择' : `${x + 1}, ${y + 1}`}</p><BackpackGrid grid={loadout.backpackGrid} candidateCells={preview?.candidateCells} onAnchor={onAnchor} /></>}
+    {needsPlacement && <>{opportunity.canRotate && <label><input aria-label="旋转中枢整备物品" type="checkbox" checked={rotated} onChange={(event) => onRotate(event.target.checked)} />旋转</label>}<p>目标格：{x === null || y === null ? '尚未选择' : `${x + 1}, ${y + 1}`}</p><BackpackGrid grid={loadout.backpackGrid} candidateCells={preview?.candidateCells} selectedFootprintCells={preview?.selectedFootprintCells} selectedAnchor={x === null || y === null ? null : { x, y }} placementValid={preview?.canExecute ?? false} onAnchor={onAnchor} /></>}
     {preview?.canExecute ? <dl className="preview-facts">{preview.facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl> : <p className="preview-warning">{operation === null ? '请明确选择一项整备操作。' : preview?.rejection ?? '请完整选择数量、目标槽位或背包位置。'}</p>}
     <div className="preview-controls"><button type="button" onClick={onCancel}>取消</button><button type="button" className="confirm-action" disabled={!preview?.canExecute} onClick={onConfirm}>确认整备</button></div>
   </section></div>
@@ -591,7 +646,7 @@ function HubMaintenanceDialog({
   const secondarySources = opportunity.sources.filter(({ material }) => material === 'electronic-components')
   return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="hub-maintenance-title">
     <h2 id="hub-maintenance-title">{opportunity.label}</h2>
-    {opportunity.operation === 'allocate-base-maintenance-labor' && <p>剩余基础维护工时：<strong>{opportunity.maintenanceLaborRemaining}</strong>。每个目标必须显式分配正整数工时，且不能产生浪费。</p>}
+    {opportunity.operation === 'allocate-base-maintenance-labor' && <p>今日剩余维修点：<strong>{opportunity.maintenanceLaborRemaining}</strong>。每个目标必须显式分配正整数点数，且不能产生浪费。</p>}
     {opportunity.generatedRepair !== null && <p>本次材料／操作可生成维修量：<strong>{opportunity.generatedRepair}</strong></p>}
     <h3>{usesAllocations ? '明确目标与分配' : '明确维护目标'}</h3>
     <div className="maintenance-target-list">{opportunity.targets.map((target) => <div key={target.id}>
@@ -620,7 +675,7 @@ function HubMaintenanceResultDialog({ result, onClose }: Readonly<{ result: HubM
 function ReturnSummaryDialog({ summary, onClose }: Readonly<{ summary: ReturnSummaryViewModel; onClose(): void }>) {
   const kind = summary.returnKind === 'safe' ? '安全' : '强制'
   return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="return-summary-title">
-    <h2 id="return-summary-title">返回摘要</h2><p>返回类型：<strong>{kind}</strong></p><p>剩余生命：<strong>{summary.remainingHealth}</strong></p><h3>带回普通／权限物品</h3><ItemList items={summary.warehouseItems} empty="无" /><h3>带回任务物品</h3><ItemList items={summary.taskItems} empty="无" />{summary.lostTaskItemCount > 0 && <p>遗失任务物品：{summary.lostTaskItemCount}</p>}<div className="preview-controls"><button type="button" onClick={onClose}>关闭摘要</button></div>
+    <h2 id="return-summary-title">返回摘要</h2><p>返回类型：<strong>{kind}</strong></p>{summary.voluntarilyStarted && summary.returnKind === 'forced' && <p className="preview-warning">你主动开始返程，但由于剩余时间不足，最终按强制返程规则完成。</p>}<p>剩余生命：<strong>{summary.remainingHealth}</strong></p><h3>带回普通／权限物品</h3><ItemList items={summary.warehouseItems} empty="无" /><h3>带回任务物品</h3><ItemList items={summary.taskItems} empty="无" />{summary.lostTaskItemCount > 0 && <p>遗失任务物品：{summary.lostTaskItemCount}</p>}<div className="preview-controls"><button type="button" onClick={onClose}>关闭摘要</button></div>
   </section></div>
 }
 
@@ -649,11 +704,12 @@ function CombatActionResultDialog({
       {result.armorResourceChange && <div><dt>防具资源</dt><dd>{result.armorResourceChange}</dd></div>}
       {result.consumedQuickSlotCount > 0 && <div><dt>快捷物品消费</dt><dd>{result.consumedQuickSlotCount}</dd></div>}
       {result.infectionExposuresAdded > 0 && <div><dt>新增感染暴露</dt><dd>{result.infectionExposuresAdded}</dd></div>}
-      {result.sceneTimeCost !== null && <div><dt>实际 Scene 时间结算</dt><dd>{result.sceneTimeCost}</dd></div>}
+      {result.sceneTimeCost !== null && <div><dt>实际场景时间结算</dt><dd>{result.sceneTimeCost}</dd></div>}
     </dl>
     {result.newWounds.length > 0 && <p>新增伤口：{result.newWounds.join('、')}</p>}
     {result.treatedWounds.length > 0 && <p>已处理伤口：{result.treatedWounds.join('、')}</p>}
     {result.bleedingChanged && <p>流血状态：{result.bleedingChanged === 'started' ? '开始流血' : '已止血'}</p>}
+    {result.weaponBecameBroken && <p className="preview-warning">{result.weaponName ?? '当前武器'}已损坏。武器攻击已不可用。{result.temporaryAttackAvailable ? '临时攻击现已可用。' : ''}</p>}
     <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
   </section></div>
 }
@@ -671,9 +727,9 @@ function TaskEventResultDialog({
       <div><dt>实际新增感染暴露</dt><dd>{result.infectionExposuresAdded > 0 ? `+${result.infectionExposuresAdded}` : '0'}</dd></div>
       {result.armorResourceChange && <div><dt>外套完整度</dt><dd>{result.armorResourceChange}</dd></div>}
       <div><dt>样本来源情报</dt><dd>{result.originIntelRecorded ? '已记录' : '无新增'}</dd></div>
-      <div><dt>Scene 时间</dt><dd>{result.remainingTimeBefore} → {result.remainingTimeAfter}</dd></div>
+      <div><dt>场景时间</dt><dd>{result.remainingTimeBefore} → {result.remainingTimeAfter}</dd></div>
       <div><dt>背包负重</dt><dd>{result.backpackWeightBefore} → {result.backpackWeightAfter}</dd></div>
-      <div><dt>当前 Scene 状态</dt><dd>{result.sceneStatus}</dd></div>
+      <div><dt>当前场景状态</dt><dd>{sceneStatusName(result.sceneStatus)}</dd></div>
       <div><dt>安全入库</dt><dd>否；仍需安全返回并显式结算</dd></div>
     </dl>
     {result.sceneStatus === 'dead' && <p className="preview-warning">玩家已经死亡，样本箱不会安全入库。</p>}
@@ -696,11 +752,11 @@ function SceneMedicalResultDialog({
       <div><dt>实际恢复</dt><dd>{result.actualHealthRecovery}</dd></div>
       <div><dt>最终生命</dt><dd>{result.finalHealth}</dd></div>
       <div><dt>行动后流血损失</dt><dd>{result.postActionBleedingDamage}</dd></div>
-      <div><dt>Scene 时间</dt><dd>{result.remainingTimeBefore} → {result.remainingTimeAfter}</dd></div>
+      <div><dt>场景时间</dt><dd>{result.remainingTimeBefore} → {result.remainingTimeAfter}</dd></div>
       <div><dt>完成节点</dt><dd>{result.completionNodeName}</dd></div>
       <div><dt>当前节点</dt><dd>{result.finalNodeName}</dd></div>
       {result.returnEstimateAfterAction !== null && <div><dt>行动后预计返程</dt><dd>{result.returnEstimateAfterAction}</dd></div>}
-      <div><dt>当前 Scene 状态</dt><dd>{result.sceneStatus}</dd></div>
+      <div><dt>当前场景状态</dt><dd>{sceneStatusName(result.sceneStatus)}</dd></div>
       {result.forcedReturnDamage > 0 && <div><dt>强制返程总损耗</dt><dd>{result.forcedReturnDamage}</dd></div>}
       {result.infectionExposureBefore !== result.infectionExposureAfter && <div><dt>未结算感染暴露</dt><dd>{result.infectionExposureBefore} → {result.infectionExposureAfter}</dd></div>}
       {result.disinfectantUsesBefore !== result.disinfectantUsesAfter && <div><dt>今日消毒剂</dt><dd>{result.disinfectantUsesBefore} → {result.disinfectantUsesAfter}</dd></div>}
@@ -711,9 +767,9 @@ function SceneMedicalResultDialog({
     {result.minorContusionRemoved && <p>已移除：轻度挫伤</p>}
     {result.painkillerActivated && <p>镇痛已生效</p>}
     {result.nextStep === 'continue-exploration' && <p>本次医疗完成后可继续探索。</p>}
-    {result.sceneStatus === 'safe-returned' && <p className="preview-warning">当前为 safe-returned Scene Session；下一步需要显式完成返程结算。</p>}
-    {result.sceneStatus === 'forced-returned' && <p className="preview-warning">当前为 forced-returned Scene Session；下一步需要显式完成返程结算。</p>}
-    {result.sceneStatus === 'dead' && <p className="preview-warning">当前为 dead Scene Session；下一步需要显式结算战败。</p>}
+    {result.sceneStatus === 'safe-returned' && <p className="preview-warning">已安全回到电梯前室；下一步需要显式完成返程结算。</p>}
+    {result.sceneStatus === 'forced-returned' && <p className="preview-warning">已完成强制返程；下一步需要显式完成返程结算。</p>}
+    {result.sceneStatus === 'dead' && <p className="preview-warning">玩家已死亡；下一步需要显式结算本局战败。</p>}
     <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
   </section></div>
 }
@@ -737,19 +793,19 @@ function SceneBatteryResultDialog({
       <div><dt>{resource}</dt><dd>{result.resourceBefore} → {result.resourceAfter}</dd></div>
       <div><dt>实际恢复</dt><dd>{result.actualRecovery}</dd></div>
       <div><dt>未使用恢复量</dt><dd>{result.unusedRecovery}</dd></div>
-      <div><dt>Scene 时间</dt><dd>{result.remainingTimeBefore} → {result.remainingTimeAfter}</dd></div>
+      <div><dt>场景时间</dt><dd>{result.remainingTimeBefore} → {result.remainingTimeAfter}</dd></div>
       <div><dt>行动后流血损失</dt><dd>{result.postActionBleedingDamage}</dd></div>
       <div><dt>最终生命</dt><dd>{result.finalHealth}</dd></div>
       <div><dt>完成节点</dt><dd>{result.completionNodeName}</dd></div>
       <div><dt>当前节点</dt><dd>{result.finalNodeName}</dd></div>
       {result.returnEstimateAfterAction !== null && <div><dt>行动后预计返程</dt><dd>{result.returnEstimateAfterAction}</dd></div>}
       {result.forcedReturnDamage > 0 && <div><dt>强制返程总损耗</dt><dd>{result.forcedReturnDamage}</dd></div>}
-      <div><dt>当前 Scene 状态</dt><dd>{result.sceneStatus}</dd></div>
+      <div><dt>当前场景状态</dt><dd>{sceneStatusName(result.sceneStatus)}</dd></div>
     </dl>
     {result.nextStep === 'continue-exploration' && <p>本次充能完成后可继续探索。</p>}
-    {result.sceneStatus === 'safe-returned' && <p className="preview-warning">当前为 safe-returned Scene Session；下一步需要显式完成返程结算。</p>}
-    {result.sceneStatus === 'forced-returned' && <p className="preview-warning">当前为 forced-returned Scene Session；下一步需要显式完成返程结算。</p>}
-    {result.sceneStatus === 'dead' && <p className="preview-warning">当前为 dead Scene Session；下一步需要显式结算战败。</p>}
+    {result.sceneStatus === 'safe-returned' && <p className="preview-warning">已安全回到电梯前室；下一步需要显式完成返程结算。</p>}
+    {result.sceneStatus === 'forced-returned' && <p className="preview-warning">已完成强制返程；下一步需要显式完成返程结算。</p>}
+    {result.sceneStatus === 'dead' && <p className="preview-warning">玩家已死亡；下一步需要显式结算本局战败。</p>}
     <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
   </section></div>
 }
@@ -832,11 +888,11 @@ function DailySettlementResultDialog({ result, onClose }: Readonly<{
       {result.painkillerBefore !== null && <div><dt>镇痛</dt><dd>{result.painkillerBefore ? '生效' : '无'} → {result.painkillerAfter ? '生效' : '无'}</dd></div>}
       {result.disinfectantUsesBefore !== null && <div><dt>消毒剂日使用次数</dt><dd>{result.disinfectantUsesBefore} → {result.disinfectantUsesAfter}</dd></div>}
       {result.threatSuppressionUsesBefore !== null && <div><dt>抑制剂日使用次数</dt><dd>{result.threatSuppressionUsesBefore} → {result.threatSuppressionUsesAfter}</dd></div>}
-      {result.maintenanceLaborBefore !== null && <div><dt>维护工时</dt><dd>{result.maintenanceLaborBefore} → {result.maintenanceLaborAfter}</dd></div>}
+      {result.maintenanceLaborBefore !== null && <div><dt>今日剩余维修点</dt><dd>{result.maintenanceLaborBefore} → {result.maintenanceLaborAfter}</dd></div>}
       {result.mainSceneUsedAfter !== null && <div><dt>次日主要场景</dt><dd>{result.mainSceneUsedAfter ? '已使用' : '尚未进入'}</dd></div>}
     </dl>
-    {result.outcome === 'health-depleted' && <p className="preview-warning">生命在日结算中耗尽，Run 已结束。</p>}
-    {result.outcome === 'world-threat-terminal' && <p className="preview-warning">世界威胁进入终末阶段，Run 已结束。</p>}
+    {result.outcome === 'health-depleted' && <p className="preview-warning">生命在日结算中耗尽，本局已结束。</p>}
+    {result.outcome === 'world-threat-terminal' && <p className="preview-warning">世界威胁进入终末阶段，本局已结束。</p>}
     <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
   </section></div>
 }
@@ -883,7 +939,7 @@ function FailureView({
   model: Extract<StableRunPlayerViewModel, { kind: 'run-failure' }>
   onRequestNewRunSetup?: () => void
 }>) {
-  return <main className="console-layout"><section className="console-panel terminal-panel"><p className="eyebrow">Run 已终止</p><h1>失败</h1><p>第 {model.failure.currentDay} 日 · {model.failure.reason}</p><p>此终局为只读状态，不能继续当前 Run。</p>{onRequestNewRunSetup && <button type="button" className="action-button" onClick={onRequestNewRunSetup}>开始新的 Run</button>}</section></main>
+  return <main className="console-layout"><section className="console-panel terminal-panel"><p className="eyebrow">本局已终止</p><h1>失败</h1><p>第 {model.failure.currentDay} 日 · {model.failure.reason}</p><p>此终局为只读状态，不能继续当前进度。</p>{onRequestNewRunSetup && <button type="button" className="action-button" onClick={onRequestNewRunSetup}>开始新一局</button>}</section></main>
 }
 
 function DevInspector({ phase }: Readonly<{ phase: unknown }>) {
@@ -903,6 +959,7 @@ export function StableRunUiApp({
   const model = createStableRunPlayerViewModel(snapshot.phase, presentationDependencies)
   const interaction = createStableRunUiInteractionModel(snapshot.phase, presentationDependencies)
   const [pendingActionId, setPendingActionId] = useState<string | null>(null)
+  const voluntaryReturnStarted = useRef(false)
   const [pendingPickupId, setPendingPickupId] = useState<string | null>(null)
   const [pendingTaskEventId, setPendingTaskEventId] = useState<string | null>(null)
   const [pendingInventoryId, setPendingInventoryId] = useState<string | null>(null)
@@ -959,7 +1016,7 @@ export function StableRunUiApp({
     y: pickupY,
     rotated: pickupRotated,
   }, presentationDependencies)
-  const taskEventPreview = pendingTaskEvent === null || taskEventX === null || taskEventY === null ? null : previewStableRunUiTaskEventDraft(snapshot.phase, {
+  const taskEventPreview = pendingTaskEvent === null ? null : previewStableRunUiTaskEventDraft(snapshot.phase, {
     opportunityId: pendingTaskEvent.id,
     x: taskEventX,
     y: taskEventY,
@@ -1045,6 +1102,10 @@ export function StableRunUiApp({
       setPendingActionId(null)
       return
     }
+    if (pendingAction.kind === 'scene-withdraw') voluntaryReturnStarted.current = true
+    else if (pendingAction.kind !== 'settle-terminal-scene' && beforePhase.kind === 'scene-session') {
+      voluntaryReturnStarted.current = false
+    }
     const execution = store.dispatch(pendingAction.command)
     setPendingActionId(null)
     setPersistenceFeedback(execution.kind === 'executed'
@@ -1110,7 +1171,9 @@ export function StableRunUiApp({
         execution.result.runReturn.summary,
         execution.phase,
         presentationDependencies,
+        voluntaryReturnStarted.current,
       ))
+      voluntaryReturnStarted.current = false
     }
     if (
       pendingAction.kind === 'hub-medical' &&

@@ -2,6 +2,8 @@ import {
   HOSPITAL_ENEMY_ACTION_IDS,
   HOSPITAL_ENEMY_IDS,
   HOSPITAL_FIRE_DOOR_OPTION_IDS,
+  HOSPITAL_EDGE_IDS,
+  HOSPITAL_ITEM_IDS,
   HOSPITAL_OBSTACLE_IDS,
   HOSPITAL_SCENE_DEFINITION_ID,
   HOSPITAL_TASK_EVENT_IDS,
@@ -45,6 +47,44 @@ export const hospitalV01UiLabels: StableRunUiLabels = Object.freeze({
     return hospitalItemCatalog.has(definitionId)
       ? hospitalItemCatalog.get(definitionId).name
       : fallback
+  },
+  itemResourceName(
+    definitionId: string,
+    resourceKind: 'durability' | 'integrity' | 'charge',
+  ): string {
+    if (definitionId === HOSPITAL_ITEM_IDS.flashlight && resourceKind === 'charge') {
+      return '照明'
+    }
+    return resourceKind === 'durability'
+      ? '耐久'
+      : resourceKind === 'integrity'
+        ? '完整度'
+        : '电量'
+  },
+  sceneRouteName(edgeId: string): string {
+    if (edgeId === HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor) {
+      return '工作人员通道'
+    }
+    if (edgeId === HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor) {
+      return '隔离区防火门路线'
+    }
+    return '医院通道'
+  },
+  sceneRouteAccessReason(requiredDefinitionId: string): string {
+    return requiredDefinitionId === HOSPITAL_ITEM_IDS.isolationWardAccessCard
+      ? '门禁卡已授权'
+      : '当前已获授权'
+  },
+  primaryMissionBriefing() {
+    return Object.freeze({
+      objective: '取得密封病原样本箱并安全带回电梯。',
+      completion: '取得样本不等于完成任务；安全返回后，样本箱进入任务储存区才计入任务进度。',
+    })
+  },
+  dayScopeNotice(currentDay: number): string | null {
+    return currentDay >= 2
+      ? '当前版本正式验证的是医院一个完整探索日。第 2 日及之后仍可用于工程回归测试，但完整七日资源供给、世界推进和最终终局尚未实现；当前状态不代表完整七日游戏体验。'
+      : null
   },
   enemyName(definitionId: string): string {
     return definitionId === HOSPITAL_ENEMY_IDS.infectedOrderly

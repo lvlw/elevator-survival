@@ -4,7 +4,7 @@
 
 ## 当前阶段
 
-医院纵向切片的纯 TypeScript 规则核心、稳定 Run phase、最小单槽存档、Headless Application、vanilla StableRunStore、React 一日交互闭环，以及生产浏览器单槽严格加载与恢复入口已实现。生产入口已接入无存档与失败终止来源的医院一日 New Run Setup、实用装备显式三选一、Preview／Confirm、Web Crypto 身份材料、原子创建与首次保存失败提示；现有玩法闭环包括中枢整备、医院探索、战斗、撤离与返回结算、中枢医疗／生存／维护及每日结算。医院一日已到达正式 Production Playability Review 技术节点，Owner 体验验收尚未进行。
+医院纵向切片的纯 TypeScript 规则核心、稳定 Run phase、最小单槽存档、Headless Application、vanilla StableRunStore、React 一日交互闭环，以及生产浏览器单槽严格加载与恢复入口已实现。生产入口已接入无存档与失败终止来源的医院一日 New Run Setup、实用装备显式三选一、Preview／Confirm、Web Crypto 身份材料、原子创建与首次保存失败提示；现有玩法闭环包括中枢整备、医院探索、战斗、撤离与返回结算、中枢医疗／生存／维护及每日结算。Owner Playability Review Round 1 已完成，首轮玩家信息与交互清晰度修复已完成，等待 Owner Round 2 复测。
 
 ## 仍待完成
 

@@ -78,7 +78,7 @@ describe('development UI preview scenarios', () => {
       .find((button) => button.textContent === 'Scene 示例')
     if (!sceneButton) throw new Error('expected Scene scenario selector')
     act(() => { sceneButton.click() })
-    expect(container.textContent).toContain('当前可通行相邻节点')
+    expect(container.textContent).toContain('当前可通行路线')
     expect(container.textContent).not.toContain('可见相邻节点')
     expect(storeNotifications).toBe(0)
     expect(created).toHaveLength(3)

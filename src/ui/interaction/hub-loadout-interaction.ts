@@ -9,6 +9,7 @@ import {
 import { createStableRunApplicationCommand, type StableRunApplicationCommand } from '../../state/run-application'
 import { getStableRunPhaseIdentity, type StableRunPhase } from '../../state/run-save'
 import type { StableRunUiPresentationDependencies } from '../presentation'
+import { getItemDimensions } from '../../core/inventory'
 
 export type StableRunUiHubLoadoutOperation = RunLoadoutCommand['kind']
 
@@ -16,6 +17,7 @@ export interface StableRunUiHubLoadoutOpportunity {
   readonly id: string
   /** Internal command reference; ordinary player ViewModels and DOM never receive it. */
   readonly sourceInstanceId: string
+  readonly definitionId: string
   readonly container: 'warehouse' | 'backpack' | 'equipment' | 'quick-slot'
   readonly equipmentSlot: 'weapon' | 'armor' | 'utility' | null
   readonly quickSlotIndex: number | null
@@ -50,6 +52,7 @@ export interface StableRunUiHubLoadoutPreview {
   readonly title: string | null
   readonly facts: readonly StableRunUiHubLoadoutPreviewFact[]
   readonly candidateCells: readonly Readonly<{ x: number; y: number }>[]
+  readonly selectedFootprintCells: readonly Readonly<{ x: number; y: number }>[]
   readonly safeResult: PlayerVisibleRunLoadoutEvaluation | null
 }
 
@@ -107,12 +110,13 @@ export function getStableRunUiHubLoadoutOpportunities(
   const placements = new Map(loadout.backpack.placements.map((placement) => [placement.instanceId, placement]))
   const make = (
     item: typeof loadout.backpack.items[number],
-    input: Omit<StableRunUiHubLoadoutOpportunity, 'canRotate' | 'name' | 'quantity' | 'sourceInstanceId'>,
+    input: Omit<StableRunUiHubLoadoutOpportunity, 'canRotate' | 'name' | 'quantity' | 'sourceInstanceId' | 'definitionId'>,
   ): StableRunUiHubLoadoutOpportunity => {
     const definition = formal.physicalCatalog.get(item.definitionId)
     return Object.freeze({
       ...input,
       sourceInstanceId: item.instanceId,
+      definitionId: item.definitionId,
       name: dependencies.labels.itemName(item.definitionId, definition.name),
       quantity: item.quantity,
       canRotate: definition.canRotate,
@@ -233,10 +237,33 @@ export function previewStableRunUiHubLoadoutDraft(
   let command: RunLoadoutCommand | null = null
   try { command = draftCommand(source, draft, opportunities) } catch { command = null }
   const formal = hubDependencies(phase, dependencies)
-  const cells = Object.freeze(Array.from({ length: formal.backpackRules.width * formal.backpackRules.height }, (_, index) => Object.freeze({ x: index % formal.backpackRules.width, y: Math.floor(index / formal.backpackRules.width) })))
-  if (!command) return Object.freeze({ canExecute: false, rejection: '请完整选择数量、目标槽位或背包位置。', command: null, title: null, facts: Object.freeze([]), candidateCells: cells, safeResult: null })
+  const allCells = Array.from({ length: formal.backpackRules.width * formal.backpackRules.height }, (_, index) => Object.freeze({ x: index % formal.backpackRules.width, y: Math.floor(index / formal.backpackRules.width) }))
+  const needsPlacement = ['warehouse-to-backpack', 'move-backpack-item', 'split-backpack-stack', 'unequip-to-backpack', 'quick-slot-to-backpack', 'swap-backpack-equipped'].includes(draft.operation)
+  const candidateCells = Object.freeze(needsPlacement ? allCells.filter(({ x, y }) => {
+    try {
+      const candidate = draftCommand(source, { ...draft, x, y }, opportunities)
+      return candidate !== null && previewPlayerVisibleRunLoadoutCommand(phase.payload.runLoadout, candidate, formal).canExecute
+    } catch {
+      return false
+    }
+  }) : [])
+  const placedDefinitionId = draft.operation === 'swap-backpack-equipped'
+    ? opportunities.find(({ id }) => id === draft.targetOpportunityId)?.definitionId ?? null
+    : source.definitionId
+  const selectedFootprintCells = Object.freeze(
+    needsPlacement && draft.x !== null && draft.y !== null && placedDefinitionId !== null
+      ? (() => {
+          const dimensions = getItemDimensions(formal.physicalCatalog.get(placedDefinitionId), draft.rotated)
+          return Array.from({ length: dimensions.width * dimensions.height }, (_, index) => Object.freeze({
+            x: draft.x! + index % dimensions.width,
+            y: draft.y! + Math.floor(index / dimensions.width),
+          }))
+        })()
+      : [],
+  )
+  if (!command) return Object.freeze({ canExecute: false, rejection: '请完整选择数量、目标槽位或背包位置。', command: null, title: null, facts: Object.freeze([]), candidateCells, selectedFootprintCells, safeResult: null })
   const safe = previewPlayerVisibleRunLoadoutCommand(phase.payload.runLoadout, command, formal)
-  if (!safe.canExecute) return Object.freeze({ canExecute: false, rejection: safe.rejectionCode === 'CANNOT_CARRY' ? '该操作会使背包进入无法携带状态。' : '当前来源、目标、资格、数量或摆放无法执行。', command: null, title: null, facts: Object.freeze([]), candidateCells: cells, safeResult: null })
+  if (!safe.canExecute) return Object.freeze({ canExecute: false, rejection: safe.rejectionCode === 'CANNOT_CARRY' ? '该操作会使背包进入无法携带状态。' : '当前来源、目标、资格、数量或摆放无法执行。', command: null, title: null, facts: Object.freeze([]), candidateCells, selectedFootprintCells, safeResult: null })
   const result = safe.result
   const item = formal.physicalCatalog.get(result.definitionId)
   const facts: StableRunUiHubLoadoutPreviewFact[] = [
@@ -256,14 +283,18 @@ export function previewStableRunUiHubLoadoutDraft(
     facts.push({ label: '被替换／交换物品', value: dependencies.labels.itemName(result.displacedDefinitionId, formal.physicalCatalog.get(result.displacedDefinitionId).name) })
     if (result.displacedSource && result.displacedTarget) facts.push({ label: '被替换／交换路径', value: `${locationName(result.displacedSource)} → ${locationName(result.displacedTarget)}` })
   }
-  if (result.resource) facts.push({ label: '资源保持', value: `${result.resource.kind} ${result.resource.current}` })
+  if (result.resource) facts.push({
+    label: '资源保持',
+    value: `${dependencies.labels.itemResourceName(result.definitionId, result.resource.kind)} ${result.resource.current}`,
+  })
   return Object.freeze({
     canExecute: true,
     rejection: null,
     command: createStableRunApplicationCommand({ kind: 'hub', command: { kind: 'hub-loadout', command } }),
     title: `确认${operationName(result.operationKind)}`,
     facts: Object.freeze(facts.map((fact) => Object.freeze(fact))),
-    candidateCells: cells,
+    candidateCells,
+    selectedFootprintCells,
     safeResult: result,
   })
 }

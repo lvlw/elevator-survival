@@ -7,6 +7,7 @@ import {
   HOSPITAL_SLICE_RULES_VERSION,
   createHospitalNewRunInitialCurrentDayHub,
 } from './content'
+import { createCurrentDayHubSnapshot } from './core/current-day-hub'
 import {
   createProductionHospitalNewRunDependencies,
   productionPresentationDependencies,
@@ -14,6 +15,7 @@ import {
 import type { HospitalNewRunTransactionDependencies } from './app/new-run'
 import { bootstrapProductionRun } from './app/production-bootstrap'
 import {
+  hospitalCurrentDayHubDependencies,
   hospitalRunSaveRulesRegistry,
   serializeRunSave,
   type RunSaveStorage,
@@ -193,6 +195,101 @@ describe('Production App Shell stable states', () => {
 })
 
 describe('Production hospital New Run Setup', () => {
+  it('opens Setup after the current Store formally transitions to Failure without rerendering App', () => {
+    const returned = createHospitalDevelopmentPreviewScenario('hub-returned')
+      .store.getState().phase
+    if (returned.kind !== 'current-day-hub') throw new Error('expected returned Hub')
+    const activePhase = {
+      kind: 'current-day-hub' as const,
+      payload: createCurrentDayHubSnapshot({
+        ...returned.payload,
+        playerCondition: {
+          ...returned.payload.playerCondition,
+          currentHealth: 2,
+          bleeding: true,
+        },
+      }, hospitalCurrentDayHubDependencies),
+    }
+    const storage = new UiStorage(serializeRunSave(activePhase, hospitalRunSaveRulesRegistry))
+    const inner = createStableRunStore({
+      initialPhase: activePhase,
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    let activeStoreDispatches = 0
+    const store: StableRunStore = Object.freeze({
+      ...inner,
+      dispatch: (command: unknown) => {
+        activeStoreDispatches += 1
+        return inner.dispatch(command)
+      },
+    })
+    const harness = newRunHarness(storage)
+    const container = renderApp(
+      storage,
+      Object.freeze({ kind: 'ready', store }),
+      false,
+      harness.dependencies,
+    )
+
+    expect(container.textContent).toContain('电梯中枢')
+    expect(container.textContent).not.toContain('开始新的 Run')
+    act(() => {
+      store.dispatch({ kind: 'lifecycle', command: { kind: 'end-day' } })
+    })
+    const failurePhase = store.getState().phase
+    expect(failurePhase).toMatchObject({
+      kind: 'run-failure',
+      payload: { reason: 'health-depleted' },
+    })
+    expect(container.textContent).toContain('Run 已终止')
+    expect(container.textContent).toContain('开始新的 Run')
+    expect(activeStoreDispatches).toBe(1)
+    expect(storage).toMatchObject({ writes: 1, clears: 0 })
+
+    act(() => button(container, '开始新的 Run').click())
+    expect(container.textContent).toContain('开始新的医院 Run')
+    expect(harness.counters).toEqual({ identity: 0, constructor: 0, stores: 0, dispatches: 0 })
+    expect(activeStoreDispatches).toBe(1)
+    expect(storage).toMatchObject({ writes: 1, clears: 0 })
+
+    act(() => button(container, '返回终止摘要').click())
+    expect(container.textContent).toContain('Run 已终止')
+    expect(store.getState().phase).toBe(failurePhase)
+    expect(harness.counters).toEqual({ identity: 0, constructor: 0, stores: 0, dispatches: 0 })
+    expect(activeStoreDispatches).toBe(1)
+    expect(storage).toMatchObject({ writes: 1, clears: 0 })
+  })
+
+  it('rereads the current Store before opening Setup from a stale Failure view', () => {
+    const failure = createHospitalDevelopmentPreviewScenario('failure').store.getState().phase
+    const active = createHospitalDevelopmentPreviewScenario('hub').store.getState().phase
+    let current = Object.freeze({ phase: failure })
+    const store: StableRunStore = Object.freeze({
+      getState: () => current,
+      getInitialState: () => Object.freeze({ phase: failure }),
+      subscribe: () => () => undefined,
+      dispatch: () => { throw new Error('gameplay dispatch must not run') },
+    })
+    const storage = new UiStorage(savedScenario('failure'))
+    const harness = newRunHarness(storage)
+    const container = renderApp(
+      storage,
+      Object.freeze({ kind: 'ready', store }),
+      false,
+      harness.dependencies,
+    )
+    const request = button(container, '开始新的 Run')
+
+    current = Object.freeze({ phase: active })
+    act(() => request.click())
+
+    expect(container.querySelector('#new-run-heading')).toBeNull()
+    expect(container.textContent).not.toContain('固定初始配装')
+    expect(harness.counters).toEqual({ identity: 0, constructor: 0, stores: 0, dispatches: 0 })
+    expect(storage).toMatchObject({ writes: 0, clears: 0 })
+  })
+
   it('opens and cancels Preview with no identity, Store, save, clear, or dispatch', () => {
     const storage = new UiStorage(null)
     const harness = newRunHarness(storage)

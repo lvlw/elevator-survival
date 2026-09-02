@@ -176,10 +176,9 @@ export default function App({
   const [submittingNewRun, setSubmittingNewRun] = useState(false)
   const submittingNewRunRef = useRef(false)
 
-  const readyPhase = shellState.kind === 'ready'
-    ? shellState.store.getState().phase
-    : null
-  const failureSetupActive = showFailureNewRunSetup && readyPhase?.kind === 'run-failure'
+  const failureSetupActive = showFailureNewRunSetup &&
+    shellState.kind === 'ready' &&
+    shellState.store.getState().phase.kind === 'run-failure'
   const setupActive = shellState.kind === 'no-run' || failureSetupActive
 
   const resetSetup = () => {
@@ -279,12 +278,11 @@ export default function App({
     <StableRunUiApp
       store={shellState.store}
       presentationDependencies={presentationDependencies}
-      onRequestNewRunSetup={readyPhase?.kind === 'run-failure'
-        ? () => {
-            resetSetup()
-            setShowFailureNewRunSetup(true)
-          }
-        : undefined}
+      onRequestNewRunSetup={() => {
+        if (shellState.store.getState().phase.kind !== 'run-failure') return
+        resetSetup()
+        setShowFailureNewRunSetup(true)
+      }}
     />
   </>
 

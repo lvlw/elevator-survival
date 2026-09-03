@@ -158,6 +158,74 @@ StableRunStore public read API
 - `src/ui/interaction/` 从 canonical phase、正式 registry、标签和纯 core preview 生成安全行动：主要场景启动、当前日中枢 Run Loadout、中枢医疗与生存补给、活动场景移动、主要搜索、显式节点物品拾取、七种 Scene 背包／快捷栏整理、主动撤离、医院防火门、感染护工战斗行动、医院样本箱任务事件、Scene 非战斗医疗与 Scene 非战斗电池充能。拾取、任务物提取及 Scene 整理草稿只保存玩家明确选择的数量、目标、快捷栏、坐标与旋转，调用对应正式 Preview；背包网格只投影正式几何并作为 anchor 选择，不自动摆放、整理、拆分、合并、补充或创建实例身份。Scene 整理的 player-safe Preview 白名单投影正式容器变化、数量、负重档位、零时间与即时返程估算，不携带实例 ID、审计、Effects 或 resulting snapshot；任务物放到节点必须显式确认。Scene 医疗与充能行动完全来自各自正式 selector，保留玩家明确选择的真实容器来源和目标；二者共用中性的正时间 Scene 行动安全投影，区分完成节点、返程目标、行动后流血死亡和紧急返程死亡。中枢医疗与生存行动同样只展开正式 selector 返回的真实仓库、背包或快捷栏来源及明确伤势目标，并通过同源零时间 Preview 展示物品消费、医疗效果、每日使用、饱食和威胁抑制事实；不自动寻找来源、目标或补充快捷栏。player-safe Preview 只对白名单投影同源主要效果、时间、流血、返程与终局事实。确认后每次只发出一条 `Store.dispatch()`；医疗、充能、撤离、战斗或任务事件产生的 terminal Scene 先保存 Scene Session，结算仍由下一条显式 lifecycle command 完成。
 - 成功返回后的 Return Summary、Combat Action Result、Task Event Result、Scene Medical Result、Scene Battery Result、Scene Inventory Result、Hub Loadout Result、Hub Medical Result、Hub Survival Result、Hub Maintenance Result 与 Daily Settlement Result 只将 execution 前后的 canonical phase 及已发生的正式结果立即投影为本地、玩家可见的展示模型；它们不是 Scene、Combat、Run Return、Hub、任务进度、医疗、维护、充能、饱食、威胁抑制、日结算或 inventory 的状态 owner，关闭不发送命令。Production App Shell 除 `ready(store)`、`no-run` 与玩家安全的 `load-error` 外，只拥有未确认的 New Run Setup 草稿、Preview、错误与首次保存失败提示；无存档或 Failure 来源的 Confirm 直接调用 Headless New Run 事务并采用其唯一新 Store，不创建 `new-run` gameplay command。医院防火门、感染护工战斗行动、医院样本箱提取、Scene 非战斗医疗、Scene 非战斗电池充能、非战斗 Scene 整理、当前日中枢十二种显式 Run Loadout 整备、中枢医疗、中枢生存补给、五类中枢维护与普通日结算已接入正式安全 Preview 与确认分派。完整 RunState、UI 命令队列或终版美术仍未实现。日结算 player-safe 投影只公开已执行阶段的日期、生命、相对世界威胁阶段、暴露、饱食、恢复、轻伤清理和日级资源重置结果，不公开精确世界威胁进展、伤口身份、Effects、计划或快照；早期终止不伪装后续阶段已执行。React 不拥有 inventory、装备／快捷栏资格、医疗／充能／维护资格、材料兼容、资源恢复、浪费、日工时、目标合法性、时间、流血、返程、日结算或终局规则；展示层可被未来其他渲染技术替换，只要继续读取 canonical phase 并发送正式命令。
 
+## Playable Game Shell Presentation Responsibilities
+
+Playable Game Shell Upgrade 是当前 Owner Playability Review 的展示层升级方向，不是终版美术或新的玩法系统。以下内容冻结后续实现职责，不表示 Ghost Preview、Player-Known Map、Activity Feed 或 DEV Reset 等新能力已经完成。它把现有工程验证控制台整理为低资产但可自然试玩的稳定游戏壳，并继续遵守同一数据流：
+
+```text
+Core / canonical state
+→ player-safe query / preview
+→ Presentation ViewModel
+→ React Game Shell
+```
+
+- 游戏壳可以组织顶部核心状态、主要地图／场景／事件／战斗舞台、装备／快捷栏／背包统一携带区、固定操作区及可选日志／帮助区。装备栏、两个快捷位与 `6×4` 背包使用同一 canonical loadout truth，可提供完整展开和收拢摘要，不形成第二份携带状态。左右位置、宽度比例、按钮顺序、面板开合、CSS Grid、颜色与资产均为可替换实现细节；未来背景、贴图、图标、动画、Skin 或 Renderer 的替换不得改变玩法定义或实例身份。
+- 生命与饱食可以在保留正式玩家可见数值的同时使用视觉状态条。Scene time／今日场景时间预算与 Combat CTB 必须保持不同概念：前者可显示当前剩余时间、正式返程预留与展示派生的安全余量；后者只向普通玩家投影相对行动先后，不显示 raw CTB 时间点。展示条不重新计算阈值或规则。
+
+Ghost Preview 的正式展示流为：
+
+```text
+canonical phase
+→ 正式 player-safe Preview
+→ Ghost Presentation
+```
+
+- Hover／Focus 只显示约三至五项最重要的安全后果；Click 仍打开完整正式 Preview，Confirm 才发送一条正式命令。Ghost Presentation 不发送 command、不消耗 RNG、不保存、不修改状态，也不持有下一状态。
+- 时间、返程、强制返程损耗、生命、负重、装备资源、玩家已知风险与相对战斗顺序都必须来自正式 player-safe Preview、canonical query 或版本化 catalog。缺少安全事实时扩展纯 query／Presentation 边界，不在 JSX 中补玩法公式。
+- DEC-035 的风险换收益语义保持不变。Game Shell 只把是否仍可安全返程、预计强制返程损耗与预计生还／死亡前置到 Ghost 和正式 Preview，不把返程线变成行动硬锁。
+
+Tooltip、Info Card 与 Mechanic Help 是玩家可解释性基础设施，解释物品、装备、快捷栏、状态、风险、主要行动、敌人公开状态、地图节点与路线。它们只消费版本化内容、player-safe metadata 与 canonical 玩家可见状态，不公开隐藏概率、随机种子、内部威胁精确进展、敌人精确生命、完整未来行动、隐藏路线或未获得情报。
+
+Player-Known Map 的数据流必须为：
+
+```text
+Core / canonical player knowledge
+→ explicit player-visible map query
+→ presentation map model
+→ React / SVG
+```
+
+- 地图只展示当前节点、已到达节点、已知节点、已知可通行路线与已知阻塞路线；未知节点与路线完全省略，不以问号暗示其存在。
+- React 不读取完整 SceneGraph 后自行过滤。如果 canonical state 与现有 query 不能表达发现、到达或已知阻塞事实，后续地图工程必须暂停该子项，先补正式 player-visible query 或 player-knowledge owner，而不是由 UI 推断新的玩家知识。
+
+Battle Stage 采用低资产舞台、玩家精确生命条、敌人阶段式生命表现、相对时间轴、轻量行动反馈与战斗日志。敌人阶段只使用正式的完好、受伤、重伤、濒危和失去能力，不显示精确 HP 或可反推精确 HP 的百分比条；相对时间轴不展示 raw `currentCtb`、`playerNextActionCtb` 或 `enemyNextActionCtb`。未来阶段贴图属于 Presentation 扩展能力，不确认任何能够查看敌人精确 HP 的玩法。
+
+Presentation Animation 只消费执行前展示、正式 execution result 与执行后展示：
+
+```text
+Confirm
+→ 正式 command
+→ canonical execution
+→ presentation animation
+```
+
+动画不得先行驱动规则，也不得通过动画完成回调决定命中、伤害或状态。轻微位移、抖动、飘字、阶段变化与时间轴 marker 位移均为可替换的非权威表现。
+
+Presentation Activity Feed 的唯一 owner 是 Game Shell Presentation。它是 browser UI session 内已执行结果的玩家可见投影，可按 system、combat、inventory、scene、hub 与 lifecycle 分类；战斗日志过滤同一来源，不另建第二份日志真相。Feed 只在正式 command 已执行后，根据执行前后 canonical presentation facts 与 player-safe result 追加；Hover、Preview、取消、验证失败、只读查看、Tooltip 与地图 Hover 不追加。它不进入 StableRunPhase、Run Save、Profile、Hub 或 Scene，不影响下一条命令，不作为 Replay truth，刷新后不重建过去记录，只可用“已恢复当前游戏状态”标记新会话起点。
+
+DEV-only Owner Playtest Reset 属于显式 DEV composition utility：
+
+```text
+开发测试：重新开始
+→ 不可逆提示
+→ 二次确认
+→ 清除 Browser Run Save
+→ 正式 no-run / New Run Setup
+```
+
+- 它与 UIR-004 的只读 Dev Inspector 分离，不是 Inspector 的 mutation 扩展，也不属于 core、run-store、run-lifecycle 或 run-application。
+- 它不是 Run Abandon、Run Failure、gameplay command、作弊修改当前 phase 或生产功能；不得伪造终止、调用 raw `setState` 或改写 canonical phase。Production build 必须没有入口、按钮或可触达实现。
+
 ## 当前最小 Stable Run 生命周期命令路由
 
 ```text

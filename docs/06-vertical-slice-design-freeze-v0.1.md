@@ -383,6 +383,35 @@ Production Bootstrap、严格恢复 UI、损坏存档显式清理 UI、Productio
 - 首次 Launch 复用预绑定 identity 且不写 Ledger；首次真实 Return Settlement 后 Ledger 才记录该 ID。
 - 错误预绑定 identity、Day 2+ 空 Ledger、已使用主要场景却空 Ledger及预填伪造返回记录均严格拒绝且不修复。
 
+## Owner Playability UI Freeze / Playable Game Shell Addendum
+
+Owner Playability Review Round 1 暴露的玩家信息与交互清晰度问题已经由 ENG-UI-015 与 ENG-UI-015A 完成针对性修复。Round 2 已经开始，但早期试玩进一步确认：当前工程控制台式展示不足以让 Owner 和外部试玩者可靠理解游戏状态、策略代价与行动反馈，因此不适合继续据此判断数值和平衡。Round 2 的正式平衡判断暂缓；下一阶段先执行 Playable Game Shell Upgrade，完成后再恢复 Round 2 Review。
+
+Playable Game Shell 是低资产、可替换、可自然试玩的游戏化展示骨架，不是终版美术。它应优先帮助玩家理解自己是谁、当前在哪里、还剩多少资源、下一步代价、当天剩余选择及战斗中发生的结果，并为未来背景、场景图、角色／敌人贴图、物品／装备图标、UI Skin 与轻量动画保留替换入口。
+
+本 Addendum 只冻结后续 UI／Presentation 工程输入，不改变以下正式规则：
+
+- DEC-035 的时间透支与强制返程保持不变；玩家仍可用生命与恢复空间换取额外探索收益，返程线不是不可跨越的行动硬锁。
+- 敌人精确 HP 仍不可见，现有完好、受伤、重伤、濒危、失去能力生命阶段不变；阶段式视觉条不得反推出精确生命。
+- 医院场景总时间、行动时间、Combat CTB、战斗数值、维护数值、掉落与风险参数均不变。
+- 已揭示物品的背包拾取耗时仍为0；地图展示不扩大玩家已知信息，也不直接公开完整 Scene graph。
+- Click → Preview → Confirm 的正式交互契约保持；Hover／Focus Ghost Preview 只是零副作用的轻量展示层。
+- 搜索、感染、负重、背包、装备、任务物品、Return、Run lifecycle 与 Save 边界均不变。
+
+冻结为后续 UI 工程输入的方向包括：
+
+- 游戏化固定 Shell 与清晰的主舞台／角色携带／固定操作／辅助信息层级；
+- 当前时间、正式返程预留和安全余量的时间预算视觉；
+- Hover／Focus Ghost Preview，以及完整 Preview 前置强制返程与死亡后果；
+- 玩家 HP／饱食视觉条和机制 Tooltip／Info Card／Help；
+- 只呈现正式玩家已知空间关系的 Player-Known Map；
+- 装备栏、快捷栏与 `6×4` 背包的三合一携带面板；
+- 低资产战斗舞台、敌人阶段式生命条、相对 Combat CTB 时间轴、轻量战斗反馈与战斗日志；
+- session-local、non-authoritative、non-persistent、executed-result-only 的常态 Presentation Activity Feed；
+- 与只读 Inspector 分离、Production 不可达的 DEV-only Owner Playtest Reset。
+
+上述方向的布局位置、尺寸比例、面板开合、图标、颜色、贴图与动画表现仍可替换，不冻结为永久产品规则。未来阶段贴图只是 Presentation extensibility；“某种装备可以查看敌人精确 HP”仍是未确认玩法候选，不在本 Addendum 中确认或实现。
+
 ## 24. 正式冻结声明
 
 > 截至原始冻结基线及本报告记录的后续已确认修订，医院纵向切片的产品范围、核心规则、关键参数、结算顺序、长期基础维护和实现边界已经达到可开发状态。项目可以进入工程初始化、纯 TypeScript 规则内核和自动化验收测试实现阶段。实现过程中不得自行改变已确认规则；新的机制或策略性变更必须先形成设计决策。

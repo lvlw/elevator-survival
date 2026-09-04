@@ -196,7 +196,10 @@ Core / canonical player knowledge
 ```
 
 - 地图只展示当前节点、已到达节点、已知节点、已知可通行路线与已知阻塞路线；未知节点与路线完全省略，不以问号暗示其存在。
-- React 不读取完整 SceneGraph 后自行过滤。如果 canonical state 与现有 query 不能表达发现、到达或已知阻塞事实，后续地图工程必须暂停该子项，先补正式 player-visible query 或 player-knowledge owner，而不是由 UI 推断新的玩家知识。
+- 根据 DEC-045，Player Navigation Knowledge 是当前场景实例内的 canonical 玩家知识 owner，至少保存已发现节点、已到达节点和已知路线；当前通行或阻塞仍由正式 traversal、障碍与场景状态派生，不在知识状态中复制第二份动态通行事实。
+- 场景初始化先把入口标记为已发现且已到达，再应用入口显式表层观察；首次到达节点同样先记录发现与到达，再应用内容明确声明的表层可见出口、路线和障碍。完整 SceneGraph 的邻接关系本身不构成玩家知识，搜索也只有在内容明确给出导航知识结果时才更新该状态。
+- Player Navigation Knowledge 随 Scene mutation 原子更新，进入 Scene Session 的稳定保存与严格恢复，并只在同一场景实例内持续；它不默认跨日或跨场景实例。严格恢复拒绝未知／重复／图外引用、已到达但未发现、当前节点未到达等矛盾，不自动补全或修复。
+- React 不读取完整 SceneGraph 后自行过滤，也不把 RunIntel 文本解释为路线。地图工程必须先完成 canonical knowledge owner 与显式 player-visible map query；当前仅有的可通行相邻节点投影不等于完整 Player-Known Map。
 
 Battle Stage 采用低资产舞台、玩家精确生命条、敌人阶段式生命表现、相对时间轴、轻量行动反馈与战斗日志。敌人阶段只使用正式的完好、受伤、重伤、濒危和失去能力，不显示精确 HP 或可反推精确 HP 的百分比条；相对时间轴不展示 raw `currentCtb`、`playerNextActionCtb` 或 `enemyNextActionCtb`。未来阶段贴图属于 Presentation 扩展能力，不确认任何能够查看敌人精确 HP 的玩法。
 

@@ -11,6 +11,7 @@ import {
   previewStableRunUiTaskEventDraft,
   type StableRunUiAction,
   type StableRunUiActionPreviewViewModel,
+  type StableRunUiGhostPreview,
   type StableRunUiPickupOpportunity,
   type StableRunUiInventoryOperation,
   type StableRunUiInventoryOpportunity,
@@ -52,6 +53,7 @@ import {
 } from './presentation'
 import { useStableRunStoreSnapshot } from './run-store/use-stable-run-store-snapshot'
 import { InfoCard } from './components/info-card'
+import { SceneTimeBudget } from './components/scene-time-budget'
 
 export interface StableRunUiAppProps {
   readonly store: StableRunStore
@@ -309,9 +311,13 @@ function BackpackGrid({
 function ActionPanel({
   actions,
   onPreview,
+  onGhostEnter = () => undefined,
+  onGhostLeave = () => undefined,
 }: Readonly<{
   actions: readonly StableRunUiAction[]
   onPreview(actionId: string): void
+  onGhostEnter?(actionId: string, source: 'mouse' | 'keyboard'): void
+  onGhostLeave?(actionId: string, source: 'mouse' | 'keyboard'): void
 }>) {
   if (actions.length === 0) return null
   const groups = [
@@ -330,7 +336,15 @@ function ActionPanel({
     {grouped.map((group) => <section className="action-group" key={group.title}>
       <h3>{group.title}</h3>
       <div className="action-list">{group.actions.map((action) => <div className="action-entry" key={action.id}>
-        <button type="button" className="action-button" onClick={() => onPreview(action.id)}>{action.label}</button>
+        <button
+          type="button"
+          className={`action-button${action.ghost ? ' action-button--ghostable' : ''}`}
+          onMouseEnter={() => onGhostEnter(action.id, 'mouse')}
+          onMouseLeave={() => onGhostLeave(action.id, 'mouse')}
+          onFocus={() => onGhostEnter(action.id, 'keyboard')}
+          onBlur={() => onGhostLeave(action.id, 'keyboard')}
+          onClick={() => onPreview(action.id)}
+        >{action.label}</button>
         {action.contextNote && <small>{action.contextNote}</small>}
       </div>)}</div>
     </section>)}
@@ -406,7 +420,10 @@ function CombatPanel({
 function SceneView({
   model,
   actions,
+  ghost,
   onPreview,
+  onGhostEnter,
+  onGhostLeave,
   pickupOpportunities,
   onPickup,
   taskEventOpportunities,
@@ -416,7 +433,10 @@ function SceneView({
 }: Readonly<{
   model: Extract<StableRunPlayerViewModel, { kind: 'scene-session' }>
   actions: readonly StableRunUiAction[]
+  ghost: StableRunUiGhostPreview | null
   onPreview(actionId: string): void
+  onGhostEnter(actionId: string, source: 'mouse' | 'keyboard'): void
+  onGhostLeave(actionId: string, source: 'mouse' | 'keyboard'): void
   pickupOpportunities: readonly StableRunUiPickupOpportunity[]
   onPickup(opportunityId: string): void
   taskEventOpportunities: readonly StableRunUiTaskEventOpportunity[]
@@ -425,14 +445,44 @@ function SceneView({
   onInventory(opportunityId: string): void
 }>) {
   const { scene } = model
+  const ordinaryActions = actions.filter(({ kind }) => kind !== 'scene-task-event')
   return <main className="console-layout game-shell-layout">
     <StatusBar status={model.status} />
     <div className="console-grid">
-      <section className="console-panel game-stage scene-stage"><header className="stage-heading"><p className="panel-kicker">场景导航</p><h1><span className="location-prefix">当前位置：</span>{scene.currentNodeName}</h1><p>{sceneStatusName(scene.status)}</p></header><div className="scene-vitals"><span>剩余时间：<strong>{scene.remainingTime}</strong></span><span>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></span><span>返程后预计剩余：<strong>{scene.returnAfterWithdrawalTime ?? '当前不可预览'}</strong></span></div>{scene.returnRisk === 'forced-returned' && <p className="preview-warning">当前返程将进入强制返程。</p>}{scene.returnRisk === 'dead' && <p className="preview-warning">当前返程将导致生命归零。</p>}<p>当前节点搜索：<strong>{searchStateName(scene.currentNodeSearchState)}</strong></p><h2>当前可通行路线</h2>{scene.traversableRoutes.length === 0 ? <p className="empty-copy">暂无当前可通行相邻地点</p> : <ul className="route-list">{scene.traversableRoutes.map((route) => <li key={`${route.routeName}-${route.destinationNodeName}`}><strong>{route.destinationNodeName}</strong><span>{route.routeName}</span>{route.accessReason && <em>{route.accessReason}</em>}<span>移动耗时 {route.movementTime}</span></li>)}</ul>}<div className="obstacle-block"><h2>当前明显障碍</h2>{scene.currentObstacles.length === 0 ? <p className="empty-copy">当前没有需要处理的明显障碍</p> : <ul className="item-list">{scene.currentObstacles.map(({ name }) => <li key={name}><strong>{name}</strong></li>)}</ul>}</div><h2>当前节点地面物品</h2><ItemList items={scene.groundItems} empty="未发现地面物品" />{pickupOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onPickup(opportunity.id)}>拾取 {opportunity.name}</button>)}{taskEventOpportunities.length > 0 && <><h2>任务事件</h2>{taskEventOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onTaskEvent(opportunity.id)}>{opportunity.label}</button>)}</>}{inventoryOpportunities.length > 0 && <><h2>场景整理</h2>{inventoryOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onInventory(opportunity.id)}>整理 {opportunity.sourceLabel}</button>)}</>}</section>
+      <section className="console-panel game-stage scene-stage">
+        <header className="stage-heading"><p className="panel-kicker">场景导航</p><h1><span className="location-prefix">当前位置：</span>{scene.currentNodeName}</h1><p>{sceneStatusName(scene.status)}</p></header>
+        <SceneTimeBudget budget={scene.timeBudget} ghost={ghost} />
+        <p>当前节点搜索：<strong>{searchStateName(scene.currentNodeSearchState)}</strong></p>
+        <h2>当前可通行路线</h2>
+        {scene.traversableRoutes.length === 0
+          ? <p className="empty-copy">暂无当前可通行相邻地点</p>
+          : <ul className="route-list">{scene.traversableRoutes.map((route) => <li key={`${route.routeName}-${route.destinationNodeName}`}><strong>{route.destinationNodeName}</strong><span>{route.routeName}</span>{route.accessReason && <em>{route.accessReason}</em>}<span>移动耗时 {route.movementTime}</span></li>)}</ul>}
+        <div className="obstacle-block"><h2>当前明显障碍</h2>{scene.currentObstacles.length === 0 ? <p className="empty-copy">当前没有需要处理的明显障碍</p> : <ul className="item-list">{scene.currentObstacles.map(({ name }) => <li key={name}><strong>{name}</strong></li>)}</ul>}</div>
+        <h2>当前节点地面物品</h2>
+        <ItemList items={scene.groundItems} empty="未发现地面物品" />
+        {pickupOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onPickup(opportunity.id)}>拾取 {opportunity.name}</button>)}
+        {taskEventOpportunities.length > 0 && <section className="task-event-comparison" aria-labelledby="task-event-methods-heading">
+          <header><p className="panel-kicker">密封病原样本箱</p><h2 id="task-event-methods-heading">先比较提取方式</h2><p>比较时间、污染风险与防护代价后，再为成功提取选择背包位置。</p></header>
+          <div className="task-event-methods">{taskEventOpportunities.map((opportunity) => <article className="task-event-method" key={opportunity.id}>
+            <h3>{opportunity.label}</h3>
+            <dl>{opportunity.comparisonFacts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>
+            <button
+              type="button"
+              className="action-button action-button--ghostable"
+              onMouseEnter={() => onGhostEnter(opportunity.id, 'mouse')}
+              onMouseLeave={() => onGhostLeave(opportunity.id, 'mouse')}
+              onFocus={() => onGhostEnter(opportunity.id, 'keyboard')}
+              onBlur={() => onGhostLeave(opportunity.id, 'keyboard')}
+              onClick={() => onTaskEvent(opportunity.id)}
+            >{opportunity.label}</button>
+          </article>)}</div>
+        </section>}
+        {inventoryOpportunities.length > 0 && <><h2>场景整理</h2>{inventoryOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onInventory(opportunity.id)}>整理 {opportunity.sourceLabel}</button>)}</>}
+      </section>
       {scene.status === 'combat'
         ? <CombatLoadoutPanel loadout={scene.loadout} />
         : <LoadoutPanel loadout={scene.loadout} />}
-      <ActionPanel actions={actions} onPreview={onPreview} />
+      <ActionPanel actions={ordinaryActions} onPreview={onPreview} onGhostEnter={onGhostEnter} onGhostLeave={onGhostLeave} />
       {scene.combat && <CombatPanel combat={scene.combat} condition={model.status.condition} />}
       {scene.status !== 'active' && scene.status !== 'combat' && <section className="console-panel"><h2>场景结果</h2><p>{sceneStatusName(scene.status)}</p><p className="empty-copy">请显式确认返程或战败结算；本步不会自动推进日期。</p></section>}
     </div>
@@ -1041,6 +1091,8 @@ export function StableRunUiApp({
   const model = createStableRunPlayerViewModel(snapshot.phase, presentationDependencies)
   const interaction = createStableRunUiInteractionModel(snapshot.phase, presentationDependencies)
   const [pendingActionId, setPendingActionId] = useState<string | null>(null)
+  const [hoveredGhostActionId, setHoveredGhostActionId] = useState<string | null>(null)
+  const [focusedGhostActionId, setFocusedGhostActionId] = useState<string | null>(null)
   const voluntaryReturnStarted = useRef(false)
   const [pendingPickupId, setPendingPickupId] = useState<string | null>(null)
   const [pendingTaskEventId, setPendingTaskEventId] = useState<string | null>(null)
@@ -1091,6 +1143,12 @@ export function StableRunUiApp({
   const pendingInventory = interaction.inventoryOpportunities.find(({ id }) => id === pendingInventoryId) ?? null
   const pendingHubLoadout = interaction.hubLoadoutOpportunities.find(({ id }) => id === pendingHubLoadoutId) ?? null
   const pendingHubMaintenance = interaction.hubMaintenanceOpportunities.find(({ operation }) => operation === pendingHubMaintenanceOperation) ?? null
+  const ghostActionId = focusedGhostActionId ?? hoveredGhostActionId
+  const activeGhost = ghostActionId === null
+    ? null
+    : interaction.actions.find(({ id }) => id === ghostActionId)?.ghost ??
+      interaction.taskEventOpportunities.find(({ id }) => id === ghostActionId)?.ghost ??
+      null
   const pickupPreview = pendingPickup === null ? null : previewStableRunUiPickupDraft(snapshot.phase, {
     opportunityId: pendingPickup.id,
     quantity: pickupQuantity,
@@ -1162,6 +1220,24 @@ export function StableRunUiApp({
   useEffect(() => {
     if (pendingHubMaintenanceOperation !== null && pendingHubMaintenance === null) setPendingHubMaintenanceOperation(null)
   }, [pendingHubMaintenance, pendingHubMaintenanceOperation])
+
+  useEffect(() => {
+    if (hoveredGhostActionId !== null && !interaction.actions.some(({ id }) => id === hoveredGhostActionId) && !interaction.taskEventOpportunities.some(({ id }) => id === hoveredGhostActionId)) {
+      setHoveredGhostActionId(null)
+    }
+    if (focusedGhostActionId !== null && !interaction.actions.some(({ id }) => id === focusedGhostActionId) && !interaction.taskEventOpportunities.some(({ id }) => id === focusedGhostActionId)) {
+      setFocusedGhostActionId(null)
+    }
+  }, [focusedGhostActionId, hoveredGhostActionId, interaction.actions, interaction.taskEventOpportunities])
+
+  const showGhost = (actionId: string, source: 'mouse' | 'keyboard') => {
+    if (source === 'mouse') setHoveredGhostActionId(actionId)
+    else setFocusedGhostActionId(actionId)
+  }
+  const hideGhost = (actionId: string, source: 'mouse' | 'keyboard') => {
+    if (source === 'mouse') setHoveredGhostActionId((current) => current === actionId ? null : current)
+    else setFocusedGhostActionId((current) => current === actionId ? null : current)
+  }
 
   const confirm = () => {
     if (!pendingAction) return
@@ -1311,6 +1387,12 @@ export function StableRunUiApp({
   const openTaskEvent = (opportunityId: string) => {
     const opportunity = interaction.taskEventOpportunities.find(({ id }) => id === opportunityId)
     if (!opportunity) return
+    if (!opportunity.requiresBackpackPlacement && opportunity.actionId !== null) {
+      setPendingPickupId(null)
+      setPendingTaskEventId(null)
+      setPendingActionId(opportunity.actionId)
+      return
+    }
     setPendingActionId(null)
     setPendingPickupId(null)
     setTaskEventX(null)
@@ -1440,7 +1522,7 @@ export function StableRunUiApp({
   return <>
     {persistenceFeedback && <p className="persistence-feedback" role="status">{persistenceFeedback}</p>}
     {model.kind === 'current-day-hub' && <HubView model={model} actions={interaction.actions} onPreview={setPendingActionId} loadoutOpportunities={interaction.hubLoadoutOpportunities} onLoadout={openHubLoadout} maintenanceOpportunities={interaction.hubMaintenanceOpportunities} onMaintenance={openHubMaintenance} />}
-    {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} onPreview={setPendingActionId} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} taskEventOpportunities={interaction.taskEventOpportunities} onTaskEvent={openTaskEvent} inventoryOpportunities={interaction.inventoryOpportunities} onInventory={openInventory} />}
+    {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} ghost={activeGhost} onPreview={setPendingActionId} onGhostEnter={showGhost} onGhostLeave={hideGhost} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} taskEventOpportunities={interaction.taskEventOpportunities} onTaskEvent={openTaskEvent} inventoryOpportunities={interaction.inventoryOpportunities} onInventory={openInventory} />}
     {model.kind === 'run-failure' && <FailureView
       model={model}
       onRequestNewRunSetup={onRequestNewRunSetup}

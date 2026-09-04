@@ -121,6 +121,10 @@ export interface StableRunUiTaskEventOpportunity {
   readonly height: number
   readonly unitWeight: number
   readonly canRotate: boolean
+  readonly requiresBackpackPlacement: boolean
+  readonly actionId: string | null
+  readonly comparisonFacts: readonly StableRunUiActionPreviewFact[]
+  readonly ghost: StableRunUiGhostPreview | null
 }
 
 export interface StableRunUiTaskEventDraft {
@@ -203,6 +207,23 @@ export interface StableRunUiActionPreviewViewModel {
   }>[]
 }
 
+export type StableRunUiGhostNumber =
+  | Readonly<{ kind: 'single'; value: number }>
+  | Readonly<{ kind: 'range'; minimum: number; maximum: number }>
+  | Readonly<{ kind: 'unavailable'; reason: string }>
+
+export interface StableRunUiGhostPreview {
+  readonly title: string
+  readonly actionTime: number
+  readonly timeAfter: StableRunUiGhostNumber
+  readonly returnReserveAfter: StableRunUiGhostNumber
+  readonly safeMarginAfter: StableRunUiGhostNumber
+  readonly healthAfter: StableRunUiGhostNumber
+  readonly outcomes: readonly ('continue' | 'safe-return' | 'forced-return' | 'death')[]
+  readonly consequences: readonly StableRunUiActionPreviewFact[]
+  readonly tone: 'neutral' | 'warning' | 'danger'
+}
+
 export interface StableRunUiAction {
   readonly id: string
   readonly kind: StableRunUiActionKind
@@ -211,6 +232,7 @@ export interface StableRunUiAction {
   /** Internal formal command; React submits it only after explicit confirm. */
   readonly command: StableRunApplicationCommand
   readonly preview: StableRunUiActionPreviewViewModel
+  readonly ghost?: StableRunUiGhostPreview
 }
 
 function sceneStatusLabel(status: 'active' | 'combat' | 'safe-returned' | 'forced-returned' | 'dead'): string {
@@ -1140,6 +1162,95 @@ export function previewStableRunUiEndDay(
   })
 }
 
+type GhostTimedBranch = Readonly<{
+  outcome: TimedSceneActionOutcome
+  returnEstimate: number
+}>
+
+function ghostNumber(values: readonly number[]): StableRunUiGhostNumber {
+  const minimum = Math.min(...values)
+  const maximum = Math.max(...values)
+  return minimum === maximum
+    ? Object.freeze({ kind: 'single', value: minimum })
+    : Object.freeze({ kind: 'range', minimum, maximum })
+}
+
+function ghostNumberText(value: StableRunUiGhostNumber): string {
+  return value.kind === 'single'
+    ? String(value.value)
+    : value.kind === 'range'
+      ? `${value.minimum}–${value.maximum}`
+      : value.reason
+}
+
+function ghostOutcomeKind(
+  kind: TimedSceneActionOutcome['kind'],
+): StableRunUiGhostPreview['outcomes'][number] {
+  return kind === 'safe-return' ? 'safe-return' : kind
+}
+
+function ghostOutcomeText(
+  outcomes: StableRunUiGhostPreview['outcomes'],
+): string {
+  return outcomes.map((outcome) => outcome === 'continue'
+    ? '继续探索'
+    : outcome === 'safe-return'
+      ? '安全返回'
+      : outcome === 'forced-return'
+        ? '强制返程'
+        : '死亡').join(' / ')
+}
+
+function createTimedGhost(
+  title: string,
+  actionTime: number,
+  branches: readonly GhostTimedBranch[],
+  extraFact?: StableRunUiActionPreviewFact,
+): StableRunUiGhostPreview {
+  if (branches.length === 0) throw new Error('行动 Ghost 缺少正式分支')
+  const timeAfter = ghostNumber(branches.map(({ outcome }) => outcome.clock.remainingTime))
+  const returnReserveAfter = ghostNumber(branches.map(({ returnEstimate }) => returnEstimate))
+  const safeMarginAfter = ghostNumber(branches.map(
+    ({ outcome, returnEstimate }) => outcome.clock.remainingTime - returnEstimate,
+  ))
+  const healthAfter = ghostNumber(branches.map(({ outcome }) => outcome.vitals.currentHealth))
+  const forcedDamage = ghostNumber(branches.map(({ outcome }) => outcome.forcedReturnTotalDamage))
+  const outcomes = Object.freeze(Array.from(new Set(
+    branches.map(({ outcome }) => ghostOutcomeKind(outcome.kind)),
+  )))
+  const consequences: StableRunUiActionPreviewFact[] = []
+  const maximumForcedDamage = Math.max(...branches.map(({ outcome }) => outcome.forcedReturnTotalDamage))
+  if (maximumForcedDamage > 0) {
+    consequences.push({ label: '强制返程损耗', value: ghostNumberText(forcedDamage) })
+  }
+  if (outcomes.some((outcome) => outcome !== 'continue')) {
+    consequences.push({ label: '预计结果', value: ghostOutcomeText(outcomes) })
+  }
+  if (extraFact) {
+    consequences.push(extraFact)
+  }
+  const tone = outcomes.includes('death')
+    ? 'danger'
+    : outcomes.includes('forced-return') || (
+        safeMarginAfter.kind === 'single'
+          ? safeMarginAfter.value < 0
+          : safeMarginAfter.kind === 'range' && safeMarginAfter.minimum < 0
+      )
+      ? 'warning'
+      : 'neutral'
+  return Object.freeze({
+    title,
+    actionTime,
+    timeAfter,
+    returnReserveAfter,
+    safeMarginAfter,
+    healthAfter,
+    outcomes,
+    consequences: Object.freeze(consequences.slice(0, 5).map((fact) => Object.freeze({ ...fact }))),
+    tone,
+  })
+}
+
 function createMoveActions(
   phase: Extract<StableRunPhase, { kind: 'scene-session' }>,
   dependencies: StableRunUiPresentationDependencies,
@@ -1161,6 +1272,12 @@ function createMoveActions(
       kind: 'scene-move' as const,
       label: `前往 ${edge.destinationNodeName}`,
       command: applicationSceneCommand('scene-move', command),
+      ghost: createTimedGhost(
+        `前往 ${edge.destinationNodeName}`,
+        result.finalMovementTime,
+        [{ outcome, returnEstimate: result.returnRoute.estimatedReturnTime }],
+        { label: '目标', value: edge.destinationNodeName },
+      ),
       preview: freezePreview(`确认前往 ${edge.destinationNodeName}`, [
         { label: '目标节点', value: edge.destinationNodeName },
         { label: '本次移动耗时', value: String(result.finalMovementTime) },
@@ -1242,6 +1359,14 @@ function createSearchActions(
       kind: 'scene-main-search' as const,
       label: `主要搜索 · ${illuminationLabel(illumination)}`,
       command: applicationSceneCommand('scene-main-search', command),
+      ghost: createTimedGhost(
+        `主要搜索 · ${illuminationLabel(illumination)}`,
+        result.actionTime,
+        [{ outcome: result.sceneOutcome, returnEstimate: result.returnRoute.estimatedReturnTime }],
+        resource
+          ? { label: '照明资源', value: `${resource.currentBefore} → ${resource.currentAfter}` }
+          : { label: '照明', value: '无照明' },
+      ),
       preview: freezePreview('确认主要搜索', facts, sceneOutcomeWarnings({
         outcome: result.sceneOutcome,
         returnEstimate: result.returnRoute.estimatedReturnTime,
@@ -1347,6 +1472,19 @@ function createObstacleActions(
           'scene-obstacle',
           createPerformSceneObstacleOptionCommand(option.command),
         ),
+        ...(option.outcomes.length > 0
+          ? { ghost: createTimedGhost(
+              optionName,
+              option.actionTime,
+              option.outcomes.map((branch) => ({
+                outcome: branch.sceneOutcome,
+                returnEstimate: branch.returnRoute.estimatedReturnTime,
+              })),
+              option.injuryRiskTier === null
+                ? { label: '警觉', value: option.setsAlert ? '会触发' : '不触发' }
+                : { label: '轻度挫伤风险', value: riskTierName(option.injuryRiskTier) },
+            ) }
+          : {}),
         preview: freezePreview(
           `确认${optionName}`,
           facts,
@@ -1473,6 +1611,124 @@ function taskEventContext(
   return { runtime, scene: phase.payload.scene }
 }
 
+function taskEventComparisonFacts(
+  option: ReturnType<typeof getPlayerVisibleSceneTaskEvents>[number]['options'][number],
+  outputName: string,
+): readonly StableRunUiActionPreviewFact[] {
+  if (option.kind === 'decline') {
+    return Object.freeze([
+      { label: '行动时间', value: '0' },
+      { label: '污染风险', value: '无' },
+      { label: '取得物品', value: '不取得；事件保持可用' },
+    ])
+  }
+  const facts: StableRunUiActionPreviewFact[] = [
+    { label: '行动时间', value: String(option.actionTime) },
+    { label: '污染风险', value: riskTierName(option.effectiveRiskTier) },
+    { label: '厚实外套保护', value: option.impactProtectionActive ? '生效' : '未生效' },
+  ]
+  if (
+    option.impactProtectionActive &&
+    option.impactProtection.integrityBefore !== null &&
+    option.impactProtection.integrityAfter !== null
+  ) {
+    facts.push({
+      label: '外套完整度',
+      value: `${option.impactProtection.integrityBefore} → ${option.impactProtection.integrityAfter}`,
+    })
+  }
+  if (option.output) {
+    facts.push(
+      { label: '保证取得', value: `${outputName} ×${option.output.quantity}` },
+      { label: '尺寸／重量', value: `${option.output.width}×${option.output.height} ／ ${option.output.unitWeight}` },
+    )
+  }
+  if (option.originIntelWillBeRecorded) facts.push({ label: '来源情报', value: '将记录' })
+  return Object.freeze(facts.map((fact) => Object.freeze(fact)))
+}
+
+function taskEventPlacementGhost(
+  scene: Extract<StableRunPhase, { kind: 'scene-session' }>['payload']['scene'],
+  eventId: string,
+  optionId: string,
+  output: NonNullable<ReturnType<typeof getPlayerVisibleSceneTaskEvents>[number]['options'][number]['output']>,
+  runtime: ReturnType<typeof getRunSceneRuntime>,
+  label: string,
+  actionTime: number,
+  riskTier: SceneTaskRiskTier,
+): StableRunUiGhostPreview | null {
+  const rotations = output.canRotate ? [false, true] as const : [false] as const
+  const legal: GhostTimedBranch[] = []
+  for (const rotated of rotations) {
+    for (let y = 0; y < scene.backpack.height; y += 1) {
+      for (let x = 0; x < scene.backpack.width; x += 1) {
+        const command = createPerformSceneTaskEventCommand({
+          eventId,
+          optionId,
+          placement: { x, y, rotated },
+        })
+        const preview = previewPlayerVisibleSceneTaskEventCommand(
+          scene,
+          command,
+          runtime.dependencies,
+        )
+        if (preview.canExecute && preview.result.sceneOutcome && preview.result.returnRoute) {
+          legal.push({
+            outcome: preview.result.sceneOutcome,
+            returnEstimate: preview.result.returnRoute.estimatedReturnTime,
+          })
+        }
+      }
+    }
+  }
+  if (legal.length === 0) return null
+  const first = legal[0]!
+  const hasPlacementDependentOutcome = legal.some(({ outcome, returnEstimate }) =>
+    outcome.kind !== first.outcome.kind ||
+    outcome.clock.remainingTime !== first.outcome.clock.remainingTime ||
+    outcome.vitals.currentHealth !== first.outcome.vitals.currentHealth ||
+    outcome.forcedReturnTotalDamage !== first.outcome.forcedReturnTotalDamage ||
+    returnEstimate !== first.returnEstimate)
+  if (hasPlacementDependentOutcome) return null
+  return createTimedGhost(
+    label,
+    actionTime,
+    [first],
+    { label: '污染风险', value: riskTierName(riskTier) },
+  )
+}
+
+function declineGhost(
+  scene: Extract<StableRunPhase, { kind: 'scene-session' }>['payload']['scene'],
+  runtime: ReturnType<typeof getRunSceneRuntime>,
+  label: string,
+): StableRunUiGhostPreview {
+  const withdrawal = previewSceneWithdrawalCommand(
+    scene,
+    createWithdrawFromSceneCommand({ kind: 'withdraw-from-scene' }),
+    runtime.dependencies,
+  )
+  const reserve = withdrawal.canExecute
+    ? Object.freeze({ kind: 'single' as const, value: withdrawal.result.returnRoute.estimatedReturnTime })
+    : Object.freeze({ kind: 'unavailable' as const, reason: '当前不可预览' })
+  const safeMargin = reserve.kind === 'single'
+    ? Object.freeze({ kind: 'single' as const, value: scene.remainingTime - reserve.value })
+    : reserve
+  return Object.freeze({
+    title: label,
+    actionTime: 0,
+    timeAfter: Object.freeze({ kind: 'single', value: scene.remainingTime }),
+    returnReserveAfter: reserve,
+    safeMarginAfter: safeMargin,
+    healthAfter: Object.freeze({ kind: 'single', value: scene.condition.currentHealth }),
+    outcomes: Object.freeze(['continue'] as const),
+    consequences: Object.freeze([
+      Object.freeze({ label: '任务事件', value: '保持可用' }),
+    ]),
+    tone: 'neutral',
+  })
+}
+
 function createTaskEventInteraction(
   phase: Extract<StableRunPhase, { kind: 'scene-session' }>,
   dependencies: StableRunUiPresentationDependencies,
@@ -1493,19 +1749,34 @@ function createTaskEventInteraction(
     )
     for (const option of event.options) {
       const label = dependencies.labels.taskEventOptionName(option.optionId)
+      const outputName = dependencies.labels.itemName(
+        outputDefinition.id,
+        outputDefinition.name,
+      )
       if (option.requiresBackpackPlacement) {
+        if (!option.output) throw new Error('正式任务事件提取方式缺少玩家可见输出')
         opportunities.push(Object.freeze({
           id: `${event.eventId}:${option.optionId}`,
           label,
           eventName: dependencies.labels.taskEventName(event.eventId),
-          outputName: dependencies.labels.itemName(
-            outputDefinition.id,
-            outputDefinition.name,
+          outputName,
+          width: option.output.width,
+          height: option.output.height,
+          unitWeight: option.output.unitWeight,
+          canRotate: option.output.canRotate,
+          requiresBackpackPlacement: true,
+          actionId: null,
+          comparisonFacts: taskEventComparisonFacts(option, outputName),
+          ghost: taskEventPlacementGhost(
+            scene,
+            event.eventId,
+            option.optionId,
+            option.output,
+            runtime,
+            label,
+            option.actionTime,
+            option.effectiveRiskTier,
           ),
-          width: outputDefinition.width,
-          height: outputDefinition.height,
-          unitWeight: outputDefinition.unitWeight,
-          canRotate: outputDefinition.canRotate,
         }))
         continue
       }
@@ -1519,18 +1790,32 @@ function createTaskEventInteraction(
         runtime.dependencies,
       )
       if (!safe.canExecute) continue
+      const actionId = `scene-task-event:${event.eventId}:${option.optionId}`
+      const ghost = declineGhost(scene, runtime, label)
       actions.push(Object.freeze({
-        id: `scene-task-event:${event.eventId}:${option.optionId}`,
+        id: actionId,
         kind: 'scene-task-event',
         label,
         command: applicationSceneCommand('scene-task-event', command),
+        ghost,
         preview: freezePreview(
           `确认${label}`,
-          taskEventFacts(safe.result, dependencies.labels.itemName(
-            outputDefinition.id,
-            outputDefinition.name,
-          )),
+          taskEventFacts(safe.result, outputName),
         ),
+      }))
+      opportunities.push(Object.freeze({
+        id: `${event.eventId}:${option.optionId}`,
+        label,
+        eventName: dependencies.labels.taskEventName(event.eventId),
+        outputName,
+        width: outputDefinition.width,
+        height: outputDefinition.height,
+        unitWeight: outputDefinition.unitWeight,
+        canRotate: outputDefinition.canRotate,
+        requiresBackpackPlacement: false,
+        actionId,
+        comparisonFacts: taskEventComparisonFacts(option, outputName),
+        ghost,
       }))
     }
   }
@@ -1552,7 +1837,7 @@ export function previewStableRunUiTaskEventDraft(
   if (phase.kind !== 'scene-session' || phase.payload.scene.status !== 'active') return null
   const interaction = createTaskEventInteraction(phase, dependencies)
   const opportunity = interaction.opportunities.find(({ id }) => id === draft.opportunityId)
-  if (!opportunity) return null
+  if (!opportunity || !opportunity.requiresBackpackPlacement) return null
   const separator = draft.opportunityId.lastIndexOf(':')
   if (separator <= 0) return null
   const eventId = draft.opportunityId.slice(0, separator)
@@ -1665,11 +1950,26 @@ function createMedicalActions(
     )
     if (!preview.canExecute) return []
     const result = preview.result
+    const returnEstimate = result.returnContinuation.kind === 'available'
+      ? result.returnContinuation.estimatedReturnTime
+      : 0
     return [Object.freeze({
       id: medicalActionId(command),
       kind: 'scene-medical' as const,
       label: medicalActionLabel(result),
       command: applicationSceneCommand('scene-medical', command),
+      ghost: createTimedGhost(
+        medicalActionLabel(result),
+        result.actionTime,
+        [{ outcome: result.sceneOutcome, returnEstimate }],
+        result.actualHealthRecovery > 0
+          ? { label: '生命恢复', value: `+${result.actualHealthRecovery}` }
+          : result.bleedingBefore !== result.bleedingAfterPrimaryEffect
+            ? { label: '流血', value: result.bleedingAfterPrimaryEffect ? '仍在流血' : '停止' }
+            : result.painkillerActivated
+              ? { label: '镇痛', value: '生效' }
+              : { label: '医疗状态', value: '按正式预览变化' },
+      ),
       preview: freezePreview(
         `确认使用${medicalItemName(result.medicalItem)}`,
         medicalPreviewFacts(result),
@@ -1713,11 +2013,23 @@ function createBatteryActions(
       result.target.definitionId,
       targetDefinition.name,
     )
+    const returnEstimate = result.returnContinuation.kind === 'available'
+      ? result.returnContinuation.estimatedReturnTime
+      : 0
     return [Object.freeze({
       id: batteryActionId(command),
       kind: 'scene-battery' as const,
       label: `使用${sourceName} · ${batteryLocationLabel(result.source)} → ${targetName} · ${batteryLocationLabel(result.target)}`,
       command: applicationSceneCommand('scene-battery', command),
+      ghost: createTimedGhost(
+        `使用${sourceName}充能${targetName}`,
+        result.actionTime,
+        [{ outcome: result.sceneOutcome, returnEstimate }],
+        {
+          label: batteryResourceName(result.resourceKind),
+          value: `${result.resourceBefore} → ${result.resourceAfter}`,
+        },
+      ),
       preview: freezePreview(
         `确认使用${sourceName}充能${targetName}`,
         batteryPreviewFacts(result, sourceName, targetName),
@@ -1744,11 +2056,47 @@ function createWithdrawalAction(
     runtime.dependencies.graph.nodes.find(({ id }) => id === nodeId)?.name ?? nodeId,
   ).join(' → ')
   const outcome = result.sceneOutcome
+  const withdrawalOutcome: StableRunUiGhostPreview['outcomes'][number] =
+    result.snapshot.status === 'safe-returned'
+      ? 'safe-return'
+      : result.snapshot.status === 'forced-returned'
+        ? 'forced-return'
+        : 'death'
+  const withdrawalConsequences: StableRunUiActionPreviewFact[] = []
+  if ((outcome?.forcedReturnTotalDamage ?? 0) > 0) {
+    withdrawalConsequences.push({
+      label: '强制返程损耗',
+      value: String(outcome!.forcedReturnTotalDamage),
+    })
+  }
+  withdrawalConsequences.push({
+    label: '预计结果',
+    value: withdrawalOutcome === 'safe-return'
+      ? '安全返回'
+      : withdrawalOutcome === 'forced-return'
+        ? '强制返程'
+        : '死亡',
+  })
   return Object.freeze({
     id: 'scene-withdraw',
     kind: 'scene-withdraw',
     label: result.snapshot.status === 'safe-returned' ? '主动返程' : '冒险返程',
     command: applicationSceneCommand('scene-withdraw', command),
+    ghost: Object.freeze({
+      title: result.snapshot.status === 'safe-returned' ? '主动返程' : '冒险返程',
+      actionTime: result.returnRoute.estimatedReturnTime,
+      timeAfter: Object.freeze({ kind: 'single', value: result.snapshot.remainingTime }),
+      returnReserveAfter: Object.freeze({ kind: 'single', value: 0 }),
+      safeMarginAfter: Object.freeze({ kind: 'single', value: result.snapshot.remainingTime }),
+      healthAfter: Object.freeze({ kind: 'single', value: result.snapshot.condition.currentHealth }),
+      outcomes: Object.freeze([withdrawalOutcome]),
+      consequences: Object.freeze(withdrawalConsequences.slice(0, 5).map((fact) => Object.freeze(fact))),
+      tone: withdrawalOutcome === 'death'
+        ? 'danger'
+        : withdrawalOutcome === 'forced-return'
+          ? 'warning'
+          : 'neutral',
+    }),
     preview: freezePreview(
       result.snapshot.status === 'safe-returned' ? '确认主动返程' : '确认冒险返程', [
       { label: '返程路线', value: route },

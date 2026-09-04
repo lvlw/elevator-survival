@@ -1207,6 +1207,84 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('主要搜索 · 使用手电筒')
   })
 
+  it('renders the formal Scene Time Budget and keeps mouse and keyboard Ghosts side-effect free', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: sceneSessionAtEmergencyHall() },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const before = inner.getState()
+    const formal = createStableRunUiInteractionModel(before.phase, uiDependencies).actions.find(
+      ({ label }) => label === '前往 电梯前室',
+    )
+    if (!formal?.ghost || formal.ghost.timeAfter.kind !== 'single' || formal.ghost.returnReserveAfter.kind !== 'single') {
+      throw new Error('expected deterministic Move Ghost')
+    }
+    const container = document.createElement('div')
+    document.body.append(container)
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    expect(container.textContent).toContain(`今日时间${before.phase.kind === 'scene-session' ? before.phase.payload.scene.remainingTime : 0} / ${config.scene.totalTime}`)
+    expect(container.querySelector('[aria-label="行动预估"]')).toBeNull()
+    const move = button(container, '前往 电梯前室')
+
+    act(() => { move.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })) })
+    expect(container.textContent).toContain('行动预估前往 电梯前室')
+    expect(container.textContent).toContain(`行动后 ${formal.ghost.timeAfter.value}`)
+    expect(container.textContent).toContain(`返程预留 ${formal.ghost.returnReserveAfter.value}`)
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+    expect(inner.getState()).toBe(before)
+
+    act(() => { move.dispatchEvent(new MouseEvent('mouseout', { bubbles: true })) })
+    expect(container.querySelector('[aria-label="行动预估"]')).toBeNull()
+    act(() => { move.focus() })
+    expect(container.textContent).toContain('行动预估前往 电梯前室')
+    act(() => { move.blur() })
+    expect(container.querySelector('[aria-label="行动预估"]')).toBeNull()
+
+    act(() => { move.click() })
+    expect(container.querySelector('[role="dialog"]')).not.toBeNull()
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    act(() => { button(container, '取消').click() })
+    expect(tracked.commands).toHaveLength(0)
+    act(() => { button(container, '前往 电梯前室').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    container.remove()
+  })
+
+  it('drops a focused Ghost immediately when a formal phase change removes its action', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: sceneSessionAtEmergencyHall() },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    document.body.append(container)
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={inner} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '主动返程').focus() })
+    expect(container.querySelector('[aria-label="行动预估"]')).not.toBeNull()
+    const withdraw = createStableRunUiInteractionModel(inner.getState().phase, uiDependencies).actions.find(
+      ({ kind }) => kind === 'scene-withdraw',
+    )
+    if (!withdraw) throw new Error('expected withdrawal')
+    act(() => { inner.dispatch(withdraw.command) })
+    expect(container.querySelector('[aria-label="行动预估"]')).toBeNull()
+    expect(container.textContent).not.toContain('冒险返程')
+    container.remove()
+  })
+
   it('keeps unresolved fire-door rendering and Preview opening side-effect free in StrictMode', () => {
     const storage = new MemoryStorage()
     const inner = createStableRunStore({
@@ -1225,7 +1303,14 @@ describe('StableRunUiApp', () => {
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
     expect(inner.getState()).toBe(before)
-    act(() => { button(container, '隔离区防火门 · 强行撞门').click() })
+    const forceEntry = button(container, '隔离区防火门 · 强行撞门')
+    act(() => { forceEntry.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })) })
+    const ghost = container.querySelector('[aria-label="行动预估"]')?.textContent ?? ''
+    expect(ghost).toContain('轻度挫伤风险高')
+    expect(ghost).not.toMatch(/riskPercent|roll|streamId|drawIndex|succeeded|%/)
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    act(() => { forceEntry.click() })
     expect(container.textContent).toContain('若未产生轻度挫伤')
     expect(container.textContent).toContain('若产生轻度挫伤')
     expect(tracked.commands).toHaveLength(0)
@@ -1664,7 +1749,15 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('返程后预计剩余：0')
     expect(container.textContent).toContain('当前返程将进入强制返程。')
 
-    act(() => { button(container, '主要搜索 · 使用手电筒').click() })
+    const riskySearch = button(container, '主要搜索 · 使用手电筒')
+    expect(riskySearch.disabled).toBe(false)
+    act(() => { riskySearch.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })) })
+    expect(container.textContent).toContain('行动预估主要搜索 · 使用手电筒')
+    expect(container.textContent).toContain('强制返程损耗')
+    expect(container.textContent).toContain('预计结果强制返程')
+    expect(container.textContent).not.toContain('金属零件')
+    expect(storage.writes).toBe(0)
+    act(() => { riskySearch.click() })
     for (const fact of ['超时债务', '有效紧急撤离时间', '强制返程基础损耗', '强制返程流血追加', '强制返程总损耗', '行动后生命', '死亡风险']) {
       expect(container.textContent).toContain(fact)
     }
@@ -2902,12 +2995,30 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('谨慎检查并提取')
     expect(container.textContent).toContain('直接取出')
     expect(container.textContent).toContain('放弃提取')
+    expect(container.textContent).toContain('先比较提取方式')
+    expect(container.textContent).toContain('行动时间30')
+    expect(container.textContent).toContain('污染风险无')
+    expect(container.textContent).toContain('厚实外套保护生效')
+    expect(container.textContent).toContain('外套完整度1 → 0')
+    expect(container.textContent).toContain('保证取得密封病原样本箱 ×1')
+    expect(container.textContent).toContain('尺寸／重量2×2 ／ 4')
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
+    expect(container.innerHTML).not.toMatch(/riskPercent|randomTrace|roll|runId|sceneInstanceId|instanceId|definitionId|eventId|optionId/i)
+    const cautiousMethod = button(container, '谨慎检查并提取')
+    act(() => { cautiousMethod.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })) })
+    expect(container.textContent).toContain('行动预估谨慎检查并提取')
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    act(() => { cautiousMethod.dispatchEvent(new MouseEvent('mouseout', { bubbles: true })) })
 
-    act(() => { button(container, '谨慎检查并提取').click() })
+    act(() => { cautiousMethod.click() })
     expect(container.textContent).toContain('请在背包网格中明确选择样本箱放置位置')
     expect(button(container, '确认提取').disabled).toBe(true)
     expect(container.querySelectorAll('[role="dialog"] .candidate-cell').length).toBeGreaterThan(1)
     expect(container.querySelectorAll('[role="dialog"] .selected-footprint-cell')).toHaveLength(0)
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
     act(() => { button(container, '格子 1,1').click() })
     expect(container.querySelectorAll('[role="dialog"] .candidate-cell').length).toBeGreaterThan(1)
     expect(container.querySelectorAll('[role="dialog"] .selected-anchor-cell')).toHaveLength(1)
@@ -2967,13 +3078,22 @@ describe('StableRunUiApp', () => {
       const container = document.createElement('div')
       const root = createRoot(container); roots.push(root)
       act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
-      act(() => { button(container, '直接取出').click() })
+      const methodComparison = container.querySelector('.task-event-comparison')?.textContent ?? ''
+      const direct = button(container, '直接取出')
+      act(() => { direct.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })) })
+      const methodGhost = container.querySelector('[aria-label="行动预估"]')?.textContent ?? ''
+      act(() => { direct.dispatchEvent(new MouseEvent('mouseout', { bubbles: true })) })
+      act(() => { direct.click() })
       act(() => { button(container, '格子 1,1').click() })
       const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
-      return { storage, store, container, preview }
+      return { storage, store, container, methodComparison, methodGhost, preview }
     }
     const first = render('pathogen-case-seed')
     const second = render('beta')
+    expect(first.methodComparison).toBe(second.methodComparison)
+    expect(first.methodGhost).toBe(second.methodGhost)
+    expect(first.methodComparison).toContain('保证取得密封病原样本箱 ×1')
+    expect(first.methodGhost).not.toMatch(/riskPercent|randomTrace|roll|stream|draw|succeeded/i)
     expect(first.preview).toBe(second.preview)
     expect(first.preview).toContain('污染风险高')
     expect(first.preview).toContain('可能感染暴露未结算感染暴露 +1')
@@ -3244,7 +3364,14 @@ describe('StableRunUiApp', () => {
       '使用绷带 · 快捷栏1 · 处理撕裂伤 2',
     ]
     for (const label of labels) expect(button(container, label)).toBeInstanceOf(HTMLButtonElement)
-    act(() => { button(container, labels[1]!).click() })
+    const selectedMedical = button(container, labels[1]!)
+    act(() => { selectedMedical.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })) })
+    expect(container.textContent).toContain('行动预估')
+    expect(container.textContent).toContain('流血停止')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    act(() => { selectedMedical.dispatchEvent(new MouseEvent('mouseout', { bubbles: true })) })
+    act(() => { selectedMedical.click() })
     expect(container.textContent).toContain('实际生命恢复0')
     expect(container.textContent).toContain('流血（主要效果）是 → 否')
     expect(container.textContent).toContain('处理伤口撕裂伤 2')
@@ -3824,7 +3951,16 @@ describe('StableRunUiApp', () => {
       '使用通用电池 · 背包格 2,1 → 手电筒 · 实用装备位',
     ]
     for (const label of labels) expect(button(container, label)).toBeInstanceOf(HTMLButtonElement)
-    act(() => { button(container, labels[1]!).click() })
+    const selectedBattery = button(container, labels[1]!)
+    act(() => { selectedBattery.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })) })
+    expect(container.textContent).toContain('行动预估')
+    expect(container.textContent).toContain('电量2 → 3')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+    expect(inner.getState()).toBe(before)
+    act(() => { selectedBattery.dispatchEvent(new MouseEvent('mouseout', { bubbles: true })) })
+    act(() => { selectedBattery.click() })
     expect(container.textContent).toContain('电池数量2 → 1')
     expect(container.textContent).toContain('电量2 → 3')
     expect(container.textContent).toContain('实际恢复1')

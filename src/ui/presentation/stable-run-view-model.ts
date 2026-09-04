@@ -146,6 +146,17 @@ export interface PlayerVisibleStatusBarViewModel {
   readonly mainSceneUsedToday: boolean
 }
 
+export interface PlayerVisibleSceneTimeBudgetViewModel {
+  readonly totalTime: number
+  readonly remainingTime: number
+  readonly usedTime: number
+  readonly returnReserve: number | null
+  readonly returnAfterWithdrawalTime: number | null
+  readonly safeMargin: number | null
+  readonly returnRisk: 'safe-returned' | 'forced-returned' | 'dead' | null
+  readonly unavailableReason: 'combat-recalculate' | 'terminal' | null
+}
+
 export interface PlayerVisibleCombatViewModel {
   readonly enemyName: string
   readonly enemyHealthStage: 'healthy' | 'wounded' | 'severely-wounded' | 'critical' | 'incapacitated'
@@ -333,6 +344,7 @@ export type StableRunPlayerViewModel =
         returnEstimate: number | null
         returnAfterWithdrawalTime: number | null
         returnRisk: 'safe-returned' | 'forced-returned' | 'dead' | null
+        timeBudget: PlayerVisibleSceneTimeBudgetViewModel
         currentNodeSearchState: 'not-available' | 'available-unsearched' | 'searched'
         currentObstacles: readonly Readonly<{ name: string }>[]
         groundItems: readonly PlayerVisibleItemViewModel[]
@@ -533,6 +545,9 @@ function createSceneView(
         statusAfter: projectFormalReturnRisk(withdrawal.result.snapshot.status),
       })
     : null
+  const totalTime = runtime.dependencies.config.scene.totalTime
+  const returnReserve = returnPreview?.estimatedReturnTime ?? null
+  const safeMargin = returnReserve === null ? null : scene.remainingTime - returnReserve
   const activeEncounter = scene.combatState.encounters.find((encounter) => encounter.kind === 'active')
   const combat = activeEncounter?.kind === 'active'
     ? (() => {
@@ -603,6 +618,20 @@ function createSceneView(
       returnEstimate: returnPreview?.estimatedReturnTime ?? null,
       returnAfterWithdrawalTime: returnPreview?.remainingTimeAfter ?? null,
       returnRisk: returnPreview?.statusAfter ?? null,
+      timeBudget: frozen({
+        totalTime,
+        remainingTime: scene.remainingTime,
+        usedTime: totalTime - scene.remainingTime,
+        returnReserve,
+        returnAfterWithdrawalTime: returnPreview?.remainingTimeAfter ?? null,
+        safeMargin,
+        returnRisk: returnPreview?.statusAfter ?? null,
+        unavailableReason: returnPreview === null
+          ? scene.status === 'combat'
+            ? 'combat-recalculate'
+            : 'terminal'
+          : null,
+      }),
       currentNodeSearchState: playerNode.search.kind,
       currentObstacles: frozen(currentObstacles),
       groundItems: frozen(playerNode.groundItems.map((item) => itemView(item, scene.itemStates, runtime, dependencies.labels))),

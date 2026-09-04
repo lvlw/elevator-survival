@@ -17,6 +17,7 @@ export {
   type PlayerVisibleItemHelpViewModel,
   type PlayerVisibleLoadoutViewModel,
   type PlayerVisibleStatusBarViewModel,
+  type PlayerVisibleSceneTimeBudgetViewModel,
   type ReturnSummaryViewModel,
   type StableRunPlayerViewModel,
   type StableRunUiLabels,

@@ -283,7 +283,23 @@ describe('hospital pathogen case retrieval', () => {
     expect(visible).toMatchObject({
       effectiveRiskTier: metadata.effectiveRiskTier,
       impactProtectionActive: metadata.impactProtectionActive,
+      impactProtection: {
+        integrityBefore: metadata.armorResourceBefore,
+        integrityCost: metadata.actualIntegrityConsumed,
+        integrityAfter: metadata.armorResourceAfter,
+      },
+      output: {
+        definitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase,
+        quantity: 1,
+        width: 2,
+        height: 2,
+        unitWeight: 4,
+        canRotate: true,
+      },
+      possibleExposureAmount: metadata.possibleExposureAmount,
+      originIntelWillBeRecorded: true,
     })
+    expect(JSON.stringify(visible)).not.toMatch(/riskPercent|roll|streamId|drawIndex|succeeded/)
   })
 
   it('keeps opposite direct contamination outcomes identical in the player-safe preview', () => {

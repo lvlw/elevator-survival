@@ -338,6 +338,36 @@ describe('stable Run UI interaction model', () => {
     expect(phase.payload.scene.currentNodeId).toBe(HOSPITAL_NODE_IDS.emergencyHall)
   })
 
+  it('projects bounded typed Move and Search Ghosts from the same formal preview facts', () => {
+    const phase = moveToEmergencyHall()
+    const interaction = createStableRunUiInteractionModel(phase, dependencies)
+    for (const label of ['前往 电梯前室', '主要搜索 · 使用手电筒']) {
+      const action = interaction.actions.find((candidate) => candidate.label === label)
+      expect(action?.ghost).toBeDefined()
+      expect(action?.ghost?.consequences.length).toBeLessThanOrEqual(5)
+      const time = action?.preview.facts.find((fact) => fact.label === '行动后剩余时间')?.value
+      const reserve = action?.preview.facts.find((fact) => fact.label === '行动后预计返程')?.value
+      expect(action?.ghost?.timeAfter).toEqual({ kind: 'single', value: Number(time) })
+      expect(action?.ghost?.returnReserveAfter).toEqual({ kind: 'single', value: Number(reserve) })
+      expect(action?.ghost?.safeMarginAfter).toEqual({
+        kind: 'single',
+        value: Number(time) - Number(reserve),
+      })
+      const serialized = JSON.stringify(action?.ghost)
+      for (const hidden of ['preparedOutcome', 'revealedItemSummary', 'riskPercent', 'roll', 'streamId', 'drawIndex']) {
+        expect(serialized).not.toContain(hidden)
+      }
+    }
+    const illuminated = interaction.actions.find(({ label }) => label === '主要搜索 · 使用手电筒')
+    const unlit = interaction.actions.find(({ label }) => label === '主要搜索 · 无照明')
+    expect(illuminated?.ghost?.actionTime).not.toBe(unlit?.ghost?.actionTime)
+    expect(illuminated?.ghost?.consequences).toContainEqual({ label: '照明资源', value: '3 → 2' })
+    expect(unlit?.ghost?.consequences).toContainEqual({ label: '照明', value: '无照明' })
+    expect(phase.payload.scene.searchState.nodeStates.find(
+      ({ nodeId }) => nodeId === phase.payload.scene.currentNodeId,
+    )?.kind).toBe('unsearched')
+  })
+
   it('routes only formally executable fire-door options into safe labelled previews', () => {
     const base = createStableRunUiInteractionModel(moveToEmergencyHall(), dependencies)
     const obstacleActions = base.actions.filter(({ kind }) => kind === 'scene-obstacle')
@@ -410,6 +440,15 @@ describe('stable Run UI interaction model', () => {
         { label: '超时债务', value: '15' },
       ]))
     }
+    expect(force?.ghost?.timeAfter).toEqual({ kind: 'single', value: 0 })
+    expect(force?.ghost?.consequences.length).toBeLessThanOrEqual(5)
+    expect(JSON.stringify(force?.ghost)).not.toMatch(/riskPercent|roll|streamId|drawIndex|succeeded/)
+    const normalForce = createStableRunUiInteractionModel(
+      moveToEmergencyHall(),
+      dependencies,
+    ).actions.find(({ label }) => label === '隔离区防火门 · 强行撞门')
+    expect(normalForce?.ghost?.returnReserveAfter.kind).toBe('single')
+    expect(normalForce?.ghost?.consequences).toContainEqual({ label: '轻度挫伤风险', value: '低' })
   })
 
   it('warns when a continuing action falls below its formal return estimate', () => {

@@ -625,6 +625,21 @@ export interface PlayerVisibleSceneTaskEventOption {
   readonly actionTime: number
   readonly effectiveRiskTier: SceneTaskRiskTier
   readonly impactProtectionActive: boolean
+  readonly impactProtection: Readonly<{
+    readonly integrityBefore: number | null
+    readonly integrityCost: number
+    readonly integrityAfter: number | null
+  }>
+  readonly output: Readonly<{
+    readonly definitionId: string
+    readonly quantity: number
+    readonly width: number
+    readonly height: number
+    readonly unitWeight: number
+    readonly canRotate: boolean
+  }> | null
+  readonly possibleExposureAmount: number
+  readonly originIntelWillBeRecorded: boolean
   readonly requiresBackpackPlacement: boolean
 }
 

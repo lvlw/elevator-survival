@@ -174,6 +174,19 @@ describe('stable Run player-visible ViewModel', () => {
     expect(model.scene.returnEstimate).toBe(0)
     expect(model.scene.returnAfterWithdrawalTime).toBe(200)
     expect(model.scene.returnRisk).toBe('safe-returned')
+    expect(model.scene.timeBudget).toEqual({
+      totalTime: config.scene.totalTime,
+      remainingTime: model.scene.remainingTime,
+      usedTime: 0,
+      returnReserve: model.scene.returnEstimate,
+      returnAfterWithdrawalTime: model.scene.returnAfterWithdrawalTime,
+      safeMargin: model.scene.remainingTime - model.scene.returnEstimate!,
+      returnRisk: model.scene.returnRisk,
+      unavailableReason: null,
+    })
+    const canonical = scenePhase()
+    if (canonical.kind !== 'scene-session') throw new Error('expected Scene')
+    expect('timeBudget' in canonical.payload.scene).toBe(false)
     expect(model.scene.currentNodeSearchState).toBe('not-available')
     expect(model.scene.currentObstacles).toEqual([])
     expect(JSON.stringify(model)).not.toContain('preparedOutcome')
@@ -197,6 +210,10 @@ describe('stable Run player-visible ViewModel', () => {
     expect(model.scene.returnEstimate).toBeGreaterThan(0)
     expect(model.scene.returnAfterWithdrawalTime).toBe(0)
     expect(model.scene.returnRisk).toBe('forced-returned')
+    expect(model.scene.timeBudget.safeMargin).toBe(
+      model.scene.remainingTime - model.scene.returnEstimate!,
+    )
+    expect(model.scene.timeBudget.safeMargin).toBeLessThan(0)
   })
 
   it('projects every formal 2×3 fire-axe footprint cell without internal item identity', () => {
@@ -232,7 +249,8 @@ describe('stable Run player-visible ViewModel', () => {
   })
 
   it('projects combat as relative enemy information without exact enemy health or risk traces', () => {
-    const model = createStableRunPlayerViewModel(combatPhase(), dependencies)
+    const phase = combatPhase()
+    const model = createStableRunPlayerViewModel(phase, dependencies)
     if (model.kind !== 'scene-session' || model.scene.combat === null) throw new Error('expected combat model')
     expect(model.scene.combat.enemyName).toBe('感染护工')
     expect(model.scene.combat.enemyHealthStage).toBe('healthy')
@@ -246,6 +264,13 @@ describe('stable Run player-visible ViewModel', () => {
       currentCtb: 0,
       sceneTimeIfCombatEndedNow: 10,
       minimumSceneTime: 10,
+    })
+    expect(model.scene.timeBudget).toMatchObject({
+      remainingTime: phase.kind === 'scene-session' ? phase.payload.scene.remainingTime : -1,
+      returnReserve: null,
+      returnAfterWithdrawalTime: null,
+      safeMargin: null,
+      unavailableReason: 'combat-recalculate',
     })
     expect(model.status.condition.wounds).toEqual([
       { kind: 'laceration', treatment: 'untreated', ordinal: 1 },

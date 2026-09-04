@@ -12,6 +12,8 @@ export {
   type StableRunUiActionKind,
   type StableRunUiActionPreviewFact,
   type StableRunUiActionPreviewViewModel,
+  type StableRunUiGhostNumber,
+  type StableRunUiGhostPreview,
   type StableRunUiInteractionModel,
   type StableRunUiEndDayPreview,
   type StableRunUiPickupDraft,

@@ -42,12 +42,34 @@ export function getPlayerVisibleSceneTaskEvents(
           option.id,
           dependencies,
         )
+        const output = metadata.outputDefinitionId === null
+          ? null
+          : (() => {
+              const definition = dependencies.physicalCatalog.get(metadata.outputDefinitionId)
+              return {
+                definitionId: definition.id,
+                quantity: metadata.outputQuantity,
+                width: definition.width,
+                height: definition.height,
+                unitWeight: definition.unitWeight,
+                canRotate: definition.canRotate,
+              }
+            })()
         return [{
           optionId: metadata.optionId,
           kind: metadata.kind,
           actionTime: metadata.actionTime,
           effectiveRiskTier: metadata.effectiveRiskTier,
           impactProtectionActive: metadata.impactProtectionActive,
+          impactProtection: {
+            integrityBefore: metadata.armorResourceBefore,
+            integrityCost: metadata.actualIntegrityConsumed,
+            integrityAfter: metadata.armorResourceAfter,
+          },
+          output,
+          possibleExposureAmount: metadata.possibleExposureAmount,
+          originIntelWillBeRecorded: metadata.originIntelId !== null &&
+            !snapshot.runIntelLog.intelIds.includes(metadata.originIntelId),
           requiresBackpackPlacement: metadata.requiresBackpackPlacement,
         }]
       } catch (error) {

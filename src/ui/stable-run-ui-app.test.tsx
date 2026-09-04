@@ -66,6 +66,7 @@ import {
 import {
   createDailySettlementResultViewModel,
   createHubSurvivalResultViewModel,
+  createStableRunPlayerViewModel,
 } from './presentation'
 
 Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true })
@@ -1260,6 +1261,84 @@ describe('StableRunUiApp', () => {
     expect(storage.writes).toBe(1)
     expect(notifications).toBe(1)
     container.remove()
+  })
+
+  it('uses the formal withdrawal result at the exact safety boundary and for forced-return and death warnings', () => {
+    const hall = sceneSessionAtEmergencyHall()
+    const runtime = getRunSceneRuntime(hall, hospitalSceneLaunchDependencies)
+    const initialReturn = previewSceneWithdrawalCommand(
+      hall.scene,
+      createWithdrawFromSceneCommand({ kind: 'withdraw-from-scene' }),
+      runtime.dependencies,
+    )
+    if (!initialReturn.canExecute) throw new Error('expected initial formal withdrawal preview')
+    const exactSession = withRemainingTime(hall, initialReturn.result.returnRoute.estimatedReturnTime)
+    const exactPhase = { kind: 'scene-session' as const, payload: exactSession }
+    const exactReturn = previewSceneWithdrawalCommand(
+      exactSession.scene,
+      createWithdrawFromSceneCommand({ kind: 'withdraw-from-scene' }),
+      runtime.dependencies,
+    )
+    if (!exactReturn.canExecute) throw new Error('expected exact-boundary withdrawal preview')
+    const exactModel = createStableRunPlayerViewModel(exactPhase, uiDependencies)
+    if (exactModel.kind !== 'scene-session') throw new Error('expected exact-boundary Scene model')
+    expect(exactModel.scene.timeBudget.safeMargin).toBe(0)
+    expect(exactModel.scene.timeBudget.returnRisk).toBe('safe-returned')
+    expect(exactReturn.result.snapshot.status).toBe('safe-returned')
+    expect(exactReturn.result.snapshot.remainingTime).toBe(0)
+    expect(exactReturn.result.sceneOutcome?.forcedReturnTotalDamage).toBe(0)
+
+    const exactStorage = new MemoryStorage()
+    const exactInner = createStableRunStore({
+      initialPhase: exactPhase,
+      storage: exactStorage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const exactTracked = trackedStore(exactInner)
+    const exactContainer = document.createElement('div')
+    const exactRoot = createRoot(exactContainer); roots.push(exactRoot)
+    act(() => { exactRoot.render(<StableRunUiApp store={exactTracked.store} presentationDependencies={uiDependencies} />) })
+    expect(exactContainer.textContent).toContain('安全余量：0')
+    expect(exactContainer.textContent).not.toContain('当前返程将进入强制返程')
+    expect(exactContainer.textContent).not.toContain('强制返程损耗')
+    act(() => { button(exactContainer, '主动返程').click() })
+    expect(exactContainer.textContent).toContain('预计结果安全返回')
+    expect(exactContainer.textContent).not.toContain('强制返程损耗')
+    act(() => { button(exactContainer, '确认执行').click() })
+    expect(exactTracked.commands).toHaveLength(1)
+    expect(exactStorage.writes).toBe(1)
+    const committed = exactInner.getState().phase
+    expect(committed.kind).toBe('scene-session')
+    if (committed.kind !== 'scene-session') throw new Error('expected exact-boundary terminal Scene')
+    expect(committed.payload.scene.status).toBe('safe-returned')
+    expect(committed.payload.scene.remainingTime).toBe(0)
+
+    const forcedPhase = {
+      kind: 'scene-session' as const,
+      payload: withRemainingTime(hall, 5),
+    }
+    const forcedModel = createStableRunPlayerViewModel(forcedPhase, uiDependencies)
+    if (forcedModel.kind !== 'scene-session') throw new Error('expected forced-return Scene model')
+    expect(forcedModel.scene.timeBudget.returnRisk).toBe('forced-returned')
+    const forcedContainer = document.createElement('div')
+    const forcedRoot = createRoot(forcedContainer); roots.push(forcedRoot)
+    act(() => { forcedRoot.render(<StableRunUiApp store={createStableRunStore({ initialPhase: forcedPhase, storage: new MemoryStorage(), rulesRegistry: hospitalRunSaveRulesRegistry })} presentationDependencies={uiDependencies} />) })
+    expect(forcedContainer.textContent).toContain('当前返程将进入强制返程。')
+    expect(forcedContainer.textContent).not.toContain('当前正式返程预览将导致死亡。')
+
+    const deathPhase = sceneMedicalPhase({
+      currentHealth: 1,
+      bleeding: false,
+      remainingTime: 5,
+    })
+    const deathModel = createStableRunPlayerViewModel(deathPhase, uiDependencies)
+    if (deathModel.kind !== 'scene-session') throw new Error('expected deadly-return Scene model')
+    expect(deathModel.scene.timeBudget.returnRisk).toBe('dead')
+    const deathContainer = document.createElement('div')
+    const deathRoot = createRoot(deathContainer); roots.push(deathRoot)
+    act(() => { deathRoot.render(<StableRunUiApp store={createStableRunStore({ initialPhase: deathPhase, storage: new MemoryStorage(), rulesRegistry: hospitalRunSaveRulesRegistry })} presentationDependencies={uiDependencies} />) })
+    expect(deathContainer.textContent).toContain('当前正式返程预览将导致死亡。')
+    expect(deathContainer.textContent).not.toContain('当前返程将进入强制返程。')
   })
 
   it('drops a focused Ghost immediately when a formal phase change removes its action', () => {

@@ -16,9 +16,7 @@ function ghostNumberText(value: StableRunUiGhostNumber): string {
 
 function budgetTone(budget: PlayerVisibleSceneTimeBudgetViewModel): 'normal' | 'warning' | 'danger' {
   if (budget.returnRisk === 'dead') return 'danger'
-  if (budget.returnRisk === 'forced-returned' || (budget.safeMargin !== null && budget.safeMargin <= 0)) {
-    return 'warning'
-  }
+  if (budget.returnRisk === 'forced-returned') return 'warning'
   return 'normal'
 }
 

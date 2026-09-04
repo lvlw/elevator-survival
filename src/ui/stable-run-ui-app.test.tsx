@@ -1025,6 +1025,112 @@ describe('Failure New Run Setup request boundary', () => {
 })
 
 describe('StableRunUiApp', () => {
+  it('renders the formal health and satiety maxima as accessible core HUD meters', () => {
+    const scenario = createHospitalDevelopmentPreviewScenario('hub')
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={scenario.store} presentationDependencies={uiDependencies} />) })
+
+    const health = container.querySelector('[role="progressbar"][aria-label="生命"]')
+    const satiety = container.querySelector('[role="progressbar"][aria-label="饱食"]')
+    expect(health?.getAttribute('aria-valuemax')).toBe(String(config.combat.player.maxHealth))
+    expect(health?.getAttribute('aria-valuenow')).toBe('9')
+    expect(health?.getAttribute('aria-valuetext')).toBe(`9 / ${config.combat.player.maxHealth}`)
+    expect(satiety?.getAttribute('aria-valuemax')).toBe(String(config.dailySettlement.maxSatiety))
+    expect(satiety?.getAttribute('aria-valuenow')).toBe('4')
+    expect(satiety?.getAttribute('aria-valuetext')).toBe(`4 / ${config.dailySettlement.maxSatiety}`)
+    expect(container.textContent).toContain('世界威胁')
+    expect(container.textContent).toContain('无感染')
+    expect(container.innerHTML).not.toContain('worldThreat.progress')
+  })
+
+  it('presents one unified three-slot, two-quick-slot, 6×4 carrying panel from canonical loadout facts', () => {
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: createHubLoadoutPhase({ bothQuickSlots: true }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+
+    expect(container.querySelectorAll('.equipment-slot')).toHaveLength(3)
+    expect(container.querySelectorAll('.quick-slot')).toHaveLength(2)
+    expect(container.querySelectorAll('.backpack-grid > .grid-cell')).toHaveLength(24)
+    expect(container.querySelectorAll('.backpack-grid > .occupied-cell')).toHaveLength(14)
+    expect(container.querySelector('.backpack-grid')?.children[2]?.textContent).toContain('金属管')
+    expect(container.textContent).toContain('耐久')
+    expect(container.textContent).toContain('背包负重')
+    expect(container.textContent).toContain('负重状态：')
+    expect(container.textContent).toContain('金属管')
+    expect(container.textContent).toContain('绷带')
+    for (const hidden of ['hub-ui-equipped-pipe', 'hub-ui-quick-bandage', 'hub-loadout-ui-run', config.metadata.rulesVersion]) {
+      expect(container.innerHTML).not.toContain(hidden)
+    }
+    expect(storage.writes).toBe(0)
+  })
+
+  it('keeps durability, integrity, and flashlight illumination visible from formal equipment resources', () => {
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: createHubPhase({ combatReady: true }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+
+    expect(container.textContent).toContain('耐久 6 / 6')
+    expect(container.textContent).toContain('完整度 4 / 4')
+    expect(container.textContent).toContain('照明 3 / 3')
+    expect(storage.writes).toBe(0)
+  })
+
+  it('exposes player-safe help for HUD and carried items through keyboard-focusable info cards', () => {
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: createHubLoadoutPhase({ bothQuickSlots: true }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    document.body.append(container)
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+
+    const healthHelp = container.querySelector<HTMLButtonElement>('button[aria-label="查看生命说明"]')
+    if (!healthHelp) throw new Error('expected health help trigger')
+    const tooltipId = healthHelp.getAttribute('aria-describedby')
+    expect(tooltipId).toBeTruthy()
+    expect(container.querySelector(`[id="${tooltipId}"]`)?.getAttribute('role')).toBe('tooltip')
+    act(() => { healthHelp.focus() })
+    expect(document.activeElement).toBe(healthHelp)
+    expect(container.textContent).toContain('生命降至0会导致本局失败')
+    expect(container.textContent).toContain('内部精确进展不会向普通玩家公开')
+    expect(container.querySelector('.equipment-slot button[aria-label="查看金属管说明"]')).not.toBeNull()
+    expect(container.querySelector('.backpack-compartment button[aria-label="查看绷带说明"]')).not.toBeNull()
+    expect(container.querySelector('.quick-slot-rack button[aria-label="查看绷带说明"]')).not.toBeNull()
+    expect(container.textContent).toContain('提供稳定伤害与控制')
+    expect(container.textContent).toContain('用于处理指定的未处理开放伤口')
+    act(() => { healthHelp.blur() })
+    container.remove()
+  })
+
+  it.each(['hub', 'scene', 'combat', 'failure'] as const)(
+    'uses the same visual game-shell language for the %s lifecycle',
+    (kind) => {
+      const scenario = createHospitalDevelopmentPreviewScenario(kind)
+      const container = document.createElement('div')
+      const root = createRoot(container); roots.push(root)
+      act(() => { root.render(<StableRunUiApp store={scenario.store} presentationDependencies={uiDependencies} />) })
+      expect(container.querySelector('.game-shell-layout')).not.toBeNull()
+      expect(container.querySelector(kind === 'failure' ? '.failure-stage' : '.game-stage')).not.toBeNull()
+      if (kind !== 'failure') expect(container.querySelector('.core-hud')).not.toBeNull()
+    },
+  )
+
   it.each(['hub', 'scene', 'combat', 'failure'] as const)(
     'keeps internal lifecycle and resource enums out of the ordinary %s DOM',
     (kind) => {

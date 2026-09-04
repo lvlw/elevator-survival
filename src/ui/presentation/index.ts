@@ -14,6 +14,7 @@ export {
   type PlayerVisibleCombatViewModel,
   type PlayerVisibleConditionViewModel,
   type PlayerVisibleItemViewModel,
+  type PlayerVisibleItemHelpViewModel,
   type PlayerVisibleLoadoutViewModel,
   type PlayerVisibleStatusBarViewModel,
   type ReturnSummaryViewModel,

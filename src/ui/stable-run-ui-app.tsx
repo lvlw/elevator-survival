@@ -51,25 +51,12 @@ import {
   type DailySettlementResultViewModel,
 } from './presentation'
 import { useStableRunStoreSnapshot } from './run-store/use-stable-run-store-snapshot'
+import { InfoCard } from './components/info-card'
 
 export interface StableRunUiAppProps {
   readonly store: StableRunStore
   readonly presentationDependencies: StableRunUiPresentationDependencies
   readonly onRequestNewRunSetup?: () => void
-}
-
-function conditionSummary(status: PlayerVisibleStatusBarViewModel): string {
-  const condition = status.condition
-  const wounds = condition.untreatedOpenWounds + condition.treatedOpenWounds
-  return [
-    condition.bleeding ? '流血' : '未流血',
-    wounds > 0 ? `开放伤口 ${wounds}` : '无开放伤口',
-    condition.minorContusions > 0 ? '轻度挫伤' : null,
-    condition.painkillerActive ? '镇痛中' : null,
-    condition.pendingInfectionExposures > 0
-      ? `未结算感染暴露 ${condition.pendingInfectionExposures}`
-      : null,
-  ].filter((entry): entry is string => entry !== null).join(' · ')
 }
 
 function itemResourceText(item: PlayerVisibleItemViewModel): string | null {
@@ -102,40 +89,145 @@ function searchStateName(
       : '已经搜索'
 }
 
+function ResourceBar({
+  label,
+  current,
+  maximum,
+  tone,
+  help,
+}: Readonly<{
+  label: string
+  current: number
+  maximum: number
+  tone: 'health' | 'satiety'
+  help: Readonly<{ title: string; summary: string; details?: readonly string[] }>
+}>) {
+  const percent = maximum === 0 ? 0 : Math.max(0, Math.min(100, (current / maximum) * 100))
+  return <div className={`hud-resource hud-resource--${tone}`}>
+    <div className="hud-resource__label">
+      <span>{label}</span>
+      <InfoCard label={`查看${label}说明`} title={help.title} summary={help.summary} details={help.details} />
+      <strong>{current} / {maximum}</strong>
+    </div>
+    <div
+      className="resource-meter"
+      role="progressbar"
+      aria-label={label}
+      aria-valuemin={0}
+      aria-valuemax={maximum}
+      aria-valuenow={current}
+      aria-valuetext={`${current} / ${maximum}`}
+    >
+      <span className="resource-meter__fill" style={{ width: `${percent}%` }} />
+    </div>
+  </div>
+}
+
+function ConditionChips({ status }: Readonly<{ status: PlayerVisibleStatusBarViewModel }>) {
+  const condition = status.condition
+  const wounds = condition.untreatedOpenWounds + condition.treatedOpenWounds
+  const chips = [
+    { label: condition.bleeding ? '流血' : '未流血', active: condition.bleeding },
+    { label: wounds > 0 ? `开放伤口 ${wounds}` : '无开放伤口', active: wounds > 0 },
+    { label: `轻度挫伤 ${condition.minorContusions}`, active: condition.minorContusions > 0 },
+    { label: condition.painkillerActive ? '镇痛中' : '未镇痛', active: condition.painkillerActive },
+    { label: `未结算感染暴露 ${condition.pendingInfectionExposures}`, active: condition.pendingInfectionExposures > 0 },
+  ]
+  return <div className="condition-strip" aria-label="玩家状态">
+    <span className="condition-strip__title">状态</span>
+    {chips.map(({ label, active }) => <span className={`status-chip${active ? ' status-chip--active' : ''}`} key={label}>{label}</span>)}
+    <InfoCard
+      label="查看玩家状态说明"
+      title="玩家状态"
+      summary="流血、伤口、挫伤与镇痛会影响当前行动和后续结算。"
+      details={['未结算感染暴露会在日结算中推动感染恶化。', '具体处理资格与结果以正式行动预览为准。']}
+    />
+  </div>
+}
+
 function StatusBar({ status }: Readonly<{ status: PlayerVisibleStatusBarViewModel }>) {
-  return (
-    <header className="run-status-bar" aria-label="本局状态">
-      <div><span>第 {status.currentDay} 日</span><strong>{status.condition.currentHealth} / {status.condition.maximumHealth} HP</strong></div>
-      <div><span>状态</span><strong>{conditionSummary(status)}</strong></div>
-      <div><span>世界威胁</span><strong>{status.worldThreatStage}</strong></div>
-      <div><span>饱食</span><strong>{status.satiety}</strong></div>
-      <div><span>主场景</span><strong>{status.mainSceneUsedToday ? '今日已进入' : '尚未进入'}</strong></div>
-    </header>
-  )
+  return <header className="run-status-bar core-hud" aria-label="本局状态">
+    <div className="hud-day"><span>当前日期</span><strong>第 {status.currentDay} 日</strong></div>
+    <ResourceBar
+      label="生命"
+      current={status.condition.currentHealth}
+      maximum={status.condition.maximumHealth}
+      tone="health"
+      help={{ title: '生命', summary: '生命降至0会导致本局失败。', details: ['治疗资格和恢复量以正式行动预览为准。'] }}
+    />
+    <ResourceBar
+      label="饱食"
+      current={status.satiety}
+      maximum={status.maximumSatiety}
+      tone="satiety"
+      help={{ title: '饱食', summary: '饱食主要在每日结算中消耗。', details: ['饱食不足会降低恢复，严重不足还会损失生命。'] }}
+    />
+    <div className="hud-stage">
+      <span>世界威胁</span>
+      <span className="threat-badge">{status.worldThreatStage}</span>
+      <InfoCard
+        label="查看世界威胁与感染说明"
+        title="世界威胁与感染"
+        summary="感染暴露会在日结算中推动感染恶化，终末阶段会导致本局失败。"
+        details={['消毒剂处理未结算暴露。', '感染抑制剂作用于当日感染增加。', '内部精确进展不会向普通玩家公开。']}
+      />
+    </div>
+    <div className="hud-mission"><span>主场景</span><strong>{status.mainSceneUsedToday ? '今日已进入' : '尚未进入'}</strong></div>
+    <ConditionChips status={status} />
+  </header>
+}
+
+function ItemCard({ item }: Readonly<{ item: PlayerVisibleItemViewModel }>) {
+  return <span className="item-card-copy">
+    <span><strong>{item.name}</strong> ×{item.quantity}</span>
+    {item.resource && <em>{itemResourceText(item)}</em>}
+    <InfoCard
+      label={`查看${item.name}说明`}
+      title={item.name}
+      summary={`${item.help.role}。${item.help.summary}`}
+      details={[
+        ...item.help.usageHints,
+        ...(item.resource ? [`当前${item.resource.label}：${item.resource.current} / ${item.resource.maximum}`] : []),
+      ]}
+    />
+  </span>
 }
 
 function ItemList({ items, empty = '无' }: Readonly<{ items: readonly PlayerVisibleItemViewModel[]; empty?: string }>) {
   if (items.length === 0) return <p className="empty-copy">{empty}</p>
-  return <ul className="item-list">{items.map((item, index) => (
-    <li key={`${item.name}-${index}`}><span>{item.name} ×{item.quantity}</span>{item.resource && <em>{itemResourceText(item)}</em>}</li>
-  ))}</ul>
+  return <ul className="item-list">{items.map((item, index) => <li key={`${item.name}-${index}`}><ItemCard item={item} /></li>)}</ul>
 }
 
-function LoadoutPanel({ loadout }: Readonly<{ loadout: PlayerVisibleLoadoutViewModel }>) {
+function EquipmentSlot({ label, item }: Readonly<{ label: string; item: PlayerVisibleItemViewModel | null }>) {
+  return <article className={`carry-slot equipment-slot${item ? ' carry-slot--filled' : ''}`}>
+    <span className="carry-slot__label">{label}</span>
+    {item ? <ItemCard item={item} /> : <span className="carry-slot__empty">空装备槽</span>}
+  </article>
+}
+
+function QuickSlot({ item, index }: Readonly<{ item: PlayerVisibleItemViewModel | null; index: number }>) {
+  return <article className={`carry-slot quick-slot${item ? ' carry-slot--filled' : ''}`}>
+    <span className="carry-slot__label">快捷 {index + 1}</span>
+    {item ? <ItemCard item={item} /> : <span className="carry-slot__empty">空快捷位</span>}
+  </article>
+}
+
+function LoadoutPanel({ loadout, compact = false }: Readonly<{ loadout: PlayerVisibleLoadoutViewModel; compact?: boolean }>) {
   const slots = [
     ['武器', loadout.equipment.weapon],
     ['防具', loadout.equipment.armor],
     ['实用装备', loadout.equipment.utility],
   ] as const
-  return <section className="console-panel" aria-labelledby="loadout-heading">
-    <h2 id="loadout-heading">携带与装备</h2>
-    <dl className="slot-list">{slots.map(([label, item]) => <div key={label}><dt>{label}</dt><dd>{item ? <>{item.name}{item.resource && ` · ${itemResourceText(item)}`}</> : '空'}</dd></div>)}</dl>
-    <h3>快捷栏</h3>
-    <ol className="quick-slots">{loadout.quickSlots.map((item, index) => <li key={index}>{item ? `${item.name} ×${item.quantity}` : '空'}</li>)}</ol>
-    <h3>背包</h3>
-    <p>背包负重：<strong>{loadout.backpackWeight}</strong> · 负重状态：<strong>{loadTierName(loadout.loadTier)}</strong></p>
-    <BackpackGrid grid={loadout.backpackGrid} />
-    <ItemList items={loadout.backpack} empty="背包为空" />
+  return <section className={`console-panel carry-panel${compact ? ' carry-panel--compact' : ''}`} aria-labelledby="loadout-heading">
+    <header className="panel-heading"><div><p className="panel-kicker">角色携带</p><h2 id="loadout-heading">装备与背包</h2></div><span className={`load-tier-badge load-tier-badge--${loadout.loadTier}`}>{loadTierName(loadout.loadTier)}</span></header>
+    <div className="equipment-rack">{slots.map(([label, item]) => <EquipmentSlot key={label} label={label} item={item} />)}</div>
+    <div className="quick-slot-rack" aria-label="快捷栏">{loadout.quickSlots.map((item, index) => <QuickSlot item={item} index={index} key={index} />)}</div>
+    <div className="carry-weight"><span>背包负重</span><strong>{loadout.backpackWeight}</strong><span>负重状态：{loadTierName(loadout.loadTier)}</span></div>
+    {!compact && <div className="backpack-compartment">
+      <div className="section-heading"><div><span>6×4</span><h3>背包</h3></div><span>{loadout.backpack.length} 件物品</span></div>
+      <BackpackGrid grid={loadout.backpackGrid} />
+      <ItemList items={loadout.backpack} empty="背包为空" />
+    </div>}
   </section>
 }
 
@@ -162,17 +254,7 @@ function enemyHealthStageName(
 }
 
 function CombatLoadoutPanel({ loadout }: Readonly<{ loadout: PlayerVisibleLoadoutViewModel }>) {
-  const slots = [
-    ['武器', loadout.equipment.weapon],
-    ['防具', loadout.equipment.armor],
-  ] as const
-  return <section className="console-panel" aria-labelledby="combat-loadout-heading">
-    <h2 id="combat-loadout-heading">战斗携带状态</h2>
-    <p>背包负重：<strong>{loadout.backpackWeight}</strong> · 负重状态：<strong>{loadTierName(loadout.loadTier)}</strong></p>
-    <dl className="slot-list">{slots.map(([label, item]) => <div key={label}><dt>{label}</dt><dd>{item ? <>{item.name}{item.resource && ` · ${itemResourceText(item)}`}</> : '空'}</dd></div>)}</dl>
-    <h3>快捷栏</h3>
-    <ol className="quick-slots">{loadout.quickSlots.map((item, index) => <li key={index}>{item ? `${item.name} ×${item.quantity}` : '空'}</li>)}</ol>
-  </section>
+  return <LoadoutPanel loadout={loadout} compact />
 }
 
 function BackpackGrid({
@@ -243,8 +325,8 @@ function ActionPanel({
     ...group,
     actions: actions.filter((action) => group.kinds.some((kind) => kind === action.kind)),
   })).filter(({ actions: entries }) => entries.length > 0)
-  return <section className="console-panel action-panel" aria-labelledby="actions-heading">
-    <h2 id="actions-heading">可执行行动</h2>
+  return <section className="console-panel action-panel game-actions" aria-labelledby="actions-heading">
+    <header className="panel-heading"><div><p className="panel-kicker">下一步</p><h2 id="actions-heading">可执行行动</h2></div></header>
     {grouped.map((group) => <section className="action-group" key={group.title}>
       <h3>{group.title}</h3>
       <div className="action-list">{group.actions.map((action) => <div className="action-entry" key={action.id}>
@@ -272,11 +354,11 @@ function HubView({
   maintenanceOpportunities: readonly StableRunUiHubMaintenanceOpportunity[]
   onMaintenance(operation: StableRunUiHubMaintenanceOpportunity['operation']): void
 }>) {
-  return <main className="console-layout">
+  return <main className="console-layout game-shell-layout">
     <StatusBar status={model.status} />
     <div className="console-grid">
+      <section className="console-panel game-stage hub-stage"><header className="stage-heading"><p className="panel-kicker">电梯中枢</p><h1>今日整备</h1><p>在出发前调整携带、恢复状态并确认行动计划。</p></header><div className="mission-briefing"><h2>当前任务</h2><p><strong>{model.hub.mission.objective}</strong></p><p>{model.hub.mission.completion}</p></div>{model.hub.dayScopeNotice && <p className="preview-warning">{model.hub.dayScopeNotice}</p>}<dl className="slot-list"><div><dt>今日基础维修点</dt><dd>{model.hub.maintenanceLaborRemaining} / {model.hub.maintenanceLaborTotal}</dd></div></dl><p className="empty-copy">每使用1点，恢复指定装备1点对应资源；今日未用点数不累积到次日。</p>{maintenanceOpportunities.length > 0 && <><h2>装备维护</h2><div className="action-list">{maintenanceOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onMaintenance(opportunity.operation)}>{opportunity.label}</button>)}</div></>}<h2>仓库</h2><ItemList items={model.hub.warehouse} empty="仓库为空" />{loadoutOpportunities.filter(({ container }) => container === 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}<h2>任务储存区（只读）</h2><ItemList items={model.hub.taskStorage} empty="暂无任务物品" /></section>
       <LoadoutPanel loadout={model.loadout} />
-      <section className="console-panel"><h2>电梯中枢</h2><div className="mission-briefing"><h3>当前任务</h3><p><strong>{model.hub.mission.objective}</strong></p><p>{model.hub.mission.completion}</p></div>{model.hub.dayScopeNotice && <p className="preview-warning">{model.hub.dayScopeNotice}</p>}<dl className="slot-list"><div><dt>今日基础维修点</dt><dd>{model.hub.maintenanceLaborRemaining} / {model.hub.maintenanceLaborTotal}</dd></div></dl><p className="empty-copy">每使用1点，恢复指定装备1点对应资源；今日未用点数不累积到次日。</p>{maintenanceOpportunities.length > 0 && <><h3>装备维护</h3><div className="action-list">{maintenanceOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onMaintenance(opportunity.operation)}>{opportunity.label}</button>)}</div></>}<h3>仓库</h3><ItemList items={model.hub.warehouse} empty="仓库为空" />{loadoutOpportunities.filter(({ container }) => container === 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}<h3>任务储存区（只读）</h3><ItemList items={model.hub.taskStorage} empty="暂无任务物品" /></section>
       {loadoutOpportunities.some(({ container }) => container !== 'warehouse') && <section className="console-panel"><h2>当前携带物整理</h2>{loadoutOpportunities.filter(({ container }) => container !== 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}</section>}
       <ActionPanel actions={actions} onPreview={onPreview} />
     </div>
@@ -295,7 +377,7 @@ function CombatPanel({
   const danger = combat.currentIntentDirectDamageSeverity === 'medium'
     ? '中等直接伤害'
     : '高直接伤害'
-  return <section className="console-panel combat-panel" aria-labelledby="combat-heading">
+  return <section className="console-panel combat-panel game-stage" aria-labelledby="combat-heading">
     <h2 id="combat-heading">战斗</h2>
     <p><strong>{combat.enemyName}</strong> · 相对生命：{enemyHealthStageName(combat.enemyHealthStage)}</p>
     <p className="combat-decision-summary">下次决策前敌人：<strong>{combat.enemyTimingBeforeNextDecision === 'will-act' ? '会行动' : combat.enemyTimingBeforeNextDecision === 'will-not-act' ? '不会行动' : '取决于你选择的行动'}</strong></p>
@@ -343,10 +425,10 @@ function SceneView({
   onInventory(opportunityId: string): void
 }>) {
   const { scene } = model
-  return <main className="console-layout">
+  return <main className="console-layout game-shell-layout">
     <StatusBar status={model.status} />
     <div className="console-grid">
-      <section className="console-panel"><h2>场景导航</h2><p>当前位置：<strong>{scene.currentNodeName}</strong></p><p>剩余时间：<strong>{scene.remainingTime}</strong></p><p>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></p><p>返程后预计剩余：<strong>{scene.returnAfterWithdrawalTime ?? '当前不可预览'}</strong></p>{scene.returnRisk === 'forced-returned' && <p className="preview-warning">当前返程将进入强制返程。</p>}{scene.returnRisk === 'dead' && <p className="preview-warning">当前返程将导致生命归零。</p>}<p>当前节点搜索：<strong>{searchStateName(scene.currentNodeSearchState)}</strong></p><h3>当前可通行路线</h3>{scene.traversableRoutes.length === 0 ? <p className="empty-copy">暂无当前可通行相邻地点</p> : <ul className="route-list">{scene.traversableRoutes.map((route) => <li key={`${route.routeName}-${route.destinationNodeName}`}><strong>{route.destinationNodeName}</strong><span>{route.routeName}</span>{route.accessReason && <em>{route.accessReason}</em>}<span>移动耗时 {route.movementTime}</span></li>)}</ul>}<div className="obstacle-block"><h3>当前明显障碍</h3><ItemList items={scene.currentObstacles.map(({ name }) => ({ name, quantity: 1, resource: null }))} empty="当前没有需要处理的明显障碍" /></div><h3>当前节点地面物品</h3><ItemList items={scene.groundItems} empty="未发现地面物品" />{pickupOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onPickup(opportunity.id)}>拾取 {opportunity.name}</button>)}{taskEventOpportunities.length > 0 && <><h3>任务事件</h3>{taskEventOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onTaskEvent(opportunity.id)}>{opportunity.label}</button>)}</>}{inventoryOpportunities.length > 0 && <><h3>场景整理</h3>{inventoryOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onInventory(opportunity.id)}>整理 {opportunity.sourceLabel}</button>)}</>}</section>
+      <section className="console-panel game-stage scene-stage"><header className="stage-heading"><p className="panel-kicker">场景导航</p><h1><span className="location-prefix">当前位置：</span>{scene.currentNodeName}</h1><p>{sceneStatusName(scene.status)}</p></header><div className="scene-vitals"><span>剩余时间：<strong>{scene.remainingTime}</strong></span><span>预计返程：<strong>{scene.returnEstimate ?? '当前不可预览'}</strong></span><span>返程后预计剩余：<strong>{scene.returnAfterWithdrawalTime ?? '当前不可预览'}</strong></span></div>{scene.returnRisk === 'forced-returned' && <p className="preview-warning">当前返程将进入强制返程。</p>}{scene.returnRisk === 'dead' && <p className="preview-warning">当前返程将导致生命归零。</p>}<p>当前节点搜索：<strong>{searchStateName(scene.currentNodeSearchState)}</strong></p><h2>当前可通行路线</h2>{scene.traversableRoutes.length === 0 ? <p className="empty-copy">暂无当前可通行相邻地点</p> : <ul className="route-list">{scene.traversableRoutes.map((route) => <li key={`${route.routeName}-${route.destinationNodeName}`}><strong>{route.destinationNodeName}</strong><span>{route.routeName}</span>{route.accessReason && <em>{route.accessReason}</em>}<span>移动耗时 {route.movementTime}</span></li>)}</ul>}<div className="obstacle-block"><h2>当前明显障碍</h2>{scene.currentObstacles.length === 0 ? <p className="empty-copy">当前没有需要处理的明显障碍</p> : <ul className="item-list">{scene.currentObstacles.map(({ name }) => <li key={name}><strong>{name}</strong></li>)}</ul>}</div><h2>当前节点地面物品</h2><ItemList items={scene.groundItems} empty="未发现地面物品" />{pickupOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onPickup(opportunity.id)}>拾取 {opportunity.name}</button>)}{taskEventOpportunities.length > 0 && <><h2>任务事件</h2>{taskEventOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onTaskEvent(opportunity.id)}>{opportunity.label}</button>)}</>}{inventoryOpportunities.length > 0 && <><h2>场景整理</h2>{inventoryOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onInventory(opportunity.id)}>整理 {opportunity.sourceLabel}</button>)}</>}</section>
       {scene.status === 'combat'
         ? <CombatLoadoutPanel loadout={scene.loadout} />
         : <LoadoutPanel loadout={scene.loadout} />}
@@ -939,7 +1021,7 @@ function FailureView({
   model: Extract<StableRunPlayerViewModel, { kind: 'run-failure' }>
   onRequestNewRunSetup?: () => void
 }>) {
-  return <main className="console-layout"><section className="console-panel terminal-panel"><p className="eyebrow">本局已终止</p><h1>失败</h1><p>第 {model.failure.currentDay} 日 · {model.failure.reason}</p><p>此终局为只读状态，不能继续当前进度。</p>{onRequestNewRunSetup && <button type="button" className="action-button" onClick={onRequestNewRunSetup}>开始新一局</button>}</section></main>
+  return <main className="console-layout game-shell-layout failure-shell"><section className="console-panel terminal-panel failure-stage"><p className="panel-kicker">本局已终止</p><h1>行动失败</h1><p className="failure-reason">第 {model.failure.currentDay} 日 · {model.failure.reason}</p><p>电梯中枢已失去本次行动连续性。此终局为只读状态，不能继续当前进度。</p>{onRequestNewRunSetup && <button type="button" className="action-button" onClick={onRequestNewRunSetup}>开始新一局</button>}</section></main>
 }
 
 function DevInspector({ phase }: Readonly<{ phase: unknown }>) {

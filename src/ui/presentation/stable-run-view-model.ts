@@ -47,6 +47,7 @@ import { getCurrentTraversableAdjacentEdges } from '../interaction/current-trave
 export interface StableRunUiLabels {
   sceneName(sceneDefinitionId: string): string
   itemName(definitionId: string, fallback: string): string
+  itemHelp(definitionId: string): PlayerVisibleItemHelpViewModel
   itemResourceName(
     definitionId: string,
     resourceKind: 'durability' | 'integrity' | 'charge',
@@ -89,12 +90,19 @@ export interface PlayerVisibleConditionViewModel {
 export interface PlayerVisibleItemViewModel {
   readonly name: string
   readonly quantity: number
+  readonly help: PlayerVisibleItemHelpViewModel
   readonly resource: Readonly<{
     kind: 'durability' | 'integrity' | 'charge'
     label: string
     current: number
     maximum: number
   }> | null
+}
+
+export interface PlayerVisibleItemHelpViewModel {
+  readonly role: string
+  readonly summary: string
+  readonly usageHints: readonly string[]
 }
 
 export interface PlayerVisibleLoadoutViewModel {
@@ -134,6 +142,7 @@ export interface PlayerVisibleStatusBarViewModel {
   readonly condition: PlayerVisibleConditionViewModel
   readonly worldThreatStage: string
   readonly satiety: number
+  readonly maximumSatiety: number
   readonly mainSceneUsedToday: boolean
 }
 
@@ -392,6 +401,7 @@ function itemView(
   return frozen({
     name: labels.itemName(item.definitionId, definition.name),
     quantity: item.quantity,
+    help: labels.itemHelp(item.definitionId),
     resource,
   })
 }
@@ -581,6 +591,7 @@ function createSceneView(
       condition: conditionView(scene.condition, runtime.dependencies.config.combat.player.maxHealth),
       worldThreatStage: dependencies.labels.worldThreatStageName(threatStage.id),
       satiety: session.context.satiety.current,
+      maximumSatiety: runtime.dependencies.config.dailySettlement.maxSatiety,
       mainSceneUsedToday: session.context.mainSceneUsedToday,
     }),
     scene: frozen({
@@ -634,6 +645,7 @@ export function createStableRunPlayerViewModel(
       condition: conditionView(hub.playerCondition, items.config.combat.player.maxHealth),
       worldThreatStage: dependencies.labels.worldThreatStageName(threatStage.id),
       satiety: hub.satiety.current,
+      maximumSatiety: items.config.dailySettlement.maxSatiety,
       mainSceneUsedToday: hub.dailyState.mainSceneUsedToday,
     }),
     loadout: loadoutView(hub.runLoadout, pseudoRuntime, dependencies.labels),

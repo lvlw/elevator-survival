@@ -156,6 +156,12 @@ describe('stable Run player-visible ViewModel', () => {
     expect(model.kind).toBe('current-day-hub')
     if (model.kind !== 'current-day-hub') throw new Error('expected Hub')
     expect(model.status.condition.currentHealth).toBe(9)
+    expect(model.status.maximumSatiety).toBe(config.dailySettlement.maxSatiety)
+    expect(model.loadout.equipment.utility?.help).toEqual({
+      role: '照明实用装备',
+      summary: '让低照明搜索更快、信息更清楚，不提高掉落数量或稀有度。',
+      usageHints: ['照明搜索消耗电量。', '标准电池可以为手电筒补充电量。'],
+    })
     for (const hidden of ['ui-run', 'ui-seed', 'rulesVersion', 'instanceId', 'definitionId']) expect(JSON.stringify(model)).not.toContain(hidden)
   })
 

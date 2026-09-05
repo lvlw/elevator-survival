@@ -188,7 +188,7 @@
 18. 玩家已知但当前受阻的路线仍显示为已知阻塞；路线当前是否可通行由正式 traversal、障碍与场景状态派生，不在地图知识中复制。
 19. Scene Session 保存并恢复同一场景实例的导航知识，恢复不得自动补全完整场景图；该知识不默认跨日。
 
-> 上述 Player-Known Map 验收方向已经由 DEC-045 冻结，但 canonical Player Navigation Knowledge、player-visible map query 与地图 Renderer 尚未实现。医院内容在开始地图工程前仍需补齐每个节点表层可见出口与路线的精确配置；不得由 React 根据完整六节点图猜测。
+> 上述 Player-Known Map 验收方向已经由 DEC-045 冻结，但 canonical Player Navigation Knowledge、player-visible map query 与地图 Renderer 尚未实现。医院表层可见路线的内容 Gate 已关闭，正式最小新增发现映射见 `docs/content/scenes.md`：入口只新增大厅路线；大厅新增药房、保安值班室与隔离走廊路线；保安值班室新增工作人员通道；隔离走廊新增标本冷藏室路线；药房与标本冷藏室无新增路线。已知双向路线在同一 Scene instance 内持续，另一端无需重复声明；React 仍不得根据完整六节点图猜测任何导航知识。
 
 仍待确定：
 

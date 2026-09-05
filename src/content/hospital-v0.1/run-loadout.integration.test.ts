@@ -31,6 +31,7 @@ import {
   type RunLoadoutCommand,
 } from '../../core/run-loadout'
 import { createRunReturnSnapshot, type RunReturnDependencies } from '../../core/run-return'
+import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
 import {
   HOSPITAL_ITEM_IDS,
   hospitalItemCatalog,
@@ -60,6 +61,7 @@ const placement = (
 const returnDependencies: RunReturnDependencies = {
   scene: {
     graph: hospitalSliceV01SceneGraph,
+    navigationCatalog: hospitalSceneSurfaceObservationCatalog,
     physicalCatalog: hospitalItemCatalog,
     equipmentCatalog: hospitalItemEquipmentCatalog,
     quickSlotCatalog: hospitalItemQuickSlotCatalog,

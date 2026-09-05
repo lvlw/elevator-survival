@@ -25,6 +25,7 @@ import {
 import { hospitalSliceV01RuleConfig } from './rule-config'
 import { hospitalMainSearchCatalog } from './search'
 import { hospitalSceneTaskEventCatalog } from './task-events'
+import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
 
 export const HOSPITAL_SCENE_DEFINITION_ID = 'scene_blockaded_hospital_emergency_floor_1'
 
@@ -38,6 +39,7 @@ export function createHospitalSceneRuntimeBundle(
     initialEnabledEdgeIds: HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
     dependencies: Object.freeze({
       graph: hospitalSliceV01SceneGraph,
+      navigationCatalog: hospitalSceneSurfaceObservationCatalog,
       physicalCatalog: hospitalItemCatalog,
       equipmentCatalog: hospitalItemEquipmentCatalog,
       quickSlotCatalog: hospitalItemQuickSlotCatalog,

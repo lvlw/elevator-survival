@@ -11,6 +11,7 @@ import {
   hospitalSceneLaunchContent,
   hospitalSliceV01RuleConfig as config,
 } from '../../content'
+import { createHospitalTestNavigationKnowledge } from '../../content/hospital-v0.1/hospital-scene-navigation.test-support'
 import { createPlayerCondition } from '../../core/condition'
 import {
   createCurrentDayHubSnapshot,
@@ -192,6 +193,7 @@ function activeSessionAtEmergencyHall(
   const scene = createSceneExplorationSnapshot({
     ...launched.scene,
     currentNodeId: HOSPITAL_NODE_IDS.emergencyHall,
+    navigationKnowledge: createHospitalTestNavigationKnowledge(HOSPITAL_NODE_IDS.emergencyHall),
     remainingTime,
     condition: condition ?? launched.scene.condition,
     status: 'active',

@@ -20,6 +20,7 @@ import { createFullItemState, createItemState, getItemState, type ItemState } fr
 import { createQuickSlotSnapshot } from '../../core/quick-slot'
 import { createRunLoadoutSnapshot } from '../../core/run-loadout'
 import type { RunReturnDependencies } from '../../core/run-return'
+import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
 import {
   HOSPITAL_ITEM_IDS,
   hospitalHubMaintenanceContentBindings,
@@ -45,6 +46,7 @@ const item = (instanceId: string, definitionId: string, quantity = 1): ItemInsta
 const returnDependencies: RunReturnDependencies = {
   scene: {
     graph: hospitalSliceV01SceneGraph,
+    navigationCatalog: hospitalSceneSurfaceObservationCatalog,
     physicalCatalog: hospitalItemCatalog,
     equipmentCatalog: hospitalItemEquipmentCatalog,
     quickSlotCatalog: hospitalItemQuickSlotCatalog,

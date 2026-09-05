@@ -4,7 +4,6 @@ import { createBackpackSnapshot } from '../../core/inventory'
 import { createFullItemState, getItemState } from '../../core/item-state'
 import {
   applySceneExplorationEffects,
-  createInitialSceneExplorationSnapshot,
   createSceneExplorationSnapshot,
   getAvailableSceneMedicalCommands,
   previewSceneMedicalCommand,
@@ -19,6 +18,8 @@ import {
   type UseSceneMedicalItemCommand,
 } from '../../core/scene-exploration'
 import { createSceneSearchState } from '../../core/scene-search'
+import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
+import { createHospitalTestSceneExplorationSnapshot } from './hospital-scene-navigation.test-support'
 import {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
   HOSPITAL_EDGE_IDS,
@@ -38,6 +39,7 @@ import {
 
 const dependencies = {
   graph: hospitalSliceV01SceneGraph,
+  navigationCatalog: hospitalSceneSurfaceObservationCatalog,
   physicalCatalog: hospitalItemCatalog,
   equipmentCatalog: hospitalItemEquipmentCatalog,
   quickSlotCatalog: hospitalItemQuickSlotCatalog,
@@ -85,7 +87,7 @@ function snapshot(input: Readonly<{
     definitionId ? item(`quick-${index}`, definitionId) : null,
   )
   const carried = [...backpackItems, ...quickItems.filter((candidate): candidate is ReturnType<typeof item> => candidate !== null)]
-  return createInitialSceneExplorationSnapshot({
+  return createHospitalTestSceneExplorationSnapshot({
     sceneInstanceId: 'hospital-scene-medical',
     searchState: createSceneSearchState({
       runSeed: 'hospital-scene-medical-seed',
@@ -373,6 +375,7 @@ describe('hospital non-combat scene medical', () => {
     expect(bandage.snapshot.condition.openWounds).toEqual([
       { id: 'wound-a', kind: 'laceration', treatment: 'treated' },
     ])
+    expect(bandage.snapshot.navigationKnowledge).toEqual(bandageStart.navigationKnowledge)
     expect(bandage.snapshot.backpack.items).toEqual([])
     expect(() => getItemState(bandage.snapshot.itemStates, 'bandage-stack')).toThrow()
     expect(effectKinds(bandage.result.effects)).toEqual([

@@ -5,13 +5,14 @@ import { createBackpackSnapshot, type ItemInstance } from '../../core/inventory'
 import { createFullItemState, createItemState } from '../../core/item-state'
 import {
   applySceneExplorationEffects,
-  createInitialSceneExplorationSnapshot,
   resolveSceneObstacleOptionCommand,
   type SceneExplorationEffect,
   type SceneExplorationSnapshot,
 } from '../../core/scene-exploration'
 import { createSceneSearchState } from '../../core/scene-search'
 import { createSceneObstaclePrimaryPlan } from '../../core/scene-obstacle'
+import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
+import { createHospitalTestSceneExplorationSnapshot } from './hospital-scene-navigation.test-support'
 import {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
   HOSPITAL_FIRE_DOOR_OPTION_IDS,
@@ -31,6 +32,7 @@ import {
 
 const dependencies = {
   graph: hospitalSliceV01SceneGraph,
+  navigationCatalog: hospitalSceneSurfaceObservationCatalog,
   physicalCatalog: hospitalItemCatalog,
   equipmentCatalog: hospitalItemEquipmentCatalog,
   quickSlotCatalog: hospitalItemQuickSlotCatalog,
@@ -69,7 +71,7 @@ function snapshot(setup: Setup = {}): SceneExplorationSnapshot {
   for (const item of Object.values(equipment)) {
     if (item) carried.push(item)
   }
-  return createInitialSceneExplorationSnapshot({
+  return createHospitalTestSceneExplorationSnapshot({
     sceneInstanceId: 'effect-integrity-scene',
     searchState: createSceneSearchState({
       runSeed: 'hospital-search-golden-seed',

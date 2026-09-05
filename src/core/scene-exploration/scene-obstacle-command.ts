@@ -1,13 +1,13 @@
 import { deepFreeze } from '../config'
-import { addMinorContusion, hasMinorContusions } from '../condition'
+import { addMinorContusion } from '../condition'
 import { calculateBackpackWeightSubtotal } from '../inventory'
-import { getEffectiveEnabledEdgeIds } from '../scene-access'
-import { findReturnRoute, SceneGraphError } from '../scene-graph'
+import { SceneGraphError } from '../scene-graph'
 import { createPerformSceneObstacleOptionCommand, createSceneObstaclePrimaryPlan } from '../scene-obstacle'
 import { resolveTimedSceneAction } from '../scene'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { applySceneExplorationEffects } from './scene-exploration-effects'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
+import { findPlayerKnownReturnRoute } from './scene-navigation-return'
 import type {
   PerformSceneObstacleOptionCommand,
   SceneExplorationEffect,
@@ -57,17 +57,12 @@ function evaluateTimedPlan(
   const effects: SceneExplorationEffect[] = [...primaryEffects]
   const actionTime = primaryPlan.actionTime
   const backpackWeight = calculateBackpackWeightSubtotal(snapshot.backpack, dependencies.physicalCatalog)
-  const enabledAfter = [...getEffectiveEnabledEdgeIds(snapshot, dependencies.edgeAccessCatalog), obstacle.edgeId]
   let returnRoute
   try {
-    returnRoute = findReturnRoute({
-      graph: dependencies.graph,
-      currentNodeId: snapshot.currentNodeId,
-      availability: { enabledEdgeIds: [...new Set(enabledAfter)] },
-      totalWeight: backpackWeight,
-      hasMinorContusion: hasMinorContusions(conditionAfter),
-      analgesiaActive: conditionAfter.painkillerActive,
-    }, dependencies.config)
+    returnRoute = findPlayerKnownReturnRoute(snapshot, dependencies, {
+      condition: conditionAfter,
+      additionallyEnabledEdgeIds: [obstacle.edgeId],
+    })
   } catch (error) {
     if (error instanceof SceneGraphError) throw new SceneExplorationError('NO_RETURN_ROUTE', error.message)
     throw error

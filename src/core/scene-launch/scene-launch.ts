@@ -214,6 +214,7 @@ function runtimeFor(
   const scene = runtime.dependencies
   if (!scene ||
     !scene.graph ||
+    !scene.navigationCatalog ||
     !scene.physicalCatalog ||
     !scene.equipmentCatalog ||
     !scene.quickSlotCatalog ||

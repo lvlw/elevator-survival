@@ -40,6 +40,10 @@ import type {
 import type { SceneItemsSnapshot } from '../scene-items'
 import type { SceneEdgeAccessCatalog } from '../scene-access'
 import type {
+  PlayerNavigationKnowledgeSnapshot,
+  SceneSurfaceObservationCatalog,
+} from '../scene-navigation'
+import type {
   ObstacleRiskTrace,
   SceneObstacleCatalog,
 } from '../scene-obstacle'
@@ -97,13 +101,14 @@ export interface SceneExplorationSnapshot {
   /** Borrowed Run-level fact log; a scene never initializes its lifecycle. */
   readonly runIntelLog: RunIntelLogSnapshot
   readonly taskEvents: SceneTaskEventStateSnapshot
+  readonly navigationKnowledge: PlayerNavigationKnowledgeSnapshot
 }
 
 export type SceneExplorationSnapshotInput = SceneExplorationSnapshot
 
 export type SceneExplorationInitialSnapshotInput = Omit<
   SceneExplorationSnapshot,
-  'status' | 'alertState' | 'sceneItems' | 'combatState' | 'taskEvents'
+  'status' | 'alertState' | 'sceneItems' | 'combatState' | 'taskEvents' | 'navigationKnowledge'
 > & Partial<Pick<
   SceneExplorationSnapshot,
   'alertState' | 'sceneItems' | 'combatState' | 'taskEvents'
@@ -120,6 +125,7 @@ export interface SceneExplorationDependencies {
   readonly quickSlotCatalog: QuickSlotProfileCatalog
   readonly itemResourceCatalog: ItemResourceCatalog
   readonly config: FrozenRuleConfig
+  readonly navigationCatalog: SceneSurfaceObservationCatalog
   readonly edgeAccessCatalog?: SceneEdgeAccessCatalog
   readonly obstacleCatalog?: SceneObstacleCatalog
   readonly sceneCombat?: SceneCombatDependencies
@@ -340,6 +346,14 @@ export type SceneExplorationEffect =
       destinationItemState: Readonly<ItemState>
       transfers: readonly import('./node-item-pickup-stacking').NodePickupTransfer[]
       pickupKind: 'full' | 'partial'
+    }>
+  | Readonly<{
+      kind: 'scene-navigation-knowledge-updated'
+      reason: 'first-arrival'
+      arrivalNodeId: string
+      addedDiscoveredNodeIds: readonly string[]
+      addedVisitedNodeIds: readonly string[]
+      addedKnownEdgeIds: readonly string[]
     }>
   | Readonly<{
       kind: 'scene-node-changed'

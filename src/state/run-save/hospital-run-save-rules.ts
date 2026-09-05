@@ -18,12 +18,14 @@ import type { HubMaintenanceDependencies } from '../../core/hub-maintenance'
 import type { RunTerminationDependencies } from '../../core/run-termination'
 import type { SceneLaunchDependencies } from '../../core/scene-launch'
 import { createRunSaveRulesRegistry } from './run-save-rules-registry'
+import { hospitalSceneSurfaceObservationCatalog } from '../../content/hospital-v0.1/hospital-scene-navigation'
 
 export const hospitalCurrentDayHubDependencies: CurrentDayHubDependencies = Object.freeze({
   mainSceneDefinitionId: hospitalSceneLaunchContent.sceneDefinitionId,
   returnDependencies: Object.freeze({
     scene: Object.freeze({
       graph: hospitalSliceV01SceneGraph,
+      navigationCatalog: hospitalSceneSurfaceObservationCatalog,
       physicalCatalog: hospitalItemCatalog,
       equipmentCatalog: hospitalItemEquipmentCatalog,
       quickSlotCatalog: hospitalItemQuickSlotCatalog,

@@ -65,10 +65,15 @@ import {
   hospitalItemReturnLifecycleCatalog,
   hospitalSceneLaunchContent,
   hospitalSceneMedicalContentBindings,
+  hospitalSceneSurfaceObservationCatalog,
   hospitalSliceV01RuleConfig as config,
   hospitalSliceV01SceneGraph,
   hospitalWorldThreatCatalog,
 } from '..'
+import {
+  createHospitalTestNavigationKnowledge,
+  createHospitalTestNavigationKnowledgeAlongPath,
+} from './hospital-scene-navigation.test-support'
 
 const item = (instanceId: string, definitionId: string, quantity = 1): ItemInstance => ({
   instanceId,
@@ -88,6 +93,7 @@ describe('hospital formal active withdrawal', () => {
     return createSceneExplorationSnapshot({
       ...session.scene,
       currentNodeId,
+      navigationKnowledge: createHospitalTestNavigationKnowledge(currentNodeId),
       remainingTime,
       enabledEdgeIds,
       condition,
@@ -202,6 +208,7 @@ describe('hospital formal active withdrawal', () => {
 const baseReturnDependencies = {
   scene: {
     graph: hospitalSliceV01SceneGraph,
+    navigationCatalog: hospitalSceneSurfaceObservationCatalog,
     physicalCatalog: hospitalItemCatalog,
     equipmentCatalog: hospitalItemEquipmentCatalog,
     quickSlotCatalog: hospitalItemQuickSlotCatalog,
@@ -350,6 +357,8 @@ describe('hospital formal Scene Launch and active Scene lifecycle', () => {
     const atSpecimenRoom = createSceneExplorationSnapshot({
       ...launched.scene,
       currentNodeId: HOSPITAL_NODE_IDS.specimenColdRoom,
+      navigationKnowledge: createHospitalTestNavigationKnowledge(HOSPITAL_NODE_IDS.specimenColdRoom),
+      enabledEdgeIds: HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
       combatState: {
         ...launched.scene.combatState,
         encounters: [{
@@ -421,9 +430,10 @@ describe('hospital formal Scene Launch and active Scene lifecycle', () => {
     const start = createSceneExplorationSnapshot({
       ...launched.scene,
       currentNodeId: HOSPITAL_NODE_IDS.specimenColdRoom,
+      navigationKnowledge: createHospitalTestNavigationKnowledge(HOSPITAL_NODE_IDS.specimenColdRoom),
       remainingTime: 100,
       condition: contused,
-      enabledEdgeIds: HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
+      enabledEdgeIds: HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
       status: 'active',
     }, runtime.dependencies)
     const beforeDrop = resolveSceneWithdrawalCommand(
@@ -442,8 +452,8 @@ describe('hospital formal Scene Launch and active Scene lifecycle', () => {
     )
     expect(calculateBackpackWeightSubtotal(start.backpack, hospitalItemCatalog)).toBe(17)
     expect(calculateBackpackWeightSubtotal(dropped.backpack, hospitalItemCatalog)).toBe(12)
-    expect(beforeDrop.result.returnRoute.estimatedReturnTime).toBe(49)
-    expect(afterDrop.withdrawal.result.returnRoute.estimatedReturnTime).toBe(44)
+    expect(beforeDrop.result.returnRoute.estimatedReturnTime).toBe(37)
+    expect(afterDrop.withdrawal.result.returnRoute.estimatedReturnTime).toBe(33)
     expect(afterDrop.session.scene.status).toBe('safe-returned')
     expect(afterDrop.session.scene.condition.minorContusions).toBe(1)
     expect(dropped.remainingTime).toBe(start.remainingTime)
@@ -457,6 +467,12 @@ describe('hospital formal Scene Launch and active Scene lifecycle', () => {
     const start = createSceneExplorationSnapshot({
       ...launched.scene,
       currentNodeId: HOSPITAL_NODE_IDS.isolationCorridor,
+      navigationKnowledge: createHospitalTestNavigationKnowledgeAlongPath([
+        HOSPITAL_NODE_IDS.elevatorAnteroom,
+        HOSPITAL_NODE_IDS.emergencyHall,
+        HOSPITAL_NODE_IDS.securityOffice,
+        HOSPITAL_NODE_IDS.isolationCorridor,
+      ]),
       remainingTime: 100,
       enabledEdgeIds: HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
       status: 'active',
@@ -535,6 +551,14 @@ describe('hospital formal Scene Launch and active Scene lifecycle', () => {
       dailyMedicalUsage: start.dailyState.medicalUsage,
       runIntelLog: start.runIntelLog,
     })
+    expect(result.session.scene.navigationKnowledge).toEqual({
+      discoveredNodeIds: [
+        HOSPITAL_NODE_IDS.elevatorAnteroom,
+        HOSPITAL_NODE_IDS.emergencyHall,
+      ].sort(),
+      visitedNodeIds: [HOSPITAL_NODE_IDS.elevatorAnteroom],
+      knownEdgeIds: [HOSPITAL_EDGE_IDS.elevatorToEmergencyHall],
+    })
     expect(result.session.scene.backpack).toEqual(start.runLoadout.backpack)
     expect(result.session.scene.equipment).toEqual(start.runLoadout.equipment)
     expect(result.session.scene.quickSlots).toEqual(start.runLoadout.quickSlots)
@@ -547,13 +571,61 @@ describe('hospital formal Scene Launch and active Scene lifecycle', () => {
     expect(result.session.context).not.toHaveProperty('runIntelLog')
   })
 
+  it('starts a fresh navigation lifecycle for the next day Scene instance', () => {
+    const first = resolveSceneLaunch(
+      hub(),
+      { kind: 'launch-main-scene' },
+      launchDependencies,
+    ).session
+    const runtime = getRunSceneRuntime(first, launchDependencies)
+    const atHall = resolveSceneMoveCommand(first.scene, {
+      edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall,
+    }, runtime.dependencies).snapshot
+    expect(atHall.navigationKnowledge.visitedNodeIds).toContain(
+      HOSPITAL_NODE_IDS.emergencyHall,
+    )
+    const withdrawn = resolveRunSceneSessionWithdrawal(
+      createRunSceneSessionSnapshot({ context: first.context, scene: atHall }, launchDependencies),
+      { kind: 'withdraw-from-scene' },
+      launchDependencies,
+    ).session
+    const returned = resolveRunSceneSessionReturn(withdrawn, launchDependencies).currentDayHub
+    const settlement = resolveDailySettlement(
+      returned,
+      { kind: 'end-day' },
+      currentDayHubDependencies,
+    )
+    if (settlement.outcome.kind !== 'next-day-current-day-hub') {
+      throw new Error('expected next-day Hub')
+    }
+    const second = resolveSceneLaunch(
+      settlement.outcome.snapshot,
+      { kind: 'launch-main-scene' },
+      launchDependencies,
+    ).session
+    expect(second.scene.sceneInstanceId).not.toBe(first.scene.sceneInstanceId)
+    expect(second.scene.navigationKnowledge).toEqual({
+      discoveredNodeIds: [
+        HOSPITAL_NODE_IDS.elevatorAnteroom,
+        HOSPITAL_NODE_IDS.emergencyHall,
+      ].sort(),
+      visitedNodeIds: [HOSPITAL_NODE_IDS.elevatorAnteroom],
+      knownEdgeIds: [HOSPITAL_EDGE_IDS.elevatorToEmergencyHall],
+    })
+  })
+
   it('rejects unknown command fields and an incomplete formal runtime bundle', () => {
     expect(() => resolveSceneLaunch(
       hub(),
       { kind: 'launch-main-scene', extra: true } as never,
       launchDependencies,
     )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
-    for (const missing of ['sceneCombat', 'lifecycleCatalog', 'deviceRechargeCatalog'] as const) {
+    for (const missing of [
+      'sceneCombat',
+      'lifecycleCatalog',
+      'deviceRechargeCatalog',
+      'navigationCatalog',
+    ] as const) {
       const incomplete: SceneLaunchDependencies = {
         ...launchDependencies,
         content: {

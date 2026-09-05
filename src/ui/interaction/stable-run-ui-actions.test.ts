@@ -598,7 +598,7 @@ describe('stable Run UI interaction model', () => {
       { label: '强制返程基础损耗', value: '1' },
       { label: '强制返程流血追加', value: '1' },
       { label: '强制返程总损耗', value: '2' },
-      { label: '强制返程后生命', value: '4' },
+      { label: '强制返程后生命', value: '2' },
       { label: '死亡风险', value: '未发现' },
       { label: '生还结果', value: '进入强制返程' },
       { label: '强制返程目标', value: '电梯前室' },

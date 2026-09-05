@@ -77,6 +77,7 @@ export {
   createHospitalSceneRuntimeBundle,
   hospitalSceneLaunchContent,
 } from './hospital-v0.1/hospital-scene-runtime'
+export { hospitalSceneSurfaceObservationCatalog } from './hospital-v0.1/hospital-scene-navigation'
 export {
   HOSPITAL_NEW_RUN_INITIAL_LOADOUT_DEFINITION,
   HOSPITAL_NEW_RUN_UTILITY_DEFINITION_IDS,

@@ -34,6 +34,7 @@ import {
 } from '../../core/scene-exploration'
 import { createSceneSearchState } from '../../core/scene-search'
 import { createWorldThreatSnapshot } from '../../core/world-threat'
+import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
 import {
   HOSPITAL_ITEM_IDS,
   HOSPITAL_NODE_IDS,
@@ -56,6 +57,7 @@ const item = (instanceId: string, definitionId: string, quantity = 1): ItemInsta
 const returnDependencies: RunReturnDependencies = {
   scene: {
     graph: hospitalSliceV01SceneGraph,
+    navigationCatalog: hospitalSceneSurfaceObservationCatalog,
     physicalCatalog: hospitalItemCatalog,
     equipmentCatalog: hospitalItemEquipmentCatalog,
     quickSlotCatalog: hospitalItemQuickSlotCatalog,

@@ -28,6 +28,17 @@ export {
 } from './player-visible-timed-scene-action'
 export { getPlayerVisibleSceneNodeState } from './player-visible-scene-node'
 export {
+  getPlayerVisibleSceneNavigation,
+  type PlayerVisibleNavigationNode,
+  type PlayerVisibleNavigationReturn,
+  type PlayerVisibleNavigationRoute,
+  type PlayerVisibleSceneNavigation,
+} from './player-visible-scene-navigation'
+export {
+  findPlayerKnownReturnRoute,
+  getKnownTraversableEdgeIds,
+} from './scene-navigation-return'
+export {
   getPlayerVisibleSceneCombatActionOptions,
   getPlayerVisibleSceneCombatState,
 } from './player-visible-scene-combat'

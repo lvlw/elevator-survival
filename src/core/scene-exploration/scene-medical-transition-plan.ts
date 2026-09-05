@@ -1,7 +1,4 @@
 import { deepFreeze } from '../config'
-import {
-  hasMinorContusions,
-} from '../condition'
 import { buildMedicalPrimaryPlan, MedicalContentError } from '../medical'
 import {
   calculateBackpackWeightSubtotal,
@@ -9,8 +6,7 @@ import {
   removeItemFromBackpack,
 } from '../inventory'
 import { classifyLoad } from '../load'
-import { getEffectiveEnabledEdgeIds } from '../scene-access'
-import { findReturnRoute, SceneGraphError } from '../scene-graph'
+import { SceneGraphError } from '../scene-graph'
 import { resolveTimedSceneAction } from '../scene'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
@@ -18,6 +14,7 @@ import { validateSceneMedicalDependencies } from './scene-medical-dependencies'
 import { getAvailableSceneMedicalCommandsFromValidatedSnapshot } from './scene-medical-selectors'
 import { resolveSceneMedicalSource } from './scene-medical-support'
 import { createUseSceneMedicalItemCommand } from './scene-medical-validation'
+import { findPlayerKnownReturnRoute } from './scene-navigation-return'
 import type {
   SceneExplorationEffect,
   SceneExplorationSnapshot,
@@ -230,19 +227,10 @@ export function buildSceneMedicalTransitionPlan(
   }
   let returnRoute
   try {
-    returnRoute = findReturnRoute({
-      graph: dependencies.graph,
-      currentNodeId: snapshot.currentNodeId,
-      availability: {
-        enabledEdgeIds: getEffectiveEnabledEdgeIds(
-          { ...snapshot, backpack: backpackAfterConsumption },
-          dependencies.edgeAccessCatalog,
-        ),
-      },
-      totalWeight: backpackWeight,
-      hasMinorContusion: hasMinorContusions(condition),
-      analgesiaActive: condition.painkillerActive,
-    }, dependencies.config)
+    returnRoute = findPlayerKnownReturnRoute(snapshot, dependencies, {
+      backpack: backpackAfterConsumption,
+      condition,
+    })
   } catch (error) {
     graphFailure(error)
   }

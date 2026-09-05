@@ -5,8 +5,8 @@ import { createFullItemState, createItemState, getItemState } from '../../core/i
 import { getEffectiveEnabledEdgeIds } from '../../core/scene-access'
 import {
   applySceneExplorationEffects,
-  createInitialSceneExplorationSnapshot,
   getPlayerVisibleSceneNodeState,
+  getPlayerVisibleSceneNavigation,
   getPlayerVisibleSceneObstacles,
   previewMainSearchCommand,
   previewNodeItemPickupCommand,
@@ -23,6 +23,9 @@ import {
 import { getSceneNodeItems } from '../../core/scene-items'
 import { createSceneSearchState } from '../../core/scene-search'
 import { createSceneObstaclePrimaryPlan } from '../../core/scene-obstacle'
+import { getCurrentTraversableAdjacentEdges } from '../../ui/interaction/current-traversable-adjacent-edges'
+import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
+import { createHospitalTestSceneExplorationSnapshot } from './hospital-scene-navigation.test-support'
 import {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
   HOSPITAL_EDGE_IDS,
@@ -31,6 +34,7 @@ import {
   HOSPITAL_ITEM_IDS,
   HOSPITAL_NODE_IDS,
   HOSPITAL_OBSTACLE_IDS,
+  createHospitalSceneRuntimeBundle,
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
@@ -48,6 +52,7 @@ const RUN_SEED = 'door-risk-0'
 const SCENE_ID = 'hospital-fire-door-test'
 const dependencies = {
   graph: hospitalSliceV01SceneGraph,
+  navigationCatalog: hospitalSceneSurfaceObservationCatalog,
   physicalCatalog: hospitalItemCatalog,
   equipmentCatalog: hospitalItemEquipmentCatalog,
   quickSlotCatalog: hospitalItemQuickSlotCatalog,
@@ -101,7 +106,7 @@ function snapshot(options: Options = {}): SceneExplorationSnapshot {
   if (equipped.weapon) carried.push(equipped.weapon)
   if (equipped.armor) carried.push(equipped.armor)
   if (equipped.utility) carried.push(equipped.utility)
-  return createInitialSceneExplorationSnapshot(
+  return createHospitalTestSceneExplorationSnapshot(
     {
       sceneInstanceId: SCENE_ID,
       searchState: createSceneSearchState({
@@ -158,6 +163,68 @@ function option(optionId: string) {
 }
 
 describe('hospital staff access and fire door', () => {
+  it('projects only discovered names and known routes at the entrance without raw identities', () => {
+    const entrance = snapshot({ nodeId: HOSPITAL_NODE_IDS.elevatorAnteroom })
+    const projection = getPlayerVisibleSceneNavigation(entrance, dependencies)
+    expect(projection.currentNodeName).toBe('电梯前室')
+    expect(projection.nodes.map(({ name }) => name)).toEqual(['电梯前室', '急诊大厅'])
+    expect(projection.routes).toHaveLength(1)
+    const serialized = JSON.stringify(projection)
+    for (const hidden of [
+      '药房',
+      '保安值班室',
+      '隔离走廊',
+      '标本冷藏室',
+      SCENE_ID,
+      HOSPITAL_NODE_IDS.elevatorAnteroom,
+      HOSPITAL_EDGE_IDS.elevatorToEmergencyHall,
+      'runId',
+      'seed',
+      'rulesVersion',
+      'preparedOutcome',
+      'randomTrace',
+      'riskPercent',
+    ]) {
+      expect(serialized).not.toContain(hidden)
+    }
+  })
+
+  it('keeps the staff passage hidden until security is visited even when a backpack card grants physical access', () => {
+    const withCard = snapshot({
+      nodeId: HOSPITAL_NODE_IDS.isolationCorridor,
+      withCard: true,
+    })
+    expect(getEffectiveEnabledEdgeIds(withCard, hospitalSceneEdgeAccessCatalog)).toContain(
+      HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,
+    )
+    expect(withCard.navigationKnowledge.knownEdgeIds).not.toContain(
+      HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,
+    )
+    const runtime = createHospitalSceneRuntimeBundle(RUN_SEED, SCENE_ID)
+    expect(getCurrentTraversableAdjacentEdges(withCard, runtime).map(({ destinationNodeName }) => destinationNodeName))
+      .not.toContain('保安值班室')
+    expect(previewSceneMoveCommand(withCard, {
+      edgeId: HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,
+    }, dependencies)).toEqual({ canExecute: false, rejectionCode: 'EDGE_NOT_KNOWN' })
+  })
+
+  it('separates known routes from current traversal for the fire door and staff passage', () => {
+    const hall = snapshot()
+    expect(hall.navigationKnowledge.knownEdgeIds).toContain(
+      HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor,
+    )
+    expect(getEffectiveEnabledEdgeIds(hall, hospitalSceneEdgeAccessCatalog)).not.toContain(
+      HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor,
+    )
+    const security = snapshot({ nodeId: HOSPITAL_NODE_IDS.securityOffice })
+    expect(security.navigationKnowledge.knownEdgeIds).toContain(
+      HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,
+    )
+    expect(getEffectiveEnabledEdgeIds(security, hospitalSceneEdgeAccessCatalog)).not.toContain(
+      HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,
+    )
+  })
+
   it('uses the backpack card as a live, non-persistent edge permission', () => {
     const without = snapshot({ nodeId: HOSPITAL_NODE_IDS.securityOffice })
     const withCard = snapshot({ nodeId: HOSPITAL_NODE_IDS.securityOffice, withCard: true })
@@ -167,7 +234,11 @@ describe('hospital staff access and fire door', () => {
     expect(result.result.finalMovementTime).toBe(config.scene.movementEdgeTime)
     expect(result.snapshot.backpack.items).toEqual(withCard.backpack.items)
     expect(result.snapshot.enabledEdgeIds).toEqual(withCard.enabledEdgeIds)
-    expect(result.result.effects.map(({ kind }) => kind)).toEqual(['scene-node-changed', 'scene-time-resolved'])
+    expect(result.result.effects.map(({ kind }) => kind)).toEqual([
+      'scene-node-changed',
+      'scene-navigation-knowledge-updated',
+      'scene-time-resolved',
+    ])
   })
 
   it('loses and regains staff-passage access when the real card moves between backpack and current ground', () => {
@@ -348,6 +419,7 @@ describe('hospital staff access and fire door', () => {
     const start = snapshot({ withCard: true })
     const opened = resolveSceneObstacleOptionCommand(start, option(HOSPITAL_FIRE_DOOR_OPTION_IDS.accessCard), obstacleDependencies).snapshot
     expect(getPlayerVisibleSceneObstacles(opened, obstacleDependencies)).toEqual([])
+    expect(opened.navigationKnowledge).toEqual(start.navigationKnowledge)
   })
 
   it('spawns stable toolkit electronics on the current ground before search and allows explicit pickup', () => {
@@ -382,6 +454,7 @@ describe('hospital staff access and fire door', () => {
       placement: { x: 0, y: 0, rotated: false },
     }, dependencies)
     expect(picked.snapshot.backpack.items[0].instanceId).toBe(ground[0].item.instanceId)
+    expect(picked.snapshot.navigationKnowledge).toEqual(opened.snapshot.navigationKnowledge)
     expect(getSceneNodeItems(picked.snapshot.sceneItems, HOSPITAL_NODE_IDS.emergencyHall)).toEqual([])
   })
 

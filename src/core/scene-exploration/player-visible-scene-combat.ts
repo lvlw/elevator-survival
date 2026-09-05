@@ -4,14 +4,11 @@ import {
   getPlayerVisibleCombatActionOptions,
   type PlayerVisibleCombatActionOption,
 } from '../combat'
-import { hasMinorContusions } from '../condition'
-import { calculateBackpackWeightSubtotal } from '../inventory'
 import { calculateForcedReturnDamage } from '../scene'
-import { getEffectiveEnabledEdgeIds } from '../scene-access'
-import { findReturnRoute } from '../scene-graph'
 import { deepFreeze } from '../config'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
 import { SceneExplorationError } from './scene-exploration-errors'
+import { findPlayerKnownReturnRoute } from './scene-navigation-return'
 import type {
   SceneExplorationDependencies,
   SceneExplorationSnapshot,
@@ -266,23 +263,11 @@ export function getPlayerVisibleSceneCombatActionOptions(
         },
       }
     }
-    const backpackWeight = calculateBackpackWeightSubtotal(
-      active.combat.backpack,
-      dependencies.physicalCatalog,
-    )
-    const route = findReturnRoute({
-      graph: dependencies.graph,
+    const route = findPlayerKnownReturnRoute(snapshot, dependencies, {
       currentNodeId: finalNodeId,
-      availability: {
-        enabledEdgeIds: getEffectiveEnabledEdgeIds({
-          enabledEdgeIds: snapshot.enabledEdgeIds,
-          backpack: active.combat.backpack,
-        }, dependencies.edgeAccessCatalog),
-      },
-      totalWeight: backpackWeight,
-      hasMinorContusion: hasMinorContusions(active.combat.playerCondition),
-      analgesiaActive: active.combat.playerCondition.painkillerActive,
-    }, dependencies.config)
+      backpack: active.combat.backpack,
+      condition: active.combat.playerCondition,
+    })
     const forcedBranches = completionBranches.map((branch) => {
       const damage = calculateForcedReturnDamage(
         time.overtimeDebt,

@@ -102,6 +102,7 @@ describe('production strict bootstrap', () => {
   })
 
   it.each([
+    ['saveFormatVersion', 1],
     ['saveFormatVersion', 999],
     ['rulesVersion', 'rules-secret-value'],
   ] as const)('classifies an incompatible %s without clearing it', (field, value) => {

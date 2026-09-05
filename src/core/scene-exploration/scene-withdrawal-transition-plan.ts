@@ -1,13 +1,12 @@
 import { deepFreeze } from '../config'
-import { hasMinorContusions } from '../condition'
 import { calculateBackpackWeightSubtotal } from '../inventory'
 import { classifyLoad } from '../load'
 import { resolveTimedSceneAction } from '../scene'
-import { getEffectiveEnabledEdgeIds } from '../scene-access'
-import { findReturnRoute, SceneGraphError } from '../scene-graph'
+import { SceneGraphError } from '../scene-graph'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
 import { createWithdrawFromSceneCommand } from './scene-withdrawal-command'
+import { findPlayerKnownReturnRoute } from './scene-navigation-return'
 import type {
   SceneExplorationDependencies,
   SceneExplorationEffect,
@@ -59,16 +58,7 @@ export function buildSceneWithdrawalTransitionPlan(
   }
   let returnRoute
   try {
-    returnRoute = findReturnRoute({
-      graph: dependencies.graph,
-      currentNodeId: snapshot.currentNodeId,
-      availability: {
-        enabledEdgeIds: getEffectiveEnabledEdgeIds(snapshot, dependencies.edgeAccessCatalog),
-      },
-      totalWeight: backpackWeight,
-      hasMinorContusion: hasMinorContusions(snapshot.condition),
-      analgesiaActive: snapshot.condition.painkillerActive,
-    }, dependencies.config)
+    returnRoute = findPlayerKnownReturnRoute(snapshot, dependencies)
   } catch (error) {
     graphFailure(error)
   }

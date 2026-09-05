@@ -10,7 +10,6 @@ import {
   hospitalSliceV01RuleConfig as config,
 } from '../../content'
 import { createPlayerCondition } from '../../core/condition'
-import { createFirstCombatEncounter } from '../../core/combat'
 import { createCurrentDayHubSnapshot } from '../../core/current-day-hub'
 import { resolveDailySettlement } from '../../core/daily-settlement'
 import { createBackpackSnapshot, type ItemInstance } from '../../core/inventory'
@@ -18,7 +17,7 @@ import { createFullItemState, createItemState } from '../../core/item-state'
 import { createQuickSlotSnapshot } from '../../core/quick-slot'
 import { createRunLoadoutSnapshot } from '../../core/run-loadout'
 import { resolveRunFailure } from '../../core/run-termination'
-import { createSceneExplorationSnapshot } from '../../core/scene-exploration'
+import { createSceneExplorationSnapshot, resolveSceneMoveCommand } from '../../core/scene-exploration'
 import { resolveSceneLaunch } from '../../core/scene-launch'
 import {
   hospitalCurrentDayHubDependencies,
@@ -204,39 +203,19 @@ function createPreviewCombat(): StableRunPhase {
     session.context.runReturnCarryForward.continuity.runIdentity.seed,
     session.scene.sceneInstanceId,
   )
-  const dormant = session.scene.combatState.encounters[0]
-  if (!dormant || dormant.kind !== 'dormant') throw new Error('预览遭遇未初始化')
-  const combat = createFirstCombatEncounter({
-    playerCondition: session.scene.condition,
-    backpack: session.scene.backpack,
-    equipment: session.scene.equipment,
-    quickSlots: session.scene.quickSlots,
-    itemStates: session.scene.itemStates,
-    usage: session.scene.combatState.usage,
-    enemy: dormant.enemy,
-  }, 'unalerted', runtime.dependencies.sceneCombat!.combat)
-  const scene = createSceneExplorationSnapshot({
+  const prepared = createSceneExplorationSnapshot({
     ...session.scene,
-    status: 'combat',
-    currentNodeId: HOSPITAL_NODE_IDS.isolationCorridor,
     enabledEdgeIds: [
       ...session.scene.enabledEdgeIds,
       HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor,
     ],
-    combatState: {
-      usage: session.scene.combatState.usage,
-      encounters: [{
-        kind: 'active',
-        encounterId: dormant.encounterId,
-        eventId: dormant.eventId,
-        nodeId: dormant.nodeId,
-        returnNodeId: HOSPITAL_NODE_IDS.emergencyHall,
-        entryEdgeId: HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor,
-        engagement: 'first-entry',
-        combat,
-      }],
-    },
   }, runtime.dependencies)
+  const hall = resolveSceneMoveCommand(prepared, {
+    edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall,
+  }, runtime.dependencies).snapshot
+  const scene = resolveSceneMoveCommand(hall, {
+    edgeId: HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor,
+  }, runtime.dependencies).snapshot
   return { kind: 'scene-session', payload: { context: session.context, scene } }
 }
 

@@ -1,16 +1,15 @@
 import { deepFreeze } from '../config'
-import { hasMinorContusions } from '../condition'
 import { calculateBackpackWeightSubtotal, createBackpackSnapshot, removeItemFromBackpack } from '../inventory'
 import { getItemState, restoreItemResource } from '../item-state'
 import { classifyLoad } from '../load'
-import { getEffectiveEnabledEdgeIds } from '../scene-access'
-import { findReturnRoute, SceneGraphError } from '../scene-graph'
+import { SceneGraphError } from '../scene-graph'
 import { resolveTimedSceneAction } from '../scene'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
 import { validateSceneBatteryDependencies } from './scene-battery-dependencies'
 import { getAvailableSceneBatteryCommandsFromValidatedSnapshot } from './scene-battery-selectors'
 import { createUseSceneBatteryCommand } from './scene-battery-validation'
+import { findPlayerKnownReturnRoute } from './scene-navigation-return'
 import type { SceneBatteryCommandDependencies, SceneBatteryTransitionPlan, SceneExplorationEffect, SceneExplorationSnapshot, SceneExplorationStatus, UseSceneBatteryCommand } from './scene-exploration-types'
 
 function same(left: unknown, right: unknown): boolean { return JSON.stringify(left) === JSON.stringify(right) }
@@ -53,7 +52,7 @@ export function buildSceneBatteryTransitionPlan(snapshotInput: SceneExplorationS
   if (!load.canCarry) throw new SceneExplorationError('CANNOT_CARRY', '无法携带状态不能使用电池')
   let returnRoute
   try {
-    returnRoute = findReturnRoute({ graph: dependencies.graph, currentNodeId: snapshot.currentNodeId, availability: { enabledEdgeIds: getEffectiveEnabledEdgeIds({ ...snapshot, backpack: backpackAfter }, dependencies.edgeAccessCatalog) }, totalWeight: weight, hasMinorContusion: hasMinorContusions(snapshot.condition), analgesiaActive: snapshot.condition.painkillerActive }, dependencies.config)
+    returnRoute = findPlayerKnownReturnRoute(snapshot, dependencies, { backpack: backpackAfter })
   } catch (error) {
     if (error instanceof SceneGraphError) throw new SceneExplorationError(error.code === 'NO_RETURN_ROUTE' ? 'NO_RETURN_ROUTE' : 'INVALID_INPUT', error.message)
     throw error

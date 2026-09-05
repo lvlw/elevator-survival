@@ -23,12 +23,13 @@ export function getCurrentTraversableAdjacentEdges(
     scene,
     runtime.dependencies.edgeAccessCatalog,
   ))
+  const known = new Set(scene.navigationKnowledge.knownEdgeIds)
   const nodeNames = new Map(
     runtime.dependencies.graph.nodes.map(({ id, name }) => [id, name]),
   )
   const result = runtime.dependencies.graph.edges
     .filter(({ id, from, to }) =>
-      effectiveEnabled.has(id) &&
+      effectiveEnabled.has(id) && known.has(id) &&
       (from === scene.currentNodeId || to === scene.currentNodeId),
     )
     .map(({ id, from, to }) => {

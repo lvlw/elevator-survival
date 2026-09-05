@@ -5,7 +5,6 @@ import { createItemState, getItemState } from '../../core/item-state'
 import { getSceneNodeItems } from '../../core/scene-items'
 import {
   applySceneExplorationEffects,
-  createInitialSceneExplorationSnapshot,
   previewMainSearchCommand,
   previewNodeItemPickupCommand,
   previewSceneMoveCommand,
@@ -17,6 +16,8 @@ import {
   type SceneExplorationSnapshot,
 } from '../../core/scene-exploration'
 import { createSceneSearchState } from '../../core/scene-search'
+import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
+import { createHospitalTestSceneExplorationSnapshot } from './hospital-scene-navigation.test-support'
 import {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
   HOSPITAL_EDGE_IDS,
@@ -34,6 +35,7 @@ import {
 
 const dependencies = {
   graph: hospitalSliceV01SceneGraph,
+  navigationCatalog: hospitalSceneSurfaceObservationCatalog,
   physicalCatalog: hospitalItemCatalog,
   equipmentCatalog: hospitalItemEquipmentCatalog,
   quickSlotCatalog: hospitalItemQuickSlotCatalog,
@@ -106,7 +108,7 @@ function initialSnapshot(): SceneExplorationSnapshot {
     definitionId: HOSPITAL_ITEM_IDS.flashlight,
     quantity: 1,
   }
-  return createInitialSceneExplorationSnapshot(
+  return createHospitalTestSceneExplorationSnapshot(
     {
       sceneInstanceId: 'hospital-command-chain-scene',
       searchState: createSceneSearchState({
@@ -182,6 +184,7 @@ describe('hospital formal command chain', () => {
     expect(node(current, HOSPITAL_NODE_IDS.emergencyHall)).toEqual(hallPrepared)
     expect(resolved.result.effects.map(({ kind }) => kind)).toEqual([
       'scene-node-changed',
+      'scene-navigation-knowledge-updated',
       'scene-time-resolved',
     ])
 

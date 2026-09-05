@@ -1,4 +1,8 @@
 import { describe, expect, it } from 'vitest'
+import {
+  createFullySurfaceVisibleNavigationCatalog,
+  createTestNavigationKnowledgeAlongPath,
+} from '../../test-support/scene-navigation'
 import { type FrozenRuleConfig } from '../config'
 import {
   activatePainkiller,
@@ -111,7 +115,13 @@ describe('strict movement command and snapshot boundaries', () => {
   it('requires all hidden state fields and rejects unknown top-level fields on restore', () => {
     const complete = snapshot()
     expect(createSceneExplorationSnapshot(complete, dependencies)).toEqual(complete)
-    for (const field of ['alertState', 'sceneItems', 'combatState', 'dailyMedicalUsage'] as const) {
+    for (const field of [
+      'alertState',
+      'sceneItems',
+      'combatState',
+      'dailyMedicalUsage',
+      'navigationKnowledge',
+    ] as const) {
       const incomplete = { ...complete } as Record<string, unknown>
       delete incomplete[field]
       expect(() => createSceneExplorationSnapshot(incomplete as never, dependencies))
@@ -121,6 +131,24 @@ describe('strict movement command and snapshot boundaries', () => {
       { ...complete, unknown: true } as never,
       dependencies,
     )).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+
+  it.each([
+    { discoveredNodeIds: ['safe', 'safe'], visitedNodeIds: ['safe'], knownEdgeIds: ['safe-middle'] },
+    { discoveredNodeIds: ['safe', 'middle'], visitedNodeIds: ['safe', 'safe'], knownEdgeIds: ['safe-middle'] },
+    { discoveredNodeIds: ['safe', 'middle'], visitedNodeIds: ['safe'], knownEdgeIds: ['safe-middle', 'safe-middle'] },
+    { discoveredNodeIds: ['missing'], visitedNodeIds: ['missing'], knownEdgeIds: [] },
+    { discoveredNodeIds: ['safe', 'middle'], visitedNodeIds: ['missing'], knownEdgeIds: ['safe-middle'] },
+    { discoveredNodeIds: ['safe', 'middle'], visitedNodeIds: ['safe'], knownEdgeIds: ['missing'] },
+    { discoveredNodeIds: ['safe'], visitedNodeIds: ['middle'], knownEdgeIds: [] },
+    { discoveredNodeIds: ['safe', 'middle'], visitedNodeIds: ['middle'], knownEdgeIds: ['safe-middle'] },
+    { discoveredNodeIds: ['safe', 'middle'], visitedNodeIds: ['safe'], knownEdgeIds: ['middle-far'] },
+    { discoveredNodeIds: ['safe', 'middle', 'far'], visitedNodeIds: ['safe', 'middle'], knownEdgeIds: ['safe-middle'] },
+  ])('rejects malformed restored navigation knowledge %#', (navigationKnowledge) => {
+    expect(() => createSceneExplorationSnapshot({
+      ...snapshot(),
+      navigationKnowledge,
+    }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
   })
 
   it('rejects hidden task event state when no task event catalog was supplied', () => {
@@ -180,6 +208,7 @@ const quickSlots = createEmptyQuickSlots(
 )
 const dependencies = {
   graph,
+  navigationCatalog: createFullySurfaceVisibleNavigationCatalog(graph),
   physicalCatalog: catalog,
   equipmentCatalog,
   quickSlotCatalog,
@@ -231,8 +260,8 @@ const snapshot = (
   weight = 0,
   playerCondition = condition(),
   enabledEdgeIds = ['safe-middle', 'middle-far'],
-) =>
-  createInitialSceneExplorationSnapshot(
+) => {
+  const initial = createInitialSceneExplorationSnapshot(
     {
       sceneInstanceId,
       searchState,
@@ -259,6 +288,17 @@ const snapshot = (
     },
     dependencies,
   )
+  return node === 'safe'
+    ? initial
+    : createSceneExplorationSnapshot({
+        ...initial,
+        navigationKnowledge: createTestNavigationKnowledgeAlongPath(
+          ['safe', node],
+          graph,
+          dependencies.navigationCatalog,
+        ),
+      }, dependencies)
+}
 
 describe('scene exploration snapshot', () => {
   it('normalizes enabled edges and deeply freezes nested state without mutation', () => {
@@ -516,6 +556,7 @@ describe('scene move evaluation', () => {
     })
     expect(resolved.result.effects.map((effect) => effect.kind)).toEqual([
       'scene-node-changed',
+      'scene-navigation-knowledge-updated',
       'scene-time-resolved',
     ])
     expect(input.currentNodeId).toBe('safe')
@@ -559,6 +600,7 @@ describe('scene move evaluation', () => {
     expect(result.snapshot).toMatchObject({ status: 'forced-returned', currentNodeId: 'safe', remainingTime: 0 })
     expect(result.result.effects.map((effect) => effect.kind)).toEqual([
       'scene-node-changed',
+      'scene-navigation-knowledge-updated',
       'scene-time-resolved',
       'health-lost',
       'health-lost',
@@ -587,7 +629,7 @@ describe('scene move evaluation', () => {
   it.each([
     ['', 'INVALID_MOVE_COMMAND'],
     ['missing', 'UNKNOWN_EDGE'],
-    ['one-way', 'EDGE_NOT_ENABLED'],
+    ['one-way', 'EDGE_NOT_KNOWN'],
   ])('rejects edge %s as %s without mutation', (edgeId, code) => {
     const input = snapshot()
     expect(previewSceneMoveCommand(input, { edgeId }, dependencies)).toEqual({
@@ -599,7 +641,7 @@ describe('scene move evaluation', () => {
 
   it('rejects reverse one-way traversal, disconnected edge, no return route, and cannot carry', () => {
     expect(previewSceneMoveCommand(snapshot('isolated', 10, 0, condition(), ['one-way']), { edgeId: 'one-way' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'EDGE_NOT_CONNECTED' })
-    expect(previewSceneMoveCommand(snapshot('safe'), { edgeId: 'middle-far' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'EDGE_NOT_CONNECTED' })
+    expect(previewSceneMoveCommand(snapshot('safe'), { edgeId: 'middle-far' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'EDGE_NOT_KNOWN' })
     expect(previewSceneMoveCommand(snapshot('middle', 10, 0, condition(), ['one-way']), { edgeId: 'one-way' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'NO_RETURN_ROUTE' })
     expect(previewSceneMoveCommand(snapshot('safe', 10, 29), { edgeId: 'safe-middle' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'CANNOT_CARRY' })
   })

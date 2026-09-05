@@ -28,6 +28,7 @@ import {
 } from '../../core/scene-exploration'
 import { addSceneItems, createEmptySceneItemsSnapshot } from '../../core/scene-items'
 import { createSceneSearchState } from '../../core/scene-search'
+import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
 import {
   HOSPITAL_COMBAT_ENCOUNTER_IDS,
   HOSPITAL_INTEL_IDS,
@@ -75,8 +76,9 @@ const backpackItems = (includeSample: boolean): readonly ItemInstance[] => [
 ]
 
 function sceneDependencies(withCompletedTask = false): SceneExplorationDependencies {
-  const base: SceneExplorationDependencies = {
-    graph: hospitalSliceV01SceneGraph,
+    const base: SceneExplorationDependencies = {
+      graph: hospitalSliceV01SceneGraph,
+      navigationCatalog: hospitalSceneSurfaceObservationCatalog,
     physicalCatalog: hospitalItemCatalog,
     equipmentCatalog: hospitalItemEquipmentCatalog,
     quickSlotCatalog: hospitalItemQuickSlotCatalog,

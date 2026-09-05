@@ -794,6 +794,7 @@ describe('stable Run Save IO', () => {
     expect(restored.payload.scene.taskEvents).toEqual(session.scene.taskEvents)
     expect(restored.payload.scene.runIntelLog).toEqual(session.scene.runIntelLog)
     expect(restored.payload.scene.dailyMedicalUsage).toEqual(session.scene.dailyMedicalUsage)
+    expect(restored.payload.scene.navigationKnowledge).toEqual(session.scene.navigationKnowledge)
     expect(restored.payload.context).toEqual(session.context)
     expect(restored.payload.scene.backpack.items.some(
       ({ instanceId }) => instanceId === splitInstanceId,
@@ -820,6 +821,28 @@ describe('stable Run Save IO', () => {
       pickup,
       runtime.dependencies,
     ))
+  })
+
+  it('requires canonical navigation knowledge in every v2 Scene payload', () => {
+    const { session } = activeSceneWithInventoryHistory()
+    const envelope = JSON.parse(serializeRunSave(
+      { kind: 'scene-session', payload: session },
+      hospitalRunSaveRulesRegistry,
+    )) as Record<string, unknown>
+    expect(envelope.saveFormatVersion).toBe(2)
+    const missing = structuredClone(envelope)
+    delete (((missing.payload as Record<string, unknown>).scene as Record<string, unknown>).navigationKnowledge)
+    expect(() => deserializeRunSave(JSON.stringify(missing), hospitalRunSaveRulesRegistry))
+      .toThrowError(RunSaveError)
+    const malformed = structuredClone(envelope)
+    const scene = (malformed.payload as Record<string, unknown>).scene as Record<string, unknown>
+    const knowledge = scene.navigationKnowledge as Record<string, unknown>
+    knowledge.knownEdgeIds = [
+      ...knowledge.knownEdgeIds as string[],
+      ...(knowledge.knownEdgeIds as string[]).slice(0, 1),
+    ]
+    expect(() => deserializeRunSave(JSON.stringify(malformed), hospitalRunSaveRulesRegistry))
+      .toThrowError(RunSaveError)
   })
 
   it('round-trips formal combat without healing, intent refresh, RNG redraw, or CTB reset', () => {
@@ -1030,7 +1053,7 @@ describe('stable Run Save IO', () => {
       (draft) => { delete draft.payload },
       (draft) => { draft.extra = true },
       (draft) => { draft.kind = 'unknown-phase' },
-      (draft) => { draft.saveFormatVersion = 2 },
+      (draft) => { draft.saveFormatVersion = 1 },
       (draft) => { draft.rulesVersion = 'unknown-rules' },
       (draft) => {
         ;(draft.runIdentity as Record<string, unknown>).runId = 'forged-run'

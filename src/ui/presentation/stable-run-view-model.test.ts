@@ -29,6 +29,7 @@ import {
   type StableRunPhase,
 } from '../../state/run-save'
 import { hospitalV01UiLabels } from '../hospital-v0.1'
+import { createHospitalTestNavigationKnowledge } from '../../content/hospital-v0.1/hospital-scene-navigation.test-support'
 import { createStableRunPlayerViewModel } from './stable-run-view-model'
 
 const item = (instanceId: string, definitionId: string, quantity = 1): ItemInstance => ({ instanceId, definitionId, quantity })
@@ -134,6 +135,7 @@ function combatPhase(): StableRunPhase {
   const scene = createSceneExplorationSnapshot({
     ...session.scene,
     status: 'combat', currentNodeId: HOSPITAL_NODE_IDS.isolationCorridor,
+    navigationKnowledge: createHospitalTestNavigationKnowledge(HOSPITAL_NODE_IDS.isolationCorridor),
     enabledEdgeIds: [...session.scene.enabledEdgeIds, HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor],
     combatState: { usage: session.scene.combatState.usage, encounters: [{ kind: 'active', encounterId: dormant.encounterId, eventId: dormant.eventId, nodeId: dormant.nodeId, returnNodeId: HOSPITAL_NODE_IDS.emergencyHall, entryEdgeId: HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor, engagement: 'first-entry', combat }] },
   }, runtime.dependencies)

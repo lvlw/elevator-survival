@@ -14,7 +14,6 @@ import {
 } from '../../core/item-state'
 import { getSceneNodeItems } from '../../core/scene-items'
 import {
-  createInitialSceneExplorationSnapshot,
   previewMainSearchCommand,
   resolveMainSearchCommand,
   resolveSceneMoveCommand,
@@ -40,9 +39,12 @@ import {
 } from './items'
 import { hospitalSliceV01RuleConfig as config } from './rule-config'
 import { hospitalMainSearchCatalog } from './search'
+import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
+import { createHospitalTestSceneExplorationSnapshot } from './hospital-scene-navigation.test-support'
 
 const dependencies = {
   graph: hospitalSliceV01SceneGraph,
+  navigationCatalog: hospitalSceneSurfaceObservationCatalog,
   physicalCatalog: hospitalItemCatalog,
   equipmentCatalog: hospitalItemEquipmentCatalog,
   quickSlotCatalog: hospitalItemQuickSlotCatalog,
@@ -158,7 +160,7 @@ function hospitalSnapshot(
         )
       : createFullItemState(item, hospitalItemResourceCatalog),
   )
-  return createInitialSceneExplorationSnapshot(
+  return createHospitalTestSceneExplorationSnapshot(
     {
       sceneInstanceId,
       searchState: createSceneSearchState({
@@ -278,8 +280,9 @@ describe('hospital main search command', () => {
       ],
     ],
   ])('reveals the same golden result with or without light at %s', (nodeId, expected) => {
+    const before = hospitalSnapshot({ nodeId })
     const withLight = resolveMainSearchCommand(
-      hospitalSnapshot({ nodeId }),
+      before,
       illuminated,
       dependencies,
     )
@@ -294,6 +297,8 @@ describe('hospital main search command', () => {
       getSceneNodeItems(withLight.snapshot.sceneItems, nodeId).map(({ item }) => item.definitionId),
     ).toEqual(expected)
     expect(lowLightNode).toEqual(illuminatedNode)
+    expect(withLight.snapshot.navigationKnowledge).toEqual(before.navigationKnowledge)
+    expect(withoutLight.snapshot.navigationKnowledge).toEqual(before.navigationKnowledge)
   })
 
   it.each([

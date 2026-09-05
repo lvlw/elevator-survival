@@ -6,15 +6,12 @@ import {
   previewCommittedResourceAction,
 } from '../item-state'
 import { classifyLoad } from '../load'
-import {
-  findReturnRoute,
-  SceneGraphError,
-} from '../scene-graph'
+import { SceneGraphError } from '../scene-graph'
 import { resolveTimedSceneAction } from '../scene'
-import { getEffectiveEnabledEdgeIds } from '../scene-access'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { applySceneExplorationEffects } from './scene-exploration-effects'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
+import { findPlayerKnownReturnRoute } from './scene-navigation-return'
 import type {
   MainSearchCommandDependencies,
   MainSearchEvaluation,
@@ -182,22 +179,8 @@ function evaluate(
     )
   }
   let returnRoute
-  const effectiveEnabledEdgeIds = getEffectiveEnabledEdgeIds(
-    snapshot,
-    dependencies.edgeAccessCatalog,
-  )
   try {
-    returnRoute = findReturnRoute(
-      {
-        graph: dependencies.graph,
-        currentNodeId: snapshot.currentNodeId,
-        availability: { enabledEdgeIds: effectiveEnabledEdgeIds },
-        totalWeight: backpackWeight,
-        hasMinorContusion: hasMinorContusions(snapshot.condition),
-        analgesiaActive: snapshot.condition.painkillerActive,
-      },
-      dependencies.config,
-    )
+    returnRoute = findPlayerKnownReturnRoute(snapshot, dependencies)
   } catch (error) {
     graphFailure(error)
   }

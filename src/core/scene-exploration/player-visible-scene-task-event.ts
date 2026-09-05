@@ -1,16 +1,15 @@
 import { deepFreeze } from '../config'
-import { hasMinorContusions } from '../condition'
 import {
   calculateBackpackWeightSubtotal,
   getItemDimensions,
 } from '../inventory'
 import { classifyLoad } from '../load'
-import { getEffectiveEnabledEdgeIds } from '../scene-access'
-import { findReturnRoute, SceneGraphError } from '../scene-graph'
+import { SceneGraphError } from '../scene-graph'
 import { createSceneTaskEventPrimaryPlan } from '../scene-task-event'
 import { resolveTimedSceneAction } from '../scene'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
+import { findPlayerKnownReturnRoute } from './scene-navigation-return'
 import type {
   PlayerVisibleSceneTaskEventCommandPreview,
   SceneExplorationSnapshot,
@@ -91,19 +90,9 @@ export function previewPlayerVisibleSceneTaskEventCommand(
     }
     let returnRoute
     try {
-      returnRoute = findReturnRoute({
-        graph: dependencies.graph,
-        currentNodeId: snapshot.currentNodeId,
-        availability: {
-          enabledEdgeIds: getEffectiveEnabledEdgeIds(
-            { ...snapshot, backpack: primary.backpackAfter },
-            dependencies.edgeAccessCatalog,
-          ),
-        },
-        totalWeight: primary.backpackWeightAfter,
-        hasMinorContusion: hasMinorContusions(snapshot.condition),
-        analgesiaActive: snapshot.condition.painkillerActive,
-      }, dependencies.config)
+      returnRoute = findPlayerKnownReturnRoute(snapshot, dependencies, {
+        backpack: primary.backpackAfter,
+      })
     } catch (error) {
       graphFailure(error)
     }

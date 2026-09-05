@@ -3,7 +3,7 @@ import type { RunIdentity } from '../../core/domain'
 import type { RunFailureSnapshot } from '../../core/run-termination'
 import type { RunSceneSessionSnapshot } from '../../core/scene-launch'
 
-export const RUN_SAVE_FORMAT_VERSION = 1 as const
+export const RUN_SAVE_FORMAT_VERSION = 2 as const
 
 export type StableRunPhase =
   | Readonly<{ kind: 'current-day-hub'; payload: CurrentDayHubSnapshot }>

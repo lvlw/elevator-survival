@@ -14,6 +14,7 @@ import {
   hospitalItemReturnLifecycleCatalog,
   hospitalSliceV01RuleConfig as config,
 } from '../../content'
+import { createHospitalTestNavigationKnowledge } from '../../content/hospital-v0.1/hospital-scene-navigation.test-support'
 import { createPlayerCondition } from '../../core/condition'
 import {
   createCurrentDayHubSnapshot,
@@ -1088,6 +1089,7 @@ describe('pickup identity, terminal action, and persistence failure routing', ()
     const prepared = createSceneExplorationSnapshot({
       ...session.scene,
       currentNodeId: HOSPITAL_NODE_IDS.specimenColdRoom,
+      navigationKnowledge: createHospitalTestNavigationKnowledge(HOSPITAL_NODE_IDS.specimenColdRoom),
       enabledEdgeIds: HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
       combatState: { ...session.scene.combatState, encounters: [{ ...encounter, enemy: { ...encounter.enemy, currentHealth: 0, defeated: true, hasBeenEncountered: true } }] },
     }, getRunSceneRuntime(session, hospitalSceneLaunchDependencies).dependencies)
@@ -1114,6 +1116,7 @@ describe('pickup identity, terminal action, and persistence failure routing', ()
     const prepared = createSceneExplorationSnapshot({
       ...session.scene,
       currentNodeId: HOSPITAL_NODE_IDS.specimenColdRoom,
+      navigationKnowledge: createHospitalTestNavigationKnowledge(HOSPITAL_NODE_IDS.specimenColdRoom),
       enabledEdgeIds: HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
       combatState: { ...session.scene.combatState, encounters: [{ ...encounter, enemy: { ...encounter.enemy, currentHealth: 0, defeated: true, hasBeenEncountered: true } }] },
     }, runtime.dependencies)
@@ -1232,6 +1235,7 @@ describe('pickup identity, terminal action, and persistence failure routing', ()
     const prepared = createSceneExplorationSnapshot({
       ...session.scene,
       currentNodeId: HOSPITAL_NODE_IDS.specimenColdRoom,
+      navigationKnowledge: createHospitalTestNavigationKnowledge(HOSPITAL_NODE_IDS.specimenColdRoom),
       enabledEdgeIds: HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
       combatState: { ...session.scene.combatState, encounters: [{ ...encounter, enemy: { ...encounter.enemy, currentHealth: 0, defeated: true, hasBeenEncountered: true } }] },
     }, runtime.dependencies)

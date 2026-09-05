@@ -14,6 +14,7 @@ import {
   replaceItemState,
 } from '../item-state'
 import { classifyLoad } from '../load'
+import { applyPlayerNavigationArrival } from '../scene-navigation'
 import {
   applyCombatEffects,
   createFirstCombatEncounter,
@@ -59,6 +60,7 @@ function fail(
   code:
     | 'INVALID_EFFECT_ORDER'
     | 'EFFECT_NODE_MISMATCH'
+    | 'EFFECT_NAVIGATION_MISMATCH'
     | 'EFFECT_TIME_MISMATCH'
     | 'EFFECT_HEALTH_MISMATCH'
     | 'EFFECT_STATUS_MISMATCH'
@@ -515,6 +517,7 @@ function applySceneExplorationEffectsInternal(
   let activeObstacleId: string | null = null
   let activeObstacleOptionId: string | null = null
   let sawTime = false
+  let sawNavigationUpdate = false
   let sawForcedReturn = false
   let sawStatus = false
   let lastHealthOrder = -1
@@ -915,10 +918,39 @@ function applySceneExplorationEffectsInternal(
         state = deepFreeze({ ...state, currentNodeId: effect.toNodeId })
         break
       }
+      case 'scene-navigation-knowledge-updated': {
+        if (
+          !dependencies ||
+          primaryKind !== 'movement' ||
+          sawNavigationUpdate ||
+          sawTime ||
+          index !== 1 ||
+          effect.reason !== 'first-arrival' ||
+          effect.arrivalNodeId !== state.currentNodeId
+        ) {
+          fail('EFFECT_NAVIGATION_MISMATCH', '导航知识Effect顺序或到达节点无效')
+        }
+        const expected = applyPlayerNavigationArrival(
+          state.navigationKnowledge,
+          effect.arrivalNodeId,
+          dependencies.graph,
+          dependencies.navigationCatalog,
+        )
+        if (!sameValue(effect, {
+          kind: 'scene-navigation-knowledge-updated',
+          reason: 'first-arrival',
+          ...expected.delta,
+        }) || expected.delta.addedVisitedNodeIds.length === 0) {
+          fail('EFFECT_NAVIGATION_MISMATCH', '导航知识Effect与正式首次到达增量不一致')
+        }
+        state = deepFreeze({ ...state, navigationKnowledge: expected.knowledge })
+        sawNavigationUpdate = true
+        break
+      }
       case 'scene-time-resolved': {
         const expectedIndex =
           primaryKind === 'movement'
-            ? 1
+            ? sawNavigationUpdate ? 2 : 1
             : primaryKind === 'main-search'
               ? sawResourceConsumption
                 ? 2 + (expectedMainSearchIntelIds?.length ?? 0)

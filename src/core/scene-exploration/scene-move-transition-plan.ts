@@ -5,14 +5,15 @@ import { calculateBackpackWeightSubtotal } from '../inventory'
 import { calculateAdjustedTravelTime, classifyLoad } from '../load'
 import { resolveTimedSceneAction } from '../scene'
 import { getEffectiveEnabledEdgeIds } from '../scene-access'
+import { applyPlayerNavigationArrival } from '../scene-navigation'
 import {
-  findReturnRoute,
   getSceneEdgeTraversal,
   SceneGraphError,
 } from '../scene-graph'
 import { createMoveThroughSceneEdgeCommand } from './scene-move-command'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
+import { findPlayerKnownReturnRoute } from './scene-navigation-return'
 import type {
   MoveThroughSceneEdgeCommand,
   SceneExplorationDependencies,
@@ -78,11 +79,16 @@ export function buildSceneMoveTransitionPlan(
   if (snapshot.remainingTime === 0) {
     throw new SceneExplorationError('SCENE_TIME_EXHAUSTED', '场景时间已耗尽')
   }
-
   const effectiveEnabledEdgeIds = getEffectiveEnabledEdgeIds(
     snapshot,
     dependencies.edgeAccessCatalog,
   )
+  if (!dependencies.graph.edges.some(({ id }) => id === command.edgeId)) {
+    throw new SceneExplorationError('UNKNOWN_EDGE', `未知边：${command.edgeId}`)
+  }
+  if (!snapshot.navigationKnowledge.knownEdgeIds.includes(command.edgeId)) {
+    throw new SceneExplorationError('EDGE_NOT_KNOWN', '玩家尚未发现该路线')
+  }
   let traversal
   try {
     traversal = getSceneEdgeTraversal(
@@ -110,16 +116,18 @@ export function buildSceneMoveTransitionPlan(
     hasMinorContusion,
     analgesiaActive: snapshot.condition.painkillerActive,
   }, dependencies.config)
+  const navigationArrival = applyPlayerNavigationArrival(
+    snapshot.navigationKnowledge,
+    traversal.toNodeId,
+    dependencies.graph,
+    dependencies.navigationCatalog,
+  )
   let returnRoute
   try {
-    returnRoute = findReturnRoute({
-      graph: dependencies.graph,
+    returnRoute = findPlayerKnownReturnRoute(snapshot, dependencies, {
       currentNodeId: traversal.toNodeId,
-      availability: { enabledEdgeIds: effectiveEnabledEdgeIds },
-      totalWeight: backpackWeight,
-      hasMinorContusion,
-      analgesiaActive: snapshot.condition.painkillerActive,
-    }, dependencies.config)
+      navigationKnowledge: navigationArrival.knowledge,
+    })
   } catch (error) {
     graphFailure(error)
   }
@@ -155,14 +163,25 @@ export function buildSceneMoveTransitionPlan(
       toNodeId: traversal.toNodeId,
       edgeId: command.edgeId,
     },
-    {
+  ]
+  if (
+    navigationArrival.delta.addedDiscoveredNodeIds.length > 0 ||
+    navigationArrival.delta.addedVisitedNodeIds.length > 0 ||
+    navigationArrival.delta.addedKnownEdgeIds.length > 0
+  ) {
+    effects.push({
+      kind: 'scene-navigation-knowledge-updated',
+      reason: 'first-arrival',
+      ...navigationArrival.delta,
+    })
+  }
+  effects.push({
       kind: 'scene-time-resolved',
       remainingTimeBefore: snapshot.remainingTime,
       actionTimeCost: movementAdjustment.finalTime,
       remainingTimeAfter: sceneOutcome.clock.remainingTime,
       overtimeDebt: sceneOutcome.overtimeDebt,
-    },
-  ]
+    })
   let effectHealth = snapshot.condition.currentHealth
   effectHealth = addHealthEffect(
     effects,

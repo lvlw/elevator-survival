@@ -8,7 +8,6 @@ import { createFullItemState, createItemState } from '../../../core/item-state'
 import { createEmptyQuickSlots, createQuickSlotSnapshot } from '../../../core/quick-slot'
 import {
   applySceneExplorationEffects,
-  createInitialSceneExplorationSnapshot,
   createSceneExplorationSnapshot,
   getPlayerVisibleSceneCombatActionOptions,
   getPlayerVisibleSceneCombatState,
@@ -40,11 +39,17 @@ import {
   createHospitalSceneCombatDependencies,
   HOSPITAL_COMBAT_ENCOUNTER_IDS,
 } from './hospital-scene-combat'
+import { hospitalSceneSurfaceObservationCatalog } from '../hospital-scene-navigation'
+import {
+  createHospitalTestNavigationKnowledge,
+  createHospitalTestSceneExplorationSnapshot,
+} from '../hospital-scene-navigation.test-support'
 
 const sceneInstanceId = 'hospital-scene-combat-integration'
 const sceneCombat = createHospitalSceneCombatDependencies('scene-combat-seed', sceneInstanceId)
 const dependencies = {
   graph: hospitalSliceV01SceneGraph,
+  navigationCatalog: hospitalSceneSurfaceObservationCatalog,
   physicalCatalog: hospitalItemCatalog,
   equipmentCatalog: hospitalItemEquipmentCatalog,
   quickSlotCatalog: hospitalItemQuickSlotCatalog,
@@ -85,7 +90,7 @@ function scene(options: {
       ? { instanceId: `scene-quick-${index}`, definitionId, quantity: 1 }
       : null,
   )
-  return createInitialSceneExplorationSnapshot({
+  return createHospitalTestSceneExplorationSnapshot({
     sceneInstanceId,
     searchState,
     alertState: options.alertState,
@@ -151,11 +156,24 @@ describe('hospital scene combat encounter lifecycle', () => {
     }, dependencies)
     expect(result.result.effects.map(({ kind }) => kind)).toEqual([
       'scene-node-changed',
+      'scene-navigation-knowledge-updated',
       'scene-time-resolved',
       'scene-combat-started',
       'scene-status-changed',
     ])
     expect(result.snapshot.status).toBe('combat')
+    expect(result.snapshot.navigationKnowledge.visitedNodeIds).toContain(
+      HOSPITAL_NODE_IDS.isolationCorridor,
+    )
+    expect(result.snapshot.navigationKnowledge.discoveredNodeIds).toContain(
+      HOSPITAL_NODE_IDS.specimenColdRoom,
+    )
+    expect(result.snapshot.navigationKnowledge.knownEdgeIds).toContain(
+      HOSPITAL_EDGE_IDS.isolationCorridorToSpecimenColdRoom,
+    )
+    expect(result.snapshot.navigationKnowledge.knownEdgeIds).not.toContain(
+      HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,
+    )
     const active = result.snapshot.combatState.encounters[0]
     expect(active.kind).toBe('active')
     if (active.kind !== 'active') throw new Error('encounter must be active')
@@ -708,6 +726,7 @@ describe('hospital scene combat encounter lifecycle', () => {
       ...dormantAtHall,
       status: 'dead',
       currentNodeId: HOSPITAL_NODE_IDS.isolationCorridor,
+      navigationKnowledge: createHospitalTestNavigationKnowledge(HOSPITAL_NODE_IDS.isolationCorridor),
       condition: createPlayerCondition({
         ...dormantAtHall.condition,
         currentHealth: 0,
@@ -757,6 +776,7 @@ describe('hospital scene combat encounter lifecycle', () => {
     expect(result.snapshot.status).toBe('combat')
     expect(result.snapshot.remainingTime).toBe(beforeTime)
     expect(result.snapshot.currentNodeId).toBe(beforeNode)
+    expect(result.snapshot.navigationKnowledge).toEqual(started.navigationKnowledge)
     expect(result.snapshot.backpack).toEqual(beforeBackpack)
     expect(result.snapshot.quickSlots.slots[0]).toBeNull()
     expect(result.snapshot.quickSlots.slots[1]).toMatchObject({

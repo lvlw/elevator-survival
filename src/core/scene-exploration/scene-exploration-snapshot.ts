@@ -14,6 +14,10 @@ import {
   validateTraversalAvailability,
 } from '../scene-graph'
 import { getEffectiveEnabledEdgeIds } from '../scene-access'
+import {
+  createInitialPlayerNavigationKnowledge,
+  createPlayerNavigationKnowledgeSnapshot,
+} from '../scene-navigation'
 import { validateSceneSearchState } from '../scene-search'
 import {
   createInitialSceneCombatState,
@@ -49,6 +53,7 @@ const SNAPSHOT_KEYS = [
   'enabledEdgeIds',
   'equipment',
   'itemStates',
+  'navigationKnowledge',
   'dailyMedicalUsage',
   'quickSlots',
   'remainingTime',
@@ -114,6 +119,20 @@ export function createSceneExplorationSnapshot(
   )
   if (input.currentNodeId.trim().length === 0 || !currentNode) {
     throw new SceneExplorationError('INVALID_CURRENT_NODE', '当前节点无效')
+  }
+  let navigationKnowledge
+  try {
+    navigationKnowledge = createPlayerNavigationKnowledgeSnapshot(
+      input.navigationKnowledge,
+      input.currentNodeId,
+      dependencies.graph,
+      dependencies.navigationCatalog,
+    )
+  } catch (error) {
+    throw new SceneExplorationError(
+      'INVALID_INPUT',
+      error instanceof Error ? error.message : '玩家导航知识无效',
+    )
   }
   if (
     !Number.isSafeInteger(input.remainingTime) ||
@@ -399,6 +418,7 @@ export function createSceneExplorationSnapshot(
     runIntelLog,
     taskEvents,
     combatState,
+    navigationKnowledge,
   })
 }
 
@@ -406,6 +426,9 @@ export function createInitialSceneExplorationSnapshot(
   input: SceneExplorationInitialSnapshotInput,
   dependencies: SceneExplorationDependencies,
 ): SceneExplorationSnapshot {
+  if (!dependencies.graph.nodes.some(({ id }) => id === input.currentNodeId)) {
+    throw new SceneExplorationError('INVALID_CURRENT_NODE', '当前节点不存在')
+  }
   const sceneItemsDependencies = {
     graph: dependencies.graph,
     itemCatalog: dependencies.physicalCatalog,
@@ -433,6 +456,11 @@ export function createInitialSceneExplorationSnapshot(
         dependencies.taskEventCatalog,
       ),
       combatState,
+      navigationKnowledge: createInitialPlayerNavigationKnowledge(
+        input.currentNodeId,
+        dependencies.graph,
+        dependencies.navigationCatalog,
+      ),
     },
     dependencies,
   )

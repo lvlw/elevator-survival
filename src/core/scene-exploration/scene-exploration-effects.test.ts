@@ -1,4 +1,8 @@
 import { describe, expect, it } from 'vitest'
+import {
+  createFullySurfaceVisibleNavigationCatalog,
+  createTestNavigationKnowledgeAlongPath,
+} from '../../test-support/scene-navigation'
 import { type FrozenRuleConfig } from '../config'
 import { createPlayerCondition } from '../condition'
 import {
@@ -15,6 +19,7 @@ import { createSceneGraph } from '../scene-graph'
 import {
   applySceneExplorationEffects,
   createInitialSceneExplorationSnapshot,
+  createSceneExplorationSnapshot,
   resolveSceneMoveCommand,
   SceneExplorationError,
   type SceneExplorationEffect,
@@ -72,6 +77,7 @@ const quickSlots = createEmptyQuickSlots(
 )
 const dependencies = {
   graph,
+  navigationCatalog: createFullySurfaceVisibleNavigationCatalog(graph),
   physicalCatalog: catalog,
   equipmentCatalog,
   quickSlotCatalog,
@@ -91,8 +97,8 @@ const initial = (
   remainingTime = 100,
   health = 12,
   bleeding = false,
-) =>
-  createInitialSceneExplorationSnapshot(
+) => {
+  const snapshot = createInitialSceneExplorationSnapshot(
     {
       sceneInstanceId,
       searchState,
@@ -124,6 +130,17 @@ const initial = (
     },
     dependencies,
   )
+  return node === 'safe'
+    ? snapshot
+    : createSceneExplorationSnapshot({
+        ...snapshot,
+        navigationKnowledge: createTestNavigationKnowledgeAlongPath(
+          ['safe', node],
+          graph,
+          dependencies.navigationCatalog,
+        ),
+      }, dependencies)
+}
 
 const resolve = (
   start = initial(),
@@ -234,6 +251,25 @@ describe('scene exploration Effect tamper detection', () => {
     ).toThrowError(expect.objectContaining({ code: 'UNKNOWN_EFFECT' }))
   })
 
+  it('rejects a forged first-arrival navigation delta atomically', () => {
+    const start = initial()
+    const effects = structuredClone(resolve(start).result.effects)
+    const navigation = effects.find(
+      (effect) => effect.kind === 'scene-navigation-knowledge-updated',
+    )
+    if (navigation?.kind !== 'scene-navigation-knowledge-updated') {
+      throw new Error('expected navigation Effect')
+    }
+    Object.assign(navigation, { addedKnownEdgeIds: [] })
+    expect(() => applySceneExplorationEffects(start, effects, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INCOMPLETE_EFFECT_PLAN' }))
+    expect(start.navigationKnowledge).toEqual({
+      discoveredNodeIds: ['middle', 'safe'],
+      visitedNodeIds: ['safe'],
+      knownEdgeIds: ['safe-middle'],
+    })
+  })
+
   it('rejects node, time, health, result, and status before-value mismatches', () => {
     const start = initial('middle', 5, 12, true)
     const effects = resolve(start, 'middle-far').result.effects
@@ -283,14 +319,14 @@ describe('scene exploration Effect tamper detection', () => {
     expect(() =>
       applySceneExplorationEffects(
         initial(),
-        [normal[1], normal[0]],
+        [normal[2], normal[0], normal[1]],
         dependencies,
       ),
     ).toThrowError(expect.objectContaining({ code: 'INVALID_EFFECT_ORDER' }))
     expect(() =>
       applySceneExplorationEffects(
         initial(),
-        [normal[0], normal[1], normal[1]],
+        [normal[0], normal[1], normal[2], normal[2]],
         dependencies,
       ),
     ).toThrowError(expect.objectContaining({ code: 'INCOMPLETE_EFFECT_PLAN' }))

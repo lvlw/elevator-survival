@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { createPlayerCondition } from '../../core/condition'
+import { createInitialPlayerNavigationKnowledge } from '../../core/scene-navigation'
 import {
   calculateBackpackWeightSubtotal,
   createBackpackSnapshot,
@@ -35,9 +36,11 @@ import {
 } from './items'
 import { hospitalSliceV01RuleConfig as config } from './rule-config'
 import { hospitalMainSearchCatalog } from './search'
+import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
 
 const dependencies = {
   graph: hospitalSliceV01SceneGraph,
+  navigationCatalog: hospitalSceneSurfaceObservationCatalog,
   physicalCatalog: hospitalItemCatalog,
   equipmentCatalog: hospitalItemEquipmentCatalog,
   quickSlotCatalog: hospitalItemQuickSlotCatalog,
@@ -123,6 +126,13 @@ function searchedSnapshot(
         status === 'safe-returned' || status === 'forced-returned'
           ? HOSPITAL_NODE_IDS.elevatorAnteroom
           : nodeId,
+      navigationKnowledge: createInitialPlayerNavigationKnowledge(
+        status === 'safe-returned' || status === 'forced-returned'
+          ? HOSPITAL_NODE_IDS.elevatorAnteroom
+          : nodeId,
+        hospitalSliceV01SceneGraph,
+        hospitalSceneSurfaceObservationCatalog,
+      ),
       remainingTime: status === 'forced-returned' ? 0 : 137,
       enabledEdgeIds: HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
       backpack,

@@ -4,7 +4,6 @@ import { createBackpackSnapshot, type ItemInstance } from '../../core/inventory'
 import { createFullItemState, createItemState, getItemState } from '../../core/item-state'
 import {
   applySceneExplorationEffects,
-  createInitialSceneExplorationSnapshot,
   createSceneExplorationSnapshot,
   getPlayerVisibleSceneTaskEvents,
   previewPlayerVisibleSceneTaskEventCommand,
@@ -21,6 +20,8 @@ import {
   createSceneTaskEventCatalog,
   getSceneTaskEventOptionPrimaryMetadata,
 } from '../../core/scene-task-event'
+import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
+import { createHospitalTestSceneExplorationSnapshot } from './hospital-scene-navigation.test-support'
 import {
   HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
   HOSPITAL_INTEL_IDS,
@@ -47,6 +48,7 @@ const EVENT_ID = HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval
 function dependencies(runSeed = 'pathogen-case-seed') {
   return {
     graph: hospitalSliceV01SceneGraph,
+    navigationCatalog: hospitalSceneSurfaceObservationCatalog,
     physicalCatalog: hospitalItemCatalog,
     equipmentCatalog: hospitalItemEquipmentCatalog,
     quickSlotCatalog: hospitalItemQuickSlotCatalog,
@@ -78,7 +80,7 @@ function scene(input: Readonly<{
     ? [createItemState({ ...coat, resource: { kind: 'integrity', current: input.coatIntegrity ?? 4 } }, hospitalItemResourceCatalog)]
     : []
   const materialItems = materialStackItems(input.materialWeight ?? 0)
-  const initial = createInitialSceneExplorationSnapshot({
+  const initial = createHospitalTestSceneExplorationSnapshot({
     sceneInstanceId: SCENE_ID,
     searchState: createSceneSearchState({
       runSeed: input.runSeed ?? 'pathogen-case-seed', sceneInstanceId: SCENE_ID,
@@ -167,6 +169,7 @@ describe('hospital pathogen case retrieval', () => {
     expect(directResult.snapshot.itemStates.states[0]?.resource).toEqual({ kind: 'none' })
     expect(directResult.snapshot.runIntelLog.intelIds).toEqual([HOSPITAL_INTEL_IDS.pathogenCaseOrigin])
     expect(directResult.snapshot.taskEvents.entries).toEqual([{ eventId: EVENT_ID, status: 'completed' }])
+    expect(directResult.snapshot.navigationKnowledge).toEqual(direct.snapshot.navigationKnowledge)
     expect(directResult.result.effects.map(({ kind }) => kind)).toContain('scene-task-risk-resolved')
   })
 
@@ -188,6 +191,7 @@ describe('hospital pathogen case retrieval', () => {
       { kind: 'confirm-drop-scene-quest-item', instanceId: caseId },
       start.deps,
     ).snapshot
+    expect(dropped.navigationKnowledge).toEqual(extracted.navigationKnowledge)
     expect(dropped.backpack.items).toEqual([])
     expect(dropped.itemStates.states).toEqual([])
     expect(dropped.sceneItems.nodeStates.find(

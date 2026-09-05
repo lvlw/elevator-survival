@@ -4,7 +4,6 @@ import { createBackpackSnapshot } from '../../core/inventory'
 import { createItemState, createFullItemState, getItemState } from '../../core/item-state'
 import {
   applySceneExplorationEffects,
-  createInitialSceneExplorationSnapshot,
   getAvailableSceneBatteryCommands,
   previewPlayerVisibleSceneBatteryCommand,
   previewSceneBatteryCommand,
@@ -12,6 +11,8 @@ import {
   type SceneExplorationSnapshot,
 } from '../../core/scene-exploration'
 import { createSceneSearchState } from '../../core/scene-search'
+import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
+import { createHospitalTestSceneExplorationSnapshot } from './hospital-scene-navigation.test-support'
 import {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
   HOSPITAL_ITEM_IDS,
@@ -28,6 +29,7 @@ import {
 
 const dependencies = {
   graph: hospitalSliceV01SceneGraph,
+  navigationCatalog: hospitalSceneSurfaceObservationCatalog,
   physicalCatalog: hospitalItemCatalog,
   equipmentCatalog: hospitalItemEquipmentCatalog,
   quickSlotCatalog: hospitalItemQuickSlotCatalog,
@@ -54,7 +56,7 @@ function snapshot(input: Readonly<{
   const states = carried.map((candidate) => candidate.definitionId === HOSPITAL_ITEM_IDS.flashlight
     ? createItemState({ ...candidate, resource: { kind: 'charge', current: input.charge ?? 0 } }, hospitalItemResourceCatalog)
     : createFullItemState(candidate, hospitalItemResourceCatalog))
-  return createInitialSceneExplorationSnapshot({
+  return createHospitalTestSceneExplorationSnapshot({
     sceneInstanceId: 'scene-battery',
     searchState: createSceneSearchState({ runSeed: 'scene-battery-seed', sceneInstanceId: 'scene-battery', graph: hospitalSliceV01SceneGraph, searchCatalog: hospitalMainSearchCatalog, itemCatalog: hospitalItemCatalog, itemResourceCatalog: hospitalItemResourceCatalog }),
     currentNodeId: input.nodeId ?? HOSPITAL_NODE_IDS.emergencyHall,
@@ -77,6 +79,7 @@ describe('hospital scene battery recharge', () => {
     expect(() => getItemState(result.snapshot.itemStates, 'battery')).toThrow()
     expect(getItemState(result.snapshot.itemStates, 'equipped-flashlight').resource).toEqual({ kind: 'charge', current: 3 })
     expect(result.snapshot.remainingTime).toBe(40)
+    expect(result.snapshot.navigationKnowledge).toEqual(start.navigationKnowledge)
     expect(result.result.effects.map(({ kind }) => kind)).toEqual(['scene-battery-consumed', 'scene-device-resource-restored', 'scene-time-resolved'])
   })
 

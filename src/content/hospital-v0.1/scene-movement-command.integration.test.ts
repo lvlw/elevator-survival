@@ -17,7 +17,6 @@ import {
 import { createEmptyQuickSlots } from '../../core/quick-slot'
 import {
   applySceneExplorationEffects,
-  createInitialSceneExplorationSnapshot,
   previewSceneMoveCommand,
   resolveSceneMoveCommand,
 } from '../../core/scene-exploration'
@@ -38,9 +37,12 @@ import {
 } from './items'
 import { HOSPITAL_ITEM_IDS } from './items/hospital-item-ids'
 import { hospitalMainSearchCatalog } from './search'
+import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
+import { createHospitalTestSceneExplorationSnapshot } from './hospital-scene-navigation.test-support'
 
 const dependencies = {
   graph: hospitalSliceV01SceneGraph,
+  navigationCatalog: hospitalSceneSurfaceObservationCatalog,
   physicalCatalog: hospitalItemCatalog,
   equipmentCatalog: hospitalItemEquipmentCatalog,
   quickSlotCatalog: hospitalItemQuickSlotCatalog,
@@ -110,7 +112,7 @@ const scene = (
   playerCondition = condition(),
   enabledEdgeIds: readonly string[] = HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
 ) =>
-  createInitialSceneExplorationSnapshot(
+  createHospitalTestSceneExplorationSnapshot(
     {
       sceneInstanceId,
       searchState,
@@ -178,8 +180,28 @@ describe('hospital scene movement command', () => {
       remainingTime: config.scene.totalTime - 10,
     })
     expect(result.snapshot.searchState).toEqual(searchState)
+    expect(result.snapshot.navigationKnowledge).toEqual({
+      discoveredNodeIds: [
+        HOSPITAL_NODE_IDS.elevatorAnteroom,
+        HOSPITAL_NODE_IDS.emergencyHall,
+        HOSPITAL_NODE_IDS.pharmacy,
+        HOSPITAL_NODE_IDS.securityOffice,
+        HOSPITAL_NODE_IDS.isolationCorridor,
+      ].sort(),
+      visitedNodeIds: [
+        HOSPITAL_NODE_IDS.elevatorAnteroom,
+        HOSPITAL_NODE_IDS.emergencyHall,
+      ].sort(),
+      knownEdgeIds: [
+        HOSPITAL_EDGE_IDS.elevatorToEmergencyHall,
+        HOSPITAL_EDGE_IDS.emergencyHallToPharmacy,
+        HOSPITAL_EDGE_IDS.emergencyHallToSecurityOffice,
+        HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor,
+      ].sort(),
+    })
     expect(result.result.effects.map((effect) => effect.kind)).toEqual([
       'scene-node-changed',
+      'scene-navigation-knowledge-updated',
       'scene-time-resolved',
     ])
   })
@@ -304,6 +326,12 @@ describe('hospital scene movement command', () => {
       currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
       remainingTime: 0,
     })
+    expect(result.snapshot.navigationKnowledge.visitedNodeIds).toContain(
+      HOSPITAL_NODE_IDS.pharmacy,
+    )
+    expect(result.snapshot.navigationKnowledge.knownEdgeIds).toEqual(
+      start.navigationKnowledge.knownEdgeIds,
+    )
     expect(
       applySceneExplorationEffects(
         start,

@@ -31,7 +31,6 @@ import {
   type RunTerminationDependencies,
 } from '../../core/run-termination'
 import {
-  createInitialSceneExplorationSnapshot,
   createSceneExplorationSnapshot,
   getScenePhysicalItemInstanceIds,
   resolveSceneCombatPlayerAction,
@@ -39,6 +38,8 @@ import {
   type SceneExplorationSnapshot,
 } from '../../core/scene-exploration'
 import { createSceneSearchState } from '../../core/scene-search'
+import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
+import { createHospitalTestSceneExplorationSnapshot } from './hospital-scene-navigation.test-support'
 import {
   HOSPITAL_ALWAYS_TRAVERSABLE_EDGE_IDS,
   HOSPITAL_EDGE_IDS,
@@ -81,6 +82,7 @@ function sceneInstanceIdFor(currentDay: number): string {
 const sceneInstanceId = sceneInstanceIdFor(defaultCurrentDay)
 const sceneDependencies = {
   graph: hospitalSliceV01SceneGraph,
+  navigationCatalog: hospitalSceneSurfaceObservationCatalog,
   physicalCatalog: hospitalItemCatalog,
   equipmentCatalog: hospitalItemEquipmentCatalog,
   quickSlotCatalog: hospitalItemQuickSlotCatalog,
@@ -224,7 +226,7 @@ function scene(options: SceneOptions = {}): SceneExplorationSnapshot {
     y: 0,
     rotated: false,
   }))
-  return createInitialSceneExplorationSnapshot({
+  return createHospitalTestSceneExplorationSnapshot({
     sceneInstanceId,
     searchState: createSceneSearchState({
       runSeed,

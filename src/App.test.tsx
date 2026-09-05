@@ -532,7 +532,7 @@ describe('player-safe load error UI', () => {
   it.each([
     ['{private-invalid-json', '存档内容损坏，无法严格恢复'],
     [savedScenario('hub')
-      .replace('"saveFormatVersion":1', '"saveFormatVersion":999')
+      .replace('"saveFormatVersion":2', '"saveFormatVersion":999')
       .replaceAll('dev-ui-preview-flashlight', 'private-instance-id')
       .replaceAll('hospital-slice-v0.1', 'rules-secret-value')
       .replaceAll('dev-ui-preview-seed', 'seed-secret-value')

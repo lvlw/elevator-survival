@@ -3,13 +3,10 @@ import {
   resolveCombatPlayerAction,
 } from '../combat'
 import { deepFreeze } from '../config'
-import { hasMinorContusions } from '../condition'
-import { calculateBackpackWeightSubtotal } from '../inventory'
 import { calculateForcedReturnDamage } from '../scene'
-import { findReturnRoute } from '../scene-graph'
-import { getEffectiveEnabledEdgeIds } from '../scene-access'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
+import { findPlayerKnownReturnRoute } from './scene-navigation-return'
 import type {
   SceneExplorationDependencies,
   SceneExplorationEffect,
@@ -126,23 +123,11 @@ export function buildSceneCombatPlayerActionEffects(
     return deepFreeze(effects)
   }
 
-  const backpackWeight = calculateBackpackWeightSubtotal(
-    terminal.backpack,
-    dependencies.physicalCatalog,
-  )
-  const returnRoute = findReturnRoute({
-    graph: dependencies.graph,
+  const returnRoute = findPlayerKnownReturnRoute(snapshot, dependencies, {
     currentNodeId: finalNodeId,
-    availability: {
-      enabledEdgeIds: getEffectiveEnabledEdgeIds({
-        enabledEdgeIds: snapshot.enabledEdgeIds,
-        backpack: terminal.backpack,
-      }, dependencies.edgeAccessCatalog),
-    },
-    totalWeight: backpackWeight,
-    hasMinorContusion: hasMinorContusions(terminal.playerCondition),
-    analgesiaActive: terminal.playerCondition.painkillerActive,
-  }, dependencies.config)
+    backpack: terminal.backpack,
+    condition: terminal.playerCondition,
+  })
   const forced = calculateForcedReturnDamage(
     overtimeDebt,
     returnRoute.estimatedReturnTime,

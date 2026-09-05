@@ -1,10 +1,9 @@
 import { deepFreeze } from '../config'
-import { addPendingInfectionExposure, applyHealthLoss, hasMinorContusions } from '../condition'
+import { addPendingInfectionExposure, applyHealthLoss } from '../condition'
 import { addItemToBackpack, createItemInstance } from '../inventory'
 import { consumeCommittedResource, getItemState, replaceItemState } from '../item-state'
 import { addRunIntel } from '../run-intel'
-import { getEffectiveEnabledEdgeIds } from '../scene-access'
-import { findReturnRoute, SceneGraphError } from '../scene-graph'
+import { SceneGraphError } from '../scene-graph'
 import {
   completeSceneTaskEvent,
   createSceneTaskEventPrimaryPlan,
@@ -13,6 +12,7 @@ import { resolveTimedSceneAction } from '../scene'
 import { SceneExplorationError } from './scene-exploration-errors'
 import { applySceneExplorationEffects } from './scene-exploration-effects'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
+import { findPlayerKnownReturnRoute } from './scene-navigation-return'
 import type {
   SceneExplorationEffect,
   SceneExplorationSnapshot,
@@ -69,13 +69,10 @@ export function buildSceneTaskEventTransitionPlan(
 
   let returnRoute
   try {
-    returnRoute = findReturnRoute({
-      graph: dependencies.graph, currentNodeId: snapshot.currentNodeId,
-      availability: { enabledEdgeIds: getEffectiveEnabledEdgeIds({ ...snapshot, backpack: primary.backpackAfter }, dependencies.edgeAccessCatalog) },
-      totalWeight: primary.backpackWeightAfter,
-      hasMinorContusion: hasMinorContusions(primary.conditionAfter),
-      analgesiaActive: primary.conditionAfter.painkillerActive,
-    }, dependencies.config)
+    returnRoute = findPlayerKnownReturnRoute(snapshot, dependencies, {
+      backpack: primary.backpackAfter,
+      condition: primary.conditionAfter,
+    })
   } catch (error) { graphFailure(error) }
   const currentIsSafetyNode = dependencies.graph.nodes.some(({ id, isReturnSafetyNode }) => id === snapshot.currentNodeId && isReturnSafetyNode)
   const sceneOutcome = resolveTimedSceneAction(

@@ -1,4 +1,8 @@
 import { describe, expect, it } from 'vitest'
+import {
+  createFullySurfaceVisibleNavigationCatalog,
+  createTestNavigationKnowledgeAlongPath,
+} from '../../test-support/scene-navigation'
 import { type FrozenRuleConfig } from '../config'
 import { createPlayerCondition } from '../condition'
 import { createEmptySceneItemsSnapshot } from '../scene-items'
@@ -185,6 +189,7 @@ const searchIlluminationCatalog =
   )
 const dependencies = {
   graph,
+  navigationCatalog: createFullySurfaceVisibleNavigationCatalog(graph),
   physicalCatalog,
   equipmentCatalog,
   quickSlotCatalog,
@@ -319,6 +324,11 @@ function snapshot(options: SnapshotOptions = {}): SceneExplorationSnapshot {
       combatState: { encounters: [], usage: { metalPipeChargedStrikeUses: 0 } },
       status,
       currentNodeId: nodeId,
+      navigationKnowledge: createTestNavigationKnowledgeAlongPath(
+        nodeId === 'safe' ? ['safe'] : ['safe', nodeId],
+        graph,
+        dependencies.navigationCatalog,
+      ),
       remainingTime,
       enabledEdgeIds: ['safe-search'],
       backpack,

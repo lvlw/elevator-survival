@@ -16,6 +16,7 @@ import {
   hospitalItemReturnLifecycleCatalog,
   hospitalSliceV01RuleConfig as config,
 } from '../content'
+import { createHospitalTestNavigationKnowledge } from '../content/hospital-v0.1/hospital-scene-navigation.test-support'
 import { createPlayerCondition, type OpenWoundSnapshot } from '../core/condition'
 import { createCurrentDayHubSnapshot, type CurrentDayHubSnapshot } from '../core/current-day-hub'
 import type { DailySettlementTerminalSnapshot } from '../core/daily-settlement'
@@ -530,6 +531,9 @@ function sceneMedicalPhase(options: Readonly<{
   const scene = createSceneExplorationSnapshot({
     ...session.scene,
     currentNodeId: options.currentNodeId ?? session.scene.currentNodeId,
+    navigationKnowledge: createHospitalTestNavigationKnowledge(
+      options.currentNodeId ?? session.scene.currentNodeId,
+    ),
     remainingTime: options.remainingTime ?? session.scene.remainingTime,
     backpack,
     quickSlots: quick,
@@ -895,6 +899,7 @@ function taskEventPhase(options: Readonly<{
     ...launched.scene,
     status: 'active',
     currentNodeId: HOSPITAL_NODE_IDS.specimenColdRoom,
+    navigationKnowledge: createHospitalTestNavigationKnowledge(HOSPITAL_NODE_IDS.specimenColdRoom),
     enabledEdgeIds: HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
     remainingTime: options.remainingTime ?? launched.scene.remainingTime,
     condition,
@@ -2850,7 +2855,7 @@ describe('StableRunUiApp', () => {
     expect(preview).toContain('强制返程基础损耗1')
     expect(preview).toContain('强制返程流血追加1')
     expect(preview).toContain('强制返程总损耗2')
-    expect(preview).toContain('强制返程后生命4')
+    expect(preview).toContain('强制返程后生命2')
     expect(preview).toContain('死亡风险未发现')
     expect(preview).toContain('生还结果进入强制返程')
     expect(preview).toContain('强制返程目标电梯前室')

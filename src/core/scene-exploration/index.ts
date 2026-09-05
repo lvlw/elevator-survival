@@ -75,6 +75,10 @@ export {
 export { createMoveThroughSceneEdgeCommand } from './scene-move-command'
 export { buildSceneMoveTransitionPlan } from './scene-move-transition-plan'
 export {
+  getSceneMoveOpportunities,
+  type SceneMoveOpportunity,
+} from './scene-move-opportunities'
+export {
   createSceneInventoryCommand,
   buildSceneInventoryTransitionPlan,
   previewSceneInventoryCommand,

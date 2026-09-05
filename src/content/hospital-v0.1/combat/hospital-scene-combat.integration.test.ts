@@ -11,6 +11,8 @@ import {
   createSceneExplorationSnapshot,
   getPlayerVisibleSceneCombatActionOptions,
   getPlayerVisibleSceneCombatState,
+  getPlayerVisibleSceneNavigation,
+  getSceneMoveOpportunities,
   previewMainSearchCommand,
   resolveSceneCombatPlayerAction,
   resolveSceneMoveCommand,
@@ -174,6 +176,14 @@ describe('hospital scene combat encounter lifecycle', () => {
     expect(result.snapshot.navigationKnowledge.knownEdgeIds).not.toContain(
       HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,
     )
+    const navigation = getPlayerVisibleSceneNavigation(result.snapshot, dependencies)
+    expect(navigation.routes.find(({ endpointNames }) =>
+      endpointNames.includes('隔离走廊') && endpointNames.includes('标本冷藏室'),
+    )?.traversal).toBe('blocked')
+    expect(navigation.routes.some(({ endpointNames }) =>
+      endpointNames.includes('保安值班室') && endpointNames.includes('隔离走廊'),
+    )).toBe(false)
+    expect(getSceneMoveOpportunities(result.snapshot, dependencies)).toEqual([])
     const active = result.snapshot.combatState.encounters[0]
     expect(active.kind).toBe('active')
     if (active.kind !== 'active') throw new Error('encounter must be active')
@@ -260,6 +270,7 @@ describe('hospital scene combat encounter lifecycle', () => {
     let current = enter()
     current = resolveSceneCombatPlayerAction(current, { kind: 'metal-pipe-basic-attack' }, dependencies).snapshot
     current = resolveSceneCombatPlayerAction(current, { kind: 'metal-pipe-charged-strike' }, dependencies).snapshot
+    const knowledgeBeforeVictory = current.navigationKnowledge
     const victory = resolveSceneCombatPlayerAction(current, { kind: 'metal-pipe-basic-attack' }, dependencies)
     expect(victory.snapshot).toMatchObject({
       status: 'active',
@@ -268,6 +279,13 @@ describe('hospital scene combat encounter lifecycle', () => {
     })
     const dormant = victory.snapshot.combatState.encounters[0]
     expect(dormant.kind === 'dormant' && dormant.enemy.defeated).toBe(true)
+    expect(victory.snapshot.navigationKnowledge).toEqual(knowledgeBeforeVictory)
+    expect(getPlayerVisibleSceneNavigation(victory.snapshot, dependencies).routes.find(
+      ({ endpointNames }) => endpointNames.includes('隔离走廊') && endpointNames.includes('标本冷藏室'),
+    )?.traversal).toBe('traversable')
+    expect(getSceneMoveOpportunities(victory.snapshot, dependencies).map(
+      ({ destinationNodeName }) => destinationNodeName,
+    )).toContain('标本冷藏室')
     expect(createSceneExplorationSnapshot(victory.snapshot, dependencies))
       .toEqual(victory.snapshot)
     const withoutCombatState = { ...victory.snapshot } as Record<string, unknown>

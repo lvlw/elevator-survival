@@ -8,6 +8,7 @@ import {
   getPlayerVisibleSceneNodeState,
   getPlayerVisibleSceneNavigation,
   getPlayerVisibleSceneObstacles,
+  getSceneMoveOpportunities,
   previewMainSearchCommand,
   previewNodeItemPickupCommand,
   previewSceneMoveCommand,
@@ -23,7 +24,6 @@ import {
 import { getSceneNodeItems } from '../../core/scene-items'
 import { createSceneSearchState } from '../../core/scene-search'
 import { createSceneObstaclePrimaryPlan } from '../../core/scene-obstacle'
-import { getCurrentTraversableAdjacentEdges } from '../../ui/interaction/current-traversable-adjacent-edges'
 import { hospitalSceneSurfaceObservationCatalog } from './hospital-scene-navigation'
 import { createHospitalTestSceneExplorationSnapshot } from './hospital-scene-navigation.test-support'
 import {
@@ -34,7 +34,6 @@ import {
   HOSPITAL_ITEM_IDS,
   HOSPITAL_NODE_IDS,
   HOSPITAL_OBSTACLE_IDS,
-  createHospitalSceneRuntimeBundle,
   hospitalItemCatalog,
   hospitalItemEquipmentCatalog,
   hospitalItemQuickSlotCatalog,
@@ -200,8 +199,8 @@ describe('hospital staff access and fire door', () => {
     expect(withCard.navigationKnowledge.knownEdgeIds).not.toContain(
       HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,
     )
-    const runtime = createHospitalSceneRuntimeBundle(RUN_SEED, SCENE_ID)
-    expect(getCurrentTraversableAdjacentEdges(withCard, runtime).map(({ destinationNodeName }) => destinationNodeName))
+    const coreOpportunities = getSceneMoveOpportunities(withCard, dependencies)
+    expect(coreOpportunities.map(({ destinationNodeName }) => destinationNodeName))
       .not.toContain('保安值班室')
     expect(previewSceneMoveCommand(withCard, {
       edgeId: HOSPITAL_EDGE_IDS.securityOfficeToIsolationCorridor,

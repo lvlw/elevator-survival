@@ -105,7 +105,9 @@ export function createSceneSurfaceObservationCatalog(
   if (seenNodes.size !== graph.nodes.length || graph.nodes.some(({ id }) => !seenNodes.has(id))) {
     throw new SceneNavigationError('INVALID_CATALOG', '每个正式节点必须恰好拥有一项表层观察配置')
   }
-  const canonical = deepFreeze(entries.sort((a, b) => a.nodeId.localeCompare(b.nodeId)))
+  const canonical = deepFreeze(entries.sort((a, b) =>
+    a.nodeId < b.nodeId ? -1 : a.nodeId > b.nodeId ? 1 : 0,
+  ))
   const byNode = new Map(canonical.map((entry) => [entry.nodeId, entry]))
   return deepFreeze({
     entries: canonical,

@@ -239,9 +239,9 @@ describe('stable Run player-visible ViewModel', () => {
 
     expect(model.scene.currentNodeName).toBe('急诊大厅')
     expect(model.scene.traversableAdjacentNodeNames).toEqual([
-      '保安值班室',
       '电梯前室',
       '药房',
+      '保安值班室',
     ])
     // The unopened Fire Door means the isolation corridor is not traversable.
     // Its absence does not declare it unknown, hidden, or nonexistent.

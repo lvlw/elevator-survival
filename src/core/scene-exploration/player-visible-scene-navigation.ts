@@ -3,6 +3,7 @@ import { calculateBackpackWeightSubtotal } from '../inventory'
 import { calculateAdjustedTravelTime } from '../load'
 import { hasMinorContusions } from '../condition'
 import { getKnownTraversableEdgeIds, findPlayerKnownReturnRoute } from './scene-navigation-return'
+import { getSceneMoveOpportunities } from './scene-move-opportunities'
 import { createSceneExplorationSnapshot } from './scene-exploration-snapshot'
 import { previewSceneWithdrawalCommand } from './scene-withdrawal-resolution'
 import type { SceneExplorationDependencies, SceneExplorationSnapshot } from './scene-exploration-types'
@@ -48,8 +49,12 @@ export function getPlayerVisibleSceneNavigation(
   const snapshot = createSceneExplorationSnapshot(input, dependencies)
   const names = new Map(dependencies.graph.nodes.map(({ id, name }) => [id, name]))
   const knownTraversable = new Set(getKnownTraversableEdgeIds(snapshot, dependencies))
+  const currentMoveOpportunities = new Set(
+    getSceneMoveOpportunities(snapshot, dependencies).map(({ command }) => command.edgeId),
+  )
   const weight = calculateBackpackWeightSubtotal(snapshot.backpack, dependencies.physicalCatalog)
-  const nodes = snapshot.navigationKnowledge.discoveredNodeIds.map((nodeId) => ({
+  const discovered = new Set(snapshot.navigationKnowledge.discoveredNodeIds)
+  const nodes = dependencies.graph.nodes.filter(({ id }) => discovered.has(id)).map(({ id: nodeId }) => ({
     name: names.get(nodeId)!,
     state: nodeId === snapshot.currentNodeId
       ? 'current' as const
@@ -57,9 +62,9 @@ export function getPlayerVisibleSceneNavigation(
         ? 'visited' as const
         : 'known-unvisited' as const,
     searchState: searchStateFor(snapshot, nodeId),
-  })).sort((a, b) => a.name.localeCompare(b.name))
-  const routes = snapshot.navigationKnowledge.knownEdgeIds.map<PlayerVisibleNavigationRoute>((edgeId) => {
-    const edge = dependencies.graph.edges.find(({ id }) => id === edgeId)!
+  }))
+  const known = new Set(snapshot.navigationKnowledge.knownEdgeIds)
+  const routes = dependencies.graph.edges.filter(({ id }) => known.has(id)).map<PlayerVisibleNavigationRoute>((edge) => {
     const movement = calculateAdjustedTravelTime({
       baseTime: edge.baseTravelTime,
       totalWeight: weight,
@@ -72,10 +77,13 @@ export function getPlayerVisibleSceneNavigation(
     ]
     return deepFreeze<PlayerVisibleNavigationRoute>({
       endpointNames,
-      traversal: knownTraversable.has(edgeId) ? 'traversable' as const : 'blocked' as const,
+      traversal: knownTraversable.has(edge.id) && (
+        (edge.from !== snapshot.currentNodeId && edge.to !== snapshot.currentNodeId) ||
+        currentMoveOpportunities.has(edge.id)
+      ) ? 'traversable' as const : 'blocked' as const,
       movementTime: movement.finalTime,
     })
-  }).sort((a, b) => a.endpointNames.join('\u0000').localeCompare(b.endpointNames.join('\u0000')))
+  })
 
   let returnProjection: PlayerVisibleNavigationReturn
   try {

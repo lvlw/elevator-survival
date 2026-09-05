@@ -100,7 +100,7 @@
 
 急诊大厅、药房和保安值班室各最多一次主要搜索；隔离走廊是唯一正式战斗节点；标本冷藏室承载样本箱目标。
 
-根据 DEC-045，表中六节点与六条边是完整场景真实结构，不等于玩家启动场景时已经知道整张图。Player-Known Map 必须读取当前场景实例内显式保存的 Player Navigation Knowledge：入口先标记为已发现且已到达并应用入口表层观察；首次到达其他节点后再应用该节点明确配置的表层观察；已知路线的当前可通行或阻塞结果由正式 traversal、障碍和场景状态派生。未发现节点与路线完全不显示，主要搜索也不会在没有明确导航知识结果时自动揭示邻接关系。该 canonical 状态、医院表层观察目录、Scene Session 严格保存／恢复和 player-visible navigation query 已实现，地图 Renderer 尚未实现；知识不默认跨日。
+根据 DEC-045，表中六节点与六条边是完整场景真实结构，不等于玩家启动场景时已经知道整张图。Player-Known Map 必须读取当前场景实例内显式保存的 Player Navigation Knowledge：入口先标记为已发现且已到达并应用入口表层观察；首次到达其他节点后再应用该节点明确配置的表层观察；已知路线的当前可通行或阻塞结果由正式 traversal、障碍和场景状态派生。未发现节点与路线完全不显示，主要搜索也不会在没有明确导航知识结果时自动揭示邻接关系。该 canonical 状态、医院表层观察目录、Scene Session 严格保存／恢复、player-visible navigation query、地图 Presentation model 与 React／SVG Renderer 均已实现；知识不默认跨日，布局不属于规则状态。
 
 医院 Player-Known Map 的表层可见路线内容 Gate 已由 Owner 确认的最小新增发现映射关闭。该映射记录玩家首次到达各节点时新增的路线知识，正式内容见 `docs/content/scenes.md`：
 
@@ -427,7 +427,7 @@ Playable Game Shell 是低资产、可替换、可自然试玩的游戏化展示
 
 上述方向的布局位置、尺寸比例、面板开合、图标、颜色、贴图与动画表现仍可替换，不冻结为永久产品规则。未来阶段贴图只是 Presentation extensibility；“某种装备可以查看敌人精确 HP”仍是未确认玩法候选，不在本 Addendum 中确认或实现。
 
-DEC-045 已冻结 Player-Known Map 所需的 Player Navigation Knowledge、表层观察驱动发现、严格恢复和 player-visible query 边界；canonical knowledge owner、医院内容映射、严格恢复与地图安全查询已经实现，地图 Presentation model 与 React／SVG Renderer 尚未实现。当前仅展示可通行相邻节点的界面仍不是完整 Player-Known Map。
+DEC-045 已冻结 Player-Known Map 所需的 Player Navigation Knowledge、表层观察驱动发现、严格恢复和 player-visible query 边界；canonical knowledge owner、医院内容映射、严格恢复、地图安全查询、Presentation model 与 React／SVG Renderer 均已实现。地图只展示玩家已知节点和已知路线的当前正式状态，未知结构完全省略；布局位置与 SVG 表现仍是可替换的 Presentation 细节，知识不默认跨日。
 
 ## 24. 正式冻结声明
 

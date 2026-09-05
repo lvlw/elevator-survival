@@ -153,14 +153,14 @@ StableRunStore public read API
 ```
 
 - `src/ui/` 只读取 Store 对外的 `getState()`、`getInitialState()` 与 `subscribe()`；不访问 raw Zustand API，也不在渲染、订阅或开发检查器中发送命令、保存或改变状态。已接入的确认按钮只调用公开 `Store.dispatch()`，不直接调用 application／specialized executor、core resolver 或保存接口。
-- 通用 ViewModel 通过显式白名单向普通玩家展示 Hub、Scene、Combat 与 Failure 信息。节点地面物品、**当前可通行相邻节点**、当前节点明显障碍、相对敌人生命阶段、当前意图和正式返程预览继续复用 core 查询；当前不构造完整玩家已知地图。障碍只投影当前 active Scene、当前节点、尚未解决的正式障碍，选项资格由 core Preview 决定。内部 Run 身份、实例 ID、隐藏搜索结果、障碍随机轨迹、精确敌人生命、风险百分比和未来行动序列不进入普通 ViewModel。
+- 通用 ViewModel 通过显式白名单向普通玩家展示 Hub、Scene、Combat 与 Failure 信息。节点地面物品、**当前可通行相邻节点**、Player-Known Map、当前节点明显障碍、相对敌人生命阶段、当前意图和正式返程预览继续复用 core 查询；地图只消费显式 player-visible navigation query，不读取完整 SceneGraph。障碍只投影当前 active Scene、当前节点、尚未解决的正式障碍，选项资格由 core Preview 决定。内部 Run 身份、实例 ID、隐藏搜索结果、障碍随机轨迹、精确敌人生命、风险百分比和未来行动序列不进入普通 ViewModel。
 - 医院 V1 的名称文案位于 UI 内容适配层；通用组件不硬编码医院物品、敌人或节点名称。开发环境的只读检查器可以查看严格 phase，但生产环境没有入口，且不提供 mutation。开发与生产默认入口均执行真实 Production Bootstrap；仅开发构建在显式 `?dev-ui-preview=1` 时，才会在创建 Browser Storage 或执行 strict load 前动态加载独立内存态预览。预览继续只用正式构造器生成合法 Hub／Scene／Combat／Failure Store，选择示例不发送 gameplay command、不保存、不访问真实 Run 存档，也不是 New Run 或正式游戏入口。
 - `src/ui/interaction/` 从 canonical phase、正式 registry、标签和纯 core preview 生成安全行动：主要场景启动、当前日中枢 Run Loadout、中枢医疗与生存补给、活动场景移动、主要搜索、显式节点物品拾取、七种 Scene 背包／快捷栏整理、主动撤离、医院防火门、感染护工战斗行动、医院样本箱任务事件、Scene 非战斗医疗与 Scene 非战斗电池充能。拾取、任务物提取及 Scene 整理草稿只保存玩家明确选择的数量、目标、快捷栏、坐标与旋转，调用对应正式 Preview；背包网格只投影正式几何并作为 anchor 选择，不自动摆放、整理、拆分、合并、补充或创建实例身份。Scene 整理的 player-safe Preview 白名单投影正式容器变化、数量、负重档位、零时间与即时返程估算，不携带实例 ID、审计、Effects 或 resulting snapshot；任务物放到节点必须显式确认。Scene 医疗与充能行动完全来自各自正式 selector，保留玩家明确选择的真实容器来源和目标；二者共用中性的正时间 Scene 行动安全投影，区分完成节点、返程目标、行动后流血死亡和紧急返程死亡。中枢医疗与生存行动同样只展开正式 selector 返回的真实仓库、背包或快捷栏来源及明确伤势目标，并通过同源零时间 Preview 展示物品消费、医疗效果、每日使用、饱食和威胁抑制事实；不自动寻找来源、目标或补充快捷栏。player-safe Preview 只对白名单投影同源主要效果、时间、流血、返程与终局事实。确认后每次只发出一条 `Store.dispatch()`；医疗、充能、撤离、战斗或任务事件产生的 terminal Scene 先保存 Scene Session，结算仍由下一条显式 lifecycle command 完成。
 - 成功返回后的 Return Summary、Combat Action Result、Task Event Result、Scene Medical Result、Scene Battery Result、Scene Inventory Result、Hub Loadout Result、Hub Medical Result、Hub Survival Result、Hub Maintenance Result 与 Daily Settlement Result 只将 execution 前后的 canonical phase 及已发生的正式结果立即投影为本地、玩家可见的展示模型；它们不是 Scene、Combat、Run Return、Hub、任务进度、医疗、维护、充能、饱食、威胁抑制、日结算或 inventory 的状态 owner，关闭不发送命令。Production App Shell 除 `ready(store)`、`no-run` 与玩家安全的 `load-error` 外，只拥有未确认的 New Run Setup 草稿、Preview、错误与首次保存失败提示；无存档或 Failure 来源的 Confirm 直接调用 Headless New Run 事务并采用其唯一新 Store，不创建 `new-run` gameplay command。医院防火门、感染护工战斗行动、医院样本箱提取、Scene 非战斗医疗、Scene 非战斗电池充能、非战斗 Scene 整理、当前日中枢十二种显式 Run Loadout 整备、中枢医疗、中枢生存补给、五类中枢维护与普通日结算已接入正式安全 Preview 与确认分派。完整 RunState、UI 命令队列或终版美术仍未实现。日结算 player-safe 投影只公开已执行阶段的日期、生命、相对世界威胁阶段、暴露、饱食、恢复、轻伤清理和日级资源重置结果，不公开精确世界威胁进展、伤口身份、Effects、计划或快照；早期终止不伪装后续阶段已执行。React 不拥有 inventory、装备／快捷栏资格、医疗／充能／维护资格、材料兼容、资源恢复、浪费、日工时、目标合法性、时间、流血、返程、日结算或终局规则；展示层可被未来其他渲染技术替换，只要继续读取 canonical phase 并发送正式命令。
 
 ## Playable Game Shell Presentation Responsibilities
 
-Playable Game Shell Upgrade 是当前 Owner Playability Review 的展示层升级方向，不是终版美术或新的玩法系统。以下内容冻结后续实现职责，不表示 Ghost Preview、Player-Known Map、Activity Feed 或 DEV Reset 等新能力已经完成。它把现有工程验证控制台整理为低资产但可自然试玩的稳定游戏壳，并继续遵守同一数据流：
+Playable Game Shell Upgrade 是当前 Owner Playability Review 的展示层升级方向，不是终版美术或新的玩法系统。Ghost Preview 与 Player-Known Map 已按下述职责实现；Activity Feed 与 DEV Reset 等后续能力尚未完成。它把现有工程验证控制台整理为低资产但可自然试玩的稳定游戏壳，并继续遵守同一数据流：
 
 ```text
 Core / canonical state
@@ -195,13 +195,13 @@ Core / canonical player knowledge
 → React / SVG
 ```
 
-当前前两层已经实现：`src/core/scene-navigation/` 拥有场景实例内 canonical Player Navigation Knowledge 与严格内容／状态边界，`src/core/scene-exploration/player-visible-scene-navigation.ts` 只投影已发现节点名称、已知路线的当前可通行／阻塞状态和已知范围内的正式返程结果。Presentation map model 与 React／SVG Renderer 尚未实现。
+四层边界均已实现：`src/core/scene-navigation/` 拥有场景实例内 canonical Player Navigation Knowledge 与严格内容／状态边界，`src/core/scene-exploration/player-visible-scene-navigation.ts` 只投影已发现节点名称、已知路线的当前可通行／阻塞状态和已知范围内的正式返程结果，`src/ui/presentation/player-known-map-view-model.ts` 生成不含 raw ID 的确定性展示模型，`src/ui/components/player-known-map.tsx` 负责 React／SVG Renderer。布局坐标、线条和视觉层级仅属于可替换的 Presentation 实现。
 
 - 地图只展示当前节点、已到达节点、已知节点、已知可通行路线与已知阻塞路线；未知节点与路线完全省略，不以问号暗示其存在。
 - 根据 DEC-045，Player Navigation Knowledge 是当前场景实例内的 canonical 玩家知识 owner，至少保存已发现节点、已到达节点和已知路线；当前通行或阻塞仍由正式 traversal、障碍与场景状态派生，不在知识状态中复制第二份动态通行事实。
 - 场景初始化先把入口标记为已发现且已到达，再应用入口显式表层观察；首次到达节点同样先记录发现与到达，再应用内容明确声明的表层可见出口、路线和障碍。完整 SceneGraph 的邻接关系本身不构成玩家知识，搜索也只有在内容明确给出导航知识结果时才更新该状态。
 - Player Navigation Knowledge 随 Scene mutation 原子更新，进入 Scene Session 的稳定保存与严格恢复，并只在同一场景实例内持续；它不默认跨日或跨场景实例。严格恢复拒绝未知／重复／图外引用、已到达但未发现、当前节点未到达等矛盾，不自动补全或修复。
-- React 不读取完整 SceneGraph 后自行过滤，也不把 RunIntel 文本解释为路线。现有移动选项与返程计算同样先将正式可通行边限制在玩家已知路线内；未知的物理捷径不会成为行动或返程事实。canonical knowledge owner 与显式 player-visible navigation query 已完成，当前 React 仍只展示可通行相邻节点，不等于完整 Player-Known Map。
+- React 不读取完整 SceneGraph 后自行过滤，也不把 RunIntel 文本解释为路线。现有移动选项与返程计算同样先将正式可通行边限制在玩家已知路线内；未知的物理捷径不会成为行动或返程事实。Player-Known Map 只消费显式 player-visible navigation query，显示已知节点、已知可通行／阻塞路线与正式返程信息；Hover／Focus 的 Info Card 不发送命令、不保存也不改变知识状态。
 
 Battle Stage 采用低资产舞台、玩家精确生命条、敌人阶段式生命表现、相对时间轴、轻量行动反馈与战斗日志。敌人阶段只使用正式的完好、受伤、重伤、濒危和失去能力，不显示精确 HP 或可反推精确 HP 的百分比条；相对时间轴不展示 raw `currentCtb`、`playerNextActionCtb` 或 `enemyNextActionCtb`。未来阶段贴图属于 Presentation 扩展能力，不确认任何能够查看敌人精确 HP 的玩法。
 

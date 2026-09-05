@@ -25,6 +25,7 @@ import {
 } from '../../core/scene-launch'
 import {
   getPlayerVisibleSceneNodeState,
+  getPlayerVisibleSceneNavigation,
   getPlayerVisibleSceneObstacles,
   getPlayerVisibleSceneCombatActionOptions,
   createMoveThroughSceneEdgeCommand,
@@ -43,6 +44,10 @@ import {
   type StableRunPhase,
 } from '../../state/run-save'
 import { getCurrentTraversableAdjacentEdges } from '../interaction/current-traversable-adjacent-edges'
+import {
+  createPlayerKnownMapViewModel,
+  type PlayerKnownMapViewModel,
+} from './player-known-map-view-model'
 
 export interface StableRunUiLabels {
   sceneName(sceneDefinitionId: string): string
@@ -344,6 +349,7 @@ export type StableRunPlayerViewModel =
         returnEstimate: number | null
         returnAfterWithdrawalTime: number | null
         returnRisk: 'safe-returned' | 'forced-returned' | 'dead' | null
+        navigationMap: PlayerKnownMapViewModel
         timeBudget: PlayerVisibleSceneTimeBudgetViewModel
         currentNodeSearchState: 'not-available' | 'available-unsearched' | 'searched'
         currentObstacles: readonly Readonly<{ name: string }>[]
@@ -509,7 +515,7 @@ function createSceneView(
   const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
   const runtime = getRunSceneRuntime(session, rules.sceneLaunch)
   const scene = session.scene
-  const current = runtime.dependencies.graph.nodes.find(({ id }) => id === scene.currentNodeId)!
+  const navigation = getPlayerVisibleSceneNavigation(scene, runtime.dependencies)
   const traversableRoutes = scene.status === 'active'
     ? getCurrentTraversableAdjacentEdges(scene, runtime).flatMap((edge) => {
         const move = previewSceneMoveCommand(
@@ -612,12 +618,13 @@ function createSceneView(
     scene: frozen({
       status: scene.status,
       remainingTime: scene.remainingTime,
-      currentNodeName: current.name,
+      currentNodeName: navigation.currentNodeName,
       traversableAdjacentNodeNames: frozen(traversableRoutes.map(({ destinationNodeName }) => destinationNodeName)),
       traversableRoutes: frozen(traversableRoutes),
       returnEstimate: returnPreview?.estimatedReturnTime ?? null,
       returnAfterWithdrawalTime: returnPreview?.remainingTimeAfter ?? null,
       returnRisk: returnPreview?.statusAfter ?? null,
+      navigationMap: createPlayerKnownMapViewModel(navigation, scene.status),
       timeBudget: frozen({
         totalTime,
         remainingTime: scene.remainingTime,

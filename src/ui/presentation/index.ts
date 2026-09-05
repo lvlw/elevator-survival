@@ -41,3 +41,11 @@ export {
   createDailySettlementResultViewModel,
   type DailySettlementResultViewModel,
 } from './daily-settlement-result-view-model'
+export {
+  createPlayerKnownMapViewModel,
+  type PlayerKnownMapNodeViewModel,
+  type PlayerKnownMapReturnViewModel,
+  type PlayerKnownMapRouteViewModel,
+  type PlayerKnownMapSceneStatus,
+  type PlayerKnownMapViewModel,
+} from './player-known-map-view-model'

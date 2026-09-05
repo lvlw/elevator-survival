@@ -53,6 +53,7 @@ import {
 } from './presentation'
 import { useStableRunStoreSnapshot } from './run-store/use-stable-run-store-snapshot'
 import { InfoCard } from './components/info-card'
+import { PlayerKnownMap } from './components/player-known-map'
 import { SceneTimeBudget } from './components/scene-time-budget'
 
 export interface StableRunUiAppProps {
@@ -452,11 +453,8 @@ function SceneView({
       <section className="console-panel game-stage scene-stage">
         <header className="stage-heading"><p className="panel-kicker">场景导航</p><h1><span className="location-prefix">当前位置：</span>{scene.currentNodeName}</h1><p>{sceneStatusName(scene.status)}</p></header>
         <SceneTimeBudget budget={scene.timeBudget} ghost={ghost} />
+        <PlayerKnownMap map={scene.navigationMap} />
         <p>当前节点搜索：<strong>{searchStateName(scene.currentNodeSearchState)}</strong></p>
-        <h2>当前可通行路线</h2>
-        {scene.traversableRoutes.length === 0
-          ? <p className="empty-copy">暂无当前可通行相邻地点</p>
-          : <ul className="route-list">{scene.traversableRoutes.map((route) => <li key={`${route.routeName}-${route.destinationNodeName}`}><strong>{route.destinationNodeName}</strong><span>{route.routeName}</span>{route.accessReason && <em>{route.accessReason}</em>}<span>移动耗时 {route.movementTime}</span></li>)}</ul>}
         <div className="obstacle-block"><h2>当前明显障碍</h2>{scene.currentObstacles.length === 0 ? <p className="empty-copy">当前没有需要处理的明显障碍</p> : <ul className="item-list">{scene.currentObstacles.map(({ name }) => <li key={name}><strong>{name}</strong></li>)}</ul>}</div>
         <h2>当前节点地面物品</h2>
         <ItemList items={scene.groundItems} empty="未发现地面物品" />

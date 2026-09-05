@@ -368,6 +368,12 @@ function buttonContaining(container: HTMLElement, label: string): HTMLButtonElem
   return result
 }
 
+function knownMap(container: HTMLElement): HTMLElement {
+  const result = container.querySelector('.known-map')
+  if (!(result instanceof HTMLElement)) throw new Error('expected player-known map')
+  return result
+}
+
 function input(container: HTMLElement, label: string): HTMLInputElement {
   const result = container.querySelector(`input[aria-label="${label}"]`)
   if (!(result instanceof HTMLInputElement)) throw new Error(`expected input: ${label}`)
@@ -713,6 +719,7 @@ function combatPhase(options: Readonly<{
   armorIntegrity?: number | null
   backpackBandage?: boolean
   backpackSparePipe?: boolean
+  backpackAccessCard?: boolean
   quickPainkiller?: boolean
   alerted?: boolean
   healthy?: boolean
@@ -734,6 +741,7 @@ function combatPhase(options: Readonly<{
   const extras = [
     ...(options.backpackBandage ? [item('react-combat-backpack-bandage', HOSPITAL_ITEM_IDS.bandage)] : []),
     ...(options.backpackSparePipe ? [item('react-combat-backpack-pipe', HOSPITAL_ITEM_IDS.metalPipe)] : []),
+    ...(options.backpackAccessCard ? [item('react-combat-backpack-access-card', HOSPITAL_ITEM_IDS.isolationWardAccessCard)] : []),
   ]
   const backpack = extras.length === 0
     ? phase.payload.scene.backpack
@@ -1213,6 +1221,80 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('主要搜索 · 使用手电筒')
   })
 
+  it('renders and inspects the entrance Player-Known Map without dispatch, save, RNG, or hidden-space leakage', () => {
+    const scenario = createHospitalDevelopmentPreviewScenario('scene')
+    const tracked = trackedStore(scenario.store)
+    let notifications = 0
+    scenario.store.subscribe(() => { notifications += 1 })
+    const before = scenario.store.getState()
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StrictMode><StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} /></StrictMode>) })
+
+    const map = knownMap(container)
+    expect(map.textContent).toContain('已知场景地图')
+    expect(map.textContent).toContain('电梯前室')
+    expect(map.textContent).toContain('急诊大厅')
+    expect(map.querySelectorAll('.known-map__node')).toHaveLength(2)
+    expect(map.querySelectorAll('.known-map__route-label')).toHaveLength(1)
+    for (const hidden of [
+      '药房', '保安值班室', '隔离走廊', '标本冷藏室', '工作人员通道',
+      HOSPITAL_NODE_IDS.elevatorAnteroom,
+      HOSPITAL_EDGE_IDS.elevatorToEmergencyHall,
+      'sceneInstanceId', 'runId', 'seed', 'rulesVersion', 'preparedOutcome', 'randomTrace', 'riskPercent',
+    ]) expect(map.innerHTML).not.toContain(hidden)
+
+    const nodeInfo = map.querySelector<HTMLButtonElement>('button[aria-label="查看电梯前室地图节点说明"]')
+    const routeInfo = map.querySelector<HTMLButtonElement>('button[aria-label="查看电梯前室至急诊大厅路线说明"]')
+    if (!nodeInfo || !routeInfo) throw new Error('expected keyboard-reachable map Info Cards')
+    act(() => { nodeInfo.focus() })
+    act(() => { routeInfo.focus() })
+    expect(tracked.commands).toHaveLength(0)
+    expect(scenario.storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+    expect(scenario.store.getState()).toBe(before)
+  })
+
+  it('renders Hall known topology including the blocked Fire Door without leaking Cold Room', () => {
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: sceneSessionAtEmergencyHall() },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+
+    const map = knownMap(container)
+    for (const visible of ['电梯前室', '急诊大厅', '药房', '保安值班室', '隔离走廊']) {
+      expect(map.textContent).toContain(visible)
+    }
+    expect(map.textContent).not.toContain('标本冷藏室')
+    expect(map.querySelectorAll('.known-map__node')).toHaveLength(5)
+    expect(map.querySelectorAll('.known-map__route-label')).toHaveLength(4)
+    const blocked = [...map.querySelectorAll<HTMLElement>('.known-map__route-label--blocked')]
+      .find((route) => route.textContent?.includes('急诊大厅') && route.textContent.includes('隔离走廊'))
+    expect(blocked).toBeDefined()
+    expect(blocked?.textContent).toContain('当前受阻')
+    expect(storage.writes).toBe(0)
+  })
+
+  it('does not reveal the undiscovered staff passage during Isolation combat even when the backpack holds an access card', () => {
+    const phase = combatPhase({ backpackAccessCard: true })
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+
+    const map = knownMap(container)
+    expect(map.textContent).toContain('标本冷藏室')
+    expect(map.textContent).not.toContain('工作人员通道')
+    expect(map.querySelectorAll('.known-map__route-label')).toHaveLength(5)
+    expect(storage.writes).toBe(0)
+  })
+
   it('renders the formal Scene Time Budget and keeps mouse and keyboard Ghosts side-effect free', () => {
     const storage = new MemoryStorage()
     const inner = createStableRunStore({
@@ -1505,6 +1587,9 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('照明资源')
     expect(container.textContent).not.toContain('金属零件')
     expect(storage.writes).toBe(2)
+    const mapBeforeSearch = knownMap(container)
+    const nodesBeforeSearch = [...mapBeforeSearch.querySelectorAll('.known-map__node')].map((node) => node.textContent)
+    const routesBeforeSearch = [...mapBeforeSearch.querySelectorAll('.known-map__route-label')].map((route) => route.textContent)
     act(() => { button(container, '确认执行').click() })
 
     expect(storage.writes).toBe(3)
@@ -1518,6 +1603,13 @@ describe('StableRunUiApp', () => {
     expect(phase.payload.scene.equipment.utility?.definitionId).toBe(HOSPITAL_ITEM_IDS.flashlight)
     expect(phase.payload.scene.itemStates.states.find((state) => state.instanceId === phase.payload.scene.equipment.utility?.instanceId)?.resource).toMatchObject({ kind: 'charge', current: 2 })
     expect(phase.payload.scene.backpack.items).toHaveLength(0)
+    const mapAfterSearch = knownMap(container)
+    expect([...mapAfterSearch.querySelectorAll('.known-map__node')].map((node) => node.textContent))
+      .not.toEqual(nodesBeforeSearch)
+    expect([...mapAfterSearch.querySelectorAll('.known-map__route-label')].map((route) => route.textContent))
+      .toEqual(routesBeforeSearch)
+    expect([...mapAfterSearch.querySelectorAll('.known-map__node')]
+      .find((node) => node.textContent?.includes('急诊大厅'))?.textContent).toContain('已搜索')
   })
 
   it('completes the explicit Hub → fire door → orderly victory → cold-room extraction UI chain', () => {
@@ -1536,6 +1628,9 @@ describe('StableRunUiApp', () => {
     }
     expect(container.textContent).toContain('隔离区防火门')
     expect(container.textContent).not.toContain('前往 隔离走廊')
+    const fireDoorRouteBefore = [...knownMap(container).querySelectorAll<HTMLElement>('.known-map__route-label')]
+      .find((route) => route.textContent?.includes('急诊大厅') && route.textContent.includes('隔离走廊'))
+    expect(fireDoorRouteBefore?.classList.contains('known-map__route-label--blocked')).toBe(true)
 
     act(() => { button(container, '隔离区防火门 · 强行撞门').click() })
     const forcePreview = container.querySelector('[role="dialog"]')?.textContent ?? ''
@@ -1548,6 +1643,9 @@ describe('StableRunUiApp', () => {
     act(() => { button(container, '确认执行').click() })
     expect(container.textContent).not.toContain('隔离区防火门 · 强行撞门')
     expect(container.textContent).toContain('前往 隔离走廊')
+    const fireDoorRouteAfter = [...knownMap(container).querySelectorAll<HTMLElement>('.known-map__route-label')]
+      .find((route) => route.textContent?.includes('急诊大厅') && route.textContent.includes('隔离走廊'))
+    expect(fireDoorRouteAfter?.classList.contains('known-map__route-label--traversable')).toBe(true)
 
     act(() => { button(container, '前往 隔离走廊').click() })
     act(() => { button(container, '确认执行').click() })
@@ -1569,6 +1667,18 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('蓄力击打')
     expect(container.textContent).not.toContain('背包网格')
     expect(container.textContent).not.toContain('场景结果')
+    const combatMap = knownMap(container)
+    expect(combatMap.textContent).toContain('标本冷藏室')
+    expect(combatMap.textContent).toContain('战斗结束后重算返程')
+    const coldRouteDuringCombat = [...combatMap.querySelectorAll<HTMLElement>('.known-map__route-label')]
+      .find((route) => route.textContent?.includes('隔离走廊') && route.textContent.includes('标本冷藏室'))
+    expect(coldRouteDuringCombat?.classList.contains('known-map__route-label--blocked')).toBe(true)
+    expect([...combatMap.querySelectorAll<HTMLElement>('.known-map__route-label')].some((route) =>
+      route.textContent?.includes('保安值班室') && route.textContent.includes('隔离走廊'),
+    )).toBe(false)
+    const knownNodesDuringCombat = [...combatMap.querySelectorAll('.known-map__node')].map((node) => node.textContent)
+    const knownRouteInfoDuringCombat = [...combatMap.querySelectorAll<HTMLButtonElement>('.known-map__route-label .info-card-trigger')]
+      .map((trigger) => trigger.getAttribute('aria-label'))
 
     for (const label of ['挥击', '蓄力击打', '挥击']) {
       act(() => { button(container, label).click() })
@@ -1592,9 +1702,20 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).not.toContain('感染护工')
     expect(container.textContent).toContain('前往 标本冷藏室')
     expect(container.textContent).not.toContain('提取样本箱')
+    const victoryMap = knownMap(container)
+    expect([...victoryMap.querySelectorAll('.known-map__node')].map((node) => node.textContent)).toEqual(knownNodesDuringCombat)
+    expect([...victoryMap.querySelectorAll<HTMLButtonElement>('.known-map__route-label .info-card-trigger')]
+      .map((trigger) => trigger.getAttribute('aria-label'))).toEqual(knownRouteInfoDuringCombat)
+    const coldRouteAfterVictory = [...victoryMap.querySelectorAll<HTMLElement>('.known-map__route-label')]
+      .find((route) => route.textContent?.includes('隔离走廊') && route.textContent.includes('标本冷藏室'))
+    expect(coldRouteAfterVictory?.classList.contains('known-map__route-label--traversable')).toBe(true)
 
     act(() => { button(container, '前往 标本冷藏室').click() })
     act(() => { button(container, '确认执行').click() })
+    const coldRoomNode = [...knownMap(container).querySelectorAll<HTMLElement>('.known-map__node')]
+      .find((node) => node.textContent?.includes('标本冷藏室'))
+    expect(coldRoomNode?.classList.contains('known-map__node--current')).toBe(true)
+    expect(knownMap(container).querySelectorAll('.known-map__route-label')).toHaveLength(5)
     expect(container.textContent).toContain('谨慎检查并提取')
     expect(container.textContent).toContain('直接取出')
     expect(container.textContent).toContain('放弃提取')
@@ -2393,6 +2514,7 @@ describe('StableRunUiApp', () => {
     const terminalRoot = createRoot(terminalContainer); roots.push(terminalRoot)
     act(() => { terminalRoot.render(<StrictMode><StableRunUiApp store={terminalStore} presentationDependencies={uiDependencies} /></StrictMode>) })
     expect(terminalContainer.textContent).toContain('完成返程结算')
+    expect(knownMap(terminalContainer).textContent).toContain('本次探索已结束')
     expect(terminalStore.getState()).toBe(terminalBefore)
     expect(terminalStorage.writes).toBe(0)
   })
@@ -4527,6 +4649,17 @@ describe('StableRunUiApp', () => {
   })
 
   it('drops a permission card as a physical item and immediately refreshes access truth', () => {
+    const noCardPhase = sceneInventoryPhase({ currentNodeId: HOSPITAL_NODE_IDS.securityOffice })
+    const noCardContainer = document.createElement('div')
+    const noCardRoot = createRoot(noCardContainer); roots.push(noCardRoot)
+    act(() => { noCardRoot.render(<StableRunUiApp
+      store={createStableRunStore({ initialPhase: noCardPhase, storage: new MemoryStorage(), rulesRegistry: hospitalRunSaveRulesRegistry })}
+      presentationDependencies={uiDependencies}
+    />) })
+    const blockedStaffRoute = [...knownMap(noCardContainer).querySelectorAll<HTMLElement>('.known-map__route-label')]
+      .find((route) => route.textContent?.includes('保安值班室') && route.textContent.includes('隔离走廊'))
+    expect(blockedStaffRoute?.classList.contains('known-map__route-label--blocked')).toBe(true)
+
     const card = item('inventory-permission-card', HOSPITAL_ITEM_IDS.isolationWardAccessCard)
     const phase = sceneInventoryPhase({
       backpack: [{ item: card, x: 0, y: 0 }],
@@ -4540,11 +4673,11 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
-    expect(container.textContent).toContain('当前可通行路线')
-    expect(container.textContent).toContain('隔离走廊')
-    expect(container.textContent).toContain('工作人员通道')
-    expect(container.textContent).toContain('门禁卡已授权')
-    expect(container.textContent).toContain('移动耗时')
+    expect(container.textContent).toContain('已知场景地图')
+    const staffRoute = [...knownMap(container).querySelectorAll<HTMLElement>('.known-map__route-label')]
+      .find((route) => route.textContent?.includes('保安值班室') && route.textContent.includes('隔离走廊'))
+    expect(staffRoute?.classList.contains('known-map__route-label--traversable')).toBe(true)
+    expect(staffRoute?.textContent).toContain('移动耗时 10')
     act(() => { button(container, '整理 隔离区门禁卡 · 背包格 1,1').click() })
     act(() => { button(container, '放到当前节点').click() })
     expect(container.textContent).not.toContain('这是任务物品。')

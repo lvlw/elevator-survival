@@ -173,6 +173,21 @@ describe('stable Run player-visible ViewModel', () => {
     if (model.kind !== 'scene-session') throw new Error('expected Scene')
     expect(model.scene.currentNodeName).toBe('电梯前室')
     expect(model.scene.traversableAdjacentNodeNames).toEqual(['急诊大厅'])
+    expect(model.scene.navigationMap.nodes.map(({ name, state }) => ({ name, state }))).toEqual([
+      { name: '电梯前室', state: 'current' },
+      { name: '急诊大厅', state: 'known-unvisited' },
+    ])
+    expect(model.scene.navigationMap.routes).toHaveLength(1)
+    expect(model.scene.navigationMap.routes[0]).toMatchObject({
+      endpointNames: ['电梯前室', '急诊大厅'],
+      traversal: 'traversable',
+      movementTime: model.scene.traversableRoutes[0]?.movementTime,
+    })
+    expect(model.scene.navigationMap.return).toMatchObject({
+      status: 'available',
+      risk: 'safe-returned',
+      routeNodeNames: ['电梯前室'],
+    })
     expect(model.scene.returnEstimate).toBe(0)
     expect(model.scene.returnAfterWithdrawalTime).toBe(200)
     expect(model.scene.returnRisk).toBe('safe-returned')
@@ -233,7 +248,7 @@ describe('stable Run player-visible ViewModel', () => {
     expect(JSON.stringify(model.scene.loadout.backpackGrid)).not.toContain(HOSPITAL_ITEM_IDS.fireAxe)
   })
 
-  it('only presents currently traversable emergency-hall edges, not a player-known map', () => {
+  it('presents the complete player-known Hall topology without undiscovered Cold Room knowledge', () => {
     const model = createStableRunPlayerViewModel(emergencyHallScenePhase(), dependencies)
     if (model.kind !== 'scene-session') throw new Error('expected Scene')
 
@@ -246,8 +261,16 @@ describe('stable Run player-visible ViewModel', () => {
     // The unopened Fire Door means the isolation corridor is not traversable.
     // Its absence does not declare it unknown, hidden, or nonexistent.
     expect(model.scene.traversableAdjacentNodeNames).not.toContain('隔离走廊')
-    expect('accessibleNodeNames' in model.scene).toBe(false)
-    expect('knownNavigation' in model.scene).toBe(false)
+    expect(model.scene.navigationMap.nodes.map(({ name }) => name)).toEqual([
+      '电梯前室', '急诊大厅', '药房', '保安值班室', '隔离走廊',
+    ])
+    expect(model.scene.navigationMap.routes).toHaveLength(4)
+    expect(model.scene.navigationMap.routes.find(({ endpointNames }) =>
+      endpointNames.includes('急诊大厅') && endpointNames.includes('隔离走廊'),
+    )?.traversal).toBe('blocked')
+    expect(JSON.stringify(model.scene.navigationMap)).not.toContain('标本冷藏室')
+    expect(JSON.stringify(model.scene.navigationMap)).not.toContain(HOSPITAL_NODE_IDS.emergencyHall)
+    expect(JSON.stringify(model.scene.navigationMap)).not.toContain(HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor)
   })
 
   it('projects combat as relative enemy information without exact enemy health or risk traces', () => {
@@ -274,6 +297,14 @@ describe('stable Run player-visible ViewModel', () => {
       safeMargin: null,
       unavailableReason: 'combat-recalculate',
     })
+    expect(model.scene.navigationMap.return.status).toBe('combat-recalculate')
+    expect(model.scene.navigationMap.nodes.map(({ name }) => name)).toContain('标本冷藏室')
+    expect(model.scene.navigationMap.routes.find(({ endpointNames }) =>
+      endpointNames.includes('隔离走廊') && endpointNames.includes('标本冷藏室'),
+    )?.traversal).toBe('blocked')
+    expect(model.scene.navigationMap.routes.some(({ endpointNames }) =>
+      endpointNames.includes('保安值班室') && endpointNames.includes('隔离走廊'),
+    )).toBe(false)
     expect(model.status.condition.wounds).toEqual([
       { kind: 'laceration', treatment: 'untreated', ordinal: 1 },
     ])

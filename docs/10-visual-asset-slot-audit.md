@@ -56,10 +56,10 @@ Asset Slot ID 仅供 Presentation production 追踪，不是 gameplay identity�
 
 | Slot ID | Aspect ratio | Recommended source master | Scaling | Crop policy | Safe zone | Transparency | Format recommendation | Variants | Player-knowledge constraint | Fallback | Future integration note |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| VIS-HUB-BG-01 | 16:9 宽幅 | 2560 × 1440 | cover | 允许四边各裁 10～18% | 中央 60% 保持低细节；右侧携带栏区域避免强对比 | opaque | WebP；保留无损源 | 1 | 不画未获得任务物或未来设施 | 现有渐变和 radial 背景 | 后续在 Hub stage 加 presentation-only background layer |
-| VIS-SCENE-BG-01 | 16:9 可平铺/延展 | 2560 × 1440 | cover + 纵向柔性底色 | 桌面横裁，长页面下方可由纯色延展 | 中央 55% 低细节，地图区不可被纹理干扰 | opaque | WebP | 医院统一底板 1；节点差异留给独立槽 | 不出现未知门、工作人员通道、战利品或敌人 | 现有 Scene 渐变 | 仅作氛围，不能替代 Player-Known Map |
-| VIS-SCENE-NODE-01 | 16:9 | 1280 × 720 | cover | 可裁左右 12%，不可裁掉已知节点主体 | 中央 70% | opaque | WebP | 只为已确认且高频节点逐步增加 | 插画只能表达玩家已到达/已知的当前节点 | 文字标题 | 需要先定义安全的 node-art mapping；本轮不建 registry |
-| VIS-COMBAT-BG-01 | 16:9 | 1920 × 1080 | cover | 允许上下裁切，左右角色区保持安静 | 左右各 30% 可读；中心 VS 留空 | opaque | WebP | 医院隔离走廊 1 | 不出现未知敌人、隐藏出口或战利品 | 现有 Battle Stage 渐变 | 背景层位于 actor 信息和时间轴之后 |
+| VIS-HUB-BG-01 | 16:9 宽幅 | 2560 × 1440 | cover | 实测均为左右裁切：桌面每侧约 13.6～19.9%，768 每侧约 22.2% | 关键主体限中央 52%；其余区域只放可裁环境纹理，右侧携带栏后保持低对比 | opaque | WebP；保留无损源 | 1 | 不画未获得任务物或未来设施 | 现有渐变和 radial 背景 | 后续在 Hub stage 加 presentation-only background layer |
+| VIS-SCENE-BG-01 | 16:9 氛围 plate + 可延展底色 | 2560 × 1440 | 只在独立 16:9 plate 内 cover；长 Scene 由 CSS／纯色纵向延展 | 禁止用单张 16:9 bitmap cover 整个 793～972 × 1395～1410 长页面；否则每侧会裁约 30.6～34.0%，768 约 35.2% | plate 中央 55% 低细节；延展底色不得干扰地图和文字 | opaque | WebP | 医院统一底板 1；节点差异留给独立槽 | 不出现未知门、工作人员通道、战利品或敌人 | 现有 Scene 渐变 | 后续先建立有界 plate；仅作氛围，不能替代 Player-Known Map |
+| VIS-SCENE-NODE-01 | 16:9 | 1280 × 720 | cover | 当前建议 display budget 均为 16:9，名义裁切为 0%；真正 subslot 尚未实现，集成时按实测复核 | 中央 70%；仍保留 12% 构图余量以适应未来轻微比例变化 | opaque | WebP | 只为已确认且高频节点逐步增加 | 插画只能表达玩家已到达/已知的当前节点 | 文字标题 | 需要先定义安全的 node-art mapping；本轮不建 registry |
+| VIS-COMBAT-BG-01 | 16:9 | 1920 × 1080 | cover | 实测主要为左右裁切：桌面每侧约 10.2～17.7%；768 actors 纵向堆叠时每侧约 28.2% | 关键环境主体限中央 40%；左右 actor 信息区和中心 VS 后方均保持低对比 | opaque | WebP | 医院隔离走廊 1 | 不出现未知敌人、隐藏出口或战利品 | 现有 Battle Stage 渐变 | 背景层位于 actor 信息和时间轴之后；768 不得依赖两侧细节 |
 | VIS-COMBAT-ENEMY-01 | 4:5 竖向主体 | 1024 × 1280 | contain | 不裁主体；容器宽时允许留白 | 主体在中央 70%，脚底/躯干锚点固定 | alpha | PNG 或 lossless WebP | 完好、受伤、重伤、濒危、失去能力 | 只按公开生命阶段切换；严禁逐 HP 变体 | 敌人文字卡 | 五张必须相同 framing、anchor、比例和主体基准位置 |
 | VIS-COMBAT-PLAYER-01 | 4:5 | 1024 × 1280 | contain | 不裁主体 | 中央 70%，与敌人基线对齐 | alpha | PNG/WebP | 未定 | 正式主角外观未冻结 | 玩家文字卡 | **DEFER — character art direction unresolved** |
 | VIS-COMBAT-INTENT-01 | 1:1 | SVG viewBox 或 128 × 128 | contain | 不裁 | 图形内缩 15% | alpha | SVG 优先 | 抓挠、扑咬；未来仅按公开意图扩展 | 只能显示当前公开意图，不显示未来行动序列 | 当前文字意图 | 图标与文字并存，颜色不能作为唯一语义 |
@@ -69,11 +69,25 @@ Asset Slot ID 仅供 Presentation production 追踪，不是 gameplay identity�
 | VIS-MAP-NODE-01 | 1:1 | SVG viewBox | contain | 不裁 | 内缩 15% | alpha | SVG | 最多按公开节点类别 | 不提供 unknown、问号、秘密路线占位 | 现有 CSS 节点框 | 优先维持 SVG/CSS；有明确类别体系后再生产 |
 | VIS-MAP-CURRENT-01 | 1:1 | SVG viewBox | contain | 不裁 | 内缩 12% | alpha | SVG | 1 | 只标 canonical 当前节点 | 金色 CSS 边框 | 作为已知节点装饰，不能生成新节点 |
 | VIS-MAP-RETURN-01 | 1:1 | SVG viewBox | contain | 不裁 | 内缩 12% | alpha | SVG | 1 | 只标玩家已知且正式返程链可表达的端点 | 返程文字面板 | 不绘制未知路线，不推断隐藏工作人员通道 |
-| VIS-EVENT-FIRE-DOOR-01 | 8:5 | 1280 × 800 | cover | 左右可裁 10%，门体不可裁断 | 中央 70% 门体；底部留文字安全区 | opaque | WebP | 关闭/已开启至多 2；方法差异不另做大图 | 未解决时不得画出门后房间或隐藏通道 | 障碍名称和选项文字 | 结果状态从 canonical obstacle result 选择，不由图片推断 |
+| VIS-EVENT-FIRE-DOOR-01 | 8:5 | 1280 × 800 | cover | 当前建议 display budget 224×140、240×150、256×160、200×125 均为 8:5，名义裁切为 0%；真正 subslot 集成时复测 | 中央 70% 门体；四周保留 10% 构图余量，底部留文字安全区 | opaque | WebP | 关闭/已开启至多 2；方法差异不另做大图 | 未解决时不得画出门后房间或隐藏通道 | 障碍名称和选项文字 | 结果状态从 canonical obstacle result 选择，不由图片推断 |
 | VIS-OBJECTIVE-CASE-01 | 1:1 | 1024 × 1024 | contain | 不裁 | 四边 15%；封条与轮廓清晰 | alpha | PNG/WebP | 1；损坏变体未确认，不制作 | “取得”不等于“安全入库/任务完成”，图片不能暗示后两者 | 任务物名称、尺寸、重量文字 | 插画与 512 icon 可共享设计，但交付不同 master/crop |
-| VIS-FAILURE-MARK-01 | 16:9 | 1920 × 1080 | cover | 大幅允许裁切 | 中央文案区必须低对比 | opaque/alpha 均可 | WebP/PNG | 1 | 不编码未确认结局原因 | 当前红色渐变与文字 | 仅是只读 terminal 装饰，不引出新操作 |
-| VIS-NEW-RUN-ILLUSTRATION-01 | 3:2 | 1440 × 960 | cover | 左右裁 10% | 中央 60% 低对比，选择控件区域空 | opaque | WebP | 1 | 不暗示未实现专长、Day 2–7 或未来世界 | 当前纯 CSS card | **DEFER — art direction and production bootstrap composition remain text-first** |
+| VIS-FAILURE-MARK-01 | 16:9 | 1920 × 1080 | cover | 720 × 308～304 宿主比 16:9 更宽，实际为上下裁切：桌面每侧约 12.0%，768 每侧约 12.5% | 关键视觉限中央垂直 72%；中央文案区必须低对比 | opaque/alpha 均可 | WebP/PNG | 1 | 不编码未确认结局原因 | 当前红色渐变与文字 | 仅是只读 terminal 装饰，不引出新操作 |
+| VIS-NEW-RUN-ILLUSTRATION-01 | 3:2 | 1440 × 960（仅候选） | 不得 cover 整个 card；未来使用有界 illustration subslot 并复测 | 若直接 cover 当前 672 × 1005～952 card，会左右每侧裁约 27.7～26.5%，与原 10% 假设不符；正式集成前重新确定 subslot | 当前不冻结；未来图像主体必须避开选择控件和说明文字 | opaque | WebP | 1 | 不暗示未实现专长、Day 2–7 或未来世界 | 当前纯 CSS card | **DEFER — art direction unresolved；待正式 integration subslot 后复测** |
 | VIS-UI-SKIN-01 | 按组件 | 尚不建议交付 | n/a | n/a | n/a | 可选 | SVG/9-slice 后议 | 未定 | 不创造规则语义 | 当前 CSS | **DEFER — UIR-008 当前 Skin 可替换** |
+
+### 3.3 Cover geometry 复核
+
+`cover` 以源图和宿主比例决定裁切方向：宿主比源图更窄时裁左右，宿主更宽时裁上下。百分比表示居中裁切时源图每一侧被移出宿主的比例；不是额外 gameplay 或布局规则。
+
+| Slot | Source aspect | 1280 | 1440 | 1600 | 768 | 生产结论 |
+| --- | --- | --- | --- | --- | --- | --- |
+| VIS-HUB-BG-01 | 16:9 | 793×741：左右各约 19.9% | 899×746：左右各约 16.1% | 972×751：左右各约 13.6% | 722×731：左右各约 22.2% | 关键主体必须进入中央 52% 安全区；桌面与 768 分别记录，不再使用 10～18% 的错误统一范围 |
+| VIS-SCENE-BG-01 | 16:9 | 若 cover 全 stage，左右各约 34.0% | 约 32.0% | 约 30.6% | 约 35.2% | 单张 bitmap 不负责覆盖整个长页面；只作为有界 16:9 atmosphere plate，余下纵向区域由 CSS／纯色延展 |
+| VIS-SCENE-NODE-01 | 16:9 | 建议 320×180：0% | 360×203：因四舍五入少于 0.2% | 400×225：0% | 建议约 16:9：名义 0% | 当前没有正式图像 subslot；这些是 display budget，集成时必须重新测量真实容器 |
+| VIS-COMBAT-BG-01 | 16:9 | 751×653：左右各约 17.7% | 857×657：左右各约 13.3% | 930×657：左右各约 10.2% | 680×879：左右各约 28.2% | 主要裁切方向是左右；768 堆叠显著加剧裁切，关键背景信息限中央 40% |
+| VIS-EVENT-FIRE-DOOR-01 | 8:5 | 建议 224×140：0% | 240×150：0% | 256×160：0% | 200×125：0% | 当前没有正式图像 subslot；建议比例与 source 一致，集成后复核实际 dialog composition |
+| VIS-FAILURE-MARK-01 | 16:9 | 720×308：上下各约 12.0% | 同左 | 同左 | 720×304：上下各约 12.5% | 中央文案优先，关键视觉限中央垂直 72% |
+| VIS-NEW-RUN-ILLUSTRATION-01 | 3:2 | 若 cover 全 card，左右各约 27.7% | 同左 | 同左 | 左右各约 26.5% | 当前为 DEFER；不要把 3:2 图直接 cover 整个纵向 card，待有界 subslot 落地后复测 |
 
 ## 4. 敌人阶段与第一批策略
 
@@ -109,8 +123,8 @@ Asset Slot ID 仅供 Presentation production 追踪，不是 gameplay identity�
 
 | Priority | Asset | Count | Source size | Aspect | Alpha | Notes |
 | --- | --- | ---: | --- | --- | --- | --- |
-| NOW | 电梯中枢宽幅背景 | 1 | 2560 × 1440 | 16:9 | 否 | 中央 60% 低细节；不可画未来设施 |
-| NOW | 医院隔离走廊 Battle plate | 1 | 1920 × 1080 | 16:9 | 否 | 左右 actor 区和中心 VS 留白 |
+| NOW | 电梯中枢宽幅背景 | 1 | 2560 × 1440 | 16:9 | 否 | 关键主体限中央 52%；外围只放可裁环境；不可画未来设施 |
+| NOW | 医院隔离走廊 Battle plate | 1 | 1920 × 1080 | 16:9 | 否 | 关键环境主体限中央 40%；左右 actor 区和中心 VS 后方低对比 |
 | NOW | 感染护工公开生命阶段组 | 5 | 每张 1024 × 1280 | 4:5 | 是 | 完好/受伤/重伤/濒危/失去能力；同 framing 与 anchor |
 | NOW | 隔离区防火门事件插图 | 1 | 1280 × 800 | 8:5 | 否 | 中央门体，未解决态不展示门后空间 |
 | NOW | 密封病原样本箱目标插图 | 1 | 1024 × 1024 | 1:1 | 是 | 不暗示已入库或任务完成 |

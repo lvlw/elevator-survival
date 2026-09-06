@@ -32,7 +32,7 @@
 | AUD-UI-SELECT | UI；明确本地草稿选择 | radio、placement、operation 等本地选择实际改变 | UI-only before/after local state | before command | hover、相同值重选、Preview cancel、规则拒绝 | NEXT | 60～120 ms | mono | 48k/24 WAV | 2 | 快速选择时限制叠加 | local UI interaction | 视觉 selected state |
 | AUD-UI-PREVIEW-OPEN | Dialog；提示进入确认层 | 合法 Preview 被构造并打开 | UI-only + safe preview availability | before command | Preview 构造失败、disabled action | NEXT | 100～180 ms | mono | 48k/24 WAV | 1 | 替换前一个同类 cue | local dialog lifecycle | dialog 动画 |
 | AUD-UI-PREVIEW-CLOSE | Dialog；退出确认层 | cancel/close 只读 Preview | UI-only | before command | Confirm 成功、phase change 自动失效 | DEFER | 70～130 ms | mono | 48k/24 WAV | 1 | 不叠加 | local dialog lifecycle | dialog 关闭动画 |
-| AUD-SYSTEM-PERSISTENCE-ERROR | System；明确“已提交但保存失败” | canonical execution 已返回 persistence failure，或纯加载错误进入错误面板 | committed execution + persistence result / load boundary | after committed execution 或 load failure | 规则拒绝、Preview、cancel、成功保存 | NOW | 250～500 ms | mono | 48k/24 WAV | save/load 可共用 1，后续再拆 | 高优先级，压过 UI click；不覆盖 gameplay result cue | application/store feedback | 明确错误文案 |
+| AUD-SYSTEM-PERSISTENCE-ERROR | System；明确“已提交但保存失败” | 已建立 canonical / committed result 后，persistence write/save 失败 | committed execution + persistence write result | after committed execution | bootstrap load/restore/read error、规则拒绝、Preview、cancel、成功保存 | NOW | 250～500 ms | mono | 48k/24 WAV | 可与 load error 共用 1 个 source WAV，但 cue mapping 独立 | 高优先级，压过 UI click；不覆盖 gameplay result cue | application/store feedback | 明确“会话已提交、持久化失败”文案 |
 
 ## 4. Combat Cue Audit
 
@@ -80,8 +80,15 @@
 | AUD-HUB-MEDICAL | Hub；中枢医疗完成 | canonical medical result 显示消费和状态变化 | formal execution result | after successful execution | Preview、无资格、非法目标、0 变化拒绝 | NEXT | 300～650 ms | mono | 48k/24 WAV | 2 | 与物品转移声择主次 | Hub medical result | 玩家状态变化 |
 | AUD-HUB-END-DAY | Hub；不可逆日结算确认已执行 | canonical lifecycle execution 离开本日 Hub | formal execution result | after successful execution | End Day Preview、cancel、Day7 rejection | NEXT | 500～900 ms | stereo 可选 | 48k/24 WAV transition | 1 | 与 daily settlement 串联或择一 | lifecycle result | 日结算 Result UI |
 | AUD-HUB-DAILY-SETTLEMENT | Hub/Lifecycle；日结算结果已生成 | canonical next-day Hub 或 Run Failure 已生成 | formal execution result | after successful execution | Preview、未知错误、尚未结算 | NEXT | 500～1000 ms | stereo 可选 | 48k/24 WAV | 生还/失败最多 2 | 与 end-day cue 不堆叠抢占 | settlement result；未来 Activity projection | 结果对话框 |
-| AUD-RUN-NEW-CONFIRM | New Run；新局已原子创建 | canonical new Run creation + initial Hub save 成功提交 | formal execution result | after successful execution | New Run Preview、身份校验失败、保存失败前的假成功 | NEXT | 500～900 ms | stereo 可选 | 48k/24 WAV | 1 | 高优先级 | bootstrap transaction result | 进入 CurrentDayHub |
-| AUD-SYSTEM-LOAD-ERROR | Bootstrap；严格恢复失败 | production bootstrap 返回明确 load/restore error | strict restore/load result | after load failure | 无存档、新局页面、成功 resume | NOW | 250～500 ms | mono | 48k/24 WAV | 可与 persistence error 共用首批 source | 同类一次 | application bootstrap feedback | 严格错误卡与清除入口 |
+| AUD-RUN-NEW-CONFIRM | New Run；新局已在当前会话原子创建 | Headless New Run transaction 已建立唯一 committed `StableRunStore` 与 Day 1 canonical phase | committed New Run transaction result | after committed New Run creation；不以首次 save 成功为前提 | New Run Preview、identity/validation failure、constructor failure、committed Store/phase 尚未建立 | NEXT | 500～900 ms | stereo 可选 | 48k/24 WAV | 1 | 高优先级；首次 save 失败时可与 persistence error 顺序并存 | bootstrap transaction result | 进入 CurrentDayHub，并以保存失败文案补充持久化状态 |
+| AUD-SYSTEM-LOAD-ERROR | Bootstrap；严格恢复或读取失败 | production bootstrap 的 storage read、load 或 strict restore 明确失败 | strict restore/load/read result | after load/read/restore failure | persistence write failure、无存档、新局页面、成功 resume | NOW | 250～500 ms | mono | 48k/24 WAV | v0.1 可与 persistence error 共用同一个 source WAV，但 cue mapping 独立 | 同一 failure 只触发本 cue，不与 persistence error 同播 | application bootstrap feedback | 玩家安全错误卡与清除入口 |
+
+### 6.1 System error 与 New Run 的唯一所有权
+
+- `AUD-SYSTEM-PERSISTENCE-ERROR` 只拥有 canonical / committed phase 已建立后的 write/save failure。
+- `AUD-SYSTEM-LOAD-ERROR` 只拥有 production bootstrap 的 storage read、load 或 strict restore failure。同一 failure 不会同时触发两个 system cue。
+- 两个 cue ID 在 v0.1 可以引用同一个通用 System Error WAV；共享 source file 不合并 trigger semantics。
+- `AUD-RUN-NEW-CONFIRM` 在 committed Day 1 Store/phase 建立后成立，不等待首次保存成功。若首次保存失败，允许依次表达 `AUD-RUN-NEW-CONFIRM` 与 `AUD-SYSTEM-PERSISTENCE-ERROR`：含义是“Run 已在当前会话建立，但未成功持久化”，不是假成功，也不表示 rollback。
 
 ## 7. 不可泄漏的声音语义
 
@@ -93,12 +100,12 @@
 
 ## 8. Owner Preparation Pack — Audio v0.1
 
-首批建议 13 个 cue families、21 个音频文件（含 variants），足够验证操作确认、搜索、门材质、战斗打击、受伤和撤离压力，不等于完整音频清单。
+首批建议覆盖 14 个 cue mappings、21 个音频文件（含 variants）。表中 System Error 一行使用 1 个 source WAV 服务两个互斥 cue mapping，因此 source file 只计一次。该最小包足够验证操作确认、搜索、门材质、战斗打击、受伤和撤离压力，不等于完整音频清单。
 
 | Priority | Cue | Count/variants | Source spec | Approx duration | Trigger |
 | --- | --- | ---: | --- | --- | --- |
 | NEXT | AUD-UI-SELECT | 2 | 48kHz/24-bit WAV mono | 60～120 ms | 本地草稿选择实际改变；不代表 command 成功 |
-| NOW | AUD-SYSTEM-PERSISTENCE-ERROR | 1 | 48kHz/24-bit WAV mono | 250～500 ms | 已提交结果的保存失败或明确加载错误 |
+| NOW | AUD-SYSTEM-PERSISTENCE-ERROR + AUD-SYSTEM-LOAD-ERROR | 1 个共享 source；2 个互斥 mapping | 48kHz/24-bit WAV mono | 250～500 ms | 前者只用于 committed 后 write/save failure；后者只用于 bootstrap read/load/restore failure |
 | NOW | AUD-SCENE-MOVE | 2 | 48kHz/24-bit WAV mono | 250～600 ms | canonical current node 改变 |
 | NOW | AUD-SCENE-SEARCH-COMPLETE | 2 | 48kHz/24-bit WAV mono | 300～650 ms | 搜索完成且结果正式可见 |
 | NOW | AUD-SCENE-ITEM-PICKUP | 2 | 48kHz/24-bit WAV mono | 140～300 ms | 真实物品正式进入背包 |
@@ -135,7 +142,7 @@ Future Integration Note：
 
 ## 11. Audit Summary
 
-共审计 37 个 Cue：NOW 19、NEXT 16、DEFER 2。第一批 Owner Pack 为 13 个 cue families / 21 个 source files。
+共审计 37 个 Cue：NOW 19、NEXT 16、DEFER 2。第一批 Owner Pack 覆盖 14 个 cue mappings / 21 个 source files；其中两个互斥 System Error cue mapping 共用 1 个 source WAV。
 
 | Priority | Cue group | Count/variants | Source spec | Approx duration | Trigger |
 | --- | --- | ---: | --- | --- | --- |

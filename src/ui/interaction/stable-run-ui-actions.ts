@@ -226,8 +226,8 @@ export interface StableRunUiGhostPreview {
 
 export interface StableRunUiCombatGhostPreview {
   readonly title: string
-  readonly enemyActsBeforeNextPlayerDecision: boolean
-  readonly relationship: 'enemy-first' | 'player-decision-first'
+  readonly context: 'next-player-decision' | 'escape-completion'
+  readonly relationship: 'enemy-first' | 'player-first'
 }
 
 export interface StableRunUiAction {
@@ -941,11 +941,12 @@ function createCombatActions(
       command: applicationSceneCommand('scene-combat-action', command),
       combatGhost: Object.freeze({
         title: label,
-        enemyActsBeforeNextPlayerDecision:
-          preview.currentIntent.actsBeforeNextPlayerDecision,
+        context: command.kind === 'escape'
+          ? 'escape-completion'
+          : 'next-player-decision',
         relationship: preview.currentIntent.actsBeforeNextPlayerDecision
           ? 'enemy-first'
-          : 'player-decision-first',
+          : 'player-first',
       }),
       preview: freezePreview(
         `确认${label}`,

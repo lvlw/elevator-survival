@@ -37,6 +37,17 @@ function woundName(kind: PlayerVisibleConditionViewModel['wounds'][number]['kind
   return kind === 'laceration' ? '撕裂伤' : kind === 'puncture' ? '穿刺伤' : '咬伤'
 }
 
+function ghostRelationshipName(ghost: StableRunUiCombatGhostPreview): string {
+  if (ghost.context === 'escape-completion') {
+    return ghost.relationship === 'enemy-first'
+      ? '敌人将在脱离完成前行动'
+      : '你将在敌人行动前完成脱离'
+  }
+  return ghost.relationship === 'enemy-first'
+    ? '敌人将在下一次玩家决策前行动'
+    : '玩家将在敌人行动前再次获得决策机会'
+}
+
 export function BattleStage({
   combat,
   condition,
@@ -55,11 +66,6 @@ export function BattleStage({
     : '高直接伤害'
   const weapon = combat.equipment.weapon?.name ?? '未装备可用武器'
   const currentPhase = healthPhaseName(combat.enemyHealthStage)
-  const ghostRelationship = ghost === null
-    ? null
-    : ghost.enemyActsBeforeNextPlayerDecision
-      ? '敌人将在下一次玩家决策前行动'
-      : '玩家将在敌人行动前再次获得决策机会'
 
   return <section className="battle-stage" aria-labelledby="battle-stage-heading">
     <header className="battle-stage__header">
@@ -121,7 +127,7 @@ export function BattleStage({
         <span>下一次决策前</span><strong>{combat.enemyName} · {combat.currentIntent}</strong><small>{timingName(combat.enemyTimingBeforeNextDecision)}</small>
       </div>
       {ghost && <div className="combat-action-ghost" role="status">
-        <span>行动预估</span><strong>{ghost.title}</strong><em>{ghostRelationship}</em>
+        <span>行动预估</span><strong>{ghost.title}</strong><em>{ghostRelationshipName(ghost)}</em>
       </div>}
     </section>
 

@@ -2637,11 +2637,16 @@ describe('StableRunUiApp', () => {
     const charged = button(container, '蓄力击打')
     act(() => { charged.dispatchEvent(new FocusEvent('focusin', { bubbles: true })) })
     expect(container.querySelector('.combat-action-ghost')?.textContent).toContain('玩家将在敌人行动前再次获得决策机会')
-    for (const label of ['防御', '逃跑', '使用绷带 · 处理撕裂伤 1']) {
+    for (const label of ['防御', '使用绷带 · 处理撕裂伤 1']) {
       const action = button(container, label)
       act(() => { action.dispatchEvent(new FocusEvent('focusin', { bubbles: true })) })
       expect(container.querySelector('.combat-action-ghost')?.textContent).toContain(label)
+      expect(container.querySelector('.combat-action-ghost')?.textContent).toMatch(/下一次玩家决策|再次获得决策机会/)
     }
+    const escape = button(container, '逃跑')
+    act(() => { escape.dispatchEvent(new FocusEvent('focusin', { bubbles: true })) })
+    expect(container.querySelector('.combat-action-ghost')?.textContent).toContain('敌人将在脱离完成前行动')
+    expect(container.querySelector('.combat-action-ghost')?.textContent).not.toContain('再次获得决策机会')
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
     expect(notifications).toBe(0)

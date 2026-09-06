@@ -63,8 +63,8 @@ describe('BattleStage', () => {
         condition={condition}
         ghost={{
           title: '蓄力击打',
-          enemyActsBeforeNextPlayerDecision: false,
-          relationship: 'player-decision-first',
+          context: 'next-player-decision',
+          relationship: 'player-first',
         }}
         latestResult={null}
       />,
@@ -76,5 +76,23 @@ describe('BattleStage', () => {
       'currentCtb', 'playerNextActionCtb', 'enemyNextActionCtb', 'actionCtb',
       'elapsedCtb', 'completesAtCtb', 'CTB', '时间刻度',
     ]) expect(html).not.toContain(hidden)
+  })
+
+  it.each([
+    ['enemy-first', '敌人将在脱离完成前行动'],
+    ['player-first', '你将在敌人行动前完成脱离'],
+  ] as const)('renders the escape-completion %s relationship without decision-cycle wording', (relationship, label) => {
+    const html = renderToStaticMarkup(
+      <BattleStage
+        combat={combat('healthy')}
+        condition={condition}
+        ghost={{ title: '逃跑', context: 'escape-completion', relationship }}
+        latestResult={null}
+      />,
+    )
+    expect(html).toContain(label)
+    expect(html).not.toContain('再次获得决策机会')
+    expect(html).not.toContain('currentCtb')
+    expect(html).not.toContain('completesAtCtb')
   })
 })

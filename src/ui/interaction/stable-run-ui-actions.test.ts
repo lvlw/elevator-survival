@@ -522,14 +522,26 @@ describe('stable Run UI interaction model', () => {
     ]))
     expect(charged.combatGhost).toEqual({
       title: '蓄力击打',
-      enemyActsBeforeNextPlayerDecision: false,
-      relationship: 'player-decision-first',
+      context: 'next-player-decision',
+      relationship: 'player-first',
+    })
+    for (const label of ['挥击', '防御', '使用绷带 · 处理撕裂伤 1']) {
+      expect(interaction.actions.find((action) => action.label === label)?.combatGhost).toMatchObject({
+        context: 'next-player-decision',
+        relationship: 'enemy-first',
+      })
+    }
+    expect(interaction.actions.find(({ label }) => label === '逃跑')?.combatGhost).toEqual({
+      title: '逃跑',
+      context: 'escape-completion',
+      relationship: 'enemy-first',
     })
     const serialized = JSON.stringify(interaction)
     for (const hidden of [
       'riskPercent', 'roll', 'streamId', 'drawIndex', 'succeeded', 'preparedOutcome',
       'nextCycleIndex', 'resolvedActionCount', 'actionCtb', 'baseCtb', 'elapsedCtb',
       'completesAtCtb', '行动时间刻度', '战斗结束累计行动时间', '脱离完成时间点',
+      'enemyActsBeforeNextPlayerDecision',
     ]) {
       expect(serialized).not.toContain(hidden)
     }
@@ -563,6 +575,10 @@ describe('stable Run UI interaction model', () => {
     expect(temporary.preview.facts).toEqual(expect.arrayContaining([
       { label: '预计造成伤害', value: '2' },
     ]))
+    expect(temporary.combatGhost).toMatchObject({
+      context: 'next-player-decision',
+      relationship: 'enemy-first',
+    })
     expect(temporary.preview.facts.some(({ label }) => label === '武器耐久')).toBe(false)
     expect(phase.payload.scene.backpack.items[0] ?? null).toEqual(spareBefore)
   })

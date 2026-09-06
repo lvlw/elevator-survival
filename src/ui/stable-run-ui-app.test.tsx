@@ -1659,10 +1659,9 @@ describe('StableRunUiApp', () => {
     expect(active?.kind === 'active' && active.combat.enemyNextActionCtb).toBe(50)
     expect(container.textContent).toContain('感染护工')
     expect(container.textContent).toContain('抓挠')
-    expect(container.textContent).toContain('敌人下次行动 50')
-    expect(container.textContent).toContain('类别基础攻击')
-    expect(container.textContent).toContain('相对速度普通')
-    expect(container.textContent).toContain('主要危险中等直接伤害')
+    expect(container.textContent).toContain('当前：玩家可行动')
+    expect(container.textContent).toContain('基础攻击 · 普通 · 中等直接伤害')
+    expect(container.textContent).not.toContain('敌人下次行动 50')
     expect(container.textContent).toContain('挥击')
     expect(container.textContent).toContain('蓄力击打')
     expect(container.textContent).not.toContain('背包网格')
@@ -1683,7 +1682,7 @@ describe('StableRunUiApp', () => {
     for (const label of ['挥击', '蓄力击打', '挥击']) {
       act(() => { button(container, label).click() })
       const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
-      expect(preview).toContain('行动时间刻度')
+      expect(preview).toContain('下一次决策前的敌人行动')
       expect(preview).toContain('预计造成伤害')
       for (const hidden of ['riskPercent', 'roll', 'streamId', 'drawIndex', 'succeeded', 'enemyInstanceId', 'sceneInstanceId', 'nextCycleIndex', 'resolvedActionCount']) {
         expect(container.innerHTML).not.toContain(hidden)
@@ -2581,27 +2580,100 @@ describe('StableRunUiApp', () => {
     expect(store.getState()).toBe(before)
   })
 
+  it('renders a categorical Battle Stage and never exposes raw CTB in ordinary combat DOM', () => {
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({ initialPhase: combatPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+
+    const stage = container.querySelector('.battle-stage')
+    expect(stage?.textContent).toContain('玩家 vs 感染护工')
+    expect(stage?.textContent).toContain('当前：玩家可行动')
+    expect(stage?.textContent).toContain('生命 7 / 12')
+    expect(stage?.textContent).toContain('当前武器：金属管')
+    expect(stage?.textContent).toContain('相对生命：完好')
+    expect(stage?.querySelectorAll('.enemy-health-phase[data-active="true"]')).toHaveLength(1)
+    expect(stage?.textContent).toContain('下一次决策前')
+    expect(container.querySelector('.combat-map-context')).not.toBeNull()
+    for (const hidden of [
+      '当前时间刻度', '行动时间刻度', '玩家下次行动', '敌人下次行动',
+      'currentCtb', 'playerNextActionCtb', 'enemyNextActionCtb', 'completesAtCtb',
+    ]) expect(container.innerHTML).not.toContain(hidden)
+    expect(storage.writes).toBe(0)
+  })
+
+  it('renders identical enemy Battle Stage health markup for exact HP values in the same formal phase', () => {
+    const renderStage = (enemyHealth: number) => {
+      const store = createStableRunStore({
+        initialPhase: combatPhase({ enemyHealth, healthy: true }),
+        storage: new MemoryStorage(),
+        rulesRegistry: hospitalRunSaveRulesRegistry,
+      })
+      const container = document.createElement('div')
+      const root = createRoot(container); roots.push(root)
+      act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+      return container.querySelector('.battle-actor--enemy')?.innerHTML
+    }
+
+    expect(renderStage(14)).toBe(renderStage(11))
+  })
+
+  it('shows formal relative combat Ghosts on hover and focus with zero gameplay side effects', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: combatPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const before = inner.getState()
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    const basic = button(container, '挥击')
+    act(() => { basic.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })) })
+    expect(container.querySelector('.combat-action-ghost')?.textContent).toContain('敌人将在下一次玩家决策前行动')
+    act(() => { basic.dispatchEvent(new MouseEvent('mouseout', { bubbles: true })) })
+    const charged = button(container, '蓄力击打')
+    act(() => { charged.dispatchEvent(new FocusEvent('focusin', { bubbles: true })) })
+    expect(container.querySelector('.combat-action-ghost')?.textContent).toContain('玩家将在敌人行动前再次获得决策机会')
+    for (const label of ['防御', '逃跑', '使用绷带 · 处理撕裂伤 1']) {
+      const action = button(container, label)
+      act(() => { action.dispatchEvent(new FocusEvent('focusin', { bubbles: true })) })
+      expect(container.querySelector('.combat-action-ghost')?.textContent).toContain(label)
+    }
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    expect(notifications).toBe(0)
+    expect(inner.getState()).toBe(before)
+  })
+
   it('keeps every Combat Preview and the post-confirm result free of internal combat facts', () => {
     const storage = new MemoryStorage()
     const store = createStableRunStore({ initialPhase: combatPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    expect(container.querySelector('.combat-result-feedback')).toBeNull()
     const hidden = [
       'riskPercent', 'roll', 'streamId', 'drawIndex', 'succeeded',
       'resolvedActionCount', 'nextCycleIndex', 'enemyInstanceId',
       'sceneInstanceId', 'rulesVersion', 'woundId', 'raw Effects', 'raw snapshot',
+      'currentCtb', 'nextActionCtb', 'actionCtb', 'baseCtb', 'elapsedCtb',
+      'completesAtCtb', '行动时间刻度', '战斗结束累计行动时间', '脱离完成时间点',
     ]
     for (const label of ['挥击', '蓄力击打', '防御', '逃跑', '使用绷带 · 处理撕裂伤 1']) {
       act(() => { button(container, label).click() })
       const preview = container.querySelector('[role="dialog"]')?.innerHTML ?? ''
       for (const value of hidden) expect(preview).not.toContain(value)
+      expect(container.querySelector('.combat-result-feedback')).toBeNull()
       act(() => { button(container, '取消').click() })
     }
     expect(storage.writes).toBe(0)
     act(() => { button(container, '挥击').click() })
     act(() => { button(container, '确认执行').click() })
     const result = container.querySelector('[role="dialog"]')?.innerHTML ?? ''
+    expect(container.querySelector('.combat-result-feedback')).not.toBeNull()
     for (const value of hidden) expect(result).not.toContain(value)
     expect(storage.writes).toBe(1)
   })
@@ -2618,6 +2690,7 @@ describe('StableRunUiApp', () => {
       .actions.find(({ label }) => label === '挥击')!
     act(() => { store.dispatch(external.command) })
     expect(storage.writes).toBe(1)
+    expect(container.querySelector('.combat-result-feedback')).toBeNull()
     expect(container.querySelector('[role="dialog"]')?.textContent).toContain('5 → 4')
     expect(container.querySelector('[role="dialog"]')?.textContent).not.toContain('6 → 5')
   })
@@ -2721,7 +2794,8 @@ describe('StableRunUiApp', () => {
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '使用止痛药').click() })
     const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
-    expect(preview).toContain('行动时间刻度80')
+    expect(preview).toContain('下一次决策前的敌人行动')
+    expect(preview).not.toContain('行动时间刻度')
     expect(preview).toContain('镇痛生效')
     expect(preview).not.toContain('生命恢复')
     expect(preview).not.toContain('处理伤口')
@@ -2851,8 +2925,8 @@ describe('StableRunUiApp', () => {
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '逃跑').click() })
     const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
-    expect(preview).toContain('基础脱离准备80')
-    expect(preview).toContain('最终脱离准备时间90')
+    expect(preview).toContain('未处理开放伤口1')
+    expect(preview).toContain('镇痛状态无')
     expect(preview).toContain('敌人将在你完成脱离前行动。')
     expect(preview).toContain('生还结果继续探索')
     expect(preview).toContain('后续流程继续当前场景探索')
@@ -3067,10 +3141,8 @@ describe('StableRunUiApp', () => {
 
     act(() => { button(container, '逃跑').click() })
     const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
-    expect(preview).toContain('脱离完成时间点90')
     expect(preview).toContain('脱离完成流血损失1')
     expect(preview).toContain('脱离完成后生命0')
-    expect(preview).toContain('战斗结束累计行动时间90')
     expect(preview).toContain('战斗场景时间10')
     expect(preview).toContain('⚠ 逃跑仍会死亡')
     expect(preview).toContain('你当前只有 1 HP 且正在流血')
@@ -3117,11 +3189,10 @@ describe('StableRunUiApp', () => {
     const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
     expect(preview).toContain('玩家将在脱离完成前战败')
     expect(preview).toContain('战败节点隔离走廊')
-    expect(preview).toContain('战斗结束累计行动时间70')
     expect(preview).toContain('战斗场景时间10')
     expect(preview).toContain('本次行动后生命归零')
     expect(preview).not.toContain('若成功完成脱离')
-    expect(preview).not.toContain('脱离完成时间点80')
+    expect(preview).not.toContain('脱离完成时间点')
     expect(preview).not.toContain('脱离完成主要效果后')
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)

@@ -163,6 +163,8 @@ export interface PlayerVisibleSceneTimeBudgetViewModel {
 }
 
 export interface PlayerVisibleCombatViewModel {
+  readonly playerHealth: number
+  readonly playerMaximumHealth: number
   readonly enemyName: string
   readonly enemyHealthStage: 'healthy' | 'wounded' | 'severely-wounded' | 'critical' | 'incapacitated'
   readonly currentIntent: string
@@ -172,9 +174,6 @@ export interface PlayerVisibleCombatViewModel {
   readonly currentIntentMayCauseInjury: boolean
   readonly currentIntentMayCauseInfectionExposure: boolean
   readonly currentIntentMayCauseControl: boolean
-  readonly currentCtb: number
-  readonly playerNextActionCtb: number
-  readonly enemyNextActionCtb: number
   readonly sceneRemainingTime: number
   readonly sceneTimeIfCombatEndedNow: number
   readonly minimumSceneTime: number
@@ -572,6 +571,8 @@ function createSceneView(
             ? 'will-not-act'
             : 'depends-on-action'
         return frozen({
+          playerHealth: visible.player.currentHealth,
+          playerMaximumHealth: runtime.dependencies.config.combat.player.maxHealth,
           enemyName: dependencies.labels.enemyName(activeEncounter.combat.enemy.definitionId),
           enemyHealthStage: visible.enemy.healthPhase,
           currentIntent: dependencies.labels.enemyIntentName(visible.enemy.currentIntentId),
@@ -585,9 +586,6 @@ function createSceneView(
             visible.enemy.currentIntentMetadata.mayCauseInfectionExposure,
           currentIntentMayCauseControl:
             visible.enemy.currentIntentMetadata.mayCauseControl,
-          currentCtb: visible.player.currentCtb,
-          playerNextActionCtb: visible.player.nextActionCtb,
-          enemyNextActionCtb: visible.enemy.nextActionCtb,
           sceneRemainingTime: scene.remainingTime,
           sceneTimeIfCombatEndedNow: convertCombatElapsedCtbToSceneTime(
             visible.player.currentCtb,

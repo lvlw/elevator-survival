@@ -280,13 +280,14 @@ describe('stable Run player-visible ViewModel', () => {
     expect(model.scene.combat.enemyName).toBe('感染护工')
     expect(model.scene.combat.enemyHealthStage).toBe('healthy')
     expect(model.scene.combat).toMatchObject({
+      playerHealth: 9,
+      playerMaximumHealth: 12,
       currentIntentCategory: 'basic-attack',
       currentIntentRelativeSpeed: 'normal',
       currentIntentDirectDamageSeverity: 'medium',
       currentIntentMayCauseInjury: true,
       currentIntentMayCauseInfectionExposure: false,
       currentIntentMayCauseControl: false,
-      currentCtb: 0,
       sceneTimeIfCombatEndedNow: 10,
       minimumSceneTime: 10,
     })
@@ -308,7 +309,7 @@ describe('stable Run player-visible ViewModel', () => {
     expect(model.status.condition.wounds).toEqual([
       { kind: 'laceration', treatment: 'untreated', ordinal: 1 },
     ])
-    for (const hidden of ['currentHealth', 'riskPercent', 'enemyInstanceId', 'woundId', 'ui-wound', 'nextCycleIndex']) expect(JSON.stringify(model.scene.combat)).not.toContain(hidden)
+    for (const hidden of ['currentCtb', 'nextActionCtb', 'riskPercent', 'enemyInstanceId', 'woundId', 'ui-wound', 'nextCycleIndex']) expect(JSON.stringify(model.scene.combat)).not.toContain(hidden)
   })
 
   it('projects Run failure as a read-only terminal summary', () => {

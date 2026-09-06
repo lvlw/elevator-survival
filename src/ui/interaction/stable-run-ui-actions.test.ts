@@ -517,13 +517,20 @@ describe('stable Run UI interaction model', () => {
     expect(interaction.actions.every(({ kind }) => kind === 'scene-combat-action')).toBe(true)
     const charged = interaction.actions.find(({ label }) => label === '蓄力击打')!
     expect(charged.preview.facts).toEqual(expect.arrayContaining([
-      { label: '行动时间刻度', value: '180' },
       { label: '预计造成伤害', value: '6' },
       { label: '武器耐久', value: '6 → 3' },
-      { label: '敌人行动延后', value: '200' },
     ]))
+    expect(charged.combatGhost).toEqual({
+      title: '蓄力击打',
+      enemyActsBeforeNextPlayerDecision: false,
+      relationship: 'player-decision-first',
+    })
     const serialized = JSON.stringify(interaction)
-    for (const hidden of ['riskPercent', 'roll', 'streamId', 'drawIndex', 'succeeded', 'preparedOutcome', 'nextCycleIndex', 'resolvedActionCount']) {
+    for (const hidden of [
+      'riskPercent', 'roll', 'streamId', 'drawIndex', 'succeeded', 'preparedOutcome',
+      'nextCycleIndex', 'resolvedActionCount', 'actionCtb', 'baseCtb', 'elapsedCtb',
+      'completesAtCtb', '行动时间刻度', '战斗结束累计行动时间', '脱离完成时间点',
+    ]) {
       expect(serialized).not.toContain(hidden)
     }
     expect(phase).toEqual(before)
@@ -554,7 +561,6 @@ describe('stable Run UI interaction model', () => {
     const temporary = interaction.actions.find(({ label }) => label === '临时攻击')!
     expect(temporary.contextNote).toBe('当前没有可用的武器攻击，因此可以使用临时攻击。')
     expect(temporary.preview.facts).toEqual(expect.arrayContaining([
-      { label: '行动时间刻度', value: '140' },
       { label: '预计造成伤害', value: '2' },
     ]))
     expect(temporary.preview.facts.some(({ label }) => label === '武器耐久')).toBe(false)

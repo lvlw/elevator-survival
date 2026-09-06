@@ -224,6 +224,12 @@ export interface StableRunUiGhostPreview {
   readonly tone: 'neutral' | 'warning' | 'danger'
 }
 
+export interface StableRunUiCombatGhostPreview {
+  readonly title: string
+  readonly enemyActsBeforeNextPlayerDecision: boolean
+  readonly relationship: 'enemy-first' | 'player-decision-first'
+}
+
 export interface StableRunUiAction {
   readonly id: string
   readonly kind: StableRunUiActionKind
@@ -233,6 +239,7 @@ export interface StableRunUiAction {
   readonly command: StableRunApplicationCommand
   readonly preview: StableRunUiActionPreviewViewModel
   readonly ghost?: StableRunUiGhostPreview
+  readonly combatGhost?: StableRunUiCombatGhostPreview
 }
 
 function sceneStatusLabel(status: 'active' | 'combat' | 'safe-returned' | 'forced-returned' | 'dead'): string {
@@ -604,6 +611,8 @@ function combatActionLabel(
 
 function combatPreviewFacts(
   preview: PlayerVisibleCombatActionPreview,
+  untreatedOpenWoundCount: number,
+  painkillerActive: boolean,
   includeEscapeCompletionFacts = true,
 ): readonly StableRunUiActionPreviewFact[] {
   const facts: StableRunUiActionPreviewFact[] = []
@@ -616,10 +625,6 @@ function combatPreviewFacts(
     ) facts.push({
       label: '武器耐久',
       value: `${primary.weaponDurabilityBefore} → ${primary.weaponDurabilityAfter}`,
-    })
-    if (primary.enemyActionDelay > 0) facts.push({
-      label: '敌人行动延后',
-      value: String(primary.enemyActionDelay),
     })
   } else if (primary.kind === 'defend') {
     facts.push(
@@ -645,15 +650,11 @@ function combatPreviewFacts(
   } else {
     facts.push(
       { label: '背包负重档位', value: loadTierName(primary.loadTier) },
-      { label: '基础脱离准备', value: String(primary.baseCtb) },
-      { label: '伤口追加准备', value: String(primary.rawWoundCtb) },
-      { label: '镇痛抵消准备', value: String(primary.painkillerReductionApplied) },
-      { label: '最终伤口追加', value: String(primary.finalWoundCtb) },
-      { label: '最终脱离准备时间', value: String(primary.actionCtb) },
+      { label: '未处理开放伤口', value: String(untreatedOpenWoundCount) },
+      { label: '镇痛状态', value: painkillerActive ? '生效' : '无' },
     )
     const escape = preview.escapeConsequences
     if (escape && includeEscapeCompletionFacts) facts.push(
-      { label: '脱离完成时间点', value: String(primary.completesAtCtb) },
       {
         label: '脱离完成流血损失',
         value: escape.postPlayerActionBleedingDamageMin ===
@@ -680,7 +681,6 @@ function combatPreviewFacts(
       ? '敌人会先行动'
       : '敌人不会先行动',
   })
-  facts.push({ label: '行动时间刻度', value: String(preview.primary.actionCtb) })
   return Object.freeze(facts)
 }
 
@@ -698,7 +698,6 @@ function combatTerminalFacts(
       value: completion.nodeName,
     },
     { label: '当前剩余场景时间', value: String(completion.currentRemainingTime) },
-    { label: '战斗结束累计行动时间', value: String(completion.elapsedCtb) },
     { label: '战斗场景时间', value: String(completion.sceneTimeCost) },
     { label: '结算后剩余时间', value: String(completion.remainingTimeAfter) },
     {
@@ -895,14 +894,7 @@ function createCombatActions(
       ? [{
           title: '若在脱离完成检查点因流血战败',
           facts: [
-            {
-              label: '脱离完成时间点',
-              value: String(
-                preview.primary.kind === 'escape'
-                  ? preview.primary.completesAtCtb
-                  : preview.primary.actionCtb,
-              ),
-            },
+            { label: '检查点', value: '到达已锁定的脱离完成检查点' },
             { label: '主要效果', value: '到达已锁定脱离完成检查点' },
             { label: '完成后流血', value: '生命归零' },
             { label: '逃跑结果', value: '玩家死亡优先，不提交逃跑成功' },
@@ -935,6 +927,8 @@ function createCombatActions(
       : []
     const baseCombatFacts = combatPreviewFacts(
       preview,
+      combatCondition.openWounds.filter(({ treatment }) => treatment === 'untreated').length,
+      combatCondition.painkillerActive,
       terminal?.preCompletionDefeatRisk !== 'guaranteed',
     )
     return Object.freeze({
@@ -945,6 +939,14 @@ function createCombatActions(
         ? '当前没有可用的武器攻击，因此可以使用临时攻击。'
         : undefined,
       command: applicationSceneCommand('scene-combat-action', command),
+      combatGhost: Object.freeze({
+        title: label,
+        enemyActsBeforeNextPlayerDecision:
+          preview.currentIntent.actsBeforeNextPlayerDecision,
+        relationship: preview.currentIntent.actsBeforeNextPlayerDecision
+          ? 'enemy-first'
+          : 'player-decision-first',
+      }),
       preview: freezePreview(
         `确认${label}`,
         terminal !== null && !terminal.conditional

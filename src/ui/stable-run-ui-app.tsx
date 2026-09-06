@@ -12,6 +12,7 @@ import {
   type StableRunUiAction,
   type StableRunUiActionPreviewViewModel,
   type StableRunUiGhostPreview,
+  type StableRunUiCombatGhostPreview,
   type StableRunUiPickupOpportunity,
   type StableRunUiInventoryOperation,
   type StableRunUiInventoryOpportunity,
@@ -55,6 +56,7 @@ import { useStableRunStoreSnapshot } from './run-store/use-stable-run-store-snap
 import { InfoCard } from './components/info-card'
 import { PlayerKnownMap } from './components/player-known-map'
 import { SceneTimeBudget } from './components/scene-time-budget'
+import { BattleStage } from './components/battle-stage'
 
 export interface StableRunUiAppProps {
   readonly store: StableRunStore
@@ -339,7 +341,7 @@ function ActionPanel({
       <div className="action-list">{group.actions.map((action) => <div className="action-entry" key={action.id}>
         <button
           type="button"
-          className={`action-button${action.ghost ? ' action-button--ghostable' : ''}`}
+          className={`action-button${action.ghost || action.combatGhost ? ' action-button--ghostable' : ''}`}
           onMouseEnter={() => onGhostEnter(action.id, 'mouse')}
           onMouseLeave={() => onGhostLeave(action.id, 'mouse')}
           onFocus={() => onGhostEnter(action.id, 'keyboard')}
@@ -380,48 +382,12 @@ function HubView({
   </main>
 }
 
-function CombatPanel({
-  combat,
-  condition,
-}: Readonly<{
-  combat: NonNullable<Extract<StableRunPlayerViewModel, { kind: 'scene-session' }>['scene']['combat']>
-  condition: PlayerVisibleStatusBarViewModel['condition']
-}>) {
-  const category = combat.currentIntentCategory === 'basic-attack' ? '基础攻击' : '特殊攻击'
-  const speed = combat.currentIntentRelativeSpeed === 'normal' ? '普通' : '缓慢'
-  const danger = combat.currentIntentDirectDamageSeverity === 'medium'
-    ? '中等直接伤害'
-    : '高直接伤害'
-  return <section className="console-panel combat-panel game-stage" aria-labelledby="combat-heading">
-    <h2 id="combat-heading">战斗</h2>
-    <p><strong>{combat.enemyName}</strong> · 相对生命：{enemyHealthStageName(combat.enemyHealthStage)}</p>
-    <p className="combat-decision-summary">下次决策前敌人：<strong>{combat.enemyTimingBeforeNextDecision === 'will-act' ? '会行动' : combat.enemyTimingBeforeNextDecision === 'will-not-act' ? '不会行动' : '取决于你选择的行动'}</strong></p>
-    <p>当前意图：<strong>{combat.currentIntent}</strong></p>
-    <dl className="slot-list">
-      <div><dt>类别</dt><dd>{category}</dd></div>
-      <div><dt>相对速度</dt><dd>{speed}</dd></div>
-      <div><dt>主要危险</dt><dd>{danger}</dd></div>
-      <div><dt>可能造成伤势</dt><dd>{combat.currentIntentMayCauseInjury ? '是' : '否'}</dd></div>
-      <div><dt>可能感染暴露</dt><dd>{combat.currentIntentMayCauseInfectionExposure ? '是' : '否'}</dd></div>
-      <div><dt>可能控制／延后</dt><dd>{combat.currentIntentMayCauseControl ? '是' : '否'}</dd></div>
-    </dl>
-    <p>当前场景剩余时间：<strong>{combat.sceneRemainingTime}</strong></p>
-    <p>若此刻结束，预计结算场景时间：<strong>{combat.sceneTimeIfCombatEndedNow}</strong>（最低 {combat.minimumSceneTime}）</p>
-    <details className="technical-details"><summary>查看行动时间细节</summary><p>当前时间刻度 {combat.currentCtb} ／ 玩家下次行动 {combat.playerNextActionCtb} ／ 敌人下次行动 {combat.enemyNextActionCtb}</p></details>
-    <p className="empty-copy">战斗实际场景时间将在战斗结束时一次结算。</p>
-    <h3>玩家伤势</h3>
-    {condition.wounds.length === 0
-      ? <p className="empty-copy">无开放伤口</p>
-      : <ul className="item-list">{condition.wounds.map((wound) => <li key={`${wound.kind}-${wound.ordinal}`}>{woundKindName(wound.kind)} {wound.ordinal} · {wound.treatment === 'treated' ? '已处理' : '未处理'}</li>)}</ul>}
-    <p>流血：{condition.bleeding ? '是' : '否'} · 轻度挫伤：{condition.minorContusions} · 镇痛：{condition.painkillerActive ? '生效' : '无'}</p>
-    <p>未结算感染暴露：{condition.pendingInfectionExposures}</p>
-  </section>
-}
-
 function SceneView({
   model,
   actions,
   ghost,
+  combatGhost,
+  combatActionResult,
   onPreview,
   onGhostEnter,
   onGhostLeave,
@@ -435,6 +401,8 @@ function SceneView({
   model: Extract<StableRunPlayerViewModel, { kind: 'scene-session' }>
   actions: readonly StableRunUiAction[]
   ghost: StableRunUiGhostPreview | null
+  combatGhost: StableRunUiCombatGhostPreview | null
+  combatActionResult: CombatActionResultViewModel | null
   onPreview(actionId: string): void
   onGhostEnter(actionId: string, source: 'mouse' | 'keyboard'): void
   onGhostLeave(actionId: string, source: 'mouse' | 'keyboard'): void
@@ -453,7 +421,8 @@ function SceneView({
       <section className="console-panel game-stage scene-stage">
         <header className="stage-heading"><p className="panel-kicker">场景导航</p><h1><span className="location-prefix">当前位置：</span>{scene.currentNodeName}</h1><p>{sceneStatusName(scene.status)}</p></header>
         <SceneTimeBudget budget={scene.timeBudget} ghost={ghost} />
-        <PlayerKnownMap map={scene.navigationMap} />
+        {scene.combat && <BattleStage combat={scene.combat} condition={model.status.condition} ghost={combatGhost} latestResult={combatActionResult} />}
+        <div className={scene.combat ? 'combat-map-context' : undefined}><PlayerKnownMap map={scene.navigationMap} /></div>
         <p>当前节点搜索：<strong>{searchStateName(scene.currentNodeSearchState)}</strong></p>
         <div className="obstacle-block"><h2>当前明显障碍</h2>{scene.currentObstacles.length === 0 ? <p className="empty-copy">当前没有需要处理的明显障碍</p> : <ul className="item-list">{scene.currentObstacles.map(({ name }) => <li key={name}><strong>{name}</strong></li>)}</ul>}</div>
         <h2>当前节点地面物品</h2>
@@ -481,7 +450,6 @@ function SceneView({
         ? <CombatLoadoutPanel loadout={scene.loadout} />
         : <LoadoutPanel loadout={scene.loadout} />}
       <ActionPanel actions={ordinaryActions} onPreview={onPreview} onGhostEnter={onGhostEnter} onGhostLeave={onGhostLeave} />
-      {scene.combat && <CombatPanel combat={scene.combat} condition={model.status.condition} />}
       {scene.status !== 'active' && scene.status !== 'combat' && <section className="console-panel"><h2>场景结果</h2><p>{sceneStatusName(scene.status)}</p><p className="empty-copy">请显式确认返程或战败结算；本步不会自动推进日期。</p></section>}
     </div>
   </main>
@@ -822,7 +790,7 @@ function CombatActionResultDialog({
         : result.outcome === 'forced-returned'
           ? '战斗结束并强制返程'
           : '战败'
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="combat-result-title">
+  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog combat-result-feedback" role="dialog" aria-modal="true" aria-labelledby="combat-result-title">
     <h2 id="combat-result-title">战斗行动结果</h2>
     <dl className="preview-facts">
       <div><dt>玩家行动</dt><dd>{result.playerAction}</dd></div>
@@ -1147,6 +1115,9 @@ export function StableRunUiApp({
     : interaction.actions.find(({ id }) => id === ghostActionId)?.ghost ??
       interaction.taskEventOpportunities.find(({ id }) => id === ghostActionId)?.ghost ??
       null
+  const activeCombatGhost = ghostActionId === null
+    ? null
+    : interaction.actions.find(({ id }) => id === ghostActionId)?.combatGhost ?? null
   const pickupPreview = pendingPickup === null ? null : previewStableRunUiPickupDraft(snapshot.phase, {
     opportunityId: pendingPickup.id,
     quantity: pickupQuantity,
@@ -1520,7 +1491,7 @@ export function StableRunUiApp({
   return <>
     {persistenceFeedback && <p className="persistence-feedback" role="status">{persistenceFeedback}</p>}
     {model.kind === 'current-day-hub' && <HubView model={model} actions={interaction.actions} onPreview={setPendingActionId} loadoutOpportunities={interaction.hubLoadoutOpportunities} onLoadout={openHubLoadout} maintenanceOpportunities={interaction.hubMaintenanceOpportunities} onMaintenance={openHubMaintenance} />}
-    {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} ghost={activeGhost} onPreview={setPendingActionId} onGhostEnter={showGhost} onGhostLeave={hideGhost} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} taskEventOpportunities={interaction.taskEventOpportunities} onTaskEvent={openTaskEvent} inventoryOpportunities={interaction.inventoryOpportunities} onInventory={openInventory} />}
+    {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} ghost={activeGhost} combatGhost={activeCombatGhost} combatActionResult={combatActionResult} onPreview={setPendingActionId} onGhostEnter={showGhost} onGhostLeave={hideGhost} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} taskEventOpportunities={interaction.taskEventOpportunities} onTaskEvent={openTaskEvent} inventoryOpportunities={interaction.inventoryOpportunities} onInventory={openInventory} />}
     {model.kind === 'run-failure' && <FailureView
       model={model}
       onRequestNewRunSetup={onRequestNewRunSetup}

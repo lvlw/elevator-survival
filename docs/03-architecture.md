@@ -203,7 +203,7 @@ Core / canonical player knowledge
 - Player Navigation Knowledge 随 Scene mutation 原子更新，进入 Scene Session 的稳定保存与严格恢复，并只在同一场景实例内持续；它不默认跨日或跨场景实例。严格恢复拒绝未知／重复／图外引用、已到达但未发现、当前节点未到达等矛盾，不自动补全或修复。
 - React 不读取完整 SceneGraph 后自行过滤，也不把 RunIntel 文本解释为路线。现有移动选项与返程计算同样先将正式可通行边限制在玩家已知路线内；未知的物理捷径不会成为行动或返程事实。Player-Known Map 只消费显式 player-visible navigation query，显示已知节点、已知可通行／阻塞路线与正式返程信息；Hover／Focus 的 Info Card 不发送命令、不保存也不改变知识状态。
 
-Battle Stage 采用低资产舞台、玩家精确生命条、敌人阶段式生命表现、相对时间轴、轻量行动反馈与战斗日志。敌人阶段只使用正式的完好、受伤、重伤、濒危和失去能力，不显示精确 HP 或可反推精确 HP 的百分比条；相对时间轴不展示 raw `currentCtb`、`playerNextActionCtb` 或 `enemyNextActionCtb`。未来阶段贴图属于 Presentation 扩展能力，不确认任何能够查看敌人精确 HP 的玩法。
+Battle Stage Presentation 已实现低资产玩家／敌人舞台、玩家精确生命条、敌人阶段式生命表现、相对行动时间轴、Combat Hover／Focus Ghost 与已提交结果的轻量反馈。它只消费 canonical phase 和正式 player-safe Preview：敌人阶段只使用正式的完好、受伤、重伤、濒危和失去能力，不显示精确 HP 或可反推精确 HP 的百分比条；相对时间轴只表达当前决策权及敌人是否会在下一次玩家决策前行动，普通 ViewModel、完整 Preview 和 DOM 均不携带 raw `currentCtb`、`playerNextActionCtb`、`enemyNextActionCtb`、行动 CTB 或完成 CTB。动画只在 canonical execution 提交后消费安全结果，不驱动规则或 Effect。未来阶段贴图属于 Presentation 扩展能力，不确认任何能够查看敌人精确 HP 的玩法；共享战斗日志仍归属尚未实现的 Presentation Activity Feed。
 
 Presentation Animation 只消费执行前展示、正式 execution result 与执行后展示：
 

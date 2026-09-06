@@ -425,6 +425,8 @@ Playable Game Shell 是低资产、可替换、可自然试玩的游戏化展示
 - session-local、non-authoritative、non-persistent、executed-result-only 的常态 Presentation Activity Feed；
 - 与只读 Inspector 分离、Production 不可达的 DEV-only Owner Playtest Reset。
 
+当前实现状态：低资产 Battle Stage、玩家精确生命条、敌人阶段式生命表现、相对 Combat 时间轴、Combat Hover／Focus Ghost 与已提交结果的轻量反馈已经完成；普通玩家 ViewModel、Preview 和 DOM 不展示 raw CTB。Presentation Activity Feed 及其共享战斗日志仍待后续实现，因此不将 UIR-012 的日志方向标记为完成。
+
 上述方向的布局位置、尺寸比例、面板开合、图标、颜色、贴图与动画表现仍可替换，不冻结为永久产品规则。未来阶段贴图只是 Presentation extensibility；“某种装备可以查看敌人精确 HP”仍是未确认玩法候选，不在本 Addendum 中确认或实现。
 
 DEC-045 已冻结 Player-Known Map 所需的 Player Navigation Knowledge、表层观察驱动发现、严格恢复和 player-visible query 边界；canonical knowledge owner、医院内容映射、严格恢复、地图安全查询、Presentation model 与 React／SVG Renderer 均已实现。地图只展示玩家已知节点和已知路线的当前正式状态，未知结构完全省略；布局位置与 SVG 表现仍是可替换的 Presentation 细节，知识不默认跨日。

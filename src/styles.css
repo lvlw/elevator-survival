@@ -416,7 +416,72 @@ body {
 
 .empty-copy { color: #aebdcb; }
 
-.combat-panel { border-color: #8a5b5b; }
+.battle-stage {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: clamp(0.85rem, 2vw, 1.25rem);
+  border: 1px solid #8a5b5b;
+  border-radius: 0.85rem;
+  background:
+    radial-gradient(circle at 50% 0%, rgb(132 63 58 / 24%), transparent 22rem),
+    linear-gradient(145deg, rgb(35 25 28 / 96%), rgb(11 18 23 / 98%));
+  box-shadow: inset 0 0 3rem rgb(4 8 11 / 38%);
+}
+
+.battle-stage__header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.battle-stage__header h2 { margin: 0.15rem 0 0; font-size: clamp(1.3rem, 2.3vw, 2rem); }
+.battle-stage__turn { padding: 0.35rem 0.6rem; border: 1px solid #b98c57; border-radius: 999px; color: #f6d59d; background: rgb(91 59 30 / 42%); font-weight: 800; }
+.battle-stage__actors { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: stretch; gap: 0.75rem; }
+.battle-actor { display: grid; min-width: 0; align-content: start; gap: 0.65rem; padding: 0.9rem; border: 1px solid #485c64; border-radius: 0.7rem; background: rgb(7 14 18 / 66%); }
+.battle-actor--player { border-color: #4c8078; }
+.battle-actor--enemy { border-color: #8f5c59; }
+.battle-actor h3,
+.battle-actor p { margin: 0; }
+.battle-actor__eyebrow { color: #93abb0; font-size: 0.7rem; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; }
+.battle-actor progress { width: 100%; height: 0.85rem; accent-color: #c6524c; }
+.battle-stage__versus { align-self: center; color: #d8a56f; font-weight: 950; letter-spacing: 0.08em; }
+.battle-status-row { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.battle-status { padding: 0.22rem 0.42rem; border: 1px solid #52636a; border-radius: 999px; color: #c1cdd0; background: rgb(17 28 33 / 74%); font-size: 0.72rem; }
+.battle-status--danger { border-color: #ad625b; color: #ffd1ca; background: rgb(91 38 34 / 55%); }
+.battle-wound-list { margin: 0; padding-left: 1.15rem; color: #d4c8bd; font-size: 0.78rem; }
+.enemy-health-phases { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.25rem; }
+.enemy-health-phase { min-width: 0; padding: 0.3rem 0.15rem; border: 1px solid #4a5559; border-radius: 0.3rem; color: #737f83; background: #11191d; font-size: 0.62rem; text-align: center; }
+.enemy-health-phase[data-active="true"] { border-color: #d17265; color: #ffe0d9; background: #633630; box-shadow: 0 0 0.8rem rgb(209 114 101 / 22%); }
+.enemy-intent-card { display: grid; gap: 0.22rem; padding: 0.65rem; border-left: 3px solid #cb8065; background: rgb(76 40 34 / 36%); }
+.enemy-intent-card span,
+.enemy-intent-card small { color: #b8c4c6; }
+.enemy-intent-card strong { color: #ffd4c9; font-size: 1.05rem; }
+.relative-combat-timeline { display: grid; grid-template-columns: minmax(9rem, 0.8fr) minmax(2rem, 0.18fr) minmax(12rem, 1.2fr); align-items: center; gap: 0.5rem; padding: 0.8rem; border: 1px solid #53666b; border-radius: 0.65rem; background: rgb(5 13 17 / 62%); }
+.relative-combat-timeline__step { display: grid; gap: 0.18rem; padding: 0.55rem; border: 1px solid #4a5d63; border-radius: 0.5rem; }
+.relative-combat-timeline__step span { color: #93a8ac; font-size: 0.7rem; }
+.relative-combat-timeline__step--current { border-color: #a78352; background: rgb(80 57 29 / 38%); }
+.relative-combat-timeline__link { height: 2px; background: linear-gradient(90deg, #a78352, #8f5c59); }
+.combat-action-ghost { grid-column: 1 / -1; display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 0.5rem; padding: 0.55rem 0.65rem; border: 1px dashed #d0a35c; border-radius: 0.5rem; background: rgb(84 62 27 / 36%); animation: combat-ghost-in 140ms ease-out; }
+.combat-action-ghost span { color: #f0cd8d; font-size: 0.68rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; }
+.combat-action-ghost em { justify-self: end; color: #e5d8bd; font-style: normal; }
+.battle-stage__scene-time { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; color: #bcc9cb; }
+.battle-stage__time-note { margin: 0; color: #94a7ab; font-size: 0.76rem; }
+.battle-stage__latest-result { margin: 0; padding: 0.65rem; border-left: 3px solid #c46b5f; background: rgb(91 38 34 / 42%); animation: combat-feedback-in 180ms ease-out; }
+.combat-map-context { opacity: 0.7; }
+.combat-map-context .known-map { border-color: #34494f; }
+.combat-result-feedback { animation: combat-feedback-in 180ms ease-out; }
+
+@keyframes combat-ghost-in {
+  from { opacity: 0; transform: translateY(0.25rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes combat-feedback-in {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
 .terminal-panel { width: min(100%, 45rem); margin: 12vh auto; }
 
 .action-panel { border-color: #597d92; }
@@ -710,6 +775,8 @@ button.grid-cell:not(.selected-footprint-cell):not(.invalid-placement-cell):hove
   .game-actions,
   .carry-panel--compact { grid-column: 1; }
   .equipment-rack { grid-template-columns: repeat(3, minmax(7rem, 1fr)); }
+  .battle-stage__actors { grid-template-columns: 1fr; }
+  .battle-stage__versus { justify-self: center; }
 }
 
 @media (max-width: 650px) {
@@ -725,10 +792,18 @@ button.grid-cell:not(.selected-footprint-cell):not(.invalid-placement-cell):hove
   .known-map__node { width: 6.5rem; padding: 0.45rem; }
   .known-map__route-label > span { display: none; }
   .known-map-return dl { grid-template-columns: 1fr; }
+  .battle-stage__header { align-items: start; flex-direction: column; }
+  .relative-combat-timeline { grid-template-columns: 1fr; }
+  .relative-combat-timeline__link { width: 2px; height: 1.25rem; justify-self: center; background: linear-gradient(#a78352, #8f5c59); }
+  .combat-action-ghost { grid-template-columns: 1fr; }
+  .combat-action-ghost em { justify-self: start; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .time-budget { transition: none; }
+  .combat-action-ghost,
+  .battle-stage__latest-result,
+  .combat-result-feedback { animation: none; }
 }
 
 .status-card {

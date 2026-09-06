@@ -14,6 +14,7 @@ export {
   type StableRunUiActionPreviewViewModel,
   type StableRunUiGhostNumber,
   type StableRunUiGhostPreview,
+  type StableRunUiCombatGhostPreview,
   type StableRunUiInteractionModel,
   type StableRunUiEndDayPreview,
   type StableRunUiPickupDraft,

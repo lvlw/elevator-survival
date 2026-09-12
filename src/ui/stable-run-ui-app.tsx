@@ -51,6 +51,11 @@ import {
   type HubSurvivalResultViewModel,
   type HubMaintenanceResultViewModel,
   type DailySettlementResultViewModel,
+  type PresentationVisualKey,
+  presentationVisualAssetUrl,
+  playPresentationAudioCue,
+  projectStableRunPresentationCues,
+  uiSelectionCueForCategory,
 } from './presentation'
 import { useStableRunStoreSnapshot } from './run-store/use-stable-run-store-snapshot'
 import { InfoCard } from './components/info-card'
@@ -184,6 +189,7 @@ function StatusBar({ status }: Readonly<{ status: PlayerVisibleStatusBarViewMode
 
 function ItemCard({ item }: Readonly<{ item: PlayerVisibleItemViewModel }>) {
   return <span className="item-card-copy">
+    {item.visualKey && <img className="item-card-icon" src={presentationVisualAssetUrl(item.visualKey)} alt="" aria-hidden="true" />}
     <span><strong>{item.name}</strong> ×{item.quantity}</span>
     {item.resource && <em>{itemResourceText(item)}</em>}
     <InfoCard
@@ -356,6 +362,7 @@ function ActionPanel({
 
 function HubView({
   model,
+  backgroundKey,
   actions,
   onPreview,
   loadoutOpportunities,
@@ -364,6 +371,7 @@ function HubView({
   onMaintenance,
 }: Readonly<{
   model: Extract<StableRunPlayerViewModel, { kind: 'current-day-hub' }>
+  backgroundKey?: PresentationVisualKey | null
   actions: readonly StableRunUiAction[]
   onPreview(actionId: string): void
   loadoutOpportunities: readonly StableRunUiHubLoadoutOpportunity[]
@@ -374,7 +382,7 @@ function HubView({
   return <main className="console-layout game-shell-layout">
     <StatusBar status={model.status} />
     <div className="console-grid">
-      <section className="console-panel game-stage hub-stage"><header className="stage-heading"><p className="panel-kicker">电梯中枢</p><h1>今日整备</h1><p>在出发前调整携带、恢复状态并确认行动计划。</p></header><div className="mission-briefing"><h2>当前任务</h2><p><strong>{model.hub.mission.objective}</strong></p><p>{model.hub.mission.completion}</p></div>{model.hub.dayScopeNotice && <p className="preview-warning">{model.hub.dayScopeNotice}</p>}<dl className="slot-list"><div><dt>今日基础维修点</dt><dd>{model.hub.maintenanceLaborRemaining} / {model.hub.maintenanceLaborTotal}</dd></div></dl><p className="empty-copy">每使用1点，恢复指定装备1点对应资源；今日未用点数不累积到次日。</p>{maintenanceOpportunities.length > 0 && <><h2>装备维护</h2><div className="action-list">{maintenanceOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onMaintenance(opportunity.operation)}>{opportunity.label}</button>)}</div></>}<h2>仓库</h2><ItemList items={model.hub.warehouse} empty="仓库为空" />{loadoutOpportunities.filter(({ container }) => container === 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}<h2>任务储存区（只读）</h2><ItemList items={model.hub.taskStorage} empty="暂无任务物品" /></section>
+      <section className="console-panel game-stage hub-stage">{backgroundKey && <div className="presentation-background presentation-background--hub" style={{ backgroundImage: `url(${presentationVisualAssetUrl(backgroundKey)})` }} aria-hidden="true" />}<header className="stage-heading"><p className="panel-kicker">电梯中枢</p><h1>今日整备</h1><p>在出发前调整携带、恢复状态并确认行动计划。</p></header><div className="mission-briefing"><h2>当前任务</h2><p><strong>{model.hub.mission.objective}</strong></p><p>{model.hub.mission.completion}</p></div>{model.hub.dayScopeNotice && <p className="preview-warning">{model.hub.dayScopeNotice}</p>}<dl className="slot-list"><div><dt>今日基础维修点</dt><dd>{model.hub.maintenanceLaborRemaining} / {model.hub.maintenanceLaborTotal}</dd></div></dl><p className="empty-copy">每使用1点，恢复指定装备1点对应资源；今日未用点数不累积到次日。</p>{maintenanceOpportunities.length > 0 && <><h2>装备维护</h2><div className="action-list">{maintenanceOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onMaintenance(opportunity.operation)}>{opportunity.label}</button>)}</div></>}<h2>仓库</h2><ItemList items={model.hub.warehouse} empty="仓库为空" />{loadoutOpportunities.filter(({ container }) => container === 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}<h2>任务储存区（只读）</h2><ItemList items={model.hub.taskStorage} empty="暂无任务物品" /></section>
       <LoadoutPanel loadout={model.loadout} />
       {loadoutOpportunities.some(({ container }) => container !== 'warehouse') && <section className="console-panel"><h2>当前携带物整理</h2>{loadoutOpportunities.filter(({ container }) => container !== 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}</section>}
       <ActionPanel actions={actions} onPreview={onPreview} />
@@ -419,17 +427,18 @@ function SceneView({
     <StatusBar status={model.status} />
     <div className="console-grid">
       <section className="console-panel game-stage scene-stage">
+        {scene.currentNodeVisualKey && <div className="scene-node-art" style={{ backgroundImage: `url(${presentationVisualAssetUrl(scene.currentNodeVisualKey)})` }} aria-hidden="true" />}
         <header className="stage-heading"><p className="panel-kicker">场景导航</p><h1><span className="location-prefix">当前位置：</span>{scene.currentNodeName}</h1><p>{sceneStatusName(scene.status)}</p></header>
         <SceneTimeBudget budget={scene.timeBudget} ghost={ghost} />
         {scene.combat && <BattleStage combat={scene.combat} condition={model.status.condition} ghost={combatGhost} latestResult={combatActionResult} />}
         <div className={scene.combat ? 'combat-map-context' : undefined}><PlayerKnownMap map={scene.navigationMap} /></div>
         <p>当前节点搜索：<strong>{searchStateName(scene.currentNodeSearchState)}</strong></p>
-        <div className="obstacle-block"><h2>当前明显障碍</h2>{scene.currentObstacles.length === 0 ? <p className="empty-copy">当前没有需要处理的明显障碍</p> : <ul className="item-list">{scene.currentObstacles.map(({ name }) => <li key={name}><strong>{name}</strong></li>)}</ul>}</div>
+        <div className="obstacle-block"><h2>当前明显障碍</h2>{scene.currentObstacles.length === 0 ? <p className="empty-copy">当前没有需要处理的明显障碍</p> : <ul className="item-list">{scene.currentObstacles.map(({ name, visualKey }) => <li key={name}>{visualKey && <img className="obstacle-art" src={presentationVisualAssetUrl(visualKey)} alt="" aria-hidden="true" />}<strong>{name}</strong></li>)}</ul>}</div>
         <h2>当前节点地面物品</h2>
         <ItemList items={scene.groundItems} empty="未发现地面物品" />
         {pickupOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onPickup(opportunity.id)}>拾取 {opportunity.name}</button>)}
         {taskEventOpportunities.length > 0 && <section className="task-event-comparison" aria-labelledby="task-event-methods-heading">
-          <header><p className="panel-kicker">密封病原样本箱</p><h2 id="task-event-methods-heading">先比较提取方式</h2><p>比较时间、污染风险与防护代价后，再为成功提取选择背包位置。</p></header>
+          <header><p className="panel-kicker">密封病原样本箱</p><h2 id="task-event-methods-heading">先比较提取方式</h2><p>比较时间、污染风险与防护代价后，再为成功提取选择背包位置。</p>{taskEventOpportunities[0]?.visualKey && <img className="task-event-art" src={presentationVisualAssetUrl(taskEventOpportunities[0].visualKey)} alt="密封病原样本箱" />}</header>
           <div className="task-event-methods">{taskEventOpportunities.map((opportunity) => <article className="task-event-method" key={opportunity.id}>
             <h3>{opportunity.label}</h3>
             <dl>{opportunity.comparisonFacts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>
@@ -480,6 +489,7 @@ function TaskEventDialog({
 }>) {
   return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="task-event-title">
     <h2 id="task-event-title">{opportunity.eventName} · {opportunity.label}</h2>
+    {opportunity.visualKey && <img className="preview-art" src={presentationVisualAssetUrl(opportunity.visualKey)} alt="密封病原样本箱" />}
     <p>取得：<strong>{opportunity.outputName}</strong> · {opportunity.width}×{opportunity.height} · 重量 {opportunity.unitWeight}</p>
     {opportunity.canRotate && <label><input aria-label="旋转样本箱" type="checkbox" checked={rotated} onChange={(event) => onRotate(event.target.checked)} />旋转</label>}
     <p>目标格：{x === null || y === null ? '尚未选择' : `${x + 1}, ${y + 1}`}</p>
@@ -997,15 +1007,18 @@ function DailySettlementResultDialog({ result, onClose }: Readonly<{
 
 function ActionPreviewDialog({
   preview,
+  visualKey,
   onCancel,
   onConfirm,
 }: Readonly<{
   preview: StableRunUiActionPreviewViewModel
+  visualKey?: import('./presentation').PresentationVisualKey | null
   onCancel(): void
   onConfirm(): void
 }>) {
   return <div className="preview-backdrop" role="presentation">
     <section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="action-preview-title">
+      {(visualKey ?? preview.visualKey) && <img className="preview-art" src={presentationVisualAssetUrl((visualKey ?? preview.visualKey)!)} alt="" aria-hidden="true" />}
       <h2 id="action-preview-title">{preview.title}</h2>
       <dl className="preview-facts">{preview.facts.map((fact) => <div key={fact.label}>
         <dt>{fact.label}</dt><dd>{fact.value}</dd>
@@ -1103,6 +1116,7 @@ export function StableRunUiApp({
   const [hubMaintenanceResult, setHubMaintenanceResult] = useState<HubMaintenanceResultViewModel | null>(null)
   const [dailySettlementResult, setDailySettlementResult] = useState<DailySettlementResultViewModel | null>(null)
   const [persistenceFeedback, setPersistenceFeedback] = useState<string | null>(null)
+  const audioTimers = useRef<ReturnType<typeof setTimeout>[]>([])
   const pendingAction = interaction.actions.find(({ id }) => id === pendingActionId) ?? null
   const pendingPickup = interaction.pickupOpportunities.find(({ id }) => id === pendingPickupId) ?? null
   const pendingTaskEvent = interaction.taskEventOpportunities.find(({ id }) => id === pendingTaskEventId) ?? null
@@ -1199,6 +1213,132 @@ export function StableRunUiApp({
     }
   }, [focusedGhostActionId, hoveredGhostActionId, interaction.actions, interaction.taskEventOpportunities])
 
+  useEffect(() => () => {
+    audioTimers.current.forEach((timer) => clearTimeout(timer))
+    audioTimers.current = []
+  }, [])
+
+  const playCommittedCues = (
+    beforePhase: Parameters<typeof projectStableRunPresentationCues>[0]['beforePhase'],
+    action: StableRunUiAction,
+    execution: Parameters<typeof projectStableRunPresentationCues>[0]['execution'],
+  ) => {
+    const player = presentationDependencies.audioPlayer
+    if (!player) return
+    const cues = projectStableRunPresentationCues({
+      beforePhase,
+      action,
+      execution,
+      assets: presentationDependencies.assets,
+    })
+    cues.forEach((cue, index) => {
+      const play = () => playPresentationAudioCue(player, cue)
+      if (index === 0) play()
+      else audioTimers.current.push(setTimeout(play, 80 * index))
+    })
+  }
+
+  const playUiSelection = (
+    category: 'radio' | 'operation' | 'placement' | 'target',
+  ) => {
+    if (presentationDependencies.audioPlayer) {
+      playPresentationAudioCue(
+        presentationDependencies.audioPlayer,
+        uiSelectionCueForCategory(category),
+      )
+    }
+  }
+
+  const applyDraftSelection = (
+    changed: boolean,
+    category: 'radio' | 'operation' | 'placement' | 'target',
+    apply: () => void,
+  ) => {
+    if (changed) playUiSelection(category)
+    apply()
+  }
+
+  const selectPickupQuantity = (value: number) => applyDraftSelection(
+    value !== pickupQuantity,
+    'operation',
+    () => setPickupQuantity(value),
+  )
+  const selectPickupRotation = (value: boolean) => applyDraftSelection(
+    value !== pickupRotated,
+    'placement',
+    () => setPickupRotated(value),
+  )
+  const selectPickupAnchor = (x: number, y: number) => applyDraftSelection(
+    x !== pickupX || y !== pickupY,
+    'placement',
+    () => { setPickupX(x); setPickupY(y) },
+  )
+  const selectTaskEventRotation = (value: boolean) => applyDraftSelection(
+    value !== taskEventRotated,
+    'placement',
+    () => setTaskEventRotated(value),
+  )
+  const selectTaskEventAnchor = (x: number, y: number) => applyDraftSelection(
+    x !== taskEventX || y !== taskEventY,
+    'placement',
+    () => { setTaskEventX(x); setTaskEventY(y) },
+  )
+  const selectInventoryQuantity = (value: number | null) => applyDraftSelection(
+    value !== inventoryQuantity,
+    'operation',
+    () => setInventoryQuantity(value),
+  )
+  const selectInventoryTarget = (value: string) => applyDraftSelection(
+    value !== inventoryTargetId,
+    'target',
+    () => setInventoryTargetId(value),
+  )
+  const selectInventorySlot = (value: number) => applyDraftSelection(
+    value !== inventoryTargetSlot,
+    'target',
+    () => setInventoryTargetSlot(value),
+  )
+  const selectInventoryRotation = (value: boolean) => applyDraftSelection(
+    value !== inventoryRotated,
+    'placement',
+    () => setInventoryRotated(value),
+  )
+  const selectInventoryAnchor = (x: number, y: number) => applyDraftSelection(
+    x !== inventoryX || y !== inventoryY,
+    'placement',
+    () => { setInventoryX(x); setInventoryY(y) },
+  )
+  const selectHubLoadoutQuantity = (value: number | null) => applyDraftSelection(
+    value !== hubLoadoutQuantity,
+    'operation',
+    () => setHubLoadoutQuantity(value),
+  )
+  const selectHubLoadoutTarget = (value: string) => applyDraftSelection(
+    value !== hubLoadoutTargetId,
+    'target',
+    () => setHubLoadoutTargetId(value),
+  )
+  const selectHubLoadoutEquipmentSlot = (value: 'weapon' | 'armor' | 'utility') => applyDraftSelection(
+    value !== hubLoadoutEquipmentSlot,
+    'target',
+    () => setHubLoadoutEquipmentSlot(value),
+  )
+  const selectHubLoadoutQuickSlot = (value: number) => applyDraftSelection(
+    value !== hubLoadoutQuickSlot,
+    'target',
+    () => setHubLoadoutQuickSlot(value),
+  )
+  const selectHubLoadoutRotation = (value: boolean) => applyDraftSelection(
+    value !== hubLoadoutRotated,
+    'placement',
+    () => setHubLoadoutRotated(value),
+  )
+  const selectHubLoadoutAnchor = (x: number, y: number) => applyDraftSelection(
+    x !== hubLoadoutX || y !== hubLoadoutY,
+    'placement',
+    () => { setHubLoadoutX(x); setHubLoadoutY(y) },
+  )
+
   const showGhost = (actionId: string, source: 'mouse' | 'keyboard') => {
     if (source === 'mouse') setHoveredGhostActionId(actionId)
     else setFocusedGhostActionId(actionId)
@@ -1234,6 +1374,7 @@ export function StableRunUiApp({
       voluntaryReturnStarted.current = false
     }
     const execution = store.dispatch(pendingAction.command)
+    playCommittedCues(beforePhase, pendingAction, execution)
     setPendingActionId(null)
     setPersistenceFeedback(execution.kind === 'executed'
       ? '✓ 操作已执行并保存'
@@ -1402,6 +1543,7 @@ export function StableRunUiApp({
     setPendingInventoryId(opportunityId)
   }
   const selectInventoryOperation = (operation: StableRunUiInventoryOperation) => {
+    if (operation !== inventoryOperation) playUiSelection('operation')
     setInventoryOperation(operation)
     setInventoryQuantity(null)
     setInventoryTargetId(null)
@@ -1449,6 +1591,7 @@ export function StableRunUiApp({
     setPendingHubLoadoutId(opportunityId)
   }
   const selectHubLoadoutOperation = (operation: StableRunUiHubLoadoutOperation) => {
+    if (operation !== hubLoadoutOperation) playUiSelection('operation')
     setHubLoadoutOperation(operation)
     setHubLoadoutQuantity(null)
     setHubLoadoutTargetId(null)
@@ -1490,7 +1633,7 @@ export function StableRunUiApp({
   }
   return <>
     {persistenceFeedback && <p className="persistence-feedback" role="status">{persistenceFeedback}</p>}
-    {model.kind === 'current-day-hub' && <HubView model={model} actions={interaction.actions} onPreview={setPendingActionId} loadoutOpportunities={interaction.hubLoadoutOpportunities} onLoadout={openHubLoadout} maintenanceOpportunities={interaction.hubMaintenanceOpportunities} onMaintenance={openHubMaintenance} />}
+    {model.kind === 'current-day-hub' && <HubView model={model} backgroundKey={presentationDependencies.assets?.hubBackgroundKey ?? null} actions={interaction.actions} onPreview={setPendingActionId} loadoutOpportunities={interaction.hubLoadoutOpportunities} onLoadout={openHubLoadout} maintenanceOpportunities={interaction.hubMaintenanceOpportunities} onMaintenance={openHubMaintenance} />}
     {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} ghost={activeGhost} combatGhost={activeCombatGhost} combatActionResult={combatActionResult} onPreview={setPendingActionId} onGhostEnter={showGhost} onGhostLeave={hideGhost} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} taskEventOpportunities={interaction.taskEventOpportunities} onTaskEvent={openTaskEvent} inventoryOpportunities={interaction.inventoryOpportunities} onInventory={openInventory} />}
     {model.kind === 'run-failure' && <FailureView
       model={model}
@@ -1498,13 +1641,14 @@ export function StableRunUiApp({
     />}
     {pendingAction && <ActionPreviewDialog
       preview={pendingAction.preview}
+      visualKey={pendingAction.visualKey}
       onCancel={() => setPendingActionId(null)}
       onConfirm={confirm}
     />}
-    {pendingPickup && model.kind === 'scene-session' && <PickupDialog opportunity={pendingPickup} loadout={model.scene.loadout} preview={pickupPreview} quantity={pickupQuantity} x={pickupX} y={pickupY} rotated={pickupRotated} onQuantity={setPickupQuantity} onRotate={setPickupRotated} onAnchor={(x, y) => { setPickupX(x); setPickupY(y) }} onCancel={() => setPendingPickupId(null)} onConfirm={confirmPickup} />}
-    {pendingTaskEvent && model.kind === 'scene-session' && <TaskEventDialog opportunity={pendingTaskEvent} loadout={model.scene.loadout} preview={taskEventPreview} x={taskEventX} y={taskEventY} rotated={taskEventRotated} onRotate={setTaskEventRotated} onAnchor={(x, y) => { setTaskEventX(x); setTaskEventY(y) }} onCancel={() => setPendingTaskEventId(null)} onConfirm={confirmTaskEvent} />}
-    {pendingInventory && model.kind === 'scene-session' && <SceneInventoryDialog opportunity={pendingInventory} opportunities={interaction.inventoryOpportunities} loadout={model.scene.loadout} operation={inventoryOperation} quantity={inventoryQuantity} targetOpportunityId={inventoryTargetId} targetSlotIndex={inventoryTargetSlot} x={inventoryX} y={inventoryY} rotated={inventoryRotated} preview={inventoryPreview} onOperation={selectInventoryOperation} onQuantity={setInventoryQuantity} onTargetOpportunity={setInventoryTargetId} onTargetSlot={setInventoryTargetSlot} onAnchor={(x, y) => { setInventoryX(x); setInventoryY(y) }} onRotate={setInventoryRotated} onCancel={() => setPendingInventoryId(null)} onConfirm={confirmInventory} />}
-    {pendingHubLoadout && model.kind === 'current-day-hub' && <HubLoadoutDialog opportunity={pendingHubLoadout} opportunities={interaction.hubLoadoutOpportunities} loadout={model.loadout} operation={hubLoadoutOperation} quantity={hubLoadoutQuantity} targetOpportunityId={hubLoadoutTargetId} targetEquipmentSlot={hubLoadoutEquipmentSlot} targetQuickSlotIndex={hubLoadoutQuickSlot} x={hubLoadoutX} y={hubLoadoutY} rotated={hubLoadoutRotated} preview={hubLoadoutPreview} onOperation={selectHubLoadoutOperation} onQuantity={setHubLoadoutQuantity} onTargetOpportunity={setHubLoadoutTargetId} onTargetEquipmentSlot={setHubLoadoutEquipmentSlot} onTargetQuickSlotIndex={setHubLoadoutQuickSlot} onAnchor={(x, y) => { setHubLoadoutX(x); setHubLoadoutY(y) }} onRotate={setHubLoadoutRotated} onCancel={() => setPendingHubLoadoutId(null)} onConfirm={confirmHubLoadout} />}
+    {pendingPickup && model.kind === 'scene-session' && <PickupDialog opportunity={pendingPickup} loadout={model.scene.loadout} preview={pickupPreview} quantity={pickupQuantity} x={pickupX} y={pickupY} rotated={pickupRotated} onQuantity={selectPickupQuantity} onRotate={selectPickupRotation} onAnchor={selectPickupAnchor} onCancel={() => setPendingPickupId(null)} onConfirm={confirmPickup} />}
+    {pendingTaskEvent && model.kind === 'scene-session' && <TaskEventDialog opportunity={pendingTaskEvent} loadout={model.scene.loadout} preview={taskEventPreview} x={taskEventX} y={taskEventY} rotated={taskEventRotated} onRotate={selectTaskEventRotation} onAnchor={selectTaskEventAnchor} onCancel={() => setPendingTaskEventId(null)} onConfirm={confirmTaskEvent} />}
+    {pendingInventory && model.kind === 'scene-session' && <SceneInventoryDialog opportunity={pendingInventory} opportunities={interaction.inventoryOpportunities} loadout={model.scene.loadout} operation={inventoryOperation} quantity={inventoryQuantity} targetOpportunityId={inventoryTargetId} targetSlotIndex={inventoryTargetSlot} x={inventoryX} y={inventoryY} rotated={inventoryRotated} preview={inventoryPreview} onOperation={selectInventoryOperation} onQuantity={selectInventoryQuantity} onTargetOpportunity={selectInventoryTarget} onTargetSlot={selectInventorySlot} onAnchor={selectInventoryAnchor} onRotate={selectInventoryRotation} onCancel={() => setPendingInventoryId(null)} onConfirm={confirmInventory} />}
+    {pendingHubLoadout && model.kind === 'current-day-hub' && <HubLoadoutDialog opportunity={pendingHubLoadout} opportunities={interaction.hubLoadoutOpportunities} loadout={model.loadout} operation={hubLoadoutOperation} quantity={hubLoadoutQuantity} targetOpportunityId={hubLoadoutTargetId} targetEquipmentSlot={hubLoadoutEquipmentSlot} targetQuickSlotIndex={hubLoadoutQuickSlot} x={hubLoadoutX} y={hubLoadoutY} rotated={hubLoadoutRotated} preview={hubLoadoutPreview} onOperation={selectHubLoadoutOperation} onQuantity={selectHubLoadoutQuantity} onTargetOpportunity={selectHubLoadoutTarget} onTargetEquipmentSlot={selectHubLoadoutEquipmentSlot} onTargetQuickSlotIndex={selectHubLoadoutQuickSlot} onAnchor={selectHubLoadoutAnchor} onRotate={selectHubLoadoutRotation} onCancel={() => setPendingHubLoadoutId(null)} onConfirm={confirmHubLoadout} />}
     {pendingHubMaintenance && model.kind === 'current-day-hub' && <HubMaintenanceDialog opportunity={pendingHubMaintenance} allocations={hubMaintenanceAllocations} targetId={hubMaintenanceTargetId} materialSourceId={hubMaintenanceMaterialSourceId} secondaryMaterialSourceId={hubMaintenanceSecondarySourceId} preview={hubMaintenancePreview} onAllocation={(targetId, points) => setHubMaintenanceAllocations((current) => ({ ...current, [targetId]: points }))} onTarget={setHubMaintenanceTargetId} onMaterialSource={setHubMaintenanceMaterialSourceId} onSecondaryMaterialSource={setHubMaintenanceSecondarySourceId} onCancel={() => setPendingHubMaintenanceOperation(null)} onConfirm={confirmHubMaintenance} />}
     {returnSummary && <ReturnSummaryDialog summary={returnSummary} onClose={() => setReturnSummary(null)} />}
     {combatActionResult && <CombatActionResultDialog result={combatActionResult} onClose={() => setCombatActionResult(null)} />}

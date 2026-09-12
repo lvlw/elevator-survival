@@ -4,6 +4,7 @@ import type {
   PlayerVisibleCombatViewModel,
   PlayerVisibleConditionViewModel,
 } from '../presentation'
+import { presentationVisualAssetUrl } from '../presentation'
 
 const healthPhases: readonly PlayerVisibleCombatViewModel['enemyHealthStage'][] = [
   'healthy',
@@ -68,6 +69,7 @@ export function BattleStage({
   const currentPhase = healthPhaseName(combat.enemyHealthStage)
 
   return <section className="battle-stage" aria-labelledby="battle-stage-heading">
+    {combat.sceneBackgroundVisualKey && <div className="battle-stage__background" style={{ backgroundImage: `url(${presentationVisualAssetUrl(combat.sceneBackgroundVisualKey)})` }} aria-hidden="true" />}
     <header className="battle-stage__header">
       <div><p className="panel-kicker">战斗态势</p><h2 id="battle-stage-heading">玩家 vs {combat.enemyName}</h2></div>
       <span className="battle-stage__turn">当前：玩家可行动</span>
@@ -102,6 +104,7 @@ export function BattleStage({
       <section className="battle-actor battle-actor--enemy" aria-label="敌人战斗状态">
         <p className="battle-actor__eyebrow">敌人</p>
         <h3>{combat.enemyName}</h3>
+        {combat.enemyVisualKey && <img className="enemy-actor-art" src={presentationVisualAssetUrl(combat.enemyVisualKey)} alt="" aria-hidden="true" />}
         <p>相对生命：<strong>{currentPhase}</strong></p>
         <div className="enemy-health-phases" aria-label={`敌人生命阶段：${currentPhase}`}>
           {healthPhases.map((phase) => <span

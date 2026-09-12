@@ -48,6 +48,11 @@ import {
   createPlayerKnownMapViewModel,
   type PlayerKnownMapViewModel,
 } from './player-known-map-view-model'
+import type {
+  PresentationVisualKey,
+  StableRunUiPresentationAssets,
+} from './presentation-assets'
+import type { PresentationAudioPlayer } from './presentation-audio'
 
 export interface StableRunUiLabels {
   sceneName(sceneDefinitionId: string): string
@@ -74,6 +79,9 @@ export interface StableRunUiLabels {
 export interface StableRunUiPresentationDependencies {
   readonly rulesRegistry: RunSaveRulesRegistry
   readonly labels: StableRunUiLabels
+  /** Optional presentation adapter; gameplay remains fully functional without assets. */
+  readonly assets?: StableRunUiPresentationAssets
+  readonly audioPlayer?: PresentationAudioPlayer
 }
 
 export interface PlayerVisibleConditionViewModel {
@@ -102,6 +110,7 @@ export interface PlayerVisibleItemViewModel {
     current: number
     maximum: number
   }> | null
+  readonly visualKey?: PresentationVisualKey | null
 }
 
 export interface PlayerVisibleItemHelpViewModel {
@@ -180,6 +189,8 @@ export interface PlayerVisibleCombatViewModel {
   readonly enemyTimingBeforeNextDecision: 'will-act' | 'will-not-act' | 'depends-on-action'
   readonly equipment: PlayerVisibleLoadoutViewModel['equipment']
   readonly quickSlots: PlayerVisibleLoadoutViewModel['quickSlots']
+  readonly enemyVisualKey?: PresentationVisualKey | null
+  readonly sceneBackgroundVisualKey?: PresentationVisualKey | null
 }
 
 type ItemPresentationRuntime = Readonly<{
@@ -188,6 +199,7 @@ type ItemPresentationRuntime = Readonly<{
     itemResourceCatalog: ItemResourceCatalog
     config: FrozenRuleConfig
   }>
+  readonly assets?: StableRunUiPresentationAssets
 }>
 
 export interface ReturnSummaryViewModel {
@@ -333,6 +345,7 @@ export type StableRunPlayerViewModel =
         status: 'active' | 'combat' | 'safe-returned' | 'forced-returned' | 'dead'
         remainingTime: number
         currentNodeName: string
+        readonly currentNodeVisualKey?: PresentationVisualKey | null
         /**
          * Current traversable adjacency only. This is not a complete player-known
          * map: known-but-blocked routes require a future formal player-visible
@@ -351,7 +364,7 @@ export type StableRunPlayerViewModel =
         navigationMap: PlayerKnownMapViewModel
         timeBudget: PlayerVisibleSceneTimeBudgetViewModel
         currentNodeSearchState: 'not-available' | 'available-unsearched' | 'searched'
-        currentObstacles: readonly Readonly<{ name: string }>[]
+        currentObstacles: readonly Readonly<{ name: string; visualKey?: PresentationVisualKey | null }>[]
         groundItems: readonly PlayerVisibleItemViewModel[]
         loadout: PlayerVisibleLoadoutViewModel
         combat: PlayerVisibleCombatViewModel | null
@@ -415,11 +428,13 @@ function itemView(
           maximum: profile.maximum,
         })
       })()
+  const visualKey = runtime.assets?.itemVisualKey?.(item.definitionId) ?? null
   return frozen({
     name: labels.itemName(item.definitionId, definition.name),
     quantity: item.quantity,
     help: labels.itemHelp(item.definitionId),
     resource,
+    ...(visualKey ? { visualKey } : {}),
   })
 }
 
@@ -512,7 +527,10 @@ function createSceneView(
 ): Extract<StableRunPlayerViewModel, { kind: 'scene-session' }> {
   const identity = session.context.runReturnCarryForward.continuity.runIdentity
   const rules = dependencies.rulesRegistry.get(identity.rulesVersion)
-  const runtime = getRunSceneRuntime(session, rules.sceneLaunch)
+  const runtime = frozen({
+    ...getRunSceneRuntime(session, rules.sceneLaunch),
+    assets: dependencies.assets,
+  })
   const scene = session.scene
   const navigation = getPlayerVisibleSceneNavigation(scene, runtime.dependencies)
   const traversableRoutes = scene.status === 'active'
@@ -539,6 +557,9 @@ function createSceneView(
     runtime.dependencies,
   ).map(({ obstacleId }) => frozen({
     name: dependencies.labels.obstacleName(obstacleId),
+    ...(dependencies.assets?.obstacleVisualKey?.(obstacleId)
+      ? { visualKey: dependencies.assets.obstacleVisualKey(obstacleId) }
+      : {}),
   }))
   const withdrawal = scene.status === 'active'
     ? previewSceneWithdrawalCommand(scene, { kind: 'withdraw-from-scene' }, runtime.dependencies)
@@ -594,6 +615,18 @@ function createSceneView(
           minimumSceneTime:
             runtime.dependencies.config.combat.sceneTimeConversion.minimumSceneTime,
           enemyTimingBeforeNextDecision,
+          ...(dependencies.assets?.enemyVisualKey?.(
+            activeEncounter.combat.enemy.definitionId,
+            visible.enemy.healthPhase,
+          ) ? {
+            enemyVisualKey: dependencies.assets.enemyVisualKey(
+              activeEncounter.combat.enemy.definitionId,
+              visible.enemy.healthPhase,
+            ),
+          } : {}),
+          ...(dependencies.assets?.sceneNodeVisualKey?.(scene.currentNodeId)
+            ? { sceneBackgroundVisualKey: dependencies.assets.sceneNodeVisualKey(scene.currentNodeId) }
+            : {}),
           equipment: loadoutView(activeEncounter.combat, runtime, dependencies.labels).equipment,
           quickSlots: loadoutView(activeEncounter.combat, runtime, dependencies.labels).quickSlots,
         })
@@ -617,6 +650,9 @@ function createSceneView(
       status: scene.status,
       remainingTime: scene.remainingTime,
       currentNodeName: navigation.currentNodeName,
+      ...(dependencies.assets?.sceneNodeVisualKey?.(scene.currentNodeId)
+        ? { currentNodeVisualKey: dependencies.assets.sceneNodeVisualKey(scene.currentNodeId) }
+        : {}),
       traversableAdjacentNodeNames: frozen(traversableRoutes.map(({ destinationNodeName }) => destinationNodeName)),
       traversableRoutes: frozen(traversableRoutes),
       returnEstimate: returnPreview?.estimatedReturnTime ?? null,
@@ -671,6 +707,7 @@ export function createStableRunPlayerViewModel(
       itemResourceCatalog: items.itemResourceCatalog,
       config: items.config,
     }),
+    assets: dependencies.assets,
   })
   return frozen({
     kind: 'current-day-hub',
@@ -713,6 +750,7 @@ export function createReturnSummaryViewModel(
       itemResourceCatalog: rules.currentDayHub.returnDependencies.scene.itemResourceCatalog,
       config: rules.currentDayHub.returnDependencies.scene.config,
     }),
+    assets: dependencies.assets,
   })
   const byIds = (
     items: readonly Readonly<{ instanceId: string; definitionId: string; quantity: number }>[],

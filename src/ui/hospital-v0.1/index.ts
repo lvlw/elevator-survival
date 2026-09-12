@@ -1,4 +1,5 @@
 export { hospitalV01UiLabels } from './hospital-ui-labels'
+export { hospitalV01PresentationAssets } from './hospital-presentation-assets'
 export {
   mapPlayerSafeHospitalNewRunError,
   type PlayerSafeHospitalNewRunError,

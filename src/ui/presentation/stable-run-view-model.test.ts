@@ -28,7 +28,7 @@ import {
   hospitalSceneLaunchDependencies,
   type StableRunPhase,
 } from '../../state/run-save'
-import { hospitalV01UiLabels } from '../hospital-v0.1'
+import { hospitalV01PresentationAssets, hospitalV01UiLabels } from '../hospital-v0.1'
 import { createHospitalTestNavigationKnowledge } from '../../content/hospital-v0.1/hospital-scene-navigation.test-support'
 import { createStableRunPlayerViewModel } from './stable-run-view-model'
 
@@ -151,6 +151,7 @@ function failurePhase(): StableRunPhase {
 }
 
 const dependencies = { rulesRegistry: hospitalRunSaveRulesRegistry, labels: hospitalV01UiLabels }
+const assetDependencies = { ...dependencies, assets: hospitalV01PresentationAssets }
 
 describe('stable Run player-visible ViewModel', () => {
   it('projects Hub facts through an explicit player-visible allow-list', () => {
@@ -314,5 +315,22 @@ describe('stable Run player-visible ViewModel', () => {
 
   it('projects Run failure as a read-only terminal summary', () => {
     expect(createStableRunPlayerViewModel(failurePhase(), dependencies)).toMatchObject({ kind: 'run-failure', failure: { currentDay: 2, reason: '生命耗尽' } })
+  })
+
+  it('projects allow-listed visual keys for Hub items, Scene nodes, obstacles, and public enemy phases', () => {
+    const hubModel = createStableRunPlayerViewModel({ kind: 'current-day-hub', payload: hub() }, assetDependencies)
+    if (hubModel.kind !== 'current-day-hub') throw new Error('expected Hub')
+    expect(hubModel.loadout.equipment.utility?.visualKey).toBe('flashlight')
+    expect(hubModel.hub.warehouse[0]?.visualKey).toBeUndefined()
+
+    const hallModel = createStableRunPlayerViewModel(emergencyHallScenePhase(), assetDependencies)
+    if (hallModel.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(hallModel.scene.currentNodeVisualKey).toBe('emergency-hall')
+    expect(hallModel.scene.currentObstacles[0]?.visualKey).toBe('isolation-fire-door')
+
+    const combatModel = createStableRunPlayerViewModel(combatPhase(), assetDependencies)
+    if (combatModel.kind !== 'scene-session' || combatModel.scene.combat === null) throw new Error('expected combat Scene')
+    expect(combatModel.scene.combat.sceneBackgroundVisualKey).toBe('isolation-corridor')
+    expect(combatModel.scene.combat.enemyVisualKey).toBe('infected-orderly-pristine')
   })
 })

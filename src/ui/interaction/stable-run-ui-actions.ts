@@ -58,7 +58,10 @@ import {
   createStableRunLifecycleCommand,
   getStableRunLifecycleCommandAvailability,
 } from '../../state/run-lifecycle'
-import type { StableRunUiPresentationDependencies } from '../presentation'
+import type {
+  PresentationVisualKey,
+  StableRunUiPresentationDependencies,
+} from '../presentation'
 import { getCurrentTraversableAdjacentEdges } from './current-traversable-adjacent-edges'
 import {
   getStableRunUiHubLoadoutOpportunities,
@@ -125,6 +128,7 @@ export interface StableRunUiTaskEventOpportunity {
   readonly actionId: string | null
   readonly comparisonFacts: readonly StableRunUiActionPreviewFact[]
   readonly ghost: StableRunUiGhostPreview | null
+  readonly visualKey?: PresentationVisualKey | null
 }
 
 export interface StableRunUiTaskEventDraft {
@@ -205,6 +209,7 @@ export interface StableRunUiActionPreviewViewModel {
     facts: readonly StableRunUiActionPreviewFact[]
     warnings: readonly string[]
   }>[]
+  readonly visualKey?: PresentationVisualKey | null
 }
 
 export type StableRunUiGhostNumber =
@@ -238,6 +243,7 @@ export interface StableRunUiAction {
   /** Internal formal command; React submits it only after explicit confirm. */
   readonly command: StableRunApplicationCommand
   readonly preview: StableRunUiActionPreviewViewModel
+  readonly visualKey?: PresentationVisualKey | null
   readonly ghost?: StableRunUiGhostPreview
   readonly combatGhost?: StableRunUiCombatGhostPreview
 }
@@ -1471,6 +1477,9 @@ function createObstacleActions(
         id: `scene-obstacle:${option.command.obstacleId}:${option.command.optionId}`,
         kind: 'scene-obstacle' as const,
         label: `${dependencies.labels.obstacleName(obstacle.obstacleId)} · ${optionName}`,
+        ...(dependencies.assets?.obstacleVisualKey?.(obstacle.obstacleId)
+          ? { visualKey: dependencies.assets.obstacleVisualKey(obstacle.obstacleId) }
+          : {}),
         command: applicationSceneCommand(
           'scene-obstacle',
           createPerformSceneObstacleOptionCommand(option.command),
@@ -1780,6 +1789,9 @@ function createTaskEventInteraction(
             option.actionTime,
             option.effectiveRiskTier,
           ),
+          ...(dependencies.assets?.taskEventVisualKey?.(event.eventId)
+            ? { visualKey: dependencies.assets.taskEventVisualKey(event.eventId) }
+            : {}),
         }))
         continue
       }
@@ -1801,6 +1813,9 @@ function createTaskEventInteraction(
         label,
         command: applicationSceneCommand('scene-task-event', command),
         ghost,
+        ...(dependencies.assets?.taskEventVisualKey?.(event.eventId)
+          ? { visualKey: dependencies.assets.taskEventVisualKey(event.eventId) }
+          : {}),
         preview: freezePreview(
           `确认${label}`,
           taskEventFacts(safe.result, outputName),
@@ -1819,6 +1834,9 @@ function createTaskEventInteraction(
         actionId,
         comparisonFacts: taskEventComparisonFacts(option, outputName),
         ghost,
+        ...(dependencies.assets?.taskEventVisualKey?.(event.eventId)
+          ? { visualKey: dependencies.assets.taskEventVisualKey(event.eventId) }
+          : {}),
       }))
     }
   }

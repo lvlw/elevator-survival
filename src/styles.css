@@ -249,6 +249,25 @@ body {
     radial-gradient(circle at 72% 18%, rgb(106 147 143 / 18%), transparent 24rem);
 }
 
+.presentation-background,
+.scene-node-art,
+.battle-stage__background {
+  position: absolute;
+  pointer-events: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.28;
+}
+.presentation-background { inset: 0; border-radius: inherit; }
+.hub-stage > :not(.presentation-background),
+.scene-stage > :not(.scene-node-art) { position: relative; z-index: 1; }
+.scene-node-art { inset: 0; border-radius: inherit; opacity: 0.22; }
+.item-card-icon { width: 2.25rem; height: 2.25rem; object-fit: contain; border-radius: 0.35rem; }
+.obstacle-art { width: 5rem; height: 2.8rem; margin-right: 0.6rem; vertical-align: middle; object-fit: cover; border-radius: 0.35rem; }
+.task-event-art { display: block; width: min(100%, 13rem); max-height: 8rem; margin-top: 0.7rem; object-fit: cover; border-radius: 0.45rem; }
+.preview-art { display: block; width: min(100%, 14rem); max-height: 8rem; margin: 0 auto 0.8rem; object-fit: cover; border-radius: 0.45rem; }
+
 .game-stage::after {
   position: absolute;
   pointer-events: none;
@@ -259,6 +278,8 @@ body {
 }
 
 .game-stage > * { position: relative; z-index: 1; }
+.game-stage > .presentation-background,
+.game-stage > .scene-node-art { position: absolute; z-index: 0; }
 .stage-heading { margin: -0.2rem -0.2rem 1.25rem; padding: 1rem 1rem 1.1rem; border-bottom: 1px solid rgb(150 196 191 / 20%); }
 .stage-heading h1 { margin: 0.1rem 0 0.35rem; font-size: clamp(1.8rem, 3vw, 3.15rem); line-height: 1.05; }
 .location-prefix { color: #8ba0a5; font-size: 0.42em; font-weight: 750; letter-spacing: 0.04em; vertical-align: middle; }
@@ -417,6 +438,8 @@ body {
 .empty-copy { color: #aebdcb; }
 
 .battle-stage {
+  position: relative;
+  overflow: hidden;
   display: grid;
   gap: 1rem;
   margin: 1rem 0;
@@ -428,6 +451,9 @@ body {
     linear-gradient(145deg, rgb(35 25 28 / 96%), rgb(11 18 23 / 98%));
   box-shadow: inset 0 0 3rem rgb(4 8 11 / 38%);
 }
+.battle-stage > :not(.battle-stage__background) { position: relative; z-index: 1; }
+.battle-stage__background { z-index: 0; inset: 0; opacity: 0.24; }
+.enemy-actor-art { width: min(100%, 10rem); height: 9rem; align-self: center; object-fit: contain; object-position: center bottom; }
 
 .battle-stage__header {
   display: flex;

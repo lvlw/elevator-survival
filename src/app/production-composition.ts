@@ -4,7 +4,8 @@ import {
   type BrowserStringStorage,
   type RunSaveStorage,
 } from '../state/run-save'
-import { hospitalV01UiLabels } from '../ui/hospital-v0.1'
+import { hospitalV01PresentationAssets, hospitalV01UiLabels } from '../ui/hospital-v0.1'
+import { createBrowserPresentationAudioPlayer } from '../ui/presentation'
 import type { StableRunUiPresentationDependencies } from '../ui/presentation'
 import { HOSPITAL_SLICE_RULES_VERSION } from '../content'
 import {
@@ -16,6 +17,8 @@ export const productionPresentationDependencies: StableRunUiPresentationDependen
   Object.freeze({
     rulesRegistry: hospitalRunSaveRulesRegistry,
     labels: hospitalV01UiLabels,
+    assets: hospitalV01PresentationAssets,
+    audioPlayer: createBrowserPresentationAudioPlayer(),
   })
 
 export const productionRunIdentityMaterialSource =

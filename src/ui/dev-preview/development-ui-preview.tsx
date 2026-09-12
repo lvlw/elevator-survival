@@ -1,6 +1,11 @@
 import { useMemo, useState } from 'react'
 import { hospitalRunSaveRulesRegistry } from '../../state/run-save'
-import { hospitalV01UiLabels } from '../hospital-v0.1'
+import {
+  hospitalV01PresentationAssets,
+  hospitalV01UiLabels,
+} from '../hospital-v0.1'
+import { createBrowserPresentationAudioPlayer } from '../presentation'
+import type { StableRunUiPresentationDependencies } from '../presentation'
 import { StableRunUiApp } from '../stable-run-ui-app'
 import {
   createHospitalDevelopmentPreviewScenario,
@@ -19,6 +24,13 @@ const scenarios: readonly Readonly<{
   { kind: 'combat', label: 'Combat 示例' },
   { kind: 'failure', label: 'Failure 示例' },
 ])
+
+const presentationDependencies: StableRunUiPresentationDependencies = Object.freeze({
+  rulesRegistry: hospitalRunSaveRulesRegistry,
+  labels: hospitalV01UiLabels,
+  assets: hospitalV01PresentationAssets,
+  audioPlayer: createBrowserPresentationAudioPlayer(),
+})
 
 export interface DevelopmentUiPreviewHarnessProps {
   /** Test-only observation seam; production uses the formal scenario factory. */
@@ -49,10 +61,7 @@ export default function DevelopmentUiPreviewHarness({
     </aside>
     <StableRunUiApp
       store={scenario.store}
-      presentationDependencies={{
-        rulesRegistry: hospitalRunSaveRulesRegistry,
-        labels: hospitalV01UiLabels,
-      }}
+      presentationDependencies={presentationDependencies}
     />
   </>
 }

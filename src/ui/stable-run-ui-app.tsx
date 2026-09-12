@@ -427,8 +427,8 @@ function SceneView({
     <StatusBar status={model.status} />
     <div className="console-grid">
       <section className="console-panel game-stage scene-stage">
-        {scene.currentNodeVisualKey && <div className="scene-node-art" style={{ backgroundImage: `url(${presentationVisualAssetUrl(scene.currentNodeVisualKey)})` }} aria-hidden="true" />}
         <header className="stage-heading"><p className="panel-kicker">场景导航</p><h1><span className="location-prefix">当前位置：</span>{scene.currentNodeName}</h1><p>{sceneStatusName(scene.status)}</p></header>
+        {scene.currentNodeVisualKey && <div className="scene-node-art" style={{ backgroundImage: `url(${presentationVisualAssetUrl(scene.currentNodeVisualKey)})`, width: '100%', maxWidth: '25rem', aspectRatio: '16 / 9' }} aria-hidden="true" />}
         <SceneTimeBudget budget={scene.timeBudget} ghost={ghost} />
         {scene.combat && <BattleStage combat={scene.combat} condition={model.status.condition} ghost={combatGhost} latestResult={combatActionResult} />}
         <div className={scene.combat ? 'combat-map-context' : undefined}><PlayerKnownMap map={scene.navigationMap} /></div>

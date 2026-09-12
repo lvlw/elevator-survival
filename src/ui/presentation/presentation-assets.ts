@@ -60,6 +60,7 @@ export interface StableRunUiPresentationAssets {
     healthStage: 'healthy' | 'wounded' | 'severely-wounded' | 'critical' | 'incapacitated',
   ): PresentationVisualKey | null
   sceneNodeVisualKey?(nodeId: string): PresentationVisualKey | null
+  battleBackgroundVisualKey?(nodeId: string, enemyDefinitionId: string): PresentationVisualKey | null
   obstacleVisualKey?(obstacleId: string): PresentationVisualKey | null
   taskEventVisualKey?(eventId: string): PresentationVisualKey | null
   isAccessCardObstacleOption?(obstacleId: string, optionId: string): boolean

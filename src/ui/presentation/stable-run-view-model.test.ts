@@ -330,6 +330,7 @@ describe('stable Run player-visible ViewModel', () => {
 
     const combatModel = createStableRunPlayerViewModel(combatPhase(), assetDependencies)
     if (combatModel.kind !== 'scene-session' || combatModel.scene.combat === null) throw new Error('expected combat Scene')
+    expect(combatModel.scene.currentNodeVisualKey).toBeUndefined()
     expect(combatModel.scene.combat.sceneBackgroundVisualKey).toBe('isolation-corridor')
     expect(combatModel.scene.combat.enemyVisualKey).toBe('infected-orderly-pristine')
   })

@@ -9,7 +9,9 @@ describe('presentation audio probe adapter', () => {
   it('keeps cue sources deterministic and separates selection variants', () => {
     expect(presentationAudioSource('scene-move')).toContain('aud_scene_move_a')
     expect(uiSelectionCueForCategory('radio')).toBe('ui-select-a')
+    expect(uiSelectionCueForCategory('operation')).toBe('ui-select-a')
     expect(uiSelectionCueForCategory('placement')).toBe('ui-select-b')
+    expect(uiSelectionCueForCategory('target')).toBe('ui-select-b')
   })
 
   it('swallows a rejecting browser player without affecting callers', async () => {

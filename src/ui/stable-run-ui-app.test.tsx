@@ -1,6 +1,6 @@
 import { StrictMode, act } from 'react'
 import { createRoot } from 'react-dom/client'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   HOSPITAL_EDGE_IDS,
   HOSPITAL_FIRE_DOOR_ROUTE_EDGE_IDS,
@@ -51,7 +51,7 @@ import {
   type RunSaveStorage,
 } from '../state/run-save'
 import { createStableRunStore, type StableRunStore } from '../state/run-store'
-import { hospitalV01UiLabels } from './hospital-v0.1'
+import { hospitalV01PresentationAssets, hospitalV01UiLabels } from './hospital-v0.1'
 import { StableRunUiApp } from './stable-run-ui-app'
 import { createHospitalDevelopmentPreviewScenario } from './dev-preview/hospital-preview-scenarios'
 import {
@@ -68,6 +68,7 @@ import {
   createDailySettlementResultViewModel,
   createHubSurvivalResultViewModel,
   createStableRunPlayerViewModel,
+  presentationAudioSource,
 } from './presentation'
 
 Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true })
@@ -6313,5 +6314,193 @@ describe('StableRunUiApp', () => {
     })
     expect(container.textContent).toContain('保存失败')
     expect(container.textContent).toContain('生命在日结算中耗尽')
+  })
+
+  it('renders Emergency Hall art as a separate bounded slot and keeps the Isolation plate inside Combat', () => {
+    const render = (phase: StableRunPhase) => {
+      const container = document.createElement('div')
+      const root = createRoot(container); roots.push(root)
+      act(() => { root.render(<StableRunUiApp
+        store={createStableRunStore({ initialPhase: phase, storage: new MemoryStorage(), rulesRegistry: hospitalRunSaveRulesRegistry })}
+        presentationDependencies={{ ...uiDependencies, assets: hospitalV01PresentationAssets }}
+      />) })
+      return container
+    }
+    const hall = render({ kind: 'scene-session', payload: sceneSessionAtEmergencyHall() })
+    expect(hall.querySelector('.scene-node-art')).not.toBeNull()
+    expect(hall.querySelector('.scene-node-art')?.getAttribute('style')).toContain('bg_emergency_hall_v01')
+    const nodeArt = hall.querySelector<HTMLElement>('.scene-node-art')
+    expect(nodeArt?.style.width).toBe('100%')
+    expect(nodeArt?.style.maxWidth).toBe('25rem')
+    expect(nodeArt?.style.aspectRatio).toBe('16 / 9')
+    expect(nodeArt?.style.position).toBe('')
+    expect(hall.querySelector('.battle-stage__background')).toBeNull()
+    expect(hall.querySelector('.known-map')).not.toBeNull()
+    expect(hall.textContent).toContain('当前节点搜索')
+    const combat = render(combatPhase())
+    expect(combat.querySelector('.scene-node-art')).toBeNull()
+    expect(combat.querySelector('.battle-stage .battle-stage__background')?.getAttribute('style'))
+      .toContain('bg_isolation_corridor_v01')
+    expect(combat.querySelector('.battle-actor--enemy .enemy-actor-art')).not.toBeNull()
+    for (const hidden of ['instanceId', 'nodeId', 'obstacleId', 'taskEventId', 'sceneInstanceId', 'runId', 'rulesVersion', 'currentCtb', 'enemyNextActionCtb']) {
+      expect(hall.innerHTML).not.toContain(hidden)
+      expect(combat.innerHTML).not.toContain(hidden)
+    }
+  })
+
+  it('plays one local selection cue only for each changed operation or placement draft, never for Cancel', () => {
+    const flashlight = item('audio-draft-flashlight', HOSPITAL_ITEM_IDS.flashlight)
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({
+      initialPhase: sceneInventoryPhase({ backpack: [{ item: flashlight, x: 0, y: 0 }] }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    }))
+    const play = vi.fn((_source: string) => undefined)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={{ ...uiDependencies, audioPlayer: { play } }} />) })
+    act(() => { button(container, '整理 手电筒 · 背包格 1,1').click() })
+    expect(play).not.toHaveBeenCalled()
+    act(() => { button(container, '移动／旋转').click() })
+    expect(play).toHaveBeenCalledTimes(1)
+    expect(play).toHaveBeenLastCalledWith(presentationAudioSource('ui-select-a'))
+    act(() => { button(container, '移动／旋转').click() })
+    expect(play).toHaveBeenCalledTimes(1)
+    act(() => { button(container, '格子 3,2').click() })
+    expect(play).toHaveBeenCalledTimes(2)
+    expect(play).toHaveBeenLastCalledWith(presentationAudioSource('ui-select-b'))
+    act(() => { button(container, '格子 3,2').click() })
+    expect(play).toHaveBeenCalledTimes(2)
+    act(() => { button(container, '取消').click() })
+    expect(play).toHaveBeenCalledTimes(2)
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+  })
+
+  it('plays Search only after confirmation and keeps a rejecting audio player outside gameplay', async () => {
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: sceneSessionAtEmergencyHall() },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    }))
+    const play = vi.fn(() => Promise.reject(new Error('browser playback denied')))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={{ ...uiDependencies, audioPlayer: { play } }} />) })
+    act(() => { button(container, '主要搜索 · 使用手电筒').click() })
+    expect(play).not.toHaveBeenCalled()
+    expect(tracked.commands).toHaveLength(0)
+    act(() => { button(container, '取消').click() })
+    expect(play).not.toHaveBeenCalled()
+    act(() => { button(container, '主要搜索 · 使用手电筒').click() })
+    act(() => { button(container, '确认执行').click() })
+    await Promise.resolve()
+    expect(play).toHaveBeenCalledExactlyOnceWith(presentationAudioSource('scene-search-complete'))
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    const phase = tracked.store.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected committed Scene')
+    expect(phase.payload.scene.searchState.nodeStates.find(({ nodeId }) => nodeId === HOSPITAL_NODE_IDS.emergencyHall)?.kind).toBe('searched')
+    expect(container.textContent).toContain('金属零件')
+  })
+
+  it('does not play a movement cue when the formal Scene command is rejected', () => {
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: sceneSessionAtEmergencyHall() },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const play = vi.fn((_source: string) => undefined)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={{ ...uiDependencies, audioPlayer: { play } }} />) })
+    const before = store.getState().phase
+    expect(() => store.dispatch({
+      kind: 'scene',
+      command: { kind: 'scene-move', command: { edgeId: 'not-a-scene-edge' } },
+    })).toThrow()
+    expect(store.getState().phase).toBe(before)
+    expect(storage.writes).toBe(0)
+    expect(play).not.toHaveBeenCalled()
+  })
+
+  it('plays the card cue for actual fire-door card use but not a different door method or subsequent traversal', () => {
+    const card = item('audio-door-card', HOSPITAL_ITEM_IDS.isolationWardAccessCard)
+    const render = (session: ReturnType<typeof sceneSessionAtEmergencyHall>) => {
+      const storage = new MemoryStorage()
+      const tracked = trackedStore(createStableRunStore({ initialPhase: { kind: 'scene-session', payload: session }, storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+      const play = vi.fn((_source: string) => undefined)
+      const container = document.createElement('div')
+      const root = createRoot(container); roots.push(root)
+      act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={{ ...uiDependencies, assets: hospitalV01PresentationAssets, audioPlayer: { play } }} />) })
+      return { container, tracked, storage, play }
+    }
+    const withCard = render(withBackpackItem(sceneSessionAtEmergencyHall(), card))
+    act(() => { button(withCard.container, '隔离区防火门 · 使用门禁卡').click() })
+    expect(withCard.play).not.toHaveBeenCalled()
+    act(() => { button(withCard.container, '确认执行').click() })
+    expect(withCard.play).toHaveBeenCalledExactlyOnceWith(presentationAudioSource('scene-door-card'))
+    expect(withCard.storage.writes).toBe(1)
+    act(() => { button(withCard.container, '前往 隔离走廊').click() })
+    act(() => { button(withCard.container, '确认执行').click() })
+    expect(withCard.play).toHaveBeenCalledTimes(2)
+    expect(withCard.play).toHaveBeenLastCalledWith(presentationAudioSource('scene-move'))
+    expect(withCard.tracked.commands).toHaveLength(2)
+    const forced = render(sceneSessionAtEmergencyHall())
+    act(() => { button(forced.container, '隔离区防火门 · 强行撞门').click() })
+    act(() => { button(forced.container, '确认执行').click() })
+    expect(forced.storage.writes).toBe(1)
+    expect(forced.play).not.toHaveBeenCalledWith(presentationAudioSource('scene-door-card'))
+  })
+
+  it('treats a card-granted staff passage traversal as movement, not fire-door card use', () => {
+    const card = item('audio-staff-card', HOSPITAL_ITEM_IDS.isolationWardAccessCard)
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: withBackpackItem(sceneSessionAtEmergencyHall(), card) },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    }))
+    const play = vi.fn((_source: string) => undefined)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={{ ...uiDependencies, assets: hospitalV01PresentationAssets, audioPlayer: { play } }} />) })
+    act(() => { button(container, '前往 保安值班室').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(container.textContent).toContain('前往 隔离走廊')
+    act(() => { button(container, '前往 隔离走廊').click() })
+    act(() => { button(container, '确认执行').click() })
+    expect(play).toHaveBeenCalledTimes(2)
+    expect(play.mock.calls.map(([source]) => source)).toEqual([
+      presentationAudioSource('scene-move'),
+      presentationAudioSource('scene-move'),
+    ])
+    expect(storage.writes).toBe(2)
+    expect(tracked.commands).toHaveLength(2)
+  })
+
+  it('limits the basic-attack cue to a real metal-pipe basic action', () => {
+    for (const [phase, label, shouldPlayBasic] of [
+      [combatPhase(), '挥击', true],
+      [combatPhase(), '蓄力击打', false],
+      [combatPhase({ weaponEquipped: false }), '临时攻击', false],
+    ] as const) {
+      const storage = new MemoryStorage()
+      const tracked = trackedStore(createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+      const play = vi.fn((_source: string) => undefined)
+      const container = document.createElement('div')
+      const root = createRoot(container); roots.push(root)
+      act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={{ ...uiDependencies, audioPlayer: { play } }} />) })
+      act(() => { button(container, label).click() })
+      expect(play).not.toHaveBeenCalled()
+      act(() => { button(container, '确认执行').click() })
+      const sources = play.mock.calls.map(([source]) => source)
+      expect(sources.includes(presentationAudioSource('combat-player-basic'))).toBe(shouldPlayBasic)
+      expect(tracked.commands).toHaveLength(1)
+      expect(storage.writes).toBe(1)
+    }
   })
 })

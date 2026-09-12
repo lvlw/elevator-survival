@@ -624,8 +624,14 @@ function createSceneView(
               visible.enemy.healthPhase,
             ),
           } : {}),
-          ...(dependencies.assets?.sceneNodeVisualKey?.(scene.currentNodeId)
-            ? { sceneBackgroundVisualKey: dependencies.assets.sceneNodeVisualKey(scene.currentNodeId) }
+          ...(dependencies.assets?.battleBackgroundVisualKey?.(
+            scene.currentNodeId,
+            activeEncounter.combat.enemy.definitionId,
+          )
+            ? { sceneBackgroundVisualKey: dependencies.assets.battleBackgroundVisualKey(
+              scene.currentNodeId,
+              activeEncounter.combat.enemy.definitionId,
+            ) }
             : {}),
           equipment: loadoutView(activeEncounter.combat, runtime, dependencies.labels).equipment,
           quickSlots: loadoutView(activeEncounter.combat, runtime, dependencies.labels).quickSlots,

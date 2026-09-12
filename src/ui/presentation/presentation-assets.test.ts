@@ -14,16 +14,33 @@ describe('presentation visual owner pack mapping', () => {
   })
 
   it('maps formal hospital identities through an allow-list', () => {
-    expect(hospitalV01PresentationAssets.itemVisualKey?.(HOSPITAL_ITEM_IDS.metalPipe)).toBe('metal-pipe')
-    expect(hospitalV01PresentationAssets.itemVisualKey?.(HOSPITAL_ITEM_IDS.sealedPathogenCase)).toBe('sealed-pathogen-case')
+    for (const [definitionId, visualKey] of [
+      [HOSPITAL_ITEM_IDS.metalPipe, 'metal-pipe'],
+      [HOSPITAL_ITEM_IDS.heavyCoat, 'heavy-coat'],
+      [HOSPITAL_ITEM_IDS.flashlight, 'flashlight'],
+      [HOSPITAL_ITEM_IDS.bandage, 'bandage'],
+      [HOSPITAL_ITEM_IDS.isolationWardAccessCard, 'isolation-access-card'],
+      [HOSPITAL_ITEM_IDS.sealedPathogenCase, 'sealed-pathogen-case'],
+    ] as const) expect(hospitalV01PresentationAssets.itemVisualKey?.(definitionId)).toBe(visualKey)
     expect(hospitalV01PresentationAssets.itemVisualKey?.(HOSPITAL_ITEM_IDS.ration)).toBeNull()
-    expect(hospitalV01PresentationAssets.enemyVisualKey?.(HOSPITAL_ENEMY_IDS.infectedOrderly, 'healthy')).toBe('infected-orderly-pristine')
-    expect(hospitalV01PresentationAssets.enemyVisualKey?.(HOSPITAL_ENEMY_IDS.infectedOrderly, 'incapacitated')).toBe('infected-orderly-disabled')
+    for (const [stage, visualKey] of [
+      ['healthy', 'infected-orderly-pristine'],
+      ['wounded', 'infected-orderly-wounded'],
+      ['severely-wounded', 'infected-orderly-heavy-wounded'],
+      ['critical', 'infected-orderly-critical'],
+      ['incapacitated', 'infected-orderly-disabled'],
+    ] as const) expect(hospitalV01PresentationAssets.enemyVisualKey?.(HOSPITAL_ENEMY_IDS.infectedOrderly, stage)).toBe(visualKey)
     expect(hospitalV01PresentationAssets.enemyVisualKey?.('unknown-enemy', 'healthy')).toBeNull()
     expect(hospitalV01PresentationAssets.sceneNodeVisualKey?.(HOSPITAL_NODE_IDS.emergencyHall)).toBe('emergency-hall')
-    expect(hospitalV01PresentationAssets.sceneNodeVisualKey?.(HOSPITAL_NODE_IDS.isolationCorridor)).toBe('isolation-corridor')
+    expect(hospitalV01PresentationAssets.sceneNodeVisualKey?.(HOSPITAL_NODE_IDS.isolationCorridor)).toBeNull()
     expect(hospitalV01PresentationAssets.sceneNodeVisualKey?.(HOSPITAL_NODE_IDS.pharmacy)).toBeNull()
+    expect(hospitalV01PresentationAssets.battleBackgroundVisualKey?.(HOSPITAL_NODE_IDS.isolationCorridor, HOSPITAL_ENEMY_IDS.infectedOrderly)).toBe('isolation-corridor')
+    expect(hospitalV01PresentationAssets.battleBackgroundVisualKey?.(HOSPITAL_NODE_IDS.emergencyHall, HOSPITAL_ENEMY_IDS.infectedOrderly)).toBeNull()
+    expect(hospitalV01PresentationAssets.battleBackgroundVisualKey?.(HOSPITAL_NODE_IDS.isolationCorridor, 'unknown-enemy')).toBeNull()
     expect(hospitalV01PresentationAssets.obstacleVisualKey?.(HOSPITAL_OBSTACLE_IDS.isolationFireDoor)).toBe('isolation-fire-door')
+    expect(hospitalV01PresentationAssets.obstacleVisualKey?.('other-obstacle')).toBeNull()
     expect(hospitalV01PresentationAssets.taskEventVisualKey?.(HOSPITAL_TASK_EVENT_IDS.pathogenCaseRetrieval)).toBe('pathogen-case-objective')
+    expect(hospitalV01PresentationAssets.taskEventVisualKey?.('other-task-event')).toBeNull()
   })
+
 })

@@ -250,7 +250,6 @@ body {
 }
 
 .presentation-background,
-.scene-node-art,
 .battle-stage__background {
   position: absolute;
   pointer-events: none;
@@ -260,9 +259,16 @@ body {
   opacity: 0.28;
 }
 .presentation-background { inset: 0; border-radius: inherit; }
-.hub-stage > :not(.presentation-background),
-.scene-stage > :not(.scene-node-art) { position: relative; z-index: 1; }
-.scene-node-art { inset: 0; border-radius: inherit; opacity: 0.22; }
+.hub-stage > :not(.presentation-background) { position: relative; z-index: 1; }
+.scene-node-art {
+  margin: 0 0 1.25rem;
+  border: 1px solid rgb(150 196 191 / 24%);
+  border-radius: 0.6rem;
+  background-color: #17272b;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .item-card-icon { width: 2.25rem; height: 2.25rem; object-fit: contain; border-radius: 0.35rem; }
 .obstacle-art { width: 5rem; height: 2.8rem; margin-right: 0.6rem; vertical-align: middle; object-fit: cover; border-radius: 0.35rem; }
 .task-event-art { display: block; width: min(100%, 13rem); max-height: 8rem; margin-top: 0.7rem; object-fit: cover; border-radius: 0.45rem; }
@@ -278,8 +284,7 @@ body {
 }
 
 .game-stage > * { position: relative; z-index: 1; }
-.game-stage > .presentation-background,
-.game-stage > .scene-node-art { position: absolute; z-index: 0; }
+.game-stage > .presentation-background { position: absolute; z-index: 0; }
 .stage-heading { margin: -0.2rem -0.2rem 1.25rem; padding: 1rem 1rem 1.1rem; border-bottom: 1px solid rgb(150 196 191 / 20%); }
 .stage-heading h1 { margin: 0.1rem 0 0.35rem; font-size: clamp(1.8rem, 3vw, 3.15rem); line-height: 1.05; }
 .location-prefix { color: #8ba0a5; font-size: 0.42em; font-weight: 750; letter-spacing: 0.04em; vertical-align: middle; }

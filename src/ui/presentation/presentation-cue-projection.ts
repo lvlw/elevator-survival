@@ -28,6 +28,17 @@ function coreSceneCommand(command: StableRunApplicationCommand['command']): unkn
   return 'command' in command ? command.command : command
 }
 
+type PublicCombatCondition = NonNullable<ReturnType<typeof sceneOf>>['condition']
+
+export function didPlayerSustainVisibleCombatHurt(
+  before: PublicCombatCondition,
+  after: PublicCombatCondition,
+): boolean {
+  if (after.currentHealth < before.currentHealth) return true
+  const previousWounds = new Set(before.openWounds.map(({ id }) => id))
+  return after.openWounds.some(({ id }) => !previousWounds.has(id))
+}
+
 /** Purely projects committed facts into presentation cues; it never mutates or dispatches. */
 export function projectStableRunPresentationCues(
   input: StableRunPresentationCueProjectionInput,
@@ -61,13 +72,9 @@ export function projectStableRunPresentationCues(
     String(coreCommand.kind) === 'metal-pipe-basic-attack'
   ) cues.push('combat-player-basic')
   if (input.action.kind === 'scene-combat-action') {
-    const beforeHealth = beforeScene.condition.currentHealth
-    const afterHealth = afterScene.condition.currentHealth
-    const beforeWoundIds = new Set(beforeScene.condition.openWounds.map(({ id }) => id))
-    const newPublicInjury = afterScene.condition.openWounds.some(
-      ({ id }) => !beforeWoundIds.has(id),
-    )
-    if (afterHealth < beforeHealth || newPublicInjury) cues.push('combat-player-hurt')
+    if (didPlayerSustainVisibleCombatHurt(beforeScene.condition, afterScene.condition)) {
+      cues.push('combat-player-hurt')
+    }
   }
   return Object.freeze(cues)
 }

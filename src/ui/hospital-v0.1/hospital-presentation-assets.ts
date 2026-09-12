@@ -41,8 +41,13 @@ export const hospitalV01PresentationAssets: StableRunUiPresentationAssets = Obje
   },
   sceneNodeVisualKey(nodeId: string) {
     if (nodeId === HOSPITAL_NODE_IDS.emergencyHall) return 'emergency-hall'
-    if (nodeId === HOSPITAL_NODE_IDS.isolationCorridor) return 'isolation-corridor'
     return null
+  },
+  battleBackgroundVisualKey(nodeId: string, enemyDefinitionId: string) {
+    return nodeId === HOSPITAL_NODE_IDS.isolationCorridor &&
+      enemyDefinitionId === HOSPITAL_ENEMY_IDS.infectedOrderly
+      ? 'isolation-corridor'
+      : null
   },
   obstacleVisualKey(obstacleId: string) {
     return obstacleId === HOSPITAL_OBSTACLE_IDS.isolationFireDoor

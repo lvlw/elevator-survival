@@ -13,6 +13,8 @@
 
 稳定顺序为：`Hover / Focus → Ghost → Click → Preview → Confirm → command → canonical execution → committed result → sound`。stale Preview、规则拒绝和执行前校验失败不播放成功 Cue。若 gameplay 已 canonical committed、随后 persistence write 失败，玩法结果声仍对应已发生事实；保存失败另播独立 System feedback，不能用静音暗示 gameplay rollback。
 
+上述 Click／Modal／Confirm 顺序描述审计时的现有 UI。2026-09-12 Owner 确认的 UIR-015 将取消所有行动统一二次确认，但不改变 cue 的提交边界：直接执行按钮的 click **若已完成正式 canonical 提交**，其后的 gameplay 结果反馈不属于提前播放；尚未提交的 click、Hover／Focus、草稿、Inline Preview、取消、stale 选择与规则拒绝仍不能播放成功结果声。UI-only 草稿选择 cue 仍不表示命令成功。保存失败不回滚玩法，已提交结果声与独立保存错误反馈可并存；不由播放完成决定保存或下一状态。
+
 声音永远不拥有命中、伤害、CTB、Save、RNG、物品消费、敌人阶段或返程结果。它只消费 UI-local 事实或 canonical before/after/result。搜索掉落、污染判定、隐藏敌人、未知路线、未来意图和精确敌人 HP 在成为玩家可知事实前都不能由声音泄漏。
 
 ## 2. 统一 Source Master 建议
@@ -151,3 +153,7 @@ Future Integration Note：
 | DEFER | 高频 focus 与 dialog close | 2 cue definitions | 48kHz/24-bit WAV mono | 40～130 ms | 仅 presentation；需先验证噪声负担 |
 
 无音频时所有流程继续依赖现有文字、状态、动画和错误反馈正常工作；缺失 cue 永远不能阻断 gameplay、Save 或严格恢复。
+
+## 12. Owner 听感反馈与生产暂停（2026-09-12）
+
+Owner 反馈：“当前声音不太合适，暂时放下，后面再处理。”既有 Audio Probe 的技术验证与 Presentation 接入已经过工程验收，**但没有获得 Owner 听感认可**；后续音频调整、扩包与完整 Audio Pack 暂停，既有 70/30 方向仍为 **PROVISIONAL**，不是正式音频风格冻结。本后续说明不改变上表作为历史 production audit 的 cue 数量或优先级，不删除、静音、替换现有 WAV／播放实现，也不创建新 Cue、Audio Manager 或 Activity Feed。

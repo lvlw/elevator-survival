@@ -160,7 +160,11 @@ StableRunStore public read API
 
 ## Playable Game Shell Presentation Responsibilities
 
-Playable Game Shell Upgrade 是当前 Owner Playability Review 的展示层升级方向，不是终版美术或新的玩法系统。Ghost Preview 与 Player-Known Map 已按下述职责实现；Activity Feed 与 DEV Reset 等后续能力尚未完成。它把现有工程验证控制台整理为低资产但可自然试玩的稳定游戏壳，并继续遵守同一数据流：
+Playable Game Shell Upgrade 是当前 Owner Playability Review 的展示层升级方向，不是终版美术或新的玩法系统。Ghost Preview 与 Player-Known Map 已按下述职责实现；Activity Feed 与 DEV Reset 等后续能力尚未完成。它旨在把现有工程验证控制台整理为低资产、可自然试玩的稳定游戏壳，并继续遵守同一数据流：
+
+2026-09-12 的 UIR-015 记录 Owner 已确认、**尚未实现**的一屏交互改版：当前代码的纵向面板、地图只读展示、统一 Modal Preview／Confirm、固定 Tooltip 和局部阻塞结果展示仍是工程基线，不是新目标已经落地。目标是在同屏突出当前地点／战斗舞台、时间与返程预算、就地操作和底部共享日志；地图由同一 player-safe navigation query 展示已知路线，并仅对正式可执行的相邻移动提供入口。装备／真实 `6×4` 背包在主面板切换，两个快捷位常驻；布局切换不复制 loadout。具体响应式尺寸与资产槽须以后续浏览器实测确定，不在 Architecture 中创造 UI 数值或玩法规则。
+
+目标交互不再给所有行动强制套通用二次确认：输入明确的高频行动可单击执行；需要数量、放置、来源、目标或方案的行动在局部显式选择并执行；敏感／高风险操作的必要确认和逐行动分类待细化。Hover／Focus Ghost、Inline Preview 与必要确认继续只消费正式 player-safe 事实，零副作用，不将 Hover 变为前置条件；缺少必需输入或 stale 选择不得自动补足。单次明确执行仍只通过 `Store.dispatch()` 提交一条正式 command，由同一 executor 处理保存。减少结果弹框不等于自动结算 terminal Scene、自动结束本日、自动创建新 Run 或串联任何生命周期命令；保存失败、规则拒绝和不可逆操作保护仍有独立明确反馈。共享日志仅在已提交 execution 后由 Presentation 投影，不进入 Store、Save 或 core，也不驱动音效、动画或状态结算。
 
 ```text
 Core / canonical state
@@ -180,7 +184,7 @@ canonical phase
 → Ghost Presentation
 ```
 
-- Hover／Focus 只显示约三至五项最重要的安全后果；Click 仍打开完整正式 Preview，Confirm 才发送一条正式命令。Ghost Presentation 不发送 command、不消耗 RNG、不保存、不修改状态，也不持有下一状态。
+- 当前实现的 Hover／Focus 显示约三至五项最重要的安全后果，Click 打开完整正式 Preview，Confirm 发送一条正式命令；UIR-015 已确认此统一 Modal 顺序将由上文分级交互目标局部取代，实施尚未开始。Ghost／未来 Inline Presentation 不发送 command、不消耗 RNG、不保存、不修改状态，也不持有下一状态。
 - 时间、返程、强制返程损耗、生命、负重、装备资源、玩家已知风险与相对战斗顺序都必须来自正式 player-safe Preview、canonical query 或版本化 catalog。缺少安全事实时扩展纯 query／Presentation 边界，不在 JSX 中补玩法公式。
 - DEC-035 的风险换收益语义保持不变。Game Shell 只把是否仍可安全返程、预计强制返程损耗与预计生还／死亡前置到 Ghost 和正式 Preview，不把返程线变成行动硬锁。
 
@@ -208,7 +212,7 @@ Battle Stage Presentation 已实现低资产玩家／敌人舞台、玩家精确
 Presentation Animation 只消费执行前展示、正式 execution result 与执行后展示：
 
 ```text
-Confirm
+明确执行意图（当前实现通过 Confirm）
 → 正式 command
 → canonical execution
 → presentation animation

@@ -162,3 +162,9 @@ Asset Slot ID 仅供 Presentation production 追踪，不是 gameplay identity�
 - 敌人图由公开 health phase 选择；物品图由公开 definition presentation mapping 选择；地图 marker 只消费 Player Navigation Knowledge。
 - 图片加载失败时必须继续使用本审计记录的文字/CSS fallback，不能阻断命令、预览、保存或恢复。
 - 若后续布局调整导致宿主尺寸明显变化，应复测 display bounds；不要把本文件的推荐 master 当作强制 Renderer 合同。
+
+## 11. 2026-09-12 Owner 一屏改版后续说明（待实测）
+
+上表的 viewport 测量、NOW／NEXT／DEFER、source master 和旧布局的建议显示预算保留为当时的生产审计基线，不是 UIR-015 新一屏布局的永久尺寸合同。ENG-UI-020／020A 已完成部分 Presentation 素材映射与有界急诊大厅节点图、隔离走廊战斗底板的技术接入；这不等于新交互、最终 UI Skin 或 Owner 视觉体验通过。新布局的 Scene、Battle、Map、Carry、Tooltip 与行动日志槽位需在真实浏览器重新测量和复核裁切，不凭草图改写旧实测数据，也不把节点插图铺到未知节点或整个医院。
+
+UIR-015 已确认玩家背身形象的**用途**为战斗主舞台，不要求角色／装备栏重复展示；透明素材尚未交付，草图合成示意不算正式素材。上文 Player asset 的 DEFER 是当时的生产优先级记录；最终外貌、服装、武器变体、具体舞台显示尺寸及 source 规格仍待制作、实测和 Owner 验收，不因用途确认而自动标记为已交付。感染护工优先复用既有五阶段统一 canvas／scale／anchor 素材，在新舞台复核清晰度与落地感，不凭草图擅自重做角色。

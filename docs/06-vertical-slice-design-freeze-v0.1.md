@@ -410,14 +410,14 @@ Playable Game Shell 是低资产、可替换、可自然试玩的游戏化展示
 - 敌人精确 HP 仍不可见，现有完好、受伤、重伤、濒危、失去能力生命阶段不变；阶段式视觉条不得反推出精确生命。
 - 医院场景总时间、行动时间、Combat CTB、战斗数值、维护数值、掉落与风险参数均不变。
 - 已揭示物品的背包拾取耗时仍为0；地图展示不扩大玩家已知信息，也不直接公开完整 Scene graph。
-- Click → Preview → Confirm 的正式交互契约保持；Hover／Focus Ghost Preview 只是零副作用的轻量展示层。
+- 本 Addendum 原先要求所有行动统一 Click → 完整 Modal Preview → Confirm；2026-09-12 Owner 已在 UIR-015 局部替换该交互契约，取消统一二次确认，改用常规单击、必需输入就地选择、敏感／高风险必要确认的分级原则。具体高风险行动清单和触发条件仍待细化；正式安全 Preview、资格校验、Ghost 零副作用及每次执行只提交一条命令继续有效。既有不可逆清理／DEV Reset 保护不因此取消。
 - 搜索、感染、负重、背包、装备、任务物品、Return、Run lifecycle 与 Save 边界均不变。
 
 冻结为后续 UI 工程输入的方向包括：
 
 - 游戏化固定 Shell 与清晰的主舞台／角色携带／固定操作／辅助信息层级；
 - 当前时间、正式返程预留和安全余量的时间预算视觉；
-- Hover／Focus Ghost Preview，以及完整 Preview 前置强制返程与死亡后果；
+- Hover／Focus Ghost 和局部安全 Preview 解释强制返程与死亡后果；必要的敏感／高风险确认仍在提交前解释代价，但 Hover 不成为执行前置条件；
 - 玩家 HP／饱食视觉条和机制 Tooltip／Info Card／Help；
 - 只呈现正式玩家已知空间关系的 Player-Known Map；
 - 装备栏、快捷栏与 `6×4` 背包的三合一携带面板；
@@ -426,6 +426,8 @@ Playable Game Shell 是低资产、可替换、可自然试玩的游戏化展示
 - 与只读 Inspector 分离、Production 不可达的 DEV-only Owner Playtest Reset。
 
 当前实现状态：低资产 Battle Stage、玩家精确生命条、敌人阶段式生命表现、相对 Combat 时间轴、Combat Hover／Focus Ghost 与已提交结果的轻量反馈已经完成；普通玩家 ViewModel、Preview 和 DOM 不展示 raw CTB。Presentation Activity Feed 及其共享战斗日志仍待后续实现，因此不将 UIR-012 的日志方向标记为完成。
+
+后续 Owner 试玩已确认：现有实现虽通过工程审查，纵向页面、分离的地图与移动入口、分散的节点操作、每步通用确认、固定 Tooltip 和阻塞结果反馈仍妨碍自然试玩。UIR-015 的一屏主次布局、紧凑且可直接发起正式相邻移动的地图、当前节点就地操作、装备／背包切换且两个快捷位常驻、锚定 Tooltip 与共享 Presentation 行动日志均为**待实现目标**，不是当前代码或 Owner 体验验收的完成声明。新的布局尺寸需实测；搜索、CTB、时间透支、背包及携带规则、任务物安全提取、Return／日结算／Save 等正式规则和历史测试结果不变，终止场景仍需下一条显式结算命令。
 
 上述方向的布局位置、尺寸比例、面板开合、图标、颜色、贴图与动画表现仍可替换，不冻结为永久产品规则。未来阶段贴图只是 Presentation extensibility；“某种装备可以查看敌人精确 HP”仍是未确认玩法候选，不在本 Addendum 中确认或实现。
 

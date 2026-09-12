@@ -1,5 +1,7 @@
 # 规则实现追踪矩阵
 
+> 2026-09-12 状态澄清：本矩阵中既有 React／Game Shell 行记录的是已实现的工程能力；早期“Owner 体验验收尚未进行”等措辞是当时的历史状态。Owner 已试玩并确认 UIR-015 的一屏、分级确认与就地反馈改版方向，但该新 UI、共享 Presentation Activity Feed 与玩家背身素材仍未实现／交付。工程审查通过不等于 Owner 体验验收通过；本矩阵不创建新规则，具体 UI 覆盖关系以 `docs/09-ui-design-record.md` 为准。
+
 | 场景非战斗手电筒电池充能 | DEC-036 | `scene.batteryUseTime`、`maintenance.flashlightCharge` 与医院电池→手电筒中性兼容目录 | `src/core/device-recharge/`、`src/core/scene-exploration/`、`src/ui/interaction/` | `src/content/hospital-v0.1/scene-battery.integration.test.ts`、`src/ui/stable-run-ui-app.test.tsx` | 已实现 core 与 React 命令交互 | 仅允许真实背包通用电池为背包或实用装备位中的未充满手电筒充能；恢复、行动时间、流血、死亡和超时返程均经单一冻结 Scene Effect 计划结算。React 从正式 selector 展开所有来源／目标组合，通过 player-safe Preview 展示实际恢复、消费后的负重／返程与终局，并只分派一条 `scene-battery` 命令；不实现战斗充能、自动选择、自动补充或自动结算 terminal Scene。 |
 
 > 本文件用于连接设计决策、版本化配置、实现和测试，不是权威规则来源。实际规则以已确认 DEC 为准；存在类型、接口或测试辅助组合不代表完整玩法命令链已经实现。

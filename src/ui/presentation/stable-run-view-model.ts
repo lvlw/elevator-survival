@@ -127,6 +127,7 @@ export interface PlayerVisibleLoadoutViewModel {
     width: number
     height: number
     items: readonly Readonly<{
+      item: PlayerVisibleItemViewModel
       name: string
       quantity: number
       x: number
@@ -460,6 +461,7 @@ function loadoutView(
     )
     const visible = itemView(item, input.itemStates, runtime, labels)
     return frozen({
+      item: visible,
       name: visible.name,
       quantity: visible.quantity,
       x: placement.x,

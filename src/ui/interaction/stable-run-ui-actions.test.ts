@@ -492,6 +492,7 @@ describe('stable Run UI interaction model', () => {
     }, dependencies)
     expect(preview).toMatchObject({ canExecute: true })
     expect(preview?.facts).toEqual(expect.arrayContaining([
+      { label: '目标格', value: '1, 1' },
       { label: '背包负重', value: '0 → 1' },
       { label: '拾取后负重状态', value: '正常' },
     ]))

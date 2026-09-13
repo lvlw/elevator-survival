@@ -160,7 +160,7 @@ StableRunStore public read API
 
 ## Playable Game Shell Presentation Responsibilities
 
-Playable Game Shell Upgrade 是当前 Owner Playability Review 的展示层升级方向，不是终版美术或新的玩法系统。Ghost Preview 与 Player-Known Map 已按下述职责实现；Activity Feed 与 DEV Reset 等后续能力尚未完成。它旨在把现有工程验证控制台整理为低资产、可自然试玩的稳定游戏壳，并继续遵守同一数据流：
+Playable Game Shell Upgrade 是当前 Owner Playability Review 的展示层升级方向，不是终版美术或新的玩法系统。Ghost Preview、Player-Known Map 与 Activity Feed 已按下述职责实现；DEV Reset 是与只读 Inspector 分离的 DEV composition utility。它旨在把现有工程验证控制台整理为低资产、可自然试玩的稳定游戏壳，并继续遵守同一数据流：
 
 2026-09-12 的 UIR-015 记录 Owner 已确认、**尚未实现**的一屏交互改版：当前代码的纵向面板、地图只读展示、统一 Modal Preview／Confirm、固定 Tooltip 和局部阻塞结果展示仍是工程基线，不是新目标已经落地。目标是在同屏突出当前地点／战斗舞台、时间与返程预算、就地操作和底部共享日志；地图由同一 player-safe navigation query 展示已知路线，并仅对正式可执行的相邻移动提供入口。装备／真实 `6×4` 背包在主面板切换，两个快捷位常驻；布局切换不复制 loadout。具体响应式尺寸与资产槽须以后续浏览器实测确定，不在 Architecture 中创造 UI 数值或玩法规则。
 

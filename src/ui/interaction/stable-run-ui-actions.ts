@@ -160,6 +160,7 @@ export interface StableRunUiInventoryOpportunity {
   readonly id: string
   readonly sourceInstanceId: string
   readonly sourceSlotIndex: number | null
+  readonly backpackPosition: Readonly<{ x: number; y: number }> | null
   readonly container: 'backpack' | 'quick-slot'
   readonly name: string
   readonly sourceLabel: string
@@ -239,6 +240,10 @@ export interface StableRunUiAction {
   readonly id: string
   readonly kind: StableRunUiActionKind
   readonly label: string
+  /** Player-visible adjacent destination; only present for a formal move action. */
+  readonly destinationNodeName?: string
+  /** A formal safe preview guarantees death at this decision checkpoint. */
+  readonly guaranteedDeath?: boolean
   readonly contextNote?: string
   /** Internal formal command; React submits it only after explicit confirm. */
   readonly command: StableRunApplicationCommand
@@ -941,6 +946,7 @@ function createCombatActions(
       id: `scene-combat-action:${command.kind}${target}`,
       kind: 'scene-combat-action' as const,
       label,
+      guaranteedDeath: terminal?.deathRisk === 'guaranteed',
       contextNote: command.kind === 'temporary-attack'
         ? '当前没有可用的武器攻击，因此可以使用临时攻击。'
         : undefined,
@@ -1280,6 +1286,8 @@ function createMoveActions(
       id: `scene-move:${edge.edgeId}`,
       kind: 'scene-move' as const,
       label: `前往 ${edge.destinationNodeName}`,
+      destinationNodeName: edge.destinationNodeName,
+      guaranteedDeath: result.sceneOutcome.kind === 'death',
       command: applicationSceneCommand('scene-move', command),
       ghost: createTimedGhost(
         `前往 ${edge.destinationNodeName}`,
@@ -1367,6 +1375,7 @@ function createSearchActions(
       id: `scene-main-search:${illumination}`,
       kind: 'scene-main-search' as const,
       label: `主要搜索 · ${illuminationLabel(illumination)}`,
+      guaranteedDeath: result.sceneOutcome.kind === 'death',
       command: applicationSceneCommand('scene-main-search', command),
       ghost: createTimedGhost(
         `主要搜索 · ${illuminationLabel(illumination)}`,
@@ -2223,6 +2232,7 @@ function inventoryOpportunities(
         id: `backpack:${item.instanceId}`,
         sourceInstanceId: item.instanceId,
         sourceSlotIndex: null,
+        backpackPosition: Object.freeze({ x: placement.x, y: placement.y }),
         container: 'backpack',
         name,
         sourceLabel: `${name}${item.quantity > 1 ? ` ×${item.quantity}` : ''} · 背包格 ${placement.x + 1},${placement.y + 1}`,
@@ -2247,6 +2257,7 @@ function inventoryOpportunities(
         id: `quick-slot:${sourceSlotIndex}:${item.instanceId}`,
         sourceInstanceId: item.instanceId,
         sourceSlotIndex,
+        backpackPosition: null,
         container: 'quick-slot' as const,
         name,
         sourceLabel: `快捷栏${sourceSlotIndex + 1} · ${name}`,
@@ -2563,7 +2574,7 @@ export function previewStableRunUiPickupDraft(
     facts: Object.freeze([
       { label: '本次拾取数量', value: String(result.quantityPicked) },
       { label: '地面剩余数量', value: String(result.quantityRemaining) },
-      { label: '目标坐标', value: `${result.destinationPlacement.x}, ${result.destinationPlacement.y}` },
+      { label: '目标格', value: `${result.destinationPlacement.x + 1}, ${result.destinationPlacement.y + 1}` },
       { label: '旋转状态', value: result.destinationPlacement.rotated ? '已旋转' : '未旋转' },
       { label: '背包负重', value: `${result.backpackWeightBefore} → ${result.backpackWeightAfter}` },
       { label: '拾取后负重状态', value: loadTierName(result.loadTierAfter) },
@@ -2571,6 +2582,27 @@ export function previewStableRunUiPickupDraft(
     candidateCells,
     selectedFootprintCells,
   })
+}
+
+/** UI convenience only: each unrotated row-major candidate is judged by the
+ * existing formal pickup Preview. No inventory placement rule lives here. */
+export function firstFitUnrotatedNodePickup(
+  phase: StableRunPhase,
+  opportunityId: string,
+  quantity: number,
+  dependencies: StableRunUiPresentationDependencies,
+): StableRunUiPickupPreview | null {
+  if (phase.kind !== 'scene-session') return null
+  const { width, height } = phase.payload.scene.backpack
+  for (let y = 0; y < height; y += 1) {
+    for (let x = 0; x < width; x += 1) {
+      const preview = previewStableRunUiPickupDraft(phase, {
+        opportunityId, quantity, x, y, rotated: false,
+      }, dependencies)
+      if (preview?.canExecute && preview.command) return preview
+    }
+  }
+  return null
 }
 
 /**

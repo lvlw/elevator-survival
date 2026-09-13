@@ -67,3 +67,4 @@ export {
   projectStableRunPresentationCues,
   type StableRunPresentationCueProjectionInput,
 } from './presentation-cue-projection'
+export { projectActivityFeedEntry, type ActivityFeedEntry, type ActivityFeedCategory } from './activity-feed'

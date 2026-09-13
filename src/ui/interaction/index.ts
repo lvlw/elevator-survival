@@ -6,6 +6,7 @@ export {
   createStableRunUiInteractionModel,
   previewStableRunUiEndDay,
   previewStableRunUiPickupDraft,
+  firstFitUnrotatedNodePickup,
   previewStableRunUiSceneInventoryDraft,
   previewStableRunUiTaskEventDraft,
   type StableRunUiAction,
@@ -53,3 +54,4 @@ export {
   type StableRunUiHubMaintenanceSource,
   type StableRunUiHubMaintenanceTarget,
 } from './hub-maintenance-interaction'
+export { actionExecutionLevel, type ActionExecutionLevel } from './action-execution-level'

@@ -27,8 +27,8 @@ const expectedPhaseKinds: Readonly<Record<DevelopmentPreviewScenarioKind, string
 const expectedUiHeadings: Readonly<Record<DevelopmentPreviewScenarioKind, string>> = {
   hub: '电梯中枢',
   'hub-returned': '结束本日',
-  'hub-maintenance': '装备维护',
-  scene: '场景导航',
+  'hub-maintenance': '维护台',
+  scene: '当前地点',
   combat: '战斗',
   failure: '失败',
 }

@@ -21,6 +21,7 @@ export interface StableRunUiHubLoadoutOpportunity {
   readonly container: 'warehouse' | 'backpack' | 'equipment' | 'quick-slot'
   readonly equipmentSlot: 'weapon' | 'armor' | 'utility' | null
   readonly quickSlotIndex: number | null
+  readonly backpackPosition: Readonly<{ x: number; y: number }> | null
   readonly name: string
   readonly sourceLabel: string
   readonly quantity: number
@@ -66,13 +67,13 @@ function hubDependencies(phase: Extract<StableRunPhase, { kind: 'current-day-hub
 
 function operationName(kind: StableRunUiHubLoadoutOperation): string {
   const names: Record<StableRunUiHubLoadoutOperation, string> = {
-    'warehouse-to-backpack': '仓库取出至背包',
+    'warehouse-to-backpack': '取出',
     'backpack-to-warehouse': '背包存入仓库',
     'move-backpack-item': '移动／旋转背包物品',
     'split-backpack-stack': '拆分背包堆叠',
     'merge-backpack-stacks': '合并背包堆叠',
     'equip-from-backpack': '从背包装备',
-    'unequip-to-backpack': '卸下装备至背包',
+    'unequip-to-backpack': '卸下',
     'swap-backpack-equipped': '显式交换装备',
     'backpack-to-quick-slot': '背包放入快捷栏',
     'quick-slot-to-backpack': '快捷栏放回背包',
@@ -124,7 +125,7 @@ export function getStableRunUiHubLoadoutOpportunities(
   }
   const warehouse = loadout.warehouse.items.map((item, index) => make(item, {
     id: `warehouse:${item.instanceId}`,
-    container: 'warehouse', equipmentSlot: null, quickSlotIndex: null,
+    container: 'warehouse', equipmentSlot: null, quickSlotIndex: null, backpackPosition: null,
     sourceLabel: `仓库条目${index + 1} · ${dependencies.labels.itemName(item.definitionId, formal.physicalCatalog.get(item.definitionId).name)}${item.quantity > 1 ? ` ×${item.quantity}` : ''}`,
     operations: Object.freeze(['warehouse-to-backpack'] as const),
   }))
@@ -149,7 +150,7 @@ export function getStableRunUiHubLoadoutOpportunities(
     const name = dependencies.labels.itemName(item.definitionId, definition.name)
     return make(item, {
       id: `backpack:${item.instanceId}`,
-      container: 'backpack', equipmentSlot: null, quickSlotIndex: null,
+      container: 'backpack', equipmentSlot: null, quickSlotIndex: null, backpackPosition: Object.freeze({ x: placement.x, y: placement.y }),
       sourceLabel: `${name}${item.quantity > 1 ? ` ×${item.quantity}` : ''} · 背包格 ${placement.x + 1},${placement.y + 1}`,
       operations: Object.freeze(operations),
     })
@@ -160,7 +161,7 @@ export function getStableRunUiHubLoadoutOpportunities(
     const name = dependencies.labels.itemName(item.definitionId, formal.physicalCatalog.get(item.definitionId).name)
     return [make(item, {
       id: `equipment:${slot}:${item.instanceId}`,
-      container: 'equipment', equipmentSlot: slot, quickSlotIndex: null,
+      container: 'equipment', equipmentSlot: slot, quickSlotIndex: null, backpackPosition: null,
       sourceLabel: `${slotName(slot)} · ${name}`,
       operations: Object.freeze(['unequip-to-backpack'] as const),
     })]
@@ -170,7 +171,7 @@ export function getStableRunUiHubLoadoutOpportunities(
     const name = dependencies.labels.itemName(item.definitionId, formal.physicalCatalog.get(item.definitionId).name)
     return [make(item, {
       id: `quick-slot:${index}:${item.instanceId}`,
-      container: 'quick-slot', equipmentSlot: null, quickSlotIndex: index,
+      container: 'quick-slot', equipmentSlot: null, quickSlotIndex: index, backpackPosition: null,
       sourceLabel: `快捷栏${index + 1} · ${name}`,
       operations: Object.freeze(['quick-slot-to-backpack', 'move-quick-slot-item', 'swap-quick-slot-items'] as const),
     })]

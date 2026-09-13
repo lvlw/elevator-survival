@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import type { StableRunUiCombatGhostPreview } from '../interaction'
 import type {
   CombatActionResultViewModel,
@@ -54,11 +55,15 @@ export function BattleStage({
   condition,
   ghost,
   latestResult,
+  actionBar,
+  combatLog,
 }: Readonly<{
   combat: PlayerVisibleCombatViewModel
   condition: PlayerVisibleConditionViewModel
   ghost: StableRunUiCombatGhostPreview | null
   latestResult: CombatActionResultViewModel | null
+  actionBar?: ReactNode
+  combatLog?: ReactNode
 }>) {
   const category = combat.currentIntentCategory === 'basic-attack' ? '基础攻击' : '特殊攻击'
   const speed = combat.currentIntentRelativeSpeed === 'normal' ? '普通' : '缓慢'
@@ -99,12 +104,17 @@ export function BattleStage({
         </ul>}
       </section>
 
-      <div className="battle-stage__versus" aria-hidden="true">VS</div>
+      <div className="battle-stage__figures" aria-label="战斗角色舞台">
+        <div className="battle-stage__player-placeholder" role="img" aria-label="玩家背身形象暂用剪影"><span aria-hidden="true" /></div>
+        <span className="battle-stage__versus" aria-hidden="true">VS</span>
+        {combat.enemyVisualKey
+          ? <img className="enemy-actor-art" src={presentationVisualAssetUrl(combat.enemyVisualKey)} alt="" aria-hidden="true" />
+          : <div className="battle-stage__enemy-placeholder" aria-label="敌人形象暂缺">敌人</div>}
+      </div>
 
       <section className="battle-actor battle-actor--enemy" aria-label="敌人战斗状态">
         <p className="battle-actor__eyebrow">敌人</p>
         <h3>{combat.enemyName}</h3>
-        {combat.enemyVisualKey && <img className="enemy-actor-art" src={presentationVisualAssetUrl(combat.enemyVisualKey)} alt="" aria-hidden="true" />}
         <p>相对生命：<strong>{currentPhase}</strong></p>
         <div className="enemy-health-phases" aria-label={`敌人生命阶段：${currentPhase}`}>
           {healthPhases.map((phase) => <span
@@ -127,11 +137,9 @@ export function BattleStage({
       </div>
       <div className="relative-combat-timeline__link" aria-hidden="true" />
       <div className="relative-combat-timeline__step">
-        <span>下一次决策前</span><strong>{combat.enemyName} · {combat.currentIntent}</strong><small>{timingName(combat.enemyTimingBeforeNextDecision)}</small>
+        <span>下一次决策前</span><strong>{combat.enemyName} · {combat.currentIntent}</strong>
+        <small className="relative-combat-timeline__prediction" role="status">{ghost ? `${ghost.title} · ${ghostRelationshipName(ghost)}` : timingName(combat.enemyTimingBeforeNextDecision)}</small>
       </div>
-      {ghost && <div className="combat-action-ghost" role="status">
-        <span>行动预估</span><strong>{ghost.title}</strong><em>{ghostRelationshipName(ghost)}</em>
-      </div>}
     </section>
 
     <div className="battle-stage__scene-time">
@@ -139,9 +147,12 @@ export function BattleStage({
       <span>若此刻结束，预计结算场景时间：<strong>{combat.sceneTimeIfCombatEndedNow}</strong>（最低 {combat.minimumSceneTime}）</span>
     </div>
     <p className="battle-stage__time-note">战斗行动顺序不等于今日场景时间；战斗结束后才按正式规则结算场景时间。</p>
-    {latestResult && <p className="battle-stage__latest-result" role="status">
-      最近行动已提交：{latestResult.playerAction}；玩家生命 {latestResult.playerHealthBefore} → {latestResult.playerHealthAfter}；敌人相对生命 {healthPhaseName(latestResult.enemyHealthStage)}。
-    </p>}
+    <p className="battle-stage__latest-result" role="status" data-empty={latestResult ? 'false' : 'true'}>
+      {latestResult && <>最近行动已提交：{latestResult.playerAction}；玩家生命 {latestResult.playerHealthBefore} → {latestResult.playerHealthAfter}；敌人相对生命 {healthPhaseName(latestResult.enemyHealthStage)}。
+        {latestResult.weaponBecameBroken && <> {latestResult.weaponName ?? '当前武器'}已损坏。武器攻击已不可用。{latestResult.temporaryAttackAvailable ? '临时攻击现已可用。' : ''}</>}</>}
+    </p>
     <p className="empty-copy">战斗实际场景时间将在战斗结束时一次结算。</p>
+    <div className="battle-stage__action-bar">{actionBar}</div>
+    <div className="battle-stage__combat-log">{combatLog}</div>
   </section>
 }

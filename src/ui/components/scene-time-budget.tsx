@@ -1,5 +1,8 @@
+import { useLayoutEffect, useRef, useState } from 'react'
+import type { CSSProperties } from 'react'
 import type { StableRunUiGhostNumber, StableRunUiGhostPreview } from '../interaction'
 import type { PlayerVisibleSceneTimeBudgetViewModel } from '../presentation'
+import { positionFloating } from './floating-position'
 
 function percentOfTotal(value: number, total: number): number {
   if (total <= 0) return 0
@@ -53,7 +56,32 @@ export function SceneTimeBudget({
     </dl>
     {tone === 'warning' && <p className="time-budget__warning">当前返程将进入强制返程。已越过或抵达安全返程线；仍可在正式预览后自行承担风险。</p>}
     {tone === 'danger' && <p className="time-budget__warning time-budget__warning--danger">当前正式返程预览将导致死亡。</p>}
-    {ghost && <aside className={`ghost-preview ghost-preview--${ghost.tone}`} aria-label="行动预估" aria-live="polite">
+  </section>
+}
+
+export function AnchoredGhostPreview({ ghost, anchor }: Readonly<{
+  ghost: StableRunUiGhostPreview
+  anchor: HTMLElement
+}>) {
+  const ref = useRef<HTMLElement>(null)
+  const [position, setPosition] = useState<Readonly<{ left: number; top: number }> | null>(null)
+  useLayoutEffect(() => {
+    const update = () => {
+      if (!ref.current) return
+      setPosition(positionFloating(anchor.getBoundingClientRect(), {
+        width: ref.current.offsetWidth,
+        height: ref.current.offsetHeight,
+      }, { width: window.innerWidth, height: window.innerHeight }))
+    }
+    update()
+    window.addEventListener('resize', update)
+    window.addEventListener('scroll', update, true)
+    return () => {
+      window.removeEventListener('resize', update)
+      window.removeEventListener('scroll', update, true)
+    }
+  }, [anchor, ghost])
+  return <aside ref={ref} className={`ghost-preview ghost-preview--${ghost.tone}`} aria-label="行动预估" aria-live="polite" style={position ? position as CSSProperties : { visibility: 'hidden' }}>
       <header><span>行动预估</span><strong>{ghost.title}</strong><em>耗时 {ghost.actionTime}</em></header>
       <div className="ghost-preview__budget">
         <span>行动后 {ghostNumberText(ghost.timeAfter)}</span>
@@ -62,6 +90,5 @@ export function SceneTimeBudget({
         <span>生命 {ghostNumberText(ghost.healthAfter)}</span>
       </div>
       {ghost.consequences.length > 0 && <dl>{ghost.consequences.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>}
-    </aside>}
-  </section>
+    </aside>
 }

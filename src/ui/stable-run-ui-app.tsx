@@ -1,12 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import type { ReactNode } from 'react'
 import type { StableRunStore } from '../state/run-store'
 import {
   createStableRunUiInteractionModel,
+  actionExecutionLevel,
   previewStableRunUiEndDay,
   previewStableRunUiHubLoadoutDraft,
   previewStableRunUiHubCareCommand,
   previewStableRunUiHubMaintenanceDraft,
   previewStableRunUiPickupDraft,
+  firstFitUnrotatedNodePickup,
   previewStableRunUiSceneInventoryDraft,
   previewStableRunUiTaskEventDraft,
   type StableRunUiAction,
@@ -54,14 +57,20 @@ import {
   type PresentationVisualKey,
   presentationVisualAssetUrl,
   playPresentationAudioCue,
+  projectActivityFeedEntry,
+  type ActivityFeedEntry,
+  type ActivityFeedCategory,
   projectStableRunPresentationCues,
   uiSelectionCueForCategory,
 } from './presentation'
 import { useStableRunStoreSnapshot } from './run-store/use-stable-run-store-snapshot'
 import { InfoCard } from './components/info-card'
 import { PlayerKnownMap } from './components/player-known-map'
-import { SceneTimeBudget } from './components/scene-time-budget'
+import { AnchoredGhostPreview, SceneTimeBudget } from './components/scene-time-budget'
 import { BattleStage } from './components/battle-stage'
+import { ActivityFeed } from './components/activity-feed'
+import { positionFloating } from './components/floating-position'
+import itemPlaceholderUrl from './assets/item-placeholder.svg'
 
 export interface StableRunUiAppProps {
   readonly store: StableRunStore
@@ -187,11 +196,32 @@ function StatusBar({ status }: Readonly<{ status: PlayerVisibleStatusBarViewMode
   </header>
 }
 
-function ItemCard({ item }: Readonly<{ item: PlayerVisibleItemViewModel }>) {
-  return <span className="item-card-copy">
-    {item.visualKey && <img className="item-card-icon" src={presentationVisualAssetUrl(item.visualKey)} alt="" aria-hidden="true" />}
-    <span><strong>{item.name}</strong> ×{item.quantity}</span>
-    {item.resource && <em>{itemResourceText(item)}</em>}
+function ItemCard({ item, actionLabel, actionText = '操作', onAction, menuActions = [], iconOnly = false }: Readonly<{
+  item: PlayerVisibleItemViewModel
+  actionLabel?: string
+  actionText?: string
+  onAction?: () => void
+  menuActions?: readonly Readonly<{ label: string; onClick(): void }>[]
+  iconOnly?: boolean
+}>) {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [itemAnchor, setItemAnchor] = useState<HTMLElement | null>(null)
+  const contextActions = menuActions.length > 0 ? menuActions : onAction ? [{ label: actionText, onClick: onAction }] : []
+  return <span className={`item-card-local${iconOnly ? ' item-card-local--icon-only' : ''}${menuOpen ? ' item-card-local--menu-open' : ''}`}
+    aria-label={iconOnly ? actionLabel : undefined}
+    onContextMenu={iconOnly && contextActions.length > 0 ? (event) => {
+      event.preventDefault()
+      setItemAnchor(event.currentTarget)
+      setMenuOpen(true)
+    } : undefined}
+    onKeyDown={iconOnly && contextActions.length > 0 ? (event) => {
+      if (event.key === 'Escape') { setMenuOpen(false); return }
+      if (event.key === 'ContextMenu' || (event.shiftKey && event.key === 'F10')) {
+        event.preventDefault()
+        setItemAnchor(event.currentTarget)
+        setMenuOpen(true)
+      }
+    } : undefined}>
     <InfoCard
       label={`查看${item.name}说明`}
       title={item.name}
@@ -200,8 +230,91 @@ function ItemCard({ item }: Readonly<{ item: PlayerVisibleItemViewModel }>) {
         ...item.help.usageHints,
         ...(item.resource ? [`当前${item.resource.label}：${item.resource.current} / ${item.resource.maximum}`] : []),
       ]}
-    />
+      onActivate={!iconOnly && (onAction || menuActions.length > 0) ? (element) => {
+        if (menuActions.length > 0) { setItemAnchor(element); setMenuOpen((value) => !value) }
+        else onAction?.()
+      } : undefined}
+    ><span className="item-card-copy">
+      <img className="item-card-icon" src={item.visualKey ? presentationVisualAssetUrl(item.visualKey) : itemPlaceholderUrl} alt="" aria-hidden="true" onError={(event) => { if (event.currentTarget.src !== itemPlaceholderUrl) event.currentTarget.src = itemPlaceholderUrl }} />
+      {iconOnly ? item.quantity > 1 && <span className="item-card-quantity">{item.quantity}</span> : <><span><strong>{item.name}</strong> ×{item.quantity}</span>{item.resource && <em>{itemResourceText(item)}</em>}</>}
+    </span></InfoCard>
+    {!iconOnly && onAction && <button type="button" className="item-local-action" aria-label={actionLabel ?? `${actionText} ${item.name}`} title={actionLabel ?? `${actionText} ${item.name}`} onClick={onAction}>{actionText}</button>}
+    {iconOnly && contextActions.length > 0
+      ? <ItemContextMenu actions={contextActions} open={menuOpen} anchor={itemAnchor} onOpenChange={setMenuOpen} />
+      : !iconOnly && menuActions.length > 0 && <ItemActionMenu itemName={item.name} actionLabel={actionLabel} actions={menuActions} open={menuOpen} anchor={itemAnchor} onOpenChange={setMenuOpen} />}
   </span>
+}
+
+function ItemContextMenu({ actions, open, anchor, onOpenChange }: Readonly<{
+  actions: readonly Readonly<{ label: string; onClick(): void }>[]
+  open: boolean
+  anchor: HTMLElement | null
+  onOpenChange(open: boolean): void
+}>) {
+  const panelRef = useRef<HTMLDivElement>(null)
+  const [position, setPosition] = useState<Readonly<{ left: number; top: number }> | null>(null)
+  useLayoutEffect(() => {
+    if (!open || !anchor || !panelRef.current) return
+    const panel = panelRef.current
+    const update = () => setPosition(positionFloating(anchor.getBoundingClientRect(), {
+      width: panel.offsetWidth, height: panel.offsetHeight,
+    }, { width: window.innerWidth, height: window.innerHeight }))
+    update()
+    const dismiss = (event: PointerEvent) => {
+      if (!panel.contains(event.target as Node) && !anchor.contains(event.target as Node)) onOpenChange(false)
+    }
+    const dismissKey = (event: KeyboardEvent) => { if (event.key === 'Escape') onOpenChange(false) }
+    document.addEventListener('pointerdown', dismiss)
+    document.addEventListener('keydown', dismissKey)
+    window.addEventListener('resize', update)
+    window.addEventListener('scroll', update, true)
+    return () => {
+      document.removeEventListener('pointerdown', dismiss)
+      document.removeEventListener('keydown', dismissKey)
+      window.removeEventListener('resize', update)
+      window.removeEventListener('scroll', update, true)
+    }
+  }, [open, anchor, onOpenChange])
+  return open && <div ref={panelRef} className="item-local-menu__panel item-context-menu" role="menu" style={position ?? { visibility: 'hidden' }}>
+    {actions.map((action) => <button key={action.label} type="button" role="menuitem" onClick={() => { onOpenChange(false); action.onClick() }}>{action.label}</button>)}
+  </div>
+}
+
+function ItemActionMenu({ itemName, actionLabel, actions, open, anchor, onOpenChange }: Readonly<{
+  itemName: string
+  actionLabel?: string
+  actions: readonly Readonly<{ label: string; onClick(): void }>[]
+  open: boolean
+  anchor: HTMLElement | null
+  onOpenChange(open: boolean): void
+}>) {
+  const detailsRef = useRef<HTMLDetailsElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
+  const [position, setPosition] = useState<Readonly<{ left: number; top: number }> | null>(null)
+  const update = () => {
+    const anchorElement = anchor ?? detailsRef.current?.querySelector('summary')
+    const panel = panelRef.current
+    if (!anchorElement || !panel) return
+    setPosition(positionFloating(anchorElement.getBoundingClientRect(), {
+      width: panel.offsetWidth,
+      height: panel.offsetHeight,
+    }, { width: window.innerWidth, height: window.innerHeight }))
+  }
+  useLayoutEffect(() => {
+    if (!detailsRef.current?.open) return
+    update()
+    window.addEventListener('resize', update)
+    window.addEventListener('scroll', update, true)
+    return () => {
+      window.removeEventListener('resize', update)
+      window.removeEventListener('scroll', update, true)
+    }
+  }, [open, anchor])
+  return <details ref={detailsRef} open={open} className="item-local-menu" onToggle={(event) => {
+    onOpenChange(event.currentTarget.open)
+    if (event.currentTarget.open) update()
+    else setPosition(null)
+  }}><summary aria-label={actionLabel ?? `可用动作 ${itemName}`}>⋯</summary><div ref={panelRef} className="item-local-menu__panel" style={position ?? { visibility: 'hidden' }}>{actions.map((action) => <button key={action.label} type="button" onClick={() => { onOpenChange(false); action.onClick() }}>{action.label}</button>)}</div></details>
 }
 
 function ItemList({ items, empty = '无' }: Readonly<{ items: readonly PlayerVisibleItemViewModel[]; empty?: string }>) {
@@ -209,36 +322,77 @@ function ItemList({ items, empty = '无' }: Readonly<{ items: readonly PlayerVis
   return <ul className="item-list">{items.map((item, index) => <li key={`${item.name}-${index}`}><ItemCard item={item} /></li>)}</ul>
 }
 
-function EquipmentSlot({ label, item }: Readonly<{ label: string; item: PlayerVisibleItemViewModel | null }>) {
+function EquipmentSlot({ label, item, actionLabel, actionText, onAction, menuActions }: Readonly<{ label: string; item: PlayerVisibleItemViewModel | null; actionLabel?: string; actionText?: string; onAction?: () => void; menuActions?: readonly Readonly<{ label: string; onClick(): void }>[] }>) {
   return <article className={`carry-slot equipment-slot${item ? ' carry-slot--filled' : ''}`}>
     <span className="carry-slot__label">{label}</span>
-    {item ? <ItemCard item={item} /> : <span className="carry-slot__empty">空装备槽</span>}
+    {item ? <ItemCard item={item} actionLabel={actionLabel} actionText={actionText} onAction={onAction} menuActions={menuActions} /> : <span className="carry-slot__empty">空装备槽</span>}
   </article>
 }
 
-function QuickSlot({ item, index }: Readonly<{ item: PlayerVisibleItemViewModel | null; index: number }>) {
+function QuickSlot({ item, index, actionLabel, actionText, onAction, menuActions }: Readonly<{ item: PlayerVisibleItemViewModel | null; index: number; actionLabel?: string; actionText?: string; onAction?: () => void; menuActions?: readonly Readonly<{ label: string; onClick(): void }>[] }>) {
   return <article className={`carry-slot quick-slot${item ? ' carry-slot--filled' : ''}`}>
     <span className="carry-slot__label">快捷 {index + 1}</span>
-    {item ? <ItemCard item={item} /> : <span className="carry-slot__empty">空快捷位</span>}
+    {item ? <ItemCard item={item} actionLabel={actionLabel} actionText={actionText} onAction={onAction} menuActions={menuActions} iconOnly /> : <span className="carry-slot__empty">空快捷位</span>}
   </article>
 }
 
-function LoadoutPanel({ loadout, compact = false }: Readonly<{ loadout: PlayerVisibleLoadoutViewModel; compact?: boolean }>) {
+function LoadoutPanel({ loadout, opportunities = [], onLoadout, inventoryOpportunities = [], onInventory }: Readonly<{
+  loadout: PlayerVisibleLoadoutViewModel
+  opportunities?: readonly StableRunUiHubLoadoutOpportunity[]
+  onLoadout?: (opportunityId: string, operation: StableRunUiHubLoadoutOperation) => void
+  inventoryOpportunities?: readonly StableRunUiInventoryOpportunity[]
+  onInventory?: (opportunityId: string, operation: StableRunUiInventoryOperation) => void
+}>) {
+  const [tab, setTab] = useState<'equipment' | 'backpack'>('equipment')
   const slots = [
-    ['武器', loadout.equipment.weapon],
-    ['防具', loadout.equipment.armor],
-    ['实用装备', loadout.equipment.utility],
+    ['武器', 'weapon', loadout.equipment.weapon],
+    ['防具', 'armor', loadout.equipment.armor],
+    ['实用装备', 'utility', loadout.equipment.utility],
   ] as const
-  return <section className={`console-panel carry-panel${compact ? ' carry-panel--compact' : ''}`} aria-labelledby="loadout-heading">
+  const equipmentAction = (slot: 'weapon' | 'armor' | 'utility') => opportunities.find((entry) => entry.container === 'equipment' && entry.equipmentSlot === slot)
+  const quickAction = (index: number) => opportunities.find((entry) => entry.container === 'quick-slot' && entry.quickSlotIndex === index)
+  const sceneQuickAction = (index: number) => inventoryOpportunities.find((entry) => entry.container === 'quick-slot' && entry.sourceSlotIndex === index)
+  const backpackAction = (x: number, y: number) => opportunities.find((entry) => entry.container === 'backpack' && entry.backpackPosition?.x === x && entry.backpackPosition.y === y)
+  const sceneBackpackAction = (x: number, y: number) => inventoryOpportunities.find((entry) => entry.container === 'backpack' && entry.backpackPosition?.x === x && entry.backpackPosition.y === y)
+  const hubItemActions = (opportunity: StableRunUiHubLoadoutOpportunity | undefined) => {
+    if (!opportunity || !onLoadout || opportunity.operations.length === 0) return null
+    const actions = opportunity.operations.map((operation) => ({ label: hubLoadoutOperationLabel(operation), onClick: () => onLoadout(opportunity.id, operation) }))
+    return { label: `整备 ${opportunity.sourceLabel}`, text: actions.length === 1 ? actions[0].label : '操作', onClick: actions.length === 1 ? actions[0].onClick : undefined, menuActions: actions.length > 1 ? actions : [] }
+  }
+  const sceneItemActions = (opportunity: StableRunUiInventoryOpportunity | undefined) => {
+    if (!opportunity || !onInventory || opportunity.operations.length === 0) return null
+    const actions = opportunity.operations.map((operation) => ({ label: inventoryOperationLabel(operation), onClick: () => onInventory(opportunity.id, operation) }))
+    return { label: `整理 ${opportunity.sourceLabel}`, text: actions.length === 1 ? actions[0].label : '操作', onClick: actions.length === 1 ? actions[0].onClick : undefined, menuActions: actions.length > 1 ? actions : [] }
+  }
+  return <section className="console-panel carry-panel" aria-labelledby="loadout-heading">
     <header className="panel-heading"><div><p className="panel-kicker">角色携带</p><h2 id="loadout-heading">装备与背包</h2></div><span className={`load-tier-badge load-tier-badge--${loadout.loadTier}`}>{loadTierName(loadout.loadTier)}</span></header>
-    <div className="equipment-rack">{slots.map(([label, item]) => <EquipmentSlot key={label} label={label} item={item} />)}</div>
-    <div className="quick-slot-rack" aria-label="快捷栏">{loadout.quickSlots.map((item, index) => <QuickSlot item={item} index={index} key={index} />)}</div>
+    <div className="quick-slot-rack" aria-label="快捷栏">{loadout.quickSlots.map((item, index) => {
+      const hub = quickAction(index)
+      const scene = sceneQuickAction(index)
+      const action = hubItemActions(hub) ?? sceneItemActions(scene)
+      return <QuickSlot item={item} index={index} key={index} actionLabel={action?.label} actionText={action?.text} onAction={action?.onClick} menuActions={action?.menuActions} />
+    })}</div>
     <div className="carry-weight"><span>背包负重</span><strong>{loadout.backpackWeight}</strong><span>负重状态：{loadTierName(loadout.loadTier)}</span></div>
-    {!compact && <div className="backpack-compartment">
+    <div className="carry-tabs" role="tablist" aria-label="携带物视图">
+      <button type="button" role="tab" aria-selected={tab === 'equipment'} onClick={() => setTab('equipment')}>装备</button>
+      <button type="button" role="tab" aria-selected={tab === 'backpack'} onClick={() => setTab('backpack')}>背包</button>
+    </div>
+    <div className="carry-panel__details">
+    {tab === 'equipment' && <div className="equipment-rack" role="tabpanel" aria-label="装备">{slots.map(([label, slot, item]) => {
+      const action = equipmentAction(slot)
+      const local = hubItemActions(action)
+      return <EquipmentSlot key={label} label={label} item={item} actionLabel={local?.label} actionText={local?.text} onAction={local?.onClick} menuActions={local?.menuActions} />
+    })}</div>}
+    {tab === 'backpack' && <div className="backpack-compartment" role="tabpanel" aria-label="背包">
       <div className="section-heading"><div><span>6×4</span><h3>背包</h3></div><span>{loadout.backpack.length} 件物品</span></div>
-      <BackpackGrid grid={loadout.backpackGrid} />
-      <ItemList items={loadout.backpack} empty="背包为空" />
+      <BackpackGrid grid={loadout.backpackGrid} itemAction={(x, y) => {
+        const hub = backpackAction(x, y)
+        const scene = sceneBackpackAction(x, y)
+        return hubItemActions(hub) ?? sceneItemActions(scene)
+      }} />
+      {loadout.backpack.length === 0 && <p className="empty-copy">背包为空</p>}
     </div>}
+    </div>
   </section>
 }
 
@@ -264,13 +418,10 @@ function enemyHealthStageName(
           : '失去能力'
 }
 
-function CombatLoadoutPanel({ loadout }: Readonly<{ loadout: PlayerVisibleLoadoutViewModel }>) {
-  return <LoadoutPanel loadout={loadout} compact />
-}
-
 function BackpackGrid({
   grid,
   onAnchor,
+  itemAction,
   candidateCells = [],
   selectedFootprintCells = [],
   selectedAnchor = null,
@@ -278,6 +429,7 @@ function BackpackGrid({
 }: Readonly<{
   grid: PlayerVisibleLoadoutViewModel['backpackGrid']
   onAnchor?: (x: number, y: number) => void
+  itemAction?: (x: number, y: number) => Readonly<{ label: string; text?: string; onClick?: () => void; menuActions?: readonly Readonly<{ label: string; onClick(): void }>[] }> | null
   candidateCells?: readonly Readonly<{ x: number; y: number }>[]
   selectedFootprintCells?: readonly Readonly<{ x: number; y: number }>[]
   selectedAnchor?: Readonly<{ x: number; y: number }> | null
@@ -292,7 +444,7 @@ function BackpackGrid({
     x: index % grid.width,
     y: Math.floor(index / grid.width),
   }))
-  return <div className="backpack-grid" style={{ gridTemplateColumns: `repeat(${grid.width}, minmax(0, 1fr))` }} aria-label={`背包网格 ${grid.width}×${grid.height}`}>
+  return <div className={`backpack-grid${onAnchor ? ' backpack-grid--draft' : ' backpack-grid--display'}`} style={{ gridTemplateColumns: `repeat(${grid.width}, minmax(0, 1fr))` }} aria-label={`背包网格 ${grid.width}×${grid.height}`}>
     {cells.map(({ x, y }) => {
       const occupied = occupiedByCell.get(`${x},${y}`)
       const label = occupied
@@ -312,9 +464,55 @@ function BackpackGrid({
       ].filter(Boolean).join(' ')
       return onAnchor
         ? <button key={`${x},${y}`} type="button" className={className} data-occupied={occupied ? 'true' : 'false'} onClick={() => onAnchor(x, y)}>{label}</button>
-        : <span key={`${x},${y}`} className={className} data-occupied={occupied ? 'true' : 'false'}>{label}</span>
+        : <span key={`${x},${y}`} className={className} data-occupied={occupied ? 'true' : 'false'} aria-label={label}>{occupied ? '' : ''}</span>
     })}
+    {!onAnchor && <div className="backpack-grid__items" style={{ gridTemplateColumns: `repeat(${grid.width}, minmax(0, 1fr))`, gridTemplateRows: `repeat(${grid.height}, minmax(0, 1fr))` }}>
+      {grid.items.map((entry, index) => {
+        const action = itemAction?.(entry.x, entry.y)
+        return <span className="backpack-grid__item" key={`${entry.name}-${index}`} style={{ gridColumn: `${entry.x + 1} / span ${entry.width}`, gridRow: `${entry.y + 1} / span ${entry.height}` }}>
+          <ItemCard item={entry.item} actionLabel={action?.label} actionText={action?.text} onAction={action?.onClick} menuActions={action?.menuActions} iconOnly />
+        </span>
+      })}
+    </div>}
   </div>
+}
+
+function actionIcon(kind: StableRunUiAction['kind']): string {
+  return ({
+    'launch-main-scene': '↗', 'end-day': '◷', 'scene-move': '➜', 'scene-main-search': '⌕',
+    'scene-obstacle': '◇', 'scene-task-event': '◆', 'scene-medical': '✚', 'scene-battery': 'ϟ',
+    'scene-inventory': '▦', 'scene-combat-action': '⚔', 'scene-withdraw': '↩',
+    'settle-terminal-scene': '↩', 'hub-medical': '✚', 'hub-survival': '◈',
+  })[kind]
+}
+
+function shortActionLabel(action: StableRunUiAction): string {
+  return action.kind === 'scene-battery' ? '充能'
+    : action.kind === 'scene-main-search'
+    ? action.label.replace('主要搜索 · 使用手电筒', '手电搜索').replace('主要搜索 · 无照明', '无照明搜索')
+    : action.kind === 'scene-obstacle'
+      ? action.label.split(' · ').at(-1) ?? action.label
+      : action.kind === 'scene-combat-action' || action.kind === 'scene-medical' || action.kind === 'hub-medical' || action.kind === 'hub-survival'
+        ? action.label.split(' · ')[0]
+        : action.label
+}
+
+function ActionChip({ action, onPreview, onGhostEnter, onGhostLeave }: Readonly<{
+  action: StableRunUiAction
+  onPreview(actionId: string): void
+  onGhostEnter?(actionId: string, source: 'mouse' | 'keyboard', anchor: HTMLElement): void
+  onGhostLeave?(actionId: string, source: 'mouse' | 'keyboard'): void
+}>) {
+  return <button type="button"
+    className={`action-button action-chip${action.ghost || action.combatGhost ? ' action-button--ghostable' : ''}`}
+    aria-label={action.label}
+    title={action.label}
+    onMouseEnter={(event) => onGhostEnter?.(action.id, 'mouse', event.currentTarget)}
+    onMouseLeave={() => onGhostLeave?.(action.id, 'mouse')}
+    onFocus={(event) => onGhostEnter?.(action.id, 'keyboard', event.currentTarget)}
+    onBlur={() => onGhostLeave?.(action.id, 'keyboard')}
+    onClick={() => onPreview(action.id)}
+  ><span className="action-icon" aria-hidden="true">{actionIcon(action.kind)}</span><span>{shortActionLabel(action)}</span></button>
 }
 
 function ActionPanel({
@@ -322,19 +520,21 @@ function ActionPanel({
   onPreview,
   onGhostEnter = () => undefined,
   onGhostLeave = () => undefined,
+  extraActions,
 }: Readonly<{
   actions: readonly StableRunUiAction[]
   onPreview(actionId: string): void
-  onGhostEnter?(actionId: string, source: 'mouse' | 'keyboard'): void
+  onGhostEnter?(actionId: string, source: 'mouse' | 'keyboard', anchor: HTMLElement): void
   onGhostLeave?(actionId: string, source: 'mouse' | 'keyboard'): void
+  extraActions?: ReactNode
 }>) {
-  if (actions.length === 0) return null
+  if (actions.length === 0 && !extraActions) return null
   const groups = [
+    { title: '本日流程', kinds: ['launch-main-scene', 'end-day'] },
     { title: '移动与返程', kinds: ['scene-move', 'scene-withdraw', 'settle-terminal-scene'] },
+    { title: '战斗行动', kinds: ['scene-combat-action'] },
     { title: '搜索与任务', kinds: ['scene-main-search', 'scene-obstacle', 'scene-task-event'] },
     { title: '医疗与补给', kinds: ['scene-medical', 'scene-battery', 'hub-medical', 'hub-survival'] },
-    { title: '战斗行动', kinds: ['scene-combat-action'] },
-    { title: '本日流程', kinds: ['launch-main-scene', 'end-day'] },
   ] as const
   const grouped = groups.map((group) => ({
     ...group,
@@ -345,18 +545,11 @@ function ActionPanel({
     {grouped.map((group) => <section className="action-group" key={group.title}>
       <h3>{group.title}</h3>
       <div className="action-list">{group.actions.map((action) => <div className="action-entry" key={action.id}>
-        <button
-          type="button"
-          className={`action-button${action.ghost || action.combatGhost ? ' action-button--ghostable' : ''}`}
-          onMouseEnter={() => onGhostEnter(action.id, 'mouse')}
-          onMouseLeave={() => onGhostLeave(action.id, 'mouse')}
-          onFocus={() => onGhostEnter(action.id, 'keyboard')}
-          onBlur={() => onGhostLeave(action.id, 'keyboard')}
-          onClick={() => onPreview(action.id)}
-        >{action.label}</button>
+        <ActionChip action={action} onPreview={onPreview} onGhostEnter={onGhostEnter} onGhostLeave={onGhostLeave} />
         {action.contextNote && <small>{action.contextNote}</small>}
       </div>)}</div>
     </section>)}
+    {extraActions}
   </section>
 }
 
@@ -369,23 +562,49 @@ function HubView({
   onLoadout,
   maintenanceOpportunities,
   onMaintenance,
+  activityEntries,
+  returnSummaryAvailable,
+  onViewReturnSummary,
+  detailsAvailable,
+  onViewDetails,
 }: Readonly<{
   model: Extract<StableRunPlayerViewModel, { kind: 'current-day-hub' }>
   backgroundKey?: PresentationVisualKey | null
   actions: readonly StableRunUiAction[]
   onPreview(actionId: string): void
   loadoutOpportunities: readonly StableRunUiHubLoadoutOpportunity[]
-  onLoadout(opportunityId: string): void
+  onLoadout(opportunityId: string, operation: StableRunUiHubLoadoutOperation): void
   maintenanceOpportunities: readonly StableRunUiHubMaintenanceOpportunity[]
   onMaintenance(operation: StableRunUiHubMaintenanceOpportunity['operation']): void
+  activityEntries: readonly ActivityFeedEntry[]
+  returnSummaryAvailable: boolean
+  onViewReturnSummary(): void
+  detailsAvailable: boolean
+  onViewDetails(): void
 }>) {
   return <main className="console-layout game-shell-layout">
     <StatusBar status={model.status} />
     <div className="console-grid">
-      <section className="console-panel game-stage hub-stage">{backgroundKey && <div className="presentation-background presentation-background--hub" style={{ backgroundImage: `url(${presentationVisualAssetUrl(backgroundKey)})` }} aria-hidden="true" />}<header className="stage-heading"><p className="panel-kicker">电梯中枢</p><h1>今日整备</h1><p>在出发前调整携带、恢复状态并确认行动计划。</p></header><div className="mission-briefing"><h2>当前任务</h2><p><strong>{model.hub.mission.objective}</strong></p><p>{model.hub.mission.completion}</p></div>{model.hub.dayScopeNotice && <p className="preview-warning">{model.hub.dayScopeNotice}</p>}<dl className="slot-list"><div><dt>今日基础维修点</dt><dd>{model.hub.maintenanceLaborRemaining} / {model.hub.maintenanceLaborTotal}</dd></div></dl><p className="empty-copy">每使用1点，恢复指定装备1点对应资源；今日未用点数不累积到次日。</p>{maintenanceOpportunities.length > 0 && <><h2>装备维护</h2><div className="action-list">{maintenanceOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onMaintenance(opportunity.operation)}>{opportunity.label}</button>)}</div></>}<h2>仓库</h2><ItemList items={model.hub.warehouse} empty="仓库为空" />{loadoutOpportunities.filter(({ container }) => container === 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}<h2>任务储存区（只读）</h2><ItemList items={model.hub.taskStorage} empty="暂无任务物品" /></section>
-      <LoadoutPanel loadout={model.loadout} />
-      {loadoutOpportunities.some(({ container }) => container !== 'warehouse') && <section className="console-panel"><h2>当前携带物整理</h2>{loadoutOpportunities.filter(({ container }) => container !== 'warehouse').map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onLoadout(opportunity.id)}>整备 {opportunity.sourceLabel}</button>)}</section>}
-      <ActionPanel actions={actions} onPreview={onPreview} />
+      <section className="console-panel game-stage hub-stage">{backgroundKey && <div className="presentation-background presentation-background--hub" style={{ backgroundImage: `url(${presentationVisualAssetUrl(backgroundKey)})` }} aria-hidden="true" />}
+        <header className="stage-heading"><p className="panel-kicker">电梯中枢</p><h1>今日整备</h1></header>
+        <div className="hub-stage__content">
+          {returnSummaryAvailable && <button type="button" className="action-button action-chip" onClick={onViewReturnSummary}>查看返程摘要</button>}
+          <div className="mission-briefing"><span className="panel-kicker">当前任务</span><strong>{model.hub.mission.objective}</strong><details><summary>任务说明</summary><p>{model.hub.mission.completion}</p></details></div>
+          {model.hub.dayScopeNotice && <details className="hub-stage__scope"><summary>当前版本范围</summary><p>{model.hub.dayScopeNotice}</p></details>}
+          <div className="hub-stage__resources"><strong>今日基础维修点：{model.hub.maintenanceLaborRemaining} / {model.hub.maintenanceLaborTotal}</strong><InfoCard label="查看基础维修说明" title="基础维修" summary="每使用1点，恢复指定基础装备1点对应资源。今日未用点数不累积。" /></div>
+          {maintenanceOpportunities.length > 0 && <section className="hub-stage__station"><h2>维护台</h2><div className="action-list">{maintenanceOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button action-chip" aria-label={opportunity.label} title={opportunity.label} onClick={() => onMaintenance(opportunity.operation)}><span className="action-icon" aria-hidden="true">⚙</span><span>{opportunity.label.split(' · ')[0]}</span></button>)}</div></section>}
+          <section className="hub-stage__station"><h2>仓库</h2>{model.hub.warehouse.length === 0 ? <p className="empty-copy">仓库为空</p> : <ul className="item-list">{model.hub.warehouse.map((item, index) => {
+            const opportunity = loadoutOpportunities.filter(({ container }) => container === 'warehouse')[index]
+            const actions = opportunity?.operations.map((operation) => ({ label: hubLoadoutOperationLabel(operation), onClick: () => onLoadout(opportunity.id, operation) })) ?? []
+            return <li key={`${item.name}-${index}`}><ItemCard item={item} actionLabel={opportunity ? `整备 ${opportunity.sourceLabel}` : undefined} actionText={actions.length === 1 ? actions[0].label : undefined} onAction={actions.length === 1 ? actions[0].onClick : undefined} menuActions={actions.length > 1 ? actions : []} /></li>
+          })}</ul>}</section>
+          <details className="hub-stage__task-storage"><summary>任务储存区</summary><ItemList items={model.hub.taskStorage} empty="暂无任务物品" /></details>
+          <ActionPanel actions={actions} onPreview={onPreview} />
+        </div>
+        <ActivityFeed entries={activityEntries} />
+        {detailsAvailable && <button type="button" className="stage-detail-button" onClick={onViewDetails}>查看最近行动详情</button>}
+      </section>
+      <LoadoutPanel loadout={model.loadout} opportunities={loadoutOpportunities.filter(({ container }) => container !== 'warehouse')} onLoadout={onLoadout} />
     </div>
   </main>
 }
@@ -396,6 +615,7 @@ function SceneView({
   ghost,
   combatGhost,
   combatActionResult,
+  onCloseCombatResult,
   onPreview,
   onGhostEnter,
   onGhostLeave,
@@ -405,61 +625,85 @@ function SceneView({
   onTaskEvent,
   inventoryOpportunities,
   onInventory,
+  activityEntries,
+  pendingWithdrawal,
+  onCancelWithdrawal,
+  onConfirmWithdrawal,
+  autoOpenSearchResultNode,
+  detailsAvailable,
+  onViewDetails,
 }: Readonly<{
   model: Extract<StableRunPlayerViewModel, { kind: 'scene-session' }>
   actions: readonly StableRunUiAction[]
   ghost: StableRunUiGhostPreview | null
   combatGhost: StableRunUiCombatGhostPreview | null
   combatActionResult: CombatActionResultViewModel | null
+  onCloseCombatResult(): void
   onPreview(actionId: string): void
-  onGhostEnter(actionId: string, source: 'mouse' | 'keyboard'): void
+  onGhostEnter(actionId: string, source: 'mouse' | 'keyboard', anchor: HTMLElement): void
   onGhostLeave(actionId: string, source: 'mouse' | 'keyboard'): void
   pickupOpportunities: readonly StableRunUiPickupOpportunity[]
   onPickup(opportunityId: string): void
   taskEventOpportunities: readonly StableRunUiTaskEventOpportunity[]
   onTaskEvent(opportunityId: string): void
   inventoryOpportunities: readonly StableRunUiInventoryOpportunity[]
-  onInventory(opportunityId: string): void
+  onInventory(opportunityId: string, operation: StableRunUiInventoryOperation): void
+  activityEntries: readonly ActivityFeedEntry[]
+  pendingWithdrawal: StableRunUiAction | null
+  onCancelWithdrawal(): void
+  onConfirmWithdrawal(): void
+  autoOpenSearchResultNode: string | null
+  detailsAvailable: boolean
+  onViewDetails(): void
 }>) {
   const { scene } = model
-  const ordinaryActions = actions.filter(({ kind }) => kind !== 'scene-task-event')
+  const [openResultNode, setOpenResultNode] = useState<string | null>(null)
+  useEffect(() => {
+    if (autoOpenSearchResultNode) setOpenResultNode(autoOpenSearchResultNode)
+  }, [autoOpenSearchResultNode])
+  const moveActions = actions.filter((action) => action.kind === 'scene-move')
+  const searchActions = actions.filter((action) => action.kind === 'scene-main-search')
+  const obstacleActions = actions.filter((action) => action.kind === 'scene-obstacle')
+  const combatActions = actions.filter((action) => action.kind === 'scene-combat-action')
+  const withdrawalAction = actions.find((action) => action.kind === 'scene-withdraw')
+  const supportActions = actions.filter((action) => ['scene-medical', 'scene-battery', 'settle-terminal-scene'].includes(action.kind))
+  const searchResultsOpen = scene.currentNodeSearchState === 'searched' && openResultNode === scene.currentNodeName
+  if (scene.combat) return <main className="console-layout game-shell-layout game-shell-layout--battle">
+    <StatusBar status={model.status} />
+    <div className="console-grid console-grid--battle"><section className="console-panel game-stage scene-stage scene-stage--combat" aria-label="战斗主舞台">
+      <BattleStage combat={scene.combat} condition={model.status.condition} ghost={combatGhost} latestResult={combatActionResult}
+        actionBar={<ActionPanel actions={combatActions} onPreview={onPreview} onGhostEnter={onGhostEnter} onGhostLeave={onGhostLeave} />}
+        combatLog={<ActivityFeed entries={activityEntries} combatOnly />} />
+    </section></div>
+  </main>
   return <main className="console-layout game-shell-layout">
     <StatusBar status={model.status} />
     <div className="console-grid">
-      <section className="console-panel game-stage scene-stage">
-        <header className="stage-heading"><p className="panel-kicker">场景导航</p><h1><span className="location-prefix">当前位置：</span>{scene.currentNodeName}</h1><p>{sceneStatusName(scene.status)}</p></header>
-        {scene.currentNodeVisualKey && <div className="scene-node-art" style={{ backgroundImage: `url(${presentationVisualAssetUrl(scene.currentNodeVisualKey)})`, width: '100%', maxWidth: '25rem', aspectRatio: '16 / 9' }} aria-hidden="true" />}
-        <SceneTimeBudget budget={scene.timeBudget} ghost={ghost} />
-        {scene.combat && <BattleStage combat={scene.combat} condition={model.status.condition} ghost={combatGhost} latestResult={combatActionResult} />}
-        <div className={scene.combat ? 'combat-map-context' : undefined}><PlayerKnownMap map={scene.navigationMap} /></div>
-        <p>当前节点搜索：<strong>{searchStateName(scene.currentNodeSearchState)}</strong></p>
-        <div className="obstacle-block"><h2>当前明显障碍</h2>{scene.currentObstacles.length === 0 ? <p className="empty-copy">当前没有需要处理的明显障碍</p> : <ul className="item-list">{scene.currentObstacles.map(({ name, visualKey }) => <li key={name}>{visualKey && <img className="obstacle-art" src={presentationVisualAssetUrl(visualKey)} alt="" aria-hidden="true" />}<strong>{name}</strong></li>)}</ul>}</div>
-        <h2>当前节点地面物品</h2>
-        <ItemList items={scene.groundItems} empty="未发现地面物品" />
-        {pickupOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onPickup(opportunity.id)}>拾取 {opportunity.name}</button>)}
-        {taskEventOpportunities.length > 0 && <section className="task-event-comparison" aria-labelledby="task-event-methods-heading">
-          <header><p className="panel-kicker">密封病原样本箱</p><h2 id="task-event-methods-heading">先比较提取方式</h2><p>比较时间、污染风险与防护代价后，再为成功提取选择背包位置。</p>{taskEventOpportunities[0]?.visualKey && <img className="task-event-art" src={presentationVisualAssetUrl(taskEventOpportunities[0].visualKey)} alt="密封病原样本箱" />}</header>
-          <div className="task-event-methods">{taskEventOpportunities.map((opportunity) => <article className="task-event-method" key={opportunity.id}>
-            <h3>{opportunity.label}</h3>
-            <dl>{opportunity.comparisonFacts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>
-            <button
-              type="button"
-              className="action-button action-button--ghostable"
-              onMouseEnter={() => onGhostEnter(opportunity.id, 'mouse')}
-              onMouseLeave={() => onGhostLeave(opportunity.id, 'mouse')}
-              onFocus={() => onGhostEnter(opportunity.id, 'keyboard')}
-              onBlur={() => onGhostLeave(opportunity.id, 'keyboard')}
-              onClick={() => onTaskEvent(opportunity.id)}
-            >{opportunity.label}</button>
-          </article>)}</div>
-        </section>}
-        {inventoryOpportunities.length > 0 && <><h2>场景整理</h2>{inventoryOpportunities.map((opportunity) => <button key={opportunity.id} type="button" className="action-button" onClick={() => onInventory(opportunity.id)}>整理 {opportunity.sourceLabel}</button>)}</>}
+      <section className={`console-panel game-stage scene-stage${scene.combat ? ' scene-stage--combat' : ''}`}>
+        {scene.currentNodeVisualKey && <div className="presentation-background presentation-background--room" style={{ backgroundImage: `url(${presentationVisualAssetUrl(scene.currentNodeVisualKey)})` }} aria-hidden="true" />}
+        <header className="stage-heading"><p className="panel-kicker">当前地点 · {sceneStatusName(scene.status)}</p><h1>{scene.currentNodeName}</h1></header>
+        <div className="scene-stage__primary">
+          <SceneTimeBudget budget={scene.timeBudget} ghost={ghost} />
+          {combatActionResult && combatActionResult.outcome !== 'continue' && <CombatTerminalResult result={combatActionResult} onClose={onCloseCombatResult} />}
+          {scene.status === 'active' && <div className="scene-stage__objects">
+            <section className="stage-object" aria-label="当前位置搜索"><div className="stage-object__heading"><span className="action-icon" aria-hidden="true">⌕</span><div><strong>主要搜索</strong><small>当前节点搜索：{searchStateName(scene.currentNodeSearchState)}</small></div></div>
+              {searchActions.length > 0 && <div className="action-list">{searchActions.map((action) => <ActionChip key={action.id} action={action} onPreview={onPreview} onGhostEnter={onGhostEnter} onGhostLeave={onGhostLeave} />)}</div>}
+              {scene.currentNodeSearchState === 'searched' && <button type="button" className="action-button action-chip" aria-label="查看搜索结果" onClick={() => setOpenResultNode(searchResultsOpen ? null : scene.currentNodeName)}><span className="action-icon" aria-hidden="true">▣</span>查看搜索结果</button>}
+        {searchResultsOpen && <section className="stage-result-panel" role="dialog" aria-modal="false" aria-label="搜索结果"><div className="stage-result-panel__heading"><div><span className="panel-kicker">{scene.currentNodeName}</span><h2>搜索结果</h2></div><button type="button" onClick={() => setOpenResultNode(null)}>关闭</button></div><p>已完成搜索。当前留在节点的物品：</p>{scene.groundItems.length === 0 ? <p className="empty-copy">无可拾取物品</p> : <ul className="item-list">{scene.groundItems.map((item, index) => <li key={`${item.name}-${index}`}><ItemCard item={item} actionLabel={`拾取 ${item.name}`} actionText="拾取" onAction={pickupOpportunities[index] ? () => onPickup(pickupOpportunities[index].id) : undefined} /></li>)}</ul>}</section>}
+            </section>
+            {scene.currentObstacles.length > 0 && <section className="stage-object obstacle-block"><div className="stage-object__heading"><span className="action-icon" aria-hidden="true">◇</span><strong>当前明显障碍</strong></div><div className="stage-object__art">{scene.currentObstacles.map(({ name, visualKey }) => <span key={name}>{visualKey && <img className="obstacle-art" src={presentationVisualAssetUrl(visualKey)} alt="" aria-hidden="true" />}{name}</span>)}</div><div className="action-list">{obstacleActions.map((action) => <ActionChip key={action.id} action={action} onPreview={onPreview} onGhostEnter={onGhostEnter} onGhostLeave={onGhostLeave} />)}</div></section>}
+            {taskEventOpportunities.length > 0 && <section className="stage-object task-event-comparison" aria-labelledby="task-event-methods-heading"><div className="stage-object__heading"><span className="action-icon" aria-hidden="true">◆</span><strong id="task-event-methods-heading">密封病原样本箱</strong></div><p>比较提取方式，再明确选择背包位置。</p><div className="task-event-methods">{taskEventOpportunities.map((opportunity) => <article className="task-event-method" key={opportunity.id}><strong>{opportunity.label}</strong><small>{opportunity.comparisonFacts.slice(0, 3).map((fact) => `${fact.label} ${fact.value}`).join(' · ')}</small>{opportunity.comparisonFacts.length > 3 && <details><summary>详细后果</summary><small>{opportunity.comparisonFacts.slice(3).map((fact) => `${fact.label}${fact.value}`).join(' · ')}</small></details>}<button type="button" className="action-button action-chip" aria-label={opportunity.label} onMouseEnter={(event) => onGhostEnter(opportunity.id, 'mouse', event.currentTarget)} onMouseLeave={() => onGhostLeave(opportunity.id, 'mouse')} onFocus={(event) => onGhostEnter(opportunity.id, 'keyboard', event.currentTarget)} onBlur={() => onGhostLeave(opportunity.id, 'keyboard')} onClick={() => onTaskEvent(opportunity.id)}>选择</button></article>)}</div></section>}
+            {scene.groundItems.length > 0 && scene.currentNodeSearchState !== 'searched' && <section className="stage-object"><div className="stage-object__heading"><span className="action-icon" aria-hidden="true">▦</span><strong>当前节点地面物品</strong></div><ul className="item-list">{scene.groundItems.map((item, index) => <li key={`${item.name}-${index}`}><ItemCard item={item} actionLabel={`拾取 ${item.name}`} actionText="拾取" onAction={pickupOpportunities[index] ? () => onPickup(pickupOpportunities[index].id) : undefined} /></li>)}</ul></section>}
+          </div>}
+          {scene.status !== 'active' && <section className="stage-object terminal-stage-message"><h2>场景结果 · {sceneStatusName(scene.status)}</h2><p>下一步由你显式结算；不会自动进入中枢或推进日期。</p></section>}
+        </div>
+        {scene.status === 'active' && <nav className="scene-stage__routes" aria-label="当前可去方向"><strong>可去方向</strong><div className="action-list">{moveActions.length === 0 ? <span className="empty-copy">当前没有可通行的相邻方向</span> : moveActions.map((action) => <ActionChip key={action.id} action={action} onPreview={onPreview} onGhostEnter={onGhostEnter} onGhostLeave={onGhostLeave} />)}</div>{withdrawalAction && <div className="scene-stage__return"><ActionChip action={withdrawalAction} onPreview={onPreview} onGhostEnter={onGhostEnter} onGhostLeave={onGhostLeave} />{pendingWithdrawal && <section className="scene-stage__return-preview" role="dialog" aria-label="确认主动返程"><h2>本次返程</h2><dl className="preview-facts">{pendingWithdrawal.preview.facts.filter(({ label }) => ['返程路线', '预计返程时间', '返程后生命', '预计结果'].includes(label)).map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>{pendingWithdrawal.preview.warnings.map((warning) => <p className="preview-warning" key={warning}>{warning}</p>)}<div className="preview-controls"><button type="button" onClick={onCancelWithdrawal}>继续探索</button><button type="button" className="confirm-action" onClick={onConfirmWithdrawal}>确认返程</button></div></section>}</div>}</nav>}
+        {supportActions.length > 0 && <div className="scene-stage__support"><ActionPanel actions={supportActions} onPreview={onPreview} onGhostEnter={onGhostEnter} onGhostLeave={onGhostLeave} /></div>}
+        <ActivityFeed entries={activityEntries} />
+        {detailsAvailable && <button type="button" className="stage-detail-button" onClick={onViewDetails}>查看最近行动详情</button>}
+        <div className="scene-map-dock"><PlayerKnownMap map={scene.navigationMap} /></div>
       </section>
-      {scene.status === 'combat'
-        ? <CombatLoadoutPanel loadout={scene.loadout} />
-        : <LoadoutPanel loadout={scene.loadout} />}
-      <ActionPanel actions={ordinaryActions} onPreview={onPreview} onGhostEnter={onGhostEnter} onGhostLeave={onGhostLeave} />
-      {scene.status !== 'active' && scene.status !== 'combat' && <section className="console-panel"><h2>场景结果</h2><p>{sceneStatusName(scene.status)}</p><p className="empty-copy">请显式确认返程或战败结算；本步不会自动推进日期。</p></section>}
+      <LoadoutPanel loadout={scene.loadout} inventoryOpportunities={inventoryOpportunities} onInventory={onInventory} />
     </div>
   </main>
 }
@@ -487,7 +731,7 @@ function TaskEventDialog({
   onCancel(): void
   onConfirm(): void
 }>) {
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="task-event-title">
+  return <div className="draft-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-labelledby="task-event-title">
     <h2 id="task-event-title">{opportunity.eventName} · {opportunity.label}</h2>
     {opportunity.visualKey && <img className="preview-art" src={presentationVisualAssetUrl(opportunity.visualKey)} alt="密封病原样本箱" />}
     <p>取得：<strong>{opportunity.outputName}</strong> · {opportunity.width}×{opportunity.height} · 重量 {opportunity.unitWeight}</p>
@@ -510,12 +754,13 @@ function PickupDialog({
   quantity,
   x,
   y,
+  placementSelected,
   rotated,
   onQuantity,
   onRotate,
   onAnchor,
+  onAutoPlace,
   onCancel,
-  onConfirm,
 }: Readonly<{
   opportunity: StableRunUiPickupOpportunity
   loadout: PlayerVisibleLoadoutViewModel
@@ -523,22 +768,24 @@ function PickupDialog({
   quantity: number
   x: number
   y: number
+  placementSelected: boolean
   rotated: boolean
   onQuantity(value: number): void
   onRotate(value: boolean): void
   onAnchor(x: number, y: number): void
+  onAutoPlace(): void
   onCancel(): void
-  onConfirm(): void
 }>) {
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="pickup-title">
+  return <div className="draft-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-labelledby="pickup-title">
     <h2 id="pickup-title">拾取 {opportunity.name}</h2>
     <p>地面剩余数量：<strong>{opportunity.groundQuantity}</strong></p>
     <label>本次拾取数量 <input aria-label="本次拾取数量" type="number" min="1" max={opportunity.groundQuantity} value={quantity} onChange={(event) => onQuantity(Number(event.target.value))} /></label>
     {opportunity.canRotate && <label><input aria-label="旋转物品" type="checkbox" checked={rotated} onChange={(event) => onRotate(event.target.checked)} />旋转</label>}
-    <p>目标格：{x + 1}, {y + 1}</p>
-    <BackpackGrid grid={loadout.backpackGrid} candidateCells={preview?.candidateCells} selectedFootprintCells={preview?.selectedFootprintCells} selectedAnchor={x === null || y === null ? null : { x, y }} placementValid={preview?.canExecute ?? false} onAnchor={onAnchor} />
-    {preview?.canExecute ? <dl className="preview-facts">{preview.facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl> : <p className="preview-warning">{preview?.rejection ?? '状态已变化，请重新选择。'}</p>}
-    <div className="preview-controls"><button type="button" onClick={onCancel}>取消</button><button type="button" className="confirm-action" disabled={!preview?.canExecute} onClick={onConfirm}>确认拾取</button></div>
+    <p>目标格：{placementSelected ? `${x + 1}, ${y + 1}` : '尚未选择'}</p>
+    <BackpackGrid grid={loadout.backpackGrid} candidateCells={preview?.candidateCells} selectedFootprintCells={placementSelected ? preview?.selectedFootprintCells : []} selectedAnchor={placementSelected ? { x, y } : null} placementValid={placementSelected && (preview?.canExecute ?? false)} onAnchor={onAnchor} />
+    <p className="preview-warning">{preview?.canExecute ? '点击合法格子即正式拾取；也可按当前数量尝试未旋转的自动放置。' : preview?.rejection ?? '无可用位置时可旋转并手动选择；状态变化后请重新选择。'}</p>
+    <button type="button" onClick={onAutoPlace}>按此数量拾取（自动放置）</button>
+    <div className="preview-controls"><button type="button" onClick={onCancel}>取消</button></div>
   </section></div>
 }
 
@@ -568,14 +815,12 @@ function SceneInventoryDialog({
   y,
   rotated,
   preview,
-  onOperation,
   onQuantity,
   onTargetOpportunity,
   onTargetSlot,
   onAnchor,
   onRotate,
   onCancel,
-  onConfirm,
 }: Readonly<{
   opportunity: StableRunUiInventoryOpportunity
   opportunities: readonly StableRunUiInventoryOpportunity[]
@@ -588,26 +833,21 @@ function SceneInventoryDialog({
   y: number | null
   rotated: boolean
   preview: ReturnType<typeof previewStableRunUiSceneInventoryDraft>
-  onOperation(value: StableRunUiInventoryOperation): void
   onQuantity(value: number | null): void
   onTargetOpportunity(value: string): void
   onTargetSlot(value: number): void
   onAnchor(x: number, y: number): void
   onRotate(value: boolean): void
   onCancel(): void
-  onConfirm(): void
 }>) {
   const needsPlacement = operation === 'move' || operation === 'split' ||
     operation === 'quick-slot-to-backpack'
   const mergeTargets = opportunities.filter(
     (candidate) => candidate.container === 'backpack' && candidate.id !== opportunity.id,
   )
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="scene-inventory-title">
-    <h2 id="scene-inventory-title">场景整理</h2>
+  return <div className="draft-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-labelledby="scene-inventory-title">
+    <h2 id="scene-inventory-title">{operation ? inventoryOperationLabel(operation) : '场景整理'}</h2>
     <p>来源：<strong>{opportunity.sourceLabel}</strong></p>
-    <div className="preview-controls" aria-label="整理操作">
-      {opportunity.operations.map((candidate) => <button key={candidate} type="button" className={operation === candidate ? 'confirm-action' : ''} onClick={() => onOperation(candidate)}>{inventoryOperationLabel(candidate)}</button>)}
-    </div>
     {(operation === 'split' || operation === 'merge') && <label>明确数量 <input aria-label="整理数量" type="number" min="1" value={quantity ?? ''} onChange={(event) => onQuantity(event.target.value === '' ? null : Number(event.target.value))} /></label>}
     {operation === 'merge' && <><h3>明确目标堆叠</h3><div className="preview-controls">{mergeTargets.map((target) => <button key={target.id} type="button" className={targetOpportunityId === target.id ? 'confirm-action' : ''} onClick={() => onTargetOpportunity(target.id)}>{target.sourceLabel}</button>)}</div></>}
     {operation === 'backpack-to-quick-slot' && <><h3>明确目标快捷栏</h3><div className="preview-controls">{loadout.quickSlots.map((slot, index) => <button key={index} type="button" className={targetSlotIndex === index ? 'confirm-action' : ''} onClick={() => onTargetSlot(index)}>快捷栏{index + 1} · {slot?.name ?? '空'}</button>)}</div></>}
@@ -622,7 +862,7 @@ function SceneInventoryDialog({
       : <p className="preview-warning">{operation === null
         ? '请明确选择一项整理操作。'
         : preview?.rejection ?? '请明确选择数量、目标快捷栏、目标堆叠或背包放置位置。'}</p>}
-    <div className="preview-controls"><button type="button" onClick={onCancel}>取消</button><button type="button" className="confirm-action" disabled={!preview?.canExecute} onClick={onConfirm}>确认整理</button></div>
+    <div className="preview-controls"><button type="button" onClick={onCancel}>取消</button></div>
   </section></div>
 }
 
@@ -630,7 +870,7 @@ function SceneInventoryResultDialog({
   result,
   onClose,
 }: Readonly<{ result: SceneInventoryResultViewModel; onClose(): void }>) {
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="scene-inventory-result-title">
+  return <div className="result-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-labelledby="scene-inventory-result-title">
     <h2 id="scene-inventory-result-title">场景整理结果</h2>
     <p><strong>{result.action}</strong></p>
     <dl className="preview-facts">
@@ -654,13 +894,13 @@ function SceneInventoryResultDialog({
 
 function hubLoadoutOperationLabel(operation: StableRunUiHubLoadoutOperation): string {
   const labels: Record<StableRunUiHubLoadoutOperation, string> = {
-    'warehouse-to-backpack': '取出至背包',
+    'warehouse-to-backpack': '取出',
     'backpack-to-warehouse': '存入仓库',
     'move-backpack-item': '移动／旋转',
     'split-backpack-stack': '拆分堆叠',
     'merge-backpack-stacks': '合并堆叠',
-    'equip-from-backpack': '装备',
-    'unequip-to-backpack': '卸下至背包',
+    'equip-from-backpack': '装备到槽位',
+    'unequip-to-backpack': '卸下',
     'swap-backpack-equipped': '交换装备',
     'backpack-to-quick-slot': '放入快捷栏',
     'quick-slot-to-backpack': '放回背包',
@@ -673,8 +913,8 @@ function hubLoadoutOperationLabel(operation: StableRunUiHubLoadoutOperation): st
 function HubLoadoutDialog({
   opportunity, opportunities, loadout, operation, quantity, targetOpportunityId,
   targetEquipmentSlot, targetQuickSlotIndex, x, y, rotated, preview,
-  onOperation, onQuantity, onTargetOpportunity, onTargetEquipmentSlot,
-  onTargetQuickSlotIndex, onAnchor, onRotate, onCancel, onConfirm,
+  onQuantity, onTargetOpportunity, onTargetEquipmentSlot,
+  onTargetQuickSlotIndex, onAnchor, onRotate, onCancel,
 }: Readonly<{
   opportunity: StableRunUiHubLoadoutOpportunity
   opportunities: readonly StableRunUiHubLoadoutOpportunity[]
@@ -688,7 +928,6 @@ function HubLoadoutDialog({
   y: number | null
   rotated: boolean
   preview: ReturnType<typeof previewStableRunUiHubLoadoutDraft>
-  onOperation(value: StableRunUiHubLoadoutOperation): void
   onQuantity(value: number | null): void
   onTargetOpportunity(value: string): void
   onTargetEquipmentSlot(value: 'weapon' | 'armor' | 'utility'): void
@@ -696,7 +935,6 @@ function HubLoadoutDialog({
   onAnchor(x: number, y: number): void
   onRotate(value: boolean): void
   onCancel(): void
-  onConfirm(): void
 }>) {
   const needsPlacement = operation === 'warehouse-to-backpack' || operation === 'move-backpack-item' ||
     operation === 'split-backpack-stack' || operation === 'unequip-to-backpack' ||
@@ -704,10 +942,9 @@ function HubLoadoutDialog({
   const needsQuantity = operation === 'split-backpack-stack' || operation === 'merge-backpack-stacks'
   const backpackTargets = opportunities.filter((candidate) => candidate.container === 'backpack' && candidate.id !== opportunity.id)
   const equipmentTargets = opportunities.filter((candidate) => candidate.container === 'equipment')
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="hub-loadout-title">
-    <h2 id="hub-loadout-title">电梯中枢整备</h2>
+  return <div className="draft-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-labelledby="hub-loadout-title">
+    <h2 id="hub-loadout-title">{operation ? hubLoadoutOperationLabel(operation) : '电梯中枢整备'}</h2>
     <p>来源：<strong>{opportunity.sourceLabel}</strong></p>
-    <div className="preview-controls" aria-label="中枢整备操作">{opportunity.operations.map((candidate) => <button key={candidate} type="button" className={operation === candidate ? 'confirm-action' : ''} onClick={() => onOperation(candidate)}>{hubLoadoutOperationLabel(candidate)}</button>)}</div>
     {needsQuantity && <label>明确数量 <input aria-label="中枢整备数量" type="number" min="1" value={quantity ?? ''} onChange={(event) => onQuantity(event.target.value === '' ? null : Number(event.target.value))} /></label>}
     {operation === 'merge-backpack-stacks' && <><h3>明确目标堆叠</h3><div className="preview-controls">{backpackTargets.map((target) => <button key={target.id} type="button" className={targetOpportunityId === target.id ? 'confirm-action' : ''} onClick={() => onTargetOpportunity(target.id)}>{target.sourceLabel}</button>)}</div></>}
     {operation === 'equip-from-backpack' && <><h3>明确装备槽</h3><div className="preview-controls">{(['weapon', 'armor', 'utility'] as const).map((slot) => <button key={slot} type="button" className={targetEquipmentSlot === slot ? 'confirm-action' : ''} onClick={() => onTargetEquipmentSlot(slot)}>{slot === 'weapon' ? '武器位' : slot === 'armor' ? '防具位' : '实用装备位'}</button>)}</div></>}
@@ -715,12 +952,12 @@ function HubLoadoutDialog({
     {(operation === 'backpack-to-quick-slot' || operation === 'move-quick-slot-item' || operation === 'swap-quick-slot-items') && <><h3>明确目标快捷栏</h3><div className="preview-controls">{loadout.quickSlots.map((slot, index) => <button key={index} type="button" className={targetQuickSlotIndex === index ? 'confirm-action' : ''} onClick={() => onTargetQuickSlotIndex(index)}>快捷栏{index + 1} · {slot?.name ?? '空'}</button>)}</div></>}
     {needsPlacement && <>{opportunity.canRotate && <label><input aria-label="旋转中枢整备物品" type="checkbox" checked={rotated} onChange={(event) => onRotate(event.target.checked)} />旋转</label>}<p>目标格：{x === null || y === null ? '尚未选择' : `${x + 1}, ${y + 1}`}</p><BackpackGrid grid={loadout.backpackGrid} candidateCells={preview?.candidateCells} selectedFootprintCells={preview?.selectedFootprintCells} selectedAnchor={x === null || y === null ? null : { x, y }} placementValid={preview?.canExecute ?? false} onAnchor={onAnchor} /></>}
     {preview?.canExecute ? <dl className="preview-facts">{preview.facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl> : <p className="preview-warning">{operation === null ? '请明确选择一项整备操作。' : preview?.rejection ?? '请完整选择数量、目标槽位或背包位置。'}</p>}
-    <div className="preview-controls"><button type="button" onClick={onCancel}>取消</button><button type="button" className="confirm-action" disabled={!preview?.canExecute} onClick={onConfirm}>确认整备</button></div>
+    <div className="preview-controls"><button type="button" onClick={onCancel}>取消</button></div>
   </section></div>
 }
 
 function HubLoadoutResultDialog({ result, onClose }: Readonly<{ result: HubLoadoutResultViewModel; onClose(): void }>) {
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="hub-loadout-result-title">
+  return <div className="result-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-labelledby="hub-loadout-result-title">
     <h2 id="hub-loadout-result-title">中枢整备结果</h2><p><strong>{result.action}</strong></p>
     <dl className="preview-facts"><div><dt>物品</dt><dd>{result.itemName}</dd></div><div><dt>来源</dt><dd>{result.source}</dd></div><div><dt>目标</dt><dd>{result.target}</dd></div><div><dt>转移数量</dt><dd>{result.quantityMoved}</dd></div><div><dt>来源数量</dt><dd>{result.sourceQuantityBefore} → {result.sourceQuantityAfter}</dd></div>{result.targetQuantityBefore !== null && result.targetQuantityAfter !== null && <div><dt>目标数量</dt><dd>{result.targetQuantityBefore} → {result.targetQuantityAfter}</dd></div>}{result.displacedItemName && <div><dt>被替换／交换物品</dt><dd>{result.displacedItemName}</dd></div>}{result.displacedPath && <div><dt>被替换／交换路径</dt><dd>{result.displacedPath}</dd></div>}<div><dt>背包负重</dt><dd>{result.backpackWeightBefore} → {result.backpackWeightAfter}</dd></div><div><dt>负重状态</dt><dd>{loadTierName(result.loadTierBefore)} → {loadTierName(result.loadTierAfter)}</dd></div><div><dt>场景时间</dt><dd>0（不消耗）</dd></div>{result.resourceCurrent !== null && <div><dt>资源保持</dt><dd>{result.resourceCurrent}</dd></div>}</dl>
     <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
@@ -752,7 +989,7 @@ function HubMaintenanceDialog({
     ? opportunity.sources.filter(({ material }) => material === 'metal-parts')
     : opportunity.sources
   const secondarySources = opportunity.sources.filter(({ material }) => material === 'electronic-components')
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="hub-maintenance-title">
+  return <div className="draft-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-labelledby="hub-maintenance-title">
     <h2 id="hub-maintenance-title">{opportunity.label}</h2>
     {opportunity.operation === 'allocate-base-maintenance-labor' && <p>今日剩余维修点：<strong>{opportunity.maintenanceLaborRemaining}</strong>。每个目标必须显式分配正整数点数，且不能产生浪费。</p>}
     {opportunity.generatedRepair !== null && <p>本次材料／操作可生成维修量：<strong>{opportunity.generatedRepair}</strong></p>}
@@ -772,7 +1009,7 @@ function HubMaintenanceDialog({
 }
 
 function HubMaintenanceResultDialog({ result, onClose }: Readonly<{ result: HubMaintenanceResultViewModel; onClose(): void }>) {
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="hub-maintenance-result-title">
+  return <div className="result-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-labelledby="hub-maintenance-result-title">
     <h2 id="hub-maintenance-result-title">{result.title}</h2>
     <dl className="preview-facts">{result.facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>
     {result.warnings.length > 0 && <ul className="preview-warnings">{result.warnings.map((warning) => <li key={warning}>{warning}</li>)}</ul>}
@@ -782,26 +1019,26 @@ function HubMaintenanceResultDialog({ result, onClose }: Readonly<{ result: HubM
 
 function ReturnSummaryDialog({ summary, onClose }: Readonly<{ summary: ReturnSummaryViewModel; onClose(): void }>) {
   const kind = summary.returnKind === 'safe' ? '安全' : '强制'
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="return-summary-title">
+  return <div className="result-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-labelledby="return-summary-title">
     <h2 id="return-summary-title">返回摘要</h2><p>返回类型：<strong>{kind}</strong></p>{summary.voluntarilyStarted && summary.returnKind === 'forced' && <p className="preview-warning">你主动开始返程，但由于剩余时间不足，最终按强制返程规则完成。</p>}<p>剩余生命：<strong>{summary.remainingHealth}</strong></p><h3>带回普通／权限物品</h3><ItemList items={summary.warehouseItems} empty="无" /><h3>带回任务物品</h3><ItemList items={summary.taskItems} empty="无" />{summary.lostTaskItemCount > 0 && <p>遗失任务物品：{summary.lostTaskItemCount}</p>}<div className="preview-controls"><button type="button" onClick={onClose}>关闭摘要</button></div>
   </section></div>
 }
 
-function CombatActionResultDialog({
+function CombatTerminalResult({
   result,
   onClose,
 }: Readonly<{ result: CombatActionResultViewModel; onClose(): void }>) {
-  const outcome = result.outcome === 'continue'
-    ? '战斗继续'
-    : result.outcome === 'victory'
+  const outcome = result.outcome === 'victory'
       ? '胜利'
       : result.outcome === 'escaped'
         ? '成功逃跑'
         : result.outcome === 'forced-returned'
           ? '战斗结束并强制返程'
           : '战败'
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog combat-result-feedback" role="dialog" aria-modal="true" aria-labelledby="combat-result-title">
-    <h2 id="combat-result-title">战斗行动结果</h2>
+  return <section className="stage-object combat-terminal-result" role="status" aria-labelledby="combat-result-title">
+    <h2 id="combat-result-title">战斗结局 · {outcome}</h2>
+    <p className="result-glance">{result.playerAction} · 生命 {result.playerHealthBefore} → {result.playerHealthAfter} · 敌人{enemyHealthStageName(result.enemyHealthStage)}</p>
+    <details className="result-details"><summary>查看本次行动详情</summary>
     <dl className="preview-facts">
       <div><dt>玩家行动</dt><dd>{result.playerAction}</dd></div>
       <div><dt>生命</dt><dd>{result.playerHealthBefore} → {result.playerHealthAfter}</dd></div>
@@ -817,16 +1054,17 @@ function CombatActionResultDialog({
     {result.newWounds.length > 0 && <p>新增伤口：{result.newWounds.join('、')}</p>}
     {result.treatedWounds.length > 0 && <p>已处理伤口：{result.treatedWounds.join('、')}</p>}
     {result.bleedingChanged && <p>流血状态：{result.bleedingChanged === 'started' ? '开始流血' : '已止血'}</p>}
+    </details>
     {result.weaponBecameBroken && <p className="preview-warning">{result.weaponName ?? '当前武器'}已损坏。武器攻击已不可用。{result.temporaryAttackAvailable ? '临时攻击现已可用。' : ''}</p>}
     <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
-  </section></div>
+  </section>
 }
 
 function TaskEventResultDialog({
   result,
   onClose,
 }: Readonly<{ result: TaskEventResultViewModel; onClose(): void }>) {
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="task-event-result-title">
+  return <div className="result-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-labelledby="task-event-result-title">
     <h2 id="task-event-result-title">任务事件结果</h2>
     <dl className="preview-facts">
       <div><dt>处理方式</dt><dd>{result.action}</dd></div>
@@ -850,7 +1088,7 @@ function SceneMedicalResultDialog({
   result,
   onClose,
 }: Readonly<{ result: SceneMedicalResultViewModel; onClose(): void }>) {
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="scene-medical-result-title">
+  return <div className="result-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-labelledby="scene-medical-result-title">
     <h2 id="scene-medical-result-title">场景医疗结果</h2>
     <dl className="preview-facts">
       <div><dt>行动</dt><dd>{result.action}</dd></div>
@@ -891,7 +1129,7 @@ function SceneBatteryResultDialog({
     : result.resourceKind === 'durability'
       ? '耐久'
       : '完整度'
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="scene-battery-result-title">
+  return <div className="result-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-labelledby="scene-battery-result-title">
     <h2 id="scene-battery-result-title">场景充能结果</h2>
     <dl className="preview-facts">
       <div><dt>行动</dt><dd>{result.action}</dd></div>
@@ -934,7 +1172,7 @@ function HubMedicalResultDialog({ result, onClose }: Readonly<{
   result: HubMedicalResultViewModel
   onClose(): void
 }>) {
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="hub-medical-result-title">
+  return <div className="result-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-labelledby="hub-medical-result-title">
     <h2 id="hub-medical-result-title">中枢医疗结果</h2>
     <p><strong>{result.action}</strong></p>
     <dl className="preview-facts">
@@ -958,7 +1196,7 @@ function HubSurvivalResultDialog({ result, onClose }: Readonly<{
   onClose(): void
 }>) {
   const ration = result.action === 'use-hub-ration'
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="hub-survival-result-title">
+  return <div className="result-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-labelledby="hub-survival-result-title">
     <h2 id="hub-survival-result-title">中枢生存补给结果</h2>
     <p><strong>{result.actionLabel}</strong></p>
     <dl className="preview-facts">
@@ -978,8 +1216,10 @@ function DailySettlementResultDialog({ result, onClose }: Readonly<{
   result: DailySettlementResultViewModel
   onClose(): void
 }>) {
-  return <div className="preview-backdrop" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="daily-settlement-result-title">
+  return <div className="result-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-labelledby="daily-settlement-result-title">
     <h2 id="daily-settlement-result-title">{result.title}</h2>
+    <p className="result-glance">第 {result.currentDay} 日{result.nextDay === null ? '结束' : ` → 第 ${result.nextDay} 日`} · 生命 {result.healthBefore} → {result.healthAfter}</p>
+    <details className="result-details"><summary>查看完整日结算</summary>
     <dl className="preview-facts">
       <div><dt>日期</dt><dd>{result.nextDay === null ? `第 ${result.currentDay} 日终止` : `第 ${result.currentDay} 日 → 第 ${result.nextDay} 日`}</dd></div>
       <div><dt>生命</dt><dd>{result.healthBefore} → {result.healthAfter}</dd></div>
@@ -999,6 +1239,7 @@ function DailySettlementResultDialog({ result, onClose }: Readonly<{
       {result.maintenanceLaborBefore !== null && <div><dt>今日剩余维修点</dt><dd>{result.maintenanceLaborBefore} → {result.maintenanceLaborAfter}</dd></div>}
       {result.mainSceneUsedAfter !== null && <div><dt>次日主要场景</dt><dd>{result.mainSceneUsedAfter ? '已使用' : '尚未进入'}</dd></div>}
     </dl>
+    </details>
     {result.outcome === 'health-depleted' && <p className="preview-warning">生命在日结算中耗尽，本局已结束。</p>}
     {result.outcome === 'world-threat-terminal' && <p className="preview-warning">世界威胁进入终末阶段，本局已结束。</p>}
     <div className="preview-controls"><button type="button" onClick={onClose}>关闭结果</button></div>
@@ -1008,19 +1249,35 @@ function DailySettlementResultDialog({ result, onClose }: Readonly<{
 function ActionPreviewDialog({
   preview,
   visualKey,
+  protective,
+  rescueAlternative,
+  compactUnchanged,
+  confirmLabel,
   onCancel,
   onConfirm,
 }: Readonly<{
   preview: StableRunUiActionPreviewViewModel
   visualKey?: import('./presentation').PresentationVisualKey | null
+  protective: boolean
+  rescueAlternative: boolean
+  compactUnchanged: boolean
+  confirmLabel: string
   onCancel(): void
   onConfirm(): void
 }>) {
-  return <div className="preview-backdrop" role="presentation">
-    <section className="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="action-preview-title">
+  const facts = compactUnchanged ? preview.facts.filter(({ label, value }) => {
+    const change = value.split(' → ')
+    if (change.length === 2 && change[0] === change[1]) return false
+    return !(value === '0' && (label === '当日威胁抑制' || label === '已处理伤口移除')) &&
+      !(label === '持续危险' && value === '无生命损失') &&
+      !(label === '匮乏损失' && value === '无')
+  }) : preview.facts
+  return <div className={protective ? 'protective-surface' : 'draft-surface'} role="presentation">
+    <section className={`preview-dialog${compactUnchanged ? ' preview-dialog--end-day' : ''}`} role="dialog" aria-modal="false" aria-labelledby="action-preview-title">
       {(visualKey ?? preview.visualKey) && <img className="preview-art" src={presentationVisualAssetUrl((visualKey ?? preview.visualKey)!)} alt="" aria-hidden="true" />}
       <h2 id="action-preview-title">{preview.title}</h2>
-      <dl className="preview-facts">{preview.facts.map((fact) => <div key={fact.label}>
+      {rescueAlternative && <p className="preview-warning">该行动将在本次结算中导致死亡；目前仍有其他不会保证死亡的正式行动。</p>}
+      <dl className="preview-facts">{facts.map((fact) => <div key={fact.label}>
         <dt>{fact.label}</dt><dd>{fact.value}</dd>
       </div>)}</dl>
       {preview.warnings.length > 0 && <ul className="preview-warnings">
@@ -1037,7 +1294,7 @@ function ActionPreviewDialog({
       </section>)}
       <div className="preview-controls">
         <button type="button" onClick={onCancel}>取消</button>
-        <button type="button" className="confirm-action" onClick={onConfirm}>确认执行</button>
+        <button type="button" className="confirm-action" onClick={onConfirm}>{confirmLabel}</button>
       </div>
     </section>
   </div>
@@ -1072,6 +1329,8 @@ export function StableRunUiApp({
   const [pendingActionId, setPendingActionId] = useState<string | null>(null)
   const [hoveredGhostActionId, setHoveredGhostActionId] = useState<string | null>(null)
   const [focusedGhostActionId, setFocusedGhostActionId] = useState<string | null>(null)
+  const [hoveredGhostAnchor, setHoveredGhostAnchor] = useState<HTMLElement | null>(null)
+  const [focusedGhostAnchor, setFocusedGhostAnchor] = useState<HTMLElement | null>(null)
   const voluntaryReturnStarted = useRef(false)
   const [pendingPickupId, setPendingPickupId] = useState<string | null>(null)
   const [pendingTaskEventId, setPendingTaskEventId] = useState<string | null>(null)
@@ -1081,6 +1340,7 @@ export function StableRunUiApp({
   const [pickupQuantity, setPickupQuantity] = useState(1)
   const [pickupX, setPickupX] = useState(0)
   const [pickupY, setPickupY] = useState(0)
+  const [pickupPlacementSelected, setPickupPlacementSelected] = useState(false)
   const [pickupRotated, setPickupRotated] = useState(false)
   const [taskEventX, setTaskEventX] = useState<number | null>(null)
   const [taskEventY, setTaskEventY] = useState<number | null>(null)
@@ -1092,6 +1352,7 @@ export function StableRunUiApp({
   const [inventoryX, setInventoryX] = useState<number | null>(null)
   const [inventoryY, setInventoryY] = useState<number | null>(null)
   const [inventoryRotated, setInventoryRotated] = useState(false)
+  const [pendingQuestDropConfirmation, setPendingQuestDropConfirmation] = useState(false)
   const [hubLoadoutOperation, setHubLoadoutOperation] = useState<StableRunUiHubLoadoutOperation | null>(null)
   const [hubLoadoutQuantity, setHubLoadoutQuantity] = useState<number | null>(null)
   const [hubLoadoutTargetId, setHubLoadoutTargetId] = useState<string | null>(null)
@@ -1105,6 +1366,7 @@ export function StableRunUiApp({
   const [hubMaintenanceMaterialSourceId, setHubMaintenanceMaterialSourceId] = useState<string | null>(null)
   const [hubMaintenanceSecondarySourceId, setHubMaintenanceSecondarySourceId] = useState<string | null>(null)
   const [returnSummary, setReturnSummary] = useState<ReturnSummaryViewModel | null>(null)
+  const [returnSummaryOpen, setReturnSummaryOpen] = useState(false)
   const [combatActionResult, setCombatActionResult] = useState<CombatActionResultViewModel | null>(null)
   const [taskEventResult, setTaskEventResult] = useState<TaskEventResultViewModel | null>(null)
   const [sceneMedicalResult, setSceneMedicalResult] = useState<SceneMedicalResultViewModel | null>(null)
@@ -1116,6 +1378,9 @@ export function StableRunUiApp({
   const [hubMaintenanceResult, setHubMaintenanceResult] = useState<HubMaintenanceResultViewModel | null>(null)
   const [dailySettlementResult, setDailySettlementResult] = useState<DailySettlementResultViewModel | null>(null)
   const [persistenceFeedback, setPersistenceFeedback] = useState<string | null>(null)
+  const [activityEntries, setActivityEntries] = useState<readonly ActivityFeedEntry[]>([])
+  const [autoOpenSearchResultNode, setAutoOpenSearchResultNode] = useState<string | null>(null)
+  const [resultDetailsOpen, setResultDetailsOpen] = useState(false)
   const audioTimers = useRef<ReturnType<typeof setTimeout>[]>([])
   const pendingAction = interaction.actions.find(({ id }) => id === pendingActionId) ?? null
   const pendingPickup = interaction.pickupOpportunities.find(({ id }) => id === pendingPickupId) ?? null
@@ -1124,6 +1389,7 @@ export function StableRunUiApp({
   const pendingHubLoadout = interaction.hubLoadoutOpportunities.find(({ id }) => id === pendingHubLoadoutId) ?? null
   const pendingHubMaintenance = interaction.hubMaintenanceOpportunities.find(({ operation }) => operation === pendingHubMaintenanceOperation) ?? null
   const ghostActionId = focusedGhostActionId ?? hoveredGhostActionId
+  const ghostAnchor = focusedGhostActionId ? focusedGhostAnchor : hoveredGhostAnchor
   const activeGhost = ghostActionId === null
     ? null
     : interaction.actions.find(({ id }) => id === ghostActionId)?.ghost ??
@@ -1181,6 +1447,37 @@ export function StableRunUiApp({
       }, presentationDependencies)
 
   useEffect(() => {
+    setPendingActionId(null)
+    setHoveredGhostActionId(null)
+    setFocusedGhostActionId(null)
+    setHoveredGhostAnchor(null)
+    setFocusedGhostAnchor(null)
+    setPendingPickupId(null)
+    setPendingTaskEventId(null)
+    setPendingInventoryId(null)
+    setPendingQuestDropConfirmation(false)
+    setPendingHubLoadoutId(null)
+    setPendingHubMaintenanceOperation(null)
+    setReturnSummary(null)
+    setReturnSummaryOpen(false)
+    setCombatActionResult(null)
+    setTaskEventResult(null)
+    setSceneMedicalResult(null)
+    setSceneBatteryResult(null)
+    setSceneInventoryResult(null)
+    setHubLoadoutResult(null)
+    setHubMedicalResult(null)
+    setHubSurvivalResult(null)
+    setHubMaintenanceResult(null)
+    setDailySettlementResult(null)
+    setPersistenceFeedback(null)
+    setActivityEntries([])
+    setAutoOpenSearchResultNode(null)
+    setResultDetailsOpen(false)
+    voluntaryReturnStarted.current = false
+  }, [store])
+
+  useEffect(() => {
     if (pendingActionId !== null && pendingAction === null) setPendingActionId(null)
   }, [pendingAction, pendingActionId])
 
@@ -1195,6 +1492,12 @@ export function StableRunUiApp({
   useEffect(() => {
     if (pendingInventoryId !== null && pendingInventory === null) setPendingInventoryId(null)
   }, [pendingInventory, pendingInventoryId])
+
+  useEffect(() => {
+    if (pendingInventory === null || inventoryOperation !== 'drop' || !inventoryPreview?.questDropWarning) {
+      setPendingQuestDropConfirmation(false)
+    }
+  }, [pendingInventory, inventoryOperation, inventoryPreview?.questDropWarning])
 
   useEffect(() => {
     if (pendingHubLoadoutId !== null && pendingHubLoadout === null) setPendingHubLoadoutId(null)
@@ -1271,7 +1574,7 @@ export function StableRunUiApp({
   const selectPickupAnchor = (x: number, y: number) => applyDraftSelection(
     x !== pickupX || y !== pickupY,
     'placement',
-    () => { setPickupX(x); setPickupY(y) },
+    () => { setPickupX(x); setPickupY(y); setPickupPlacementSelected(true) },
   )
   const selectTaskEventRotation = (value: boolean) => applyDraftSelection(
     value !== taskEventRotated,
@@ -1339,99 +1642,157 @@ export function StableRunUiApp({
     () => { setHubLoadoutX(x); setHubLoadoutY(y) },
   )
 
-  const showGhost = (actionId: string, source: 'mouse' | 'keyboard') => {
-    if (source === 'mouse') setHoveredGhostActionId(actionId)
-    else setFocusedGhostActionId(actionId)
+  const showGhost = (actionId: string, source: 'mouse' | 'keyboard', anchor: HTMLElement) => {
+    if (source === 'mouse') { setHoveredGhostActionId(actionId); setHoveredGhostAnchor(anchor) }
+    else { setFocusedGhostActionId(actionId); setFocusedGhostAnchor(anchor) }
   }
   const hideGhost = (actionId: string, source: 'mouse' | 'keyboard') => {
-    if (source === 'mouse') setHoveredGhostActionId((current) => current === actionId ? null : current)
-    else setFocusedGhostActionId((current) => current === actionId ? null : current)
+    if (source === 'mouse') { setHoveredGhostActionId((current) => current === actionId ? null : current); setHoveredGhostAnchor(null) }
+    else { setFocusedGhostActionId((current) => current === actionId ? null : current); setFocusedGhostAnchor(null) }
   }
 
-  const confirm = () => {
-    if (!pendingAction) return
-    const beforePhase = snapshot.phase
-    const hubCarePreview = pendingAction.kind === 'hub-medical' || pendingAction.kind === 'hub-survival'
-      ? previewStableRunUiHubCareCommand(
-          beforePhase,
-          pendingAction.command,
-          presentationDependencies,
-        )
-      : null
-    const endDayPreview = pendingAction.kind === 'end-day'
-      ? previewStableRunUiEndDay(beforePhase, presentationDependencies)
-      : null
-    if ((pendingAction.kind === 'hub-medical' || pendingAction.kind === 'hub-survival') && !hubCarePreview) {
-      setPendingActionId(null)
-      return
-    }
-    if (pendingAction.kind === 'end-day' && (!endDayPreview || !endDayPreview.canExecute)) {
-      setPendingActionId(null)
-      return
-    }
-    if (pendingAction.kind === 'scene-withdraw') voluntaryReturnStarted.current = true
-    else if (pendingAction.kind !== 'settle-terminal-scene' && beforePhase.kind === 'scene-session') {
-      voluntaryReturnStarted.current = false
-    }
-    const execution = store.dispatch(pendingAction.command)
-    playCommittedCues(beforePhase, pendingAction, execution)
+  const dispatchAndRecord = (
+    command: unknown,
+    actionLabel: string,
+    category: ActivityFeedCategory,
+    beforePhase: typeof snapshot.phase,
+  ) => {
+    const execution = store.dispatch(command)
     setPendingActionId(null)
+    setPendingPickupId(null)
+    setPendingTaskEventId(null)
+    setPendingInventoryId(null)
+    setPendingQuestDropConfirmation(false)
+    setPendingHubLoadoutId(null)
+    setPendingHubMaintenanceOperation(null)
+    setHoveredGhostActionId(null)
+    setFocusedGhostActionId(null)
+    setHoveredGhostAnchor(null)
+    setFocusedGhostAnchor(null)
+    setReturnSummary(null)
+    setReturnSummaryOpen(false)
+    setCombatActionResult(null)
+    setTaskEventResult(null)
+    setSceneMedicalResult(null)
+    setSceneBatteryResult(null)
+    setSceneInventoryResult(null)
+    setHubLoadoutResult(null)
+    setHubMedicalResult(null)
+    setHubSurvivalResult(null)
+    setHubMaintenanceResult(null)
+    setDailySettlementResult(null)
+    setResultDetailsOpen(false)
+    const before = createStableRunPlayerViewModel(beforePhase, presentationDependencies)
+    const after = createStableRunPlayerViewModel(execution.phase, presentationDependencies)
+    setActivityEntries((current) => [...current.slice(-29), projectActivityFeedEntry({
+      sequence: (current.at(-1)?.sequence ?? 0) + 1,
+      category,
+      action: actionLabel,
+      before,
+      after,
+    })])
     setPersistenceFeedback(execution.kind === 'executed'
       ? '✓ 操作已执行并保存'
       : '⚠ 保存失败：本次操作已在当前会话中生效，请勿刷新页面。')
+    return execution
+  }
+
+  const executeAction = (actionId: string) => {
+    const beforePhase = store.getState().phase
+    const current = createStableRunUiInteractionModel(beforePhase, presentationDependencies)
+    const action = current.actions.find(({ id }) => id === actionId)
+    if (!action) {
+      setPendingActionId(null)
+      return
+    }
+    const hubCarePreview = action.kind === 'hub-medical' || action.kind === 'hub-survival'
+      ? previewStableRunUiHubCareCommand(
+          beforePhase,
+          action.command,
+          presentationDependencies,
+        )
+      : null
+    const endDayPreview = action.kind === 'end-day'
+      ? previewStableRunUiEndDay(beforePhase, presentationDependencies)
+      : null
+    if ((action.kind === 'hub-medical' || action.kind === 'hub-survival') && !hubCarePreview) {
+      setPendingActionId(null)
+      return
+    }
+    if (action.kind === 'end-day' && (!endDayPreview || !endDayPreview.canExecute)) {
+      setPendingActionId(null)
+      return
+    }
+    if (action.kind === 'scene-withdraw') voluntaryReturnStarted.current = true
+    else if (action.kind !== 'settle-terminal-scene' && beforePhase.kind === 'scene-session') {
+      voluntaryReturnStarted.current = false
+    }
+    const category: ActivityFeedCategory = action.kind === 'scene-combat-action' ? 'combat'
+      : action.kind === 'scene-inventory' ? 'inventory'
+      : action.kind === 'launch-main-scene' || action.kind === 'settle-terminal-scene' || action.kind === 'end-day' ? 'lifecycle'
+      : action.kind.startsWith('hub-') ? 'hub' : 'scene'
+    const execution = dispatchAndRecord(action.command, action.label, category, beforePhase)
+    playCommittedCues(beforePhase, action, execution)
+    setPendingActionId(null)
+    if (action.kind === 'scene-main-search' && execution.phase.kind === 'scene-session') {
+      const result = createStableRunPlayerViewModel(execution.phase, presentationDependencies)
+      if (result.kind === 'scene-session' && result.scene.currentNodeSearchState === 'searched') {
+        setAutoOpenSearchResultNode(result.scene.currentNodeName)
+      }
+    }
     if (
-      pendingAction.kind === 'scene-combat-action' &&
+      action.kind === 'scene-combat-action' &&
       beforePhase.kind === 'scene-session' &&
       execution.phase.kind === 'scene-session'
     ) {
       setCombatActionResult(createCombatActionResultViewModel(
         beforePhase,
         execution.phase,
-        pendingAction.label,
+        action.label,
         execution.result,
         presentationDependencies,
       ))
     }
     if (
-      pendingAction.kind === 'scene-task-event' &&
+      action.kind === 'scene-task-event' &&
       beforePhase.kind === 'scene-session' &&
       execution.phase.kind === 'scene-session'
     ) {
       setTaskEventResult(createTaskEventResultViewModel(
         beforePhase,
         execution.phase,
-        pendingAction.label,
+        action.label,
         presentationDependencies,
       ))
     }
     if (
-      pendingAction.kind === 'scene-medical' &&
+      action.kind === 'scene-medical' &&
       beforePhase.kind === 'scene-session' &&
       execution.phase.kind === 'scene-session'
     ) {
       setSceneMedicalResult(createSceneMedicalResultViewModel(
         beforePhase,
         execution.phase,
-        pendingAction.label,
+        action.label,
         execution.result,
         presentationDependencies,
       ))
     }
     if (
-      pendingAction.kind === 'scene-battery' &&
+      action.kind === 'scene-battery' &&
       beforePhase.kind === 'scene-session' &&
       execution.phase.kind === 'scene-session'
     ) {
       setSceneBatteryResult(createSceneBatteryResultViewModel(
         beforePhase,
         execution.phase,
-        pendingAction.label,
+        action.label,
         execution.result,
         presentationDependencies,
       ))
     }
     if (
-      pendingAction.kind === 'settle-terminal-scene' &&
+      action.kind === 'settle-terminal-scene' &&
       execution.phase.kind === 'current-day-hub' &&
       'runReturn' in execution.result
     ) {
@@ -1444,30 +1805,30 @@ export function StableRunUiApp({
       voluntaryReturnStarted.current = false
     }
     if (
-      pendingAction.kind === 'hub-medical' &&
+      action.kind === 'hub-medical' &&
       hubCarePreview?.kind === 'hub-medical' &&
       execution.phase.kind === 'current-day-hub'
     ) {
       setHubMedicalResult(createHubMedicalResultViewModel(
         beforePhase,
         execution.phase,
-        pendingAction.label,
+        action.label,
         hubCarePreview.result,
       ))
     }
     if (
-      pendingAction.kind === 'hub-survival' &&
+      action.kind === 'hub-survival' &&
       hubCarePreview?.kind === 'hub-survival' &&
       execution.phase.kind === 'current-day-hub'
     ) {
       setHubSurvivalResult(createHubSurvivalResultViewModel(
         beforePhase,
         execution.phase,
-        pendingAction.label,
+        action.label,
         hubCarePreview.result,
       ))
     }
-    if (pendingAction.kind === 'end-day' && endDayPreview?.canExecute) {
+    if (action.kind === 'end-day' && endDayPreview?.canExecute) {
       setDailySettlementResult(createDailySettlementResultViewModel(
         beforePhase,
         execution.phase,
@@ -1476,23 +1837,63 @@ export function StableRunUiApp({
       ))
     }
   }
-  const openPickup = (opportunityId: string) => {
-    const opportunity = interaction.pickupOpportunities.find(({ id }) => id === opportunityId)
-    if (!opportunity) return
-    setPendingActionId(null)
-    setPickupQuantity(opportunity.groundQuantity)
+  const openAction = (actionId: string) => {
+    const current = createStableRunUiInteractionModel(store.getState().phase, presentationDependencies)
+    const action = current.actions.find(({ id }) => id === actionId)
+    if (!action) return
+    setSceneInventoryResult(null)
+    setHubLoadoutResult(null)
+    if (actionExecutionLevel(action, current.actions) !== 'direct') {
+      setPendingActionId(actionId)
+    } else {
+      executeAction(actionId)
+    }
+  }
+  const confirm = () => {
+    if (pendingAction) executeAction(pendingAction.id)
+  }
+  const tryAutoPickup = (opportunityId: string, quantity: number) => {
+    const beforePhase = store.getState().phase
+    const opportunity = createStableRunUiInteractionModel(beforePhase, presentationDependencies).pickupOpportunities.find(({ id }) => id === opportunityId)
+    if (!opportunity) { setPendingPickupId(null); return }
+    const firstFit = firstFitUnrotatedNodePickup(beforePhase, opportunityId, quantity, presentationDependencies)
+    if (firstFit?.canExecute && firstFit.command) {
+      dispatchAndRecord(firstFit.command, `拾取 ${opportunity.name}`, 'inventory', beforePhase)
+      return
+    }
+    setPickupQuantity(quantity)
     setPickupX(0)
     setPickupY(0)
+    setPickupPlacementSelected(false)
     setPickupRotated(false)
     setPendingPickupId(opportunityId)
   }
-  const confirmPickup = () => {
-    if (!pickupPreview?.canExecute || pickupPreview.command === null) return
-    const execution = store.dispatch(pickupPreview.command)
+  const openPickup = (opportunityId: string) => {
+    const opportunity = createStableRunUiInteractionModel(store.getState().phase, presentationDependencies).pickupOpportunities.find(({ id }) => id === opportunityId)
+    if (!opportunity) return
+    setSceneInventoryResult(null)
+    setPendingActionId(null)
+    if (opportunity.groundQuantity === 1) { tryAutoPickup(opportunityId, 1); return }
+    setPickupQuantity(1)
+    setPickupX(0)
+    setPickupY(0)
+    setPickupPlacementSelected(false)
+    setPickupRotated(false)
+    setPendingPickupId(opportunityId)
+  }
+  const confirmPickup = (placement: Readonly<{ x: number; y: number }>) => {
+    if (!pendingPickup) return
+    const beforePhase = store.getState().phase
+    const currentPreview = previewStableRunUiPickupDraft(beforePhase, {
+      opportunityId: pendingPickup.id,
+      quantity: pickupQuantity,
+      x: placement.x,
+      y: placement.y,
+      rotated: pickupRotated,
+    }, presentationDependencies)
+    if (!currentPreview?.canExecute || currentPreview.command === null) return
+    dispatchAndRecord(currentPreview.command, `拾取 ${pendingPickup.name}`, 'inventory', beforePhase)
     setPendingPickupId(null)
-    setPersistenceFeedback(execution.kind === 'executed'
-      ? '✓ 操作已执行并保存'
-      : '⚠ 保存失败：本次操作已在当前会话中生效，请勿刷新页面。')
   }
   const openTaskEvent = (opportunityId: string) => {
     const opportunity = interaction.taskEventOpportunities.find(({ id }) => id === opportunityId)
@@ -1500,7 +1901,7 @@ export function StableRunUiApp({
     if (!opportunity.requiresBackpackPlacement && opportunity.actionId !== null) {
       setPendingPickupId(null)
       setPendingTaskEventId(null)
-      setPendingActionId(opportunity.actionId)
+      openAction(opportunity.actionId)
       return
     }
     setPendingActionId(null)
@@ -1511,13 +1912,20 @@ export function StableRunUiApp({
     setPendingTaskEventId(opportunityId)
   }
   const confirmTaskEvent = () => {
-    if (!taskEventPreview?.canExecute || taskEventPreview.command === null || !pendingTaskEvent) return
-    const beforePhase = snapshot.phase
-    const execution = store.dispatch(taskEventPreview.command)
+    if (!pendingTaskEvent) return
+    const beforePhase = store.getState().phase
+    const currentPreview = previewStableRunUiTaskEventDraft(beforePhase, {
+      opportunityId: pendingTaskEvent.id,
+      x: taskEventX,
+      y: taskEventY,
+      rotated: taskEventRotated,
+    }, presentationDependencies)
+    if (!currentPreview?.canExecute || currentPreview.command === null) {
+      setPendingTaskEventId(null)
+      return
+    }
+    const execution = dispatchAndRecord(currentPreview.command, pendingTaskEvent.label, 'scene', beforePhase)
     setPendingTaskEventId(null)
-    setPersistenceFeedback(execution.kind === 'executed'
-      ? '✓ 操作已执行并保存'
-      : '⚠ 保存失败：本次操作已在当前会话中生效，请勿刷新页面。')
     if (beforePhase.kind === 'scene-session' && execution.phase.kind === 'scene-session') {
       setTaskEventResult(createTaskEventResultViewModel(
         beforePhase,
@@ -1527,23 +1935,13 @@ export function StableRunUiApp({
       ))
     }
   }
-  const openInventory = (opportunityId: string) => {
+  const openInventory = (opportunityId: string, operation: StableRunUiInventoryOperation) => {
     const opportunity = interaction.inventoryOpportunities.find(({ id }) => id === opportunityId)
-    if (!opportunity) return
+    if (!opportunity || !opportunity.operations.includes(operation)) return
+    setSceneInventoryResult(null)
     setPendingActionId(null)
     setPendingPickupId(null)
     setPendingTaskEventId(null)
-    setInventoryOperation(null)
-    setInventoryQuantity(null)
-    setInventoryTargetId(null)
-    setInventoryTargetSlot(null)
-    setInventoryX(null)
-    setInventoryY(null)
-    setInventoryRotated(false)
-    setPendingInventoryId(opportunityId)
-  }
-  const selectInventoryOperation = (operation: StableRunUiInventoryOperation) => {
-    if (operation !== inventoryOperation) playUiSelection('operation')
     setInventoryOperation(operation)
     setInventoryQuantity(null)
     setInventoryTargetId(null)
@@ -1551,21 +1949,43 @@ export function StableRunUiApp({
     setInventoryX(null)
     setInventoryY(null)
     setInventoryRotated(false)
+    setPendingQuestDropConfirmation(false)
+    if (operation === 'drop') {
+      const beforePhase = store.getState().phase
+      const preview = previewStableRunUiSceneInventoryDraft(beforePhase, { opportunityId, operation, quantity: null, targetOpportunityId: null, targetSlotIndex: null, x: null, y: null, rotated: false }, presentationDependencies)
+      if (!preview?.canExecute || !preview.command) return
+      if (!preview.questDropWarning) {
+        dispatchAndRecord(preview.command, `${inventoryOperationLabel(operation)} · ${opportunity.sourceLabel}`, 'inventory', beforePhase)
+        return
+      }
+      setPendingQuestDropConfirmation(true)
+    }
+    setPendingInventoryId(opportunityId)
   }
-  const confirmInventory = () => {
-    if (
-      !inventoryPreview?.canExecute ||
-      inventoryPreview.command === null ||
-      !pendingInventory ||
-      inventoryOperation === null
-    ) return
-    const beforePhase = snapshot.phase
+  const confirmInventory = (overrides: Readonly<{ x?: number; y?: number; targetSlotIndex?: number; targetOpportunityId?: string }> = {}) => {
+    if (!pendingInventory || inventoryOperation === null) return
+    const currentPreview = previewStableRunUiSceneInventoryDraft(store.getState().phase, {
+      opportunityId: pendingInventory.id,
+      operation: inventoryOperation,
+      quantity: inventoryQuantity,
+      targetOpportunityId: overrides.targetOpportunityId ?? inventoryTargetId,
+      targetSlotIndex: overrides.targetSlotIndex ?? inventoryTargetSlot,
+      x: overrides.x ?? inventoryX,
+      y: overrides.y ?? inventoryY,
+      rotated: inventoryRotated,
+    }, presentationDependencies)
+    if (!currentPreview || !currentPreview.canExecute || currentPreview.command === null) {
+      return
+    }
+    if (currentPreview.questDropWarning && !pendingQuestDropConfirmation) {
+      setPendingQuestDropConfirmation(true)
+      return
+    }
+    const beforePhase = store.getState().phase
     const action = `${inventoryOperationLabel(inventoryOperation)} · ${pendingInventory.sourceLabel}`
-    const execution = store.dispatch(inventoryPreview.command)
+    const execution = dispatchAndRecord(currentPreview.command, action, 'inventory', beforePhase)
     setPendingInventoryId(null)
-    setPersistenceFeedback(execution.kind === 'executed'
-      ? '✓ 操作已执行并保存'
-      : '⚠ 保存失败：本次操作已在当前会话中生效，请勿刷新页面。')
+    setPendingQuestDropConfirmation(false)
     if (beforePhase.kind === 'scene-session' && execution.phase.kind === 'scene-session') {
       setSceneInventoryResult(createSceneInventoryResultViewModel(
         beforePhase,
@@ -1576,11 +1996,18 @@ export function StableRunUiApp({
       ))
     }
   }
-  const openHubLoadout = (opportunityId: string) => {
+  const openHubLoadout = (opportunityId: string, operation: StableRunUiHubLoadoutOperation) => {
     const opportunity = interaction.hubLoadoutOpportunities.find(({ id }) => id === opportunityId)
-    if (!opportunity) return
+    if (!opportunity || !opportunity.operations.includes(operation)) return
+    setHubLoadoutResult(null)
     setPendingActionId(null)
-    setHubLoadoutOperation(null)
+    const beforePhase = store.getState().phase
+    const directPreview = previewStableRunUiHubLoadoutDraft(beforePhase, { opportunityId, operation, quantity: null, targetOpportunityId: null, targetEquipmentSlot: null, targetQuickSlotIndex: null, x: null, y: null, rotated: false }, presentationDependencies)
+    if (directPreview?.canExecute && directPreview.command && directPreview.safeResult) {
+      dispatchAndRecord(directPreview.command, `${hubLoadoutOperationLabel(operation)} · ${opportunity.sourceLabel}`, 'inventory', beforePhase)
+      return
+    }
+    setHubLoadoutOperation(operation)
     setHubLoadoutQuantity(null)
     setHubLoadoutTargetId(null)
     setHubLoadoutEquipmentSlot(null)
@@ -1590,24 +2017,27 @@ export function StableRunUiApp({
     setHubLoadoutRotated(false)
     setPendingHubLoadoutId(opportunityId)
   }
-  const selectHubLoadoutOperation = (operation: StableRunUiHubLoadoutOperation) => {
-    if (operation !== hubLoadoutOperation) playUiSelection('operation')
-    setHubLoadoutOperation(operation)
-    setHubLoadoutQuantity(null)
-    setHubLoadoutTargetId(null)
-    setHubLoadoutEquipmentSlot(null)
-    setHubLoadoutQuickSlot(null)
-    setHubLoadoutX(null)
-    setHubLoadoutY(null)
-    setHubLoadoutRotated(false)
-  }
-  const confirmHubLoadout = () => {
-    if (!hubLoadoutPreview?.canExecute || !hubLoadoutPreview.command || !hubLoadoutPreview.safeResult || !pendingHubLoadout || !hubLoadoutOperation) return
+  const confirmHubLoadout = (overrides: Readonly<{ x?: number; y?: number; targetOpportunityId?: string; targetEquipmentSlot?: 'weapon' | 'armor' | 'utility'; targetQuickSlotIndex?: number }> = {}) => {
+    if (!pendingHubLoadout || !hubLoadoutOperation) return
+    const beforePhase = store.getState().phase
+    const currentPreview = previewStableRunUiHubLoadoutDraft(beforePhase, {
+      opportunityId: pendingHubLoadout.id,
+      operation: hubLoadoutOperation,
+      quantity: hubLoadoutQuantity,
+      targetOpportunityId: overrides.targetOpportunityId ?? hubLoadoutTargetId,
+      targetEquipmentSlot: overrides.targetEquipmentSlot ?? hubLoadoutEquipmentSlot,
+      targetQuickSlotIndex: overrides.targetQuickSlotIndex ?? hubLoadoutQuickSlot,
+      x: overrides.x ?? hubLoadoutX,
+      y: overrides.y ?? hubLoadoutY,
+      rotated: hubLoadoutRotated,
+    }, presentationDependencies)
+    if (!currentPreview?.canExecute || !currentPreview.command || !currentPreview.safeResult) {
+      return
+    }
     const action = `${hubLoadoutOperationLabel(hubLoadoutOperation)} · ${pendingHubLoadout.sourceLabel}`
-    const safeResult = hubLoadoutPreview.safeResult
-    const execution = store.dispatch(hubLoadoutPreview.command)
+    const safeResult = currentPreview.safeResult
+    const execution = dispatchAndRecord(currentPreview.command, action, 'inventory', beforePhase)
     setPendingHubLoadoutId(null)
-    setPersistenceFeedback(execution.kind === 'executed' ? '✓ 操作已执行并保存' : '⚠ 保存失败：本次操作已在当前会话中生效，请勿刷新页面。')
     if (execution.phase.kind === 'current-day-hub') setHubLoadoutResult(createHubLoadoutResultViewModel(execution.phase, action, safeResult, presentationDependencies))
   }
   const openHubMaintenance = (operation: StableRunUiHubMaintenanceOpportunity['operation']) => {
@@ -1621,45 +2051,59 @@ export function StableRunUiApp({
     setPendingHubMaintenanceOperation(operation)
   }
   const confirmHubMaintenance = () => {
-    if (!hubMaintenancePreview?.canExecute || !hubMaintenancePreview.command || !hubMaintenancePreview.safeResult) return
-    const beforePhase = snapshot.phase
-    const safeResult = hubMaintenancePreview.safeResult
-    const execution = store.dispatch(hubMaintenancePreview.command)
+    if (!pendingHubMaintenance) return
+    const beforePhase = store.getState().phase
+    const currentPreview = previewStableRunUiHubMaintenanceDraft(beforePhase, {
+      operation: pendingHubMaintenance.operation,
+      allocations: Object.entries(hubMaintenanceAllocations).map(([targetId, points]) => ({ targetId, points })),
+      targetId: hubMaintenanceTargetId,
+      materialSourceId: hubMaintenanceMaterialSourceId,
+      secondaryMaterialSourceId: hubMaintenanceSecondarySourceId,
+    }, presentationDependencies)
+    if (!currentPreview?.canExecute || !currentPreview.command || !currentPreview.safeResult) {
+      setPendingHubMaintenanceOperation(null)
+      return
+    }
+    const execution = dispatchAndRecord(currentPreview.command, pendingHubMaintenance.label, 'hub', beforePhase)
     setPendingHubMaintenanceOperation(null)
-    setPersistenceFeedback(execution.kind === 'executed' ? '✓ 操作已执行并保存' : '⚠ 保存失败：本次操作已在当前会话中生效，请勿刷新页面。')
     if (execution.phase.kind === 'current-day-hub') {
-      setHubMaintenanceResult(createHubMaintenanceResultViewModel(beforePhase, execution.phase, safeResult, presentationDependencies))
+      setHubMaintenanceResult(createHubMaintenanceResultViewModel(beforePhase, execution.phase, currentPreview.safeResult, presentationDependencies))
     }
   }
   return <>
     {persistenceFeedback && <p className="persistence-feedback" role="status">{persistenceFeedback}</p>}
-    {model.kind === 'current-day-hub' && <HubView model={model} backgroundKey={presentationDependencies.assets?.hubBackgroundKey ?? null} actions={interaction.actions} onPreview={setPendingActionId} loadoutOpportunities={interaction.hubLoadoutOpportunities} onLoadout={openHubLoadout} maintenanceOpportunities={interaction.hubMaintenanceOpportunities} onMaintenance={openHubMaintenance} />}
-    {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} ghost={activeGhost} combatGhost={activeCombatGhost} combatActionResult={combatActionResult} onPreview={setPendingActionId} onGhostEnter={showGhost} onGhostLeave={hideGhost} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} taskEventOpportunities={interaction.taskEventOpportunities} onTaskEvent={openTaskEvent} inventoryOpportunities={interaction.inventoryOpportunities} onInventory={openInventory} />}
+    {model.kind === 'current-day-hub' && <HubView model={model} backgroundKey={presentationDependencies.assets?.hubBackgroundKey ?? null} actions={interaction.actions} onPreview={openAction} loadoutOpportunities={interaction.hubLoadoutOpportunities} onLoadout={openHubLoadout} maintenanceOpportunities={interaction.hubMaintenanceOpportunities} onMaintenance={openHubMaintenance} activityEntries={activityEntries} returnSummaryAvailable={returnSummary !== null} onViewReturnSummary={() => setReturnSummaryOpen(true)} detailsAvailable={!!(hubLoadoutResult || hubMedicalResult || hubSurvivalResult || hubMaintenanceResult)} onViewDetails={() => setResultDetailsOpen(true)} />}
+    {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} ghost={activeGhost} combatGhost={activeCombatGhost} combatActionResult={combatActionResult} onCloseCombatResult={() => setCombatActionResult(null)} onPreview={openAction} onGhostEnter={showGhost} onGhostLeave={hideGhost} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} taskEventOpportunities={interaction.taskEventOpportunities} onTaskEvent={openTaskEvent} inventoryOpportunities={interaction.inventoryOpportunities} onInventory={openInventory} activityEntries={activityEntries} pendingWithdrawal={pendingAction?.kind === 'scene-withdraw' ? pendingAction : null} onCancelWithdrawal={() => setPendingActionId(null)} onConfirmWithdrawal={confirm} autoOpenSearchResultNode={autoOpenSearchResultNode} detailsAvailable={!!(sceneMedicalResult || sceneBatteryResult || sceneInventoryResult)} onViewDetails={() => setResultDetailsOpen(true)} />}
+    {activeGhost && ghostAnchor && <AnchoredGhostPreview ghost={activeGhost} anchor={ghostAnchor} />}
     {model.kind === 'run-failure' && <FailureView
       model={model}
       onRequestNewRunSetup={onRequestNewRunSetup}
     />}
-    {pendingAction && <ActionPreviewDialog
+    {pendingAction && pendingAction.kind !== 'scene-withdraw' && <ActionPreviewDialog
       preview={pendingAction.preview}
       visualKey={pendingAction.visualKey}
+      protective={actionExecutionLevel(pendingAction, interaction.actions) === 'protective-confirmation'}
+      rescueAlternative={pendingAction.kind !== 'end-day' && actionExecutionLevel(pendingAction, interaction.actions) === 'protective-confirmation'}
+      compactUnchanged={pendingAction.kind === 'end-day'}
+      confirmLabel={pendingAction.kind === 'end-day' ? '确认结束本日' : actionExecutionLevel(pendingAction, interaction.actions) === 'protective-confirmation' ? '仍然执行' : '执行'}
       onCancel={() => setPendingActionId(null)}
       onConfirm={confirm}
     />}
-    {pendingPickup && model.kind === 'scene-session' && <PickupDialog opportunity={pendingPickup} loadout={model.scene.loadout} preview={pickupPreview} quantity={pickupQuantity} x={pickupX} y={pickupY} rotated={pickupRotated} onQuantity={selectPickupQuantity} onRotate={selectPickupRotation} onAnchor={selectPickupAnchor} onCancel={() => setPendingPickupId(null)} onConfirm={confirmPickup} />}
+    {pendingPickup && model.kind === 'scene-session' && <PickupDialog opportunity={pendingPickup} loadout={model.scene.loadout} preview={pickupPreview} quantity={pickupQuantity} x={pickupX} y={pickupY} placementSelected={pickupPlacementSelected} rotated={pickupRotated} onQuantity={selectPickupQuantity} onRotate={selectPickupRotation} onAnchor={(x, y) => { selectPickupAnchor(x, y); confirmPickup({ x, y }) }} onAutoPlace={() => tryAutoPickup(pendingPickup.id, pickupQuantity)} onCancel={() => setPendingPickupId(null)} />}
     {pendingTaskEvent && model.kind === 'scene-session' && <TaskEventDialog opportunity={pendingTaskEvent} loadout={model.scene.loadout} preview={taskEventPreview} x={taskEventX} y={taskEventY} rotated={taskEventRotated} onRotate={selectTaskEventRotation} onAnchor={selectTaskEventAnchor} onCancel={() => setPendingTaskEventId(null)} onConfirm={confirmTaskEvent} />}
-    {pendingInventory && model.kind === 'scene-session' && <SceneInventoryDialog opportunity={pendingInventory} opportunities={interaction.inventoryOpportunities} loadout={model.scene.loadout} operation={inventoryOperation} quantity={inventoryQuantity} targetOpportunityId={inventoryTargetId} targetSlotIndex={inventoryTargetSlot} x={inventoryX} y={inventoryY} rotated={inventoryRotated} preview={inventoryPreview} onOperation={selectInventoryOperation} onQuantity={selectInventoryQuantity} onTargetOpportunity={selectInventoryTarget} onTargetSlot={selectInventorySlot} onAnchor={selectInventoryAnchor} onRotate={selectInventoryRotation} onCancel={() => setPendingInventoryId(null)} onConfirm={confirmInventory} />}
-    {pendingHubLoadout && model.kind === 'current-day-hub' && <HubLoadoutDialog opportunity={pendingHubLoadout} opportunities={interaction.hubLoadoutOpportunities} loadout={model.loadout} operation={hubLoadoutOperation} quantity={hubLoadoutQuantity} targetOpportunityId={hubLoadoutTargetId} targetEquipmentSlot={hubLoadoutEquipmentSlot} targetQuickSlotIndex={hubLoadoutQuickSlot} x={hubLoadoutX} y={hubLoadoutY} rotated={hubLoadoutRotated} preview={hubLoadoutPreview} onOperation={selectHubLoadoutOperation} onQuantity={selectHubLoadoutQuantity} onTargetOpportunity={selectHubLoadoutTarget} onTargetEquipmentSlot={selectHubLoadoutEquipmentSlot} onTargetQuickSlotIndex={selectHubLoadoutQuickSlot} onAnchor={selectHubLoadoutAnchor} onRotate={selectHubLoadoutRotation} onCancel={() => setPendingHubLoadoutId(null)} onConfirm={confirmHubLoadout} />}
+    {pendingInventory && model.kind === 'scene-session' && <SceneInventoryDialog opportunity={pendingInventory} opportunities={interaction.inventoryOpportunities} loadout={model.scene.loadout} operation={inventoryOperation} quantity={inventoryQuantity} targetOpportunityId={inventoryTargetId} targetSlotIndex={inventoryTargetSlot} x={inventoryX} y={inventoryY} rotated={inventoryRotated} preview={inventoryPreview} onQuantity={selectInventoryQuantity} onTargetOpportunity={(id) => { selectInventoryTarget(id); confirmInventory({ targetOpportunityId: id }) }} onTargetSlot={(index) => { selectInventorySlot(index); confirmInventory({ targetSlotIndex: index }) }} onAnchor={(x, y) => { selectInventoryAnchor(x, y); confirmInventory({ x, y }) }} onRotate={selectInventoryRotation} onCancel={() => setPendingInventoryId(null)} />}
+    {pendingQuestDropConfirmation && pendingInventory && inventoryPreview?.questDropWarning && <div className="protective-surface" role="presentation"><section className="preview-dialog" role="dialog" aria-modal="false" aria-label="任务物丢弃确认"><h2>确认丢弃任务关键物</h2><p className="preview-warning">{pendingInventory.sourceLabel}将留在当前节点，不会自动进入任务储存区。</p><div className="preview-controls"><button type="button" onClick={() => setPendingQuestDropConfirmation(false)}>返回选择</button><button type="button" className="confirm-action" onClick={() => confirmInventory()}>仍然丢弃</button></div></section></div>}
+    {pendingHubLoadout && model.kind === 'current-day-hub' && <HubLoadoutDialog opportunity={pendingHubLoadout} opportunities={interaction.hubLoadoutOpportunities} loadout={model.loadout} operation={hubLoadoutOperation} quantity={hubLoadoutQuantity} targetOpportunityId={hubLoadoutTargetId} targetEquipmentSlot={hubLoadoutEquipmentSlot} targetQuickSlotIndex={hubLoadoutQuickSlot} x={hubLoadoutX} y={hubLoadoutY} rotated={hubLoadoutRotated} preview={hubLoadoutPreview} onQuantity={selectHubLoadoutQuantity} onTargetOpportunity={(id) => { selectHubLoadoutTarget(id); if (hubLoadoutOperation === 'merge-backpack-stacks') confirmHubLoadout({ targetOpportunityId: id }) }} onTargetEquipmentSlot={(slot) => { selectHubLoadoutEquipmentSlot(slot); confirmHubLoadout({ targetEquipmentSlot: slot }) }} onTargetQuickSlotIndex={(index) => { selectHubLoadoutQuickSlot(index); confirmHubLoadout({ targetQuickSlotIndex: index }) }} onAnchor={(x, y) => { selectHubLoadoutAnchor(x, y); confirmHubLoadout({ x, y }) }} onRotate={selectHubLoadoutRotation} onCancel={() => setPendingHubLoadoutId(null)} />}
     {pendingHubMaintenance && model.kind === 'current-day-hub' && <HubMaintenanceDialog opportunity={pendingHubMaintenance} allocations={hubMaintenanceAllocations} targetId={hubMaintenanceTargetId} materialSourceId={hubMaintenanceMaterialSourceId} secondaryMaterialSourceId={hubMaintenanceSecondarySourceId} preview={hubMaintenancePreview} onAllocation={(targetId, points) => setHubMaintenanceAllocations((current) => ({ ...current, [targetId]: points }))} onTarget={setHubMaintenanceTargetId} onMaterialSource={setHubMaintenanceMaterialSourceId} onSecondaryMaterialSource={setHubMaintenanceSecondarySourceId} onCancel={() => setPendingHubMaintenanceOperation(null)} onConfirm={confirmHubMaintenance} />}
-    {returnSummary && <ReturnSummaryDialog summary={returnSummary} onClose={() => setReturnSummary(null)} />}
-    {combatActionResult && <CombatActionResultDialog result={combatActionResult} onClose={() => setCombatActionResult(null)} />}
+    {returnSummary && returnSummaryOpen && <ReturnSummaryDialog summary={returnSummary} onClose={() => setReturnSummaryOpen(false)} />}
     {taskEventResult && <TaskEventResultDialog result={taskEventResult} onClose={() => setTaskEventResult(null)} />}
-    {sceneMedicalResult && <SceneMedicalResultDialog result={sceneMedicalResult} onClose={() => setSceneMedicalResult(null)} />}
-    {sceneBatteryResult && <SceneBatteryResultDialog result={sceneBatteryResult} onClose={() => setSceneBatteryResult(null)} />}
-    {sceneInventoryResult && <SceneInventoryResultDialog result={sceneInventoryResult} onClose={() => setSceneInventoryResult(null)} />}
-    {hubLoadoutResult && <HubLoadoutResultDialog result={hubLoadoutResult} onClose={() => setHubLoadoutResult(null)} />}
-    {hubMedicalResult && <HubMedicalResultDialog result={hubMedicalResult} onClose={() => setHubMedicalResult(null)} />}
-    {hubSurvivalResult && <HubSurvivalResultDialog result={hubSurvivalResult} onClose={() => setHubSurvivalResult(null)} />}
-    {hubMaintenanceResult && <HubMaintenanceResultDialog result={hubMaintenanceResult} onClose={() => setHubMaintenanceResult(null)} />}
+    {resultDetailsOpen && sceneMedicalResult && <SceneMedicalResultDialog result={sceneMedicalResult} onClose={() => setResultDetailsOpen(false)} />}
+    {resultDetailsOpen && sceneBatteryResult && <SceneBatteryResultDialog result={sceneBatteryResult} onClose={() => setResultDetailsOpen(false)} />}
+    {resultDetailsOpen && sceneInventoryResult && <SceneInventoryResultDialog result={sceneInventoryResult} onClose={() => setResultDetailsOpen(false)} />}
+    {resultDetailsOpen && hubLoadoutResult && <HubLoadoutResultDialog result={hubLoadoutResult} onClose={() => setResultDetailsOpen(false)} />}
+    {resultDetailsOpen && hubMedicalResult && <HubMedicalResultDialog result={hubMedicalResult} onClose={() => setResultDetailsOpen(false)} />}
+    {resultDetailsOpen && hubSurvivalResult && <HubSurvivalResultDialog result={hubSurvivalResult} onClose={() => setResultDetailsOpen(false)} />}
+    {resultDetailsOpen && hubMaintenanceResult && <HubMaintenanceResultDialog result={hubMaintenanceResult} onClose={() => setResultDetailsOpen(false)} />}
     {dailySettlementResult && <DailySettlementResultDialog result={dailySettlementResult} onClose={() => setDailySettlementResult(null)} />}
     {import.meta.env.DEV && <DevInspector phase={snapshot.phase} />}
   </>

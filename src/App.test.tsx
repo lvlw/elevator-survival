@@ -2,6 +2,7 @@ import { act, StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, describe, expect, it } from 'vitest'
 import App from './App'
+import DevPlaytestShell from './app/dev-playtest-shell'
 import {
   HOSPITAL_ITEM_IDS,
   HOSPITAL_SLICE_RULES_VERSION,
@@ -85,6 +86,24 @@ function renderApp(
     newRunDependencies={newRunDependencies}
   />
   act(() => { root.render(strict ? <StrictMode>{app}</StrictMode> : app) })
+  return container
+}
+
+function renderDevPlaytestShell(storage: UiStorage, strict = false) {
+  const container = document.createElement('div')
+  const root = createRoot(container)
+  roots.push(root)
+  const shell = <DevPlaytestShell
+    initialBootstrapResult={bootstrapProductionRun({
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })}
+    storage={storage}
+    rulesRegistry={hospitalRunSaveRulesRegistry}
+    presentationDependencies={productionPresentationDependencies}
+    newRunDependencies={createProductionHospitalNewRunDependencies(storage)}
+  />
+  act(() => { root.render(strict ? <StrictMode>{shell}</StrictMode> : shell) })
   return container
 }
 
@@ -335,7 +354,8 @@ describe('Production hospital New Run Setup', () => {
     expect(container.textContent).toContain(expected)
     expect(container.textContent).toContain('取得密封病原样本箱并安全带回电梯')
     expect(container.textContent).not.toContain('第 2 日及之后仍可用于工程回归测试')
-    expect(container.textContent).toContain('绷带 ×1')
+    expect(container.querySelector('.quick-slot-rack [aria-label="查看绷带说明"] img')).not.toBeNull()
+    expect(container.querySelector('.quick-slot-rack .item-card-quantity')).toBeNull()
     expect(container.textContent).toContain('主场景尚未进入')
     expect(container.textContent).toContain('进入 封锁医院·急诊楼一层')
     expect(container.textContent).not.toContain('结束本日')
@@ -634,5 +654,63 @@ describe('explicit unrecoverable save clearing', () => {
     expect(container.textContent).toContain('开始新的医院行动')
     expect(storage.clears).toBe(2)
     expect(storage.writes).toBe(0)
+  })
+})
+
+describe('DEV-only Owner playtest reset composition', () => {
+  it.each(['hub', 'scene'] as const)('keeps a resumed %s Run intact until a separate irreversible confirmation', (kind) => {
+    const storage = new UiStorage(savedScenario(kind))
+    const originalSave = storage.value
+    const container = renderDevPlaytestShell(storage)
+    expect(container.querySelector('.dev-playtest-reset')).not.toBeNull()
+    expect(container.querySelector('.dev-inspector .dev-playtest-reset')).toBeNull()
+    expect(storage).toMatchObject({ reads: 1, writes: 0, clears: 0 })
+
+    act(() => button(container, '开发测试：重新开始').click())
+    expect(container.textContent).toContain('不可逆地清除当前浏览器的本局存档')
+    expect(container.textContent).toContain('不会清除其他浏览器数据或 Profile')
+    expect(storage.value).toBe(originalSave)
+    expect(storage.clears).toBe(0)
+    act(() => button(container, '取消').click())
+    expect(storage).toMatchObject({ reads: 1, writes: 0, clears: 0 })
+    expect(storage.value).toBe(originalSave)
+
+    act(() => button(container, '开发测试：重新开始').click())
+    act(() => button(container, '确认清除本局并重新开始').click())
+    expect(container.textContent).toContain('开始新的医院行动')
+    expect(container.textContent).not.toContain('确认重新开始开发测试？')
+    expect(storage.value).toBeNull()
+    expect(storage).toMatchObject({ reads: 1, writes: 0, clears: 1 })
+  })
+
+  it('does not clear or dispatch during StrictMode mount and confirms only once', () => {
+    const storage = new UiStorage(savedScenario('hub'))
+    const container = renderDevPlaytestShell(storage, true)
+    expect(storage).toMatchObject({ reads: 1, writes: 0, clears: 0 })
+    act(() => button(container, '开发测试：重新开始').click())
+    expect(storage.clears).toBe(0)
+    act(() => button(container, '确认清除本局并重新开始').click())
+    expect(storage).toMatchObject({ reads: 1, writes: 0, clears: 1 })
+    expect(container.textContent).toContain('开始新的医院行动')
+  })
+
+  it('keeps the active Run and save on clear failure without an implicit retry', () => {
+    const storage = new UiStorage(savedScenario('hub'))
+    const originalSave = storage.value
+    storage.clearFailures = 1
+    const container = renderDevPlaytestShell(storage)
+    act(() => button(container, '开发测试：重新开始').click())
+    act(() => button(container, '确认清除本局并重新开始').click())
+    expect(container.textContent).toContain('本局存档清除失败')
+    expect(container.textContent).toContain('电梯中枢')
+    expect(container.textContent).not.toContain('开始新的医院行动')
+    expect(container.innerHTML).not.toContain('clear-secret-message')
+    expect(storage.value).toBe(originalSave)
+    expect(storage).toMatchObject({ reads: 1, writes: 0, clears: 1 })
+
+    act(() => button(container, '确认清除本局并重新开始').click())
+    expect(storage).toMatchObject({ reads: 1, writes: 0, clears: 2 })
+    expect(storage.value).toBeNull()
+    expect(container.textContent).toContain('开始新的医院行动')
   })
 })

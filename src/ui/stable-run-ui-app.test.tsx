@@ -1,4 +1,5 @@
 import { StrictMode, act } from 'react'
+import { flushSync } from 'react-dom'
 import { createRoot } from 'react-dom/client'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
@@ -356,17 +357,73 @@ function createHubLoadoutLaunchPhase() {
 }
 
 function button(container: HTMLElement, label: string): HTMLButtonElement {
-  const result = [...container.querySelectorAll('button')]
-    .find((candidate) => candidate.textContent === label)
+  const executionLabels = label === '确认执行' ? ['执行', '仍然执行', '确认返程', '确认结束本日'] : [label]
+  const find = () => [...container.querySelectorAll('button')]
+    .find((candidate) => executionLabels.includes(candidate.textContent ?? '')
+      || candidate.getAttribute('aria-label') === label)
+  let result = find()
+  if (!result && label === '关闭结果') {
+    const detail = [...container.querySelectorAll<HTMLButtonElement>('button')]
+      .find((candidate) => candidate.textContent === '查看最近行动详情')
+    if (detail) { flushSync(() => { detail.click() }); result = find() }
+  }
+  if (!result && label.includes('背包格')) {
+    const backpackTab = [...container.querySelectorAll<HTMLButtonElement>('[role="tab"]')]
+      .find((candidate) => candidate.textContent === '背包')
+    if (backpackTab && backpackTab.getAttribute('aria-selected') !== 'true') {
+      flushSync(() => { backpackTab.click() })
+      result = find()
+    }
+  }
   if (!result) throw new Error(`expected button: ${label}`)
   return result
 }
 
 function buttonContaining(container: HTMLElement, label: string): HTMLButtonElement {
-  const result = [...container.querySelectorAll('button')]
-    .find((candidate) => candidate.textContent?.includes(label))
+  const find = () => [...container.querySelectorAll('button')]
+    .find((candidate) => candidate.textContent?.includes(label) || candidate.getAttribute('aria-label')?.includes(label))
+  let result = find()
+  if (!result && label.includes('背包格')) {
+    const backpackTab = [...container.querySelectorAll<HTMLButtonElement>('[role="tab"]')]
+      .find((candidate) => candidate.textContent === '背包')
+    if (backpackTab && backpackTab.getAttribute('aria-selected') !== 'true') {
+      flushSync(() => { backpackTab.click() })
+      result = find()
+    }
+  }
   if (!result) throw new Error(`expected button containing: ${label}; found ${container.textContent}`)
   return result
+}
+
+function chooseItemOperation(container: HTMLElement, sourceLabel: string, operation: string): void {
+  const findSource = () => [...container.querySelectorAll<HTMLElement>('button, summary, .item-card-local--icon-only')]
+    .find((candidate) => candidate.getAttribute('aria-label') === sourceLabel)
+  let source = findSource()
+  if (!source && sourceLabel.includes('背包格')) {
+    const backpackTab = [...container.querySelectorAll<HTMLButtonElement>('[role="tab"]')]
+      .find((candidate) => candidate.textContent === '背包')
+    if (backpackTab && backpackTab.getAttribute('aria-selected') !== 'true') {
+      flushSync(() => { backpackTab.click() })
+      source = findSource()
+    }
+  }
+  if (!source) throw new Error(`expected item action: ${sourceLabel}`)
+  if (source.classList.contains('item-card-local--icon-only')) {
+    flushSync(() => { source.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true, cancelable: true, button: 2 })) })
+    const option = [...container.querySelectorAll<HTMLButtonElement>('.item-context-menu button')]
+      .find((candidate) => candidate.textContent === operation)
+    if (!option) throw new Error(`expected ${operation} in ${sourceLabel} context menu`)
+    option.click()
+  } else if (source.tagName === 'SUMMARY') {
+    flushSync(() => { source.click() })
+    const option = [...(source.closest('details')?.querySelectorAll('button') ?? [])]
+      .find((candidate) => candidate.textContent === operation)
+    if (!option) throw new Error(`expected ${operation} in ${sourceLabel} menu`)
+    option.click()
+  } else {
+    expect(source.textContent).toBe(operation)
+    source.click()
+  }
 }
 
 function knownMap(container: HTMLElement): HTMLElement {
@@ -1072,9 +1129,12 @@ describe('StableRunUiApp', () => {
 
     expect(container.querySelectorAll('.equipment-slot')).toHaveLength(3)
     expect(container.querySelectorAll('.quick-slot')).toHaveLength(2)
+    const backpackTab = [...container.querySelectorAll<HTMLElement>('[role="tab"]')].find((tab) => tab.textContent === '背包')
+    if (!backpackTab) throw new Error('expected backpack tab')
+    act(() => { backpackTab.click() })
     expect(container.querySelectorAll('.backpack-grid > .grid-cell')).toHaveLength(24)
     expect(container.querySelectorAll('.backpack-grid > .occupied-cell')).toHaveLength(14)
-    expect(container.querySelector('.backpack-grid')?.children[2]?.textContent).toContain('金属管')
+    expect(container.querySelector('.backpack-grid__items')?.textContent).toContain('金属管')
     expect(container.textContent).toContain('耐久')
     expect(container.textContent).toContain('背包负重')
     expect(container.textContent).toContain('负重状态：')
@@ -1083,6 +1143,34 @@ describe('StableRunUiApp', () => {
     for (const hidden of ['hub-ui-equipped-pipe', 'hub-ui-quick-bandage', 'hub-loadout-ui-run', config.metadata.rulesVersion]) {
       expect(container.innerHTML).not.toContain(hidden)
     }
+    expect(storage.writes).toBe(0)
+  })
+
+  it('uses fallback images and count badges instead of inline names in backpack and quick slots', () => {
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({ initialPhase: createHubLoadoutPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    const quick = container.querySelector('.quick-slot-rack .quick-slot--filled') ?? container.querySelector('.quick-slot-rack .carry-slot--filled')
+    expect(quick?.querySelector('img.item-card-icon')?.getAttribute('src')).toMatch(/^(data:image\/svg\+xml|.*item-placeholder\.svg)/)
+    expect(quick?.querySelector('.item-card-copy > span:not(.item-card-quantity)')).toBeNull()
+    expect(quick?.querySelector('.item-local-action, .item-local-menu > summary')).toBeNull()
+    const quickTrigger = quick?.querySelector<HTMLElement>('.item-card-local--icon-only')
+    if (!quickTrigger) throw new Error('expected occupied quick-slot item')
+    act(() => { quickTrigger.click() })
+    expect(quick?.querySelector('.item-context-menu')).toBeNull()
+    act(() => { quickTrigger.dispatchEvent(new MouseEvent('contextmenu', { button: 2, bubbles: true, cancelable: true })) })
+    expect(quick?.querySelector('.item-context-menu')).not.toBeNull()
+    act(() => { quickTrigger.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })) })
+    act(() => { button(container, '背包').click() })
+    const cells = container.querySelectorAll('.backpack-grid__item')
+    expect(cells.length).toBeGreaterThan(0)
+    expect([...cells].every((cell) => /^(data:image\/svg\+xml|.*item-placeholder\.svg)/.test(cell.querySelector('img.item-card-icon')?.getAttribute('src') ?? ''))).toBe(true)
+    expect(container.querySelectorAll('.backpack-grid__item .item-card-copy > span:not(.item-card-quantity)')).toHaveLength(0)
+    expect(container.querySelectorAll('.backpack-grid__item .item-local-action, .backpack-grid__item .item-local-menu > summary')).toHaveLength(0)
+    expect(cells[0]?.querySelector('.item-card-quantity')?.textContent).toBe('2')
+    expect(cells[1]?.querySelector('.item-card-quantity')).toBeNull()
     expect(storage.writes).toBe(0)
   })
 
@@ -1124,13 +1212,32 @@ describe('StableRunUiApp', () => {
     expect(document.activeElement).toBe(healthHelp)
     expect(container.textContent).toContain('生命降至0会导致本局失败')
     expect(container.textContent).toContain('内部精确进展不会向普通玩家公开')
-    expect(container.querySelector('.equipment-slot button[aria-label="查看金属管说明"]')).not.toBeNull()
-    expect(container.querySelector('.backpack-compartment button[aria-label="查看绷带说明"]')).not.toBeNull()
-    expect(container.querySelector('.quick-slot-rack button[aria-label="查看绷带说明"]')).not.toBeNull()
+    expect(container.querySelector('.equipment-slot [aria-label="查看金属管说明"]')).not.toBeNull()
+    act(() => { button(container, '背包').click() })
+    expect(container.querySelector('.backpack-compartment [aria-label="查看绷带说明"]')).not.toBeNull()
+    expect(container.querySelector('.quick-slot-rack [aria-label="查看绷带说明"]')).not.toBeNull()
     expect(container.textContent).toContain('提供稳定伤害与控制')
     expect(container.textContent).toContain('用于处理指定的未处理开放伤口')
     act(() => { healthHelp.blur() })
     container.remove()
+  })
+
+  it('uses the current room as the exploration stage with a secondary known map and primary adjacent routes', () => {
+    const store = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: sceneSessionAtEmergencyHall() },
+      storage: new MemoryStorage(),
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    expect(container.querySelector('.scene-stage .stage-heading')?.textContent).toContain('急诊大厅')
+    expect(container.querySelector('.scene-map-dock .known-map')).not.toBeNull()
+    const routes = container.querySelector('nav[aria-label="当前可去方向"]')
+    expect(routes).not.toBeNull()
+    expect(routes?.querySelectorAll('button').length).toBeGreaterThan(0)
+    expect(container.querySelector('.scene-stage__primary .time-budget')).not.toBeNull()
+    expect(container.querySelector('.scene-stage__objects .stage-object')).not.toBeNull()
   })
 
   it.each(['hub', 'scene', 'combat', 'failure'] as const)(
@@ -1180,10 +1287,10 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('取得密封病原样本箱并安全带回电梯')
     expect(container.textContent).toContain('样本箱进入任务储存区才计入任务进度')
     expect(container.textContent).toContain('第 2 日及之后仍可用于工程回归测试')
-    expect(container.textContent).toContain('今日基础维修点3 / 3')
+    expect(container.textContent).toContain('今日基础维修点：3 / 3')
     expect(container.textContent).toContain('照明 3 / 3')
     act(() => { store.dispatch({ kind: 'lifecycle', command: { kind: 'launch-main-scene' } }) })
-    expect(container.textContent).toContain('场景导航')
+    expect(container.textContent).toContain('当前地点')
     expect(storage.writes).toBe(1)
   })
 
@@ -1197,6 +1304,50 @@ describe('StableRunUiApp', () => {
     expect(store.getState()).toBe(before)
     expect(storage.writes).toBe(0)
     expect(container.textContent).toContain('电梯中枢')
+  })
+
+  it('keeps one session-local activity feed for committed actions, not hover, cancel, reject, or refresh', () => {
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({ initialPhase: createHubPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    const entries = () => container.querySelectorAll('.activity-feed li:not(.activity-feed__empty)')
+    expect(entries()).toHaveLength(0)
+    act(() => { button(container, '进入 封锁医院·急诊楼一层').click() })
+    expect(storage.writes).toBe(1)
+    expect(entries()).toHaveLength(1)
+    expect(entries()[0]?.textContent).toContain('进入场景')
+    const move = button(container, '前往 急诊大厅')
+    act(() => { move.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })) })
+    expect(entries()).toHaveLength(1)
+    act(() => { button(container, '主动返程').click() })
+    expect(entries()).toHaveLength(1)
+    act(() => { button(container, '继续探索').click() })
+    expect(entries()).toHaveLength(1)
+    expect(() => store.dispatch({ kind: 'scene', command: { kind: 'scene-move', command: { edgeId: 'invalid' } } })).toThrow()
+    expect(entries()).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+
+    const refreshed = document.createElement('div')
+    const refreshedRoot = createRoot(refreshed); roots.push(refreshedRoot)
+    act(() => { refreshedRoot.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    expect(refreshed.querySelectorAll('.activity-feed li:not(.activity-feed__empty)')).toHaveLength(0)
+    expect(store.getState().phase.kind).toBe('scene-session')
+  })
+
+  it('records committed gameplay once when persistence fails and separates the save warning', () => {
+    const storage = new FailingStorage()
+    const store = createStableRunStore({ initialPhase: createHubPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '进入 封锁医院·急诊楼一层').click() })
+    expect(storage.writes).toBe(1)
+    expect(store.getState().phase.kind).toBe('scene-session')
+    expect(container.querySelectorAll('.activity-feed li:not(.activity-feed__empty)')).toHaveLength(1)
+    expect(container.querySelector('.activity-feed')?.textContent).toContain('进入场景')
+    expect(container.querySelector('.persistence-feedback')?.textContent).toContain('保存失败')
   })
 
   it('does not dispatch or save while StrictMode renders Scene Move and Search availability', () => {
@@ -1218,8 +1369,8 @@ describe('StableRunUiApp', () => {
     act(() => { root.render(<StrictMode><StableRunUiApp store={store} presentationDependencies={uiDependencies} /></StrictMode>) })
     expect(store.getState()).toBe(before)
     expect(storage.writes).toBe(0)
-    expect(container.textContent).toContain('前往 药房')
-    expect(container.textContent).toContain('主要搜索 · 使用手电筒')
+    expect(button(container, '前往 药房')).toBeTruthy()
+    expect(button(container, '主要搜索 · 使用手电筒')).toBeTruthy()
   })
 
   it('renders and inspects the entrance Player-Known Map without dispatch, save, RNG, or hidden-space leakage', () => {
@@ -1238,6 +1389,8 @@ describe('StableRunUiApp', () => {
     expect(map.textContent).toContain('急诊大厅')
     expect(map.querySelectorAll('.known-map__node')).toHaveLength(2)
     expect(map.querySelectorAll('.known-map__route-label')).toHaveLength(1)
+    expect(map.querySelectorAll('.known-map__node > button')).toHaveLength(0)
+    expect(map.querySelectorAll('.known-map__node > strong')).toHaveLength(2)
     for (const hidden of [
       '药房', '保安值班室', '隔离走廊', '标本冷藏室', '工作人员通道',
       HOSPITAL_NODE_IDS.elevatorAnteroom,
@@ -1289,10 +1442,9 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
 
-    const map = knownMap(container)
-    expect(map.textContent).toContain('标本冷藏室')
-    expect(map.textContent).not.toContain('工作人员通道')
-    expect(map.querySelectorAll('.known-map__route-label')).toHaveLength(5)
+    expect(container.querySelector('.scene-stage--combat')).not.toBeNull()
+    expect(container.querySelector('.player-known-map')).toBeNull()
+    expect(container.textContent).not.toContain('工作人员通道')
     expect(storage.writes).toBe(0)
   })
 
@@ -1338,13 +1490,7 @@ describe('StableRunUiApp', () => {
     expect(container.querySelector('[aria-label="行动预估"]')).toBeNull()
 
     act(() => { move.click() })
-    expect(container.querySelector('[role="dialog"]')).not.toBeNull()
-    expect(tracked.commands).toHaveLength(0)
-    expect(storage.writes).toBe(0)
-    act(() => { button(container, '取消').click() })
-    expect(tracked.commands).toHaveLength(0)
-    act(() => { button(container, '前往 电梯前室').click() })
-    act(() => { button(container, '确认执行').click() })
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
     expect(notifications).toBe(1)
@@ -1466,7 +1612,7 @@ describe('StableRunUiApp', () => {
     act(() => { root.render(<StrictMode><StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} /></StrictMode>) })
     expect(container.textContent).toContain('当前明显障碍')
     expect(container.textContent).toContain('隔离区防火门')
-    expect(container.textContent).toContain('隔离区防火门 · 强行撞门')
+    expect(button(container, '隔离区防火门 · 强行撞门')).toBeTruthy()
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
     expect(inner.getState()).toBe(before)
@@ -1485,7 +1631,30 @@ describe('StableRunUiApp', () => {
     expect(inner.getState()).toBe(before)
   })
 
-  it('renders all empty-backpack 1×1 anchors as light candidates with only one selected cell', () => {
+  it('anchors keyboard-focus route Ghost at its trigger instead of a fixed screen corner', () => {
+    const storage = new MemoryStorage()
+    const store = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: sceneSessionAtEmergencyHall() },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    const route = button(container, '前往 电梯前室')
+    vi.spyOn(route, 'getBoundingClientRect').mockReturnValue({
+      left: 120, right: 250, top: 120, bottom: 150,
+      width: 130, height: 30, x: 120, y: 120, toJSON: () => ({}),
+    })
+    act(() => { route.dispatchEvent(new FocusEvent('focusin', { bubbles: true })) })
+    const ghost = container.querySelector<HTMLElement>('[aria-label="行动预估"]')
+    expect(ghost?.style.left).toBe('120px')
+    expect(ghost?.style.top).toBe('160px')
+    expect(ghost?.textContent).toContain('前往')
+    expect(storage.writes).toBe(0)
+  })
+
+  it('automatically picks the first unrotated row-major anchor for a single ground item', () => {
     const ground = item('ui-grid-empty-backpack-metal-parts', HOSPITAL_ITEM_IDS.metalParts)
     const session = withGroundItem(sceneSessionAtEmergencyHall(), ground)
     const storage = new MemoryStorage()
@@ -1498,23 +1667,11 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '拾取 金属零件').click() })
-    const dialog = container.querySelector('[role="dialog"]')
-    if (!(dialog instanceof HTMLElement)) throw new Error('expected pickup dialog')
-    const candidates = [...dialog.querySelectorAll<HTMLElement>('.candidate-cell')]
-    const selected = candidates.filter((cell) => cell.classList.contains('selected-footprint-cell'))
-    const unselected = candidates.filter((cell) => !cell.classList.contains('selected-footprint-cell'))
-    expect(candidates).toHaveLength(24)
-    expect(selected).toHaveLength(1)
-    expect(unselected).toHaveLength(23)
-    expect(unselected.every((cell) =>
-      !cell.classList.contains('selected-anchor-cell') &&
-      !cell.classList.contains('invalid-placement-cell'))).toBe(true)
-    expect(selected[0]?.classList.contains('selected-anchor-cell')).toBe(true)
-    expect(selected[0]?.className).not.toBe(unselected[0]?.className)
-    expect(dialog.querySelectorAll('.selected-anchor-cell')).toHaveLength(1)
-    expect(dialog.querySelectorAll('.selected-footprint-cell')).toHaveLength(1)
-    expect(dialog.querySelectorAll('.invalid-placement-cell')).toHaveLength(0)
-    expect(storage.writes).toBe(0)
+    expect(container.querySelector('[aria-labelledby="pickup-title"]')).toBeNull()
+    const phase = store.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(phase.payload.scene.backpack.placements).toContainEqual(expect.objectContaining({ instanceId: ground.instanceId, x: 0, y: 0, rotated: false }))
+    expect(storage.writes).toBe(1)
   })
 
   it('renders every formal multi-cell backpack footprint and lets a pickup draft select a non-anchor cell', () => {
@@ -1533,23 +1690,22 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
+    expect(container.querySelectorAll('.quick-slot-rack .quick-slot')).toHaveLength(2)
+    act(() => { button(container, '背包').click() })
+    expect(container.querySelectorAll('.quick-slot-rack .quick-slot')).toHaveLength(2)
     expect(container.querySelectorAll('[data-occupied="true"]')).toHaveLength(6)
     expect(container.querySelectorAll('[data-occupied="false"]')).not.toHaveLength(0)
-    expect(container.textContent).toContain('消防斧 · 占用')
+    expect(container.querySelector('.backpack-grid__item .item-card-icon')).not.toBeNull()
+    expect(container.querySelector('.backpack-grid__item .item-card-quantity')).toBeNull()
+    const axeFootprint = container.querySelector<HTMLElement>('.backpack-grid__item')
+    expect(axeFootprint?.style.gridColumn).toBe('1 / span 2')
+    expect(axeFootprint?.style.gridRow).toBe('1 / span 3')
 
     act(() => { button(container, '拾取 金属零件').click() })
-    const dialog = container.querySelector('[role="dialog"]')
-    if (!(dialog instanceof HTMLElement)) throw new Error('expected pickup dialog')
-    expect(dialog.querySelectorAll('.candidate-cell').length).toBeGreaterThan(1)
-    expect(dialog.querySelectorAll('.selected-footprint-cell')).toHaveLength(1)
-    const occupiedCells = dialog.querySelectorAll<HTMLButtonElement>('button[data-occupied="true"]')
-    act(() => { occupiedCells[3]!.click() })
-    expect(dialog.querySelectorAll('.selected-anchor-cell')).toHaveLength(1)
-    expect(dialog.querySelectorAll('.selected-footprint-cell')).toHaveLength(1)
-    expect(dialog.querySelectorAll('.invalid-placement-cell')).toHaveLength(1)
-    expect(container.textContent).toContain('目标格：2, 2')
-    expect(button(container, '确认拾取').disabled).toBe(true)
-    expect(storage.writes).toBe(0)
+    const phase = store.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(phase.payload.scene.backpack.placements).toContainEqual(expect.objectContaining({ instanceId: ground.instanceId, x: 2, y: 0, rotated: false }))
+    expect(storage.writes).toBe(1)
   })
 
   it('wires Hub launch, Scene move, and flashlight main search through exactly one Store dispatch each', () => {
@@ -1562,40 +1718,24 @@ describe('StableRunUiApp', () => {
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
 
     act(() => { button(container, '进入 封锁医院·急诊楼一层').click() })
-    expect(container.querySelector('[role="dialog"]')).not.toBeNull()
-    expect(container.textContent).toContain('今日主要场景')
-    expect(storage.writes).toBe(0)
-    expect(notifications).toBe(0)
-    act(() => { button(container, '取消').click() })
     expect(container.querySelector('[role="dialog"]')).toBeNull()
-    expect(storage.writes).toBe(0)
-    expect(notifications).toBe(0)
-
-    act(() => { button(container, '进入 封锁医院·急诊楼一层').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(store.getState().phase.kind).toBe('scene-session')
     expect(container.textContent).toContain('电梯前室')
     expect(storage.writes).toBe(1)
 
     act(() => { button(container, '前往 急诊大厅').click() })
-    expect(container.textContent).toContain('本次移动耗时')
-    expect(storage.writes).toBe(1)
-    act(() => { button(container, '确认执行').click() })
     expect(container.textContent).toContain('急诊大厅')
     expect(storage.writes).toBe(2)
 
-    act(() => { button(container, '主要搜索 · 使用手电筒').click() })
-    expect(container.textContent).toContain('照明资源')
-    expect(container.textContent).not.toContain('金属零件')
-    expect(storage.writes).toBe(2)
     const mapBeforeSearch = knownMap(container)
     const nodesBeforeSearch = [...mapBeforeSearch.querySelectorAll('.known-map__node')].map((node) => node.textContent)
     const routesBeforeSearch = [...mapBeforeSearch.querySelectorAll('.known-map__route-label')].map((route) => route.textContent)
-    act(() => { button(container, '确认执行').click() })
+    act(() => { button(container, '主要搜索 · 使用手电筒').click() })
 
     expect(storage.writes).toBe(3)
     expect(notifications).toBe(3)
-    expect(container.textContent).toContain('金属零件')
+    expect(container.querySelector('[aria-label="搜索结果"]')).not.toBeNull()
+    expect(container.querySelector('[aria-label="搜索结果"]')?.textContent).toContain('金属零件')
     const phase = store.getState().phase
     expect(phase.kind).toBe('scene-session')
     if (phase.kind !== 'scene-session') throw new Error('expected Scene session')
@@ -1625,10 +1765,9 @@ describe('StableRunUiApp', () => {
 
     for (const label of ['进入 封锁医院·急诊楼一层', '前往 急诊大厅']) {
       act(() => { button(container, label).click() })
-      act(() => { button(container, '确认执行').click() })
     }
     expect(container.textContent).toContain('隔离区防火门')
-    expect(container.textContent).not.toContain('前往 隔离走廊')
+    expect(() => button(container, '前往 隔离走廊')).toThrow()
     const fireDoorRouteBefore = [...knownMap(container).querySelectorAll<HTMLElement>('.known-map__route-label')]
       .find((route) => route.textContent?.includes('急诊大厅') && route.textContent.includes('隔离走廊'))
     expect(fireDoorRouteBefore?.classList.contains('known-map__route-label--blocked')).toBe(true)
@@ -1642,14 +1781,16 @@ describe('StableRunUiApp', () => {
       expect(container.innerHTML).not.toContain(hidden)
     }
     act(() => { button(container, '确认执行').click() })
-    expect(container.textContent).not.toContain('隔离区防火门 · 强行撞门')
-    expect(container.textContent).toContain('前往 隔离走廊')
+    expect(() => button(container, '隔离区防火门 · 强行撞门')).toThrow()
+    expect(button(container, '前往 隔离走廊')).toBeTruthy()
     const fireDoorRouteAfter = [...knownMap(container).querySelectorAll<HTMLElement>('.known-map__route-label')]
       .find((route) => route.textContent?.includes('急诊大厅') && route.textContent.includes('隔离走廊'))
     expect(fireDoorRouteAfter?.classList.contains('known-map__route-label--traversable')).toBe(true)
+    const knownNodesBeforeCombat = [...knownMap(container).querySelectorAll('.known-map__node')].map((node) => node.textContent)
+    const knownRouteInfoBeforeCombat = [...knownMap(container).querySelectorAll<HTMLButtonElement>('.known-map__route-label .info-card-trigger')]
+      .map((trigger) => trigger.getAttribute('aria-label'))
 
     act(() => { button(container, '前往 隔离走廊').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(tracked.commands).toHaveLength(4)
     expect(storage.writes).toBe(4)
     const phase = inner.getState().phase
@@ -1667,30 +1808,21 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('蓄力击打')
     expect(container.textContent).not.toContain('背包网格')
     expect(container.textContent).not.toContain('场景结果')
-    const combatMap = knownMap(container)
-    expect(combatMap.textContent).toContain('标本冷藏室')
-    expect(combatMap.textContent).toContain('战斗结束后重算返程')
-    const coldRouteDuringCombat = [...combatMap.querySelectorAll<HTMLElement>('.known-map__route-label')]
-      .find((route) => route.textContent?.includes('隔离走廊') && route.textContent.includes('标本冷藏室'))
-    expect(coldRouteDuringCombat?.classList.contains('known-map__route-label--blocked')).toBe(true)
-    expect([...combatMap.querySelectorAll<HTMLElement>('.known-map__route-label')].some((route) =>
-      route.textContent?.includes('保安值班室') && route.textContent.includes('隔离走廊'),
-    )).toBe(false)
-    const knownNodesDuringCombat = [...combatMap.querySelectorAll('.known-map__node')].map((node) => node.textContent)
-    const knownRouteInfoDuringCombat = [...combatMap.querySelectorAll<HTMLButtonElement>('.known-map__route-label .info-card-trigger')]
-      .map((trigger) => trigger.getAttribute('aria-label'))
+    expect(container.querySelector('.player-known-map')).toBeNull()
+    expect(container.querySelector('.scene-stage--combat')).not.toBeNull()
 
-    for (const label of ['挥击', '蓄力击打', '挥击']) {
+    for (const [index, label] of ['挥击', '蓄力击打', '挥击'].entries()) {
       act(() => { button(container, label).click() })
-      const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
-      expect(preview).toContain('下一次决策前的敌人行动')
-      expect(preview).toContain('预计造成伤害')
       for (const hidden of ['riskPercent', 'roll', 'streamId', 'drawIndex', 'succeeded', 'enemyInstanceId', 'sceneInstanceId', 'nextCycleIndex', 'resolvedActionCount']) {
         expect(container.innerHTML).not.toContain(hidden)
       }
-      act(() => { button(container, '确认执行').click() })
-      expect(container.textContent).toContain('战斗行动结果')
-      act(() => { button(container, '关闭结果').click() })
+      if (index < 2) {
+        expect(container.querySelector('.battle-stage__combat-log')).not.toBeNull()
+        expect(container.querySelector('[aria-label="战斗主舞台"] .game-actions')).not.toBeNull()
+        expect(container.querySelector('.combat-terminal-result')).toBeNull()
+      } else {
+        expect(container.querySelector('.combat-terminal-result')).not.toBeNull()
+      }
     }
     expect(tracked.commands).toHaveLength(7)
     expect(storage.writes).toBe(7)
@@ -1698,20 +1830,20 @@ describe('StableRunUiApp', () => {
     const victory = inner.getState().phase
     if (victory.kind !== 'scene-session') throw new Error('expected Scene after victory')
     expect(victory.payload.scene.status).toBe('active')
-    expect(container.textContent).not.toContain('战斗行动结果')
+    expect(container.textContent).toContain('战斗结局')
+    act(() => { button(container, '关闭结果').click() })
     expect(container.textContent).not.toContain('感染护工')
-    expect(container.textContent).toContain('前往 标本冷藏室')
+    expect(button(container, '前往 标本冷藏室')).toBeTruthy()
     expect(container.textContent).not.toContain('提取样本箱')
     const victoryMap = knownMap(container)
-    expect([...victoryMap.querySelectorAll('.known-map__node')].map((node) => node.textContent)).toEqual(knownNodesDuringCombat)
+    expect(victoryMap.querySelectorAll('.known-map__node').length).toBeGreaterThanOrEqual(knownNodesBeforeCombat.length)
     expect([...victoryMap.querySelectorAll<HTMLButtonElement>('.known-map__route-label .info-card-trigger')]
-      .map((trigger) => trigger.getAttribute('aria-label'))).toEqual(knownRouteInfoDuringCombat)
+      .map((trigger) => trigger.getAttribute('aria-label')).length).toBeGreaterThanOrEqual(knownRouteInfoBeforeCombat.length)
     const coldRouteAfterVictory = [...victoryMap.querySelectorAll<HTMLElement>('.known-map__route-label')]
       .find((route) => route.textContent?.includes('隔离走廊') && route.textContent.includes('标本冷藏室'))
     expect(coldRouteAfterVictory?.classList.contains('known-map__route-label--traversable')).toBe(true)
 
     act(() => { button(container, '前往 标本冷藏室').click() })
-    act(() => { button(container, '确认执行').click() })
     const coldRoomNode = [...knownMap(container).querySelectorAll<HTMLElement>('.known-map__node')]
       .find((node) => node.textContent?.includes('标本冷藏室'))
     expect(coldRoomNode?.classList.contains('known-map__node--current')).toBe(true)
@@ -1767,7 +1899,6 @@ describe('StableRunUiApp', () => {
     expect(phase.payload.scene.enabledEdgeIds).toContain(HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor)
 
     act(() => { button(container, '前往 隔离走廊').click() })
-    act(() => { button(container, '确认执行').click() })
     const combatPhase = store.getState().phase
     if (combatPhase.kind !== 'scene-session') throw new Error('expected combat Scene')
     const active = combatPhase.payload.scene.combatState.encounters.find(({ kind }) => kind === 'active')
@@ -1795,10 +1926,9 @@ describe('StableRunUiApp', () => {
     if (phase.kind !== 'scene-session') throw new Error('expected Scene')
     expect(phase.payload.scene.backpack.items.some(({ definitionId }) => definitionId === HOSPITAL_ITEM_IDS.electronicComponents)).toBe(false)
     expect(phase.payload.scene.quickSlots.slots.some((candidate) => candidate?.definitionId === HOSPITAL_ITEM_IDS.electronicComponents)).toBe(false)
-    expect(container.textContent).toContain('拾取 电子元件')
+    expect(button(container, '拾取 电子元件')).toBeTruthy()
     expect(getItemState(phase.payload.scene.itemStates, toolkit.instanceId).resource).toEqual({ kind: 'durability', current: 1 })
     act(() => { button(container, '拾取 电子元件').click() })
-    act(() => { button(container, '确认拾取').click() })
     expect(storage.writes).toBe(2)
     phase = store.getState().phase
     if (phase.kind !== 'scene-session') throw new Error('expected Scene')
@@ -1874,10 +2004,9 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '进入 封锁医院·急诊楼一层').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(storage.writes).toBe(1)
     expect(store.getState().phase.kind).toBe('scene-session')
-    expect(container.textContent).toContain('场景导航')
+    expect(container.textContent).toContain('当前地点')
     expect(container.textContent).toContain('保存失败')
   })
 
@@ -1906,7 +2035,6 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '前往 急诊大厅').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(storage.writes).toBe(1)
     expect(store.getState().phase.kind).toBe('scene-session')
     const phase = store.getState().phase
@@ -1915,7 +2043,6 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('场景结果')
     expect(container.textContent).not.toContain('电梯中枢')
     act(() => { button(container, '完成返程结算').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(storage.writes).toBe(2)
     expect(store.getState().phase.kind).toBe('current-day-hub')
     expect(container.textContent).toContain('结束本日')
@@ -1963,13 +2090,6 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).not.toContain('金属零件')
     expect(storage.writes).toBe(0)
     act(() => { riskySearch.click() })
-    for (const fact of ['超时债务', '有效紧急撤离时间', '强制返程基础损耗', '强制返程流血追加', '强制返程总损耗', '行动后生命', '死亡风险']) {
-      expect(container.textContent).toContain(fact)
-    }
-    expect(container.textContent).not.toContain('金属零件')
-    expect(storage.writes).toBe(0)
-
-    act(() => { button(container, '确认执行').click() })
     expect(storage.writes).toBe(1)
     const phase = store.getState().phase
     expect(phase.kind).toBe('scene-session')
@@ -2006,10 +2126,11 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('预计强制返程损耗')
     act(() => { button(container, '确认执行').click() })
     act(() => { button(container, '完成返程结算').click() })
-    act(() => { button(container, '确认执行').click() })
 
     expect(storage.writes).toBe(2)
     expect(store.getState().phase.kind).toBe('current-day-hub')
+    expect(container.textContent).not.toContain('你主动开始返程，但由于剩余时间不足，最终按强制返程规则完成')
+    act(() => { button(container, '查看返程摘要').click() })
     expect(container.textContent).toContain('你主动开始返程，但由于剩余时间不足，最终按强制返程规则完成')
   })
 
@@ -2023,13 +2144,11 @@ describe('StableRunUiApp', () => {
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
 
     act(() => { button(container, '进入 封锁医院·急诊楼一层').click() })
-    act(() => { button(container, '确认执行').click() })
     act(() => { button(container, '前往 急诊大厅').click() })
-    act(() => { button(container, '确认执行').click() })
     act(() => { button(container, '主要搜索 · 使用手电筒').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(storage.writes).toBe(3)
-    expect(container.textContent).toContain('金属零件')
+    expect(container.querySelector('[aria-label="搜索结果"]')).not.toBeNull()
+    expect(container.querySelector('[aria-label="搜索结果"]')?.textContent).toContain('金属零件')
     let phase = store.getState().phase
     if (phase.kind !== 'scene-session') throw new Error('expected searched Scene')
     const ground = phase.payload.scene.sceneItems.nodeStates.find((entry) => entry.nodeId === HOSPITAL_NODE_IDS.emergencyHall)?.items.find((item) => item.item.definitionId === HOSPITAL_ITEM_IDS.metalParts)
@@ -2038,9 +2157,6 @@ describe('StableRunUiApp', () => {
     const timeBeforePickup = phase.payload.scene.remainingTime
 
     act(() => { button(container, '拾取 金属零件').click() })
-    expect(container.querySelector('[role="dialog"]')?.textContent).toContain('背包负重')
-    expect(storage.writes).toBe(3)
-    act(() => { button(container, '确认拾取').click() })
     expect(storage.writes).toBe(4)
     phase = store.getState().phase
     if (phase.kind !== 'scene-session') throw new Error('expected pickup Scene')
@@ -2062,7 +2178,6 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).not.toContain('电梯中枢')
 
     act(() => { button(container, '完成返程结算').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(storage.writes).toBe(6)
     expect(notifications).toBe(6)
     phase = store.getState().phase
@@ -2071,6 +2186,8 @@ describe('StableRunUiApp', () => {
     expect(phase.payload.continuity.currentDay).toBe(2)
     expect(phase.payload.dailyState.mainSceneUsedToday).toBe(true)
     expect(phase.payload.runLoadout.warehouse.items).toContainEqual(expect.objectContaining({ instanceId: sourceInstanceId, definitionId: HOSPITAL_ITEM_IDS.metalParts }))
+    expect(container.textContent).not.toContain('返回摘要')
+    act(() => { button(container, '查看返程摘要').click() })
     expect(container.textContent).toContain('返回摘要')
     expect(container.textContent).toContain('金属零件 ×1')
     for (const internal of ['safe-returned', 'forced-returned', 'dead Scene Session', 'settle-terminal-scene', 'Run Failure']) {
@@ -2110,7 +2227,7 @@ describe('StableRunUiApp', () => {
     expect(storage.writes).toBe(0)
     expect(notifications).toBe(0)
 
-    act(() => { button(container, '确认拾取').click() })
+    act(() => { button(container, '格子 1,1').click() })
     expect(tracked.commands).toEqual([{
       kind: 'scene',
       command: {
@@ -2162,7 +2279,6 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '拾取 消防斧').click() })
-    act(() => { button(container, '确认拾取').click() })
 
     const phase = store.getState().phase
     if (phase.kind !== 'scene-session') throw new Error('expected pickup Scene')
@@ -2172,9 +2288,53 @@ describe('StableRunUiApp', () => {
     expect(after.resource).toEqual(before.state.resource)
   })
 
+  it('chooses the first formally legal unrotated ground placement after an occupied anchor', () => {
+    const carried = item('first-fit-carried-ration', HOSPITAL_ITEM_IDS.ration)
+    const source = item('first-fit-ground-parts', HOSPITAL_ITEM_IDS.metalParts)
+    const session = withGroundItem(withBackpackItem(sceneSessionAtEmergencyHall(), carried), source)
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({ initialPhase: { kind: 'scene-session', payload: session }, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '拾取 金属零件').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(tracked.commands[0]).toMatchObject({ command: { command: { quantity: 1, placement: { x: 1, y: 0, rotated: false } } } })
+    expect(storage.writes).toBe(1)
+    expect(container.querySelector('[aria-labelledby="pickup-title"]')).toBeNull()
+    const after = inner.getState().phase
+    if (after.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(after.payload.scene.backpack.placements).toContainEqual({ instanceId: source.instanceId, x: 1, y: 0, rotated: false })
+    expect(after.payload.scene.backpack.items).toContainEqual(source)
+    expect(after.payload.scene.itemStates.states.some(({ instanceId }) => instanceId === source.instanceId)).toBe(true)
+  })
+
+  it('falls back to manual placement rather than silently rotating when no unrotated fit exists', () => {
+    const blockers = Array.from({ length: 6 }, (_, x) => ({ item: item(`pickup-row-blocker-${x}`, HOSPITAL_ITEM_IDS.metalParts), x, y: 1 }))
+    const base = sceneInventoryPhase({ backpack: blockers })
+    const source = item('manual-rotated-axe', HOSPITAL_ITEM_IDS.fireAxe)
+    const session = withGroundItem(base.payload, source)
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({ initialPhase: { kind: 'scene-session', payload: session }, storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '拾取 消防斧').click() })
+    expect(container.querySelector('[aria-labelledby="pickup-title"]')).not.toBeNull()
+    expect(input(container, '旋转物品').checked).toBe(false)
+    expect(storage.writes).toBe(0)
+    expect(tracked.commands).toHaveLength(0)
+    act(() => { input(container, '旋转物品').click() })
+    act(() => { button(container, '格子 1,3').click() })
+    expect(tracked.commands).toHaveLength(1)
+    expect(tracked.commands[0]).toMatchObject({ command: { command: { placement: { x: 0, y: 2, rotated: true } } } })
+    expect(storage.writes).toBe(1)
+  })
+
   it('keeps invalid Pickup drafts presentation-only and never searches for a replacement placement', () => {
     const carried = item('ui-overlap-ration', HOSPITAL_ITEM_IDS.ration)
-    const source = item('ui-overlap-fire-axe', HOSPITAL_ITEM_IDS.fireAxe)
+    const source = { ...item('ui-overlap-metal-parts', HOSPITAL_ITEM_IDS.metalParts), quantity: 2 }
     const session = withGroundItem(
       withBackpackItem(sceneSessionAtEmergencyHall(), carried),
       source,
@@ -2191,25 +2351,25 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
-    act(() => { button(container, '拾取 消防斧').click() })
+    act(() => { button(container, '拾取 金属零件').click() })
 
     act(() => { setInputValue(input(container, '本次拾取数量'), '0') })
     expect(container.textContent).toContain('拾取参数无效')
-    expect(button(container, '确认拾取').disabled).toBe(true)
+    expect(container.textContent).not.toContain('确认拾取')
     act(() => { setInputValue(input(container, '本次拾取数量'), '1') })
     act(() => { button(container, '压缩口粮 ×1').click() })
     expect(container.textContent).toContain('目标格：1, 1')
     expect(container.textContent).toContain('该数量或摆放无法执行')
     expect(input(container, '本次拾取数量').value).toBe('1')
     expect(input(container, '旋转物品').checked).toBe(false)
-    expect(button(container, '确认拾取').disabled).toBe(true)
+    expect(container.textContent).not.toContain('确认拾取')
     expect(store.getState()).toBe(before)
     expect(storage.writes).toBe(0)
     expect(notifications).toBe(0)
   })
 
   it('keeps Pickup dialog edits and cancellation free of gameplay side effects', () => {
-    const source = item('ui-presentation-fire-axe', HOSPITAL_ITEM_IDS.fireAxe)
+    const source = { ...item('ui-presentation-metal-parts', HOSPITAL_ITEM_IDS.metalParts), quantity: 2 }
     const session = withGroundItem(sceneSessionAtEmergencyHall(), source)
     const storage = new MemoryStorage()
     const store = createStableRunStore({
@@ -2223,10 +2383,9 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
-    act(() => { button(container, '拾取 消防斧').click() })
+    act(() => { button(container, '拾取 金属零件').click() })
     act(() => { setInputValue(input(container, '本次拾取数量'), '1') })
     act(() => { input(container, '旋转物品').click() })
-    act(() => { button(container, '格子 2,1').click() })
     act(() => { button(container, '取消').click() })
     expect(container.querySelector('[aria-labelledby="pickup-title"]')).toBeNull()
     expect(store.getState()).toBe(before)
@@ -2235,7 +2394,7 @@ describe('StableRunUiApp', () => {
   })
 
   it('closes a stale Pickup dialog after an external formal Scene mutation without submitting its old command', () => {
-    const source = item('ui-stale-pickup-fire-axe', HOSPITAL_ITEM_IDS.fireAxe)
+    const source = { ...item('ui-stale-pickup-metal-parts', HOSPITAL_ITEM_IDS.metalParts), quantity: 2 }
     const session = withGroundItem(sceneSessionAtEmergencyHall(), source)
     const storage = new MemoryStorage()
     const store = createStableRunStore({
@@ -2246,7 +2405,7 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
-    act(() => { button(container, '拾取 消防斧').click() })
+    act(() => { button(container, '拾取 金属零件').click() })
     expect(container.querySelector('[aria-labelledby="pickup-title"]')).not.toBeNull()
     act(() => {
       store.dispatch({ kind: 'scene', command: { kind: 'scene-withdraw', command: { kind: 'withdraw-from-scene' } } })
@@ -2271,12 +2430,12 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '主动返程').click() })
-    expect(container.querySelector('[aria-labelledby="action-preview-title"]')).not.toBeNull()
+    expect(container.querySelector('[aria-label="确认主动返程"]')).not.toBeNull()
     act(() => {
       store.dispatch({ kind: 'scene', command: { kind: 'scene-withdraw', command: { kind: 'withdraw-from-scene' } } })
     })
     expect(storage.writes).toBe(1)
-    expect(container.querySelector('[aria-labelledby="action-preview-title"]')).toBeNull()
+    expect(container.querySelector('[aria-label="确认主动返程"]')).toBeNull()
     const phase = store.getState().phase
     if (phase.kind !== 'scene-session') throw new Error('expected terminal Scene')
     expect(phase.payload.scene.status).toBe('safe-returned')
@@ -2308,8 +2467,8 @@ describe('StableRunUiApp', () => {
     })
     expect(storage.writes).toBe(1)
     expect(container.querySelector('[aria-labelledby="action-preview-title"]')).toBeNull()
-    expect(container.textContent).not.toContain('隔离区防火门 · 强行撞门')
-    expect(container.textContent).toContain('前往 隔离走廊')
+    expect(() => button(container, '隔离区防火门 · 强行撞门')).toThrow()
+    expect(button(container, '前往 隔离走廊')).toBeTruthy()
   })
 
   it('keeps the committed obstacle Scene after one failed save without retry, rollback, or reload', () => {
@@ -2332,7 +2491,7 @@ describe('StableRunUiApp', () => {
     expect(phase.payload.scene.enabledEdgeIds).toContain(HOSPITAL_EDGE_IDS.emergencyHallToIsolationCorridor)
     expect(phase.payload.scene.alertState).toBe('alerted')
     expect(container.textContent).toContain('保存失败')
-    expect(container.textContent).toContain('前往 隔离走廊')
+    expect(button(container, '前往 隔离走廊')).toBeTruthy()
   })
 
   it('previews and commits a near-zero card option as one terminal Scene without auto-settlement', () => {
@@ -2392,8 +2551,6 @@ describe('StableRunUiApp', () => {
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     const beforeReturn = container.textContent
     act(() => { button(container, '拾取 金属零件').click() })
-    act(() => { button(container, '格子 1,4').click() })
-    act(() => { button(container, '确认拾取').click() })
     expect(storage.writes).toBe(1)
     expect(container.textContent).toContain('负重状态：负载')
     const phase = store.getState().phase
@@ -2424,11 +2581,11 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '完成返程结算').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(storage.writes).toBe(1)
     expect(notifications).toBe(1)
     expect(store.getState().phase.kind).toBe('current-day-hub')
     expect(container.textContent).toContain('保存失败')
+    act(() => { button(container, '查看返程摘要').click() })
     expect(container.textContent).toContain('返回摘要')
   })
 
@@ -2447,7 +2604,6 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('结算战败')
     expect(container.textContent).not.toContain('完成返程结算')
     act(() => { button(container, '结算战败').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(storage.writes).toBe(1)
     expect(notifications).toBe(1)
     expect(store.getState().phase.kind).toBe('run-failure')
@@ -2484,7 +2640,7 @@ describe('StableRunUiApp', () => {
   })
 
   it('renders Pickup, Withdrawal, and terminal settlement opportunities in StrictMode without mutation', () => {
-    const ground = item('ui-strict-ground-fire-axe', HOSPITAL_ITEM_IDS.fireAxe)
+    const ground = { ...item('ui-strict-ground-metal-parts', HOSPITAL_ITEM_IDS.metalParts), quantity: 2 }
     const activeStorage = new MemoryStorage()
     const activeStore = createStableRunStore({
       initialPhase: { kind: 'scene-session', payload: withGroundItem(sceneSessionAtEmergencyHall(), ground) },
@@ -2495,11 +2651,11 @@ describe('StableRunUiApp', () => {
     const activeContainer = document.createElement('div')
     const activeRoot = createRoot(activeContainer); roots.push(activeRoot)
     act(() => { activeRoot.render(<StrictMode><StableRunUiApp store={activeStore} presentationDependencies={uiDependencies} /></StrictMode>) })
-    expect(activeContainer.textContent).toContain('拾取 消防斧')
+    expect(button(activeContainer, '拾取 金属零件')).toBeTruthy()
     expect(activeContainer.textContent).toContain('主动返程')
     expect(activeStore.getState()).toBe(activeBefore)
     expect(activeStorage.writes).toBe(0)
-    act(() => { button(activeContainer, '拾取 消防斧').click() })
+    act(() => { button(activeContainer, '拾取 金属零件').click() })
     expect(activeStorage.writes).toBe(0)
     expect(activeStore.getState()).toBe(activeBefore)
 
@@ -2549,17 +2705,16 @@ describe('StableRunUiApp', () => {
     }
     act(() => { button(container, '拾取 消防斧').click() })
     assertHidden()
-    act(() => { button(container, '取消').click() })
     act(() => { button(container, '主动返程').click() })
     assertHidden()
     act(() => { button(container, '确认执行').click() })
     act(() => { button(container, '完成返程结算').click() })
-    act(() => { button(container, '确认执行').click() })
+    act(() => { button(container, '查看返程摘要').click() })
     expect(container.textContent).toContain('返回摘要')
     assertHidden()
   })
 
-  it('keeps Combat StrictMode mount and Preview opening free of gameplay side effects', () => {
+  it('keeps Combat StrictMode mount and Ghost inspection free of gameplay side effects', () => {
     const storage = new MemoryStorage()
     const store = createStableRunStore({
       initialPhase: combatPhase(),
@@ -2575,7 +2730,7 @@ describe('StableRunUiApp', () => {
     expect(storage.writes).toBe(0)
     expect(notifications).toBe(0)
     expect(store.getState()).toBe(before)
-    act(() => { button(container, '挥击').click() })
+    act(() => { button(container, '挥击').dispatchEvent(new MouseEvent('mouseover', { bubbles: true })) })
     expect(storage.writes).toBe(0)
     expect(notifications).toBe(0)
     expect(store.getState()).toBe(before)
@@ -2596,7 +2751,7 @@ describe('StableRunUiApp', () => {
     expect(stage?.textContent).toContain('相对生命：完好')
     expect(stage?.querySelectorAll('.enemy-health-phase[data-active="true"]')).toHaveLength(1)
     expect(stage?.textContent).toContain('下一次决策前')
-    expect(container.querySelector('.combat-map-context')).not.toBeNull()
+    expect(container.querySelector('.scene-stage--combat')).not.toBeNull()
     for (const hidden of [
       '当前时间刻度', '行动时间刻度', '玩家下次行动', '敌人下次行动',
       'currentCtb', 'playerNextActionCtb', 'enemyNextActionCtb', 'completesAtCtb',
@@ -2631,23 +2786,34 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
 
+    const actionBar = container.querySelector('.battle-stage__action-bar')
+    const prediction = container.querySelector('.relative-combat-timeline__prediction')
+    const reservedFeedback = container.querySelector('.battle-stage__latest-result')
+    const stageChildren = [...(actionBar?.parentElement?.children ?? [])].map((element) => element.className)
+    expect(actionBar).not.toBeNull()
+    expect(prediction).not.toBeNull()
+    expect(reservedFeedback?.getAttribute('data-empty')).toBe('true')
     const basic = button(container, '挥击')
     act(() => { basic.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })) })
-    expect(container.querySelector('.combat-action-ghost')?.textContent).toContain('敌人将在下一次玩家决策前行动')
+    expect(container.querySelector('.relative-combat-timeline__prediction')?.textContent).toContain('敌人将在下一次玩家决策前行动')
     act(() => { basic.dispatchEvent(new MouseEvent('mouseout', { bubbles: true })) })
     const charged = button(container, '蓄力击打')
     act(() => { charged.dispatchEvent(new FocusEvent('focusin', { bubbles: true })) })
-    expect(container.querySelector('.combat-action-ghost')?.textContent).toContain('玩家将在敌人行动前再次获得决策机会')
+    expect(container.querySelector('.relative-combat-timeline__prediction')?.textContent).toContain('玩家将在敌人行动前再次获得决策机会')
     for (const label of ['防御', '使用绷带 · 处理撕裂伤 1']) {
       const action = button(container, label)
       act(() => { action.dispatchEvent(new FocusEvent('focusin', { bubbles: true })) })
-      expect(container.querySelector('.combat-action-ghost')?.textContent).toContain(label)
-      expect(container.querySelector('.combat-action-ghost')?.textContent).toMatch(/下一次玩家决策|再次获得决策机会/)
+      expect(container.querySelector('.relative-combat-timeline__prediction')?.textContent).toContain(label)
+      expect(container.querySelector('.relative-combat-timeline__prediction')?.textContent).toMatch(/下一次玩家决策|再次获得决策机会/)
     }
     const escape = button(container, '逃跑')
     act(() => { escape.dispatchEvent(new FocusEvent('focusin', { bubbles: true })) })
-    expect(container.querySelector('.combat-action-ghost')?.textContent).toContain('敌人将在脱离完成前行动')
-    expect(container.querySelector('.combat-action-ghost')?.textContent).not.toContain('再次获得决策机会')
+    expect(container.querySelector('.relative-combat-timeline__prediction')?.textContent).toContain('敌人将在脱离完成前行动')
+    expect(container.querySelector('.relative-combat-timeline__prediction')?.textContent).not.toContain('再次获得决策机会')
+    expect(container.querySelector('.battle-stage__action-bar')).toBe(actionBar)
+    expect(container.querySelector('.relative-combat-timeline__prediction')).toBe(prediction)
+    expect([...actionBar!.parentElement!.children].map((element) => element.className)).toEqual(stageChildren)
+    expect(container.querySelector('.battle-stage__latest-result')).toBe(reservedFeedback)
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
     expect(notifications).toBe(0)
@@ -2669,36 +2835,36 @@ describe('StableRunUiApp', () => {
       'completesAtCtb', '行动时间刻度', '战斗结束累计行动时间', '脱离完成时间点',
     ]
     for (const label of ['挥击', '蓄力击打', '防御', '逃跑', '使用绷带 · 处理撕裂伤 1']) {
-      act(() => { button(container, label).click() })
-      const preview = container.querySelector('[role="dialog"]')?.innerHTML ?? ''
-      for (const value of hidden) expect(preview).not.toContain(value)
+      const action = button(container, label)
+      act(() => { action.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })) })
+      for (const value of hidden) expect(container.innerHTML).not.toContain(value)
       expect(container.querySelector('.combat-result-feedback')).toBeNull()
-      act(() => { button(container, '取消').click() })
+      act(() => { action.dispatchEvent(new MouseEvent('mouseout', { bubbles: true })) })
     }
     expect(storage.writes).toBe(0)
     act(() => { button(container, '挥击').click() })
-    act(() => { button(container, '确认执行').click() })
-    const result = container.querySelector('[role="dialog"]')?.innerHTML ?? ''
-    expect(container.querySelector('.combat-result-feedback')).not.toBeNull()
-    for (const value of hidden) expect(result).not.toContain(value)
+    expect(container.querySelector('.combat-result-feedback')).toBeNull()
+    expect(container.querySelector('.battle-stage__combat-log')?.textContent).toContain('挥击')
+    for (const value of hidden) expect(container.innerHTML).not.toContain(value)
     expect(storage.writes).toBe(1)
   })
 
-  it('refreshes a stale Combat Preview from the new canonical Scene', () => {
+  it('refreshes combat action Ghost from the new canonical Scene', () => {
     const storage = new MemoryStorage()
     const store = createStableRunStore({ initialPhase: combatPhase(), storage, rulesRegistry: hospitalRunSaveRulesRegistry })
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
-    act(() => { button(container, '挥击').click() })
-    expect(container.querySelector('[role="dialog"]')?.textContent).toContain('6 → 5')
+    act(() => { button(container, '挥击').dispatchEvent(new MouseEvent('mouseover', { bubbles: true })) })
+    expect(container.querySelector('.relative-combat-timeline__prediction')).not.toBeNull()
     const external = createStableRunUiInteractionModel(store.getState().phase, uiDependencies)
       .actions.find(({ label }) => label === '挥击')!
     act(() => { store.dispatch(external.command) })
     expect(storage.writes).toBe(1)
     expect(container.querySelector('.combat-result-feedback')).toBeNull()
-    expect(container.querySelector('[role="dialog"]')?.textContent).toContain('5 → 4')
-    expect(container.querySelector('[role="dialog"]')?.textContent).not.toContain('6 → 5')
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
+    act(() => { button(container, '挥击').click() })
+    expect(storage.writes).toBe(2)
   })
 
   it('drops a stale bandage wound target after an external formal action consumes it', () => {
@@ -2735,7 +2901,7 @@ describe('StableRunUiApp', () => {
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     expect(container.textContent).toContain('撕裂伤 1 · 已处理')
     expect(container.textContent).toContain('撕裂伤 2 · 未处理')
-    expect(container.textContent).toContain('使用绷带 · 处理撕裂伤 2')
+    expect(button(container, '使用绷带 · 处理撕裂伤 2')).toBeTruthy()
     expect(container.innerHTML).not.toContain('treated-laceration-a')
     expect(container.innerHTML).not.toContain('untreated-laceration-b')
   })
@@ -2830,7 +2996,6 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('当前没有可用的武器攻击，因此可以使用临时攻击')
     expect(container.textContent).not.toContain('挥击')
     act(() => { button(container, '临时攻击').click() })
-    act(() => { button(container, '确认执行').click() })
     const phase = store.getState().phase
     if (phase.kind !== 'scene-session') throw new Error('expected Scene')
     expect(storage.writes).toBe(1)
@@ -2876,18 +3041,15 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '蓄力击打').click() })
-    expect(container.textContent).toContain('本次攻击后金属管将损坏')
-    act(() => { button(container, '确认执行').click() })
     expect(container.textContent).toContain('金属管已损坏。武器攻击已不可用。临时攻击现已可用。')
-    act(() => { button(container, '关闭结果').click() })
     expect(storage.writes).toBe(1)
     const phase = store.getState().phase
     if (phase.kind !== 'scene-session') throw new Error('expected combat Scene')
     const active = phase.payload.scene.combatState.encounters.find(({ kind }) => kind === 'active')
     expect(active?.kind === 'active' && active.combat.enemy.currentHealth).toBe(8)
     expect(active?.kind === 'active' && active.combat.enemyNextActionCtb).toBe(270)
-    expect(container.textContent).not.toContain('蓄力击打')
-    expect(container.textContent).not.toContain('挥击')
+    expect(() => button(container, '蓄力击打')).toThrow()
+    expect(() => button(container, '挥击')).toThrow()
     expect(container.textContent).toContain('临时攻击')
   })
 
@@ -2908,8 +3070,7 @@ describe('StableRunUiApp', () => {
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     for (let index = 0; index < 4; index += 1) {
       act(() => { button(container, '挥击').click() })
-      act(() => { button(container, '确认执行').click() })
-      act(() => { button(container, '关闭结果').click() })
+      expect(container.querySelector('.combat-result-feedback')).toBeNull()
     }
     expect(storage.writes).toBe(4)
     expect(notifications).toBe(4)
@@ -2930,14 +3091,6 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '逃跑').click() })
-    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
-    expect(preview).toContain('未处理开放伤口1')
-    expect(preview).toContain('镇痛状态无')
-    expect(preview).toContain('敌人将在你完成脱离前行动。')
-    expect(preview).toContain('生还结果继续探索')
-    expect(preview).toContain('后续流程继续当前场景探索')
-    expect(preview).not.toContain('settle-terminal-scene')
-    act(() => { button(container, '确认执行').click() })
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
     expect(notifications).toBe(1)
@@ -2948,7 +3101,6 @@ describe('StableRunUiApp', () => {
     expect(phase.payload.scene.currentNodeId).toBe(HOSPITAL_NODE_IDS.emergencyHall)
     act(() => { button(container, '关闭结果').click() })
     act(() => { button(container, '前往 隔离走廊').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(tracked.commands).toHaveLength(2)
     expect(storage.writes).toBe(2)
     expect(notifications).toBe(2)
@@ -2970,7 +3122,6 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '防御').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(storage.writes).toBe(1)
     const phase = store.getState().phase
     expect(phase.kind).toBe('scene-session')
@@ -2989,7 +3140,6 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '挥击').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(storage.writes).toBe(1)
     expect(notifications).toBe(1)
     expect(container.textContent).toContain('保存失败')
@@ -3014,15 +3164,6 @@ describe('StableRunUiApp', () => {
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
 
     act(() => { button(container, '挥击').click() })
-    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
-    expect(preview).toContain('若本次攻击使敌人失去能力')
-    expect(preview).toContain('生还结果继续探索')
-    expect(preview).toContain('后续流程继续当前场景探索')
-    expect(preview).not.toContain('settle-terminal-scene')
-    expect(tracked.commands).toHaveLength(0)
-    expect(storage.writes).toBe(0)
-
-    act(() => { button(container, '确认执行').click() })
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
     expect(notifications).toBe(1)
@@ -3046,23 +3187,6 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
     act(() => { button(container, '逃跑').click() })
-    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
-    expect(preview).toContain('战斗场景时间10')
-    expect(preview).toContain('完成节点急诊大厅')
-    expect(preview).toContain('当前剩余场景时间5')
-    expect(preview).toContain('结算后剩余时间0')
-    expect(preview).toContain('超时债务5')
-    expect(preview).toContain('预计返程时间11')
-    expect(preview).toContain('有效紧急撤离时间16')
-    expect(preview).toContain('强制返程基础损耗1')
-    expect(preview).toContain('强制返程流血追加1')
-    expect(preview).toContain('强制返程总损耗2')
-    expect(preview).toContain('强制返程后生命2')
-    expect(preview).toContain('死亡风险未发现')
-    expect(preview).toContain('生还结果进入强制返程')
-    expect(preview).toContain('强制返程目标电梯前室')
-    expect(preview).toContain('之后需要显式完成返程结算')
-    act(() => { button(container, '确认执行').click() })
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
     expect(notifications).toBe(1)
@@ -3085,8 +3209,12 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={store} presentationDependencies={uiDependencies} />) })
-    act(() => { button(container, '逃跑').click() })
-    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
+    const safePreview = createStableRunUiInteractionModel(store.getState().phase, uiDependencies)
+      .actions.find(({ label }) => label === '逃跑')?.preview
+    const preview = [
+      ...(safePreview?.facts ?? []),
+      ...(safePreview?.branches.flatMap(({ facts }) => facts) ?? []),
+    ].map(({ label, value }) => `${label}${value}`).join(' ')
     expect(preview).toContain('脱离完成流血损失0–1')
     expect(preview).toContain('脱离完成后生命')
     expect(preview).toContain('强制返程流血追加0–')
@@ -3278,10 +3406,10 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('谨慎检查并提取')
     expect(container.textContent).toContain('直接取出')
     expect(container.textContent).toContain('放弃提取')
-    expect(container.textContent).toContain('先比较提取方式')
-    expect(container.textContent).toContain('行动时间30')
-    expect(container.textContent).toContain('污染风险无')
-    expect(container.textContent).toContain('厚实外套保护生效')
+    expect(container.textContent).toContain('比较提取方式，再明确选择背包位置')
+    expect(container.textContent).toContain('行动时间 30')
+    expect(container.textContent).toContain('污染风险 无')
+    expect(container.textContent).toContain('厚实外套保护 生效')
     expect(container.textContent).toContain('外套完整度1 → 0')
     expect(container.textContent).toContain('保证取得密封病原样本箱 ×1')
     expect(container.textContent).toContain('尺寸／重量2×2 ／ 4')
@@ -3344,9 +3472,10 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('安全入库否；仍需安全返回并显式结算')
     expect(container.textContent).not.toContain('任务完成')
     act(() => { button(container, '关闭结果').click() })
+    act(() => { button(container, '背包').click() })
     expect(container.querySelectorAll('.backpack-grid [data-occupied="true"]')).toHaveLength(4)
-    expect(container.textContent).not.toContain('谨慎检查并提取')
-    expect(container.textContent).not.toContain('直接取出')
+    expect(() => button(container, '谨慎检查并提取')).toThrow()
+    expect(() => button(container, '直接取出')).toThrow()
     expect(container.textContent).toContain('主动返程')
   })
 
@@ -3490,7 +3619,6 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).not.toContain('电梯中枢')
     act(() => { button(container, '关闭结果').click() })
     act(() => { button(container, '完成返程结算').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(tracked.commands).toHaveLength(2)
     expect(storage.writes).toBe(2)
     expect(notifications).toBe(2)
@@ -3503,6 +3631,7 @@ describe('StableRunUiApp', () => {
     expect(phase.payload.runLoadout.warehouse.items).not.toContainEqual(expect.objectContaining({
       definitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase,
     }))
+    act(() => { button(container, '查看返程摘要').click() })
     expect(container.textContent).toContain('带回任务物品密封病原样本箱 ×1')
     expect(container.textContent).toContain('任务储存区')
   })
@@ -3704,6 +3833,7 @@ describe('StableRunUiApp', () => {
       openWounds: [expect.objectContaining({ treatment: 'treated' })],
     })
     expect(storage.writes).toBe(1)
+    act(() => { button(container, '查看最近行动详情').click() })
     expect(container.textContent).toContain('场景医疗结果')
     expect(container.textContent).toContain('来源快捷栏1')
     expect(container.textContent).toContain('流血：已停止')
@@ -3766,6 +3896,8 @@ describe('StableRunUiApp', () => {
     const after = store.getState().phase
     if (after.kind !== 'scene-session') throw new Error('expected Scene session')
     expect(after.payload.scene.condition).toMatchObject({ currentHealth: 9, painkillerActive: true })
+    expect(container.querySelector('[aria-labelledby="scene-medical-result-title"]')).toBeNull()
+    act(() => { button(container, '查看最近行动详情').click() })
     expect(container.textContent).toContain('镇痛已生效')
     expect(container.textContent).toContain('本次医疗完成后可继续探索')
     expect(container.textContent).not.toContain('settle-terminal-scene')
@@ -3815,6 +3947,7 @@ describe('StableRunUiApp', () => {
       status: 'forced-returned',
       currentNodeId: HOSPITAL_NODE_IDS.elevatorAnteroom,
     })
+    act(() => { button(container, '查看最近行动详情').click() })
     const result = container.textContent ?? ''
     expect(result).toContain('完成节点急诊大厅')
     expect(result).toContain('当前节点电梯前室')
@@ -3876,6 +4009,7 @@ describe('StableRunUiApp', () => {
       dailyMedicalUsage: { disinfectantUsesToday: 1 },
     })
     expect(after.payload.scene.backpack.items).toEqual([])
+    act(() => { button(container, '查看最近行动详情').click() })
     expect(container.textContent).toContain('玩家已死亡')
     expect(container.textContent).toContain('结算战败')
     expect(container.textContent).toContain('完成节点急诊大厅')
@@ -3957,6 +4091,7 @@ describe('StableRunUiApp', () => {
       },
     })
     expect(after.payload.scene.backpack.items).toEqual([])
+    act(() => { button(container, '查看最近行动详情').click() })
     expect(container.textContent).toContain('玩家已死亡')
     expect(container.textContent).toContain('完成节点急诊大厅')
     expect(container.textContent).toContain('当前节点急诊大厅')
@@ -4025,6 +4160,7 @@ describe('StableRunUiApp', () => {
     const after = store.getState().phase
     if (after.kind !== 'scene-session') throw new Error('expected Scene session')
     expect(after.payload.scene.condition).toMatchObject({ minorContusions: 0, bleeding: true, currentHealth: 11 })
+    act(() => { button(container, '查看最近行动详情').click() })
     expect(container.textContent).toContain('已移除：轻度挫伤')
   })
 
@@ -4084,6 +4220,7 @@ describe('StableRunUiApp', () => {
       expect(after.payload.scene.status).toBe(expectedStatus)
       expect(storage.writes).toBe(1)
       expect(container.textContent).toContain('完成返程结算')
+      act(() => { button(container, '查看最近行动详情').click() })
       expect(container.textContent).toContain(
         remainingTime === 10
           ? '已安全回到电梯前室；下一步需要显式完成返程结算'
@@ -4279,6 +4416,8 @@ describe('StableRunUiApp', () => {
     })
     expect(getItemState(after.payload.scene.itemStates, 'hidden-battery-a').resource).toEqual({ kind: 'none' })
     expect(getItemState(after.payload.scene.itemStates, after.payload.scene.equipment.utility!.instanceId).resource).toEqual({ kind: 'charge', current: 3 })
+    expect(container.querySelector('[aria-labelledby="scene-battery-result-title"]')).toBeNull()
+    act(() => { button(container, '查看最近行动详情').click() })
     expect(container.textContent).toContain('场景充能结果')
     expect(container.textContent).toContain('本次充能完成后可继续探索')
     expect(notifications).toBe(1)
@@ -4487,6 +4626,33 @@ describe('StableRunUiApp', () => {
     expect(inner.getState()).toBe(before)
   })
 
+  it('opens backpack actions only with right click or keyboard context menu without dispatch', () => {
+    const carried = item('footprint-menu-flashlight', HOSPITAL_ITEM_IDS.flashlight)
+    const phase = sceneInventoryPhase({ backpack: [{ item: carried, x: 1, y: 1, rotated: true }] })
+    const storage = new MemoryStorage()
+    const tracked = trackedStore(createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '背包').click() })
+    const trigger = container.querySelector<HTMLElement>('.backpack-grid .item-card-local--icon-only[aria-label^="整理 手电筒"]')
+    if (!trigger) throw new Error('expected item footprint trigger')
+    act(() => { trigger.click() })
+    expect(container.querySelector('.item-context-menu')).toBeNull()
+    act(() => { trigger.dispatchEvent(new MouseEvent('contextmenu', { button: 2, bubbles: true, cancelable: true })) })
+    expect(container.querySelector('.item-context-menu')?.textContent).toContain('移动／旋转')
+    act(() => { trigger.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })) })
+    expect(container.querySelector('.item-context-menu')).toBeNull()
+    act(() => { trigger.dispatchEvent(new KeyboardEvent('keydown', { key: 'ContextMenu', bubbles: true })) })
+    expect(container.querySelector('.item-context-menu')?.textContent).toContain('移动／旋转')
+    expect(storage.writes).toBe(0)
+    expect(tracked.commands).toHaveLength(0)
+    act(() => { trigger.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })) })
+    act(() => { trigger.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true })) })
+    expect(storage.writes).toBe(0)
+    expect(tracked.commands).toHaveLength(0)
+  })
+
   it('moves and rotates the same resource item at zero time without post-action bleeding', () => {
     const flashlight = item('inventory-hidden-flashlight', HOSPITAL_ITEM_IDS.flashlight)
     const phase = sceneInventoryPhase({
@@ -4505,17 +4671,14 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
 
-    act(() => { button(container, '整理 手电筒 · 背包格 1,1').click() })
-    act(() => { button(container, '移动／旋转').click() })
+    act(() => { chooseItemOperation(container, '整理 手电筒 · 背包格 1,1', '移动／旋转') })
     act(() => { input(container, '旋转整理物品').click() })
     act(() => { button(container, '格子 3,2').click() })
+    expect(container.querySelector('[aria-labelledby="scene-inventory-result-title"]')).toBeNull()
+    act(() => { button(container, '查看最近行动详情').click() })
     expect(container.textContent).toContain('背包负重1 → 1')
     expect(container.textContent).toContain('场景时间50 → 50（不消耗）')
-    expect(tracked.commands).toHaveLength(0)
-    expect(storage.writes).toBe(0)
-    expect(notifications).toBe(0)
-
-    act(() => { button(container, '确认整理').click() })
+    expect(container.textContent).not.toContain('确认整理')
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
     expect(notifications).toBe(1)
@@ -4535,6 +4698,7 @@ describe('StableRunUiApp', () => {
       remainingTime: 50,
       condition: { currentHealth: 1, bleeding: true },
     })
+    act(() => { button(container, '查看最近行动详情').click() })
     expect(container.textContent).toContain('场景整理结果')
     for (const hidden of [
       flashlight.instanceId,
@@ -4565,11 +4729,9 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
 
-    act(() => { button(container, '整理 绷带 ×3 · 背包格 1,1').click() })
-    act(() => { button(container, '拆分堆叠').click() })
+    act(() => { chooseItemOperation(container, '整理 绷带 ×3 · 背包格 1,1', '拆分堆叠') })
     act(() => { setInputValue(input(container, '整理数量'), '1') })
     act(() => { button(container, '格子 2,1').click() })
-    act(() => { button(container, '确认整理').click() })
     act(() => { button(container, '关闭结果').click() })
     let after = inner.getState().phase
     if (after.kind !== 'scene-session') throw new Error('expected Scene session')
@@ -4580,22 +4742,18 @@ describe('StableRunUiApp', () => {
     expect(split.instanceId).toContain('scene-backpack-split:')
     expect(after.payload.scene.backpack.items.find(({ instanceId }) => instanceId === source.instanceId)?.quantity).toBe(2)
 
-    act(() => { button(container, '整理 绷带 ×2 · 背包格 1,1').click() })
-    act(() => { button(container, '合并堆叠').click() })
+    act(() => { chooseItemOperation(container, '整理 绷带 ×2 · 背包格 1,1', '合并堆叠') })
     act(() => { setInputValue(input(container, '整理数量'), '1') })
     act(() => { button(container, '绷带 · 背包格 3,1').click() })
-    act(() => { button(container, '确认整理').click() })
     act(() => { button(container, '关闭结果').click() })
     after = inner.getState().phase
     if (after.kind !== 'scene-session') throw new Error('expected Scene session')
     expect(after.payload.scene.backpack.items.find(({ instanceId }) => instanceId === source.instanceId)?.quantity).toBe(1)
     expect(after.payload.scene.backpack.items.find(({ instanceId }) => instanceId === target.instanceId)?.quantity).toBe(2)
 
-    act(() => { button(container, '整理 绷带 · 背包格 1,1').click() })
-    act(() => { button(container, '合并堆叠').click() })
+    act(() => { chooseItemOperation(container, '整理 绷带 · 背包格 1,1', '合并堆叠') })
     act(() => { setInputValue(input(container, '整理数量'), '1') })
     act(() => { button(container, '绷带 ×2 · 背包格 3,1').click() })
-    act(() => { button(container, '确认整理').click() })
     after = inner.getState().phase
     if (after.kind !== 'scene-session') throw new Error('expected Scene session')
     expect(after.payload.scene.backpack.items.some(({ instanceId }) => instanceId === source.instanceId)).toBe(false)
@@ -4625,12 +4783,11 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
 
-    act(() => { button(container, '整理 绷带 ×2 · 背包格 4,1').click() })
-    act(() => { button(container, '放入快捷栏').click() })
+    act(() => { chooseItemOperation(container, '整理 绷带 ×2 · 背包格 4,1', '放入快捷栏') })
     act(() => { button(container, '快捷栏2 · 空').click() })
+    act(() => { button(container, '查看最近行动详情').click() })
     expect(container.textContent).toContain('背包负重17 → 16')
-    expect(container.textContent).toContain('负重状态负载 → 正常')
-    act(() => { button(container, '确认整理').click() })
+    expect(container.textContent).toContain('负重状态：正常')
     act(() => { button(container, '关闭结果').click() })
     let after = inner.getState().phase
     if (after.kind !== 'scene-session') throw new Error('expected Scene session')
@@ -4638,12 +4795,11 @@ describe('StableRunUiApp', () => {
     expect(quick.instanceId).not.toBe(bandage.instanceId)
     expect(after.payload.scene.backpack.items.find(({ instanceId }) => instanceId === bandage.instanceId)?.quantity).toBe(1)
 
-    act(() => { button(container, '整理 快捷栏2 · 绷带').click() })
-    act(() => { button(container, '放回背包').click() })
+    act(() => { chooseItemOperation(container, '整理 快捷栏2 · 绷带', '放回背包') })
     act(() => { button(container, '格子 1,2').click() })
+    act(() => { button(container, '查看最近行动详情').click() })
     expect(container.textContent).toContain('背包负重16 → 17')
-    expect(container.textContent).toContain('负重状态正常 → 负载')
-    act(() => { button(container, '确认整理').click() })
+    expect(container.textContent).toContain('负重状态：负载')
     after = inner.getState().phase
     if (after.kind !== 'scene-session') throw new Error('expected Scene session')
     expect(after.payload.scene.quickSlots.slots[1]).toBeNull()
@@ -4665,11 +4821,7 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
-    act(() => { button(container, '整理 手电筒 · 背包格 1,1').click() })
-    act(() => { button(container, '放到当前节点').click() })
-    expect(container.textContent).toContain('整个物品实例／整个堆叠')
-    act(() => { button(container, '确认整理').click() })
-    act(() => { button(container, '关闭结果').click() })
+    act(() => { chooseItemOperation(container, '整理 手电筒 · 背包格 1,1', '放到当前节点') })
     let after = inner.getState().phase
     if (after.kind !== 'scene-session') throw new Error('expected Scene session')
     const ground = getSceneNodeItems(after.payload.scene.sceneItems, after.payload.scene.currentNodeId)
@@ -4681,8 +4833,6 @@ describe('StableRunUiApp', () => {
       }),
     })
     act(() => { button(container, '拾取 手电筒').click() })
-    act(() => { button(container, '格子 1,1').click() })
-    act(() => { button(container, '确认拾取').click() })
     after = inner.getState().phase
     if (after.kind !== 'scene-session') throw new Error('expected Scene session')
     expect(after.payload.scene.backpack.items).toContainEqual(flashlight)
@@ -4701,12 +4851,11 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
-    act(() => { button(container, '整理 密封病原样本箱 · 背包格 1,1').click() })
-    act(() => { button(container, '放到当前节点').click() })
-    expect(container.textContent).toContain('这是任务物品。')
-    expect(container.textContent).toContain('只有重新拾取并安全返回后')
-    act(() => { button(container, '确认整理').click() })
-    act(() => { button(container, '关闭结果').click() })
+    act(() => { chooseItemOperation(container, '整理 密封病原样本箱 · 背包格 1,1', '放到当前节点') })
+    expect(container.textContent).toContain('确认丢弃任务关键物')
+    expect(container.textContent).toContain('不会自动进入任务储存区')
+    expect(storage.writes).toBe(0)
+    act(() => { button(container, '仍然丢弃').click() })
     let after = inner.getState().phase
     if (after.kind !== 'scene-session') throw new Error('expected Scene session')
     expect(after.payload.scene.backpack.items).not.toContainEqual(sample)
@@ -4714,8 +4863,6 @@ describe('StableRunUiApp', () => {
       .toContainEqual(expect.objectContaining({ item: sample }))
     expect(after.payload.context.runReturnCarryForward.storedInventory.taskStorage.items).toEqual([])
     act(() => { button(container, '拾取 密封病原样本箱').click() })
-    act(() => { button(container, '格子 1,1').click() })
-    act(() => { button(container, '确认拾取').click() })
     after = inner.getState().phase
     if (after.kind !== 'scene-session') throw new Error('expected Scene session')
     expect(after.payload.scene.backpack.items).toContainEqual(sample)
@@ -4755,10 +4902,8 @@ describe('StableRunUiApp', () => {
       .find((route) => route.textContent?.includes('保安值班室') && route.textContent.includes('隔离走廊'))
     expect(staffRoute?.classList.contains('known-map__route-label--traversable')).toBe(true)
     expect(staffRoute?.textContent).toContain('移动耗时 10')
-    act(() => { button(container, '整理 隔离区门禁卡 · 背包格 1,1').click() })
-    act(() => { button(container, '放到当前节点').click() })
+    act(() => { chooseItemOperation(container, '整理 隔离区门禁卡 · 背包格 1,1', '放到当前节点') })
     expect(container.textContent).not.toContain('这是任务物品。')
-    act(() => { button(container, '确认整理').click() })
     const after = store.getState().phase
     if (after.kind !== 'scene-session') throw new Error('expected Scene session')
     expect(getSceneNodeItems(after.payload.scene.sceneItems, after.payload.scene.currentNodeId))
@@ -4781,11 +4926,10 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
-    act(() => { button(container, '整理 快捷栏1 · 绷带').click() })
-    act(() => { button(container, '放回背包').click() })
+    act(() => { chooseItemOperation(container, '整理 快捷栏1 · 绷带', '放回背包') })
     act(() => { button(container, '格子 1,2').click() })
     expect(container.textContent).toContain('无法携带状态')
-    expect(button(container, '确认整理').disabled).toBe(true)
+    expect(container.textContent).not.toContain('确认整理')
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
   })
@@ -4801,10 +4945,8 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
-    act(() => { button(container, '整理 绷带 ×2 · 背包格 1,1').click() })
-    act(() => { button(container, '放入快捷栏').click() })
+    act(() => { chooseItemOperation(container, '整理 绷带 ×2 · 背包格 1,1', '放入快捷栏') })
     act(() => { button(container, '快捷栏1 · 空').click() })
-    act(() => { button(container, '确认整理').click() })
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
     expect(notifications).toBe(1)
@@ -4832,8 +4974,7 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StrictMode><StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} /></StrictMode>) })
-    act(() => { button(container, '整理 手电筒 · 背包格 1,1').click() })
-    act(() => { button(container, '放到当前节点').click() })
+    act(() => { chooseItemOperation(container, '整理 手电筒 · 背包格 1,1', '移动／旋转') })
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
     expect(notifications).toBe(0)
@@ -4947,21 +5088,15 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
-    expect(container.textContent).toContain('任务储存区（只读）')
+    expect(container.textContent).toContain('任务储存区')
     expect(container.innerHTML).not.toContain('hub-ui-task-case')
-    act(() => { button(container, '整备 仓库条目1 · 绷带 ×3').click() })
-    act(() => { button(container, '取出至背包').click() })
-    act(() => { button(container, '格子 1,2').click() })
-    expect(container.textContent).toContain('场景时间')
-    expect(container.textContent).toContain('0（电梯中枢整备）')
+    act(() => { chooseItemOperation(container, '整备 仓库条目1 · 绷带 ×3', '取出') })
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
     act(() => { button(container, '取消').click() })
     expect(tracked.commands).toHaveLength(0)
-    act(() => { button(container, '整备 仓库条目1 · 绷带 ×3').click() })
-    act(() => { button(container, '取出至背包').click() })
+    act(() => { chooseItemOperation(container, '整备 仓库条目1 · 绷带 ×3', '取出') })
     act(() => { button(container, '格子 1,2').click() })
-    act(() => { button(container, '确认整备').click() })
     expect(tracked.commands).toHaveLength(1)
     expect(tracked.commands[0]).toMatchObject({ kind: 'hub', command: { kind: 'hub-loadout', command: { kind: 'warehouse-to-backpack' } } })
     expect(storage.writes).toBe(1)
@@ -4969,6 +5104,7 @@ describe('StableRunUiApp', () => {
     if (after.kind !== 'current-day-hub') throw new Error('expected Hub')
     expect(after.payload.runLoadout.backpack.items).toContainEqual(expect.objectContaining({ instanceId: 'hub-ui-warehouse-bandage', quantity: 3 }))
     expect(after.payload.runLoadout.warehouse.items.some(({ instanceId }) => instanceId === 'hub-ui-warehouse-bandage')).toBe(false)
+    act(() => { button(container, '查看最近行动详情').click() })
     expect(container.textContent).toContain('中枢整备结果')
     for (const hidden of [
       'hub-ui-warehouse-bandage', 'hub-ui-backpack-painkiller', 'hub-loadout-ui-run',
@@ -4982,8 +5118,8 @@ describe('StableRunUiApp', () => {
     ['move-backpack-item', false, ['整备 止痛药 · 背包格 2,1', '移动／旋转', '格子 1,2']],
     ['split-backpack-stack', false, ['整备 绷带 ×2 · 背包格 1,1', '拆分堆叠', 'quantity:1', '格子 4,2']],
     ['merge-backpack-stacks', false, ['整备 绷带 ×2 · 背包格 1,1', '合并堆叠', 'quantity:1', '绷带 · 背包格 4,1']],
-    ['equip-from-backpack', false, ['整备 厚实外套 · 背包格 5,1', '装备', '防具位']],
-    ['unequip-to-backpack', false, ['整备 武器位 · 金属管', '卸下至背包', '格子 1,2']],
+    ['equip-from-backpack', false, ['整备 厚实外套 · 背包格 5,1', '装备到槽位', '防具位']],
+    ['unequip-to-backpack', false, ['整备 武器位 · 金属管', '卸下', '格子 1,2']],
     ['swap-backpack-equipped', false, ['整备 金属管 · 背包格 3,1', '交换装备', '武器位 · 金属管', '格子 1,2']],
     ['backpack-to-quick-slot', false, ['整备 止痛药 · 背包格 2,1', '放入快捷栏', '快捷栏2 · 空']],
     ['quick-slot-to-backpack', false, ['整备 快捷栏1 · 绷带', '放回背包', '格子 1,2']],
@@ -4995,15 +5131,15 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
-    for (const step of steps) {
+    act(() => { chooseItemOperation(container, steps[0], steps[1]) })
+    for (const step of steps.slice(2)) {
       if (step.startsWith('quantity:')) {
         act(() => { setInputValue(input(container, '中枢整备数量'), step.slice('quantity:'.length)) })
       } else {
         act(() => { button(container, step).click() })
       }
     }
-    expect(button(container, '确认整备').disabled, kind).toBe(false)
-    act(() => { button(container, '确认整备').click() })
+    expect(container.textContent, kind).not.toContain('确认整备')
     expect(tracked.commands).toHaveLength(1)
     expect(tracked.commands[0]).toMatchObject({ kind: 'hub', command: { kind: 'hub-loadout', command: { kind } } })
     expect(storage.writes).toBe(1)
@@ -5019,18 +5155,15 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StrictMode><StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} /></StrictMode>) })
-    act(() => { button(container, '整备 止痛药 · 背包格 2,1').click() })
-    act(() => { button(container, '放入快捷栏').click() })
+    act(() => { chooseItemOperation(container, '整备 止痛药 · 背包格 2,1', '放入快捷栏') })
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
     expect(notifications).toBe(0)
     act(() => { button(container, '快捷栏1 · 绷带').click() })
     expect(container.textContent).toContain('当前来源、目标、资格、数量或摆放无法执行')
-    expect(button(container, '确认整备').disabled).toBe(true)
+    expect(container.textContent).not.toContain('确认整备')
     act(() => { button(container, '取消').click() })
-    act(() => { button(container, '整备 止痛药 · 背包格 2,1').click() })
-    act(() => { button(container, '存入仓库').click() })
-    act(() => { button(container, '确认整备').click() })
+    act(() => { chooseItemOperation(container, '整备 止痛药 · 背包格 2,1', '存入仓库') })
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
     expect(notifications).toBe(1)
@@ -5049,11 +5182,9 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
-    act(() => { button(container, '整备 绷带 ×2 · 背包格 1,1').click() })
-    act(() => { button(container, '拆分堆叠').click() })
+    act(() => { chooseItemOperation(container, '整备 绷带 ×2 · 背包格 1,1', '拆分堆叠') })
     act(() => { setInputValue(input(container, '中枢整备数量'), '1') })
     act(() => { button(container, '格子 4,2').click() })
-    act(() => { button(container, '确认整备').click() })
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
     expect(notifications).toBe(1)
@@ -5074,18 +5205,17 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
     const perform = (steps: readonly string[]) => {
-      for (const step of steps) act(() => { buttonContaining(container, step).click() })
-      act(() => { button(container, '确认整备').click() })
+      act(() => { chooseItemOperation(container, steps[0], steps[1]) })
+      for (const step of steps.slice(2)) act(() => { buttonContaining(container, step).click() })
       act(() => { button(container, '关闭结果').click() })
     }
-    perform(['整备 仓库条目2 · 金属管', '取出至背包', '格子 1,1'])
-    perform(['整备 金属管 · 背包格 1,1', '装备', '武器位'])
-    perform(['整备 仓库条目1 · 绷带 ×2', '取出至背包', '格子 2,1'])
+    perform(['整备 仓库条目2 · 金属管', '取出', '格子 1,1'])
+    perform(['整备 金属管 · 背包格 1,1', '装备到槽位', '武器位'])
+    perform(['整备 仓库条目1 · 绷带 ×2', '取出', '格子 2,1'])
     perform(['整备 绷带 ×2 · 背包格 2,1', '放入快捷栏', '快捷栏1 · 空'])
     expect(tracked.commands).toHaveLength(4)
     expect(storage.writes).toBe(4)
     act(() => { button(container, '进入 封锁医院·急诊楼一层').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(tracked.commands).toHaveLength(5)
     expect(storage.writes).toBe(5)
     const scene = tracked.store.getState().phase
@@ -5105,10 +5235,7 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={inner} presentationDependencies={uiDependencies} />) })
-    act(() => { button(container, '整备 仓库条目1 · 绷带 ×3').click() })
-    act(() => { button(container, '取出至背包').click() })
-    act(() => { button(container, '格子 1,2').click() })
-    expect(button(container, '确认整备').disabled).toBe(false)
+    act(() => { chooseItemOperation(container, '整备 仓库条目1 · 绷带 ×3', '取出') })
     const phase = inner.getState().phase
     const opportunities = createStableRunUiInteractionModel(phase, uiDependencies).hubLoadoutOpportunities
     const painkiller = opportunities.find(({ sourceInstanceId }) => sourceInstanceId === 'hub-ui-backpack-painkiller')!
@@ -5119,11 +5246,10 @@ describe('StableRunUiApp', () => {
     }, uiDependencies)
     if (!occupy?.command) throw new Error('expected external move')
     act(() => { inner.dispatch(occupy.command!) })
-    expect(container.textContent).toContain('当前来源、目标、资格、数量或摆放无法执行')
-    expect(button(container, '确认整备').disabled).toBe(true)
+    expect(container.querySelector('[aria-labelledby="hub-loadout-title"]')).not.toBeNull()
+    expect(container.textContent).not.toContain('确认整备')
     act(() => { button(container, '取消').click() })
-    act(() => { button(container, '整备 仓库条目2 · 金属管').click() })
-    act(() => { button(container, '取出至背包').click() })
+    act(() => { chooseItemOperation(container, '整备 仓库条目2 · 金属管', '取出') })
     const latest = inner.getState().phase
     const pipe = createStableRunUiInteractionModel(latest, uiDependencies).hubLoadoutOpportunities.find(({ sourceInstanceId }) => sourceInstanceId === 'hub-ui-warehouse-pipe')!
     const remove = previewStableRunUiHubLoadoutDraft(latest, {
@@ -5223,6 +5349,7 @@ describe('StableRunUiApp', () => {
     expect(tracked.commands).toHaveLength(1)
     expect(tracked.commands[0]).toMatchObject({ kind: 'hub', command: { kind: 'hub-medical' } })
     expect(storage.writes).toBe(1)
+    act(() => { button(container, '查看最近行动详情').click() })
     expect(container.textContent).toContain('中枢医疗结果')
     const after = tracked.store.getState().phase
     if (after.kind !== 'current-day-hub') throw new Error('expected Hub')
@@ -5284,11 +5411,13 @@ describe('StableRunUiApp', () => {
       expect(after.payload.dailyState.threatSuppression).toEqual({ usesToday: 1, suppressionAmountToday: 15 })
       expect(after.payload.playerCondition.pendingInfectionExposures).toBe(2)
       expect(after.payload.worldThreat.progress).toBe(73)
+      act(() => { button(container, '查看最近行动详情').click() })
       expect(container.textContent).toContain('现有感染进展未被本次操作立即降低')
       expect(container.innerHTML).not.toContain('73')
       expect(container.innerHTML).not.toContain('worldThreatProgress')
       expect(container.innerHTML).not.toContain('worldThreat.progress')
     }
+    act(() => { button(container, '查看最近行动详情').click() })
     expect(container.textContent).toContain('中枢生存补给结果')
     act(() => { button(container, '关闭结果').click() })
     expect(tracked.commands).toHaveLength(1)
@@ -5468,7 +5597,6 @@ describe('StableRunUiApp', () => {
       act(() => { button(container, '关闭结果').click() })
     }
     act(() => { button(container, '进入 封锁医院·急诊楼一层').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(tracked.commands).toHaveLength(5)
     expect(storage.writes).toBe(5)
     const phase = tracked.store.getState().phase
@@ -5566,9 +5694,9 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
-    expect(container.textContent).toContain('今日基础维修点3 / 3')
-    expect(container.textContent).toContain('每使用1点，恢复指定装备1点对应资源')
-    expect(container.textContent).toContain('今日未用点数不累积到次日')
+    expect(container.textContent).toContain('今日基础维修点：3 / 3')
+    expect(container.textContent).toContain('每使用1点，恢复指定基础装备1点对应资源')
+    expect(container.textContent).toContain('今日未用点数不累积')
     act(() => { button(container, '使用今日基础维修点').click() })
     act(() => { setInputValue(input(container, '分配 金属管 仓库条目 6'), '1') })
     act(() => { setInputValue(input(container, '分配 厚实外套 背包格 1,1'), '1.5') })
@@ -5656,6 +5784,7 @@ describe('StableRunUiApp', () => {
     act(() => { button(container, '确认维护').click() })
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
+    act(() => { button(container, '查看最近行动详情').click() })
     expect(container.textContent).toContain('中枢维护结果')
     for (const hidden of ['a-metal', 'b-pipe', 'instanceId']) expect(container.textContent).not.toContain(hidden)
     const phase = tracked.store.getState().phase
@@ -5684,6 +5813,7 @@ describe('StableRunUiApp', () => {
     if (phase.kind !== 'current-day-hub') throw new Error('expected Hub')
     expect(phase.payload.dailyState.maintenanceLaborRemaining).toBe(1)
     expect(getItemState(phase.payload.runLoadout.itemStates, 'hub-maintenance-pipe').resource).toEqual({ kind: 'durability', current: 5 })
+    act(() => { button(container, '查看最近行动详情').click() })
     expect(container.textContent).toContain('中枢维护结果')
   })
 
@@ -5736,7 +5866,6 @@ describe('StableRunUiApp', () => {
     act(() => { button(container, '确认维护').click() })
     act(() => { button(container, '关闭结果').click() })
     act(() => { buttonContaining(container, '进入 封锁医院').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(tracked.commands).toHaveLength(2)
     expect(storage.writes).toBe(2)
     const phase = tracked.store.getState().phase
@@ -5800,6 +5929,8 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('推进至第 3 日')
     expect(container.textContent).toContain('未结算感染暴露')
     expect(container.textContent).toContain('维护工时')
+    expect(container.querySelector('.preview-dialog--end-day')).not.toBeNull()
+    expect(container.querySelector('.preview-dialog--end-day')?.textContent).not.toContain('潜伏 → 潜伏')
     expect(container.textContent).toContain('结束本日后会立即执行日结算并保存结果，不能返回本日继续整备。')
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
@@ -6316,7 +6447,7 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('生命在日结算中耗尽')
   })
 
-  it('renders Emergency Hall art as a separate bounded slot and keeps the Isolation plate inside Combat', () => {
+  it('renders Emergency Hall art inside its current-room stage and gives Combat its own full stage', () => {
     const render = (phase: StableRunPhase) => {
       const container = document.createElement('div')
       const root = createRoot(container); roots.push(root)
@@ -6327,21 +6458,19 @@ describe('StableRunUiApp', () => {
       return container
     }
     const hall = render({ kind: 'scene-session', payload: sceneSessionAtEmergencyHall() })
-    expect(hall.querySelector('.scene-node-art')).not.toBeNull()
-    expect(hall.querySelector('.scene-node-art')?.getAttribute('style')).toContain('bg_emergency_hall_v01')
-    const nodeArt = hall.querySelector<HTMLElement>('.scene-node-art')
-    expect(nodeArt?.style.width).toBe('100%')
-    expect(nodeArt?.style.maxWidth).toBe('25rem')
-    expect(nodeArt?.style.aspectRatio).toBe('16 / 9')
-    expect(nodeArt?.style.position).toBe('')
+    expect(hall.querySelector('.scene-stage .presentation-background--room')?.getAttribute('style')).toContain('bg_emergency_hall_v01')
+    expect(hall.querySelector('.scene-stage__routes')).not.toBeNull()
     expect(hall.querySelector('.battle-stage__background')).toBeNull()
     expect(hall.querySelector('.known-map')).not.toBeNull()
     expect(hall.textContent).toContain('当前节点搜索')
     const combat = render(combatPhase())
-    expect(combat.querySelector('.scene-node-art')).toBeNull()
+    expect(combat.querySelector('.presentation-background--room')).toBeNull()
+    expect(combat.querySelector('.scene-stage--combat[aria-label="战斗主舞台"]')).not.toBeNull()
+    expect(combat.querySelector('.scene-map-dock')).toBeNull()
     expect(combat.querySelector('.battle-stage .battle-stage__background')?.getAttribute('style'))
       .toContain('bg_isolation_corridor_v01')
-    expect(combat.querySelector('.battle-actor--enemy .enemy-actor-art')).not.toBeNull()
+    expect(combat.querySelector('.battle-stage__figures .enemy-actor-art')).not.toBeNull()
+    expect(combat.querySelector('.battle-stage__player-placeholder')).not.toBeNull()
     for (const hidden of ['instanceId', 'nodeId', 'obstacleId', 'taskEventId', 'sceneInstanceId', 'runId', 'rulesVersion', 'currentCtb', 'enemyNextActionCtb']) {
       expect(hall.innerHTML).not.toContain(hidden)
       expect(combat.innerHTML).not.toContain(hidden)
@@ -6360,25 +6489,17 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={{ ...uiDependencies, audioPlayer: { play } }} />) })
-    act(() => { button(container, '整理 手电筒 · 背包格 1,1').click() })
+    act(() => { chooseItemOperation(container, '整理 手电筒 · 背包格 1,1', '移动／旋转') })
     expect(play).not.toHaveBeenCalled()
-    act(() => { button(container, '移动／旋转').click() })
-    expect(play).toHaveBeenCalledTimes(1)
-    expect(play).toHaveBeenLastCalledWith(presentationAudioSource('ui-select-a'))
-    act(() => { button(container, '移动／旋转').click() })
-    expect(play).toHaveBeenCalledTimes(1)
-    act(() => { button(container, '格子 3,2').click() })
-    expect(play).toHaveBeenCalledTimes(2)
-    expect(play).toHaveBeenLastCalledWith(presentationAudioSource('ui-select-b'))
-    act(() => { button(container, '格子 3,2').click() })
-    expect(play).toHaveBeenCalledTimes(2)
+    act(() => { input(container, '旋转整理物品').click() })
+    expect(play).toHaveBeenCalledExactlyOnceWith(presentationAudioSource('ui-select-b'))
     act(() => { button(container, '取消').click() })
-    expect(play).toHaveBeenCalledTimes(2)
+    expect(play).toHaveBeenCalledTimes(1)
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(0)
   })
 
-  it('plays Search only after confirmation and keeps a rejecting audio player outside gameplay', async () => {
+  it('plays Search only after direct committed execution and keeps a rejecting audio player outside gameplay', async () => {
     const storage = new MemoryStorage()
     const tracked = trackedStore(createStableRunStore({
       initialPhase: { kind: 'scene-session', payload: sceneSessionAtEmergencyHall() },
@@ -6389,13 +6510,10 @@ describe('StableRunUiApp', () => {
     const container = document.createElement('div')
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={{ ...uiDependencies, audioPlayer: { play } }} />) })
-    act(() => { button(container, '主要搜索 · 使用手电筒').click() })
+    act(() => { button(container, '主要搜索 · 使用手电筒').dispatchEvent(new MouseEvent('mouseover', { bubbles: true })) })
     expect(play).not.toHaveBeenCalled()
     expect(tracked.commands).toHaveLength(0)
-    act(() => { button(container, '取消').click() })
-    expect(play).not.toHaveBeenCalled()
     act(() => { button(container, '主要搜索 · 使用手电筒').click() })
-    act(() => { button(container, '确认执行').click() })
     await Promise.resolve()
     expect(play).toHaveBeenCalledExactlyOnceWith(presentationAudioSource('scene-search-complete'))
     expect(tracked.commands).toHaveLength(1)
@@ -6403,7 +6521,8 @@ describe('StableRunUiApp', () => {
     const phase = tracked.store.getState().phase
     if (phase.kind !== 'scene-session') throw new Error('expected committed Scene')
     expect(phase.payload.scene.searchState.nodeStates.find(({ nodeId }) => nodeId === HOSPITAL_NODE_IDS.emergencyHall)?.kind).toBe('searched')
-    expect(container.textContent).toContain('金属零件')
+    expect(container.querySelector('[aria-label="搜索结果"]')).not.toBeNull()
+    expect(container.querySelector('[aria-label="搜索结果"]')?.textContent).toContain('金属零件')
   })
 
   it('does not play a movement cue when the formal Scene command is rejected', () => {
@@ -6445,7 +6564,6 @@ describe('StableRunUiApp', () => {
     expect(withCard.play).toHaveBeenCalledExactlyOnceWith(presentationAudioSource('scene-door-card'))
     expect(withCard.storage.writes).toBe(1)
     act(() => { button(withCard.container, '前往 隔离走廊').click() })
-    act(() => { button(withCard.container, '确认执行').click() })
     expect(withCard.play).toHaveBeenCalledTimes(2)
     expect(withCard.play).toHaveBeenLastCalledWith(presentationAudioSource('scene-move'))
     expect(withCard.tracked.commands).toHaveLength(2)
@@ -6469,10 +6587,8 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={{ ...uiDependencies, assets: hospitalV01PresentationAssets, audioPlayer: { play } }} />) })
     act(() => { button(container, '前往 保安值班室').click() })
-    act(() => { button(container, '确认执行').click() })
-    expect(container.textContent).toContain('前往 隔离走廊')
+    expect(button(container, '前往 隔离走廊')).toBeTruthy()
     act(() => { button(container, '前往 隔离走廊').click() })
-    act(() => { button(container, '确认执行').click() })
     expect(play).toHaveBeenCalledTimes(2)
     expect(play.mock.calls.map(([source]) => source)).toEqual([
       presentationAudioSource('scene-move'),
@@ -6495,8 +6611,6 @@ describe('StableRunUiApp', () => {
       const root = createRoot(container); roots.push(root)
       act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={{ ...uiDependencies, audioPlayer: { play } }} />) })
       act(() => { button(container, label).click() })
-      expect(play).not.toHaveBeenCalled()
-      act(() => { button(container, '确认执行').click() })
       const sources = play.mock.calls.map(([source]) => source)
       expect(sources.includes(presentationAudioSource('combat-player-basic'))).toBe(shouldPlayBasic)
       expect(tracked.commands).toHaveLength(1)

@@ -66,7 +66,9 @@ function ReturnSummary({ value }: Readonly<{ value: PlayerKnownMapReturnViewMode
   </aside>
 }
 
-export function PlayerKnownMap({ map }: Readonly<{ map: PlayerKnownMapViewModel }>) {
+export function PlayerKnownMap({ map }: Readonly<{
+  map: PlayerKnownMapViewModel
+}>) {
   return <section className="known-map" aria-labelledby="known-map-heading">
     <header className="known-map__heading">
       <div><p className="panel-kicker">PLAYER-KNOWN MAP</p><h2 id="known-map-heading">已知场景地图</h2></div>

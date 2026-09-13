@@ -35,11 +35,18 @@ if (entry === 'development-preview' && import.meta.env.DEV) {
     storage,
     rulesRegistry: hospitalRunSaveRulesRegistry,
   })
-  render(<App
-    initialBootstrapResult={initialBootstrapResult}
-    storage={storage}
-    rulesRegistry={hospitalRunSaveRulesRegistry}
-    presentationDependencies={productionPresentationDependencies}
-    newRunDependencies={newRunDependencies}
-  />)
+  const appProps = {
+    initialBootstrapResult,
+    storage,
+    rulesRegistry: hospitalRunSaveRulesRegistry,
+    presentationDependencies: productionPresentationDependencies,
+    newRunDependencies,
+  }
+  if (import.meta.env.DEV) {
+    void import('./app/dev-playtest-shell').then(({ default: DevPlaytestShell }) => {
+      render(<DevPlaytestShell {...appProps} />)
+    })
+  } else {
+    render(<App {...appProps} />)
+  }
 }

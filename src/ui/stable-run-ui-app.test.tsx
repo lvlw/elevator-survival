@@ -3360,8 +3360,18 @@ describe('StableRunUiApp', () => {
     const root = createRoot(container); roots.push(root)
     act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
 
+    const action = createStableRunUiInteractionModel(inner.getState().phase, uiDependencies)
+      .actions.find(({ label }) => label === '挥击')
+    const combatActions = createStableRunUiInteractionModel(inner.getState().phase, uiDependencies)
+      .actions.filter(({ kind }) => kind === 'scene-combat-action')
+    const preview = [
+      ...(action?.preview.facts ?? []),
+      ...(action?.preview.branches.flatMap(({ facts }) => facts) ?? []),
+      ...((action?.preview.warnings ?? []).map((warning) => ({ label: '', value: warning }))),
+    ].map(({ label, value }) => `${label}${value}`).join(' ')
+    expect(action?.deathCertainty).toBe('guaranteed')
+    expect(combatActions.some(({ deathCertainty }) => deathCertainty === 'not-guaranteed')).toBe(false)
     act(() => { button(container, '挥击').click() })
-    const preview = container.querySelector('[role="dialog"]')?.textContent ?? ''
     expect(preview).toContain('自身行动阶段后生命0')
     expect(preview).toContain('死亡风险将死亡')
     expect(preview).toContain('玩家死亡优先于任何潜在胜利')
@@ -3369,10 +3379,6 @@ describe('StableRunUiApp', () => {
     expect(preview).toContain('战斗结束，本局失败')
     expect(preview).not.toContain('若本次攻击使敌人失去能力')
     expect(preview).not.toContain('敌人剩余生命')
-    expect(tracked.commands).toHaveLength(0)
-    expect(storage.writes).toBe(0)
-
-    act(() => { button(container, '确认执行').click() })
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
     expect(notifications).toBe(1)
@@ -3648,6 +3654,8 @@ describe('StableRunUiApp', () => {
     expect(container.textContent).toContain('本次行动后玩家将死亡')
     expect(container.textContent).toContain('样本箱不会安全入库')
     act(() => { button(container, '确认提取').click() })
+    expect(container.textContent).toContain('仍然执行')
+    act(() => { button(container, '仍然执行').click() })
     const phase = inner.getState().phase
     if (phase.kind !== 'scene-session') throw new Error('expected dead Scene')
     expect(phase.payload.scene.status).toBe('dead')
@@ -3685,6 +3693,8 @@ describe('StableRunUiApp', () => {
     expect(preview).toContain('强制返程后生命0')
     expect(preview).toContain('死亡风险将死亡')
     act(() => { button(container, '确认提取').click() })
+    expect(container.textContent).toContain('仍然执行')
+    act(() => { button(container, '仍然执行').click() })
     expect(tracked.commands).toHaveLength(1)
     expect(storage.writes).toBe(1)
     const phase = inner.getState().phase
@@ -6616,5 +6626,180 @@ describe('StableRunUiApp', () => {
       expect(tracked.commands).toHaveLength(1)
       expect(storage.writes).toBe(1)
     }
+  })
+
+  it('does not promote a conditional victory-only terminal death into this attack being guaranteed fatal', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: combatPhase({
+        currentHealth: 2,
+        healthy: true,
+        remainingTime: 5,
+        enemyNextActionCtb: 200,
+        enemyHealth: config.combat.infectedOrderly.maxHealth,
+      }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    const basic = createStableRunUiInteractionModel(inner.getState().phase, uiDependencies)
+      .actions.find(({ label }) => label === '挥击')
+    expect(basic?.preview.branches).toEqual(expect.arrayContaining([
+      expect.objectContaining({ title: '若本次攻击使敌人失去能力' }),
+    ]))
+    expect(basic?.deathCertainty).toBe('not-guaranteed')
+    const sameVisiblePhase = createStableRunUiInteractionModel(combatPhase({
+      currentHealth: 2,
+      healthy: true,
+      remainingTime: 5,
+      enemyNextActionCtb: 200,
+      enemyHealth: config.combat.infectedOrderly.maxHealth - 1,
+    }), uiDependencies).actions.find(({ label }) => label === '挥击')
+    expect(sameVisiblePhase?.deathCertainty).toBe('not-guaranteed')
+    expect(sameVisiblePhase?.preview.branches).toEqual(basic?.preview.branches)
+
+    act(() => { button(container, '挥击').click() })
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    const phase = inner.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected Scene')
+    expect(phase.payload.scene.status).toBe('combat')
+  })
+
+  it('protects a guaranteed post-action-bleeding defense only when a formal non-guaranteed bandage action exists', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: combatPhase({
+        currentHealth: 1,
+        bleeding: true,
+        enemyNextActionCtb: 200,
+      }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    const actions = createStableRunUiInteractionModel(inner.getState().phase, uiDependencies).actions
+    expect(actions.find(({ label }) => label === '防御')?.deathCertainty).toBe('guaranteed')
+    expect(actions.find(({ label }) => label.startsWith('使用绷带'))?.deathCertainty).toBe('not-guaranteed')
+    act(() => { button(container, '防御').click() })
+    expect(container.textContent).toContain('仍然执行')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+    act(() => { button(container, '取消').click() })
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+  })
+
+  it('sends a guaranteed-fatal completed sample-extraction draft through dynamic death protection before dispatch', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: taskEventPhase({
+        currentHealth: 1,
+        bleeding: true,
+        remainingTime: 100,
+        coatIntegrity: null,
+      }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    act(() => { button(container, '直接取出').click() })
+    act(() => { button(container, '格子 1,1').click() })
+    act(() => { button(container, '确认提取').click() })
+    expect(container.textContent).toContain('仍然执行')
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+
+    act(() => { button(container, '取消').click() })
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(0)
+  })
+
+  it('revalidates a protected task-event draft and invalidates it when another formal command completes the event', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: taskEventPhase({
+        currentHealth: 1,
+        bleeding: true,
+        remainingTime: 100,
+        coatIntegrity: null,
+      }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    act(() => { button(container, '直接取出').click() })
+    act(() => { button(container, '格子 1,1').click() })
+    act(() => { button(container, '确认提取').click() })
+    expect(container.textContent).toContain('仍然执行')
+    const cautious = createStableRunUiInteractionModel(inner.getState().phase, uiDependencies)
+      .taskEventOpportunities.find(({ label }) => label === '谨慎检查并提取')
+    if (!cautious) throw new Error('expected cautious extraction')
+    const replacement = previewStableRunUiTaskEventDraft(inner.getState().phase, {
+      opportunityId: cautious.id,
+      x: 0,
+      y: 0,
+      rotated: false,
+    }, uiDependencies)
+    if (!replacement?.canExecute || !replacement.command) throw new Error('expected replacement command')
+    act(() => { inner.dispatch(replacement.command!) })
+
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(1)
+  })
+
+  it('commits a protected fatal task extraction once when persistence fails, without retrying its formal result', () => {
+    const storage = new FailingStorage()
+    const inner = createStableRunStore({
+      initialPhase: taskEventPhase({
+        currentHealth: 1,
+        bleeding: true,
+        remainingTime: 100,
+        coatIntegrity: null,
+      }),
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    let notifications = 0
+    inner.subscribe(() => { notifications += 1 })
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    act(() => { button(container, '直接取出').click() })
+    act(() => { button(container, '格子 1,1').click() })
+    act(() => { button(container, '确认提取').click() })
+    expect(tracked.commands).toHaveLength(0)
+    act(() => { button(container, '仍然执行').click() })
+
+    expect(tracked.commands).toHaveLength(1)
+    expect(storage.writes).toBe(1)
+    expect(notifications).toBe(1)
+    expect(container.textContent).toContain('保存失败')
+    const phase = inner.getState().phase
+    if (phase.kind !== 'scene-session') throw new Error('expected committed Scene')
+    expect(phase.payload.scene.status).toBe('dead')
+    expect(phase.payload.scene.backpack.items).toContainEqual(expect.objectContaining({
+      definitionId: HOSPITAL_ITEM_IDS.sealedPathogenCase,
+    }))
   })
 })

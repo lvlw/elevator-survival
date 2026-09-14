@@ -12,6 +12,7 @@ import {
   firstFitUnrotatedNodePickup,
   previewStableRunUiSceneInventoryDraft,
   previewStableRunUiTaskEventDraft,
+  createStableRunUiTaskEventDraftAction,
   type StableRunUiAction,
   type StableRunUiActionPreviewViewModel,
   type StableRunUiGhostPreview,
@@ -76,6 +77,22 @@ export interface StableRunUiAppProps {
   readonly store: StableRunStore
   readonly presentationDependencies: StableRunUiPresentationDependencies
   readonly onRequestNewRunSetup?: () => void
+}
+
+/** Session-local only: the player must reconfirm if the safe preview changes. */
+interface PendingTaskEventProtection {
+  readonly opportunityId: string
+  readonly x: number
+  readonly y: number
+  readonly rotated: boolean
+  readonly fingerprint: string
+}
+
+function taskEventProtectionFingerprint(action: StableRunUiAction): string {
+  return JSON.stringify({
+    deathCertainty: action.deathCertainty,
+    preview: action.preview,
+  })
 }
 
 function itemResourceText(item: PlayerVisibleItemViewModel): string | null {
@@ -1334,6 +1351,7 @@ export function StableRunUiApp({
   const voluntaryReturnStarted = useRef(false)
   const [pendingPickupId, setPendingPickupId] = useState<string | null>(null)
   const [pendingTaskEventId, setPendingTaskEventId] = useState<string | null>(null)
+  const [pendingTaskEventProtection, setPendingTaskEventProtection] = useState<PendingTaskEventProtection | null>(null)
   const [pendingInventoryId, setPendingInventoryId] = useState<string | null>(null)
   const [pendingHubLoadoutId, setPendingHubLoadoutId] = useState<string | null>(null)
   const [pendingHubMaintenanceOperation, setPendingHubMaintenanceOperation] = useState<StableRunUiHubMaintenanceOpportunity['operation'] | null>(null)
@@ -1411,6 +1429,25 @@ export function StableRunUiApp({
     y: taskEventY,
     rotated: taskEventRotated,
   }, presentationDependencies)
+  const protectedTaskEventOpportunity = pendingTaskEventProtection === null
+    ? null
+    : interaction.taskEventOpportunities.find(
+        ({ id }) => id === pendingTaskEventProtection.opportunityId,
+      ) ?? null
+  const protectedTaskEventPreview = pendingTaskEventProtection === null || protectedTaskEventOpportunity === null
+    ? null
+    : previewStableRunUiTaskEventDraft(snapshot.phase, {
+        opportunityId: pendingTaskEventProtection.opportunityId,
+        x: pendingTaskEventProtection.x,
+        y: pendingTaskEventProtection.y,
+        rotated: pendingTaskEventProtection.rotated,
+      }, presentationDependencies)
+  const protectedTaskEventAction = protectedTaskEventOpportunity === null || protectedTaskEventPreview === null
+    ? null
+    : createStableRunUiTaskEventDraftAction(
+        protectedTaskEventOpportunity,
+        protectedTaskEventPreview,
+      )
   const inventoryPreview = pendingInventory === null || inventoryOperation === null
     ? null
     : previewStableRunUiSceneInventoryDraft(snapshot.phase, {
@@ -1454,6 +1491,7 @@ export function StableRunUiApp({
     setFocusedGhostAnchor(null)
     setPendingPickupId(null)
     setPendingTaskEventId(null)
+    setPendingTaskEventProtection(null)
     setPendingInventoryId(null)
     setPendingQuestDropConfirmation(false)
     setPendingHubLoadoutId(null)
@@ -1488,6 +1526,24 @@ export function StableRunUiApp({
   useEffect(() => {
     if (pendingTaskEventId !== null && pendingTaskEvent === null) setPendingTaskEventId(null)
   }, [pendingTaskEvent, pendingTaskEventId])
+
+  useEffect(() => {
+    if (pendingTaskEventProtection === null) return
+    if (protectedTaskEventOpportunity === null || protectedTaskEventAction === null) {
+      setPendingTaskEventProtection(null)
+      return
+    }
+    if (
+      taskEventProtectionFingerprint(protectedTaskEventAction) !==
+      pendingTaskEventProtection.fingerprint
+    ) {
+      setPendingTaskEventProtection(null)
+      setTaskEventX(pendingTaskEventProtection.x)
+      setTaskEventY(pendingTaskEventProtection.y)
+      setTaskEventRotated(pendingTaskEventProtection.rotated)
+      setPendingTaskEventId(protectedTaskEventOpportunity.id)
+    }
+  }, [pendingTaskEventProtection, protectedTaskEventAction, protectedTaskEventOpportunity])
 
   useEffect(() => {
     if (pendingInventoryId !== null && pendingInventory === null) setPendingInventoryId(null)
@@ -1661,6 +1717,7 @@ export function StableRunUiApp({
     setPendingActionId(null)
     setPendingPickupId(null)
     setPendingTaskEventId(null)
+    setPendingTaskEventProtection(null)
     setPendingInventoryId(null)
     setPendingQuestDropConfirmation(false)
     setPendingHubLoadoutId(null)
@@ -1906,16 +1963,37 @@ export function StableRunUiApp({
     }
     setPendingActionId(null)
     setPendingPickupId(null)
+    setPendingTaskEventProtection(null)
     setTaskEventX(null)
     setTaskEventY(null)
     setTaskEventRotated(false)
     setPendingTaskEventId(opportunityId)
   }
+  const commitTaskEvent = (
+    action: StableRunUiAction,
+    beforePhase: typeof snapshot.phase,
+  ) => {
+    const execution = dispatchAndRecord(action.command, action.label, 'scene', beforePhase)
+    if (beforePhase.kind === 'scene-session' && execution.phase.kind === 'scene-session') {
+      setTaskEventResult(createTaskEventResultViewModel(
+        beforePhase,
+        execution.phase,
+        action.label,
+        presentationDependencies,
+      ))
+    }
+  }
   const confirmTaskEvent = () => {
     if (!pendingTaskEvent) return
     const beforePhase = store.getState().phase
+    const current = createStableRunUiInteractionModel(beforePhase, presentationDependencies)
+    const opportunity = current.taskEventOpportunities.find(({ id }) => id === pendingTaskEvent.id)
+    if (!opportunity) {
+      setPendingTaskEventId(null)
+      return
+    }
     const currentPreview = previewStableRunUiTaskEventDraft(beforePhase, {
-      opportunityId: pendingTaskEvent.id,
+      opportunityId: opportunity.id,
       x: taskEventX,
       y: taskEventY,
       rotated: taskEventRotated,
@@ -1924,16 +2002,61 @@ export function StableRunUiApp({
       setPendingTaskEventId(null)
       return
     }
-    const execution = dispatchAndRecord(currentPreview.command, pendingTaskEvent.label, 'scene', beforePhase)
-    setPendingTaskEventId(null)
-    if (beforePhase.kind === 'scene-session' && execution.phase.kind === 'scene-session') {
-      setTaskEventResult(createTaskEventResultViewModel(
-        beforePhase,
-        execution.phase,
-        pendingTaskEvent.label,
-        presentationDependencies,
-      ))
+    const action = createStableRunUiTaskEventDraftAction(opportunity, currentPreview)
+    if (action === null) {
+      setPendingTaskEventId(null)
+      return
     }
+    if (actionExecutionLevel(action, current.actions) === 'protective-confirmation') {
+      if (taskEventX === null || taskEventY === null) {
+        setPendingTaskEventId(null)
+        return
+      }
+      setPendingTaskEventProtection({
+        opportunityId: opportunity.id,
+        x: taskEventX,
+        y: taskEventY,
+        rotated: taskEventRotated,
+        fingerprint: taskEventProtectionFingerprint(action),
+      })
+      setPendingTaskEventId(null)
+      return
+    }
+    commitTaskEvent(action, beforePhase)
+  }
+  const confirmTaskEventProtection = () => {
+    if (!pendingTaskEventProtection) return
+    const beforePhase = store.getState().phase
+    const current = createStableRunUiInteractionModel(beforePhase, presentationDependencies)
+    const opportunity = current.taskEventOpportunities.find(
+      ({ id }) => id === pendingTaskEventProtection.opportunityId,
+    )
+    const currentPreview = opportunity === undefined
+      ? null
+      : previewStableRunUiTaskEventDraft(beforePhase, {
+          opportunityId: pendingTaskEventProtection.opportunityId,
+          x: pendingTaskEventProtection.x,
+          y: pendingTaskEventProtection.y,
+          rotated: pendingTaskEventProtection.rotated,
+        }, presentationDependencies)
+    const action = opportunity === undefined || currentPreview === null
+      ? null
+      : createStableRunUiTaskEventDraftAction(opportunity, currentPreview)
+    if (
+      action === null ||
+      taskEventProtectionFingerprint(action) !== pendingTaskEventProtection.fingerprint ||
+      actionExecutionLevel(action, current.actions) !== 'protective-confirmation'
+    ) {
+      setPendingTaskEventProtection(null)
+      if (opportunity !== undefined) {
+        setTaskEventX(pendingTaskEventProtection.x)
+        setTaskEventY(pendingTaskEventProtection.y)
+        setTaskEventRotated(pendingTaskEventProtection.rotated)
+        setPendingTaskEventId(opportunity.id)
+      }
+      return
+    }
+    commitTaskEvent(action, beforePhase)
   }
   const openInventory = (opportunityId: string, operation: StableRunUiInventoryOperation) => {
     const opportunity = interaction.inventoryOpportunities.find(({ id }) => id === opportunityId)
@@ -2088,6 +2211,15 @@ export function StableRunUiApp({
       confirmLabel={pendingAction.kind === 'end-day' ? '确认结束本日' : actionExecutionLevel(pendingAction, interaction.actions) === 'protective-confirmation' ? '仍然执行' : '执行'}
       onCancel={() => setPendingActionId(null)}
       onConfirm={confirm}
+    />}
+    {pendingTaskEventProtection && protectedTaskEventAction && <ActionPreviewDialog
+      preview={protectedTaskEventAction.preview}
+      protective
+      rescueAlternative
+      compactUnchanged={false}
+      confirmLabel="仍然执行"
+      onCancel={() => setPendingTaskEventProtection(null)}
+      onConfirm={confirmTaskEventProtection}
     />}
     {pendingPickup && model.kind === 'scene-session' && <PickupDialog opportunity={pendingPickup} loadout={model.scene.loadout} preview={pickupPreview} quantity={pickupQuantity} x={pickupX} y={pickupY} placementSelected={pickupPlacementSelected} rotated={pickupRotated} onQuantity={selectPickupQuantity} onRotate={selectPickupRotation} onAnchor={(x, y) => { selectPickupAnchor(x, y); confirmPickup({ x, y }) }} onAutoPlace={() => tryAutoPickup(pendingPickup.id, pickupQuantity)} onCancel={() => setPendingPickupId(null)} />}
     {pendingTaskEvent && model.kind === 'scene-session' && <TaskEventDialog opportunity={pendingTaskEvent} loadout={model.scene.loadout} preview={taskEventPreview} x={taskEventX} y={taskEventY} rotated={taskEventRotated} onRotate={selectTaskEventRotation} onAnchor={selectTaskEventAnchor} onCancel={() => setPendingTaskEventId(null)} onConfirm={confirmTaskEvent} />}

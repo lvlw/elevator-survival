@@ -2,11 +2,15 @@ import { describe, expect, it } from 'vitest'
 import { actionExecutionLevel } from './action-execution-level'
 import type { StableRunUiAction } from './stable-run-ui-actions'
 
-const action = (id: string, kind: StableRunUiAction['kind'], guaranteedDeath = false): StableRunUiAction => ({
+const action = (
+  id: string,
+  kind: StableRunUiAction['kind'],
+  deathCertainty: StableRunUiAction['deathCertainty'] = 'not-guaranteed',
+): StableRunUiAction => ({
   id,
   kind,
   label: id,
-  guaranteedDeath,
+  deathCertainty,
   command: { kind: 'lifecycle', command: { kind: 'settle-terminal-scene' } },
   preview: { title: id, facts: [], warnings: [], branches: [] },
 })
@@ -24,10 +28,10 @@ describe('UIR-015 action execution policy', () => {
   })
 
   it('confirms guaranteed death only when another formal action is not guaranteed death', () => {
-    const fatal = action('fatal', 'scene-combat-action', true)
+    const fatal = action('fatal', 'scene-combat-action', 'guaranteed')
     const rescue = action('rescue', 'scene-combat-action')
     expect(actionExecutionLevel(fatal, [fatal, rescue])).toBe('protective-confirmation')
-    expect(actionExecutionLevel(fatal, [fatal, action('other-fatal', 'scene-combat-action', true)])).toBe('direct')
+    expect(actionExecutionLevel(fatal, [fatal, action('other-fatal', 'scene-combat-action', 'guaranteed')])).toBe('direct')
     expect(actionExecutionLevel(rescue, [fatal, rescue])).toBe('direct')
   })
 
@@ -46,5 +50,11 @@ describe('UIR-015 action execution policy', () => {
     }
     const rescue = action('rescue', 'scene-combat-action')
     expect(actionExecutionLevel(possible, [possible, rescue])).toBe('direct')
+  })
+
+  it('does not treat unknown formal death facts as a nonfatal rescue alternative', () => {
+    const fatal = action('fatal', 'scene-combat-action', 'guaranteed')
+    const unknown = action('unknown', 'scene-combat-action', 'unknown')
+    expect(actionExecutionLevel(fatal, [fatal, unknown])).toBe('direct')
   })
 })

@@ -143,6 +143,8 @@ export interface StableRunUiTaskEventPreview {
   readonly rejection: string | null
   readonly command: StableRunApplicationCommand | null
   readonly preview: StableRunUiActionPreviewViewModel | null
+  /** Present only when a complete formal placement preview was accepted. */
+  readonly deathCertainty: StableRunUiActionDeathCertainty | null
   readonly candidateCells: readonly Readonly<{ x: number; y: number }>[]
   readonly selectedFootprintCells: readonly Readonly<{ x: number; y: number }>[]
 }
@@ -242,8 +244,11 @@ export interface StableRunUiAction {
   readonly label: string
   /** Player-visible adjacent destination; only present for a formal move action. */
   readonly destinationNodeName?: string
-  /** A formal safe preview guarantees death at this decision checkpoint. */
-  readonly guaranteedDeath?: boolean
+  /**
+   * Formal scope of the current command's player-safe death result. Missing
+   * information is intentionally `unknown`, never an implicit safe alternative.
+   */
+  readonly deathCertainty?: StableRunUiActionDeathCertainty
   readonly contextNote?: string
   /** Internal formal command; React submits it only after explicit confirm. */
   readonly command: StableRunApplicationCommand
@@ -252,6 +257,11 @@ export interface StableRunUiAction {
   readonly ghost?: StableRunUiGhostPreview
   readonly combatGhost?: StableRunUiCombatGhostPreview
 }
+
+export type StableRunUiActionDeathCertainty =
+  | 'guaranteed'
+  | 'not-guaranteed'
+  | 'unknown'
 
 function sceneStatusLabel(status: 'active' | 'combat' | 'safe-returned' | 'forced-returned' | 'dead'): string {
   return status === 'active'
@@ -301,6 +311,12 @@ function freezePreview(
       warnings: Object.freeze([...branch.warnings]),
     }))),
   })
+}
+
+function timedSceneOutcomeDeathCertainty(
+  outcome: TimedSceneActionOutcome,
+): StableRunUiActionDeathCertainty {
+  return outcome.kind === 'death' ? 'guaranteed' : 'not-guaranteed'
 }
 
 function sceneOutcomeWarnings(input: Readonly<{
@@ -946,7 +962,7 @@ function createCombatActions(
       id: `scene-combat-action:${command.kind}${target}`,
       kind: 'scene-combat-action' as const,
       label,
-      guaranteedDeath: terminal?.deathRisk === 'guaranteed',
+      deathCertainty: option.deathCertainty,
       contextNote: command.kind === 'temporary-attack'
         ? '当前没有可用的武器攻击，因此可以使用临时攻击。'
         : undefined,
@@ -1287,7 +1303,7 @@ function createMoveActions(
       kind: 'scene-move' as const,
       label: `前往 ${edge.destinationNodeName}`,
       destinationNodeName: edge.destinationNodeName,
-      guaranteedDeath: result.sceneOutcome.kind === 'death',
+      deathCertainty: timedSceneOutcomeDeathCertainty(result.sceneOutcome),
       command: applicationSceneCommand('scene-move', command),
       ghost: createTimedGhost(
         `前往 ${edge.destinationNodeName}`,
@@ -1375,7 +1391,7 @@ function createSearchActions(
       id: `scene-main-search:${illumination}`,
       kind: 'scene-main-search' as const,
       label: `主要搜索 · ${illuminationLabel(illumination)}`,
-      guaranteedDeath: result.sceneOutcome.kind === 'death',
+      deathCertainty: timedSceneOutcomeDeathCertainty(result.sceneOutcome),
       command: applicationSceneCommand('scene-main-search', command),
       ghost: createTimedGhost(
         `主要搜索 · ${illuminationLabel(illumination)}`,
@@ -1486,6 +1502,13 @@ function createObstacleActions(
         id: `scene-obstacle:${option.command.obstacleId}:${option.command.optionId}`,
         kind: 'scene-obstacle' as const,
         label: `${dependencies.labels.obstacleName(obstacle.obstacleId)} · ${optionName}`,
+        deathCertainty: option.outcomes.length > 0 && option.outcomes.every(
+          ({ sceneOutcome }) => sceneOutcome.kind === 'death',
+        )
+          ? 'guaranteed'
+          : option.outcomes.length > 0
+            ? 'not-guaranteed'
+            : 'unknown',
         ...(dependencies.assets?.obstacleVisualKey?.(obstacle.obstacleId)
           ? { visualKey: dependencies.assets.obstacleVisualKey(obstacle.obstacleId) }
           : {}),
@@ -1820,6 +1843,7 @@ function createTaskEventInteraction(
         id: actionId,
         kind: 'scene-task-event',
         label,
+        deathCertainty: 'not-guaranteed',
         command: applicationSceneCommand('scene-task-event', command),
         ghost,
         ...(dependencies.assets?.taskEventVisualKey?.(event.eventId)
@@ -1906,6 +1930,7 @@ export function previewStableRunUiTaskEventDraft(
       rejection: '请明确选择样本箱放置位置。',
       command: null,
       preview: null,
+      deathCertainty: null,
       candidateCells,
       selectedFootprintCells,
     })
@@ -1923,6 +1948,7 @@ export function previewStableRunUiTaskEventDraft(
       rejection: '样本箱放置参数无效。',
       command: null,
       preview: null,
+      deathCertainty: null,
       candidateCells,
       selectedFootprintCells,
     })
@@ -1940,6 +1966,7 @@ export function previewStableRunUiTaskEventDraft(
         : '任务事件状态已变化，请重新选择。',
       command: null,
       preview: null,
+      deathCertainty: null,
       candidateCells,
       selectedFootprintCells,
     })
@@ -1948,6 +1975,9 @@ export function previewStableRunUiTaskEventDraft(
     canExecute: true,
     rejection: null,
     command: applicationSceneCommand('scene-task-event', command),
+    deathCertainty: safe.result.sceneOutcome === null
+      ? 'not-guaranteed'
+      : timedSceneOutcomeDeathCertainty(safe.result.sceneOutcome),
     preview: freezePreview(
       `确认${opportunity.label}`,
       taskEventFacts(safe.result, opportunity.outputName),
@@ -1957,6 +1987,31 @@ export function previewStableRunUiTaskEventDraft(
     selectedFootprintCells: Object.freeze(
       safe.result.output?.placementCells.map(({ x, y }) => Object.freeze({ x, y })) ?? selectedFootprintCells,
     ),
+  })
+}
+
+/**
+ * Turns a fully validated, player-safe task-event placement preview into the
+ * same interaction shape used by ordinary actions. It has no resolver or save
+ * authority; React still revalidates it against the latest canonical phase.
+ */
+export function createStableRunUiTaskEventDraftAction(
+  opportunity: Pick<StableRunUiTaskEventOpportunity, 'id' | 'label'>,
+  preview: StableRunUiTaskEventPreview,
+): StableRunUiAction | null {
+  if (
+    !preview.canExecute ||
+    preview.command === null ||
+    preview.preview === null ||
+    preview.deathCertainty === null
+  ) return null
+  return Object.freeze({
+    id: `scene-task-event-draft:${opportunity.id}`,
+    kind: 'scene-task-event',
+    label: opportunity.label,
+    deathCertainty: preview.deathCertainty,
+    command: preview.command,
+    preview: preview.preview,
   })
 }
 
@@ -1987,6 +2042,7 @@ function createMedicalActions(
       id: medicalActionId(command),
       kind: 'scene-medical' as const,
       label: medicalActionLabel(result),
+      deathCertainty: timedSceneOutcomeDeathCertainty(result.sceneOutcome),
       command: applicationSceneCommand('scene-medical', command),
       ghost: createTimedGhost(
         medicalActionLabel(result),
@@ -2050,6 +2106,7 @@ function createBatteryActions(
       id: batteryActionId(command),
       kind: 'scene-battery' as const,
       label: `使用${sourceName} · ${batteryLocationLabel(result.source)} → ${targetName} · ${batteryLocationLabel(result.target)}`,
+      deathCertainty: timedSceneOutcomeDeathCertainty(result.sceneOutcome),
       command: applicationSceneCommand('scene-battery', command),
       ghost: createTimedGhost(
         `使用${sourceName}充能${targetName}`,
@@ -2111,6 +2168,7 @@ function createWithdrawalAction(
     id: 'scene-withdraw',
     kind: 'scene-withdraw',
     label: result.snapshot.status === 'safe-returned' ? '主动返程' : '冒险返程',
+    deathCertainty: result.snapshot.status === 'dead' ? 'guaranteed' : 'not-guaranteed',
     command: applicationSceneCommand('scene-withdraw', command),
     ghost: Object.freeze({
       title: result.snapshot.status === 'safe-returned' ? '主动返程' : '冒险返程',

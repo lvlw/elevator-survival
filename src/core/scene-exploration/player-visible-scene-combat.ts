@@ -15,6 +15,15 @@ import type {
 } from './scene-exploration-types'
 
 export type PlayerVisibleCombatDeathRisk = 'none' | 'possible' | 'guaranteed'
+/**
+ * What the player-safe command preview can establish about this one command.
+ * `unknown` intentionally does not authorize a dynamic death-protection escape
+ * hatch: a missing terminal projection is not evidence that the command is safe.
+ */
+export type PlayerVisibleCombatCommandDeathCertainty =
+  | 'guaranteed'
+  | 'not-guaranteed'
+  | 'unknown'
 
 export interface PlayerVisibleCombatTerminalCompletion {
   readonly outcome: 'victory' | 'escaped' | 'defeat'
@@ -50,6 +59,13 @@ export interface PlayerVisibleCombatTerminalPreview {
   readonly preCompletionDefeatRisk: PlayerVisibleCombatDeathRisk
   readonly completionCheckpointDeathRisk: PlayerVisibleCombatDeathRisk
   readonly completion: PlayerVisibleCombatTerminalCompletion | null
+}
+
+export interface PlayerVisibleSceneCombatActionOption {
+  readonly command: PlayerVisibleCombatActionOption['command']
+  readonly preview: PlayerVisibleCombatActionOption['preview']
+  readonly terminal: PlayerVisibleCombatTerminalPreview | null
+  readonly deathCertainty: PlayerVisibleCombatCommandDeathCertainty
 }
 
 interface SurvivingCompletionBranch {
@@ -105,11 +121,7 @@ export function getPlayerVisibleSceneCombatState(
 export function getPlayerVisibleSceneCombatActionOptions(
   snapshotInput: SceneExplorationSnapshot,
   dependencies: SceneExplorationDependencies,
-): readonly Readonly<{
-  command: PlayerVisibleCombatActionOption['command']
-  preview: PlayerVisibleCombatActionOption['preview']
-  terminal: PlayerVisibleCombatTerminalPreview | null
-}>[] {
+): readonly PlayerVisibleSceneCombatActionOption[] {
   const snapshot = createSceneExplorationSnapshot(snapshotInput, dependencies)
   if (snapshot.status !== 'combat' || !dependencies.sceneCombat) {
     throw new SceneExplorationError('SCENE_NOT_IN_COMBAT', '场景当前不在战斗中')
@@ -122,10 +134,9 @@ export function getPlayerVisibleSceneCombatActionOptions(
     active.combat,
     dependencies.sceneCombat.combat,
   )
-  return deepFreeze(options.map((option) => {
+  const optionsWithTerminal = options.map((option) => {
     const isAttack = option.preview.primary.kind === 'attack'
     const isEscape = option.preview.primary.kind === 'escape'
-    if (!isAttack && !isEscape) return { ...option, terminal: null }
     const escape = option.preview.escapeConsequences
     const preCompletionDefeatRisk: PlayerVisibleCombatDeathRisk = isEscape &&
       escape?.preCompletionDeath
@@ -137,7 +148,7 @@ export function getPlayerVisibleSceneCombatActionOptions(
       : escape.completionCheckpointDeathGuaranteed
         ? 'guaranteed'
         : 'possible'
-    if (isAttack && option.preview.playerHealthAfterOwnAction === 0) {
+    if (!isEscape && option.preview.playerHealthAfterOwnAction === 0) {
       const elapsedCtb = active.combat.currentCtb
       const time = evaluateCombatSceneTime(
         elapsedCtb,
@@ -166,6 +177,7 @@ export function getPlayerVisibleSceneCombatActionOptions(
         },
       }
     }
+    if (!isAttack && !isEscape) return { ...option, terminal: null }
     const completionBranches: SurvivingCompletionBranch[] = isEscape
       ? [
           ...(escape?.nonBleedingCompletionHealth !== null &&
@@ -328,5 +340,38 @@ export function getPlayerVisibleSceneCombatActionOptions(
         },
       },
     }
-  }))
+  })
+  return deepFreeze(optionsWithTerminal.map((option) => Object.freeze({
+    ...option,
+    deathCertainty: combatCommandDeathCertainty(option),
+  })))
+}
+
+/**
+ * Classifies only the formal command scope covered by the existing safe preview.
+ * In particular, an attack's victory completion is conditional on hidden enemy
+ * health, so its terminal result cannot be promoted to a whole-command death.
+ */
+function combatCommandDeathCertainty(input: Readonly<{
+  preview: PlayerVisibleCombatActionOption['preview']
+  terminal: PlayerVisibleCombatTerminalPreview | null
+}>): PlayerVisibleCombatCommandDeathCertainty {
+  const { preview, terminal } = input
+  if (preview.primary.kind === 'escape') {
+    const escape = preview.escapeConsequences
+    if (!escape) return 'unknown'
+    if (escape.preCompletionDeath || escape.completionCheckpointDeathGuaranteed) {
+      return 'guaranteed'
+    }
+    // A guaranteed terminal applies to every completion branch that remains;
+    // with an additional checkpoint-death branch this is still whole-command
+    // death, not merely a conditional warning.
+    if (terminal?.deathRisk === 'guaranteed') return 'guaranteed'
+    if (escape.completionCheckpointDeathPossible) return 'unknown'
+    return 'not-guaranteed'
+  }
+  if (preview.playerHealthAfterOwnAction === 0) return 'guaranteed'
+  return preview.currentIntent.actsBeforeNextPlayerDecision
+    ? 'unknown'
+    : 'not-guaranteed'
 }

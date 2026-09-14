@@ -2,11 +2,12 @@ import type { StableRunUiAction } from './stable-run-ui-actions'
 
 export type ActionExecutionLevel = 'direct' | 'parameterized' | 'protective-confirmation'
 
+function deathCertainty(action: StableRunUiAction): NonNullable<StableRunUiAction['deathCertainty']> {
+  return action.deathCertainty ?? 'unknown'
+}
+
 function guaranteesDeath(action: StableRunUiAction): boolean {
-  if (action.guaranteedDeath !== undefined) return action.guaranteedDeath
-  return action.ghost !== undefined &&
-    action.ghost.outcomes.length > 0 &&
-    action.ghost.outcomes.every((outcome) => outcome === 'death')
+  return deathCertainty(action) === 'guaranteed'
 }
 
 /** Presentation policy only: it never decides an action's formal eligibility. */
@@ -21,7 +22,7 @@ export function actionExecutionLevel(
     const hasRescueAlternative = availableActions.some((candidate) =>
       candidate.id !== action.id &&
       candidate.kind !== 'settle-terminal-scene' &&
-      !guaranteesDeath(candidate),
+      deathCertainty(candidate) === 'not-guaranteed',
     )
     if (hasRescueAlternative) return 'protective-confirmation'
   }

@@ -365,6 +365,7 @@ describe('hospital scene combat encounter lifecycle', () => {
         sceneTimeCost: 10,
       },
     })
+    expect(preview?.deathCertainty).toBe('guaranteed')
     const defeated = resolveSceneCombatPlayerAction(
       started,
       { kind: 'escape' },
@@ -449,6 +450,7 @@ describe('hospital scene combat encounter lifecycle', () => {
         forcedReturnTargetNodeName: '电梯前室',
       },
     })
+    expect(riskyVisible?.deathCertainty).toBe('not-guaranteed')
     expect(JSON.stringify(riskyVisible)).not.toMatch(
       /riskPercent|roll|streamId|drawIndex|succeeded|enemyInstanceId|woundId|nextCycleIndex|resolvedActionCount/,
     )
@@ -500,6 +502,7 @@ describe('hospital scene combat encounter lifecycle', () => {
         survivingResult: 'active-scene',
       },
     })
+    expect(riskyVisible?.deathCertainty).toBe('unknown')
     expect(JSON.stringify(riskyVisible)).not.toMatch(
       /riskPercent|roll|streamId|drawIndex|succeeded|enemyInstanceId|woundId|nextCycleIndex|resolvedActionCount/,
     )

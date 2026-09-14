@@ -357,6 +357,16 @@ export interface PlayerVisibleCombatActionPreview {
   }>
   readonly postPlayerActionBleedingDamage: number
   readonly playerHealthAfterOwnAction: number
+  /**
+   * Formal deterministic direct-damage result through the next player decision.
+   * This projection is available only for non-attack commands, whose outcome
+   * cannot depend on hidden enemy health.
+   */
+  readonly enemyResponseBeforeNextPlayerDecision: Readonly<{
+    readonly enemyActionsBeforeNextPlayerDecision: number
+    readonly playerHealthAfterEnemyResponse: number
+    readonly playerDeathBeforeNextPlayerDecision: boolean
+  }> | null
   readonly escapeConsequences: Readonly<{
     enemyActionsBeforeCompletion: number
     postPlayerActionBleedingDamageMin: number

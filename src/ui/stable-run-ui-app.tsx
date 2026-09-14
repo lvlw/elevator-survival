@@ -85,14 +85,25 @@ interface PendingTaskEventProtection {
   readonly x: number
   readonly y: number
   readonly rotated: boolean
-  readonly fingerprint: string
+  readonly authorizationFingerprint: string
 }
 
-function taskEventProtectionFingerprint(action: StableRunUiAction): string {
+/**
+ * Session-local confirmation authorization.  It deliberately holds only the
+ * current command plus its player-safe decision facts, never a phase snapshot
+ * or a proposed next state.
+ */
+function actionAuthorizationFingerprint(action: StableRunUiAction): string {
   return JSON.stringify({
+    command: action.command,
     deathCertainty: action.deathCertainty,
     preview: action.preview,
   })
+}
+
+interface PendingActionConfirmation {
+  readonly actionId: string
+  readonly authorizationFingerprint: string
 }
 
 function itemResourceText(item: PlayerVisibleItemViewModel): string | null {
@@ -1343,7 +1354,7 @@ export function StableRunUiApp({
   const snapshot = useStableRunStoreSnapshot(store)
   const model = createStableRunPlayerViewModel(snapshot.phase, presentationDependencies)
   const interaction = createStableRunUiInteractionModel(snapshot.phase, presentationDependencies)
-  const [pendingActionId, setPendingActionId] = useState<string | null>(null)
+  const [pendingActionConfirmation, setPendingActionConfirmation] = useState<PendingActionConfirmation | null>(null)
   const [hoveredGhostActionId, setHoveredGhostActionId] = useState<string | null>(null)
   const [focusedGhostActionId, setFocusedGhostActionId] = useState<string | null>(null)
   const [hoveredGhostAnchor, setHoveredGhostAnchor] = useState<HTMLElement | null>(null)
@@ -1400,7 +1411,9 @@ export function StableRunUiApp({
   const [autoOpenSearchResultNode, setAutoOpenSearchResultNode] = useState<string | null>(null)
   const [resultDetailsOpen, setResultDetailsOpen] = useState(false)
   const audioTimers = useRef<ReturnType<typeof setTimeout>[]>([])
-  const pendingAction = interaction.actions.find(({ id }) => id === pendingActionId) ?? null
+  const pendingAction = pendingActionConfirmation === null
+    ? null
+    : interaction.actions.find(({ id }) => id === pendingActionConfirmation.actionId) ?? null
   const pendingPickup = interaction.pickupOpportunities.find(({ id }) => id === pendingPickupId) ?? null
   const pendingTaskEvent = interaction.taskEventOpportunities.find(({ id }) => id === pendingTaskEventId) ?? null
   const pendingInventory = interaction.inventoryOpportunities.find(({ id }) => id === pendingInventoryId) ?? null
@@ -1484,7 +1497,7 @@ export function StableRunUiApp({
       }, presentationDependencies)
 
   useEffect(() => {
-    setPendingActionId(null)
+    setPendingActionConfirmation(null)
     setHoveredGhostActionId(null)
     setFocusedGhostActionId(null)
     setHoveredGhostAnchor(null)
@@ -1516,8 +1529,13 @@ export function StableRunUiApp({
   }, [store])
 
   useEffect(() => {
-    if (pendingActionId !== null && pendingAction === null) setPendingActionId(null)
-  }, [pendingAction, pendingActionId])
+    if (pendingActionConfirmation === null) return
+    if (
+      pendingAction === null ||
+      actionAuthorizationFingerprint(pendingAction) !==
+        pendingActionConfirmation.authorizationFingerprint
+    ) setPendingActionConfirmation(null)
+  }, [pendingAction, pendingActionConfirmation])
 
   useEffect(() => {
     if (pendingPickupId !== null && pendingPickup === null) setPendingPickupId(null)
@@ -1534,8 +1552,8 @@ export function StableRunUiApp({
       return
     }
     if (
-      taskEventProtectionFingerprint(protectedTaskEventAction) !==
-      pendingTaskEventProtection.fingerprint
+      actionAuthorizationFingerprint(protectedTaskEventAction) !==
+      pendingTaskEventProtection.authorizationFingerprint
     ) {
       setPendingTaskEventProtection(null)
       setTaskEventX(pendingTaskEventProtection.x)
@@ -1714,7 +1732,7 @@ export function StableRunUiApp({
     beforePhase: typeof snapshot.phase,
   ) => {
     const execution = store.dispatch(command)
-    setPendingActionId(null)
+    setPendingActionConfirmation(null)
     setPendingPickupId(null)
     setPendingTaskEventId(null)
     setPendingTaskEventProtection(null)
@@ -1754,12 +1772,22 @@ export function StableRunUiApp({
     return execution
   }
 
-  const executeAction = (actionId: string) => {
+  const executeAction = (
+    actionId: string,
+    authorizationFingerprint: string | null = null,
+  ) => {
     const beforePhase = store.getState().phase
     const current = createStableRunUiInteractionModel(beforePhase, presentationDependencies)
     const action = current.actions.find(({ id }) => id === actionId)
     if (!action) {
-      setPendingActionId(null)
+      setPendingActionConfirmation(null)
+      return
+    }
+    if (
+      authorizationFingerprint !== null &&
+      actionAuthorizationFingerprint(action) !== authorizationFingerprint
+    ) {
+      setPendingActionConfirmation(null)
       return
     }
     const hubCarePreview = action.kind === 'hub-medical' || action.kind === 'hub-survival'
@@ -1773,11 +1801,11 @@ export function StableRunUiApp({
       ? previewStableRunUiEndDay(beforePhase, presentationDependencies)
       : null
     if ((action.kind === 'hub-medical' || action.kind === 'hub-survival') && !hubCarePreview) {
-      setPendingActionId(null)
+      setPendingActionConfirmation(null)
       return
     }
     if (action.kind === 'end-day' && (!endDayPreview || !endDayPreview.canExecute)) {
-      setPendingActionId(null)
+      setPendingActionConfirmation(null)
       return
     }
     if (action.kind === 'scene-withdraw') voluntaryReturnStarted.current = true
@@ -1790,7 +1818,7 @@ export function StableRunUiApp({
       : action.kind.startsWith('hub-') ? 'hub' : 'scene'
     const execution = dispatchAndRecord(action.command, action.label, category, beforePhase)
     playCommittedCues(beforePhase, action, execution)
-    setPendingActionId(null)
+    setPendingActionConfirmation(null)
     if (action.kind === 'scene-main-search' && execution.phase.kind === 'scene-session') {
       const result = createStableRunPlayerViewModel(execution.phase, presentationDependencies)
       if (result.kind === 'scene-session' && result.scene.currentNodeSearchState === 'searched') {
@@ -1901,13 +1929,21 @@ export function StableRunUiApp({
     setSceneInventoryResult(null)
     setHubLoadoutResult(null)
     if (actionExecutionLevel(action, current.actions) !== 'direct') {
-      setPendingActionId(actionId)
+      setPendingActionConfirmation({
+        actionId,
+        authorizationFingerprint: actionAuthorizationFingerprint(action),
+      })
     } else {
       executeAction(actionId)
     }
   }
   const confirm = () => {
-    if (pendingAction) executeAction(pendingAction.id)
+    if (pendingAction && pendingActionConfirmation) {
+      executeAction(
+        pendingAction.id,
+        pendingActionConfirmation.authorizationFingerprint,
+      )
+    }
   }
   const tryAutoPickup = (opportunityId: string, quantity: number) => {
     const beforePhase = store.getState().phase
@@ -1929,7 +1965,7 @@ export function StableRunUiApp({
     const opportunity = createStableRunUiInteractionModel(store.getState().phase, presentationDependencies).pickupOpportunities.find(({ id }) => id === opportunityId)
     if (!opportunity) return
     setSceneInventoryResult(null)
-    setPendingActionId(null)
+    setPendingActionConfirmation(null)
     if (opportunity.groundQuantity === 1) { tryAutoPickup(opportunityId, 1); return }
     setPickupQuantity(1)
     setPickupX(0)
@@ -1961,7 +1997,7 @@ export function StableRunUiApp({
       openAction(opportunity.actionId)
       return
     }
-    setPendingActionId(null)
+    setPendingActionConfirmation(null)
     setPendingPickupId(null)
     setPendingTaskEventProtection(null)
     setTaskEventX(null)
@@ -2017,7 +2053,7 @@ export function StableRunUiApp({
         x: taskEventX,
         y: taskEventY,
         rotated: taskEventRotated,
-        fingerprint: taskEventProtectionFingerprint(action),
+        authorizationFingerprint: actionAuthorizationFingerprint(action),
       })
       setPendingTaskEventId(null)
       return
@@ -2044,7 +2080,7 @@ export function StableRunUiApp({
       : createStableRunUiTaskEventDraftAction(opportunity, currentPreview)
     if (
       action === null ||
-      taskEventProtectionFingerprint(action) !== pendingTaskEventProtection.fingerprint ||
+      actionAuthorizationFingerprint(action) !== pendingTaskEventProtection.authorizationFingerprint ||
       actionExecutionLevel(action, current.actions) !== 'protective-confirmation'
     ) {
       setPendingTaskEventProtection(null)
@@ -2062,7 +2098,7 @@ export function StableRunUiApp({
     const opportunity = interaction.inventoryOpportunities.find(({ id }) => id === opportunityId)
     if (!opportunity || !opportunity.operations.includes(operation)) return
     setSceneInventoryResult(null)
-    setPendingActionId(null)
+    setPendingActionConfirmation(null)
     setPendingPickupId(null)
     setPendingTaskEventId(null)
     setInventoryOperation(operation)
@@ -2123,7 +2159,7 @@ export function StableRunUiApp({
     const opportunity = interaction.hubLoadoutOpportunities.find(({ id }) => id === opportunityId)
     if (!opportunity || !opportunity.operations.includes(operation)) return
     setHubLoadoutResult(null)
-    setPendingActionId(null)
+    setPendingActionConfirmation(null)
     const beforePhase = store.getState().phase
     const directPreview = previewStableRunUiHubLoadoutDraft(beforePhase, { opportunityId, operation, quantity: null, targetOpportunityId: null, targetEquipmentSlot: null, targetQuickSlotIndex: null, x: null, y: null, rotated: false }, presentationDependencies)
     if (directPreview?.canExecute && directPreview.command && directPreview.safeResult) {
@@ -2165,7 +2201,7 @@ export function StableRunUiApp({
   }
   const openHubMaintenance = (operation: StableRunUiHubMaintenanceOpportunity['operation']) => {
     if (!interaction.hubMaintenanceOpportunities.some((candidate) => candidate.operation === operation)) return
-    setPendingActionId(null)
+    setPendingActionConfirmation(null)
     setPendingHubLoadoutId(null)
     setHubMaintenanceAllocations({})
     setHubMaintenanceTargetId(null)
@@ -2196,7 +2232,7 @@ export function StableRunUiApp({
   return <>
     {persistenceFeedback && <p className="persistence-feedback" role="status">{persistenceFeedback}</p>}
     {model.kind === 'current-day-hub' && <HubView model={model} backgroundKey={presentationDependencies.assets?.hubBackgroundKey ?? null} actions={interaction.actions} onPreview={openAction} loadoutOpportunities={interaction.hubLoadoutOpportunities} onLoadout={openHubLoadout} maintenanceOpportunities={interaction.hubMaintenanceOpportunities} onMaintenance={openHubMaintenance} activityEntries={activityEntries} returnSummaryAvailable={returnSummary !== null} onViewReturnSummary={() => setReturnSummaryOpen(true)} detailsAvailable={!!(hubLoadoutResult || hubMedicalResult || hubSurvivalResult || hubMaintenanceResult)} onViewDetails={() => setResultDetailsOpen(true)} />}
-    {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} ghost={activeGhost} combatGhost={activeCombatGhost} combatActionResult={combatActionResult} onCloseCombatResult={() => setCombatActionResult(null)} onPreview={openAction} onGhostEnter={showGhost} onGhostLeave={hideGhost} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} taskEventOpportunities={interaction.taskEventOpportunities} onTaskEvent={openTaskEvent} inventoryOpportunities={interaction.inventoryOpportunities} onInventory={openInventory} activityEntries={activityEntries} pendingWithdrawal={pendingAction?.kind === 'scene-withdraw' ? pendingAction : null} onCancelWithdrawal={() => setPendingActionId(null)} onConfirmWithdrawal={confirm} autoOpenSearchResultNode={autoOpenSearchResultNode} detailsAvailable={!!(sceneMedicalResult || sceneBatteryResult || sceneInventoryResult)} onViewDetails={() => setResultDetailsOpen(true)} />}
+    {model.kind === 'scene-session' && <SceneView model={model} actions={interaction.actions} ghost={activeGhost} combatGhost={activeCombatGhost} combatActionResult={combatActionResult} onCloseCombatResult={() => setCombatActionResult(null)} onPreview={openAction} onGhostEnter={showGhost} onGhostLeave={hideGhost} pickupOpportunities={interaction.pickupOpportunities} onPickup={openPickup} taskEventOpportunities={interaction.taskEventOpportunities} onTaskEvent={openTaskEvent} inventoryOpportunities={interaction.inventoryOpportunities} onInventory={openInventory} activityEntries={activityEntries} pendingWithdrawal={pendingAction?.kind === 'scene-withdraw' ? pendingAction : null} onCancelWithdrawal={() => setPendingActionConfirmation(null)} onConfirmWithdrawal={confirm} autoOpenSearchResultNode={autoOpenSearchResultNode} detailsAvailable={!!(sceneMedicalResult || sceneBatteryResult || sceneInventoryResult)} onViewDetails={() => setResultDetailsOpen(true)} />}
     {activeGhost && ghostAnchor && <AnchoredGhostPreview ghost={activeGhost} anchor={ghostAnchor} />}
     {model.kind === 'run-failure' && <FailureView
       model={model}
@@ -2209,7 +2245,7 @@ export function StableRunUiApp({
       rescueAlternative={pendingAction.kind !== 'end-day' && actionExecutionLevel(pendingAction, interaction.actions) === 'protective-confirmation'}
       compactUnchanged={pendingAction.kind === 'end-day'}
       confirmLabel={pendingAction.kind === 'end-day' ? '确认结束本日' : actionExecutionLevel(pendingAction, interaction.actions) === 'protective-confirmation' ? '仍然执行' : '执行'}
-      onCancel={() => setPendingActionId(null)}
+      onCancel={() => setPendingActionConfirmation(null)}
       onConfirm={confirm}
     />}
     {pendingTaskEventProtection && protectedTaskEventAction && <ActionPreviewDialog

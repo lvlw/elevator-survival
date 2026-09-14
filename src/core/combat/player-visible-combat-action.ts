@@ -13,13 +13,17 @@ import {
 import { createCombatEncounterSnapshot } from './combat-snapshot'
 import { CombatError } from './combat-errors'
 import { riskTierToPercent } from './combat-risk'
-import { createCombatPlayerActionCommand } from './combat-validation'
+import {
+  createCombatPlayerActionCommand,
+  createTemporaryDefenseSnapshot,
+} from './combat-validation'
 import type {
   CombatDependencies,
   CombatEncounterSnapshot,
   CombatPlayerActionCommand,
   PlayerVisibleCombatActionOption,
   PlayerVisibleCombatActionPreview,
+  TemporaryDefenseSnapshot,
 } from './combat-types'
 
 function commandsEqual(
@@ -36,10 +40,15 @@ function commandsEqual(
   )
 }
 
-function evaluateEscapeConsequences(
+function evaluateEnemyActionsBeforePlayerCompletion(
   snapshot: CombatEncounterSnapshot,
   completesAtCtb: number,
   dependencies: CombatDependencies,
+  initial: Readonly<{
+    health: number
+    bleeding: boolean
+    defense: TemporaryDefenseSnapshot | null
+  }>,
 ) {
   const definition = dependencies.enemyCatalog.get(snapshot.enemy.definitionId)
   let enemyNext = snapshot.enemyNextActionCtb
@@ -47,9 +56,9 @@ function evaluateEscapeConsequences(
   let nextCycleIndex = snapshot.enemy.nextCycleIndex
   const armorResource = getCombatResourceState(snapshot, 'armor')?.resource
   let armorResourceCurrent = armorResource?.kind === 'integrity' ? armorResource.current : null
-  let defense = snapshot.temporaryDefense
-  let health = snapshot.playerCondition.currentHealth
-  let bleedingGuaranteed = snapshot.playerCondition.bleeding
+  let defense = initial.defense
+  let health = initial.health
+  let bleedingGuaranteed = initial.bleeding
   let bleedingPossible = bleedingGuaranteed
   let enemyActionsBeforeCompletion = 0
   let preCompletionDeath = false
@@ -76,19 +85,44 @@ function evaluateEscapeConsequences(
     enemyNext += primary.actionCtb
   }
 
+  return deepFreeze({
+    enemyActionsBeforeCompletion,
+    playerHealthAfterEnemyActions: health,
+    bleedingPossible,
+    bleedingGuaranteed,
+    preCompletionDeath,
+    preCompletionDeathCtb,
+  })
+}
+
+function evaluateEscapeConsequences(
+  snapshot: CombatEncounterSnapshot,
+  completesAtCtb: number,
+  dependencies: CombatDependencies,
+) {
+  const enemyResponse = evaluateEnemyActionsBeforePlayerCompletion(
+    snapshot,
+    completesAtCtb,
+    dependencies,
+    {
+      health: snapshot.playerCondition.currentHealth,
+      bleeding: snapshot.playerCondition.bleeding,
+      defense: snapshot.temporaryDefense,
+    },
+  )
   const configuredBleedingDamage = dependencies.config.combat.postPlayerActionBleedingDamage
   const withoutBleeding = evaluateCombatPostPlayerActionBleeding(
-    health, false, configuredBleedingDamage,
+    enemyResponse.playerHealthAfterEnemyActions, false, configuredBleedingDamage,
   )
   const withBleeding = evaluateCombatPostPlayerActionBleeding(
-    health, true, configuredBleedingDamage,
+    enemyResponse.playerHealthAfterEnemyActions, true, configuredBleedingDamage,
   )
-  const bleedingDamageMin = bleedingGuaranteed ? withBleeding.actualLoss : 0
-  const bleedingDamageMax = bleedingPossible ? withBleeding.actualLoss : 0
-  const nonBleedingCompletionHealth = !preCompletionDeath && !bleedingGuaranteed
+  const bleedingDamageMin = enemyResponse.bleedingGuaranteed ? withBleeding.actualLoss : 0
+  const bleedingDamageMax = enemyResponse.bleedingPossible ? withBleeding.actualLoss : 0
+  const nonBleedingCompletionHealth = !enemyResponse.preCompletionDeath && !enemyResponse.bleedingGuaranteed
     ? withoutBleeding.healthAfter
     : null
-  const bleedingCompletionHealth = !preCompletionDeath && bleedingPossible
+  const bleedingCompletionHealth = !enemyResponse.preCompletionDeath && enemyResponse.bleedingPossible
     ? withBleeding.healthAfter
     : null
   const completionHealths = [
@@ -97,26 +131,58 @@ function evaluateEscapeConsequences(
   ].filter((value): value is number => value !== null)
   const healthMin = completionHealths.length === 0 ? 0 : Math.min(...completionHealths)
   const healthMax = completionHealths.length === 0 ? 0 : Math.max(...completionHealths)
-  const completionCheckpointDeathPossible = !preCompletionDeath &&
+  const completionCheckpointDeathPossible = !enemyResponse.preCompletionDeath &&
     completionHealths.some((value) => value === 0)
   const completionCheckpointDeathGuaranteed = completionCheckpointDeathPossible &&
     completionHealths.every((value) => value === 0)
   return deepFreeze({
-    enemyActionsBeforeCompletion,
+    enemyActionsBeforeCompletion: enemyResponse.enemyActionsBeforeCompletion,
     postPlayerActionBleedingDamageMin: bleedingDamageMin,
     postPlayerActionBleedingDamageMax: bleedingDamageMax,
     playerHealthAfterCompletionMin: healthMin,
     playerHealthAfterCompletionMax: healthMax,
-    bleedingAtCompletionPossible: bleedingPossible,
-    bleedingAtCompletionGuaranteed: bleedingGuaranteed,
-    playerHealthBeforeCompletionBleeding: health,
+    bleedingAtCompletionPossible: enemyResponse.bleedingPossible,
+    bleedingAtCompletionGuaranteed: enemyResponse.bleedingGuaranteed,
+    playerHealthBeforeCompletionBleeding: enemyResponse.playerHealthAfterEnemyActions,
     nonBleedingCompletionHealth,
     bleedingCompletionHealth,
-    preCompletionDeath,
-    preCompletionDeathCtb,
+    preCompletionDeath: enemyResponse.preCompletionDeath,
+    preCompletionDeathCtb: enemyResponse.preCompletionDeathCtb,
     completionCheckpointDeathPossible,
     completionCheckpointDeathGuaranteed,
     survivedCompletionPossible: completionHealths.some((value) => value > 0),
+  })
+}
+
+function evaluateNonAttackEnemyResponse(
+  snapshot: CombatEncounterSnapshot,
+  primary: Exclude<PlayerVisibleCombatActionPreview['primary'], { kind: 'attack' | 'escape' }>,
+  healthAfterOwnAction: number,
+  dependencies: CombatDependencies,
+) {
+  const defense = primary.kind === 'defend'
+    ? createTemporaryDefenseSnapshot({
+        activatedAtCtb: snapshot.currentCtb,
+        expiresAtPlayerActionCtb: primary.expiresAtPlayerActionCtb,
+        availableDirectAttackUses: primary.availableDirectAttackUses,
+      })
+    : snapshot.temporaryDefense
+  const enemyResponse = evaluateEnemyActionsBeforePlayerCompletion(
+    snapshot,
+    snapshot.currentCtb + primary.actionCtb,
+    dependencies,
+    {
+      health: healthAfterOwnAction,
+      bleeding: snapshot.playerCondition.bleeding && !(
+        primary.kind === 'quick-slot-item' && primary.stopsBleeding
+      ),
+      defense,
+    },
+  )
+  return deepFreeze({
+    enemyActionsBeforeNextPlayerDecision: enemyResponse.enemyActionsBeforeCompletion,
+    playerHealthAfterEnemyResponse: enemyResponse.playerHealthAfterEnemyActions,
+    playerDeathBeforeNextPlayerDecision: enemyResponse.preCompletionDeath,
   })
 }
 
@@ -157,6 +223,14 @@ export function previewPlayerVisibleCombatAction(
     snapshot.playerCondition.bleeding && !stopsBleeding,
     dependencies.config.combat.postPlayerActionBleedingDamage,
   )
+  const enemyResponseBeforeNextPlayerDecision = primary.kind === 'attack' || primary.kind === 'escape'
+    ? null
+    : evaluateNonAttackEnemyResponse(
+        snapshot,
+        primary,
+        bleedingCheckpoint.healthAfter,
+        dependencies,
+      )
   return deepFreeze({
     primary,
     currentIntent: {
@@ -168,6 +242,7 @@ export function previewPlayerVisibleCombatAction(
     },
     postPlayerActionBleedingDamage: bleedingCheckpoint.actualLoss,
     playerHealthAfterOwnAction: bleedingCheckpoint.healthAfter,
+    enemyResponseBeforeNextPlayerDecision,
     escapeConsequences: primary.kind === 'escape'
       ? evaluateEscapeConsequences(snapshot, primary.completesAtCtb, dependencies)
       : null,

@@ -502,10 +502,29 @@ describe('hospital scene combat encounter lifecycle', () => {
         survivingResult: 'active-scene',
       },
     })
-    expect(riskyVisible?.deathCertainty).toBe('unknown')
+    expect(riskyVisible?.deathCertainty).toBe('not-guaranteed')
     expect(JSON.stringify(riskyVisible)).not.toMatch(
       /riskPercent|roll|streamId|drawIndex|succeeded|enemyInstanceId|woundId|nextCycleIndex|resolvedActionCount/,
     )
+  })
+
+  it('classifies an escape as guaranteed only when every completion branch dies', () => {
+    const started = enter(scene({ health: 4, remainingTime: 15 }))
+    const preview = getPlayerVisibleSceneCombatActionOptions(
+      started,
+      dependencies,
+    ).find(({ command }) => command.kind === 'escape')
+    expect(preview?.terminal).toMatchObject({
+      deathRisk: 'guaranteed',
+      preCompletionDefeatRisk: 'none',
+      completionCheckpointDeathRisk: 'possible',
+      completion: {
+        remainingTimeAfter: 0,
+        forcedReturnHealthMin: 0,
+        forcedReturnHealthMax: 0,
+      },
+    })
+    expect(preview?.deathCertainty).toBe('guaranteed')
   })
 
   it('uses alerted first timing and exposes only a player-safe combat projection', () => {

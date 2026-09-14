@@ -908,6 +908,7 @@ function taskEventPhase(options: Readonly<{
   bleeding?: boolean
   coatIntegrity?: number | null
   materialWeight?: number
+  backpackBandage?: boolean
 }> = {}) {
   const launched = resolveSceneLaunch(
     createHubPhase({ combatReady: true, seed: options.seed }).payload,
@@ -929,16 +930,23 @@ function taskEventPhase(options: Readonly<{
     })
     remainingWeight -= quantity
   }
+  const bandage = options.backpackBandage
+    ? item('react-task-event-bandage', HOSPITAL_ITEM_IDS.bandage)
+    : null
+  const backpackItems = [...materialItems, ...(bandage ? [bandage] : [])]
   const backpack = createBackpackSnapshot({
     width: config.backpack.width,
     height: config.backpack.height,
-    items: materialItems,
-    placements: materialItems.map(({ instanceId }, index) => ({
-      instanceId,
-      x: index,
-      y: 0,
-      rotated: false,
-    })),
+    items: backpackItems,
+    placements: [
+      ...materialItems.map(({ instanceId }, index) => ({
+        instanceId,
+        x: index,
+        y: 0,
+        rotated: false,
+      })),
+      ...(bandage ? [{ instanceId: bandage.instanceId, x: 5, y: 3, rotated: false }] : []),
+    ],
   }, hospitalItemCatalog)
   const retainedIds = new Set([
     ...Object.values({ ...launched.scene.equipment, armor: coat })
@@ -954,7 +962,7 @@ function taskEventPhase(options: Readonly<{
       .map((state) => state.instanceId === coat?.instanceId && options.coatIntegrity !== undefined
         ? { ...state, resource: { kind: 'integrity' as const, current: options.coatIntegrity ?? 0 } }
         : state),
-    ...materialItems.map((candidate) => createFullItemState(candidate, hospitalItemResourceCatalog)),
+    ...backpackItems.map((candidate) => createFullItemState(candidate, hospitalItemResourceCatalog)),
   ]
   const condition = createPlayerCondition({
     ...launched.scene.condition,
@@ -6699,6 +6707,93 @@ describe('StableRunUiApp', () => {
     expect(storage.writes).toBe(0)
   })
 
+  it('uses the formal enemy-first bandage projection to protect a fatal escape but commits the bandage once', () => {
+    const initial = combatPhase({
+      currentHealth: 2,
+      bleeding: true,
+      weaponDurability: 0,
+      armorIntegrity: 4,
+      enemyNextActionCtb: 70,
+    })
+    const bandageStorage = new MemoryStorage()
+    const bandageStore = createStableRunStore({
+      initialPhase: initial,
+      storage: bandageStorage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const bandage = createStableRunUiInteractionModel(
+      bandageStore.getState().phase,
+      uiDependencies,
+    ).actions.find(({ label }) => label === '使用绷带')
+    expect(bandage?.deathCertainty).toBe('not-guaranteed')
+    expect(bandage?.preview.facts).toEqual(expect.arrayContaining([
+      expect.objectContaining({ label: '下一次决策前的敌人行动', value: '敌人会先行动' }),
+    ]))
+    if (!bandage) throw new Error('expected bandage action')
+    bandageStore.dispatch(bandage.command)
+    const bandagePhase = bandageStore.getState().phase
+    if (bandagePhase.kind !== 'scene-session') throw new Error('expected Scene session')
+    const activeAfterBandage = bandagePhase.payload.scene.combatState.encounters.find(
+      ({ kind }) => kind === 'active',
+    )
+    if (activeAfterBandage?.kind !== 'active') throw new Error('expected active combat')
+    expect(activeAfterBandage.combat.playerCondition).toMatchObject({
+      currentHealth: 1,
+      bleeding: false,
+    })
+    expect(bandageStorage.writes).toBe(1)
+
+    const escapeStorage = new MemoryStorage()
+    const escapeInner = createStableRunStore({
+      initialPhase: initial,
+      storage: escapeStorage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(escapeInner)
+    const escape = createStableRunUiInteractionModel(
+      escapeInner.getState().phase,
+      uiDependencies,
+    ).actions.find(({ label }) => label === '逃跑')
+    expect(escape?.deathCertainty).toBe('guaranteed')
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, '逃跑').click() })
+    expect(container.textContent).toContain('仍然执行')
+    expect(tracked.commands).toHaveLength(0)
+    expect(escapeStorage.writes).toBe(0)
+  })
+
+  it('invalidates a normal same-ID confirmation when a formal command changes its player-safe facts', () => {
+    const storage = new MemoryStorage()
+    const inner = createStableRunStore({
+      initialPhase: { kind: 'scene-session', payload: sceneSessionAtEmergencyHall() },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })
+    const tracked = trackedStore(inner)
+    const initialWithdrawal = createStableRunUiInteractionModel(inner.getState().phase, uiDependencies)
+      .actions.find(({ kind }) => kind === 'scene-withdraw')
+    if (!initialWithdrawal) throw new Error('expected withdrawal action')
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+    act(() => { button(container, initialWithdrawal.label).click() })
+    expect(container.querySelector('[role="dialog"]')).not.toBeNull()
+
+    const search = createStableRunUiInteractionModel(inner.getState().phase, uiDependencies)
+      .actions.find(({ kind }) => kind === 'scene-main-search')
+    if (!search) throw new Error('expected search action')
+    act(() => { inner.dispatch(search.command) })
+    const currentWithdrawal = createStableRunUiInteractionModel(inner.getState().phase, uiDependencies)
+      .actions.find(({ kind }) => kind === 'scene-withdraw')
+    expect(currentWithdrawal?.id).toBe(initialWithdrawal.id)
+    expect(currentWithdrawal?.preview).not.toEqual(initialWithdrawal.preview)
+    expect(container.querySelector('[role="dialog"]')).toBeNull()
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(1)
+  })
+
   it('sends a guaranteed-fatal completed sample-extraction draft through dynamic death protection before dispatch', () => {
     const storage = new MemoryStorage()
     const inner = createStableRunStore({
@@ -6762,6 +6857,38 @@ describe('StableRunUiApp', () => {
     act(() => { inner.dispatch(replacement.command!) })
 
     expect(container.querySelector('[role="dialog"]')).toBeNull()
+    expect(tracked.commands).toHaveLength(0)
+    expect(storage.writes).toBe(1)
+  })
+
+  it('invalidates a still-legal protected task draft when a formal medical command changes its death facts', () => {
+    const storage = new MemoryStorage()
+    const phase = taskEventPhase({
+      currentHealth: 1,
+      bleeding: true,
+      remainingTime: 100,
+      coatIntegrity: null,
+      backpackBandage: true,
+    })
+    const inner = createStableRunStore({ initialPhase: phase, storage, rulesRegistry: hospitalRunSaveRulesRegistry })
+    const tracked = trackedStore(inner)
+    const container = document.createElement('div')
+    const root = createRoot(container); roots.push(root)
+    act(() => { root.render(<StableRunUiApp store={tracked.store} presentationDependencies={uiDependencies} />) })
+
+    act(() => { button(container, '直接取出').click() })
+    act(() => { button(container, '格子 3,1').click() })
+    act(() => { button(container, '确认提取').click() })
+    expect(container.textContent).toContain('仍然执行')
+
+    const bandage = createStableRunUiInteractionModel(inner.getState().phase, uiDependencies)
+      .actions.find(({ kind }) => kind === 'scene-medical')
+    if (!bandage) throw new Error('expected scene bandage action')
+    act(() => { inner.dispatch(bandage.command) })
+
+    expect(createStableRunUiInteractionModel(inner.getState().phase, uiDependencies)
+      .taskEventOpportunities.some(({ label }) => label === '直接取出')).toBe(true)
+    expect(container.textContent).not.toContain('仍然执行')
     expect(tracked.commands).toHaveLength(0)
     expect(storage.writes).toBe(1)
   })

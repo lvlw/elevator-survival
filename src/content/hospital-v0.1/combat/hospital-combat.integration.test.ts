@@ -75,6 +75,7 @@ type Setup = Readonly<{
   bleeding?: boolean
   enemy?: EnemyPersistentCombatState
   backpackSparePipe?: boolean
+  quickBandage?: boolean
   pendingExposures?: number
 }>
 
@@ -85,10 +86,13 @@ function encounter(setup: Setup = {}) {
   const coat = setup.coatIntegrity === null ? null : {
     instanceId: 'coat-equipped', definitionId: HOSPITAL_ITEM_IDS.heavyCoat, quantity: 1,
   }
+  const bandage = setup.quickBandage
+    ? { instanceId: 'bandage-quick', definitionId: HOSPITAL_ITEM_IDS.bandage, quantity: 1 }
+    : null
   const backpackItems: ItemInstance[] = setup.backpackSparePipe
     ? [{ instanceId: 'pipe-spare', definitionId: HOSPITAL_ITEM_IDS.metalPipe, quantity: 1 }]
     : []
-  const carried = [...backpackItems, ...(pipe ? [pipe] : []), ...(coat ? [coat] : [])]
+  const carried = [...backpackItems, ...(pipe ? [pipe] : []), ...(coat ? [coat] : []), ...(bandage ? [bandage] : [])]
   const dependencies = { ...baseDependencies, runSeed: setup.runSeed ?? 'combat-seed-0' }
   const input = {
     playerCondition: createPlayerCondition({
@@ -106,7 +110,7 @@ function encounter(setup: Setup = {}) {
       placements: backpackItems.map(({ instanceId }) => ({ instanceId, x: 0, y: 0, rotated: false })),
     }, hospitalItemCatalog),
     equipment: { weapon: pipe, armor: coat, utility: null },
-    quickSlots: { slots: [null, null] },
+    quickSlots: { slots: [bandage, null] },
     itemStates: { states: carried.map((item) => {
       if (item.instanceId === 'pipe-equipped') return createItemState({ ...item, resource: { kind: 'durability', current: setup.pipeDurability ?? 6 } }, hospitalItemResourceCatalog)
       if (item.instanceId === 'coat-equipped') return createItemState({ ...item, resource: { kind: 'integrity', current: setup.coatIntegrity ?? 4 } }, hospitalItemResourceCatalog)
@@ -153,7 +157,27 @@ describe('hospital infected orderly combat', () => {
       command,
       safe.dependencies,
     )
+    const reentryWithEnemyHealth = (currentHealth: number) => createReentryCombatEncounter({
+      playerCondition: risky.snapshot.playerCondition,
+      backpack: risky.snapshot.backpack,
+      equipment: risky.snapshot.equipment,
+      quickSlots: risky.snapshot.quickSlots,
+      itemStates: risky.snapshot.itemStates,
+      enemy: persistent({ currentHealth, hasBeenEncountered: true }),
+      usage: risky.snapshot.usage,
+    }, risky.dependencies)
+    const fullHealthVisible = previewPlayerVisibleCombatAction(
+      reentryWithEnemyHealth(14),
+      command,
+      risky.dependencies,
+    )
+    const damagedButSamePhaseVisible = previewPlayerVisibleCombatAction(
+      reentryWithEnemyHealth(13),
+      command,
+      risky.dependencies,
+    )
     expect(riskyVisible).toEqual(safeVisible)
+    expect(fullHealthVisible).toEqual(damagedButSamePhaseVisible)
     expect(JSON.stringify(riskyVisible)).not.toMatch(
       /riskPercent|roll|streamId|drawIndex|succeeded|currentHealth|nextCycleIndex|resolvedActionCount/,
     )
@@ -253,6 +277,52 @@ describe('hospital infected orderly combat', () => {
       completionCheckpointDeathGuaranteed: false,
       survivedCompletionPossible: true,
     })
+  })
+
+  it('projects a bandage survivor through an enemy-first response without leaking hidden risk', () => {
+    const risky = encounter({
+      runSeed: 'risk-2',
+      health: 2,
+      bleeding: true,
+      pipeDurability: 0,
+      coatIntegrity: 4,
+      quickBandage: true,
+    })
+    const safe = encounter({
+      runSeed: 'risk-0',
+      health: 2,
+      bleeding: true,
+      pipeDurability: 0,
+      coatIntegrity: 4,
+      quickBandage: true,
+    })
+    const command = { kind: 'use-quick-slot-item', quickSlotIndex: 0 } as const
+    const riskyRaw = resolveCombatPlayerAction(risky.snapshot, command, risky.dependencies)
+    const safeRaw = resolveCombatPlayerAction(safe.snapshot, command, safe.dependencies)
+    expect(riskyRaw.snapshot.playerCondition.currentHealth).toBe(1)
+    expect(safeRaw.snapshot.playerCondition.currentHealth).toBe(1)
+    expect(riskyRaw.snapshot.status).toBe('awaiting-player')
+    expect(safeRaw.snapshot.status).toBe('awaiting-player')
+
+    const riskyVisible = previewPlayerVisibleCombatAction(
+      risky.snapshot,
+      command,
+      risky.dependencies,
+    )
+    const safeVisible = previewPlayerVisibleCombatAction(
+      safe.snapshot,
+      command,
+      safe.dependencies,
+    )
+    expect(riskyVisible).toEqual(safeVisible)
+    expect(riskyVisible.enemyResponseBeforeNextPlayerDecision).toEqual({
+      enemyActionsBeforeNextPlayerDecision: 1,
+      playerHealthAfterEnemyResponse: 1,
+      playerDeathBeforeNextPlayerDecision: false,
+    })
+    expect(JSON.stringify(riskyVisible)).not.toMatch(
+      /riskPercent|roll|streamId|drawIndex|succeeded|currentHealth|nextCycleIndex|resolvedActionCount/,
+    )
   })
 
   it('resolves existing-bleeding death at the escape completion checkpoint CTB 80', () => {

@@ -367,10 +367,17 @@ function combatCommandDeathCertainty(input: Readonly<{
     // with an additional checkpoint-death branch this is still whole-command
     // death, not merely a conditional warning.
     if (terminal?.deathRisk === 'guaranteed') return 'guaranteed'
-    if (escape.completionCheckpointDeathPossible) return 'unknown'
-    return 'not-guaranteed'
+    // A possible completion-checkpoint death does not erase a formally
+    // projected surviving branch.  It remains risky, but it is not a whole-
+    // command guaranteed death and therefore remains eligible as a rescue.
+    return escape.survivedCompletionPossible ? 'not-guaranteed' : 'unknown'
   }
   if (preview.playerHealthAfterOwnAction === 0) return 'guaranteed'
+  if (preview.enemyResponseBeforeNextPlayerDecision !== null) {
+    return preview.enemyResponseBeforeNextPlayerDecision.playerDeathBeforeNextPlayerDecision
+      ? 'guaranteed'
+      : 'not-guaranteed'
+  }
   return preview.currentIntent.actsBeforeNextPlayerDecision
     ? 'unknown'
     : 'not-guaranteed'

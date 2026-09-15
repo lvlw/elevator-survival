@@ -133,7 +133,7 @@
 
 ## 10. Activity Feed 与 Future Integration Notes
 
-UIR-013 的 Presentation Activity Feed 尚未实现，因此目前不能把它假装成正式音频事件源。未来理想路径是从 canonical execution result 投影 presentation activity/event，再由 Audio presentation adapter 消费；在那之前也可以由现有 Store execution result 的只读 presentation 层触发，但不得保存 raw Effect、重放 resolver 或创造第二份 gameplay state。
+UIR-013 的 session-local Presentation Activity Feed 现已实现，并与 Combat Log 使用同源过滤；它仍不是 Save、Replay 或 gameplay truth。Audio Probe 的现有技术接入可消费 UI-local 事件或 canonical execution result 的只读 Presentation 投影，但不得保存 raw Effect、重放 resolver 或创造第二份 gameplay state。它不意味着 Audio Pack 已获 Owner 听感认可，也不改变当前后续音频调整与扩包暂停的状态。
 
 Future Integration Note：
 

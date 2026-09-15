@@ -425,9 +425,9 @@ Playable Game Shell 是低资产、可替换、可自然试玩的游戏化展示
 - session-local、non-authoritative、non-persistent、executed-result-only 的常态 Presentation Activity Feed；
 - 与只读 Inspector 分离、Production 不可达的 DEV-only Owner Playtest Reset。
 
-当前实现状态：低资产 Battle Stage、玩家精确生命条、敌人阶段式生命表现、相对 Combat 时间轴、Combat Hover／Focus Ghost 与已提交结果的轻量反馈已经完成；普通玩家 ViewModel、Preview 和 DOM 不展示 raw CTB。Presentation Activity Feed 及其共享战斗日志仍待后续实现，因此不将 UIR-012 的日志方向标记为完成。
+当前实现状态：低资产 Battle Stage、玩家精确生命条、敌人阶段式生命表现、相对 Combat 时间轴、Combat Hover／Focus Ghost、已提交结果的轻量反馈，以及 session-local Presentation Activity Feed／同源战斗过滤视图已经完成；普通玩家 ViewModel、Preview 和 DOM 不展示 raw CTB。它们只更新 Presentation，不进入 Save、Profile、canonical gameplay truth 或 Replay。
 
-后续 Owner 试玩已确认：现有实现虽通过工程审查，纵向页面、分离的地图与移动入口、分散的节点操作、每步通用确认、固定 Tooltip 和阻塞结果反馈仍妨碍自然试玩。UIR-015 的一屏主次布局、紧凑且可直接发起正式相邻移动的地图、当前节点就地操作、装备／背包切换且两个快捷位常驻、锚定 Tooltip 与共享 Presentation 行动日志均为**待实现目标**，不是当前代码或 Owner 体验验收的完成声明。新的布局尺寸需实测；搜索、CTB、时间透支、背包及携带规则、任务物安全提取、Return／日结算／Save 等正式规则和历史测试结果不变，终止场景仍需下一条显式结算命令。
+后续 Owner 试玩确认的 UIR-015 一屏主次布局、当前节点就地操作、装备／背包切换且两个快捷位常驻、锚定 Tooltip 与共享 Presentation 行动日志已在医院一日 Shell 接入。当前地图仍是只读已知空间辅助视图，正式相邻移动与主动返程位于房间 Travel Cluster；不产生第二套通行资格。新的布局尺寸和 Owner 后续浏览器体验复验仍需单独记录；搜索、CTB、时间透支、背包及携带规则、任务物安全提取、Return／日结算／Save 等正式规则和历史测试结果不变，终止场景仍需下一条显式结算命令。
 
 上述方向的布局位置、尺寸比例、面板开合、图标、颜色、贴图与动画表现仍可替换，不冻结为永久产品规则。未来阶段贴图只是 Presentation extensibility；“某种装备可以查看敌人精确 HP”仍是未确认玩法候选，不在本 Addendum 中确认或实现。
 

@@ -8,6 +8,8 @@
    - `docs/03-architecture.md`
    - `docs/05-design-decisions.md`
    - 与当前任务相关的 `docs/content/` 文档
+   - 涉及 UI、Interaction 或 Presentation 的任务，还须阅读
+     `docs/09-ui-design-record.md` 的“当前有效约定速查”和相关 UIR。
 4. 文档权威顺序：
    - 已确认的 `docs/05-design-decisions.md` 决策优先级最高；
    - `docs/02-vertical-slice.md` 决定当前开发阶段的范围和验收标准；

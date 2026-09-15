@@ -28,7 +28,7 @@ import type {
 
 export interface RunLoadoutBackpackRules extends Pick<
   FrozenRuleConfig['backpack'],
-  'height' | 'weightBands' | 'width'
+  'height' | 'quickSlotCount' | 'weightBands' | 'width'
 > {}
 
 export interface RunLoadoutDependencies {

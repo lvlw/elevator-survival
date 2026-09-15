@@ -4,6 +4,7 @@ export {
   createCarriedItemContainersSnapshot,
   createEmptyQuickSlots,
   createQuickSlotSnapshot,
+  restoreQuickSlotSnapshot,
   getQuickSlot,
   isQuickSlotEmpty,
 } from './quick-slot-snapshot'

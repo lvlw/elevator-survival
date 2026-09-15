@@ -1216,14 +1216,14 @@ describe('hospital infected orderly combat', () => {
     })
   })
 
-  it('explicitly rejects restored cannot-carry state from starting escape', () => {
+  it('explicitly rejects restored cannot-carry state before a combat action', () => {
     const { snapshot, dependencies } = encounter()
     const materials = Array.from({ length: 6 }, (_, index) => ({
       instanceId: `heavy-stack-${index}`,
       definitionId: HOSPITAL_ITEM_IDS.metalParts,
       quantity: 5,
     }))
-    const overweight = createCombatEncounterSnapshot({
+    expect(() => createCombatEncounterSnapshot({
       ...snapshot,
       backpack: createBackpackSnapshot({
         width: config.backpack.width,
@@ -1242,9 +1242,8 @@ describe('hospital infected orderly combat', () => {
           ...materials.map((item) => createFullItemState(item, hospitalItemResourceCatalog)),
         ],
       },
-    }, dependencies)
-    expect(() => act(overweight, 'escape', dependencies)).toThrowError(
-      expect.objectContaining({ code: 'CANNOT_ESCAPE_WHILE_UNCARRYABLE' }),
+    }, dependencies)).toThrowError(
+      expect.objectContaining({ code: 'INVALID_COMBAT_SNAPSHOT' }),
     )
   })
 

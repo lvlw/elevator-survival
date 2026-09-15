@@ -74,6 +74,19 @@ function expectCode(action: () => unknown, code: InventoryErrorCode): void {
 }
 
 describe('backpack layout', () => {
+  it('rejects malformed JavaScript placements and extra fields instead of coercing rotation', () => {
+    const base = validInput()
+    for (const rotated of [undefined, 'false', 0, null]) {
+      const malformed = { ...base.placements[0], rotated }
+      expectCode(() => createBackpackSnapshot({ ...base, placements: [malformed, base.placements[1]] } as BackpackSnapshot, catalog), 'INVALID_PLACEMENT')
+    }
+    const extraPlacement = { ...base.placements[0], extra: true }
+    expectCode(() => createBackpackSnapshot({ ...base, placements: [extraPlacement, base.placements[1]] }, catalog), 'INVALID_PLACEMENT')
+    expectCode(() => createBackpackSnapshot({ ...base, extra: true } as BackpackSnapshot, catalog), 'INVALID_BACKPACK_SIZE')
+    const sparse = Array(2) as (typeof base.placements[number])[]
+    sparse[0] = base.placements[0]
+    expectCode(() => createBackpackSnapshot({ ...base, placements: sparse }, catalog), 'INVALID_BACKPACK_SIZE')
+  })
   it('creates a deeply frozen normalized snapshot without modifying input', () => {
     const input = validInput()
     const reversed = {

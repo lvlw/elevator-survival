@@ -25,6 +25,12 @@ function assertBackpackDimension(value: number, label: string): void {
 
 function assertPlacementCoordinates(placement: BackpackPlacement): void {
   if (
+    placement === null || typeof placement !== 'object' || Array.isArray(placement) ||
+    Object.getPrototypeOf(placement) !== Object.prototype ||
+    Object.keys(placement).length !== 4 ||
+    !['instanceId', 'x', 'y', 'rotated'].every((key) => Object.hasOwn(placement, key)) ||
+    typeof placement.instanceId !== 'string' || !placement.instanceId.trim() ||
+    typeof placement.rotated !== 'boolean' ||
     !Number.isSafeInteger(placement.x) ||
     placement.x < 0 ||
     !Number.isSafeInteger(placement.y) ||
@@ -71,6 +77,12 @@ export function previewBackpackPlacement(
     return previewFailure('UNKNOWN_DEFINITION')
   }
   if (
+    placement === null || typeof placement !== 'object' || Array.isArray(placement) ||
+    Object.getPrototypeOf(placement) !== Object.prototype ||
+    Object.keys(placement).length !== 4 ||
+    !['instanceId', 'x', 'y', 'rotated'].every((key) => Object.hasOwn(placement, key)) ||
+    placement.instanceId !== item.instanceId ||
+    typeof placement.rotated !== 'boolean' ||
     !Number.isSafeInteger(placement.x) ||
     placement.x < 0 ||
     !Number.isSafeInteger(placement.y) ||
@@ -143,6 +155,23 @@ export function createBackpackSnapshot(
   input: BackpackSnapshot,
   catalog: ItemCatalog,
 ): BackpackSnapshot {
+  if (
+    input === null || typeof input !== 'object' || Array.isArray(input) ||
+    Object.getPrototypeOf(input) !== Object.prototype ||
+    Object.keys(input).length !== 4 ||
+    !['width', 'height', 'items', 'placements'].every((key) => Object.hasOwn(input, key)) ||
+    !Array.isArray(input.items) || !Array.isArray(input.placements) ||
+    input.items.length !== Object.keys(input.items).length ||
+    input.placements.length !== Object.keys(input.placements).length ||
+    Array.from({ length: input.items.length }, (_, index) => index).some(
+      (index) => !Object.hasOwn(input.items, index)
+    ) ||
+    Array.from({ length: input.placements.length }, (_, index) => index).some(
+      (index) => !Object.hasOwn(input.placements, index)
+    )
+  ) {
+    throw new InventoryError('INVALID_BACKPACK_SIZE', '背包快照结构无效')
+  }
   assertBackpackDimension(input.width, '背包宽度')
   assertBackpackDimension(input.height, '背包高度')
   if (!Number.isSafeInteger(input.width * input.height)) {

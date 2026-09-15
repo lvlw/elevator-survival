@@ -44,12 +44,17 @@ export function createQuickSlotSnapshot(
   quickSlotCatalog: QuickSlotProfileCatalog,
 ): QuickSlotSnapshot {
   assertSlotCount(slotCount)
-  if (slots.length !== slotCount) {
+  if (!Array.isArray(slots) || slots.length !== slotCount ||
+    Object.keys(slots).length !== slotCount) {
     throw new QuickSlotError('INVALID_SLOT_COUNT', '快捷栏快照长度与规则不一致')
   }
   const ids = new Set<string>()
-  const normalized = slots.map((item) => {
-    if (!item) return null
+  const normalized = Array.from({ length: slotCount }, (_, index) => {
+    if (!Object.hasOwn(slots, index)) {
+      throw new QuickSlotError('INVALID_SLOT_COUNT', '快捷栏不得包含稀疏槽位')
+    }
+    const item = slots[index]
+    if (item === null) return null
     const instance = createItemInstance(item, physicalCatalog)
     if (instance.quantity !== 1) {
       throw new QuickSlotError('INVALID_QUANTITY', '快捷栏实例数量必须为1')
@@ -64,6 +69,23 @@ export function createQuickSlotSnapshot(
     return instance
   })
   return deepFreeze({ slots: normalized })
+}
+
+/** Strictly reads a persisted quick-slot container; initialization uses createEmptyQuickSlots. */
+export function restoreQuickSlotSnapshot(
+  input: QuickSlotSnapshot,
+  slotCount: number,
+  physicalCatalog: ItemCatalog,
+  quickSlotCatalog: QuickSlotProfileCatalog,
+): QuickSlotSnapshot {
+  if (
+    input === null || typeof input !== 'object' || Array.isArray(input) ||
+    Object.getPrototypeOf(input) !== Object.prototype ||
+    Object.keys(input).length !== 1 || !Object.hasOwn(input, 'slots')
+  ) {
+    throw new QuickSlotError('INVALID_SLOT_COUNT', '快捷栏结构无效')
+  }
+  return createQuickSlotSnapshot(input.slots, slotCount, physicalCatalog, quickSlotCatalog)
 }
 
 export function createEmptyQuickSlots(
@@ -111,9 +133,9 @@ export function createCarriedItemContainersSnapshot(
     dependencies.physicalCatalog,
     dependencies.equipmentCatalog,
   )
-  const normalizedQuickSlots = createQuickSlotSnapshot(
-    quickSlots.slots,
-    quickSlots.slots.length,
+  const normalizedQuickSlots = restoreQuickSlotSnapshot(
+    quickSlots,
+    Array.isArray(quickSlots?.slots) ? quickSlots.slots.length : 0,
     dependencies.physicalCatalog,
     dependencies.quickSlotCatalog,
   )

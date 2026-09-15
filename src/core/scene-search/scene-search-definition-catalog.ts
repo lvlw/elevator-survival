@@ -22,7 +22,11 @@ function normalizeGrant(
   }
   try {
     const item = createItemInstance(
-      { instanceId: 'search-grant-validation', ...grant },
+      {
+        instanceId: 'search-grant-validation',
+        definitionId: grant.definitionId,
+        quantity: grant.quantity,
+      },
       itemCatalog,
     )
     createSearchItemState(item, grant.initialState, resourceCatalog)

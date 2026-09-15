@@ -391,7 +391,7 @@ describe('hospital scene movement command', () => {
     })
   })
 
-  it('rejects formal cannot-carry weight 29 without changing state', () => {
+  it('rejects formal cannot-carry weight 29 before creating a stable Scene', () => {
     const inventory = backpack(
       [
         { instanceId: 'metal', definitionId: HOSPITAL_ITEM_IDS.metalParts, quantity: 5 },
@@ -404,11 +404,7 @@ describe('hospital scene movement command', () => {
       ],
       [at('metal', 0, 0), at('electronics', 1, 0), at('fabric', 2, 0), at('axe', 0, 1), at('toolkit', 2, 1), at('sample', 4, 1), at('bandage', 3, 0)],
     )
-    const input = scene(HOSPITAL_NODE_IDS.elevatorAnteroom, 100, inventory)
-    expect(previewSceneMoveCommand(input, { edgeId: HOSPITAL_EDGE_IDS.elevatorToEmergencyHall }, dependencies)).toEqual({
-      canExecute: false,
-      rejectionCode: 'CANNOT_CARRY',
-    })
-    expect(input.remainingTime).toBe(100)
+    expect(() => scene(HOSPITAL_NODE_IDS.elevatorAnteroom, 100, inventory))
+      .toThrowError(expect.objectContaining({ code: 'CANNOT_CARRY' }))
   })
 })

@@ -84,6 +84,21 @@ const combined = (
     equipmentCatalog,
   )
 
+describe('strict equipment shape', () => {
+  it('accepts explicit empty slots but rejects missing, false, undefined and extra fields', () => {
+    expect(empty()).toEqual({ weapon: null, armor: null, utility: null })
+    for (const value of [false, 0, '', undefined]) {
+      expect(() => createEquipmentSnapshot({ weapon: null, armor: value, utility: null } as unknown as ReturnType<typeof empty>, physicalCatalog, equipmentCatalog))
+        .toThrow()
+    }
+    expect(() => createEquipmentSnapshot({ weapon: null, utility: null } as ReturnType<typeof empty>, physicalCatalog, equipmentCatalog))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_SLOT' }))
+    const extra = { ...empty(), extra: true }
+    expect(() => createEquipmentSnapshot(extra, physicalCatalog, equipmentCatalog))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_SLOT' }))
+  })
+})
+
 describe('equipment profile catalog', () => {
   it('creates a sorted complete catalog without modifying input', () => {
     const before = structuredClone(profiles)

@@ -48,11 +48,19 @@ export function createEquipmentSnapshot(
   physicalCatalog: ItemCatalog,
   equipmentCatalog: EquipmentProfileCatalog,
 ): EquipmentSnapshot {
+  if (
+    input === null || typeof input !== 'object' || Array.isArray(input) ||
+    Object.getPrototypeOf(input) !== Object.prototype ||
+    Object.keys(input).length !== EQUIPMENT_SLOTS.length ||
+    EQUIPMENT_SLOTS.some((slot) => !Object.hasOwn(input, slot))
+  ) {
+    throw new EquipmentError('INVALID_SLOT', '装备栏必须包含且只包含全部正式槽位')
+  }
   const ids = new Set<string>()
   const output = {} as Record<EquipmentSlotKind, Readonly<ItemInstance> | null>
   for (const slot of EQUIPMENT_SLOTS) {
     const item = input[slot]
-    if (!item) {
+    if (item === null) {
       output[slot] = null
       continue
     }

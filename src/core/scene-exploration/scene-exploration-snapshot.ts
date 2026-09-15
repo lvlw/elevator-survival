@@ -8,6 +8,8 @@ import {
   validateSceneTaskEventDependencies,
 } from '../scene-task-event'
 import { createItemStateCollectionSnapshot } from '../item-state'
+import { calculateBackpackWeightSubtotal } from '../inventory'
+import { classifyLoad } from '../load'
 import { createCarriedItemContainersSnapshot } from '../quick-slot'
 import {
   getSceneEdgeTraversal,
@@ -172,15 +174,6 @@ export function createSceneExplorationSnapshot(
   validateTraversalAvailability(dependencies.graph, {
     enabledEdgeIds: input.enabledEdgeIds,
   })
-  if (
-    input.quickSlots.slots.length !==
-    dependencies.config.backpack.quickSlotCount
-  ) {
-    throw new SceneExplorationError(
-      'INVALID_INPUT',
-      '快捷栏数量与规则配置不一致',
-    )
-  }
   const carried = createCarriedItemContainersSnapshot(
     input.backpack,
     input.equipment,
@@ -199,6 +192,15 @@ export function createSceneExplorationSnapshot(
       'BACKPACK_CONFIG_MISMATCH',
       '背包尺寸与当前规则配置不一致',
     )
+  }
+  if (carried.quickSlots.slots.length !== dependencies.config.backpack.quickSlotCount) {
+    throw new SceneExplorationError('INVALID_INPUT', '快捷栏数量与规则配置不一致')
+  }
+  if (!classifyLoad(
+    calculateBackpackWeightSubtotal(carried.backpack, dependencies.physicalCatalog),
+    dependencies.config.backpack,
+  ).canCarry) {
+    throw new SceneExplorationError('CANNOT_CARRY', '稳定场景背包处于无法携带状态')
   }
   const carriedItems = [
     ...carried.backpack.items,

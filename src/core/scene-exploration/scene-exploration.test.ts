@@ -639,11 +639,11 @@ describe('scene move evaluation', () => {
     expect(input.currentNodeId).toBe('safe')
   })
 
-  it('rejects reverse one-way traversal, disconnected edge, no return route, and cannot carry', () => {
+  it('rejects reverse one-way traversal, disconnected edge, no return route, and uncarryable stable input', () => {
     expect(previewSceneMoveCommand(snapshot('isolated', 10, 0, condition(), ['one-way']), { edgeId: 'one-way' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'EDGE_NOT_CONNECTED' })
     expect(previewSceneMoveCommand(snapshot('safe'), { edgeId: 'middle-far' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'EDGE_NOT_KNOWN' })
     expect(previewSceneMoveCommand(snapshot('middle', 10, 0, condition(), ['one-way']), { edgeId: 'one-way' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'NO_RETURN_ROUTE' })
-    expect(previewSceneMoveCommand(snapshot('safe', 10, 29), { edgeId: 'safe-middle' }, dependencies)).toMatchObject({ canExecute: false, rejectionCode: 'CANNOT_CARRY' })
+    expect(() => snapshot('safe', 10, 29)).toThrowError(expect.objectContaining({ code: 'CANNOT_CARRY' }))
   })
 
   it.each(['safe-returned', 'forced-returned', 'dead'] as const)('rejects movement after %s', (status) => {

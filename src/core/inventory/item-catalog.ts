@@ -101,6 +101,15 @@ export function createItemInstance(
   input: ItemInstance,
   catalog: ItemCatalog,
 ): Readonly<ItemInstance> {
+  if (
+    input === null || typeof input !== 'object' || Array.isArray(input) ||
+    Object.getPrototypeOf(input) !== Object.prototype ||
+    Object.keys(input).length !== 3 ||
+    !['instanceId', 'definitionId', 'quantity'].every((key) => Object.hasOwn(input, key)) ||
+    typeof input.instanceId !== 'string' || typeof input.definitionId !== 'string'
+  ) {
+    throw new InventoryError('INVALID_INSTANCE_ID', '物品实例结构无效')
+  }
   if (!isNonEmpty(input.instanceId)) {
     throw new InventoryError('INVALID_INSTANCE_ID', '物品实例ID不能为空')
   }

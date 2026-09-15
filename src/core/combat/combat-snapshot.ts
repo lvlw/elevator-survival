@@ -1,6 +1,7 @@
 import { deepFreeze } from '../config'
 import { createPlayerCondition } from '../condition'
 import { calculateBackpackWeightSubtotal } from '../inventory'
+import { classifyLoad } from '../load'
 import { createItemStateCollectionSnapshot } from '../item-state'
 import { createCarriedItemContainersSnapshot } from '../quick-slot'
 import { validateCombatDependencies } from './combat-dependencies'
@@ -80,7 +81,12 @@ export function createCombatEncounterSnapshot(
   ) {
     throw new CombatError('INVALID_COMBAT_SNAPSHOT', '战斗携带容器与版本配置不一致')
   }
-  calculateBackpackWeightSubtotal(carried.backpack, dependencies.physicalCatalog)
+  if (!classifyLoad(
+    calculateBackpackWeightSubtotal(carried.backpack, dependencies.physicalCatalog),
+    dependencies.config.backpack,
+  ).canCarry) {
+    throw new CombatError('INVALID_COMBAT_SNAPSHOT', '稳定战斗背包处于无法携带状态')
+  }
   const carriedItems = [
     ...carried.backpack.items,
     ...Object.values(carried.equipment).filter(

@@ -1,4 +1,6 @@
 import { deepFreeze } from '../config'
+import { calculateBackpackWeightSubtotal } from '../inventory'
+import { classifyLoad } from '../load'
 import {
   createCarriedItemContainersSnapshot,
   type QuickSlotDependencies,
@@ -47,6 +49,7 @@ export function createRunLoadoutDependenciesFromReturn(
     backpackRules: {
       width: dependencies.scene.config.backpack.width,
       height: dependencies.scene.config.backpack.height,
+      quickSlotCount: dependencies.scene.config.backpack.quickSlotCount,
       weightBands: dependencies.scene.config.backpack.weightBands,
     },
   })
@@ -142,6 +145,15 @@ export function createRunLoadoutSnapshot(
       input.quickSlots,
       carriedDependencies(dependencies),
     )
+    if (carried.quickSlots.slots.length !== dependencies.backpackRules.quickSlotCount) {
+      throw new RunLoadoutError('INVALID_INPUT', 'Run整备快捷栏数量与规则不一致')
+    }
+    if (!classifyLoad(
+      calculateBackpackWeightSubtotal(carried.backpack, dependencies.physicalCatalog),
+      dependencies.backpackRules,
+    ).canCarry) {
+      throw new RunLoadoutError('INVALID_INPUT', 'Run整备背包处于无法携带状态')
+    }
   } catch (error) {
     throw new RunLoadoutError(
       'INVALID_INPUT',

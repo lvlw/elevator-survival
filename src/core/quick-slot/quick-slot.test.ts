@@ -13,6 +13,7 @@ import {
   createEmptyQuickSlots,
   createQuickSlotProfileCatalog,
   createQuickSlotSnapshot,
+  restoreQuickSlotSnapshot,
   getQuickSlot,
   isQuickSlotEmpty,
   moveOneBackpackItemToQuickSlot,
@@ -95,6 +96,15 @@ describe('quick-slot profile catalog', () => {
 })
 
 describe('quick-slot snapshots and container uniqueness', () => {
+  it('rejects JavaScript undefined, sparse and extra quick-slot fields without filling slots', () => {
+    const sparse = Array(2) as (ReturnType<typeof item> | null)[]
+    sparse[0] = null
+    expect(() => createQuickSlotSnapshot(sparse, 2, physical, quickSlotCatalog))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_SLOT_COUNT' }))
+    expect(() => createQuickSlotSnapshot([null, undefined] as unknown as (ReturnType<typeof item> | null)[], 2, physical, quickSlotCatalog)).toThrow()
+    expect(() => restoreQuickSlotSnapshot({ slots: [null, null], extra: true } as unknown as { slots: readonly null[] }, 2, physical, quickSlotCatalog))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_SLOT_COUNT' }))
+  })
   it('creates two ordered empty slots and supports queries', () => {
     const slots = createEmptyQuickSlots(2, physical, quickSlotCatalog)
     expect(slots.slots).toEqual([null, null])

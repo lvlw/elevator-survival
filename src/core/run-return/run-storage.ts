@@ -12,7 +12,7 @@ import {
   type ItemInstance,
 } from '../inventory'
 import { createItemStateCollectionSnapshot } from '../item-state'
-import { createQuickSlotSnapshot } from '../quick-slot'
+import { restoreQuickSlotSnapshot } from '../quick-slot'
 import { createRunIntelLogSnapshot } from '../run-intel'
 import { RunReturnError } from './run-return-errors'
 import type {
@@ -301,8 +301,8 @@ export function createRunReturnSnapshot(
     dependencies.scene.physicalCatalog,
     dependencies.scene.equipmentCatalog,
   )
-  const quickSlots = createQuickSlotSnapshot(
-    input.player.quickSlots.slots,
+  const quickSlots = restoreQuickSlotSnapshot(
+    input.player.quickSlots,
     dependencies.scene.config.backpack.quickSlotCount,
     dependencies.scene.physicalCatalog,
     dependencies.scene.quickSlotCatalog,

@@ -21,7 +21,8 @@ import {
   type CurrentDayHubSnapshot,
 } from '../../core/current-day-hub'
 import { resolveDailySettlement } from '../../core/daily-settlement'
-import { createBackpackSnapshot, type ItemInstance } from '../../core/inventory'
+import { calculateBackpackWeightSubtotal, createBackpackSnapshot, type ItemInstance } from '../../core/inventory'
+import { classifyLoad } from '../../core/load'
 import { createFullItemState, createItemState } from '../../core/item-state'
 import { createQuickSlotSnapshot } from '../../core/quick-slot'
 import { createRunLoadoutSnapshot } from '../../core/run-loadout'
@@ -68,6 +69,8 @@ import {
   executeStableRunCommand,
   StableRunCommandExecutionError,
 } from '../command-execution'
+import { createStableRunStore, createStableRunStoreFromStorage } from '../run-store'
+import { bootstrapProductionRun } from '../../app/production-bootstrap'
 
 const item = (instanceId: string, definitionId: string, quantity = 1): ItemInstance => ({
   instanceId,
@@ -340,6 +343,161 @@ function mutateSerialized(
 }
 
 describe('stable Run Save IO', () => {
+  it.each([
+    ['false quick-slot', (loadout: Record<string, any>) => { loadout.quickSlots.slots[1] = false }],
+    ['zero quick-slot', (loadout: Record<string, any>) => { loadout.quickSlots.slots[1] = 0 }],
+    ['empty-string quick-slot', (loadout: Record<string, any>) => { loadout.quickSlots.slots[1] = '' }],
+    ['missing empty equipment slot', (loadout: Record<string, any>) => { delete loadout.equipment.armor }],
+    ['missing rotation', (loadout: Record<string, any>) => { delete loadout.backpack.placements[0].rotated }],
+    ['string rotation', (loadout: Record<string, any>) => { loadout.backpack.placements[0].rotated = 'false' }],
+    ['extra empty quick-slot', (loadout: Record<string, any>) => { loadout.quickSlots.slots.push(null) }],
+  ] as const)('rejects %s in a serialized stable Hub without repair', (_label, forge) => {
+    const envelope = JSON.parse(serializeRunSave(
+      { kind: 'current-day-hub', payload: hub() }, hospitalRunSaveRulesRegistry,
+    )) as RunSaveEnvelope
+    const raw = mutateSerialized(envelope, (draft) => {
+      forge((draft.payload as Record<string, any>).runLoadout)
+    })
+    expect(() => deserializeRunSave(raw, hospitalRunSaveRulesRegistry))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_STABLE_PHASE' }))
+    const memory = new MemoryRunSaveStorage(raw)
+    let writes = 0
+    let clears = 0
+    const storage = {
+      read: () => memory.read(),
+      write: (value: string) => { writes += 1; memory.write(value) },
+      clear: () => { clears += 1; memory.clear() },
+    }
+    expect(() => loadRunPhase(storage, hospitalRunSaveRulesRegistry)).toThrow(RunSaveError)
+    expect(() => createStableRunStoreFromStorage({ storage, rulesRegistry: hospitalRunSaveRulesRegistry })).toThrow(RunSaveError)
+    expect(bootstrapProductionRun({ storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+      .toEqual({ kind: 'load-error', category: 'corrupt-save', canClear: true })
+    expect(memory.read()).toBe(raw)
+    expect({ writes, clears }).toEqual({ writes: 0, clears: 0 })
+  })
+
+  it.each([28, 29] as const)('restores only rule-carryable Hub backpack weight %i', (targetWeight) => {
+    const envelope = JSON.parse(serializeRunSave(
+      { kind: 'current-day-hub', payload: hub() }, hospitalRunSaveRulesRegistry,
+    )) as RunSaveEnvelope
+    const raw = mutateSerialized(envelope, (draft) => {
+      const loadout = (draft.payload as Record<string, any>).runLoadout
+      const existingWeight = calculateBackpackWeightSubtotal(loadout.backpack, hospitalItemCatalog)
+      const additional = targetWeight - existingWeight
+      for (let index = 0, remaining = additional; remaining > 0; index += 1) {
+        const quantity = Math.min(remaining, 5)
+        const added = item(`weight-bound-${index}`, HOSPITAL_ITEM_IDS.metalParts, quantity)
+        loadout.backpack.items.push(added)
+        loadout.backpack.placements.push({ instanceId: added.instanceId, x: index, y: 1, rotated: false })
+        loadout.itemStates.states.push(createFullItemState(added, hospitalItemResourceCatalog))
+        remaining -= quantity
+      }
+    })
+    const storage = new MemoryRunSaveStorage(raw)
+    if (targetWeight === 28) {
+      const restored = loadRunPhase(storage, hospitalRunSaveRulesRegistry)
+      expect(restored?.kind).toBe('current-day-hub')
+      if (restored?.kind !== 'current-day-hub') throw new Error('expected Hub')
+      const backpack = restored.payload.runLoadout.backpack
+      expect(calculateBackpackWeightSubtotal(backpack, hospitalItemCatalog)).toBe(28)
+      expect(classifyLoad(28, config.backpack)).toMatchObject({ tier: 'overloaded', canCarry: true })
+      expect(serializeRunSave(restored, hospitalRunSaveRulesRegistry)).toBe(raw)
+    } else {
+      expect(() => deserializeRunSave(raw, hospitalRunSaveRulesRegistry))
+        .toThrowError(expect.objectContaining({ code: 'INVALID_STABLE_PHASE' }))
+      expect(bootstrapProductionRun({ storage, rulesRegistry: hospitalRunSaveRulesRegistry }))
+        .toEqual({ kind: 'load-error', category: 'corrupt-save', canClear: true })
+    }
+    expect(storage.read()).toBe(raw)
+  })
+
+  it.each([
+    ['active', () => activeSceneWithInventoryHistory().session],
+    ['combat', combatSession],
+  ] as const)('rejects malformed carried slots inside a %s Scene session', (_name, makeSession) => {
+    const session = makeSession()
+    const envelope = JSON.parse(serializeRunSave(
+      { kind: 'scene-session', payload: session }, hospitalRunSaveRulesRegistry,
+    )) as RunSaveEnvelope
+    const serialized = mutateSerialized(envelope, (draft) => {
+      const scene = (draft.payload as Record<string, any>).scene
+      scene.quickSlots.slots.push(null)
+    })
+    expect(() => deserializeRunSave(serialized, hospitalRunSaveRulesRegistry))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_STABLE_PHASE' }))
+    expect(bootstrapProductionRun({
+      storage: new MemoryRunSaveStorage(serialized),
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })).toEqual({ kind: 'load-error', category: 'corrupt-save', canClear: true })
+  })
+
+  it('rejects malformed slots in the nested combat snapshot independently of the outer Scene', () => {
+    const envelope = JSON.parse(serializeRunSave(
+      { kind: 'scene-session', payload: combatSession() }, hospitalRunSaveRulesRegistry,
+    )) as RunSaveEnvelope
+    const serialized = mutateSerialized(envelope, (draft) => {
+      const scene = (draft.payload as Record<string, any>).scene
+      const encounter = scene.combatState.encounters.find((entry: { kind: string }) => entry.kind === 'active')
+      if (!encounter) throw new Error('expected combat encounter')
+      encounter.combat.quickSlots.slots[1] = false
+    })
+    expect(() => deserializeRunSave(serialized, hospitalRunSaveRulesRegistry))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_STABLE_PHASE' }))
+  })
+
+  it('rejects a geometrically valid but uncarryable active Scene save', () => {
+    const envelope = JSON.parse(serializeRunSave(
+      { kind: 'scene-session', payload: activeSceneWithInventoryHistory().session },
+      hospitalRunSaveRulesRegistry,
+    )) as RunSaveEnvelope
+    const serialized = mutateSerialized(envelope, (draft) => {
+      const scene = (draft.payload as Record<string, any>).scene
+      const existingWeight = calculateBackpackWeightSubtotal(scene.backpack, hospitalItemCatalog)
+      for (let index = 0, remaining = 29 - existingWeight; remaining > 0; index += 1) {
+        const quantity = Math.min(remaining, 5)
+        const added = item(`scene-weight-bound-${index}`, HOSPITAL_ITEM_IDS.metalParts, quantity)
+        scene.backpack.items.push(added)
+        scene.backpack.placements.push({ instanceId: added.instanceId, x: index, y: 2, rotated: false })
+        scene.itemStates.states.push(createFullItemState(added, hospitalItemResourceCatalog))
+        remaining -= quantity
+      }
+    })
+    expect(() => deserializeRunSave(serialized, hospitalRunSaveRulesRegistry))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_STABLE_PHASE' }))
+  })
+
+  it('rejects invalid stable input before the handler and invalid stable output before saving', () => {
+    const valid = { kind: 'current-day-hub', payload: hub() } as const
+    const forged = structuredClone(valid)
+    ;(forged.payload.runLoadout.quickSlots.slots as (ItemInstance | null)[]).push(null)
+    const persisted = serializeRunSave(valid, hospitalRunSaveRulesRegistry)
+    const memory = new MemoryRunSaveStorage(persisted)
+    let writes = 0
+    const storage = {
+      read: () => memory.read(),
+      write: (value: string) => { writes += 1; memory.write(value) },
+      clear: () => memory.clear(),
+    }
+    let calls = 0
+    expect(() => createStableRunStore({ initialPhase: forged, storage, rulesRegistry: hospitalRunSaveRulesRegistry })).toThrow(RunSaveError)
+    expect(() => executeStableRunCommand({
+      currentPhase: forged,
+      handler: () => { calls += 1; return { result: null, phase: valid } },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })).toThrow(RunSaveError)
+    expect(calls).toBe(0)
+    expect(() => executeStableRunCommand({
+      currentPhase: valid,
+      handler: () => { calls += 1; return { result: null, phase: forged } },
+      storage,
+      rulesRegistry: hospitalRunSaveRulesRegistry,
+    })).toThrow(RunSaveError)
+    expect(calls).toBe(1)
+    expect(writes).toBe(0)
+    expect(memory.read()).toBe(persisted)
+  })
+
   it('executes a committed Hub command before saving its final stable phase', () => {
     const backingStorage = new MemoryRunSaveStorage()
     let writes = 0

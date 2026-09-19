@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "type": "audit-source-manifest-not-gameplay-rules",
+  "reviewedCommit": "ee2720c9c3d7dc2f4213cb215e8c38efafb3ccde",
+  "files": [
+    {
+      "path": "DOC-WORLD-001-actual-review-v0.1.md",
+      "bytes": 13636,
+      "sha256": "946523eb7e247ce07e2e7c36532c23d637c11ee586e0466a14bc764ecdec3cb2"
+    },
+    {
+      "path": "DOC-WORLD-001A-final-review-v0.1.md",
+      "bytes": 3222,
+      "sha256": "d7215e7ca6b9d08ab864866a556fa08fb83979076cf11a561de8a802dd36b342"
+    },
+    {
+      "path": "AUD-ee2720c-world-docs-v0.1.md",
+      "bytes": 5776,
+      "sha256": "5609d295b35a5eac657acf7a32db82ea6db8b4eb2a3314344535a7464cc9d56d"
+    },
+    {
+      "path": "ee2720c-verification.json",
+      "bytes": 13286,
+      "sha256": "60b1819fd34306d0dc65d6b2eac9430dd41d96fc1793883c2bf5b94e8ca37545"
+    }
+  ]
+}

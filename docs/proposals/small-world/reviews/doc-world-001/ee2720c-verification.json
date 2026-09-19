@@ -1,0 +1,311 @@
+{
+  "commit": "ee2720c9c3d7dc2f4213cb215e8c38efafb3ccde",
+  "parent": "11cc705a9a923b367919cc9139de5097c006beb7",
+  "evidence_basis": "GitHub connector exact commit, diff, root tree and docs subtree; hash verification against accepted delivery bytes",
+  "remote_sources": {
+    "commit": "https://api.github.com/repos/lvlw/elevator-survival/git/commits/ee2720c9c3d7dc2f4213cb215e8c38efafb3ccde",
+    "root": "https://api.github.com/repos/lvlw/elevator-survival/git/trees/b0368debe355f21c310154ce0e42768a6b8fae79",
+    "docs": "https://api.github.com/repos/lvlw/elevator-survival/git/trees/e1b012a6336b1686f0b323c6c584b15ea80591d0?recursive=1",
+    "small_world": "https://api.github.com/repos/lvlw/elevator-survival/git/trees/1c483d0a7b6bfafb8a3e368d0bf7e8da2184796a"
+  },
+  "inputs": [
+    {
+      "filename": "doc-world-001-review-delivery.zip",
+      "sha256": "eea3a668dcb93526b5d42740fc57d35c5d09c7447b0ab11c826e448f1fdfbe1b",
+      "size": 684225,
+      "crc": "PASS"
+    },
+    {
+      "filename": "doc-world-001A-review-delivery.zip",
+      "sha256": "d06c7fe5ea9ebcf197d2f299fbbaa66becf2d748f866662597c32a6e4e92f7ca",
+      "size": 78878,
+      "crc": "PASS"
+    }
+  ],
+  "formal_documents_matched": 13,
+  "small_world_files": 22,
+  "small_world_tree": "1c483d0a7b6bfafb8a3e368d0bf7e8da2184796a",
+  "small_world_tree_match": true,
+  "changed_files": 35,
+  "old_dec_prefix_unchanged": true,
+  "dec_ids_unique_001_048": true,
+  "new_dec_text_matches_given_append": true,
+  "archive_and_evidence_files_matched": 12,
+  "checks_not_run": [
+    "npm test",
+    "npm check",
+    "browser",
+    "paper game scripts"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4114,
+      "sha256": "1584eca2d0507e86f8d922a6fd337e9986e0210cde227d7c801854f003fcaff3",
+      "git_blob": "6dabaad4d6a66eb9f87dcaf80597e42c52eebf3f",
+      "remote_git_blob": "6dabaad4d6a66eb9f87dcaf80597e42c52eebf3f",
+      "match": true
+    },
+    {
+      "path": "docs/01-game-design-v0.1.md",
+      "bytes": 30065,
+      "sha256": "25ed1e534d9ee2bc40c9ce275fe894c6f78035f6be9d6c6d4326a95d6ecb03b6",
+      "git_blob": "c31e9a323f785574e1e7821123c5e0976967a788",
+      "remote_git_blob": "c31e9a323f785574e1e7821123c5e0976967a788",
+      "match": true
+    },
+    {
+      "path": "docs/02-vertical-slice.md",
+      "bytes": 44492,
+      "sha256": "831e3f00510de818108b088d192624bb3a4498725312843ec0d875f4773aca1b",
+      "git_blob": "ab792d9be7418cecf7c20eb9ee558eeaa916ed63",
+      "remote_git_blob": "ab792d9be7418cecf7c20eb9ee558eeaa916ed63",
+      "match": true
+    },
+    {
+      "path": "docs/03-architecture.md",
+      "bytes": 50061,
+      "sha256": "cd6472968cbf027f6c327671a0c744fec2d8a809068a58d3ead608c57b366557",
+      "git_blob": "d9d89a4daaec97d98a9e303c9eb84ea873af4f34",
+      "remote_git_blob": "d9d89a4daaec97d98a9e303c9eb84ea873af4f34",
+      "match": true
+    },
+    {
+      "path": "docs/04-content-schema.md",
+      "bytes": 14288,
+      "sha256": "e3b77dd40c4c99a9d6cb994d41beba1f24f4f7eff38c2dccf218954bf04d8320",
+      "git_blob": "a15f89f85f4c56e871d4a1f86632f60968a7ac51",
+      "remote_git_blob": "a15f89f85f4c56e871d4a1f86632f60968a7ac51",
+      "match": true
+    },
+    {
+      "path": "docs/05-design-decisions.md",
+      "bytes": 229117,
+      "sha256": "276261e2a18c1f4a6c1f1a7bbaf0b8b6b748d2f7119c4d67cec5fdbb07f70673",
+      "git_blob": "0903acc93b75aa55e0b34a8b1177ff00dac7d080",
+      "remote_git_blob": "0903acc93b75aa55e0b34a8b1177ff00dac7d080",
+      "match": true
+    },
+    {
+      "path": "docs/06-vertical-slice-design-freeze-v0.1.md",
+      "bytes": 34629,
+      "sha256": "135b1fa122e8dd25118d2ce223676bea3ea31adf5d2ead30a596ac78ac1a258b",
+      "git_blob": "08b25d60ded05efc7932ded2691064d89c45a9cf",
+      "remote_git_blob": "08b25d60ded05efc7932ded2691064d89c45a9cf",
+      "match": true
+    },
+    {
+      "path": "docs/07-decision-supersession-index.md",
+      "bytes": 3827,
+      "sha256": "e41a731fef03ed6845b070ffe1873e736bc8b70e4fa29bef1b26243e5184d634",
+      "git_blob": "424608aee3b53e36cbc36d325664dda908798347",
+      "remote_git_blob": "424608aee3b53e36cbc36d325664dda908798347",
+      "match": true
+    },
+    {
+      "path": "docs/08-rule-implementation-traceability.md",
+      "bytes": 45369,
+      "sha256": "0539efd67c688a41fa4a606d1c026395afdf7e20104a8e2b1e181747687f8448",
+      "git_blob": "ec3d040c7231be65964f75cdec3d2555f2ec80d4",
+      "remote_git_blob": "ec3d040c7231be65964f75cdec3d2555f2ec80d4",
+      "match": true
+    },
+    {
+      "path": "docs/content/enemies.md",
+      "bytes": 11277,
+      "sha256": "8cbfa4fb91f56ec754d89c3f4b71e2a2228148bfbe4cf14ba534b6b577c21c0a",
+      "git_blob": "9d4c22d33ab7efa4786e41aedfea482f844186b2",
+      "remote_git_blob": "9d4c22d33ab7efa4786e41aedfea482f844186b2",
+      "match": true
+    },
+    {
+      "path": "docs/content/events.md",
+      "bytes": 10995,
+      "sha256": "1d4fbb343f9b5d8d2cff18d03413a3fa88a73337a4ea8b46d3a2050780f39211",
+      "git_blob": "198cb34988d879f916106dd5861c1b2c4f628ed8",
+      "remote_git_blob": "198cb34988d879f916106dd5861c1b2c4f628ed8",
+      "match": true
+    },
+    {
+      "path": "docs/content/items.md",
+      "bytes": 60396,
+      "sha256": "f9e9bd6ee386d7019f73b3e0ea3da4e20c779bd52beffa6f2eaed1b5b8e3e523",
+      "git_blob": "d548f41ff1faf874b9ff095f332d5a2870f994d8",
+      "remote_git_blob": "d548f41ff1faf874b9ff095f332d5a2870f994d8",
+      "match": true
+    },
+    {
+      "path": "docs/content/scenes.md",
+      "bytes": 27379,
+      "sha256": "8f6df090c00208cd36a373bc363b77fea812bb73b74552bf26c054b13e550019",
+      "git_blob": "51fbe397331f66d1d16ed273b1d54c12b4ccabf7",
+      "remote_git_blob": "51fbe397331f66d1d16ed273b1d54c12b4ccabf7",
+      "match": true
+    },
+    {
+      "path": "docs/proposals/small-world/README.md",
+      "bytes": 3718,
+      "sha256": "4dfa507b65cba2dd55c46362fb767e18c67390ac0dd79bf08fb349acbede9d26",
+      "git_blob": "41dc98bad5cc24d04f8cbc4ae7bd5ad2f04d8709",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/archive/communication-terminal-encounter-v0.1-draft.md",
+      "bytes": 19702,
+      "sha256": "5f3fafe55964c6a918daf40b2ac518ffa0a1abe07e2dca4e8adaa465fa487abc",
+      "git_blob": "6ed6aab324180374613e2bf321ae7d7c8b18fd2b",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/archive/cross-day-revisit-minimum-contract-v0.1-draft.md",
+      "bytes": 19977,
+      "sha256": "e196ceec857aa2f7d57fe607165356e47f85def4c24b6abc63e7021e0b4c345b",
+      "git_blob": "658ee72923a5ec14e919a66bab054cf56d2941fc",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/archive/cross-day-revisit-owner-confirmation-v0.1.md",
+      "bytes": 7257,
+      "sha256": "c9f846b9798d983fe0532cb900497fc8f417e077ca903bb03a3999f96c49933e",
+      "git_blob": "2d5dc85243bc1425e3353b7577417237ba6baab9",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/archive/full-world-counterexample-review-v0.1.md",
+      "bytes": 16114,
+      "sha256": "5bcde770cabe680dd899716e00b9e0959818a908bf0655121322b30e4301e36c",
+      "git_blob": "87e19a3fb501b5cac6ce4c7ecc8b0cb80b49cc47",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/archive/logistics-work-area-encounter-v0.1-draft.md",
+      "bytes": 15526,
+      "sha256": "dcc08d2d46ba8ff54caa44c7c9a7a8cde4dc19e80ad6328327762e31c1b41932",
+      "git_blob": "a4bf0ec37834d85bf87ef9de7d3258cf7989eded",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/archive/small-world-economy-skeleton-v0.1-draft.md",
+      "bytes": 22560,
+      "sha256": "d391ba70fa8269872a8e50ebd117e5385f57409acfdb534b86a869a8b29978e1",
+      "git_blob": "193540c15031efdd06fd5ce6e2b66dbbaa5488cd",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/archive/small-world-economy-skeleton-v0.2-draft.md",
+      "bytes": 21720,
+      "sha256": "bb8828350b88772c02371d862c7102de4268b4881af96de3d7b2de86d2fe58c4",
+      "git_blob": "f17d262174b5c1724e7e507ef0c31cdf86e27546",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/archive/world-economy-deadline-handoff_11cc705.md",
+      "bytes": 15175,
+      "sha256": "9452b4234cff231574716662d0c52f894be72cfc7eebbba6b8732beb9731f136",
+      "git_blob": "91967648c08155e5bd111b33af54c1918855daf1",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/evidence/README.md",
+      "bytes": 1658,
+      "sha256": "39f44257ab056cf8562ded94f87dc2aed0b72a42a12a5b81268db585461b226c",
+      "git_blob": "6234eef576c06cf50db57c001dc03b9cbfce74e4",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/evidence/attachment-manifest.json",
+      "bytes": 4714,
+      "sha256": "dab43c58647c2043a811c88b39c9a1ff77cadf9954e62911f36fa96d1f71d738",
+      "git_blob": "006a11874606bc9a4af9597caff20903ccc270a1",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/evidence/communication-terminal-v0.1-checks.zip",
+      "bytes": 33130,
+      "sha256": "1b4030c3724707403d38de0a38c0ba1e55ce371844de6a615d8e60de23690dd2",
+      "git_blob": "ff0ca9d80e348fa6078c7bf4edd53b3f42cb5a5e",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/evidence/cross-day-revisit-v0.1-checks.zip",
+      "bytes": 36852,
+      "sha256": "11788d295f521738e0d0f82393c0b2e00bf4b94ef0695a966810e97ecc873411",
+      "git_blob": "43382ae0352b14869a070e1391a4686049d4b89a",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/evidence/full-world-counterexample-v0.1-checks.zip",
+      "bytes": 69631,
+      "sha256": "a2fce0a8317dbd28063b5f96b5d10eae0bdcad47e83f27977c75041df23ba7b9",
+      "git_blob": "12cc4da22f4e83f9a2989f65f09ed861254d2581",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/evidence/logistics-work-area-v0.1-checks.zip",
+      "bytes": 6022,
+      "sha256": "c6d991fc17e70f088cea9278f2462eec8ad7d38a33b7cd671d65694546e65be4",
+      "git_blob": "bf9195464ba58a194bb933f0eea87e1169b5680a",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/legacy/goal-7d-prep-001/README.md",
+      "bytes": 3767,
+      "sha256": "9d63c9162220b3024dad8d9c5d1634235093fa4a8766982523dfc75ee7888d2d",
+      "git_blob": "024d7b2114a08b0015ca89cda8ab505d0ff48f9e",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/legacy/goal-7d-prep-001/originals/goal-workflow-pilot-v0.1.md",
+      "bytes": 6706,
+      "sha256": "5a560345e3b48d6e9c7a75cf5b5ad5861ac37eafe7724277456d1568eac5ced5",
+      "git_blob": "c8c85ba46670070479f6e9544f79523961e0525a",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/legacy/goal-7d-prep-001/originals/seven-day-infection-brief-v0.1.md",
+      "bytes": 33145,
+      "sha256": "b3a991f48bc1381717f7d66f4dab17c214d58d8b6bf8080e3c09b5451b9912d2",
+      "git_blob": "76a56d7a3e5108e0ed7fa3fd9818e474d7c58d60",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/legacy/goal-7d-prep-001/source-manifest.json",
+      "bytes": 924,
+      "sha256": "8588c5e87c5357fc28957356a14c7e42f25550667c9a68a8161b8f9fb22f0872",
+      "git_blob": "3fd4a2620ec0dd01f5ca720f318b89d4b1221ef5",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/owner-confirmations.md",
+      "bytes": 2580,
+      "sha256": "e767465549f94e49fa1f829443052b6299e40703238e80ea80f25235ad517f9e",
+      "git_blob": "8bcf38fff619608eb1b1b45c70247f22cadac9d6",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/pending-items.md",
+      "bytes": 3027,
+      "sha256": "80b504ecaf7972ecf4678a36564911eb0883d87a39ed8e172208b11f2a43e8ed",
+      "git_blob": "3f1135dff0c76e67d79402624b47b2cdcd281466",
+      "verified_by": "exact small-world tree object identity"
+    },
+    {
+      "path": "docs/proposals/small-world/reviews/split-encounter-playtest-review.md",
+      "bytes": 1812,
+      "sha256": "7c47037ddcd73530828bb867f48f716080f3317157294894333e5be5f9b12d58",
+      "git_blob": "e0a7324a44a955b8dbbd5cb184be4f4523693abd",
+      "verified_by": "exact small-world tree object identity"
+    }
+  ],
+  "github_ci": {
+    "workflow": "CI",
+    "number": 113,
+    "run_id": 35458115713,
+    "head_sha": "ee2720c9c3d7dc2f4213cb215e8c38efafb3ccde",
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "check_job_id": 105936917429,
+    "raw_logs_reparsed": false
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "status": "historical-draft-archive",
+  "analysisBaseline": "11cc705a9a923b367919cc9139de5097c006beb7",
+  "scope": "This manifest records two losslessly archived legacy Proposal originals. It is not a rule list and does not alter evidence/attachment-manifest.json.",
+  "sources": [
+    {
+      "originalPath": "docs/proposals/seven-day-infection-brief-v0.1.md",
+      "archivedPath": "docs/proposals/small-world/legacy/goal-7d-prep-001/originals/seven-day-infection-brief-v0.1.md",
+      "bytes": 33145,
+      "sha256": "b3a991f48bc1381717f7d66f4dab17c214d58d8b6bf8080e3c09b5451b9912d2"
+    },
+    {
+      "originalPath": "docs/proposals/goal-workflow-pilot-v0.1.md",
+      "archivedPath": "docs/proposals/small-world/legacy/goal-7d-prep-001/originals/goal-workflow-pilot-v0.1.md",
+      "bytes": 6706,
+      "sha256": "5a560345e3b48d6e9c7a75cf5b5ad5861ac37eafe7724277456d1568eac5ced5"
+    }
+  ]
+}

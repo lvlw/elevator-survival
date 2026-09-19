@@ -519,3 +519,11 @@ DEV-only Owner Playtest Reset 属于显式 DEV composition utility：
 - 上述预算是配置版本绑定的测试数据，不是架构硬编码。UI、结算、存档、回放和测试读取同一配置来源。
 
 > 本节不固定类名、函数名、文件名或 TypeScript 字段。
+
+## 未来完整世界的已确认架构约束（未实现）
+
+DEC-046—048 为未来完整感染世界确认方向，而不是新增运行时类型、目录、Save schema 或 API。未来跨日重访必须让同一持续事实在稳定时点只有一个可变权威 owner；活动 Scene 与 Run 持续层不得各自保存可变敌人生命、来源库存或任务实体。真实物品继续以唯一 ItemInstance、数量和 ItemState 转移，来源兑现记录不得成为第二份库存；Return Ledger 仍只记录正式返回。
+
+新日重访是新 Scene 与新当日预算，活动探索的严格恢复则恢复同一次 Scene 的节点、时间、战斗时序、物品和随机进度。明确持续的敌人、物理成果、一次性来源及其随机连续性需要未来正式 content、生命周期 owner、严格恢复和版本化实现；普通临时状态、Player Navigation Knowledge 与完整 Scene snapshot 不因此默认跨日。严格恢复未来须拒绝重复兑现、重复实体、已解除危险与可战斗副本并存等不可能状态，不得自动补全、回血或重抽。
+
+当前工程没有完整 WorldState／RunState、完整世界地点进度、未来 Success Resolver、跨日重访实现或对应 Save 契约。分段突破虽被允许，Owner 实际试玩复审仍为 OPEN / NOT RUN；上述文字不构成实现授权。

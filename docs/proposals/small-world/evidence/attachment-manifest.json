@@ -1,0 +1,131 @@
+{
+  "purpose": "Original conversation attachment integrity only; not production test evidence.",
+  "filing_date": "2026-09-19",
+  "repository_baseline": "11cc705a9a923b367919cc9139de5097c006beb7",
+  "original_markdown_count": 8,
+  "original_check_archive_count": 4,
+  "files": [
+    {
+      "file": "archive/world-economy-deadline-handoff_11cc705.md",
+      "original_name": "world-economy-deadline-handoff_11cc705.md",
+      "size": 15175,
+      "sha256": "9452b4234cff231574716662d0c52f894be72cfc7eebbba6b8732beb9731f136",
+      "preserved_bytes": true
+    },
+    {
+      "file": "archive/small-world-economy-skeleton-v0.1-draft.md",
+      "original_name": "small-world-economy-skeleton-v0.1-draft.md",
+      "size": 22560,
+      "sha256": "d391ba70fa8269872a8e50ebd117e5385f57409acfdb534b86a869a8b29978e1",
+      "preserved_bytes": true
+    },
+    {
+      "file": "archive/small-world-economy-skeleton-v0.2-draft.md",
+      "original_name": "small-world-economy-skeleton-v0.2-draft.md",
+      "size": 21720,
+      "sha256": "bb8828350b88772c02371d862c7102de4268b4881af96de3d7b2de86d2fe58c4",
+      "preserved_bytes": true
+    },
+    {
+      "file": "archive/logistics-work-area-encounter-v0.1-draft.md",
+      "original_name": "logistics-work-area-encounter-v0.1-draft.md",
+      "size": 15526,
+      "sha256": "dcc08d2d46ba8ff54caa44c7c9a7a8cde4dc19e80ad6328327762e31c1b41932",
+      "preserved_bytes": true
+    },
+    {
+      "file": "archive/communication-terminal-encounter-v0.1-draft.md",
+      "original_name": "communication-terminal-encounter-v0.1-draft.md",
+      "size": 19702,
+      "sha256": "5f3fafe55964c6a918daf40b2ac518ffa0a1abe07e2dca4e8adaa465fa487abc",
+      "preserved_bytes": true
+    },
+    {
+      "file": "archive/full-world-counterexample-review-v0.1.md",
+      "original_name": "full-world-counterexample-review-v0.1.md",
+      "size": 16114,
+      "sha256": "5bcde770cabe680dd899716e00b9e0959818a908bf0655121322b30e4301e36c",
+      "preserved_bytes": true
+    },
+    {
+      "file": "archive/cross-day-revisit-minimum-contract-v0.1-draft.md",
+      "original_name": "cross-day-revisit-minimum-contract-v0.1-draft.md",
+      "size": 19977,
+      "sha256": "e196ceec857aa2f7d57fe607165356e47f85def4c24b6abc63e7021e0b4c345b",
+      "preserved_bytes": true
+    },
+    {
+      "file": "archive/cross-day-revisit-owner-confirmation-v0.1.md",
+      "original_name": "cross-day-revisit-owner-confirmation-v0.1.md",
+      "size": 7257,
+      "sha256": "c9f846b9798d983fe0532cb900497fc8f417e077ca903bb03a3999f96c49933e",
+      "preserved_bytes": true
+    },
+    {
+      "file": "evidence/logistics-work-area-v0.1-checks.zip",
+      "original_name": "logistics-work-area-v0.1-checks.zip",
+      "size": 6022,
+      "sha256": "c6d991fc17e70f088cea9278f2462eec8ad7d38a33b7cd671d65694546e65be4",
+      "preserved_bytes": true,
+      "zip_crc_ok": true,
+      "members": [
+        "paper_results.json",
+        "paper_encounter_check.py",
+        "check-output.txt"
+      ]
+    },
+    {
+      "file": "evidence/communication-terminal-v0.1-checks.zip",
+      "original_name": "communication-terminal-v0.1-checks.zip",
+      "size": 33130,
+      "sha256": "1b4030c3724707403d38de0a38c0ba1e55ce371844de6a615d8e60de23690dd2",
+      "preserved_bytes": true,
+      "zip_crc_ok": true,
+      "members": [
+        "README.md",
+        "check-output.txt",
+        "communication-terminal-encounter-v0.1-draft.md",
+        "paper_combat.py",
+        "paper_results.json",
+        "paper_scene.py",
+        "run_checks.py",
+        "sha256-manifest.json"
+      ]
+    },
+    {
+      "file": "evidence/full-world-counterexample-v0.1-checks.zip",
+      "original_name": "full-world-counterexample-v0.1-checks.zip",
+      "size": 69631,
+      "sha256": "a2fce0a8317dbd28063b5f96b5d10eae0bdcad47e83f27977c75041df23ba7b9",
+      "preserved_bytes": true,
+      "zip_crc_ok": true,
+      "members": [
+        "README.md",
+        "audit_checks.py",
+        "audit_results.json",
+        "check-output.txt",
+        "full-world-counterexample-review-v0.1.md",
+        "reference_combat.py",
+        "source-manifest.json"
+      ]
+    },
+    {
+      "file": "evidence/cross-day-revisit-v0.1-checks.zip",
+      "original_name": "cross-day-revisit-v0.1-checks.zip",
+      "size": 36852,
+      "sha256": "11788d295f521738e0d0f82393c0b2e00bf4b94ef0695a966810e97ecc873411",
+      "preserved_bytes": true,
+      "zip_crc_ok": true,
+      "members": [
+        "README.md",
+        "check-output.txt",
+        "cross-day-revisit-minimum-contract-v0.1-draft.md",
+        "input-sha256.json",
+        "prior_audit.py",
+        "reference_combat.py",
+        "revisit-results.json",
+        "revisit_checks.py"
+      ]
+    }
+  ]
+}

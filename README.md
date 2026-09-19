@@ -8,7 +8,7 @@
 
 ## 仍待完成
 
-Profile 持久化、Run Abandon、Day 7 Final Resolver、Success、Crafting、Salvage、完整七日世界及终版视觉尚未实现。无存档时默认入口显示正式 New Run Setup，但不会自动创建或伪造 Run；只有玩家完成显式选择并确认后才会建立 Day 1 中枢并尝试保存。当前状态不代表完整 V1 或完整七日内容已经完成。
+Profile 持久化、Run Abandon、Day 7 Final Resolver、Success、Crafting、Salvage、完整七日世界及终版视觉尚未实现。DEC-046—048 已确认未来完整感染世界的实际资格路线、稳定中枢提前成功时点及列明跨日持续边界；它们不表示完整内容、运行时生命周期、存档迁移或 Owner 体验验收已完成。无存档时默认入口显示正式 New Run Setup，但不会自动创建或伪造 Run；只有玩家完成显式选择并确认后才会建立 Day 1 中枢并尝试保存。当前状态不代表完整 V1 或完整七日内容已经完成。
 
 ## 开发
 
@@ -39,6 +39,7 @@ npm run build
 - [设计决策覆盖关系索引](docs/07-decision-supersession-index.md)
 - [医院纵向切片冻结快照与实现入口](docs/06-vertical-slice-design-freeze-v0.1.md)
 - [规则实现追踪矩阵](docs/08-rule-implementation-traceability.md)
+- [小型完整世界资料入口（已确认方向、候选与原始核算归档）](docs/proposals/small-world/README.md)
 
 ## 游戏设计导航
 

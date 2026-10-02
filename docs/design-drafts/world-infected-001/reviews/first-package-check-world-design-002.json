@@ -41,12 +41,12 @@
     },
     {
       "name": "entry:08-balance-budget.md",
-      "passed": true,
+      "passed": false,
       "detail": "Entry exists and identifies the current draft version"
     },
     {
       "name": "entry:09-design-critic.md",
-      "passed": true,
+      "passed": false,
       "detail": "Entry exists and identifies the current draft version"
     },
     {
@@ -370,103 +370,17 @@
       "detail": "Stable v1.1 filename, one current v1.2 body"
     },
     {
-      "name": "evidence-result-unique-ids",
-      "passed": true,
-      "detail": {
-        "total": 171,
-        "unique": 171
-      }
-    },
-    {
-      "name": "evidence-current-input-sha:parameters.json",
-      "passed": true,
-      "detail": "Current result must describe the actual current input/script bytes"
-    },
-    {
-      "name": "evidence-current-input-sha:scenarios.json",
-      "passed": true,
-      "detail": "Current result must describe the actual current input/script bytes"
-    },
-    {
-      "name": "evidence-current-input-sha:check_design.py",
-      "passed": true,
-      "detail": "Current result must describe the actual current input/script bytes"
-    },
-    {
-      "name": "evidence-current-input-sha:joint_checks.py",
-      "passed": true,
-      "detail": "Current result must describe the actual current input/script bytes"
-    },
-    {
-      "name": "evidence-current-input-sha:expected-v1.2.json",
-      "passed": true,
-      "detail": "Current result must describe the actual current input/script bytes"
-    },
-    {
-      "name": "two-final-reproductions",
-      "passed": true,
-      "detail": "Root stored two actual final runs; same interpreter bytes; not additional gameplay cases"
-    },
-    {
-      "name": "evidence-output-sha:raw-results.json",
-      "passed": true,
-      "detail": "Checked-in result bytes equal the independently reproduced outputs"
-    },
-    {
-      "name": "evidence-output-sha:joint-results.json",
-      "passed": true,
-      "detail": "Checked-in result bytes equal the independently reproduced outputs"
-    },
-    {
-      "name": "evidence-output-sha:route-ledgers.json",
-      "passed": true,
-      "detail": "Checked-in result bytes equal the independently reproduced outputs"
-    },
-    {
-      "name": "evidence-output-sha:route-ledgers.csv",
-      "passed": true,
-      "detail": "Checked-in result bytes equal the independently reproduced outputs"
-    },
-    {
-      "name": "inherited-57-exhaustive-map",
-      "passed": true,
-      "detail": "Every original scenario and sensitivity case is mapped to an actual current result"
-    },
-    {
-      "name": "historical-small-snapshot:check_design.py",
-      "passed": true,
-      "detail": "Exact Git starting-commit bytes, not reconstructed new expectations"
-    },
-    {
-      "name": "historical-small-snapshot:parameters.json",
-      "passed": true,
-      "detail": "Exact Git starting-commit bytes, not reconstructed new expectations"
-    },
-    {
-      "name": "historical-small-snapshot:scenarios.json",
-      "passed": true,
-      "detail": "Exact Git starting-commit bytes, not reconstructed new expectations"
-    },
-    {
-      "name": "evidence-counts-separated",
-      "passed": true,
-      "detail": {
-        "positive": 87,
-        "expected_rejection": 83,
-        "unsupported": 1
-      }
-    },
-    {
-      "name": "no-python-cache-or-temporary-archive",
-      "passed": true,
-      "detail": "Design deliverable contains no bytecode cache"
-    },
-    {
       "name": "local-links-and-anchors",
-      "passed": true,
+      "passed": false,
       "detail": {
-        "count": 242,
-        "broken": [],
+        "count": 203,
+        "broken": [
+          {
+            "file": "01-world-overview.md",
+            "target": "WORLD-DESIGN-002-completion.md",
+            "reason": "missing local target"
+          }
+        ],
         "historical_inputs": "Raw input archives, v1.1-baseline and old completion reports excluded from current-link checks; archived inputs fingerprint checked"
       }
     },
@@ -720,22 +634,12 @@
           "docs/design-drafts/world-infected-001/05-resource-economy.md",
           "docs/design-drafts/world-infected-001/06-event-pack.md",
           "docs/design-drafts/world-infected-001/07-enemy-continuity.md",
-          "docs/design-drafts/world-infected-001/08-balance-budget.md",
-          "docs/design-drafts/world-infected-001/09-design-critic.md",
           "docs/design-drafts/world-infected-001/10-decision-queue.md",
           "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
-          "docs/design-drafts/world-infected-001/WORLD-DESIGN-002-completion.md",
-          "docs/design-drafts/world-infected-001/evidence/README.md",
           "docs/design-drafts/world-infected-001/evidence/check_design.py",
           "docs/design-drafts/world-infected-001/evidence/expected-v1.2.json",
-          "docs/design-drafts/world-infected-001/evidence/first-run-v1.2.json",
           "docs/design-drafts/world-infected-001/evidence/inheritance-map.json",
-          "docs/design-drafts/world-infected-001/evidence/joint-results.json",
-          "docs/design-drafts/world-infected-001/evidence/joint_checks.py",
           "docs/design-drafts/world-infected-001/evidence/parameters.json",
-          "docs/design-drafts/world-infected-001/evidence/raw-results.json",
-          "docs/design-drafts/world-infected-001/evidence/route-ledgers.csv",
-          "docs/design-drafts/world-infected-001/evidence/route-ledgers.json",
           "docs/design-drafts/world-infected-001/evidence/scenarios.json",
           "docs/design-drafts/world-infected-001/evidence/v1.1-baseline/check_design.py",
           "docs/design-drafts/world-infected-001/evidence/v1.1-baseline/manifest-summary.json",
@@ -743,7 +647,6 @@
           "docs/design-drafts/world-infected-001/evidence/v1.1-baseline/scenarios.json",
           "docs/design-drafts/world-infected-001/reviews/check_package.py",
           "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
-          "docs/design-drafts/world-infected-001/reviews/first-package-check-world-design-002.json",
           "docs/design-drafts/world-infected-001/reviews/input-697ed7a/00-START-HERE.md",
           "docs/design-drafts/world-infected-001/reviews/input-697ed7a/OWNER-direction-WORLD-DESIGN-002-v1.0.md",
           "docs/design-drafts/world-infected-001/reviews/input-697ed7a/OWNER-followup-697ed7a-v1.0.md",
@@ -759,10 +662,7 @@
           "docs/design-drafts/world-infected-001/reviews/input-manifest-world-design-002.json",
           "docs/design-drafts/world-infected-001/reviews/map-structure-comparison-v1.1.md",
           "docs/design-drafts/world-infected-001/reviews/owner-direction-world-design-002.md",
-          "docs/design-drafts/world-infected-001/reviews/package-check-results.json",
-          "docs/design-drafts/world-infected-001/reviews/reference-use-world-design-002.md",
-          "docs/design-drafts/world-infected-001/reviews/reproduction-results-world-design-002.json",
-          "docs/design-drafts/world-infected-001/reviews/staging-check-world-design-002.json"
+          "docs/design-drafts/world-infected-001/reviews/reference-use-world-design-002.md"
         ],
         "outside": []
       }
@@ -770,17 +670,13 @@
     {
       "name": "git-diff-check",
       "passed": true,
-      "detail": {
-        "authored_files": "Strict working and staged diff checks passed",
-        "only_exception": "docs/design-drafts/world-infected-001/reviews/input-697ed7a/00-START-HERE.md",
-        "reason": "Original attachment lines 5/6/7 contain Markdown double-space hard breaks; exact original SHA and bytes checked above; only blank-at-eol disabled for that file, no Git configuration changed"
-      }
+      "detail": "Working and staged diff checks both passed"
     }
   ],
   "skipped": [],
-  "checks_count": 112,
-  "passed": 112,
-  "failed": 0,
+  "checks_count": 95,
+  "passed": 92,
+  "failed": 3,
   "not_checked": [
     "external web links",
     "production gameplay/tests/build/browser",

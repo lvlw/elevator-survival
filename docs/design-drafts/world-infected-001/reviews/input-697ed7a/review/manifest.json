@@ -1,0 +1,31 @@
+{
+  "reviewed_commit": "697ed7ae010bbdfcc70aa0eb152d045f283d3606",
+  "scope": "review artifacts only; no repository write; original 57/44 suites not re-run here",
+  "files": [
+    {
+      "path": "AUD-697ed7a-world-design-001R-review-v1.0.md",
+      "bytes": 14524,
+      "sha256": "af532b6e4633f1d152e3a3b75de249c3480328b534f10b504f18a501592b4647"
+    },
+    {
+      "path": "combat_excerpt.py",
+      "bytes": 4456,
+      "sha256": "ba8f52279ada69cdcfccd0a546b424c5485962be1da394ca4fca8448ec920b76"
+    },
+    {
+      "path": "input-crosscheck.json",
+      "bytes": 618,
+      "sha256": "583663f372729a9a61a05fd8a60570ca79841071cca3b95b531603f314385d42"
+    },
+    {
+      "path": "reviewer-probe-results.json",
+      "bytes": 14127,
+      "sha256": "48d34c1657402ba29130cb4363589004cc4749ddd790622152d81245aafb8826"
+    },
+    {
+      "path": "reviewer-probes.py",
+      "bytes": 5584,
+      "sha256": "0e8e1e6c54595ba041d4b7df6fbbd5ddf479019ab2752272dccc988b5b6330f2"
+    }
+  ]
+}

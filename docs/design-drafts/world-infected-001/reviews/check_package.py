@@ -1,13 +1,15 @@
-"""WORLD-DESIGN-001R package checks, Python standard library only.
+"""WORLD-DESIGN-002 package checks, Python standard library only.
 
 Read-only Git and inputs. Writes one JSON result beside this script. It does
 not run production code, simulate gameplay, or validate external web links.
 Historical ZIP entries keep their original bytes and are fingerprint-checked;
-their old prose links are deliberately not treated as v1.1 specification links.
+their old prose links are deliberately not treated as v1.2 specification links.
 """
 from pathlib import Path
 import argparse
 import hashlib
+import io
+import zipfile
 import json
 import re
 import subprocess
@@ -16,7 +18,7 @@ from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 REPO = ROOT.parents[2]
-START = "61de1a10e5da12df2f172e18f6e05a69b755bfa8"
+START = "697ed7ae010bbdfcc70aa0eb152d045f283d3606"
 MAIN = "a76e9c1c998051fc1643b6e0c3d53443fa55feed"
 BRANCH = "feature/design-world-infected-world-001"
 PREFIX = "docs/design-drafts/world-infected-001/"
@@ -24,7 +26,7 @@ ENTRIES = [
     "01-world-overview.md", "02-seven-day-structure.md", "03-location-design.md",
     "04-main-mission.md", "05-resource-economy.md", "06-event-pack.md",
     "07-enemy-continuity.md", "08-balance-budget.md", "09-design-critic.md",
-    "10-decision-queue.md",
+    "10-decision-queue.md", "11-points-hub-recovery.md",
 ]
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--skip-external-inputs', action='store_true', help='Review copy only: skip original files in the author download directory; do not count them as passed')
@@ -46,7 +48,7 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 def current(path):
-    return "input-61de1a1" not in path.parts
+    return not any(part.startswith("input-") or part == "v1.1-baseline" for part in path.parts) and path.name not in {"WORLD-DESIGN-001-completion.md", "WORLD-DESIGN-001R-completion.md"}
 
 def slug(title):
     title = re.sub(r"[`*_~]", "", title.strip().lower())
@@ -66,7 +68,7 @@ def anchors(text):
 for filename in ENTRIES:
     path = ROOT / filename
     body = path.read_text(encoding="utf-8") if path.exists() else ""
-    record("entry:" + filename, path.is_file() and "v1.1" in body[:1000],
+    record("entry:" + filename, path.is_file() and "v1.2" in body[:1000],
            "Entry exists and identifies the current draft version")
 
 manifest = json.loads((ROOT / "reviews/input-manifest.json").read_text(encoding="utf-8"))
@@ -86,6 +88,90 @@ for item in original_manifest["files"]:
     path = ROOT / "reviews/input-61de1a1" / item["path"]
     record("review-manifest:" + item["path"], sha(path) == item["sha256"],
            "Matches the independent review's own manifest")
+
+# Current pack, archived byte copies and the source review's own manifest.
+current_manifest = json.loads((ROOT / "reviews/input-manifest-world-design-002.json").read_text(encoding="utf-8"))
+for item in current_manifest["archived_entries"]:
+    path = ROOT / item["path"]
+    record("current-archive:" + item["path"], path.is_file() and sha(path) == item["sha256"]
+           and path.stat().st_size == item["bytes"], "Exact original bytes; not promoted to formal rules")
+review_manifest = json.loads((ROOT / "reviews/input-697ed7a/review/manifest.json").read_text(encoding="utf-8"))
+for item in review_manifest["files"]:
+    path = ROOT / "reviews/input-697ed7a/review" / item["path"]
+    record("current-review-manifest:" + item["path"], path.is_file() and sha(path) == item["sha256"]
+           and path.stat().st_size == item["bytes"], "Independent review manifest")
+outer_manifest = json.loads((ROOT / "reviews/input-697ed7a/manifest.json").read_text(encoding="utf-8"))
+record("current-manifest-crosscheck", outer_manifest["payload_files"] == current_manifest["payload_verified"],
+       "Nine payload identities match the original manifest; receipt is not its own source")
+if args.skip_external_inputs:
+    skipped.append({"name": "current-pack-and-nested-payloads", "reason": "Explicit review-copy mode; exact local archive copies still checked"})
+else:
+    pack = Path(current_manifest["pack_path"])
+    record("current-pack-sha256", pack.is_file() and sha(pack) == current_manifest["pack_sha256"], current_manifest["pack_sha256"])
+    if pack.is_file():
+        with zipfile.ZipFile(pack) as archive:
+            record("current-pack-crc", archive.testzip() is None, "All outer payload CRCs")
+            for item in outer_manifest["payload_files"]:
+                data = archive.read(item["path"])
+                record("current-payload:" + item["path"], len(data) == item["bytes"] and hashlib.sha256(data).hexdigest() == item["sha256"],
+                       "Read from original ZIP; no extraction or source upload")
+            with zipfile.ZipFile(io.BytesIO(archive.read("inputs/WORLD-DESIGN-001R-review-697ed7a.zip"))) as nested:
+                record("nested-review-crc", nested.testzip() is None, "All review payload CRCs")
+            with zipfile.ZipFile(io.BytesIO(archive.read("reference/无限恐怖参考资料整理集合_v1.0.zip"))) as research:
+                record("nested-reference-crc", research.testzip() is None, "All reference payload CRCs")
+                for item in current_manifest["reference_internal_verified"]:
+                    data = research.read(item["path"])
+                    record("reference-payload:" + item["path"], hashlib.sha256(data).hexdigest() == item["sha256"], "Original internal source SHA-256")
+record("reference-archive-not-copied", not list(ROOT.rglob("*.zip")), "No full research/input ZIP stored in design deliverable")
+terminal = ROOT / "reviews/endgame-candidates-v1.1.md"
+record("single-current-terminal", terminal.is_file() and "v1.2" in terminal.read_text(encoding="utf-8")[:1000]
+       and len(list((ROOT / "reviews").glob("endgame-candidates-*.md"))) == 1,
+       "Stable v1.1 filename, one current v1.2 body")
+
+# Evidence integrity and identity checks are independent of model success counts.
+try:
+    evidence = ROOT / "evidence"
+    model_result = json.loads((evidence / "raw-results.json").read_text(encoding="utf-8"))
+    all_results = model_result["scenarios"] + model_result["sensitivity"] + model_result["joint"]
+    ids = [entry["id"] for entry in all_results]
+    record("evidence-result-unique-ids", len(ids) == len(set(ids)), {"total": len(ids), "unique": len(set(ids))})
+    for filename, expected_sha in model_result["input_sha256"].items():
+        record("evidence-current-input-sha:" + filename, sha(evidence / filename) == expected_sha,
+               "Current result must describe the actual current input/script bytes")
+    reproduction = json.loads((ROOT / "reviews/reproduction-results-world-design-002.json").read_text(encoding="utf-8"))
+    runs = reproduction["runs"]
+    record("two-final-reproductions", len(runs) == 2 and all(r["exit_code"] == 0 for r in runs)
+           and runs[0]["output_sha256"] == runs[1]["output_sha256"]
+           and reproduction["input_sha256"] == model_result["input_sha256"],
+           "Root stored two actual final runs; same interpreter bytes; not additional gameplay cases")
+    for filename, expected_sha in reproduction["output_sha256"].items():
+        record("evidence-output-sha:" + filename, sha(evidence / filename) == expected_sha,
+               "Checked-in result bytes equal the independently reproduced outputs")
+    old_specs = json.loads((evidence / "v1.1-baseline/scenarios.json").read_text(encoding="utf-8"))
+    old_ids = {entry["id"] for entry in old_specs["scenarios"] + old_specs["sensitivity"]}
+    mapping = json.loads((evidence / "inheritance-map.json").read_text(encoding="utf-8"))
+    rows = mapping["mapping"]
+    record("inherited-57-exhaustive-map", len(old_ids) == 57 == mapping["old_count"] == len(rows)
+           and {r["v1_1_id"] for r in rows} == old_ids
+           and all(r["v1_2_id"] in ids and r["disposition"] for r in rows),
+           "Every original scenario and sensitivity case is mapped to an actual current result")
+    baseline = json.loads((evidence / "v1.1-baseline/manifest-summary.json").read_text(encoding="utf-8"))
+    for filename in ("check_design.py", "parameters.json", "scenarios.json"):
+        expected = baseline["original_files"][filename]
+        local = evidence / "v1.1-baseline" / filename
+        blob = subprocess.run(["git", "show", START + ":" + PREFIX + "evidence/" + filename], cwd=REPO, capture_output=True, check=True).stdout
+        record("historical-small-snapshot:" + filename,
+               hashlib.sha256(blob).hexdigest() == expected["sha256"] == sha(local)
+               and len(blob) == expected["bytes"] == local.stat().st_size,
+               "Exact Git starting-commit bytes, not reconstructed new expectations")
+    counted = {label: sum(entry["classification"] == label for entry in all_results)
+               for label in ("positive", "expected_rejection", "unsupported")}
+    record("evidence-counts-separated", all(model_result["counts"][label] == value for label, value in counted.items())
+           and sum(counted.values()) == len(all_results), counted)
+    record("no-python-cache-or-temporary-archive", not list(ROOT.rglob("*.pyc")) and not list(ROOT.rglob("__pycache__")),
+           "Design deliverable contains no bytecode cache")
+except (OSError, ValueError, KeyError, subprocess.CalledProcessError) as exc:
+    record("evidence-integrity-execution", False, str(exc))
 
 link_count = 0
 broken = []
@@ -108,7 +194,7 @@ for path in active_md:
                 broken.append({"file": path.relative_to(ROOT).as_posix(), "target": target,
                                "reason": "missing explicit or generated heading anchor"})
 record("local-links-and-anchors", not broken, {"count": link_count, "broken": broken,
-       "historical_inputs": "Excluded from current-link checks, included in exact-byte checks"})
+       "historical_inputs": "Raw input archives, v1.1-baseline and old completion reports excluded from current-link checks; archived inputs fingerprint checked"})
 
 fields = ["事件名", "触发条件", "玩家已知", "真实状态", "选项", "成本", "结果", "后续影响", "状态标记"]
 events = []
@@ -143,15 +229,22 @@ try:
     files.update(filter(None, git("ls-files", "--others", "--exclude-standard").splitlines()))
     illegal = sorted(p for p in files if not p.startswith(PREFIX))
     record("path-allow-list", not illegal, {"files": sorted(files), "outside": illegal})
-    git("diff", "--check", START, "--")
-    git("diff", "--cached", "--check")
-    record("git-diff-check", True, "Working and staged diff checks both passed")
+    original_entry = PREFIX + "reviews/input-697ed7a/00-START-HERE.md"
+    excluded_original = ":(exclude)" + original_entry
+    git("diff", "--check", START, "--", ".", excluded_original)
+    git("diff", "--cached", "--check", "--", ".", excluded_original)
+    git("-c", "core.whitespace=-blank-at-eol", "diff", "--check", START, "--", original_entry)
+    git("-c", "core.whitespace=-blank-at-eol", "diff", "--cached", "--check", "--", original_entry)
+    record("git-diff-check", True, {"authored_files": "Strict working and staged diff checks passed",
+           "only_exception": original_entry,
+           "reason": "Original attachment lines 5/6/7 contain Markdown double-space hard breaks; exact original SHA and bytes checked above; only blank-at-eol disabled for that file, no Git configuration changed"})
 except RuntimeError as exc:
     record("git-check-execution", False, str(exc))
 
 result = {
-    "task": "WORLD-DESIGN-001R",
+    "task": "WORLD-DESIGN-002",
     "kind": "Package/link/input/Git scope checks; not gameplay verification",
+    "external_input_mode": "SKIPPED_BY_REQUEST" if args.skip_external_inputs else "FULL_ORIGINAL_PACK",
     "starting_sha": START,
     "checks": checks,
     "skipped": skipped,

@@ -1,0 +1,20 @@
+[
+  {
+    "file": "WORLD-DESIGN-001-review-61de1a1.zip",
+    "bytes": 15929,
+    "sha256": "3e5a7021acc2e5a45e20b3b3342b6d469fc4e72360a0c2d3dc3375d418446e0f",
+    "matches_codex_input_record": true
+  },
+  {
+    "file": "continuous-world-design-register-v0.6.md",
+    "bytes": 48233,
+    "sha256": "33808b3e92dec952a0e10e6ab11789a4c5234d775744e622a36f1119eb4e556b",
+    "matches_codex_input_record": true
+  },
+  {
+    "file": "infection-world-narrative-proposal-v0.5.md",
+    "bytes": 93664,
+    "sha256": "5a234066182de583388ff733dc7d864ba75f8261e1f73d68524212a3ecea31de",
+    "matches_codex_input_record": true
+  }
+]

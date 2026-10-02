@@ -511,7 +511,7 @@ misused_electronics_recovery,11,1,移动至H7,move,L0,H7,8,52,44,12,30,12,6,8,6,
 misused_electronics_recovery,12,1,移动至H8,move,H7,H8,2,44,42,12,30,12,6,8,6,0,0,active,
 misused_electronics_recovery,13,1,install,install,H8,H8,12,42,30,12,30,12,6,0,6,0,0,active,
 night_bleeding_death,1,1,实际所在地过夜,rest,C4,C4,0,7,7,0,30,12,12,0,6,0,1,death,
-night_infection_terminal,1,1,实际所在地过夜,rest,C4,C4,0,7,7,5,30,12,12,0,4,130,0,infection_terminal,
+night_infection_hp_loss,1,1,实际所在地过夜,rest,C4,C4,0,7,100,2,30,12,12,0,2,130,0,active,
 H_wound_can_kill,1,1,移动至H4,move,H3,H4,2,100,98,4,30,12,12,0,6,0,0,active,
 H_wound_can_kill,2,1,指定战斗轨迹H_wound,combat,H4,H4,12,98,86,0,25,11,12,0,6,0,0,death,
 no_day_eight,1,7,实际所在地过夜,rest,C4,C4,0,100,100,12,30,12,12,0,6,0,0,active,no_day_eight
@@ -527,7 +527,7 @@ no_signature_refresh_on_crossing,8,1,移动至H4,move,H3,H4,2,62,60,9,24,10,12,0
 no_signature_refresh_on_crossing,9,1,指定战斗轨迹H_full,combat,H4,H4,0,60,60,9,24,10,12,0,6,0,1,active,signature_already_used_today
 terminal_success,1,5,success,success,H0,HUB,0,0,0,5,15,6,8,0,4,25,1,success,
 terminal_voluntary_failure,1,5,failure,failure,H0,HUB,0,0,0,5,15,6,8,0,4,25,1,failure,
-terminal_deadline_recall,1,7,deadline,deadline,C4,HUB,0,0,0,3,15,6,8,0,2,50,0,deadline_recall,
+terminal_deadline_recall,1,7,deadline,deadline,C4,HUB,0,0,100,3,15,6,8,0,2,50,0,deadline_recall,
 terminal_death_clears_bank,1,7,deadline,deadline,C4,C4,0,0,0,0,15,6,8,0,4,25,1,death,
 terminal_zero_fee_inventory_survive,1,1,failure,failure,H0,HUB,0,0,0,1,30,12,12,0,6,0,0,failure,
 low_pipe_actual_repair,1,1,移动至T0,move,H0,T0,8,100,92,12,10,12,12,0,6,0,0,active,
@@ -603,7 +603,7 @@ unsafe_node_cannot_rest,1,1,,rest,L2,L2,0,100,100,12,30,12,12,0,6,0,0,active,unr
 C_extract_without_match,1,1,,C_extract,C3,C3,0,100,100,12,30,12,12,0,6,0,0,active,missing_fact
 bandage_does_not_erase_injury,1,1,实耗绷带止血,use,H0,H0,0,100,100,8,30,12,12,0,6,0,0,active,
 bandage_does_not_erase_injury,2,1,C休整不自动移除已处理伤势,rest,H0,H0,0,100,85,8,30,12,12,0,4,0,0,active,
-deadline_suppression_expires_after_effect,1,7,期限一次结算,deadline,C4,HUB,0,7,7,5,30,12,12,0,2,35,0,deadline_recall,
+deadline_suppression_expires_after_effect,1,7,期限一次结算,deadline,C4,HUB,0,7,100,5,30,12,12,0,2,35,0,deadline_recall,
 world_cannot_use_bank,1,1,,use,H0,H0,0,100,100,8,30,12,12,0,6,0,0,active,not_carried_source
 world_cannot_drop_bank,1,1,,drop,H0,H0,0,100,100,12,30,12,12,0,6,0,0,active,not_carried_source
 pickup_negative_quantity,1,1,,move,H0,H1,2,100,98,12,30,12,12,0,6,0,0,active,
@@ -614,6 +614,7 @@ pickup_zero_quantity,2,1,,search,H1,H1,12,98,86,12,30,12,12,0,6,0,0,active,
 pickup_zero_quantity,3,1,,pickup,H1,H1,0,86,86,12,30,12,12,0,6,0,0,active,invalid_quantity
 drop_negative_quantity,1,1,,drop,H0,H0,0,100,100,12,30,12,12,2,6,0,0,active,invalid_quantity
 entirely_empty_character_continuation,1,1,合法失败返航不把贫穷判死,failure,H0,HUB,0,0,0,1,0,0,0,0,6,0,0,failure,
+entirely_empty_character_continuation,2,1,真实过夜流血先结算,hub_rest,HUB,HUB,0,0,0,0,0,0,0,0,6,0,0,death,
 price_pry_8,1,1,移动至T0,move,H0,T0,8,100,92,12,30,12,12,0,6,0,0,active,
 price_pry_8,2,1,移动至P0,move,T0,P0,8,92,84,12,30,12,12,0,6,0,0,active,
 price_pry_8,3,1,移动至P1,move,P0,P1,2,84,82,12,30,12,12,0,6,0,0,active,

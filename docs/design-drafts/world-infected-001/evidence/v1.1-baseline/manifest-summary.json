@@ -1,0 +1,2719 @@
+{
+  "git_commit": "697ed7ae010bbdfcc70aa0eb152d045f283d3606",
+  "git_path_prefix": "docs/design-drafts/world-infected-001/evidence/",
+  "note": "Original bytes, full historical ledger and first run are recoverable from this fixed Git commit. Necessary source files retained here with LF; no duplicate large ledger.",
+  "original_files": {
+    "check_design.py": {
+      "sha256": "ca886c1defae08624ff03738ddb308c044d3515b1ad94669ad4492f0c6494d38",
+      "bytes": 31841
+    },
+    "first-run-results.json": {
+      "sha256": "f68b9f270966bc17536bb2d93f201dc991927bd9a8a37fd63607916e4893151a",
+      "bytes": 49401
+    },
+    "parameters.json": {
+      "sha256": "8785915239747ca404166352c83a5c43b5d75ee067df1f90c6673ff356dfecf6",
+      "bytes": 15534
+    },
+    "raw-results.json": {
+      "sha256": "ba453f10225f0064d9c01f21ca56781295c2394dc0024bbd53b86d775ba87327",
+      "bytes": 89479
+    },
+    "README.md": {
+      "sha256": "a3149158cd084079900751532797cd73ea05e4688eccb9bea1d959b7f4284dd0",
+      "bytes": 11022
+    },
+    "route-ledgers.csv": {
+      "sha256": "deae34bd03c7e4c209cc0f22f7a2cc3b43aa7c0bfcbb87c5112ca6dfe9f65413",
+      "bytes": 70800
+    },
+    "route-ledgers.json": {
+      "sha256": "82a46be7d8f679287765edab8b89c66ef1e73277d939f812240e20a60bf403f4",
+      "bytes": 4693216
+    },
+    "scenarios.json": {
+      "sha256": "a96ad2ae163db7c45a3a0aae1a2f3e69ccb5522e35188c588a70821199902862",
+      "bytes": 106634
+    }
+  },
+  "original_counts": {
+    "scenarios": 52,
+    "sensitivity": 5,
+    "passed": 57,
+    "failed": 0
+  },
+  "cases": [
+    {
+      "id": "normal_five",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "success",
+        "reason": "success",
+        "day": 3,
+        "location": "HUB",
+        "energy": 24,
+        "hp": 4,
+        "satiety": 4,
+        "infection": 20,
+        "exposure": 0,
+        "pipe": 15,
+        "coat": 7,
+        "tool_resource": 7,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 2,
+            "ration": 4,
+            "metal": 1,
+            "cloth": 1,
+            "battery": 1
+          },
+          "installed": {
+            "control": 1,
+            "metal": 1,
+            "electronics": 1,
+            "module": 1
+          },
+          "consumed": {
+            "ration": 1
+          },
+          "delivered": {
+            "sample": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "C_channel_open",
+          "C_spares_open",
+          "H_firedoor_open",
+          "L_fixation_open",
+          "L_front_open",
+          "hospital_model",
+          "installed",
+          "interface",
+          "manifest",
+          "module_matched",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": true,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "early_sample_five",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "success",
+        "reason": "success",
+        "day": 4,
+        "location": "HUB",
+        "energy": 40,
+        "hp": 5,
+        "satiety": 2,
+        "infection": 20,
+        "exposure": 0,
+        "pipe": 15,
+        "coat": 7,
+        "tool_resource": 8,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 2,
+            "metal": 2,
+            "battery": 2,
+            "ration": 4,
+            "cloth": 1
+          },
+          "impounded": {
+            "card": 1
+          },
+          "delivered": {
+            "sample": 1
+          },
+          "consumed": {
+            "bandage": 1,
+            "ration": 1
+          },
+          "installed": {
+            "control": 1,
+            "metal": 1,
+            "electronics": 1,
+            "module": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "C_channel_open",
+          "C_spares_open",
+          "L_fixation_open",
+          "L_front_open",
+          "hospital_model",
+          "installed",
+          "interface",
+          "manifest",
+          "module_matched",
+          "orders",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "damaged_split_five",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "success",
+        "reason": "success",
+        "day": 7,
+        "location": "HUB",
+        "energy": 25,
+        "hp": 2,
+        "satiety": 2,
+        "infection": 25,
+        "exposure": 0,
+        "pipe": 15,
+        "coat": 6,
+        "tool_resource": 8,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "consumed": {
+            "bandage": 3,
+            "ration": 4
+          },
+          "bank": {
+            "metal": 2,
+            "battery": 2,
+            "ration": 2,
+            "cloth": 1
+          },
+          "impounded": {
+            "card": 1
+          },
+          "installed": {
+            "metal": 1,
+            "electronics": 1,
+            "control": 1,
+            "module": 1
+          },
+          "delivered": {
+            "sample": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "C_channel_open",
+          "C_spares_open",
+          "L_fixation_open",
+          "L_front_open",
+          "hospital_model",
+          "installed",
+          "interface",
+          "manifest",
+          "module_matched",
+          "orders",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": true,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "flashlight_five",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "success",
+        "reason": "success",
+        "day": 4,
+        "location": "HUB",
+        "energy": 27,
+        "hp": 5,
+        "satiety": 2,
+        "infection": 20,
+        "exposure": 0,
+        "pipe": 15,
+        "coat": 7,
+        "tool_resource": 5,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 2,
+            "metal": 2,
+            "battery": 2,
+            "ration": 4,
+            "cloth": 1
+          },
+          "impounded": {
+            "card": 1
+          },
+          "delivered": {
+            "sample": 1
+          },
+          "consumed": {
+            "bandage": 1,
+            "ration": 1
+          },
+          "installed": {
+            "control": 1,
+            "metal": 1,
+            "electronics": 1,
+            "module": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "C_channel_open",
+          "C_spares_open",
+          "L_fixation_open",
+          "L_front_open",
+          "hospital_model",
+          "installed",
+          "interface",
+          "manifest",
+          "module_matched",
+          "orders",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.flashlight"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "original_R4_illegal",
+      "error": "wrong_location",
+      "failed_action": 38,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "C3",
+        "energy": 29,
+        "hp": 6,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 1,
+        "pipe": 20,
+        "coat": 9,
+        "tool_resource": 8,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "ration": 5,
+            "bandage": 1,
+            "control": 1,
+            "metal": 2,
+            "cloth": 1,
+            "electronics": 1,
+            "battery": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "C_channel_open",
+          "C_spares_open",
+          "L_fixation_open",
+          "L_front_open",
+          "hospital_model",
+          "interface",
+          "manifest",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": true,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "corrected_R4_three",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "success",
+        "reason": "success",
+        "day": 3,
+        "location": "HUB",
+        "energy": 24,
+        "hp": 4,
+        "satiety": 4,
+        "infection": 20,
+        "exposure": 0,
+        "pipe": 15,
+        "coat": 7,
+        "tool_resource": 7,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 2,
+            "ration": 4,
+            "metal": 1,
+            "cloth": 1,
+            "battery": 1
+          },
+          "installed": {
+            "control": 1,
+            "metal": 1,
+            "electronics": 1,
+            "module": 1
+          },
+          "consumed": {
+            "ration": 1
+          },
+          "delivered": {
+            "sample": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "C_channel_open",
+          "C_spares_open",
+          "H_firedoor_open",
+          "L_fixation_open",
+          "L_front_open",
+          "hospital_model",
+          "installed",
+          "interface",
+          "manifest",
+          "module_matched",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": true,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "cross_region_work",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L1",
+        "energy": 68,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 11,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "ground:L1": {
+            "ration": 2,
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "L_front_open",
+          "hospital_model",
+          "orders"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "topology_three_power",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L0",
+        "energy": 58,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "topology_five_west",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L0",
+        "energy": 54,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "topology_five_no_hotel",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L0",
+        "energy": 50,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "A_same_position",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "P1",
+        "energy": 88,
+        "hp": 9,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "C_same_position",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "P1",
+        "energy": 85,
+        "hp": 9,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "A_defer_same_work",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "P1",
+        "energy": 76,
+        "hp": 9,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "C_finish_same_work",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "P1",
+        "energy": 85,
+        "hp": 9,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "last_positive_action",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "P1",
+        "energy": 0,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "zero_next_action",
+      "error": "zero_energy",
+      "failed_action": 2,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "P1",
+        "energy": 0,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "batch_is_multiple_edges",
+      "error": "zero_energy",
+      "failed_action": 2,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H1",
+        "energy": 0,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "zero_triggered_combat",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L2",
+        "energy": 0,
+        "hp": 9,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 26,
+        "coat": 11,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "cannot_rest_past_combat",
+      "error": "pending_encounter",
+      "failed_action": 2,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L2",
+        "energy": 0,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "unknown_route",
+      "error": "unknown_edge",
+      "failed_action": 1,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H4",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "source_once_across_night",
+      "error": "source_already_revealed",
+      "failed_action": 5,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "H1",
+        "energy": 85,
+        "hp": 12,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "metal": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "unique_instance",
+      "error": "duplicate_instance",
+      "failed_action": "initial",
+      "passed": true
+    },
+    {
+      "id": "C_quick_needs_information",
+      "error": "missing_quick_information",
+      "failed_action": 1,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "C1",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "P_work_wrong_location",
+      "error": "wrong_location",
+      "failed_action": 1,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L1",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "zero_self_rescue_pickup",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H2",
+        "energy": 0,
+        "hp": 9,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "consumed": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "missing_install_material",
+      "error": "missing_item:electronics",
+      "failed_action": 1,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H8",
+        "energy": 1,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "control": 1,
+            "module": 1,
+            "metal": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model",
+          "power"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "misused_electronics_rejected",
+      "error": "missing_item:electronics",
+      "failed_action": 2,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H8",
+        "energy": 92,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 6,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "control": 1,
+            "module": 1,
+            "metal": 1
+          },
+          "consumed": {
+            "metal": 1,
+            "electronics": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model",
+          "power"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.toolkit"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "misused_electronics_recovery",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H8",
+        "energy": 30,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 6,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "installed": {
+            "control": 1,
+            "module": 1,
+            "metal": 1,
+            "electronics": 1
+          },
+          "consumed": {
+            "metal": 1,
+            "electronics": 1
+          },
+          "ground:L3": {
+            "metal": 1,
+            "battery": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "L_spares_open",
+          "hospital_model",
+          "installed",
+          "power"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.toolkit"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "night_bleeding_death",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "death",
+        "reason": "night_bleeding",
+        "day": 1,
+        "location": "C4",
+        "energy": 7,
+        "hp": 0,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 1,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": "new_character_setup",
+        "inventory_by_location": {
+          "lost": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": false,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": true,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": null,
+          "armor": null,
+          "utility": null
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "night_infection_terminal",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "infection_terminal",
+        "reason": "infection_terminal",
+        "day": 1,
+        "location": "C4",
+        "energy": 7,
+        "hp": 5,
+        "satiety": 4,
+        "infection": 130,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": "new_character_setup",
+        "inventory_by_location": {
+          "lost": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": false,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": null,
+          "armor": null,
+          "utility": null
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "H_wound_can_kill",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "death",
+        "reason": "combat",
+        "day": 1,
+        "location": "H4",
+        "energy": 86,
+        "hp": 0,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 25,
+        "coat": 11,
+        "tool_resource": 12,
+        "next_activity": "new_character_setup",
+        "inventory_by_location": {
+          "lost": {
+            "bandage": 1,
+            "card": 1
+          }
+        },
+        "equipped_retained": false,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": true,
+        "wound": true,
+        "injury": "light_laceration",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": true,
+        "equipment": {
+          "weapon": null,
+          "armor": null,
+          "utility": null
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "no_day_eight",
+      "error": "no_day_eight",
+      "failed_action": 1,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 7,
+        "location": "C4",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "rest_target_not_addition",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "H0",
+        "energy": 85,
+        "hp": 9,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "no_signature_refresh_on_crossing",
+      "error": "signature_already_used_today",
+      "failed_action": 9,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H4",
+        "energy": 60,
+        "hp": 9,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 1,
+        "pipe": 24,
+        "coat": 10,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "card": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "C_channel_open",
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": true,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "terminal_success",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "success",
+        "reason": "success",
+        "day": 5,
+        "location": "HUB",
+        "energy": 0,
+        "hp": 5,
+        "satiety": 4,
+        "infection": 25,
+        "exposure": 1,
+        "pipe": 15,
+        "coat": 6,
+        "tool_resource": 8,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "bank": {
+            "ration": 5,
+            "metal": 4,
+            "cloth": 1,
+            "battery": 2,
+            "bandage": 1,
+            "firstaid": 1
+          },
+          "delivered": {
+            "sample": 1
+          },
+          "impounded": {
+            "card": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model",
+          "installed"
+        ],
+        "bleeding": true,
+        "wound": true,
+        "injury": "light_laceration",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "terminal_voluntary_failure",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "failure",
+        "reason": "failure",
+        "day": 5,
+        "location": "HUB",
+        "energy": 0,
+        "hp": 5,
+        "satiety": 4,
+        "infection": 25,
+        "exposure": 1,
+        "pipe": 15,
+        "coat": 6,
+        "tool_resource": 8,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "fee": {
+            "ration": 1,
+            "metal": 1
+          },
+          "bank": {
+            "ration": 4,
+            "metal": 3,
+            "cloth": 1,
+            "battery": 2,
+            "bandage": 1,
+            "firstaid": 1
+          },
+          "delivered_partial": {
+            "sample": 1
+          },
+          "impounded": {
+            "card": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": true,
+        "wound": true,
+        "injury": "light_laceration",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "terminal_deadline_recall",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "deadline_recall",
+        "reason": "deadline_recall",
+        "day": 7,
+        "location": "HUB",
+        "energy": 0,
+        "hp": 3,
+        "satiety": 2,
+        "infection": 50,
+        "exposure": 0,
+        "pipe": 15,
+        "coat": 6,
+        "tool_resource": 8,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "fee": {
+            "ration": 1,
+            "metal": 1
+          },
+          "bank": {
+            "ration": 2,
+            "metal": 1,
+            "firstaid": 1
+          },
+          "lost": {
+            "ration": 2,
+            "metal": 2,
+            "cloth": 1,
+            "battery": 2,
+            "bandage": 1,
+            "sample": 1,
+            "card": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": true,
+        "wound": true,
+        "injury": "light_laceration",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "terminal_death_clears_bank",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "death",
+        "reason": "night_bleeding",
+        "day": 7,
+        "location": "C4",
+        "energy": 0,
+        "hp": 0,
+        "satiety": 4,
+        "infection": 25,
+        "exposure": 1,
+        "pipe": 15,
+        "coat": 6,
+        "tool_resource": 8,
+        "next_activity": "new_character_setup",
+        "inventory_by_location": {
+          "lost": {
+            "ration": 5,
+            "metal": 4,
+            "cloth": 1,
+            "battery": 2,
+            "bandage": 1,
+            "sample": 1,
+            "card": 1,
+            "firstaid": 1
+          }
+        },
+        "equipped_retained": false,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": true,
+        "wound": true,
+        "injury": "light_laceration",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": null,
+          "armor": null,
+          "utility": null
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "terminal_zero_fee_inventory_survive",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "failure",
+        "reason": "failure",
+        "day": 1,
+        "location": "HUB",
+        "energy": 0,
+        "hp": 1,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {},
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "low_pipe_actual_repair",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "success",
+        "reason": "success",
+        "day": 3,
+        "location": "HUB",
+        "energy": 18,
+        "hp": 4,
+        "satiety": 4,
+        "infection": 20,
+        "exposure": 0,
+        "pipe": 10,
+        "coat": 7,
+        "tool_resource": 7,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 2,
+            "ration": 4,
+            "cloth": 1,
+            "battery": 1
+          },
+          "installed": {
+            "control": 1,
+            "metal": 1,
+            "electronics": 1,
+            "module": 1
+          },
+          "consumed": {
+            "ration": 1,
+            "metal": 1
+          },
+          "delivered": {
+            "sample": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "C_channel_open",
+          "C_spares_open",
+          "H_firedoor_open",
+          "L_fixation_open",
+          "L_front_open",
+          "hospital_model",
+          "installed",
+          "interface",
+          "manifest",
+          "module_matched",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": true,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "ground_identity_across_night",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "H1",
+        "energy": 85,
+        "hp": 12,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "metal": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "unsafe_node_cannot_rest",
+      "error": "unresolved_node_danger",
+      "failed_action": 1,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L2",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "C_extract_without_match",
+      "error": "missing_fact",
+      "failed_action": 1,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "C3",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "overweight_rejected",
+      "error": "weight",
+      "failed_action": "initial",
+      "passed": true
+    },
+    {
+      "id": "bandage_does_not_erase_injury",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "H0",
+        "energy": 85,
+        "hp": 8,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "consumed": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "light_laceration",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "deadline_suppression_expires_after_effect",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "deadline_recall",
+        "reason": "deadline_recall",
+        "day": 7,
+        "location": "HUB",
+        "energy": 7,
+        "hp": 5,
+        "satiety": 2,
+        "infection": 35,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "lost": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": true,
+        "signature_used": true,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "world_cannot_use_bank",
+      "error": "not_carried_source",
+      "failed_action": 1,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H0",
+        "energy": 100,
+        "hp": 8,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "bank": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "world_cannot_drop_bank",
+      "error": "not_carried_source",
+      "failed_action": 1,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H0",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "bank": {
+            "metal": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "pickup_negative_quantity",
+      "error": "invalid_quantity",
+      "failed_action": 3,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H1",
+        "energy": 86,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "ground:H1": {
+            "metal": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "pickup_zero_quantity",
+      "error": "invalid_quantity",
+      "failed_action": 3,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H1",
+        "energy": 86,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "ground:H1": {
+            "metal": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "drop_negative_quantity",
+      "error": "invalid_quantity",
+      "failed_action": 1,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H0",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "metal": 2
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "entirely_empty_character_continuation",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "failure",
+        "reason": "failure",
+        "day": 1,
+        "location": "HUB",
+        "energy": 0,
+        "hp": 1,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 0,
+        "coat": 0,
+        "tool_resource": 0,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {},
+        "equipped_retained": false,
+        "facts": [
+          "hospital_model"
+        ],
+        "bleeding": true,
+        "wound": true,
+        "injury": "light_laceration",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": null,
+          "armor": null,
+          "utility": null
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "price_pry_8",
+      "error": "zero_energy",
+      "failed_action": 18,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L2",
+        "energy": 0,
+        "hp": 9,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 26,
+        "coat": 11,
+        "tool_resource": 10,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "ration": 2,
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "L_fixation_open",
+          "L_front_open",
+          "hospital_model",
+          "interface",
+          "manifest",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "pipe_capacity_10",
+      "error": "broken_pipe_needs_other_trace",
+      "failed_action": 51,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 3,
+        "location": "H4",
+        "energy": 78,
+        "hp": 6,
+        "satiety": 4,
+        "infection": 20,
+        "exposure": 0,
+        "pipe": 0,
+        "coat": 9,
+        "tool_resource": 7,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "ration": 4,
+            "bandage": 1,
+            "control": 1,
+            "metal": 2,
+            "cloth": 1,
+            "electronics": 1,
+            "battery": 1,
+            "module": 1
+          },
+          "consumed": {
+            "ration": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "C_channel_open",
+          "C_spares_open",
+          "H_firedoor_open",
+          "L_fixation_open",
+          "L_front_open",
+          "hospital_model",
+          "interface",
+          "manifest",
+          "module_matched",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "coat_mitigation_0",
+      "error": null,
+      "failed_action": null,
+      "final": {
+        "status": "success",
+        "reason": "success",
+        "day": 3,
+        "location": "HUB",
+        "energy": 24,
+        "hp": 1,
+        "satiety": 4,
+        "infection": 20,
+        "exposure": 0,
+        "pipe": 15,
+        "coat": 7,
+        "tool_resource": 7,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 2,
+            "ration": 4,
+            "metal": 1,
+            "cloth": 1,
+            "battery": 1
+          },
+          "installed": {
+            "control": 1,
+            "metal": 1,
+            "electronics": 1,
+            "module": 1
+          },
+          "consumed": {
+            "ration": 1
+          },
+          "delivered": {
+            "sample": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "C_channel_open",
+          "C_spares_open",
+          "H_firedoor_open",
+          "L_fixation_open",
+          "L_front_open",
+          "hospital_model",
+          "installed",
+          "interface",
+          "manifest",
+          "module_matched",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": true,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "drop_front_ration_1",
+      "error": "missing_ground_item",
+      "failed_action": 11,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L1",
+        "energy": 38,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 11,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "ground:L1": {
+            "ration": 1,
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "L_front_open",
+          "hospital_model",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "topology_remove_C0_H0",
+      "error": "not_adjacent",
+      "failed_action": 47,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 3,
+        "location": "C0",
+        "energy": 96,
+        "hp": 6,
+        "satiety": 4,
+        "infection": 20,
+        "exposure": 0,
+        "pipe": 20,
+        "coat": 9,
+        "tool_resource": 8,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "ration": 4,
+            "bandage": 1,
+            "control": 1,
+            "metal": 2,
+            "cloth": 1,
+            "electronics": 1,
+            "battery": 1,
+            "module": 1
+          },
+          "consumed": {
+            "ration": 1
+          }
+        },
+        "equipped_retained": true,
+        "facts": [
+          "C_channel_open",
+          "C_spares_open",
+          "L_fixation_open",
+          "L_front_open",
+          "hospital_model",
+          "interface",
+          "manifest",
+          "module_matched",
+          "power",
+          "power_survey"
+        ],
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "suppression": 0,
+        "disinfectant_used": false,
+        "signature_used": false,
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        }
+      },
+      "passed": true
+    }
+  ]
+}

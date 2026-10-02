@@ -6,12 +6,11 @@
     "No production imports, persistence, UI, schemas, engine, npm tests or player experience testing.",
     "Fixed source subset only; no claimed randomized hospital bonus pickups.",
     "Geometry is one deterministic constructive witness per step, not all packings; no physical auto-sort UI is authorized.",
-    "Four full five-map routes; full three-specialty combinations, optional bypass/shortcut, other risk trees and thirty-day economy not covered.",
+    "Four full five-map routes; three specialties, optional bypass/shortcut, other risk trees and thirty-day economy not covered.",
     "Final terminal cases are independent fixtures, not complete action prefixes; terminal penalties/recall remain OPTION awaiting Owner.",
     "Failed parameter variants mean the same authored plan needs replanning, not the entire world is unsolvable.",
     "Injury movement multipliers, bruises and general injury stacking are not modeled; route inputs have no movement-modifying bruise.",
-    "全空家底HP1流血例现在只验证合法返回及显式中枢夜先流血死亡，不再免费建立下一任务精力。",
-    "仅另验生存专长绷带+2的10轮局部OPTION；未验证完整三专长组合、NPC交换、任意重访或任意战斗。"
+    "The entirely empty character continuation checks only one authored next-task movement arithmetically; it is not an implemented next-task world or proof of a survival solution."
   ],
   "scenarios": [
     {
@@ -3390,8 +3389,8 @@
       }
     },
     {
-      "id": "night_infection_hp_loss",
-      "purpose": "Owner新增：I>=120不独立终止；按新阶段扣HP，生还后继续真实日期",
+      "id": "night_infection_terminal",
+      "purpose": "感染110先到130终末，不扣食物、不发新日精力",
       "steps": [
         {
           "action": "rest",
@@ -3407,13 +3406,12 @@
       },
       "expect": {
         "final": {
-          "status": "active",
-          "day": 2,
-          "character_day": 2,
-          "hp": 2,
+          "status": "infection_terminal",
+          "day": 1,
+          "hp": 5,
           "infection": 130,
-          "satiety": 2,
-          "energy": 100
+          "satiety": 4,
+          "energy": 7
         }
       }
     },
@@ -3580,56 +3578,45 @@
           {
             "type": "ration",
             "quantity": 3,
-            "location": "bank",
-            "origin_task": "before"
+            "location": "bank"
           },
           {
             "type": "metal",
             "quantity": 2,
-            "location": "bank",
-            "origin_task": "before"
+            "location": "bank"
           },
           {
             "type": "ration",
-            "quantity": 2,
-            "origin_task": "fixture_task"
+            "quantity": 2
           },
           {
             "type": "metal",
-            "quantity": 2,
-            "origin_task": "fixture_task"
+            "quantity": 2
           },
           {
-            "type": "cloth",
-            "origin_task": "fixture_task"
+            "type": "cloth"
           },
           {
             "type": "battery",
-            "quantity": 2,
-            "origin_task": "fixture_task"
+            "quantity": 2
           },
           {
-            "type": "bandage",
-            "origin_task": "fixture_task"
+            "type": "bandage"
           },
           {
-            "type": "sample",
-            "origin_task": "fixture_task"
+            "type": "sample"
           },
           {
-            "type": "card",
-            "origin_task": "fixture_task"
+            "type": "card"
           },
           {
             "type": "firstaid",
-            "location": "bank",
-            "origin_task": "before"
+            "location": "bank"
           }
         ],
         "facts": [
           "installed"
-        ],
-        "points": 50
+        ]
       },
       "expect": {
         "final": {
@@ -3652,14 +3639,13 @@
             "delivered": {
               "sample": 1
             }
-          },
-          "points": 170
+          }
         }
       }
     },
     {
       "id": "terminal_voluntary_failure",
-      "purpose": "v1.2 主动失败：罚min(P,30)，新获未用普通品回收、旧家底保留",
+      "purpose": "独立末端夹具：H0主动失败，普通实物延续后有限罚粮1金1",
       "steps": [
         {
           "action": "failure",
@@ -3684,53 +3670,42 @@
           {
             "type": "ration",
             "quantity": 3,
-            "location": "bank",
-            "origin_task": "before"
+            "location": "bank"
           },
           {
             "type": "metal",
             "quantity": 2,
-            "location": "bank",
-            "origin_task": "before"
+            "location": "bank"
           },
           {
             "type": "ration",
-            "quantity": 2,
-            "origin_task": "fixture_task"
+            "quantity": 2
           },
           {
             "type": "metal",
-            "quantity": 2,
-            "origin_task": "fixture_task"
+            "quantity": 2
           },
           {
-            "type": "cloth",
-            "origin_task": "fixture_task"
+            "type": "cloth"
           },
           {
             "type": "battery",
-            "quantity": 2,
-            "origin_task": "fixture_task"
+            "quantity": 2
           },
           {
-            "type": "bandage",
-            "origin_task": "fixture_task"
+            "type": "bandage"
           },
           {
-            "type": "sample",
-            "origin_task": "fixture_task"
+            "type": "sample"
           },
           {
-            "type": "card",
-            "origin_task": "fixture_task"
+            "type": "card"
           },
           {
             "type": "firstaid",
-            "location": "bank",
-            "origin_task": "before"
+            "location": "bank"
           }
-        ],
-        "points": 50
+        ]
       },
       "expect": {
         "final": {
@@ -3740,16 +3715,16 @@
           "exposure": 1,
           "inventory_by_location": {
             "bank": {
-              "ration": 3,
-              "metal": 2,
-              "firstaid": 1
-            },
-            "recovered": {
-              "ration": 2,
-              "metal": 2,
+              "ration": 4,
+              "metal": 3,
               "cloth": 1,
               "battery": 2,
-              "bandage": 1
+              "bandage": 1,
+              "firstaid": 1
+            },
+            "fee": {
+              "ration": 1,
+              "metal": 1
             },
             "impounded": {
               "card": 1
@@ -3757,14 +3732,13 @@
             "delivered_partial": {
               "sample": 1
             }
-          },
-          "points": 20
+          }
         }
       }
     },
     {
       "id": "terminal_deadline_recall",
-      "purpose": "v1.2 期限危险后召回：罚min(P,30)，新获未用普通品回收、旧家底保留",
+      "purpose": "未批准终局候选：异地到期危险先结，再异常召回、包快全失、三槽保留",
       "steps": [
         {
           "action": "deadline",
@@ -3789,53 +3763,42 @@
           {
             "type": "ration",
             "quantity": 3,
-            "location": "bank",
-            "origin_task": "before"
+            "location": "bank"
           },
           {
             "type": "metal",
             "quantity": 2,
-            "location": "bank",
-            "origin_task": "before"
+            "location": "bank"
           },
           {
             "type": "ration",
-            "quantity": 2,
-            "origin_task": "fixture_task"
+            "quantity": 2
           },
           {
             "type": "metal",
-            "quantity": 2,
-            "origin_task": "fixture_task"
+            "quantity": 2
           },
           {
-            "type": "cloth",
-            "origin_task": "fixture_task"
+            "type": "cloth"
           },
           {
             "type": "battery",
-            "quantity": 2,
-            "origin_task": "fixture_task"
+            "quantity": 2
           },
           {
-            "type": "bandage",
-            "origin_task": "fixture_task"
+            "type": "bandage"
           },
           {
-            "type": "sample",
-            "origin_task": "fixture_task"
+            "type": "sample"
           },
           {
-            "type": "card",
-            "origin_task": "fixture_task"
+            "type": "card"
           },
           {
             "type": "firstaid",
-            "location": "bank",
-            "origin_task": "before"
+            "location": "bank"
           }
-        ],
-        "points": 50
+        ]
       },
       "expect": {
         "final": {
@@ -3845,31 +3808,19 @@
           "satiety": 2,
           "infection": 50,
           "exposure": 0,
-          "energy": 100,
+          "energy": 0,
           "equipped_retained": true,
           "inventory_by_location": {
             "bank": {
-              "ration": 3,
-              "metal": 2,
+              "ration": 2,
+              "metal": 1,
               "firstaid": 1
             },
-            "recovered": {
-              "ration": 2,
-              "metal": 2,
-              "cloth": 1,
-              "battery": 2,
-              "bandage": 1
-            },
-            "impounded": {
-              "card": 1
-            },
-            "delivered_partial": {
-              "sample": 1
+            "fee": {
+              "ration": 1,
+              "metal": 1
             }
-          },
-          "points": 20,
-          "character_day": 8,
-          "ready_next": true
+          }
         }
       }
     },
@@ -3900,53 +3851,42 @@
           {
             "type": "ration",
             "quantity": 3,
-            "location": "bank",
-            "origin_task": "before"
+            "location": "bank"
           },
           {
             "type": "metal",
             "quantity": 2,
-            "location": "bank",
-            "origin_task": "before"
+            "location": "bank"
           },
           {
             "type": "ration",
-            "quantity": 2,
-            "origin_task": "fixture_task"
+            "quantity": 2
           },
           {
             "type": "metal",
-            "quantity": 2,
-            "origin_task": "fixture_task"
+            "quantity": 2
           },
           {
-            "type": "cloth",
-            "origin_task": "fixture_task"
+            "type": "cloth"
           },
           {
             "type": "battery",
-            "quantity": 2,
-            "origin_task": "fixture_task"
+            "quantity": 2
           },
           {
-            "type": "bandage",
-            "origin_task": "fixture_task"
+            "type": "bandage"
           },
           {
-            "type": "sample",
-            "origin_task": "fixture_task"
+            "type": "sample"
           },
           {
-            "type": "card",
-            "origin_task": "fixture_task"
+            "type": "card"
           },
           {
             "type": "firstaid",
-            "location": "bank",
-            "origin_task": "before"
+            "location": "bank"
           }
-        ],
-        "points": 50
+        ]
       },
       "expect": {
         "final": {
@@ -3956,8 +3896,7 @@
           "exposure": 1,
           "satiety": 4,
           "equipped_retained": false,
-          "next_activity": "new_character_setup",
-          "points": 0
+          "next_activity": "new_character_setup"
         }
       }
     },
@@ -4471,7 +4410,7 @@
     },
     {
       "id": "deadline_suppression_expires_after_effect",
-      "purpose": "抑制先真实生效后到期，尚活才角色日+1/E100并刷新日限；任务仍Day7无Day8",
+      "purpose": "末日期限先用抑制15计算增长，再结束本日药效；不给新日期/精力/医疗或签名次数",
       "initial": {
         "location": "C4",
         "day": 7,
@@ -4494,16 +4433,14 @@
         "final": {
           "status": "deadline_recall",
           "day": 7,
-          "energy": 100,
+          "energy": 7,
           "hp": 5,
           "infection": 35,
           "exposure": 0,
           "satiety": 2,
           "suppression": 0,
-          "disinfectant_used": false,
-          "signature_used": false,
-          "character_day": 8,
-          "ready_next": true
+          "disinfectant_used": true,
+          "signature_used": true
         }
       }
     },
@@ -4613,7 +4550,7 @@
     },
     {
       "id": "entirely_empty_character_continuation",
-      "purpose": "真正全空家底HP1流血先合法回Hub；显式下一角色日休整因流血死亡，不能启动下一任务",
+      "purpose": "三槽与所有库存确实空，HP1流血在H0失败生还；可暂停，下一任务单条已知移动后流血致死",
       "initial": {
         "hp": 1,
         "energy": 0,
@@ -4626,26 +4563,38 @@
         {
           "action": "failure",
           "label": "合法失败返航不把贫穷判死"
-        },
-        {
-          "action": "hub_rest",
-          "label": "真实过夜流血先结算"
         }
       ],
       "expect": {
         "final": {
-          "status": "death",
-          "hp": 0,
-          "character_day": 1,
-          "energy": 0,
-          "points": 0,
-          "satiety": 6,
-          "infection": 0,
+          "status": "failure",
+          "hp": 1,
+          "bleeding": true,
+          "inventory_by_location": {},
           "equipment": {
             "weapon": null,
             "armor": null,
             "utility": null
           }
+        }
+      },
+      "empty_next_task_witness": true,
+      "expect_continuation": {
+        "hub": {
+          "hp": 1,
+          "bleeding": true,
+          "available_units": 0,
+          "can_pause": true
+        },
+        "next_task": {
+          "energy": 100,
+          "hp": 1,
+          "available_units": 0
+        },
+        "one_known_edge": {
+          "hp": 0,
+          "energy": 98,
+          "status": "death"
         }
       }
     }
@@ -4796,6 +4745,5 @@
       ],
       "expect_error": "not_adjacent"
     }
-  ],
-  "version": "WORLD-DESIGN-002 Draft v1.2"
+  ]
 }

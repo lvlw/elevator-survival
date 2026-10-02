@@ -1,0 +1,188 @@
+{
+  "task": "WORLD-DESIGN-002",
+  "starting_sha": "697ed7ae010bbdfcc70aa0eb152d045f283d3606",
+  "pack_path": "D:\\浏览器下载\\WORLD-DESIGN-002-input-pack.zip",
+  "pack_sha256": "d148381e73157bd140c061d1f90a0104a4ed18d32a6b8cb7ee6c96a94906f15f",
+  "payload_verified": [
+    {
+      "path": "00-START-HERE.md",
+      "bytes": 2620,
+      "sha256": "f5e9c252af668f5285ec2355090a61828249e8ffc07efb336ace3874876a7f7a"
+    },
+    {
+      "path": "OWNER-direction-WORLD-DESIGN-002-v1.0.md",
+      "bytes": 7675,
+      "sha256": "73ceb7922fcda099d4ea455fbabbdf4e4e79165495328774d43e681dc32692fc"
+    },
+    {
+      "path": "REFERENCE-use-notes-v1.0.md",
+      "bytes": 3767,
+      "sha256": "7bf8da725e9cb33712ac301fb2f1bcfdba9bd5038b30d6edb059e00bf43340de"
+    },
+    {
+      "path": "WORLD-DESIGN-002-task.md",
+      "bytes": 21535,
+      "sha256": "4882c704702381157262a16b0159c0d71b8f4aabc4aa28b4a502c38fd2d1c47d"
+    },
+    {
+      "path": "inputs/OWNER-followup-697ed7a-v1.0.md",
+      "bytes": 13578,
+      "sha256": "62b0f74182f438435e74526d1ef10c4bcd3a038d1aa169d0d45ec5e4d3c551fe"
+    },
+    {
+      "path": "inputs/WORLD-DESIGN-001R-review-697ed7a.zip",
+      "bytes": 14593,
+      "sha256": "be08394c92470733ef30903bfba61a9304c4f6b01b6dd8a326d1d171abe9cf6f"
+    },
+    {
+      "path": "inputs/continuous-world-design-register-v0.6.md",
+      "bytes": 48233,
+      "sha256": "33808b3e92dec952a0e10e6ab11789a4c5234d775744e622a36f1119eb4e556b"
+    },
+    {
+      "path": "inputs/infection-world-narrative-proposal-v0.5.md",
+      "bytes": 93664,
+      "sha256": "5a234066182de583388ff733dc7d864ba75f8261e1f73d68524212a3ecea31de"
+    },
+    {
+      "path": "reference/无限恐怖参考资料整理集合_v1.0.zip",
+      "bytes": 391216,
+      "sha256": "4a2baa4b88a8f23eeea501ac7f781721148bdd6a5ef036feea7794adb1471074"
+    }
+  ],
+  "crc_all_three_archives": true,
+  "reference_internal_verified": [
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/00_主线交接与使用说明.md",
+      "sha256": "92750c0cce5955bb08157595e9127a446c47069e7010c9377b00feab08ba25f9"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/01_世界与主线总览.md",
+      "sha256": "e3fbc5653265c47621e171bf11769e621c2ebac9c4675fae16df6583055e4b9f"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/02_多日世界与场景组织.md",
+      "sha256": "6e158a36cb727439ea52a4fd0a7f9dbcd82e8b6395375905082cba3239c4abbc"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/03_成长属性与资源模型.md",
+      "sha256": "4a8d05ec79de3c094e0f082aa35905f29904adca162f5d78f2408bda5e3a04a3"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/04_关键道具与跨世界成长链.md",
+      "sha256": "a1ef9663b90df13812c0f35a263241145e2fe48477426da55b44fe08925c6c9f"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/05_主线与重点支线关联.md",
+      "sha256": "063d0ecd0aad412ad501f7457a9f5936467749c7dee0a6e332a55cbb53ac4f38"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/06_NPC与组织关系.md",
+      "sha256": "9ee8f5a957fa6961fead4d1523fc237257c1883b50ace3c03683e24a86255421"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/07_主线设计工作表.md",
+      "sha256": "2d5e5957d58574a6356c42a5ea23bde2df2f506a65d6541f3fad602348a2e94b"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/08_来源覆盖与研究边界.md",
+      "sha256": "72e1b1fbac3046eb799d9173eefbe6c6ee541b82ef393d5e31a6adab2020721a"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/09_研究索引.json",
+      "sha256": "8946cd5becf0c7b08a52e163a68385820d9e95501eb6265b696fac8a38aca57e"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/10_全书覆盖台账_v0.22.md",
+      "sha256": "809b08cd35fae7488d16f6df456eb47ffe60bc4d4dc2bf0fbf6b22ed6eb64e85"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/10_覆盖索引_v0.22.json",
+      "sha256": "5bfe1d04b5c53890a8be9474ce52ef9595bd2f81545b9f0662819a02c218f50e"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/11_校验与交付记录.md",
+      "sha256": "247b668d8c9921580faab9be605cca49d81d2885bf744643aadb994324e61812"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/11_校验摘要.json",
+      "sha256": "17899f03db2d2a0a343fa9322c742487c87fab234f6487150953bed41ae73c87"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/README.md",
+      "sha256": "6a961699a3f0b82c49f6cda780ca031f3dbca6485ca4a0a61b6f96850c71d9e4"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/完整合订本.md",
+      "sha256": "29b5d3830961f17cb6354fc94a13a3e2d17660864c6cba59dc84dbdd1086a9cb"
+    },
+    {
+      "path": "无限恐怖参考资料整理集合_v1.0/阅读版.html",
+      "sha256": "0a1d0a65c959cb9fa9073cb06419e71b4a530e230acc5a0013492d00d120a407"
+    }
+  ],
+  "archived_entries": [
+    {
+      "path": "reviews/input-697ed7a/00-START-HERE.md",
+      "bytes": 2620,
+      "sha256": "f5e9c252af668f5285ec2355090a61828249e8ffc07efb336ace3874876a7f7a"
+    },
+    {
+      "path": "reviews/input-697ed7a/WORLD-DESIGN-002-task.md",
+      "bytes": 21535,
+      "sha256": "4882c704702381157262a16b0159c0d71b8f4aabc4aa28b4a502c38fd2d1c47d"
+    },
+    {
+      "path": "reviews/input-697ed7a/OWNER-direction-WORLD-DESIGN-002-v1.0.md",
+      "bytes": 7675,
+      "sha256": "73ceb7922fcda099d4ea455fbabbdf4e4e79165495328774d43e681dc32692fc"
+    },
+    {
+      "path": "reviews/input-697ed7a/REFERENCE-use-notes-v1.0.md",
+      "bytes": 3767,
+      "sha256": "7bf8da725e9cb33712ac301fb2f1bcfdba9bd5038b30d6edb059e00bf43340de"
+    },
+    {
+      "path": "reviews/input-697ed7a/OWNER-followup-697ed7a-v1.0.md",
+      "bytes": 13578,
+      "sha256": "62b0f74182f438435e74526d1ef10c4bcd3a038d1aa169d0d45ec5e4d3c551fe"
+    },
+    {
+      "path": "reviews/input-697ed7a/manifest.json",
+      "bytes": 6923,
+      "sha256": "37a9e25211b98aee0408bb7f1a27144e71e93007a1b2672b716a8363ea5d5661"
+    },
+    {
+      "path": "reviews/input-697ed7a/review/AUD-697ed7a-world-design-001R-review-v1.0.md",
+      "bytes": 14524,
+      "sha256": "af532b6e4633f1d152e3a3b75de249c3480328b534f10b504f18a501592b4647"
+    },
+    {
+      "path": "reviews/input-697ed7a/review/combat_excerpt.py",
+      "bytes": 4456,
+      "sha256": "ba8f52279ada69cdcfccd0a546b424c5485962be1da394ca4fca8448ec920b76"
+    },
+    {
+      "path": "reviews/input-697ed7a/review/input-crosscheck.json",
+      "bytes": 618,
+      "sha256": "583663f372729a9a61a05fd8a60570ca79841071cca3b95b531603f314385d42"
+    },
+    {
+      "path": "reviews/input-697ed7a/review/manifest.json",
+      "bytes": 984,
+      "sha256": "1a7d59308b003eeea624d37b05546c488faeb142279d49c4bd9eab265682e91a"
+    },
+    {
+      "path": "reviews/input-697ed7a/review/reviewer-probe-results.json",
+      "bytes": 14127,
+      "sha256": "48d34c1657402ba29130cb4363589004cc4749ddd790622152d81245aafb8826"
+    },
+    {
+      "path": "reviews/input-697ed7a/review/reviewer-probes.py",
+      "bytes": 5584,
+      "sha256": "0e8e1e6c54595ba041d4b7df6fbbd5ddf479019ab2752272dccc988b5b6330f2"
+    }
+  ],
+  "reference_archive_committed": false,
+  "authority": "Current user authorization governs; original task/Owner/review/research inputs are not formal DEC."
+}

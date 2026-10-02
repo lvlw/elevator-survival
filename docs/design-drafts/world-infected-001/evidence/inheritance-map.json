@@ -1,0 +1,290 @@
+{
+  "old_count": 57,
+  "mapping": [
+    {
+      "v1_1_id": "normal_five",
+      "v1_2_id": "normal_five",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "early_sample_five",
+      "v1_2_id": "early_sample_five",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "damaged_split_five",
+      "v1_2_id": "damaged_split_five",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "flashlight_five",
+      "v1_2_id": "flashlight_five",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "original_R4_illegal",
+      "v1_2_id": "original_R4_illegal",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "corrected_R4_three",
+      "v1_2_id": "corrected_R4_three",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "cross_region_work",
+      "v1_2_id": "cross_region_work",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "topology_three_power",
+      "v1_2_id": "topology_three_power",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "topology_five_west",
+      "v1_2_id": "topology_five_west",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "topology_five_no_hotel",
+      "v1_2_id": "topology_five_no_hotel",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "A_same_position",
+      "v1_2_id": "A_same_position",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "C_same_position",
+      "v1_2_id": "C_same_position",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "A_defer_same_work",
+      "v1_2_id": "A_defer_same_work",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "C_finish_same_work",
+      "v1_2_id": "C_finish_same_work",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "last_positive_action",
+      "v1_2_id": "last_positive_action",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "zero_next_action",
+      "v1_2_id": "zero_next_action",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "batch_is_multiple_edges",
+      "v1_2_id": "batch_is_multiple_edges",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "zero_triggered_combat",
+      "v1_2_id": "zero_triggered_combat",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "cannot_rest_past_combat",
+      "v1_2_id": "cannot_rest_past_combat",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "unknown_route",
+      "v1_2_id": "unknown_route",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "source_once_across_night",
+      "v1_2_id": "source_once_across_night",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "unique_instance",
+      "v1_2_id": "unique_instance",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "C_quick_needs_information",
+      "v1_2_id": "C_quick_needs_information",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "P_work_wrong_location",
+      "v1_2_id": "P_work_wrong_location",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "zero_self_rescue_pickup",
+      "v1_2_id": "zero_self_rescue_pickup",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "missing_install_material",
+      "v1_2_id": "missing_install_material",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "misused_electronics_rejected",
+      "v1_2_id": "misused_electronics_rejected",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "misused_electronics_recovery",
+      "v1_2_id": "misused_electronics_recovery",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "night_bleeding_death",
+      "v1_2_id": "night_bleeding_death",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "night_infection_terminal",
+      "v1_2_id": "night_infection_hp_loss",
+      "disposition": "replaced infection terminal with actual disease HP damage"
+    },
+    {
+      "v1_1_id": "H_wound_can_kill",
+      "v1_2_id": "H_wound_can_kill",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "no_day_eight",
+      "v1_2_id": "no_day_eight",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "rest_target_not_addition",
+      "v1_2_id": "rest_target_not_addition",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "no_signature_refresh_on_crossing",
+      "v1_2_id": "no_signature_refresh_on_crossing",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "terminal_success",
+      "v1_2_id": "terminal_success",
+      "disposition": "updated points, provenance, real day handoff"
+    },
+    {
+      "v1_1_id": "terminal_voluntary_failure",
+      "v1_2_id": "terminal_voluntary_failure",
+      "disposition": "updated points, provenance, real day handoff"
+    },
+    {
+      "v1_1_id": "terminal_deadline_recall",
+      "v1_2_id": "terminal_deadline_recall",
+      "disposition": "updated points, provenance, real day handoff"
+    },
+    {
+      "v1_1_id": "terminal_death_clears_bank",
+      "v1_2_id": "terminal_death_clears_bank",
+      "disposition": "updated points, provenance, real day handoff"
+    },
+    {
+      "v1_1_id": "terminal_zero_fee_inventory_survive",
+      "v1_2_id": "terminal_zero_fee_inventory_survive",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "low_pipe_actual_repair",
+      "v1_2_id": "low_pipe_actual_repair",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "ground_identity_across_night",
+      "v1_2_id": "ground_identity_across_night",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "unsafe_node_cannot_rest",
+      "v1_2_id": "unsafe_node_cannot_rest",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "C_extract_without_match",
+      "v1_2_id": "C_extract_without_match",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "overweight_rejected",
+      "v1_2_id": "overweight_rejected",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "bandage_does_not_erase_injury",
+      "v1_2_id": "bandage_does_not_erase_injury",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "deadline_suppression_expires_after_effect",
+      "v1_2_id": "deadline_suppression_expires_after_effect",
+      "disposition": "real character day now advances; daily limits refresh exactly once"
+    },
+    {
+      "v1_1_id": "world_cannot_use_bank",
+      "v1_2_id": "world_cannot_use_bank",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "world_cannot_drop_bank",
+      "v1_2_id": "world_cannot_drop_bank",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "pickup_negative_quantity",
+      "v1_2_id": "pickup_negative_quantity",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "pickup_zero_quantity",
+      "v1_2_id": "pickup_zero_quantity",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "drop_negative_quantity",
+      "v1_2_id": "drop_negative_quantity",
+      "disposition": "retained"
+    },
+    {
+      "v1_1_id": "entirely_empty_character_continuation",
+      "v1_2_id": "entirely_empty_character_continuation",
+      "disposition": "replaced free new-task E100/move with mandatory lethal Hub night"
+    },
+    {
+      "v1_1_id": "price_pry_8",
+      "v1_2_id": "price_pry_8",
+      "disposition": "retained expected rejection of the same authored plan, not impossibility of the world"
+    },
+    {
+      "v1_1_id": "pipe_capacity_10",
+      "v1_2_id": "pipe_capacity_10",
+      "disposition": "retained as unsupported fixed-trace coverage: broken pipe requires another authored trace"
+    },
+    {
+      "v1_1_id": "coat_mitigation_0",
+      "v1_2_id": "coat_mitigation_0",
+      "disposition": "retained positive local parameter comparison"
+    },
+    {
+      "v1_1_id": "drop_front_ration_1",
+      "v1_2_id": "drop_front_ration_1",
+      "disposition": "retained expected rejection of the same authored plan, not impossibility of the world"
+    },
+    {
+      "v1_1_id": "topology_remove_C0_H0",
+      "v1_2_id": "topology_remove_C0_H0",
+      "disposition": "retained expected rejection of the same authored plan, not impossibility of the world"
+    }
+  ]
+}

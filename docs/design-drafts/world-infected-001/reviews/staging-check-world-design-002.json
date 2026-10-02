@@ -1,0 +1,21 @@
+{
+  "task": "WORLD-DESIGN-002",
+  "stage_method": "49 reviewed exact paths, no git add -A",
+  "initial_unfiltered_cached_diff_check": {
+    "exit_code": 2,
+    "findings": [
+      {
+        "file": "reviews/input-697ed7a/00-START-HERE.md",
+        "lines": [
+          5,
+          6,
+          7
+        ],
+        "kind": "original Markdown two-space hard breaks"
+      }
+    ]
+  },
+  "index_bytes_verified_for_original_49_files": true,
+  "resolution": "Preserve original bytes. Strict checks for every authored file; only blank-at-eol exception for exact SHA-verified original entry; no config edits.",
+  "original_entry_sha256": "f5e9c252af668f5285ec2355090a61828249e8ffc07efb336ace3874876a7f7a"
+}

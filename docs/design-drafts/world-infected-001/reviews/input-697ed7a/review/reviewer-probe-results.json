@@ -1,0 +1,623 @@
+{
+  "reviewed_sha": "697ed7ae010bbdfcc70aa0eb152d045f283d3606",
+  "scope": "transcribed original combat function + independent arithmetic; not full 57/44 rerun",
+  "arithmetic_checks": {
+    "count": 18,
+    "matched": 18,
+    "cases": [
+      {
+        "id": "normal_D1",
+        "observed": {
+          "nominal": 108,
+          "end_energy": 0,
+          "last_start": 2
+        },
+        "expected": {
+          "nominal": 108,
+          "end_energy": 0,
+          "last_start": 2
+        },
+        "matches": true
+      },
+      {
+        "id": "normal_D2",
+        "observed": {
+          "nominal": 85,
+          "end_energy": 0,
+          "last_start": 3
+        },
+        "expected": {
+          "nominal": 85,
+          "end_energy": 0,
+          "last_start": 3
+        },
+        "matches": true
+      },
+      {
+        "id": "normal_D3",
+        "observed": 76,
+        "expected": 76,
+        "matches": true
+      },
+      {
+        "id": "same_power_three",
+        "observed": 42,
+        "expected": 42,
+        "matches": true
+      },
+      {
+        "id": "same_power_five_west",
+        "observed": 46,
+        "expected": 46,
+        "matches": true
+      },
+      {
+        "id": "same_power_five_east",
+        "observed": 50,
+        "expected": 50,
+        "matches": true
+      },
+      {
+        "id": "same_position_A",
+        "observed": 88,
+        "expected": 88,
+        "matches": true
+      },
+      {
+        "id": "same_position_C",
+        "observed": 85,
+        "expected": 85,
+        "matches": true
+      },
+      {
+        "id": "same_completed_work_A",
+        "observed": 76,
+        "expected": 76,
+        "matches": true
+      },
+      {
+        "id": "same_completed_work_C",
+        "observed": 85,
+        "expected": 85,
+        "matches": true
+      },
+      {
+        "id": "deadline_hp_then_infection_food",
+        "observed": {
+          "hp": 3,
+          "infection": 50,
+          "satiety": 2
+        },
+        "expected": {
+          "hp": 3,
+          "infection": 50,
+          "satiety": 2
+        },
+        "matches": true
+      },
+      {
+        "id": "normal_failure_stock_fee",
+        "observed": {
+          "ration": 4,
+          "metal": 3
+        },
+        "expected": {
+          "ration": 4,
+          "metal": 3
+        },
+        "matches": true
+      },
+      {
+        "id": "deadline_only_old_bank_fee",
+        "observed": {
+          "ration": 2,
+          "metal": 1
+        },
+        "expected": {
+          "ration": 2,
+          "metal": 1
+        },
+        "matches": true
+      },
+      {
+        "id": "load_rounding",
+        "observed": {
+          "local": 3,
+          "cross": 9
+        },
+        "expected": {
+          "local": 3,
+          "cross": 9
+        },
+        "matches": true
+      },
+      {
+        "id": "peak_weight_early",
+        "observed": 21,
+        "expected": 21,
+        "matches": true
+      },
+      {
+        "id": "H_wound_HP4",
+        "observed": 0,
+        "expected": 0,
+        "matches": true
+      },
+      {
+        "id": "failure_pharmacy_trip_energy",
+        "observed": 20,
+        "expected": 20,
+        "matches": true
+      },
+      {
+        "id": "failure_pharmacy_trip_inventory",
+        "observed": {
+          "bandage_gain": 1,
+          "ration_fee": 0,
+          "metal_fee": 0
+        },
+        "expected": {
+          "bandage_gain": 1,
+          "ration_fee": 0,
+          "metal_fee": 0
+        },
+        "matches": true
+      }
+    ]
+  },
+  "combat_probes": [
+    {
+      "id": "baseline_L_full",
+      "input": {
+        "basic_damage": 4,
+        "engaged": false
+      },
+      "rejected": false,
+      "price": 16,
+      "hp": 9,
+      "pipe": 26,
+      "events_after_enemy_defeat": [],
+      "events": [
+        {
+          "ctb": 0,
+          "event": "basic",
+          "hp_before": 12,
+          "hp_after": 12,
+          "enemy_before": 16,
+          "enemy_after": 12,
+          "pipe": 29,
+          "coat": 12,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 0
+        },
+        {
+          "ctb": 100,
+          "event": "defend",
+          "hp_before": 12,
+          "hp_after": 12,
+          "enemy_before": 12,
+          "enemy_after": 12,
+          "pipe": 29,
+          "coat": 12,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 0
+        },
+        {
+          "ctb": 150,
+          "event": "hit",
+          "hp_before": 12,
+          "hp_after": 9,
+          "enemy_before": 12,
+          "enemy_after": 12,
+          "pipe": 29,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        },
+        {
+          "ctb": 180,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 12,
+          "enemy_after": 8,
+          "pipe": 28,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        },
+        {
+          "ctb": 280,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 8,
+          "enemy_after": 4,
+          "pipe": 27,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        },
+        {
+          "ctb": 380,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 4,
+          "enemy_after": 0,
+          "pipe": 26,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        }
+      ]
+    },
+    {
+      "id": "damage_6_early_enemy_defeat",
+      "input": {
+        "basic_damage": 6,
+        "engaged": false
+      },
+      "rejected": false,
+      "price": 16,
+      "hp": 9,
+      "pipe": 26,
+      "events_after_enemy_defeat": [
+        {
+          "ctb": 380,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 0,
+          "enemy_after": 0,
+          "pipe": 26,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        }
+      ],
+      "events": [
+        {
+          "ctb": 0,
+          "event": "basic",
+          "hp_before": 12,
+          "hp_after": 12,
+          "enemy_before": 16,
+          "enemy_after": 10,
+          "pipe": 29,
+          "coat": 12,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 0
+        },
+        {
+          "ctb": 100,
+          "event": "defend",
+          "hp_before": 12,
+          "hp_after": 12,
+          "enemy_before": 10,
+          "enemy_after": 10,
+          "pipe": 29,
+          "coat": 12,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 0
+        },
+        {
+          "ctb": 150,
+          "event": "hit",
+          "hp_before": 12,
+          "hp_after": 9,
+          "enemy_before": 10,
+          "enemy_after": 10,
+          "pipe": 29,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        },
+        {
+          "ctb": 180,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 10,
+          "enemy_after": 4,
+          "pipe": 28,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        },
+        {
+          "ctb": 280,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 4,
+          "enemy_after": 0,
+          "pipe": 27,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        },
+        {
+          "ctb": 380,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 0,
+          "enemy_after": 0,
+          "pipe": 26,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        }
+      ]
+    },
+    {
+      "id": "damage_16_ghost_enemy_attack",
+      "input": {
+        "basic_damage": 16,
+        "engaged": false
+      },
+      "rejected": false,
+      "price": 16,
+      "hp": 9,
+      "pipe": 26,
+      "events_after_enemy_defeat": [
+        {
+          "ctb": 100,
+          "event": "defend",
+          "hp_before": 12,
+          "hp_after": 12,
+          "enemy_before": 0,
+          "enemy_after": 0,
+          "pipe": 29,
+          "coat": 12,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 0
+        },
+        {
+          "ctb": 150,
+          "event": "hit",
+          "hp_before": 12,
+          "hp_after": 9,
+          "enemy_before": 0,
+          "enemy_after": 0,
+          "pipe": 29,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        },
+        {
+          "ctb": 180,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 0,
+          "enemy_after": 0,
+          "pipe": 28,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        },
+        {
+          "ctb": 280,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 0,
+          "enemy_after": 0,
+          "pipe": 27,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        },
+        {
+          "ctb": 380,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 0,
+          "enemy_after": 0,
+          "pipe": 26,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        }
+      ],
+      "events": [
+        {
+          "ctb": 0,
+          "event": "basic",
+          "hp_before": 12,
+          "hp_after": 12,
+          "enemy_before": 16,
+          "enemy_after": 0,
+          "pipe": 29,
+          "coat": 12,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 0
+        },
+        {
+          "ctb": 100,
+          "event": "defend",
+          "hp_before": 12,
+          "hp_after": 12,
+          "enemy_before": 0,
+          "enemy_after": 0,
+          "pipe": 29,
+          "coat": 12,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 0
+        },
+        {
+          "ctb": 150,
+          "event": "hit",
+          "hp_before": 12,
+          "hp_after": 9,
+          "enemy_before": 0,
+          "enemy_after": 0,
+          "pipe": 29,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        },
+        {
+          "ctb": 180,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 0,
+          "enemy_after": 0,
+          "pipe": 28,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        },
+        {
+          "ctb": 280,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 0,
+          "enemy_after": 0,
+          "pipe": 27,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        },
+        {
+          "ctb": 380,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 0,
+          "enemy_after": 0,
+          "pipe": 26,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        }
+      ]
+    },
+    {
+      "id": "reentry_reuses_first_encounter_trace",
+      "input": {
+        "basic_damage": 4,
+        "engaged": true
+      },
+      "rejected": false,
+      "price": 16,
+      "hp": 9,
+      "pipe": 26,
+      "events_after_enemy_defeat": [],
+      "events": [
+        {
+          "ctb": 0,
+          "event": "basic",
+          "hp_before": 12,
+          "hp_after": 12,
+          "enemy_before": 16,
+          "enemy_after": 12,
+          "pipe": 29,
+          "coat": 12,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 0
+        },
+        {
+          "ctb": 100,
+          "event": "defend",
+          "hp_before": 12,
+          "hp_after": 12,
+          "enemy_before": 12,
+          "enemy_after": 12,
+          "pipe": 29,
+          "coat": 12,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 0
+        },
+        {
+          "ctb": 150,
+          "event": "hit",
+          "hp_before": 12,
+          "hp_after": 9,
+          "enemy_before": 12,
+          "enemy_after": 12,
+          "pipe": 29,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        },
+        {
+          "ctb": 180,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 12,
+          "enemy_after": 8,
+          "pipe": 28,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        },
+        {
+          "ctb": 280,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 8,
+          "enemy_after": 4,
+          "pipe": 27,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        },
+        {
+          "ctb": 380,
+          "event": "basic",
+          "hp_before": 9,
+          "hp_after": 9,
+          "enemy_before": 4,
+          "enemy_after": 0,
+          "pipe": 26,
+          "coat": 11,
+          "exposure": 0,
+          "bleeding": false,
+          "risk_cursor": 1
+        }
+      ]
+    }
+  ],
+  "findings": {
+    "F1a": "Trace not rejected when parameter change defeats enemy before later trace events.",
+    "F1b": "First-encounter L_full trace accepted for engaged=True with unchanged HP/intent.",
+    "limits": "These are evidence-checker findings, not production-game defects or a refutation of baseline traces."
+  }
+}

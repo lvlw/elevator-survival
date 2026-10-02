@@ -1,4 +1,6 @@
-# 三图与五图结构比较 v1.1
+# 三图与五图结构比较 v1.1（历史比较）
+
+> **WORLD-DESIGN-002 状态补记：** Owner已确认五地图为当前工作基线，本页保留001R比较理由与当时局部数字，不再作为待重选主案。当前规格见[03](../03-location-design.md)，新病程与经济结果见[08](../08-balance-budget.md)；下文v1.1终局／通过数不得当v1.2结论。
 
 > **WORLD-DESIGN-001R / Draft v1.1 · 2026-10-02。** 本文比较未来连续世界两种内容布局，不修改正式医院，不证明五图必须占五天。推荐五图供Owner实文件审查；三图保留为紧凑备选，不同时维护两套完整规格。
 > 来源：本目录实际v1.0十稿、外部 `infection-world-narrative-proposal-v0.5.md` §6、16—18、`continuous-world-design-register-v0.6.md`，以及61de1a1审查包。当前主案详见 [03](../03-location-design.md)，有限重放与原始账本见 [evidence](../evidence/README.md)。

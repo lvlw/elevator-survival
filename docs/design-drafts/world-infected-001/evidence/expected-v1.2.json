@@ -1,0 +1,20 @@
+{
+  "version": "WORLD-DESIGN-002 Draft v1.2",
+  "recorded_before_first_v1_2_run": true,
+  "independent_expected": {
+    "F1a_damage6": "L HP16 ->10 at0 ->4 at180 ->0 at280; reject authored380 event atomically.",
+    "F1a_damage16": "L killed at0; reject authored100 defend before later150 enemy hit; no post-incapacitation event.",
+    "F1b": "All first traces reject engaged=True even if HP/intent match; C_resume rejects engaged=False.",
+    "night_I110_HP5": "Old I110 +20 =130; disease -3HP =>2; food4->2; alive gets real next day/E100.",
+    "four_routes": "Normal/early/damaged/flashlight unchanged HP4/5/2/5 because settled I stays below60; +120 points each.",
+    "failure_loot_10": "Ten distinct same-supply offers, nine real Hub nights, first HP12 food6: new bandage forfeited every return; points0; HP5 food0 character_day10 E80; no net medicine.",
+    "failure_self_use_10": "Same start; first3 have no medical target, later7 use bandage+1 before failure, offset seven starvation losses; finalHP12 food0 points0, seven new bandages consumed; residual maintenance benefit is real.",
+    "success_10": "Authored normal route plus final H1 hall search12 each task (adds metal1); 10 complete+120, infection therapy40 each, one bandage purchase18 =>782 points. Nine real hub nights, repair actual metal/cloth and feed actual ration; no starter reset.",
+    "SFS": "Two full actual successes separated by20E failing sortie; rewards240, two therapy40, failure30 =>130 before optional purchase18 =>112; real dates, equipment, food and source IDs persist.",
+    "service": "HP1 positive+I>=120 at legalHub quote80; actualHP0 rejects; body20 infection/exposure40 severe80; healthy noop does not erase pure drug flags.",
+    "transactions": "All stale/cancel/insufficient/invalid/repeated claims either declared rejection or exact noop; never partial debit/item/date.",
+    "policy": "Same world task IDs have independent exit policy; current permissive task permits costly failure, synthetic restricted fixture rejects without pretending current task changed.",
+    "boundary": "Fixed trace cannot infer arbitrary future CTB; changed damaged gear needing unmodeled trace is UNSUPPORTED, not proof of impossible gameplay.",
+    "survival_OPTION_comparison": "HP4 start, same10 offers/9 nights: baseline+1 finalHP7, OPTIONAL survival+2 finalHP12; one extra explicitly separate night gives6/11. These are not the HP12 success comparison."
+  }
+}

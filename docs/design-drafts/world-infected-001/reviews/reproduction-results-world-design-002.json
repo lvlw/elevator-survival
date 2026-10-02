@@ -1,0 +1,78 @@
+{
+  "task": "WORLD-DESIGN-002",
+  "kind": "Root independent final two-run reproduction of locked authored inputs; not production gameplay",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "command": "python -B -X utf8 docs/design-drafts/world-infected-001/evidence/check_design.py",
+  "final_version_runs": 2,
+  "runs": [
+    {
+      "run": 1,
+      "exit_code": 0,
+      "counts": {
+        "scenarios": 52,
+        "sensitivity": 5,
+        "joint": 114,
+        "positive": 87,
+        "expected_rejection": 83,
+        "unsupported": 1,
+        "passed": 171,
+        "failed": 0,
+        "supported_expected_matched": 170,
+        "unsupported_recognized": 1
+      },
+      "output_sha256": {
+        "raw-results.json": "65ab549a66a2aa8885d58049f60c7914e85c1a53ae8dea621a46b0a2dc1df37a",
+        "joint-results.json": "a4ba137a5d9b78cff5464d59f8d029add4670c8b9047cd6d479264ab6617ea86",
+        "route-ledgers.json": "80ca1fa28c1ae7c02837646b083b31d39b15433acc39bd1c10f7e996f7d9978e",
+        "route-ledgers.csv": "2f6d1c9d69c8139fbb8950e0870e123f91348d7efc49fcc30d8fc3ce40428877"
+      }
+    },
+    {
+      "run": 2,
+      "exit_code": 0,
+      "counts": {
+        "scenarios": 52,
+        "sensitivity": 5,
+        "joint": 114,
+        "positive": 87,
+        "expected_rejection": 83,
+        "unsupported": 1,
+        "passed": 171,
+        "failed": 0,
+        "supported_expected_matched": 170,
+        "unsupported_recognized": 1
+      },
+      "output_sha256": {
+        "raw-results.json": "65ab549a66a2aa8885d58049f60c7914e85c1a53ae8dea621a46b0a2dc1df37a",
+        "joint-results.json": "a4ba137a5d9b78cff5464d59f8d029add4670c8b9047cd6d479264ab6617ea86",
+        "route-ledgers.json": "80ca1fa28c1ae7c02837646b083b31d39b15433acc39bd1c10f7e996f7d9978e",
+        "route-ledgers.csv": "2f6d1c9d69c8139fbb8950e0870e123f91348d7efc49fcc30d8fc3ce40428877"
+      }
+    }
+  ],
+  "input_sha256": {
+    "parameters.json": "fed5e659bfe74088655fa6af826ab6194824cbf353256e98294a0727327e207f",
+    "scenarios.json": "f3a16d910316ef55dd395b16b7932469d77bf1c2556f0ac48134cc585f5150d2",
+    "check_design.py": "5548de0c6bad77faa74381a5ac0c17cd424936a9df74dab407a9f4158afb166b",
+    "joint_checks.py": "302eb700d036c8c6023d99c0c3e8fbd9640ef1a8dc956cc92da8f823c7d6d8bb",
+    "expected-v1.2.json": "7bc8a9c4456598c1afe18a770c5b970885644eb04d81352dc4da73ee24c38b30"
+  },
+  "input_hashes_verified": true,
+  "unique_case_ids": 171,
+  "supported_expectations_matched": 170,
+  "unsupported_correctly_identified": 1,
+  "deterministic_outputs": true,
+  "output_sha256": {
+    "raw-results.json": "65ab549a66a2aa8885d58049f60c7914e85c1a53ae8dea621a46b0a2dc1df37a",
+    "joint-results.json": "a4ba137a5d9b78cff5464d59f8d029add4670c8b9047cd6d479264ab6617ea86",
+    "route-ledgers.json": "80ca1fa28c1ae7c02837646b083b31d39b15433acc39bd1c10f7e996f7d9978e",
+    "route-ledgers.csv": "2f6d1c9d69c8139fbb8950e0870e123f91348d7efc49fcc30d8fc3ce40428877"
+  },
+  "limits": [
+    "No production imports/tests/build/browser/save or Owner playtest",
+    "Fixed CTB traces and declared task supply only",
+    "Unsupported is not gameplay pass or impossibility proof",
+    "Same Python and OS bytes compared; raw result includes interpreter metadata",
+    "Historical first outputs preserved and not accumulated as additional passes"
+  ]
+}

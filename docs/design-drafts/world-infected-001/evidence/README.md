@@ -1,105 +1,86 @@
-# WORLD-DESIGN-001R 有限设计证据
+# WORLD-DESIGN-002 有限设计证据
 
-**DESIGN DRAFT / Draft v1.1，2026-10-02。** 本目录仅用于检查明确写出的设计候选，不是游戏运行时、第二套可上线引擎、生产存档、Vitest 或全种子验证。最终本分工实际结果：**52个具名场景＋5个参数扰动＝57个预期满足**。其中多项预期就是拒绝输入，不是57条通关路线。
+**DESIGN DRAFT v1.2；未批准为生产规则。** 起始基线697ed7ae010bbdfcc70aa0eb152d045f283d3606。主结果在[08预算稿](../08-balance-budget.md)，经济合同见[11](../11-points-hub-recovery.md)，终局只以[唯一候选稿](../reviews/endgame-candidates-v1.1.md)为准。
 
-完整结果摘要见[08预算](../08-balance-budget.md)。拓扑、动作和实体规则分别见[03](../03-location-design.md)、[06](../06-event-pack.md)、[05](../05-resource-economy.md)。终局规则只按[终局候选](../reviews/endgame-candidates-v1.1.md)试算，惩罚、期限召回、感染终末后的角色处置仍是OPTION，等待Owner审定。
+当前 **87项正例、83项应拒绝输入均符合预期**，另 **1项明确未支持的固定轨迹正确识别**。合计171个预期项＝52个继承场景＋5个继承扰动＋114个联合项。统计passed=171表示观察与预期相符，不能称171项玩法都已支持，更不是171条通关路线。根审两次独立运行和四输出字节一致记录见[reproduction-results-world-design-002.json](../reviews/reproduction-results-world-design-002.json)。
 
-## 运行
+## 1. 复跑与文件
 
-不安装依赖。已使用本机 bundled Python 标准库：
+仅Python标准库，不导入src、生产resolver或npm包。从仓库根目录运行：
 
 ~~~powershell
-& 'C:\Users\zjl\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' 'E:\projects\elevator-survival\docs\design-drafts\world-infected-001\evidence\check_design.py'
+& 'C:\Users\zjl\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' -B -X utf8 'docs/design-drafts/world-infected-001/evidence/check_design.py'
 ~~~
 
-其他机器在仓库根目录有Python 3.10或更高版本时可运行：
+-B禁止产生缓存。脚本只更新本目录的raw-results.json、joint-results.json、route-ledgers.json、route-ledgers.csv；first-run-v1.2.json若已存在则保留。输出UTF-8/LF，CSV为UTF-8 BOM及LF。没有联网、随机抽样、生产测试、保存读写或Git写操作。输出错误使命令失败，不能只凭部分计数说执行完整成功。
 
-~~~text
-python docs/design-drafts/world-infected-001/evidence/check_design.py
-~~~
-
-退出码0表示当前有限输入全部符合各自预期；退出码1表示存在不符。脚本只读取同目录parameters.json和scenarios.json，所有生成输出都写在脚本所在evidence目录。不导入src，不访问网络，不写依赖、配置、正式文档或生产测试。原始输出会覆盖下面三份当前输出，不覆盖first-run-results.json。输入与输出统一LF换行，CSV保留UTF-8 BOM供表格软件读取；避免仓库既有eol=lf过滤改变提交后的参数／脚本和账本指纹。首轮历史JSON只按库要求统一换行，保留原结果和当时输入指纹字段，仍非当前版本的可重建输出。
-
-当前 stdout：
-
-~~~json
-{
-  "counts": {
-    "scenarios": 52,
-    "sensitivity": 5,
-    "passed": 57,
-    "failed": 0
-  },
-  "failures": []
-}
-~~~
-
-## 文件与读取方式
-
-| 文件 | 身份与内容 |
+| 文件 | 职责 |
 | --- | --- |
-| [parameters.json](parameters.json) | 候选数值和内容的计算单源。版本、原SHA、容量/价格/健康、物品尺寸堆叠、来源、动作位置/前置、图/显式发现映射、指定战斗轨迹 |
-| [scenarios.json](scenarios.json) | 作者显式选定的动作序列、前态、预期。所有动作具名；expect为运行前独立手算/规格预期，未由检查器生成 |
-| [check_design.py](check_design.py) | 标准库有限验证。拒绝在副本上发生，不消耗前一稳定账；这只是本账检查方式，不证明生产事务实现 |
-| [raw-results.json](raw-results.json) | 最终真实输出。每条结果、失败位置、按日标价/实扣/日终位置、普通/已消耗/已安装/失物汇总、5项扰动及实际Python版本；记录参数/场景/脚本SHA-256 |
-| [route-ledgers.csv](route-ledgers.csv) | 易读逐步摘要：行动、位置、精力前后、HP、耐久/电量、重量、饱食、感染/暴露、终态与拒绝原因 |
-| [route-ledgers.json](route-ledgers.json) | 每条路线的initial和steps。每步after为完整候选后态，before_state_ref指initial或上一条after，避免重复保存同一前态；detail保留逐事件战斗/日级结算 |
-| [first-run-results.json](first-run-results.json) | 首次执行的历史原始结果41/43，含两处不符。不是当前输入的输出，当前脚本不会重建它 |
+| [parameters.json](parameters.json) | 具名价格、病程、拓扑、物品、固定来源、动作前置、人工CTB轨迹 |
+| [scenarios.json](scenarios.json) | 52个具名动作序列及5个原参数扰动；显式期望/拒绝 |
+| [expected-v1.2.json](expected-v1.2.json) | 本轮首算前保存的独立算术和边界预期 |
+| [check_design.py](check_design.py) | 对单世界人工动作逐步验证；限定中枢、真实角色日和交接事务 |
+| [joint_checks.py](joint_checks.py) | 明确末端夹具、交易边界、来源、十份假设供给及真实串行状态 |
+| [raw-results.json](raw-results.json) | 全部案例的预期/实际/分类与5份执行输入SHA-256 |
+| [joint-results.json](joint-results.json) | 联合结果、逐轮起点/返回/服务摘要、关键完整状态 |
+| [route-ledgers.csv](route-ledgers.csv) | 单世界每动作位置、标价、精力、HP、装备、负重与危险摘要 |
+| [route-ledgers.json](route-ledgers.json) | 每例完整初态和逐步差量；单位按稳定ID更新，不复制每步完整库存 |
+| [inheritance-map.json](inheritance-map.json) | 原57项一对一保留/替换映射，没有悄悄删负例 |
+| [v1.1-baseline/manifest-summary.json](v1.1-baseline/manifest-summary.json) | 原文件字节指纹、大小、57项摘要和可恢复的固定Git位置 |
+| v1.1-baseline内3份小输入 | 原check_design.py、parameters.json、scenarios.json，只作历史回查 |
+| [first-run-v1.2.json](first-run-v1.2.json) | 本轮首轮132项计算结果与运行中断说明，未覆盖为最终171项 |
+| [first-run-results.json](first-run-results.json) | 前轮v1.1首轮41/43历史，不能列为本轮测试 |
 
-raw-results中的peak_weight包含初始夹具与所有步骤前后态，因此独立终局的初始背包也有峰值。route-ledgers中每个单位有稳定ID、物品类型和唯一位置；消费只是改变去向，历史单位仍保留用于审计，不能再使用。安装与交付不生成随身副本。
+旧完整账本可从固定Git提交的同目录路径恢复；没有另复制原193419行快照。历史raw摘要、必要旧输入及来源指纹足以定位当时结论。当前路线JSON约0.76MB，原约4.69MB；联合结果另外保留有界摘要。
 
-终局去向标记只是证据账分类：bank为真正普通携出/旧中枢可用库存；installed用于设施；delivered为成功样本交付，delivered_partial为失败生还中的真实部分成果交付；impounded是权限/未用任务部件退出可用家底后的只读历史，不可取回；fee、consumed、lost也不可再次使用。名称不创建生产容器或存档类型。
+差量重建：先取每例initial；逐step覆盖delta中的同名状态字段；units_upsert按ID替换旧单位或追加新单位，未列单位保持；单位不会删除，消费/安装/交付/回收写入location。geometry和inventory_by_location是派生读值，可由当前单位与相同参数重新计算。拒绝步delta为空，事务前态保持。脚本不授权生产UI自动整理背包。
 
-## 验证合同
+## 2. 有限合同与F1修复
 
-1. 只从所处节点的显式表层观察新增已知路线；不存在每日区域计数器。移动查真实邻接、已知边、实体卡/已解除门路，逐边从同一精力扣费。
-2. 动作查当前节点、已知实际事实、危险、材料、工具和来源是否已兑现。C1快核依L2接口；L2快核依C1匹配；无前置时各自完整核验6破除循环。C3只提取，不能完成C1匹配。供电核查/恢复在五图P1，三图对照为L4。
-3. 来源搜索与显式拾取分开。单位来源ID不会因放下、跨夜或换图改变。仅pack/q1/q2是世界中可用/放下的随身来源；中枢bank不能远程消费。拾取/放下数量必须为正整数。
-4. 每步给一个具体矩形几何见证。主线三大件固定作者选定位置，小件按指定顺序填剩余格；必要的免费手动整理是显式作者假设，不是游戏自动整理功能或全几何求解。
-5. 战斗为人工声明的有限事件轨迹。脚本计算伤害、防御、有效外套磨损、管磨损、指定风险后果、玩家行动后流血、结束CTB→精力及敌剩余状态；不运行通用CTB排程、不重新推导控制延后，也没有RNG。风险字段是条件输入，risk_cursor是已执行检查数量，未模拟种子或验证全部概率树。
-6. 管蓄力按合法日一次，换图不刷新；已触发战斗即便移动后E0也继续，不能休整跳过。战斗轨迹因参数改变不可执行时报告需要新轨迹，不能把该有限模型拒绝解释成生产游戏强制失败。
-7. 日结算按未止血→感染→饱食→生还时新日精力/额度。不回血、不自然清伤。wound仅表示未处理开放伤口；injury保存已有轻伤，即使绷带处理后也不自动删除。只模拟本批用到的这一伤势类型，不含挫伤移动倍率。
-8. 终局夹具按未批准候选逐项核算真实物品和健康，不声称实现Profile、Success、异常召回或下一任务。期限时抑制先参与增长，生还后才到期；没有Day8、普通新日医疗次数或签名刷新。
-9. entirely_empty_character_continuation是最窄追加证据：先用普通路线检查器证明H0失败生还的HP1/流血、三槽空、全部实物空；然后独立算术展示同角色下一任务获得E100而不补装备/药物，在声明的一条已知2E边移动后流血−1死亡。它不是通用跨任务模拟，不证明该活人有生还解，也不以贫穷自动判死；停在稳定中枢或新任务入口时仍可暂停。
-10. 参数扰动重新执行原具名路线，不偷偷改动作或补库存。卡件涨价、低管容量、外套减伤、口粮来源变化和删边均关联实际重算。失败只表示原计划需要重新设计。
+这里只执行已声明事件，不是通用CTB调度、全策略搜索或新游戏引擎。攻击时点、敌意图和伤口/暴露分支由作者指定，检查伤害、护甲、防御、耐久、流血和实际时长→精力。风险游标只是次数审计，没有注入或抽取真实种子。
 
-## 关键检索ID
+- **F1a：失能终止。** L基础伤害6时16→10→4→0，CTB280已结束，原380事件使旧轨迹拒绝；伤害16在CTB0失能，后续防御/敌攻击不再可执行。整份不匹配轨迹被拒绝，原输入不变。另列一个明确重新编写至280结束的轨迹，不能当成脚本自动修旧轨迹。
+- **F1b：接战契约。** 每轨迹明确first/reentry；engaged=true的L即使HP/意图与首次相同也不能用L_full，未曾接战的C不能用C_resume。真实分段C路径保持敌状态和风险游标。
+- **唯一未支持项：pipe_capacity_10。** 旧选定打法遇破损管，有限库没有替代无武器或其他动作轨迹。正确拒绝为broken_pipe_needs_other_trace；不表示游戏禁止所有替代打法或世界无解。
+- **输入先验证。** 非法暴露/感染、余额、active HP0等在休整清零或用药前拒绝，不把坏输入“修复”成合法。进展算术溢出也原子拒绝。
+- **几何和目录纠偏。** 沿用6×4、具名单位、真实快捷容量；消毒剂允许快捷但不允许战斗使用。急救包修为正式1×2/重2/不可堆叠，首期商店仍只卖绷带；急救45未开放，不参与购买收益。
 
-| 主题 | 场景ID |
-| --- | --- |
-| 四条五图完整路线 | normal_five、early_sample_five、damaged_split_five、flashlight_five |
-| 原R4必须拒绝 / 改C1合法 | original_R4_illegal / corrected_R4_three |
-| 同日H调查→L工作 | cross_region_work |
-| 三五图相同供电成果与终点 | topology_three_power、topology_five_west、topology_five_no_hotel |
-| 同位置A/C，以及相同工作成果 | A_same_position、C_same_position、A_defer_same_work、C_finish_same_work |
-| 正值最后行动 / 逐边批处理 / 移动归零已入战 | last_positive_action、batch_is_multiple_edges、zero_triggered_combat |
-| 信息、来源、实体、容量 | unknown_route、C_quick_needs_information、P_work_wrong_location、C_extract_without_match、source_once_across_night、unique_instance、overweight_rejected |
-| 医疗、流血、日终 | zero_self_rescue_pickup、night_bleeding_death、night_infection_terminal、H_wound_can_kill、bandage_does_not_erase_injury |
-| 材料挪用与真实补救 | missing_install_material、misused_electronics_rejected、misused_electronics_recovery、low_pipe_actual_repair |
-| 终局与真实空家底 | terminal_success、terminal_voluntary_failure、terminal_deadline_recall、terminal_death_clears_bank、terminal_zero_fee_inventory_survive、entirely_empty_character_continuation |
-| 日限 / 到期药效 | no_signature_refresh_on_crossing、no_day_eight、deadline_suppression_expires_after_effect |
-| 远程库存 / 非法数量 | world_cannot_use_bank、world_cannot_drop_bank、pickup_negative_quantity、pickup_zero_quantity、drop_negative_quantity |
-| 参数扰动 | price_pry_8、pipe_capacity_10、coat_mitigation_0、drop_front_ration_1、topology_remove_C0_H0 |
+每天只有一个精力池，位置按真实边；已触发危险不能靠休整跳过。最后合法行动允许截0，但下一正耗行动拒绝。来源一次性，跨夜不补货，样本/部件真实提取和安装；未因新终局忽略既有负例。
 
-## 实际执行记录
+## 3. 病程与中枢联合边界
 
-本分工在2026-10-02实际运行上述check_design.py命令五次；下面是过程记录，不把中间通过数累加。
+日级固定顺序：流血扣2；按旧I阶段0/5/10/15/20与真实暴露/抑制计算新I；按新I阶段扣0/1/2/3HP；尚活才饱食−2和饥饿−1；仍活才到期/日次数与角色日。I≥120继续增长和扣血，不单独终止，不偷偷写HP0。任何真实HP0先清角色可用家底并停止后续。
 
-| 次数 | 当时场景＋扰动 | 实际结果 | 后续修订 |
-| --- | --- | --- | --- |
-| 1 | 39＋4 | 41符合、2不符 | 受损D2手算误写82，逐项重加为34＋38＝72；同日签名夹具漏C0—C1已知来路，补真实来路前态，原输出保留 |
-| 2 | 44＋5 | 49符合、0不符 | 增加实际低管维修、原地物跨夜、未清敌节点、未匹配提取、重量及删边扰动 |
-| 3 | 45＋5 | 50符合、0不符 | 自审补绷带处理与轻伤保留，单独保留injury；逐步输出改为前态引用 |
-| 4 | 46＋5 | 51符合、0不符 | 独立终局审阅补末次抑制药效到期；失败样本真实部分交付；零可罚库存收紧命名 |
-| 5 | 52＋5 | 57符合、0不符 | 根审补远程中枢来源、零/负数量拒绝与全空角色单步续接 |
+普通H0成功/失败不补夜，可先明确支付身体服务。下一任务要求真实中枢休整；截止已完成同一夜且生还才角色日+1/E100，再接任务不重复结算。额外自愿中枢夜可用明确extra及当前revision提交，旧请求重放拒绝。任务Day1本身不清药品次数、抑制/镇痛或蓄力；在已准备的新角色日中枢刚用过的标志保留。
 
-写文件曾遇到默认终端helper初始化错误、apply_patch写入失败和Windows命令长度上限；在同一授权目录使用受审的PowerShell只写设计文件、分段写JSON解决。这些不是玩法检查次数。未安装依赖。Root的独立复跑与文档检查由其报告另记，不混入上述五次。
+治疗只在实际HP>0合法中枢：身体20、轻中感染/暴露40、I≥90为80。服务恢复HP、清现有伤病/感染/暴露和临时镇痛/抑制；不改饱食、E、真实日、药品已用额度、蓄力、三槽、库存、任务成果。健康fresh quote是0价原样no-op，纯药效不构成付费理由。已断言这些非目标字段不变，另保存前后完整状态。
 
-## 未覆盖与交付门槛
+已具名检查39拒绝/40恰好支付、P0使用旧真实绷带再冒险过夜、HP1/I130合法成功后120−80＝40、HP0服务/接任务/绷带均不能复活。后一个成功是独立末端夹具；完整受损路线另从HP8起步，末HP2/I25，只需40，不混称完整重病前缀。
 
-- 未运行生产resolver、npm/Vitest、构建、浏览器、存档读写/恢复、真实随机种子或Owner试玩。
-- 未模拟全CTB策略、所有伤口/感染风险树、全医疗药效/使用次数、挫伤移动与叠加伤势、任意背包摆放。
-- 四主线不使用专长优惠；三专长组合、工具箱完整路线、NPC交换、C4维护旁路、C5捷径未重放。因为旁路未纳入，C_extract在本批直接走廊子模型要求C已清敌；不把这个额外条件推广到已合法走旁路的正式候选。
-- 随机医院附加只视为本批未领取的外部机会，不生成虚假保底物品。参数/来源/物品schema的任意畸形输入不是本次穷举范围。
-- 受损起点、末端终局、A/C比较和全空家底都是明示独立夹具，不伪称它们的未给定前缀已经走过。
-- 没有最优路线搜索、平衡结论、所有组合通关保证、长期失败套利证明或三十日经济证明。生产代码和正式规则保持原有范围。
+余额严格整数0..2147483647，拒绝bool、NaN、小数、负、溢出。接任务预留本任务120奖励headroom：MAX−120可接并成功到MAX，MAX−119拒绝不消费offer。服务quote严格整数，40.0与40相等也拒，健康False与0相等也拒；取消、过期、伪造免费价、不足款不发生半结算。购买要求当前角色真实成功资格、足额18和合法目的地；失败不解锁，花完积分不抹资格。维护也绑定revision，旧半修请求不能再扣一块布，新明确请求可继续。
+
+## 4. 连续账与尚存风险
+
+四条完整五图路线按原顺序重算，HP4/5/2/5、感染20/20/25/20、装备与日数保持原值；新增收入都是完整成功120。单世界输入中的初始套装是一次起点，不能当成每次接任务赠品。
+
+联合串行的下一状态直接使用上一结果。补给型正常路线只在最后H1加既有大厅搜索12E取金1，单份标价281，原normal_five仍269。为了真实维护，九段共消费18金、9布；返回食4后先夜到2，再吃2粮到6，共18粮。10成功收入1200、治疗400、只买一次绷18，末余额782；银行粮22绷12金2布1池10、三槽15/7/7。成功—失败—成功以同样真实单位衔接，最终112分。详见[11连续账](../11-points-hub-recovery.md#continuous-economy)与[08](../08-balance-budget.md)。
+
+20E失败压力测试明确提供10个不同任务ID、相同来源、零入场费。10次间9个真夜，不是无限重开旧世界。HP12起点只取药不使用：10新绷回收、末HP5/食0/P0/角色日10/E80；有目标先自用：前3次满血拒绝，后7次真用7绷，末HP12，另3绷回收。额外第10夜另列为HP4/11，避免把返回瞬间与夜后混比。
+
+只启用未批准的生存绷带+2再作HP4对照：基础+1实用10绷末HP7，OPTION+2末HP12；再夜为6/11。该局部例不覆盖完整三专长。新金属先实付6E修旧管10→25再失败的例也保留25。**回收未用新物只阻止直接囤积，不能撤销已兑现的身体/旧装备收益；主案没有证明长期无套利。**
+
+所有容器都保持单位来源：新快栏物照样回收，新装备来源夹具退出可用槽；堆叠/放地/再拾不洗白；选旧快栏消费后新药不替成旧药。两个来源哨兵不得作任务ID。模型历史消费/安装/交付记录只是审计，不可提取、回购或跨任务复用。
+
+十成功历时30角色日、探索标价2810；十失败历时10角色日、标价200。相同任务供给不等于相同耗时、胜率或体验。替代12分入场/有限供给仍只是选择，未偷偷启用来使主案“防刷”，且会带来零家底软锁。
+
+## 5. 历史、实际发现与限制
+
+旧57项全部有映射：night_infection_terminal改为night_infection_hp_loss；旧全空家底免费建立E100后移动致死换为强制Hub真夜先死；deadline抑制在真实生效后结束，并按真实角色日刷新；终局财物改为积分罚和新物回收。其余位置、知识、实体、零E、战斗、伤势、负重等断言保留，未删除旧失败输入去换绿。
+
+首轮132项计算全部匹配，但输出时把换行写成字面反斜杠n导致 **运行中断**，first-run-v1.2原件说明真实情况。修正输出后完整运行；随后独立审查发现维护重放、额外休整、坏暴露洗白、active HP0自救、等值类型、来源哨兵等漏洞，再加具名反例。它们是本轮有限证据脚本的真实修订，不冒充生产可达漏洞；初轮全绿不能证明覆盖完整。
+
+本分工重新读取本轮入口/task/Owner增量/旧followup、嵌套审查和probe，读取AGENTS、正式相关规则/Content、实际十稿及终局、全部既有evidence文件。旧大型JSON/CSV用解析和逐例摘要检查，不声称人工逐行读了193419行。研究只定点使用中枢整备、资格与资源分开、恢复/稳定差异和作者检查方法，不把小说金额或复活机制当本游戏规则。
+
+未执行npm/Vitest、生产构建/源码resolver、浏览器、保存恢复、真实种子或Owner试玩。历史104 files/2153 tests来自此前报告转述，不是本轮新跑。未覆盖通用CTB、全风险树、三专长组合、全部伤势移动/叠加、NPC交换/旁路/捷径、工具箱整条路线、任意排包、生产事务/存档、任意新世界和无限任务供给。十份有界串行不证明通用30日经济成立。
+
+仅修改design-drafts目录的授权证据及08，没有新增生产依赖/规则实现/存档迁移。所有价格与新服务/政策依然Draft，等待分层审定。

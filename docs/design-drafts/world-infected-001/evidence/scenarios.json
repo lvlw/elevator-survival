@@ -1,0 +1,4749 @@
+{
+  "status": "All candidate fixtures; expected endpoints below were hand-derived before execution. They are not production saves.",
+  "limits": [
+    "No random-number generation or all-seed proof.",
+    "Authored CTB event schedule; mitigation, damage, wear, bleeding, duration-to-energy checked; arbitrary CTB choices/control scheduling not simulated.",
+    "No production imports, persistence, UI, schemas, engine, npm tests or player experience testing.",
+    "Fixed source subset only; no claimed randomized hospital bonus pickups.",
+    "Geometry is one deterministic constructive witness per step, not all packings; no physical auto-sort UI is authorized.",
+    "Four full five-map routes; three specialties, optional bypass/shortcut, other risk trees and thirty-day economy not covered.",
+    "Final terminal cases are independent fixtures, not complete action prefixes; terminal penalties/recall remain OPTION awaiting Owner.",
+    "Failed parameter variants mean the same authored plan needs replanning, not the entire world is unsolvable.",
+    "Injury movement multipliers, bruises and general injury stacking are not modeled; route inputs have no movement-modifying bruise.",
+    "The entirely empty character continuation checks only one authored next-task movement arithmetically; it is not an implemented next-task world or proof of a survival solution."
+  ],
+  "scenarios": [
+    {
+      "id": "normal_five",
+      "purpose": "五图正常物流/供电先行；D2在L搜索后同日C工作；指定C暴露/H无伤口",
+      "steps": [
+        {
+          "action": "move",
+          "to": "T0",
+          "label": "移动至T0"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "P1",
+          "label": "移动至P1"
+        },
+        {
+          "action": "power_survey",
+          "label": "power_survey"
+        },
+        {
+          "action": "power_restore",
+          "label": "power_restore"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "L_front_open",
+          "label": "L_front_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_front",
+          "source": "L_front"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_front/ration×2→pack",
+          "source": "L_front",
+          "item": "ration",
+          "quantity": 2,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_front/bandage×1→pack",
+          "source": "L_front",
+          "item": "bandage",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "L_manifest",
+          "label": "L_manifest"
+        },
+        {
+          "action": "move",
+          "to": "L2",
+          "label": "移动至L2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹L_full",
+          "trace": "L_full"
+        },
+        {
+          "action": "L_verify",
+          "label": "L_verify",
+          "method": "full"
+        },
+        {
+          "action": "L_fixation_open",
+          "label": "L_fixation_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "L_extract",
+          "label": "L_extract"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_deep",
+          "source": "L_deep"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/ration×3→pack",
+          "source": "L_deep",
+          "item": "ration",
+          "quantity": 3,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/metal×1→pack",
+          "source": "L_deep",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/cloth×1→pack",
+          "source": "L_deep",
+          "item": "cloth",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "C_match",
+          "label": "C_match",
+          "method": "quick"
+        },
+        {
+          "action": "move",
+          "to": "C4",
+          "label": "移动至C4"
+        },
+        {
+          "action": "C_spares_open",
+          "label": "C_spares_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/metal×1→pack",
+          "source": "C_spares",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/electronics×1→pack",
+          "source": "C_spares",
+          "item": "electronics",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/battery×1→pack",
+          "source": "C_spares",
+          "item": "battery",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "C_channel_open",
+          "label": "C_channel_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "move",
+          "to": "C2",
+          "label": "移动至C2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹C_full",
+          "trace": "C_full"
+        },
+        {
+          "action": "move",
+          "to": "C3",
+          "label": "移动至C3"
+        },
+        {
+          "action": "C_extract",
+          "label": "C_extract"
+        },
+        {
+          "action": "move",
+          "to": "C2",
+          "label": "移动至C2"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "move",
+          "to": "C4",
+          "label": "移动至C4"
+        },
+        {
+          "action": "use",
+          "label": "实耗pack/ration",
+          "item": "ration",
+          "from": "pack"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "H0",
+          "label": "移动至H0"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "H_firedoor_open",
+          "label": "H_firedoor_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "move",
+          "to": "H4",
+          "label": "移动至H4"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹H_full",
+          "trace": "H_full"
+        },
+        {
+          "action": "move",
+          "to": "H5",
+          "label": "移动至H5"
+        },
+        {
+          "action": "sample_extract",
+          "label": "sample_extract",
+          "method": "careful"
+        },
+        {
+          "action": "move",
+          "to": "H4",
+          "label": "移动至H4"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "H8",
+          "label": "移动至H8"
+        },
+        {
+          "action": "install",
+          "label": "install"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H0",
+          "label": "移动至H0"
+        },
+        {
+          "action": "success",
+          "label": "success"
+        }
+      ],
+      "expect": {
+        "final": {
+          "status": "success",
+          "day": 3,
+          "hp": 4,
+          "energy": 24,
+          "infection": 20,
+          "pipe": 15,
+          "coat": 7,
+          "tool_resource": 7
+        },
+        "peak_weight": 20,
+        "days": {
+          "1": {
+            "nominal": 108
+          },
+          "2": {
+            "nominal": 85
+          },
+          "3": {
+            "nominal": 76
+          }
+        }
+      }
+    },
+    {
+      "id": "early_sample_five",
+      "purpose": "五图调查和早样本；实际携带样本直到返航，无缓存",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "search",
+          "label": "搜索H_hall",
+          "source": "H_hall"
+        },
+        {
+          "action": "pickup",
+          "label": "实取H_hall/metal×1→pack",
+          "source": "H_hall",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "H2",
+          "label": "移动至H2"
+        },
+        {
+          "action": "search",
+          "label": "搜索H_pharmacy",
+          "source": "H_pharmacy"
+        },
+        {
+          "action": "pickup",
+          "label": "实取H_pharmacy/bandage×1→q2",
+          "source": "H_pharmacy",
+          "item": "bandage",
+          "quantity": 1,
+          "destination": "q2"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H3",
+          "label": "移动至H3"
+        },
+        {
+          "action": "search",
+          "label": "搜索H_security",
+          "source": "H_security"
+        },
+        {
+          "action": "pickup",
+          "label": "实取H_security/card×1→pack",
+          "source": "H_security",
+          "item": "card",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取H_security/battery×1→pack",
+          "source": "H_security",
+          "item": "battery",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "H4",
+          "label": "移动至H4"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹H_full",
+          "trace": "H_full"
+        },
+        {
+          "action": "move",
+          "to": "H5",
+          "label": "移动至H5"
+        },
+        {
+          "action": "sample_extract",
+          "label": "sample_extract",
+          "method": "careful"
+        },
+        {
+          "action": "move",
+          "to": "H4",
+          "label": "移动至H4"
+        },
+        {
+          "action": "move",
+          "to": "H3",
+          "label": "移动至H3"
+        },
+        {
+          "action": "move",
+          "to": "H6",
+          "label": "移动至H6"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "H_orders",
+          "label": "H_orders"
+        },
+        {
+          "action": "move",
+          "to": "H6",
+          "label": "移动至H6"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "P1",
+          "label": "移动至P1"
+        },
+        {
+          "action": "power_survey",
+          "label": "power_survey"
+        },
+        {
+          "action": "power_restore",
+          "label": "power_restore"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "L_front_open",
+          "label": "L_front_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_front",
+          "source": "L_front"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_front/ration×2→pack",
+          "source": "L_front",
+          "item": "ration",
+          "quantity": 2,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_front/bandage×1→pack",
+          "source": "L_front",
+          "item": "bandage",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "L_manifest",
+          "label": "L_manifest"
+        },
+        {
+          "action": "move",
+          "to": "L2",
+          "label": "移动至L2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹L_full",
+          "trace": "L_full"
+        },
+        {
+          "action": "L_verify",
+          "label": "L_verify",
+          "method": "full"
+        },
+        {
+          "action": "L_fixation_open",
+          "label": "L_fixation_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "use",
+          "label": "实耗pack/bandage",
+          "item": "bandage",
+          "from": "pack"
+        },
+        {
+          "action": "L_extract",
+          "label": "L_extract"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_deep",
+          "source": "L_deep"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/ration×3→pack",
+          "source": "L_deep",
+          "item": "ration",
+          "quantity": 3,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/metal×1→pack",
+          "source": "L_deep",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/cloth×1→pack",
+          "source": "L_deep",
+          "item": "cloth",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "use",
+          "label": "实耗pack/ration",
+          "item": "ration",
+          "from": "pack"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "C_match",
+          "label": "C_match",
+          "method": "quick"
+        },
+        {
+          "action": "move",
+          "to": "C4",
+          "label": "移动至C4"
+        },
+        {
+          "action": "C_spares_open",
+          "label": "C_spares_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/metal×1→pack",
+          "source": "C_spares",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/electronics×1→pack",
+          "source": "C_spares",
+          "item": "electronics",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/battery×1→pack",
+          "source": "C_spares",
+          "item": "battery",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "C_channel_open",
+          "label": "C_channel_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "move",
+          "to": "C2",
+          "label": "移动至C2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹C_full",
+          "trace": "C_full"
+        },
+        {
+          "action": "move",
+          "to": "C3",
+          "label": "移动至C3"
+        },
+        {
+          "action": "C_extract",
+          "label": "C_extract"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "C2",
+          "label": "移动至C2"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "H0",
+          "label": "移动至H0"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "H8",
+          "label": "移动至H8"
+        },
+        {
+          "action": "install",
+          "label": "install"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H0",
+          "label": "移动至H0"
+        },
+        {
+          "action": "success",
+          "label": "success"
+        }
+      ],
+      "expect": {
+        "final": {
+          "status": "success",
+          "day": 4,
+          "hp": 5,
+          "energy": 40,
+          "infection": 20,
+          "pipe": 15,
+          "coat": 7,
+          "tool_resource": 8
+        },
+        "peak_weight": 21,
+        "days": {
+          "1": {
+            "nominal": 84
+          },
+          "2": {
+            "nominal": 100
+          },
+          "3": {
+            "nominal": 89
+          },
+          "4": {
+            "nominal": 45
+          }
+        }
+      }
+    },
+    {
+      "id": "damaged_split_five",
+      "purpose": "HP8独立受损输入，七日分段止损；不宣称已模拟受伤前缀",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "search",
+          "label": "搜索H_hall",
+          "source": "H_hall"
+        },
+        {
+          "action": "pickup",
+          "label": "实取H_hall/metal×1→pack",
+          "source": "H_hall",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "H2",
+          "label": "移动至H2"
+        },
+        {
+          "action": "search",
+          "label": "搜索H_pharmacy",
+          "source": "H_pharmacy"
+        },
+        {
+          "action": "pickup",
+          "label": "实取H_pharmacy/bandage×1→q2",
+          "source": "H_pharmacy",
+          "item": "bandage",
+          "quantity": 1,
+          "destination": "q2"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H3",
+          "label": "移动至H3"
+        },
+        {
+          "action": "search",
+          "label": "搜索H_security",
+          "source": "H_security"
+        },
+        {
+          "action": "pickup",
+          "label": "实取H_security/card×1→pack",
+          "source": "H_security",
+          "item": "card",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取H_security/battery×1→pack",
+          "source": "H_security",
+          "item": "battery",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "H6",
+          "label": "移动至H6"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "H_orders",
+          "label": "H_orders"
+        },
+        {
+          "action": "move",
+          "to": "H6",
+          "label": "移动至H6"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "P1",
+          "label": "移动至P1"
+        },
+        {
+          "action": "power_survey",
+          "label": "power_survey"
+        },
+        {
+          "action": "power_restore",
+          "label": "power_restore"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "L_front_open",
+          "label": "L_front_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_front",
+          "source": "L_front"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_front/ration×2→pack",
+          "source": "L_front",
+          "item": "ration",
+          "quantity": 2,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_front/bandage×1→pack",
+          "source": "L_front",
+          "item": "bandage",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "L_manifest",
+          "label": "L_manifest"
+        },
+        {
+          "action": "move",
+          "to": "L5",
+          "label": "移动至L5"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "C_match",
+          "label": "C_match",
+          "method": "full"
+        },
+        {
+          "action": "move",
+          "to": "C4",
+          "label": "移动至C4"
+        },
+        {
+          "action": "C_spares_open",
+          "label": "C_spares_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/metal×1→pack",
+          "source": "C_spares",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/electronics×1→pack",
+          "source": "C_spares",
+          "item": "electronics",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/battery×1→pack",
+          "source": "C_spares",
+          "item": "battery",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "search",
+          "label": "搜索C_food",
+          "source": "C_food"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_food/ration×1→pack",
+          "source": "C_food",
+          "item": "ration",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "use",
+          "label": "实耗pack/ration",
+          "item": "ration",
+          "from": "pack"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "move",
+          "to": "L2",
+          "label": "移动至L2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹L_full",
+          "trace": "L_full"
+        },
+        {
+          "action": "use",
+          "label": "实耗pack/bandage",
+          "item": "bandage",
+          "from": "pack"
+        },
+        {
+          "action": "L_verify",
+          "label": "L_verify",
+          "method": "quick"
+        },
+        {
+          "action": "L_fixation_open",
+          "label": "L_fixation_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "L_extract",
+          "label": "L_extract"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_deep",
+          "source": "L_deep"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/ration×3→pack",
+          "source": "L_deep",
+          "item": "ration",
+          "quantity": 3,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/metal×1→pack",
+          "source": "L_deep",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/cloth×1→pack",
+          "source": "L_deep",
+          "item": "cloth",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "move",
+          "to": "L5",
+          "label": "移动至L5"
+        },
+        {
+          "action": "use",
+          "label": "实耗pack/ration",
+          "item": "ration",
+          "from": "pack"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "C_channel_open",
+          "label": "C_channel_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "move",
+          "to": "C2",
+          "label": "移动至C2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹C_split",
+          "trace": "C_split"
+        },
+        {
+          "action": "use",
+          "label": "实耗q1/bandage",
+          "item": "bandage",
+          "from": "q1"
+        },
+        {
+          "action": "move",
+          "to": "C4",
+          "label": "移动至C4"
+        },
+        {
+          "action": "use",
+          "label": "实耗pack/ration",
+          "item": "ration",
+          "from": "pack"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "move",
+          "to": "C2",
+          "label": "移动至C2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹C_resume",
+          "trace": "C_resume"
+        },
+        {
+          "action": "use",
+          "label": "实耗q2/bandage",
+          "item": "bandage",
+          "from": "q2"
+        },
+        {
+          "action": "move",
+          "to": "C3",
+          "label": "移动至C3"
+        },
+        {
+          "action": "C_extract",
+          "label": "C_extract"
+        },
+        {
+          "action": "move",
+          "to": "C2",
+          "label": "移动至C2"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "move",
+          "to": "C4",
+          "label": "移动至C4"
+        },
+        {
+          "action": "use",
+          "label": "实耗pack/ration",
+          "item": "ration",
+          "from": "pack"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "H0",
+          "label": "移动至H0"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H3",
+          "label": "移动至H3"
+        },
+        {
+          "action": "move",
+          "to": "H4",
+          "label": "移动至H4"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹H_full",
+          "trace": "H_full"
+        },
+        {
+          "action": "move",
+          "to": "H5",
+          "label": "移动至H5"
+        },
+        {
+          "action": "sample_extract",
+          "label": "sample_extract",
+          "method": "careful"
+        },
+        {
+          "action": "move",
+          "to": "H4",
+          "label": "移动至H4"
+        },
+        {
+          "action": "move",
+          "to": "H3",
+          "label": "移动至H3"
+        },
+        {
+          "action": "move",
+          "to": "H6",
+          "label": "移动至H6"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "H8",
+          "label": "移动至H8"
+        },
+        {
+          "action": "install",
+          "label": "install"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H0",
+          "label": "移动至H0"
+        },
+        {
+          "action": "success",
+          "label": "success"
+        }
+      ],
+      "initial": {
+        "hp": 8
+      },
+      "expect": {
+        "final": {
+          "status": "success",
+          "day": 7,
+          "hp": 2,
+          "energy": 25,
+          "infection": 25,
+          "pipe": 15,
+          "coat": 6,
+          "tool_resource": 8
+        },
+        "peak_weight": 19,
+        "days": {
+          "1": {
+            "nominal": 54
+          },
+          "2": {
+            "nominal": 72
+          },
+          "3": {
+            "nominal": 36
+          },
+          "4": {
+            "nominal": 64
+          },
+          "5": {
+            "nominal": 44
+          },
+          "6": {
+            "nominal": 28
+          },
+          "7": {
+            "nominal": 75
+          }
+        }
+      }
+    },
+    {
+      "id": "flashlight_five",
+      "purpose": "同一早样本/调查成果，实用位手电，物理卡件逐一手工；重新分配日期",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "search",
+          "label": "搜索H_hall",
+          "source": "H_hall",
+          "light": true
+        },
+        {
+          "action": "pickup",
+          "label": "实取H_hall/metal×1→pack",
+          "source": "H_hall",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "H2",
+          "label": "移动至H2"
+        },
+        {
+          "action": "search",
+          "label": "搜索H_pharmacy",
+          "source": "H_pharmacy",
+          "light": true
+        },
+        {
+          "action": "pickup",
+          "label": "实取H_pharmacy/bandage×1→q2",
+          "source": "H_pharmacy",
+          "item": "bandage",
+          "quantity": 1,
+          "destination": "q2"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H3",
+          "label": "移动至H3"
+        },
+        {
+          "action": "search",
+          "label": "搜索H_security",
+          "source": "H_security",
+          "light": true
+        },
+        {
+          "action": "pickup",
+          "label": "实取H_security/card×1→pack",
+          "source": "H_security",
+          "item": "card",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取H_security/battery×1→pack",
+          "source": "H_security",
+          "item": "battery",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "H4",
+          "label": "移动至H4"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹H_full",
+          "trace": "H_full"
+        },
+        {
+          "action": "move",
+          "to": "H5",
+          "label": "移动至H5"
+        },
+        {
+          "action": "sample_extract",
+          "label": "sample_extract",
+          "method": "careful"
+        },
+        {
+          "action": "move",
+          "to": "H4",
+          "label": "移动至H4"
+        },
+        {
+          "action": "move",
+          "to": "H3",
+          "label": "移动至H3"
+        },
+        {
+          "action": "move",
+          "to": "H6",
+          "label": "移动至H6"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "H_orders",
+          "label": "H_orders"
+        },
+        {
+          "action": "move",
+          "to": "H6",
+          "label": "移动至H6"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "P1",
+          "label": "移动至P1"
+        },
+        {
+          "action": "power_survey",
+          "label": "power_survey"
+        },
+        {
+          "action": "power_restore",
+          "label": "power_restore"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "L_front_open",
+          "label": "L_front_open",
+          "method": "manual"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_front",
+          "source": "L_front"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_front/ration×2→pack",
+          "source": "L_front",
+          "item": "ration",
+          "quantity": 2,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_front/bandage×1→pack",
+          "source": "L_front",
+          "item": "bandage",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "L_manifest",
+          "label": "L_manifest"
+        },
+        {
+          "action": "move",
+          "to": "L2",
+          "label": "移动至L2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹L_full",
+          "trace": "L_full"
+        },
+        {
+          "action": "L_verify",
+          "label": "L_verify",
+          "method": "full"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "use",
+          "label": "实耗pack/bandage",
+          "item": "bandage",
+          "from": "pack"
+        },
+        {
+          "action": "L_fixation_open",
+          "label": "L_fixation_open",
+          "method": "manual"
+        },
+        {
+          "action": "L_extract",
+          "label": "L_extract"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_deep",
+          "source": "L_deep"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/ration×3→pack",
+          "source": "L_deep",
+          "item": "ration",
+          "quantity": 3,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/metal×1→pack",
+          "source": "L_deep",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/cloth×1→pack",
+          "source": "L_deep",
+          "item": "cloth",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "use",
+          "label": "实耗pack/ration",
+          "item": "ration",
+          "from": "pack"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "C_match",
+          "label": "C_match",
+          "method": "quick"
+        },
+        {
+          "action": "move",
+          "to": "C4",
+          "label": "移动至C4"
+        },
+        {
+          "action": "C_spares_open",
+          "label": "C_spares_open",
+          "method": "manual"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/metal×1→pack",
+          "source": "C_spares",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/electronics×1→pack",
+          "source": "C_spares",
+          "item": "electronics",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/battery×1→pack",
+          "source": "C_spares",
+          "item": "battery",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "C_channel_open",
+          "label": "C_channel_open",
+          "method": "manual"
+        },
+        {
+          "action": "move",
+          "to": "C2",
+          "label": "移动至C2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹C_full",
+          "trace": "C_full"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "C3",
+          "label": "移动至C3"
+        },
+        {
+          "action": "C_extract",
+          "label": "C_extract"
+        },
+        {
+          "action": "move",
+          "to": "C2",
+          "label": "移动至C2"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "H0",
+          "label": "移动至H0"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "H8",
+          "label": "移动至H8"
+        },
+        {
+          "action": "install",
+          "label": "install"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H0",
+          "label": "移动至H0"
+        },
+        {
+          "action": "success",
+          "label": "success"
+        }
+      ],
+      "initial": {
+        "tool": "flashlight"
+      },
+      "expect": {
+        "final": {
+          "status": "success",
+          "day": 4,
+          "hp": 5,
+          "energy": 27,
+          "infection": 20,
+          "pipe": 15,
+          "coat": 7,
+          "tool_resource": 5
+        },
+        "peak_weight": 21,
+        "days": {
+          "1": {
+            "nominal": 72
+          },
+          "2": {
+            "nominal": 102
+          },
+          "3": {
+            "nominal": 106
+          },
+          "4": {
+            "nominal": 58
+          }
+        }
+      }
+    },
+    {
+      "id": "original_R4_illegal",
+      "purpose": "原三图三日D2在C3快核；保留完整前缀并预期拒绝",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "L_front_open",
+          "label": "L_front_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_front",
+          "source": "L_front"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_front/ration×2→pack",
+          "source": "L_front",
+          "item": "ration",
+          "quantity": 2,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_front/bandage×1→pack",
+          "source": "L_front",
+          "item": "bandage",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "L_manifest",
+          "label": "L_manifest"
+        },
+        {
+          "action": "move",
+          "to": "L2",
+          "label": "移动至L2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹L_full",
+          "trace": "L_full"
+        },
+        {
+          "action": "L_verify",
+          "label": "L_verify",
+          "method": "full"
+        },
+        {
+          "action": "L_fixation_open",
+          "label": "L_fixation_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "L_extract",
+          "label": "L_extract"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_deep",
+          "source": "L_deep"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/ration×3→pack",
+          "source": "L_deep",
+          "item": "ration",
+          "quantity": 3,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/metal×1→pack",
+          "source": "L_deep",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/cloth×1→pack",
+          "source": "L_deep",
+          "item": "cloth",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "L4",
+          "label": "移动至L4"
+        },
+        {
+          "action": "power_survey",
+          "label": "power_survey"
+        },
+        {
+          "action": "power_restore",
+          "label": "power_restore"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "L3",
+          "label": "移动至L3"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "move",
+          "to": "C4",
+          "label": "移动至C4"
+        },
+        {
+          "action": "C_spares_open",
+          "label": "C_spares_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/metal×1→pack",
+          "source": "C_spares",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/electronics×1→pack",
+          "source": "C_spares",
+          "item": "electronics",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/battery×1→pack",
+          "source": "C_spares",
+          "item": "battery",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "C_channel_open",
+          "label": "C_channel_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "move",
+          "to": "C2",
+          "label": "移动至C2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹C_full",
+          "trace": "C_full"
+        },
+        {
+          "action": "move",
+          "to": "C3",
+          "label": "移动至C3"
+        },
+        {
+          "action": "C_match",
+          "label": "C_match",
+          "method": "quick"
+        }
+      ],
+      "topology": "three",
+      "expect_error": "wrong_location",
+      "expect_failed_action": 38
+    },
+    {
+      "id": "corrected_R4_three",
+      "purpose": "仅把C匹配4移到此前实际经过的C1；独立原三图合法对照",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "L_front_open",
+          "label": "L_front_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_front",
+          "source": "L_front"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_front/ration×2→pack",
+          "source": "L_front",
+          "item": "ration",
+          "quantity": 2,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_front/bandage×1→pack",
+          "source": "L_front",
+          "item": "bandage",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "L_manifest",
+          "label": "L_manifest"
+        },
+        {
+          "action": "move",
+          "to": "L2",
+          "label": "移动至L2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹L_full",
+          "trace": "L_full"
+        },
+        {
+          "action": "L_verify",
+          "label": "L_verify",
+          "method": "full"
+        },
+        {
+          "action": "L_fixation_open",
+          "label": "L_fixation_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "L_extract",
+          "label": "L_extract"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_deep",
+          "source": "L_deep"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/ration×3→pack",
+          "source": "L_deep",
+          "item": "ration",
+          "quantity": 3,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/metal×1→pack",
+          "source": "L_deep",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/cloth×1→pack",
+          "source": "L_deep",
+          "item": "cloth",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "L4",
+          "label": "移动至L4"
+        },
+        {
+          "action": "power_survey",
+          "label": "power_survey"
+        },
+        {
+          "action": "power_restore",
+          "label": "power_restore"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "L3",
+          "label": "移动至L3"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "C_match",
+          "label": "C_match",
+          "method": "quick"
+        },
+        {
+          "action": "move",
+          "to": "C4",
+          "label": "移动至C4"
+        },
+        {
+          "action": "C_spares_open",
+          "label": "C_spares_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/metal×1→pack",
+          "source": "C_spares",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/electronics×1→pack",
+          "source": "C_spares",
+          "item": "electronics",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/battery×1→pack",
+          "source": "C_spares",
+          "item": "battery",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "C_channel_open",
+          "label": "C_channel_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "move",
+          "to": "C2",
+          "label": "移动至C2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹C_full",
+          "trace": "C_full"
+        },
+        {
+          "action": "move",
+          "to": "C3",
+          "label": "移动至C3"
+        },
+        {
+          "action": "C_extract",
+          "label": "C_extract"
+        },
+        {
+          "action": "move",
+          "to": "C2",
+          "label": "移动至C2"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "move",
+          "to": "C4",
+          "label": "移动至C4"
+        },
+        {
+          "action": "use",
+          "label": "实耗pack/ration",
+          "item": "ration",
+          "from": "pack"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "H0",
+          "label": "移动至H0"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "H_firedoor_open",
+          "label": "H_firedoor_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "move",
+          "to": "H4",
+          "label": "移动至H4"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹H_full",
+          "trace": "H_full"
+        },
+        {
+          "action": "move",
+          "to": "H5",
+          "label": "移动至H5"
+        },
+        {
+          "action": "sample_extract",
+          "label": "sample_extract",
+          "method": "careful"
+        },
+        {
+          "action": "move",
+          "to": "H4",
+          "label": "移动至H4"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "H8",
+          "label": "移动至H8"
+        },
+        {
+          "action": "install",
+          "label": "install"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H0",
+          "label": "移动至H0"
+        },
+        {
+          "action": "success",
+          "label": "success"
+        }
+      ],
+      "topology": "three",
+      "expect": {
+        "final": {
+          "status": "success",
+          "day": 3,
+          "hp": 4,
+          "energy": 24
+        },
+        "days": {
+          "1": {
+            "nominal": 102
+          },
+          "2": {
+            "nominal": 79
+          },
+          "3": {
+            "nominal": 76
+          }
+        }
+      }
+    },
+    {
+      "id": "cross_region_work",
+      "purpose": "H调查后同日L开柜搜索，区域数不能成门禁",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "H_orders",
+          "label": "H_orders"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "L_front_open",
+          "label": "L_front_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_front",
+          "source": "L_front"
+        }
+      ],
+      "expect": {
+        "final": {
+          "day": 1,
+          "location": "L1",
+          "energy": 68,
+          "tool_resource": 11
+        },
+        "days": {
+          "1": {
+            "nominal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "topology_three_power",
+      "purpose": "相同H0→L0且供电已恢复，三图",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "move",
+          "to": "L3",
+          "label": "移动至L3"
+        },
+        {
+          "action": "move",
+          "to": "L4",
+          "label": "移动至L4"
+        },
+        {
+          "action": "power_survey",
+          "label": "power_survey"
+        },
+        {
+          "action": "power_restore",
+          "label": "power_restore"
+        },
+        {
+          "action": "move",
+          "to": "L3",
+          "label": "移动至L3"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        }
+      ],
+      "topology": "three",
+      "expect": {
+        "final": {
+          "location": "L0",
+          "energy": 58
+        },
+        "days": {
+          "1": {
+            "nominal": 42
+          }
+        }
+      }
+    },
+    {
+      "id": "topology_five_west",
+      "purpose": "同成果同终点，五图经过酒店入口而不进服务区",
+      "steps": [
+        {
+          "action": "move",
+          "to": "T0",
+          "label": "移动至T0"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "P1",
+          "label": "移动至P1"
+        },
+        {
+          "action": "power_survey",
+          "label": "power_survey"
+        },
+        {
+          "action": "power_restore",
+          "label": "power_restore"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        }
+      ],
+      "expect": {
+        "final": {
+          "location": "L0",
+          "energy": 54
+        },
+        "days": {
+          "1": {
+            "nominal": 46
+          }
+        }
+      }
+    },
+    {
+      "id": "topology_five_no_hotel",
+      "purpose": "同成果同终点，五图不经过酒店入口",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "P1",
+          "label": "移动至P1"
+        },
+        {
+          "action": "power_survey",
+          "label": "power_survey"
+        },
+        {
+          "action": "power_restore",
+          "label": "power_restore"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        }
+      ],
+      "expect": {
+        "final": {
+          "location": "L0",
+          "energy": 50
+        },
+        "days": {
+          "1": {
+            "nominal": 50
+          }
+        }
+      }
+    },
+    {
+      "id": "A_same_position",
+      "purpose": "同一P1后续位置：先走A级，次日走回",
+      "steps": [
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "T0",
+          "label": "移动至T0"
+        },
+        {
+          "action": "move",
+          "to": "T1",
+          "label": "移动至T1"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "T0",
+          "label": "移动至T0"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "P1",
+          "label": "移动至P1"
+        }
+      ],
+      "initial": {
+        "location": "P1",
+        "energy": 12,
+        "hp": 9,
+        "facts": [
+          "power_survey"
+        ],
+        "known_edges": [
+          "P0|P1",
+          "P0|T0",
+          "T0|T1"
+        ]
+      },
+      "expect": {
+        "final": {
+          "location": "P1",
+          "day": 2,
+          "energy": 88,
+          "hp": 9,
+          "satiety": 4
+        }
+      }
+    },
+    {
+      "id": "C_same_position",
+      "purpose": "同一P1后续位置：原地C过夜",
+      "steps": [
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        }
+      ],
+      "initial": {
+        "location": "P1",
+        "energy": 12,
+        "hp": 9,
+        "facts": [
+          "power_survey"
+        ],
+        "known_edges": [
+          "P0|P1",
+          "P0|T0",
+          "T0|T1"
+        ]
+      },
+      "expect": {
+        "final": {
+          "location": "P1",
+          "day": 2,
+          "energy": 85,
+          "hp": 9,
+          "satiety": 4
+        }
+      }
+    },
+    {
+      "id": "A_defer_same_work",
+      "purpose": "同位置同已完成供电：A方案将本可今日做的工作推迟",
+      "steps": [
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "T0",
+          "label": "移动至T0"
+        },
+        {
+          "action": "move",
+          "to": "T1",
+          "label": "移动至T1"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "move",
+          "to": "T0",
+          "label": "移动至T0"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "P1",
+          "label": "移动至P1"
+        },
+        {
+          "action": "power_restore",
+          "label": "power_restore"
+        }
+      ],
+      "initial": {
+        "location": "P1",
+        "energy": 12,
+        "hp": 9,
+        "facts": [
+          "power_survey"
+        ],
+        "known_edges": [
+          "P0|P1",
+          "P0|T0",
+          "T0|T1"
+        ]
+      },
+      "expect": {
+        "final": {
+          "location": "P1",
+          "day": 2,
+          "energy": 76
+        }
+      }
+    },
+    {
+      "id": "C_finish_same_work",
+      "purpose": "同位置同已完成供电：今日先工程、原地C过夜",
+      "steps": [
+        {
+          "action": "power_restore",
+          "label": "power_restore"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        }
+      ],
+      "initial": {
+        "location": "P1",
+        "energy": 12,
+        "hp": 9,
+        "facts": [
+          "power_survey"
+        ],
+        "known_edges": [
+          "P0|P1",
+          "P0|T0",
+          "T0|T1"
+        ]
+      },
+      "expect": {
+        "final": {
+          "location": "P1",
+          "day": 2,
+          "energy": 85
+        }
+      }
+    },
+    {
+      "id": "last_positive_action",
+      "purpose": "E1可完成12E工程，无债，无HP费",
+      "steps": [
+        {
+          "action": "power_restore",
+          "label": "power_restore"
+        }
+      ],
+      "initial": {
+        "location": "P1",
+        "energy": 1,
+        "facts": [
+          "power_survey"
+        ]
+      },
+      "expect": {
+        "final": {
+          "energy": 0,
+          "hp": 12,
+          "location": "P1"
+        },
+        "days": {
+          "1": {
+            "nominal": 12,
+            "actual": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "zero_next_action",
+      "purpose": "上一行动归零后禁止新移动",
+      "steps": [
+        {
+          "action": "power_restore",
+          "label": "power_restore"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        }
+      ],
+      "initial": {
+        "location": "P1",
+        "energy": 1,
+        "facts": [
+          "power_survey"
+        ],
+        "known_edges": [
+          "P0|P1"
+        ]
+      },
+      "expect_error": "zero_energy"
+    },
+    {
+      "id": "batch_is_multiple_edges",
+      "purpose": "UI路线H0→H1→H7逐边，E1第一边归零后第二边拒绝",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        }
+      ],
+      "initial": {
+        "energy": 1
+      },
+      "expect_error": "zero_energy",
+      "expect": {
+        "final": {
+          "location": "H1",
+          "energy": 0
+        }
+      }
+    },
+    {
+      "id": "zero_triggered_combat",
+      "purpose": "E2移动进入L2归零仍结算已触发战斗",
+      "steps": [
+        {
+          "action": "move",
+          "to": "L2",
+          "label": "移动至L2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹L_full",
+          "trace": "L_full"
+        }
+      ],
+      "initial": {
+        "location": "L1",
+        "energy": 2
+      },
+      "expect": {
+        "final": {
+          "energy": 0,
+          "hp": 9,
+          "location": "L2"
+        },
+        "days": {
+          "1": {
+            "nominal": 18,
+            "actual": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "cannot_rest_past_combat",
+      "purpose": "已触发危险不能休整",
+      "steps": [
+        {
+          "action": "move",
+          "to": "L2",
+          "label": "移动至L2"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        }
+      ],
+      "initial": {
+        "location": "L1",
+        "energy": 2
+      },
+      "expect_error": "pending_encounter"
+    },
+    {
+      "id": "unknown_route",
+      "purpose": "真实边存在但未观察，不从作者图补地图",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H3",
+          "label": "移动至H3"
+        }
+      ],
+      "initial": {
+        "location": "H4",
+        "known_edges": [
+          "H1|H4"
+        ],
+        "enemies": {
+          "H": {
+            "hp": 0
+          }
+        }
+      },
+      "expect_error": "unknown_edge"
+    },
+    {
+      "id": "source_once_across_night",
+      "purpose": "同来源经搜索/拾取/过夜后仍不能重搜",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "search",
+          "label": "搜索H_hall",
+          "source": "H_hall"
+        },
+        {
+          "action": "pickup",
+          "label": "实取H_hall/metal×1→pack",
+          "source": "H_hall",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "search",
+          "label": "搜索H_hall",
+          "source": "H_hall"
+        }
+      ],
+      "expect_error": "source_already_revealed"
+    },
+    {
+      "id": "unique_instance",
+      "purpose": "独立非法快照输入同ID两实体，应拒绝",
+      "steps": [],
+      "initial": {
+        "items": [
+          {
+            "id": "duplicate",
+            "type": "metal"
+          },
+          {
+            "id": "duplicate",
+            "type": "metal"
+          }
+        ]
+      },
+      "expect_error": "duplicate_instance"
+    },
+    {
+      "id": "C_quick_needs_information",
+      "purpose": "C1没有L2现场接口时快核应拒绝",
+      "steps": [
+        {
+          "action": "C_match",
+          "label": "C_match",
+          "method": "quick"
+        }
+      ],
+      "initial": {
+        "location": "C1"
+      },
+      "expect_error": "missing_quick_information"
+    },
+    {
+      "id": "P_work_wrong_location",
+      "purpose": "五图不能仍在旧L支路/登记室恢复供电",
+      "steps": [
+        {
+          "action": "power_restore",
+          "label": "power_restore"
+        }
+      ],
+      "initial": {
+        "location": "L1",
+        "facts": [
+          "power_survey"
+        ]
+      },
+      "expect_error": "wrong_location"
+    },
+    {
+      "id": "zero_self_rescue_pickup",
+      "purpose": "最后搜索归零仍可取已揭示绷带并实耗治疗",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H2",
+          "label": "移动至H2"
+        },
+        {
+          "action": "search",
+          "label": "搜索H_pharmacy",
+          "source": "H_pharmacy"
+        },
+        {
+          "action": "pickup",
+          "label": "实取H_pharmacy/bandage×1→pack",
+          "source": "H_pharmacy",
+          "item": "bandage",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "use",
+          "label": "实耗pack/bandage",
+          "item": "bandage",
+          "from": "pack"
+        }
+      ],
+      "initial": {
+        "energy": 5,
+        "hp": 8
+      },
+      "expect": {
+        "final": {
+          "energy": 0,
+          "hp": 9,
+          "location": "H2"
+        },
+        "days": {
+          "1": {
+            "nominal": 16,
+            "actual": 5
+          }
+        }
+      }
+    },
+    {
+      "id": "missing_install_material",
+      "purpose": "材料不足拒绝，不能享受精力让利",
+      "steps": [
+        {
+          "action": "install",
+          "label": "install"
+        }
+      ],
+      "initial": {
+        "location": "H8",
+        "energy": 1,
+        "facts": [
+          "power"
+        ],
+        "items": [
+          {
+            "type": "control"
+          },
+          {
+            "type": "module"
+          },
+          {
+            "type": "metal"
+          }
+        ]
+      },
+      "expect_error": "missing_item:electronics",
+      "expect": {
+        "final": {
+          "energy": 1
+        }
+      }
+    },
+    {
+      "id": "misused_electronics_rejected",
+      "purpose": "真实电子用于维修后不能同时安装",
+      "steps": [
+        {
+          "action": "repair",
+          "label": "repair",
+          "target": "toolkit"
+        },
+        {
+          "action": "install",
+          "label": "install"
+        }
+      ],
+      "initial": {
+        "location": "H8",
+        "tool": "toolkit",
+        "tool_resource": 3,
+        "facts": [
+          "power"
+        ],
+        "known_edges": [
+          "H7|H8",
+          "H7|L0"
+        ],
+        "items": [
+          {
+            "type": "control"
+          },
+          {
+            "type": "module"
+          },
+          {
+            "type": "metal",
+            "quantity": 2
+          },
+          {
+            "type": "electronics"
+          }
+        ]
+      },
+      "expect_error": "missing_item:electronics",
+      "expect": {
+        "final": {
+          "energy": 92,
+          "tool_resource": 6
+        }
+      }
+    },
+    {
+      "id": "misused_electronics_recovery",
+      "purpose": "误用材料后必须实际往返L3未兑现料架补救",
+      "steps": [
+        {
+          "action": "repair",
+          "label": "repair",
+          "target": "toolkit"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "move",
+          "to": "L3",
+          "label": "移动至L3"
+        },
+        {
+          "action": "L_spares_open",
+          "label": "L_spares_open",
+          "method": "manual"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_spares",
+          "source": "L_spares"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_spares/electronics×1→pack",
+          "source": "L_spares",
+          "item": "electronics",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "H8",
+          "label": "移动至H8"
+        },
+        {
+          "action": "install",
+          "label": "install",
+          "expect": {
+            "facts": [
+              "L_spares_open",
+              "hospital_model",
+              "installed",
+              "power"
+            ]
+          }
+        }
+      ],
+      "initial": {
+        "location": "H8",
+        "tool": "toolkit",
+        "tool_resource": 3,
+        "facts": [
+          "power"
+        ],
+        "known_edges": [
+          "H7|H8",
+          "H7|L0"
+        ],
+        "items": [
+          {
+            "type": "control"
+          },
+          {
+            "type": "module"
+          },
+          {
+            "type": "metal",
+            "quantity": 2
+          },
+          {
+            "type": "electronics"
+          }
+        ]
+      },
+      "expect": {
+        "final": {
+          "location": "H8",
+          "energy": 30,
+          "tool_resource": 6
+        },
+        "days": {
+          "1": {
+            "nominal": 70
+          }
+        }
+      }
+    },
+    {
+      "id": "night_bleeding_death",
+      "purpose": "HP2流血阶段先死，食物/感染/精力阶段不得继续",
+      "steps": [
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        }
+      ],
+      "initial": {
+        "location": "C4",
+        "hp": 2,
+        "energy": 7,
+        "bleeding": true,
+        "exposure": 1
+      },
+      "expect": {
+        "final": {
+          "status": "death",
+          "day": 1,
+          "hp": 0,
+          "energy": 7,
+          "satiety": 6,
+          "infection": 0,
+          "exposure": 1
+        }
+      }
+    },
+    {
+      "id": "night_infection_terminal",
+      "purpose": "感染110先到130终末，不扣食物、不发新日精力",
+      "steps": [
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        }
+      ],
+      "initial": {
+        "location": "C4",
+        "hp": 5,
+        "infection": 110,
+        "energy": 7,
+        "satiety": 4
+      },
+      "expect": {
+        "final": {
+          "status": "infection_terminal",
+          "day": 1,
+          "hp": 5,
+          "infection": 130,
+          "satiety": 4,
+          "energy": 7
+        }
+      }
+    },
+    {
+      "id": "H_wound_can_kill",
+      "purpose": "受损HP4指定护工伤口分支，两次玩家流血导致同刻敌失能/人死亡",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H4",
+          "label": "移动至H4"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹H_wound",
+          "trace": "H_wound"
+        }
+      ],
+      "initial": {
+        "location": "H3",
+        "hp": 4,
+        "items": [
+          {
+            "type": "card"
+          }
+        ]
+      },
+      "expect": {
+        "final": {
+          "status": "death",
+          "hp": 0,
+          "pipe": 25,
+          "coat": 11
+        }
+      }
+    },
+    {
+      "id": "no_day_eight",
+      "purpose": "Day7普通休整不产生Day8",
+      "steps": [
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        }
+      ],
+      "initial": {
+        "day": 7,
+        "location": "C4"
+      },
+      "expect_error": "no_day_eight"
+    },
+    {
+      "id": "rest_target_not_addition",
+      "purpose": "当前95原地C休整→85，HP不回",
+      "steps": [
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        }
+      ],
+      "initial": {
+        "energy": 95,
+        "hp": 9
+      },
+      "expect": {
+        "final": {
+          "day": 2,
+          "energy": 85,
+          "hp": 9,
+          "satiety": 4
+        }
+      }
+    },
+    {
+      "id": "no_signature_refresh_on_crossing",
+      "purpose": "C完整战斗同日跨图不刷新管蓄力，H再用应拒绝",
+      "steps": [
+        {
+          "action": "move",
+          "to": "C2",
+          "label": "移动至C2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹C_full",
+          "trace": "C_full"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "H0",
+          "label": "移动至H0"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H3",
+          "label": "移动至H3"
+        },
+        {
+          "action": "move",
+          "to": "H4",
+          "label": "移动至H4"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹H_full",
+          "trace": "H_full"
+        }
+      ],
+      "initial": {
+        "location": "C1",
+        "facts": [
+          "C_channel_open"
+        ],
+        "items": [
+          {
+            "type": "card"
+          }
+        ],
+        "known_edges": [
+          "C0|C1"
+        ]
+      },
+      "expect_error": "signature_already_used_today"
+    },
+    {
+      "id": "terminal_success",
+      "purpose": "独立末端夹具：H0成功真实样本交付、普通携出延续，无末夜",
+      "steps": [
+        {
+          "action": "success",
+          "label": "success"
+        }
+      ],
+      "initial": {
+        "location": "H0",
+        "day": 5,
+        "energy": 0,
+        "hp": 5,
+        "satiety": 4,
+        "infection": 25,
+        "exposure": 1,
+        "bleeding": true,
+        "wound": true,
+        "pipe": 15,
+        "coat": 6,
+        "tool_resource": 8,
+        "initial_bandage": false,
+        "items": [
+          {
+            "type": "ration",
+            "quantity": 3,
+            "location": "bank"
+          },
+          {
+            "type": "metal",
+            "quantity": 2,
+            "location": "bank"
+          },
+          {
+            "type": "ration",
+            "quantity": 2
+          },
+          {
+            "type": "metal",
+            "quantity": 2
+          },
+          {
+            "type": "cloth"
+          },
+          {
+            "type": "battery",
+            "quantity": 2
+          },
+          {
+            "type": "bandage"
+          },
+          {
+            "type": "sample"
+          },
+          {
+            "type": "card"
+          },
+          {
+            "type": "firstaid",
+            "location": "bank"
+          }
+        ],
+        "facts": [
+          "installed"
+        ]
+      },
+      "expect": {
+        "final": {
+          "status": "success",
+          "hp": 5,
+          "satiety": 4,
+          "infection": 25,
+          "exposure": 1,
+          "energy": 0,
+          "next_activity": "same_character_hub_preparation",
+          "inventory_by_location": {
+            "bank": {
+              "ration": 5,
+              "metal": 4,
+              "cloth": 1,
+              "battery": 2,
+              "bandage": 1,
+              "firstaid": 1
+            },
+            "delivered": {
+              "sample": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "terminal_voluntary_failure",
+      "purpose": "独立末端夹具：H0主动失败，普通实物延续后有限罚粮1金1",
+      "steps": [
+        {
+          "action": "failure",
+          "label": "failure"
+        }
+      ],
+      "initial": {
+        "location": "H0",
+        "day": 5,
+        "energy": 0,
+        "hp": 5,
+        "satiety": 4,
+        "infection": 25,
+        "exposure": 1,
+        "bleeding": true,
+        "wound": true,
+        "pipe": 15,
+        "coat": 6,
+        "tool_resource": 8,
+        "initial_bandage": false,
+        "items": [
+          {
+            "type": "ration",
+            "quantity": 3,
+            "location": "bank"
+          },
+          {
+            "type": "metal",
+            "quantity": 2,
+            "location": "bank"
+          },
+          {
+            "type": "ration",
+            "quantity": 2
+          },
+          {
+            "type": "metal",
+            "quantity": 2
+          },
+          {
+            "type": "cloth"
+          },
+          {
+            "type": "battery",
+            "quantity": 2
+          },
+          {
+            "type": "bandage"
+          },
+          {
+            "type": "sample"
+          },
+          {
+            "type": "card"
+          },
+          {
+            "type": "firstaid",
+            "location": "bank"
+          }
+        ]
+      },
+      "expect": {
+        "final": {
+          "status": "failure",
+          "hp": 5,
+          "infection": 25,
+          "exposure": 1,
+          "inventory_by_location": {
+            "bank": {
+              "ration": 4,
+              "metal": 3,
+              "cloth": 1,
+              "battery": 2,
+              "bandage": 1,
+              "firstaid": 1
+            },
+            "fee": {
+              "ration": 1,
+              "metal": 1
+            },
+            "impounded": {
+              "card": 1
+            },
+            "delivered_partial": {
+              "sample": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "terminal_deadline_recall",
+      "purpose": "未批准终局候选：异地到期危险先结，再异常召回、包快全失、三槽保留",
+      "steps": [
+        {
+          "action": "deadline",
+          "label": "deadline"
+        }
+      ],
+      "initial": {
+        "location": "C4",
+        "day": 7,
+        "energy": 0,
+        "hp": 5,
+        "satiety": 4,
+        "infection": 25,
+        "exposure": 1,
+        "bleeding": true,
+        "wound": true,
+        "pipe": 15,
+        "coat": 6,
+        "tool_resource": 8,
+        "initial_bandage": false,
+        "items": [
+          {
+            "type": "ration",
+            "quantity": 3,
+            "location": "bank"
+          },
+          {
+            "type": "metal",
+            "quantity": 2,
+            "location": "bank"
+          },
+          {
+            "type": "ration",
+            "quantity": 2
+          },
+          {
+            "type": "metal",
+            "quantity": 2
+          },
+          {
+            "type": "cloth"
+          },
+          {
+            "type": "battery",
+            "quantity": 2
+          },
+          {
+            "type": "bandage"
+          },
+          {
+            "type": "sample"
+          },
+          {
+            "type": "card"
+          },
+          {
+            "type": "firstaid",
+            "location": "bank"
+          }
+        ]
+      },
+      "expect": {
+        "final": {
+          "status": "deadline_recall",
+          "day": 7,
+          "hp": 3,
+          "satiety": 2,
+          "infection": 50,
+          "exposure": 0,
+          "energy": 0,
+          "equipped_retained": true,
+          "inventory_by_location": {
+            "bank": {
+              "ration": 2,
+              "metal": 1,
+              "firstaid": 1
+            },
+            "fee": {
+              "ration": 1,
+              "metal": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "terminal_death_clears_bank",
+      "purpose": "实际死亡清空此角色中枢及随身家底，死亡不被召回覆盖",
+      "steps": [
+        {
+          "action": "deadline",
+          "label": "deadline"
+        }
+      ],
+      "initial": {
+        "location": "C4",
+        "day": 7,
+        "energy": 0,
+        "hp": 2,
+        "satiety": 4,
+        "infection": 25,
+        "exposure": 1,
+        "bleeding": true,
+        "wound": true,
+        "pipe": 15,
+        "coat": 6,
+        "tool_resource": 8,
+        "initial_bandage": false,
+        "items": [
+          {
+            "type": "ration",
+            "quantity": 3,
+            "location": "bank"
+          },
+          {
+            "type": "metal",
+            "quantity": 2,
+            "location": "bank"
+          },
+          {
+            "type": "ration",
+            "quantity": 2
+          },
+          {
+            "type": "metal",
+            "quantity": 2
+          },
+          {
+            "type": "cloth"
+          },
+          {
+            "type": "battery",
+            "quantity": 2
+          },
+          {
+            "type": "bandage"
+          },
+          {
+            "type": "sample"
+          },
+          {
+            "type": "card"
+          },
+          {
+            "type": "firstaid",
+            "location": "bank"
+          }
+        ]
+      },
+      "expect": {
+        "final": {
+          "status": "death",
+          "hp": 0,
+          "infection": 25,
+          "exposure": 1,
+          "satiety": 4,
+          "equipped_retained": false,
+          "next_activity": "new_character_setup"
+        }
+      }
+    },
+    {
+      "id": "terminal_zero_fee_inventory_survive",
+      "purpose": "没有可罚普通库存则罚0，三槽基础装备仍在；不宣称全角色家底为空",
+      "steps": [
+        {
+          "action": "failure",
+          "label": "failure"
+        }
+      ],
+      "initial": {
+        "location": "H0",
+        "energy": 0,
+        "hp": 1,
+        "initial_bandage": false
+      },
+      "expect": {
+        "final": {
+          "status": "failure",
+          "hp": 1,
+          "equipped_retained": true
+        }
+      }
+    },
+    {
+      "id": "low_pipe_actual_repair",
+      "purpose": "管10/30独立受损起点；第三日用真实金属维修后同一路线合法",
+      "steps": [
+        {
+          "action": "move",
+          "to": "T0",
+          "label": "移动至T0"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "P1",
+          "label": "移动至P1"
+        },
+        {
+          "action": "power_survey",
+          "label": "power_survey"
+        },
+        {
+          "action": "power_restore",
+          "label": "power_restore"
+        },
+        {
+          "action": "move",
+          "to": "P0",
+          "label": "移动至P0"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "L_front_open",
+          "label": "L_front_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_front",
+          "source": "L_front"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_front/ration×2→pack",
+          "source": "L_front",
+          "item": "ration",
+          "quantity": 2,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_front/bandage×1→pack",
+          "source": "L_front",
+          "item": "bandage",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "L_manifest",
+          "label": "L_manifest"
+        },
+        {
+          "action": "move",
+          "to": "L2",
+          "label": "移动至L2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹L_full",
+          "trace": "L_full"
+        },
+        {
+          "action": "L_verify",
+          "label": "L_verify",
+          "method": "full"
+        },
+        {
+          "action": "L_fixation_open",
+          "label": "L_fixation_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "L_extract",
+          "label": "L_extract"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "search",
+          "label": "搜索L_deep",
+          "source": "L_deep"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/ration×3→pack",
+          "source": "L_deep",
+          "item": "ration",
+          "quantity": 3,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/metal×1→pack",
+          "source": "L_deep",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取L_deep/cloth×1→pack",
+          "source": "L_deep",
+          "item": "cloth",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "L1",
+          "label": "移动至L1"
+        },
+        {
+          "action": "move",
+          "to": "L0",
+          "label": "移动至L0"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "C_match",
+          "label": "C_match",
+          "method": "quick"
+        },
+        {
+          "action": "move",
+          "to": "C4",
+          "label": "移动至C4"
+        },
+        {
+          "action": "C_spares_open",
+          "label": "C_spares_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/metal×1→pack",
+          "source": "C_spares",
+          "item": "metal",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/electronics×1→pack",
+          "source": "C_spares",
+          "item": "electronics",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "pickup",
+          "label": "实取C_spares/battery×1→pack",
+          "source": "C_spares",
+          "item": "battery",
+          "quantity": 1,
+          "destination": "pack"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "C_channel_open",
+          "label": "C_channel_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "move",
+          "to": "C2",
+          "label": "移动至C2"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹C_full",
+          "trace": "C_full"
+        },
+        {
+          "action": "move",
+          "to": "C3",
+          "label": "移动至C3"
+        },
+        {
+          "action": "C_extract",
+          "label": "C_extract"
+        },
+        {
+          "action": "move",
+          "to": "C2",
+          "label": "移动至C2"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "move",
+          "to": "C4",
+          "label": "移动至C4"
+        },
+        {
+          "action": "use",
+          "label": "实耗pack/ration",
+          "item": "ration",
+          "from": "pack"
+        },
+        {
+          "action": "rest",
+          "label": "实际所在地过夜"
+        },
+        {
+          "action": "repair",
+          "target": "pipe",
+          "label": "用实际安装备料金属修管，另一份仍用于安装"
+        },
+        {
+          "action": "move",
+          "to": "C1",
+          "label": "移动至C1"
+        },
+        {
+          "action": "move",
+          "to": "C0",
+          "label": "移动至C0"
+        },
+        {
+          "action": "move",
+          "to": "H0",
+          "label": "移动至H0"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "H_firedoor_open",
+          "label": "H_firedoor_open",
+          "method": "crowbar"
+        },
+        {
+          "action": "move",
+          "to": "H4",
+          "label": "移动至H4"
+        },
+        {
+          "action": "combat",
+          "label": "指定战斗轨迹H_full",
+          "trace": "H_full"
+        },
+        {
+          "action": "move",
+          "to": "H5",
+          "label": "移动至H5"
+        },
+        {
+          "action": "sample_extract",
+          "label": "sample_extract",
+          "method": "careful"
+        },
+        {
+          "action": "move",
+          "to": "H4",
+          "label": "移动至H4"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "H8",
+          "label": "移动至H8"
+        },
+        {
+          "action": "install",
+          "label": "install"
+        },
+        {
+          "action": "move",
+          "to": "H7",
+          "label": "移动至H7"
+        },
+        {
+          "action": "move",
+          "to": "H1",
+          "label": "移动至H1"
+        },
+        {
+          "action": "move",
+          "to": "H0",
+          "label": "移动至H0"
+        },
+        {
+          "action": "success",
+          "label": "success"
+        }
+      ],
+      "expect": {
+        "final": {
+          "status": "success",
+          "day": 3,
+          "hp": 4,
+          "energy": 18,
+          "infection": 20,
+          "pipe": 10,
+          "coat": 7,
+          "tool_resource": 7
+        },
+        "peak_weight": 19,
+        "days": {
+          "1": {
+            "nominal": 108
+          },
+          "2": {
+            "nominal": 85
+          },
+          "3": {
+            "nominal": 82
+          }
+        }
+      },
+      "initial": {
+        "pipe": 10
+      }
+    },
+    {
+      "id": "ground_identity_across_night",
+      "purpose": "同一金属实例放下、跨夜、实地取回，不重开来源",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H1"
+        },
+        {
+          "action": "search",
+          "source": "H_hall"
+        },
+        {
+          "action": "pickup",
+          "source": "H_hall",
+          "item": "metal",
+          "quantity": 1
+        },
+        {
+          "action": "drop",
+          "item": "metal",
+          "quantity": 1
+        },
+        {
+          "action": "rest"
+        },
+        {
+          "action": "pickup",
+          "source": "H_hall",
+          "item": "metal",
+          "quantity": 1
+        }
+      ],
+      "expect": {
+        "final": {
+          "day": 2,
+          "energy": 85,
+          "inventory_by_location": {
+            "pack": {
+              "metal": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "unsafe_node_cannot_rest",
+      "purpose": "独立边界夹具：活敌节点无立即安全，不因pending字段缺省可睡",
+      "initial": {
+        "location": "L2"
+      },
+      "steps": [
+        {
+          "action": "rest"
+        }
+      ],
+      "expect_error": "unresolved_node_danger"
+    },
+    {
+      "id": "C_extract_without_match",
+      "purpose": "C3实际到达不替代C1对应匹配",
+      "initial": {
+        "location": "C3",
+        "enemies": {
+          "C": {
+            "hp": 0
+          }
+        }
+      },
+      "steps": [
+        {
+          "action": "C_extract"
+        }
+      ],
+      "expect_error": "missing_fact"
+    },
+    {
+      "id": "overweight_rejected",
+      "purpose": "独立非法容器：29重量不能进入稳定输入",
+      "initial": {
+        "items": [
+          {
+            "type": "ration",
+            "quantity": 29
+          }
+        ]
+      },
+      "steps": [],
+      "expect_error": "weight"
+    },
+    {
+      "id": "bandage_does_not_erase_injury",
+      "purpose": "绷带止血/处理伤口，不删除轻伤；睡眠不回血或移除伤势",
+      "initial": {
+        "hp": 7,
+        "bleeding": true,
+        "wound": true
+      },
+      "steps": [
+        {
+          "action": "use",
+          "item": "bandage",
+          "from": "q1",
+          "label": "实耗绷带止血"
+        },
+        {
+          "action": "rest",
+          "label": "C休整不自动移除已处理伤势"
+        }
+      ],
+      "expect": {
+        "final": {
+          "day": 2,
+          "hp": 8,
+          "bleeding": false,
+          "wound": false,
+          "injury": "light_laceration",
+          "energy": 85
+        }
+      }
+    },
+    {
+      "id": "deadline_suppression_expires_after_effect",
+      "purpose": "末日期限先用抑制15计算增长，再结束本日药效；不给新日期/精力/医疗或签名次数",
+      "initial": {
+        "location": "C4",
+        "day": 7,
+        "energy": 7,
+        "hp": 5,
+        "satiety": 4,
+        "infection": 25,
+        "exposure": 1,
+        "suppression": 15,
+        "disinfectant_used": true,
+        "signature_used": true
+      },
+      "steps": [
+        {
+          "action": "deadline",
+          "label": "期限一次结算"
+        }
+      ],
+      "expect": {
+        "final": {
+          "status": "deadline_recall",
+          "day": 7,
+          "energy": 7,
+          "hp": 5,
+          "infection": 35,
+          "exposure": 0,
+          "satiety": 2,
+          "suppression": 0,
+          "disinfectant_used": true,
+          "signature_used": true
+        }
+      }
+    },
+    {
+      "id": "world_cannot_use_bank",
+      "purpose": "世界中不能远程使用旧中枢绷带",
+      "initial": {
+        "hp": 8,
+        "items": [
+          {
+            "type": "bandage",
+            "location": "bank"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "action": "use",
+          "item": "bandage",
+          "from": "bank"
+        }
+      ],
+      "expect_error": "not_carried_source"
+    },
+    {
+      "id": "world_cannot_drop_bank",
+      "purpose": "不能把中枢物远程丢到当前世界节点",
+      "initial": {
+        "items": [
+          {
+            "type": "metal",
+            "location": "bank"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "action": "drop",
+          "item": "metal",
+          "quantity": 1,
+          "from": "bank"
+        }
+      ],
+      "expect_error": "not_carried_source"
+    },
+    {
+      "id": "pickup_negative_quantity",
+      "purpose": "负数不能通过切片被解释为拾取一部分",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H1"
+        },
+        {
+          "action": "search",
+          "source": "H_hall"
+        },
+        {
+          "action": "pickup",
+          "source": "H_hall",
+          "item": "metal",
+          "quantity": -1
+        }
+      ],
+      "expect_error": "invalid_quantity"
+    },
+    {
+      "id": "pickup_zero_quantity",
+      "purpose": "零单位不是合法拾取",
+      "steps": [
+        {
+          "action": "move",
+          "to": "H1"
+        },
+        {
+          "action": "search",
+          "source": "H_hall"
+        },
+        {
+          "action": "pickup",
+          "source": "H_hall",
+          "item": "metal",
+          "quantity": 0
+        }
+      ],
+      "expect_error": "invalid_quantity"
+    },
+    {
+      "id": "drop_negative_quantity",
+      "purpose": "负数不能变成任意放下",
+      "initial": {
+        "items": [
+          {
+            "type": "metal",
+            "quantity": 2
+          }
+        ]
+      },
+      "steps": [
+        {
+          "action": "drop",
+          "item": "metal",
+          "quantity": -1
+        }
+      ],
+      "expect_error": "invalid_quantity"
+    },
+    {
+      "id": "entirely_empty_character_continuation",
+      "purpose": "三槽与所有库存确实空，HP1流血在H0失败生还；可暂停，下一任务单条已知移动后流血致死",
+      "initial": {
+        "hp": 1,
+        "energy": 0,
+        "bleeding": true,
+        "wound": true,
+        "empty_equipment": true,
+        "initial_bandage": false
+      },
+      "steps": [
+        {
+          "action": "failure",
+          "label": "合法失败返航不把贫穷判死"
+        }
+      ],
+      "expect": {
+        "final": {
+          "status": "failure",
+          "hp": 1,
+          "bleeding": true,
+          "inventory_by_location": {},
+          "equipment": {
+            "weapon": null,
+            "armor": null,
+            "utility": null
+          }
+        }
+      },
+      "empty_next_task_witness": true,
+      "expect_continuation": {
+        "hub": {
+          "hp": 1,
+          "bleeding": true,
+          "available_units": 0,
+          "can_pause": true
+        },
+        "next_task": {
+          "energy": 100,
+          "hp": 1,
+          "available_units": 0
+        },
+        "one_known_edge": {
+          "hp": 0,
+          "energy": 98,
+          "status": "death"
+        }
+      }
+    }
+  ],
+  "sensitivity": [
+    {
+      "id": "price_pry_8",
+      "scenario": "normal_five",
+      "path": [
+        "prices",
+        "pry"
+      ],
+      "value": 8,
+      "expect_error": "zero_energy"
+    },
+    {
+      "id": "pipe_capacity_10",
+      "scenario": "normal_five",
+      "path": [
+        "gear",
+        "pipe",
+        "max"
+      ],
+      "value": 10,
+      "expect_error": "broken_pipe_needs_other_trace"
+    },
+    {
+      "id": "coat_mitigation_0",
+      "scenario": "normal_five",
+      "path": [
+        "gear",
+        "coat",
+        "mitigation"
+      ],
+      "value": 0,
+      "expect": {
+        "final": {
+          "status": "success",
+          "hp": 1,
+          "day": 3
+        }
+      }
+    },
+    {
+      "id": "drop_front_ration_1",
+      "scenario": "normal_five",
+      "path": [
+        "sources",
+        "L_front",
+        "items",
+        "ration"
+      ],
+      "value": 1,
+      "expect_error": "missing_ground_item"
+    },
+    {
+      "id": "topology_remove_C0_H0",
+      "scenario": "normal_five",
+      "path": [
+        "topology",
+        "common_edges"
+      ],
+      "value": [
+        [
+          "H0",
+          "H1"
+        ],
+        [
+          "H1",
+          "H2"
+        ],
+        [
+          "H1",
+          "H3"
+        ],
+        [
+          "H1",
+          "H4"
+        ],
+        [
+          "H3",
+          "H4"
+        ],
+        [
+          "H4",
+          "H5"
+        ],
+        [
+          "H1",
+          "H7"
+        ],
+        [
+          "H3",
+          "H6"
+        ],
+        [
+          "H6",
+          "H7"
+        ],
+        [
+          "H7",
+          "H8"
+        ],
+        [
+          "L0",
+          "L1"
+        ],
+        [
+          "L1",
+          "L2"
+        ],
+        [
+          "L1",
+          "L3"
+        ],
+        [
+          "L1",
+          "L5"
+        ],
+        [
+          "C0",
+          "C1"
+        ],
+        [
+          "C1",
+          "C2"
+        ],
+        [
+          "C2",
+          "C3"
+        ],
+        [
+          "C1",
+          "C4"
+        ],
+        [
+          "C1",
+          "C5"
+        ],
+        [
+          "H7",
+          "L0"
+        ],
+        [
+          "L0",
+          "C0"
+        ]
+      ],
+      "expect_error": "not_adjacent"
+    }
+  ]
+}

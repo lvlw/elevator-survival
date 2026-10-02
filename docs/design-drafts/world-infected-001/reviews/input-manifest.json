@@ -1,0 +1,54 @@
+{
+  "task": "WORLD-DESIGN-001R",
+  "starting_sha": "61de1a10e5da12df2f172e18f6e05a69b755bfa8",
+  "main_baseline": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+  "original_bytes_preserved": true,
+  "input_files": [
+    {
+      "path": "D:\\浏览器下载\\WORLD-DESIGN-001-review-61de1a1.zip",
+      "bytes": 15929,
+      "sha256": "3e5a7021acc2e5a45e20b3b3342b6d469fc4e72360a0c2d3dc3375d418446e0f",
+      "role": "Non-formal design/review input; current user authorization governs scope"
+    },
+    {
+      "path": "D:\\浏览器下载\\continuous-world-design-register-v0.6.md",
+      "bytes": 48233,
+      "sha256": "33808b3e92dec952a0e10e6ab11789a4c5234d775744e622a36f1119eb4e556b",
+      "role": "Non-formal design/review input; current user authorization governs scope"
+    },
+    {
+      "path": "D:\\浏览器下载\\infection-world-narrative-proposal-v0.5.md",
+      "bytes": 93664,
+      "sha256": "5a234066182de583388ff733dc7d864ba75f8261e1f73d68524212a3ecea31de",
+      "role": "Non-formal design/review input; current user authorization governs scope"
+    }
+  ],
+  "archived_entries": [
+    {
+      "path": "input-61de1a1/WORLD-DESIGN-001R-task.md",
+      "bytes": 7763,
+      "sha256": "e87976b3dd041b33ceeaabb3fc1e51cd44bdf52f91e1c76d634f2fb40ea1953a"
+    },
+    {
+      "path": "input-61de1a1/WORLD-DESIGN-001-actual-design-review.md",
+      "bytes": 14287,
+      "sha256": "30a0506449b0f24ae4c543073e71b9342e67812fc956ed2ebf595748c92f67ac"
+    },
+    {
+      "path": "input-61de1a1/manifest.json",
+      "bytes": 800,
+      "sha256": "a6b07e869f4a7c2b95d03d29877529db4076c53a54355177a7053f1d259a77a5"
+    },
+    {
+      "path": "input-61de1a1/recheck.py",
+      "bytes": 4190,
+      "sha256": "b8cef6bef5936e37d05ab91e421dab0b4673cd9eda21b930853ccb03840265e5"
+    },
+    {
+      "path": "input-61de1a1/recheck-results.json",
+      "bytes": 2233,
+      "sha256": "ef64b286cfe5ae3105949bfdd9fdae842c006d9e36b8d56b03b1cb0ed172e2ba"
+    }
+  ],
+  "historical_evidence_notice": "input-61de1a1/recheck.py and its output are historical arithmetic only; not the v1.1 action checker"
+}

@@ -1,0 +1,2087 @@
+{
+  "evidence_kind": "finite authored route replay; deterministic chosen combat traces; no production rules or random seeds",
+  "version": "WORLD-DESIGN-001R Draft v1.1",
+  "base_sha": "61de1a10e5da12df2f172e18f6e05a69b755bfa8",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "input_sha256": {
+    "parameters.json": "538ada2b3cceea0e6a0645ac10ea403063afac4671ef499412975f0344b9d7c2",
+    "scenarios.json": "0db0cf51f9bd70afcc861a08b6a5e1f3627fe24b63420d14a3ee1e06c5c01a8d",
+    "check_design.py": "9c02a802d9eca6d5b6b756dc22f894734617fd09e697ab42a6e255a175fce5a7"
+  },
+  "counts": {
+    "scenarios": 39,
+    "sensitivity": 4,
+    "passed": 41,
+    "failed": 2
+  },
+  "scenarios": [
+    {
+      "id": "normal_five",
+      "purpose": "五图正常物流/供电先行；D2在L搜索后同日C工作；指定C暴露/H无伤口",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 62,
+      "days": {
+        "1": {
+          "nominal": 108,
+          "actual": 100,
+          "end_energy": 0,
+          "end_location": "L2",
+          "hp": 9
+        },
+        "2": {
+          "nominal": 85,
+          "actual": 85,
+          "end_energy": 0,
+          "end_location": "C4",
+          "hp": 6
+        },
+        "3": {
+          "nominal": 76,
+          "actual": 76,
+          "end_energy": 24,
+          "end_location": "HUB",
+          "hp": 4
+        }
+      },
+      "peak_weight": 20,
+      "final": {
+        "status": "success",
+        "reason": "success",
+        "day": 3,
+        "location": "HUB",
+        "energy": 24,
+        "hp": 4,
+        "satiety": 4,
+        "infection": 20,
+        "exposure": 0,
+        "pipe": 15,
+        "coat": 7,
+        "tool_resource": 7,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 2,
+            "ration": 4,
+            "metal": 1,
+            "cloth": 1,
+            "battery": 1
+          },
+          "installed": {
+            "control": 1,
+            "metal": 1,
+            "electronics": 1,
+            "module": 1
+          },
+          "consumed": {
+            "ration": 1
+          },
+          "delivered": {
+            "sample": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "early_sample_five",
+      "purpose": "五图调查和早样本；实际携带样本直到返航，无缓存",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 77,
+      "days": {
+        "1": {
+          "nominal": 84,
+          "actual": 84,
+          "end_energy": 16,
+          "end_location": "H6",
+          "hp": 10
+        },
+        "2": {
+          "nominal": 100,
+          "actual": 100,
+          "end_energy": 0,
+          "end_location": "L2",
+          "hp": 7
+        },
+        "3": {
+          "nominal": 89,
+          "actual": 85,
+          "end_energy": 0,
+          "end_location": "C3",
+          "hp": 5
+        },
+        "4": {
+          "nominal": 45,
+          "actual": 45,
+          "end_energy": 40,
+          "end_location": "HUB",
+          "hp": 5
+        }
+      },
+      "peak_weight": 21,
+      "final": {
+        "status": "success",
+        "reason": "success",
+        "day": 4,
+        "location": "HUB",
+        "energy": 40,
+        "hp": 5,
+        "satiety": 2,
+        "infection": 20,
+        "exposure": 0,
+        "pipe": 15,
+        "coat": 7,
+        "tool_resource": 8,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 2,
+            "metal": 2,
+            "battery": 2,
+            "ration": 4,
+            "cloth": 1
+          },
+          "impounded": {
+            "card": 1
+          },
+          "delivered": {
+            "sample": 1
+          },
+          "consumed": {
+            "bandage": 1,
+            "ration": 1
+          },
+          "installed": {
+            "control": 1,
+            "metal": 1,
+            "electronics": 1,
+            "module": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "damaged_split_five",
+      "purpose": "HP8独立受损输入，七日分段止损；不宣称已模拟受伤前缀",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 105,
+      "days": {
+        "1": {
+          "nominal": 54,
+          "actual": 54,
+          "end_energy": 46,
+          "end_location": "H6",
+          "hp": 8
+        },
+        "2": {
+          "nominal": 72,
+          "actual": 72,
+          "end_energy": 28,
+          "end_location": "L5",
+          "hp": 8
+        },
+        "3": {
+          "nominal": 36,
+          "actual": 36,
+          "end_energy": 64,
+          "end_location": "C4",
+          "hp": 8
+        },
+        "4": {
+          "nominal": 64,
+          "actual": 64,
+          "end_energy": 36,
+          "end_location": "L5",
+          "hp": 6
+        },
+        "5": {
+          "nominal": 44,
+          "actual": 44,
+          "end_energy": 56,
+          "end_location": "C4",
+          "hp": 4
+        },
+        "6": {
+          "nominal": 28,
+          "actual": 28,
+          "end_energy": 72,
+          "end_location": "C4",
+          "hp": 4
+        },
+        "7": {
+          "nominal": 75,
+          "actual": 75,
+          "end_energy": 25,
+          "end_location": "HUB",
+          "hp": 2
+        }
+      },
+      "peak_weight": 19,
+      "final": {
+        "status": "success",
+        "reason": "success",
+        "day": 7,
+        "location": "HUB",
+        "energy": 25,
+        "hp": 2,
+        "satiety": 2,
+        "infection": 25,
+        "exposure": 0,
+        "pipe": 15,
+        "coat": 6,
+        "tool_resource": 8,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "consumed": {
+            "bandage": 3,
+            "ration": 4
+          },
+          "bank": {
+            "metal": 2,
+            "battery": 2,
+            "ration": 2,
+            "cloth": 1
+          },
+          "impounded": {
+            "card": 1
+          },
+          "installed": {
+            "metal": 1,
+            "electronics": 1,
+            "control": 1,
+            "module": 1
+          },
+          "delivered": {
+            "sample": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": false
+    },
+    {
+      "id": "flashlight_five",
+      "purpose": "同一早样本/调查成果，实用位手电，物理卡件逐一手工；重新分配日期",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 77,
+      "days": {
+        "1": {
+          "nominal": 72,
+          "actual": 72,
+          "end_energy": 28,
+          "end_location": "H6",
+          "hp": 10
+        },
+        "2": {
+          "nominal": 102,
+          "actual": 100,
+          "end_energy": 0,
+          "end_location": "L2",
+          "hp": 7
+        },
+        "3": {
+          "nominal": 106,
+          "actual": 85,
+          "end_energy": 0,
+          "end_location": "C2",
+          "hp": 5
+        },
+        "4": {
+          "nominal": 58,
+          "actual": 58,
+          "end_energy": 27,
+          "end_location": "HUB",
+          "hp": 5
+        }
+      },
+      "peak_weight": 21,
+      "final": {
+        "status": "success",
+        "reason": "success",
+        "day": 4,
+        "location": "HUB",
+        "energy": 27,
+        "hp": 5,
+        "satiety": 2,
+        "infection": 20,
+        "exposure": 0,
+        "pipe": 15,
+        "coat": 7,
+        "tool_resource": 5,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 2,
+            "metal": 2,
+            "battery": 2,
+            "ration": 4,
+            "cloth": 1
+          },
+          "impounded": {
+            "card": 1
+          },
+          "delivered": {
+            "sample": 1
+          },
+          "consumed": {
+            "bandage": 1,
+            "ration": 1
+          },
+          "installed": {
+            "control": 1,
+            "metal": 1,
+            "electronics": 1,
+            "module": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "original_R4_illegal",
+      "purpose": "原三图三日D2在C3快核；保留完整前缀并预期拒绝",
+      "topology": "three",
+      "error": "wrong_location",
+      "failed_action": 38,
+      "executed_steps": 37,
+      "days": {
+        "1": {
+          "nominal": 102,
+          "actual": 100,
+          "end_energy": 0,
+          "end_location": "L4",
+          "hp": 9
+        },
+        "2": {
+          "nominal": 56,
+          "actual": 56,
+          "end_energy": 29,
+          "end_location": "C3",
+          "hp": 6
+        }
+      },
+      "peak_weight": 15,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "C3",
+        "energy": 29,
+        "hp": 6,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 1,
+        "pipe": 20,
+        "coat": 9,
+        "tool_resource": 8,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "ration": 5,
+            "bandage": 1,
+            "control": 1,
+            "metal": 2,
+            "cloth": 1,
+            "electronics": 1,
+            "battery": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "corrected_R4_three",
+      "purpose": "仅把C匹配4移到此前实际经过的C1；独立原三图合法对照",
+      "topology": "three",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 62,
+      "days": {
+        "1": {
+          "nominal": 102,
+          "actual": 100,
+          "end_energy": 0,
+          "end_location": "L4",
+          "hp": 9
+        },
+        "2": {
+          "nominal": 79,
+          "actual": 79,
+          "end_energy": 6,
+          "end_location": "C4",
+          "hp": 6
+        },
+        "3": {
+          "nominal": 76,
+          "actual": 76,
+          "end_energy": 24,
+          "end_location": "HUB",
+          "hp": 4
+        }
+      },
+      "peak_weight": 20,
+      "final": {
+        "status": "success",
+        "reason": "success",
+        "day": 3,
+        "location": "HUB",
+        "energy": 24,
+        "hp": 4,
+        "satiety": 4,
+        "infection": 20,
+        "exposure": 0,
+        "pipe": 15,
+        "coat": 7,
+        "tool_resource": 7,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 2,
+            "ration": 4,
+            "metal": 1,
+            "cloth": 1,
+            "battery": 1
+          },
+          "installed": {
+            "control": 1,
+            "metal": 1,
+            "electronics": 1,
+            "module": 1
+          },
+          "consumed": {
+            "ration": 1
+          },
+          "delivered": {
+            "sample": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "cross_region_work",
+      "purpose": "H调查后同日L开柜搜索，区域数不能成门禁",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 7,
+      "days": {
+        "1": {
+          "nominal": 32,
+          "actual": 32,
+          "end_energy": 68,
+          "end_location": "L1",
+          "hp": 12
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L1",
+        "energy": 68,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 11,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "ground:L1": {
+            "ration": 2,
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "topology_three_power",
+      "purpose": "相同H0→L0且供电已恢复，三图",
+      "topology": "three",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 11,
+      "days": {
+        "1": {
+          "nominal": 42,
+          "actual": 42,
+          "end_energy": 58,
+          "end_location": "L0",
+          "hp": 12
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L0",
+        "energy": 58,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "topology_five_west",
+      "purpose": "同成果同终点，五图经过酒店入口而不进服务区",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 7,
+      "days": {
+        "1": {
+          "nominal": 46,
+          "actual": 46,
+          "end_energy": 54,
+          "end_location": "L0",
+          "hp": 12
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L0",
+        "energy": 54,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "topology_five_no_hotel",
+      "purpose": "同成果同终点，五图不经过酒店入口",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 9,
+      "days": {
+        "1": {
+          "nominal": 50,
+          "actual": 50,
+          "end_energy": 50,
+          "end_location": "L0",
+          "hp": 12
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L0",
+        "energy": 50,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "A_same_position",
+      "purpose": "同一P1后续位置：先走A级，次日走回",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 7,
+      "days": {
+        "1": {
+          "nominal": 12,
+          "actual": 12,
+          "end_energy": 0,
+          "end_location": "T1",
+          "hp": 9
+        },
+        "2": {
+          "nominal": 12,
+          "actual": 12,
+          "end_energy": 88,
+          "end_location": "P1",
+          "hp": 9
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "P1",
+        "energy": 88,
+        "hp": 9,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "C_same_position",
+      "purpose": "同一P1后续位置：原地C过夜",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 1,
+      "days": {
+        "1": {
+          "nominal": 0,
+          "actual": 0,
+          "end_energy": null,
+          "end_location": null,
+          "hp": null
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "P1",
+        "energy": 85,
+        "hp": 9,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "A_defer_same_work",
+      "purpose": "同位置同已完成供电：A方案将本可今日做的工作推迟",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 8,
+      "days": {
+        "1": {
+          "nominal": 12,
+          "actual": 12,
+          "end_energy": 0,
+          "end_location": "T1",
+          "hp": 9
+        },
+        "2": {
+          "nominal": 24,
+          "actual": 24,
+          "end_energy": 76,
+          "end_location": "P1",
+          "hp": 9
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "P1",
+        "energy": 76,
+        "hp": 9,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "C_finish_same_work",
+      "purpose": "同位置同已完成供电：今日先工程、原地C过夜",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 2,
+      "days": {
+        "1": {
+          "nominal": 12,
+          "actual": 12,
+          "end_energy": 0,
+          "end_location": "P1",
+          "hp": 9
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "P1",
+        "energy": 85,
+        "hp": 9,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "last_positive_action",
+      "purpose": "E1可完成12E工程，无债，无HP费",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 1,
+      "days": {
+        "1": {
+          "nominal": 12,
+          "actual": 1,
+          "end_energy": 0,
+          "end_location": "P1",
+          "hp": 12
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "P1",
+        "energy": 0,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "zero_next_action",
+      "purpose": "上一行动归零后禁止新移动",
+      "topology": "five",
+      "error": "zero_energy",
+      "failed_action": 2,
+      "executed_steps": 1,
+      "days": {
+        "1": {
+          "nominal": 12,
+          "actual": 1,
+          "end_energy": 0,
+          "end_location": "P1",
+          "hp": 12
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "P1",
+        "energy": 0,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "batch_is_multiple_edges",
+      "purpose": "UI路线H0→H1→H7逐边，E1第一边归零后第二边拒绝",
+      "topology": "five",
+      "error": "zero_energy",
+      "failed_action": 2,
+      "executed_steps": 1,
+      "days": {
+        "1": {
+          "nominal": 2,
+          "actual": 1,
+          "end_energy": 0,
+          "end_location": "H1",
+          "hp": 12
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H1",
+        "energy": 0,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "zero_triggered_combat",
+      "purpose": "E2移动进入L2归零仍结算已触发战斗",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 2,
+      "days": {
+        "1": {
+          "nominal": 18,
+          "actual": 2,
+          "end_energy": 0,
+          "end_location": "L2",
+          "hp": 9
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L2",
+        "energy": 0,
+        "hp": 9,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 26,
+        "coat": 11,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "cannot_rest_past_combat",
+      "purpose": "已触发危险不能休整",
+      "topology": "five",
+      "error": "pending_encounter",
+      "failed_action": 2,
+      "executed_steps": 1,
+      "days": {
+        "1": {
+          "nominal": 2,
+          "actual": 2,
+          "end_energy": 0,
+          "end_location": "L2",
+          "hp": 12
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L2",
+        "energy": 0,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "unknown_route",
+      "purpose": "真实边存在但未观察，不从作者图补地图",
+      "topology": "five",
+      "error": "unknown_edge",
+      "failed_action": 1,
+      "executed_steps": 0,
+      "days": {},
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H4",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "source_once_across_night",
+      "purpose": "同来源经搜索/拾取/过夜后仍不能重搜",
+      "topology": "five",
+      "error": "source_already_revealed",
+      "failed_action": 5,
+      "executed_steps": 4,
+      "days": {
+        "1": {
+          "nominal": 14,
+          "actual": 14,
+          "end_energy": 86,
+          "end_location": "H1",
+          "hp": 12
+        }
+      },
+      "peak_weight": 1,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "H1",
+        "energy": 85,
+        "hp": 12,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "metal": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "unique_instance",
+      "error": "duplicate_instance",
+      "failed_action": "initial",
+      "passed": true
+    },
+    {
+      "id": "C_quick_needs_information",
+      "purpose": "C1没有L2现场接口时快核应拒绝",
+      "topology": "five",
+      "error": "missing_quick_information",
+      "failed_action": 1,
+      "executed_steps": 0,
+      "days": {},
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "C1",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "P_work_wrong_location",
+      "purpose": "五图不能仍在旧L支路/登记室恢复供电",
+      "topology": "five",
+      "error": "wrong_location",
+      "failed_action": 1,
+      "executed_steps": 0,
+      "days": {},
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L1",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "zero_self_rescue_pickup",
+      "purpose": "最后搜索归零仍可取已揭示绷带并实耗治疗",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 5,
+      "days": {
+        "1": {
+          "nominal": 16,
+          "actual": 5,
+          "end_energy": 0,
+          "end_location": "H2",
+          "hp": 9
+        }
+      },
+      "peak_weight": 1,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H2",
+        "energy": 0,
+        "hp": 9,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "consumed": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "missing_install_material",
+      "purpose": "材料不足拒绝，不能享受精力让利",
+      "topology": "five",
+      "error": "missing_item:electronics",
+      "failed_action": 1,
+      "executed_steps": 0,
+      "days": {},
+      "peak_weight": 7,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H8",
+        "energy": 1,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "control": 1,
+            "module": 1,
+            "metal": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "misused_electronics_rejected",
+      "purpose": "真实电子用于维修后不能同时安装",
+      "topology": "five",
+      "error": "missing_item:electronics",
+      "failed_action": 2,
+      "executed_steps": 1,
+      "days": {
+        "1": {
+          "nominal": 8,
+          "actual": 8,
+          "end_energy": 92,
+          "end_location": "H8",
+          "hp": 12
+        }
+      },
+      "peak_weight": 7,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H8",
+        "energy": 92,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 6,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "control": 1,
+            "module": 1,
+            "metal": 1
+          },
+          "consumed": {
+            "metal": 1,
+            "electronics": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "misused_electronics_recovery",
+      "purpose": "误用材料后必须实际往返L3未兑现料架补救",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 13,
+      "days": {
+        "1": {
+          "nominal": 70,
+          "actual": 70,
+          "end_energy": 30,
+          "end_location": "H8",
+          "hp": 12
+        }
+      },
+      "peak_weight": 8,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "H8",
+        "energy": 30,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 6,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "installed": {
+            "control": 1,
+            "module": 1,
+            "metal": 1,
+            "electronics": 1
+          },
+          "consumed": {
+            "metal": 1,
+            "electronics": 1
+          },
+          "ground:L3": {
+            "metal": 1,
+            "battery": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "night_bleeding_death",
+      "purpose": "HP2流血阶段先死，食物/感染/精力阶段不得继续",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 1,
+      "days": {
+        "1": {
+          "nominal": 0,
+          "actual": 0,
+          "end_energy": null,
+          "end_location": null,
+          "hp": null
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "death",
+        "reason": "night_bleeding",
+        "day": 1,
+        "location": "C4",
+        "energy": 7,
+        "hp": 0,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 1,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": "new_character_setup",
+        "inventory_by_location": {
+          "lost": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": false
+      },
+      "passed": true
+    },
+    {
+      "id": "night_infection_terminal",
+      "purpose": "感染110先到130终末，不扣食物、不发新日精力",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 1,
+      "days": {
+        "1": {
+          "nominal": 0,
+          "actual": 0,
+          "end_energy": null,
+          "end_location": null,
+          "hp": null
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "infection_terminal",
+        "reason": "infection_terminal",
+        "day": 1,
+        "location": "C4",
+        "energy": 7,
+        "hp": 5,
+        "satiety": 4,
+        "infection": 130,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": "new_character_setup",
+        "inventory_by_location": {
+          "lost": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": false
+      },
+      "passed": true
+    },
+    {
+      "id": "H_wound_can_kill",
+      "purpose": "受损HP4指定护工伤口分支，两次玩家流血导致同刻敌失能/人死亡",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 2,
+      "days": {
+        "1": {
+          "nominal": 14,
+          "actual": 14,
+          "end_energy": 86,
+          "end_location": "H4",
+          "hp": 0
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "death",
+        "reason": "combat",
+        "day": 1,
+        "location": "H4",
+        "energy": 86,
+        "hp": 0,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 25,
+        "coat": 11,
+        "tool_resource": 12,
+        "next_activity": "new_character_setup",
+        "inventory_by_location": {
+          "lost": {
+            "bandage": 1,
+            "card": 1
+          }
+        },
+        "equipped_retained": false
+      },
+      "passed": true
+    },
+    {
+      "id": "no_day_eight",
+      "purpose": "Day7普通休整不产生Day8",
+      "topology": "five",
+      "error": "no_day_eight",
+      "failed_action": 1,
+      "executed_steps": 0,
+      "days": {},
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 7,
+        "location": "C4",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "rest_target_not_addition",
+      "purpose": "当前95原地C休整→85，HP不回",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 1,
+      "days": {
+        "1": {
+          "nominal": 0,
+          "actual": 0,
+          "end_energy": null,
+          "end_location": null,
+          "hp": null
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 2,
+        "location": "H0",
+        "energy": 85,
+        "hp": 9,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "no_signature_refresh_on_crossing",
+      "purpose": "C完整战斗同日跨图不刷新管蓄力，H再用应拒绝",
+      "topology": "five",
+      "error": "unknown_edge",
+      "failed_action": 4,
+      "executed_steps": 3,
+      "days": {
+        "1": {
+          "nominal": 24,
+          "actual": 24,
+          "end_energy": 76,
+          "end_location": "C1",
+          "hp": 9
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "C1",
+        "energy": 76,
+        "hp": 9,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 1,
+        "pipe": 24,
+        "coat": 10,
+        "tool_resource": 12,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "card": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": false
+    },
+    {
+      "id": "terminal_success",
+      "purpose": "独立末端夹具：H0成功真实样本交付、普通携出延续，无末夜",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 1,
+      "days": {
+        "5": {
+          "nominal": 0,
+          "actual": 0,
+          "end_energy": 0,
+          "end_location": "HUB",
+          "hp": 5
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "success",
+        "reason": "success",
+        "day": 5,
+        "location": "HUB",
+        "energy": 0,
+        "hp": 5,
+        "satiety": 4,
+        "infection": 25,
+        "exposure": 1,
+        "pipe": 15,
+        "coat": 6,
+        "tool_resource": 8,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "bank": {
+            "ration": 5,
+            "metal": 4,
+            "cloth": 1,
+            "battery": 2,
+            "bandage": 1
+          },
+          "delivered": {
+            "sample": 1
+          },
+          "impounded": {
+            "card": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "terminal_voluntary_failure",
+      "purpose": "独立末端夹具：H0主动失败，普通实物延续后有限罚粮1金1",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 1,
+      "days": {
+        "5": {
+          "nominal": 0,
+          "actual": 0,
+          "end_energy": 0,
+          "end_location": "HUB",
+          "hp": 5
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "failure",
+        "reason": "failure",
+        "day": 5,
+        "location": "HUB",
+        "energy": 0,
+        "hp": 5,
+        "satiety": 4,
+        "infection": 25,
+        "exposure": 1,
+        "pipe": 15,
+        "coat": 6,
+        "tool_resource": 8,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "fee": {
+            "ration": 1,
+            "metal": 1
+          },
+          "bank": {
+            "ration": 4,
+            "metal": 3,
+            "cloth": 1,
+            "battery": 2,
+            "bandage": 1
+          },
+          "impounded": {
+            "sample": 1,
+            "card": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "terminal_deadline_recall",
+      "purpose": "未批准终局候选：异地到期危险先结，再异常召回、包快全失、三槽保留",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 1,
+      "days": {
+        "7": {
+          "nominal": 0,
+          "actual": 0,
+          "end_energy": 0,
+          "end_location": "HUB",
+          "hp": 3
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "deadline_recall",
+        "reason": "deadline_recall",
+        "day": 7,
+        "location": "HUB",
+        "energy": 0,
+        "hp": 3,
+        "satiety": 2,
+        "infection": 50,
+        "exposure": 0,
+        "pipe": 15,
+        "coat": 6,
+        "tool_resource": 8,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "fee": {
+            "ration": 1,
+            "metal": 1
+          },
+          "bank": {
+            "ration": 2,
+            "metal": 1
+          },
+          "lost": {
+            "ration": 2,
+            "metal": 2,
+            "cloth": 1,
+            "battery": 2,
+            "bandage": 1,
+            "sample": 1,
+            "card": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true
+    },
+    {
+      "id": "terminal_death_clears_bank",
+      "purpose": "实际死亡清空此角色中枢及随身家底，死亡不被召回覆盖",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 1,
+      "days": {
+        "7": {
+          "nominal": 0,
+          "actual": 0,
+          "end_energy": 0,
+          "end_location": "C4",
+          "hp": 0
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "death",
+        "reason": "night_bleeding",
+        "day": 7,
+        "location": "C4",
+        "energy": 0,
+        "hp": 0,
+        "satiety": 4,
+        "infection": 25,
+        "exposure": 1,
+        "pipe": 15,
+        "coat": 6,
+        "tool_resource": 8,
+        "next_activity": "new_character_setup",
+        "inventory_by_location": {
+          "lost": {
+            "ration": 5,
+            "metal": 4,
+            "cloth": 1,
+            "battery": 2,
+            "bandage": 1,
+            "sample": 1,
+            "card": 1
+          }
+        },
+        "equipped_retained": false
+      },
+      "passed": true
+    },
+    {
+      "id": "terminal_zero_assets_survive",
+      "purpose": "没有可扣家底则罚0，合法生还不改判死亡",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 1,
+      "days": {
+        "1": {
+          "nominal": 0,
+          "actual": 0,
+          "end_energy": 0,
+          "end_location": "HUB",
+          "hp": 1
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "failure",
+        "reason": "failure",
+        "day": 1,
+        "location": "HUB",
+        "energy": 0,
+        "hp": 1,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {},
+        "equipped_retained": true
+      },
+      "passed": true
+    }
+  ],
+  "sensitivity": [
+    {
+      "id": "price_pry_8",
+      "purpose": "五图正常物流/供电先行；D2在L搜索后同日C工作；指定C暴露/H无伤口",
+      "topology": "five",
+      "error": "zero_energy",
+      "failed_action": 18,
+      "executed_steps": 17,
+      "days": {
+        "1": {
+          "nominal": 102,
+          "actual": 100,
+          "end_energy": 0,
+          "end_location": "L2",
+          "hp": 9
+        }
+      },
+      "peak_weight": 3,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L2",
+        "energy": 0,
+        "hp": 9,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 26,
+        "coat": 11,
+        "tool_resource": 10,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "ration": 2,
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true,
+      "changed_parameter": {
+        "path": [
+          "prices",
+          "pry"
+        ],
+        "value": 8
+      }
+    },
+    {
+      "id": "pipe_capacity_10",
+      "purpose": "五图正常物流/供电先行；D2在L搜索后同日C工作；指定C暴露/H无伤口",
+      "topology": "five",
+      "error": "broken_pipe_needs_other_trace",
+      "failed_action": 51,
+      "executed_steps": 50,
+      "days": {
+        "1": {
+          "nominal": 108,
+          "actual": 100,
+          "end_energy": 0,
+          "end_location": "L2",
+          "hp": 9
+        },
+        "2": {
+          "nominal": 85,
+          "actual": 85,
+          "end_energy": 0,
+          "end_location": "C4",
+          "hp": 6
+        },
+        "3": {
+          "nominal": 22,
+          "actual": 22,
+          "end_energy": 78,
+          "end_location": "H4",
+          "hp": 6
+        }
+      },
+      "peak_weight": 17,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 3,
+        "location": "H4",
+        "energy": 78,
+        "hp": 6,
+        "satiety": 4,
+        "infection": 20,
+        "exposure": 0,
+        "pipe": 0,
+        "coat": 9,
+        "tool_resource": 7,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "ration": 4,
+            "bandage": 1,
+            "control": 1,
+            "metal": 2,
+            "cloth": 1,
+            "electronics": 1,
+            "battery": 1,
+            "module": 1
+          },
+          "consumed": {
+            "ration": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true,
+      "changed_parameter": {
+        "path": [
+          "gear",
+          "pipe",
+          "max"
+        ],
+        "value": 10
+      }
+    },
+    {
+      "id": "coat_mitigation_0",
+      "purpose": "五图正常物流/供电先行；D2在L搜索后同日C工作；指定C暴露/H无伤口",
+      "topology": "five",
+      "error": null,
+      "failed_action": null,
+      "executed_steps": 62,
+      "days": {
+        "1": {
+          "nominal": 108,
+          "actual": 100,
+          "end_energy": 0,
+          "end_location": "L2",
+          "hp": 9
+        },
+        "2": {
+          "nominal": 85,
+          "actual": 85,
+          "end_energy": 0,
+          "end_location": "C4",
+          "hp": 4
+        },
+        "3": {
+          "nominal": 76,
+          "actual": 76,
+          "end_energy": 24,
+          "end_location": "HUB",
+          "hp": 1
+        }
+      },
+      "peak_weight": 20,
+      "final": {
+        "status": "success",
+        "reason": "success",
+        "day": 3,
+        "location": "HUB",
+        "energy": 24,
+        "hp": 1,
+        "satiety": 4,
+        "infection": 20,
+        "exposure": 0,
+        "pipe": 15,
+        "coat": 7,
+        "tool_resource": 7,
+        "next_activity": "same_character_hub_preparation",
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 2,
+            "ration": 4,
+            "metal": 1,
+            "cloth": 1,
+            "battery": 1
+          },
+          "installed": {
+            "control": 1,
+            "metal": 1,
+            "electronics": 1,
+            "module": 1
+          },
+          "consumed": {
+            "ration": 1
+          },
+          "delivered": {
+            "sample": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true,
+      "changed_parameter": {
+        "path": [
+          "gear",
+          "coat",
+          "mitigation"
+        ],
+        "value": 0
+      }
+    },
+    {
+      "id": "drop_front_ration_1",
+      "purpose": "五图正常物流/供电先行；D2在L搜索后同日C工作；指定C暴露/H无伤口",
+      "topology": "five",
+      "error": "missing_ground_item",
+      "failed_action": 11,
+      "executed_steps": 10,
+      "days": {
+        "1": {
+          "nominal": 62,
+          "actual": 62,
+          "end_energy": 38,
+          "end_location": "L1",
+          "hp": 12
+        }
+      },
+      "peak_weight": 0,
+      "final": {
+        "status": "active",
+        "reason": null,
+        "day": 1,
+        "location": "L1",
+        "energy": 38,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 11,
+        "next_activity": null,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "ground:L1": {
+            "ration": 1,
+            "bandage": 1
+          }
+        },
+        "equipped_retained": true
+      },
+      "passed": true,
+      "changed_parameter": {
+        "path": [
+          "sources",
+          "L_front",
+          "items",
+          "ration"
+        ],
+        "value": 1
+      }
+    }
+  ],
+  "limits": [
+    "No random-number generation or all-seed proof.",
+    "Authored CTB event schedule; mitigation, damage, wear, bleeding, duration-to-energy checked; arbitrary CTB choices/control scheduling not simulated.",
+    "No production imports, persistence, UI, schemas, engine, npm tests or player experience testing.",
+    "Fixed source subset only; no claimed randomized hospital bonus pickups.",
+    "Geometry is one deterministic constructive witness per step, not all packings; no physical auto-sort UI is authorized.",
+    "Four full five-map routes; three specialties, optional bypass/shortcut, other risk trees and thirty-day economy not covered.",
+    "Final terminal cases are independent fixtures, not complete action prefixes; terminal penalties/recall remain OPTION awaiting Owner.",
+    "Failed parameter variants mean the same authored plan needs replanning, not the entire world is unsolvable."
+  ]
+}

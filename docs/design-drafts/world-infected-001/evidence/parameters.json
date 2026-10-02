@@ -1,0 +1,965 @@
+{
+  "version": "WORLD-DESIGN-001R Draft v1.1",
+  "evidence_kind": "finite authored route replay; deterministic chosen combat traces; no production rules or random seeds",
+  "base_sha": "61de1a10e5da12df2f172e18f6e05a69b755bfa8",
+  "limits": {
+    "days": 7,
+    "energy": 100,
+    "hp": 12,
+    "satiety": 6,
+    "grid": [
+      6,
+      4
+    ],
+    "max_weight": 28
+  },
+  "rest": {
+    "A": 100,
+    "C": 85
+  },
+  "prices": {
+    "local_move": 2,
+    "cross_move": 8,
+    "shortcut_move": 6,
+    "search": 8,
+    "hospital_dark": 12,
+    "hospital_light": 8,
+    "verify_full": 6,
+    "verify_quick": 4,
+    "orders": 4,
+    "manifest": 6,
+    "pry": 6,
+    "manual": 14,
+    "extract": 10,
+    "sample_careful": 10,
+    "sample_direct": 6,
+    "power_survey": 6,
+    "power_restore": 12,
+    "install": 12,
+    "repair": 6,
+    "toolkit_repair": 8,
+    "recharge": 4,
+    "shortcut_investigate": 4,
+    "shortcut_unlock": 4
+  },
+  "load": [
+    {
+      "max": 16,
+      "numerator": 1,
+      "denominator": 1
+    },
+    {
+      "max": 24,
+      "numerator": 11,
+      "denominator": 10
+    },
+    {
+      "max": 28,
+      "numerator": 5,
+      "denominator": 4
+    }
+  ],
+  "health": {
+    "bandage_heal": 1,
+    "ration_gain": 2,
+    "night_food": 2,
+    "starve_threshold": 1,
+    "starve_damage": 1,
+    "bleed_night": 2,
+    "bleed_action": 1,
+    "exposure_progress": 20,
+    "infection_terminal": 120,
+    "infection_stages": [
+      {
+        "min": 0,
+        "base": 0
+      },
+      {
+        "min": 1,
+        "base": 5
+      },
+      {
+        "min": 30,
+        "base": 10
+      },
+      {
+        "min": 60,
+        "base": 15
+      },
+      {
+        "min": 90,
+        "base": 20
+      }
+    ],
+    "suppression": 15
+  },
+  "gear": {
+    "pipe": {
+      "max": 30,
+      "basic_damage": 4,
+      "charged_damage": 6,
+      "basic_wear": 1,
+      "charged_wear": 3,
+      "repair": 15
+    },
+    "coat": {
+      "max": 12,
+      "mitigation": 1,
+      "repair": 6
+    },
+    "crowbar": {
+      "max": 12,
+      "wear": 1
+    },
+    "flashlight": {
+      "max": 8,
+      "search_wear": 1,
+      "charge": 4
+    },
+    "toolkit": {
+      "max": 6,
+      "repair": 3
+    }
+  },
+  "combat_energy": {
+    "minimum": 6,
+    "multiplier": 4,
+    "ctb_unit": 100,
+    "defense_divisor": 2
+  },
+  "terminal_candidate": {
+    "failure_fee": {
+      "ration": 1,
+      "metal": 1
+    },
+    "death_clears_old_bank": true,
+    "deadline_discards": [
+      "pack",
+      "q1",
+      "q2"
+    ],
+    "next_activity": "same_character_hub_preparation"
+  },
+  "item_order": [
+    "sample",
+    "control",
+    "module",
+    "metal",
+    "electronics",
+    "battery",
+    "cloth",
+    "ration",
+    "bandage",
+    "card",
+    "disinfectant",
+    "firstaid"
+  ],
+  "items": {
+    "sample": {
+      "size": [
+        2,
+        2
+      ],
+      "weight": 4,
+      "stack": 1,
+      "kind": "quest"
+    },
+    "control": {
+      "size": [
+        2,
+        2
+      ],
+      "weight": 4,
+      "stack": 1,
+      "kind": "quest"
+    },
+    "module": {
+      "size": [
+        1,
+        2
+      ],
+      "weight": 2,
+      "stack": 1,
+      "kind": "quest"
+    },
+    "metal": {
+      "size": [
+        1,
+        1
+      ],
+      "weight": 1,
+      "stack": 5,
+      "kind": "ordinary"
+    },
+    "electronics": {
+      "size": [
+        1,
+        1
+      ],
+      "weight": 1,
+      "stack": 5,
+      "kind": "ordinary"
+    },
+    "battery": {
+      "size": [
+        1,
+        1
+      ],
+      "weight": 1,
+      "stack": 4,
+      "kind": "ordinary"
+    },
+    "cloth": {
+      "size": [
+        1,
+        1
+      ],
+      "weight": 1,
+      "stack": 5,
+      "kind": "ordinary"
+    },
+    "ration": {
+      "size": [
+        1,
+        1
+      ],
+      "weight": 1,
+      "stack": 2,
+      "kind": "ordinary"
+    },
+    "bandage": {
+      "size": [
+        1,
+        1
+      ],
+      "weight": 1,
+      "stack": 3,
+      "kind": "ordinary",
+      "quick": true
+    },
+    "card": {
+      "size": [
+        1,
+        1
+      ],
+      "weight": 0,
+      "stack": 1,
+      "kind": "permission"
+    },
+    "disinfectant": {
+      "size": [
+        1,
+        1
+      ],
+      "weight": 1,
+      "stack": 3,
+      "kind": "ordinary"
+    },
+    "firstaid": {
+      "size": [
+        1,
+        1
+      ],
+      "weight": 1,
+      "stack": 3,
+      "kind": "ordinary"
+    }
+  },
+  "geometry": {
+    "large_slots": {
+      "sample": [
+        0,
+        0
+      ],
+      "control": [
+        2,
+        0
+      ],
+      "module": [
+        4,
+        0
+      ]
+    },
+    "single_order": "row-major remaining cells; explicit author witness, not an in-game auto-sort"
+  },
+  "sources": {
+    "H_hall": {
+      "node": "H1",
+      "items": {
+        "metal": 1
+      },
+      "price": "hospital"
+    },
+    "H_pharmacy": {
+      "node": "H2",
+      "items": {
+        "bandage": 1
+      },
+      "price": "hospital"
+    },
+    "H_security": {
+      "node": "H3",
+      "items": {
+        "card": 1,
+        "battery": 1
+      },
+      "price": "hospital"
+    },
+    "L_front": {
+      "node": "L1",
+      "items": {
+        "ration": 2,
+        "bandage": 1
+      },
+      "price": "search",
+      "requires": [
+        "L_front_open"
+      ]
+    },
+    "L_deep": {
+      "node": "L2",
+      "items": {
+        "ration": 3,
+        "metal": 1,
+        "cloth": 1
+      },
+      "price": "search"
+    },
+    "L_spares": {
+      "node": "L3",
+      "items": {
+        "metal": 1,
+        "electronics": 1,
+        "battery": 1
+      },
+      "price": "search",
+      "requires": [
+        "L_spares_open"
+      ]
+    },
+    "C_spares": {
+      "node": "C4",
+      "items": {
+        "metal": 1,
+        "electronics": 1,
+        "battery": 1
+      },
+      "price": "opening"
+    },
+    "C_food": {
+      "node": "C4",
+      "items": {
+        "ration": 1
+      },
+      "price": "search"
+    }
+  },
+  "fixed_source_note": "Only fixed pickups represented. Hospital random additions exist in the design, are not drawn/picked/countable in this model.",
+  "actions": {
+    "H_orders": {
+      "node": "H7",
+      "price": "orders",
+      "sets": "orders"
+    },
+    "L_manifest": {
+      "node": "L1",
+      "price": "manifest",
+      "sets": "manifest"
+    },
+    "L_verify": {
+      "node": "L2",
+      "sets": "interface",
+      "requires": [
+        "hospital_model"
+      ],
+      "full": "verify_full",
+      "quick": "verify_quick",
+      "quick_requires": [
+        "module_matched"
+      ]
+    },
+    "C_match": {
+      "node": "C1",
+      "sets": "module_matched",
+      "requires": [
+        "hospital_model"
+      ],
+      "full": "verify_full",
+      "quick": "verify_quick",
+      "quick_requires": [
+        "interface"
+      ]
+    },
+    "power_survey": {
+      "node": "@power",
+      "price": "power_survey",
+      "sets": "power_survey"
+    },
+    "power_restore": {
+      "node": "@power",
+      "price": "power_restore",
+      "sets": "power",
+      "requires": [
+        "power_survey"
+      ]
+    },
+    "L_front_open": {
+      "node": "L1",
+      "sets": "L_front_open",
+      "methods": [
+        "crowbar",
+        "manual"
+      ]
+    },
+    "L_fixation_open": {
+      "node": "L2",
+      "sets": "L_fixation_open",
+      "methods": [
+        "crowbar",
+        "manual"
+      ]
+    },
+    "L_spares_open": {
+      "node": "L3",
+      "sets": "L_spares_open",
+      "methods": [
+        "crowbar",
+        "manual"
+      ]
+    },
+    "C_channel_open": {
+      "node": "C1",
+      "sets": "C_channel_open",
+      "methods": [
+        "crowbar",
+        "manual"
+      ]
+    },
+    "H_firedoor_open": {
+      "node": "H1",
+      "sets": "H_firedoor_open",
+      "methods": [
+        "crowbar"
+      ]
+    },
+    "C_spares_open": {
+      "node": "C4",
+      "sets": "C_spares_open",
+      "methods": [
+        "crowbar",
+        "manual"
+      ],
+      "reveals": "C_spares"
+    },
+    "L_extract": {
+      "node": "L2",
+      "price": "extract",
+      "requires": [
+        "interface",
+        "L_fixation_open"
+      ],
+      "item": "control",
+      "source": "quest_control",
+      "requires_enemy_cleared": "L"
+    },
+    "C_extract": {
+      "node": "C3",
+      "price": "extract",
+      "requires": [
+        "module_matched"
+      ],
+      "item": "module",
+      "source": "quest_module",
+      "requires_enemy_cleared": "C"
+    },
+    "sample_extract": {
+      "node": "H5",
+      "item": "sample",
+      "source": "quest_sample",
+      "requires_enemy_cleared": "H"
+    },
+    "install": {
+      "node": "H8",
+      "price": "install",
+      "sets": "installed",
+      "requires": [
+        "power"
+      ],
+      "consumes": {
+        "control": 1,
+        "module": 1,
+        "metal": 1,
+        "electronics": 1
+      }
+    }
+  },
+  "enemies": {
+    "H": {
+      "node": "H4",
+      "hp": 14,
+      "intent": "scratch"
+    },
+    "L": {
+      "node": "L2",
+      "hp": 16,
+      "intent": "smash"
+    },
+    "C": {
+      "node": "C2",
+      "hp": 16,
+      "intent": "swipe"
+    }
+  },
+  "topology": {
+    "common_edges": [
+      [
+        "H0",
+        "H1"
+      ],
+      [
+        "H1",
+        "H2"
+      ],
+      [
+        "H1",
+        "H3"
+      ],
+      [
+        "H1",
+        "H4"
+      ],
+      [
+        "H3",
+        "H4"
+      ],
+      [
+        "H4",
+        "H5"
+      ],
+      [
+        "H1",
+        "H7"
+      ],
+      [
+        "H3",
+        "H6"
+      ],
+      [
+        "H6",
+        "H7"
+      ],
+      [
+        "H7",
+        "H8"
+      ],
+      [
+        "L0",
+        "L1"
+      ],
+      [
+        "L1",
+        "L2"
+      ],
+      [
+        "L1",
+        "L3"
+      ],
+      [
+        "L1",
+        "L5"
+      ],
+      [
+        "C0",
+        "C1"
+      ],
+      [
+        "C1",
+        "C2"
+      ],
+      [
+        "C2",
+        "C3"
+      ],
+      [
+        "C1",
+        "C4"
+      ],
+      [
+        "C1",
+        "C5"
+      ],
+      [
+        "H7",
+        "L0"
+      ],
+      [
+        "L0",
+        "C0"
+      ],
+      [
+        "C0",
+        "H0"
+      ]
+    ],
+    "five_edges": [
+      [
+        "H0",
+        "T0"
+      ],
+      [
+        "T0",
+        "T1"
+      ],
+      [
+        "T0",
+        "P0"
+      ],
+      [
+        "P0",
+        "P1"
+      ],
+      [
+        "P0",
+        "L0"
+      ]
+    ],
+    "three_edges": [
+      [
+        "L3",
+        "L4"
+      ],
+      [
+        "L2",
+        "L4"
+      ]
+    ],
+    "common_observe": {
+      "H0": [
+        "H1",
+        "C0"
+      ],
+      "H1": [
+        "H2",
+        "H3",
+        "H4",
+        "H7"
+      ],
+      "H3": [
+        "H4",
+        "H6"
+      ],
+      "H4": [
+        "H5"
+      ],
+      "H6": [
+        "H3",
+        "H7"
+      ],
+      "H7": [
+        "H6",
+        "H8",
+        "L0"
+      ],
+      "L0": [
+        "L1",
+        "C0",
+        "H7"
+      ],
+      "L1": [
+        "L2",
+        "L3",
+        "L5"
+      ],
+      "C0": [
+        "C1",
+        "H0",
+        "L0"
+      ],
+      "C1": [
+        "C2",
+        "C4",
+        "C5"
+      ],
+      "C2": [
+        "C3"
+      ]
+    },
+    "five_observe": {
+      "H0": [
+        "T0"
+      ],
+      "L0": [
+        "P0"
+      ],
+      "T0": [
+        "H0",
+        "T1",
+        "P0"
+      ],
+      "P0": [
+        "T0",
+        "P1",
+        "L0"
+      ]
+    },
+    "three_observe": {
+      "L2": [
+        "L4"
+      ],
+      "L3": [
+        "L4"
+      ],
+      "L4": [
+        "L2",
+        "L3"
+      ]
+    },
+    "A_nodes": [
+      "H6",
+      "L5",
+      "C4",
+      "T1"
+    ],
+    "gates": {
+      "H1|H4": {
+        "fact": "H_firedoor_open"
+      },
+      "H3|H4": {
+        "item": "card"
+      },
+      "C1|C2": {
+        "fact": "C_channel_open"
+      }
+    },
+    "excluded_edges": "C4-C3 optional bypass and C5-H7 shortcut exist in Draft but not accepted by this bounded replay"
+  },
+  "traces": {
+    "L_full": {
+      "enemy": "L",
+      "start_hp": 16,
+      "start_intent": "smash",
+      "duration": 380,
+      "enemy_end": 0,
+      "next_intent": "smash",
+      "events": [
+        [
+          0,
+          "basic"
+        ],
+        [
+          100,
+          "defend"
+        ],
+        [
+          150,
+          "hit",
+          6,
+          "smash",
+          false,
+          0,
+          1
+        ],
+        [
+          180,
+          "basic"
+        ],
+        [
+          280,
+          "basic"
+        ],
+        [
+          380,
+          "basic"
+        ]
+      ]
+    },
+    "C_full": {
+      "enemy": "C",
+      "start_hp": 16,
+      "start_intent": "swipe",
+      "duration": 460,
+      "enemy_end": 0,
+      "next_intent": "swipe",
+      "events": [
+        [
+          0,
+          "basic"
+        ],
+        [
+          60,
+          "hit",
+          2,
+          "swipe",
+          false,
+          0,
+          1
+        ],
+        [
+          100,
+          "defend"
+        ],
+        [
+          170,
+          "hit",
+          5,
+          "bite",
+          false,
+          1,
+          2
+        ],
+        [
+          180,
+          "charged"
+        ],
+        [
+          360,
+          "basic"
+        ],
+        [
+          460,
+          "basic"
+        ]
+      ]
+    },
+    "C_split": {
+      "enemy": "C",
+      "start_hp": 16,
+      "start_intent": "swipe",
+      "duration": 440,
+      "enemy_end": 6,
+      "next_intent": "swipe",
+      "escape": true,
+      "events": [
+        [
+          0,
+          "basic"
+        ],
+        [
+          60,
+          "hit",
+          2,
+          "swipe",
+          false,
+          0,
+          1
+        ],
+        [
+          100,
+          "defend"
+        ],
+        [
+          170,
+          "hit",
+          5,
+          "bite",
+          false,
+          1,
+          2
+        ],
+        [
+          180,
+          "charged"
+        ],
+        [
+          360,
+          "escape"
+        ],
+        [
+          440,
+          "escape_complete"
+        ]
+      ]
+    },
+    "C_resume": {
+      "enemy": "C",
+      "start_hp": 6,
+      "start_intent": "swipe",
+      "duration": 100,
+      "enemy_end": 0,
+      "next_intent": "bite",
+      "requires_reentry": true,
+      "events": [
+        [
+          0,
+          "basic"
+        ],
+        [
+          50,
+          "hit",
+          2,
+          "swipe",
+          false,
+          0,
+          1
+        ],
+        [
+          100,
+          "basic"
+        ]
+      ]
+    },
+    "H_full": {
+      "enemy": "H",
+      "start_hp": 14,
+      "start_intent": "scratch",
+      "duration": 280,
+      "enemy_end": 0,
+      "next_intent": "bite",
+      "events": [
+        [
+          0,
+          "basic"
+        ],
+        [
+          70,
+          "hit",
+          3,
+          "scratch",
+          false,
+          0,
+          1
+        ],
+        [
+          100,
+          "charged"
+        ],
+        [
+          280,
+          "basic"
+        ]
+      ]
+    },
+    "H_wound": {
+      "enemy": "H",
+      "start_hp": 14,
+      "start_intent": "scratch",
+      "duration": 280,
+      "enemy_end": 0,
+      "next_intent": "bite",
+      "events": [
+        [
+          0,
+          "basic"
+        ],
+        [
+          70,
+          "hit",
+          3,
+          "scratch",
+          true,
+          0,
+          1
+        ],
+        [
+          100,
+          "charged"
+        ],
+        [
+          280,
+          "basic"
+        ]
+      ]
+    }
+  },
+  "trace_note": "Event tuples: CTB, actor/action, raw enemy damage, intent, chosen wound, chosen exposure, risk checks consumed. Turn scheduling/control delay is an authored premise, not exhaustively simulated."
+}

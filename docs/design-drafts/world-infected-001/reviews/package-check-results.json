@@ -1,0 +1,418 @@
+{
+  "task": "WORLD-DESIGN-001R",
+  "kind": "Package/link/input/Git scope checks; not gameplay verification",
+  "starting_sha": "61de1a10e5da12df2f172e18f6e05a69b755bfa8",
+  "checks": [
+    {
+      "name": "entry:01-world-overview.md",
+      "passed": true,
+      "detail": "Entry exists and identifies the current draft version"
+    },
+    {
+      "name": "entry:02-seven-day-structure.md",
+      "passed": true,
+      "detail": "Entry exists and identifies the current draft version"
+    },
+    {
+      "name": "entry:03-location-design.md",
+      "passed": true,
+      "detail": "Entry exists and identifies the current draft version"
+    },
+    {
+      "name": "entry:04-main-mission.md",
+      "passed": true,
+      "detail": "Entry exists and identifies the current draft version"
+    },
+    {
+      "name": "entry:05-resource-economy.md",
+      "passed": true,
+      "detail": "Entry exists and identifies the current draft version"
+    },
+    {
+      "name": "entry:06-event-pack.md",
+      "passed": true,
+      "detail": "Entry exists and identifies the current draft version"
+    },
+    {
+      "name": "entry:07-enemy-continuity.md",
+      "passed": true,
+      "detail": "Entry exists and identifies the current draft version"
+    },
+    {
+      "name": "entry:08-balance-budget.md",
+      "passed": true,
+      "detail": "Entry exists and identifies the current draft version"
+    },
+    {
+      "name": "entry:09-design-critic.md",
+      "passed": true,
+      "detail": "Entry exists and identifies the current draft version"
+    },
+    {
+      "name": "entry:10-decision-queue.md",
+      "passed": true,
+      "detail": "Entry exists and identifies the current draft version"
+    },
+    {
+      "name": "archive:input-61de1a1/WORLD-DESIGN-001R-task.md",
+      "passed": true,
+      "detail": "Original byte length and SHA-256"
+    },
+    {
+      "name": "archive:input-61de1a1/WORLD-DESIGN-001-actual-design-review.md",
+      "passed": true,
+      "detail": "Original byte length and SHA-256"
+    },
+    {
+      "name": "archive:input-61de1a1/manifest.json",
+      "passed": true,
+      "detail": "Original byte length and SHA-256"
+    },
+    {
+      "name": "archive:input-61de1a1/recheck.py",
+      "passed": true,
+      "detail": "Original byte length and SHA-256"
+    },
+    {
+      "name": "archive:input-61de1a1/recheck-results.json",
+      "passed": true,
+      "detail": "Original byte length and SHA-256"
+    },
+    {
+      "name": "external-input:WORLD-DESIGN-001-review-61de1a1.zip",
+      "passed": true,
+      "detail": "Read-only original input SHA-256; no external upload"
+    },
+    {
+      "name": "external-input:continuous-world-design-register-v0.6.md",
+      "passed": true,
+      "detail": "Read-only original input SHA-256; no external upload"
+    },
+    {
+      "name": "external-input:infection-world-narrative-proposal-v0.5.md",
+      "passed": true,
+      "detail": "Read-only original input SHA-256; no external upload"
+    },
+    {
+      "name": "review-manifest:WORLD-DESIGN-001-actual-design-review.md",
+      "passed": true,
+      "detail": "Matches the independent review's own manifest"
+    },
+    {
+      "name": "review-manifest:WORLD-DESIGN-001R-task.md",
+      "passed": true,
+      "detail": "Matches the independent review's own manifest"
+    },
+    {
+      "name": "review-manifest:recheck-results.json",
+      "passed": true,
+      "detail": "Matches the independent review's own manifest"
+    },
+    {
+      "name": "review-manifest:recheck.py",
+      "passed": true,
+      "detail": "Matches the independent review's own manifest"
+    },
+    {
+      "name": "local-links-and-anchors",
+      "passed": true,
+      "detail": {
+        "count": 173,
+        "broken": [],
+        "historical_inputs": "Excluded from current-link checks, included in exact-byte checks"
+      }
+    },
+    {
+      "name": "event-fields:中止的转运工单",
+      "passed": true,
+      "detail": {
+        "事件名": 1,
+        "触发条件": 1,
+        "玩家已知": 1,
+        "真实状态": 1,
+        "选项": 1,
+        "成本": 1,
+        "结果": 1,
+        "后续影响": 1,
+        "状态标记": 1
+      }
+    },
+    {
+      "name": "event-fields:前区柜的卡件",
+      "passed": true,
+      "detail": {
+        "事件名": 1,
+        "触发条件": 1,
+        "玩家已知": 1,
+        "真实状态": 1,
+        "选项": 1,
+        "成本": 1,
+        "结果": 1,
+        "后续影响": 1,
+        "状态标记": 1
+      }
+    },
+    {
+      "name": "event-fields:货单与实物对不上",
+      "passed": true,
+      "detail": {
+        "事件名": 1,
+        "触发条件": 1,
+        "玩家已知": 1,
+        "真实状态": 1,
+        "选项": 1,
+        "成本": 1,
+        "结果": 1,
+        "后续影响": 1,
+        "状态标记": 1
+      }
+    },
+    {
+      "name": "event-fields:卸下控制组件",
+      "passed": true,
+      "detail": {
+        "事件名": 1,
+        "触发条件": 1,
+        "玩家已知": 1,
+        "真实状态": 1,
+        "选项": 1,
+        "成本": 1,
+        "结果": 1,
+        "后续影响": 1,
+        "状态标记": 1
+      }
+    },
+    {
+      "name": "event-fields:被主动断开的支路",
+      "passed": true,
+      "detail": {
+        "事件名": 1,
+        "触发条件": 1,
+        "玩家已知": 1,
+        "真实状态": 1,
+        "选项": 1,
+        "成本": 1,
+        "结果": 1,
+        "后续影响": 1,
+        "状态标记": 1
+      }
+    },
+    {
+      "name": "event-fields:广播还在，人已经不在",
+      "passed": true,
+      "detail": {
+        "事件名": 1,
+        "触发条件": 1,
+        "玩家已知": 1,
+        "真实状态": 1,
+        "选项": 1,
+        "成本": 1,
+        "结果": 1,
+        "后续影响": 1,
+        "状态标记": 1
+      }
+    },
+    {
+      "name": "event-fields:现场匹配启动模块",
+      "passed": true,
+      "detail": {
+        "事件名": 1,
+        "触发条件": 1,
+        "玩家已知": 1,
+        "真实状态": 1,
+        "选项": 1,
+        "成本": 1,
+        "结果": 1,
+        "后续影响": 1,
+        "状态标记": 1
+      }
+    },
+    {
+      "name": "event-fields:检修间旁路",
+      "passed": true,
+      "detail": {
+        "事件名": 1,
+        "触发条件": 1,
+        "玩家已知": 1,
+        "真实状态": 1,
+        "选项": 1,
+        "成本": 1,
+        "结果": 1,
+        "后续影响": 1,
+        "状态标记": 1
+      }
+    },
+    {
+      "name": "event-fields:安置点医疗请求",
+      "passed": true,
+      "detail": {
+        "事件名": 1,
+        "触发条件": 1,
+        "玩家已知": 1,
+        "真实状态": 1,
+        "选项": 1,
+        "成本": 1,
+        "结果": 1,
+        "后续影响": 1,
+        "状态标记": 1
+      }
+    },
+    {
+      "name": "event-fields:维修员留下的方法",
+      "passed": true,
+      "detail": {
+        "事件名": 1,
+        "触发条件": 1,
+        "玩家已知": 1,
+        "真实状态": 1,
+        "选项": 1,
+        "成本": 1,
+        "结果": 1,
+        "后续影响": 1,
+        "状态标记": 1
+      }
+    },
+    {
+      "name": "event-fields:有限补给，取哪一半",
+      "passed": true,
+      "detail": {
+        "事件名": 1,
+        "触发条件": 1,
+        "玩家已知": 1,
+        "真实状态": 1,
+        "选项": 1,
+        "成本": 1,
+        "结果": 1,
+        "后续影响": 1,
+        "状态标记": 1
+      }
+    },
+    {
+      "name": "event-fields:转运平台恢复",
+      "passed": true,
+      "detail": {
+        "事件名": 1,
+        "触发条件": 1,
+        "玩家已知": 1,
+        "真实状态": 1,
+        "选项": 1,
+        "成本": 1,
+        "结果": 1,
+        "后续影响": 1,
+        "状态标记": 1
+      }
+    },
+    {
+      "name": "event-fields:截止窗口的第二次通知",
+      "passed": true,
+      "detail": {
+        "事件名": 1,
+        "触发条件": 1,
+        "玩家已知": 1,
+        "真实状态": 1,
+        "选项": 1,
+        "成本": 1,
+        "结果": 1,
+        "后续影响": 1,
+        "状态标记": 1
+      }
+    },
+    {
+      "name": "event-fields:不完美的返航",
+      "passed": true,
+      "detail": {
+        "事件名": 1,
+        "触发条件": 1,
+        "玩家已知": 1,
+        "真实状态": 1,
+        "选项": 1,
+        "成本": 1,
+        "结果": 1,
+        "后续影响": 1,
+        "状态标记": 1
+      }
+    },
+    {
+      "name": "unique-event-sections",
+      "passed": true,
+      "detail": {
+        "events": 14,
+        "fixed_event_count_is_not_a_design_quality_metric": true
+      }
+    },
+    {
+      "name": "active-markdown-encoding-and-no-new-dec",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "branch",
+      "passed": true,
+      "detail": "feature/design-world-infected-world-001"
+    },
+    {
+      "name": "main-baseline",
+      "passed": true,
+      "detail": "a76e9c1c998051fc1643b6e0c3d53443fa55feed"
+    },
+    {
+      "name": "starting-commit-is-ancestor",
+      "passed": true,
+      "detail": "61de1a10e5da12df2f172e18f6e05a69b755bfa8"
+    },
+    {
+      "name": "path-allow-list",
+      "passed": true,
+      "detail": {
+        "files": [
+          "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "docs/design-drafts/world-infected-001/02-seven-day-structure.md",
+          "docs/design-drafts/world-infected-001/03-location-design.md",
+          "docs/design-drafts/world-infected-001/04-main-mission.md",
+          "docs/design-drafts/world-infected-001/05-resource-economy.md",
+          "docs/design-drafts/world-infected-001/06-event-pack.md",
+          "docs/design-drafts/world-infected-001/07-enemy-continuity.md",
+          "docs/design-drafts/world-infected-001/08-balance-budget.md",
+          "docs/design-drafts/world-infected-001/09-design-critic.md",
+          "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "docs/design-drafts/world-infected-001/WORLD-DESIGN-001R-completion.md",
+          "docs/design-drafts/world-infected-001/evidence/README.md",
+          "docs/design-drafts/world-infected-001/evidence/check_design.py",
+          "docs/design-drafts/world-infected-001/evidence/first-run-results.json",
+          "docs/design-drafts/world-infected-001/evidence/parameters.json",
+          "docs/design-drafts/world-infected-001/evidence/raw-results.json",
+          "docs/design-drafts/world-infected-001/evidence/route-ledgers.csv",
+          "docs/design-drafts/world-infected-001/evidence/route-ledgers.json",
+          "docs/design-drafts/world-infected-001/evidence/scenarios.json",
+          "docs/design-drafts/world-infected-001/reviews/check_package.py",
+          "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+          "docs/design-drafts/world-infected-001/reviews/input-61de1a1/WORLD-DESIGN-001-actual-design-review.md",
+          "docs/design-drafts/world-infected-001/reviews/input-61de1a1/WORLD-DESIGN-001R-task.md",
+          "docs/design-drafts/world-infected-001/reviews/input-61de1a1/manifest.json",
+          "docs/design-drafts/world-infected-001/reviews/input-61de1a1/recheck-results.json",
+          "docs/design-drafts/world-infected-001/reviews/input-61de1a1/recheck.py",
+          "docs/design-drafts/world-infected-001/reviews/input-manifest.json",
+          "docs/design-drafts/world-infected-001/reviews/map-structure-comparison-v1.1.md",
+          "docs/design-drafts/world-infected-001/reviews/package-check-results.json",
+          "docs/design-drafts/world-infected-001/reviews/reproduction-results.json"
+        ],
+        "outside": []
+      }
+    },
+    {
+      "name": "git-diff-check",
+      "passed": true,
+      "detail": "Working and staged diff checks both passed"
+    }
+  ],
+  "skipped": [],
+  "checks_count": 44,
+  "passed": 44,
+  "failed": 0,
+  "not_checked": [
+    "external web links",
+    "production gameplay/tests/build/browser",
+    "save and restore transactions",
+    "Owner experience"
+  ]
+}

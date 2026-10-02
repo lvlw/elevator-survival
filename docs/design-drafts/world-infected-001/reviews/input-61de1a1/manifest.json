@@ -1,0 +1,26 @@
+{
+  "reviewed_sha": "61de1a10e5da12df2f172e18f6e05a69b755bfa8",
+  "kind": "review handoff; no repository write; no implementation authorization",
+  "files": [
+    {
+      "path": "WORLD-DESIGN-001-actual-design-review.md",
+      "bytes": 14287,
+      "sha256": "30a0506449b0f24ae4c543073e71b9342e67812fc956ed2ebf595748c92f67ac"
+    },
+    {
+      "path": "WORLD-DESIGN-001R-task.md",
+      "bytes": 7763,
+      "sha256": "e87976b3dd041b33ceeaabb3fc1e51cd44bdf52f91e1c76d634f2fb40ea1953a"
+    },
+    {
+      "path": "recheck-results.json",
+      "bytes": 2233,
+      "sha256": "ef64b286cfe5ae3105949bfdd9fdae842c006d9e36b8d56b03b1cb0ed172e2ba"
+    },
+    {
+      "path": "recheck.py",
+      "bytes": 4190,
+      "sha256": "b8cef6bef5936e37d05ab91e421dab0b4673cd9eda21b930853ccb03840265e5"
+    }
+  ]
+}

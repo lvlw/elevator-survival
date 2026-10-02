@@ -1,0 +1,30 @@
+{
+  "task": "WORLD-DESIGN-001R",
+  "kind": "Root independent two-run reproduction after repository LF normalization; finite authored inputs only",
+  "python": "3.12.14",
+  "final_version_runs": 2,
+  "earlier_pre_normalization_runs": 2,
+  "exit_codes": [
+    0,
+    0
+  ],
+  "counts": {
+    "scenarios": 52,
+    "sensitivity": 5,
+    "passed": 57,
+    "failed": 0
+  },
+  "unique_scenario_ids": 57,
+  "input_hashes_verified": true,
+  "deterministic_outputs": true,
+  "output_sha256": {
+    "route-ledgers.json": "82a46be7d8f679287765edab8b89c66ef1e73277d939f812240e20a60bf403f4",
+    "raw-results.json": "ba453f10225f0064d9c01f21ca56781295c2394dc0024bbd53b86d775ba87327",
+    "route-ledgers.csv": "deae34bd03c7e4c209cc0f22f7a2cc3b43aa7c0bfcbb87c5112ca6dfe9f65413"
+  },
+  "limits": [
+    "No production gameplay tests",
+    "No general CTB engine or RNG simulation",
+    "Output hashes compare same interpreter and environment"
+  ]
+}

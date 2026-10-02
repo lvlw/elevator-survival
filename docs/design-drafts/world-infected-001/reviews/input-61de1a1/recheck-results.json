@@ -1,0 +1,108 @@
+{
+  "reviewed_sha": "61de1a10e5da12df2f172e18f6e05a69b755bfa8",
+  "evidence_kind": "independent arithmetic and one geometric witness; transcribed draft inputs",
+  "not_executed": [
+    "production game rules",
+    "full action legality replay",
+    "random simulation",
+    "browser",
+    "npm tests",
+    "save/load"
+  ],
+  "seven_day_energy_costs": [
+    54,
+    34,
+    36,
+    86,
+    44,
+    28,
+    75
+  ],
+  "seven_day_final_energy": 25,
+  "six_nights_unspent_energy_discarded": 318,
+  "unspent_caveat": "This is a chosen route, not proof that all discarded energy was forced by the daily-region gate.",
+  "compact_route_nominal_costs": [
+    102,
+    79,
+    76
+  ],
+  "compact_route_end_energy": [
+    0,
+    6,
+    24
+  ],
+  "combat_ctb_conversion_only": {
+    "380": 16,
+    "440": 20,
+    "100": 6,
+    "280": 12,
+    "460": 20
+  },
+  "seven_day_health_rows": [
+    {
+      "day": 1,
+      "hp": 8,
+      "satiety": 4,
+      "infection": 0,
+      "rations": 0
+    },
+    {
+      "day": 2,
+      "hp": 8,
+      "satiety": 2,
+      "infection": 0,
+      "rations": 2
+    },
+    {
+      "day": 3,
+      "hp": 8,
+      "satiety": 2,
+      "infection": 0,
+      "rations": 2
+    },
+    {
+      "day": 4,
+      "hp": 6,
+      "satiety": 2,
+      "infection": 0,
+      "rations": 4
+    },
+    {
+      "day": 5,
+      "hp": 4,
+      "satiety": 2,
+      "infection": 20,
+      "rations": 3
+    },
+    {
+      "day": 6,
+      "hp": 4,
+      "satiety": 2,
+      "infection": 25,
+      "rations": 2
+    },
+    {
+      "day": 7,
+      "hp": 2,
+      "satiety": 2,
+      "infection": 25,
+      "rations": 2
+    }
+  ],
+  "seven_day_selected_branch_equipment": {
+    "pipe": 15,
+    "coat": 6,
+    "crowbar": 8
+  },
+  "peak_witness": {
+    "grid_cells": 16,
+    "backpack_weight": 19,
+    "rectangles_nonoverlapping": true
+  },
+  "document_legality_mismatch": {
+    "claim": "compact route Day2 performs quick matching at C3",
+    "spec": "06-event-pack: matching at C1; C3 requires matching already done",
+    "effect": "same sum does not certify a legal action sequence; move the action or explicitly revise the event location and rerun"
+  },
+  "review_status": "arithmetic matches stated conditional results; design needs revision"
+}

@@ -1,6 +1,6 @@
 """Bounded design evidence; Python standard library only.
 
-Replays authored actions against the Draft v1.2 contract. Combat uses fixed
+Replays authored actions against the Draft v1.3 contract. Combat uses fixed
 event traces, not a general CTB scheduler; no RNG, production import, save
 roundtrip, UI, whole-strategy search or balance guarantee. All output stays
 beside this script. Geometries are author-selected witnesses at each stable
@@ -29,9 +29,15 @@ def edge(a, b):
 def count(s, kind, locations=("pack", "q1", "q2")):
     return sum(u["type"] == kind and u["location"] in locations for u in s["units"])
 
-def consume(s, kind, quantity, destination="consumed", locations=("pack",)):
+def consume(s, kind, quantity, destination="consumed", locations=("pack",), new_first=False, selected_ids=None):
     chosen = sorted((u for u in s["units"] if u["type"] == kind and
-                     u["location"] in locations), key=lambda u: (u.get("origin_task") != s.get("task_id"), u["id"]))
+                     u["location"] in locations), key=lambda u: (u.get("origin_task") != s.get("task_id") if new_first else False, u["id"]))
+    if selected_ids is not None:
+        require(isinstance(selected_ids,list) and len(selected_ids)==quantity and
+                all(isinstance(x,str) for x in selected_ids) and len(set(selected_ids))==quantity,
+                "invalid_selected_units")
+        chosen=[u for u in chosen if u["id"] in selected_ids]
+        require(len(chosen)==quantity,"selected_unit_not_available")
     require(len(chosen) >= quantity, "missing_item:" + kind)
     for u in chosen[:quantity]:
         u["location"] = destination
@@ -53,7 +59,8 @@ def geometry(s, p):
                 require(i == 0, "duplicate_large_item")
             else:
                 options = [(xx, yy) for yy in range(h) for xx in range(w)
-                           if (xx, yy) not in cells]
+                           if xx+width <= w and yy+height <= h and not\
+                           ({(xxx,yyy) for xxx in range(xx,xx+width) for yyy in range(yy,yy+height)} & cells)]
                 require(bool(options), "grid_full")
                 x, y = options[0]
             footprint = {(xx, yy) for xx in range(x, x + width)
@@ -92,6 +99,10 @@ def validate(s, p):
     require(type(s["infection"]) is int and 0 <= s["infection"] <= 2147483647, "invalid_infection")
     require(type(s["exposure"]) is int and 0 <= s["exposure"] <= 2147483647, "invalid_exposure")
     require(isinstance(s["task_id"],str) and bool(s["task_id"].strip()) and s["task_id"] not in ("before","hub_purchase"), "invalid_task_id")
+    require(type(s["revision"]) is int and s["revision"] >= 0, "invalid_revision")
+    require(type(s["satiety"]) is int and 0 <= s["satiety"] <= p["limits"]["satiety"], "invalid_satiety")
+    if s["ready_next"]:
+        require(s["settled_cycle"] == s["character_day"] - 1, "invalid_settled_cycle")
     return geometry(s, p)
 
 def initial(spec, p):
@@ -128,6 +139,14 @@ def initial(spec, p):
              suppressant_used=i.get("suppressant_used", False), medical_doses=i.get("medical_doses", 0),
              exit_policy=i.get("exit_policy", "living_failure"),
              equipment_origin=i.get("equipment_origin", {"weapon":"before", "armor":"before", "utility":"before"}))
+    s.update(settled_cycle=i.get("settled_cycle",s["character_day"]-1 if s["ready_next"] else None),
+             first_entry=i.get("first_entry",False), active_task_id=s["task_id"],
+             last_settled_result=copy.deepcopy(i.get("last_settled_result")),
+             used_task_ids=list(i.get("used_task_ids",[s["task_id"]])),
+             offered_tasks=copy.deepcopy(i.get("offered_tasks",p["offered_tasks"])),
+             mission_id=i.get("mission_id","infected_recovery"), rules_version=p["rules_version"])
+    if s["first_entry"]:
+        s.update(location="HUB",status="new_character",active_task_id=None,used_task_ids=[])
     s["injury"] = i.get("injury", s["injury"])
     if i.get("initial_bandage", True):
         s["units"].append({"id": "initial.bandage.1", "type": "bandage",
@@ -151,6 +170,9 @@ def snapshot(s, p):
     d = copy.deepcopy(s)
     for k in ("facts", "known_edges", "visited", "sources"):
         d[k] = sorted(d[k])
+    # The immutable finite offer registry is an input reference, not duplicated in every state.
+    if d["offered_tasks"] == p["offered_tasks"]:
+        d["offered_tasks"] = {"parameter_ref":"parameters.json#/offered_tasks"}
     d["geometry"] = geometry(s, p)
     d["inventory_by_location"] = {}
     for u in s["units"]:
@@ -162,17 +184,16 @@ def charge(s, price):
     s["energy"] = max(0, s["energy"] - price)
 
 def terminal_death(s, reason):
-    s["status"] = "death"
-    s["points"] = 0
-    s["ready_next"] = False
-    s["reason"] = reason
-    s["next_activity"] = "new_character_setup"
-    s["equipped_retained"] = False
-    s["equipment"] = {"weapon": None, "armor": None, "utility": None}
+    # Current ownership only: past dispositions are immutable historical facts.
+    if s["status"] == "death":
+        return
+    s.update(status="death", points=0, ready_next=False, settled_cycle=None,
+             reason=reason, next_activity="new_character_setup",
+             equipped_retained=False, active_task_id=None, pending=None)
+    s["equipment"] = {"weapon":None,"armor":None,"utility":None}
     for u in s["units"]:
-        if u["location"] not in ("consumed", "installed"):
+        if u["location"] in ("bank","pack","q1","q2") or u["location"].startswith("ground:"):
             u["location"] = "lost"
-    s["pending"] = None
 
 def check_death(s, p, reason):
     if s["hp"] <= 0:
@@ -201,6 +222,7 @@ def daily_hazards(s, p):
                 if s["infection"] >= x["min"]), key=lambda x: x["min"])["base"]
     s["infection"] += max(0, base + p["health"]["exposure_progress"] *
                           s["exposure"] - s["suppression"])
+    require(type(s["infection"]) is int and 0 <= s["infection"] <= 2147483647, "invalid_infection")
     s["exposure"] = 0
     stages.append({"stage": "infection", "infection": s["infection"]})
     damage = max((x for x in p["health"]["infection_damage"] if s["infection"] >= x["min"]),
@@ -236,14 +258,14 @@ def finish_return(s, p, outcome):
         if u["location"] in ("pack", "q1", "q2"):
             kind = p["items"][u["type"]]["kind"]
             if kind == "ordinary":
-                u["location"] = "bank" if success or u.get("origin_task") != s["task_id"] else "recovered"
+                u["location"] = "recovered" if not success and p["economy"]["recover_new_on_failure"] and u.get("origin_task") == s["task_id"] else "bank"
             elif u["type"] == "sample":
                 u["location"] = "delivered" if success else "delivered_partial"
             else:
                 u["location"] = "impounded"
         elif u["location"].startswith("ground:"):
             u["location"] = "lost"
-    if not success:
+    if not success and p["economy"]["recover_new_on_failure"]:
         for slot, origin in s["equipment_origin"].items():
             if origin == s["task_id"]:
                 s["equipment"][slot] = None
@@ -252,7 +274,10 @@ def finish_return(s, p, outcome):
                 elif slot == "utility": s["tool"], s["tool_resource"] = "none", 0
     fee = min(s["points"], p["economy"]["failure_penalty"]) if not success else 0
     s["points"] += p["economy"]["success_reward"] if success else -fee
-    s["first_success"] |= success
+    s["first_success"] |= success and s["mission_id"] == "infected_recovery"
+    s["last_settled_result"] = {"task_id":s["task_id"],"outcome":outcome,
+                                "reward":p["economy"]["success_reward"] if success else 0,"fee":fee}
+    s["active_task_id"] = None
     s["status"], s["reason"] = outcome, outcome
     s["location"] = "HUB"
     s["next_activity"] = p["terminal_candidate"]["next_activity"]
@@ -330,7 +355,7 @@ def combat(s, p, trace_name):
 def therapy_cost(s, p):
     body = s["hp"] < p["limits"]["hp"] or s["bleeding"] or s["wound"] or s["injury"] != "none"
     if not body and s["infection"] == 0 and s["exposure"] == 0: return 0
-    if s["infection"] >= 90: return p["economy"]["severe_therapy"]
+    if s["infection"] >= p["economy"]["severe_infection_min"]: return p["economy"]["severe_therapy"]
     if s["infection"] > 0 or s["exposure"] > 0: return p["economy"]["infection_therapy"]
     return p["economy"]["body_therapy"]
 
@@ -339,8 +364,9 @@ def therapy_quote(s, p):
 
 def hub_action(s, action, p):
     # Finite candidate transactions, no production persistence or generic task engine.
-    require(s["location"] == "HUB" and s["hp"] > 0 and s["status"] in ("success","failure","deadline_recall"),
+    require(s["location"] == "HUB" and s["hp"] > 0 and s["status"] in ("success","failure","deadline_recall","new_character"),
             "not_living_hub")
+    require(s["pending"] is None and s["active_task_id"] is None, "not_stable_hub")
     validate(s, p)
     op, detail = action["action"], {}
     if op == "hub_cancel":
@@ -359,16 +385,25 @@ def hub_action(s, action, p):
                  infection=0, exposure=0, painkiller=False, suppression=0)
         detail["cost"] = cost
     elif op == "hub_buy":
-        require(action.get("revision") == s["revision"], "stale_purchase")
+        require(type(action.get("revision")) is int and action["revision"] == s["revision"], "stale_purchase")
         require(type(action.get("quantity",1)) is int and action.get("quantity",1)==1, "invalid_purchase_quantity")
-        require(action.get("item") == "bandage", "catalog_item_closed")
-        require(s["first_success"], "missing_eligibility")
+        kind = action.get("item")
+        require(isinstance(kind,str) and kind in p["economy"]["catalog"], "catalog_item_closed")
+        entry = p["economy"]["catalog"][kind]
+        cost = entry["price"]
+        require(type(cost) is int and 0 <= cost <= p["economy"]["max_balance"], "invalid_catalog_price")
+        if "price" in action:
+            require(type(action["price"]) is int and action["price"] >= 0, "invalid_purchase_price")
+            require(action["price"] == cost, "stale_purchase_price")
+        require(not entry["requires_full_success"] or s["first_success"], "missing_eligibility")
         require(action.get("destination", "bank") == "bank", "invalid_purchase_destination")
-        require(s["points"] >= p["economy"]["bandage_price"], "insufficient_points")
-        s["points"] -= p["economy"]["bandage_price"]
-        s["units"].append({"id":"purchase."+str(s["revision"]), "type":"bandage",
-                           "location":"bank", "origin_task":"hub_purchase"})
-        detail["cost"] = p["economy"]["bandage_price"]
+        require("origin_task" not in action and "unit_id" not in action, "immutable_item_identity")
+        require(s["points"] >= cost, "insufficient_points")
+        s["points"] -= cost
+        identity = "purchase." + str(s["revision"])
+        require(not any(u["id"] == identity for u in s["units"]), "duplicate_instance")
+        s["units"].append({"id":identity,"type":kind,"location":"bank","origin_task":"hub_purchase"})
+        detail.update(cost=cost,item=kind,unit_id=identity)
     elif op == "hub_use":
         kind = action["item"]
         require(count(s,kind,("bank",)) > 0, "missing_item:"+kind)
@@ -396,7 +431,7 @@ def hub_action(s, action, p):
         else: raise Reject("unsupported_hub_medication")
         consume(s,kind,1,locations=("bank",))
     elif op == "hub_maintain":
-        require(action.get("revision") == s["revision"], "stale_maintenance")
+        require(type(action.get("revision")) is int and action["revision"] == s["revision"], "stale_maintenance")
         kind = action["target"]
         if kind == "mechanical":
             pipe, tool = action.get("pipe",0), action.get("tool",0)
@@ -422,23 +457,40 @@ def hub_action(s, action, p):
         require(action.get("destination","pack") in ("pack","q1","q2"),"bad_pickup_destination")
         consume(s,action["item"],action["quantity"],action.get("destination","pack"),("bank",))
     elif op == "hub_rest":
-        if action.get("extra") is True:
-            require(action.get("revision") == s["revision"], "stale_rest")
-        else:
-            require(not s["ready_next"], "explicit_extra_rest_required")
-        detail["stages"]=daily_hazards(s,p)
-        if s["status"] != "death":
-            advance_character_day(s);s["energy"]=100;s["ready_next"]=True
-    elif op == "launch":
-        require(action.get("revision") == s["revision"],"stale_offer")
+        raise Reject("hub_rest_retired_use_launch")
+    elif op in ("launch","hub_launch_preview"):
+        require(type(action.get("revision")) is int and action["revision"] == s["revision"],"stale_offer")
         require(s["points"] + p["economy"]["success_reward"] <= p["economy"]["max_balance"],"insufficient_reward_headroom")
-        require(s["ready_next"],"real_hub_rest_required")
-        require(isinstance(action.get("task_id"),str) and bool(action["task_id"].strip()) and action["task_id"] not in ("before","hub_purchase"), "invalid_task_id")
-        require(action["task_id"] != s["task_id"] and action["task_id"] not in s.get("completed_task_ids",[]),"offer_already_used")
-        require(action.get("policy","living_failure") in ("living_failure","must_complete"),"unknown_task_policy")
-        s.setdefault("completed_task_ids",[]).append(s["task_id"])
-        s.update(task_id=action["task_id"], day=1, location="H0", status="active", reason=None,
-                 ready_next=False, next_activity=None, exit_policy=action.get("policy","living_failure"),
+        task = action.get("task_id")
+        require(isinstance(task,str) and bool(task.strip()) and task not in ("before","hub_purchase"),"invalid_task_id")
+        require(task not in s["used_task_ids"],"offer_already_used")
+        require(task in s["offered_tasks"],"task_not_offered")
+        offer = s["offered_tasks"][task]
+        require(offer["world_id"] == "infected_world" and action.get("world_id",offer["world_id"]) == offer["world_id"],"unknown_offer_world")
+        require(offer["policy"] in ("living_failure","must_complete") and action.get("policy",offer["policy"]) == offer["policy"],"unknown_task_policy")
+        require(offer["version"] == p["rules_version"] and action.get("offer_version",offer["version"]) == offer["version"],"stale_offer_version")
+        require(s["rules_version"] == p["rules_version"],"bound_rules_version_mismatch")
+        require(all(p["items"][u["type"]]["kind"]=="ordinary" for u in s["units"]
+                    if u["location"] in ("pack","q1","q2")),"task_bound_item_not_exportable")
+        if op == "hub_launch_preview":
+            return s,0,{"preview_only":True,"task_id":task,"handoff_due":not s["first_entry"] and not s["ready_next"],
+                        "health":{k:s[k] for k in ("hp","satiety","infection","exposure","bleeding","injury")}}
+        if not s["first_entry"] and not s["ready_next"]:
+            detail["settled_cycle"] = s["character_day"]
+            detail["stages"] = daily_hazards(s,p)
+            if s["status"] == "death":
+                s["revision"] += 1
+                validate(s,p)
+                return s,0,detail
+            advance_character_day(s)
+            s["energy"] = p["limits"]["energy"]
+        elif s["ready_next"]:
+            detail["consumed_previously_settled_cycle"] = s["settled_cycle"]
+        else:
+            detail["first_entry_no_prior_day"] = True
+        s["used_task_ids"].append(task)
+        s.update(task_id=task,active_task_id=task,mission_id=offer["mission_id"],day=1,location="H0",status="active",reason=None,
+                 first_entry=False,ready_next=False,settled_cycle=None,next_activity=None,exit_policy=offer["policy"],
                  facts={"hospital_model"},sources=set(),known_edges=set(),visited=set(),pending=None)
         s["enemies"]={n:{"hp":e["hp"],"intent":e["intent"],"engaged":False,"risk_cursor":0} for n,e in p["enemies"].items()}
         observe(s,p)
@@ -523,7 +575,7 @@ def perform(state, action, p):
         loc = action.get("from", "pack")
         require(loc in ("pack", "q1", "q2"), "not_carried_source")
         require(type(action.get("quantity")) is int and action["quantity"] > 0, "invalid_quantity")
-        consume(s, action["item"], action["quantity"], "ground:" + s["location"], (loc,))
+        consume(s, action["item"], action["quantity"], "ground:" + s["location"], (loc,), new_first=p["economy"]["recover_new_on_failure"])
     elif op == "use":
         kind = action["item"]
         loc = action.get("from", "pack")
@@ -531,21 +583,37 @@ def perform(state, action, p):
         if kind == "bandage":
             require(s["hp"] < p["limits"]["hp"] or s["bleeding"] or s["wound"],
                     "no_medical_target")
-            consume(s, kind, 1, locations=(loc,))
+            consume(s, kind, 1, locations=(loc,), new_first=p["economy"]["recover_new_on_failure"])
             s["hp"] = min(p["limits"]["hp"], s["hp"] + p["health"]["bandage_heal"])
             s["bleeding"], s["wound"] = False, False
+        elif kind == "firstaid":
+            removable = s["injury"] in ("light_contusion","light_laceration","light_puncture","light_bite")
+            require(s["hp"] < 12 or removable, "no_medical_target")
+            consume(s,kind,1,locations=(loc,))
+            s["hp"]=min(12,s["hp"]+4)
+            if removable:s.update(injury="none",bleeding=False,wound=False)
         elif kind == "ration":
             require(s["satiety"] < p["limits"]["satiety"], "full_satiety")
-            consume(s, kind, 1, locations=(loc,))
+            consume(s, kind, 1, locations=(loc,), new_first=p["economy"]["recover_new_on_failure"])
             s["satiety"] = min(p["limits"]["satiety"],
                               s["satiety"] + p["health"]["ration_gain"])
         elif kind == "disinfectant":
             require(s["exposure"] > 0 and not s["disinfectant_used"], "disinfectant_condition")
-            consume(s, kind, 1, locations=(loc,))
+            consume(s, kind, 1, locations=(loc,), new_first=p["economy"]["recover_new_on_failure"])
             s["exposure"] -= 1
             s["disinfectant_used"] = True
         else:
             raise Reject("unsupported_self_use")
+    elif op == "npc_trade":
+        require(s["location"] == "T1", "wrong_location")
+        require("lin_trade" not in s["facts"], "already_completed")
+        consume(s,"bandage",1,locations=("pack","q1","q2"))
+        consume(s,"disinfectant",1,locations=("pack","q1","q2"))
+        s["facts"].add("lin_trade")
+        for n in (1,2):
+            s["units"].append({"id":f"lin_trade.{s['task_id']}.ration.{n}","type":"ration",
+                               "location":"pack","origin_task":s["task_id"]})
+        price=p["prices"]["npc_trade"]
     elif op == "repair":
         target = action["target"]
         if target == "pipe":
@@ -588,6 +656,7 @@ def perform(state, action, p):
                 s["revision"] += 1
                 validate(s,p)
                 return s,0,detail
+            s["settled_cycle"] = s["character_day"]
             advance_character_day(s)
             s["energy"] = p["limits"]["energy"]
             s["ready_next"] = True
@@ -625,8 +694,10 @@ def perform(state, action, p):
         else:
             price = p["prices"][data["price"]]
         if "consumes" in data:
+            selections=action.get("selected_units",{})
+            require(isinstance(selections,dict) and set(selections)<=set(data["consumes"]), "invalid_material_selection")
             for kind, n in data["consumes"].items():
-                consume(s, kind, n, "installed")
+                consume(s,kind,n,"installed",selected_ids=selections.get(kind))
         if "item" in data:
             source = data["source"]
             require(source not in s["sources"], "source_already_revealed")
@@ -738,13 +809,13 @@ def main():
         sensitivity.append(result)
     from joint_checks import run_joint
     joint, joint_detail = run_joint(p, specs)
+    expected_errors={x["id"]:x.get("expect_error") for x in specs["scenarios"]+specs.get("sensitivity",[])}
     for r in results+sensitivity:
-        r["classification"] = "unsupported" if r.get("error","") in ("broken_pipe_needs_other_trace","restricted_deadline_unmodeled") else ("expected_rejection" if r.get("error") else "positive")
+        declared=expected_errors[r["id"]]
+        r["classification"] = "unsupported" if declared in ("broken_pipe_needs_other_trace","restricted_deadline_unmodeled") else ("expected_rejection" if declared else "positive")
     passed = sum(r["passed"] for r in results + sensitivity + joint)
     output = {"evidence_kind": p["evidence_kind"], "version": p["version"],
-              "base_sha": p["base_sha"], "python": __import__("sys").version,
-              "input_sha256": {f.name: hashlib.sha256(f.read_bytes()).hexdigest()
-                                for f in (ppath, spath, Path(__file__).resolve(), BASE/"joint_checks.py", BASE/"expected-v1.2.json")},
+              "base_sha": p["base_sha"],
               "counts": {"scenarios":len(results),"sensitivity":len(sensitivity),"joint":len(joint),
                          "positive":sum(r["classification"]=="positive" for r in results+sensitivity+joint),
                          "expected_rejection":sum(r["classification"]=="expected_rejection" for r in results+sensitivity+joint),
@@ -757,8 +828,7 @@ def main():
     (BASE / "raw-results.json").write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n",
                                           encoding="utf-8", newline="\n")
     (BASE/"joint-results.json").write_text(json.dumps(joint_detail,ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
-    if not (BASE/"first-run-v1.2.json").exists():
-        (BASE/"first-run-v1.2.json").write_text(json.dumps(output,ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
+
     # Each changed scalar/collection is stored once. Unit changes are keyed by stable identity.
     compact_ledgers = {}
     for name, rows in ledgers.items():
@@ -794,6 +864,15 @@ def main():
                     "tool_resource": a["tool_resource"], "weight": a["geometry"]["weight"],
                     "satiety": a["satiety"], "infection": a["infection"], "exposure": a["exposure"],
                     "status": a["status"], "rejected": row.get("rejected", "")})
+    inputs=("parameters.json","scenarios.json","check_design.py","joint_checks.py","checks_v1_3.py","expected-v1.3.json")
+    canonical=json.dumps({k:output[k] for k in ("scenarios","sensitivity","joint")},ensure_ascii=False,sort_keys=True,separators=(",",":")).encode("utf-8")
+    metadata={"runtime":__import__("sys").version,"input_sha256":{name:hashlib.sha256((BASE/name).read_bytes()).hexdigest() for name in inputs},
+              "canonical_results_sha256":hashlib.sha256(canonical).hexdigest(),
+              "stable_output_sha256":{name:hashlib.sha256((BASE/name).read_bytes()).hexdigest() for name in
+                                     ("raw-results.json","joint-results.json","route-ledgers.json","route-ledgers.csv")}}
+    (BASE/"execution-metadata.json").write_text(json.dumps(metadata,ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
+    if not (BASE/"first-run-v1.3.json").exists():
+        (BASE/"first-run-v1.3.json").write_text(json.dumps({"metadata":metadata,**output},ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
     print(json.dumps({"counts": output["counts"],
           "failures": [r for r in results + sensitivity + joint if not r["passed"]]}, ensure_ascii=False, indent=2))
     raise SystemExit(0 if output["counts"]["failed"] == 0 else 1)

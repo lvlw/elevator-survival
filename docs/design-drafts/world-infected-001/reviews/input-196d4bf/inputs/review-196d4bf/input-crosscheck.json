@@ -1,0 +1,8 @@
+{
+  "input_pack": "/mnt/data/WORLD-DESIGN-002-input-pack.zip",
+  "bytes": 494386,
+  "sha256": "d148381e73157bd140c061d1f90a0104a4ed18d32a6b8cb7ee6c96a94906f15f",
+  "matches_submitted_completion": true,
+  "zip_crc_ok": true,
+  "scope": "Outer attached task pack only; not the current repository output manifest."
+}

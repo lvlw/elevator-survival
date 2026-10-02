@@ -1,0 +1,1286 @@
+{
+  "git_commit": "196d4bf03b07eb9af452ff99aae4ff553f9659d6",
+  "git_path_prefix": "docs/design-drafts/world-infected-001/evidence/",
+  "scope": "Historical WORLD-DESIGN-002 fixed Git recovery manifest; no duplicate historical large ledgers. Counts are old results, not a new run.",
+  "files": {
+    "check_design.py": {
+      "bytes": 43285,
+      "sha256": "5548de0c6bad77faa74381a5ac0c17cd424936a9df74dab407a9f4158afb166b"
+    },
+    "expected-v1.2.json": {
+      "bytes": 2444,
+      "sha256": "7bc8a9c4456598c1afe18a770c5b970885644eb04d81352dc4da73ee24c38b30"
+    },
+    "first-run-results.json": {
+      "bytes": 49401,
+      "sha256": "f68b9f270966bc17536bb2d93f201dc991927bd9a8a37fd63607916e4893151a"
+    },
+    "first-run-v1.2.json": {
+      "bytes": 180578,
+      "sha256": "74a1f64a88174d62aec8087729e56af8257812817ec915145ed31117aca3516f"
+    },
+    "inheritance-map.json": {
+      "bytes": 8082,
+      "sha256": "2eb778ba5ab11a72795cb88ec9b1eed7ca4c5e27a232e9cc148e72bfe9bdb40a"
+    },
+    "joint-results.json": {
+      "bytes": 301519,
+      "sha256": "a4ba137a5d9b78cff5464d59f8d029add4670c8b9047cd6d479264ab6617ea86"
+    },
+    "joint_checks.py": {
+      "bytes": 30106,
+      "sha256": "302eb700d036c8c6023d99c0c3e8fbd9640ef1a8dc956cc92da8f823c7d6d8bb"
+    },
+    "parameters.json": {
+      "bytes": 16711,
+      "sha256": "fed5e659bfe74088655fa6af826ab6194824cbf353256e98294a0727327e207f"
+    },
+    "raw-results.json": {
+      "bytes": 199761,
+      "sha256": "65ab549a66a2aa8885d58049f60c7914e85c1a53ae8dea621a46b0a2dc1df37a"
+    },
+    "README.md": {
+      "bytes": 11724,
+      "sha256": "051211c68334fdf2be80f50934e1a3501ea9df7055de1409fa0f4b9efccb54c8"
+    },
+    "route-ledgers.csv": {
+      "bytes": 70909,
+      "sha256": "2f6d1c9d69c8139fbb8950e0870e123f91348d7efc49fcc30d8fc3ce40428877"
+    },
+    "route-ledgers.json": {
+      "bytes": 762184,
+      "sha256": "80ca1fa28c1ae7c02837646b083b31d39b15433acc39bd1c10f7e996f7d9978e"
+    },
+    "scenarios.json": {
+      "bytes": 108724,
+      "sha256": "f3a16d910316ef55dd395b16b7932469d77bf1c2556f0ac48134cc585f5150d2"
+    },
+    "v1.1-baseline/check_design.py": {
+      "bytes": 31841,
+      "sha256": "ca886c1defae08624ff03738ddb308c044d3515b1ad94669ad4492f0c6494d38"
+    },
+    "v1.1-baseline/manifest-summary.json": {
+      "bytes": 64858,
+      "sha256": "e7542c9288a67c799f620b0f0f45746f238916e5099ae3a8b881a94f16f28510"
+    },
+    "v1.1-baseline/parameters.json": {
+      "bytes": 15534,
+      "sha256": "8785915239747ca404166352c83a5c43b5d75ee067df1f90c6673ff356dfecf6"
+    },
+    "v1.1-baseline/scenarios.json": {
+      "bytes": 106634,
+      "sha256": "a96ad2ae163db7c45a3a0aae1a2f3e69ccb5522e35188c588a70821199902862"
+    }
+  },
+  "counts": {
+    "scenarios": 52,
+    "sensitivity": 5,
+    "joint": 114,
+    "positive": 87,
+    "expected_rejection": 83,
+    "unsupported": 1,
+    "passed": 171,
+    "failed": 0,
+    "supported_expected_matched": 170,
+    "unsupported_recognized": 1
+  },
+  "cases": [
+    {
+      "group": "scenarios",
+      "id": "normal_five",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "early_sample_five",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "damaged_split_five",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "flashlight_five",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "original_R4_illegal",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "wrong_location"
+    },
+    {
+      "group": "scenarios",
+      "id": "corrected_R4_three",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "cross_region_work",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "topology_three_power",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "topology_five_west",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "topology_five_no_hotel",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "A_same_position",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "C_same_position",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "A_defer_same_work",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "C_finish_same_work",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "last_positive_action",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "zero_next_action",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "zero_energy"
+    },
+    {
+      "group": "scenarios",
+      "id": "batch_is_multiple_edges",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "zero_energy"
+    },
+    {
+      "group": "scenarios",
+      "id": "zero_triggered_combat",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "cannot_rest_past_combat",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "pending_encounter"
+    },
+    {
+      "group": "scenarios",
+      "id": "unknown_route",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "unknown_edge"
+    },
+    {
+      "group": "scenarios",
+      "id": "source_once_across_night",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "source_already_revealed"
+    },
+    {
+      "group": "scenarios",
+      "id": "unique_instance",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "duplicate_instance"
+    },
+    {
+      "group": "scenarios",
+      "id": "C_quick_needs_information",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "missing_quick_information"
+    },
+    {
+      "group": "scenarios",
+      "id": "P_work_wrong_location",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "wrong_location"
+    },
+    {
+      "group": "scenarios",
+      "id": "zero_self_rescue_pickup",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "missing_install_material",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "missing_item:electronics"
+    },
+    {
+      "group": "scenarios",
+      "id": "misused_electronics_rejected",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "missing_item:electronics"
+    },
+    {
+      "group": "scenarios",
+      "id": "misused_electronics_recovery",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "night_bleeding_death",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "night_infection_hp_loss",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "H_wound_can_kill",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "no_day_eight",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "no_day_eight"
+    },
+    {
+      "group": "scenarios",
+      "id": "rest_target_not_addition",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "no_signature_refresh_on_crossing",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "signature_already_used_today"
+    },
+    {
+      "group": "scenarios",
+      "id": "terminal_success",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "terminal_voluntary_failure",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "terminal_deadline_recall",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "terminal_death_clears_bank",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "terminal_zero_fee_inventory_survive",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "low_pipe_actual_repair",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "ground_identity_across_night",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "unsafe_node_cannot_rest",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "unresolved_node_danger"
+    },
+    {
+      "group": "scenarios",
+      "id": "C_extract_without_match",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "missing_fact"
+    },
+    {
+      "group": "scenarios",
+      "id": "overweight_rejected",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "weight"
+    },
+    {
+      "group": "scenarios",
+      "id": "bandage_does_not_erase_injury",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "deadline_suppression_expires_after_effect",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "scenarios",
+      "id": "world_cannot_use_bank",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "not_carried_source"
+    },
+    {
+      "group": "scenarios",
+      "id": "world_cannot_drop_bank",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "not_carried_source"
+    },
+    {
+      "group": "scenarios",
+      "id": "pickup_negative_quantity",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "invalid_quantity"
+    },
+    {
+      "group": "scenarios",
+      "id": "pickup_zero_quantity",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "invalid_quantity"
+    },
+    {
+      "group": "scenarios",
+      "id": "drop_negative_quantity",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "invalid_quantity"
+    },
+    {
+      "group": "scenarios",
+      "id": "entirely_empty_character_continuation",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "sensitivity",
+      "id": "price_pry_8",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "zero_energy"
+    },
+    {
+      "group": "sensitivity",
+      "id": "pipe_capacity_10",
+      "classification": "unsupported",
+      "passed": true,
+      "error": "broken_pipe_needs_other_trace"
+    },
+    {
+      "group": "sensitivity",
+      "id": "coat_mitigation_0",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "sensitivity",
+      "id": "drop_front_ration_1",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "missing_ground_item"
+    },
+    {
+      "group": "sensitivity",
+      "id": "topology_remove_C0_H0",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": "not_adjacent"
+    },
+    {
+      "group": "joint",
+      "id": "F1a_damage_6",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "F1a_damage_16",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "F1b_first_trace_on_reentry",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "F1b_reentry_trace_on_first",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "F1_baseline_first_trace",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "F1_valid_reentry",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "F1_separately_authored_damage6",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "disease_old_0",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "disease_old_29",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "disease_old_59",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "disease_old_89",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "disease_old_110",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "disease_old_120",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "disease_old_160",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "disease_suppression_before_damage",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "disease_actual_death_stops_food",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "zero_base_exposure_two",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "HP1_high_infection_legal_return_treat",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "HP0_no_service",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "HP0_no_launch",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "service_tier_body",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "service_tier_processed_injury",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "service_tier_low_infection",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "service_tier_exposure",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "service_tier_high_infection",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "service_all_state_boundary",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "service_preserves_nontarget_state",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "service_replayed_old_quote",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "service_fresh_healthy_noop",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "healthy_pure_drug_noop",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "service_insufficient_atomic",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "service_cancel",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "service_stale_after_real_medicine",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "old_firstaid_not_free_infection_cure",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_balance_negative",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_balance_bool",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_balance_fraction",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_balance_nan",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_balance_overflow",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "wealth_without_eligibility",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "eligibility_insufficient_balance",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "purchase_exact_balance",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "purchase_replay",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "future_firstaid_not_open",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "purchase_bad_destination",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "headroom_exact_reward",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "headroom_insufficient_before_accept",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "success_reward_replay",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "task_id_reset_not_free_rest",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "hub_repeated_old_implicit_rest",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "hub_explicit_extra_real_day",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "hub_extra_rest_stale_replay",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "launch_stale_offer",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "same_world_task_allow_failure",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "same_world_other_task_restrict_exit",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "same_world_other_task_declared_deadline_death",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "old_consumed_new_not_laundered",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "stack_drop_pickup_preserves_provenance",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "new_equipped_identity_failure_fixture",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "new_metal_used_before_failure_residual",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "disinfectant_quick_noncombat_allowed",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "disinfectant_quick_not_combat_use",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "one_metal_not_double_restore",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "one_metal_actual_shared_restore",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "hub_flashlight_actual_battery",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "hub_toolkit_actual_materials",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "maintenance_replay_partial_target",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "maintenance_new_request_continues",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "deadline_next_task_no_second_night",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "normal_treat_before_real_night",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "deadline_cannot_treat_before_hazards",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_exposure_negative",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_exposure_bool",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_exposure_fraction",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_exposure_nan",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_exposure_overflow",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "infection_growth_overflow_atomic",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_exposure_before_rest_negative",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_exposure_before_rest_boolean",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_exposure_before_rest_NaN",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_exposure_before_deadline_negative",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_exposure_before_deadline_boolean",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_exposure_before_deadline_NaN",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "active_HP0_cannot_self_rescue",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "tier40_balance39_retains_old_medicine",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "tier40_exact_balance40",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "zero_points_real_old_medicine_then_real_night",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "HP1_severe_success_reward_then_service",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "illegal_quote_price_negative",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "illegal_quote_price_fraction",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "illegal_quote_price_bool",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "illegal_quote_price_missing",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "forged_free_tier40_quote",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_purchase_quantity_negative",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_purchase_quantity_zero",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_purchase_quantity_fraction",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "invalid_purchase_quantity_bool",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "illegal_quote_equal_float40",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "illegal_quote_healthy_false",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "launch_keeps_current_real_day_dose_flags",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "reserved_or_empty_task_id_before",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "reserved_or_empty_task_id_hub_purchase",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "reserved_or_empty_task_id_empty",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "valid_next_task_old_identity_retained",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "new_quick_item_not_laundered",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "deadline6_normal_route",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "deadline6_damaged_route_rejected",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "map_remove_T0_P0_authored_route_rejected",
+      "classification": "expected_rejection",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "failure_loot_10",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "failure_self_use_10",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "low_HP4_base_self_use_10",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "low_HP4_survival_OPTION_self_use_10",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "same_supply_success_10_actual_maintenance",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    },
+    {
+      "group": "joint",
+      "id": "success_failure_success_no_new_starter",
+      "classification": "positive",
+      "passed": true,
+      "error": null
+    }
+  ]
+}

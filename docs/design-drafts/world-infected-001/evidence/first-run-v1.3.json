@@ -1,0 +1,114 @@
+{
+  "version": "WORLD-DESIGN-003 Draft v1.3",
+  "execution_status": "interrupted_during_metadata_write",
+  "exception": "ValueError: illegal newline value literal backslash-n; stable outputs already written, process exit1. This is not a complete successful run.",
+  "input_sha256": {
+    "parameters.json": "42a7692cc5b99a155f41f9706377f3dfdc5a20318406f5e08c587e8a84bba0b1",
+    "scenarios.json": "56ff2a63b994816a2437d732f58da27a84b11c7afee0d4c85cf6ac476c811ae5",
+    "check_design.py": "a8b8183e76bbe37e7f01e4f9d83cd897584628e203ae6bf57a274b04e8d7edb3",
+    "joint_checks.py": "43e1796ad9899bbc3ae95bf50eeed407f0ccae526454bff1c9c3c7bc73bf061f",
+    "checks_v1_3.py": "8db02818052946594bc7b748ea6b40f0415052506bc1415d8fed3741260d7617",
+    "expected-v1.3.json": "f41e82cb4182f2bd53e5b9ec6beca297a30ae01cd9f15bde49be2b1939f34ecd"
+  },
+  "counts": {
+    "scenarios": 52,
+    "sensitivity": 5,
+    "joint": 192,
+    "positive": 132,
+    "expected_rejection": 116,
+    "unsupported": 1,
+    "passed": 248,
+    "failed": 1,
+    "supported_expected_matched": 247,
+    "unsupported_recognized": 1
+  },
+  "mismatches": [
+    {
+      "id": "bought_metal_actual_full_route_variant",
+      "classification": "positive",
+      "passed": false,
+      "expected": {
+        "final": {
+          "status": "success",
+          "hp": 4,
+          "satiety": 4,
+          "day": 3,
+          "character_day": 4,
+          "points": 120
+        },
+        "nominal": 269,
+        "bought_metal_installed": "installed"
+      },
+      "actual": {
+        "final": {
+          "task_id": "VARIANT",
+          "status": "success",
+          "day": 3,
+          "character_day": 4,
+          "location": "HUB",
+          "energy": 24,
+          "hp": 4,
+          "satiety": 4,
+          "infection": 20,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 120,
+          "first_success": true,
+          "ready_next": false,
+          "pipe": 15,
+          "coat": 7,
+          "tool_resource": 7,
+          "signature_used": true,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 2,
+              "metal": 1,
+              "ration": 4,
+              "cloth": 1,
+              "battery": 1
+            },
+            "consumed": {
+              "ration": 2
+            },
+            "installed": {
+              "control": 1,
+              "metal": 1,
+              "electronics": 1,
+              "module": 1
+            },
+            "lost": {
+              "metal": 1
+            },
+            "delivered": {
+              "sample": 1
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "VARIANT",
+            "outcome": "success",
+            "reward": 120,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "nominal": 269,
+        "bought_metal_installed": "bank"
+      }
+    }
+  ]
+}

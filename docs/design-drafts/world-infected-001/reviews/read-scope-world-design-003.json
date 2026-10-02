@@ -1,0 +1,211 @@
+{
+  "task": "WORLD-DESIGN-003",
+  "base_sha": "196d4bf03b07eb9af452ff99aae4ff553f9659d6",
+  "scope_note": "This records actual team reading and pinned bytes, not a claim of full repository or novel review. Existing draft inputs were re-read for this task; formal documents were read at relevant sections, not reconstructed from headings alone. Archive fingerprint alone is not reading.",
+  "formal_readonly_sources": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 2024,
+      "sha256": "00c2cad61c99530c1343ca9faad9a32994d67e5ca4aeb991156bb9828e5c501e",
+      "actual_read_scope": "full; current task instructions"
+    },
+    {
+      "path": "docs/01-game-design-v0.1.md",
+      "bytes": 30065,
+      "sha256": "25ed1e534d9ee2bc40c9ce275fe894c6f78035f6be9d6c6d4326a95d6ecb03b6",
+      "actual_read_scope": "long loop, current day/Run termination, health, Hub and permanent-growth sections; headings/index checked"
+    },
+    {
+      "path": "docs/02-vertical-slice.md",
+      "bytes": 44492,
+      "sha256": "831e3f00510de818108b088d192624bb3a4498725312843ec0d875f4773aca1b",
+      "actual_read_scope": "scope/acceptance, day/terminal/medical/maintenance and future-world boundaries"
+    },
+    {
+      "path": "docs/03-architecture.md",
+      "bytes": 50061,
+      "sha256": "cd6472968cbf027f6c327671a0c744fec2d8a809068a58d3ead608c57b366557",
+      "actual_read_scope": "Run/Scene/Hub ownership, medical/terminal/maintenance and future contracts"
+    },
+    {
+      "path": "docs/05-design-decisions.md",
+      "bytes": 229117,
+      "sha256": "276261e2a18c1f4a6c1f1a7bbaf0b8b6b748d2f7119c4d67cec5fdbb07f70673",
+      "actual_read_scope": "relevant DEC-003/005-008/013-017/021-028/033-038/041-048; official version remains unchanged"
+    },
+    {
+      "path": "docs/04-content-schema.md",
+      "bytes": 14288,
+      "sha256": "e3b77dd40c4c99a9d6cb994d41beba1f24f4f7eff38c2dccf218954bf04d8320",
+      "actual_read_scope": "medical/version, terminal, maintenance, future-continuity concept boundaries"
+    },
+    {
+      "path": "docs/06-vertical-slice-design-freeze-v0.1.md",
+      "bytes": 34629,
+      "sha256": "135b1fa122e8dd25118d2ce223676bea3ea31adf5d2ead30a596ac78ac1a258b",
+      "actual_read_scope": "metadata/scope/authority, health, endgame, maintenance, freeze statement"
+    },
+    {
+      "path": "docs/07-decision-supersession-index.md",
+      "bytes": 3827,
+      "sha256": "e41a731fef03ed6845b070ffe1873e736bc8b70e4fa29bef1b26243e5184d634",
+      "actual_read_scope": "applicable conflict/supersession boundaries reviewed by lifecycle agent"
+    },
+    {
+      "path": "docs/08-rule-implementation-traceability.md",
+      "bytes": 45369,
+      "sha256": "0539efd67c688a41fa4a606d1c026395afdf7e20104a8e2b1e181747687f8448",
+      "actual_read_scope": "future-world table: confirmed design versus not implemented/Owner playtest not run"
+    },
+    {
+      "path": "docs/09-ui-design-record.md",
+      "bytes": 44784,
+      "sha256": "46bb2d1cf99baa92149f0f5521d35e5bd6c2e1642e27cd86379bd82937e9973e",
+      "actual_read_scope": "current effective quick reference and UIR-015; no UI edits"
+    },
+    {
+      "path": "docs/content/items.md",
+      "bytes": 60396,
+      "sha256": "f9e9bd6ee386d7019f73b3e0ea3da4e20c779bd52beffa6f2eaed1b5b8e3e523",
+      "actual_read_scope": "formal IDs, dimensions/stack/weight/quick eligibility, medicine and material/maintenance sections"
+    },
+    {
+      "path": "docs/content/scenes.md",
+      "bytes": 27379,
+      "sha256": "8f6df090c00208cd36a373bc363b77fea812bb73b74552bf26c054b13e550019",
+      "actual_read_scope": "hospital/world scope, search/medicine/return/future continuity"
+    },
+    {
+      "path": "docs/content/events.md",
+      "bytes": 10995,
+      "sha256": "1d4fbb343f9b5d8d2cff18d03413a3fa88a73337a4ea8b46d3a2050780f39211",
+      "actual_read_scope": "medical/terminal/maintenance and once-only source boundaries"
+    },
+    {
+      "path": "docs/content/enemies.md",
+      "bytes": 11277,
+      "sha256": "8cbfa4fb91f56ec754d89c3f4b71e2a2228148bfbe4cf14ba534b6b577c21c0a",
+      "actual_read_scope": "hospital threat and named-enemy continuity/first-versus-reentry bounds"
+    },
+    {
+      "path": "docs/proposals/small-world/reviews/doc-world-001/AUD-ee2720c-world-docs-v0.1.md",
+      "bytes": 5776,
+      "sha256": "5609d295b35a5eac657acf7a32db82ea6db8b4eb2a3314344535a7464cc9d56d",
+      "actual_read_scope": "historical 104-files/2153-tests attribution; no current production execution"
+    }
+  ],
+  "key_base_draft_sources": [
+    {
+      "path": "02-seven-day-structure.md",
+      "bytes": 16213,
+      "sha256": "df395467016cca66374883c5f065e65beca6842d462d888c117d1d41fa471991",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "05-resource-economy.md",
+      "bytes": 20504,
+      "sha256": "aaa32c58a4765c0c8d8c7f980b7e5d3b184503aca3031a13a813c8bab16e89e0",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "08-balance-budget.md",
+      "bytes": 29520,
+      "sha256": "6bdd821a3590f8932dae9bfc5a637bd2cfc82d36ddc9da32c0092ea638e2a567",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "09-design-critic.md",
+      "bytes": 11118,
+      "sha256": "eac9f59839212b6fa8fda811bcdf9512b21bb1906f524a9271f38e62f1335606",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "10-decision-queue.md",
+      "bytes": 9835,
+      "sha256": "4261b63a5c2f6190914dd641d16d0568c277c4904a687646e59cb584d339962b",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "11-points-hub-recovery.md",
+      "bytes": 28172,
+      "sha256": "79068565243ff660a74804a28ead71594ce8be0a9dfa48391d3f6ab1ffd81def",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "reviews/endgame-candidates-v1.1.md",
+      "bytes": 29139,
+      "sha256": "0fcb8dc0f4b68a97392e9727c96ee4fe26a68eb3710e2710d6186fb653387fcc",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "WORLD-DESIGN-002-completion.md",
+      "bytes": 12997,
+      "sha256": "81eb06c7fd504d9569f81af431e5c5b7664d1184a0b5d1b9ce30d5c2baeced36",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "evidence/README.md",
+      "bytes": 11724,
+      "sha256": "051211c68334fdf2be80f50934e1a3501ea9df7055de1409fa0f4b9efccb54c8",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "evidence/parameters.json",
+      "bytes": 16711,
+      "sha256": "fed5e659bfe74088655fa6af826ab6194824cbf353256e98294a0727327e207f",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "evidence/scenarios.json",
+      "bytes": 108724,
+      "sha256": "f3a16d910316ef55dd395b16b7932469d77bf1c2556f0ac48134cc585f5150d2",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "evidence/check_design.py",
+      "bytes": 43285,
+      "sha256": "5548de0c6bad77faa74381a5ac0c17cd424936a9df74dab407a9f4158afb166b",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "evidence/joint_checks.py",
+      "bytes": 30106,
+      "sha256": "302eb700d036c8c6023d99c0c3e8fbd9640ef1a8dc956cc92da8f823c7d6d8bb",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "evidence/inheritance-map.json",
+      "bytes": 8082,
+      "sha256": "2eb778ba5ab11a72795cb88ec9b1eed7ca4c5e27a232e9cc148e72bfe9bdb40a",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "evidence/raw-results.json",
+      "bytes": 199761,
+      "sha256": "65ab549a66a2aa8885d58049f60c7914e85c1a53ae8dea621a46b0a2dc1df37a",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "evidence/joint-results.json",
+      "bytes": 301519,
+      "sha256": "a4ba137a5d9b78cff5464d59f8d029add4670c8b9047cd6d479264ab6617ea86",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "evidence/route-ledgers.json",
+      "bytes": 762184,
+      "sha256": "80ca1fa28c1ae7c02837646b083b31d39b15433acc39bd1c10f7e996f7d9978e",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    },
+    {
+      "path": "evidence/route-ledgers.csv",
+      "bytes": 70909,
+      "sha256": "2f6d1c9d69c8139fbb8950e0870e123f91348d7efc49fcc30d8fc3ce40428877",
+      "read_scope": "full text for designated key drafts/code; JSON/CSV parsed in full by evidence agent and specific cases cross-reviewed by root"
+    }
+  ],
+  "additional_draft_scope": "01/03/04/06/07 affected sections and current integration read; 02/05/08/09/10/11 and unique terminal fully read by assigned specialists; root reads resulting integration and critical functions",
+  "reference_limit": "No new R26/full-book research; old v0.5/v0.6/002 research referenced by existing adoption index only where relevant; no new fictional-source facts or prices attributed",
+  "missing_inputs": [],
+  "production_tests_this_task": "NOT RUN; new production tests 0"
+}

@@ -1,0 +1,107 @@
+{
+  "task": "WORLD-DESIGN-003",
+  "created_date": "2026-10-02",
+  "artifact_status": "Task and design-input preparation only; no new economic simulation or production execution",
+  "repository": "lvlw/elevator-survival",
+  "design_base_sha": "196d4bf03b07eb9af452ff99aae4ff553f9659d6",
+  "design_branch": "feature/design-world-infected-world-001",
+  "main_reference_sha": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+  "github_checks_this_turn": [
+    {
+      "action": "read ref",
+      "ref": "refs/heads/feature/design-world-infected-world-001",
+      "observed_sha": "196d4bf03b07eb9af452ff99aae4ff553f9659d6"
+    },
+    {
+      "action": "read ref",
+      "ref": "refs/heads/main",
+      "observed_sha": "a76e9c1c998051fc1643b6e0c3d53443fa55feed"
+    },
+    {
+      "action": "fetch_file",
+      "ref": "196d4bf03b07eb9af452ff99aae4ff553f9659d6",
+      "path": "AGENTS.md",
+      "git_blob_sha": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "range": "full"
+    },
+    {
+      "action": "fetch_file",
+      "ref": "196d4bf03b07eb9af452ff99aae4ff553f9659d6",
+      "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "git_blob_sha": "abf2b4f917a0b65eeee22a5e27803e0b3d705141",
+      "range": "1-72"
+    },
+    {
+      "action": "fetch_file",
+      "ref": "196d4bf03b07eb9af452ff99aae4ff553f9659d6",
+      "path": "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+      "git_blob_sha": "d69e5c5584f68df2f7df4e31ae5f2641be22a68e",
+      "range": "115-194 requested; connector response may truncate at budget; other portions retained in prior exact-SHA context"
+    }
+  ],
+  "original_inputs": [
+    {
+      "filename": "OWNER-followup-196d4bf-v1.0.md",
+      "pack_path": "inputs/OWNER-followup-196d4bf-v1.0.md",
+      "bytes": 12731,
+      "sha256": "525d0a1d52e262c407f1bd7aabadca1c145963967c42e430fc22f5c65ba7f79d"
+    },
+    {
+      "filename": "WORLD-DESIGN-002-review-196d4bf.zip",
+      "bytes": 21146,
+      "sha256": "5fd00675268bb44fc5cc0e0896b1f46dac96563ba1fa85de88ed02466d00122a",
+      "zip_crc": "PASS",
+      "pack_storage": "all 7 original entries extracted unchanged under inputs/review-196d4bf; outer ZIP not duplicated"
+    }
+  ],
+  "preserved_review_entries": [
+    {
+      "path": "inputs/review-196d4bf/AUD-196d4bf-world-design-002-review-v1.0.md",
+      "bytes": 13377,
+      "sha256": "01ffa428fc92e8c66e8b0275bf7d2bb1414dec5a81f34a107c856f9b9565ccfd"
+    },
+    {
+      "path": "inputs/review-196d4bf/README.md",
+      "bytes": 1071,
+      "sha256": "814e317f9f809d5270acd8e38fb42d9cab50cc4af1ebe04bed6f151bb27ac7da"
+    },
+    {
+      "path": "inputs/review-196d4bf/input-crosscheck.json",
+      "bytes": 314,
+      "sha256": "b18bf470e98256b2bec975d2fa054a2575665cd61ce133a6f156362b80b51472"
+    },
+    {
+      "path": "inputs/review-196d4bf/reviewer-probes.py",
+      "bytes": 10510,
+      "sha256": "76778a1f4632096de68782456dc6d8411588448709419735152b66dee39906e7"
+    },
+    {
+      "path": "inputs/review-196d4bf/reviewer-results.json",
+      "bytes": 145054,
+      "sha256": "bd660f947eb02ccefb234e3da14767ddf7453d30e9abc72f80a880c6110a5223"
+    },
+    {
+      "path": "inputs/review-196d4bf/source-excerpts.py",
+      "bytes": 7954,
+      "sha256": "c3458a75123cefe1aef8da5d11cb11d881d268e1a7439717128a9d31a0bdccc6"
+    },
+    {
+      "path": "inputs/review-196d4bf/manifest.json",
+      "bytes": 1023,
+      "sha256": "1bff17505fb85f9ceb4461ebe39b6b37fac194fbc612768c37e7d776905e7f6c"
+    }
+  ],
+  "not_republished": [
+    "production repository source",
+    "full R26 research collection",
+    "old full narrative v0.5",
+    "old register v0.6"
+  ],
+  "current_preparation_limits": [
+    "No Git writes",
+    "No production source review of the entire repository",
+    "No new gameplay or economy simulation",
+    "No model product benchmark claims",
+    "No Project Sources replacement"
+  ]
+}

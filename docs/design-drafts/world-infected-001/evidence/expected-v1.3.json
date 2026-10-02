@@ -1,0 +1,17 @@
+{
+  "version": "WORLD-DESIGN-003 Draft v1.3",
+  "recorded_before_first_v1_3_run": true,
+  "independent_expected": {
+    "F02": "Only current bank/pack/q1/q2/ground and equipment are lost at actual death. Previously delivered/delivered_partial/recovered/consumed/installed/impounded/penalized/lost remain byte-equal. Prior success remains success after later handoff death. Repeat death/read is idempotent.",
+    "launch": "All request/current-state/offer validation precedes hazards. Normal return owes current real day; launch closes it exactly once using post-preparation state. Lethal valid handoff commits death without consuming new offer or changing previous task ID/result. First-ever launch skips nonexistent past day. Deadline already closed previous real day; next launch consumes one allowance without resetting current medicine.",
+    "four_routes": "Original four remain 269/318/373/338 nominal E with final HP4/5/2/5, infection20/20/25/20 and D3/4/7/4; purchase variants use separate names.",
+    "catalog": "Basic ration10 metal12 cloth10 battery12 from start; bandage18/firstaid45 both after this character completes all current-mission objectives and safely returns. One real unit per purchase to bank; firstaid1x2 weight2 noquick/nobattle.",
+    "success_10": "Ten normal269E successes; 1200 rewards -400 therapy -120 purchased metal -20 first two rations -18 one bandage =642. Repair after every success:20 metal total (10 world+10buy),10 cloth. Nine launch boundaries, each hub ration then loaded pack ration used at H0: final bank ration24 bandage12 battery10, metal/cloth0; gear30/12/12 HP12 food4 charDay30 E24.",
+    "SFS": "Two269E successes +20E failure; reward240 -80therapy -24metal -20initialfood -18bandage -20failure =78. Two intertask launches; actual consumption preserves final bank ration7 bandage5 battery2, full gear, HP12 food4 charDay7 E24.",
+    "logistics50": "14out +14manual +8search +14back=50E, bandage1/ration2 from L_front, no combat/toolwear. Ten entries nine handoffs. HP4 I0 food6 start, use new medicine and food as needed: HP12 food6 at tenth return, used8bandages/9rations, 2band+11ration retained (old policy recovered), oldband1 remains. Next valid 11th handoff separately food4 HP12.",
+    "pharmacy20": "Ten20E lowHP4 clean self-use: HP5,6,7,7,7,7,7,7,7,7 at returns; sat6,4,2,0...; +2 OPTION HP6,8,10,11,12..., next handoff HP6/11.",
+    "risk": "No-infection 50E route can genuinely restore lowHP without infection or gear wear. Recovery does not remove bodily gains. Infection growth continues, no cure or infinite safe loop claim. Light failure allows direct surplus retention.",
+    "food_timing": "Hub use bank only before launch. Carried ration may be used at H0 after launch; world use bank rejects atomically.",
+    "metadata": "Execution runtime/input fingerprints live separately from stable result content; compare canonical stable result digests plus output bytes independently."
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "task": "WORLD-DESIGN-003",
+  "base_sha": "196d4bf03b07eb9af452ff99aae4ff553f9659d6",
+  "scope": "Root ran two fresh Python processes after author input freeze. These are repeat executions, not additional cases. No production tests.",
+  "command": "python -B -X utf8 docs/design-drafts/world-infected-001/evidence/check_design.py",
+  "input_sha256": {
+    "parameters.json": "42a7692cc5b99a155f41f9706377f3dfdc5a20318406f5e08c587e8a84bba0b1",
+    "scenarios.json": "56ff2a63b994816a2437d732f58da27a84b11c7afee0d4c85cf6ac476c811ae5",
+    "check_design.py": "22261c39e2f51700f27a7490d045694223bc6161b7eaccf05c64d6bab2999a2c",
+    "joint_checks.py": "3d23a83ae93538a4253518862fcfbf037d0ee09ee00fc36d2442c906ff25d3ff",
+    "checks_v1_3.py": "90eeece4bdedaa7caa8c0b9b1ec3e4053c711e3c6f1f0ff97006395e0def64dc",
+    "expected-v1.3.json": "f41e82cb4182f2bd53e5b9ec6beca297a30ae01cd9f15bde49be2b1939f34ecd"
+  },
+  "runs": [
+    {
+      "run": 1,
+      "started_utc": "2026-10-02T15:35:59.334157+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"counts\": {\n    \"scenarios\": 52,\n    \"sensitivity\": 5,\n    \"joint\": 212,\n    \"positive\": 145,\n    \"expected_rejection\": 123,\n    \"unsupported\": 1,\n    \"passed\": 269,\n    \"failed\": 0,\n    \"supported_expected_matched\": 268,\n    \"unsupported_recognized\": 1\n  },\n  \"failures\": []\n}\n",
+      "stderr": "",
+      "runtime": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+      "counts": {
+        "scenarios": 52,
+        "sensitivity": 5,
+        "joint": 212,
+        "positive": 145,
+        "expected_rejection": 123,
+        "unsupported": 1,
+        "passed": 269,
+        "failed": 0,
+        "supported_expected_matched": 268,
+        "unsupported_recognized": 1
+      },
+      "canonical_results_sha256": "28a03ac0816b5fb11af5ada61a23179167889148ed9388527bcc6055b09f6028",
+      "output_sha256": {
+        "raw-results.json": "4065d55c4fe6d256fd9fc0cbdefd7a4154eeab3cd35c935aa748b35588727ea0",
+        "joint-results.json": "fc280c9d510b10a88aa9ffbca960b6a3db986ceb33a93336ed1d547bb33a75ae",
+        "route-ledgers.json": "b99ea9a6e037b53dcdaeabd0e82e48262e81a6b701ad62f5a39824cd1ea3cc18",
+        "route-ledgers.csv": "4e868de77da95c41027d3912060b47547aa7470656e3c7a469611fe4fa728ca4"
+      }
+    },
+    {
+      "run": 2,
+      "started_utc": "2026-10-02T15:36:02.403292+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"counts\": {\n    \"scenarios\": 52,\n    \"sensitivity\": 5,\n    \"joint\": 212,\n    \"positive\": 145,\n    \"expected_rejection\": 123,\n    \"unsupported\": 1,\n    \"passed\": 269,\n    \"failed\": 0,\n    \"supported_expected_matched\": 268,\n    \"unsupported_recognized\": 1\n  },\n  \"failures\": []\n}\n",
+      "stderr": "",
+      "runtime": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+      "counts": {
+        "scenarios": 52,
+        "sensitivity": 5,
+        "joint": 212,
+        "positive": 145,
+        "expected_rejection": 123,
+        "unsupported": 1,
+        "passed": 269,
+        "failed": 0,
+        "supported_expected_matched": 268,
+        "unsupported_recognized": 1
+      },
+      "canonical_results_sha256": "28a03ac0816b5fb11af5ada61a23179167889148ed9388527bcc6055b09f6028",
+      "output_sha256": {
+        "raw-results.json": "4065d55c4fe6d256fd9fc0cbdefd7a4154eeab3cd35c935aa748b35588727ea0",
+        "joint-results.json": "fc280c9d510b10a88aa9ffbca960b6a3db986ceb33a93336ed1d547bb33a75ae",
+        "route-ledgers.json": "b99ea9a6e037b53dcdaeabd0e82e48262e81a6b701ad62f5a39824cd1ea3cc18",
+        "route-ledgers.csv": "4e868de77da95c41027d3912060b47547aa7470656e3c7a469611fe4fa728ca4"
+      }
+    }
+  ],
+  "output_sha256": {
+    "raw-results.json": "4065d55c4fe6d256fd9fc0cbdefd7a4154eeab3cd35c935aa748b35588727ea0",
+    "joint-results.json": "fc280c9d510b10a88aa9ffbca960b6a3db986ceb33a93336ed1d547bb33a75ae",
+    "route-ledgers.json": "b99ea9a6e037b53dcdaeabd0e82e48262e81a6b701ad62f5a39824cd1ea3cc18",
+    "route-ledgers.csv": "4e868de77da95c41027d3912060b47547aa7470656e3c7a469611fe4fa728ca4"
+  },
+  "canonical_results_sha256": "28a03ac0816b5fb11af5ada61a23179167889148ed9388527bcc6055b09f6028"
+}

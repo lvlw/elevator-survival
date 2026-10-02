@@ -1,0 +1,6543 @@
+{
+  "review_commit": "196d4bf03b07eb9af452ff99aae4ff553f9659d6",
+  "scope": "Selected exact-source functions, independent arithmetic, and reviewer-authored safe-route bounded replay; NOT the repository full suite.",
+  "reported_suite_rerun": false,
+  "counts": {
+    "observations": 29,
+    "met_expectation": 28,
+    "discrepancies": 1
+  },
+  "observations": [
+    {
+      "id": "F1_current_baseline",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": [
+        9,
+        26,
+        16
+      ],
+      "expected": [
+        9,
+        26,
+        16
+      ]
+    },
+    {
+      "id": "F1a_early_kill_6",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": "trace_continues_after_incapacitation",
+      "expected": "trace_continues_after_incapacitation"
+    },
+    {
+      "id": "F1a_early_kill_16",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": "trace_continues_after_incapacitation",
+      "expected": "trace_continues_after_incapacitation"
+    },
+    {
+      "id": "F1b_reentry_rejects_first",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": "not_first_encounter",
+      "expected": "not_first_encounter"
+    },
+    {
+      "id": "disease_59_5_0",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": [
+        69,
+        4,
+        2,
+        "active"
+      ],
+      "expected": [
+        69,
+        4,
+        2,
+        "active"
+      ]
+    },
+    {
+      "id": "disease_89_5_0",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": [
+        104,
+        3,
+        2,
+        "active"
+      ],
+      "expected": [
+        104,
+        3,
+        2,
+        "active"
+      ]
+    },
+    {
+      "id": "disease_110_5_0",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": [
+        130,
+        2,
+        2,
+        "active"
+      ],
+      "expected": [
+        130,
+        2,
+        2,
+        "active"
+      ]
+    },
+    {
+      "id": "disease_110_3_0",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": [
+        130,
+        0,
+        4,
+        "death"
+      ],
+      "expected": [
+        130,
+        0,
+        4,
+        "death"
+      ]
+    },
+    {
+      "id": "disease_110_5_15",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": [
+        115,
+        3,
+        2,
+        "active"
+      ],
+      "expected": [
+        115,
+        3,
+        2,
+        "active"
+      ]
+    },
+    {
+      "id": "disease_130_5_0",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": [
+        150,
+        2,
+        2,
+        "active"
+      ],
+      "expected": [
+        150,
+        2,
+        2,
+        "active"
+      ]
+    },
+    {
+      "id": "quote_{'hp': 12}",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "id": "quote_{'hp': 1}",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": 20,
+      "expected": 20
+    },
+    {
+      "id": "quote_{'hp': 12, 'injury': 'light_laceration'}",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": 20,
+      "expected": 20
+    },
+    {
+      "id": "quote_{'infection': 1}",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": 40,
+      "expected": 40
+    },
+    {
+      "id": "quote_{'exposure': 1}",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": 40,
+      "expected": 40
+    },
+    {
+      "id": "quote_{'infection': 89}",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": 40,
+      "expected": 40
+    },
+    {
+      "id": "quote_{'infection': 90}",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": 80,
+      "expected": 80
+    },
+    {
+      "id": "quote_{'hp': 1, 'infection': 130}",
+      "kind": "regression",
+      "matches_expectation": true,
+      "actual": 80,
+      "expected": 80
+    },
+    {
+      "id": "first_success_net",
+      "kind": "arithmetic",
+      "matches_expectation": true,
+      "actual": 62,
+      "expected": 62
+    },
+    {
+      "id": "severe_success_net",
+      "kind": "arithmetic",
+      "matches_expectation": true,
+      "actual": 22,
+      "expected": 22
+    },
+    {
+      "id": "success_failure_success",
+      "kind": "arithmetic",
+      "matches_expectation": true,
+      "actual": 112,
+      "expected": 112
+    },
+    {
+      "id": "ten_success_one_purchase",
+      "kind": "arithmetic",
+      "matches_expectation": true,
+      "actual": 782,
+      "expected": 782
+    },
+    {
+      "id": "ten_success_ten_purchases",
+      "kind": "arithmetic",
+      "matches_expectation": true,
+      "actual": 620,
+      "expected": 620
+    },
+    {
+      "id": "settled_dispositions_after_later_death",
+      "kind": "new_finding",
+      "matches_expectation": false,
+      "actual": {
+        "old.sample": "lost",
+        "old.recovered": "lost",
+        "old.installed": "installed",
+        "current.bank": "lost"
+      },
+      "expected": {
+        "old.sample": "delivered",
+        "old.recovered": "recovered",
+        "old.installed": "installed",
+        "current.bank": "lost"
+      }
+    },
+    {
+      "id": "safe_front_each_round_cost",
+      "kind": "new_counterexample",
+      "matches_expectation": true,
+      "actual": [
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ],
+      "expected": [
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ]
+    },
+    {
+      "id": "safe_front_ten_final",
+      "kind": "new_counterexample",
+      "matches_expectation": true,
+      "actual": {
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "points": 0,
+        "energy": 50,
+        "character_day": 10,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12
+      },
+      "expected": {
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "points": 0,
+        "energy": 50,
+        "character_day": 10,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12
+      }
+    },
+    {
+      "id": "safe_front_no_new_bank_units",
+      "kind": "new_counterexample",
+      "matches_expectation": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "id": "safe_front_total_cost",
+      "kind": "new_counterexample",
+      "matches_expectation": true,
+      "actual": 500,
+      "expected": 500
+    },
+    {
+      "id": "safe_front_after_optional_tenth_night",
+      "kind": "new_counterexample",
+      "matches_expectation": true,
+      "actual": [
+        12,
+        4
+      ],
+      "expected": [
+        12,
+        4
+      ]
+    }
+  ],
+  "safe_front_counterexample": {
+    "supply": "10 distinct offered executions of the same rule set, as in the submitted stress premise; not an authorization for infinite offers",
+    "initial": "HP4, infection0, no wound/bleeding, satiety6, points0; existing gear and one old bandage",
+    "rounds": [
+      {
+        "round": 1,
+        "before": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "H0",
+          "hp": 4,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            }
+          }
+        },
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "HUB",
+          "hp": 5,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        },
+        "nominal_energy": 50
+      },
+      {
+        "round": 2,
+        "before": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "H0",
+          "hp": 5,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        },
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "HUB",
+          "hp": 6,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            }
+          }
+        },
+        "nominal_energy": 50
+      },
+      {
+        "round": 3,
+        "before": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "H0",
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            }
+          }
+        },
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "HUB",
+          "hp": 7,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            }
+          }
+        },
+        "nominal_energy": 50
+      },
+      {
+        "round": 4,
+        "before": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "H0",
+          "hp": 7,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            }
+          }
+        },
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "HUB",
+          "hp": 8,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            }
+          }
+        },
+        "nominal_energy": 50
+      },
+      {
+        "round": 5,
+        "before": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "H0",
+          "hp": 8,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            }
+          }
+        },
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "HUB",
+          "hp": 9,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            }
+          }
+        },
+        "nominal_energy": 50
+      },
+      {
+        "round": 6,
+        "before": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "H0",
+          "hp": 9,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            }
+          }
+        },
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "HUB",
+          "hp": 10,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            }
+          }
+        },
+        "nominal_energy": 50
+      },
+      {
+        "round": 7,
+        "before": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "H0",
+          "hp": 10,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            }
+          }
+        },
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "HUB",
+          "hp": 11,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            }
+          }
+        },
+        "nominal_energy": 50
+      },
+      {
+        "round": 8,
+        "before": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "H0",
+          "hp": 11,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            }
+          }
+        },
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "HUB",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            }
+          }
+        },
+        "nominal_energy": 50
+      },
+      {
+        "round": 9,
+        "before": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "H0",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            }
+          }
+        },
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "HUB",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            }
+          }
+        },
+        "nominal_energy": 50
+      },
+      {
+        "round": 10,
+        "before": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "H0",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            }
+          }
+        },
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "HUB",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 11,
+              "bandage": 2
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 9
+            }
+          }
+        },
+        "nominal_energy": 50
+      }
+    ],
+    "action_ledger": [
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "H1",
+          "hp": 4,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 98,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "H7",
+          "hp": 4,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 96,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "L0",
+          "hp": 4,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 88,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "L1",
+          "hp": 4,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 86,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_manual_open",
+        "nominal_energy": 14,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "L1",
+          "hp": 4,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 72,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_search",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "L1",
+          "hp": 4,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "L1",
+          "hp": 4,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            },
+            "ground:L1": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "L1",
+          "hp": 4,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "L1",
+          "hp": 4,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            },
+            "pack": {
+              "ration": 2
+            },
+            "ground:L1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "L1",
+          "hp": 4,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            },
+            "pack": {
+              "ration": 2,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "use:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "L1",
+          "hp": 5,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            },
+            "pack": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "L0",
+          "hp": 5,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 62,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            },
+            "pack": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "H7",
+          "hp": 5,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 54,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            },
+            "pack": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "H1",
+          "hp": 5,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 52,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            },
+            "pack": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "H0",
+          "hp": 5,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "q1": {
+              "bandage": 1
+            },
+            "pack": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "voluntary_failure",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R01",
+          "character_day": 1,
+          "location": "HUB",
+          "hp": 5,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "hub_rest",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R01",
+          "character_day": 2,
+          "location": "HUB",
+          "hp": 5,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "accept_distinct_offered_task",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "H0",
+          "hp": 5,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "H1",
+          "hp": 5,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 98,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "H7",
+          "hp": 5,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 96,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "L0",
+          "hp": 5,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 88,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "L1",
+          "hp": 5,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 86,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_manual_open",
+        "nominal_energy": 14,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "L1",
+          "hp": 5,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 72,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_search",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "L1",
+          "hp": 5,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "L1",
+          "hp": 5,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            },
+            "ground:L1": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "L1",
+          "hp": 5,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "L1",
+          "hp": 5,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            },
+            "pack": {
+              "ration": 2
+            },
+            "ground:L1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "L1",
+          "hp": 5,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 1
+            },
+            "pack": {
+              "ration": 2,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "use:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "L1",
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 2
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "use:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "L1",
+          "hp": 6,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "L0",
+          "hp": 6,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 62,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "H7",
+          "hp": 6,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 54,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "H1",
+          "hp": 6,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 52,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "H0",
+          "hp": 6,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 2
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "voluntary_failure",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R02",
+          "character_day": 2,
+          "location": "HUB",
+          "hp": 6,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "hub_rest",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R02",
+          "character_day": 3,
+          "location": "HUB",
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "accept_distinct_offered_task",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "H0",
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "H1",
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 98,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "H7",
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 96,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "L0",
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 88,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "L1",
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 86,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_manual_open",
+        "nominal_energy": 14,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "L1",
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 72,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_search",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "L1",
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "L1",
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            },
+            "ground:L1": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "L1",
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "L1",
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            },
+            "pack": {
+              "ration": 2
+            },
+            "ground:L1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "L1",
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 2,
+              "ration": 1
+            },
+            "pack": {
+              "ration": 2,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "use:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "L1",
+          "hp": 7,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 1
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "use:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "L1",
+          "hp": 7,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "L0",
+          "hp": 7,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 62,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "H7",
+          "hp": 7,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 54,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "H1",
+          "hp": 7,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 52,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "H0",
+          "hp": 7,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 3
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "voluntary_failure",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R03",
+          "character_day": 3,
+          "location": "HUB",
+          "hp": 7,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "hub_rest",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R03",
+          "character_day": 4,
+          "location": "HUB",
+          "hp": 7,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "accept_distinct_offered_task",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "H0",
+          "hp": 7,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "H1",
+          "hp": 7,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 98,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "H7",
+          "hp": 7,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 96,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "L0",
+          "hp": 7,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 88,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "L1",
+          "hp": 7,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 86,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_manual_open",
+        "nominal_energy": 14,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "L1",
+          "hp": 7,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 72,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_search",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "L1",
+          "hp": 7,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "L1",
+          "hp": 7,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            },
+            "ground:L1": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "L1",
+          "hp": 7,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "L1",
+          "hp": 7,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            },
+            "pack": {
+              "ration": 2
+            },
+            "ground:L1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "L1",
+          "hp": 7,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 3,
+              "ration": 2
+            },
+            "pack": {
+              "ration": 2,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "use:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "L1",
+          "hp": 8,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 2
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "use:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "L1",
+          "hp": 8,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "L0",
+          "hp": 8,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 62,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "H7",
+          "hp": 8,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 54,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "H1",
+          "hp": 8,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 52,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "H0",
+          "hp": 8,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 4
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "voluntary_failure",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R04",
+          "character_day": 4,
+          "location": "HUB",
+          "hp": 8,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            }
+          }
+        }
+      },
+      {
+        "op": "hub_rest",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R04",
+          "character_day": 5,
+          "location": "HUB",
+          "hp": 8,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            }
+          }
+        }
+      },
+      {
+        "op": "accept_distinct_offered_task",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "H0",
+          "hp": 8,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "H1",
+          "hp": 8,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 98,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "H7",
+          "hp": 8,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 96,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "L0",
+          "hp": 8,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 88,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "L1",
+          "hp": 8,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 86,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_manual_open",
+        "nominal_energy": 14,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "L1",
+          "hp": 8,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 72,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_search",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "L1",
+          "hp": 8,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "L1",
+          "hp": 8,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            },
+            "ground:L1": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "L1",
+          "hp": 8,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "L1",
+          "hp": 8,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            },
+            "pack": {
+              "ration": 2
+            },
+            "ground:L1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "L1",
+          "hp": 8,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 3
+            },
+            "pack": {
+              "ration": 2,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "use:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "L1",
+          "hp": 9,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 3
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "use:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "L1",
+          "hp": 9,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "L0",
+          "hp": 9,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 62,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "H7",
+          "hp": 9,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 54,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "H1",
+          "hp": 9,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 52,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "H0",
+          "hp": 9,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "voluntary_failure",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R05",
+          "character_day": 5,
+          "location": "HUB",
+          "hp": 9,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            }
+          }
+        }
+      },
+      {
+        "op": "hub_rest",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R05",
+          "character_day": 6,
+          "location": "HUB",
+          "hp": 9,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            }
+          }
+        }
+      },
+      {
+        "op": "accept_distinct_offered_task",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "H0",
+          "hp": 9,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "H1",
+          "hp": 9,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 98,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "H7",
+          "hp": 9,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 96,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "L0",
+          "hp": 9,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 88,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "L1",
+          "hp": 9,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 86,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_manual_open",
+        "nominal_energy": 14,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "L1",
+          "hp": 9,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 72,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_search",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "L1",
+          "hp": 9,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "L1",
+          "hp": 9,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            },
+            "ground:L1": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "L1",
+          "hp": 9,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "L1",
+          "hp": 9,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            },
+            "pack": {
+              "ration": 2
+            },
+            "ground:L1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "L1",
+          "hp": 9,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 5,
+              "ration": 4
+            },
+            "pack": {
+              "ration": 2,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "use:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "L1",
+          "hp": 10,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 4
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "use:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "L1",
+          "hp": 10,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "L0",
+          "hp": 10,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 62,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "H7",
+          "hp": 10,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 54,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "H1",
+          "hp": 10,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 52,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "H0",
+          "hp": 10,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 6
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "voluntary_failure",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R06",
+          "character_day": 6,
+          "location": "HUB",
+          "hp": 10,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            }
+          }
+        }
+      },
+      {
+        "op": "hub_rest",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R06",
+          "character_day": 7,
+          "location": "HUB",
+          "hp": 10,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            }
+          }
+        }
+      },
+      {
+        "op": "accept_distinct_offered_task",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "H0",
+          "hp": 10,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "H1",
+          "hp": 10,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 98,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "H7",
+          "hp": 10,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 96,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "L0",
+          "hp": 10,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 88,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "L1",
+          "hp": 10,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 86,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_manual_open",
+        "nominal_energy": 14,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "L1",
+          "hp": 10,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 72,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_search",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "L1",
+          "hp": 10,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "L1",
+          "hp": 10,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            },
+            "ground:L1": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "L1",
+          "hp": 10,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "L1",
+          "hp": 10,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            },
+            "pack": {
+              "ration": 2
+            },
+            "ground:L1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "L1",
+          "hp": 10,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 6,
+              "ration": 5
+            },
+            "pack": {
+              "ration": 2,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "use:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "L1",
+          "hp": 11,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 5
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "use:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "L1",
+          "hp": 11,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "L0",
+          "hp": 11,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 62,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "H7",
+          "hp": 11,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 54,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "H1",
+          "hp": 11,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 52,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "H0",
+          "hp": 11,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 7
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "voluntary_failure",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R07",
+          "character_day": 7,
+          "location": "HUB",
+          "hp": 11,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            }
+          }
+        }
+      },
+      {
+        "op": "hub_rest",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R07",
+          "character_day": 8,
+          "location": "HUB",
+          "hp": 11,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            }
+          }
+        }
+      },
+      {
+        "op": "accept_distinct_offered_task",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "H0",
+          "hp": 11,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "H1",
+          "hp": 11,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 98,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "H7",
+          "hp": 11,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 96,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "L0",
+          "hp": 11,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 88,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "L1",
+          "hp": 11,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 86,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_manual_open",
+        "nominal_energy": 14,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "L1",
+          "hp": 11,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 72,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_search",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "L1",
+          "hp": 11,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "L1",
+          "hp": 11,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            },
+            "ground:L1": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "L1",
+          "hp": 11,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "L1",
+          "hp": 11,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            },
+            "pack": {
+              "ration": 2
+            },
+            "ground:L1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "L1",
+          "hp": 11,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 7,
+              "ration": 6
+            },
+            "pack": {
+              "ration": 2,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "use:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 6
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "use:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "L0",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 62,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "H7",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 54,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "H1",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 52,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "H0",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 8
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            },
+            "pack": {
+              "ration": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "voluntary_failure",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R08",
+          "character_day": 8,
+          "location": "HUB",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            }
+          }
+        }
+      },
+      {
+        "op": "hub_rest",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R08",
+          "character_day": 9,
+          "location": "HUB",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            }
+          }
+        }
+      },
+      {
+        "op": "accept_distinct_offered_task",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "H0",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "H1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 98,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "H7",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 96,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "L0",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 88,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 86,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_manual_open",
+        "nominal_energy": 14,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 72,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_search",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            },
+            "ground:L1": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            },
+            "pack": {
+              "ration": 2
+            },
+            "ground:L1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 7
+            },
+            "pack": {
+              "ration": 2,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "use:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            },
+            "pack": {
+              "ration": 1,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "L0",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 62,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            },
+            "pack": {
+              "ration": 1,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "H7",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 54,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            },
+            "pack": {
+              "ration": 1,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "H1",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 52,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            },
+            "pack": {
+              "ration": 1,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "H0",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 9
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            },
+            "pack": {
+              "ration": 1,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "voluntary_failure",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R09",
+          "character_day": 9,
+          "location": "HUB",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            }
+          }
+        }
+      },
+      {
+        "op": "hub_rest",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R09",
+          "character_day": 10,
+          "location": "HUB",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            }
+          }
+        }
+      },
+      {
+        "op": "accept_distinct_offered_task",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "H0",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 100,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "H1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 98,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "H7",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 96,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "L0",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 88,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 86,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_manual_open",
+        "nominal_energy": 14,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 72,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            }
+          }
+        }
+      },
+      {
+        "op": "L_front_search",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            },
+            "ground:L1": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            },
+            "pack": {
+              "ration": 2
+            }
+          }
+        }
+      },
+      {
+        "op": "reveal:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            },
+            "pack": {
+              "ration": 2
+            },
+            "ground:L1": {
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "pickup:bandage",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 8
+            },
+            "pack": {
+              "ration": 2,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "use:ration",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "L1",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 64,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 9
+            },
+            "pack": {
+              "ration": 1,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:L0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "L0",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 62,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 9
+            },
+            "pack": {
+              "ration": 1,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H7",
+        "nominal_energy": 8,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "H7",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 54,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 9
+            },
+            "pack": {
+              "ration": 1,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H1",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "H1",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 52,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 9
+            },
+            "pack": {
+              "ration": 1,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "move:H0",
+        "nominal_energy": 2,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "H0",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 10,
+              "bandage": 1
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 9
+            },
+            "pack": {
+              "ration": 1,
+              "bandage": 1
+            }
+          }
+        }
+      },
+      {
+        "op": "voluntary_failure",
+        "nominal_energy": 0,
+        "after": {
+          "task_id": "R10",
+          "character_day": 10,
+          "location": "HUB",
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "energy": 50,
+          "points": 0,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 11,
+              "bandage": 2
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 9
+            }
+          }
+        }
+      }
+    ],
+    "final": {
+      "task_id": "R10",
+      "character_day": 10,
+      "location": "HUB",
+      "hp": 12,
+      "satiety": 6,
+      "infection": 0,
+      "energy": 50,
+      "points": 0,
+      "pipe": 30,
+      "coat": 12,
+      "tool_resource": 12,
+      "inventory": {
+        "bank": {
+          "bandage": 1
+        },
+        "recovered": {
+          "ration": 11,
+          "bandage": 2
+        },
+        "consumed": {
+          "bandage": 8,
+          "ration": 9
+        }
+      }
+    },
+    "total_energy": 500,
+    "exclusions": [
+      "No combat or RNG",
+      "No old consumable use",
+      "No durability loss",
+      "No gain of points, unlocks, or carried new inventory",
+      "No claim for an infected, bleeding, or universally adversarial initial state",
+      "No production code or save validation"
+    ]
+  },
+  "file_sha256": {
+    "source-excerpts.py": "c3458a75123cefe1aef8da5d11cb11d881d268e1a7439717128a9d31a0bdccc6",
+    "reviewer-probes.py": "76778a1f4632096de68782456dc6d8411588448709419735152b66dee39906e7"
+  }
+}

@@ -1,7 +1,7 @@
 {
-  "version": "WORLD-DESIGN-003 Draft v1.3",
+  "version": "WORLD-DESIGN-002 Draft v1.2",
   "evidence_kind": "bounded deterministic authored traces and finite cross-task fixtures; NOT production engine, RNG, save, UI or universal balance proof",
-  "base_sha": "196d4bf03b07eb9af452ff99aae4ff553f9659d6",
+  "base_sha": "697ed7ae010bbdfcc70aa0eb152d045f283d3606",
   "limits": {
     "days": 7,
     "energy": 100,
@@ -40,8 +40,7 @@
     "toolkit_repair": 8,
     "recharge": 4,
     "shortcut_investigate": 4,
-    "shortcut_unlock": 4,
-    "npc_trade": 2
+    "shortcut_unlock": 4
   },
   "load": [
     {
@@ -146,9 +145,9 @@
     "defense_divisor": 2
   },
   "terminal_candidate": {
-    "status": "UNAPPROVED Draft v1.3 OPTION",
-    "failure_policy": "min(balance,20), all legally extracted ordinary items retained; old min30/new-source recovery is named comparison only",
-    "deadline_policy": "real last-day hazards first; survivor gets one specifically bound completed-cycle allowance; no repeated same-cycle check at launch",
+    "status": "UNAPPROVED Draft v1.2 OPTION",
+    "failure_policy": "points min(balance,30); recover unconsumed ordinary items originating in current task; retain old remaining assets",
+    "deadline_policy": "same failure assets, after real daily hazards; no extra loss of old carried items",
     "next_activity": "same_character_hub_preparation"
   },
   "item_order": [
@@ -314,7 +313,7 @@
         0
       ]
     },
-    "single_order": "row-major first legal whole rectangle; author-selected witness, not in-game auto-sort"
+    "single_order": "row-major remaining cells; explicit author witness, not an in-game auto-sort"
   },
   "sources": {
     "H_hall": {
@@ -1005,330 +1004,11 @@
   "economy": {
     "max_balance": 2147483647,
     "success_reward": 120,
-    "failure_penalty": 20,
+    "failure_penalty": 30,
     "body_therapy": 20,
     "infection_therapy": 40,
     "severe_therapy": 80,
     "bandage_price": 18,
-    "recover_new_on_failure": false,
-    "catalog": {
-      "ration": {
-        "price": 10,
-        "requires_full_success": false
-      },
-      "metal": {
-        "price": 12,
-        "requires_full_success": false
-      },
-      "cloth": {
-        "price": 10,
-        "requires_full_success": false
-      },
-      "battery": {
-        "price": 12,
-        "requires_full_success": false
-      },
-      "bandage": {
-        "price": 18,
-        "requires_full_success": true
-      },
-      "firstaid": {
-        "price": 45,
-        "requires_full_success": true
-      }
-    },
-    "severe_infection_min": 90
-  },
-  "rules_version": "infected-draft-v1.3",
-  "offered_tasks": {
-    "N": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "MAX": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "ALLOW": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "RESTRICT": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "must_complete",
-      "version": "infected-draft-v1.3"
-    },
-    "AFTER_DEADLINE": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "AFTER_NORMAL": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "FLAGS": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "VALID_NEXT": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "EMPTY_NEXT": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "FIRST": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "NEXT": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "AFTER_SUCCESS": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "AFTER_FAILURE": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "D_NEXT": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "D_AFTER": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "A": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "B": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "C": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "SUPPLY": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "SHOP": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "SEARCH": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "NPC": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "VARIANT": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "NEW": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "NEXT2": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "UNLOCK_NEXT": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "F01": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "F02": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "F03": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "F04": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "F05": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "F06": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "F07": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "F08": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "F09": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "F10": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "F11": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "SEQ01": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "SEQ02": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "SEQ03": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "SEQ04": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "SEQ05": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "SEQ06": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "SEQ07": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "SEQ08": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "SEQ09": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "SEQ10": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    },
-    "SEQ11": {
-      "world_id": "infected_world",
-      "mission_id": "infected_recovery",
-      "policy": "living_failure",
-      "version": "infected-draft-v1.3"
-    }
-  },
-  "offers_note": "Finite hypothetical offered executions for authored evidence only. Not a production generator, unlimited repeat supply, or accepted new world."
+    "future_firstaid_price": 45
+  }
 }

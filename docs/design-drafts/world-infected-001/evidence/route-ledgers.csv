@@ -614,7 +614,7 @@ pickup_zero_quantity,2,1,,search,H1,H1,12,98,86,12,30,12,12,0,6,0,0,active,
 pickup_zero_quantity,3,1,,pickup,H1,H1,0,86,86,12,30,12,12,0,6,0,0,active,invalid_quantity
 drop_negative_quantity,1,1,,drop,H0,H0,0,100,100,12,30,12,12,2,6,0,0,active,invalid_quantity
 entirely_empty_character_continuation,1,1,合法失败返航不把贫穷判死,failure,H0,HUB,0,0,0,1,0,0,0,0,6,0,0,failure,
-entirely_empty_character_continuation,2,1,真实过夜流血先结算,hub_rest,HUB,HUB,0,0,0,0,0,0,0,0,6,0,0,death,
+entirely_empty_character_continuation,2,1,合法出发先结当前真实周期，流血死亡,launch,HUB,HUB,0,0,0,0,0,0,0,0,6,0,0,death,
 price_pry_8,1,1,移动至T0,move,H0,T0,8,100,92,12,30,12,12,0,6,0,0,active,
 price_pry_8,2,1,移动至P0,move,T0,P0,8,92,84,12,30,12,12,0,6,0,0,active,
 price_pry_8,3,1,移动至P1,move,P0,P1,2,84,82,12,30,12,12,0,6,0,0,active,

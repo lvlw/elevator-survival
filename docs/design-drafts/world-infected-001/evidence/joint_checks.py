@@ -1,4 +1,4 @@
-"""Finite WORLD-DESIGN-002 examples, sharing authored route operations only.
+"""Finite WORLD-DESIGN-003 examples, sharing authored route operations only.
 
 No random sampling, free-form CTB, arbitrary task generation, save or UI claims.
 Every supply entry below is a separately named hypothetical offered task.
@@ -12,7 +12,7 @@ BASE=Path(__file__).resolve().parent
 
 def brief(s,p):
     d=c.snapshot(s,p)
-    return {k:d[k] for k in ("task_id","status","day","character_day","location","energy","hp","satiety","infection","exposure","bleeding","wound","injury","points","first_success","ready_next","pipe","coat","tool_resource","signature_used","disinfectant_used","painkiller","painkiller_used","suppressant_used","medical_doses","suppression","inventory_by_location","equipment")}
+    return {k:d[k] for k in ("task_id","status","day","character_day","location","energy","hp","satiety","infection","exposure","bleeding","wound","injury","points","first_success","ready_next","pipe","coat","tool_resource","signature_used","disinfectant_used","painkiller","painkiller_used","suppressant_used","medical_doses","suppression","inventory_by_location","equipment","active_task_id","last_settled_result","settled_cycle","first_entry")}
 
 def apply(s,a,p):
     return c.perform(s,a,p)[0]
@@ -27,7 +27,7 @@ def reject(s,a,p):
 def hub(p,**kwargs):
     # A declared independent legal-return fixture, not a newly rewarded success.
     s=c.initial({"initial":kwargs},p)
-    s.update(location="HUB",status="failure",next_activity="same_character_hub_preparation")
+    s.update(location="HUB",status="failure",active_task_id=None,next_activity="same_character_hub_preparation")
     return s
 
 def treat(s,p):
@@ -38,14 +38,18 @@ def prepare(s,p,task_id,feed=False,maintain=False):
         if s["pipe"]<30:s=apply(s,{"action":"hub_maintain","revision":s["revision"],"target":"mechanical","pipe":30-s["pipe"]},p)
         if s["tool_resource"]<12:s=apply(s,{"action":"hub_maintain","revision":s["revision"],"target":"mechanical","tool":12-s["tool_resource"]},p)
         if s["coat"]<12:s=apply(s,{"action":"hub_maintain","revision":s["revision"],"target":"coat"},p)
-    s=apply(s,{"action":"hub_rest"},p)
     if feed:
         while s["satiety"]<6:s=apply(s,{"action":"hub_use","item":"ration"},p)
-    return apply(s,{"action":"launch","task_id":task_id,"revision":s["revision"]},p)
+        s=apply(s,{"action":"hub_load","item":"ration","quantity":1},p)
+    s=apply(s,{"action":"launch","task_id":task_id,"revision":s["revision"]},p)
+    if feed and s["status"]=="active":s=apply(s,{"action":"use","item":"ration","from":"pack"},p)
+    return s
+
 
 def run_joint(p,specs):
     results=[]
-    evidence={"scope":"bounded authored examples, all v1.2 values remain Draft", "cases":{}, "continuous":{}}
+    oldp=copy.deepcopy(p);oldp["economy"].update(failure_penalty=30,recover_new_on_failure=True)
+    evidence={"scope":"bounded authored examples, all v1.3 values remain Draft", "cases":{}, "continuous":{}}
     def case(name,fn,expected,classification="positive"):
         try:
             actual=fn()
@@ -87,7 +91,7 @@ def run_joint(p,specs):
     case("zero_base_exposure_two",lambda:brief(apply(c.initial({"initial":{"location":"C4","exposure":2,"suppression":15,"satiety":4}},p),{"action":"rest"},p),p),
          {"infection":25,"exposure":0,"hp":12})
     case("HP1_high_infection_legal_return_treat",lambda:brief(treat(apply(c.initial({"initial":{"hp":1,"infection":130,"points":110,"bleeding":True,"wound":True,"energy":0}},p),{"action":"failure"},p),p),p),
-         {"status":"failure","hp":12,"infection":0,"points":0,"energy":0,"character_day":1})
+         {"status":"failure","hp":12,"infection":0,"points":10,"energy":0,"character_day":1})
     dead=hub(p,hp=1,points=100);c.terminal_death(dead,"fixture_actual_hp_zero");dead["hp"]=0
     rejected("HP0_no_service",dead,{"action":"hub_treat","quote":c.therapy_quote(dead,p)},"not_living_hub")
     rejected("HP0_no_launch",dead,{"action":"launch","task_id":"N","revision":dead["revision"]},"not_living_hub")
@@ -130,7 +134,9 @@ def run_joint(p,specs):
     bought=apply(s,buy,p)
     case("purchase_exact_balance",lambda:brief(bought,p),{"points":0,"first_success":True,"inventory_by_location":{"bank":{"bandage":1}}})
     rejected("purchase_replay",bought,buy,"stale_purchase")
-    rejected("future_firstaid_not_open",s,{"action":"hub_buy","item":"firstaid","revision":s["revision"]},"catalog_item_closed")
+    fa=hub(p,points=45,first_success=True)
+    case("medical_firstaid_unlocked_catalog",lambda:brief(apply(fa,{"action":"hub_buy","item":"firstaid","revision":fa["revision"]},p),p),
+         {"points":0,"inventory_by_location":{"bank":{"firstaid":1}}})
     rejected("purchase_bad_destination",s,{"action":"hub_buy","item":"bandage","revision":s["revision"],"destination":"nowhere"},"invalid_purchase_destination")
     s=hub(p,points=2147483527,ready_next=True)
     launched=apply(s,{"action":"launch","task_id":"MAX","revision":s["revision"]},p)
@@ -142,16 +148,19 @@ def run_joint(p,specs):
     good=apply(launched,{"action":"success"},p)
     rejected("success_reward_replay",good,{"action":"success"},"terminated")
     s=hub(p,points=50)
-    rejected("task_id_reset_not_free_rest",s,{"action":"launch","task_id":"N","revision":s["revision"]},"real_hub_rest_required")
-    s=apply(s,{"action":"hub_rest"},p)
-    rejected("hub_repeated_old_implicit_rest",s,{"action":"hub_rest"},"explicit_extra_rest_required")
-    extra={"action":"hub_rest","extra":True,"revision":s["revision"]}
-    extra_done=apply(s,extra,p)
-    case("hub_explicit_extra_real_day",lambda:brief(extra_done,p),{"character_day":3,"satiety":2,"energy":100,"ready_next":True})
-    rejected("hub_extra_rest_stale_replay",extra_done,extra,"stale_rest")
+    case("launch_without_hub_rest_closes_day",lambda:brief(apply(s,{"action":"launch","task_id":"N","revision":s["revision"]},p),p),
+         {"character_day":2,"satiety":4,"energy":100,"status":"active","ready_next":False})
+    rejected("obsolete_hub_rest_rejected",s,{"action":"hub_rest"},"hub_rest_retired_use_launch")
+    first=c.initial({"initial":{"first_entry":True}},p)
+    case("first_launch_no_prior_day",lambda:brief(apply(first,{"action":"launch","task_id":"FIRST","revision":first["revision"]},p),p),
+         {"character_day":1,"day":1,"satiety":6,"energy":100,"hp":12,"first_entry":False})
+    once=apply(s,{"action":"launch","task_id":"N","revision":s["revision"]},p)
+    once=apply(once,{"action":"failure"},p)
+    case("new_task_after_immediate_failure_closes_new_day",lambda:brief(apply(once,{"action":"launch","task_id":"NEXT","revision":once["revision"]},p),p),
+         {"character_day":3,"satiety":2,"energy":100,"task_id":"NEXT"})
     rejected("launch_stale_offer",s,{"action":"launch","task_id":"N","revision":s["revision"]-1},"stale_offer")
     normal=apply(s,{"action":"launch","task_id":"ALLOW","revision":s["revision"],"policy":"living_failure"},p)
-    case("same_world_task_allow_failure",lambda:brief(apply(normal,{"action":"failure"},p),p),{"points":20,"status":"failure","character_day":2})
+    case("same_world_task_allow_failure",lambda:brief(apply(normal,{"action":"failure"},p),p),{"points":30,"status":"failure","character_day":2})
     restricted=apply(s,{"action":"launch","task_id":"RESTRICT","revision":s["revision"],"policy":"must_complete"},p)
     rejected("same_world_other_task_restrict_exit",restricted,{"action":"failure"},"task_forbids_failure_exit")
     restricted["day"]=7
@@ -164,17 +173,17 @@ def run_joint(p,specs):
         {"type":"metal","id":"old.metal","origin_task":"before","location":"pack"},
         {"type":"metal","id":"new.metal","origin_task":"fixture_task","location":"pack"}]}},p)
     used=apply(mixed,{"action":"use","item":"bandage","from":"q1"},p)
-    returned=apply(used,{"action":"failure"},p)
+    returned=apply(used,{"action":"failure"},oldp)
     case("old_consumed_new_not_laundered",lambda:{"units":{u["id"]:u["location"] for u in returned["units"]}},
          {"units":{"old.band":"consumed","new.band":"recovered","old.metal":"bank","new.metal":"recovered"}})
     # Old/new in the same stack remain distinct identities after a drop and re-pick.
     dropping=apply(mixed,{"action":"drop","item":"metal","quantity":1},p)
     picking=apply(dropping,{"action":"pickup","source":"new","item":"metal","quantity":1},p)
-    returning=apply(picking,{"action":"failure"},p)
+    returning=apply(picking,{"action":"failure"},oldp)
     case("stack_drop_pickup_preserves_provenance",lambda:{"units":{u["id"]:u["location"] for u in returning["units"]}},
          {"units":{"old.metal":"bank","new.metal":"recovered"}})
     newgear=c.initial({"initial":{"equipment_origin":{"weapon":"fixture_task","armor":"before","utility":"before"}}},p)
-    case("new_equipped_identity_failure_fixture",lambda:brief(apply(newgear,{"action":"failure"},p),p),
+    case("new_equipped_identity_failure_fixture",lambda:brief(apply(newgear,{"action":"failure"},oldp),oldp),
          {"equipment":{"weapon":None,"armor":"initial.coat","utility":"initial.crowbar"},"pipe":0,"coat":12,"tool_resource":12})
     # Converted benefits cannot be recovered as an unconsumed item; this is a documented residual risk.
     repair=c.initial({"initial":{"pipe":10,"items":[{"type":"metal","origin_task":"fixture_task"}]}},p)
@@ -209,12 +218,12 @@ def run_joint(p,specs):
     treated=treat(recalled,p)
     launched=apply(treated,{"action":"launch","task_id":"AFTER_DEADLINE","revision":treated["revision"]},p)
     case("deadline_next_task_no_second_night",lambda:brief(launched,p),
-         {"hp":12,"infection":0,"satiety":2,"character_day":8,"day":1,"energy":100,"points":0})
+         {"hp":12,"infection":0,"satiety":2,"character_day":8,"day":1,"energy":100,"points":10})
     normal=c.initial({"initial":{"day":7,"character_day":7,"hp":3,"infection":110,"satiety":4,"points":110,"energy":7}},p)
     normal=treat(apply(normal,{"action":"failure"},p),p)
     normal=prepare(normal,p,"AFTER_NORMAL")
     case("normal_treat_before_real_night",lambda:brief(normal,p),
-         {"hp":12,"infection":0,"satiety":2,"character_day":8,"day":1,"energy":100,"points":0})
+         {"hp":12,"infection":0,"satiety":2,"character_day":8,"day":1,"energy":100,"points":10})
     death=c.initial({"initial":{"day":7,"character_day":7,"location":"C4","hp":3,"infection":110,"satiety":4,"points":110,"energy":7}},p)
     case("deadline_cannot_treat_before_hazards",lambda:brief(apply(death,{"action":"deadline"},p),p),
          {"hp":0,"status":"death","character_day":7,"satiety":4,"points":0,"energy":7})
@@ -239,7 +248,7 @@ def run_joint(p,specs):
         else:case("tier40_exact_balance40",lambda s=s:brief(treat(s,p),p),{"points":0,"hp":12,"infection":0,"inventory_by_location":{"bank":{"bandage":1}}})
     s=hub(p,points=0,hp=4,infection=20,satiety=4,items=[{"type":"bandage","location":"bank"}])
     s=apply(s,{"action":"hub_use","item":"bandage"},p)
-    case("zero_points_real_old_medicine_then_real_night",lambda:brief(apply(s,{"action":"hub_rest"},p),p),
+    case("zero_points_real_old_medicine_then_real_night",lambda:brief(apply(s,{"action":"launch","task_id":"N","revision":s["revision"]},p),p),
          {"points":0,"hp":5,"infection":25,"satiety":2,"character_day":2,"inventory_by_location":{"consumed":{"bandage":1}}})
     s=c.initial({"initial":{"hp":1,"infection":130,"energy":0,"facts":["installed"],"items":[{"type":"sample","origin_task":"fixture_task"}]}},p)
     case("HP1_severe_success_reward_then_service",lambda:brief(treat(apply(s,{"action":"success"},p),p),p),
@@ -275,7 +284,7 @@ def run_joint(p,specs):
     case("valid_next_task_old_identity_retained",lambda:brief(apply(old,{"action":"failure"},p),p),
          {"inventory_by_location":{"bank":{"bandage":1}}})
     quick=c.initial({"initial":{"initial_bandage":False,"items":[{"type":"bandage","location":"q1","origin_task":"fixture_task"}]}},p)
-    case("new_quick_item_not_laundered",lambda:brief(apply(quick,{"action":"failure"},p),p),
+    case("new_quick_item_not_laundered",lambda:brief(apply(quick,{"action":"failure"},oldp),oldp),
          {"inventory_by_location":{"recovered":{"bandage":1}}})
     # Local parameter perturbations keep the selected route authored; no auto rerouting.
     indexed={x["id"]:x for x in specs["scenarios"]}
@@ -290,75 +299,117 @@ def run_joint(p,specs):
     vmap=copy.deepcopy(p);vmap["topology"]["five_edges"]=[e for e in vmap["topology"]["five_edges"] if set(e)!={"T0","P0"}]
     case("map_remove_T0_P0_authored_route_rejected",lambda:changed_route("normal_five",vmap),{"error":"not_adjacent"},"expected_rejection")
 
-    # Continuous tasks use actual previous state; only explicitly offered task-local facts are fresh.
+    # The continued v1.3 sequences are below; these never run a hidden Hub rest.
+    run_continuous(p,specs,case,evidence)
+    from checks_v1_3 import run_additional
+    run_additional(p,specs,case,evidence)
+    return results,evidence
+
+def run_continuous(p,specs,case,evidence):
+    indexed={x["id"]:x for x in specs["scenarios"]}
     base_steps=copy.deepcopy(indexed["normal_five"]["steps"])
     for a in base_steps:a.pop("expect",None)
-    replenish=[]
-    for a in base_steps:
-        if a.get("action")=="move" and a.get("to")=="H0":
-            # Only the final H1->H0 move: earlier C0->H0 must not search H1.
-            pass
-        replenish.append(a)
-    # Route ends H8->H7->H1->H0->success, so insert the existing hall source before penultimate move.
-    assert replenish[-2]["action"]=="move" and replenish[-2]["to"]=="H0"
-    replenish[-2:-2]=[{"action":"search","source":"H_hall"},{"action":"pickup","source":"H_hall","item":"metal","quantity":1}]
-    failure_steps=[{"action":"move","to":"H1"},{"action":"move","to":"H2"},{"action":"search","source":"H_pharmacy"},{"action":"pickup","source":"H_pharmacy","item":"bandage","quantity":1},{"action":"move","to":"H1"},{"action":"move","to":"H0"},{"action":"failure"}]
+    pharmacy=[{"action":"move","to":"H1"},{"action":"move","to":"H2"},{"action":"search","source":"H_pharmacy"},
+              {"action":"pickup","source":"H_pharmacy","item":"bandage","quantity":1},
+              {"action":"move","to":"H1"},{"action":"move","to":"H0"}]
+    logistics=[{"action":"move","to":n} for n in ("H1","H7","L0","L1")]
+    logistics += [{"action":"L_front_open","method":"manual"},{"action":"search","source":"L_front"},
+                  {"action":"pickup","source":"L_front","item":"bandage","quantity":1},
+                  {"action":"pickup","source":"L_front","item":"ration","quantity":2}]
+    logistics += [{"action":"move","to":n} for n in ("L0","H7","H1","H0")]
     def execute(s,steps,pp):
         nominal=0;days={}
         for a in steps:
-            day=s["day"]
-            s,cost,_=c.perform(s,a,pp)
-            nominal+=cost;days[str(day)]=days.get(str(day),0)+cost
+            day=s["day"];s,cost,_=c.perform(s,a,pp);nominal+=cost;days[str(day)]=days.get(str(day),0)+cost
+            if s["status"]=="death":break
         return s,{"nominal_energy":nominal,"task_days":days}
-    def failures(use=False,start_hp=12,heal=1):
+    def failures(route="pharmacy",use=False,food=False,start_hp=12,heal=1,old_policy=False,points=0,infection=0,repair=False,treat_first=False):
         pp=copy.deepcopy(p);pp["health"]["bandage_heal"]=heal
-        s=c.initial({"initial":{"task_id":"F01","hp":start_hp}},pp)
-        rows=[];used_count=0;no_target=0
+        if old_policy:pp["economy"].update(failure_penalty=30,recover_new_on_failure=True)
+        s=c.initial({"initial":{"task_id":"F01","hp":start_hp,"points":points,"infection":infection,"pipe":10 if repair else 30}},pp)
+        rows=[];used_count=0;food_count=0;no_target=0;attempted=0
         for n in range(1,11):
-            if n>1:s=prepare(s,pp,"F%02d"%n)
-            start=brief(s,pp);nominal=0
-            for a in failure_steps:
-                if a["action"]=="failure" and use:
-                    if s["hp"]<12 or s["bleeding"] or s["wound"]:
-                        s=apply(s,{"action":"use","item":"bandage"},pp);used_count+=1
-                    else:
-                        no_target+=1
-                        assert reject(s,{"action":"use","item":"bandage"},pp)["error"]=="no_medical_target"
-                s,cost,_=c.perform(s,a,pp);nominal+=cost
-            rows.append({"task":n,"start":start,"return":brief(s,pp),"nominal_energy":nominal})
-        actual={"final":brief(s,pp),"used_new_bandages":used_count,"full_health_rejections":no_target,
-                "recovered_new_bandages":sum(u["type"]=="bandage" and u["location"]=="recovered" for u in s["units"]),
-                "exploration_energy":sum(x["nominal_energy"] for x in rows),"completed_tasks":10,
-                "inter_task_nights":9,"offered_supply":"10 distinct task IDs, identical existing sources, no entry fee; NOT confirmed unlimited supply"}
-        actual["optional_tenth_night"]=brief(apply(s,{"action":"hub_rest"},pp),pp)
+            if n>1:
+                s=prepare(s,pp,"F%02d"%n)
+                if s["status"]=="death":break
+            attempted=n;start=brief(s,pp)
+            steps=copy.deepcopy(pharmacy if route=="pharmacy" else logistics)
+            if repair:steps[-1:-1]=[{"action":"search","source":"H_hall"},{"action":"pickup","source":"H_hall","item":"metal","quantity":1}]
+            s,budget=execute(s,steps,pp)
+            if repair and s["pipe"]<30:
+                s,cost,_=c.perform(s,{"action":"repair","target":"pipe"},pp)
+                budget["nominal_energy"]+=cost
+            if use:
+                if s["hp"]<12 or s["bleeding"] or s["wound"]:
+                    s=apply(s,{"action":"use","item":"bandage","from":"pack"},pp);used_count+=1
+                else:
+                    no_target+=1
+                    assert reject(s,{"action":"use","item":"bandage","from":"pack"},pp)["error"]=="no_medical_target"
+            if food:
+                while s["satiety"]<6 and c.count(s,"ration",("pack",)):
+                    s=apply(s,{"action":"use","item":"ration","from":"pack"},pp);food_count+=1
+            s=apply(s,{"action":"failure"},pp)
+            before_service=brief(s,pp)
+            if treat_first and n==1:s=treat(s,pp)
+            rows.append({"task":n,"start":start,"return":before_service,"after_service":brief(s,pp),"nominal_energy":budget["nominal_energy"]})
+        actual={"final":brief(s,pp),"used_new_bandages":used_count,"used_new_rations":food_count,
+                "full_health_rejections":no_target,"recovered_new_bandages":c.count(s,"bandage",("recovered",)),
+                "exploration_energy":sum(x["nominal_energy"] for x in rows),"completed_tasks":len(rows),
+                "inter_task_nights":s["character_day"]-1,"offered_supply":"10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+                "policy":"old30_recovery" if old_policy else "main20_retain","start_hp":start_hp,"start_infection":infection,"start_points":points,
+                "net_points":s["points"]-points}
+        if s["status"]!="death":
+            continuation=prepare(s,pp,"F11")
+            actual["separate_eleventh_launch"]=brief(continuation,pp)
         return actual,{"rounds":rows,"key_final_state":c.snapshot(s,pp),"summary":actual}
-    for name,use,hp,heal,expected in [
-        ("failure_loot_10",False,12,1,{"final":{"hp":5,"satiety":0,"character_day":10,"energy":80,"points":0},"used_new_bandages":0,"recovered_new_bandages":10,"exploration_energy":200}),
-        ("failure_self_use_10",True,12,1,{"final":{"hp":12,"satiety":0,"character_day":10,"energy":80,"points":0},"used_new_bandages":7,"recovered_new_bandages":3,"exploration_energy":200}),
-        ("low_HP4_base_self_use_10",True,4,1,{"final":{"hp":7,"satiety":0,"character_day":10},"used_new_bandages":10,"optional_tenth_night":{"hp":6}}),
-        ("low_HP4_survival_OPTION_self_use_10",True,4,2,{"final":{"hp":12,"satiety":0,"character_day":10},"used_new_bandages":10,"optional_tenth_night":{"hp":11}})]:
-        def fn(use=use,hp=hp,heal=heal,name=name):
-            actual,detail=failures(use,hp,heal);evidence["continuous"][name]=detail;return actual
+    failure_cases=[
+      ("failure_loot_10",{},{"final":{"hp":5,"satiety":0,"character_day":10,"points":0,"inventory_by_location":{"bank":{"bandage":11}}},"used_new_bandages":0,"recovered_new_bandages":0,"exploration_energy":200}),
+      ("failure_self_use_10",{"use":True},{"final":{"hp":12,"satiety":0,"character_day":10},"used_new_bandages":7,"recovered_new_bandages":0,"full_health_rejections":3}),
+      ("low_HP4_base_self_use_10",{"use":True,"start_hp":4},{"final":{"hp":7,"satiety":0},"used_new_bandages":10,"separate_eleventh_launch":{"hp":6}}),
+      ("low_HP4_survival_OPTION_self_use_10",{"use":True,"start_hp":4,"heal":2},{"final":{"hp":12,"satiety":0},"used_new_bandages":10,"separate_eleventh_launch":{"hp":11}}),
+      ("old_policy_pharmacy_loot_10",{"old_policy":True},{"final":{"hp":5,"satiety":0},"recovered_new_bandages":10}),
+      ("old_policy_pharmacy_self_use_10",{"old_policy":True,"use":True},{"final":{"hp":12,"satiety":0},"used_new_bandages":7,"recovered_new_bandages":3}),
+      ("logistics50_HP12_same_start_main_10",{"route":"logistics","use":True,"food":True},{"final":{"hp":12,"satiety":6,"character_day":10,"points":0,"inventory_by_location":{"bank":{"bandage":11,"ration":11}}},"used_new_bandages":0,"used_new_rations":9,"exploration_energy":500}),
+      ("logistics50_HP12_same_start_old_10",{"route":"logistics","use":True,"food":True,"old_policy":True},{"final":{"hp":12,"satiety":6,"points":0,"inventory_by_location":{"bank":{"bandage":1},"recovered":{"bandage":10,"ration":11}}},"used_new_bandages":0,"used_new_rations":9,"exploration_energy":500}),
+      ("logistics50_lowHP4_main_10",{"route":"logistics","use":True,"food":True,"start_hp":4},{"final":{"hp":12,"satiety":6,"character_day":10,"energy":50,"points":0,"inventory_by_location":{"bank":{"bandage":3,"ration":11}}},"used_new_bandages":8,"used_new_rations":9,"exploration_energy":500,"separate_eleventh_launch":{"hp":12,"satiety":4}}),
+      ("logistics50_lowHP4_old_policy_10",{"route":"logistics","use":True,"food":True,"start_hp":4,"old_policy":True},{"final":{"hp":12,"satiety":6,"points":0,"inventory_by_location":{"bank":{"bandage":1},"recovered":{"bandage":2,"ration":11}}},"used_new_bandages":8,"used_new_rations":9,"exploration_energy":500}),
+      ("logistics50_lowHP4_survival_OPTION_10",{"route":"logistics","use":True,"food":True,"start_hp":4,"heal":2},{"final":{"hp":12,"satiety":6,"inventory_by_location":{"bank":{"bandage":7,"ration":11}}},"used_new_bandages":4,"used_new_rations":9}),
+      ("logistics50_with_old_points100_10",{"route":"logistics","use":True,"food":True,"start_hp":4,"points":100},{"final":{"hp":12,"satiety":6,"points":0},"net_points":-100,"completed_tasks":10}),
+      ("logistics50_no_use_lowHP4_main",{"route":"logistics","start_hp":4},{"final":{"status":"death","hp":0,"satiety":0,"character_day":6,"points":0},"completed_tasks":6,"exploration_energy":300}),
+      ("logistics50_infected25_lowHP4_main",{"route":"logistics","use":True,"food":True,"start_hp":4,"infection":25},{"final":{"hp":2,"infection":150,"satiety":6,"character_day":10,"points":0},"completed_tasks":10,"used_new_bandages":10,"separate_eleventh_launch":{"status":"death","hp":0,"infection":170,"satiety":6}}),
+      ("logistics50_with_old_points100_old_policy_10",{"route":"logistics","use":True,"food":True,"start_hp":4,"points":100,"old_policy":True},{"final":{"hp":12,"satiety":6,"points":0},"net_points":-100,"completed_tasks":10}),
+      ("logistics50_infected25_lowHP4_old_policy",{"route":"logistics","use":True,"food":True,"start_hp":4,"infection":25,"old_policy":True},{"final":{"hp":2,"infection":150,"satiety":6,"points":0},"completed_tasks":10,"separate_eleventh_launch":{"status":"death","hp":0,"infection":170}}),
+      ("logistics50_no_use_lowHP4_old_policy",{"route":"logistics","start_hp":4,"old_policy":True},{"final":{"status":"death","hp":0,"character_day":6},"completed_tasks":6,"exploration_energy":300}),
+      ("logistics50_infected25_points100_service",{"route":"logistics","use":True,"food":True,"start_hp":4,"infection":25,"points":100,"treat_first":True},{"final":{"hp":12,"infection":0,"satiety":6,"points":0},"used_new_bandages":1,"completed_tasks":10}),
+      ("logistics_plus_hall_med_food_repair_main",{"route":"logistics","use":True,"food":True,"start_hp":4,"repair":True},{"final":{"hp":12,"satiety":6,"pipe":30,"inventory_by_location":{"bank":{"metal":8},"consumed":{"metal":2}}},"exploration_energy":632}),
+      ("logistics_plus_hall_med_food_repair_old",{"route":"logistics","use":True,"food":True,"start_hp":4,"repair":True,"old_policy":True},{"final":{"hp":12,"satiety":6,"pipe":30,"inventory_by_location":{"recovered":{"metal":8},"consumed":{"metal":2}}},"exploration_energy":632}),
+    ]
+    for name,kwargs,expected in failure_cases:
+        def fn(name=name,kwargs=kwargs):
+            actual,detail=failures(**kwargs);evidence["continuous"][name]=detail;return actual
         case(name,fn,expected)
-    def successes(n=10,sequence=None):
-        sequence=sequence or ["S"]*n
-        s=c.initial({"initial":{"task_id":"SEQ01"}},p);rows=[]
+    def buy(s,item):return apply(s,{"action":"hub_buy","item":item,"revision":s["revision"]},p)
+    def successes(sequence):
+        s=c.initial({"initial":{"task_id":"SEQ01"}},p);rows=[];purchases=[];first=True
         for k,kind in enumerate(sequence,1):
-            if k>1:s=prepare(s,p,"SEQ%02d"%k,feed=True,maintain=(sequence[k-2]=="S"))
+            if k>1:s=prepare(s,p,"SEQ%02d"%k,feed=True)
             start=brief(s,p)
-            s,budget=execute(s,replenish if kind=="S" else failure_steps,p)
+            s,budget=execute(s,base_steps if kind=="S" else pharmacy+[{"action":"failure"}],p)
             returned=brief(s,p)
-            if kind=="S":s=treat(s,p)
-            rows.append({"task":k,"kind":kind,"start":start,"return":returned,"after_service":brief(s,p),"budget":budget})
-        s=apply(s,{"action":"hub_buy","item":"bandage","revision":s["revision"]},p)
-        summary={"final":brief(s,p),"task_count":len(sequence),"successes":sequence.count("S"),
-                 "failures":sequence.count("F"),"purchase_count":1,
-                 "total_nominal_energy":sum(x["budget"]["nominal_energy"] for x in rows)}
+            if kind=="S":
+                s=treat(s,p);s=buy(s,"metal");purchases.append("metal")
+                if first:
+                    for item in ("ration","ration","bandage"):s=buy(s,item);purchases.append(item)
+                    first=False
+                for args in ({"target":"mechanical","pipe":30-s["pipe"]},{"target":"mechanical","tool":12-s["tool_resource"]},{"target":"coat"}):
+                    s=apply(s,{"action":"hub_maintain","revision":s["revision"],**args},p)
+            rows.append({"task":k,"kind":kind,"start":start,"return":returned,"after_preparation":brief(s,p),"budget":budget})
+        summary={"final":brief(s,p),"task_count":len(sequence),"successes":sequence.count("S"),"failures":sequence.count("F"),
+                 "purchases":purchases,"total_nominal_energy":sum(x["budget"]["nominal_energy"] for x in rows)}
         return summary,{"rounds":rows,"key_final_state":c.snapshot(s,p),"summary":summary}
-    def ss_fn():
-        actual,detail=successes();evidence["continuous"]["success_10"]=detail;return actual
-    case("same_supply_success_10_actual_maintenance",ss_fn,{"final":{"hp":12,"satiety":4,"infection":0,"points":782,"character_day":30,"pipe":15,"coat":7,"tool_resource":7,"inventory_by_location":{"bank":{"metal":2,"cloth":1,"ration":22,"bandage":12,"battery":10}}},"successes":10,"purchase_count":1})
-    def sfs_fn():
-        actual,detail=successes(sequence=["S","F","S"]);evidence["continuous"]["success_failure_success"]=detail;return actual
-    case("success_failure_success_no_new_starter",sfs_fn,{"final":{"hp":12,"satiety":4,"infection":0,"points":112,"character_day":7,"pipe":15,"coat":7,"tool_resource":7},"successes":2,"failures":1})
-    return results,evidence
+    for name,sequence,expected in [
+        ("same_supply_success_10_actual_maintenance",["S"]*10,{"final":{"hp":12,"satiety":4,"infection":0,"points":642,"character_day":30,"pipe":30,"coat":12,"tool_resource":12,"energy":24,"inventory_by_location":{"bank":{"ration":24,"bandage":12,"battery":10},"consumed":{"metal":20,"cloth":10,"ration":28}}},"successes":10,"total_nominal_energy":2690}),
+        ("success_failure_success_no_new_starter",["S","F","S"],{"final":{"hp":12,"satiety":4,"infection":0,"points":78,"character_day":7,"pipe":30,"coat":12,"tool_resource":12,"inventory_by_location":{"bank":{"ration":7,"bandage":5,"battery":2}}},"successes":2,"failures":1,"total_nominal_energy":558})]:
+        def fn(name=name,sequence=sequence):
+            actual,detail=successes(sequence);evidence["continuous"][name]=detail;return actual
+        case(name,fn,expected)

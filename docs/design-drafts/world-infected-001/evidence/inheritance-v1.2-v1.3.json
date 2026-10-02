@@ -1,0 +1,866 @@
+{
+  "old_count": 171,
+  "historical_git_commit": "196d4bf03b07eb9af452ff99aae4ff553f9659d6",
+  "historical_counts": {
+    "positive": 87,
+    "expected_rejection": 83,
+    "unsupported": 1
+  },
+  "mapping": [
+    {
+      "v1_2_id": "normal_five",
+      "v1_3_id": "normal_five",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "early_sample_five",
+      "v1_3_id": "early_sample_five",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "damaged_split_five",
+      "v1_3_id": "damaged_split_five",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "flashlight_five",
+      "v1_3_id": "flashlight_five",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "original_R4_illegal",
+      "v1_3_id": "original_R4_illegal",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "corrected_R4_three",
+      "v1_3_id": "corrected_R4_three",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "cross_region_work",
+      "v1_3_id": "cross_region_work",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "topology_three_power",
+      "v1_3_id": "topology_three_power",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "topology_five_west",
+      "v1_3_id": "topology_five_west",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "topology_five_no_hotel",
+      "v1_3_id": "topology_five_no_hotel",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "A_same_position",
+      "v1_3_id": "A_same_position",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "C_same_position",
+      "v1_3_id": "C_same_position",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "A_defer_same_work",
+      "v1_3_id": "A_defer_same_work",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "C_finish_same_work",
+      "v1_3_id": "C_finish_same_work",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "last_positive_action",
+      "v1_3_id": "last_positive_action",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "zero_next_action",
+      "v1_3_id": "zero_next_action",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "batch_is_multiple_edges",
+      "v1_3_id": "batch_is_multiple_edges",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "zero_triggered_combat",
+      "v1_3_id": "zero_triggered_combat",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "cannot_rest_past_combat",
+      "v1_3_id": "cannot_rest_past_combat",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "unknown_route",
+      "v1_3_id": "unknown_route",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "source_once_across_night",
+      "v1_3_id": "source_once_across_night",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "unique_instance",
+      "v1_3_id": "unique_instance",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "C_quick_needs_information",
+      "v1_3_id": "C_quick_needs_information",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "P_work_wrong_location",
+      "v1_3_id": "P_work_wrong_location",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "zero_self_rescue_pickup",
+      "v1_3_id": "zero_self_rescue_pickup",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "missing_install_material",
+      "v1_3_id": "missing_install_material",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "misused_electronics_rejected",
+      "v1_3_id": "misused_electronics_rejected",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "misused_electronics_recovery",
+      "v1_3_id": "misused_electronics_recovery",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "night_bleeding_death",
+      "v1_3_id": "night_bleeding_death",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "night_infection_hp_loss",
+      "v1_3_id": "night_infection_hp_loss",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "H_wound_can_kill",
+      "v1_3_id": "H_wound_can_kill",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "no_day_eight",
+      "v1_3_id": "no_day_eight",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "rest_target_not_addition",
+      "v1_3_id": "rest_target_not_addition",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "no_signature_refresh_on_crossing",
+      "v1_3_id": "no_signature_refresh_on_crossing",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "terminal_success",
+      "v1_3_id": "terminal_success",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "terminal_voluntary_failure",
+      "v1_3_id": "terminal_voluntary_failure",
+      "disposition": "updated main penalty30->20 and ordinary retention; other health/location/transaction expectations retained"
+    },
+    {
+      "v1_2_id": "terminal_deadline_recall",
+      "v1_3_id": "terminal_deadline_recall",
+      "disposition": "updated main penalty30->20 and ordinary retention; other health/location/transaction expectations retained"
+    },
+    {
+      "v1_2_id": "terminal_death_clears_bank",
+      "v1_3_id": "terminal_death_clears_bank",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "terminal_zero_fee_inventory_survive",
+      "v1_3_id": "terminal_zero_fee_inventory_survive",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "low_pipe_actual_repair",
+      "v1_3_id": "low_pipe_actual_repair",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "ground_identity_across_night",
+      "v1_3_id": "ground_identity_across_night",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "unsafe_node_cannot_rest",
+      "v1_3_id": "unsafe_node_cannot_rest",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "C_extract_without_match",
+      "v1_3_id": "C_extract_without_match",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "overweight_rejected",
+      "v1_3_id": "overweight_rejected",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "bandage_does_not_erase_injury",
+      "v1_3_id": "bandage_does_not_erase_injury",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "deadline_suppression_expires_after_effect",
+      "v1_3_id": "deadline_suppression_expires_after_effect",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "world_cannot_use_bank",
+      "v1_3_id": "world_cannot_use_bank",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "world_cannot_drop_bank",
+      "v1_3_id": "world_cannot_drop_bank",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "pickup_negative_quantity",
+      "v1_3_id": "pickup_negative_quantity",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "pickup_zero_quantity",
+      "v1_3_id": "pickup_zero_quantity",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "drop_negative_quantity",
+      "v1_3_id": "drop_negative_quantity",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "entirely_empty_character_continuation",
+      "v1_3_id": "entirely_empty_character_continuation",
+      "disposition": "replaced explicit Hub rest with actual valid launch; same HP1 bleeding death before new active task"
+    },
+    {
+      "v1_2_id": "price_pry_8",
+      "v1_3_id": "price_pry_8",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "pipe_capacity_10",
+      "v1_3_id": "pipe_capacity_10",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "coat_mitigation_0",
+      "v1_3_id": "coat_mitigation_0",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "drop_front_ration_1",
+      "v1_3_id": "drop_front_ration_1",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "topology_remove_C0_H0",
+      "v1_3_id": "topology_remove_C0_H0",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "F1a_damage_6",
+      "v1_3_id": "F1a_damage_6",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "F1a_damage_16",
+      "v1_3_id": "F1a_damage_16",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "F1b_first_trace_on_reentry",
+      "v1_3_id": "F1b_first_trace_on_reentry",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "F1b_reentry_trace_on_first",
+      "v1_3_id": "F1b_reentry_trace_on_first",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "F1_baseline_first_trace",
+      "v1_3_id": "F1_baseline_first_trace",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "F1_valid_reentry",
+      "v1_3_id": "F1_valid_reentry",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "F1_separately_authored_damage6",
+      "v1_3_id": "F1_separately_authored_damage6",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "disease_old_0",
+      "v1_3_id": "disease_old_0",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "disease_old_29",
+      "v1_3_id": "disease_old_29",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "disease_old_59",
+      "v1_3_id": "disease_old_59",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "disease_old_89",
+      "v1_3_id": "disease_old_89",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "disease_old_110",
+      "v1_3_id": "disease_old_110",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "disease_old_120",
+      "v1_3_id": "disease_old_120",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "disease_old_160",
+      "v1_3_id": "disease_old_160",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "disease_suppression_before_damage",
+      "v1_3_id": "disease_suppression_before_damage",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "disease_actual_death_stops_food",
+      "v1_3_id": "disease_actual_death_stops_food",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "zero_base_exposure_two",
+      "v1_3_id": "zero_base_exposure_two",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "HP1_high_infection_legal_return_treat",
+      "v1_3_id": "HP1_high_infection_legal_return_treat",
+      "disposition": "updated main penalty30->20 and ordinary retention; other health/location/transaction expectations retained"
+    },
+    {
+      "v1_2_id": "HP0_no_service",
+      "v1_3_id": "HP0_no_service",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "HP0_no_launch",
+      "v1_3_id": "HP0_no_launch",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "service_tier_body",
+      "v1_3_id": "service_tier_body",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "service_tier_processed_injury",
+      "v1_3_id": "service_tier_processed_injury",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "service_tier_low_infection",
+      "v1_3_id": "service_tier_low_infection",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "service_tier_exposure",
+      "v1_3_id": "service_tier_exposure",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "service_tier_high_infection",
+      "v1_3_id": "service_tier_high_infection",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "service_all_state_boundary",
+      "v1_3_id": "service_all_state_boundary",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "service_preserves_nontarget_state",
+      "v1_3_id": "service_preserves_nontarget_state",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "service_replayed_old_quote",
+      "v1_3_id": "service_replayed_old_quote",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "service_fresh_healthy_noop",
+      "v1_3_id": "service_fresh_healthy_noop",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "healthy_pure_drug_noop",
+      "v1_3_id": "healthy_pure_drug_noop",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "service_insufficient_atomic",
+      "v1_3_id": "service_insufficient_atomic",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "service_cancel",
+      "v1_3_id": "service_cancel",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "service_stale_after_real_medicine",
+      "v1_3_id": "service_stale_after_real_medicine",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "old_firstaid_not_free_infection_cure",
+      "v1_3_id": "old_firstaid_not_free_infection_cure",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_balance_negative",
+      "v1_3_id": "invalid_balance_negative",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_balance_bool",
+      "v1_3_id": "invalid_balance_bool",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_balance_fraction",
+      "v1_3_id": "invalid_balance_fraction",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_balance_nan",
+      "v1_3_id": "invalid_balance_nan",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_balance_overflow",
+      "v1_3_id": "invalid_balance_overflow",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "wealth_without_eligibility",
+      "v1_3_id": "wealth_without_eligibility",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "eligibility_insufficient_balance",
+      "v1_3_id": "eligibility_insufficient_balance",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "purchase_exact_balance",
+      "v1_3_id": "purchase_exact_balance",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "purchase_replay",
+      "v1_3_id": "purchase_replay",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "future_firstaid_not_open",
+      "v1_3_id": "medical_firstaid_unlocked_catalog",
+      "disposition": "Owner 003 replaces deferred firstaid with joint unlock after complete mission"
+    },
+    {
+      "v1_2_id": "purchase_bad_destination",
+      "v1_3_id": "purchase_bad_destination",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "headroom_exact_reward",
+      "v1_3_id": "headroom_exact_reward",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "headroom_insufficient_before_accept",
+      "v1_3_id": "headroom_insufficient_before_accept",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "success_reward_replay",
+      "v1_3_id": "success_reward_replay",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "task_id_reset_not_free_rest",
+      "v1_3_id": "launch_without_hub_rest_closes_day",
+      "disposition": "Owner 003 removes separate Hub-rest gate; actual valid launch closes current cycle"
+    },
+    {
+      "v1_2_id": "hub_repeated_old_implicit_rest",
+      "v1_3_id": "obsolete_hub_rest_rejected",
+      "disposition": "Old independent Hub-rest command retired; current launch is the only between-task day boundary"
+    },
+    {
+      "v1_2_id": "hub_explicit_extra_real_day",
+      "v1_3_id": "first_launch_no_prior_day",
+      "disposition": "Old extra Hub-rest flow retired by Owner; new first-entry no-nonexistent-day boundary replaces expectation"
+    },
+    {
+      "v1_2_id": "hub_extra_rest_stale_replay",
+      "v1_3_id": "new_task_after_immediate_failure_closes_new_day",
+      "disposition": "Extra Hub-rest stale request retired; single-cycle launch allowance cannot exempt next task"
+    },
+    {
+      "v1_2_id": "launch_stale_offer",
+      "v1_3_id": "launch_stale_offer",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "same_world_task_allow_failure",
+      "v1_3_id": "same_world_task_allow_failure",
+      "disposition": "updated main penalty30->20 and ordinary retention; other health/location/transaction expectations retained"
+    },
+    {
+      "v1_2_id": "same_world_other_task_restrict_exit",
+      "v1_3_id": "same_world_other_task_restrict_exit",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "same_world_other_task_declared_deadline_death",
+      "v1_3_id": "same_world_other_task_declared_deadline_death",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "old_consumed_new_not_laundered",
+      "v1_3_id": "old_consumed_new_not_laundered",
+      "disposition": "retained explicitly under old30/source-recovery comparison, not the v1.3 main retention policy"
+    },
+    {
+      "v1_2_id": "stack_drop_pickup_preserves_provenance",
+      "v1_3_id": "stack_drop_pickup_preserves_provenance",
+      "disposition": "retained explicitly under old30/source-recovery comparison, not the v1.3 main retention policy"
+    },
+    {
+      "v1_2_id": "new_equipped_identity_failure_fixture",
+      "v1_3_id": "new_equipped_identity_failure_fixture",
+      "disposition": "retained explicitly under old30/source-recovery comparison, not the v1.3 main retention policy"
+    },
+    {
+      "v1_2_id": "new_metal_used_before_failure_residual",
+      "v1_3_id": "new_metal_used_before_failure_residual",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "disinfectant_quick_noncombat_allowed",
+      "v1_3_id": "disinfectant_quick_noncombat_allowed",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "disinfectant_quick_not_combat_use",
+      "v1_3_id": "disinfectant_quick_not_combat_use",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "one_metal_not_double_restore",
+      "v1_3_id": "one_metal_not_double_restore",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "one_metal_actual_shared_restore",
+      "v1_3_id": "one_metal_actual_shared_restore",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "hub_flashlight_actual_battery",
+      "v1_3_id": "hub_flashlight_actual_battery",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "hub_toolkit_actual_materials",
+      "v1_3_id": "hub_toolkit_actual_materials",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "maintenance_replay_partial_target",
+      "v1_3_id": "maintenance_replay_partial_target",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "maintenance_new_request_continues",
+      "v1_3_id": "maintenance_new_request_continues",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "deadline_next_task_no_second_night",
+      "v1_3_id": "deadline_next_task_no_second_night",
+      "disposition": "updated main penalty30->20 and ordinary retention; other health/location/transaction expectations retained"
+    },
+    {
+      "v1_2_id": "normal_treat_before_real_night",
+      "v1_3_id": "normal_treat_before_real_night",
+      "disposition": "updated main penalty30->20 and ordinary retention; other health/location/transaction expectations retained"
+    },
+    {
+      "v1_2_id": "deadline_cannot_treat_before_hazards",
+      "v1_3_id": "deadline_cannot_treat_before_hazards",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_exposure_negative",
+      "v1_3_id": "invalid_exposure_negative",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_exposure_bool",
+      "v1_3_id": "invalid_exposure_bool",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_exposure_fraction",
+      "v1_3_id": "invalid_exposure_fraction",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_exposure_nan",
+      "v1_3_id": "invalid_exposure_nan",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_exposure_overflow",
+      "v1_3_id": "invalid_exposure_overflow",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "infection_growth_overflow_atomic",
+      "v1_3_id": "infection_growth_overflow_atomic",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_exposure_before_rest_negative",
+      "v1_3_id": "invalid_exposure_before_rest_negative",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_exposure_before_rest_boolean",
+      "v1_3_id": "invalid_exposure_before_rest_boolean",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_exposure_before_rest_NaN",
+      "v1_3_id": "invalid_exposure_before_rest_NaN",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_exposure_before_deadline_negative",
+      "v1_3_id": "invalid_exposure_before_deadline_negative",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_exposure_before_deadline_boolean",
+      "v1_3_id": "invalid_exposure_before_deadline_boolean",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_exposure_before_deadline_NaN",
+      "v1_3_id": "invalid_exposure_before_deadline_NaN",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "active_HP0_cannot_self_rescue",
+      "v1_3_id": "active_HP0_cannot_self_rescue",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "tier40_balance39_retains_old_medicine",
+      "v1_3_id": "tier40_balance39_retains_old_medicine",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "tier40_exact_balance40",
+      "v1_3_id": "tier40_exact_balance40",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "zero_points_real_old_medicine_then_real_night",
+      "v1_3_id": "zero_points_real_old_medicine_then_real_night",
+      "disposition": "real carried-old medicine retained; next launch replaces mandatory Hub rest and performs same health check"
+    },
+    {
+      "v1_2_id": "HP1_severe_success_reward_then_service",
+      "v1_3_id": "HP1_severe_success_reward_then_service",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "illegal_quote_price_negative",
+      "v1_3_id": "illegal_quote_price_negative",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "illegal_quote_price_fraction",
+      "v1_3_id": "illegal_quote_price_fraction",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "illegal_quote_price_bool",
+      "v1_3_id": "illegal_quote_price_bool",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "illegal_quote_price_missing",
+      "v1_3_id": "illegal_quote_price_missing",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "forged_free_tier40_quote",
+      "v1_3_id": "forged_free_tier40_quote",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_purchase_quantity_negative",
+      "v1_3_id": "invalid_purchase_quantity_negative",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_purchase_quantity_zero",
+      "v1_3_id": "invalid_purchase_quantity_zero",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_purchase_quantity_fraction",
+      "v1_3_id": "invalid_purchase_quantity_fraction",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "invalid_purchase_quantity_bool",
+      "v1_3_id": "invalid_purchase_quantity_bool",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "illegal_quote_equal_float40",
+      "v1_3_id": "illegal_quote_equal_float40",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "illegal_quote_healthy_false",
+      "v1_3_id": "illegal_quote_healthy_false",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "launch_keeps_current_real_day_dose_flags",
+      "v1_3_id": "launch_keeps_current_real_day_dose_flags",
+      "disposition": "retained only for explicit just-completed deadline-cycle allowance; ordinary launch refreshes through real day check"
+    },
+    {
+      "v1_2_id": "reserved_or_empty_task_id_before",
+      "v1_3_id": "reserved_or_empty_task_id_before",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "reserved_or_empty_task_id_hub_purchase",
+      "v1_3_id": "reserved_or_empty_task_id_hub_purchase",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "reserved_or_empty_task_id_empty",
+      "v1_3_id": "reserved_or_empty_task_id_empty",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "valid_next_task_old_identity_retained",
+      "v1_3_id": "valid_next_task_old_identity_retained",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "new_quick_item_not_laundered",
+      "v1_3_id": "new_quick_item_not_laundered",
+      "disposition": "retained explicitly under old30/source-recovery comparison, not the v1.3 main retention policy"
+    },
+    {
+      "v1_2_id": "deadline6_normal_route",
+      "v1_3_id": "deadline6_normal_route",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "deadline6_damaged_route_rejected",
+      "v1_3_id": "deadline6_damaged_route_rejected",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "map_remove_T0_P0_authored_route_rejected",
+      "v1_3_id": "map_remove_T0_P0_authored_route_rejected",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "failure_loot_10",
+      "v1_3_id": "old_policy_pharmacy_loot_10",
+      "disposition": "Exact old30/recovery policy retained as named comparison under new launch timing; same old body endpoints"
+    },
+    {
+      "v1_2_id": "failure_self_use_10",
+      "v1_3_id": "old_policy_pharmacy_self_use_10",
+      "disposition": "Old30/recovery self-use comparison retained; main20 physical retention separately reported"
+    },
+    {
+      "v1_2_id": "low_HP4_base_self_use_10",
+      "v1_3_id": "low_HP4_base_self_use_10",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "low_HP4_survival_OPTION_self_use_10",
+      "v1_3_id": "low_HP4_survival_OPTION_self_use_10",
+      "disposition": "retained with same semantic boundary"
+    },
+    {
+      "v1_2_id": "same_supply_success_10_actual_maintenance",
+      "v1_3_id": "same_supply_success_10_actual_maintenance",
+      "disposition": "recomputed actual shopping/prelaunch meals/postlaunch carried meal/maintenance; 782 historical replaced by642, normal269E instead of281E"
+    },
+    {
+      "v1_2_id": "success_failure_success_no_new_starter",
+      "v1_3_id": "success_failure_success_no_new_starter",
+      "disposition": "recomputed continuous current contract:112 historical replaced by78; no starter reset"
+    }
+  ]
+}

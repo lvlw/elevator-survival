@@ -1,25 +1,17 @@
 {
   "evidence_kind": "bounded deterministic authored traces and finite cross-task fixtures; NOT production engine, RNG, save, UI or universal balance proof",
-  "version": "WORLD-DESIGN-002 Draft v1.2",
-  "base_sha": "697ed7ae010bbdfcc70aa0eb152d045f283d3606",
-  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
-  "input_sha256": {
-    "parameters.json": "fed5e659bfe74088655fa6af826ab6194824cbf353256e98294a0727327e207f",
-    "scenarios.json": "f3a16d910316ef55dd395b16b7932469d77bf1c2556f0ac48134cc585f5150d2",
-    "check_design.py": "5548de0c6bad77faa74381a5ac0c17cd424936a9df74dab407a9f4158afb166b",
-    "joint_checks.py": "302eb700d036c8c6023d99c0c3e8fbd9640ef1a8dc956cc92da8f823c7d6d8bb",
-    "expected-v1.2.json": "7bc8a9c4456598c1afe18a770c5b970885644eb04d81352dc4da73ee24c38b30"
-  },
+  "version": "WORLD-DESIGN-003 Draft v1.3",
+  "base_sha": "196d4bf03b07eb9af452ff99aae4ff553f9659d6",
   "counts": {
     "scenarios": 52,
     "sensitivity": 5,
-    "joint": 114,
-    "positive": 87,
-    "expected_rejection": 83,
+    "joint": 212,
+    "positive": 145,
+    "expected_rejection": 123,
     "unsupported": 1,
-    "passed": 171,
+    "passed": 269,
     "failed": 0,
-    "supported_expected_matched": 170,
+    "supported_expected_matched": 268,
     "unsupported_recognized": 1
   },
   "scenarios": [
@@ -2543,7 +2535,7 @@
     },
     {
       "id": "terminal_voluntary_failure",
-      "purpose": "v1.2 主动失败：罚min(P,30)，新获未用普通品回收、旧家底保留",
+      "purpose": "v1.3 较轻失败：罚min(P,20)，实际合法携出普通物全部保留；旧来源回收另列对照",
       "topology": "five",
       "error": null,
       "failed_action": null,
@@ -2574,16 +2566,12 @@
         "next_activity": "same_character_hub_preparation",
         "inventory_by_location": {
           "bank": {
-            "ration": 3,
-            "metal": 2,
-            "firstaid": 1
-          },
-          "recovered": {
-            "ration": 2,
-            "metal": 2,
+            "ration": 5,
+            "metal": 4,
             "cloth": 1,
             "battery": 2,
-            "bandage": 1
+            "bandage": 1,
+            "firstaid": 1
           },
           "delivered_partial": {
             "sample": 1
@@ -2608,7 +2596,7 @@
           "utility": "initial.crowbar"
         },
         "character_day": 5,
-        "points": 20,
+        "points": 30,
         "first_success": false,
         "ready_next": false,
         "task_id": "fixture_task",
@@ -2622,7 +2610,7 @@
     },
     {
       "id": "terminal_deadline_recall",
-      "purpose": "v1.2 期限危险后召回：罚min(P,30)，新获未用普通品回收、旧家底保留",
+      "purpose": "v1.3 较轻失败：罚min(P,20)，实际合法携出普通物全部保留；旧来源回收另列对照",
       "topology": "five",
       "error": null,
       "failed_action": null,
@@ -2653,16 +2641,12 @@
         "next_activity": "same_character_hub_preparation",
         "inventory_by_location": {
           "bank": {
-            "ration": 3,
-            "metal": 2,
-            "firstaid": 1
-          },
-          "recovered": {
-            "ration": 2,
-            "metal": 2,
+            "ration": 5,
+            "metal": 4,
             "cloth": 1,
             "battery": 2,
-            "bandage": 1
+            "bandage": 1,
+            "firstaid": 1
           },
           "delivered_partial": {
             "sample": 1
@@ -2687,7 +2671,7 @@
           "utility": "initial.crowbar"
         },
         "character_day": 8,
-        "points": 20,
+        "points": 30,
         "first_success": false,
         "ready_next": true,
         "task_id": "fixture_task",
@@ -3569,7 +3553,7 @@
     },
     {
       "id": "entirely_empty_character_continuation",
-      "purpose": "真正全空家底HP1流血先合法回Hub；显式下一角色日休整因流血死亡，不能启动下一任务",
+      "purpose": "全空HP1流血可正常失败生还；下一合法launch先真实结日死亡，不创建新任务或重赠",
       "topology": "five",
       "error": null,
       "failed_action": null,
@@ -4303,7 +4287,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "fixture_task",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -4351,7 +4339,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "fixture_task",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -4399,7 +4391,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "fixture_task",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -4449,7 +4445,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "fixture_task",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -4499,7 +4499,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "fixture_task",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -4549,7 +4553,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "fixture_task",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -4599,7 +4607,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "fixture_task",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -4649,7 +4661,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "fixture_task",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -4699,7 +4715,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "fixture_task",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -4749,7 +4769,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "fixture_task",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -4800,7 +4824,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "fixture_task",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -4851,7 +4879,11 @@
           "weapon": null,
           "armor": null,
           "utility": null
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -4899,7 +4931,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "fixture_task",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -4910,7 +4946,7 @@
         "status": "failure",
         "hp": 12,
         "infection": 0,
-        "points": 0,
+        "points": 10,
         "energy": 0,
         "character_day": 1
       },
@@ -4928,7 +4964,7 @@
         "bleeding": false,
         "wound": false,
         "injury": "none",
-        "points": 0,
+        "points": 10,
         "first_success": false,
         "ready_next": false,
         "pipe": 30,
@@ -4950,7 +4986,16 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": {
+          "task_id": "fixture_task",
+          "outcome": "failure",
+          "reward": 0,
+          "fee": 20
+        },
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -5026,7 +5071,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -5076,7 +5125,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -5126,7 +5179,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -5176,7 +5233,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -5226,7 +5287,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -5295,7 +5360,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -5434,7 +5503,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -5570,7 +5643,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -5587,16 +5664,61 @@
       }
     },
     {
-      "id": "future_firstaid_not_open",
-      "classification": "expected_rejection",
+      "id": "medical_firstaid_unlocked_catalog",
+      "classification": "positive",
       "passed": true,
       "expected": {
-        "error": "catalog_item_closed",
-        "unchanged": true
+        "points": 0,
+        "inventory_by_location": {
+          "bank": {
+            "firstaid": 1
+          }
+        }
       },
       "actual": {
-        "error": "catalog_item_closed",
-        "unchanged": true
+        "task_id": "fixture_task",
+        "status": "failure",
+        "day": 1,
+        "character_day": 1,
+        "location": "HUB",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 0,
+        "first_success": true,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "bank": {
+            "firstaid": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -5659,7 +5781,16 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": {
+          "task_id": "MAX",
+          "outcome": "success",
+          "reward": 120,
+          "fee": 0
+        },
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -5689,50 +5820,25 @@
       }
     },
     {
-      "id": "task_id_reset_not_free_rest",
-      "classification": "expected_rejection",
-      "passed": true,
-      "expected": {
-        "error": "real_hub_rest_required",
-        "unchanged": true
-      },
-      "actual": {
-        "error": "real_hub_rest_required",
-        "unchanged": true
-      }
-    },
-    {
-      "id": "hub_repeated_old_implicit_rest",
-      "classification": "expected_rejection",
-      "passed": true,
-      "expected": {
-        "error": "explicit_extra_rest_required",
-        "unchanged": true
-      },
-      "actual": {
-        "error": "explicit_extra_rest_required",
-        "unchanged": true
-      }
-    },
-    {
-      "id": "hub_explicit_extra_real_day",
+      "id": "launch_without_hub_rest_closes_day",
       "classification": "positive",
       "passed": true,
       "expected": {
-        "character_day": 3,
-        "satiety": 2,
+        "character_day": 2,
+        "satiety": 4,
         "energy": 100,
-        "ready_next": true
+        "status": "active",
+        "ready_next": false
       },
       "actual": {
-        "task_id": "fixture_task",
-        "status": "failure",
+        "task_id": "N",
+        "status": "active",
         "day": 1,
-        "character_day": 3,
-        "location": "HUB",
+        "character_day": 2,
+        "location": "H0",
         "energy": 100,
         "hp": 12,
-        "satiety": 2,
+        "satiety": 4,
         "infection": 0,
         "exposure": 0,
         "bleeding": false,
@@ -5740,7 +5846,7 @@
         "injury": "none",
         "points": 50,
         "first_success": false,
-        "ready_next": true,
+        "ready_next": false,
         "pipe": 30,
         "coat": 12,
         "tool_resource": 12,
@@ -5760,59 +5866,106 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "N",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
-      "id": "hub_extra_rest_stale_replay",
+      "id": "obsolete_hub_rest_rejected",
       "classification": "expected_rejection",
       "passed": true,
       "expected": {
-        "error": "stale_rest",
+        "error": "hub_rest_retired_use_launch",
         "unchanged": true
       },
       "actual": {
-        "error": "stale_rest",
+        "error": "hub_rest_retired_use_launch",
         "unchanged": true
       }
     },
     {
-      "id": "launch_stale_offer",
-      "classification": "expected_rejection",
-      "passed": true,
-      "expected": {
-        "error": "stale_offer",
-        "unchanged": true
-      },
-      "actual": {
-        "error": "stale_offer",
-        "unchanged": true
-      }
-    },
-    {
-      "id": "same_world_task_allow_failure",
+      "id": "first_launch_no_prior_day",
       "classification": "positive",
       "passed": true,
       "expected": {
-        "points": 20,
-        "status": "failure",
-        "character_day": 2
-      },
-      "actual": {
-        "task_id": "ALLOW",
-        "status": "failure",
+        "character_day": 1,
         "day": 1,
-        "character_day": 2,
-        "location": "HUB",
+        "satiety": 6,
         "energy": 100,
         "hp": 12,
-        "satiety": 4,
+        "first_entry": false
+      },
+      "actual": {
+        "task_id": "FIRST",
+        "status": "active",
+        "day": 1,
+        "character_day": 1,
+        "location": "H0",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
         "infection": 0,
         "exposure": 0,
         "bleeding": false,
         "wound": false,
         "injury": "none",
-        "points": 20,
+        "points": 0,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": "FIRST",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "new_task_after_immediate_failure_closes_new_day",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "character_day": 3,
+        "satiety": 2,
+        "energy": 100,
+        "task_id": "NEXT"
+      },
+      "actual": {
+        "task_id": "NEXT",
+        "status": "active",
+        "day": 1,
+        "character_day": 3,
+        "location": "H0",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 2,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 30,
         "first_success": false,
         "ready_next": false,
         "pipe": 30,
@@ -5834,7 +5987,86 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "NEXT",
+        "last_settled_result": {
+          "task_id": "N",
+          "outcome": "failure",
+          "reward": 0,
+          "fee": 20
+        },
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "launch_stale_offer",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "stale_offer",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "stale_offer",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "same_world_task_allow_failure",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "points": 30,
+        "status": "failure",
+        "character_day": 2
+      },
+      "actual": {
+        "task_id": "ALLOW",
+        "status": "failure",
+        "day": 1,
+        "character_day": 2,
+        "location": "HUB",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 30,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": null,
+        "last_settled_result": {
+          "task_id": "ALLOW",
+          "outcome": "failure",
+          "reward": 0,
+          "fee": 20
+        },
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -5897,7 +6129,11 @@
           "weapon": null,
           "armor": null,
           "utility": null
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -5990,7 +6226,16 @@
           "weapon": null,
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": {
+          "task_id": "fixture_task",
+          "outcome": "failure",
+          "reward": 0,
+          "fee": 0
+        },
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -6046,7 +6291,16 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": {
+          "task_id": "fixture_task",
+          "outcome": "failure",
+          "reward": 0,
+          "fee": 0
+        },
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -6094,7 +6348,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "fixture_task",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -6176,7 +6434,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -6230,7 +6492,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.flashlight"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -6286,7 +6552,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.toolkit"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -6353,7 +6623,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -6367,7 +6641,7 @@
         "character_day": 8,
         "day": 1,
         "energy": 100,
-        "points": 0
+        "points": 10
       },
       "actual": {
         "task_id": "AFTER_DEADLINE",
@@ -6383,7 +6657,7 @@
         "bleeding": false,
         "wound": false,
         "injury": "none",
-        "points": 0,
+        "points": 10,
         "first_success": false,
         "ready_next": false,
         "pipe": 30,
@@ -6405,7 +6679,16 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "AFTER_DEADLINE",
+        "last_settled_result": {
+          "task_id": "fixture_task",
+          "outcome": "deadline_recall",
+          "reward": 0,
+          "fee": 20
+        },
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -6419,7 +6702,7 @@
         "character_day": 8,
         "day": 1,
         "energy": 100,
-        "points": 0
+        "points": 10
       },
       "actual": {
         "task_id": "AFTER_NORMAL",
@@ -6435,7 +6718,7 @@
         "bleeding": false,
         "wound": false,
         "injury": "none",
-        "points": 0,
+        "points": 10,
         "first_success": false,
         "ready_next": false,
         "pipe": 30,
@@ -6457,7 +6740,16 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "AFTER_NORMAL",
+        "last_settled_result": {
+          "task_id": "fixture_task",
+          "outcome": "failure",
+          "reward": 0,
+          "fee": 20
+        },
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -6508,7 +6800,11 @@
           "weapon": null,
           "armor": null,
           "utility": null
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -6724,7 +7020,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -6744,11 +7044,11 @@
         }
       },
       "actual": {
-        "task_id": "fixture_task",
-        "status": "failure",
+        "task_id": "N",
+        "status": "active",
         "day": 1,
         "character_day": 2,
-        "location": "HUB",
+        "location": "H0",
         "energy": 100,
         "hp": 5,
         "satiety": 2,
@@ -6759,7 +7059,7 @@
         "injury": "none",
         "points": 0,
         "first_success": false,
-        "ready_next": true,
+        "ready_next": false,
         "pipe": 30,
         "coat": 12,
         "tool_resource": 12,
@@ -6782,7 +7082,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "N",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -6835,7 +7139,16 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": {
+          "task_id": "fixture_task",
+          "outcome": "success",
+          "reward": 120,
+          "fee": 0
+        },
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -7032,7 +7345,11 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": "FLAGS",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -7121,7 +7438,16 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": {
+          "task_id": "VALID_NEXT",
+          "outcome": "failure",
+          "reward": 0,
+          "fee": 0
+        },
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -7171,7 +7497,16 @@
           "weapon": "initial.pipe",
           "armor": "initial.coat",
           "utility": "initial.crowbar"
-        }
+        },
+        "active_task_id": null,
+        "last_settled_result": {
+          "task_id": "fixture_task",
+          "outcome": "failure",
+          "reward": 0,
+          "fee": 0
+        },
+        "settled_cycle": null,
+        "first_entry": false
       }
     },
     {
@@ -7403,11 +7738,15 @@
           "hp": 5,
           "satiety": 0,
           "character_day": 10,
-          "energy": 80,
-          "points": 0
+          "points": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 11
+            }
+          }
         },
         "used_new_bandages": 0,
-        "recovered_new_bandages": 10,
+        "recovered_new_bandages": 0,
         "exploration_energy": 200
       },
       "actual": {
@@ -7440,31 +7779,43 @@
           "suppression": 0,
           "inventory_by_location": {
             "bank": {
-              "bandage": 1
-            },
-            "recovered": {
-              "bandage": 10
+              "bandage": 11
             }
           },
           "equipment": {
             "weapon": "initial.pipe",
             "armor": "initial.coat",
             "utility": "initial.crowbar"
-          }
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
         },
         "used_new_bandages": 0,
+        "used_new_rations": 0,
         "full_health_rejections": 0,
-        "recovered_new_bandages": 10,
+        "recovered_new_bandages": 0,
         "exploration_energy": 200,
         "completed_tasks": 10,
         "inter_task_nights": 9,
-        "offered_supply": "10 distinct task IDs, identical existing sources, no entry fee; NOT confirmed unlimited supply",
-        "optional_tenth_night": {
-          "task_id": "F10",
-          "status": "failure",
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "main20_retain",
+        "start_hp": 12,
+        "start_infection": 0,
+        "start_points": 0,
+        "net_points": 0,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
           "day": 1,
           "character_day": 11,
-          "location": "HUB",
+          "location": "H0",
           "energy": 100,
           "hp": 4,
           "satiety": 0,
@@ -7475,7 +7826,7 @@
           "injury": "none",
           "points": 0,
           "first_success": false,
-          "ready_next": true,
+          "ready_next": false,
           "pipe": 30,
           "coat": 12,
           "tool_resource": 12,
@@ -7488,17 +7839,23 @@
           "suppression": 0,
           "inventory_by_location": {
             "bank": {
-              "bandage": 1
-            },
-            "recovered": {
-              "bandage": 10
+              "bandage": 11
             }
           },
           "equipment": {
             "weapon": "initial.pipe",
             "armor": "initial.coat",
             "utility": "initial.crowbar"
-          }
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
         }
       }
     },
@@ -7510,13 +7867,11 @@
         "final": {
           "hp": 12,
           "satiety": 0,
-          "character_day": 10,
-          "energy": 80,
-          "points": 0
+          "character_day": 10
         },
         "used_new_bandages": 7,
-        "recovered_new_bandages": 3,
-        "exploration_energy": 200
+        "recovered_new_bandages": 0,
+        "full_health_rejections": 3
       },
       "actual": {
         "final": {
@@ -7548,10 +7903,7 @@
           "suppression": 0,
           "inventory_by_location": {
             "bank": {
-              "bandage": 1
-            },
-            "recovered": {
-              "bandage": 3
+              "bandage": 4
             },
             "consumed": {
               "bandage": 7
@@ -7561,21 +7913,36 @@
             "weapon": "initial.pipe",
             "armor": "initial.coat",
             "utility": "initial.crowbar"
-          }
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
         },
         "used_new_bandages": 7,
+        "used_new_rations": 0,
         "full_health_rejections": 3,
-        "recovered_new_bandages": 3,
+        "recovered_new_bandages": 0,
         "exploration_energy": 200,
         "completed_tasks": 10,
         "inter_task_nights": 9,
-        "offered_supply": "10 distinct task IDs, identical existing sources, no entry fee; NOT confirmed unlimited supply",
-        "optional_tenth_night": {
-          "task_id": "F10",
-          "status": "failure",
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "main20_retain",
+        "start_hp": 12,
+        "start_infection": 0,
+        "start_points": 0,
+        "net_points": 0,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
           "day": 1,
           "character_day": 11,
-          "location": "HUB",
+          "location": "H0",
           "energy": 100,
           "hp": 11,
           "satiety": 0,
@@ -7586,7 +7953,7 @@
           "injury": "none",
           "points": 0,
           "first_success": false,
-          "ready_next": true,
+          "ready_next": false,
           "pipe": 30,
           "coat": 12,
           "tool_resource": 12,
@@ -7599,10 +7966,7 @@
           "suppression": 0,
           "inventory_by_location": {
             "bank": {
-              "bandage": 1
-            },
-            "recovered": {
-              "bandage": 3
+              "bandage": 4
             },
             "consumed": {
               "bandage": 7
@@ -7612,7 +7976,16 @@
             "weapon": "initial.pipe",
             "armor": "initial.coat",
             "utility": "initial.crowbar"
-          }
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
         }
       }
     },
@@ -7623,11 +7996,10 @@
       "expected": {
         "final": {
           "hp": 7,
-          "satiety": 0,
-          "character_day": 10
+          "satiety": 0
         },
         "used_new_bandages": 10,
-        "optional_tenth_night": {
+        "separate_eleventh_launch": {
           "hp": 6
         }
       },
@@ -7671,21 +8043,36 @@
             "weapon": "initial.pipe",
             "armor": "initial.coat",
             "utility": "initial.crowbar"
-          }
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
         },
         "used_new_bandages": 10,
+        "used_new_rations": 0,
         "full_health_rejections": 0,
         "recovered_new_bandages": 0,
         "exploration_energy": 200,
         "completed_tasks": 10,
         "inter_task_nights": 9,
-        "offered_supply": "10 distinct task IDs, identical existing sources, no entry fee; NOT confirmed unlimited supply",
-        "optional_tenth_night": {
-          "task_id": "F10",
-          "status": "failure",
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "main20_retain",
+        "start_hp": 4,
+        "start_infection": 0,
+        "start_points": 0,
+        "net_points": 0,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
           "day": 1,
           "character_day": 11,
-          "location": "HUB",
+          "location": "H0",
           "energy": 100,
           "hp": 6,
           "satiety": 0,
@@ -7696,7 +8083,7 @@
           "injury": "none",
           "points": 0,
           "first_success": false,
-          "ready_next": true,
+          "ready_next": false,
           "pipe": 30,
           "coat": 12,
           "tool_resource": 12,
@@ -7719,7 +8106,16 @@
             "weapon": "initial.pipe",
             "armor": "initial.coat",
             "utility": "initial.crowbar"
-          }
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
         }
       }
     },
@@ -7730,11 +8126,10 @@
       "expected": {
         "final": {
           "hp": 12,
-          "satiety": 0,
-          "character_day": 10
+          "satiety": 0
         },
         "used_new_bandages": 10,
-        "optional_tenth_night": {
+        "separate_eleventh_launch": {
           "hp": 11
         }
       },
@@ -7778,21 +8173,36 @@
             "weapon": "initial.pipe",
             "armor": "initial.coat",
             "utility": "initial.crowbar"
-          }
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
         },
         "used_new_bandages": 10,
+        "used_new_rations": 0,
         "full_health_rejections": 0,
         "recovered_new_bandages": 0,
         "exploration_energy": 200,
         "completed_tasks": 10,
         "inter_task_nights": 9,
-        "offered_supply": "10 distinct task IDs, identical existing sources, no entry fee; NOT confirmed unlimited supply",
-        "optional_tenth_night": {
-          "task_id": "F10",
-          "status": "failure",
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "main20_retain",
+        "start_hp": 4,
+        "start_infection": 0,
+        "start_points": 0,
+        "net_points": 0,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
           "day": 1,
           "character_day": 11,
-          "location": "HUB",
+          "location": "H0",
           "energy": 100,
           "hp": 11,
           "satiety": 0,
@@ -7803,7 +8213,7 @@
           "injury": "none",
           "points": 0,
           "first_success": false,
-          "ready_next": true,
+          "ready_next": false,
           "pipe": 30,
           "coat": 12,
           "tool_resource": 12,
@@ -7826,7 +8236,2138 @@
             "weapon": "initial.pipe",
             "armor": "initial.coat",
             "utility": "initial.crowbar"
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        }
+      }
+    },
+    {
+      "id": "old_policy_pharmacy_loot_10",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "hp": 5,
+          "satiety": 0
+        },
+        "recovered_new_bandages": 10
+      },
+      "actual": {
+        "final": {
+          "task_id": "F10",
+          "status": "failure",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 80,
+          "hp": 5,
+          "satiety": 0,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "bandage": 10
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 0,
+        "used_new_rations": 0,
+        "full_health_rejections": 0,
+        "recovered_new_bandages": 10,
+        "exploration_energy": 200,
+        "completed_tasks": 10,
+        "inter_task_nights": 9,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "old30_recovery",
+        "start_hp": 12,
+        "start_infection": 0,
+        "start_points": 0,
+        "net_points": 0,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
+          "day": 1,
+          "character_day": 11,
+          "location": "H0",
+          "energy": 100,
+          "hp": 4,
+          "satiety": 0,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "bandage": 10
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        }
+      }
+    },
+    {
+      "id": "old_policy_pharmacy_self_use_10",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "hp": 12,
+          "satiety": 0
+        },
+        "used_new_bandages": 7,
+        "recovered_new_bandages": 3
+      },
+      "actual": {
+        "final": {
+          "task_id": "F10",
+          "status": "failure",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 80,
+          "hp": 12,
+          "satiety": 0,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "bandage": 3
+            },
+            "consumed": {
+              "bandage": 7
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 7,
+        "used_new_rations": 0,
+        "full_health_rejections": 3,
+        "recovered_new_bandages": 3,
+        "exploration_energy": 200,
+        "completed_tasks": 10,
+        "inter_task_nights": 9,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "old30_recovery",
+        "start_hp": 12,
+        "start_infection": 0,
+        "start_points": 0,
+        "net_points": 0,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
+          "day": 1,
+          "character_day": 11,
+          "location": "H0",
+          "energy": 100,
+          "hp": 11,
+          "satiety": 0,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "bandage": 3
+            },
+            "consumed": {
+              "bandage": 7
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        }
+      }
+    },
+    {
+      "id": "logistics50_HP12_same_start_main_10",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "hp": 12,
+          "satiety": 6,
+          "character_day": 10,
+          "points": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 11,
+              "ration": 11
+            }
           }
+        },
+        "used_new_bandages": 0,
+        "used_new_rations": 9,
+        "exploration_energy": 500
+      },
+      "actual": {
+        "final": {
+          "task_id": "F10",
+          "status": "failure",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 50,
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 11,
+              "ration": 11
+            },
+            "consumed": {
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 0,
+        "used_new_rations": 9,
+        "full_health_rejections": 10,
+        "recovered_new_bandages": 0,
+        "exploration_energy": 500,
+        "completed_tasks": 10,
+        "inter_task_nights": 9,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "main20_retain",
+        "start_hp": 12,
+        "start_infection": 0,
+        "start_points": 0,
+        "net_points": 0,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
+          "day": 1,
+          "character_day": 11,
+          "location": "H0",
+          "energy": 100,
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 11,
+              "ration": 11
+            },
+            "consumed": {
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        }
+      }
+    },
+    {
+      "id": "logistics50_HP12_same_start_old_10",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "hp": 12,
+          "satiety": 6,
+          "points": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "bandage": 10,
+              "ration": 11
+            }
+          }
+        },
+        "used_new_bandages": 0,
+        "used_new_rations": 9,
+        "exploration_energy": 500
+      },
+      "actual": {
+        "final": {
+          "task_id": "F10",
+          "status": "failure",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 50,
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 11,
+              "bandage": 10
+            },
+            "consumed": {
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 0,
+        "used_new_rations": 9,
+        "full_health_rejections": 10,
+        "recovered_new_bandages": 10,
+        "exploration_energy": 500,
+        "completed_tasks": 10,
+        "inter_task_nights": 9,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "old30_recovery",
+        "start_hp": 12,
+        "start_infection": 0,
+        "start_points": 0,
+        "net_points": 0,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
+          "day": 1,
+          "character_day": 11,
+          "location": "H0",
+          "energy": 100,
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 11,
+              "bandage": 10
+            },
+            "consumed": {
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        }
+      }
+    },
+    {
+      "id": "logistics50_lowHP4_main_10",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "hp": 12,
+          "satiety": 6,
+          "character_day": 10,
+          "energy": 50,
+          "points": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 3,
+              "ration": 11
+            }
+          }
+        },
+        "used_new_bandages": 8,
+        "used_new_rations": 9,
+        "exploration_energy": 500,
+        "separate_eleventh_launch": {
+          "hp": 12,
+          "satiety": 4
+        }
+      },
+      "actual": {
+        "final": {
+          "task_id": "F10",
+          "status": "failure",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 50,
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 3,
+              "ration": 11
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 8,
+        "used_new_rations": 9,
+        "full_health_rejections": 2,
+        "recovered_new_bandages": 0,
+        "exploration_energy": 500,
+        "completed_tasks": 10,
+        "inter_task_nights": 9,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "main20_retain",
+        "start_hp": 4,
+        "start_infection": 0,
+        "start_points": 0,
+        "net_points": 0,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
+          "day": 1,
+          "character_day": 11,
+          "location": "H0",
+          "energy": 100,
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 3,
+              "ration": 11
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        }
+      }
+    },
+    {
+      "id": "logistics50_lowHP4_old_policy_10",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "hp": 12,
+          "satiety": 6,
+          "points": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "bandage": 2,
+              "ration": 11
+            }
+          }
+        },
+        "used_new_bandages": 8,
+        "used_new_rations": 9,
+        "exploration_energy": 500
+      },
+      "actual": {
+        "final": {
+          "task_id": "F10",
+          "status": "failure",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 50,
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 11,
+              "bandage": 2
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 8,
+        "used_new_rations": 9,
+        "full_health_rejections": 2,
+        "recovered_new_bandages": 2,
+        "exploration_energy": 500,
+        "completed_tasks": 10,
+        "inter_task_nights": 9,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "old30_recovery",
+        "start_hp": 4,
+        "start_infection": 0,
+        "start_points": 0,
+        "net_points": 0,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
+          "day": 1,
+          "character_day": 11,
+          "location": "H0",
+          "energy": 100,
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 11,
+              "bandage": 2
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        }
+      }
+    },
+    {
+      "id": "logistics50_lowHP4_survival_OPTION_10",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "hp": 12,
+          "satiety": 6,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 7,
+              "ration": 11
+            }
+          }
+        },
+        "used_new_bandages": 4,
+        "used_new_rations": 9
+      },
+      "actual": {
+        "final": {
+          "task_id": "F10",
+          "status": "failure",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 50,
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 7,
+              "ration": 11
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 4,
+        "used_new_rations": 9,
+        "full_health_rejections": 6,
+        "recovered_new_bandages": 0,
+        "exploration_energy": 500,
+        "completed_tasks": 10,
+        "inter_task_nights": 9,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "main20_retain",
+        "start_hp": 4,
+        "start_infection": 0,
+        "start_points": 0,
+        "net_points": 0,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
+          "day": 1,
+          "character_day": 11,
+          "location": "H0",
+          "energy": 100,
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 7,
+              "ration": 11
+            },
+            "consumed": {
+              "bandage": 4,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        }
+      }
+    },
+    {
+      "id": "logistics50_with_old_points100_10",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "hp": 12,
+          "satiety": 6,
+          "points": 0
+        },
+        "net_points": -100,
+        "completed_tasks": 10
+      },
+      "actual": {
+        "final": {
+          "task_id": "F10",
+          "status": "failure",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 50,
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 3,
+              "ration": 11
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 8,
+        "used_new_rations": 9,
+        "full_health_rejections": 2,
+        "recovered_new_bandages": 0,
+        "exploration_energy": 500,
+        "completed_tasks": 10,
+        "inter_task_nights": 9,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "main20_retain",
+        "start_hp": 4,
+        "start_infection": 0,
+        "start_points": 100,
+        "net_points": -100,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
+          "day": 1,
+          "character_day": 11,
+          "location": "H0",
+          "energy": 100,
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 3,
+              "ration": 11
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        }
+      }
+    },
+    {
+      "id": "logistics50_no_use_lowHP4_main",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "status": "death",
+          "hp": 0,
+          "satiety": 0,
+          "character_day": 6,
+          "points": 0
+        },
+        "completed_tasks": 6,
+        "exploration_energy": 300
+      },
+      "actual": {
+        "final": {
+          "task_id": "F06",
+          "status": "death",
+          "day": 1,
+          "character_day": 6,
+          "location": "HUB",
+          "energy": 50,
+          "hp": 0,
+          "satiety": 0,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "lost": {
+              "bandage": 7,
+              "ration": 12
+            }
+          },
+          "equipment": {
+            "weapon": null,
+            "armor": null,
+            "utility": null
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F06",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 0,
+        "used_new_rations": 0,
+        "full_health_rejections": 0,
+        "recovered_new_bandages": 0,
+        "exploration_energy": 300,
+        "completed_tasks": 6,
+        "inter_task_nights": 5,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "main20_retain",
+        "start_hp": 4,
+        "start_infection": 0,
+        "start_points": 0,
+        "net_points": 0
+      }
+    },
+    {
+      "id": "logistics50_infected25_lowHP4_main",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "hp": 2,
+          "infection": 150,
+          "satiety": 6,
+          "character_day": 10,
+          "points": 0
+        },
+        "completed_tasks": 10,
+        "used_new_bandages": 10,
+        "separate_eleventh_launch": {
+          "status": "death",
+          "hp": 0,
+          "infection": 170,
+          "satiety": 6
+        }
+      },
+      "actual": {
+        "final": {
+          "task_id": "F10",
+          "status": "failure",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 50,
+          "hp": 2,
+          "satiety": 6,
+          "infection": 150,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1,
+              "ration": 11
+            },
+            "consumed": {
+              "bandage": 10,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 10,
+        "used_new_rations": 9,
+        "full_health_rejections": 0,
+        "recovered_new_bandages": 0,
+        "exploration_energy": 500,
+        "completed_tasks": 10,
+        "inter_task_nights": 9,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "main20_retain",
+        "start_hp": 4,
+        "start_infection": 25,
+        "start_points": 0,
+        "net_points": 0,
+        "separate_eleventh_launch": {
+          "task_id": "F10",
+          "status": "death",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 50,
+          "hp": 0,
+          "satiety": 6,
+          "infection": 170,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "lost": {
+              "bandage": 1,
+              "ration": 11
+            },
+            "consumed": {
+              "bandage": 10,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": null,
+            "armor": null,
+            "utility": null
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        }
+      }
+    },
+    {
+      "id": "logistics50_with_old_points100_old_policy_10",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "hp": 12,
+          "satiety": 6,
+          "points": 0
+        },
+        "net_points": -100,
+        "completed_tasks": 10
+      },
+      "actual": {
+        "final": {
+          "task_id": "F10",
+          "status": "failure",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 50,
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 11,
+              "bandage": 2
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 8,
+        "used_new_rations": 9,
+        "full_health_rejections": 2,
+        "recovered_new_bandages": 2,
+        "exploration_energy": 500,
+        "completed_tasks": 10,
+        "inter_task_nights": 9,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "old30_recovery",
+        "start_hp": 4,
+        "start_infection": 0,
+        "start_points": 100,
+        "net_points": -100,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
+          "day": 1,
+          "character_day": 11,
+          "location": "H0",
+          "energy": 100,
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 11,
+              "bandage": 2
+            },
+            "consumed": {
+              "bandage": 8,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        }
+      }
+    },
+    {
+      "id": "logistics50_infected25_lowHP4_old_policy",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "hp": 2,
+          "infection": 150,
+          "satiety": 6,
+          "points": 0
+        },
+        "completed_tasks": 10,
+        "separate_eleventh_launch": {
+          "status": "death",
+          "hp": 0,
+          "infection": 170
+        }
+      },
+      "actual": {
+        "final": {
+          "task_id": "F10",
+          "status": "failure",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 50,
+          "hp": 2,
+          "satiety": 6,
+          "infection": 150,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 11
+            },
+            "consumed": {
+              "bandage": 10,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 10,
+        "used_new_rations": 9,
+        "full_health_rejections": 0,
+        "recovered_new_bandages": 0,
+        "exploration_energy": 500,
+        "completed_tasks": 10,
+        "inter_task_nights": 9,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "old30_recovery",
+        "start_hp": 4,
+        "start_infection": 25,
+        "start_points": 0,
+        "net_points": 0,
+        "separate_eleventh_launch": {
+          "task_id": "F10",
+          "status": "death",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 50,
+          "hp": 0,
+          "satiety": 6,
+          "infection": 170,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "lost": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 11
+            },
+            "consumed": {
+              "bandage": 10,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": null,
+            "armor": null,
+            "utility": null
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        }
+      }
+    },
+    {
+      "id": "logistics50_no_use_lowHP4_old_policy",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "status": "death",
+          "hp": 0,
+          "character_day": 6
+        },
+        "completed_tasks": 6,
+        "exploration_energy": 300
+      },
+      "actual": {
+        "final": {
+          "task_id": "F06",
+          "status": "death",
+          "day": 1,
+          "character_day": 6,
+          "location": "HUB",
+          "energy": 50,
+          "hp": 0,
+          "satiety": 0,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "lost": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 12,
+              "bandage": 6
+            }
+          },
+          "equipment": {
+            "weapon": null,
+            "armor": null,
+            "utility": null
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F06",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 0,
+        "used_new_rations": 0,
+        "full_health_rejections": 0,
+        "recovered_new_bandages": 6,
+        "exploration_energy": 300,
+        "completed_tasks": 6,
+        "inter_task_nights": 5,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "old30_recovery",
+        "start_hp": 4,
+        "start_infection": 0,
+        "start_points": 0,
+        "net_points": 0
+      }
+    },
+    {
+      "id": "logistics50_infected25_points100_service",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "hp": 12,
+          "infection": 0,
+          "satiety": 6,
+          "points": 0
+        },
+        "used_new_bandages": 1,
+        "completed_tasks": 10
+      },
+      "actual": {
+        "final": {
+          "task_id": "F10",
+          "status": "failure",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 50,
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 10,
+              "ration": 11
+            },
+            "consumed": {
+              "bandage": 1,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 1,
+        "used_new_rations": 9,
+        "full_health_rejections": 9,
+        "recovered_new_bandages": 0,
+        "exploration_energy": 500,
+        "completed_tasks": 10,
+        "inter_task_nights": 9,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "main20_retain",
+        "start_hp": 4,
+        "start_infection": 25,
+        "start_points": 100,
+        "net_points": -100,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
+          "day": 1,
+          "character_day": 11,
+          "location": "H0",
+          "energy": 100,
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 10,
+              "ration": 11
+            },
+            "consumed": {
+              "bandage": 1,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        }
+      }
+    },
+    {
+      "id": "logistics_plus_hall_med_food_repair_main",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "hp": 12,
+          "satiety": 6,
+          "pipe": 30,
+          "inventory_by_location": {
+            "bank": {
+              "metal": 8
+            },
+            "consumed": {
+              "metal": 2
+            }
+          }
+        },
+        "exploration_energy": 632
+      },
+      "actual": {
+        "final": {
+          "task_id": "F10",
+          "status": "failure",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 38,
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 3,
+              "ration": 11,
+              "metal": 8
+            },
+            "consumed": {
+              "bandage": 8,
+              "metal": 2,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 8,
+        "used_new_rations": 9,
+        "full_health_rejections": 2,
+        "recovered_new_bandages": 0,
+        "exploration_energy": 632,
+        "completed_tasks": 10,
+        "inter_task_nights": 9,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "main20_retain",
+        "start_hp": 4,
+        "start_infection": 0,
+        "start_points": 0,
+        "net_points": 0,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
+          "day": 1,
+          "character_day": 11,
+          "location": "H0",
+          "energy": 100,
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 3,
+              "ration": 11,
+              "metal": 8
+            },
+            "consumed": {
+              "bandage": 8,
+              "metal": 2,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        }
+      }
+    },
+    {
+      "id": "logistics_plus_hall_med_food_repair_old",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "hp": 12,
+          "satiety": 6,
+          "pipe": 30,
+          "inventory_by_location": {
+            "recovered": {
+              "metal": 8
+            },
+            "consumed": {
+              "metal": 2
+            }
+          }
+        },
+        "exploration_energy": 632
+      },
+      "actual": {
+        "final": {
+          "task_id": "F10",
+          "status": "failure",
+          "day": 1,
+          "character_day": 10,
+          "location": "HUB",
+          "energy": 38,
+          "hp": 12,
+          "satiety": 6,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 11,
+              "metal": 8,
+              "bandage": 2
+            },
+            "consumed": {
+              "bandage": 8,
+              "metal": 2,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "used_new_bandages": 8,
+        "used_new_rations": 9,
+        "full_health_rejections": 2,
+        "recovered_new_bandages": 2,
+        "exploration_energy": 632,
+        "completed_tasks": 10,
+        "inter_task_nights": 9,
+        "offered_supply": "10 distinct explicit IDs with identical fixed sources; no entry fee; finite assumption",
+        "policy": "old30_recovery",
+        "start_hp": 4,
+        "start_infection": 0,
+        "start_points": 0,
+        "net_points": 0,
+        "separate_eleventh_launch": {
+          "task_id": "F11",
+          "status": "active",
+          "day": 1,
+          "character_day": 11,
+          "location": "H0",
+          "energy": 100,
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 11,
+              "metal": 8,
+              "bandage": 2
+            },
+            "consumed": {
+              "bandage": 8,
+              "metal": 2,
+              "ration": 9
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": "F11",
+          "last_settled_result": {
+            "task_id": "F10",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
         }
       }
     },
@@ -7839,23 +10380,27 @@
           "hp": 12,
           "satiety": 4,
           "infection": 0,
-          "points": 782,
+          "points": 642,
           "character_day": 30,
-          "pipe": 15,
-          "coat": 7,
-          "tool_resource": 7,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "energy": 24,
           "inventory_by_location": {
             "bank": {
-              "metal": 2,
-              "cloth": 1,
-              "ration": 22,
+              "ration": 24,
               "bandage": 12,
               "battery": 10
+            },
+            "consumed": {
+              "metal": 20,
+              "cloth": 10,
+              "ration": 28
             }
           }
         },
         "successes": 10,
-        "purchase_count": 1
+        "total_nominal_energy": 2690
       },
       "actual": {
         "final": {
@@ -7864,7 +10409,7 @@
           "day": 3,
           "character_day": 30,
           "location": "HUB",
-          "energy": 12,
+          "energy": 24,
           "hp": 12,
           "satiety": 4,
           "infection": 0,
@@ -7872,12 +10417,12 @@
           "bleeding": false,
           "wound": false,
           "injury": "none",
-          "points": 782,
+          "points": 642,
           "first_success": true,
           "ready_next": false,
-          "pipe": 15,
-          "coat": 7,
-          "tool_resource": 7,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
           "signature_used": true,
           "disinfectant_used": false,
           "painkiller": false,
@@ -7888,10 +10433,8 @@
           "inventory_by_location": {
             "bank": {
               "bandage": 12,
-              "ration": 22,
-              "battery": 10,
-              "metal": 2,
-              "cloth": 1
+              "ration": 24,
+              "battery": 10
             },
             "installed": {
               "control": 10,
@@ -7901,8 +10444,8 @@
             },
             "consumed": {
               "ration": 28,
-              "metal": 18,
-              "cloth": 9
+              "metal": 20,
+              "cloth": 10
             },
             "delivered": {
               "sample": 10
@@ -7912,13 +10455,36 @@
             "weapon": "initial.pipe",
             "armor": "initial.coat",
             "utility": "initial.crowbar"
-          }
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "SEQ10",
+            "outcome": "success",
+            "reward": 120,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
         },
         "task_count": 10,
         "successes": 10,
         "failures": 0,
-        "purchase_count": 1,
-        "total_nominal_energy": 2810
+        "purchases": [
+          "metal",
+          "ration",
+          "ration",
+          "bandage",
+          "metal",
+          "metal",
+          "metal",
+          "metal",
+          "metal",
+          "metal",
+          "metal",
+          "metal",
+          "metal"
+        ],
+        "total_nominal_energy": 2690
       }
     },
     {
@@ -7930,14 +10496,22 @@
           "hp": 12,
           "satiety": 4,
           "infection": 0,
-          "points": 112,
+          "points": 78,
           "character_day": 7,
-          "pipe": 15,
-          "coat": 7,
-          "tool_resource": 7
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "inventory_by_location": {
+            "bank": {
+              "ration": 7,
+              "bandage": 5,
+              "battery": 2
+            }
+          }
         },
         "successes": 2,
-        "failures": 1
+        "failures": 1,
+        "total_nominal_energy": 558
       },
       "actual": {
         "final": {
@@ -7946,7 +10520,7 @@
           "day": 3,
           "character_day": 7,
           "location": "HUB",
-          "energy": 12,
+          "energy": 24,
           "hp": 12,
           "satiety": 4,
           "infection": 0,
@@ -7954,7 +10528,1814 @@
           "bleeding": false,
           "wound": false,
           "injury": "none",
-          "points": 112,
+          "points": 78,
+          "first_success": true,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": true,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 5,
+              "ration": 7,
+              "battery": 2
+            },
+            "consumed": {
+              "ration": 5,
+              "metal": 4,
+              "cloth": 2
+            },
+            "installed": {
+              "control": 2,
+              "metal": 2,
+              "electronics": 2,
+              "module": 2
+            },
+            "delivered": {
+              "sample": 2
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "SEQ03",
+            "outcome": "success",
+            "reward": 120,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "task_count": 3,
+        "successes": 2,
+        "failures": 1,
+        "purchases": [
+          "metal",
+          "ration",
+          "ration",
+          "bandage",
+          "metal"
+        ],
+        "total_nominal_energy": 558
+      }
+    },
+    {
+      "id": "full_mission_unlocks_both_medical_items",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "points": 57,
+        "first_success": true,
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 3,
+            "firstaid": 1
+          }
+        }
+      },
+      "actual": {
+        "task_id": "fixture_task",
+        "status": "success",
+        "day": 3,
+        "character_day": 3,
+        "location": "HUB",
+        "energy": 24,
+        "hp": 4,
+        "satiety": 4,
+        "infection": 20,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 57,
+        "first_success": true,
+        "ready_next": false,
+        "pipe": 15,
+        "coat": 7,
+        "tool_resource": 7,
+        "signature_used": true,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 3,
+            "ration": 4,
+            "metal": 1,
+            "cloth": 1,
+            "battery": 1,
+            "firstaid": 1
+          },
+          "installed": {
+            "control": 1,
+            "metal": 1,
+            "electronics": 1,
+            "module": 1
+          },
+          "consumed": {
+            "ration": 1
+          },
+          "delivered": {
+            "sample": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": null,
+        "last_settled_result": {
+          "task_id": "fixture_task",
+          "outcome": "success",
+          "reward": 120,
+          "fee": 0
+        },
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "firstaid_before_full_success",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "missing_eligibility",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "missing_eligibility",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "partial_sample_delivery_not_medical_unlock",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "missing_eligibility",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "missing_eligibility",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "partial_delivery_has_no_reward",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "points": 80,
+        "first_success": false,
+        "inventory_by_location": {
+          "delivered_partial": {
+            "sample": 1
+          }
+        }
+      },
+      "actual": {
+        "task_id": "fixture_task",
+        "status": "failure",
+        "day": 1,
+        "character_day": 1,
+        "location": "HUB",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 80,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 1
+          },
+          "delivered_partial": {
+            "sample": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": null,
+        "last_settled_result": {
+          "task_id": "fixture_task",
+          "outcome": "failure",
+          "reward": 0,
+          "fee": 20
+        },
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "base_catalog_works_without_success",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "points": 56,
+        "first_success": false,
+        "inventory_by_location": {
+          "bank": {
+            "ration": 1,
+            "metal": 1,
+            "cloth": 1,
+            "battery": 1
+          }
+        }
+      },
+      "actual": {
+        "task_id": "fixture_task",
+        "status": "failure",
+        "day": 1,
+        "character_day": 1,
+        "location": "HUB",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 56,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "bank": {
+            "ration": 1,
+            "metal": 1,
+            "cloth": 1,
+            "battery": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "catalog_closed_electronics",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "catalog_item_closed",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "catalog_item_closed",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "catalog_closed_disinfectant",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "catalog_item_closed",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "catalog_item_closed",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "catalog_closed_unknown",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "catalog_item_closed",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "catalog_item_closed",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "purchase_price_negative",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "invalid_purchase_price",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "invalid_purchase_price",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "purchase_price_float_equal",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "invalid_purchase_price",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "invalid_purchase_price",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "purchase_price_bool",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "invalid_purchase_price",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "invalid_purchase_price",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "purchase_price_stale",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "stale_purchase_price",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "stale_purchase_price",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "purchase_revision_boolean",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "stale_purchase",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "stale_purchase",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "purchase_cannot_forge_origin",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "immutable_item_identity",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "immutable_item_identity",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "base_purchase_insufficient",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "insufficient_points",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "insufficient_points",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "purchase_cancel_no_effect",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "same": true
+      },
+      "actual": {
+        "same": true
+      }
+    },
+    {
+      "id": "base_purchase_exact_and_real_unit",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "points": 0,
+        "unit": {
+          "id": "purchase.0",
+          "type": "ration",
+          "location": "bank",
+          "origin_task": "hub_purchase"
+        }
+      },
+      "actual": {
+        "points": 0,
+        "unit": {
+          "id": "purchase.0",
+          "type": "ration",
+          "location": "bank",
+          "origin_task": "hub_purchase"
+        }
+      }
+    },
+    {
+      "id": "base_purchase_replayed",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "stale_purchase",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "stale_purchase",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "looted_firstaid_usable_before_unlock",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "hp": 8,
+        "infection": 25,
+        "exposure": 1,
+        "bleeding": false,
+        "injury": "none",
+        "first_success": false,
+        "inventory_by_location": {
+          "consumed": {
+            "firstaid": 1
+          }
+        }
+      },
+      "actual": {
+        "task_id": "fixture_task",
+        "status": "active",
+        "day": 1,
+        "character_day": 1,
+        "location": "H0",
+        "energy": 100,
+        "hp": 8,
+        "satiety": 6,
+        "infection": 25,
+        "exposure": 1,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 0,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "consumed": {
+            "firstaid": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": "fixture_task",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "firstaid_preserves_incompatible_heavy_injury",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "hp": 8,
+        "injury": "heavy_fracture"
+      },
+      "actual": {
+        "task_id": "fixture_task",
+        "status": "failure",
+        "day": 1,
+        "character_day": 1,
+        "location": "HUB",
+        "energy": 100,
+        "hp": 8,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "heavy_fracture",
+        "points": 0,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "consumed": {
+            "firstaid": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "firstaid_not_quick",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "quick_slot_type",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "quick_slot_type",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "firstaid_real_geometry",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "weight": 2,
+        "cells": 2,
+        "rectangles": [
+          {
+            "type": "firstaid",
+            "unit_ids": [
+              "purchase.0"
+            ],
+            "xywh": [
+              0,
+              0,
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "actual": {
+        "weight": 2,
+        "cells": 2,
+        "rectangles": [
+          {
+            "type": "firstaid",
+            "unit_ids": [
+              "purchase.0"
+            ],
+            "xywh": [
+              0,
+              0,
+              1,
+              2
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "firstaid_cannot_use_in_combat",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "pending_encounter",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "pending_encounter",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "twelve_unstackable_firstaid_fit",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "geometry": {
+          "weight": 24,
+          "cells": 24
+        },
+        "points": 45
+      },
+      "actual": {
+        "geometry": {
+          "weight": 24,
+          "cells": 24,
+          "rectangles": [
+            {
+              "type": "firstaid",
+              "unit_ids": [
+                "purchase.0"
+              ],
+              "xywh": [
+                0,
+                0,
+                1,
+                2
+              ]
+            },
+            {
+              "type": "firstaid",
+              "unit_ids": [
+                "purchase.10"
+              ],
+              "xywh": [
+                1,
+                0,
+                1,
+                2
+              ]
+            },
+            {
+              "type": "firstaid",
+              "unit_ids": [
+                "purchase.12"
+              ],
+              "xywh": [
+                2,
+                0,
+                1,
+                2
+              ]
+            },
+            {
+              "type": "firstaid",
+              "unit_ids": [
+                "purchase.14"
+              ],
+              "xywh": [
+                3,
+                0,
+                1,
+                2
+              ]
+            },
+            {
+              "type": "firstaid",
+              "unit_ids": [
+                "purchase.16"
+              ],
+              "xywh": [
+                4,
+                0,
+                1,
+                2
+              ]
+            },
+            {
+              "type": "firstaid",
+              "unit_ids": [
+                "purchase.18"
+              ],
+              "xywh": [
+                5,
+                0,
+                1,
+                2
+              ]
+            },
+            {
+              "type": "firstaid",
+              "unit_ids": [
+                "purchase.2"
+              ],
+              "xywh": [
+                0,
+                2,
+                1,
+                2
+              ]
+            },
+            {
+              "type": "firstaid",
+              "unit_ids": [
+                "purchase.20"
+              ],
+              "xywh": [
+                1,
+                2,
+                1,
+                2
+              ]
+            },
+            {
+              "type": "firstaid",
+              "unit_ids": [
+                "purchase.22"
+              ],
+              "xywh": [
+                2,
+                2,
+                1,
+                2
+              ]
+            },
+            {
+              "type": "firstaid",
+              "unit_ids": [
+                "purchase.4"
+              ],
+              "xywh": [
+                3,
+                2,
+                1,
+                2
+              ]
+            },
+            {
+              "type": "firstaid",
+              "unit_ids": [
+                "purchase.6"
+              ],
+              "xywh": [
+                4,
+                2,
+                1,
+                2
+              ]
+            },
+            {
+              "type": "firstaid",
+              "unit_ids": [
+                "purchase.8"
+              ],
+              "xywh": [
+                5,
+                2,
+                1,
+                2
+              ]
+            }
+          ]
+        },
+        "points": 45
+      }
+    },
+    {
+      "id": "thirteenth_firstaid_load_geometry",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "grid_full",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "grid_full",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "launch_validate_before_hazards_stale",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "stale_offer",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "stale_offer",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "launch_validate_before_hazards_unknown",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "task_not_offered",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "task_not_offered",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "launch_validate_before_hazards_reuse",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "offer_already_used",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "offer_already_used",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "launch_validate_before_hazards_policy",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "unknown_task_policy",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "unknown_task_policy",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "launch_validate_before_hazards_world",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "unknown_offer_world",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "unknown_offer_world",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "launch_validate_before_hazards_version",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "stale_offer_version",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "stale_offer_version",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "launch_invalid_identity_before_hazards",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "duplicate_instance",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "duplicate_instance",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "launch_invalid_quick_before_hazards",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "quick_slot_type",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "quick_slot_type",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "launch_bound_rules_version",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "bound_rules_version_mismatch",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "bound_rules_version_mismatch",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "launch_preview_is_static",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "same": true,
+        "detail": {
+          "preview_only": true,
+          "handoff_due": true
+        }
+      },
+      "actual": {
+        "same": true,
+        "detail": {
+          "preview_only": true,
+          "task_id": "N",
+          "handoff_due": true,
+          "health": {
+            "hp": 1,
+            "satiety": 6,
+            "infection": 0,
+            "exposure": 0,
+            "bleeding": true,
+            "injury": "light_laceration"
+          }
+        }
+      }
+    },
+    {
+      "id": "launch_cancel_is_static",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "same": true
+      },
+      "actual": {
+        "same": true
+      }
+    },
+    {
+      "id": "valid_lethal_handoff_commits_without_new_activity",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "hp": 0,
+        "status": "death",
+        "character_day": 1,
+        "task_id": "fixture_task",
+        "active_task_id": null,
+        "energy": 0
+      },
+      "actual": {
+        "task_id": "fixture_task",
+        "status": "death",
+        "day": 1,
+        "character_day": 1,
+        "location": "HUB",
+        "energy": 0,
+        "hp": 0,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": true,
+        "wound": true,
+        "injury": "light_laceration",
+        "points": 0,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "lost": {
+            "bandage": 1
+          }
+        },
+        "equipment": {
+          "weapon": null,
+          "armor": null,
+          "utility": null
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "lethal_handoff_does_not_consume_offer",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "unchanged": true
+      },
+      "actual": {
+        "unchanged": true
+      }
+    },
+    {
+      "id": "launch_unresolved_hub_encounter_before_hazards",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "not_stable_hub",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "not_stable_hub",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "launch_active_task_in_hub_before_hazards",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "not_stable_hub",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "not_stable_hub",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "launch_world_permission_not_cross_task",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "task_bound_item_not_exportable",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "task_bound_item_not_exportable",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "launch_old_preview_stale_after_treatment",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "stale_offer",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "stale_offer",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "launch_reads_latest_healed_body",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "hp": 2,
+        "bleeding": false,
+        "injury": "light_laceration",
+        "character_day": 2,
+        "satiety": 4
+      },
+      "actual": {
+        "task_id": "N",
+        "status": "active",
+        "day": 1,
+        "character_day": 2,
+        "location": "H0",
+        "energy": 100,
+        "hp": 2,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "light_laceration",
+        "points": 0,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "consumed": {
+            "bandage": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": "N",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "meal_before_launch_is_real_not_free",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "hp": 0,
+        "status": "death",
+        "satiety": 0,
+        "character_day": 1,
+        "points": 0,
+        "inventory_by_location": {
+          "consumed": {
+            "ration": 1
+          }
+        }
+      },
+      "actual": {
+        "task_id": "fixture_task",
+        "status": "death",
+        "day": 1,
+        "character_day": 1,
+        "location": "HUB",
+        "energy": 100,
+        "hp": 0,
+        "satiety": 0,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 0,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "lost": {
+            "bandage": 1
+          },
+          "consumed": {
+            "ration": 1
+          }
+        },
+        "equipment": {
+          "weapon": null,
+          "armor": null,
+          "utility": null
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "two_prelaunch_meals_avoid_starvation",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "hp": 1,
+        "satiety": 2,
+        "character_day": 2,
+        "status": "active",
+        "points": 0
+      },
+      "actual": {
+        "task_id": "N",
+        "status": "active",
+        "day": 1,
+        "character_day": 2,
+        "location": "H0",
+        "energy": 100,
+        "hp": 1,
+        "satiety": 2,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 0,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "consumed": {
+            "ration": 2
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": "N",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "after_launch_cannot_eat_bank",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "not_carried_source",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "not_carried_source",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "after_launch_no_hub_medicine",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "not_living_hub",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "not_living_hub",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "service_food_total_budget_40",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "points": 0,
+        "hp": 11,
+        "infection": 0,
+        "satiety": 0,
+        "character_day": 2,
+        "status": "active"
+      },
+      "actual": {
+        "task_id": "N",
+        "status": "active",
+        "day": 1,
+        "character_day": 2,
+        "location": "H0",
+        "energy": 100,
+        "hp": 11,
+        "satiety": 0,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 0,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {},
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": "N",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "service_food_total_budget_50",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "points": 0,
+        "hp": 11,
+        "infection": 0,
+        "satiety": 0,
+        "character_day": 2,
+        "status": "active"
+      },
+      "actual": {
+        "task_id": "N",
+        "status": "active",
+        "day": 1,
+        "character_day": 2,
+        "location": "H0",
+        "energy": 100,
+        "hp": 11,
+        "satiety": 0,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 0,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "consumed": {
+            "ration": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": "N",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "service_food_total_budget_60",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "points": 0,
+        "hp": 12,
+        "infection": 0,
+        "satiety": 2,
+        "character_day": 2,
+        "status": "active"
+      },
+      "actual": {
+        "task_id": "N",
+        "status": "active",
+        "day": 1,
+        "character_day": 2,
+        "location": "H0",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 2,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 0,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "consumed": {
+            "ration": 2
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": "N",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "deadline_launch_keeps_current_cycle_medicine",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "character_day": 8,
+        "day": 1,
+        "infection": 50,
+        "suppression": 15,
+        "suppressant_used": true,
+        "painkiller": true,
+        "medical_doses": 2,
+        "ready_next": false,
+        "settled_cycle": null
+      },
+      "actual": {
+        "task_id": "D_NEXT",
+        "status": "active",
+        "day": 1,
+        "character_day": 8,
+        "location": "H0",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 4,
+        "infection": 50,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "light_contusion",
+        "points": 0,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": true,
+        "painkiller_used": true,
+        "suppressant_used": true,
+        "medical_doses": 2,
+        "suppression": 15,
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 1
+          },
+          "consumed": {
+            "suppressant": 1,
+            "painkiller": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": "D_NEXT",
+        "last_settled_result": {
+          "task_id": "fixture_task",
+          "outcome": "deadline_recall",
+          "reward": 0,
+          "fee": 0
+        },
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "deadline_allowance_cannot_skip_second_cycle",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "character_day": 9,
+        "infection": 50,
+        "satiety": 2,
+        "suppression": 0,
+        "medical_doses": 0,
+        "painkiller": false
+      },
+      "actual": {
+        "task_id": "D_AFTER",
+        "status": "active",
+        "day": 1,
+        "character_day": 9,
+        "location": "H0",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 2,
+        "infection": 50,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "light_contusion",
+        "points": 0,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "bank": {
+            "bandage": 1
+          },
+          "consumed": {
+            "suppressant": 1,
+            "painkiller": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": "D_AFTER",
+        "last_settled_result": {
+          "task_id": "D_NEXT",
+          "outcome": "failure",
+          "reward": 0,
+          "fee": 0
+        },
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "deadline_bad_completed_cycle_rejected",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "invalid_settled_cycle",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "invalid_settled_cycle",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "F02_current_assets_only",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "locations": {
+          "history.delivered": "delivered",
+          "history.delivered_partial": "delivered_partial",
+          "history.recovered": "recovered",
+          "history.consumed": "consumed",
+          "history.installed": "installed",
+          "history.impounded": "impounded",
+          "history.penalized": "penalized",
+          "history.lost": "lost",
+          "current.bank": "lost",
+          "current.pack": "lost",
+          "current.q1": "lost",
+          "current.ground:H1": "lost"
+        },
+        "points": 0,
+        "equipment": {
+          "weapon": null,
+          "armor": null,
+          "utility": null
+        }
+      },
+      "actual": {
+        "locations": {
+          "history.delivered": "delivered",
+          "history.delivered_partial": "delivered_partial",
+          "history.recovered": "recovered",
+          "history.consumed": "consumed",
+          "history.installed": "installed",
+          "history.impounded": "impounded",
+          "history.penalized": "penalized",
+          "history.lost": "lost",
+          "current.bank": "lost",
+          "current.pack": "lost",
+          "current.q1": "lost",
+          "current.ground:H1": "lost"
+        },
+        "points": 0,
+        "equipment": {
+          "weapon": null,
+          "armor": null,
+          "utility": null
+        }
+      }
+    },
+    {
+      "id": "F02_repeated_death_and_history_read",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "same": true,
+        "read_same": true
+      },
+      "actual": {
+        "same": true,
+        "read_same": true
+      }
+    },
+    {
+      "id": "F02_full_success_next_task_real_death",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "status": "death",
+          "hp": 0,
+          "points": 0,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "success",
+            "reward": 120
+          }
+        },
+        "old_sample": "delivered"
+      },
+      "actual": {
+        "final": {
+          "task_id": "AFTER_SUCCESS",
+          "status": "death",
+          "day": 1,
+          "character_day": 4,
+          "location": "H4",
+          "energy": 78,
+          "hp": 0,
+          "satiety": 2,
+          "infection": 25,
+          "exposure": 0,
+          "bleeding": true,
+          "wound": true,
+          "injury": "light_laceration",
+          "points": 0,
+          "first_success": true,
+          "ready_next": false,
+          "pipe": 10,
+          "coat": 6,
+          "tool_resource": 6,
+          "signature_used": true,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "lost": {
+              "bandage": 2,
+              "ration": 4,
+              "metal": 1,
+              "cloth": 1,
+              "battery": 1
+            },
+            "installed": {
+              "control": 1,
+              "metal": 1,
+              "electronics": 1,
+              "module": 1
+            },
+            "consumed": {
+              "ration": 1
+            },
+            "delivered": {
+              "sample": 1
+            }
+          },
+          "equipment": {
+            "weapon": null,
+            "armor": null,
+            "utility": null
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "success",
+            "reward": 120,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "old_sample": "delivered"
+      }
+    },
+    {
+      "id": "F02_full_success_then_launch_disease_death",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "before": {
+          "status": "success",
+          "hp": 1,
+          "infection": 50,
+          "points": 120,
+          "satiety": 4
+        },
+        "after": {
+          "status": "death",
+          "hp": 0,
+          "infection": 60,
+          "points": 0,
+          "satiety": 4,
+          "character_day": 3,
+          "day": 3,
+          "task_id": "fixture_task",
+          "active_task_id": null,
+          "last_settled_result": {
+            "outcome": "success",
+            "reward": 120
+          }
+        },
+        "sample_location": "delivered",
+        "offer_unconsumed": true
+      },
+      "actual": {
+        "before": {
+          "task_id": "fixture_task",
+          "status": "success",
+          "day": 3,
+          "character_day": 3,
+          "location": "HUB",
+          "energy": 24,
+          "hp": 1,
+          "satiety": 4,
+          "infection": 50,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 120,
           "first_success": true,
           "ready_next": false,
           "pipe": 15,
@@ -7969,27 +12350,554 @@
           "suppression": 0,
           "inventory_by_location": {
             "bank": {
-              "bandage": 4,
-              "ration": 5,
-              "battery": 2,
-              "metal": 2,
-              "cloth": 1
-            },
-            "consumed": {
-              "ration": 5,
-              "metal": 2,
-              "cloth": 1
+              "bandage": 2,
+              "ration": 4,
+              "metal": 1,
+              "cloth": 1,
+              "battery": 1
             },
             "installed": {
-              "control": 2,
-              "metal": 2,
-              "electronics": 2,
-              "module": 2
+              "control": 1,
+              "metal": 1,
+              "electronics": 1,
+              "module": 1
+            },
+            "consumed": {
+              "ration": 1
             },
             "delivered": {
-              "sample": 2
+              "sample": 1
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "success",
+            "reward": 120,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "after": {
+          "task_id": "fixture_task",
+          "status": "death",
+          "day": 3,
+          "character_day": 3,
+          "location": "HUB",
+          "energy": 24,
+          "hp": 0,
+          "satiety": 4,
+          "infection": 60,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 0,
+          "first_success": true,
+          "ready_next": false,
+          "pipe": 15,
+          "coat": 7,
+          "tool_resource": 7,
+          "signature_used": true,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "lost": {
+              "bandage": 2,
+              "ration": 4,
+              "metal": 1,
+              "cloth": 1,
+              "battery": 1
+            },
+            "installed": {
+              "control": 1,
+              "metal": 1,
+              "electronics": 1,
+              "module": 1
+            },
+            "consumed": {
+              "ration": 1
+            },
+            "delivered": {
+              "sample": 1
+            }
+          },
+          "equipment": {
+            "weapon": null,
+            "armor": null,
+            "utility": null
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "success",
+            "reward": 120,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "sample_location": "delivered",
+        "offer_unconsumed": true
+      }
+    },
+    {
+      "id": "F02_failed_recovery_history_next_task_death",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "status": "death",
+          "hp": 0,
+          "last_settled_result": {
+            "outcome": "failure",
+            "fee": 30
+          }
+        },
+        "old_new_band": "recovered"
+      },
+      "actual": {
+        "final": {
+          "task_id": "AFTER_FAILURE",
+          "status": "death",
+          "day": 1,
+          "character_day": 2,
+          "location": "H4",
+          "energy": 78,
+          "hp": 0,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": true,
+          "wound": true,
+          "injury": "light_laceration",
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 25,
+          "coat": 11,
+          "tool_resource": 11,
+          "signature_used": true,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "lost": {
+              "bandage": 1
             },
             "recovered": {
+              "bandage": 1
+            }
+          },
+          "equipment": {
+            "weapon": null,
+            "armor": null,
+            "utility": null
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 30
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "old_new_band": "recovered"
+      }
+    },
+    {
+      "id": "main_stable_identity_selection_no_new_priority",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "locations": {
+          "a.old": "consumed",
+          "z.new": "bank"
+        }
+      },
+      "actual": {
+        "locations": {
+          "a.old": "consumed",
+          "z.new": "bank"
+        }
+      }
+    },
+    {
+      "id": "old_policy_explicit_new_first_comparison",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "locations": {
+          "a.old": "pack",
+          "z.new": "consumed"
+        }
+      },
+      "actual": {
+        "locations": {
+          "a.old": "pack",
+          "z.new": "consumed"
+        }
+      }
+    },
+    {
+      "id": "honest_damaged_failure_retains_legal_loot",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "hp": 6,
+          "exposure": 1,
+          "points": 20,
+          "first_success": false,
+          "pipe": 20,
+          "coat": 9,
+          "tool_resource": 8,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 2,
+              "ration": 5,
+              "metal": 2,
+              "cloth": 1,
+              "battery": 1
+            },
+            "impounded": {
+              "control": 1
+            }
+          }
+        }
+      },
+      "actual": {
+        "final": {
+          "task_id": "fixture_task",
+          "status": "failure",
+          "day": 2,
+          "character_day": 2,
+          "location": "HUB",
+          "energy": 9,
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 1,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 20,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 20,
+          "coat": 9,
+          "tool_resource": 8,
+          "signature_used": true,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 2,
+              "ration": 5,
+              "metal": 2,
+              "cloth": 1,
+              "electronics": 1,
+              "battery": 1
+            },
+            "impounded": {
+              "control": 1
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 20
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "nominal": 184
+      }
+    },
+    {
+      "id": "honest_failure_insufficient_infection_service",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "insufficient_points",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "insufficient_points",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "honest_damaged_failure_old_same_actions",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "same_cost": true,
+        "final": {
+          "hp": 6,
+          "exposure": 1,
+          "points": 10,
+          "first_success": false,
+          "pipe": 20,
+          "coat": 9,
+          "tool_resource": 8,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "bandage": 1,
+              "ration": 5,
+              "metal": 2,
+              "cloth": 1,
+              "battery": 1
+            },
+            "impounded": {
+              "control": 1
+            }
+          }
+        }
+      },
+      "actual": {
+        "final": {
+          "task_id": "fixture_task",
+          "status": "failure",
+          "day": 2,
+          "character_day": 2,
+          "location": "HUB",
+          "energy": 9,
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 1,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 10,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 20,
+          "coat": 9,
+          "tool_resource": 8,
+          "signature_used": true,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1
+            },
+            "recovered": {
+              "ration": 5,
+              "bandage": 1,
+              "metal": 2,
+              "cloth": 1,
+              "electronics": 1,
+              "battery": 1
+            },
+            "impounded": {
+              "control": 1
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 30
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "same_cost": true
+      }
+    },
+    {
+      "id": "buy_food_same_objective",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "status": "active",
+          "location": "H0",
+          "day": 1,
+          "character_day": 2,
+          "satiety": 4,
+          "points": 20,
+          "energy": 100,
+          "inventory_by_location": {
+            "pack": {
+              "ration": 2
+            }
+          }
+        },
+        "geometry": {
+          "weight": 2
+        },
+        "nominal": 0
+      },
+      "actual": {
+        "final": {
+          "task_id": "SHOP",
+          "status": "active",
+          "day": 1,
+          "character_day": 2,
+          "location": "H0",
+          "energy": 100,
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 20,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1,
+              "disinfectant": 1
+            },
+            "pack": {
+              "ration": 2
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": "SHOP",
+          "last_settled_result": null,
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "geometry": {
+          "weight": 2,
+          "cells": 1,
+          "rectangles": [
+            {
+              "type": "ration",
+              "unit_ids": [
+                "purchase.0",
+                "purchase.1"
+              ],
+              "xywh": [
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ]
+        },
+        "nominal": 0
+      }
+    },
+    {
+      "id": "search_food_same_objective",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "status": "active",
+          "location": "H0",
+          "day": 1,
+          "character_day": 2,
+          "satiety": 4,
+          "points": 40,
+          "energy": 50,
+          "inventory_by_location": {
+            "pack": {
+              "ration": 2
+            }
+          }
+        },
+        "geometry": {
+          "weight": 3
+        },
+        "nominal": 50
+      },
+      "actual": {
+        "final": {
+          "task_id": "SEARCH",
+          "status": "active",
+          "day": 1,
+          "character_day": 2,
+          "location": "H0",
+          "energy": 50,
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 40,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1,
+              "disinfectant": 1
+            },
+            "pack": {
+              "ration": 2,
               "bandage": 1
             }
           },
@@ -7997,13 +12905,751 @@
             "weapon": "initial.pipe",
             "armor": "initial.coat",
             "utility": "initial.crowbar"
+          },
+          "active_task_id": "SEARCH",
+          "last_settled_result": null,
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "geometry": {
+          "weight": 3,
+          "cells": 2,
+          "rectangles": [
+            {
+              "type": "ration",
+              "unit_ids": [
+                "L_front.SEARCH.ration.1",
+                "L_front.SEARCH.ration.2"
+              ],
+              "xywh": [
+                0,
+                0,
+                1,
+                1
+              ]
+            },
+            {
+              "type": "bandage",
+              "unit_ids": [
+                "L_front.SEARCH.bandage.1"
+              ],
+              "xywh": [
+                1,
+                0,
+                1,
+                1
+              ]
+            }
+          ]
+        },
+        "nominal": 50
+      }
+    },
+    {
+      "id": "NPC_food_same_objective",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "status": "active",
+          "location": "H0",
+          "day": 1,
+          "character_day": 2,
+          "satiety": 4,
+          "points": 40,
+          "energy": 78,
+          "inventory_by_location": {
+            "pack": {
+              "ration": 2
+            }
           }
         },
-        "task_count": 3,
-        "successes": 2,
-        "failures": 1,
-        "purchase_count": 1,
-        "total_nominal_energy": 582
+        "geometry": {
+          "weight": 2
+        },
+        "nominal": 22
+      },
+      "actual": {
+        "final": {
+          "task_id": "NPC",
+          "status": "active",
+          "day": 1,
+          "character_day": 2,
+          "location": "H0",
+          "energy": 78,
+          "hp": 12,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 40,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 30,
+          "coat": 12,
+          "tool_resource": 12,
+          "signature_used": false,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "consumed": {
+              "bandage": 1,
+              "disinfectant": 1
+            },
+            "pack": {
+              "ration": 2
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": "NPC",
+          "last_settled_result": null,
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "geometry": {
+          "weight": 2,
+          "cells": 1,
+          "rectangles": [
+            {
+              "type": "ration",
+              "unit_ids": [
+                "lin_trade.NPC.ration.1",
+                "lin_trade.NPC.ration.2"
+              ],
+              "xywh": [
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ]
+        },
+        "nominal": 22
+      }
+    },
+    {
+      "id": "NPC_missing_disinfectant_atomic",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "missing_item:disinfectant",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "missing_item:disinfectant",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "NPC_reward_container_full_atomic",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "grid_full",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "grid_full",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "NPC_reward_container_room_real_transfer",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "energy": 98,
+        "inventory_by_location": {
+          "pack": {
+            "firstaid": 11,
+            "ration": 2
+          },
+          "consumed": {
+            "bandage": 1,
+            "disinfectant": 1
+          }
+        }
+      },
+      "actual": {
+        "task_id": "fixture_task",
+        "status": "active",
+        "day": 1,
+        "character_day": 1,
+        "location": "T1",
+        "energy": 98,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 0,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "pack": {
+            "firstaid": 11,
+            "ration": 2
+          },
+          "consumed": {
+            "bandage": 1,
+            "disinfectant": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": "fixture_task",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "NPC_exchange_once",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "already_completed",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "already_completed",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "buy_metal_same_H0_goal",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "status": "active",
+        "location": "H0",
+        "points": 0,
+        "energy": 100,
+        "satiety": 4,
+        "character_day": 2,
+        "inventory_by_location": {
+          "pack": {
+            "metal": 1
+          }
+        }
+      },
+      "actual": {
+        "task_id": "SHOP",
+        "status": "active",
+        "day": 1,
+        "character_day": 2,
+        "location": "H0",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 0,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "metal": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": "SHOP",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "hall_metal_same_H0_goal",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "status": "active",
+        "location": "H0",
+        "points": 12,
+        "energy": 84,
+        "satiety": 4,
+        "character_day": 2,
+        "inventory_by_location": {
+          "pack": {
+            "metal": 1
+          }
+        }
+      },
+      "actual": {
+        "task_id": "SEARCH",
+        "status": "active",
+        "day": 1,
+        "character_day": 2,
+        "location": "H0",
+        "energy": 84,
+        "hp": 12,
+        "satiety": 4,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 12,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          },
+          "pack": {
+            "metal": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": "SEARCH",
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "bought_metal_actual_full_route_variant",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "status": "success",
+          "hp": 4,
+          "satiety": 4,
+          "day": 3,
+          "character_day": 4,
+          "points": 120
+        },
+        "nominal": 269,
+        "bought_metal_installed": "installed"
+      },
+      "actual": {
+        "final": {
+          "task_id": "VARIANT",
+          "status": "success",
+          "day": 3,
+          "character_day": 4,
+          "location": "HUB",
+          "energy": 24,
+          "hp": 4,
+          "satiety": 4,
+          "infection": 20,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 120,
+          "first_success": true,
+          "ready_next": false,
+          "pipe": 15,
+          "coat": 7,
+          "tool_resource": 7,
+          "signature_used": true,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 2,
+              "ration": 4,
+              "cloth": 1,
+              "metal": 1,
+              "battery": 1
+            },
+            "installed": {
+              "metal": 1,
+              "control": 1,
+              "electronics": 1,
+              "module": 1
+            },
+            "consumed": {
+              "ration": 2
+            },
+            "lost": {
+              "metal": 1
+            },
+            "delivered": {
+              "sample": 1
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "VARIANT",
+            "outcome": "success",
+            "reward": 120,
+            "fee": 0
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "nominal": 269,
+        "bought_metal_installed": "installed"
+      }
+    },
+    {
+      "id": "install_selected_material_bank",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "selected_unit_not_available",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "selected_unit_not_available",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "install_selected_material_unknown",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "selected_unit_not_available",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "selected_unit_not_available",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "install_selected_material_consumed",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "selected_unit_not_available",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "selected_unit_not_available",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "install_selected_material_duplicate",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "invalid_selected_units",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "invalid_selected_units",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "purchased_cloth_battery_two_real_sorties",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "final": {
+          "points": 16,
+          "hp": 8,
+          "satiety": 2,
+          "character_day": 3,
+          "pipe": 20,
+          "coat": 11,
+          "tool_resource": 6,
+          "inventory_by_location": {
+            "consumed": {
+              "battery": 2,
+              "cloth": 2
+            },
+            "bank": {
+              "battery": 2
+            },
+            "impounded": {
+              "card": 2
+            }
+          }
+        },
+        "round_nominal": [
+          32,
+          32
+        ]
+      },
+      "actual": {
+        "final": {
+          "task_id": "B",
+          "status": "failure",
+          "day": 1,
+          "character_day": 3,
+          "location": "HUB",
+          "energy": 68,
+          "hp": 8,
+          "satiety": 2,
+          "infection": 0,
+          "exposure": 0,
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "points": 16,
+          "first_success": false,
+          "ready_next": false,
+          "pipe": 20,
+          "coat": 11,
+          "tool_resource": 6,
+          "signature_used": true,
+          "disinfectant_used": false,
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0,
+          "suppression": 0,
+          "inventory_by_location": {
+            "bank": {
+              "bandage": 1,
+              "battery": 2
+            },
+            "consumed": {
+              "battery": 2,
+              "cloth": 2
+            },
+            "impounded": {
+              "card": 2
+            }
+          },
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.flashlight"
+          },
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "B",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 20
+          },
+          "settled_cycle": null,
+          "first_entry": false
+        },
+        "round_nominal": [
+          32,
+          32
+        ]
+      }
+    },
+    {
+      "id": "catalog_ration_price11_actual_input",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "insufficient_points",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "insufficient_points",
+        "unchanged": true
+      }
+    },
+    {
+      "id": "therapy_threshold100_actual_input",
+      "classification": "positive",
+      "passed": true,
+      "expected": {
+        "points": 0,
+        "hp": 12,
+        "infection": 0
+      },
+      "actual": {
+        "task_id": "fixture_task",
+        "status": "failure",
+        "day": 1,
+        "character_day": 1,
+        "location": "HUB",
+        "energy": 100,
+        "hp": 12,
+        "satiety": 6,
+        "infection": 0,
+        "exposure": 0,
+        "bleeding": false,
+        "wound": false,
+        "injury": "none",
+        "points": 0,
+        "first_success": false,
+        "ready_next": false,
+        "pipe": 30,
+        "coat": 12,
+        "tool_resource": 12,
+        "signature_used": false,
+        "disinfectant_used": false,
+        "painkiller": false,
+        "painkiller_used": false,
+        "suppressant_used": false,
+        "medical_doses": 0,
+        "suppression": 0,
+        "inventory_by_location": {
+          "q1": {
+            "bandage": 1
+          }
+        },
+        "equipment": {
+          "weapon": "initial.pipe",
+          "armor": "initial.coat",
+          "utility": "initial.crowbar"
+        },
+        "active_task_id": null,
+        "last_settled_result": null,
+        "settled_cycle": null,
+        "first_entry": false
+      }
+    },
+    {
+      "id": "rest_C80_same_authored_plan_rejected",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "zero_energy"
+      },
+      "actual": {
+        "error": "zero_energy",
+        "final": {
+          "status": "active",
+          "reason": null,
+          "day": 2,
+          "location": "C1",
+          "energy": 0,
+          "hp": 6,
+          "satiety": 4,
+          "infection": 0,
+          "exposure": 1,
+          "pipe": 20,
+          "coat": 9,
+          "tool_resource": 8,
+          "next_activity": null,
+          "inventory_by_location": {
+            "q1": {
+              "bandage": 1
+            },
+            "pack": {
+              "ration": 5,
+              "bandage": 1,
+              "control": 1,
+              "metal": 2,
+              "cloth": 1,
+              "electronics": 1,
+              "battery": 1,
+              "module": 1
+            }
+          },
+          "equipped_retained": true,
+          "facts": [
+            "C_channel_open",
+            "C_spares_open",
+            "L_fixation_open",
+            "L_front_open",
+            "hospital_model",
+            "interface",
+            "manifest",
+            "module_matched",
+            "power",
+            "power_survey"
+          ],
+          "bleeding": false,
+          "wound": false,
+          "injury": "none",
+          "suppression": 0,
+          "disinfectant_used": false,
+          "signature_used": true,
+          "equipment": {
+            "weapon": "initial.pipe",
+            "armor": "initial.coat",
+            "utility": "initial.crowbar"
+          },
+          "character_day": 2,
+          "points": 0,
+          "first_success": false,
+          "ready_next": false,
+          "task_id": "fixture_task",
+          "painkiller": false,
+          "painkiller_used": false,
+          "suppressant_used": false,
+          "medical_doses": 0
+        }
+      }
+    },
+    {
+      "id": "negative_catalog_price_atomic",
+      "classification": "expected_rejection",
+      "passed": true,
+      "expected": {
+        "error": "invalid_catalog_price",
+        "unchanged": true
+      },
+      "actual": {
+        "error": "invalid_catalog_price",
+        "unchanged": true
       }
     }
   ],
@@ -8017,7 +13663,7 @@
     "Final terminal cases are independent fixtures, not complete action prefixes; terminal penalties/recall remain OPTION awaiting Owner.",
     "Failed parameter variants mean the same authored plan needs replanning, not the entire world is unsolvable.",
     "Injury movement multipliers, bruises and general injury stacking are not modeled; route inputs have no movement-modifying bruise.",
-    "全空家底HP1流血例现在只验证合法返回及显式中枢夜先流血死亡，不再免费建立下一任务精力。",
-    "仅另验生存专长绷带+2的10轮局部OPTION；未验证完整三专长组合、NPC交换、任意重访或任意战斗。"
+    "全空家底只证合法返回与下一有效launch衔接死亡；不保证存在生存解。",
+    "仅执行有限生存+2、一次林岑兑换、采购路线与十份显式供给；未验证完整专长组合、无限供给或所有路线。"
   ]
 }

@@ -1,0 +1,386 @@
+{
+  "task": "WORLD-DESIGN-003",
+  "starting_sha": "196d4bf03b07eb9af452ff99aae4ff553f9659d6",
+  "branch": "feature/design-world-infected-world-001",
+  "main_sha": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+  "origin": "https://github.com/lvlw/elevator-survival.git",
+  "preflight": "Reviewed exact 48 existing changed/new task paths; no other work, empty index. Add this receipt as the 49th authorized file.",
+  "explicit_stage_paths": [
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/02-seven-day-structure.md",
+    "docs/design-drafts/world-infected-001/03-location-design.md",
+    "docs/design-drafts/world-infected-001/04-main-mission.md",
+    "docs/design-drafts/world-infected-001/05-resource-economy.md",
+    "docs/design-drafts/world-infected-001/06-event-pack.md",
+    "docs/design-drafts/world-infected-001/07-enemy-continuity.md",
+    "docs/design-drafts/world-infected-001/08-balance-budget.md",
+    "docs/design-drafts/world-infected-001/09-design-critic.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+    "docs/design-drafts/world-infected-001/WORLD-DESIGN-003-completion.md",
+    "docs/design-drafts/world-infected-001/evidence/README.md",
+    "docs/design-drafts/world-infected-001/evidence/check_design.py",
+    "docs/design-drafts/world-infected-001/evidence/checks_v1_3.py",
+    "docs/design-drafts/world-infected-001/evidence/execution-metadata.json",
+    "docs/design-drafts/world-infected-001/evidence/expected-v1.3.json",
+    "docs/design-drafts/world-infected-001/evidence/first-run-v1.3.json",
+    "docs/design-drafts/world-infected-001/evidence/inheritance-v1.2-v1.3.json",
+    "docs/design-drafts/world-infected-001/evidence/joint-results.json",
+    "docs/design-drafts/world-infected-001/evidence/joint_checks.py",
+    "docs/design-drafts/world-infected-001/evidence/parameters.json",
+    "docs/design-drafts/world-infected-001/evidence/raw-results.json",
+    "docs/design-drafts/world-infected-001/evidence/route-ledgers.csv",
+    "docs/design-drafts/world-infected-001/evidence/route-ledgers.json",
+    "docs/design-drafts/world-infected-001/evidence/scenarios.json",
+    "docs/design-drafts/world-infected-001/evidence/v1.2-baseline/manifest-summary.json",
+    "docs/design-drafts/world-infected-001/evidence/v1.2-baseline/parameters.json",
+    "docs/design-drafts/world-infected-001/reviews/check_package.py",
+    "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+    "docs/design-drafts/world-infected-001/reviews/input-196d4bf/00-START-HERE.md",
+    "docs/design-drafts/world-infected-001/reviews/input-196d4bf/OWNER-direction-WORLD-DESIGN-003-v1.0.md",
+    "docs/design-drafts/world-infected-001/reviews/input-196d4bf/WORLD-DESIGN-003-task.md",
+    "docs/design-drafts/world-infected-001/reviews/input-196d4bf/input-provenance.json",
+    "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/OWNER-followup-196d4bf-v1.0.md",
+    "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/AUD-196d4bf-world-design-002-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/README.md",
+    "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/input-crosscheck.json",
+    "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/manifest.json",
+    "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/reviewer-probes.py",
+    "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/reviewer-results.json",
+    "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/source-excerpts.py",
+    "docs/design-drafts/world-infected-001/reviews/input-196d4bf/manifest.json",
+    "docs/design-drafts/world-infected-001/reviews/input-manifest-world-design-003.json",
+    "docs/design-drafts/world-infected-001/reviews/owner-direction-world-design-003.md",
+    "docs/design-drafts/world-infected-001/reviews/package-check-results.json",
+    "docs/design-drafts/world-infected-001/reviews/read-scope-world-design-003.json",
+    "docs/design-drafts/world-infected-001/reviews/reproduction-results-world-design-003.json",
+    "docs/design-drafts/world-infected-001/reviews/staging-check-world-design-003.json"
+  ],
+  "syntax_parse_files": [
+    "evidence/check_design.py",
+    "evidence/checks_v1_3.py",
+    "evidence/execution-metadata.json",
+    "evidence/expected-v1.3.json",
+    "evidence/first-run-v1.3.json",
+    "evidence/inheritance-v1.2-v1.3.json",
+    "evidence/joint-results.json",
+    "evidence/joint_checks.py",
+    "evidence/parameters.json",
+    "evidence/raw-results.json",
+    "evidence/route-ledgers.json",
+    "evidence/scenarios.json",
+    "evidence/v1.2-baseline/manifest-summary.json",
+    "evidence/v1.2-baseline/parameters.json",
+    "reviews/check_package.py",
+    "reviews/input-196d4bf/input-provenance.json",
+    "reviews/input-196d4bf/inputs/review-196d4bf/input-crosscheck.json",
+    "reviews/input-196d4bf/inputs/review-196d4bf/manifest.json",
+    "reviews/input-196d4bf/inputs/review-196d4bf/reviewer-probes.py",
+    "reviews/input-196d4bf/inputs/review-196d4bf/reviewer-results.json",
+    "reviews/input-196d4bf/inputs/review-196d4bf/source-excerpts.py",
+    "reviews/input-196d4bf/manifest.json",
+    "reviews/input-manifest-world-design-003.json",
+    "reviews/package-check-results.json",
+    "reviews/read-scope-world-design-003.json",
+    "reviews/reproduction-results-world-design-003.json"
+  ],
+  "review_basis": "Current design and source code read and cross-reviewed; originals byte-matched to supplied manifests; all finite outputs parsed, independently reproduced twice and hash-checked; historical source files compared against pinned Git. No claim of line-by-line human reading of generated ledgers.",
+  "stage_status": "verified",
+  "self_hash_policy": "This receipt omits its own hash. Its final index bytes are independently compared to disk immediately after staging and before commit; result printed in tool receipt, not recursively embedded.",
+  "staged_file_count": 49,
+  "strict_cached_diff_check": "PASS, no whitespace exceptions used for this task diff",
+  "index_equals_disk_before_receipt_update": 49,
+  "verified_files_excluding_self": [
+    {
+      "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "bytes": 11160,
+      "sha256": "25bc3e450b332e7d01869d8eee180880e02955cad365aa17f947b26f2fadd91d",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/02-seven-day-structure.md",
+      "bytes": 18813,
+      "sha256": "ab955dd41312e7f04b31392654e3020eaa95a5d75d85b985b74062f98095678d",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/03-location-design.md",
+      "bytes": 18721,
+      "sha256": "50cc93c74a31252f9d4745a6ebfc37dd6d0f3760a8a171664a13121159d818f7",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/04-main-mission.md",
+      "bytes": 17620,
+      "sha256": "50abde69e8c2e5cf4a930a3c3e19ccfca0af77968c9574bc8730a538d6c0911f",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/05-resource-economy.md",
+      "bytes": 22560,
+      "sha256": "7cb2de25bbb1027f138d33a2758c819c86b46011d6900bb477e1e09b208737f2",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/06-event-pack.md",
+      "bytes": 23591,
+      "sha256": "8b105f83480a85bafb41f6d57c08c694f2a8bc2e88d7d405a889b4386eae8f60",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/07-enemy-continuity.md",
+      "bytes": 19990,
+      "sha256": "23cfb09960b42851fe033cd4ab450b3edf0110f5a90a3dfd56d946632b28d525",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/08-balance-budget.md",
+      "bytes": 18910,
+      "sha256": "6279eea1243c068c30913db73bd67099c9b6cf83a0efca553465b51cf89a4ff9",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/09-design-critic.md",
+      "bytes": 10281,
+      "sha256": "c3f5f6e3bccacfce9ce7ec6144507b3f25dfc35f2f3b4ed67aa61d60f3732554",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "bytes": 8415,
+      "sha256": "f05eb666d577d3707112a266fdb1055978e7d26c64772e3fc1259145f917973c",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+      "bytes": 33823,
+      "sha256": "a7d6516ac0ee753e7883760959b7e8754c475fdee4f1ca23688ee206515d3966",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/WORLD-DESIGN-003-completion.md",
+      "bytes": 11720,
+      "sha256": "2bb4395d25164f201cd0834fd1198d9f21635b862f279628b9eb3ba261590bca",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/README.md",
+      "bytes": 11800,
+      "sha256": "2a41f6a0fcadce43597a739bbb1db05cf864744d7d756c5b662e7f2ce8dd8cda",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/check_design.py",
+      "bytes": 49776,
+      "sha256": "22261c39e2f51700f27a7490d045694223bc6161b7eaccf05c64d6bab2999a2c",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/checks_v1_3.py",
+      "bytes": 26083,
+      "sha256": "90eeece4bdedaa7caa8c0b9b1ec3e4053c711e3c6f1f0ff97006395e0def64dc",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/execution-metadata.json",
+      "bytes": 1159,
+      "sha256": "79f9c3a04e6c16a9c243ce0c5a9640df965631180d177dc204053bc688bc4988",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/expected-v1.3.json",
+      "bytes": 2956,
+      "sha256": "f41e82cb4182f2bd53e5b9ec6beca297a30ae01cd9f15bde49be2b1939f34ecd",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/first-run-v1.3.json",
+      "bytes": 3370,
+      "sha256": "01ce37250a9507517d7733ef5342eed00017b5ab69187f96ba9d6c67f47c0968",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/inheritance-v1.2-v1.3.json",
+      "bytes": 30062,
+      "sha256": "afdf8a020e93a37398692bdad6613910be173ae8a59f8bbc92a772b46ee35ec7",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/joint-results.json",
+      "bytes": 1467822,
+      "sha256": "fc280c9d510b10a88aa9ffbca960b6a3db986ceb33a93336ed1d547bb33a75ae",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/joint_checks.py",
+      "bytes": 36985,
+      "sha256": "3d23a83ae93538a4253518862fcfbf037d0ee09ee00fc36d2442c906ff25d3ff",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/parameters.json",
+      "bytes": 25872,
+      "sha256": "42a7692cc5b99a155f41f9706377f3dfdc5a20318406f5e08c587e8a84bba0b1",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/raw-results.json",
+      "bytes": 346107,
+      "sha256": "4065d55c4fe6d256fd9fc0cbdefd7a4154eeab3cd35c935aa748b35588727ea0",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/route-ledgers.csv",
+      "bytes": 70931,
+      "sha256": "4e868de77da95c41027d3912060b47547aa7470656e3c7a469611fe4fa728ca4",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/route-ledgers.json",
+      "bytes": 785265,
+      "sha256": "b99ea9a6e037b53dcdaeabd0e82e48262e81a6b701ad62f5a39824cd1ea3cc18",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/scenarios.json",
+      "bytes": 108634,
+      "sha256": "56ff2a63b994816a2437d732f58da27a84b11c7afee0d4c85cf6ac476c811ae5",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/v1.2-baseline/manifest-summary.json",
+      "bytes": 31203,
+      "sha256": "42a981ea536bbd872ca3cd27beed9f6661578336e12af276b41e3cf16363997f",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/evidence/v1.2-baseline/parameters.json",
+      "bytes": 16711,
+      "sha256": "fed5e659bfe74088655fa6af826ab6194824cbf353256e98294a0727327e207f",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/check_package.py",
+      "bytes": 20270,
+      "sha256": "7a2334c6d176cf4d7001f9e32488d5f378214fb1bc3a980536625cb4c4df920f",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+      "bytes": 29520,
+      "sha256": "e4a14076f560016b5a42e554c396ca32ffd1ba986a8a6bfd6df7760c9440d5c6",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/00-START-HERE.md",
+      "bytes": 2896,
+      "sha256": "19edcdc3f21d674b20f7363252e2e102a5b228f7d7a47c73434cd71ff433cb63",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/OWNER-direction-WORLD-DESIGN-003-v1.0.md",
+      "bytes": 4749,
+      "sha256": "d51e1caa54c3e32d96fe8f1587693f7cf5dbe349550609b83abc55f10f844b57",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/WORLD-DESIGN-003-task.md",
+      "bytes": 23338,
+      "sha256": "64a37854bdb5b3b1f7d0bb3b28e044555fe607e2f36033021c4a3c56c825379d",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/input-provenance.json",
+      "bytes": 3877,
+      "sha256": "c1e4e759f2e3bf5cc376c85373ff5269023fbca91ffe31f2f8c13014d7393d24",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/OWNER-followup-196d4bf-v1.0.md",
+      "bytes": 12731,
+      "sha256": "525d0a1d52e262c407f1bd7aabadca1c145963967c42e430fc22f5c65ba7f79d",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/AUD-196d4bf-world-design-002-review-v1.0.md",
+      "bytes": 13377,
+      "sha256": "01ffa428fc92e8c66e8b0275bf7d2bb1414dec5a81f34a107c856f9b9565ccfd",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/README.md",
+      "bytes": 1071,
+      "sha256": "814e317f9f809d5270acd8e38fb42d9cab50cc4af1ebe04bed6f151bb27ac7da",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/input-crosscheck.json",
+      "bytes": 314,
+      "sha256": "b18bf470e98256b2bec975d2fa054a2575665cd61ce133a6f156362b80b51472",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/manifest.json",
+      "bytes": 1023,
+      "sha256": "1bff17505fb85f9ceb4461ebe39b6b37fac194fbc612768c37e7d776905e7f6c",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/reviewer-probes.py",
+      "bytes": 10510,
+      "sha256": "76778a1f4632096de68782456dc6d8411588448709419735152b66dee39906e7",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/reviewer-results.json",
+      "bytes": 145054,
+      "sha256": "bd660f947eb02ccefb234e3da14767ddf7453d30e9abc72f80a880c6110a5223",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/source-excerpts.py",
+      "bytes": 7954,
+      "sha256": "c3458a75123cefe1aef8da5d11cb11d881d268e1a7439717128a9d31a0bdccc6",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/manifest.json",
+      "bytes": 2249,
+      "sha256": "86ab73411c5b10246267a480b695e8a1b5d34d7ce4f224e018cc6f2536cbb152",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/input-manifest-world-design-003.json",
+      "bytes": 4604,
+      "sha256": "89bbafd14d4fc04b18776d92db68bf28333624302739a48298c501e0b4ce8c4f",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/owner-direction-world-design-003.md",
+      "bytes": 4032,
+      "sha256": "b7343229207d34e5ce322aa7e5f648be9bf87858bee12162806701325af123a1",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/package-check-results.json",
+      "bytes": 35919,
+      "sha256": "1b772837deeb7b0812432d13191005cbd399626fe7a66b0d07c8fe4cd065a3a6",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/read-scope-world-design-003.json",
+      "bytes": 10601,
+      "sha256": "61ca50d7017913afe48550721d6d7e9d65e871b8c02d26599b05086da69bc999",
+      "index_equals_disk": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/reproduction-results-world-design-003.json",
+      "bytes": 4194,
+      "sha256": "8cbb126cda255df1444e08d96159fddb42bd354293c60d2cc92e21c254d4051c",
+      "index_equals_disk": true
+    }
+  ],
+  "outside_allowlist": [],
+  "production_tests_added": 0,
+  "commit_pending": "This receipt records precommit verification. Final commit/push SHA and remote/worktree verification are reported in the conversation; no self-referential commit SHA is claimed."
+}

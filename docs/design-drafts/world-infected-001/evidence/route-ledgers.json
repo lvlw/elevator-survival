@@ -86,6 +86,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -2208,6 +2220,13 @@
           "points": 120,
           "first_success": true,
           "revision": 62,
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "success",
+            "reward": 120,
+            "fee": 0
+          },
           "units_upsert": [
             {
               "id": "initial.bandage.1",
@@ -2368,6 +2387,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -4927,6 +4958,13 @@
           "points": 120,
           "first_success": true,
           "revision": 77,
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "success",
+            "reward": 120,
+            "fee": 0
+          },
           "units_upsert": [
             {
               "id": "initial.bandage.1",
@@ -5105,6 +5143,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -8397,6 +8447,13 @@
           "points": 120,
           "first_success": true,
           "revision": 105,
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "success",
+            "reward": 120,
+            "fee": 0
+          },
           "units_upsert": [
             {
               "id": "H_hall.fixture_task.metal.1",
@@ -8551,6 +8608,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -11111,6 +11180,13 @@
           "points": 120,
           "first_success": true,
           "revision": 77,
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "success",
+            "reward": 120,
+            "fee": 0
+          },
           "units_upsert": [
             {
               "id": "initial.bandage.1",
@@ -11288,6 +11364,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -12758,6 +12846,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -14858,6 +14958,13 @@
           "points": 120,
           "first_success": true,
           "revision": 62,
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "success",
+            "reward": 120,
+            "fee": 0
+          },
           "units_upsert": [
             {
               "id": "initial.bandage.1",
@@ -15018,6 +15125,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -15345,6 +15464,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -15781,6 +15912,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -16065,6 +16208,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -16423,6 +16578,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -16711,6 +16878,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -16851,6 +17030,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -17156,6 +17347,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -17309,6 +17512,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -17426,6 +17641,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -17555,6 +17782,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -17700,6 +17939,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -17945,6 +18196,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -18083,6 +18346,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -18195,6 +18470,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -18429,6 +18716,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -18542,6 +18841,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -18653,6 +18964,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -18896,6 +19219,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 7,
         "cells": 7,
@@ -19079,6 +19414,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 9,
         "cells": 8,
@@ -19304,6 +19651,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 9,
         "cells": 8,
@@ -19820,6 +20179,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -19850,6 +20221,7 @@
           "next_activity": "new_character_setup",
           "equipped_retained": false,
           "revision": 1,
+          "active_task_id": null,
           "units_upsert": [
             {
               "id": "initial.bandage.1",
@@ -19954,6 +20326,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -20100,6 +20484,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 1,
@@ -20208,6 +20604,7 @@
           "next_activity": "new_character_setup",
           "equipped_retained": false,
           "revision": 2,
+          "active_task_id": null,
           "units_upsert": [
             {
               "id": "initial.bandage.1",
@@ -20364,6 +20761,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -20475,6 +20884,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -20622,6 +21043,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 1,
@@ -21237,6 +21670,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 12,
         "cells": 10,
@@ -21362,6 +21807,13 @@
           "points": 170,
           "first_success": true,
           "revision": 1,
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "success",
+            "reward": 120,
+            "fee": 0
+          },
           "units_upsert": [
             {
               "id": "fixture.2.0",
@@ -21612,6 +22064,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 12,
         "cells": 10,
@@ -21734,55 +22198,62 @@
           "status": "failure",
           "reason": "failure",
           "next_activity": "same_character_hub_preparation",
-          "points": 20,
+          "points": 30,
           "revision": 1,
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 20
+          },
           "units_upsert": [
             {
               "id": "fixture.2.0",
               "type": "ration",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
               "id": "fixture.2.1",
               "type": "ration",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
               "id": "fixture.3.0",
               "type": "metal",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
               "id": "fixture.3.1",
               "type": "metal",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
               "id": "fixture.4.0",
               "type": "cloth",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
               "id": "fixture.5.0",
               "type": "battery",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
               "id": "fixture.5.1",
               "type": "battery",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
               "id": "fixture.6.0",
               "type": "bandage",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
@@ -21802,7 +22273,7 @@
         "nominal_energy": 0,
         "detail": {
           "fee": {
-            "points": 30,
+            "points": 20,
             "reward": 0
           }
         }
@@ -21982,6 +22453,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 12,
         "cells": 10,
@@ -22110,56 +22593,64 @@
           "reason": "deadline_recall",
           "next_activity": "same_character_hub_preparation",
           "character_day": 8,
-          "points": 20,
+          "points": 30,
           "ready_next": true,
           "revision": 1,
+          "settled_cycle": 7,
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "deadline_recall",
+            "reward": 0,
+            "fee": 20
+          },
           "units_upsert": [
             {
               "id": "fixture.2.0",
               "type": "ration",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
               "id": "fixture.2.1",
               "type": "ration",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
               "id": "fixture.3.0",
               "type": "metal",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
               "id": "fixture.3.1",
               "type": "metal",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
               "id": "fixture.4.0",
               "type": "cloth",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
               "id": "fixture.5.0",
               "type": "battery",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
               "id": "fixture.5.1",
               "type": "battery",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
               "id": "fixture.6.0",
               "type": "bandage",
-              "location": "recovered",
+              "location": "bank",
               "origin_task": "fixture_task"
             },
             {
@@ -22199,7 +22690,7 @@
             }
           ],
           "fee": {
-            "points": 30,
+            "points": 20,
             "reward": 0
           }
         }
@@ -22379,6 +22870,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 12,
         "cells": 10,
@@ -22509,6 +23012,7 @@
           "equipped_retained": false,
           "points": 0,
           "revision": 1,
+          "active_task_id": null,
           "units_upsert": [
             {
               "id": "fixture.0.0",
@@ -22700,6 +23204,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -22719,7 +23235,14 @@
           "status": "failure",
           "reason": "failure",
           "next_activity": "same_character_hub_preparation",
-          "revision": 1
+          "revision": 1,
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          }
         },
         "nominal_energy": 0,
         "detail": {
@@ -22818,6 +23341,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -24962,6 +25497,13 @@
           "points": 120,
           "first_success": true,
           "revision": 63,
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "success",
+            "reward": 120,
+            "fee": 0
+          },
           "units_upsert": [
             {
               "id": "initial.bandage.1",
@@ -25116,6 +25658,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -25367,6 +25921,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -25473,6 +26039,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -25587,6 +26165,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -25746,6 +26336,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -25779,6 +26381,14 @@
           "character_day": 8,
           "ready_next": true,
           "revision": 1,
+          "settled_cycle": 7,
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "deadline_recall",
+            "reward": 0,
+            "fee": 0
+          },
           "units_upsert": [
             {
               "id": "initial.bandage.1",
@@ -25911,6 +26521,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -26032,6 +26654,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -26148,6 +26782,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -26316,6 +26962,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -26496,6 +27154,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 2,
         "cells": 1,
@@ -26618,6 +27288,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -26637,7 +27319,14 @@
           "status": "failure",
           "reason": "failure",
           "next_activity": "same_character_hub_preparation",
-          "revision": 1
+          "revision": 1,
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "failure",
+            "reward": 0,
+            "fee": 0
+          }
         },
         "nominal_energy": 0,
         "detail": {
@@ -26650,8 +27339,10 @@
       {
         "step": 2,
         "action": {
-          "action": "hub_rest",
-          "label": "真实过夜流血先结算"
+          "action": "launch",
+          "task_id": "EMPTY_NEXT",
+          "revision": 1,
+          "label": "合法出发先结当前真实周期，流血死亡"
         },
         "delta": {
           "hp": 0,
@@ -26662,6 +27353,7 @@
         },
         "nominal_energy": 0,
         "detail": {
+          "settled_cycle": 1,
           "stages": [
             {
               "stage": "persistent_danger",
@@ -26759,6 +27451,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -27417,6 +28121,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -29210,6 +29926,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -31332,6 +32060,13 @@
           "points": 120,
           "first_success": true,
           "revision": 62,
+          "active_task_id": null,
+          "last_settled_result": {
+            "task_id": "fixture_task",
+            "outcome": "success",
+            "reward": 120,
+            "fee": 0
+          },
           "units_upsert": [
             {
               "id": "initial.bandage.1",
@@ -31492,6 +32227,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,
@@ -31883,6 +32630,18 @@
         "armor": "before",
         "utility": "before"
       },
+      "settled_cycle": null,
+      "first_entry": false,
+      "active_task_id": "fixture_task",
+      "last_settled_result": null,
+      "used_task_ids": [
+        "fixture_task"
+      ],
+      "offered_tasks": {
+        "parameter_ref": "parameters.json#/offered_tasks"
+      },
+      "mission_id": "infected_recovery",
+      "rules_version": "infected-draft-v1.3",
       "geometry": {
         "weight": 0,
         "cells": 0,

@@ -1,0 +1,92 @@
+{
+  "task": "WORLD-DESIGN-003",
+  "base_sha": "196d4bf03b07eb9af452ff99aae4ff553f9659d6",
+  "source_zip": "D:\\浏览器下载\\WORLD-DESIGN-003-input-pack.zip",
+  "source_zip_bytes": 47663,
+  "source_zip_sha256": "0abb2a31391b9575f7115e55b71564ba9ca478dfa4f7b20587205e972c33f103",
+  "zip_crc": "PASS",
+  "payload_hashes": "12/12 match supplied root manifest; 6/6 nested review payloads match nested manifest",
+  "raw_archive_entries": [
+    {
+      "pack_path": "00-START-HERE.md",
+      "archive_path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/00-START-HERE.md",
+      "bytes": 2896,
+      "sha256": "19edcdc3f21d674b20f7363252e2e102a5b228f7d7a47c73434cd71ff433cb63"
+    },
+    {
+      "pack_path": "OWNER-direction-WORLD-DESIGN-003-v1.0.md",
+      "archive_path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/OWNER-direction-WORLD-DESIGN-003-v1.0.md",
+      "bytes": 4749,
+      "sha256": "d51e1caa54c3e32d96fe8f1587693f7cf5dbe349550609b83abc55f10f844b57"
+    },
+    {
+      "pack_path": "WORLD-DESIGN-003-task.md",
+      "archive_path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/WORLD-DESIGN-003-task.md",
+      "bytes": 23338,
+      "sha256": "64a37854bdb5b3b1f7d0bb3b28e044555fe607e2f36033021c4a3c56c825379d"
+    },
+    {
+      "pack_path": "input-provenance.json",
+      "archive_path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/input-provenance.json",
+      "bytes": 3877,
+      "sha256": "c1e4e759f2e3bf5cc376c85373ff5269023fbca91ffe31f2f8c13014d7393d24"
+    },
+    {
+      "pack_path": "inputs/OWNER-followup-196d4bf-v1.0.md",
+      "archive_path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/OWNER-followup-196d4bf-v1.0.md",
+      "bytes": 12731,
+      "sha256": "525d0a1d52e262c407f1bd7aabadca1c145963967c42e430fc22f5c65ba7f79d"
+    },
+    {
+      "pack_path": "inputs/review-196d4bf/AUD-196d4bf-world-design-002-review-v1.0.md",
+      "archive_path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/AUD-196d4bf-world-design-002-review-v1.0.md",
+      "bytes": 13377,
+      "sha256": "01ffa428fc92e8c66e8b0275bf7d2bb1414dec5a81f34a107c856f9b9565ccfd"
+    },
+    {
+      "pack_path": "inputs/review-196d4bf/README.md",
+      "archive_path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/README.md",
+      "bytes": 1071,
+      "sha256": "814e317f9f809d5270acd8e38fb42d9cab50cc4af1ebe04bed6f151bb27ac7da"
+    },
+    {
+      "pack_path": "inputs/review-196d4bf/input-crosscheck.json",
+      "archive_path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/input-crosscheck.json",
+      "bytes": 314,
+      "sha256": "b18bf470e98256b2bec975d2fa054a2575665cd61ce133a6f156362b80b51472"
+    },
+    {
+      "pack_path": "inputs/review-196d4bf/manifest.json",
+      "archive_path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/manifest.json",
+      "bytes": 1023,
+      "sha256": "1bff17505fb85f9ceb4461ebe39b6b37fac194fbc612768c37e7d776905e7f6c"
+    },
+    {
+      "pack_path": "inputs/review-196d4bf/reviewer-probes.py",
+      "archive_path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/reviewer-probes.py",
+      "bytes": 10510,
+      "sha256": "76778a1f4632096de68782456dc6d8411588448709419735152b66dee39906e7"
+    },
+    {
+      "pack_path": "inputs/review-196d4bf/reviewer-results.json",
+      "archive_path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/reviewer-results.json",
+      "bytes": 145054,
+      "sha256": "bd660f947eb02ccefb234e3da14767ddf7453d30e9abc72f80a880c6110a5223"
+    },
+    {
+      "pack_path": "inputs/review-196d4bf/source-excerpts.py",
+      "archive_path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/inputs/review-196d4bf/source-excerpts.py",
+      "bytes": 7954,
+      "sha256": "c3458a75123cefe1aef8da5d11cb11d881d268e1a7439717128a9d31a0bdccc6"
+    },
+    {
+      "pack_path": "manifest.json",
+      "archive_path": "docs/design-drafts/world-infected-001/reviews/input-196d4bf/manifest.json",
+      "bytes": 2249,
+      "sha256": "86ab73411c5b10246267a480b695e8a1b5d34d7ce4f224e018cc6f2536cbb152"
+    }
+  ],
+  "archive_status": "Exact bytes; no line ending or whitespace normalization; outer ZIP not duplicated",
+  "original_format_exception": "None: all 13 entries are UTF-8/LF without trailing whitespace",
+  "scope": "Attachment integrity and provenance only; reviewer 29 observations are historical, not current model cases"
+}

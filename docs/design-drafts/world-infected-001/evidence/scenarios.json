@@ -10,8 +10,8 @@
     "Final terminal cases are independent fixtures, not complete action prefixes; terminal penalties/recall remain OPTION awaiting Owner.",
     "Failed parameter variants mean the same authored plan needs replanning, not the entire world is unsolvable.",
     "Injury movement multipliers, bruises and general injury stacking are not modeled; route inputs have no movement-modifying bruise.",
-    "全空家底HP1流血例现在只验证合法返回及显式中枢夜先流血死亡，不再免费建立下一任务精力。",
-    "仅另验生存专长绷带+2的10轮局部OPTION；未验证完整三专长组合、NPC交换、任意重访或任意战斗。"
+    "全空家底只证合法返回与下一有效launch衔接死亡；不保证存在生存解。",
+    "仅执行有限生存+2、一次林岑兑换、采购路线与十份显式供给；未验证完整专长组合、无限供给或所有路线。"
   ],
   "scenarios": [
     {
@@ -3659,7 +3659,7 @@
     },
     {
       "id": "terminal_voluntary_failure",
-      "purpose": "v1.2 主动失败：罚min(P,30)，新获未用普通品回收、旧家底保留",
+      "purpose": "v1.3 较轻失败：罚min(P,20)，实际合法携出普通物全部保留；旧来源回收另列对照",
       "steps": [
         {
           "action": "failure",
@@ -3740,16 +3740,12 @@
           "exposure": 1,
           "inventory_by_location": {
             "bank": {
-              "ration": 3,
-              "metal": 2,
-              "firstaid": 1
-            },
-            "recovered": {
-              "ration": 2,
-              "metal": 2,
+              "ration": 5,
+              "metal": 4,
               "cloth": 1,
               "battery": 2,
-              "bandage": 1
+              "bandage": 1,
+              "firstaid": 1
             },
             "impounded": {
               "card": 1
@@ -3758,13 +3754,13 @@
               "sample": 1
             }
           },
-          "points": 20
+          "points": 30
         }
       }
     },
     {
       "id": "terminal_deadline_recall",
-      "purpose": "v1.2 期限危险后召回：罚min(P,30)，新获未用普通品回收、旧家底保留",
+      "purpose": "v1.3 较轻失败：罚min(P,20)，实际合法携出普通物全部保留；旧来源回收另列对照",
       "steps": [
         {
           "action": "deadline",
@@ -3849,16 +3845,12 @@
           "equipped_retained": true,
           "inventory_by_location": {
             "bank": {
-              "ration": 3,
-              "metal": 2,
-              "firstaid": 1
-            },
-            "recovered": {
-              "ration": 2,
-              "metal": 2,
+              "ration": 5,
+              "metal": 4,
               "cloth": 1,
               "battery": 2,
-              "bandage": 1
+              "bandage": 1,
+              "firstaid": 1
             },
             "impounded": {
               "card": 1
@@ -3867,7 +3859,7 @@
               "sample": 1
             }
           },
-          "points": 20,
+          "points": 30,
           "character_day": 8,
           "ready_next": true
         }
@@ -4613,7 +4605,7 @@
     },
     {
       "id": "entirely_empty_character_continuation",
-      "purpose": "真正全空家底HP1流血先合法回Hub；显式下一角色日休整因流血死亡，不能启动下一任务",
+      "purpose": "全空HP1流血可正常失败生还；下一合法launch先真实结日死亡，不创建新任务或重赠",
       "initial": {
         "hp": 1,
         "energy": 0,
@@ -4628,8 +4620,10 @@
           "label": "合法失败返航不把贫穷判死"
         },
         {
-          "action": "hub_rest",
-          "label": "真实过夜流血先结算"
+          "action": "launch",
+          "task_id": "EMPTY_NEXT",
+          "revision": 1,
+          "label": "合法出发先结当前真实周期，流血死亡"
         }
       ],
       "expect": {

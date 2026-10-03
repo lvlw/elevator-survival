@@ -1,0 +1,21 @@
+{
+  "scope": "ISOLATED HYPOTHETICAL CONTRACT FIXTURES, NOT PLAYER CONTENT. Same geometry only tests handoff; no new task content is asserted.",
+  "offered_tasks": {
+    "FOLLOWUP": {
+      "world_id": "infected_world",
+      "mission_id": "fixture_other_template",
+      "commission_id": "fixture-different-contract-B",
+      "character_id": "character-001",
+      "policy": "living_failure",
+      "version": "infected-draft-v1.4"
+    },
+    "AFTER": {
+      "world_id": "infected_world",
+      "mission_id": "fixture_other_template",
+      "commission_id": "fixture-different-contract-C",
+      "character_id": "character-001",
+      "policy": "living_failure",
+      "version": "infected-draft-v1.4"
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "inputs": {
+    "parameters.json": "b8961161dcb2d3543df06156c5a958c231f16bdb8ea6d9022db079e95aef0506",
+    "scenarios.json": "56ff2a63b994816a2437d732f58da27a84b11c7afee0d4c85cf6ac476c811ae5",
+    "check_design.py": "b14eae67d9ef1634f4f7fc63cd4c440be82743b130be10b534086d830ae82364",
+    "checks_v1_4.py": "5b07cc1257230a8180ae87ae71897cee25604c85e322e6014b947cfe40ab2476",
+    "fixtures-v1.4.json": "e0db437a9ab01d1a3838d3c4817eed2a90f7f4fa3b200551288526c5364e3ee7",
+    "expected-v1.4.json": "91e9f217b98cc165aa57d3dc557fe84f57c86836d90edfb50c0554ca3239d6dc"
+  },
+  "counts": {
+    "positive": 83,
+    "expected_rejection": 72,
+    "unsupported": 1,
+    "total": 156,
+    "matched": 146,
+    "mismatched": 10
+  },
+  "failures": [
+    {
+      "id": "default_one_commission",
+      "classification": "positive",
+      "scope": "current",
+      "expected": [
+        "CURRENT"
+      ],
+      "actual": {
+        "unexpected_exception": "AttributeError:'list' object has no attribute 'items'"
+      },
+      "passed": false
+    },
+    {
+      "id": "active_query_static_not_save_test",
+      "classification": "positive",
+      "scope": "current",
+      "expected": true,
+      "actual": {
+        "unexpected_exception": "AttributeError:'bool' object has no attribute 'items'"
+      },
+      "passed": false
+    },
+    {
+      "id": "F02_repeat_death",
+      "classification": "positive",
+      "scope": "current",
+      "expected": true,
+      "actual": {
+        "unexpected_exception": "AttributeError:'bool' object has no attribute 'items'"
+      },
+      "passed": false
+    },
+    {
+      "id": "healthy_service_noop",
+      "classification": "positive",
+      "scope": "current",
+      "expected": true,
+      "actual": {
+        "unexpected_exception": "AttributeError:'bool' object has no attribute 'items'"
+      },
+      "passed": false
+    },
+    {
+      "id": "match_ordinary_full",
+      "classification": "positive",
+      "scope": "current",
+      "expected": 6,
+      "actual": {
+        "unexpected_exception": "AttributeError:'int' object has no attribute 'items'"
+      },
+      "passed": false
+    },
+    {
+      "id": "match_scout_full",
+      "classification": "positive",
+      "scope": "current",
+      "expected": 4,
+      "actual": {
+        "unexpected_exception": "AttributeError:'int' object has no attribute 'items'"
+      },
+      "passed": false
+    },
+    {
+      "id": "match_ordinary_quick",
+      "classification": "positive",
+      "scope": "current",
+      "expected": 4,
+      "actual": {
+        "unexpected_exception": "AttributeError:'int' object has no attribute 'items'"
+      },
+      "passed": false
+    },
+    {
+      "id": "match_scout_quick",
+      "classification": "positive",
+      "scope": "current",
+      "expected": 3,
+      "actual": {
+        "unexpected_exception": "AttributeError:'int' object has no attribute 'items'"
+      },
+      "passed": false
+    },
+    {
+      "id": "engineer_with_flashlight",
+      "classification": "positive",
+      "scope": "current",
+      "expected": 10,
+      "actual": {
+        "unexpected_exception": "AttributeError:'int' object has no attribute 'items'"
+      },
+      "passed": false
+    },
+    {
+      "id": "engineer_with_toolkit",
+      "classification": "positive",
+      "scope": "current",
+      "expected": 10,
+      "actual": {
+        "unexpected_exception": "AttributeError:'int' object has no attribute 'items'"
+      },
+      "passed": false
+    }
+  ],
+  "canonical_results_sha256": "9941758f8c553c21f91f0510454aec9317e957770438fe90882fc3c02e153fba"
+}

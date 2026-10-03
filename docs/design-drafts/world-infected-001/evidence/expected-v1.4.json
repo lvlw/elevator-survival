@@ -1,0 +1,15 @@
+{
+  "task": "WORLD-DESIGN-004",
+  "declared_before_first_execution": true,
+  "contract_expectations": {
+    "qualification": "Current commission closes on success, voluntary failure, deadline recall or active death. New execution ID/title/partial sample/installed fact cannot reopen it. Rejections precede health, dates, item changes. Default catalog contains exactly the current commission.",
+    "routes": "Four baseline routes unchanged: nominal269/318/373/338; D3/4/7/4; HP4/5/2/5; I20/20/25/20. Explicit authored risks only.",
+    "economy": "Normal success120 then therapy40, purchase metal12, ration20, bandage18 leaves30. Two metal and one cloth maintenance are actual world+purchase consumption. Only current specific commission success unlocks medical; template alias not enough.",
+    "endings": "Same full reward regardless injury; failure income0, min(P,20) once, ordinary physical state retained. Deadline hazards before recall; HP0 no recall. No normal return night. No Day8 or same-cycle repeat/refresh.",
+    "specialties": "scout C_match full4/quick3 vs6/4; engineer L_fixation manual10 vs14, orders10 no stacking and crowbar6+wear1 unchanged; survival world bandage2 vs1 capped12, actual consumption, injury remains, Hub1. Combat medicine, full9 combinations and save continuity unsupported.",
+    "electronic": "C4 and L3 each1 modeled fixed unit. Repair uses1 and installation uses1, not same unit twice; rescue requires actual route/open/search/pickup/carry. Formal hospital toolkit door yield remains a documented unmodeled option, not zero supply.",
+    "history": "Do not rerun ten equal-supply sequences by default. Preserve original269 artifacts and map every ID with exact baseline fingerprint.",
+    "F1_F02": "No events after early incapacitation, correct first/reentry; death clears only currently usable assets and does not rewrite delivered/consumed/installed or prior successful result.",
+    "preview": "Finite preview excludes exact hidden infection/exposure and future outcome. Full player-safe infection forecast is unsupported, not proven by field removal."
+  }
+}

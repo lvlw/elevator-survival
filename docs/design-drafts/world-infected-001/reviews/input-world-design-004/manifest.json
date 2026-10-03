@@ -1,0 +1,86 @@
+{
+  "baseline_sha": "25e420ed9f36f1bf2acfbb0d96e3a798fbdd6bf8",
+  "main_readonly_sha": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+  "source_inputs": [
+    {
+      "source_path": "D:\\浏览器下载\\WORLD-DESIGN-004-task.md",
+      "archive_path": "reviews/input-world-design-004/WORLD-DESIGN-004-task.md",
+      "sha256": "edff7e597d8c9a6d9c28415dc550d81ee70c42989a781be29b26db02646955ba",
+      "bytes": 16859
+    },
+    {
+      "source_path": "D:\\浏览器下载\\AUD-25e420e-WORLD-DESIGN-003D-review-v1.0.md",
+      "archive_path": "reviews/input-world-design-004/AUD-25e420e-WORLD-DESIGN-003D-review-v1.0.md",
+      "sha256": "a973827ee607722500b940a32e27ccd399e80deeb39b5f677a9e2b4884da5873",
+      "bytes": 3944
+    }
+  ],
+  "unchanged_historical_evidence": [
+    {
+      "path": "evidence/raw-results.json",
+      "sha256": "4065d55c4fe6d256fd9fc0cbdefd7a4154eeab3cd35c935aa748b35588727ea0",
+      "bytes": 346107
+    },
+    {
+      "path": "evidence/joint-results.json",
+      "sha256": "fc280c9d510b10a88aa9ffbca960b6a3db986ceb33a93336ed1d547bb33a75ae",
+      "bytes": 1467822
+    },
+    {
+      "path": "evidence/route-ledgers.json",
+      "sha256": "b99ea9a6e037b53dcdaeabd0e82e48262e81a6b701ad62f5a39824cd1ea3cc18",
+      "bytes": 785265
+    },
+    {
+      "path": "evidence/route-ledgers.csv",
+      "sha256": "4e868de77da95c41027d3912060b47547aa7470656e3c7a469611fe4fa728ca4",
+      "bytes": 70931
+    },
+    {
+      "path": "evidence/execution-metadata.json",
+      "sha256": "79f9c3a04e6c16a9c243ce0c5a9640df965631180d177dc204053bc688bc4988",
+      "bytes": 1159
+    },
+    {
+      "path": "evidence/first-run-v1.3.json",
+      "sha256": "01ce37250a9507517d7733ef5342eed00017b5ab69187f96ba9d6c67f47c0968",
+      "bytes": 3370
+    },
+    {
+      "path": "evidence/first-run-v1.2.json",
+      "sha256": "74a1f64a88174d62aec8087729e56af8257812817ec915145ed31117aca3516f",
+      "bytes": 180578
+    },
+    {
+      "path": "evidence/first-run-results.json",
+      "sha256": "f68b9f270966bc17536bb2d93f201dc991927bd9a8a37fd63607916e4893151a",
+      "bytes": 49401
+    },
+    {
+      "path": "evidence/scenarios.json",
+      "sha256": "56ff2a63b994816a2437d732f58da27a84b11c7afee0d4c85cf6ac476c811ae5",
+      "bytes": 108634
+    },
+    {
+      "path": "evidence/joint_checks.py",
+      "sha256": "3d23a83ae93538a4253518862fcfbf037d0ee09ee00fc36d2442c906ff25d3ff",
+      "bytes": 36985
+    },
+    {
+      "path": "evidence/checks_v1_3.py",
+      "sha256": "90eeece4bdedaa7caa8c0b9b1ec3e4053c711e3c6f1f0ff97006395e0def64dc",
+      "bytes": 26083
+    },
+    {
+      "path": "reviews/OWNER-endings-followup-6de365d-v1.0.md",
+      "sha256": "b8e3a28ed6152ebf142ab836b0018a3d8c9308f3c801716d54c520352de1cfcd",
+      "bytes": 13435
+    },
+    {
+      "path": "reviews/mission-retry-options-v0.1.md",
+      "sha256": "b123724e34c1de710441a65510a858674c8e4effa799b3e327a94d0fea39ddfa",
+      "bytes": 10311
+    }
+  ],
+  "note": "仅真实004输入归档；其余旧材料以Git定位。Project Sources未直接核对，使用仓库正式副本。"
+}

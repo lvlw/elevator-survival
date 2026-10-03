@@ -1,6 +1,6 @@
 """Bounded design evidence; Python standard library only.
 
-Replays authored actions against the Draft v1.3 contract. Combat uses fixed
+Replays authored actions against the Draft v1.4 design contract. Combat uses fixed
 event traces, not a general CTB scheduler; no RNG, production import, save
 roundtrip, UI, whole-strategy search or balance guarantee. All output stays
 beside this script. Geometries are author-selected witnesses at each stable
@@ -101,6 +101,14 @@ def validate(s, p):
     require(isinstance(s["task_id"],str) and bool(s["task_id"].strip()) and s["task_id"] not in ("before","hub_purchase"), "invalid_task_id")
     require(type(s["revision"]) is int and s["revision"] >= 0, "invalid_revision")
     require(type(s["satiety"]) is int and 0 <= s["satiety"] <= p["limits"]["satiety"], "invalid_satiety")
+    require(s["specialty"] in (None, "scout", "engineer", "survival"), "invalid_specialty")
+    require(s["character_id"] == "character-001", "unknown_character_fixture")
+    require(all(v["state"] in ("active", "success", "failure", "deadline_recall", "death")
+                for v in s["commissions"].values()), "invalid_commission_state")
+    if s["status"] == "active":
+        record = s["commissions"].get(s["commission_id"])
+        require(record is not None and record["state"] == "active" and
+                record["execution_id"] == s["task_id"], "invalid_active_commission")
     if s["ready_next"]:
         require(s["settled_cycle"] == s["character_day"] - 1, "invalid_settled_cycle")
     return geometry(s, p)
@@ -147,6 +155,9 @@ def initial(spec, p):
              mission_id=i.get("mission_id","infected_recovery"), rules_version=p["rules_version"])
     if s["first_entry"]:
         s.update(location="HUB",status="new_character",active_task_id=None,used_task_ids=[])
+    s.update(character_id="character-001", commission_id="transfer-001",
+             specialty=i.get("specialty"), commissions={} if s["first_entry"] else
+             {"transfer-001":{"state":"active","execution_id":s["task_id"]}})
     s["injury"] = i.get("injury", s["injury"])
     if i.get("initial_bandage", True):
         s["units"].append({"id": "initial.bandage.1", "type": "bandage",
@@ -187,6 +198,8 @@ def terminal_death(s, reason):
     # Current ownership only: past dispositions are immutable historical facts.
     if s["status"] == "death":
         return
+    if s["active_task_id"] is not None:
+        s["commissions"][s["commission_id"]] = {"state":"death","execution_id":s["task_id"]}
     s.update(status="death", points=0, ready_next=False, settled_cycle=None,
              reason=reason, next_activity="new_character_setup",
              equipped_retained=False, active_task_id=None, pending=None)
@@ -274,7 +287,8 @@ def finish_return(s, p, outcome):
                 elif slot == "utility": s["tool"], s["tool_resource"] = "none", 0
     fee = min(s["points"], p["economy"]["failure_penalty"]) if not success else 0
     s["points"] += p["economy"]["success_reward"] if success else -fee
-    s["first_success"] |= success and s["mission_id"] == "infected_recovery"
+    s["commissions"][s["commission_id"]] = {"state":outcome,"execution_id":s["task_id"]}
+    s["first_success"] |= success and s["commission_id"] == "transfer-001"
     s["last_settled_result"] = {"task_id":s["task_id"],"outcome":outcome,
                                 "reward":p["economy"]["success_reward"] if success else 0,"fee":fee}
     s["active_task_id"] = None
@@ -464,8 +478,14 @@ def hub_action(s, action, p):
         task = action.get("task_id")
         require(isinstance(task,str) and bool(task.strip()) and task not in ("before","hub_purchase"),"invalid_task_id")
         require(task not in s["used_task_ids"],"offer_already_used")
-        require(task in s["offered_tasks"],"task_not_offered")
-        offer = s["offered_tasks"][task]
+        offer_key = action.get("offer_id", "CURRENT")
+        require(offer_key in s["offered_tasks"],"task_not_offered")
+        offer = s["offered_tasks"][offer_key]
+        require(offer.get("character_id") == s["character_id"], "commission_wrong_character")
+        commission = offer.get("commission_id")
+        require(isinstance(commission,str) and bool(commission), "missing_commission_identity")
+        require(commission not in s["commissions"], "commission_closed_or_active")
+        require(action.get("specialty",s["specialty"]) == s["specialty"], "specialty_change_unapproved")
         require(offer["world_id"] == "infected_world" and action.get("world_id",offer["world_id"]) == offer["world_id"],"unknown_offer_world")
         require(offer["policy"] in ("living_failure","must_complete") and action.get("policy",offer["policy"]) == offer["policy"],"unknown_task_policy")
         require(offer["version"] == p["rules_version"] and action.get("offer_version",offer["version"]) == offer["version"],"stale_offer_version")
@@ -474,7 +494,9 @@ def hub_action(s, action, p):
                     if u["location"] in ("pack","q1","q2")),"task_bound_item_not_exportable")
         if op == "hub_launch_preview":
             return s,0,{"preview_only":True,"task_id":task,"handoff_due":not s["first_entry"] and not s["ready_next"],
-                        "health":{k:s[k] for k in ("hp","satiety","infection","exposure","bleeding","injury")}}
+                        "health":{k:s[k] for k in ("hp","satiety","bleeding","injury")},
+                        "infection_forecast":"unsupported_player_safe_forecast",
+                        "can_return_to_preparation":True}
         if not s["first_entry"] and not s["ready_next"]:
             detail["settled_cycle"] = s["character_day"]
             detail["stages"] = daily_hazards(s,p)
@@ -489,6 +511,8 @@ def hub_action(s, action, p):
         else:
             detail["first_entry_no_prior_day"] = True
         s["used_task_ids"].append(task)
+        s["commission_id"] = commission
+        s["commissions"][commission] = {"state":"active","execution_id":task}
         s.update(task_id=task,active_task_id=task,mission_id=offer["mission_id"],day=1,location="H0",status="active",reason=None,
                  first_entry=False,ready_next=False,settled_cycle=None,next_activity=None,exit_policy=offer["policy"],
                  facts={"hospital_model"},sources=set(),known_edges=set(),visited=set(),pending=None)
@@ -584,7 +608,7 @@ def perform(state, action, p):
             require(s["hp"] < p["limits"]["hp"] or s["bleeding"] or s["wound"],
                     "no_medical_target")
             consume(s, kind, 1, locations=(loc,), new_first=p["economy"]["recover_new_on_failure"])
-            s["hp"] = min(p["limits"]["hp"], s["hp"] + p["health"]["bandage_heal"])
+            s["hp"] = min(p["limits"]["hp"], s["hp"] + (p["specialties"]["survival"]["world_bandage_heal"] if s["specialty"] == "survival" else p["health"]["bandage_heal"]))
             s["bleeding"], s["wound"] = False, False
         elif kind == "firstaid":
             removable = s["injury"] in ("light_contusion","light_laceration","light_puncture","light_bite")
@@ -676,12 +700,20 @@ def perform(state, action, p):
                 require(s["tool"] == "crowbar" and s["tool_resource"] > 0, "no_usable_crowbar")
                 s["tool_resource"] = max(0, s["tool_resource"] - p["gear"]["crowbar"]["wear"])
             price = p["prices"]["pry" if method == "crowbar" else "manual"]
+            if op == "L_fixation_open" and method in ("manual","orders"):
+                if method == "orders":
+                    require("orders" in s["facts"], "missing_orders")
+                    price = p["prices"]["orders_manual"]
+                if s["specialty"] == "engineer":
+                    price = min(price,p["specialties"]["engineer"]["fixation_manual"])
         elif "full" in data:
             method = action.get("method", "full")
             require(method in ("full", "quick"), "unsupported_method")
             if method == "quick":
                 require(all(f in s["facts"] for f in data["quick_requires"]), "missing_quick_information")
             price = p["prices"][data[method]]
+            if op == "C_match" and s["specialty"] == "scout":
+                price = p["specialties"]["scout"]["match_"+method]
         elif op == "sample_extract":
             method = action.get("method", "careful")
             require(method in ("careful", "direct"), "unsupported_method")
@@ -779,103 +811,8 @@ def run_route(spec, p):
     summary["ledger"] = ledger
     return summary
 
-def main():
-    ppath, spath = BASE / "parameters.json", BASE / "scenarios.json"
-    p = json.loads(ppath.read_text(encoding="utf-8"))
-    specs = json.loads(spath.read_text(encoding="utf-8"))
-    results, ledgers = [], {}
-    for spec in specs["scenarios"]:
-        result = run_route(spec, p)
-        ledgers[spec["id"]] = result.pop("ledger")
-        results.append(result)
-    sensitivity = []
-    indexed = {s["id"]: s for s in specs["scenarios"]}
-    for change in specs.get("sensitivity", []):
-        variant = copy.deepcopy(p)
-        target = variant
-        for key in change["path"][:-1]:
-            target = target[key]
-        target[change["path"][-1]] = change["value"]
-        spec = copy.deepcopy(indexed[change["scenario"]])
-        spec["id"] = change["id"]
-        spec["expect"] = change.get("expect", {})
-        spec["expect_error"] = change.get("expect_error")
-        spec.pop("expect_failed_action", None)
-        for a in spec["steps"]:
-            a.pop("expect", None)
-        result = run_route(spec, variant)
-        result["changed_parameter"] = {"path": change["path"], "value": change["value"]}
-        ledgers[change["id"]] = result.pop("ledger")
-        sensitivity.append(result)
-    from joint_checks import run_joint
-    joint, joint_detail = run_joint(p, specs)
-    expected_errors={x["id"]:x.get("expect_error") for x in specs["scenarios"]+specs.get("sensitivity",[])}
-    for r in results+sensitivity:
-        declared=expected_errors[r["id"]]
-        r["classification"] = "unsupported" if declared in ("broken_pipe_needs_other_trace","restricted_deadline_unmodeled") else ("expected_rejection" if declared else "positive")
-    passed = sum(r["passed"] for r in results + sensitivity + joint)
-    output = {"evidence_kind": p["evidence_kind"], "version": p["version"],
-              "base_sha": p["base_sha"],
-              "counts": {"scenarios":len(results),"sensitivity":len(sensitivity),"joint":len(joint),
-                         "positive":sum(r["classification"]=="positive" for r in results+sensitivity+joint),
-                         "expected_rejection":sum(r["classification"]=="expected_rejection" for r in results+sensitivity+joint),
-                         "unsupported":sum(r["classification"]=="unsupported" for r in results+sensitivity+joint),
-                         "passed":passed,"failed":len(results)+len(sensitivity)+len(joint)-passed,
-                         "supported_expected_matched":sum(r["passed"] and r["classification"]!="unsupported" for r in results+sensitivity+joint),
-                         "unsupported_recognized":sum(r["passed"] and r["classification"]=="unsupported" for r in results+sensitivity+joint)},
-              "scenarios": results, "sensitivity": sensitivity, "joint":joint,
-              "limits": specs["limits"]}
-    (BASE / "raw-results.json").write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n",
-                                          encoding="utf-8", newline="\n")
-    (BASE/"joint-results.json").write_text(json.dumps(joint_detail,ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
-
-    # Each changed scalar/collection is stored once. Unit changes are keyed by stable identity.
-    compact_ledgers = {}
-    for name, rows in ledgers.items():
-        steps = []
-        for row in rows:
-            before, after = row["before"], row["after"]
-            delta = {k:v for k,v in after.items() if k not in ("units","geometry","inventory_by_location") and before.get(k)!=v}
-            old_units = {u["id"]:u for u in before["units"]}
-            changed = [u for u in after["units"] if old_units.get(u["id"])!=u]
-            if changed: delta["units_upsert"]=changed
-            entry = {"step":row["step"],"action":row["action"],"delta":delta,
-                     "nominal_energy":row.get("nominal_energy",0)}
-            if row.get("detail"): entry["detail"]=row["detail"]
-            if row.get("rejected"): entry["rejected"]=row["rejected"]
-            steps.append(entry)
-        compact_ledgers[name]={"initial":rows[0]["before"] if rows else None,"steps":steps}
-    (BASE/"route-ledgers.json").write_text(json.dumps(compact_ledgers,ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
-    fields = ["scenario", "step", "day", "label", "action", "from", "to", "nominal_energy",
-              "energy_before", "energy_after", "hp", "pipe", "coat", "tool_resource",
-              "weight", "satiety", "infection", "exposure", "status", "rejected"]
-    with (BASE / "route-ledgers.csv").open("w", encoding="utf-8-sig", newline="") as f:
-        writer = csv.DictWriter(f, fields, lineterminator="\n")
-        writer.writeheader()
-        for name, rows in ledgers.items():
-            for row in rows:
-                b, a = row["before"], row["after"]
-                writer.writerow({"scenario": name, "step": row["step"], "day": b["day"],
-                    "label": row["action"].get("label", ""), "action": row["action"]["action"],
-                    "from": b["location"], "to": a["location"],
-                    "nominal_energy": row.get("nominal_energy", 0),
-                    "energy_before": b["energy"], "energy_after": a["energy"],
-                    "hp": a["hp"], "pipe": a["pipe"], "coat": a["coat"],
-                    "tool_resource": a["tool_resource"], "weight": a["geometry"]["weight"],
-                    "satiety": a["satiety"], "infection": a["infection"], "exposure": a["exposure"],
-                    "status": a["status"], "rejected": row.get("rejected", "")})
-    inputs=("parameters.json","scenarios.json","check_design.py","joint_checks.py","checks_v1_3.py","expected-v1.3.json")
-    canonical=json.dumps({k:output[k] for k in ("scenarios","sensitivity","joint")},ensure_ascii=False,sort_keys=True,separators=(",",":")).encode("utf-8")
-    metadata={"runtime":__import__("sys").version,"input_sha256":{name:hashlib.sha256((BASE/name).read_bytes()).hexdigest() for name in inputs},
-              "canonical_results_sha256":hashlib.sha256(canonical).hexdigest(),
-              "stable_output_sha256":{name:hashlib.sha256((BASE/name).read_bytes()).hexdigest() for name in
-                                     ("raw-results.json","joint-results.json","route-ledgers.json","route-ledgers.csv")}}
-    (BASE/"execution-metadata.json").write_text(json.dumps(metadata,ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
-    if not (BASE/"first-run-v1.3.json").exists():
-        (BASE/"first-run-v1.3.json").write_text(json.dumps({"metadata":metadata,**output},ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
-    print(json.dumps({"counts": output["counts"],
-          "failures": [r for r in results + sensitivity + joint if not r["passed"]]}, ensure_ascii=False, indent=2))
-    raise SystemExit(0 if output["counts"]["failed"] == 0 else 1)
+# Historical v1.3 runner and outputs are recoverable at baseline Git; current runs write v1.4 only.
 
 if __name__ == "__main__":
-    main()
+    from checks_v1_4 import main as current_main
+    current_main()

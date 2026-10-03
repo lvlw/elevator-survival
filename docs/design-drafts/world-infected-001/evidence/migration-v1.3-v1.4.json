@@ -1,0 +1,2411 @@
+{
+  "baseline_sha": "25e420ed9f36f1bf2acfbb0d96e3a798fbdd6bf8",
+  "old_results_sha256": "4065d55c4fe6d256fd9fc0cbdefd7a4154eeab3cd35c935aa748b35588727ea0",
+  "old_counts": {
+    "scenarios": 52,
+    "sensitivity": 5,
+    "joint": 212,
+    "positive": 145,
+    "expected_rejection": 123,
+    "unsupported": 1,
+    "passed": 269,
+    "failed": 0,
+    "supported_expected_matched": 268,
+    "unsupported_recognized": 1
+  },
+  "migration_counts": {
+    "retained_rerun": 52,
+    "historical_only": 34,
+    "replaced": 63,
+    "unsupported_recognized": 1,
+    "not_reexecuted": 119
+  },
+  "limits": "映射不是新用例数；replaced仅指当前责任边界，不表示原例所有字段均复跑。未重验不因未执行而退役。",
+  "cases": [
+    {
+      "old_id": "normal_five",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "normal_five"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "early_sample_five",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "early_sample_five"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "damaged_split_five",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "damaged_split_five"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "flashlight_five",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "flashlight_five"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "original_R4_illegal",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "原三图比较原样留档；本期五图不重开。"
+    },
+    {
+      "old_id": "corrected_R4_three",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "原三图比较原样留档；本期五图不重开。"
+    },
+    {
+      "old_id": "cross_region_work",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "cross_region_work"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "topology_three_power",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "原三图比较原样留档；本期五图不重开。"
+    },
+    {
+      "old_id": "topology_five_west",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "topology_five_west"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "topology_five_no_hotel",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "topology_five_no_hotel"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "A_same_position",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "A_same_position"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "C_same_position",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "C_same_position"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "A_defer_same_work",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "A_defer_same_work"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "C_finish_same_work",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "C_finish_same_work"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "last_positive_action",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "last_positive_action"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "zero_next_action",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "zero_next_action"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "batch_is_multiple_edges",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "batch_is_multiple_edges"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "zero_triggered_combat",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "zero_triggered_combat"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "cannot_rest_past_combat",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "cannot_rest_past_combat"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "unknown_route",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "unknown_route"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "source_once_across_night",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "source_once_across_night"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "unique_instance",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "unique_instance"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "C_quick_needs_information",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "C_quick_needs_information"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "P_work_wrong_location",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "P_work_wrong_location"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "zero_self_rescue_pickup",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "zero_self_rescue_pickup"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "missing_install_material",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "missing_install_material"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "misused_electronics_rejected",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "misused_electronics_rejected"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "misused_electronics_recovery",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "misused_electronics_recovery"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "night_bleeding_death",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "night_bleeding_death"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "night_infection_hp_loss",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "night_infection_hp_loss"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "H_wound_can_kill",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "H_wound_can_kill"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "no_day_eight",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "no_day_eight"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "rest_target_not_addition",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "rest_target_not_addition"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "no_signature_refresh_on_crossing",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "no_signature_refresh_on_crossing"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "terminal_success",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "terminal_success"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "terminal_voluntary_failure",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "terminal_voluntary_failure"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "terminal_deadline_recall",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "terminal_deadline_recall"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "terminal_death_clears_bank",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "terminal_death_clears_bank"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "terminal_zero_fee_inventory_survive",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "terminal_zero_fee_inventory_survive"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "low_pipe_actual_repair",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "low_pipe_actual_repair"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "ground_identity_across_night",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "ground_identity_across_night"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "unsafe_node_cannot_rest",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "unsafe_node_cannot_rest"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "C_extract_without_match",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "C_extract_without_match"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "overweight_rejected",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "overweight_rejected"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "bandage_does_not_erase_injury",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "bandage_does_not_erase_injury"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "deadline_suppression_expires_after_effect",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "deadline_suppression_expires_after_effect"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "world_cannot_use_bank",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "world_cannot_use_bank"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "world_cannot_drop_bank",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "world_cannot_drop_bank"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "pickup_negative_quantity",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "pickup_negative_quantity"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "pickup_zero_quantity",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "pickup_zero_quantity"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "drop_negative_quantity",
+      "old_group": "scenarios",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "drop_negative_quantity"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "entirely_empty_character_continuation",
+      "old_group": "scenarios",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "no_real_task_no_damage",
+        "legal_handoff_death_no_entry"
+      ],
+      "note": "003C不允许给原委托换执行ID；当前无任务零伤害，危险衔接另用明确异委托夹具。"
+    },
+    {
+      "old_id": "price_pry_8",
+      "old_group": "sensitivity",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "price_pry_8"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "pipe_capacity_10",
+      "old_group": "sensitivity",
+      "old_classification": "unsupported",
+      "migration": "unsupported_recognized",
+      "current_ids": [
+        "pipe_capacity_10"
+      ],
+      "note": "原固定轨迹需要别种打法，仍未支持；识别并非通过路线。"
+    },
+    {
+      "old_id": "coat_mitigation_0",
+      "old_group": "sensitivity",
+      "old_classification": "positive",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "coat_mitigation_0"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "drop_front_ration_1",
+      "old_group": "sensitivity",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "drop_front_ration_1"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "topology_remove_C0_H0",
+      "old_group": "sensitivity",
+      "old_classification": "expected_rejection",
+      "migration": "retained_rerun",
+      "current_ids": [
+        "topology_remove_C0_H0"
+      ],
+      "note": "原动作／扰动输入保留，按当前共同模型实际执行。"
+    },
+    {
+      "old_id": "F1a_damage_6",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "F1_early_kill_6"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "F1a_damage_16",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "F1_early_kill_16"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "F1b_first_trace_on_reentry",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "F1_first_on_reentry"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "F1b_reentry_trace_on_first",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "F1_reentry_on_first"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "F1_baseline_first_trace",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "F1_valid_first"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "F1_valid_reentry",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "F1_valid_reentry"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "F1_separately_authored_damage6",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "F1_independent_short_trace"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "disease_old_0",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "disease_old_29",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "disease_old_59",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "disease_old_89",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "disease_old_110",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "disease_old_120",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "disease_old_160",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "disease_suppression_before_damage",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "disease_actual_death_stops_food",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "zero_base_exposure_two",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "HP1_high_infection_legal_return_treat",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "HP0_no_service",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "death_no_treatment"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "HP0_no_launch",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "service_tier_body",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "service_tier_processed_injury",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "service_tier_low_infection",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "service_tier_exposure",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "service_tier_high_infection",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "service_all_state_boundary",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "service_preserves_nontarget_state",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "service_preserves_other_owners"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "service_replayed_old_quote",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "service_old_quote"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "service_fresh_healthy_noop",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "healthy_service_noop"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "healthy_pure_drug_noop",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "service_insufficient_atomic",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "service_39_insufficient"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "service_cancel",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "service_stale_after_real_medicine",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "old_firstaid_not_free_infection_cure",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "invalid_balance_negative",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "invalid_balance_negative"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "invalid_balance_bool",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "invalid_balance_bool"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "invalid_balance_fraction",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "invalid_balance_fraction"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "invalid_balance_nan",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "invalid_balance_nan"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "invalid_balance_overflow",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "invalid_balance_overflow"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "wealth_without_eligibility",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "eligibility_insufficient_balance",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "purchase_exact_balance",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "purchase_replay",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "medical_firstaid_unlocked_catalog",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "purchase_bad_destination",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "headroom_exact_reward",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "headroom_insufficient_before_accept",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "success_reward_replay",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "launch_without_hub_rest_closes_day",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "obsolete_hub_rest_rejected",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "first_launch_no_prior_day",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "first_no_prior_day"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "new_task_after_immediate_failure_closes_new_day",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "later_cycle_still_due"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_stale_offer",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "same_world_task_allow_failure",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "same_world_other_task_restrict_exit",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "same_world_other_task_declared_deadline_death",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "old_consumed_new_not_laundered",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "stack_drop_pickup_preserves_provenance",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "new_equipped_identity_failure_fixture",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "new_metal_used_before_failure_residual",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "disinfectant_quick_noncombat_allowed",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "disinfectant_quick_not_combat_use",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "one_metal_not_double_restore",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "metal_no_double_restore"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "one_metal_actual_shared_restore",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "hub_flashlight_actual_battery",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "hub_toolkit_actual_materials",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "maintenance_replay_partial_target",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "maintenance_new_request_continues",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "deadline_next_task_no_second_night",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "deadline_no_double_cycle"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "normal_treat_before_real_night",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "latest_body_at_launch"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "deadline_cannot_treat_before_hazards",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "invalid_exposure_negative",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "invalid_exposure_bool",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "invalid_exposure_fraction",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "invalid_exposure_nan",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "invalid_exposure_overflow",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "infection_growth_overflow_atomic",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "invalid_exposure_before_rest_negative",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "invalid_exposure_before_rest_boolean",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "invalid_exposure_before_rest_NaN",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "invalid_exposure_before_deadline_negative",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "invalid_exposure_before_deadline_boolean",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "invalid_exposure_before_deadline_NaN",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "active_HP0_cannot_self_rescue",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "tier40_balance39_retains_old_medicine",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "tier40_exact_balance40",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "zero_points_real_old_medicine_then_real_night",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "HP1_severe_success_reward_then_service",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "illegal_quote_price_negative",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "illegal_quote_price_fraction",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "illegal_quote_price_bool",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "illegal_quote_price_missing",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "forged_free_tier40_quote",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "service_forged_price"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "invalid_purchase_quantity_negative",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "invalid_purchase_quantity_zero",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "invalid_purchase_quantity_fraction",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "invalid_purchase_quantity_bool",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "illegal_quote_equal_float40",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "illegal_quote_healthy_false",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "launch_keeps_current_real_day_dose_flags",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "reserved_or_empty_task_id_before",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "reserved_or_empty_task_id_hub_purchase",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "reserved_or_empty_task_id_empty",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "valid_next_task_old_identity_retained",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "new_quick_item_not_laundered",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "deadline6_normal_route",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "deadline6_damaged_route_rejected",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "map_remove_T0_P0_authored_route_rejected",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "failure_loot_10",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "failure_self_use_10",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "low_HP4_base_self_use_10",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "low_HP4_survival_OPTION_self_use_10",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "old_policy_pharmacy_loot_10",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "old_policy_pharmacy_self_use_10",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "logistics50_HP12_same_start_main_10",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "logistics50_HP12_same_start_old_10",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "logistics50_lowHP4_main_10",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "logistics50_lowHP4_old_policy_10",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "logistics50_lowHP4_survival_OPTION_10",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "logistics50_with_old_points100_10",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "logistics50_no_use_lowHP4_main",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "logistics50_infected25_lowHP4_main",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "logistics50_with_old_points100_old_policy_10",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "logistics50_infected25_lowHP4_old_policy",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "logistics50_no_use_lowHP4_old_policy",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "logistics50_infected25_points100_service",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "logistics_plus_hall_med_food_repair_main",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "logistics_plus_hall_med_food_repair_old",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "same_supply_success_10_actual_maintenance",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "success_failure_success_no_new_starter",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "full_mission_unlocks_both_medical_items",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "real_full_route_medical_unlock"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "firstaid_before_full_success",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "failure_medical_locked"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "partial_sample_delivery_not_medical_unlock",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "partial_no_unlock"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "partial_delivery_has_no_reward",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "base_catalog_works_without_success",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "catalog_closed_electronics",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "electronics_not_sold"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "catalog_closed_disinfectant",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "catalog_closed_unknown",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "purchase_price_negative",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "invalid_buy_price_negative"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "purchase_price_float_equal",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "invalid_buy_price_float"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "purchase_price_bool",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "invalid_buy_price_bool"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "purchase_price_stale",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "purchase_revision_boolean",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "purchase_cannot_forge_origin",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "base_purchase_insufficient",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "purchase_cancel_no_effect",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "base_purchase_exact_and_real_unit",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "base_purchase_replayed",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "purchase_replay"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "looted_firstaid_usable_before_unlock",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "firstaid_preserves_incompatible_heavy_injury",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "firstaid_not_quick",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "firstaid_real_geometry",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "firstaid_cannot_use_in_combat",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "twelve_unstackable_firstaid_fit",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "thirteenth_firstaid_load_geometry",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "thirteenth_firstaid_load"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_validate_before_hazards_stale",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "pre_hazard_stale"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_validate_before_hazards_unknown",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "pre_hazard_unknown"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_validate_before_hazards_reuse",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "pre_hazard_reuse"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_validate_before_hazards_policy",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "pre_hazard_policy"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_validate_before_hazards_world",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "pre_hazard_world"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_validate_before_hazards_version",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "pre_hazard_version"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_invalid_identity_before_hazards",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "bad_item_before_hazards"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_invalid_quick_before_hazards",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "bad_quick_before_hazards"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_bound_rules_version",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "pre_hazard_bound_version"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_preview_is_static",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "preview_static_no_hidden_fields"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_cancel_is_static",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "valid_lethal_handoff_commits_without_new_activity",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "legal_handoff_death_no_entry"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "lethal_handoff_does_not_consume_offer",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "legal_handoff_death_no_entry"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_unresolved_hub_encounter_before_hazards",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "pre_hazard_pending"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_active_task_in_hub_before_hazards",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "pre_hazard_active"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_world_permission_not_cross_task",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "task_item_not_exportable"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_old_preview_stale_after_treatment",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "old_preview_after_treatment"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "launch_reads_latest_healed_body",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "latest_body_at_launch"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "meal_before_launch_is_real_not_free",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "two_prelaunch_meals_avoid_starvation",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "two_real_meals_launch"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "after_launch_cannot_eat_bank",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "after_launch_no_hub_medicine",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "service_food_total_budget_40",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "service_food_total_budget_50",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "service_food_total_budget_60",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "deadline_launch_keeps_current_cycle_medicine",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "deadline_no_double_cycle"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "deadline_allowance_cannot_skip_second_cycle",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "later_cycle_still_due"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "deadline_bad_completed_cycle_rejected",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "F02_current_assets_only",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "F02_history_immutable"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "F02_repeated_death_and_history_read",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "F02_repeat_death"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "F02_full_success_next_task_real_death",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "F02_success_fight_death"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "F02_full_success_then_launch_disease_death",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "F02_success_handoff_death"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "F02_failed_recovery_history_next_task_death",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "main_stable_identity_selection_no_new_priority",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "old_policy_explicit_new_first_comparison",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "honest_damaged_failure_retains_legal_loot",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "honest_failure_insufficient_infection_service",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "honest_damaged_failure_old_same_actions",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "buy_food_same_objective",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "search_food_same_objective",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "NPC_food_same_objective",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "NPC_missing_disinfectant_atomic",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "NPC_reward_container_full_atomic",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "NPC_full_pack_atomic"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "NPC_reward_container_room_real_transfer",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "NPC_exchange_once",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "buy_metal_same_H0_goal",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "hall_metal_same_H0_goal",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "bought_metal_actual_full_route_variant",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "replaced",
+      "current_ids": [
+        "purchased_same_unit_installed"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "install_selected_material_bank",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "installation_selection_bank"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "install_selected_material_unknown",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "installation_selection_missing"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "install_selected_material_consumed",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "installation_selection_consumed"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "install_selected_material_duplicate",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "replaced",
+      "current_ids": [
+        "installation_selection_duplicate"
+      ],
+      "note": "当前边界改用具体委托／隔离夹具或有界见证；只认新目标实际断言，不声称逐字复跑原完整状态。"
+    },
+    {
+      "old_id": "purchased_cloth_battery_two_real_sorties",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "historical_only",
+      "current_ids": [],
+      "note": "重复同供给／旧政策／额外委托比较仅历史条件证据；不得作为当前真实入口。"
+    },
+    {
+      "old_id": "catalog_ration_price11_actual_input",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "therapy_threshold100_actual_input",
+      "old_group": "joint",
+      "old_classification": "positive",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "rest_C80_same_authored_plan_rejected",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    },
+    {
+      "old_id": "negative_catalog_price_atomic",
+      "old_group": "joint",
+      "old_classification": "expected_rejection",
+      "migration": "not_reexecuted",
+      "current_ids": [],
+      "note": "本轮未重新执行这一原联合例；旧预期未自动废止，旧通过不转记本轮，相关生产验收仍须建立真实基线。"
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "task": "WORLD-DESIGN-004",
+  "scope": "Only affected current Markdown, declared inputs, finite outputs and Git whitelist; not a whole historical-package or production test run.",
+  "checks": [
+    {
+      "id": "baseline_is_ancestor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "branch",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "task_whitelist",
+      "passed": true,
+      "detail": [
+        "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "docs/design-drafts/world-infected-001/02-seven-day-structure.md",
+        "docs/design-drafts/world-infected-001/03-location-design.md",
+        "docs/design-drafts/world-infected-001/04-main-mission.md",
+        "docs/design-drafts/world-infected-001/05-resource-economy.md",
+        "docs/design-drafts/world-infected-001/06-event-pack.md",
+        "docs/design-drafts/world-infected-001/07-enemy-continuity.md",
+        "docs/design-drafts/world-infected-001/08-balance-budget.md",
+        "docs/design-drafts/world-infected-001/09-design-critic.md",
+        "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+        "docs/design-drafts/world-infected-001/WORLD-DESIGN-004-completion.md",
+        "docs/design-drafts/world-infected-001/evidence/README.md",
+        "docs/design-drafts/world-infected-001/evidence/check_design.py",
+        "docs/design-drafts/world-infected-001/evidence/checks_v1_4.py",
+        "docs/design-drafts/world-infected-001/evidence/expected-v1.4.json",
+        "docs/design-drafts/world-infected-001/evidence/first-run-v1.4.json",
+        "docs/design-drafts/world-infected-001/evidence/fixes-v1.4.md",
+        "docs/design-drafts/world-infected-001/evidence/fixtures-v1.4.json",
+        "docs/design-drafts/world-infected-001/evidence/metadata-v1.4.json",
+        "docs/design-drafts/world-infected-001/evidence/migration-v1.3-v1.4.json",
+        "docs/design-drafts/world-infected-001/evidence/parameters.json",
+        "docs/design-drafts/world-infected-001/evidence/results-v1.4.json",
+        "docs/design-drafts/world-infected-001/evidence/witnesses-v1.4.jsonl",
+        "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+        "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+        "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+        "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+        "docs/design-drafts/world-infected-001/reviews/check_readiness.py",
+        "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+        "docs/design-drafts/world-infected-001/reviews/input-world-design-004/AUD-25e420e-WORLD-DESIGN-003D-review-v1.0.md",
+        "docs/design-drafts/world-infected-001/reviews/input-world-design-004/WORLD-DESIGN-004-task.md",
+        "docs/design-drafts/world-infected-001/reviews/input-world-design-004/manifest.json",
+        "docs/design-drafts/world-infected-001/reviews/package-check-world-design-004.json",
+        "docs/design-drafts/world-infected-001/reviews/reproduction-results-world-design-004.json"
+      ]
+    },
+    {
+      "id": "required_files",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "utf8_and_parse",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "id": "affected_markdown_links",
+      "passed": true,
+      "detail": {
+        "links": 297,
+        "broken": []
+      }
+    },
+    {
+      "id": "readiness_under_800_lines",
+      "passed": true,
+      "detail": {
+        "01-current-baseline-and-adoption.md": 53,
+        "02-source-gap-and-ownership.md": 66,
+        "03-first-engineering-contract-draft.md": 70,
+        "04-evidence-and-playtest-gates.md": 55
+      }
+    },
+    {
+      "id": "archives_match_input_sha",
+      "passed": true,
+      "detail": [
+        {
+          "source_path": "D:\\浏览器下载\\WORLD-DESIGN-004-task.md",
+          "archive_path": "reviews/input-world-design-004/WORLD-DESIGN-004-task.md",
+          "sha256": "edff7e597d8c9a6d9c28415dc550d81ee70c42989a781be29b26db02646955ba",
+          "bytes": 16859
+        },
+        {
+          "source_path": "D:\\浏览器下载\\AUD-25e420e-WORLD-DESIGN-003D-review-v1.0.md",
+          "archive_path": "reviews/input-world-design-004/AUD-25e420e-WORLD-DESIGN-003D-review-v1.0.md",
+          "sha256": "a973827ee607722500b940a32e27ccd399e80deeb39b5f677a9e2b4884da5873",
+          "bytes": 3944
+        }
+      ]
+    },
+    {
+      "id": "historical_bytes_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "frozen_inputs_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "two_independent_processes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "stable_bytes_and_canonical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "finite_classification",
+      "passed": true,
+      "detail": {
+        "positive": 84,
+        "expected_rejection": 85,
+        "unsupported": 1,
+        "total": 170,
+        "matched": 170,
+        "mismatched": 0
+      }
+    },
+    {
+      "id": "old_269_mapped_once",
+      "passed": true,
+      "detail": {
+        "retained_rerun": 52,
+        "historical_only": 34,
+        "replaced": 63,
+        "unsupported_recognized": 1,
+        "not_reexecuted": 119
+      }
+    },
+    {
+      "id": "first_failure_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "default_one_real_commission",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "id": "git_diff_check",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "passed": 17,
+  "failed": 0,
+  "production_tests": "NOT RUN",
+  "added_production_tests": 0
+}

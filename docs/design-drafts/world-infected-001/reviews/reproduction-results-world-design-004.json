@@ -1,0 +1,107 @@
+{
+  "task": "WORLD-DESIGN-004",
+  "baseline_sha": "25e420ed9f36f1bf2acfbb0d96e3a798fbdd6bf8",
+  "frozen_input_sha256": {
+    "parameters.json": "b8961161dcb2d3543df06156c5a958c231f16bdb8ea6d9022db079e95aef0506",
+    "scenarios.json": "56ff2a63b994816a2437d732f58da27a84b11c7afee0d4c85cf6ac476c811ae5",
+    "check_design.py": "977571de32240181a131da55ed5a6701d618f00e466b31d372be27937a68898c",
+    "checks_v1_4.py": "d8a48335e4c892ec23e8251dda3b3804d7e479a45e92e89d6f783c18a7bef650",
+    "fixtures-v1.4.json": "e0db437a9ab01d1a3838d3c4817eed2a90f7f4fa3b200551288526c5364e3ee7",
+    "expected-v1.4.json": "91e9f217b98cc165aa57d3dc557fe84f57c86836d90edfb50c0554ca3239d6dc"
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "classification_note": "Expected rejections matched are not successful routes; unsupported recognized is not supported PASS. Two runs are not additional cases.",
+  "runs": [
+    {
+      "run": 1,
+      "started_utc": "2026-10-03T03:41:29.468550+00:00",
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "docs\\design-drafts\\world-infected-001\\evidence\\check_design.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"counts\": {\"positive\": 84, \"expected_rejection\": 85, \"unsupported\": 1, \"total\": 170, \"matched\": 170, \"mismatched\": 0}, \"canonical_results_sha256\": \"2460323794c4b91edfe425c8ff59ec07aba50adb4305ad1a1e3300833a89f145\"}",
+      "stderr": "",
+      "inputs_before": {
+        "parameters.json": "b8961161dcb2d3543df06156c5a958c231f16bdb8ea6d9022db079e95aef0506",
+        "scenarios.json": "56ff2a63b994816a2437d732f58da27a84b11c7afee0d4c85cf6ac476c811ae5",
+        "check_design.py": "977571de32240181a131da55ed5a6701d618f00e466b31d372be27937a68898c",
+        "checks_v1_4.py": "d8a48335e4c892ec23e8251dda3b3804d7e479a45e92e89d6f783c18a7bef650",
+        "fixtures-v1.4.json": "e0db437a9ab01d1a3838d3c4817eed2a90f7f4fa3b200551288526c5364e3ee7",
+        "expected-v1.4.json": "91e9f217b98cc165aa57d3dc557fe84f57c86836d90edfb50c0554ca3239d6dc"
+      },
+      "inputs_after": {
+        "parameters.json": "b8961161dcb2d3543df06156c5a958c231f16bdb8ea6d9022db079e95aef0506",
+        "scenarios.json": "56ff2a63b994816a2437d732f58da27a84b11c7afee0d4c85cf6ac476c811ae5",
+        "check_design.py": "977571de32240181a131da55ed5a6701d618f00e466b31d372be27937a68898c",
+        "checks_v1_4.py": "d8a48335e4c892ec23e8251dda3b3804d7e479a45e92e89d6f783c18a7bef650",
+        "fixtures-v1.4.json": "e0db437a9ab01d1a3838d3c4817eed2a90f7f4fa3b200551288526c5364e3ee7",
+        "expected-v1.4.json": "91e9f217b98cc165aa57d3dc557fe84f57c86836d90edfb50c0554ca3239d6dc"
+      },
+      "metadata_inputs_match_freeze": true,
+      "outputs": {
+        "results-v1.4.json": "6c8258899d50ebc3b94495e6310f77668cca4fec42c82fe53fe708392fa08bc3",
+        "witnesses-v1.4.jsonl": "bcf0e139ac379342e2542c7cd97682ecec54cdf6da2423c88e5b479b30209ddf"
+      },
+      "canonical_results_sha256": "2460323794c4b91edfe425c8ff59ec07aba50adb4305ad1a1e3300833a89f145",
+      "counts": {
+        "positive": 84,
+        "expected_rejection": 85,
+        "unsupported": 1,
+        "total": 170,
+        "matched": 170,
+        "mismatched": 0
+      }
+    },
+    {
+      "run": 2,
+      "started_utc": "2026-10-03T03:41:30.160644+00:00",
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "docs\\design-drafts\\world-infected-001\\evidence\\check_design.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"counts\": {\"positive\": 84, \"expected_rejection\": 85, \"unsupported\": 1, \"total\": 170, \"matched\": 170, \"mismatched\": 0}, \"canonical_results_sha256\": \"2460323794c4b91edfe425c8ff59ec07aba50adb4305ad1a1e3300833a89f145\"}",
+      "stderr": "",
+      "inputs_before": {
+        "parameters.json": "b8961161dcb2d3543df06156c5a958c231f16bdb8ea6d9022db079e95aef0506",
+        "scenarios.json": "56ff2a63b994816a2437d732f58da27a84b11c7afee0d4c85cf6ac476c811ae5",
+        "check_design.py": "977571de32240181a131da55ed5a6701d618f00e466b31d372be27937a68898c",
+        "checks_v1_4.py": "d8a48335e4c892ec23e8251dda3b3804d7e479a45e92e89d6f783c18a7bef650",
+        "fixtures-v1.4.json": "e0db437a9ab01d1a3838d3c4817eed2a90f7f4fa3b200551288526c5364e3ee7",
+        "expected-v1.4.json": "91e9f217b98cc165aa57d3dc557fe84f57c86836d90edfb50c0554ca3239d6dc"
+      },
+      "inputs_after": {
+        "parameters.json": "b8961161dcb2d3543df06156c5a958c231f16bdb8ea6d9022db079e95aef0506",
+        "scenarios.json": "56ff2a63b994816a2437d732f58da27a84b11c7afee0d4c85cf6ac476c811ae5",
+        "check_design.py": "977571de32240181a131da55ed5a6701d618f00e466b31d372be27937a68898c",
+        "checks_v1_4.py": "d8a48335e4c892ec23e8251dda3b3804d7e479a45e92e89d6f783c18a7bef650",
+        "fixtures-v1.4.json": "e0db437a9ab01d1a3838d3c4817eed2a90f7f4fa3b200551288526c5364e3ee7",
+        "expected-v1.4.json": "91e9f217b98cc165aa57d3dc557fe84f57c86836d90edfb50c0554ca3239d6dc"
+      },
+      "metadata_inputs_match_freeze": true,
+      "outputs": {
+        "results-v1.4.json": "6c8258899d50ebc3b94495e6310f77668cca4fec42c82fe53fe708392fa08bc3",
+        "witnesses-v1.4.jsonl": "bcf0e139ac379342e2542c7cd97682ecec54cdf6da2423c88e5b479b30209ddf"
+      },
+      "canonical_results_sha256": "2460323794c4b91edfe425c8ff59ec07aba50adb4305ad1a1e3300833a89f145",
+      "counts": {
+        "positive": 84,
+        "expected_rejection": 85,
+        "unsupported": 1,
+        "total": 170,
+        "matched": 170,
+        "mismatched": 0
+      }
+    }
+  ],
+  "same_output_bytes": true,
+  "same_canonical_results": true,
+  "inputs_remained_frozen": true
+}

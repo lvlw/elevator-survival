@@ -1,83 +1,48 @@
-# WORLD-DESIGN-003 有限设计证据
+# WORLD-DESIGN-004有限证据入口
 
-**DESIGN DRAFT v1.3，未批准为生产规则。** 起始Git196d4bf03b07eb9af452ff99aae4ff553f9659d6。当前结果为 **145正例＋123应拒绝匹配，另1未支持轨迹正确识别；0实际不符**。269＝52场景＋5原扰动＋212联合项。passed=269是预期匹配，不是269条玩法或通关路线均已支持。
+**Draft v1.4 / Engineering Review Candidate。** 仅Python标准库、共同perform、显式人工轨迹；不导入或改写生产resolver，不实现通用CTB、RNG、UI或保存引擎。
 
-根用两个独立Python进程复跑，四稳定输出字节一致，见[复跑回执](../reviews/reproduction-results-world-design-003.json)。主结果读[08](../08-balance-budget.md)，价格／资格读[11](../11-points-hub-recovery.md)，来源／维护读[05](../05-resource-economy.md)，时间／死亡只读[唯一终局](../reviews/endgame-candidates-v1.1.md)。末文件保留旧名、正文v1.3。
+## 1. 当前命令与输入
 
-## 1. 复跑入口与输出
+从仓库根运行：python -B -X utf8 docs/design-drafts/world-infected-001/evidence/check_design.py。当前默认入口只写v1.4输出；旧main输出器已移除，不能混用当前参数重跑旧269或重复供给。
 
-仓库根目录：
-
-~~~powershell
-& 'C:\Users\zjl\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' -B -X utf8 'docs/design-drafts/world-infected-001/evidence/check_design.py'
-~~~
-
-只用Python标准库，-B禁止缓存。不联网、不导入src／npm／生产resolver，不运行保存、浏览器或随机种子。脚本只更新本目录四稳定输出及execution-metadata.json；首轮记录存在后不会覆盖。写出失败使命令失败，不能把此前打印／计算成功说成整次运行成功。UTF-8/LF；CSV为UTF-8 BOM/LF。
-
-| 文件 | 角色 |
+| 有效输入 | 责任 |
 | --- | --- |
-| [parameters.json](parameters.json) | 单源价格、治疗阈值、目录资格、病程、设备、来源、地图、人工CTB及有限offer |
-| [scenarios.json](scenarios.json) | 52具名世界动作场景和5原局部扰动，保留原R4负例 |
-| [expected-v1.3.json](expected-v1.3.json) | 首算前独立推演；后加案例的预期写在下列脚本、先于其首次执行 |
-| [check_design.py](check_design.py) | 唯一共同perform、世界／中枢有限事务、真实周期、实体转移及输出 |
-| [joint_checks.py](joint_checks.py) | 继承边界、20E／50E真动作、多轮状态承接及完整成功账 |
-| [checks_v1_3.py](checks_v1_3.py) | 采购、完整医疗解锁、输入拒绝、F02、NPC／购材／衣灯链 |
-| [raw-results.json](raw-results.json) | 分类、独立预期与实际、世界末态；不混运行环境 |
-| [joint-results.json](joint-results.json) | 有界逐轮摘要、净收支和关键完整可变状态 |
-| [route-ledgers.json](route-ledgers.json)／[CSV](route-ledgers.csv) | 单世界初态＋每动作差量、逐步数值／事件 |
-| [execution-metadata.json](execution-metadata.json) | runtime、六份有效执行输入SHA、四输出字节SHA、canonical_results_sha256 |
-| [inheritance-v1.2-v1.3.json](inheritance-v1.2-v1.3.json) | 旧171 ID逐项映射，写明保留、Owner方向替换或旧政策对照 |
-| [v1.2-baseline/manifest-summary.json](v1.2-baseline/manifest-summary.json) | 旧Git、文件指纹／大小、171 ID／分类，不复制旧大账；同目录仅保留小参数 |
-| [first-run-v1.3.json](first-run-v1.3.json) | 首轮真实1不符与输出中断记录，未覆盖 |
-| [inheritance-map.json](inheritance-map.json)／[v1.1-baseline](v1.1-baseline/manifest-summary.json) | 更早57项历史和必要旧输入；不冒充当前实现 |
-| [first-run-v1.2.json](first-run-v1.2.json)／[first-run-results.json](first-run-results.json) | 002中断及001R首轮失败原件，只是历史 |
+| [parameters.json](parameters.json) | 集中参数、单一真实委托CURRENT；失败20已确认，其他价格和专长仍Draft |
+| [scenarios.json](scenarios.json) | 原52场景／5扰动定义原字节保留，当前选48＋5执行 |
+| [check_design.py](check_design.py) | 共同动作、实体、病程、资格、终局与中枢 |
+| [checks_v1_4.py](checks_v1_4.py) | 选择原输入并加入117当前边界；预期直接在各case声明 |
+| [fixtures-v1.4.json](fixtures-v1.4.json) | 明确不同具体委托FOLLOWUP／AFTER，仅验证接续，不是第二份玩家内容 |
+| [expected-v1.4.json](expected-v1.4.json) | 首次执行前的关键独立预期与限制 |
 
-稳定结果哈希以scenarios／sensitivity／joint的规范化JSON计算，与Python版本分开。当前规范化结果SHA为28a03ac0816b5fb11af5ada61a23179167889148ed9388527bcc6055b09f6028。输入SHA包括check_design、joint_checks、checks_v1_3、parameters、scenarios、expected-v1.3，不把文案和运行环境混成游戏结论。
+角色／世界／模板／具体委托／一次执行分开。默认只有transfer-001，终止后改执行ID不重接。active查询不刷新；未实现真正存档。None专长仅作为普通效果对照夹具，不是拟议玩家“空专长”选项。
 
-差量重建：读取每例initial，逐步覆盖delta；units_upsert按唯一ID更新，其余单位不变。相同只读offered_tasks写作parameters.json#/offered_tasks引用，须使用本次指纹对应参数展开；自定义不同目录保留实际数据。geometry与inventory_by_location为派生值。消费／安装／交付等不删除记录、不生成可领取副本。该导出不承担生产存档或严格恢复。
+## 2. 结果、首次失败与两次复跑
 
-## 2. 已执行的共同合同
+[results-v1.4.json](results-v1.4.json)共170：84正例、85预期拒绝匹配，1未支持被识别，0实际不符。53项原输入含pipe_capacity_10未支持；117当前边界中包含显式异委托fixture，不能作为产品入口。分类来自执行前预期，意外拒绝仍报不符。
 
-- **世界。** 实际节点／已知边／前置／危险逐动作检查，无每日地图门禁；只有最后合法正耗动作能截0。来源一次、真实拾取／负重、样本占格、任务件安装不复制。世界内不得远程使用bank。
-- **F1。** 初次和再接战看真实engaged；固定轨迹若因伤害变化提前失能，后续事件拒绝，原状态不变。重新写过的短轨迹另命名。唯一未支持项pipe_capacity_10需要另种打法；没有通用无武器轨迹不等于世界无解。
-- **医疗。** 身体服务20／感染或暴露40／I≥90为80，阈值和价格集中。生还Hub立即可付，不依赖药品日限；不改粮、E、装备、物资、任务、日期、已用次数或蓄力。健康fresh no-op，旧quote拒绝；39／40、0点旧药、HP1重病、HP0不可复活、bool／NaN／小数／溢出／伪造价／重复请求均有实际输入。
-- **采购。** 基础粮／金／布／电10/12/10/12不依赖成功；完整当前任务成功后同开绷18／急救45。资格非余额、已拥有物非可买资格；购买一真实单位入bank，装包和使用另发动作。急救1×2／重2／无堆叠快捷战斗，消毒可快捷非战斗；12急救满包及第13装入失败真实检查。
-- **时间。** 正常返回不结日，单独或额外hub_rest已退出主流程。launch在全部验证后才读最新健康结当前周期；不合法输入零变，合法日检致死则提交死亡而不建新任务。首次新角色不扣虚构上一日。末日已结D→D+1资格只用一次，Hub新药效／用量不被任务Day1洗掉。
-- **F02。** 当前bank／pack／快捷／当前地面和装备在死亡时失去；已delivered／delivered_partial／recovered／consumed／installed／impounded／penalized／lost不改写。真实成功后新任务战死、旧失败回收后新任务战死、完整低余量成功后launch病死都经共同perform；重复死亡／读取保持历史。
-- **同世界政策。** 明确提供的另任务必须完成才返回，不能沿当前宽松出口；其末日致死发生在新日／E100建立前。这里只是职责夹具，非第二正式委托。
+[metadata-v1.4.json](metadata-v1.4.json)记录六输入SHA、两个输出字节SHA和独立canonical结果SHA；规范化为results数组的UTF-8排序紧凑JSON，allow_nan=False。运行环境另记，不混入游戏结果。
 
-日检查为流血→感染增长及新阶段HP损耗→饱食／饥饿→尚活才新日及额度。I≥120继续增长，不另触发感染终末；真实HP0停止后续。未治疗伤势保留，绷带处理伤口不删除伤势。末日主推荐先结健康再生还召回；“统一以后launch才结”的替代没有混用来取得更优结果。
+[witnesses-v1.4.jsonl](witnesses-v1.4.jsonl)按ID给摘要及逐动作记录：位置／日／精力／HP等和变化物品，四基准269／318／373／338E与电子补救均有原动作。不是全快照复制，也不是生产可恢复存档。
 
-## 3. 连续账与已发现收益
+首轮真实156项146匹配、10比较器类型异常，退出1；[first-run-v1.4.json](first-run-v1.4.json)保留原输入指纹、实际失败与规范化哈希。[修复摘要](fixes-v1.4.md)说明如何修正并增加14边界；没有改预期掩盖失败。导出整理未改变玩法预期。
 
-四原完整五图路线269／318／373／338E仍完成，末HP4／5／2／5，I20／20／25／20。新增采购完整变体单独命名，不能静默改原路线或把省0E拾取说成省搜索。
+最终冻结后仅两个独立Python进程复跑，输入前后指纹、命令、exit code、稳定字节和规范化结果一致性见[复跑原记录](../reviews/reproduction-results-world-design-004.json)。两次170不计作340项。
 
-10次相同完整正常委托：奖励1200−治疗400−购金120−首次购粮20−购绷18＝642；每次成功后都真维护，耗20金10布28粮，最后仓粮24／绷12／池10、三槽满、HP12/I0/食4，角色日30。成功—20E失败—成功同样真实承接，余额78、仓粮7／绷5／池2、角色日7。112／782是旧版本历史，不用于003。
+## 3. 旧269的状态，不沿用旧成绩
 
-原20E取绷循环和新50E物流循环都用实际共同动作；后者为14去＋14手工＋8搜＋14回，真取绷1粮2，无战斗磨损。10份不同ID、9次真实衔接；单独第11次只是边界探针，不算第11次探索或无限供给。
+[逐ID迁移](migration-v1.3-v1.4.json)：52原输入重验、1仍未支持、63被当前边界替换、34历史条件、119未重验。替换只认新用例实际断言，不承诺原例所有状态字段等价重跑；未重验也不自动宣称旧规则已废止。
 
-同HP12／食6／P0起点，10次50E主案真吃9粮、不浪费满血药，末HP12／食6、仓绷11／粮11；旧来源回收政策身体同样维持，只回收10新绷11粮。与10成功同初态／同供给，机会成本为500E／10角色日对2690E／30角色日，不能称同耗时或最优策略。
+旧[raw-results](raw-results.json)、[joint-results](joint-results.json)、[route-ledgers](route-ledgers.json)、[CSV](route-ledgers.csv)、[metadata](execution-metadata.json)、[首轮003失败](first-run-v1.3.json)及旧checks_v1_3／joint_checks原字节保留。旧规范化28a03ac…只属于003历史，当前参数不能复现旧假设。
 
-独立HP4扩展显示50E在无感染时可用8绷9粮升至HP12；生存+2只需4绷。20E无粮时基础+1最终HP7，+2最终12。I25输入同做50E十次仍恶化到I150／HP2，第11衔接I170致死；可支付旧积分服务的例真实花钱治好。HP4只带物不自用在第7次入场前死亡，只完成6次，未伪造十轮结果。
+准确追溯使用Git 25e420ed9f36f1bf2acfbb0d96e3a798fbdd6bf8的同批输入；历史源／输出指纹见[manifest](../reviews/input-world-design-004/manifest.json)。不复制大账、不改旧哈希，也未运行历史三图、十次同供给或新经济参数搜索。
 
-新金属先修旧装备再失败的收益仍在：扩展物流＋大厅路线十次632E、实用2金使管10→25→30，剩8金主留／旧回收。主案允许普通物直接积累，旧回收也不能撤销身体和装备转换；长期无套利未成立。两案同前缀诚实受损返航分别余20／10，主留实物更多，两者都付不起40感染服务，不能只用恶意循环决定处罚。
+十成功642、S-F-S78及20E／50E重复所得都只是独立供给假设。004实际检验单次成功准备余30、20E／50E失败所得和不重接；A不能证明长期经济已解决。
 
-三方法粮2同目标实际为购物0E／20分、搜索50E／0分、条件旧药NPC22E／消费两药。金属同H0目标购买12分对大厅16E。NPC满包在交药前原子拒绝。两次衣灯采购／维修／搜索／战斗／返航为32E各一次，余额P100→16；第二次新购电留仓，维修实际用上一任务的电，不宣称每轮必须额外买电。它不覆盖连续手电主线通关。详细逐轮账和条件见08／11。
+## 4. 可证边界与缺口
 
-## 4. 原始失败、审查修复和继承
+共同入口覆盖具体委托关闭、零／少／足余额失败、同奖和样本、普通实体、正常不补夜、末日先结后召回／死亡、下一周期、先拒绝后危险、最新身体、F1／F02、采购／治疗／维护及专长代表。
 
-首轮249项248匹配、1不符：购买金属完整变体按默认稳定ID实际安装了C备件金，购买金仍在仓。同一首轮随后写metadata时使用了字面反斜杠n，ValueError导致exit1；四稳定结果已写也不能说整次执行成功。first-run-v1.3保留原六输入指纹、计数、实际不符和中断说明。
+代表测试移除了预览中的隐藏感染和暴露，但完整玩家安全未来预测未支持。三专长九组合、CTB战斗医疗、H1工具箱电子的新E映射及完整工具箱路线、真实保存／严格恢复／事务／随机／浏览器／Owner体验均未验证。四路线只证明指定人工风险输入，管容量10未支持不是世界无解。
 
-之后修复写入，并将唯一安装配方改为显式选择真实随身购买单位，同时拒绝bank／假ID／重复／已消费选择，再完整复跑。没有把预期改成“购买金留仓也算安装”；后续完整结果另写常规输出。
-
-独立审查发现NPC可在满包先交药、主案错误继承新来源优先、阈值未集中、pending或活动任务残留Hub可先日检等有限脚本缺口，已添加共同负例并修复。分类也改为依据事先预期，实际意外拒绝仍报不符。脚本内无生产漏洞或可达性声明。
-
-旧171项全部映射：旧强制／额外Hub休整预期明确退役，换出发单周期和首次入口；旧来源回收例保留为旧政策对照；旧急救不可购买换成完整成功解锁；连续账按实际新采购和饮食时序重算。原F1、位置、知识、容器、0E、负数数量、病程与死亡反例仍在。
-
-## 5. 阅读和未覆盖范围
-
-本轮实际读003入口、任务、Owner方向／followup、196d4bf审查、probe与源摘录；29项审查结果及轮次用JSON解析核对，外层ZIP CRC通过。审查者50E模型作为反例输入，不当成本轮共同执行结果。重读实际关键稿、当前三类检查／参数／场景；旧结果／CSV／差量账全量解析并逐例核对，未声称人工逐行阅读每条历史快照。正式文档按AGENTS核对本任务相关产品、切片、架构、DEC、医疗／物品／场景／敌人、冻结／覆盖及职责边界；没有新做小说调研。
-
-未运行npm/Vitest、构建、生产resolver、浏览器、真实种子、存档恢复或Owner试玩。104 files／2153 tests来自更早报告转述，不属于本轮运行。未覆盖全策略／全风险树、通用CTB、完整三专长、全伤势倍率／叠加、工具箱完整路线、十次手电完整主线、可选旁路／捷径、任意几何排法、生产保存／事务／UI、任意世界和无限任务供给。状态全字段边界只指本有限模型，不宣称生产schema完整。
-
-证据专项作者仅修改授权的08与evidence目录，未执行Git写操作，也未修改正式规则、src、测试、依赖、配置或存档；最终整包提交由根会话按授权完成。价格、回收对照和召回仍按明确Draft语境审定。
+本轮生产测试、构建、浏览器、存档实验均NOT RUN，新增生产测试0。正式覆盖与生产独立实审仍须后续授权；具体门槛见[readiness/04](../readiness/04-evidence-and-playtest-gates.md)。

@@ -608,3 +608,17 @@ DEC-046—048 已确认完整感染世界的部分设计方向：不以固定访
 医院一日全部验收、内容、参数、phase、运行入口和保存含义不变。新首核心未来按契约K01—K22和B10执行实际基线／完整检查，完成即准确SHA实审，不等凑三个任务；本次仅文档检查，生产测试与这些工程验收均NOT RUN。
 
 完整世界的三专长、工具箱路线、安全查询、跨委托聚合、可信恢复安装、完整终局事务与Owner试玩责任继续保留。后三阶段仍只是路线，经济数值及新内容未随本次获批；等待本次文档准确SHA实审后，工程任务仍须另行授权。
+
+
+<a id="doc-world-entry-002"></a>
+## DOC-WORLD-ENTRY-002：O1／O2当前采纳附记
+
+2026-10-03，依据[Owner实际批准](design-drafts/world-infected-001/entry-002/adoption/inputs/OWNER-approval-WORLD-ENTRY-002-ADOPTION-v1.0.md)及[获批稿限定](design-drafts/world-infected-001/entry-002/adoption/inputs/WORLD-ENTRY-002-ADOPTION-owner-review-v1.0.md)，O1指定规则／首批试用参数与G1契约、O2同次驻留持续现场及恢复／完整事务边界已批准；本次集中归档待准确SHA实审，生产新能力未实现，G1—G3未开工。
+
+唯一当前入口：[DEC-050](05-design-decisions.md#dec-050)；[试用配置v0.1](content/infected-residence-core-test-config-v0.1.json)；[恢复补充合同v1.0](engineering/residence-foundation/runtime-restore-supplement-v1.0.md)；[G1契约v1.0](engineering/residence-foundation/energy-cycle-contract-v1.0.md)。只采纳获批子集，不把整份Draft、旧fixtures.config或R1字段草图全部升格。O3旧入口／旧槽发布安排仍OPEN；其他经济／商品、医疗细项、地图价格、战斗和专长参数不随同批准。
+
+首身份核心d1d3b79 PASS与[8245cc6 R1专项PASS](design-drafts/world-infected-001/entry-002/adoption/inputs/AUD-8245cc6-WORLD-ENTRY-002-R1-review-v1.0.md)是前置历史，原213项作者有限验证／56项主线探针不算本轮检查。此前BLOCKED、待审及未实现记述保留当时身份；本附记更新局部采纳状态，不倒改旧DEC或[原首契约](design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md)。本轮仅文档／架构检查，结果见[本任务完成记录](design-drafts/world-infected-001/entry-002/adoption/DOC-WORLD-ENTRY-002-completion.md)；不据归档启动生产或宣布世界可玩。
+
+原医院一日切片范围、数值、入口、phase、保存及全部验收保留。DEC-050只在新感染连续驻留版本采纳共享精力、有序周期、无免费治疗及同活动持续现场；不能用旧每日单场景门禁否决新驻留，也不能将新规则回写成旧医院验收已改变。
+
+首身份／关闭资格核心已完成限定实审；G1待本次文档准确SHA实审及主线正式工程任务，届时须重新实际执行npm基线、正反例与组合测试及最终check，不预填历史测试数。G2／G3、完整CTB／经济、新保存、玩家入口尚未实现；完整世界三专长、工具箱路线、安全查询和Owner实际分段突破试玩继续OPEN，本轮没有新可玩验收。

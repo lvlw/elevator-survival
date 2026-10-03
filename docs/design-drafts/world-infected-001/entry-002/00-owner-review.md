@@ -1,3 +1,18 @@
+<a id="doc-world-entry-002-adoption"></a>
+## DOC-WORLD-ENTRY-002：当前采纳状态
+
+2026-10-03，依据[Owner实际批准](adoption/inputs/OWNER-approval-WORLD-ENTRY-002-ADOPTION-v1.0.md)及[获批稿限定](adoption/inputs/WORLD-ENTRY-002-ADOPTION-owner-review-v1.0.md)，O1指定规则／首批试用参数与G1契约、O2同次驻留持续现场及恢复／完整事务边界已批准；本次集中归档待准确SHA实审，生产新能力未实现，G1—G3未开工。
+
+唯一当前入口：[DEC-050](../../../05-design-decisions.md#dec-050)；[试用配置v0.1](../../../content/infected-residence-core-test-config-v0.1.json)；[恢复补充合同v1.0](../../../engineering/residence-foundation/runtime-restore-supplement-v1.0.md)；[G1契约v1.0](../../../engineering/residence-foundation/energy-cycle-contract-v1.0.md)。只采纳获批子集，不把整份Draft、旧fixtures.config或R1字段草图全部升格。O3旧入口／旧槽发布安排仍OPEN；其他经济／商品、医疗细项、地图价格、战斗和专长参数不随同批准。
+
+首身份核心d1d3b79 PASS与[8245cc6 R1专项PASS](adoption/inputs/AUD-8245cc6-WORLD-ENTRY-002-R1-review-v1.0.md)是前置历史，原213项作者有限验证／56项主线探针不算本轮检查。此前BLOCKED、待审及未实现记述保留当时身份；本附记更新局部采纳状态，不倒改旧DEC或[原首契约](../readiness/03-first-engineering-contract-draft.md)。本轮仅文档／架构检查，结果见[本任务完成记录](adoption/DOC-WORLD-ENTRY-002-completion.md)；不据归档启动生产或宣布世界可玩。
+
+本页原O1/O2待选表保留发稿身份；当前两组已按获批稿限定采纳，O3推荐未被选定。当前G1仅以上述唯一合同为准，不要求Owner重复批准已采纳内容。
+
+**下文为8245cc6原候选历史，完整保留字节；原“待审／未批准”不否认本次限定采纳。**
+
+---
+
 # WORLD-ENTRY-002 · 集中审阅
 
 **DESIGN DRAFT／待审，2026-10-03。** 玩家能在一次驻留内按真实路线跨图、休整并继续；代价来自有限精力、真实损耗与病情。失败仍有生还出口，但本角色结束后不能再接同一委托。当前只有这一份内容，生还者最后停在静态中枢。身份核心已通过主线实审，世界与真实保存尚未接通。

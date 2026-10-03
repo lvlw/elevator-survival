@@ -562,3 +562,19 @@ DEC-046—048 为未来完整感染世界确认方向，而不是新增运行时
 首资格核心在完整SHA `d1d3b7927c6733cff709a4bfd617fb1e85e7485a` 已通过[主线源码实审](design-drafts/world-infected-001/entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md)。此前归档空白BLOCKED已依ENG-MISSION-LIFECYCLE-001-ADDENDUM-01解除，工程已普通提交并推送；保留上文历史过程，不将旧“未实现／未授权／未推送”误作当前状态。
 
 该PASS仅限首身份／关闭资格纯核心，不含真实保存、全角色聚合、完整世界或玩家入口。[WORLD-ENTRY-002候选入口](design-drafts/world-infected-001/entry-002/00-owner-review.md)及[近期契约](design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md)仍待审，未批准新生产规则、未执行下一工程。
+
+
+<a id="doc-world-entry-002"></a>
+## DOC-WORLD-ENTRY-002：O1／O2当前采纳附记
+
+2026-10-03，依据[Owner实际批准](design-drafts/world-infected-001/entry-002/adoption/inputs/OWNER-approval-WORLD-ENTRY-002-ADOPTION-v1.0.md)及[获批稿限定](design-drafts/world-infected-001/entry-002/adoption/inputs/WORLD-ENTRY-002-ADOPTION-owner-review-v1.0.md)，O1指定规则／首批试用参数与G1契约、O2同次驻留持续现场及恢复／完整事务边界已批准；本次集中归档待准确SHA实审，生产新能力未实现，G1—G3未开工。
+
+唯一当前入口：[DEC-050](05-design-decisions.md#dec-050)；[试用配置v0.1](content/infected-residence-core-test-config-v0.1.json)；[恢复补充合同v1.0](engineering/residence-foundation/runtime-restore-supplement-v1.0.md)；[G1契约v1.0](engineering/residence-foundation/energy-cycle-contract-v1.0.md)。只采纳获批子集，不把整份Draft、旧fixtures.config或R1字段草图全部升格。O3旧入口／旧槽发布安排仍OPEN；其他经济／商品、医疗细项、地图价格、战斗和专长参数不随同批准。
+
+首身份核心d1d3b79 PASS与[8245cc6 R1专项PASS](design-drafts/world-infected-001/entry-002/adoption/inputs/AUD-8245cc6-WORLD-ENTRY-002-R1-review-v1.0.md)是前置历史，原213项作者有限验证／56项主线探针不算本轮检查。此前BLOCKED、待审及未实现记述保留当时身份；本附记更新局部采纳状态，不倒改旧DEC或[原首契约](design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md)。本轮仅文档／架构检查，结果见[本任务完成记录](design-drafts/world-infected-001/entry-002/adoption/DOC-WORLD-ENTRY-002-completion.md)；不据归档启动生产或宣布世界可玩。
+
+G1只产生单精力与身体周期纯规则的完整局部结果；不拥有全角色历史、钱包、现场、委托关闭、安装或保存。docs中的试用配置只是唯一获批参数归档，运行时唯一版本化来源由未来工程任务指定，core不得读取docs或复制多个常量源。
+
+未来唯一应用持有者核对身体／周期／委托／位置／实体的一致性，各规则owner在确定有序编排中提出计划；完整后态一次提交、一次保存尝试、一次只读通知。写失败保留已提交内存，不由UI或异步订阅者补扣血／奖罚。持续敌人和来源只有一份事实，地面容器归属与活动执行绑定；关闭历史不给行动资格。
+
+恢复补充允许后续新增受控冷候选解析并整档校验／一次安装；候选没有安装权，原restoreMissionCandidate(raw, expected, scope)与K18/K19独立期望要求保持。没有已有current的冷启动不能复制候选伪造期望；读取失败／损坏不兜底new，已有current禁止第二bootstrap／replace。具体API、保存格式、Profile和支持矩阵未由本次注册；旧医院与原首核心不变。

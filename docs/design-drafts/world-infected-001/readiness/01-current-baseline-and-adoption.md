@@ -53,3 +53,17 @@
 第一项具体委托身份与关闭资格纯核心的[契约v1.0](03-first-engineering-contract-draft.md)及依赖的DEC-049已批准，当前未实现，工程另行授权。首核心完成即准确SHA实审，不等凑三个任务；后续阶段保留约三个任务或新生命周期取较早者实审。新保存／发布兼容等接线仍需另审，局部资格不等于完整合法出发，设计检查不代替生产审查。
 
 旧医院保持版本、内容、随机派生和旧档含义。建议新版本独立composition与严格恢复入口；不要偷偷补字段迁移、造第二Profile或永久维护两套完整产品承诺。发布时保留旧槽多久、是否保留旧入口或显式清理，进入该阶段前由Owner决定。
+
+
+<a id="doc-world-entry-002"></a>
+## DOC-WORLD-ENTRY-002：O1／O2当前采纳附记
+
+2026-10-03，依据[Owner实际批准](../entry-002/adoption/inputs/OWNER-approval-WORLD-ENTRY-002-ADOPTION-v1.0.md)及[获批稿限定](../entry-002/adoption/inputs/WORLD-ENTRY-002-ADOPTION-owner-review-v1.0.md)，O1指定规则／首批试用参数与G1契约、O2同次驻留持续现场及恢复／完整事务边界已批准；本次集中归档待准确SHA实审，生产新能力未实现，G1—G3未开工。
+
+唯一当前入口：[DEC-050](../../../05-design-decisions.md#dec-050)；[试用配置v0.1](../../../content/infected-residence-core-test-config-v0.1.json)；[恢复补充合同v1.0](../../../engineering/residence-foundation/runtime-restore-supplement-v1.0.md)；[G1契约v1.0](../../../engineering/residence-foundation/energy-cycle-contract-v1.0.md)。只采纳获批子集，不把整份Draft、旧fixtures.config或R1字段草图全部升格。O3旧入口／旧槽发布安排仍OPEN；其他经济／商品、医疗细项、地图价格、战斗和专长参数不随同批准。
+
+首身份核心d1d3b79 PASS与[8245cc6 R1专项PASS](../entry-002/adoption/inputs/AUD-8245cc6-WORLD-ENTRY-002-R1-review-v1.0.md)是前置历史，原213项作者有限验证／56项主线探针不算本轮检查。此前BLOCKED、待审及未实现记述保留当时身份；本附记更新局部采纳状态，不倒改旧DEC或[原首契约](03-first-engineering-contract-draft.md)。本轮仅文档／架构检查，结果见[本任务完成记录](../entry-002/adoption/DOC-WORLD-ENTRY-002-completion.md)；不据归档启动生产或宣布世界可玩。
+
+当前采用基线为8245cc61a59a6404984129415bf8aac904926ce0，加本任务指定DEC-050及三份唯一目标；不再把旧“等待O1/O2批准”作为开工材料缺口。实际G1生产执行仍须本次文档实审及主线下一任务的准确SHA／分支／白名单。
+
+版本差异只落在已批准单精力／有序周期、正常返回与截止衔接、同活动持续现场及恢复／事务边界。旧医院维持原版本；原首契约不倒改。原新世界草案中的药物使用效果、行动费用、负重／伤势倍率、装备／战斗、服务商品及专长继续独立Draft或后续待审，不从旧完整config取更宽子集，不整包升级。

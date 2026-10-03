@@ -1177,3 +1177,17 @@ Production App Shell 的 loading、ready、no-run 和 load-error 只属于应用
 DEC-046—048 仅为未来完整感染世界确认以下边界：每日仍只承诺一个主要场景，但访问资格取决于实际成果、信息、实体资格、时间和资源，而不是凑固定访问次数；第1至第7日均可在实际任务与离开条件齐备、合法安全返回并完成返回结算后的稳定中枢显式成功，不追加尚未发生的过夜；以及在当前医院—物流—通信固定局势中，明确声明的成果、列名敌人与一次性来源可以按契约跨日持续。
 
 这不确认三个地点的完整内容、任务实物、安装配方、两名新敌人的数值、专长效果、完整经济、终局失败编排或实现结构。分段突破目前允许，但仍须 Owner 使用真实可玩版本完成实际试玩复审；本文件不将纸面核算或文档录入记为体验通过。原医院一日版本、活动存档和冻结规则不因该未来范围静默迁移。
+
+
+<a id="doc-world-entry-002"></a>
+## DOC-WORLD-ENTRY-002：O1／O2当前采纳附记
+
+2026-10-03，依据[Owner实际批准](design-drafts/world-infected-001/entry-002/adoption/inputs/OWNER-approval-WORLD-ENTRY-002-ADOPTION-v1.0.md)及[获批稿限定](design-drafts/world-infected-001/entry-002/adoption/inputs/WORLD-ENTRY-002-ADOPTION-owner-review-v1.0.md)，O1指定规则／首批试用参数与G1契约、O2同次驻留持续现场及恢复／完整事务边界已批准；本次集中归档待准确SHA实审，生产新能力未实现，G1—G3未开工。
+
+唯一当前入口：[DEC-050](05-design-decisions.md#dec-050)；[试用配置v0.1](content/infected-residence-core-test-config-v0.1.json)；[恢复补充合同v1.0](engineering/residence-foundation/runtime-restore-supplement-v1.0.md)；[G1契约v1.0](engineering/residence-foundation/energy-cycle-contract-v1.0.md)。只采纳获批子集，不把整份Draft、旧fixtures.config或R1字段草图全部升格。O3旧入口／旧槽发布安排仍OPEN；其他经济／商品、医疗细项、地图价格、战斗和专长参数不随同批准。
+
+首身份核心d1d3b79 PASS与[8245cc6 R1专项PASS](design-drafts/world-infected-001/entry-002/adoption/inputs/AUD-8245cc6-WORLD-ENTRY-002-R1-review-v1.0.md)是前置历史，原213项作者有限验证／56项主线探针不算本轮检查。此前BLOCKED、待审及未实现记述保留当时身份；本附记更新局部采纳状态，不倒改旧DEC或[原首契约](design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md)。本轮仅文档／架构检查，结果见[本任务完成记录](design-drafts/world-infected-001/entry-002/adoption/DOC-WORLD-ENTRY-002-completion.md)；不据归档启动生产或宣布世界可玩。
+
+新《封锁区·未完成的转运》在同次驻留内共享单精力，按真实合法路径跨图；正E的一次合法动作可完成后截零，队列逐边再验。身体按流血→感染→饥饿检查，HP0短路，生还才推进周期；休整无免费治疗、清伤或补给。角色周期与任务日期分工、正常返回不补夜、末日先结后生还召回依DEC-050，不把旧医院感染终末阈值移植为新世界死亡开关。
+
+同活动现场／地面与知识按列明范围跨夜持续；委托关闭后未携出地面物只有历史含义。原医院每日单场景、预算、返回、日结、存档与验收含义保持；新版本尚无可玩入口。三专长、工具箱完整路线、信息安全、真实保存与分段突破的Owner首玩仍各待对应阶段完成。

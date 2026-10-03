@@ -1,0 +1,9 @@
+0cf94dcc34043b2abe293f44de76c872f77245f2b1c783410654cbd7c524bd66  AUD-8245cc6-WORLD-ENTRY-002-R1-review-v1.0.md
+404a1c5b8425b6b52c94f69892c0c075850d3be29649bfc1bb2b4e1a86b50070  BASELINE-AND-INPUTS.json
+244f504a5c8171aa7c1cf2be602066ee1e10635d2c38b61c5268d767477cdc22  DOC-WORLD-ENTRY-002-task-v1.0.md
+9121e016394c8f9d4a2e54b72b59d92636570582c0a06b5ec05cfbb4a0678705  OWNER-approval-WORLD-ENTRY-002-ADOPTION-v1.0.md
+7859c4b9089fde357ddf417cb2073d83aa34c1f3d3b87fcbd32e28b403986335  WORLD-ENTRY-002-ADOPTION-owner-review-v1.0.md
+f2433d649f8b2c8f4c1a5b86b348f5ecd1afa968975943dca4697fabc5b768b5  approved-documents/DEC-050-append.md
+e7f572a752bbc422a3d278d7044e68e60b103c4d581d85cdccf4a6010c39b84f  approved-documents/energy-cycle-contract-v1.0.md
+377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9  approved-documents/infected-residence-core-test-config-v0.1.json
+8686f559296210265f3148788c1620a9574e18d0576794b3352aaffd253e827a  approved-documents/runtime-restore-supplement-v1.0.md

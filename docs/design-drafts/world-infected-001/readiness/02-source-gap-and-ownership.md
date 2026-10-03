@@ -74,3 +74,17 @@
 “订阅只展示”仅限定展示订阅与提交后通知，不禁止规则体系在受控、有序、确定性的编排中读取正式前态并提出效果／计划。唯一协调入口组合验证后一次提交完整后态，不能由异步监听器补发奖罚、扣血或关闭。首核心只返回纯后态，没有完整生产事务提交权，不建事件总线、终局协调器、持久化或通知。
 
 以上以[批准契约B5](03-first-engineering-contract-draft.md#b5)与[B6](03-first-engineering-contract-draft.md#b6)为完整正文；不是新源码能力或新增第二套工程契约。首核心完成即准确SHA实审，生产开工仍待独立任务授权。
+
+
+<a id="doc-world-entry-002"></a>
+## DOC-WORLD-ENTRY-002：O1／O2当前采纳附记
+
+2026-10-03，依据[Owner实际批准](../entry-002/adoption/inputs/OWNER-approval-WORLD-ENTRY-002-ADOPTION-v1.0.md)及[获批稿限定](../entry-002/adoption/inputs/WORLD-ENTRY-002-ADOPTION-owner-review-v1.0.md)，O1指定规则／首批试用参数与G1契约、O2同次驻留持续现场及恢复／完整事务边界已批准；本次集中归档待准确SHA实审，生产新能力未实现，G1—G3未开工。
+
+唯一当前入口：[DEC-050](../../../05-design-decisions.md#dec-050)；[试用配置v0.1](../../../content/infected-residence-core-test-config-v0.1.json)；[恢复补充合同v1.0](../../../engineering/residence-foundation/runtime-restore-supplement-v1.0.md)；[G1契约v1.0](../../../engineering/residence-foundation/energy-cycle-contract-v1.0.md)。只采纳获批子集，不把整份Draft、旧fixtures.config或R1字段草图全部升格。O3旧入口／旧槽发布安排仍OPEN；其他经济／商品、医疗细项、地图价格、战斗和专长参数不随同批准。
+
+首身份核心d1d3b79 PASS与[8245cc6 R1专项PASS](../entry-002/adoption/inputs/AUD-8245cc6-WORLD-ENTRY-002-R1-review-v1.0.md)是前置历史，原213项作者有限验证／56项主线探针不算本轮检查。此前BLOCKED、待审及未实现记述保留当时身份；本附记更新局部采纳状态，不倒改旧DEC或[原首契约](03-first-engineering-contract-draft.md)。本轮仅文档／架构检查，结果见[本任务完成记录](../entry-002/adoption/DOC-WORLD-ENTRY-002-completion.md)；不据归档启动生产或宣布世界可玩。
+
+上文源码盘点保留其原读取时点；当前首身份／关闭资格核心已在d1d3b79限定实审通过，源码定点复核仅用于合同关系核对。本轮不实现新增能力，也不将旧盘点改为重新源码认证。
+
+原restore需要独立expected，只能形成同进度候选，不能直接充当冷boot安装。新补充合同已批准独立受控冷候选与唯一应用持有者的聚合／安装职责，但尚未实现；新周期G1先输出局部纯结果，持续现场G2、安装／保存G3后续分别实审。身体、物品、经济、终局业务齐备前不能半笔提交closed，也不新增通用Profile／任务SDK填空。

@@ -61,3 +61,25 @@ DOC-WORLD-ENTRY-001于2026-10-03归档；权威正文为[DEC-049](05-design-deci
 | DEC-005／041 | 本次不涉及专长实现或跨未来委托改选 | 完整世界验收前补回三专长，具体效果未随本条批准 |
 
 具体奖罚、HP／病程公式、日期结算、保存格式、UI及跨委托聚合不由DEC-049补定；003D两项政策保留原确认身份，未被恢复待选，也未被整套纳入本次正式化。
+
+
+<a id="doc-world-entry-002"></a>
+## DOC-WORLD-ENTRY-002：O1／O2当前采纳附记
+
+2026-10-03，依据[Owner实际批准](design-drafts/world-infected-001/entry-002/adoption/inputs/OWNER-approval-WORLD-ENTRY-002-ADOPTION-v1.0.md)及[获批稿限定](design-drafts/world-infected-001/entry-002/adoption/inputs/WORLD-ENTRY-002-ADOPTION-owner-review-v1.0.md)，O1指定规则／首批试用参数与G1契约、O2同次驻留持续现场及恢复／完整事务边界已批准；本次集中归档待准确SHA实审，生产新能力未实现，G1—G3未开工。
+
+唯一当前入口：[DEC-050](05-design-decisions.md#dec-050)；[试用配置v0.1](content/infected-residence-core-test-config-v0.1.json)；[恢复补充合同v1.0](engineering/residence-foundation/runtime-restore-supplement-v1.0.md)；[G1契约v1.0](engineering/residence-foundation/energy-cycle-contract-v1.0.md)。只采纳获批子集，不把整份Draft、旧fixtures.config或R1字段草图全部升格。O3旧入口／旧槽发布安排仍OPEN；其他经济／商品、医疗细项、地图价格、战斗和专长参数不随同批准。
+
+首身份核心d1d3b79 PASS与[8245cc6 R1专项PASS](design-drafts/world-infected-001/entry-002/adoption/inputs/AUD-8245cc6-WORLD-ENTRY-002-R1-review-v1.0.md)是前置历史，原213项作者有限验证／56项主线探针不算本轮检查。此前BLOCKED、待审及未实现记述保留当时身份；本附记更新局部采纳状态，不倒改旧DEC或[原首契约](design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md)。本轮仅文档／架构检查，结果见[本任务完成记录](design-drafts/world-infected-001/entry-002/adoption/DOC-WORLD-ENTRY-002-completion.md)；不据归档启动生产或宣布世界可玩。
+
+本表仅定位DEC-050第7节的局部覆盖，不独立产生规则，也不宣布旧版本整体废止。
+
+| 既有来源 | 新连续驻留版本按050采纳 | 保留 |
+| --- | --- | --- |
+| DEC-024／030／035 | 共享单E、正值开始、完整动作后截零 | 旧医院时间／透支语义；拒绝无副作用与死亡优先 |
+| DEC-026／027／033／034 | 流血→感染→饥饿、HP0死亡、生还才推进，无免费治疗 | 旧医院日结／有限恢复／终末感染与旧配置 |
+| DEC-028／047／049 | 正常返回无附加夜、静态中枢、末日先结后生还召回且同周期不重结 | 单次驻留、不重接、履约与指定样本、合法返回；不新造任务供给或完整经济 |
+| DEC-045／048 | 列明成果、敌人、来源、地面与知识在同活动驻留内跨图跨夜持续 | 旧医院含义、结束战斗临时CTB不跨接战、不建跨委托地面仓库 |
+| 原首契约B2／B4／B5／B6 | 后续冷候选／聚合／安装／完整事务依独立补充合同 | 原expected及K18/K19、原契约字节及身份核心PASS |
+
+具体试用值仅以唯一配置为准；索引不增加051、不采纳地图价／物品效果或O3发布选择。

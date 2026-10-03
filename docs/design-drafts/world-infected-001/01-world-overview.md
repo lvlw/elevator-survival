@@ -83,3 +83,17 @@ DOC-WORLD-ENTRY-001仅文档归档、同步及检查，等待主线准确SHA实�
 首资格核心在完整SHA `d1d3b7927c6733cff709a4bfd617fb1e85e7485a` 已通过[主线源码实审](entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md)。此前归档空白BLOCKED已依ENG-MISSION-LIFECYCLE-001-ADDENDUM-01解除，工程已普通提交并推送；保留上文历史过程，不将旧“未实现／未授权／未推送”误作当前状态。
 
 该PASS仅限首身份／关闭资格纯核心，不含真实保存、全角色聚合、完整世界或玩家入口。[WORLD-ENTRY-002候选入口](entry-002/00-owner-review.md)及[近期契约](entry-002/03-next-engineering-goals.md)仍待审，未批准新生产规则、未执行下一工程。
+
+
+<a id="doc-world-entry-002"></a>
+## DOC-WORLD-ENTRY-002：O1／O2当前采纳附记
+
+2026-10-03，依据[Owner实际批准](entry-002/adoption/inputs/OWNER-approval-WORLD-ENTRY-002-ADOPTION-v1.0.md)及[获批稿限定](entry-002/adoption/inputs/WORLD-ENTRY-002-ADOPTION-owner-review-v1.0.md)，O1指定规则／首批试用参数与G1契约、O2同次驻留持续现场及恢复／完整事务边界已批准；本次集中归档待准确SHA实审，生产新能力未实现，G1—G3未开工。
+
+唯一当前入口：[DEC-050](../../05-design-decisions.md#dec-050)；[试用配置v0.1](../../content/infected-residence-core-test-config-v0.1.json)；[恢复补充合同v1.0](../../engineering/residence-foundation/runtime-restore-supplement-v1.0.md)；[G1契约v1.0](../../engineering/residence-foundation/energy-cycle-contract-v1.0.md)。只采纳获批子集，不把整份Draft、旧fixtures.config或R1字段草图全部升格。O3旧入口／旧槽发布安排仍OPEN；其他经济／商品、医疗细项、地图价格、战斗和专长参数不随同批准。
+
+首身份核心d1d3b79 PASS与[8245cc6 R1专项PASS](entry-002/adoption/inputs/AUD-8245cc6-WORLD-ENTRY-002-R1-review-v1.0.md)是前置历史，原213项作者有限验证／56项主线探针不算本轮检查。此前BLOCKED、待审及未实现记述保留当时身份；本附记更新局部采纳状态，不倒改旧DEC或[原首契约](readiness/03-first-engineering-contract-draft.md)。本轮仅文档／架构检查，结果见[本任务完成记录](entry-002/adoption/DOC-WORLD-ENTRY-002-completion.md)；不据归档启动生产或宣布世界可玩。
+
+当前世界概览应按DEC-049身份／单次驻留和DEC-050本次局部采纳理解：同一活动执行可真实跨图跨夜，现场按列明范围持续；结束委托后原地面不可再取，合法携出物保持真实状态。单精力、无免费治疗、有序日级后果及一次衔接已具正式入口；五图、转运与样本主线不重开。
+
+本次不把全包升级或冻结，不把试用配置之外的地图价、负重／伤势倍率、医疗使用、装备／战斗、商品服务及专长建议变成规则。完整内容接线、新保存与Owner分段突破、恢复负担体验仍未完成；只读历史压力证据不能变成当前可重复领取的任务入口。

@@ -55,3 +55,24 @@
 - 提示只解释已知风险；未支持未来感染预测不包装成“安全可出发”。保存失败、读取继续和终局后整备需真实界面测试。
 
 没有Owner自由试玩、生产事务／恢复与对应正式落文前，不称Design Freeze、试玩通过或工程已获授权。004当时等待首契约审定；本次该批准已完成，仅文档归档后等待主线准确SHA实文件评审，生产开发仍须另行授权。
+
+
+<a id="doc-world-entry-002"></a>
+## DOC-WORLD-ENTRY-002：O1／O2当前采纳附记
+
+2026-10-03，依据[Owner实际批准](../entry-002/adoption/inputs/OWNER-approval-WORLD-ENTRY-002-ADOPTION-v1.0.md)及[获批稿限定](../entry-002/adoption/inputs/WORLD-ENTRY-002-ADOPTION-owner-review-v1.0.md)，O1指定规则／首批试用参数与G1契约、O2同次驻留持续现场及恢复／完整事务边界已批准；本次集中归档待准确SHA实审，生产新能力未实现，G1—G3未开工。
+
+唯一当前入口：[DEC-050](../../../05-design-decisions.md#dec-050)；[试用配置v0.1](../../../content/infected-residence-core-test-config-v0.1.json)；[恢复补充合同v1.0](../../../engineering/residence-foundation/runtime-restore-supplement-v1.0.md)；[G1契约v1.0](../../../engineering/residence-foundation/energy-cycle-contract-v1.0.md)。只采纳获批子集，不把整份Draft、旧fixtures.config或R1字段草图全部升格。O3旧入口／旧槽发布安排仍OPEN；其他经济／商品、医疗细项、地图价格、战斗和专长参数不随同批准。
+
+首身份核心d1d3b79 PASS与[8245cc6 R1专项PASS](../entry-002/adoption/inputs/AUD-8245cc6-WORLD-ENTRY-002-R1-review-v1.0.md)是前置历史，原213项作者有限验证／56项主线探针不算本轮检查。此前BLOCKED、待审及未实现记述保留当时身份；本附记更新局部采纳状态，不倒改旧DEC或[原首契约](03-first-engineering-contract-draft.md)。本轮仅文档／架构检查，结果见[本任务完成记录](../entry-002/adoption/DOC-WORLD-ENTRY-002-completion.md)；不据归档启动生产或宣布世界可玩。
+
+| 门槛 | 当前状态／来源 | 不能替代的下一步 |
+| --- | --- | --- |
+| 首身份核心 | d1d3b79源码实审限定PASS；旧BLOCKED解除经过不倒写 | 不代表周期、现场、冷安装或新世界可玩 |
+| R1有限专项 | 8245cc6主线限定PASS；作者213与主线56属不同执行证据 | 本轮不重跑、不相加，不预填为新规则生产测试 |
+| DOC-WORLD-ENTRY-002归档 | O1/O2已批准；本次字节／参数／链接／架构／diff结果见完成记录 | 待主线准确SHA文档实审；不自行进入G1 |
+| G1新周期 | 契约已批准，生产未开工 | 下次实际npm run test:run基线、独立预期正反例／组合、npm run check及准确SHA源码实审 |
+| G2／G3及公开保存 | 持续／恢复合同边界已批准，具体工程未执行 | 持续实体与知识验证，真实IO／刷新／多标签／稳定战斗保存及每个接缝实审 |
+| 玩家体验与内容 | OPEN／NOT RUN | 三专长差异、工具箱路线、分段突破、信息安全、召回／恢复负担和Owner首玩不因排除而取消 |
+
+仅文档架构检查不是生产测试／build，也不证明平衡或体验；所有尚未执行事项保留NOT RUN／未实现，不统一标PASS。

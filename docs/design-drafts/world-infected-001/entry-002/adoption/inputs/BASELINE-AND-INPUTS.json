@@ -1,0 +1,172 @@
+{
+  "task": "DOC-WORLD-ENTRY-002",
+  "package_version": "v1.0",
+  "prepared_date": "2026-10-03",
+  "purpose": "已批准O1/O2子集集中仅文档归档；不是生产工程",
+  "source_observations": {
+    "repository": "lvlw/elevator-survival",
+    "base_sha": "8245cc61a59a6404984129415bf8aac904926ce0",
+    "branch": "feature/design-world-entry-002",
+    "remote_heads": {
+      "feature/design-world-entry-002": "8245cc61a59a6404984129415bf8aac904926ce0",
+      "feature/design-world-infected-world-001": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+      "feature/mission-lifecycle-core-001": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed"
+    },
+    "root_git_objects_read": {
+      "src": "5dc57761e4dcabddec5b781401d808a6de1317ba",
+      "scripts": "a619e6b856375dfea3ab54551408b1835a66dcdf",
+      ".github": "026a7d1464c067e99f7ec653f0c9902b7519a71e",
+      "AGENTS.md": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "package.json": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+      "package-lock.json": "3b320a8a79a1815c0909d8846e5e6248d4fc187e",
+      ".gitattributes": "94f480de94e1d767531580401cbf13844868e82b"
+    },
+    "fixed_files_read": {
+      "docs/05-design-decisions.md": {
+        "git_blob": "f172de6ae7eecaaa126dd519d3dc7d2b279ad3b9",
+        "read_scope": "DEC-048/049尾段及文件结束；最新编号049"
+      },
+      "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md": {
+        "git_blob": "62e9fca4f10aeb6e5681a46e6af52be3f7851ba2",
+        "read_scope": "头部及固定blob核对；正文按已有批准保护不改"
+      },
+      "docs/design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md": {
+        "git_blob": "de298aaa04c13c886cd15d10f725b1b60723d14c",
+        "read_scope": "1—40行，G1全文及上下文"
+      },
+      "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md": {
+        "git_blob": "98f1869d6b1e5bfa2edae4de5f43a3132dafd9d8",
+        "read_scope": "84—115行，R07及覆盖来源"
+      }
+    },
+    "boundary": "远端读取与本会话原件核对；未访问Owner E:磁盘，不声称完整clone、再次源码实审或本轮生产测试。"
+  },
+  "dec_append": {
+    "number": 50,
+    "base_git_blob": "f172de6ae7eecaaa126dd519d3dc7d2b279ad3b9",
+    "source": "approved-documents/DEC-050-append.md",
+    "target": "docs/05-design-decisions.md",
+    "operation": "baseline_bytes + b\"\\n\\n\" + payload_bytes"
+  },
+  "payload_mapping": {
+    "approved-documents/DEC-050-append.md": "docs/05-design-decisions.md",
+    "approved-documents/infected-residence-core-test-config-v0.1.json": "docs/content/infected-residence-core-test-config-v0.1.json",
+    "approved-documents/runtime-restore-supplement-v1.0.md": "docs/engineering/residence-foundation/runtime-restore-supplement-v1.0.md",
+    "approved-documents/energy-cycle-contract-v1.0.md": "docs/engineering/residence-foundation/energy-cycle-contract-v1.0.md"
+  },
+  "modification_modes": {
+    "append_existing": [
+      "docs/01-game-design-v0.1.md",
+      "docs/02-vertical-slice.md",
+      "docs/03-architecture.md",
+      "docs/07-decision-supersession-index.md",
+      "docs/08-rule-implementation-traceability.md",
+      "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+      "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md"
+    ],
+    "prepend_existing": [
+      "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md",
+      "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+      "docs/design-drafts/world-infected-001/entry-002/02-runtime-restore-contract.md",
+      "docs/design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md"
+    ]
+  },
+  "exact_whitelist": [
+    "docs/05-design-decisions.md",
+    "docs/01-game-design-v0.1.md",
+    "docs/02-vertical-slice.md",
+    "docs/03-architecture.md",
+    "docs/07-decision-supersession-index.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+    "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+    "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+    "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md",
+    "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+    "docs/design-drafts/world-infected-001/entry-002/02-runtime-restore-contract.md",
+    "docs/design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md",
+    "docs/content/infected-residence-core-test-config-v0.1.json",
+    "docs/engineering/residence-foundation/runtime-restore-supplement-v1.0.md",
+    "docs/engineering/residence-foundation/energy-cycle-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-002/adoption/DOC-WORLD-ENTRY-002-completion.md",
+    "docs/design-drafts/world-infected-001/entry-002/adoption/checks.json",
+    "docs/design-drafts/world-infected-001/entry-002/adoption/inputs/DOC-WORLD-ENTRY-002-task-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-002/adoption/inputs/WORLD-ENTRY-002-ADOPTION-owner-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-002/adoption/inputs/OWNER-approval-WORLD-ENTRY-002-ADOPTION-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-002/adoption/inputs/AUD-8245cc6-WORLD-ENTRY-002-R1-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-002/adoption/inputs/BASELINE-AND-INPUTS.json",
+    "docs/design-drafts/world-infected-001/entry-002/adoption/inputs/SHA256SUMS.txt",
+    "docs/design-drafts/world-infected-001/entry-002/adoption/inputs/approved-documents/DEC-050-append.md",
+    "docs/design-drafts/world-infected-001/entry-002/adoption/inputs/approved-documents/infected-residence-core-test-config-v0.1.json",
+    "docs/design-drafts/world-infected-001/entry-002/adoption/inputs/approved-documents/runtime-restore-supplement-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-002/adoption/inputs/approved-documents/energy-cycle-contract-v1.0.md"
+  ],
+  "archive_root": "docs/design-drafts/world-infected-001/entry-002/adoption/inputs",
+  "input_relative_paths": [
+    "DOC-WORLD-ENTRY-002-task-v1.0.md",
+    "WORLD-ENTRY-002-ADOPTION-owner-review-v1.0.md",
+    "OWNER-approval-WORLD-ENTRY-002-ADOPTION-v1.0.md",
+    "AUD-8245cc6-WORLD-ENTRY-002-R1-review-v1.0.md",
+    "BASELINE-AND-INPUTS.json",
+    "SHA256SUMS.txt",
+    "approved-documents/DEC-050-append.md",
+    "approved-documents/infected-residence-core-test-config-v0.1.json",
+    "approved-documents/runtime-restore-supplement-v1.0.md",
+    "approved-documents/energy-cycle-contract-v1.0.md"
+  ],
+  "file_fingerprints": {
+    "AUD-8245cc6-WORLD-ENTRY-002-R1-review-v1.0.md": {
+      "bytes": 10876,
+      "sha256": "0cf94dcc34043b2abe293f44de76c872f77245f2b1c783410654cbd7c524bd66",
+      "git_blob": "abf049cb8a624beb0713f9fdd2a2cd73c8ef5998"
+    },
+    "DOC-WORLD-ENTRY-002-task-v1.0.md": {
+      "bytes": 23306,
+      "sha256": "244f504a5c8171aa7c1cf2be602066ee1e10635d2c38b61c5268d767477cdc22",
+      "git_blob": "438b05ccf3ae77af180e5577c294b2516462074f"
+    },
+    "OWNER-approval-WORLD-ENTRY-002-ADOPTION-v1.0.md": {
+      "bytes": 1729,
+      "sha256": "9121e016394c8f9d4a2e54b72b59d92636570582c0a06b5ec05cfbb4a0678705",
+      "git_blob": "66c04d8467909f0df6724de6eda7ab6cf0821427"
+    },
+    "WORLD-ENTRY-002-ADOPTION-owner-review-v1.0.md": {
+      "bytes": 14592,
+      "sha256": "7859c4b9089fde357ddf417cb2073d83aa34c1f3d3b87fcbd32e28b403986335",
+      "git_blob": "58c7ade3279e76172e7047505970b32c86827140"
+    },
+    "approved-documents/DEC-050-append.md": {
+      "bytes": 8462,
+      "sha256": "f2433d649f8b2c8f4c1a5b86b348f5ecd1afa968975943dca4697fabc5b768b5",
+      "git_blob": "1f33058424bad88d59d083ccfed1163ffede71ee"
+    },
+    "approved-documents/energy-cycle-contract-v1.0.md": {
+      "bytes": 10232,
+      "sha256": "e7f572a752bbc422a3d278d7044e68e60b103c4d581d85cdccf4a6010c39b84f",
+      "git_blob": "0476720ddeaae8ffe6128d352bd496171a215832"
+    },
+    "approved-documents/infected-residence-core-test-config-v0.1.json": {
+      "bytes": 1417,
+      "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9",
+      "git_blob": "db6959ac02bf1e3bf8e816fe2b0d148ced9ca273"
+    },
+    "approved-documents/runtime-restore-supplement-v1.0.md": {
+      "bytes": 6834,
+      "sha256": "8686f559296210265f3148788c1620a9574e18d0576794b3352aaffd253e827a",
+      "git_blob": "84deae2bb7a3c733b74af1bbd8321db13d0db0c2"
+    }
+  },
+  "evidence_limits": [
+    "主线本次读取实际获批稿／前置审查／Owner批准，核对远端refs、根tree、AGENTS、DEC尾段、G1来源及相关范围。",
+    "主线未访问用户本地工作区，未执行生产测试、模型全套重跑或重新认证原工程。",
+    "新四份载荷为主线依批准子集整理的本任务归档正文；未声明已经提交仓库。",
+    "O3发布政策、G2/G3具体支持矩阵及路径、G1生产白名单均未由本次文档任务给出。",
+    "本清单不自行计算自身指纹；SHA256SUMS覆盖本清单，SHA256SUMS自身由输入包及归档原字节相等检验。"
+  ]
+}

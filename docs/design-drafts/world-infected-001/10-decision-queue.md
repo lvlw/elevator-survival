@@ -62,3 +62,9 @@
 <a id="identity"></a>
 <a id="npc"></a>
 <a id="sources"></a>
+
+## ENG-MISSION-LIFECYCLE-001 执行进度（2026-10-03）
+
+首资格核心已按本项Owner授权执行，作者完成、待最终准确SHA实文件评审；当前不再以归档时“工程未授权”为本Goal阻塞。见 [完成报告](../../engineering/mission-lifecycle-001/completion.md) 与 [K矩阵及后续责任](../../engineering/mission-lifecycle-001/implementation-notes.md)。本项不关闭可信恢复／聚合／事务接线、后续玩法参数、真实内容或试玩事项；未自动进入下一工程，整包仍Draft。
+
+本项交付状态补充：实现与全量检查完成，但原字节归档的前置审查行尾空格使完整暂存空白检查未通过，当前未提交／推送；等待主线处理输入保全与检查冲突。

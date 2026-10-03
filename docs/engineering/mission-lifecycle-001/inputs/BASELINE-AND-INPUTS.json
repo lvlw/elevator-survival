@@ -1,0 +1,41 @@
+{
+  "task": "ENG-MISSION-LIFECYCLE-001",
+  "package_version": "v1.0",
+  "prepared_date": "2026-10-03",
+  "repository": "lvlw/elevator-survival",
+  "engineering_start_sha": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+  "engineering_branch_to_create": "feature/mission-lifecycle-core-001",
+  "remote_refs_observed_this_preparation": {
+    "feature/design-world-infected-world-001": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+    "main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+    "feature/mission-lifecycle-core-001": "not present in returned remote heads"
+  },
+  "remote_source": "https://api.github.com/repos/lvlw/elevator-survival/git/matching-refs/heads/",
+  "required_baseline_git_blobs": {
+    "AGENTS.md": "0055de32c18517d4d016b077e5fc287d9360317d",
+    "docs/05-design-decisions.md": "f172de6ae7eecaaa126dd519d3dc7d2b279ad3b9",
+    "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md": "62e9fca4f10aeb6e5681a46e6af52be3f7851ba2",
+    "src/core/domain/run-identity.ts": "7daf5db838ed9ef943bfe9bf42213175d2985188",
+    "scripts/validate-architecture.mjs": "df9ff13d1e3a518ca441f78bd8428b32d383202f",
+    "package.json": "e52c8b2716f8f44f4678066443516de5c738a3b8"
+  },
+  "source_reads_this_preparation": [
+    "GitHub remote heads",
+    "AGENTS.md at engineering_start_sha",
+    "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md at engineering_start_sha, lines 1-189",
+    "src/core/domain/run-identity.ts at engineering_start_sha",
+    "scripts/validate-architecture.mjs at engineering_start_sha",
+    "package.json at engineering_start_sha",
+    "docs Git tree 32556ffc4c1b77ed4710aa1a72a9e9ce8c4bef91",
+    "Attached AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md",
+    "Verified contract/DEC snapshots in the attached prior review package; full Git blobs matched the pinned repository objects"
+  ],
+  "scope_notes": [
+    "This is task preparation, not a repeat of the previous independent review.",
+    "No user-local disk, branch, HEAD, status, or diff has been inspected by the mainline assistant.",
+    "No repository writes, engineering branch creation, production tests, build, browser, or gameplay execution performed in task preparation.",
+    "The included prior review is preserved as historical evidence; its then-pending engineering authorization is superseded by the separate current Owner authorization.",
+    "No automatic Project Sources or ChatGPT project-instruction synchronization.",
+    "Codex must recheck actual local and remote baselines before modifying repository files."
+  ]
+}

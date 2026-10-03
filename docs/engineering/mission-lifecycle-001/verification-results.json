@@ -1,0 +1,1100 @@
+{
+  "task": "ENG-MISSION-LIFECYCLE-001",
+  "date": "2026-10-03",
+  "status": "PASS_WITH_APPROVED_ARCHIVE_WHITESPACE_EXCEPTION",
+  "start_sha": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+  "branch": "feature/mission-lifecycle-core-001",
+  "environment": {
+    "os": "Windows",
+    "shell": "PowerShell",
+    "node": "v24.9.0",
+    "npm": "11.6.0",
+    "vitest": "4.1.10",
+    "vite": "8.1.5",
+    "dependencies_changed": false,
+    "npm_ci_run": false
+  },
+  "startup_commands": [
+    {
+      "command": "git rev-parse --show-toplevel",
+      "exit": 0,
+      "output": "E:/projects/elevator-survival\n"
+    },
+    {
+      "command": "git remote -v",
+      "exit": 0,
+      "output": "origin: lvlw/elevator-survival (URL redacted)"
+    },
+    {
+      "command": "git rev-parse HEAD",
+      "exit": 0,
+      "output": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35\n"
+    },
+    {
+      "command": "git branch --show-current",
+      "exit": 0,
+      "output": "feature/design-world-infected-world-001\n"
+    },
+    {
+      "command": "git status --short --untracked-files=all",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "command": "git diff --name-status",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "command": "git diff --cached --name-status",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "command": "git worktree list --porcelain",
+      "exit": 0,
+      "output": "worktree E:/projects/elevator-survival\nHEAD 6b48b3de6521d9a9c296754a4d8135c7f7c7ca35\nbranch refs/heads/feature/design-world-infected-world-001\n\n"
+    },
+    {
+      "command": "git rev-parse --verify refs/heads/main",
+      "exit": 0,
+      "output": "a76e9c1c998051fc1643b6e0c3d53443fa55feed\n"
+    },
+    {
+      "command": "git ls-remote --heads origin refs/heads/main refs/heads/feature/design-world-infected-world-001 refs/heads/feature/mission-lifecycle-core-001",
+      "exit": 0,
+      "output": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35\trefs/heads/feature/design-world-infected-world-001\na76e9c1c998051fc1643b6e0c3d53443fa55feed\trefs/heads/main\n"
+    },
+    {
+      "command": "git show-ref --verify refs/heads/feature/mission-lifecycle-core-001",
+      "exit": 128,
+      "output": "fatal: 'refs/heads/feature/mission-lifecycle-core-001' - not a valid ref\n"
+    },
+    {
+      "command": "git switch -c feature/mission-lifecycle-core-001 6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+      "exit": 0,
+      "output": "Switched to a new branch 'feature/mission-lifecycle-core-001'\n"
+    },
+    {
+      "command": "git branch --show-current",
+      "exit": 0,
+      "output": "feature/mission-lifecycle-core-001\n"
+    },
+    {
+      "command": "git rev-parse HEAD",
+      "exit": 0,
+      "output": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35\n"
+    },
+    {
+      "command": "git status --short --untracked-files=all",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "command": "git diff --name-status",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "command": "git diff --cached --name-status",
+      "exit": 0,
+      "output": ""
+    }
+  ],
+  "input_integrity": {
+    "ENG-MISSION-LIFECYCLE-001-task-v1.0.md": {
+      "bytes": 31393,
+      "sha256": "b813d7f7c93378a0e7905e25acf9b30f19e90b2f9fcf8b07d48422e62bdc1801"
+    },
+    "OWNER-authorization-ENG-MISSION-LIFECYCLE-001-v1.0.md": {
+      "bytes": 2261,
+      "sha256": "e0a1684332779c5304f7046610e18f87039315fb2c39e6d570fa627a8b7b4f19"
+    },
+    "AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md": {
+      "bytes": 12289,
+      "sha256": "d902361ad0815cc177bfb200f589041e98e8a5d0ea8bbd1c81232f966c97507b"
+    },
+    "BASELINE-AND-INPUTS.json": {
+      "bytes": 2591,
+      "sha256": "607442d0d28137c31461ccffd7786913d645fb5e85459e36865fdc06f6fef027"
+    },
+    "SHA256SUMS.txt": {
+      "bytes": 429,
+      "sha256": "2dc2e4182ec9113da3f1cecfdffe3c34921286fbfcc184fa494f224349e9e5af"
+    }
+  },
+  "baseline": {
+    "command": "npm run test:run",
+    "exit_code": 0,
+    "files_passed": 104,
+    "tests_passed": 2153,
+    "failed": 0,
+    "skipped": 0,
+    "duration_seconds": 54.21,
+    "production_written_before_baseline": false
+  },
+  "development_commands": [
+    {
+      "command": "npm run test:run -- src/core/mission-lifecycle",
+      "exit_code": 0,
+      "files": 1,
+      "tests_passed": 94
+    },
+    {
+      "command": "npm run typecheck",
+      "exit_code": 1,
+      "errors": [
+        "TS2339 test union result.outcome not narrowed",
+        "TS2353 negative expectation extra-field object literal rejected statically"
+      ],
+      "fix": "Narrow closed branch explicitly; use typed-compatible extra-field variable to test strict runtime rejection. No expected behavior relaxed."
+    },
+    {
+      "command": "npm run typecheck",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run test:run -- src/core/mission-lifecycle --reporter=default --reporter=json --outputFile=<external-temp>/targeted-2.json",
+      "exit_code": 0,
+      "files": 1,
+      "tests_passed": 100
+    }
+  ],
+  "targeted_final": {
+    "command": "npm run test:run -- src/core/mission-lifecycle --reporter=default --reporter=json --outputFile=<external-temp>/targeted-final.json",
+    "exit_code": 0,
+    "files": 1,
+    "tests_passed": 103,
+    "failed": 0,
+    "skipped": 0,
+    "new_test_count_method": "Final Vitest expanded cases in the one new .test.ts file. 2256 - 2153 = 103 independently matches full regression. Repeated runs and assertions inside a case are not added."
+  },
+  "final_check": {
+    "command": "npm run check",
+    "exit_code": 0,
+    "stage_exit_evidence": "package check uses &&; every stage completed and enclosing command exited 0",
+    "stages": [
+      {
+        "command": "npm run validate:architecture",
+        "exit_code": 0,
+        "dec_entries": 49,
+        "core_production_files": 224
+      },
+      {
+        "command": "npm run typecheck",
+        "exit_code": 0
+      },
+      {
+        "command": "npm run test:run",
+        "exit_code": 0,
+        "files_passed": 105,
+        "tests_passed": 2256,
+        "failed": 0,
+        "skipped": 0,
+        "duration_seconds": 46.94
+      },
+      {
+        "command": "npm run build",
+        "exit_code": 0,
+        "modules_transformed": 419,
+        "warning": "Some chunks exceed 500 kB after minification; non-blocking. No config/threshold changed."
+      }
+    ]
+  },
+  "k_matrix": {
+    "K01": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "mission lifecycle transitions and read-only queries K01 K02 K17 repeats first queries and deterministic activation without changing inputs"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K02": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "mission lifecycle transitions and read-only queries K01 K02 K17 repeats first queries and deterministic activation without changing inputs"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K03": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "mission lifecycle transitions and read-only queries K03 rejects active activation {\"runId\":\"test-run\",\"seed\":\"test-seed\",\"rulesVersion\":\"test-rules\"}",
+        "mission lifecycle transitions and read-only queries K03 rejects active activation {\"runId\":\"another-run\",\"seed\":\"test-seed\",\"rulesVersion\":\"test-rules\"}"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K04": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "mission lifecycle transitions and read-only queries K04 continues only the same full execution without reinitializing",
+        "mission lifecycle transitions and read-only queries K04 K07 rejects wrong execution runId in continue and termination",
+        "mission lifecycle transitions and read-only queries K04 K07 rejects wrong execution seed in continue and termination",
+        "mission lifecycle transitions and read-only queries K04 K07 rejects wrong execution rulesVersion in continue and termination"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K05": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "mission lifecycle transitions and read-only queries K05 K06 K07 closes success once without creating death or reward effects",
+        "mission lifecycle transitions and read-only queries K05 K06 K07 closes voluntary-failure once without creating death or reward effects",
+        "mission lifecycle transitions and read-only queries K05 K06 K07 closes deadline-failure once without creating death or reward effects",
+        "mission lifecycle transitions and read-only queries K05 K06 K07 closes death once without creating death or reward effects"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K06": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "mission lifecycle transitions and read-only queries K05 K06 K07 closes success once without creating death or reward effects",
+        "mission lifecycle transitions and read-only queries K05 K06 K07 closes voluntary-failure once without creating death or reward effects",
+        "mission lifecycle transitions and read-only queries K05 K06 K07 closes deadline-failure once without creating death or reward effects",
+        "mission lifecycle transitions and read-only queries K05 K06 K07 closes death once without creating death or reward effects",
+        "mission lifecycle transitions and read-only queries K12 K06 closing another mission with death does not rewrite the earlier result"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": [
+        "Real current-fact ownership and trusted installation",
+        "Cross-commission activity uniqueness and identity reuse",
+        "Real terminal-result production and complete transaction"
+      ]
+    },
+    "K07": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "mission lifecycle transitions and read-only queries K04 K07 rejects wrong execution runId in continue and termination",
+        "mission lifecycle transitions and read-only queries K04 K07 rejects wrong execution seed in continue and termination",
+        "mission lifecycle transitions and read-only queries K04 K07 rejects wrong execution rulesVersion in continue and termination",
+        "mission lifecycle transitions and read-only queries K05 K06 K07 closes success once without creating death or reward effects",
+        "mission lifecycle transitions and read-only queries K05 K06 K07 closes voluntary-failure once without creating death or reward effects",
+        "mission lifecycle transitions and read-only queries K05 K06 K07 closes deadline-failure once without creating death or reward effects",
+        "mission lifecycle transitions and read-only queries K05 K06 K07 closes death once without creating death or reward effects",
+        "mission lifecycle transitions and read-only queries K07 refuses termination before activation"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K08": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "mission lifecycle transitions and read-only queries K08 closed facts remain closed after changing runId",
+        "mission lifecycle transitions and read-only queries K08 closed facts remain closed after changing seed",
+        "mission lifecycle transitions and read-only queries K08 K10 rejects extra command field title instead of reopening",
+        "mission lifecycle transitions and read-only queries K08 K10 rejects extra command field displayName instead of reopening",
+        "mission lifecycle transitions and read-only queries K08 K10 rejects extra command field partialDelivery instead of reopening",
+        "mission lifecycle transitions and read-only queries K08 K10 rejects extra command field installedFacility instead of reopening",
+        "mission lifecycle transitions and read-only queries K08 K10 rejects extra command field storedTaskItem instead of reopening",
+        "mission lifecycle transitions and read-only queries K08 K10 rejects extra command field nextState instead of reopening",
+        "mission lifecycle transitions and read-only queries K08 K10 rejects extra command field completed instead of reopening"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K09": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "strict candidate restoration and independent expectations K09 rejects changed characterId against controlled declaration and expectation",
+        "strict candidate restoration and independent expectations K09 rejects changed worldId against controlled declaration and expectation",
+        "strict candidate restoration and independent expectations K09 rejects changed templateId against controlled declaration and expectation",
+        "strict candidate restoration and independent expectations K09 rejects changed commissionId against controlled declaration and expectation",
+        "strict candidate restoration and independent expectations K09 rejects changed rulesVersion against controlled declaration and expectation",
+        "strict candidate restoration and independent expectations K09 rejects changed contractVersion against controlled declaration and expectation",
+        "strict candidate restoration and independent expectations K09 activation and termination reject request binding axis characterId",
+        "strict candidate restoration and independent expectations K09 activation and termination reject request binding axis worldId",
+        "strict candidate restoration and independent expectations K09 activation and termination reject request binding axis templateId",
+        "strict candidate restoration and independent expectations K09 activation and termination reject request binding axis commissionId",
+        "strict candidate restoration and independent expectations K09 activation and termination reject request binding axis rulesVersion",
+        "strict candidate restoration and independent expectations K09 activation and termination reject request binding axis contractVersion",
+        "strict candidate restoration and independent expectations K09 rejects a declared but different commission and a changed independent expectation"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K10": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "mission lifecycle transitions and read-only queries K08 K10 rejects extra command field title instead of reopening",
+        "mission lifecycle transitions and read-only queries K08 K10 rejects extra command field displayName instead of reopening",
+        "mission lifecycle transitions and read-only queries K08 K10 rejects extra command field partialDelivery instead of reopening",
+        "mission lifecycle transitions and read-only queries K08 K10 rejects extra command field installedFacility instead of reopening",
+        "mission lifecycle transitions and read-only queries K08 K10 rejects extra command field storedTaskItem instead of reopening",
+        "mission lifecycle transitions and read-only queries K08 K10 rejects extra command field nextState instead of reopening",
+        "mission lifecycle transitions and read-only queries K08 K10 rejects extra command field completed instead of reopening"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K11": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "mission lifecycle transitions and read-only queries K11 K12 returns empty for the closed sole mission and distinguishes a real test-only declaration"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K12": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "mission lifecycle transitions and read-only queries K11 K12 returns empty for the closed sole mission and distinguishes a real test-only declaration",
+        "mission lifecycle transitions and read-only queries K12 K06 closing another mission with death does not rewrite the earlier result"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K13": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "mission lifecycle transitions and read-only queries K13 rejects missing facts, undeclared commissions and duplicate or incomplete lists"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K14": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "strict candidate restoration and independent expectations K14 K17 preserves unaccepted semantics with frozen input",
+        "strict candidate restoration and independent expectations K14 K17 preserves active semantics with frozen input",
+        "strict candidate restoration and independent expectations K14 K17 preserves closed semantics with frozen input"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K15": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "strict candidate restoration and independent expectations K15 missing field formatVersion is rejected unchanged",
+        "strict candidate restoration and independent expectations K15 missing field binding is rejected unchanged",
+        "strict candidate restoration and independent expectations K15 missing field status is rejected unchanged",
+        "strict candidate restoration and independent expectations K15 missing field execution is rejected unchanged",
+        "strict candidate restoration and independent expectations K15 missing field outcome is rejected unchanged",
+        "strict candidate restoration and independent expectations K15 missing field binding.characterId is rejected unchanged",
+        "strict candidate restoration and independent expectations K15 missing field binding.mission is rejected unchanged",
+        "strict candidate restoration and independent expectations K15 missing field binding.mission.worldId is rejected unchanged",
+        "strict candidate restoration and independent expectations K15 missing field binding.mission.templateId is rejected unchanged",
+        "strict candidate restoration and independent expectations K15 missing field binding.mission.commissionId is rejected unchanged",
+        "strict candidate restoration and independent expectations K15 missing field binding.mission.rulesVersion is rejected unchanged",
+        "strict candidate restoration and independent expectations K15 missing field binding.mission.contractVersion is rejected unchanged",
+        "strict candidate restoration and independent expectations K15 missing field execution.runId is rejected unchanged",
+        "strict candidate restoration and independent expectations K15 missing field execution.seed is rejected unchanged",
+        "strict candidate restoration and independent expectations K15 missing field execution.rulesVersion is rejected unchanged",
+        "strict candidate restoration and independent expectations K15 nested unknown field at root is not stripped",
+        "strict candidate restoration and independent expectations K15 nested unknown field at binding is not stripped",
+        "strict candidate restoration and independent expectations K15 nested unknown field at declaration is not stripped",
+        "strict candidate restoration and independent expectations K15 nested unknown field at execution is not stripped",
+        "strict candidate restoration and independent expectations K15 wrong type at formatVersion is rejected",
+        "strict candidate restoration and independent expectations K15 wrong type at binding is rejected",
+        "strict candidate restoration and independent expectations K15 wrong type at status is rejected",
+        "strict candidate restoration and independent expectations K15 wrong type at execution is rejected",
+        "strict candidate restoration and independent expectations K15 wrong type at outcome is rejected",
+        "strict candidate restoration and independent expectations K15 wrong type at binding.characterId is rejected",
+        "strict candidate restoration and independent expectations K15 wrong type at binding.mission is rejected",
+        "strict candidate restoration and independent expectations K15 wrong type at binding.mission.worldId is rejected",
+        "strict candidate restoration and independent expectations K15 wrong type at binding.mission.templateId is rejected",
+        "strict candidate restoration and independent expectations K15 wrong type at binding.mission.commissionId is rejected",
+        "strict candidate restoration and independent expectations K15 wrong type at binding.mission.rulesVersion is rejected",
+        "strict candidate restoration and independent expectations K15 wrong type at binding.mission.contractVersion is rejected",
+        "strict candidate restoration and independent expectations K15 wrong type at execution.runId is rejected",
+        "strict candidate restoration and independent expectations K15 wrong type at execution.seed is rejected",
+        "strict candidate restoration and independent expectations K15 wrong type at execution.rulesVersion is rejected",
+        "strict candidate restoration and independent expectations K15 rejects noncanonical identities \"\" without trim repair",
+        "strict candidate restoration and independent expectations K15 rejects noncanonical identities \" \" without trim repair",
+        "strict candidate restoration and independent expectations K15 rejects noncanonical identities \" padded\" without trim repair",
+        "strict candidate restoration and independent expectations K15 rejects noncanonical identities \"padded \" without trim repair",
+        "strict candidate restoration and independent expectations K15 rejects noncanonical identities \"line\\nbreak\" without trim repair",
+        "strict candidate restoration and independent expectations K15 rejects noncanonical identities \"control\\u0000\" without trim repair",
+        "strict candidate restoration and independent expectations K15 rejects unregistered declarations, conflicts and unknown format without migration",
+        "strict candidate restoration and independent expectations K15 rejects accessors, symbols, prototypes and cycles without invoking getters",
+        "strict candidate restoration and independent expectations K15 rejects non-element array property extra",
+        "strict candidate restoration and independent expectations K15 rejects non-element array property 4294967295",
+        "strict candidate restoration and independent expectations K15 rejects non-element array property 01"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K16": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "strict candidate restoration and independent expectations K16 rejects altered restored execution runId",
+        "strict candidate restoration and independent expectations K16 rejects altered restored execution seed",
+        "strict candidate restoration and independent expectations K16 rejects altered restored execution rulesVersion",
+        "strict candidate restoration and independent expectations K16 rejects impossible state: unaccepted with execution",
+        "strict candidate restoration and independent expectations K16 rejects impossible state: active with outcome",
+        "strict candidate restoration and independent expectations K16 rejects impossible state: closed without execution",
+        "strict candidate restoration and independent expectations K16 rejects impossible state: closed without outcome",
+        "strict candidate restoration and independent expectations K16 rejects impossible state: unknown result",
+        "strict candidate restoration and independent expectations K16 rejects impossible state: boolean result",
+        "strict candidate restoration and independent expectations K16 rejects impossible state: unknown status",
+        "strict candidate restoration and independent expectations K16 rejects coherent state or outcome downgrade against independent expected history"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K17": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "mission lifecycle transitions and read-only queries K01 K02 K17 repeats first queries and deterministic activation without changing inputs",
+        "strict candidate restoration and independent expectations K14 K17 preserves unaccepted semantics with frozen input",
+        "strict candidate restoration and independent expectations K14 K17 preserves active semantics with frozen input",
+        "strict candidate restoration and independent expectations K14 K17 preserves closed semantics with frozen input",
+        "strict candidate restoration and independent expectations K17 copies mutable inputs without freezing caller objects"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K18": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "composition and actual export boundaries K18 complete public and controlled export chain for success",
+        "composition and actual export boundaries K18 complete public and controlled export chain for voluntary-failure",
+        "composition and actual export boundaries K18 complete public and controlled export chain for deadline-failure",
+        "composition and actual export boundaries K18 complete public and controlled export chain for death"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": []
+    },
+    "K19": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "composition and actual export boundaries K19 candidate parsing and fresh construction cannot replace the harness current closed fact",
+        "composition and actual export boundaries K19 K20 read-only exports exclude controlled transitions and test harnesses"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": [
+        "Real current-fact ownership and trusted installation",
+        "Cross-commission activity uniqueness and identity reuse",
+        "Real terminal-result production and complete transaction"
+      ]
+    },
+    "K20": {
+      "evidence": "unit/combination tests and author source review",
+      "test_names": [
+        "composition and actual export boundaries K19 K20 read-only exports exclude controlled transitions and test harnesses"
+      ],
+      "observed_status": "PASS within local core scope",
+      "deferred": [],
+      "review": "Five production files read; actual read-only/controlled exports verified by tests; imports scanned, no outside production wiring or environmental effects."
+    },
+    "K21": {
+      "evidence": "author full-check/scope/responsibility review",
+      "test_names": [],
+      "observed_status": "PASS within local core scope",
+      "deferred": [],
+      "review": "Actual npm run check exit 0; 105 files/2256 tests; all prior source and test files unchanged relative to baseline."
+    },
+    "K22": {
+      "evidence": "author full-check/scope/responsibility review",
+      "test_names": [],
+      "observed_status": "PASS within local core scope",
+      "deferred": [
+        "Real current-fact ownership and trusted installation",
+        "Cross-commission activity uniqueness and identity reuse",
+        "Real terminal-result production and complete transaction",
+        "Browser save/restore and version compatibility",
+        "Owner playtest and full world implementation"
+      ]
+    }
+  },
+  "delivery_checks": {
+    "whitelist_paths": [
+      "docs/03-architecture.md",
+      "docs/08-rule-implementation-traceability.md",
+      "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "docs/engineering/mission-lifecycle-001/completion.md",
+      "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+      "docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md",
+      "docs/engineering/mission-lifecycle-001/inputs/BASELINE-AND-INPUTS.json",
+      "docs/engineering/mission-lifecycle-001/inputs/ENG-MISSION-LIFECYCLE-001-task-v1.0.md",
+      "docs/engineering/mission-lifecycle-001/inputs/OWNER-authorization-ENG-MISSION-LIFECYCLE-001-v1.0.md",
+      "docs/engineering/mission-lifecycle-001/inputs/SHA256SUMS.txt",
+      "docs/engineering/mission-lifecycle-001/verification-results.json",
+      "src/core/mission-lifecycle/controlled.ts",
+      "src/core/mission-lifecycle/index.ts",
+      "src/core/mission-lifecycle/mission-lifecycle.test.ts",
+      "src/core/mission-lifecycle/queries.ts",
+      "src/core/mission-lifecycle/types.ts",
+      "src/core/mission-lifecycle/validation.ts"
+    ],
+    "changed_file_count": 18,
+    "existing_documents_append_only": [
+      "docs/03-architecture.md",
+      "docs/08-rule-implementation-traceability.md",
+      "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "docs/design-drafts/world-infected-001/10-decision-queue.md"
+    ],
+    "new_sources": [
+      "src/core/mission-lifecycle/controlled.ts",
+      "src/core/mission-lifecycle/index.ts",
+      "src/core/mission-lifecycle/mission-lifecycle.test.ts",
+      "src/core/mission-lifecycle/queries.ts",
+      "src/core/mission-lifecycle/types.ts",
+      "src/core/mission-lifecycle/validation.ts"
+    ],
+    "strict_utf8_files": 18,
+    "inputs": {
+      "ENG-MISSION-LIFECYCLE-001-task-v1.0.md": {
+        "bytes": 31393,
+        "sha256": "b813d7f7c93378a0e7905e25acf9b30f19e90b2f9fcf8b07d48422e62bdc1801"
+      },
+      "OWNER-authorization-ENG-MISSION-LIFECYCLE-001-v1.0.md": {
+        "bytes": 2261,
+        "sha256": "e0a1684332779c5304f7046610e18f87039315fb2c39e6d570fa627a8b7b4f19"
+      },
+      "AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md": {
+        "bytes": 12289,
+        "sha256": "d902361ad0815cc177bfb200f589041e98e8a5d0ea8bbd1c81232f966c97507b"
+      },
+      "BASELINE-AND-INPUTS.json": {
+        "bytes": 2591,
+        "sha256": "607442d0d28137c31461ccffd7786913d645fb5e85459e36865fdc06f6fef027"
+      },
+      "SHA256SUMS.txt": {
+        "bytes": 429,
+        "sha256": "2dc2e4182ec9113da3f1cecfdffe3c34921286fbfcc184fa494f224349e9e5af"
+      }
+    },
+    "checked_links_and_anchors": [
+      {
+        "source": "docs/03-architecture.md",
+        "target": "../src/core/mission-lifecycle/index.ts"
+      },
+      {
+        "source": "docs/03-architecture.md",
+        "target": "../src/core/mission-lifecycle/controlled.ts"
+      },
+      {
+        "source": "docs/03-architecture.md",
+        "target": "engineering/mission-lifecycle-001/implementation-notes.md"
+      },
+      {
+        "source": "docs/03-architecture.md",
+        "target": "engineering/mission-lifecycle-001/verification-results.json"
+      },
+      {
+        "source": "docs/08-rule-implementation-traceability.md",
+        "target": "../src/core/mission-lifecycle/index.ts"
+      },
+      {
+        "source": "docs/08-rule-implementation-traceability.md",
+        "target": "../src/core/mission-lifecycle/controlled.ts"
+      },
+      {
+        "source": "docs/08-rule-implementation-traceability.md",
+        "target": "../src/core/mission-lifecycle/mission-lifecycle.test.ts"
+      },
+      {
+        "source": "docs/08-rule-implementation-traceability.md",
+        "target": "engineering/mission-lifecycle-001/implementation-notes.md#k-matrix"
+      },
+      {
+        "source": "docs/08-rule-implementation-traceability.md",
+        "target": "engineering/mission-lifecycle-001/verification-results.json"
+      },
+      {
+        "source": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "target": "../../engineering/mission-lifecycle-001/completion.md"
+      },
+      {
+        "source": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "target": "../../engineering/mission-lifecycle-001/implementation-notes.md"
+      },
+      {
+        "source": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "target": "../../engineering/mission-lifecycle-001/completion.md"
+      },
+      {
+        "source": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "target": "../../engineering/mission-lifecycle-001/implementation-notes.md"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/completion.md",
+        "target": "inputs/ENG-MISSION-LIFECYCLE-001-task-v1.0.md"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/completion.md",
+        "target": "verification-results.json"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/completion.md",
+        "target": "../../../src/core/mission-lifecycle/index.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/completion.md",
+        "target": "../../../src/core/mission-lifecycle/types.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/completion.md",
+        "target": "../../../src/core/mission-lifecycle/validation.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/completion.md",
+        "target": "../../../src/core/mission-lifecycle/queries.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/completion.md",
+        "target": "../../../src/core/mission-lifecycle/controlled.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/completion.md",
+        "target": "../../../src/core/mission-lifecycle/mission-lifecycle.test.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/completion.md",
+        "target": "../../03-architecture.md"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/completion.md",
+        "target": "../../08-rule-implementation-traceability.md"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/completion.md",
+        "target": "../../design-drafts/world-infected-001/01-world-overview.md"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/completion.md",
+        "target": "../../design-drafts/world-infected-001/10-decision-queue.md"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/completion.md",
+        "target": "implementation-notes.md"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/completion.md",
+        "target": "verification-results.json"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/completion.md",
+        "target": "implementation-notes.md#k-matrix"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "../../05-design-decisions.md#dec-049"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "../../design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "../../../src/core/mission-lifecycle/types.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "../../../src/core/mission-lifecycle/validation.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "../../../src/core/mission-lifecycle/queries.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "../../../src/core/mission-lifecycle/index.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "../../../src/core/mission-lifecycle/controlled.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "../../../src/core/mission-lifecycle/mission-lifecycle.test.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "../../../src/core/config/deep-freeze.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "../../../src/core/domain/run-identity.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "../../../src/state/command-execution/stable-run-command-execution.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "../../../src/app/hospital-new-run-transaction.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "../../../src/state/run-save/run-save-codec.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "../../../src/core/mission-lifecycle/mission-lifecycle.test.ts"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "verification-results.json"
+      },
+      {
+        "source": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+        "target": "completion.md"
+      }
+    ],
+    "link_count": 44,
+    "production_imports": {
+      "src/core/mission-lifecycle/controlled.ts": [
+        "../config",
+        "../domain/run-identity",
+        "./types",
+        "./validation"
+      ],
+      "src/core/mission-lifecycle/index.ts": [
+        "./queries",
+        "./types",
+        "./types"
+      ],
+      "src/core/mission-lifecycle/queries.ts": [
+        "../config",
+        "./types",
+        "./validation"
+      ],
+      "src/core/mission-lifecycle/types.ts": [
+        "../config",
+        "../domain/run-identity"
+      ],
+      "src/core/mission-lifecycle/validation.ts": [
+        "zod",
+        "../config",
+        "../domain/run-identity",
+        "./types"
+      ]
+    },
+    "source_hashes": {
+      "src/core/mission-lifecycle/controlled.ts": "1bdbf2171fc673f6ae65d2aef2669dc623250f058c54a80f830fcb1ad29efc14",
+      "src/core/mission-lifecycle/index.ts": "80862b1a98e5abd34286502b6e4e5b792c60e2360754722a66141363935ff2a6",
+      "src/core/mission-lifecycle/mission-lifecycle.test.ts": "f22dfe38b9f2df31fb266e925c9a0074b66e0b9f5839971804e8f9d15cc93325",
+      "src/core/mission-lifecycle/queries.ts": "14dff1f491d138ffb9602a203201b280fb8fa585052ce7d0b3caaa1985ff4d18",
+      "src/core/mission-lifecycle/types.ts": "a9310a8aca17e328ebee3097a5d8c4185b9aa96565eabe156358cbd06582f723",
+      "src/core/mission-lifecycle/validation.ts": "063dde4dc97e873d376373a30e7467b0f3d3bbe61db88bd84be942b89457ff86"
+    },
+    "protected_baseline_paths": "All baseline paths except the four allowed documents unchanged; additions absent at baseline",
+    "status": "INTEGRITY_PASS_WITH_RECORDED_DIFF_BLOCKER"
+  },
+  "delivery_check_method": [
+    "External temporary Python checker: git diff + ls-files untracked union exactly equals 18 allowed paths; A/M only; every existing baseline path outside four documents unchanged.",
+    "Four modified documents preserve full baseline byte prefixes. Six new .ts files absent at baseline; post-test source hashes checked unchanged.",
+    "All 18 paths strict UTF-8; parse only newly added Markdown links in four existing docs plus full newly authored Markdown; verify target paths and explicit/GFM heading anchors.",
+    "ZIP CRC checked; five ZIP/external-temp/archive byte comparisons plus four SHA256SUMS matches.",
+    "Source import allowlist and side-effect token scan supplement manual full source review; these scans alone do not prove full application purity.",
+    "Final integrity-only rerun retains and records known cached diff exit 2; INTEGRITY_PASS_WITH_RECORDED_DIFF_BLOCKER is not task completion or whitespace PASS."
+  ],
+  "delivery_commands": [
+    {
+      "command": "git diff --name-only 6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+      "exit_code": 0,
+      "stdout": "docs/03-architecture.md\ndocs/08-rule-implementation-traceability.md\ndocs/design-drafts/world-infected-001/01-world-overview.md\ndocs/design-drafts/world-infected-001/10-decision-queue.md\n",
+      "stderr": ""
+    },
+    {
+      "command": "git ls-files --others --exclude-standard",
+      "exit_code": 0,
+      "stdout": "docs/engineering/mission-lifecycle-001/completion.md\ndocs/engineering/mission-lifecycle-001/implementation-notes.md\ndocs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md\ndocs/engineering/mission-lifecycle-001/inputs/BASELINE-AND-INPUTS.json\ndocs/engineering/mission-lifecycle-001/inputs/ENG-MISSION-LIFECYCLE-001-task-v1.0.md\ndocs/engineering/mission-lifecycle-001/inputs/OWNER-authorization-ENG-MISSION-LIFECYCLE-001-v1.0.md\ndocs/engineering/mission-lifecycle-001/inputs/SHA256SUMS.txt\ndocs/engineering/mission-lifecycle-001/verification-results.json\nsrc/core/mission-lifecycle/controlled.ts\nsrc/core/mission-lifecycle/index.ts\nsrc/core/mission-lifecycle/mission-lifecycle.test.ts\nsrc/core/mission-lifecycle/queries.ts\nsrc/core/mission-lifecycle/types.ts\nsrc/core/mission-lifecycle/validation.ts\n",
+      "stderr": ""
+    },
+    {
+      "command": "git diff --name-status 6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+      "exit_code": 0,
+      "stdout": "M\tdocs/03-architecture.md\nM\tdocs/08-rule-implementation-traceability.md\nM\tdocs/design-drafts/world-infected-001/01-world-overview.md\nM\tdocs/design-drafts/world-infected-001/10-decision-queue.md\n",
+      "stderr": ""
+    },
+    {
+      "command": "git ls-tree -r --name-only 6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+      "exit_code": 0,
+      "stdout": "[path inventory consumed by exact whitelist/protected-baseline checks; not duplicated]",
+      "stderr": "",
+      "baseline_path_count": 640
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "git diff --cached --check",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "self_review": {
+    "author": "Read counterexamples in B4/B5, K09/K13/K19 and new/old isolation, outside original coding order. Reviewed all five production files and actual exports.",
+    "fixes": [
+      "Strict data validation moved before list binding lookup to reject getters before access.",
+      "Non-element array properties explicitly rejected; three regression cases added.",
+      "Six request binding-axis tests added.",
+      "Test owner restoreSameProgress now derives independent expectation from private current only; caller cannot supply expectation."
+    ],
+    "readonly_assistants": [
+      {
+        "name": "lifecycle_contract_review",
+        "scope": "B4/B5, identity/restore, K09/K13/K19",
+        "result": "No remaining blocking finding. K19 harness recommendation fixed and reread.",
+        "test_execution": "NOT RUN",
+        "writes": false
+      },
+      {
+        "name": "lifecycle_boundary_review",
+        "scope": "Imports/exports, side effects, whitelist, K20/K21/K22",
+        "result": "No blocking finding. Document controlled scope/version-lookup trust assumption; no authentication claim.",
+        "test_execution": "NOT RUN",
+        "writes": false
+      }
+    ],
+    "evidence_limit": "Author and auxiliary working-tree review only; not independent mainline review of final SHA."
+  },
+  "environment_diagnostics": [
+    "Initial default exec helper setup failed before commands; retried with approved require_escalated reads/execution. No approval-review rejection.",
+    "Expected git show-ref for absent engineering branch exited 128; recorded as absent, not success.",
+    "A diagnostic assertion initially compared raw authored Windows CRLF bytes to Git index LF bytes; corrected to honor existing text=auto/eol=lf attributes. Archive bytes still compared exactly. No attributes or config changed."
+  ],
+  "not_run": [
+    "Browser",
+    "New lifecycle real browser save/restore",
+    "Full world simulation",
+    "Owner playtest",
+    "Cross-commission aggregate state owner/identity reuse",
+    "Real terminal-result production and full transaction installation"
+  ],
+  "ci": "NOT CHECKED",
+  "remaining": "No known in-scope blocker after the exact approved archive whitespace exception and successful npm check rerun. Production wiring/trusted installation/global aggregation/full transactions remain future scope.",
+  "git_handoff": "Final exact SHA and actual commit/push/postcommit verification are reported after committing; no future SHA invented.",
+  "staging_checks": {
+    "status": "BLOCKED",
+    "commands": [
+      {
+        "command": "git diff --cached --check",
+        "exit_code": 2,
+        "stdout": "docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:3: trailing whitespace.\n+> 审查标识：AUD-6b48b3d-DOC-WORLD-ENTRY-001 / v1.0  \ndocs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:4: trailing whitespace.\n+> 日期：2026-10-03  \ndocs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:5: trailing whitespace.\n+> 结论：**PASS——在本次仅文档归档、同步与首契约收口的授权范围内通过。未发现阻塞项，无需本轮返修。**  \n",
+        "stderr": ""
+      },
+      {
+        "command": "git diff --check 6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+        "exit_code": 2,
+        "stdout": "docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:3: trailing whitespace.\n+> 审查标识：AUD-6b48b3d-DOC-WORLD-ENTRY-001 / v1.0  \ndocs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:4: trailing whitespace.\n+> 日期：2026-10-03  \ndocs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:5: trailing whitespace.\n+> 结论：**PASS——在本次仅文档归档、同步与首契约收口的授权范围内通过。未发现阻塞项，无需本轮返修。**  \n",
+        "stderr": ""
+      },
+      {
+        "command": "git diff --cached --name-status",
+        "exit_code": 0,
+        "stdout": "M\tdocs/03-architecture.md\nM\tdocs/08-rule-implementation-traceability.md\nM\tdocs/design-drafts/world-infected-001/01-world-overview.md\nM\tdocs/design-drafts/world-infected-001/10-decision-queue.md\nA\tdocs/engineering/mission-lifecycle-001/completion.md\nA\tdocs/engineering/mission-lifecycle-001/implementation-notes.md\nA\tdocs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md\nA\tdocs/engineering/mission-lifecycle-001/inputs/BASELINE-AND-INPUTS.json\nA\tdocs/engineering/mission-lifecycle-001/inputs/ENG-MISSION-LIFECYCLE-001-task-v1.0.md\nA\tdocs/engineering/mission-lifecycle-001/inputs/OWNER-authorization-ENG-MISSION-LIFECYCLE-001-v1.0.md\nA\tdocs/engineering/mission-lifecycle-001/inputs/SHA256SUMS.txt\nA\tdocs/engineering/mission-lifecycle-001/verification-results.json\nA\tsrc/core/mission-lifecycle/controlled.ts\nA\tsrc/core/mission-lifecycle/index.ts\nA\tsrc/core/mission-lifecycle/mission-lifecycle.test.ts\nA\tsrc/core/mission-lifecycle/queries.ts\nA\tsrc/core/mission-lifecycle/types.ts\nA\tsrc/core/mission-lifecycle/validation.ts\n",
+        "stderr": ""
+      },
+      {
+        "command": "git diff --cached --stat",
+        "exit_code": 0,
+        "stdout": " docs/03-architecture.md                            |   9 +\n docs/08-rule-implementation-traceability.md        |   8 +\n .../world-infected-001/01-world-overview.md        |   4 +\n .../world-infected-001/10-decision-queue.md        |   4 +\n .../mission-lifecycle-001/completion.md            |  45 ++\n .../mission-lifecycle-001/implementation-notes.md  |  88 +++\n .../AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md | 143 ++++\n .../inputs/BASELINE-AND-INPUTS.json                |  41 +\n .../inputs/ENG-MISSION-LIFECYCLE-001-task-v1.0.md  | 394 ++++++++++\n ...authorization-ENG-MISSION-LIFECYCLE-001-v1.0.md |  40 +\n .../mission-lifecycle-001/inputs/SHA256SUMS.txt    |   4 +\n .../verification-results.json                      | 863 +++++++++++++++++++++\n src/core/mission-lifecycle/controlled.ts           |  70 ++\n src/core/mission-lifecycle/index.ts                |  20 +\n .../mission-lifecycle/mission-lifecycle.test.ts    | 381 +++++++++\n src/core/mission-lifecycle/queries.ts              |  84 ++\n src/core/mission-lifecycle/types.ts                |  79 ++\n src/core/mission-lifecycle/validation.ts           | 152 ++++\n 18 files changed, 2429 insertions(+)\n",
+        "stderr": ""
+      },
+      {
+        "command": "git diff --cached --check -- <13 authored paths, archive inputs excluded for diagnosis only>",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "",
+        "scope": "Diagnostic subset, not a substitute for full failing check"
+      }
+    ],
+    "index_paths_match_18_file_whitelist": true,
+    "five_indexed_archive_blobs_equal_original_bytes": true,
+    "authored_files_match_index_after_repository_eol_lf_normalization": true,
+    "blocker": {
+      "path": "docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md",
+      "lines": [
+        3,
+        4,
+        5
+      ],
+      "cause": "Original review uses two trailing spaces for Markdown hard breaks. Archive bytes and SHA match the authorized ZIP. Full cached/base diff --check reports trailing whitespace, exit 2.",
+      "requirements_in_conflict": [
+        "Archive five inputs byte-for-byte",
+        "Required diff checks must pass; no bypass or original rewriting"
+      ],
+      "action": "No input changed, no whitespace config changed, no commit/push. Await explicit exception for these original hard breaks or corrected/rehashed package."
+    }
+  },
+  "history_before_addendum": {
+    "status": "BLOCKED_BY_EXACT_ARCHIVE_VS_REQUIRED_DIFF_CHECK",
+    "remaining": "Implementation, 103 new tests and full npm check complete. Delivery blocked by full diff whitespace check on immutable archive lines 3-5; no commit/push. Installation, aggregation and complete transactions remain out of scope.",
+    "git_handoff": "No commit/push attempted; HEAD remains start SHA. Full task work left on authorized engineering branch for review. Final message reports worktree/index and remote observations."
+  },
+  "addendum_01": {
+    "authorization": "Current user message ENG-MISSION-LIFECYCLE-001-ADDENDUM-01 explicitly authorizes continuation and only the three exact original archive whitespace diagnostics. Does not approve production implementation.",
+    "approved_exception": {
+      "path": "docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md",
+      "lines": [
+        3,
+        4,
+        5
+      ],
+      "trailing_bytes": "two ASCII spaces (0x20 0x20) each",
+      "bytes": 12289,
+      "sha256": "d902361ad0815cc177bfb200f589041e98e8a5d0ea8bbd1c81232f966c97507b",
+      "working_index_match": true,
+      "committed_blob_match": "Not yet committed"
+    },
+    "initial_reverification": {
+      "instruction": "ENG-MISSION-LIFECYCLE-001-ADDENDUM-01",
+      "label": "addendum-initial",
+      "status": "PASS_WITH_APPROVED_ARCHIVE_WHITESPACE_EXCEPTION",
+      "exception": {
+        "path": "docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md",
+        "lines": [
+          3,
+          4,
+          5
+        ],
+        "trailing_bytes": "two ASCII spaces (0x20 0x20) each",
+        "bytes": 12289,
+        "sha256": "d902361ad0815cc177bfb200f589041e98e8a5d0ea8bbd1c81232f966c97507b",
+        "working_index_match": true,
+        "committed_blob_match": "Not yet committed"
+      },
+      "commands": [
+        {
+          "command": "git diff --check 6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+          "exit_code": 2,
+          "stdout": "docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:3: trailing whitespace.\n+> 审查标识：AUD-6b48b3d-DOC-WORLD-ENTRY-001 / v1.0  \ndocs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:4: trailing whitespace.\n+> 日期：2026-10-03  \ndocs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:5: trailing whitespace.\n+> 结论：**PASS——在本次仅文档归档、同步与首契约收口的授权范围内通过。未发现阻塞项，无需本轮返修。**  \n",
+          "stderr": ""
+        },
+        {
+          "command": "git diff --cached --check",
+          "exit_code": 2,
+          "stdout": "docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:3: trailing whitespace.\n+> 审查标识：AUD-6b48b3d-DOC-WORLD-ENTRY-001 / v1.0  \ndocs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:4: trailing whitespace.\n+> 日期：2026-10-03  \ndocs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:5: trailing whitespace.\n+> 结论：**PASS——在本次仅文档归档、同步与首契约收口的授权范围内通过。未发现阻塞项，无需本轮返修。**  \n",
+          "stderr": ""
+        },
+        {
+          "command": "git diff --check",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": "git diff --check 6b48b3de6521d9a9c296754a4d8135c7f7c7ca35 -- . :(exclude)docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": "git diff --cached --check -- . :(exclude)docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      ],
+      "scope": "Only completion.md and verification-results.json changed during addendum; all other 16 staged and working files unchanged; all 18 original task whitelist paths retained; no untracked paths."
+    },
+    "npm_check_rerun": {
+      "command": "npm run check",
+      "exit_code": 0,
+      "after_report_restage": true,
+      "files_passed": 105,
+      "tests_passed": 2256,
+      "failed": 0,
+      "skipped": 0,
+      "new_tests_this_rerun": 0,
+      "original_new_test_count_retained": 103,
+      "original_baseline_retained": "104 files / 2153 tests, npm run test:run exit 0 before production writes",
+      "stage_exit_evidence": "All four stages completed via package && chain, overall exit 0.",
+      "stages": [
+        {
+          "name": "validate:architecture",
+          "exit_code": 0,
+          "dec_entries": 49,
+          "core_production_files": 224
+        },
+        {
+          "name": "typecheck",
+          "exit_code": 0
+        },
+        {
+          "name": "test:run",
+          "exit_code": 0,
+          "files": 105,
+          "tests": 2256
+        },
+        {
+          "name": "build",
+          "exit_code": 0,
+          "modules": 419,
+          "warning": "Some chunks exceed 500 kB after minification, same non-blocking warning; no config change."
+        }
+      ],
+      "actual_test_summary": "Test Files  105 passed (105)\r\n      Tests  2256 passed (2256)\r\n   Start at  17:02:15\r\n   Duration  59.58s (transform 24.66s, setup 0ms, import 61.54s, tests 63.80s, environment 455.73s)",
+      "log_sha256": "01a5678a355a877698f61b2e5292b2fb1cbf82ab992424c7ab0ff0c4566deca1"
+    },
+    "modified_paths": [
+      "docs/engineering/mission-lifecycle-001/completion.md",
+      "docs/engineering/mission-lifecycle-001/verification-results.json"
+    ],
+    "historical_scope_note": "Earlier BLOCKED wording and results remain as history, including unchanged implementation-notes and original task progress notes. This addendum is the latest delivery-gate status.",
+    "configuration_and_hooks": "No Git whitespace config, attributes, CI or hooks changed; no --no-verify; raw exit 2 retained.",
+    "restaged_reverification": {
+      "instruction": "ENG-MISSION-LIFECYCLE-001-ADDENDUM-01",
+      "label": "addendum-restaged",
+      "status": "PASS_WITH_APPROVED_ARCHIVE_WHITESPACE_EXCEPTION",
+      "exception": {
+        "path": "docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md",
+        "lines": [
+          3,
+          4,
+          5
+        ],
+        "trailing_bytes": "two ASCII spaces (0x20 0x20) each",
+        "bytes": 12289,
+        "sha256": "d902361ad0815cc177bfb200f589041e98e8a5d0ea8bbd1c81232f966c97507b",
+        "working_index_match": true,
+        "committed_blob_match": "Not yet committed"
+      },
+      "commands": [
+        {
+          "command": "git diff --check 6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+          "exit_code": 2,
+          "stdout": "docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:3: trailing whitespace.\n+> 审查标识：AUD-6b48b3d-DOC-WORLD-ENTRY-001 / v1.0  \ndocs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:4: trailing whitespace.\n+> 日期：2026-10-03  \ndocs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:5: trailing whitespace.\n+> 结论：**PASS——在本次仅文档归档、同步与首契约收口的授权范围内通过。未发现阻塞项，无需本轮返修。**  \n",
+          "stderr": ""
+        },
+        {
+          "command": "git diff --cached --check",
+          "exit_code": 2,
+          "stdout": "docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:3: trailing whitespace.\n+> 审查标识：AUD-6b48b3d-DOC-WORLD-ENTRY-001 / v1.0  \ndocs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:4: trailing whitespace.\n+> 日期：2026-10-03  \ndocs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md:5: trailing whitespace.\n+> 结论：**PASS——在本次仅文档归档、同步与首契约收口的授权范围内通过。未发现阻塞项，无需本轮返修。**  \n",
+          "stderr": ""
+        },
+        {
+          "command": "git diff --check",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": "git diff --check 6b48b3de6521d9a9c296754a4d8135c7f7c7ca35 -- . :(exclude)docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": "git diff --cached --check -- . :(exclude)docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      ],
+      "scope": "Only completion.md and verification-results.json changed during addendum; all other 16 staged and working files unchanged; all 18 original task whitelist paths retained; no untracked paths."
+    },
+    "integrity_reverification": {
+      "files": 18,
+      "new_or_modified_links_checked": 45,
+      "utf8": "PASS",
+      "five_input_archive_bytes_and_four_sha256s": "MATCH",
+      "source_and_test_frozen_hashes": "UNCHANGED",
+      "only_two_report_paths_changed": "PASS",
+      "protected_paths": "Old source/tests, DEC, contract, dependencies, attributes, CI, hooks and all other original whitelist artifacts unchanged during addendum."
+    },
+    "final_precommit": "After this receipt update, restage these two reports and rerun the exact full diagnostic/exception checks before ordinary commit. Final exact SHA/push receipts follow in delivery message."
+  }
+}

@@ -545,3 +545,14 @@ DEC-046—048 为未来完整感染世界确认方向，而不是新增运行时
 | 旧能力复用和隔离（B7） | 复用合法RunIdentity引用，但新边界先做自身严格检查；旧工厂的trim／对象解析及普通executor身份连续性不变，不能借医院New Run代替生还接续 |
 
 候选目录src/core/mission-lifecycle/只为后续任务定位，不代表目录已存在或本轮写权。本次仅只读复核run-identity.ts、stable-run-command-execution.ts和package.json，不把既有能力盘点升级为新的生产实审。
+
+## ENG-MISSION-LIFECYCLE-001：纯资格核心实现附记
+
+2026-10-03，Owner本项执行授权解除此前首工程等待；上节“未实现／未授权”保留为DOC-WORLD-ENTRY-001归档时状态。现新增 [src/core/mission-lifecycle](../src/core/mission-lifecycle/index.ts)，作者实现完成、待准确SHA主线实审，未接玩家入口。
+
+- index 只导出首次／继续／可接列表查询与严格恢复候选；[controlled](../src/core/mission-lifecycle/controlled.ts) 单独导出受控scope建立、首次事实、激活与四结果终止，均为纯函数。
+- 唯一事实为角色／具体委托的未接、活动或关闭值。声明及完整执行绑定严格校验，复用RunIdentity与deepFreeze；恢复另接独立期望，候选包装没有当前事实安装权。
+- 不拥有全角色Store、生命、钱包、现场、日期或保存。未来唯一owner负责首次／恢复安装、跨委托活动唯一性与身份复用，终局协调器核验真实结果并组成完整事务；普通订阅只读。
+- 旧医院生产文件、普通executor身份连续性、phase、New Run及保存不变。详见 [实现记录](engineering/mission-lifecycle-001/implementation-notes.md) 与 [本轮验证](engineering/mission-lifecycle-001/verification-results.json)。本附记不批准其他玩法或工程。
+
+本项交付状态补充：实现与全量检查完成，但原字节归档的前置审查行尾空格使完整暂存空白检查未通过，当前未提交／推送；等待主线处理输入保全与检查冲突。

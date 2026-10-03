@@ -87,3 +87,13 @@
 | 规则编排、统一提交、只读通知 | 契约B6 | 本次无终局协调器、事件总线、持久化或新订阅实现 | 正式有序体系可提出效果，唯一入口组成完整后态；展示与提交后订阅不补结算 |
 
 首工程须在本次文档准确SHA实审及另行执行授权后开工，完成即准确SHA实审。经济、三专长、工具箱、安全查询、保存与Owner体验门槛仍未完成；历史170／27／2153等不作为本次新证据。
+
+## ENG-MISSION-LIFECYCLE-001：作者完成、待主线实审
+
+2026-10-03，已获本项执行授权；上一DOC-WORLD-ENTRY-001表保持当时证据身份。本项实现与测试入口为 [mission-lifecycle/index.ts](../src/core/mission-lifecycle/index.ts)、[controlled.ts](../src/core/mission-lifecycle/controlled.ts) 和 [测试](../src/core/mission-lifecycle/mission-lifecycle.test.ts)。
+
+DEC-049／首契约的首次资格、活动继续、不可重接、空列表、受控纯转移与严格窄候选恢复已有本项作者证据；K01—K22逐行映射见 [实现记录](engineering/mission-lifecycle-001/implementation-notes.md#k-matrix)，真实测试和全量check见 [验证记录](engineering/mission-lifecycle-001/verification-results.json)。这不是主线PASS或完整世界验收。
+
+可信恢复安装、全角色聚合唯一性、实际终局条件、完整事务、浏览器保存、新世界玩家入口与体验仍未接线／NOT RUN。现有旧医院实现及新世界其他规则的状态不因本附记改变。
+
+本项交付状态补充：实现与全量检查完成，但原字节归档的前置审查行尾空格使完整暂存空白检查未通过，当前未提交／推送；等待主线处理输入保全与检查冲突。

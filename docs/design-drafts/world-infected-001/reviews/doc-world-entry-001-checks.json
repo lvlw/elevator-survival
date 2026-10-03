@@ -1,0 +1,1625 @@
+{
+  "task": "DOC-WORLD-ENTRY-001",
+  "basis": "Actual precommit working tree at fixed baseline; no claim of future commit/push verification.",
+  "checked_at_utc": "2026-10-03T05:40:44.912321+00:00",
+  "checker_location": "outside repository temporary check_docs.py; Python standard library",
+  "command": [
+    "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "C:\\Users\\zjl\\AppData\\Local\\Temp\\doc-world-entry-001-7haj8ewh\\check_docs.py"
+  ],
+  "initial_checks": {
+    "task": "DOC-WORLD-ENTRY-001",
+    "baseline_sha": "ecd8fc33729d385c07ecd9f93b53914b01cdb37a",
+    "branch": "feature/design-world-infected-world-001",
+    "repository_identity": "lvlw/elevator-survival",
+    "initial_tracked_untracked_status": "clean",
+    "initial_ordinary_diff": "empty",
+    "initial_cached_diff": "empty",
+    "initial_remote_design": "ecd8fc33729d385c07ecd9f93b53914b01cdb37a",
+    "initial_remote_main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+    "initial_local_main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+    "dec_blob": "0903acc93b75aa55e0b34a8b1177ff00dac7d080",
+    "last_dec": "048",
+    "archive_date": "2026-10-03",
+    "approved_bytes": 36532,
+    "approved_sha256": "524d9be60709d0a8b9cbff6cdf771253c0761f1dd4e75552767f905c36e420db",
+    "input_directory": "C:\\Users\\zjl\\AppData\\Local\\Temp\\doc-world-entry-001-7haj8ewh",
+    "notes": [
+      "An extra parent-directory AGENTS probe failed with PermissionError; actual repository AGENTS was then fully read successfully. No repository write occurred before successful baseline checks."
+    ]
+  },
+  "commands": [
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "ecd8fc33729d385c07ecd9f93b53914b01cdb37a\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "exit_code": 0,
+      "stdout": "feature/design-world-infected-world-001\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--name-status",
+        "ecd8fc33729d385c07ecd9f93b53914b01cdb37a"
+      ],
+      "exit_code": 0,
+      "stdout": "M\tdocs/01-game-design-v0.1.md\nM\tdocs/02-vertical-slice.md\nM\tdocs/03-architecture.md\nM\tdocs/05-design-decisions.md\nM\tdocs/07-decision-supersession-index.md\nM\tdocs/08-rule-implementation-traceability.md\nM\tdocs/design-drafts/world-infected-001/01-world-overview.md\nM\tdocs/design-drafts/world-infected-001/10-decision-queue.md\nM\tdocs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md\nM\tdocs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md\nM\tdocs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md\nM\tdocs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "ls-files",
+        "--others",
+        "--exclude-standard"
+      ],
+      "exit_code": 0,
+      "stdout": "docs/design-drafts/world-infected-001/DOC-WORLD-ENTRY-001-completion.md\ndocs/design-drafts/world-infected-001/reviews/doc-world-entry-001-checks.json\ndocs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/DOC-WORLD-ENTRY-001-task-v1.0.md\ndocs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/OWNER-approval-WORLD-ENTRY-001-v1.0.md\ndocs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/SHA256SUMS.txt\ndocs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/WORLD-ENTRY-001-owner-review-v1.0.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--short",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": " M docs/01-game-design-v0.1.md\n M docs/02-vertical-slice.md\n M docs/03-architecture.md\n M docs/05-design-decisions.md\n M docs/07-decision-supersession-index.md\n M docs/08-rule-implementation-traceability.md\n M docs/design-drafts/world-infected-001/01-world-overview.md\n M docs/design-drafts/world-infected-001/10-decision-queue.md\n M docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md\n M docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md\n M docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md\n M docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md\n?? docs/design-drafts/world-infected-001/DOC-WORLD-ENTRY-001-completion.md\n?? docs/design-drafts/world-infected-001/reviews/doc-world-entry-001-checks.json\n?? docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/DOC-WORLD-ENTRY-001-task-v1.0.md\n?? docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/OWNER-approval-WORLD-ENTRY-001-v1.0.md\n?? docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/SHA256SUMS.txt\n?? docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/WORLD-ENTRY-001-owner-review-v1.0.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "--verify",
+        "refs/heads/main"
+      ],
+      "exit_code": 0,
+      "stdout": "a76e9c1c998051fc1643b6e0c3d53443fa55feed\n",
+      "stderr": ""
+    }
+  ],
+  "checks": [
+    {
+      "id": "command_exit_codes",
+      "matched": true,
+      "detail": [
+        [
+          [
+            "git",
+            "rev-parse",
+            "HEAD"
+          ],
+          0
+        ],
+        [
+          [
+            "git",
+            "branch",
+            "--show-current"
+          ],
+          0
+        ],
+        [
+          [
+            "git",
+            "diff",
+            "--check"
+          ],
+          0
+        ],
+        [
+          [
+            "git",
+            "diff",
+            "--cached",
+            "--check"
+          ],
+          0
+        ],
+        [
+          [
+            "git",
+            "diff",
+            "--name-status",
+            "ecd8fc33729d385c07ecd9f93b53914b01cdb37a"
+          ],
+          0
+        ],
+        [
+          [
+            "git",
+            "ls-files",
+            "--others",
+            "--exclude-standard"
+          ],
+          0
+        ],
+        [
+          [
+            "git",
+            "status",
+            "--short",
+            "--untracked-files=all"
+          ],
+          0
+        ],
+        [
+          [
+            "git",
+            "rev-parse",
+            "--verify",
+            "refs/heads/main"
+          ],
+          0
+        ]
+      ]
+    },
+    {
+      "id": "baseline_branch_main",
+      "matched": true,
+      "detail": {
+        "head": "ecd8fc33729d385c07ecd9f93b53914b01cdb37a",
+        "branch": "feature/design-world-infected-world-001",
+        "local_main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed"
+      }
+    },
+    {
+      "id": "exact_whitelist_and_no_delete_rename",
+      "matched": true,
+      "detail": {
+        "tracked": [
+          {
+            "status": "M",
+            "path": "docs/01-game-design-v0.1.md"
+          },
+          {
+            "status": "M",
+            "path": "docs/02-vertical-slice.md"
+          },
+          {
+            "status": "M",
+            "path": "docs/03-architecture.md"
+          },
+          {
+            "status": "M",
+            "path": "docs/05-design-decisions.md"
+          },
+          {
+            "status": "M",
+            "path": "docs/07-decision-supersession-index.md"
+          },
+          {
+            "status": "M",
+            "path": "docs/08-rule-implementation-traceability.md"
+          },
+          {
+            "status": "M",
+            "path": "docs/design-drafts/world-infected-001/01-world-overview.md"
+          },
+          {
+            "status": "M",
+            "path": "docs/design-drafts/world-infected-001/10-decision-queue.md"
+          },
+          {
+            "status": "M",
+            "path": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md"
+          },
+          {
+            "status": "M",
+            "path": "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md"
+          },
+          {
+            "status": "M",
+            "path": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md"
+          },
+          {
+            "status": "M",
+            "path": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md"
+          }
+        ],
+        "untracked": [
+          "docs/design-drafts/world-infected-001/DOC-WORLD-ENTRY-001-completion.md",
+          "docs/design-drafts/world-infected-001/reviews/doc-world-entry-001-checks.json",
+          "docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/DOC-WORLD-ENTRY-001-task-v1.0.md",
+          "docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/OWNER-approval-WORLD-ENTRY-001-v1.0.md",
+          "docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/SHA256SUMS.txt",
+          "docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/WORLD-ENTRY-001-owner-review-v1.0.md"
+        ],
+        "outside": [],
+        "missing": []
+      }
+    },
+    {
+      "id": "all_other_paths_unchanged",
+      "matched": true,
+      "detail": "All tracked differences from baseline and all untracked paths included; production, Content, Freeze, UIR, original confirmations and old evidence not whitelisted."
+    },
+    {
+      "id": "existing:docs/05-design-decisions.md",
+      "matched": true,
+      "detail": "existing authorized path"
+    },
+    {
+      "id": "existing:docs/07-decision-supersession-index.md",
+      "matched": true,
+      "detail": "existing authorized path"
+    },
+    {
+      "id": "existing:docs/01-game-design-v0.1.md",
+      "matched": true,
+      "detail": "existing authorized path"
+    },
+    {
+      "id": "existing:docs/02-vertical-slice.md",
+      "matched": true,
+      "detail": "existing authorized path"
+    },
+    {
+      "id": "existing:docs/03-architecture.md",
+      "matched": true,
+      "detail": "existing authorized path"
+    },
+    {
+      "id": "existing:docs/08-rule-implementation-traceability.md",
+      "matched": true,
+      "detail": "existing authorized path"
+    },
+    {
+      "id": "existing:docs/design-drafts/world-infected-001/01-world-overview.md",
+      "matched": true,
+      "detail": "existing authorized path"
+    },
+    {
+      "id": "existing:docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "matched": true,
+      "detail": "existing authorized path"
+    },
+    {
+      "id": "existing:docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "matched": true,
+      "detail": "existing authorized path"
+    },
+    {
+      "id": "existing:docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+      "matched": true,
+      "detail": "existing authorized path"
+    },
+    {
+      "id": "existing:docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "matched": true,
+      "detail": "existing authorized path"
+    },
+    {
+      "id": "existing:docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+      "matched": true,
+      "detail": "existing authorized path"
+    },
+    {
+      "id": "new:docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/DOC-WORLD-ENTRY-001-task-v1.0.md",
+      "matched": true,
+      "detail": "absent at fixed baseline; exists as authorized new file"
+    },
+    {
+      "id": "new:docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/WORLD-ENTRY-001-owner-review-v1.0.md",
+      "matched": true,
+      "detail": "absent at fixed baseline; exists as authorized new file"
+    },
+    {
+      "id": "new:docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/OWNER-approval-WORLD-ENTRY-001-v1.0.md",
+      "matched": true,
+      "detail": "absent at fixed baseline; exists as authorized new file"
+    },
+    {
+      "id": "new:docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/SHA256SUMS.txt",
+      "matched": true,
+      "detail": "absent at fixed baseline; exists as authorized new file"
+    },
+    {
+      "id": "new:docs/design-drafts/world-infected-001/reviews/doc-world-entry-001-checks.json",
+      "matched": true,
+      "detail": "absent at fixed baseline; exists as authorized new file"
+    },
+    {
+      "id": "new:docs/design-drafts/world-infected-001/DOC-WORLD-ENTRY-001-completion.md",
+      "matched": true,
+      "detail": "absent at fixed baseline; exists as authorized new file"
+    },
+    {
+      "id": "input_and_archive_bytes",
+      "matched": true,
+      "detail": [
+        {
+          "path": "docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/DOC-WORLD-ENTRY-001-task-v1.0.md",
+          "bytes": 25722,
+          "sha256": "7d1fc2d1f8959fb3877cd1a683118bdfdff001d7e9851d5192e8fb4a6a51e3ce",
+          "byte_identical_zip_external_archive": true,
+          "manifest_match": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/WORLD-ENTRY-001-owner-review-v1.0.md",
+          "bytes": 36532,
+          "sha256": "524d9be60709d0a8b9cbff6cdf771253c0761f1dd4e75552767f905c36e420db",
+          "byte_identical_zip_external_archive": true,
+          "manifest_match": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/OWNER-approval-WORLD-ENTRY-001-v1.0.md",
+          "bytes": 1561,
+          "sha256": "f8b7a3e2f3f1f7b04c036b736529831d303fe2f9254d83fb64d4b9bb41e4fc29",
+          "byte_identical_zip_external_archive": true,
+          "manifest_match": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/SHA256SUMS.txt",
+          "bytes": 307,
+          "sha256": "51617a8d9b87e0461440c0e4c421c36a17fd2fe33667f4bd2050c3c0e6edae8e",
+          "byte_identical_zip_external_archive": true,
+          "manifest_match": "manifest_itself_not_listed"
+        }
+      ]
+    },
+    {
+      "id": "approved_fixed_fingerprint",
+      "matched": true,
+      "detail": {
+        "path": "docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/WORLD-ENTRY-001-owner-review-v1.0.md",
+        "bytes": 36532,
+        "sha256": "524d9be60709d0a8b9cbff6cdf771253c0761f1dd4e75552767f905c36e420db",
+        "byte_identical_zip_external_archive": true,
+        "manifest_match": true
+      }
+    },
+    {
+      "id": "old_dec_bytes_prefix_and_only_049",
+      "matched": true,
+      "detail": {
+        "old_bytes": 229117,
+        "old_sha256": "276261e2a18c1f4a6c1f1a7bbaf0b8b6b748d2f7119c4d67cec5fdbb07f70673",
+        "prefix_sha256": "276261e2a18c1f4a6c1f1a7bbaf0b8b6b748d2f7119c4d67cec5fdbb07f70673",
+        "new_numbers": [
+          "049"
+        ]
+      }
+    },
+    {
+      "id": "A_section_set",
+      "matched": true,
+      "detail": {
+        "source": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "A6"
+        ],
+        "target": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "A6"
+        ]
+      }
+    },
+    {
+      "id": "A1_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "A1",
+        "target": "docs/05-design-decisions.md",
+        "target_heading": "### A1. 适用版本与局部范围",
+        "source_normalized_sha256": "6ec9c048dd277c3fb5a5e79fb6094ff30bc55b237b263bd8d18bb4c1c0a38878",
+        "target_normalized_sha256": "6ec9c048dd277c3fb5a5e79fb6094ff30bc55b237b263bd8d18bb4c1c0a38878",
+        "equal": true
+      }
+    },
+    {
+      "id": "A2_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "A2",
+        "target": "docs/05-design-decisions.md",
+        "target_heading": "### A2. 角色、世界、模板、具体委托与执行必须区分",
+        "source_normalized_sha256": "f401b9cfe93cd183c5599806b1d3968d24697cfd6c072f789a05b9d6a7595d6d",
+        "target_normalized_sha256": "f401b9cfe93cd183c5599806b1d3968d24697cfd6c072f789a05b9d6a7595d6d",
+        "equal": true
+      }
+    },
+    {
+      "id": "A3_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "A3",
+        "target": "docs/05-design-decisions.md",
+        "target_heading": "### A3. 首次接取、活动继续与正式关闭",
+        "source_normalized_sha256": "b2d7b683be434a52e32e8cd9a73923d9d3d1905cee8151fab0c643964457baf0",
+        "target_normalized_sha256": "b2d7b683be434a52e32e8cd9a73923d9d3d1905cee8151fab0c643964457baf0",
+        "equal": true
+      }
+    },
+    {
+      "id": "A4_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "A4",
+        "target": "docs/05-design-decisions.md",
+        "target_heading": "### A4. 单次世界驻留的含义",
+        "source_normalized_sha256": "7a5f75acd39c454be317bfd735dda7d4bd154674c3eca2742de6e7826759d23b",
+        "target_normalized_sha256": "7a5f75acd39c454be317bfd735dda7d4bd154674c3eca2742de6e7826759d23b",
+        "equal": true
+      }
+    },
+    {
+      "id": "A5_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "A5",
+        "target": "docs/05-design-decisions.md",
+        "target_heading": "### A5. 委托终止与角色终止分离",
+        "source_normalized_sha256": "2d716dfb520c10f9e6fddbbf4289265d5b995d018e149d7e0c06900d175bd264",
+        "target_normalized_sha256": "2d716dfb520c10f9e6fddbbf4289265d5b995d018e149d7e0c06900d175bd264",
+        "equal": true
+      }
+    },
+    {
+      "id": "A6_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "A6",
+        "target": "docs/05-design-decisions.md",
+        "target_heading": "### A6. 当前内容终点与后续委托资格",
+        "source_normalized_sha256": "c956d60849be7e35c05654bb1ec7eb261fc11eb301e74c59afd543e15b092734",
+        "target_normalized_sha256": "c956d60849be7e35c05654bb1ec7eb261fc11eb301e74c59afd543e15b092734",
+        "equal": true
+      }
+    },
+    {
+      "id": "B_section_set",
+      "matched": true,
+      "detail": {
+        "source": [
+          "B1",
+          "B2",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7",
+          "B8",
+          "B9",
+          "B10"
+        ],
+        "target": [
+          "B1",
+          "B2",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7",
+          "B8",
+          "B9",
+          "B10"
+        ]
+      }
+    },
+    {
+      "id": "B1_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "B1",
+        "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+        "target_heading": "### B1. Goal 与可交付能力",
+        "source_normalized_sha256": "0850498e850f37841b47dfd75c16de1d5a68d4058e01bb04c490db79c13b283e",
+        "target_normalized_sha256": "0850498e850f37841b47dfd75c16de1d5a68d4058e01bb04c490db79c13b283e",
+        "equal": true
+      }
+    },
+    {
+      "id": "B2_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "B2",
+        "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+        "target_heading": "### B2. 输入与唯一事实所有权",
+        "source_normalized_sha256": "25a49bc8215b86a9cf5782fe70e39fc692a150ae34219af69a42b36b561bcbba",
+        "target_normalized_sha256": "25a49bc8215b86a9cf5782fe70e39fc692a150ae34219af69a42b36b561bcbba",
+        "equal": true
+      }
+    },
+    {
+      "id": "B3_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "B3",
+        "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+        "target_heading": "### B3. 必须具备的行为",
+        "source_normalized_sha256": "7b2e99a6ac94c6fd06de46fee1f49258343de5033a2419cc803cdec8df8e37e7",
+        "target_normalized_sha256": "7b2e99a6ac94c6fd06de46fee1f49258343de5033a2419cc803cdec8df8e37e7",
+        "equal": true
+      }
+    },
+    {
+      "id": "B4_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "B4",
+        "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+        "target_heading": "### B4. 严格恢复的范围",
+        "source_normalized_sha256": "981997c9a32cd5289b27adfd545401daa889760eccff6ba04fb5c505df854c85",
+        "target_normalized_sha256": "981997c9a32cd5289b27adfd545401daa889760eccff6ba04fb5c505df854c85",
+        "equal": true
+      }
+    },
+    {
+      "id": "B5_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "B5",
+        "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+        "target_heading": "### B5. 信任、关闭事实与防旁路边界",
+        "source_normalized_sha256": "1dc72e46664f9efa97d03bb3cd9b8df6b91dd898a07b8e56289a0730f8908cd7",
+        "target_normalized_sha256": "1dc72e46664f9efa97d03bb3cd9b8df6b91dd898a07b8e56289a0730f8908cd7",
+        "equal": true
+      }
+    },
+    {
+      "id": "B6_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "B6",
+        "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+        "target_heading": "### B6. 体系规则响应、统一提交与只读通知",
+        "source_normalized_sha256": "6ed02f1f3e2828f03fbe5c15fa7db5a6c4b346914a29be2c5eacba1d6ce16b61",
+        "target_normalized_sha256": "6ed02f1f3e2828f03fbe5c15fa7db5a6c4b346914a29be2c5eacba1d6ce16b61",
+        "equal": true
+      }
+    },
+    {
+      "id": "B7_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "B7",
+        "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+        "target_heading": "### B7. 复用与隔离",
+        "source_normalized_sha256": "f97a8e135b73d4bf9069557eeb66804fc6d5e4c8bb89a91971feac25f37d8b9a",
+        "target_normalized_sha256": "f97a8e135b73d4bf9069557eeb66804fc6d5e4c8bb89a91971feac25f37d8b9a",
+        "equal": true
+      }
+    },
+    {
+      "id": "B8_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "B8",
+        "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+        "target_heading": "### B8. 首工程验收矩阵",
+        "source_normalized_sha256": "24be562fa69e35df744c5363a1daf7a9bac02de28202150689dadc5216c8d312",
+        "target_normalized_sha256": "24be562fa69e35df744c5363a1daf7a9bac02de28202150689dadc5216c8d312",
+        "equal": true
+      }
+    },
+    {
+      "id": "B9_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "B9",
+        "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+        "target_heading": "### B9. 范围外与保留的后续责任",
+        "source_normalized_sha256": "ced1d7285180c4e3b77ee4a8c6d6e58808e382e243fe44aacfa17957a5c02396",
+        "target_normalized_sha256": "ced1d7285180c4e3b77ee4a8c6d6e58808e382e243fe44aacfa17957a5c02396",
+        "equal": true
+      }
+    },
+    {
+      "id": "B10_body_equal",
+      "matched": true,
+      "detail": {
+        "section": "B10",
+        "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+        "target_heading": "### B10. 工程执行、验收与停止",
+        "source_normalized_sha256": "dce4a1c52e4713ce682e57c3b3e9e883f844a83f5367878ad243639771ba1ba4",
+        "target_normalized_sha256": "dce4a1c52e4713ce682e57c3b3e9e883f844a83f5367878ad243639771ba1ba4",
+        "equal": true
+      }
+    },
+    {
+      "id": "K01_K22_exact_rows",
+      "matched": true,
+      "detail": [
+        {
+          "id": "K01",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K02",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K03",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K04",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K05",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K06",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K07",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K08",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K09",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K10",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K11",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K12",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K13",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K14",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K15",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K16",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K17",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K18",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K19",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K20",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K21",
+          "target": "current contract B8",
+          "equal": true
+        },
+        {
+          "id": "K22",
+          "target": "current contract B8",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "id": "one_current_B_contract",
+      "matched": true,
+      "detail": "Old first-goal body replaced; original available at fixed Git only."
+    },
+    {
+      "id": "later_stages_preserved",
+      "matched": true,
+      "detail": [
+        {
+          "stage": 2,
+          "unchanged": true
+        },
+        {
+          "stage": 3,
+          "unchanged": true
+        },
+        {
+          "stage": 4,
+          "unchanged": true
+        }
+      ]
+    },
+    {
+      "id": "all_changed_utf8",
+      "matched": true,
+      "detail": {
+        "files": 18,
+        "errors": []
+      }
+    },
+    {
+      "id": "new_changed_local_links_anchors",
+      "matched": true,
+      "detail": {
+        "count": 58,
+        "broken": [],
+        "scope": "Only added/replaced Markdown lines of changed current documents and report; raw historical archives are preserved, not rewritten for links."
+      }
+    },
+    {
+      "id": "specified_source_and_npm_contract",
+      "matched": true,
+      "detail": {
+        "sources": {
+          "src/core/domain/run-identity.ts": {
+            "unchanged_from_base": true,
+            "symbol_present": true
+          },
+          "src/state/command-execution/stable-run-command-execution.ts": {
+            "unchanged_from_base": true,
+            "symbol_present": true
+          }
+        },
+        "package_scripts": {
+          "dev": "vite",
+          "build": "tsc -b && vite build",
+          "check": "npm run validate:architecture && npm run typecheck && npm run test:run && npm run build",
+          "preview": "vite preview",
+          "typecheck": "tsc -b --pretty false",
+          "test": "vitest",
+          "test:run": "vitest run",
+          "validate:architecture": "node scripts/validate-architecture.mjs"
+        },
+        "npm_execution": "NOT RUN"
+      }
+    }
+  ],
+  "A_B_section_mapping": [
+    {
+      "section": "A1",
+      "target": "docs/05-design-decisions.md",
+      "target_heading": "### A1. 适用版本与局部范围",
+      "source_normalized_sha256": "6ec9c048dd277c3fb5a5e79fb6094ff30bc55b237b263bd8d18bb4c1c0a38878",
+      "target_normalized_sha256": "6ec9c048dd277c3fb5a5e79fb6094ff30bc55b237b263bd8d18bb4c1c0a38878",
+      "equal": true
+    },
+    {
+      "section": "A2",
+      "target": "docs/05-design-decisions.md",
+      "target_heading": "### A2. 角色、世界、模板、具体委托与执行必须区分",
+      "source_normalized_sha256": "f401b9cfe93cd183c5599806b1d3968d24697cfd6c072f789a05b9d6a7595d6d",
+      "target_normalized_sha256": "f401b9cfe93cd183c5599806b1d3968d24697cfd6c072f789a05b9d6a7595d6d",
+      "equal": true
+    },
+    {
+      "section": "A3",
+      "target": "docs/05-design-decisions.md",
+      "target_heading": "### A3. 首次接取、活动继续与正式关闭",
+      "source_normalized_sha256": "b2d7b683be434a52e32e8cd9a73923d9d3d1905cee8151fab0c643964457baf0",
+      "target_normalized_sha256": "b2d7b683be434a52e32e8cd9a73923d9d3d1905cee8151fab0c643964457baf0",
+      "equal": true
+    },
+    {
+      "section": "A4",
+      "target": "docs/05-design-decisions.md",
+      "target_heading": "### A4. 单次世界驻留的含义",
+      "source_normalized_sha256": "7a5f75acd39c454be317bfd735dda7d4bd154674c3eca2742de6e7826759d23b",
+      "target_normalized_sha256": "7a5f75acd39c454be317bfd735dda7d4bd154674c3eca2742de6e7826759d23b",
+      "equal": true
+    },
+    {
+      "section": "A5",
+      "target": "docs/05-design-decisions.md",
+      "target_heading": "### A5. 委托终止与角色终止分离",
+      "source_normalized_sha256": "2d716dfb520c10f9e6fddbbf4289265d5b995d018e149d7e0c06900d175bd264",
+      "target_normalized_sha256": "2d716dfb520c10f9e6fddbbf4289265d5b995d018e149d7e0c06900d175bd264",
+      "equal": true
+    },
+    {
+      "section": "A6",
+      "target": "docs/05-design-decisions.md",
+      "target_heading": "### A6. 当前内容终点与后续委托资格",
+      "source_normalized_sha256": "c956d60849be7e35c05654bb1ec7eb261fc11eb301e74c59afd543e15b092734",
+      "target_normalized_sha256": "c956d60849be7e35c05654bb1ec7eb261fc11eb301e74c59afd543e15b092734",
+      "equal": true
+    },
+    {
+      "section": "B1",
+      "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "target_heading": "### B1. Goal 与可交付能力",
+      "source_normalized_sha256": "0850498e850f37841b47dfd75c16de1d5a68d4058e01bb04c490db79c13b283e",
+      "target_normalized_sha256": "0850498e850f37841b47dfd75c16de1d5a68d4058e01bb04c490db79c13b283e",
+      "equal": true
+    },
+    {
+      "section": "B2",
+      "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "target_heading": "### B2. 输入与唯一事实所有权",
+      "source_normalized_sha256": "25a49bc8215b86a9cf5782fe70e39fc692a150ae34219af69a42b36b561bcbba",
+      "target_normalized_sha256": "25a49bc8215b86a9cf5782fe70e39fc692a150ae34219af69a42b36b561bcbba",
+      "equal": true
+    },
+    {
+      "section": "B3",
+      "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "target_heading": "### B3. 必须具备的行为",
+      "source_normalized_sha256": "7b2e99a6ac94c6fd06de46fee1f49258343de5033a2419cc803cdec8df8e37e7",
+      "target_normalized_sha256": "7b2e99a6ac94c6fd06de46fee1f49258343de5033a2419cc803cdec8df8e37e7",
+      "equal": true
+    },
+    {
+      "section": "B4",
+      "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "target_heading": "### B4. 严格恢复的范围",
+      "source_normalized_sha256": "981997c9a32cd5289b27adfd545401daa889760eccff6ba04fb5c505df854c85",
+      "target_normalized_sha256": "981997c9a32cd5289b27adfd545401daa889760eccff6ba04fb5c505df854c85",
+      "equal": true
+    },
+    {
+      "section": "B5",
+      "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "target_heading": "### B5. 信任、关闭事实与防旁路边界",
+      "source_normalized_sha256": "1dc72e46664f9efa97d03bb3cd9b8df6b91dd898a07b8e56289a0730f8908cd7",
+      "target_normalized_sha256": "1dc72e46664f9efa97d03bb3cd9b8df6b91dd898a07b8e56289a0730f8908cd7",
+      "equal": true
+    },
+    {
+      "section": "B6",
+      "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "target_heading": "### B6. 体系规则响应、统一提交与只读通知",
+      "source_normalized_sha256": "6ed02f1f3e2828f03fbe5c15fa7db5a6c4b346914a29be2c5eacba1d6ce16b61",
+      "target_normalized_sha256": "6ed02f1f3e2828f03fbe5c15fa7db5a6c4b346914a29be2c5eacba1d6ce16b61",
+      "equal": true
+    },
+    {
+      "section": "B7",
+      "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "target_heading": "### B7. 复用与隔离",
+      "source_normalized_sha256": "f97a8e135b73d4bf9069557eeb66804fc6d5e4c8bb89a91971feac25f37d8b9a",
+      "target_normalized_sha256": "f97a8e135b73d4bf9069557eeb66804fc6d5e4c8bb89a91971feac25f37d8b9a",
+      "equal": true
+    },
+    {
+      "section": "B8",
+      "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "target_heading": "### B8. 首工程验收矩阵",
+      "source_normalized_sha256": "24be562fa69e35df744c5363a1daf7a9bac02de28202150689dadc5216c8d312",
+      "target_normalized_sha256": "24be562fa69e35df744c5363a1daf7a9bac02de28202150689dadc5216c8d312",
+      "equal": true
+    },
+    {
+      "section": "B9",
+      "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "target_heading": "### B9. 范围外与保留的后续责任",
+      "source_normalized_sha256": "ced1d7285180c4e3b77ee4a8c6d6e58808e382e243fe44aacfa17957a5c02396",
+      "target_normalized_sha256": "ced1d7285180c4e3b77ee4a8c6d6e58808e382e243fe44aacfa17957a5c02396",
+      "equal": true
+    },
+    {
+      "section": "B10",
+      "target": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "target_heading": "### B10. 工程执行、验收与停止",
+      "source_normalized_sha256": "dce4a1c52e4713ce682e57c3b3e9e883f844a83f5367878ad243639771ba1ba4",
+      "target_normalized_sha256": "dce4a1c52e4713ce682e57c3b3e9e883f844a83f5367878ad243639771ba1ba4",
+      "equal": true
+    }
+  ],
+  "K_mapping": [
+    {
+      "id": "K01",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K02",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K03",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K04",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K05",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K06",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K07",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K08",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K09",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K10",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K11",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K12",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K13",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K14",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K15",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K16",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K17",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K18",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K19",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K20",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K21",
+      "target": "current contract B8",
+      "equal": true
+    },
+    {
+      "id": "K22",
+      "target": "current contract B8",
+      "equal": true
+    }
+  ],
+  "new_changed_links": [
+    {
+      "source": "docs/05-design-decisions.md",
+      "line": 2344,
+      "destination": "design-drafts/world-infected-001/reviews/input-doc-world-entry-001/DOC-WORLD-ENTRY-001-task-v1.0.md",
+      "error": null
+    },
+    {
+      "source": "docs/05-design-decisions.md",
+      "line": 2345,
+      "destination": "design-drafts/world-infected-001/reviews/input-doc-world-entry-001/WORLD-ENTRY-001-owner-review-v1.0.md",
+      "error": null
+    },
+    {
+      "source": "docs/05-design-decisions.md",
+      "line": 2345,
+      "destination": "design-drafts/world-infected-001/reviews/input-doc-world-entry-001/OWNER-approval-WORLD-ENTRY-001-v1.0.md",
+      "error": null
+    },
+    {
+      "source": "docs/05-design-decisions.md",
+      "line": 2417,
+      "destination": "design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "error": null
+    },
+    {
+      "source": "docs/07-decision-supersession-index.md",
+      "line": 51,
+      "destination": "05-design-decisions.md#dec-049",
+      "error": null
+    },
+    {
+      "source": "docs/07-decision-supersession-index.md",
+      "line": 60,
+      "destination": "design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "error": null
+    },
+    {
+      "source": "docs/01-game-design-v0.1.md",
+      "line": 32,
+      "destination": "05-design-decisions.md#dec-049",
+      "error": null
+    },
+    {
+      "source": "docs/01-game-design-v0.1.md",
+      "line": 138,
+      "destination": "05-design-decisions.md#a4-单次世界驻留的含义",
+      "error": null
+    },
+    {
+      "source": "docs/01-game-design-v0.1.md",
+      "line": 756,
+      "destination": "05-design-decisions.md#dec-049",
+      "error": null
+    },
+    {
+      "source": "docs/01-game-design-v0.1.md",
+      "line": 954,
+      "destination": "05-design-decisions.md#a5-委托终止与角色终止分离",
+      "error": null
+    },
+    {
+      "source": "docs/01-game-design-v0.1.md",
+      "line": 1175,
+      "destination": "05-design-decisions.md#dec-049",
+      "error": null
+    },
+    {
+      "source": "docs/01-game-design-v0.1.md",
+      "line": 1175,
+      "destination": "design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "error": null
+    },
+    {
+      "source": "docs/02-vertical-slice.md",
+      "line": 606,
+      "destination": "05-design-decisions.md#dec-049",
+      "error": null
+    },
+    {
+      "source": "docs/02-vertical-slice.md",
+      "line": 606,
+      "destination": "design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "error": null
+    },
+    {
+      "source": "docs/03-architecture.md",
+      "line": 525,
+      "destination": "05-design-decisions.md#dec-049",
+      "error": null
+    },
+    {
+      "source": "docs/03-architecture.md",
+      "line": 535,
+      "destination": "05-design-decisions.md#dec-049",
+      "error": null
+    },
+    {
+      "source": "docs/03-architecture.md",
+      "line": 535,
+      "destination": "design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "error": null
+    },
+    {
+      "source": "docs/08-rule-implementation-traceability.md",
+      "line": 84,
+      "destination": "05-design-decisions.md#dec-049",
+      "error": null
+    },
+    {
+      "source": "docs/08-rule-implementation-traceability.md",
+      "line": 85,
+      "destination": "design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "line": 5,
+      "destination": "../../05-design-decisions.md#dec-049",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "line": 5,
+      "destination": "readiness/03-first-engineering-contract-draft.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "line": 5,
+      "destination": "../../05-design-decisions.md#dec-049",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "line": 5,
+      "destination": "readiness/03-first-engineering-contract-draft.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "line": 5,
+      "destination": "reviews/input-doc-world-entry-001/OWNER-approval-WORLD-ENTRY-001-v1.0.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "line": 23,
+      "destination": "reviews/mission-retry-options-v0.1.md#owner-confirmation-003c",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "line": 48,
+      "destination": "readiness/02-source-gap-and-ownership.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "line": 50,
+      "destination": "WORLD-DESIGN-004-completion.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 5,
+      "destination": "../../../05-design-decisions.md#dec-049",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 5,
+      "destination": "03-first-engineering-contract-draft.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 5,
+      "destination": "../reviews/input-doc-world-entry-001/OWNER-approval-WORLD-ENTRY-001-v1.0.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 11,
+      "destination": "../02-seven-day-structure.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 11,
+      "destination": "../03-location-design.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 11,
+      "destination": "../04-main-mission.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 11,
+      "destination": "../reviews/input-world-design-004/WORLD-DESIGN-004-task.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 12,
+      "destination": "../reviews/endgame-candidates-v1.1.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 12,
+      "destination": "../reviews/OWNER-endings-followup-6de365d-v1.0.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 13,
+      "destination": "../04-main-mission.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 13,
+      "destination": "../reviews/mission-retry-options-v0.1.md#owner-confirmation-003c",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 49,
+      "destination": "../../../05-design-decisions.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 49,
+      "destination": "../../../01-game-design-v0.1.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 49,
+      "destination": "../../../02-vertical-slice.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 49,
+      "destination": "../../../03-architecture.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "line": 53,
+      "destination": "03-first-engineering-contract-draft.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+      "line": 5,
+      "destination": "../../../05-design-decisions.md#dec-049",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+      "line": 5,
+      "destination": "03-first-engineering-contract-draft.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+      "line": 76,
+      "destination": "03-first-engineering-contract-draft.md#b5",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+      "line": 76,
+      "destination": "03-first-engineering-contract-draft.md#b6",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "line": 5,
+      "destination": "../reviews/input-doc-world-entry-001/WORLD-ENTRY-001-owner-review-v1.0.md#b1-goal-与可交付能力",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "line": 5,
+      "destination": "../reviews/input-doc-world-entry-001/OWNER-approval-WORLD-ENTRY-001-v1.0.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "line": 5,
+      "destination": "../reviews/input-doc-world-entry-001/DOC-WORLD-ENTRY-001-task-v1.0.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "line": 5,
+      "destination": "../../../05-design-decisions.md#dec-049",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+      "line": 5,
+      "destination": "../../../05-design-decisions.md#dec-049",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+      "line": 5,
+      "destination": "03-first-engineering-contract-draft.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+      "line": 46,
+      "destination": "03-first-engineering-contract-draft.md#b10",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/DOC-WORLD-ENTRY-001-completion.md",
+      "line": 9,
+      "destination": "reviews/input-doc-world-entry-001/OWNER-approval-WORLD-ENTRY-001-v1.0.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/DOC-WORLD-ENTRY-001-completion.md",
+      "line": 42,
+      "destination": "../../05-design-decisions.md#dec-049",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/DOC-WORLD-ENTRY-001-completion.md",
+      "line": 42,
+      "destination": "readiness/03-first-engineering-contract-draft.md",
+      "error": null
+    },
+    {
+      "source": "docs/design-drafts/world-infected-001/DOC-WORLD-ENTRY-001-completion.md",
+      "line": 69,
+      "destination": "reviews/doc-world-entry-001-checks.json",
+      "error": null
+    }
+  ],
+  "count": {
+    "matched": 49,
+    "not_matched": 0
+  },
+  "manual_semantic_review": {
+    "actor": "root author and two read-only auxiliary reviews; not mainline exact-SHA review",
+    "local_scope": "A4 new stay vs old hospital preserved; A5 not full death settlement",
+    "trust": "candidate and trusted expected binding separate; parsing grants no install/reopen authority; aggregate and persistence later",
+    "submission": "ordered deterministic proposals allowed; one coordinator; postcommit/view subscriptions read-only; pure core has no production commit authority",
+    "status": "A subset and B approved/unimplemented; remainder confirmed/Draft/history retained; later stages no execution authorization",
+    "fixes": [
+      "Queue overbroad 'other rules unapproved' corrected to separate already-confirmed-awaiting-formalization from undecided rules.",
+      "Adoption mixed static-hub row now identifies A6 formal content endpoint separately."
+    ]
+  },
+  "diagnostic_failures_and_repairs": [
+    "Extra parent AGENTS probe returned PermissionError before repository mutation; actual root AGENTS was fully read successfully.",
+    "Post-write diagnostic regex was double escaped and printed zero A/K counts; did not claim pass. Correct strict per-section and row comparison supersedes that diagnostic.",
+    "Contract helper default exec setup failed, then read-only escalated succeeded; python alias produced no evidence, so only later PowerShell exit0 comparison is counted."
+  ],
+  "not_run": [
+    "production test baseline",
+    "npm run check",
+    "build",
+    "browser",
+    "real save/restore",
+    "old finite or economy models",
+    "Owner playtest"
+  ],
+  "added_production_tests": 0,
+  "remote_CI": "NOT CHECKED",
+  "postcommit_results": "To be executed and reported in final delivery after actual commit; not claimed here.",
+  "startup_command_receipts": [
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "--show-toplevel"
+      ],
+      "exit_code": 0,
+      "stdout": "E:/projects/elevator-survival",
+      "source": "actual initial command outputs before repository writes"
+    },
+    {
+      "command": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "exit_code": 0,
+      "stdout": "feature/design-world-infected-world-001",
+      "source": "actual initial command outputs before repository writes"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "ecd8fc33729d385c07ecd9f93b53914b01cdb37a",
+      "source": "actual initial command outputs before repository writes"
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--short",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "source": "actual initial command outputs before repository writes"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--name-status"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "source": "actual initial command outputs before repository writes"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--name-status"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "source": "actual initial command outputs before repository writes"
+    },
+    {
+      "command": [
+        "git",
+        "ls-remote",
+        "--heads",
+        "origin",
+        "refs/heads/feature/design-world-infected-world-001",
+        "refs/heads/main"
+      ],
+      "exit_code": 0,
+      "stdout": "ecd8fc33729d385c07ecd9f93b53914b01cdb37a\trefs/heads/feature/design-world-infected-world-001\na76e9c1c998051fc1643b6e0c3d53443fa55feed\trefs/heads/main",
+      "source": "actual initial command outputs before repository writes"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "ecd8fc33729d385c07ecd9f93b53914b01cdb37a:docs/05-design-decisions.md"
+      ],
+      "exit_code": 0,
+      "stdout": "0903acc93b75aa55e0b34a8b1177ff00dac7d080",
+      "source": "actual initial command outputs before repository writes"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "--verify",
+        "refs/heads/main"
+      ],
+      "exit_code": 0,
+      "stdout": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+      "source": "actual initial command outputs before repository writes"
+    }
+  ],
+  "checks_json_and_report_note": "Final report statistics and command receipts added after full 49-check run; additions contain no new link targets or rule text. Both files strict UTF-8 and JSON parsed before staging.",
+  "staged_verification_before_final_receipt": {
+    "commands": [
+      {
+        "command": [
+          "git",
+          "diff",
+          "--cached",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--cached",
+          "--name-status",
+          "ecd8fc33729d385c07ecd9f93b53914b01cdb37a"
+        ],
+        "exit_code": 0,
+        "stdout": "M\tdocs/01-game-design-v0.1.md\nM\tdocs/02-vertical-slice.md\nM\tdocs/03-architecture.md\nM\tdocs/05-design-decisions.md\nM\tdocs/07-decision-supersession-index.md\nM\tdocs/08-rule-implementation-traceability.md\nM\tdocs/design-drafts/world-infected-001/01-world-overview.md\nM\tdocs/design-drafts/world-infected-001/10-decision-queue.md\nA\tdocs/design-drafts/world-infected-001/DOC-WORLD-ENTRY-001-completion.md\nM\tdocs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md\nM\tdocs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md\nM\tdocs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md\nM\tdocs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md\nA\tdocs/design-drafts/world-infected-001/reviews/doc-world-entry-001-checks.json\nA\tdocs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/DOC-WORLD-ENTRY-001-task-v1.0.md\nA\tdocs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/OWNER-approval-WORLD-ENTRY-001-v1.0.md\nA\tdocs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/SHA256SUMS.txt\nA\tdocs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/WORLD-ENTRY-001-owner-review-v1.0.md\n",
+        "stderr": ""
+      }
+    ],
+    "exact_paths": [
+      "docs/05-design-decisions.md",
+      "docs/07-decision-supersession-index.md",
+      "docs/01-game-design-v0.1.md",
+      "docs/02-vertical-slice.md",
+      "docs/03-architecture.md",
+      "docs/08-rule-implementation-traceability.md",
+      "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+      "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md",
+      "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+      "docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/DOC-WORLD-ENTRY-001-task-v1.0.md",
+      "docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/WORLD-ENTRY-001-owner-review-v1.0.md",
+      "docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/OWNER-approval-WORLD-ENTRY-001-v1.0.md",
+      "docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/SHA256SUMS.txt",
+      "docs/design-drafts/world-infected-001/reviews/doc-world-entry-001-checks.json",
+      "docs/design-drafts/world-infected-001/DOC-WORLD-ENTRY-001-completion.md"
+    ],
+    "archive_index_bytes_match": true,
+    "old_dec_index_prefix_match": true,
+    "note": "Actual staged content checked before adding this receipt to the JSON itself; final cached check follows receipt restaging."
+  }
+}

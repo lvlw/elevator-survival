@@ -1,0 +1,130 @@
+{
+  "task": "WORLD-ENTRY-002",
+  "version": "v1.0",
+  "prepared_date": "2026-10-03",
+  "execution_kind": "Design preparation, finite validation and append-only status sync; no production implementation",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+  "new_branch": "feature/design-world-entry-002",
+  "remote_refs_read_by_mainline": {
+    "feature/mission-lifecycle-core-001": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+    "feature/design-world-infected-world-001": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+    "main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed"
+  },
+  "remote_refs_source": "https://api.github.com/repos/lvlw/elevator-survival/git/matching-refs/heads/",
+  "baseline_rule_and_contract_objects": {
+    "docs/05-design-decisions.md": "f172de6ae7eecaaa126dd519d3dc7d2b279ad3b9",
+    "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md": "62e9fca4f10aeb6e5681a46e6af52be3f7851ba2"
+  },
+  "object_evidence": "Exact-SHA object observations recorded in the prior attached PASS review; must be rechecked by Codex at startup. Not newly re-executed tests.",
+  "mainline_this_turn_reads": [
+    {
+      "path": "AGENTS.md",
+      "ref": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "range": "full"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+      "ref": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "range": "returned ownership/source-map text; delivery truncated"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/02-seven-day-structure.md",
+      "ref": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "range": "returned opening and explicit lines 77-200; first response truncated"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "ref": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "range": "full"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/09-design-critic.md",
+      "ref": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "range": "full"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+      "ref": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "range": "requested lines 1-120; returned 003D and disease sections, response truncated"
+    },
+    {
+      "path": "src/state/run-save/run-save-codec.ts",
+      "ref": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "range": "lines 115-230"
+    },
+    {
+      "path": "AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md",
+      "ref": "conversation-mounted original",
+      "range": "full original read locally"
+    }
+  ],
+  "navigation_failure": {
+    "path": "docs/design-drafts/world-infected-001/09-first-play-route.md",
+    "result": "404; not a source. Directory listing located actual 09-design-critic.md, which was then read."
+  },
+  "review_input": {
+    "filename": "AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md",
+    "bytes": 17689,
+    "sha256": "145810ebde164ff17eba4e5ad32e010ea0592fa90ece6947a5725a605125aa92"
+  },
+  "write_allowlist": {
+    "existing_append_only": [
+      "docs/03-architecture.md",
+      "docs/08-rule-implementation-traceability.md",
+      "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "docs/engineering/mission-lifecycle-001/implementation-notes.md"
+    ],
+    "new_files": [
+      "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md",
+      "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+      "docs/design-drafts/world-infected-001/entry-002/02-runtime-restore-contract.md",
+      "docs/design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md",
+      "docs/design-drafts/world-infected-001/entry-002/04-source-map-and-debts.md",
+      "docs/design-drafts/world-infected-001/entry-002/validation/fixtures.json",
+      "docs/design-drafts/world-infected-001/entry-002/validation/expected.json",
+      "docs/design-drafts/world-infected-001/entry-002/validation/verify_entry_002.py",
+      "docs/design-drafts/world-infected-001/entry-002/validation/results.json",
+      "docs/design-drafts/world-infected-001/entry-002/validation/run-record.json",
+      "docs/design-drafts/world-infected-001/entry-002/reviews/review-and-fixes.md",
+      "docs/design-drafts/world-infected-001/entry-002/completion.md",
+      "docs/design-drafts/world-infected-001/entry-002/inputs/WORLD-ENTRY-002-task-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-002/inputs/OWNER-direction-and-scope-WORLD-ENTRY-002-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-002/inputs/BASELINE-AND-INPUTS.json",
+      "docs/design-drafts/world-infected-001/entry-002/inputs/SHA256SUMS.txt"
+    ]
+  },
+  "checks_for_this_task": {
+    "required": "Input byte hashes, source mapping, bounded-model execution and negative controls, two-run consistency, UTF-8, changed links, append-only prefixes, exact allowlist and Git diff checks",
+    "production_npm_tests": "NOT REQUIRED in this design-only task; do not cite historic counts as newly executed evidence",
+    "npm_audit": "Read-only diagnostic allowed if accessible, no install/update/fix; network/tool failure must be recorded and need not block independent workstreams",
+    "new_browser_save_and_playtest": "NOT RUN / not implemented"
+  },
+  "historical_whitespace_exception": {
+    "path": "docs/engineering/mission-lifecycle-001/inputs/AUD-6b48b3d-DOC-WORLD-ENTRY-001-review-v1.0.md",
+    "lines": [
+      3,
+      4,
+      5
+    ],
+    "note": "Already in start commit. Keep unchanged. New base-to-final delta must pass diff --check. No new exception granted."
+  },
+  "authorization_scope": {
+    "ordinary_commit_push": "Only feature/design-world-entry-002 after required checks",
+    "merge_force_push_or_other_branch_push": false,
+    "change_formal_rules_or_existing_first_contract": false,
+    "production_implementation": false,
+    "execute_future_goals": false
+  },
+  "mainline_this_turn_not_run": [
+    "Owner local git inspection",
+    "repository mutation",
+    "production npm tests",
+    "browser",
+    "new save/restore",
+    "prior probe reruns",
+    "full-world simulation"
+  ]
+}

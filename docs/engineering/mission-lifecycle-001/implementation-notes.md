@@ -90,3 +90,9 @@ scope 是受控注入的只读依赖快照，建立时核查已有规则版本 l
 ## 交付检查阻塞（2026-10-03）
 
 实现与全量npm检查已完成。原字节归档的前置审查第3—5行有Markdown行尾双空格，完整暂存／基线diff检查退出2；当前无法同时满足原件保全与检查通过。未改输入、Git空白配置或检查器，未commit／push；详见 [完成报告](completion.md)。
+
+## WORLD-ENTRY-002 当前状态附记（2026-10-03）
+
+首资格核心在完整SHA `d1d3b7927c6733cff709a4bfd617fb1e85e7485a` 已通过[主线源码实审](../../design-drafts/world-infected-001/entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md)。此前归档空白BLOCKED已依ENG-MISSION-LIFECYCLE-001-ADDENDUM-01解除，工程已普通提交并推送；上文保留历史过程。
+
+PASS仅限首身份／关闭资格纯核心，未接真实保存、全角色聚合、完整世界或玩家入口。[WORLD-ENTRY-002候选入口](../../design-drafts/world-infected-001/entry-002/00-owner-review.md)与[近期契约](../../design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md)仍待审，未批准新生产规则或执行后续工程。

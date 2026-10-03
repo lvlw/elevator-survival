@@ -1,0 +1,3064 @@
+{
+  "evidence": "finite-design-model-only",
+  "negative_control": null,
+  "counts": {
+    "positive": 36,
+    "expected-rejection": 77,
+    "unsupported": 4,
+    "mismatch": 0
+  },
+  "families": [
+    "V01",
+    "V02",
+    "V03",
+    "V04",
+    "V05",
+    "V06",
+    "V07",
+    "V08",
+    "V09",
+    "V10",
+    "V11",
+    "V12",
+    "V13",
+    "V14",
+    "V15",
+    "V16",
+    "V17",
+    "V18",
+    "V19",
+    "V20",
+    "V21",
+    "V22",
+    "V23",
+    "V24",
+    "V25",
+    "V26",
+    "V27",
+    "V28",
+    "V29",
+    "V30",
+    "V31",
+    "V32"
+  ],
+  "results": [
+    {
+      "id": "crossmap-return",
+      "family": "V01",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "energy": 84,
+          "task_day": 1,
+          "cycle": 1,
+          "execution": "run-1",
+          "meds": 1,
+          "signature": true,
+          "node": "H0"
+        },
+        "events": [],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "energy": 84,
+          "task_day": 1,
+          "cycle": 1,
+          "execution": "run-1",
+          "meds": 1,
+          "signature": true,
+          "node": "H0"
+        },
+        "events": [],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "overrun-edge",
+      "family": "V02",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "energy": 0,
+          "node": "C0",
+          "revision": 1
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "expected": {
+        "values": {
+          "energy": 0,
+          "node": "C0",
+          "revision": 1
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "queue-stops",
+      "family": "V03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "energy": 0,
+          "node": "L0",
+          "revision": 2
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "expected": {
+        "values": {
+          "energy": 0,
+          "node": "L0",
+          "revision": 2
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "illegal-prerequisite",
+      "family": "V04",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "energy": 100,
+          "hp": 12,
+          "node": "H0",
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "precondition"
+        ]
+      },
+      "expected": {
+        "values": {
+          "energy": 100,
+          "hp": 12,
+          "node": "H0",
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "precondition"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "illegal-resource",
+      "family": "V04",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "energy": 100,
+          "hp": 12,
+          "node": "H0",
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "precondition"
+        ]
+      },
+      "expected": {
+        "values": {
+          "energy": 100,
+          "hp": 12,
+          "node": "H0",
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "precondition"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "illegal-capacity",
+      "family": "V04",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "energy": 100,
+          "hp": 12,
+          "node": "H0",
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "precondition"
+        ]
+      },
+      "expected": {
+        "values": {
+          "energy": 100,
+          "hp": 12,
+          "node": "H0",
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "precondition"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "illegal-location",
+      "family": "V04",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "energy": 100,
+          "hp": 12,
+          "node": "H0",
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "location"
+        ]
+      },
+      "expected": {
+        "values": {
+          "energy": 100,
+          "hp": 12,
+          "node": "H0",
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "location"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "unknown-edge",
+      "family": "V04",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "energy": 100,
+          "node": "H0",
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "unknown-edge"
+        ]
+      },
+      "expected": {
+        "values": {
+          "energy": 100,
+          "node": "H0",
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "unknown-edge"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "multiply-once",
+      "family": "V04",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "energy": 97,
+          "node": "H1"
+        },
+        "events": [],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "energy": 97,
+          "node": "H1"
+        },
+        "events": [],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "combat-at-zero",
+      "family": "V05",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "energy": 0,
+          "hp": 10,
+          "node": "C0",
+          "phase": "combat",
+          "revision": 2
+        },
+        "events": [
+          "immediate"
+        ],
+        "rejected": [
+          "unstable"
+        ]
+      },
+      "expected": {
+        "values": {
+          "energy": 0,
+          "hp": 10,
+          "node": "C0",
+          "phase": "combat",
+          "revision": 2
+        },
+        "events": [
+          "immediate"
+        ],
+        "rejected": [
+          "unstable"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "pending-at-zero",
+      "family": "V05",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "hp": 10,
+          "pending": false,
+          "cycle": 1
+        },
+        "events": [
+          "immediate"
+        ],
+        "rejected": [
+          "unstable"
+        ]
+      },
+      "expected": {
+        "values": {
+          "hp": 10,
+          "pending": false,
+          "cycle": 1
+        },
+        "events": [
+          "immediate"
+        ],
+        "rejected": [
+          "unstable"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "zero-view",
+      "family": "V06",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "energy": 0,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "energy": 0,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "zero-organize",
+      "family": "V06",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "energy": 0,
+          "revision": 1
+        },
+        "events": [],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "energy": 0,
+          "revision": 1
+        },
+        "events": [],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "zero-pickup",
+      "family": "V06",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "energy": 0,
+          "revision": 1,
+          "items.ration-1.container": "bag",
+          "sources.supply": true
+        },
+        "events": [],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "energy": 0,
+          "revision": 1,
+          "items.ration-1.container": "bag",
+          "sources.supply": true
+        },
+        "events": [],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "zero-food",
+      "family": "V06",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "energy": 0,
+          "revision": 1,
+          "satiety": 4,
+          "supplies.food": 1
+        },
+        "events": [],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "energy": 0,
+          "revision": 1,
+          "satiety": 4,
+          "supplies.food": 1
+        },
+        "events": [],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "zero-bandage",
+      "family": "V06",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "energy": 0,
+          "revision": 1,
+          "hp": 9,
+          "bleed": false
+        },
+        "events": [],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "energy": 0,
+          "revision": 1,
+          "hp": 9,
+          "bleed": false
+        },
+        "events": [],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "zero-suppressant",
+      "family": "V06",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "energy": 0,
+          "revision": 1,
+          "suppression": 15,
+          "meds": 1
+        },
+        "events": [],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "energy": 0,
+          "revision": 1,
+          "suppression": 15,
+          "meds": 1
+        },
+        "events": [],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "zero-extract",
+      "family": "V06",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "expected": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "zero-search",
+      "family": "V06",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "expected": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "zero-repair",
+      "family": "V06",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "expected": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "zero-recharge",
+      "family": "V06",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "expected": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "zero-deliver",
+      "family": "V06",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "expected": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "zero-install",
+      "family": "V06",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "expected": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "rest-A-0",
+      "family": "V07",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "energy": 100,
+          "hp": 8,
+          "injury": 1,
+          "items.pipe-1.durability": 17,
+          "cycle": 2,
+          "task_day": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "energy": 100,
+          "hp": 8,
+          "injury": 1,
+          "items.pipe-1.durability": 17,
+          "cycle": 2,
+          "task_day": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "rest-A-95",
+      "family": "V07",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "energy": 100,
+          "hp": 8,
+          "injury": 1,
+          "items.pipe-1.durability": 17,
+          "cycle": 2,
+          "task_day": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "energy": 100,
+          "hp": 8,
+          "injury": 1,
+          "items.pipe-1.durability": 17,
+          "cycle": 2,
+          "task_day": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "rest-C-0",
+      "family": "V07",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "energy": 85,
+          "hp": 8,
+          "injury": 1,
+          "items.pipe-1.durability": 17,
+          "cycle": 2,
+          "task_day": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "energy": 85,
+          "hp": 8,
+          "injury": 1,
+          "items.pipe-1.durability": 17,
+          "cycle": 2,
+          "task_day": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "rest-C-95",
+      "family": "V07",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "energy": 85,
+          "hp": 8,
+          "injury": 1,
+          "items.pipe-1.durability": 17,
+          "cycle": 2,
+          "task_day": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "energy": 85,
+          "hp": 8,
+          "injury": 1,
+          "items.pipe-1.durability": 17,
+          "cycle": 2,
+          "task_day": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "rest-reject-combat",
+      "family": "V08",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "cycle": 1,
+          "task_day": 1,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "unstable"
+        ]
+      },
+      "expected": {
+        "values": {
+          "cycle": 1,
+          "task_day": 1,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "unstable"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "rest-reject-pending",
+      "family": "V08",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "cycle": 1,
+          "task_day": 1,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "unstable"
+        ]
+      },
+      "expected": {
+        "values": {
+          "cycle": 1,
+          "task_day": 1,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "unstable"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "rest-reject-node",
+      "family": "V08",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "cycle": 1,
+          "task_day": 1,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "rest"
+        ]
+      },
+      "expected": {
+        "values": {
+          "cycle": 1,
+          "task_day": 1,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "rest"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "rest-reject-day7",
+      "family": "V08",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "cycle": 1,
+          "task_day": 7,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "rest"
+        ]
+      },
+      "expected": {
+        "values": {
+          "cycle": 1,
+          "task_day": 7,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "rest"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "bleed-death",
+      "family": "V09",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "hp": 0,
+          "infection": 110,
+          "exposure": 1,
+          "satiety": 6,
+          "cycle": 1,
+          "status": "death"
+        },
+        "events": [
+          "bleed",
+          "death"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "hp": 0,
+          "infection": 110,
+          "exposure": 1,
+          "satiety": 6,
+          "cycle": 1,
+          "status": "death"
+        },
+        "events": [
+          "bleed",
+          "death"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "infection-59",
+      "family": "V10",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "infection": 69,
+          "hp": 11,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "infection": 69,
+          "hp": 11,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "infection-89",
+      "family": "V10",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "infection": 104,
+          "hp": 10,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "infection": 104,
+          "hp": 10,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "infection-110",
+      "family": "V10",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "infection": 130,
+          "hp": 9,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "infection": 130,
+          "hp": 9,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "infection-0",
+      "family": "V10",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "infection": 0,
+          "hp": 12,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "infection": 0,
+          "hp": 12,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "infection-death",
+      "family": "V11",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "hp": 0,
+          "infection": 130,
+          "satiety": 6,
+          "cycle": 1,
+          "phase": "dead"
+        },
+        "events": [
+          "infection",
+          "death"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "hp": 0,
+          "infection": 130,
+          "satiety": 6,
+          "cycle": 1,
+          "phase": "dead"
+        },
+        "events": [
+          "infection",
+          "death"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "hunger-death",
+      "family": "V12",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "hp": 0,
+          "satiety": 0,
+          "cycle": 1,
+          "phase": "dead"
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "death"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "hp": 0,
+          "satiety": 0,
+          "cycle": 1,
+          "phase": "dead"
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "death"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "hunger-live",
+      "family": "V12",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "hp": 1,
+          "satiety": 0,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "hp": 1,
+          "satiety": 0,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "suppression-exposure-reset",
+      "family": "V13",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "infection": 74,
+          "hp": 11,
+          "exposure": 0,
+          "suppression": 0,
+          "meds": 0,
+          "signature": false,
+          "painkiller": false,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "infection": 74,
+          "hp": 11,
+          "exposure": 0,
+          "suppression": 0,
+          "meds": 0,
+          "signature": false,
+          "painkiller": false,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "med-quota-no-map-reset",
+      "family": "V13",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "meds": 1,
+          "suppression": 15,
+          "supplies.suppressant": 1,
+          "cycle": 1
+        },
+        "events": [],
+        "rejected": [
+          "quota"
+        ]
+      },
+      "expected": {
+        "values": {
+          "meds": 1,
+          "suppression": 15,
+          "supplies.suppressant": 1,
+          "cycle": 1
+        },
+        "events": [],
+        "rejected": [
+          "quota"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "duplicate-revision",
+      "family": "V14",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "cycle": 2,
+          "revision": 1,
+          "satiety": 4
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": [
+          "stale"
+        ]
+      },
+      "expected": {
+        "values": {
+          "cycle": 2,
+          "revision": 1,
+          "satiety": 4
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": [
+          "stale"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "old-cycle-new-revision",
+      "family": "V14",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "cycle": 2,
+          "revision": 1,
+          "satiety": 4
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": [
+          "cycle"
+        ]
+      },
+      "expected": {
+        "values": {
+          "cycle": 2,
+          "revision": 1,
+          "satiety": 4
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": [
+          "cycle"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "normal-return-False",
+      "family": "V15",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "task_day": 7,
+          "hp": 3,
+          "infection": 130,
+          "cycle": 1,
+          "meds": 1,
+          "phase": "hub",
+          "bridge": null,
+          "status": "failure",
+          "balance": 10
+        },
+        "events": [
+          "close"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "task_day": 7,
+          "hp": 3,
+          "infection": 130,
+          "cycle": 1,
+          "meds": 1,
+          "phase": "hub",
+          "bridge": null,
+          "status": "failure",
+          "balance": 10
+        },
+        "events": [
+          "close"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "normal-return-True",
+      "family": "V15",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "task_day": 7,
+          "hp": 3,
+          "infection": 130,
+          "cycle": 1,
+          "meds": 1,
+          "phase": "hub",
+          "bridge": null,
+          "status": "success",
+          "balance": 30
+        },
+        "events": [
+          "close"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "task_day": 7,
+          "hp": 3,
+          "infection": 130,
+          "cycle": 1,
+          "meds": 1,
+          "phase": "hub",
+          "bridge": null,
+          "status": "success",
+          "balance": 30
+        },
+        "events": [
+          "close"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "deadline-live",
+      "family": "V16",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "hp": 9,
+          "cycle": 2,
+          "task_day": 7,
+          "phase": "hub",
+          "status": "failure",
+          "balance": 10,
+          "bridge": 2,
+          "energy": 100
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle",
+          "recall"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "hp": 9,
+          "cycle": 2,
+          "task_day": 7,
+          "phase": "hub",
+          "status": "failure",
+          "balance": 10,
+          "bridge": 2,
+          "energy": 100
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle",
+          "recall"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "deadline-dead",
+      "family": "V16",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "hp": 0,
+          "cycle": 1,
+          "task_day": 7,
+          "phase": "dead",
+          "balance": 30,
+          "bridge": null
+        },
+        "events": [
+          "infection",
+          "death"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "hp": 0,
+          "cycle": 1,
+          "task_day": 7,
+          "phase": "dead",
+          "balance": 30,
+          "bridge": null
+        },
+        "events": [
+          "infection",
+          "death"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "deadline-combat",
+      "family": "V16",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "cycle": 1,
+          "hp": 12,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "unstable"
+        ]
+      },
+      "expected": {
+        "values": {
+          "cycle": 1,
+          "hp": 12,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "unstable"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "deadline-next-two-cycles",
+      "family": "V17",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "cycle": 3,
+          "task_day": 2,
+          "meds": 0,
+          "suppression": 0,
+          "satiety": 2,
+          "execution": "run-2",
+          "balance": 10
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle",
+          "recall",
+          "consume-ready",
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "cycle": 3,
+          "task_day": 2,
+          "meds": 0,
+          "suppression": 0,
+          "satiety": 2,
+          "execution": "run-2",
+          "balance": 10
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle",
+          "recall",
+          "consume-ready",
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "no-content",
+      "family": "V18",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "hp": 1,
+          "cycle": 1,
+          "status": "failure",
+          "balance": 0
+        },
+        "events": [],
+        "rejected": [
+          "no-new-content"
+        ]
+      },
+      "expected": {
+        "values": {
+          "hp": 1,
+          "cycle": 1,
+          "status": "failure",
+          "balance": 0
+        },
+        "events": [],
+        "rejected": [
+          "no-new-content"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "same-commission-no-retry",
+      "family": "V18",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "cycle": 1,
+          "execution": "run-1"
+        },
+        "events": [],
+        "rejected": [
+          "no-new-content"
+        ]
+      },
+      "expected": {
+        "values": {
+          "cycle": 1,
+          "execution": "run-1"
+        },
+        "events": [],
+        "rejected": [
+          "no-new-content"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "legal-launch-death",
+      "family": "V19",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "hp": 0,
+          "status": "success",
+          "execution": "run-1",
+          "commission": "current",
+          "cycle": 1
+        },
+        "events": [
+          "infection",
+          "death"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "hp": 0,
+          "status": "success",
+          "execution": "run-1",
+          "commission": "current",
+          "cycle": 1
+        },
+        "events": [
+          "infection",
+          "death"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "illegal-launch-before-danger",
+      "family": "V19",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "hp": 3,
+          "status": "success",
+          "cycle": 1
+        },
+        "events": [],
+        "rejected": [
+          "precondition"
+        ]
+      },
+      "expected": {
+        "values": {
+          "hp": 3,
+          "status": "success",
+          "cycle": 1
+        },
+        "events": [],
+        "rejected": [
+          "precondition"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "first-character-no-prepaid-night",
+      "family": "V19",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "cycle": 1,
+          "satiety": 6,
+          "energy": 100,
+          "task_day": 1
+        },
+        "events": [
+          "consume-ready"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "cycle": 1,
+          "satiety": 6,
+          "energy": 100,
+          "task_day": 1
+        },
+        "events": [
+          "consume-ready"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "persistent-field-no-copy",
+      "family": "V20",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "enemy.hp": 6,
+          "enemy.intent": "bite",
+          "enemy.risk_cursor": 2,
+          "sources.supply": true,
+          "items.ration-1.qty": 2,
+          "items.ration-1.container": "bag",
+          "items.pipe-1.durability": 17
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": [
+          "item"
+        ]
+      },
+      "expected": {
+        "values": {
+          "enemy.hp": 6,
+          "enemy.intent": "bite",
+          "enemy.risk_cursor": 2,
+          "sources.supply": true,
+          "items.ration-1.qty": 2,
+          "items.ration-1.container": "bag",
+          "items.pipe-1.durability": 17
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": [
+          "item"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "stable-random-anchor",
+      "family": "V21",
+      "classification": "positive",
+      "actual": {
+        "same_on_reload": true,
+        "next_differs": true,
+        "separate_source": true
+      },
+      "expected": {
+        "same_on_reload": true,
+        "next_differs": true,
+        "separate_source": true
+      },
+      "matches": true
+    },
+    {
+      "id": "same-public-different-hidden",
+      "family": "V22",
+      "classification": "positive",
+      "actual": {
+        "same_hint": true,
+        "risks": [
+          "unknown",
+          "unknown"
+        ],
+        "hp_after": [
+          1,
+          0
+        ]
+      },
+      "expected": {
+        "same_hint": true,
+        "risks": [
+          "unknown",
+          "unknown"
+        ],
+        "hp_after": [
+          1,
+          0
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "absent-explicit-create",
+      "family": "V23",
+      "classification": "positive",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 100,
+        "reads": 1,
+        "writes": 1,
+        "notifications": 1,
+        "errors": []
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 100,
+        "reads": 1,
+        "writes": 1,
+        "notifications": 1,
+        "errors": []
+      },
+      "matches": true
+    },
+    {
+      "id": "read-error-no-create",
+      "family": "V23",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "error",
+        "revision": null,
+        "energy": null,
+        "reads": 1,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "read-error",
+          "not-absent"
+        ]
+      },
+      "expected": {
+        "phase": "error",
+        "revision": null,
+        "energy": null,
+        "reads": 1,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "read-error",
+          "not-absent"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "corrupt-no-create",
+      "family": "V23",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "error",
+        "revision": null,
+        "energy": null,
+        "reads": 1,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "shape",
+          "not-absent"
+        ]
+      },
+      "expected": {
+        "phase": "error",
+        "revision": null,
+        "energy": null,
+        "reads": 1,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "shape",
+          "not-absent"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "roundtrip-fresh",
+      "family": "V24",
+      "classification": "positive",
+      "actual": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      },
+      "expected": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      },
+      "matches": true
+    },
+    {
+      "id": "roundtrip-world",
+      "family": "V24",
+      "classification": "positive",
+      "actual": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      },
+      "expected": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      },
+      "matches": true
+    },
+    {
+      "id": "roundtrip-hub",
+      "family": "V24",
+      "classification": "positive",
+      "actual": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      },
+      "expected": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      },
+      "matches": true
+    },
+    {
+      "id": "roundtrip-combat-zero",
+      "family": "V24",
+      "classification": "unsupported",
+      "actual": {
+        "status": "NOT SUPPORTED",
+        "capability": "new-combat-schema"
+      },
+      "expected": {
+        "status": "NOT SUPPORTED",
+        "capability": "new-combat-schema"
+      },
+      "matches": true
+    },
+    {
+      "id": "roundtrip-dead",
+      "family": "V24",
+      "classification": "positive",
+      "actual": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      },
+      "expected": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      },
+      "matches": true
+    },
+    {
+      "id": "root-missing",
+      "family": "V25",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "shape",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "shape",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "root-extra",
+      "family": "V25",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "shape",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "shape",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "nested-missing",
+      "family": "V25",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "shape",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "shape",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "nested-extra",
+      "family": "V25",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "shape",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "shape",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "type",
+      "family": "V25",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "body-type",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "body-type",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "format",
+      "family": "V25",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "format",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "format",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "boolean-number",
+      "family": "V25",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "body-type",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "body-type",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "phase-pending",
+      "family": "V25",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "unstable",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "unstable",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "cross-character",
+      "family": "V26",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "cross-character",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "cross-character",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "cross-world",
+      "family": "V26",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "binding",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "binding",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "cross-template",
+      "family": "V26",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "binding",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "binding",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "cross-commission",
+      "family": "V26",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "commission",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "commission",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "cross-rules",
+      "family": "V26",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "binding",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "binding",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "cross-contract",
+      "family": "V26",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "binding",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "binding",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "cross-scene-execution",
+      "family": "V26",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "scene-binding",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "scene-binding",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "cross-run-version",
+      "family": "V26",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "run-reuse-or-version",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "run-reuse-or-version",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "two-active",
+      "family": "V27",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "multiple-active",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "multiple-active",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "reused-run",
+      "family": "V27",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "run-reuse-or-version",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "run-reuse-or-version",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "duplicate-item",
+      "family": "V27",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "duplicate-item",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "duplicate-item",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "closed-rebootstrap",
+      "family": "V28",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 100,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "owner-exists",
+          "no-replace-entry"
+        ]
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 100,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "owner-exists",
+          "no-replace-entry"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "first-save-failure",
+      "family": "V29",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 1,
+        "energy": 92,
+        "reads": 1,
+        "writes": 2,
+        "notifications": 2,
+        "errors": [
+          "save-error",
+          "owner-exists"
+        ]
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 1,
+        "energy": 92,
+        "reads": 1,
+        "writes": 2,
+        "notifications": 2,
+        "errors": [
+          "save-error",
+          "owner-exists"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "later-save-failure",
+      "family": "V29",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 2,
+        "energy": 84,
+        "reads": 0,
+        "writes": 2,
+        "notifications": 2,
+        "errors": [
+          "save-error"
+        ]
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 2,
+        "energy": 84,
+        "reads": 0,
+        "writes": 2,
+        "notifications": 2,
+        "errors": [
+          "save-error"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "duplicate-bootstrap",
+      "family": "V30",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 100,
+        "reads": 1,
+        "writes": 0,
+        "notifications": 1,
+        "errors": [
+          "owner-exists"
+        ]
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 100,
+        "reads": 1,
+        "writes": 0,
+        "notifications": 1,
+        "errors": [
+          "owner-exists"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "duplicate-submit-subscribe",
+      "family": "V30",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 1,
+        "energy": 92,
+        "reads": 0,
+        "writes": 1,
+        "notifications": 1,
+        "errors": [
+          "reentrant",
+          "stale"
+        ]
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 1,
+        "energy": 92,
+        "reads": 0,
+        "writes": 1,
+        "notifications": 1,
+        "errors": [
+          "reentrant",
+          "stale"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "old-format",
+      "family": "V31",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "format",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "format",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "old-rules",
+      "family": "V31",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "rules",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "rules",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "no-business",
+      "family": "V32",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 100,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "unsupported-business"
+        ]
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 100,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "unsupported-business"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "half-terminal",
+      "family": "V32",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 100,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "incomplete-transaction"
+        ]
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 100,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "incomplete-transaction"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "real-ctb-medical",
+      "family": "V05",
+      "classification": "unsupported",
+      "actual": {
+        "status": "NOT SUPPORTED",
+        "capability": "production-ctb"
+      },
+      "expected": {
+        "status": "NOT SUPPORTED",
+        "capability": "production-ctb"
+      },
+      "matches": true
+    },
+    {
+      "id": "complete-terminal-ledger",
+      "family": "V32",
+      "classification": "unsupported",
+      "actual": {
+        "status": "NOT SUPPORTED",
+        "capability": "production-body-items-economy"
+      },
+      "expected": {
+        "status": "NOT SUPPORTED",
+        "capability": "production-body-items-economy"
+      },
+      "matches": true
+    },
+    {
+      "id": "browser-storage-faults",
+      "family": "V29",
+      "classification": "unsupported",
+      "actual": {
+        "status": "NOT SUPPORTED",
+        "capability": "browser-storage"
+      },
+      "expected": {
+        "status": "NOT SUPPORTED",
+        "capability": "browser-storage"
+      },
+      "matches": true
+    },
+    {
+      "id": "body-over-hp",
+      "family": "V25",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "body-range",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "body-range",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "body-over-energy",
+      "family": "V25",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "body-range",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "body-range",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "bridge-bool",
+      "family": "V25",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "bridge",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "bridge",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "active-has-ready",
+      "family": "V25",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "active-bridge",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "active-bridge",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "living-without-history",
+      "family": "V25",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "missing-history",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "missing-history",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "empty-item-id",
+      "family": "V25",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "duplicate-item",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "duplicate-item",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "control-character-seed",
+      "family": "V26",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "execution",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "execution",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "combat-explicitly-unsupported",
+      "family": "V24",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "unstable",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "unstable",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "missing-nested-run-field",
+      "family": "V25",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "shape",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "shape",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "missing-declared-history",
+      "family": "V26",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "declarations",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "declarations",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "source-reveal-once",
+      "family": "V20",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "sources.supply": true,
+          "items.new-ration.qty": 2,
+          "items.new-ration.container": "H0",
+          "energy": 77,
+          "revision": 4
+        },
+        "events": [
+          "reveal",
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": [
+          "source-used"
+        ]
+      },
+      "expected": {
+        "values": {
+          "sources.supply": true,
+          "items.new-ration.qty": 2,
+          "items.new-ration.container": "H0",
+          "energy": 77,
+          "revision": 4
+        },
+        "events": [
+          "reveal",
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": [
+          "source-used"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "terminal-complete",
+      "family": "V32",
+      "classification": "positive",
+      "actual": {
+        "result": "committed",
+        "after": {
+          "revision": 1,
+          "hp": 9,
+          "balance": 10,
+          "status": "closed",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 1,
+        "save_attempts": 1,
+        "notifications": 1,
+        "input_unchanged": true
+      },
+      "expected": {
+        "result": "committed",
+        "after": {
+          "revision": 1,
+          "hp": 9,
+          "balance": 10,
+          "status": "closed",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 1,
+        "save_attempts": 1,
+        "notifications": 1,
+        "input_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "terminal-missing-items",
+      "family": "V32",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "missing-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "expected": {
+        "result": "missing-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "terminal-wrong-economy",
+      "family": "V32",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "economy-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "expected": {
+        "result": "economy-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "terminal-old-revision",
+      "family": "V32",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "stale-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "expected": {
+        "result": "stale-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "terminal-repeated-close",
+      "family": "V32",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "already-closed",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "closed",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "expected": {
+        "result": "already-closed",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "closed",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "death-history-living",
+      "family": "V26",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "death-history",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "death-history",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "overflow-cycle",
+      "family": "V14",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "cycle": 9007199254740991,
+          "hp": 8,
+          "satiety": 6,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "overflow"
+        ]
+      },
+      "expected": {
+        "values": {
+          "cycle": 9007199254740991,
+          "hp": 8,
+          "satiety": 6,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "overflow"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "overflow-revision",
+      "family": "V14",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "revision": 9007199254740991,
+          "hp": 8,
+          "satiety": 6,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "overflow"
+        ]
+      },
+      "expected": {
+        "values": {
+          "revision": 9007199254740991,
+          "hp": 8,
+          "satiety": 6,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "overflow"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "suppressant-no-target",
+      "family": "V06",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "revision": 0,
+          "meds": 0,
+          "supplies.suppressant": 1
+        },
+        "events": [],
+        "rejected": [
+          "medical-target"
+        ]
+      },
+      "expected": {
+        "values": {
+          "revision": 0,
+          "meds": 0,
+          "supplies.suppressant": 1
+        },
+        "events": [],
+        "rejected": [
+          "medical-target"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "A-rest-at-C-node",
+      "family": "V07",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "revision": 0,
+          "cycle": 1,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "rest"
+        ]
+      },
+      "expected": {
+        "values": {
+          "revision": 0,
+          "cycle": 1,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "rest"
+        ]
+      },
+      "matches": true
+    }
+  ]
+}

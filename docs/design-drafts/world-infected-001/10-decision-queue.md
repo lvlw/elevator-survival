@@ -68,3 +68,9 @@
 首资格核心已按本项Owner授权执行，作者完成、待最终准确SHA实文件评审；当前不再以归档时“工程未授权”为本Goal阻塞。见 [完成报告](../../engineering/mission-lifecycle-001/completion.md) 与 [K矩阵及后续责任](../../engineering/mission-lifecycle-001/implementation-notes.md)。本项不关闭可信恢复／聚合／事务接线、后续玩法参数、真实内容或试玩事项；未自动进入下一工程，整包仍Draft。
 
 本项交付状态补充：实现与全量检查完成，但原字节归档的前置审查行尾空格使完整暂存空白检查未通过，当前未提交／推送；等待主线处理输入保全与检查冲突。
+
+## WORLD-ENTRY-002 当前状态附记（2026-10-03）
+
+首资格核心在完整SHA `d1d3b7927c6733cff709a4bfd617fb1e85e7485a` 已通过[主线源码实审](entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md)。此前归档空白BLOCKED已依ENG-MISSION-LIFECYCLE-001-ADDENDUM-01解除，工程已普通提交并推送；保留上文历史过程，不将旧“未实现／未授权／未推送”误作当前状态。
+
+该PASS仅限首身份／关闭资格纯核心，不含真实保存、全角色聚合、完整世界或玩家入口。[WORLD-ENTRY-002候选入口](entry-002/00-owner-review.md)及[近期契约](entry-002/03-next-engineering-goals.md)仍待审，未批准新生产规则、未执行下一工程。

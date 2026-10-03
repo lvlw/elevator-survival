@@ -556,3 +556,9 @@ DEC-046—048 为未来完整感染世界确认方向，而不是新增运行时
 - 旧医院生产文件、普通executor身份连续性、phase、New Run及保存不变。详见 [实现记录](engineering/mission-lifecycle-001/implementation-notes.md) 与 [本轮验证](engineering/mission-lifecycle-001/verification-results.json)。本附记不批准其他玩法或工程。
 
 本项交付状态补充：实现与全量检查完成，但原字节归档的前置审查行尾空格使完整暂存空白检查未通过，当前未提交／推送；等待主线处理输入保全与检查冲突。
+
+## WORLD-ENTRY-002 当前状态附记（2026-10-03）
+
+首资格核心在完整SHA `d1d3b7927c6733cff709a4bfd617fb1e85e7485a` 已通过[主线源码实审](design-drafts/world-infected-001/entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md)。此前归档空白BLOCKED已依ENG-MISSION-LIFECYCLE-001-ADDENDUM-01解除，工程已普通提交并推送；保留上文历史过程，不将旧“未实现／未授权／未推送”误作当前状态。
+
+该PASS仅限首身份／关闭资格纯核心，不含真实保存、全角色聚合、完整世界或玩家入口。[WORLD-ENTRY-002候选入口](design-drafts/world-infected-001/entry-002/00-owner-review.md)及[近期契约](design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md)仍待审，未批准新生产规则、未执行下一工程。

@@ -1,0 +1,1748 @@
+{
+  "method": "Hand-authored observable outcomes before first execution; not derived by verifier. Explicit projections constrain only listed claims.",
+  "cases": {
+    "crossmap-return": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 84,
+          "task_day": 1,
+          "cycle": 1,
+          "execution": "run-1",
+          "meds": 1,
+          "signature": true,
+          "node": "H0"
+        },
+        "events": [],
+        "rejected": []
+      }
+    },
+    "overrun-edge": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 0,
+          "node": "C0",
+          "revision": 1
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      }
+    },
+    "queue-stops": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 0,
+          "node": "L0",
+          "revision": 2
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      }
+    },
+    "illegal-prerequisite": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 100,
+          "hp": 12,
+          "node": "H0",
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "precondition"
+        ]
+      }
+    },
+    "illegal-resource": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 100,
+          "hp": 12,
+          "node": "H0",
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "precondition"
+        ]
+      }
+    },
+    "illegal-capacity": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 100,
+          "hp": 12,
+          "node": "H0",
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "precondition"
+        ]
+      }
+    },
+    "illegal-location": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 100,
+          "hp": 12,
+          "node": "H0",
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "location"
+        ]
+      }
+    },
+    "unknown-edge": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 100,
+          "node": "H0",
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "unknown-edge"
+        ]
+      }
+    },
+    "multiply-once": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 97,
+          "node": "H1"
+        },
+        "events": [],
+        "rejected": []
+      }
+    },
+    "combat-at-zero": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 0,
+          "hp": 10,
+          "node": "C0",
+          "phase": "combat",
+          "revision": 2
+        },
+        "events": [
+          "immediate"
+        ],
+        "rejected": [
+          "unstable"
+        ]
+      }
+    },
+    "pending-at-zero": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "hp": 10,
+          "pending": false,
+          "cycle": 1
+        },
+        "events": [
+          "immediate"
+        ],
+        "rejected": [
+          "unstable"
+        ]
+      }
+    },
+    "zero-view": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 0,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": []
+      }
+    },
+    "zero-organize": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 0,
+          "revision": 1
+        },
+        "events": [],
+        "rejected": []
+      }
+    },
+    "zero-pickup": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 0,
+          "revision": 1,
+          "items.ration-1.container": "bag",
+          "sources.supply": true
+        },
+        "events": [],
+        "rejected": []
+      }
+    },
+    "zero-food": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 0,
+          "revision": 1,
+          "satiety": 4,
+          "supplies.food": 1
+        },
+        "events": [],
+        "rejected": []
+      }
+    },
+    "zero-bandage": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 0,
+          "revision": 1,
+          "hp": 9,
+          "bleed": false
+        },
+        "events": [],
+        "rejected": []
+      }
+    },
+    "zero-suppressant": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 0,
+          "revision": 1,
+          "suppression": 15,
+          "meds": 1
+        },
+        "events": [],
+        "rejected": []
+      }
+    },
+    "zero-extract": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      }
+    },
+    "zero-search": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      }
+    },
+    "zero-repair": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      }
+    },
+    "zero-recharge": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      }
+    },
+    "zero-deliver": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      }
+    },
+    "zero-install": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "revision": 0,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "energy"
+        ]
+      }
+    },
+    "rest-A-0": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 100,
+          "hp": 8,
+          "injury": 1,
+          "items.pipe-1.durability": 17,
+          "cycle": 2,
+          "task_day": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      }
+    },
+    "rest-A-95": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 100,
+          "hp": 8,
+          "injury": 1,
+          "items.pipe-1.durability": 17,
+          "cycle": 2,
+          "task_day": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      }
+    },
+    "rest-C-0": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 85,
+          "hp": 8,
+          "injury": 1,
+          "items.pipe-1.durability": 17,
+          "cycle": 2,
+          "task_day": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      }
+    },
+    "rest-C-95": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "energy": 85,
+          "hp": 8,
+          "injury": 1,
+          "items.pipe-1.durability": 17,
+          "cycle": 2,
+          "task_day": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      }
+    },
+    "rest-reject-combat": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "cycle": 1,
+          "task_day": 1,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "unstable"
+        ]
+      }
+    },
+    "rest-reject-pending": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "cycle": 1,
+          "task_day": 1,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "unstable"
+        ]
+      }
+    },
+    "rest-reject-node": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "cycle": 1,
+          "task_day": 1,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "rest"
+        ]
+      }
+    },
+    "rest-reject-day7": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "cycle": 1,
+          "task_day": 7,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "rest"
+        ]
+      }
+    },
+    "bleed-death": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "hp": 0,
+          "infection": 110,
+          "exposure": 1,
+          "satiety": 6,
+          "cycle": 1,
+          "status": "death"
+        },
+        "events": [
+          "bleed",
+          "death"
+        ],
+        "rejected": []
+      }
+    },
+    "infection-59": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "infection": 69,
+          "hp": 11,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      }
+    },
+    "infection-89": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "infection": 104,
+          "hp": 10,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      }
+    },
+    "infection-110": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "infection": 130,
+          "hp": 9,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      }
+    },
+    "infection-0": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "infection": 0,
+          "hp": 12,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      }
+    },
+    "infection-death": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "hp": 0,
+          "infection": 130,
+          "satiety": 6,
+          "cycle": 1,
+          "phase": "dead"
+        },
+        "events": [
+          "infection",
+          "death"
+        ],
+        "rejected": []
+      }
+    },
+    "hunger-death": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "hp": 0,
+          "satiety": 0,
+          "cycle": 1,
+          "phase": "dead"
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "death"
+        ],
+        "rejected": []
+      }
+    },
+    "hunger-live": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "hp": 1,
+          "satiety": 0,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      }
+    },
+    "suppression-exposure-reset": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "infection": 74,
+          "hp": 11,
+          "exposure": 0,
+          "suppression": 0,
+          "meds": 0,
+          "signature": false,
+          "painkiller": false,
+          "cycle": 2
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      }
+    },
+    "med-quota-no-map-reset": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "meds": 1,
+          "suppression": 15,
+          "supplies.suppressant": 1,
+          "cycle": 1
+        },
+        "events": [],
+        "rejected": [
+          "quota"
+        ]
+      }
+    },
+    "duplicate-revision": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "cycle": 2,
+          "revision": 1,
+          "satiety": 4
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": [
+          "stale"
+        ]
+      }
+    },
+    "old-cycle-new-revision": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "cycle": 2,
+          "revision": 1,
+          "satiety": 4
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": [
+          "cycle"
+        ]
+      }
+    },
+    "normal-return-False": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "task_day": 7,
+          "hp": 3,
+          "infection": 130,
+          "cycle": 1,
+          "meds": 1,
+          "phase": "hub",
+          "bridge": null,
+          "status": "failure",
+          "balance": 10
+        },
+        "events": [
+          "close"
+        ],
+        "rejected": []
+      }
+    },
+    "normal-return-True": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "task_day": 7,
+          "hp": 3,
+          "infection": 130,
+          "cycle": 1,
+          "meds": 1,
+          "phase": "hub",
+          "bridge": null,
+          "status": "success",
+          "balance": 30
+        },
+        "events": [
+          "close"
+        ],
+        "rejected": []
+      }
+    },
+    "deadline-live": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "hp": 9,
+          "cycle": 2,
+          "task_day": 7,
+          "phase": "hub",
+          "status": "failure",
+          "balance": 10,
+          "bridge": 2,
+          "energy": 100
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle",
+          "recall"
+        ],
+        "rejected": []
+      }
+    },
+    "deadline-dead": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "hp": 0,
+          "cycle": 1,
+          "task_day": 7,
+          "phase": "dead",
+          "balance": 30,
+          "bridge": null
+        },
+        "events": [
+          "infection",
+          "death"
+        ],
+        "rejected": []
+      }
+    },
+    "deadline-combat": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "cycle": 1,
+          "hp": 12,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "unstable"
+        ]
+      }
+    },
+    "deadline-next-two-cycles": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "cycle": 3,
+          "task_day": 2,
+          "meds": 0,
+          "suppression": 0,
+          "satiety": 2,
+          "execution": "run-2",
+          "balance": 10
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle",
+          "recall",
+          "consume-ready",
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      }
+    },
+    "no-content": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "hp": 1,
+          "cycle": 1,
+          "status": "failure",
+          "balance": 0
+        },
+        "events": [],
+        "rejected": [
+          "no-new-content"
+        ]
+      }
+    },
+    "same-commission-no-retry": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "cycle": 1,
+          "execution": "run-1"
+        },
+        "events": [],
+        "rejected": [
+          "no-new-content"
+        ]
+      }
+    },
+    "legal-launch-death": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "hp": 0,
+          "status": "success",
+          "execution": "run-1",
+          "commission": "current",
+          "cycle": 1
+        },
+        "events": [
+          "infection",
+          "death"
+        ],
+        "rejected": []
+      }
+    },
+    "illegal-launch-before-danger": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "hp": 3,
+          "status": "success",
+          "cycle": 1
+        },
+        "events": [],
+        "rejected": [
+          "precondition"
+        ]
+      }
+    },
+    "first-character-no-prepaid-night": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "cycle": 1,
+          "satiety": 6,
+          "energy": 100,
+          "task_day": 1
+        },
+        "events": [
+          "consume-ready"
+        ],
+        "rejected": []
+      }
+    },
+    "persistent-field-no-copy": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "values": {
+          "enemy.hp": 6,
+          "enemy.intent": "bite",
+          "enemy.risk_cursor": 2,
+          "sources.supply": true,
+          "items.ration-1.qty": 2,
+          "items.ration-1.container": "bag",
+          "items.pipe-1.durability": 17
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": [
+          "item"
+        ]
+      }
+    },
+    "stable-random-anchor": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "same_on_reload": true,
+        "next_differs": true,
+        "separate_source": true
+      }
+    },
+    "same-public-different-hidden": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "same_hint": true,
+        "risks": [
+          "unknown",
+          "unknown"
+        ],
+        "hp_after": [
+          1,
+          0
+        ]
+      }
+    },
+    "absent-explicit-create": {
+      "classification": "positive",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 100,
+        "reads": 1,
+        "writes": 1,
+        "notifications": 1,
+        "errors": []
+      }
+    },
+    "read-error-no-create": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "phase": "error",
+        "revision": null,
+        "energy": null,
+        "reads": 1,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "read-error",
+          "not-absent"
+        ]
+      }
+    },
+    "corrupt-no-create": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "phase": "error",
+        "revision": null,
+        "energy": null,
+        "reads": 1,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "shape",
+          "not-absent"
+        ]
+      }
+    },
+    "roundtrip-fresh": {
+      "classification": "positive",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      }
+    },
+    "roundtrip-world": {
+      "classification": "positive",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      }
+    },
+    "roundtrip-hub": {
+      "classification": "positive",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      }
+    },
+    "roundtrip-combat-zero": {
+      "classification": "unsupported",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "status": "NOT SUPPORTED",
+        "capability": "new-combat-schema"
+      }
+    },
+    "roundtrip-dead": {
+      "classification": "positive",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      }
+    },
+    "root-missing": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "shape",
+        "unchanged": true
+      }
+    },
+    "root-extra": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "shape",
+        "unchanged": true
+      }
+    },
+    "nested-missing": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "shape",
+        "unchanged": true
+      }
+    },
+    "nested-extra": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "shape",
+        "unchanged": true
+      }
+    },
+    "type": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "body-type",
+        "unchanged": true
+      }
+    },
+    "format": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "format",
+        "unchanged": true
+      }
+    },
+    "boolean-number": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "body-type",
+        "unchanged": true
+      }
+    },
+    "phase-pending": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "unstable",
+        "unchanged": true
+      }
+    },
+    "cross-character": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "cross-character",
+        "unchanged": true
+      }
+    },
+    "cross-world": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "binding",
+        "unchanged": true
+      }
+    },
+    "cross-template": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "binding",
+        "unchanged": true
+      }
+    },
+    "cross-commission": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "commission",
+        "unchanged": true
+      }
+    },
+    "cross-rules": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "binding",
+        "unchanged": true
+      }
+    },
+    "cross-contract": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "binding",
+        "unchanged": true
+      }
+    },
+    "cross-scene-execution": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "scene-binding",
+        "unchanged": true
+      }
+    },
+    "cross-run-version": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "run-reuse-or-version",
+        "unchanged": true
+      }
+    },
+    "two-active": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "multiple-active",
+        "unchanged": true
+      }
+    },
+    "reused-run": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "run-reuse-or-version",
+        "unchanged": true
+      }
+    },
+    "duplicate-item": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "duplicate-item",
+        "unchanged": true
+      }
+    },
+    "closed-rebootstrap": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 100,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "owner-exists",
+          "no-replace-entry"
+        ]
+      }
+    },
+    "first-save-failure": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "phase": "ready",
+        "revision": 1,
+        "energy": 92,
+        "reads": 1,
+        "writes": 2,
+        "notifications": 2,
+        "errors": [
+          "save-error",
+          "owner-exists"
+        ]
+      }
+    },
+    "later-save-failure": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "phase": "ready",
+        "revision": 2,
+        "energy": 84,
+        "reads": 0,
+        "writes": 2,
+        "notifications": 2,
+        "errors": [
+          "save-error"
+        ]
+      }
+    },
+    "duplicate-bootstrap": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 100,
+        "reads": 1,
+        "writes": 0,
+        "notifications": 1,
+        "errors": [
+          "owner-exists"
+        ]
+      }
+    },
+    "duplicate-submit-subscribe": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "phase": "ready",
+        "revision": 1,
+        "energy": 92,
+        "reads": 0,
+        "writes": 1,
+        "notifications": 1,
+        "errors": [
+          "reentrant",
+          "stale"
+        ]
+      }
+    },
+    "old-format": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "format",
+        "unchanged": true
+      }
+    },
+    "old-rules": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "result": "rules",
+        "unchanged": true
+      }
+    },
+    "no-business": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 100,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "unsupported-business"
+        ]
+      }
+    },
+    "half-terminal": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 100,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "incomplete-transaction"
+        ]
+      }
+    },
+    "real-ctb-medical": {
+      "classification": "unsupported",
+      "source": "../01-local-rule-amendments-draft.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "status": "NOT SUPPORTED",
+        "capability": "production-ctb"
+      }
+    },
+    "complete-terminal-ledger": {
+      "classification": "unsupported",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "status": "NOT SUPPORTED",
+        "capability": "production-body-items-economy"
+      }
+    },
+    "browser-storage-faults": {
+      "classification": "unsupported",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model; no production execution",
+      "value": {
+        "status": "NOT SUPPORTED",
+        "capability": "browser-storage"
+      }
+    },
+    "body-over-hp": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "result": "body-range",
+        "unchanged": true
+      }
+    },
+    "body-over-energy": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "result": "body-range",
+        "unchanged": true
+      }
+    },
+    "bridge-bool": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "result": "bridge",
+        "unchanged": true
+      }
+    },
+    "active-has-ready": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "result": "active-bridge",
+        "unchanged": true
+      }
+    },
+    "living-without-history": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "result": "missing-history",
+        "unchanged": true
+      }
+    },
+    "empty-item-id": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "result": "duplicate-item",
+        "unchanged": true
+      }
+    },
+    "control-character-seed": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "result": "execution",
+        "unchanged": true
+      }
+    },
+    "combat-explicitly-unsupported": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "result": "unstable",
+        "unchanged": true
+      }
+    },
+    "missing-nested-run-field": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "result": "shape",
+        "unchanged": true
+      }
+    },
+    "missing-declared-history": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "result": "declarations",
+        "unchanged": true
+      }
+    },
+    "source-reveal-once": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "values": {
+          "sources.supply": true,
+          "items.new-ration.qty": 2,
+          "items.new-ration.container": "H0",
+          "energy": 77,
+          "revision": 4
+        },
+        "events": [
+          "reveal",
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": [
+          "source-used"
+        ]
+      }
+    },
+    "terminal-complete": {
+      "classification": "positive",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "result": "committed",
+        "after": {
+          "revision": 1,
+          "hp": 9,
+          "balance": 10,
+          "status": "closed",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 1,
+        "save_attempts": 1,
+        "notifications": 1,
+        "input_unchanged": true
+      }
+    },
+    "terminal-missing-items": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "result": "missing-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      }
+    },
+    "terminal-wrong-economy": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "result": "economy-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      }
+    },
+    "terminal-old-revision": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "result": "stale-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      }
+    },
+    "terminal-repeated-close": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model only, independently authored expectation",
+      "value": {
+        "result": "already-closed",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "closed",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      }
+    },
+    "death-history-living": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model independent expectation",
+      "value": {
+        "result": "death-history",
+        "unchanged": true
+      }
+    },
+    "overflow-cycle": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model independent expectation",
+      "value": {
+        "values": {
+          "cycle": 9007199254740991,
+          "hp": 8,
+          "satiety": 6,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "overflow"
+        ]
+      }
+    },
+    "overflow-revision": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md",
+      "evidence_layer": "finite model independent expectation",
+      "value": {
+        "values": {
+          "revision": 9007199254740991,
+          "hp": 8,
+          "satiety": 6,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "overflow"
+        ]
+      }
+    },
+    "suppressant-no-target": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md#r04",
+      "evidence_layer": "finite model",
+      "value": {
+        "values": {
+          "revision": 0,
+          "meds": 0,
+          "supplies.suppressant": 1
+        },
+        "events": [],
+        "rejected": [
+          "medical-target"
+        ]
+      }
+    },
+    "A-rest-at-C-node": {
+      "classification": "expected-rejection",
+      "source": "../../03-location-design.md",
+      "evidence_layer": "finite model",
+      "value": {
+        "values": {
+          "revision": 0,
+          "cycle": 1,
+          "energy": 0
+        },
+        "events": [],
+        "rejected": [
+          "rest"
+        ]
+      }
+    }
+  }
+}

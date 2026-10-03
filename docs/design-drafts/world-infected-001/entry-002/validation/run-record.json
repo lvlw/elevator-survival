@@ -1,0 +1,1131 @@
+{
+  "task": "WORLD-ENTRY-002",
+  "date_utc": "2026-10-03T10:52:00.024016+00:00",
+  "base_sha": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+  "evidence": "finite design model, not production acceptance",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "startup": [
+    {
+      "command": "git rev-parse --show-toplevel",
+      "exit_code": 0,
+      "stdout": "E:/projects/elevator-survival\n",
+      "stderr": ""
+    },
+    {
+      "command": "git remote -v",
+      "exit_code": 0,
+      "stdout": "origin: lvlw/elevator-survival (redacted URL)",
+      "stderr": ""
+    },
+    {
+      "command": "git rev-parse HEAD",
+      "exit_code": 0,
+      "stdout": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a\n",
+      "stderr": ""
+    },
+    {
+      "command": "git branch --show-current",
+      "exit_code": 0,
+      "stdout": "feature/mission-lifecycle-core-001\n",
+      "stderr": ""
+    },
+    {
+      "command": "git status --short --untracked-files=all",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "git diff --name-status",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "git diff --cached --name-status",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "git worktree list --porcelain",
+      "exit_code": 0,
+      "stdout": "worktree E:/projects/elevator-survival\nHEAD d1d3b7927c6733cff709a4bfd617fb1e85e7485a\nbranch refs/heads/feature/mission-lifecycle-core-001\n\n",
+      "stderr": ""
+    },
+    {
+      "command": "git rev-parse --verify refs/heads/main",
+      "exit_code": 0,
+      "stdout": "a76e9c1c998051fc1643b6e0c3d53443fa55feed\n",
+      "stderr": ""
+    },
+    {
+      "command": "git ls-remote --heads origin refs/heads/main refs/heads/feature/design-world-infected-world-001 refs/heads/feature/mission-lifecycle-core-001 refs/heads/feature/design-world-entry-002",
+      "exit_code": 0,
+      "stdout": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35\trefs/heads/feature/design-world-infected-world-001\nd1d3b7927c6733cff709a4bfd617fb1e85e7485a\trefs/heads/feature/mission-lifecycle-core-001\na76e9c1c998051fc1643b6e0c3d53443fa55feed\trefs/heads/main\n",
+      "stderr": ""
+    },
+    {
+      "command": "git show-ref --verify refs/heads/feature/design-world-entry-002",
+      "exit_code": 128,
+      "stdout": "",
+      "stderr": "fatal: 'refs/heads/feature/design-world-entry-002' - not a valid ref\n"
+    },
+    {
+      "command": "git switch -c feature/design-world-entry-002 d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "Switched to a new branch 'feature/design-world-entry-002'\n"
+    },
+    {
+      "command": "git rev-parse HEAD",
+      "exit_code": 0,
+      "stdout": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a\n",
+      "stderr": ""
+    },
+    {
+      "command": "git branch --show-current",
+      "exit_code": 0,
+      "stdout": "feature/design-world-entry-002\n",
+      "stderr": ""
+    },
+    {
+      "command": "git status --short --untracked-files=all",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "git diff --name-status",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "git diff --cached --name-status",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "first_execution": {
+    "label": "first execution; before cross-review finalization",
+    "fingerprints": {
+      "fixtures.json": "43c927c3a33b47ba0155be31dddce58ad7a6148ee53d69e8a2708bfa4a7723de",
+      "expected.json": "81f3f0438854bd506248ffbb28b508e71c20cd07208410e704467c58fed87980",
+      "verify_entry_002.py": "7b603472d3ceb338f025aa846f430ff06c7bdd7bb9b0381dae08274a9d08195c"
+    },
+    "command": [
+      "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "docs\\design-drafts\\world-infected-001\\entry-002\\validation\\verify_entry_002.py",
+      "--output",
+      "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-4eiiuy1h\\first-results.json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"positive\": 36, \"expected-rejection\": 57, \"unsupported\": 3, \"mismatch\": 0}\n",
+    "stderr": ""
+  },
+  "intermediate_executions": [
+    {
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "docs\\design-drafts\\world-infected-001\\entry-002\\validation\\verify_entry_002.py",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-4eiiuy1h\\revised-results.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"positive\": 36, \"expected-rejection\": 72, \"unsupported\": 4, \"mismatch\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "docs\\design-drafts\\world-infected-001\\entry-002\\validation\\verify_entry_002.py",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-4eiiuy1h\\pre-freeze-results.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"positive\": 36, \"expected-rejection\": 77, \"unsupported\": 4, \"mismatch\": 0}\n",
+      "stderr": ""
+    }
+  ],
+  "frozen_sha256": {
+    "fixtures.json": "f3e685dcf1b51b68ad1e3c611ec84445fb6dc9bee7d62604ea6b42ffaaffd699",
+    "expected.json": "d3c48a1d999bd783b4f3a369762a4ea91a73427a50d590abab6d739d46e5dfec",
+    "verify_entry_002.py": "6753220aab254ba13d363890da72797b9583d7ebcc95b38e25b23f3e43bfb0c5"
+  },
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "docs\\design-drafts\\world-infected-001\\entry-002\\validation\\verify_entry_002.py",
+        "--negative-control",
+        "cycle-dedup",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-4eiiuy1h\\negative-cycle-dedup.json"
+      ],
+      "exit_code": 1,
+      "stdout": "{\"positive\": 36, \"expected-rejection\": 77, \"unsupported\": 4, \"mismatch\": 1}\n{\"id\": \"old-cycle-new-revision\", \"family\": \"V14\", \"classification\": \"expected-rejection\", \"actual\": {\"values\": {\"cycle\": 3, \"revision\": 2, \"satiety\": 2}, \"events\": [\"infection\", \"hunger\", \"new-cycle\", \"infection\", \"hunger\", \"new-cycle\"], \"rejected\": []}, \"expected\": {\"values\": {\"cycle\": 2, \"revision\": 1, \"satiety\": 4}, \"events\": [\"infection\", \"hunger\", \"new-cycle\"], \"rejected\": [\"cycle\"]}, \"matches\": false}\n",
+      "stderr": "",
+      "output_sha256": "0ed0f97033604bfdfdd6afe6474b43c1dc225c2bd16aa64c0872fe7ef3bfb8e2",
+      "counts": {
+        "positive": 36,
+        "expected-rejection": 77,
+        "unsupported": 4,
+        "mismatch": 1
+      },
+      "mismatches": [
+        {
+          "id": "old-cycle-new-revision",
+          "family": "V14",
+          "classification": "expected-rejection",
+          "actual": {
+            "values": {
+              "cycle": 3,
+              "revision": 2,
+              "satiety": 2
+            },
+            "events": [
+              "infection",
+              "hunger",
+              "new-cycle",
+              "infection",
+              "hunger",
+              "new-cycle"
+            ],
+            "rejected": []
+          },
+          "expected": {
+            "values": {
+              "cycle": 2,
+              "revision": 1,
+              "satiety": 4
+            },
+            "events": [
+              "infection",
+              "hunger",
+              "new-cycle"
+            ],
+            "rejected": [
+              "cycle"
+            ]
+          },
+          "matches": false
+        }
+      ]
+    },
+    {
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "docs\\design-drafts\\world-infected-001\\entry-002\\validation\\verify_entry_002.py",
+        "--negative-control",
+        "cross-binding",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-4eiiuy1h\\negative-cross-binding.json"
+      ],
+      "exit_code": 1,
+      "stdout": "{\"positive\": 36, \"expected-rejection\": 77, \"unsupported\": 4, \"mismatch\": 1}\n{\"id\": \"cross-character\", \"family\": \"V26\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"cross-character\", \"unchanged\": true}, \"matches\": false}\n",
+      "stderr": "",
+      "output_sha256": "952286e4d349ac8ab2169295f08117c9fd71497ce873f006f59952b056756931",
+      "counts": {
+        "positive": 36,
+        "expected-rejection": 77,
+        "unsupported": 4,
+        "mismatch": 1
+      },
+      "mismatches": [
+        {
+          "id": "cross-character",
+          "family": "V26",
+          "classification": "expected-rejection",
+          "actual": {
+            "result": "candidate",
+            "unchanged": true,
+            "roundtrip_equal": true
+          },
+          "expected": {
+            "result": "cross-character",
+            "unchanged": true
+          },
+          "matches": false
+        }
+      ]
+    },
+    {
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "docs\\design-drafts\\world-infected-001\\entry-002\\validation\\verify_entry_002.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"positive\": 36, \"expected-rejection\": 77, \"unsupported\": 4, \"mismatch\": 0}\n",
+      "stderr": "",
+      "output_sha256": "d851fec9694504cec78519fbdf9768592c0c26ba5fa1ba2ce744de91820912fa",
+      "counts": {
+        "positive": 36,
+        "expected-rejection": 77,
+        "unsupported": 4,
+        "mismatch": 0
+      },
+      "mismatches": []
+    },
+    {
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "docs\\design-drafts\\world-infected-001\\entry-002\\validation\\verify_entry_002.py",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-4eiiuy1h\\independent-run-2.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"positive\": 36, \"expected-rejection\": 77, \"unsupported\": 4, \"mismatch\": 0}\n",
+      "stderr": "",
+      "output_sha256": "d851fec9694504cec78519fbdf9768592c0c26ba5fa1ba2ce744de91820912fa",
+      "counts": {
+        "positive": 36,
+        "expected-rejection": 77,
+        "unsupported": 4,
+        "mismatch": 0
+      },
+      "mismatches": []
+    }
+  ],
+  "two_independent_processes_equal": true,
+  "normalized_results_equal": true,
+  "result_sha256": "d851fec9694504cec78519fbdf9768592c0c26ba5fa1ba2ce744de91820912fa",
+  "counts_once_only": {
+    "positive": 36,
+    "expected-rejection": 77,
+    "unsupported": 4,
+    "mismatch": 0
+  },
+  "audit": {
+    "date": "2026-10-03",
+    "mirror": {
+      "command": "npm audit --json",
+      "exit_code": 1,
+      "result": "npmmirror endpoint 404 NOT_IMPLEMENTED",
+      "raw_sha256": "7f5dc43c626d98a2d46e82eaa4d976599abb4c940c0fa10a80d19714b8992926"
+    },
+    "official": {
+      "command": "npm audit --json --registry=https://registry.npmjs.org",
+      "exit_code": 1,
+      "raw_sha256": "db431a6f57a488668eb5a1dc3201d85a88ec0813daf5d3add8450e30a9e886d8",
+      "metadata": {
+        "vulnerabilities": {
+          "info": 0,
+          "low": 0,
+          "moderate": 2,
+          "high": 2,
+          "critical": 0,
+          "total": 4
+        },
+        "dependencies": {
+          "prod": 8,
+          "dev": 136,
+          "optional": 53,
+          "peer": 0,
+          "peerOptional": 0,
+          "total": 143
+        }
+      },
+      "vulnerabilities": {
+        "@vitest/mocker": {
+          "name": "@vitest/mocker",
+          "severity": "moderate",
+          "isDirect": false,
+          "via": [
+            {
+              "source": 1193684,
+              "name": "@vitest/mocker",
+              "dependency": "@vitest/mocker",
+              "title": "Vitest: Path Traversal / Arbitrary File Read via @vitest/mocker Redirect Mock",
+              "url": "https://github.com/advisories/GHSA-82fw-gwwq-j7x9",
+              "severity": "moderate",
+              "cwe": [
+                "CWE-22"
+              ],
+              "cvss": {
+                "score": 5.9,
+                "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"
+              },
+              "range": ">=2.1.0 <4.1.11"
+            }
+          ],
+          "effects": [
+            "vitest"
+          ],
+          "range": "2.1.0 - 4.1.10",
+          "nodes": [
+            "node_modules/@vitest/mocker"
+          ],
+          "fixAvailable": true
+        },
+        "nanoid": {
+          "name": "nanoid",
+          "severity": "high",
+          "isDirect": false,
+          "via": [
+            {
+              "source": 1139427,
+              "name": "nanoid",
+              "dependency": "nanoid",
+              "title": "nanoid: custom generators can loop indefinitely when size is zero",
+              "url": "https://github.com/advisories/GHSA-2v37-7h3g-55p8",
+              "severity": "high",
+              "cwe": [
+                "CWE-835"
+              ],
+              "cvss": {
+                "score": 5.9,
+                "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+              },
+              "range": "<3.3.18"
+            }
+          ],
+          "effects": [],
+          "range": "<3.3.18",
+          "nodes": [
+            "node_modules/nanoid"
+          ],
+          "fixAvailable": true
+        },
+        "undici": {
+          "name": "undici",
+          "severity": "high",
+          "isDirect": false,
+          "via": [
+            {
+              "source": 1239933,
+              "name": "undici",
+              "dependency": "undici",
+              "title": "undici vulnerable to Denial of Service via unhandled error in WebSocket permessage-deflate decompression",
+              "url": "https://github.com/advisories/GHSA-3wwx-pv8p-q78v",
+              "severity": "moderate",
+              "cwe": [
+                "CWE-248"
+              ],
+              "cvss": {
+                "score": 5.9,
+                "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+              },
+              "range": ">=7.28.0 <7.29.1"
+            },
+            {
+              "source": 1240036,
+              "name": "undici",
+              "dependency": "undici",
+              "title": "undici vulnerable to Denial of Service via orphaned RetryHandler response body",
+              "url": "https://github.com/advisories/GHSA-pmjh-fq2x-6v4x",
+              "severity": "moderate",
+              "cwe": [
+                "CWE-772"
+              ],
+              "cvss": {
+                "score": 5.9,
+                "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+              },
+              "range": ">=7.11.0 <7.29.1"
+            },
+            {
+              "source": 1240038,
+              "name": "undici",
+              "dependency": "undici",
+              "title": "undici vulnerable to downstream response splitting via retry interceptor",
+              "url": "https://github.com/advisories/GHSA-r53p-7pc4-xj5r",
+              "severity": "low",
+              "cwe": [
+                "CWE-444"
+              ],
+              "cvss": {
+                "score": 3.7,
+                "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+              },
+              "range": ">=7.0.0 <7.29.1"
+            },
+            {
+              "source": 1240041,
+              "name": "undici",
+              "dependency": "undici",
+              "title": "undici vulnerable to Denial of Service via unrequested WebSocket subprotocol",
+              "url": "https://github.com/advisories/GHSA-rfgv-xxqx-mfg5",
+              "severity": "high",
+              "cwe": [
+                "CWE-248",
+                "CWE-252"
+              ],
+              "cvss": {
+                "score": 7.5,
+                "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+              },
+              "range": ">=7.0.0 <7.29.1"
+            },
+            {
+              "source": 1240044,
+              "name": "undici",
+              "dependency": "undici",
+              "title": "undici vulnerable to Denial of Service via unbounded decompression of compressed responses",
+              "url": "https://github.com/advisories/GHSA-3xpg-4rpp-hhhm",
+              "severity": "moderate",
+              "cwe": [
+                "CWE-770"
+              ],
+              "cvss": {
+                "score": 5.9,
+                "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+              },
+              "range": ">=7.15.0 <7.29.1"
+            },
+            {
+              "source": 1240046,
+              "name": "undici",
+              "dependency": "undici",
+              "title": "undici vulnerable to cross-user cookie disclosure via Set-Cookie caching in shared caches",
+              "url": "https://github.com/advisories/GHSA-2jfj-6hjv-fm6j",
+              "severity": "moderate",
+              "cwe": [
+                "CWE-200",
+                "CWE-524"
+              ],
+              "cvss": {
+                "score": 6.5,
+                "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:N"
+              },
+              "range": ">=7.0.0 <7.29.1"
+            },
+            {
+              "source": 1240048,
+              "name": "undici",
+              "dependency": "undici",
+              "title": "undici vulnerable to response truncation via oversized chunked responses in the dump interceptor",
+              "url": "https://github.com/advisories/GHSA-2gqq-gqf2-x968",
+              "severity": "low",
+              "cwe": [
+                "CWE-20",
+                "CWE-248"
+              ],
+              "cvss": {
+                "score": 3.7,
+                "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+              },
+              "range": ">=7.1.0 <7.29.1"
+            },
+            {
+              "source": 1240050,
+              "name": "undici",
+              "dependency": "undici",
+              "title": "undici vulnerable to TLS certificate validation bypass via dropped connect options in BalancedPool",
+              "url": "https://github.com/advisories/GHSA-w293-vg96-wgc3",
+              "severity": "high",
+              "cwe": [
+                "CWE-295"
+              ],
+              "cvss": {
+                "score": 7.4,
+                "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"
+              },
+              "range": ">=7.24.1 <7.29.1"
+            },
+            {
+              "source": 1240052,
+              "name": "undici",
+              "dependency": "undici",
+              "title": "undici vulnerable to caching and replay of unsafe HTTP method responses",
+              "url": "https://github.com/advisories/GHSA-8436-99hf-9mmv",
+              "severity": "low",
+              "cwe": [
+                "CWE-345"
+              ],
+              "cvss": {
+                "score": 3.7,
+                "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+              },
+              "range": ">=7.0.0 <7.29.1"
+            },
+            {
+              "source": 1240055,
+              "name": "undici",
+              "dependency": "undici",
+              "title": "undici vulnerable to Denial of Service via WebSocketStream unclean close",
+              "url": "https://github.com/advisories/GHSA-rx4f-c7p8-82vq",
+              "severity": "moderate",
+              "cwe": [
+                "CWE-248",
+                "CWE-754"
+              ],
+              "cvss": {
+                "score": 5.9,
+                "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+              },
+              "range": ">=7.0.0 <7.29.1"
+            }
+          ],
+          "effects": [],
+          "range": "7.0.0 - 7.29.0",
+          "nodes": [
+            "node_modules/undici"
+          ],
+          "fixAvailable": true
+        },
+        "vitest": {
+          "name": "vitest",
+          "severity": "moderate",
+          "isDirect": true,
+          "via": [
+            "@vitest/mocker",
+            {
+              "source": 1193683,
+              "name": "vitest",
+              "dependency": "vitest",
+              "title": "Vitest: Path Traversal / Arbitrary File Read via @vitest/mocker Redirect Mock",
+              "url": "https://github.com/advisories/GHSA-82fw-gwwq-j7x9",
+              "severity": "moderate",
+              "cwe": [
+                "CWE-22"
+              ],
+              "cvss": {
+                "score": 5.9,
+                "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"
+              },
+              "range": ">=2.1.0 <4.1.11"
+            }
+          ],
+          "effects": [],
+          "range": "2.1.0-beta.1 - 4.1.10",
+          "nodes": [
+            "node_modules/vitest"
+          ],
+          "fixAvailable": true
+        }
+      }
+    },
+    "lock_versions": {
+      "vitest": {
+        "version": "4.1.10",
+        "dev": true
+      },
+      "@vitest/mocker": {
+        "version": "4.1.10",
+        "dev": true
+      },
+      "vite": {
+        "version": "8.1.5",
+        "dev": true
+      },
+      "postcss": {
+        "version": "8.5.23",
+        "dev": true
+      },
+      "nanoid": {
+        "version": "3.3.16",
+        "dev": true
+      },
+      "jsdom": {
+        "version": "29.1.1",
+        "dev": true
+      },
+      "undici": {
+        "version": "7.29.0",
+        "dev": true
+      }
+    },
+    "mutations": "none; no install/fix/config changes"
+  },
+  "ci_read": {
+    "url": "https://github.com/lvlw/elevator-survival/actions/runs/37111903158/job/111171281108",
+    "head": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+    "node": "24.21.0",
+    "npm": "11.19.0",
+    "historical_test_files": 105,
+    "historical_tests": 2256,
+    "new_test_count_from_this_read": 0,
+    "actual_job_conclusion": "success (read workflow jobs API)"
+  },
+  "limits": [
+    "not production tests",
+    "not complete CTB",
+    "not new combat save schema",
+    "not complete body/items/economy",
+    "not browser storage",
+    "not Owner playtest"
+  ],
+  "precommit_checks": {
+    "status": "PASS",
+    "checks": {
+      "allowlist": {
+        "count": 22,
+        "paths": [
+          "docs/03-architecture.md",
+          "docs/08-rule-implementation-traceability.md",
+          "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md",
+          "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+          "docs/design-drafts/world-infected-001/entry-002/02-runtime-restore-contract.md",
+          "docs/design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md",
+          "docs/design-drafts/world-infected-001/entry-002/04-source-map-and-debts.md",
+          "docs/design-drafts/world-infected-001/entry-002/completion.md",
+          "docs/design-drafts/world-infected-001/entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-002/inputs/BASELINE-AND-INPUTS.json",
+          "docs/design-drafts/world-infected-001/entry-002/inputs/OWNER-direction-and-scope-WORLD-ENTRY-002-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-002/inputs/SHA256SUMS.txt",
+          "docs/design-drafts/world-infected-001/entry-002/inputs/WORLD-ENTRY-002-task-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-002/reviews/review-and-fixes.md",
+          "docs/design-drafts/world-infected-001/entry-002/validation/expected.json",
+          "docs/design-drafts/world-infected-001/entry-002/validation/fixtures.json",
+          "docs/design-drafts/world-infected-001/entry-002/validation/results.json",
+          "docs/design-drafts/world-infected-001/entry-002/validation/run-record.json",
+          "docs/design-drafts/world-infected-001/entry-002/validation/verify_entry_002.py",
+          "docs/engineering/mission-lifecycle-001/implementation-notes.md"
+        ]
+      },
+      "append_prefixes": [
+        {
+          "path": "docs/03-architecture.md",
+          "raw_prefix_bytes": 54329,
+          "raw_prefix_sha256": "9f91362fcc95d5d22e737feb324b4b7c5eff86ecae9534c535a8e047324cc527",
+          "preserved": true
+        },
+        {
+          "path": "docs/08-rule-implementation-traceability.md",
+          "raw_prefix_bytes": 48290,
+          "raw_prefix_sha256": "9127c707f3a1fbd62fa2740f54d2a5f382189091cdd5723d446d1b38571a1de4",
+          "preserved": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "raw_prefix_bytes": 8933,
+          "raw_prefix_sha256": "382a970f7864944ad5009b90e3f07a4af97aeeaa0247f3fafc6eee8163d409eb",
+          "preserved": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "raw_prefix_bytes": 7698,
+          "raw_prefix_sha256": "4568d22a76b42ce177c96f4d88e8e229f4026b8c9417e1559448a8fb6071c579",
+          "preserved": true
+        },
+        {
+          "path": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+          "raw_prefix_bytes": 11649,
+          "raw_prefix_sha256": "70083ed560799f78679bbbbee1a27e4c93116476315ad582e565b31d05c3af69",
+          "preserved": true
+        }
+      ],
+      "input_bytes": [
+        {
+          "path": "AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md",
+          "bytes": 17689,
+          "sha256": "145810ebde164ff17eba4e5ad32e010ea0592fa90ece6947a5725a605125aa92"
+        },
+        {
+          "path": "BASELINE-AND-INPUTS.json",
+          "bytes": 6448,
+          "sha256": "09c505488111b72376ceaa549fa428af0270a7f6f6dc9f4ef074b6ed35d88aca"
+        },
+        {
+          "path": "OWNER-direction-and-scope-WORLD-ENTRY-002-v1.0.md",
+          "bytes": 2560,
+          "sha256": "a633dffa79bf7415334225f6d30173900220a8df3b564440e3f21fa93eb61922"
+        },
+        {
+          "path": "SHA256SUMS.txt",
+          "bytes": 421,
+          "sha256": "19cd7430d39e824f1c1f6780ceb136a4724bb01e750de941c176fc0e077e3f93"
+        },
+        {
+          "path": "WORLD-ENTRY-002-task-v1.0.md",
+          "bytes": 37639,
+          "sha256": "c40d4668882c8b797195974563504b19d6b4e13d60e3f393167c52cf596c885d"
+        }
+      ],
+      "new_changed_links": {
+        "count": 51,
+        "checked": [
+          {
+            "from": "docs/03-architecture.md",
+            "target": "design-drafts/world-infected-001/entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md"
+          },
+          {
+            "from": "docs/03-architecture.md",
+            "target": "design-drafts/world-infected-001/entry-002/00-owner-review.md"
+          },
+          {
+            "from": "docs/03-architecture.md",
+            "target": "design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md"
+          },
+          {
+            "from": "docs/08-rule-implementation-traceability.md",
+            "target": "design-drafts/world-infected-001/entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md"
+          },
+          {
+            "from": "docs/08-rule-implementation-traceability.md",
+            "target": "design-drafts/world-infected-001/entry-002/00-owner-review.md"
+          },
+          {
+            "from": "docs/08-rule-implementation-traceability.md",
+            "target": "design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+            "target": "entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+            "target": "entry-002/00-owner-review.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+            "target": "entry-002/03-next-engineering-goals.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+            "target": "entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+            "target": "entry-002/00-owner-review.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+            "target": "entry-002/03-next-engineering-goals.md"
+          },
+          {
+            "from": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+            "target": "../../design-drafts/world-infected-001/entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md"
+          },
+          {
+            "from": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+            "target": "../../design-drafts/world-infected-001/entry-002/00-owner-review.md"
+          },
+          {
+            "from": "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+            "target": "../../design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md",
+            "target": "01-local-rule-amendments-draft.md#r02"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md",
+            "target": "02-runtime-restore-contract.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md",
+            "target": "03-next-engineering-goals.md#g1"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md",
+            "target": "completion.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md",
+            "target": "inputs/OWNER-direction-and-scope-WORLD-ENTRY-002-v1.0.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md",
+            "target": "inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+            "target": "../../../05-design-decisions.md#dec-049"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+            "target": "../reviews/OWNER-endings-followup-6de365d-v1.0.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+            "target": "../reviews/mission-retry-options-v0.1.md#owner-confirmation-003c"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+            "target": "../reviews/endgame-candidates-v1.1.md#owner-confirmation-003d"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+            "target": "../02-seven-day-structure.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+            "target": "../reviews/endgame-candidates-v1.1.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+            "target": "../05-resource-economy.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+            "target": "validation/fixtures.json"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+            "target": "../evidence/parameters.json"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+            "target": "../reviews/endgame-candidates-v1.1.md#6-当前可用资产与已终结处置"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+            "target": "02-runtime-restore-contract.md#transactions"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+            "target": "../../../09-ui-design-record.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/02-runtime-restore-contract.md",
+            "target": "../readiness/03-first-engineering-contract-draft.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/02-runtime-restore-contract.md",
+            "target": "04-source-map-and-debts.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/04-source-map-and-debts.md",
+            "target": "inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/04-source-map-and-debts.md",
+            "target": "validation/run-record.json"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/04-source-map-and-debts.md",
+            "target": "03-next-engineering-goals.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/04-source-map-and-debts.md",
+            "target": "validation/verify_entry_002.py"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/reviews/review-and-fixes.md",
+            "target": "../validation/run-record.json"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/completion.md",
+            "target": "validation/run-record.json"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/completion.md",
+            "target": "01-local-rule-amendments-draft.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/completion.md",
+            "target": "02-runtime-restore-contract.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/completion.md",
+            "target": "validation/fixtures.json"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/completion.md",
+            "target": "validation/expected.json"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/completion.md",
+            "target": "validation/verify_entry_002.py"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/completion.md",
+            "target": "validation/results.json"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/completion.md",
+            "target": "reviews/review-and-fixes.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/completion.md",
+            "target": "03-next-engineering-goals.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/completion.md",
+            "target": "04-source-map-and-debts.md"
+          },
+          {
+            "from": "docs/design-drafts/world-infected-001/entry-002/completion.md",
+            "target": "00-owner-review.md"
+          }
+        ]
+      },
+      "utf8_new_lf_bom_trailing": "PASS",
+      "protected_objects": {
+        "src": "5dc57761e4dcabddec5b781401d808a6de1317ba",
+        "docs/05-design-decisions.md": "f172de6ae7eecaaa126dd519d3dc7d2b279ad3b9",
+        "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md": "62e9fca4f10aeb6e5681a46e6af52be3f7851ba2"
+      }
+    },
+    "commands": [
+      {
+        "command": [
+          "git",
+          "diff",
+          "--name-only",
+          "d1d3b7927c6733cff709a4bfd617fb1e85e7485a"
+        ],
+        "exit_code": 0,
+        "stdout": "docs/03-architecture.md\ndocs/08-rule-implementation-traceability.md\ndocs/design-drafts/world-infected-001/01-world-overview.md\ndocs/design-drafts/world-infected-001/10-decision-queue.md\ndocs/engineering/mission-lifecycle-001/implementation-notes.md\n",
+        "stderr": "warning: in the working copy of 'docs/engineering/mission-lifecycle-001/implementation-notes.md', CRLF will be replaced by LF the next time Git touches it\n"
+      },
+      {
+        "command": [
+          "git",
+          "ls-files",
+          "--others",
+          "--exclude-standard"
+        ],
+        "exit_code": 0,
+        "stdout": "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md\ndocs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md\ndocs/design-drafts/world-infected-001/entry-002/02-runtime-restore-contract.md\ndocs/design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md\ndocs/design-drafts/world-infected-001/entry-002/04-source-map-and-debts.md\ndocs/design-drafts/world-infected-001/entry-002/completion.md\ndocs/design-drafts/world-infected-001/entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md\ndocs/design-drafts/world-infected-001/entry-002/inputs/BASELINE-AND-INPUTS.json\ndocs/design-drafts/world-infected-001/entry-002/inputs/OWNER-direction-and-scope-WORLD-ENTRY-002-v1.0.md\ndocs/design-drafts/world-infected-001/entry-002/inputs/SHA256SUMS.txt\ndocs/design-drafts/world-infected-001/entry-002/inputs/WORLD-ENTRY-002-task-v1.0.md\ndocs/design-drafts/world-infected-001/entry-002/reviews/review-and-fixes.md\ndocs/design-drafts/world-infected-001/entry-002/validation/expected.json\ndocs/design-drafts/world-infected-001/entry-002/validation/fixtures.json\ndocs/design-drafts/world-infected-001/entry-002/validation/results.json\ndocs/design-drafts/world-infected-001/entry-002/validation/run-record.json\ndocs/design-drafts/world-infected-001/entry-002/validation/verify_entry_002.py\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+          "--",
+          "src"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+          "--",
+          "docs/05-design-decisions.md"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+          "--",
+          "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "warning: in the working copy of 'docs/engineering/mission-lifecycle-001/implementation-notes.md', CRLF will be replaced by LF the next time Git touches it\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--cached",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "d1d3b7927c6733cff709a4bfd617fb1e85e7485a"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "warning: in the working copy of 'docs/engineering/mission-lifecycle-001/implementation-notes.md', CRLF will be replaced by LF the next time Git touches it\n"
+      }
+    ]
+  },
+  "counts_explanation": {
+    "positive": 36,
+    "expected_refusal": 76,
+    "expected_persistence_fault_after_committed_command": 1,
+    "unsupported": 4,
+    "mismatch": 0,
+    "machine_expected_rejection_bucket_includes_fault": 77
+  },
+  "cached_precommit_checks": {
+    "commands": [
+      {
+        "command": [
+          "git",
+          "diff",
+          "--cached",
+          "--name-only"
+        ],
+        "exit_code": 0,
+        "stdout": "docs/03-architecture.md\ndocs/08-rule-implementation-traceability.md\ndocs/design-drafts/world-infected-001/01-world-overview.md\ndocs/design-drafts/world-infected-001/10-decision-queue.md\ndocs/design-drafts/world-infected-001/entry-002/00-owner-review.md\ndocs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md\ndocs/design-drafts/world-infected-001/entry-002/02-runtime-restore-contract.md\ndocs/design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md\ndocs/design-drafts/world-infected-001/entry-002/04-source-map-and-debts.md\ndocs/design-drafts/world-infected-001/entry-002/completion.md\ndocs/design-drafts/world-infected-001/entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md\ndocs/design-drafts/world-infected-001/entry-002/inputs/BASELINE-AND-INPUTS.json\ndocs/design-drafts/world-infected-001/entry-002/inputs/OWNER-direction-and-scope-WORLD-ENTRY-002-v1.0.md\ndocs/design-drafts/world-infected-001/entry-002/inputs/SHA256SUMS.txt\ndocs/design-drafts/world-infected-001/entry-002/inputs/WORLD-ENTRY-002-task-v1.0.md\ndocs/design-drafts/world-infected-001/entry-002/reviews/review-and-fixes.md\ndocs/design-drafts/world-infected-001/entry-002/validation/expected.json\ndocs/design-drafts/world-infected-001/entry-002/validation/fixtures.json\ndocs/design-drafts/world-infected-001/entry-002/validation/results.json\ndocs/design-drafts/world-infected-001/entry-002/validation/run-record.json\ndocs/design-drafts/world-infected-001/entry-002/validation/verify_entry_002.py\ndocs/engineering/mission-lifecycle-001/implementation-notes.md\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--cached",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "d1d3b7927c6733cff709a4bfd617fb1e85e7485a"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "exact_22_paths": true,
+    "all_index_blobs_match_normalized_worktree": true,
+    "five_inputs_raw_index_match": true,
+    "five_existing_git_blob_prefixes_preserved": true
+  }
+}

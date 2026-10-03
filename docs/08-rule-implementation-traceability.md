@@ -97,3 +97,9 @@ DEC-049／首契约的首次资格、活动继续、不可重接、空列表、�
 可信恢复安装、全角色聚合唯一性、实际终局条件、完整事务、浏览器保存、新世界玩家入口与体验仍未接线／NOT RUN。现有旧医院实现及新世界其他规则的状态不因本附记改变。
 
 本项交付状态补充：实现与全量检查完成，但原字节归档的前置审查行尾空格使完整暂存空白检查未通过，当前未提交／推送；等待主线处理输入保全与检查冲突。
+
+## WORLD-ENTRY-002 当前状态附记（2026-10-03）
+
+首资格核心在完整SHA `d1d3b7927c6733cff709a4bfd617fb1e85e7485a` 已通过[主线源码实审](design-drafts/world-infected-001/entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md)。此前归档空白BLOCKED已依ENG-MISSION-LIFECYCLE-001-ADDENDUM-01解除，工程已普通提交并推送；保留上文历史过程，不将旧“未实现／未授权／未推送”误作当前状态。
+
+该PASS仅限首身份／关闭资格纯核心，不含真实保存、全角色聚合、完整世界或玩家入口。[WORLD-ENTRY-002候选入口](design-drafts/world-infected-001/entry-002/00-owner-review.md)及[近期契约](design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md)仍待审，未批准新生产规则、未执行下一工程。

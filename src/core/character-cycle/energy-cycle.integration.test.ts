@@ -49,6 +49,78 @@ function readyFixture() {
 }
 
 describe('G1 public energy/cycle/mission composition', () => {
+  it.each(['active', 'first-ready', 'return-due', 'deadline-ready'] as const)('view cannot consume %s context or enter action/cycle/trigger plans', (kind) => {
+    const f = fixture(1)
+    let state = f.state
+    let authority = f.authority
+    if (kind === 'first-ready') {
+      state = { ...state, clock: { kind: 'first-ready' } }
+      authority = { ...authority, rest: null, lifecycle: { kind: 'first' }, departure: departure(0) }
+    } else if (kind === 'return-due') {
+      const returned = planCharacterCycle(state, { ...requestBinding(state), kind: 'normal-return' },
+        { ...authority, normalReturn: 'success' }, dependencies)
+      const closed = terminateMission(f.fact, { binding: f.fact.binding, execution: execution('one'), outcome: 'success' }, scope)
+      if (returned.snapshot.clock.kind !== 'return-due' || closed.status !== 'closed') throw new Error('formal return fixture')
+      state = returned.snapshot
+      authority = closedAuthority(state, returned.snapshot.clock.source, 1)
+    } else if (kind === 'deadline-ready') {
+      const ready = readyFixture()
+      state = ready.state
+      authority = ready.authority
+    }
+    const request = { ...requestBinding(state), action: 'view', cost: { kind: 'free', amount: 0 } }
+    const before = structuredClone({ state, authority, request })
+    const provide = vi.fn(none)
+    for (let i = 0; i < 3; i++) {
+      const query = queryResidenceAction(state, request, authority, dependencies)
+      expect(query).toEqual({ canStart: true, cost: 0, energyBefore: state.body.energy, energyAfter: state.body.energy })
+      expect(() => planResidenceAction(state, request, authority, dependencies, provide))
+        .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+      expect(() => planCharacterCycle(state, request, authority, dependencies))
+        .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+      expect(() => planTriggeredResidenceConsequence(state, request, authority, {
+        identity: state.identity, revision: state.revision, execution: execution('one'), triggerId: 'not-from-query',
+        kind: 'immediate-result', effects: { healthLoss: 12, exposuresAdded: 1 },
+      }, dependencies)).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    }
+    expect(provide).not.toHaveBeenCalled()
+    expect({ state, authority, request }).toEqual(before)
+    expect(Object.isFrozen(state.body)).toBe(kind === 'return-due' || kind === 'deadline-ready')
+    if (kind !== 'active') expect(queryCycleDeparture(state, authority, dependencies)).toBe('available')
+  })
+  it('view does not create an E0 trigger, while a separately bound unsettled fact still applies once', () => {
+    const f = fixture(1)
+    const state = { ...f.state, body: { ...f.state.body, energy: 0, condition: { ...f.state.body.condition, bleeding: true } } }
+    const request = { ...requestBinding(state), action: 'view', cost: { kind: 'free', amount: 0 } }
+    const before = structuredClone(state)
+    const query = queryResidenceAction(state, request, f.authority, dependencies)
+    const trigger = { identity: state.identity, revision: state.revision, execution: execution('one'), triggerId: 'actual-fact',
+      kind: 'bleeding-checkpoint' as const, effects: { healthLoss: 0, exposuresAdded: 1 } }
+    expect(() => planTriggeredResidenceConsequence(state, query, { ...f.authority, stableContext: 'unsettled' }, trigger, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    const actual = planTriggeredResidenceConsequence(state, { ...requestBinding(state), triggerId: trigger.triggerId },
+      { ...f.authority, stableContext: 'unsettled' }, trigger, dependencies)
+    expect(actual.snapshot.revision).toBe(1)
+    expect(actual.snapshot.body.energy).toBe(0)
+    expect(actual.snapshot.body.condition).toMatchObject({ currentHealth: 11, pendingInfectionExposures: 1 })
+    expect(actual.steps.map((step) => step.kind)).toEqual(['primary', 'action-bleeding'])
+    expect(state).toEqual(before)
+  })
+  it('view leaves a request current, but a real mutation makes its old revision stale before provider', () => {
+    const f = fixture(1)
+    const request = { ...requestBinding(f.state), action: 'organize', cost: { kind: 'free', amount: 0 } }
+    queryResidenceAction(f.state, { ...request, action: 'view' }, f.authority, dependencies)
+    const provide = vi.fn(none)
+    const first = planResidenceAction(f.state, request, f.authority, dependencies, provide)
+    expect(first.snapshot.body).toEqual(f.state.body)
+    expect(first.snapshot.revision).toBe(1)
+    const currentAuthority = { ...f.authority, revision: first.snapshot.revision }
+    expect(() => queryResidenceAction(first.snapshot, { ...request, action: 'view' }, currentAuthority, dependencies))
+      .toThrowError(expect.objectContaining({ code: 'STALE_REVISION' }))
+    expect(() => planResidenceAction(first.snapshot, request, currentAuthority, dependencies, provide))
+      .toThrowError(expect.objectContaining({ code: 'STALE_REVISION' }))
+    expect(provide).toHaveBeenCalledTimes(1)
+  })
   it('each edge uses the public entry; final positive-energy edge completes, next edge cannot trigger effects', () => {
     const f = fixture(1)
     let current = f.state

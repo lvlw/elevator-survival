@@ -136,3 +136,7 @@ DOC-WORLD-ENTRY-002 在 `9dfe21ef7f423c1e5d9801d26e4425b28444cf63` 已经主线�
 | R01—R02／唯一配置 | 唯一 content TS 配置，工厂校验冻结；批准 JSON 仅测试比对 34 数值叶与精确键集合 | [本轮真实基线与最终检查](engineering/residence-foundation/g1/verification-results.json)，不引用历史 Python 数量为执行成绩 |
 
 G2/G3、O3发布安排、五图／钱包／CTB／专长、浏览器保存／玩家入口与真实体验仍未实施或未验收。本附记是实现追踪，不扩展 DEC-050 规则，不将作者检查等同主线 PASS。
+
+## G1-R1 查看边界实现追踪（2026-10-04）
+
+E01/E02/R01 的 F01 修订：view 只读查询仍可在合法 E0／正E上下文使用；误送行动计划在 provider 前拒绝，不产生可提交 noop 或身体／revision 后态。类型、执行 schema 与 Completion 同源排除 view；其余四类免费行动保留。原生公开 API 反例及 VQ1—VQ5、VA1—VA2、VT1、VC1 映射见[实现记录](engineering/residence-foundation/g1/implementation-notes.md)与[实际 R1 验证](engineering/residence-foundation/g1/verification-results.json)。原 G1 成绩作为历史保留，不掩盖9bbf5aaa实审的 NEEDS REVISION；当前是作者修复待准确 SHA 复审，未扩展玩法或接线。

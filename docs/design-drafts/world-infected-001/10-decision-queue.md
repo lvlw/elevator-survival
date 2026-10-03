@@ -99,3 +99,7 @@
 DOC-WORLD-ENTRY-002 在 `9dfe21ef7f423c1e5d9801d26e4425b28444cf63` 已主线文档实审 PASS；G1 依据后续明确授权完成作者实现，交付[真实检查与范围记录](../../engineering/residence-foundation/g1/completion.md)，当前门槛为准确 SHA 源码实审，不是再次申请开工。
 
 唯一运行时试用配置与能量／身体局部计划不拥有安装或保存权。G2/G3 未执行；O3、完整玩家流程、真实存储及体验评估继续保留原后置门槛。本文不关闭任何未完成玩法、内容或 Owner 试玩事项，不增加决策或数值。
+
+## G1-R1 专项复审门槛（2026-10-04）
+
+9bbf5aaa源码实审的F01（view误入行动效果路径）已按授权进行作者修复与回归，[实际证据](../../engineering/residence-foundation/g1/verification-results.json)单列r1并保留原G1历史。下一门槛仍是新准确SHA专项源码复审，不以作者测试代替主线PASS；未启动G2/G3或关闭任何后置玩法／保存／Owner体验事项。

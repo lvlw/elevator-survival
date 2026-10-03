@@ -3,15 +3,19 @@ import { deepFreeze } from '../config'
 import { executionSchema } from '../mission-lifecycle/validation'
 import { identitySchema, requestBindingShape } from '../character-cycle/validation'
 import { countSchema, idSchema, parseResidence, positiveSchema, safeInteger, safeMultiply } from '../residence-config/validation'
-import type { ResidenceActionRequest, ResidenceCost } from './types'
+import type { ResidenceActionRequest, ResidenceCost, ResidenceQueryRequest } from './types'
 
 const free = z.strictObject({ kind: z.literal('free'), amount: z.literal(0) })
 const paid = z.strictObject({ kind: z.literal('paid'), base: positiveSchema,
   factors: z.array(z.strictObject({ numerator: positiveSchema, denominator: positiveSchema })) })
 const costSchema = z.discriminatedUnion('kind', [free, paid])
 export const actionSchema = z.union([
-  z.strictObject({ ...requestBindingShape, action: z.enum(['view', 'organize', 'revealed-pickup', 'medical', 'food']), cost: free }),
+  z.strictObject({ ...requestBindingShape, action: z.enum(['organize', 'revealed-pickup', 'medical', 'food']), cost: free }),
   z.strictObject({ ...requestBindingShape, action: z.enum(['move', 'search', 'extraction', 'repair', 'recharge', 'npc-handover', 'install']), cost: paid }),
+])
+const querySchema = z.union([
+  actionSchema,
+  z.strictObject({ ...requestBindingShape, action: z.literal('view'), cost: free }),
 ])
 export const primarySchema = z.strictObject({ healthLoss: countSchema, exposuresAdded: countSchema })
 const completionSchema = z.strictObject({ identity: identitySchema, revision: countSchema, execution: executionSchema.nullable(),
@@ -23,6 +27,12 @@ export const triggeredRequestSchema = z.strictObject({ ...requestBindingShape, t
 
 export function createResidenceActionRequest(input: unknown): ResidenceActionRequest {
   const result = parseResidence(actionSchema, input)
+  calculateResidenceActionCost(result.cost)
+  return deepFreeze(result)
+}
+
+export function createResidenceQueryRequest(input: unknown): ResidenceQueryRequest {
+  const result = parseResidence(querySchema, input)
   calculateResidenceActionCost(result.cost)
   return deepFreeze(result)
 }

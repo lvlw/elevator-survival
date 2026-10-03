@@ -74,3 +74,40 @@
 上游完整规则 owner 验证位置、路线、目标、实例、容量与真实资源；统一协调器提供独立当前事实、核验所有子计划、只递增一次事务修订并原子安装。G1没有 Store、任务账、钱包、物品 owner、保存、订阅或恢复安装。测试中额外委托及药效状态是隔离合法夹具，不是第二生产内容或新药物效果。
 
 G2/G3、真实浏览器／保存／Owner试玩均未运行，未注册新玩家入口。准确 SHA 源码实审是当前下一门槛，不自动启动任何后续工程。
+
+## G1-R1：查看与可执行行动分界（2026-10-04）
+
+本节是当前修订记录；上文保留 G1 原执行历史。原 `9bbf5aaa0828b3144949ec6a01a76bb3ba06eceb` 的[专项实审](reviews/AUD-9bbf5aa-ENG-RESIDENCE-ENERGY-CYCLE-001-review-v1.0.md)为 NEEDS REVISION，F01 指出 `view` 被错误归入带效果的免费行动。原 E02 表中“五类”及对应旧测试通过不代表该分类正确。本批按[R1 任务](reviews/ENG-RESIDENCE-ENERGY-CYCLE-001-R1-task-v1.0.md)修复，作者验证后仍待新的准确 SHA 专项复审。
+
+### 复现与设计
+
+生产修改前实测基线 110 文件／2401 测试。原样运行包内 full-api-probe.mjs，真实公开 index、Vite、Zod、配置与 scope 均参与：6 个案例中 4 个对照匹配；X01 view/free0 调零效果 provider 后生成 revision1，X02 调损血12／暴露1 provider 后生成死亡计划。两反例均与要求不符，exit1；不是隔离端口模拟。修复后同脚本 6/6 匹配，exit0，view 均在 provider 之前报 INVALID_INPUT。
+
+- `ResidenceActionRequest`／`FreeResidenceAction` 只表示可执行行动；免费可执行类别保留 organize、revealed-pickup、medical、food。
+- `ResidenceQueryRequest` 复用整个可执行请求类型并加入 view/free0；`createResidenceQueryRequest(unknown)` 严格规范化、复制和冻结。其 schema 复用 actionSchema，不复制付费／免费行动列表。
+- `queryResidenceAction` 仅调用查询 constructor 与公共前提检查；没有 provider 参数，也没有 snapshot、steps、trigger 或 revision 后态。
+- `planResidenceAction` 先调用执行 constructor；view 在产生 revision 建议、调用 provider 和身体后果之前拒绝。不返回 noop 计划，不接受 allowEffects／force／isQuery 标记。
+- `ResidenceCompletion.request` 和 providedSchema 继续绑定同一个排除 view 的 actionSchema。即使合法行动的 provider 在运行时把完成请求改成 view，也严格拒绝，不能生成后态。
+- 共用前提检查只接收已规范化请求。请求解析现在先于上下文读取；两者均在任何 provider 之前，未改变合法行动的能量／身体／周期规则。所有公开原始输入仍为 unknown，不能只靠 TypeScript 拦截。
+
+### R1 实际测试映射
+
+| 组 | 实际测试文件及名称／对应既有见证 |
+| --- | --- |
+| VQ1 | energy.test.ts：`view query is read-only at E$energy with frozen=$frozen inputs`（E0/E1、mutable/frozen）；`public query types include view; executable requests and completion facts exclude it` |
+| VQ2/VQ3 | energy.test.ts：`view plan rejects before $providerKind provider; frozen=$frozen`（zero/throws/harmful，各 mutable/frozen）；计数 provider 与仅测试用 acceptPlan 均0调用，不声称真实 Store/save 已实现 |
+| VQ4 | energy-cycle.integration.test.ts：`view cannot consume %s context or enter action/cycle/trigger plans`（active/first-ready/return-due/deadline-ready）；后两者通过正式周期／任务关闭入口构造 |
+| VQ5 | VQ1/VQ3 同时核对原身体、药效、额度、时钟、revision和请求不变；mutable 不被冻结，查询值与规范化请求深只读 |
+| VA1 | energy.test.ts：原 `E0 free %s has only local energy eligibility and no action bleed` 现在只覆盖四类可执行免费行动；补同源 constructor、一次 provider、revision1 断言。错误 view 行由专门查询／拒绝测试替代 |
+| VA2 | 既有 `%s rejects without provider effects`、E0七类付费拒绝、最后一边 E1/cost8→0 组合；新增 `view leaves a request current, but a real mutation makes its old revision stale before provider` |
+| VT1 | integration：`view does not create an E0 trigger, while a separately bound unsettled fact still applies once`；既有 E0 三类独立后果可死亡用例保持 |
+| VC1 | cycle.test.ts 全部54项、config两文件22项与原组合20项保留；原期限ready、无内容、死亡优先、配置34叶一致性真实执行 |
+| 严格分类补充 | energy.test.ts：`view constructors/query reject invalid cost or bypass fields %j`（7项）；`provider output cannot relabel a completed executable action as view` |
+
+新增25个展开测试，替代1个原错误 view 行，净增24；原四类免费行只是强化，不重复计数。定向共169项（21配置校验＋1配置一致性＋67精力＋54周期＋26组合）。首次 typecheck 发现新测试将已收窄的 return-due 转赋宽类型变量后再读 source；改为读取已收窄的正式返回结果，随后通过。未修改预期迎合结果。
+
+### 相邻公开 API 作者自查
+
+逐一逆向检查 queryResidenceAction、createResidenceQueryRequest、createResidenceActionRequest、planResidenceAction、planTriggeredResidenceConsequence、queryCycleDeparture、createCycleRequest、planCharacterCycle 和 readCycleContext。查询不进入身体执行；免费变更未误禁；付费错配free与旧revision仍在provider前拒绝；trigger仍要求独立unsettled上下文与真实绑定，查询结果／view请求不能充当trigger请求；周期schema不接受view。未发现需要扩展白名单的同类问题。
+
+未修改 character-cycle 生产文件、residence-config、唯一内容配置或34个参数，未改批准规则／合同、原五输入、mission-lifecycle、旧医院、state/app/UI、保存或依赖。没有新增生产文件、命令总线或安装端。无子Agent参与，本节是作者自查，不是主线 PASS；完整检查和范围证据见验证 JSON 的 r1 区。

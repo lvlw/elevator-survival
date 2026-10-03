@@ -4,23 +4,23 @@ import { readCycleContext, sameResidenceValue, validateResidenceRequest } from '
 import type { CharacterCycleState, CycleAuthority, ResidenceDependencies } from '../character-cycle'
 import { ResidenceError } from '../residence-config'
 import { parseResidence, safeAdd } from '../residence-config/validation'
-import { calculateResidenceActionCost, createResidenceActionRequest, providedSchema, triggeredRequestSchema, triggerSchema } from './validation'
-import type { ResidenceActionPlan, ResidenceEffectProvider, ResidenceTrigger } from './types'
+import { calculateResidenceActionCost, createResidenceActionRequest, createResidenceQueryRequest, providedSchema, triggeredRequestSchema, triggerSchema } from './validation'
+import type { ResidenceActionPlan, ResidenceEffectProvider, ResidenceQueryRequest, ResidenceTrigger } from './types'
 
-function checkStart(input: unknown, requestInput: unknown, authorityInput: CycleAuthority, dependencies: ResidenceDependencies) {
+function checkStart(input: unknown, request: ResidenceQueryRequest, authorityInput: CycleAuthority, dependencies: ResidenceDependencies) {
   const { state, authority } = readCycleContext(input, authorityInput, dependencies)
-  const request = createResidenceActionRequest(requestInput)
   validateResidenceRequest(state, request)
   if (state.body.condition.currentHealth === 0) throw new ResidenceError('CHARACTER_DEAD', 'Dead character cannot start an action')
   if (authority.stableContext !== 'stable') throw new ResidenceError('INVALID_CONTEXT', 'A new action requires a stable boundary')
   const cost = calculateResidenceActionCost(request.cost)
   const canStart = request.cost.kind === 'free' || (state.clock.kind === 'active' && state.body.energy > 0)
-  return { state, request, cost, canStart }
+  return { state, cost, canStart }
 }
 
 /** This query grants energy eligibility only, never target/resource/placement eligibility. */
 export function queryResidenceAction(input: unknown, requestInput: unknown, authority: CycleAuthority, dependencies: ResidenceDependencies) {
-  const { state, cost, canStart } = checkStart(input, requestInput, authority, dependencies)
+  const request = createResidenceQueryRequest(requestInput)
+  const { state, cost, canStart } = checkStart(input, request, authority, dependencies)
   return deepFreeze({ canStart, cost, energyBefore: state.body.energy,
     energyAfter: canStart ? Math.max(0, state.body.energy - cost) : state.body.energy })
 }
@@ -33,7 +33,9 @@ function finish(state: CharacterCycleState, revision: number, cost: number, resu
 export function planResidenceAction(
   input: unknown, requestInput: unknown, authority: CycleAuthority, dependencies: ResidenceDependencies, provide: ResidenceEffectProvider,
 ): ResidenceActionPlan {
-  const { state, request, cost, canStart } = checkStart(input, requestInput, authority, dependencies)
+  // Execution has its own strict boundary: view never reaches a provider or a plan.
+  const request = createResidenceActionRequest(requestInput)
+  const { state, cost, canStart } = checkStart(input, request, authority, dependencies)
   if (!canStart) throw new ResidenceError('ACTION_NOT_AVAILABLE', 'Positive energy and an active execution are required')
   const revision = safeAdd(state.revision, 1)
   if (typeof provide !== 'function') throw new ResidenceError('INVALID_INPUT', 'A controlled consequence provider is required')

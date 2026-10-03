@@ -1,11 +1,11 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, expectTypeOf, it, vi } from 'vitest'
 import { deepFreeze } from '../config'
 import { createMissionScope } from '../mission-lifecycle/controlled'
 import { infectedResidenceConfig as configuration } from '../../content/infected-residence-core-v0.1/config'
 import { ResidenceError } from '../residence-config'
 import type { CharacterCycleState, CycleAuthority, ResidenceDependencies } from '../character-cycle'
-import { calculateResidenceActionCost, createResidenceActionRequest, planResidenceAction, planTriggeredResidenceConsequence, queryResidenceAction } from './index'
-import type { ResidenceCompletion, ResidenceTrigger } from './types'
+import { calculateResidenceActionCost, createResidenceActionRequest, createResidenceQueryRequest, planResidenceAction, planTriggeredResidenceConsequence, queryResidenceAction } from './index'
+import type { FreeResidenceAction, ResidenceActionRequest, ResidenceCompletion, ResidenceEffectProvider, ResidenceQueryRequest, ResidenceTrigger } from './index'
 
 const rulesVersion = 'g1-isolated-rules'
 const mission = { worldId: 'test-world', templateId: 'test-template', commissionId: 'one', rulesVersion, contractVersion: 'test-contract' }
@@ -23,8 +23,106 @@ function fixture(energy = 1) {
 const binding = (s: CharacterCycleState) => ({ identity: s.identity, expectedRevision: s.revision })
 const paid = (s: CharacterCycleState, action = 'move') => ({ ...binding(s), action, cost: { kind: 'paid', base: 8, factors: [] } })
 const none = (completion: ResidenceCompletion) => ({ completion, effects: { healthLoss: 0, exposuresAdded: 0 } })
+const view = (s: CharacterCycleState) => ({ ...binding(s), action: 'view', cost: { kind: 'free', amount: 0 } })
 
 describe('G1 single energy boundary', () => {
+  it('public query types include view; executable requests and completion facts exclude it', () => {
+    expectTypeOf<Extract<ResidenceQueryRequest, { action: 'view' }>['action']>().toEqualTypeOf<'view'>()
+    expectTypeOf<Extract<ResidenceActionRequest['action'], 'view'>>().toEqualTypeOf<never>()
+    expectTypeOf<Extract<FreeResidenceAction, 'view'>>().toEqualTypeOf<never>()
+    expectTypeOf<ResidenceCompletion['request']>().toEqualTypeOf<ResidenceActionRequest>()
+    expectTypeOf<Parameters<ResidenceEffectProvider>[0]>().toEqualTypeOf<ResidenceCompletion>()
+    expectTypeOf<Parameters<typeof queryResidenceAction>['length']>().toEqualTypeOf<4>()
+    const { state } = fixture(0)
+    expect(createResidenceQueryRequest(view(state)).action).toBe('view')
+    expect(() => createResidenceActionRequest(view(state))).toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+  })
+  it.each([{ energy: 0, frozen: false }, { energy: 1, frozen: false }, { energy: 0, frozen: true }, { energy: 1, frozen: true }])(
+    'view query is read-only at E$energy with frozen=$frozen inputs', ({ energy, frozen }) => {
+      const f = fixture(energy)
+      const inputs = { state: { ...f.state, body: { ...f.state.body, suppression: 15,
+        quotasRemaining: { suppressant: 0, disinfectant: 0, pipe_signature: 0 },
+        condition: { ...f.state.body.condition, bleeding: true, painkillerActive: true, pendingInfectionExposures: 1 } } },
+      authority: f.authority, request: view(f.state) }
+      const before = structuredClone(inputs)
+      if (frozen) deepFreeze(inputs)
+      const normalized = createResidenceQueryRequest(inputs.request)
+      expect(normalized).toEqual(inputs.request)
+      expect(normalized).not.toBe(inputs.request)
+      expect(Object.isFrozen(normalized.identity)).toBe(true)
+      expect(Object.isFrozen(normalized.cost)).toBe(true)
+      for (let i = 0; i < 3; i++) {
+        const result = queryResidenceAction(inputs.state, normalized, inputs.authority, dependencies)
+        expect(result).toEqual({ canStart: true, cost: 0, energyBefore: energy, energyAfter: energy })
+        expect(Object.isFrozen(result)).toBe(true)
+        expect(result).not.toHaveProperty('snapshot')
+        expect(result).not.toHaveProperty('steps')
+        expect(result).not.toHaveProperty('trigger')
+        expect(result).not.toHaveProperty('revision')
+      }
+      expect(inputs).toEqual(before)
+      for (const value of [inputs, inputs.state.body, inputs.state.body.condition, inputs.state.body.quotasRemaining,
+        inputs.state.clock, inputs.authority, inputs.request, inputs.request.identity, inputs.request.cost]) {
+        expect(Object.isFrozen(value)).toBe(frozen)
+      }
+    },
+  )
+  it.each([
+    { providerKind: 'zero', frozen: false }, { providerKind: 'throws', frozen: false }, { providerKind: 'harmful', frozen: false },
+    { providerKind: 'zero', frozen: true }, { providerKind: 'throws', frozen: true }, { providerKind: 'harmful', frozen: true },
+  ])('view plan rejects before $providerKind provider; frozen=$frozen', ({ providerKind, frozen }) => {
+    const f = fixture(0)
+    const inputs = { ...f, request: view(f.state) }
+    const before = structuredClone(inputs)
+    if (frozen) deepFreeze(inputs)
+    const provide = vi.fn((completion: ResidenceCompletion) => {
+      if (providerKind === 'throws') throw new Error('view must not reach provider')
+      return { completion, effects: { healthLoss: providerKind === 'harmful' ? 12 : 0, exposuresAdded: providerKind === 'harmful' ? 1 : 0 } }
+    })
+    // Test-only future-consumer witness; G1 has no Store, save, or notification API.
+    const acceptPlan = vi.fn()
+    expect(() => acceptPlan(planResidenceAction(inputs.state, inputs.request, inputs.authority, dependencies, provide)))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(provide).not.toHaveBeenCalled()
+    expect(acceptPlan).not.toHaveBeenCalled()
+    expect(inputs).toEqual(before)
+    expect(Object.isFrozen(inputs.state.body)).toBe(frozen)
+    expect(Object.isFrozen(inputs.request.cost)).toBe(frozen)
+  })
+  it.each([
+    { cost: { kind: 'paid', base: 1, factors: [] } },
+    { cost: { kind: 'free', amount: 1 } },
+    { cost: undefined },
+    { allowEffects: true },
+    { force: true },
+    { isQuery: true },
+    { effects: { healthLoss: 0, exposuresAdded: 0 } },
+  ])('view constructors/query reject invalid cost or bypass fields %j', (change) => {
+    const { state, authority } = fixture(0)
+    const request = { ...view(state), ...change }
+    const before = structuredClone(request)
+    const provide = vi.fn(none)
+    expect(() => createResidenceQueryRequest(request)).toThrow(ResidenceError)
+    expect(() => queryResidenceAction(state, request, authority, dependencies)).toThrow(ResidenceError)
+    expect(() => planResidenceAction(state, request, authority, dependencies, provide)).toThrow(ResidenceError)
+    expect(provide).not.toHaveBeenCalled()
+    expect(request).toEqual(before)
+  })
+  it('provider output cannot relabel a completed executable action as view', () => {
+    const { state, authority } = fixture(0)
+    const request = { ...binding(state), action: 'organize', cost: { kind: 'free', amount: 0 } }
+    const before = structuredClone(state)
+    const provide = vi.fn((completion: ResidenceCompletion) => {
+      const forged = structuredClone(completion)
+      // Malformed runtime data despite the executable-only TypeScript contract.
+      Reflect.set(forged, 'request', createResidenceQueryRequest(view(state)))
+      return { completion: forged, effects: { healthLoss: 12, exposuresAdded: 1 } }
+    })
+    expect(() => planResidenceAction(state, request, authority, dependencies, provide))
+      .toThrowError(expect.objectContaining({ code: 'INVALID_INPUT' }))
+    expect(provide).toHaveBeenCalledTimes(1)
+    expect(state).toEqual(before)
+  })
   it('repeated queries are pure; E1/cost8 completes at E0 without debt or HP penalty', () => {
     const { state, authority } = fixture()
     const request = paid(state)
@@ -43,12 +141,16 @@ describe('G1 single energy boundary', () => {
     expect(Object.isFrozen(result.snapshot.body.condition.openWounds)).toBe(true)
     expect(planResidenceAction(deepFreeze(structuredClone(state)), deepFreeze(structuredClone(request)), authority, dependencies, none)).toEqual(result)
   })
-  it.each(['view', 'organize', 'revealed-pickup', 'medical', 'food'])('E0 free %s has only local energy eligibility and no action bleed', (action) => {
+  it.each(['organize', 'revealed-pickup', 'medical', 'food'])('E0 free %s has only local energy eligibility and no action bleed', (action) => {
     const { state, authority } = fixture(0)
     const input = { ...state, body: { ...state.body, condition: { ...state.body.condition, bleeding: true } } }
     const request = { ...binding(state), action, cost: { kind: 'free', amount: 0 } }
     expect(queryResidenceAction(input, request, authority, dependencies).canStart).toBe(true)
-    const result = planResidenceAction(input, request, authority, dependencies, none)
+    expect(createResidenceQueryRequest(request)).toEqual(createResidenceActionRequest(request))
+    const provide = vi.fn(none)
+    const result = planResidenceAction(input, request, authority, dependencies, provide)
+    expect(provide).toHaveBeenCalledTimes(1)
+    expect(result.snapshot.revision).toBe(1)
     expect(result.snapshot.body).toEqual(input.body)
     expect(result.steps.map((s) => s.kind)).toEqual(['primary'])
   })

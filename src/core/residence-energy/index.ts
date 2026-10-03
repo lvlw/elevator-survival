@@ -1,6 +1,6 @@
 export { queryResidenceAction, planResidenceAction, planTriggeredResidenceConsequence } from './energy'
-export { createResidenceActionRequest, calculateResidenceActionCost } from './validation'
+export { createResidenceActionRequest, createResidenceQueryRequest, calculateResidenceActionCost } from './validation'
 export type {
-  FreeResidenceAction, PaidResidenceAction, ResidenceCost, ResidenceActionRequest, ResidenceCompletion,
+  FreeResidenceAction, PaidResidenceAction, ResidenceCost, ResidenceActionRequest, ResidenceQueryRequest, ResidenceCompletion,
   ResidencePrimaryEffects, ResidenceEffectProvider, ResidenceTrigger, ResidenceTriggeredRequest, ResidenceActionPlan,
 } from './types'

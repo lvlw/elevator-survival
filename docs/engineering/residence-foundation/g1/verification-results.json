@@ -120,5 +120,132 @@
   "notRun": ["G2", "G3", "real browser storage", "browser UI", "Owner playtest", "historical Python paper packages"],
   "gitDelivery": "One ordinary commit and push only to feature/residence-energy-cycle-core-001 after final checks. Final SHA and remote outcome are reported after commit, without self-referential amendments.",
   "ruleConflicts": [],
-  "unresolvedImplementationItems": []
+  "unresolvedImplementationItems": [],
+  "r1": {
+    "task": "ENG-RESIDENCE-ENERGY-CYCLE-001-R1",
+    "status": "AUTHOR_FIXED_AWAITING_EXACT_SHA_SPECIALIST_REVIEW",
+    "reviewOfStartSha": "NEEDS REVISION: F01 view classified as an executable free action",
+    "historyNote": "All root-level G1 execution records are preserved unchanged; r1 records the correction and does not relabel the original submission as mainline PASS.",
+    "startSha": "9bbf5aaa0828b3144949ec6a01a76bb3ba06eceb",
+    "branch": "feature/residence-energy-cycle-core-001",
+    "initialWorktree": "clean",
+    "initialIndex": "clean",
+    "branchCreation": "NONE; continued existing branch",
+    "initialProtectedRemoteHeads": "Actual ls-remote matched BASELINE-AND-SCOPE.json and the four original protected refs above; target branch matched R1 start SHA.",
+    "environment": "Same installed Windows/PowerShell/Node/npm environment as G1; no dependency installation or configuration changes. Escalated terminal and installed apply-patch engine used.",
+    "externalEvidenceDirectory": "C:/Users/zjl/AppData/Local/Temp/energy-cycle-g1-r1-audit",
+    "inputPackageDirectory": "C:/Users/zjl/AppData/Local/Temp/energy-cycle-g1-r1-package/ENG-RESIDENCE-ENERGY-CYCLE-001-R1-Codex-Package-v1.0",
+    "packageChecksumEntries": 13,
+    "packageChecksumStatus": "PASS",
+    "baseline": {
+      "command": "npm run test:run",
+      "beforeProductionWrites": true,
+      "exitCode": 0,
+      "files": 110,
+      "tests": 2401,
+      "durationSeconds": 48.95,
+      "hostStart": "02:04:52",
+      "stdoutLog": "baseline.log",
+      "stdoutSha256": "4578c198fbf85639dde730c15d6a95324beacef88138ef2eb16edd6a16d79072"
+    },
+    "nativeProbe": {
+      "command": "node <inputPackage>/evidence/full-api-probe.mjs E:/projects/elevator-survival <externalEvidenceDirectory>/<before-or-after>",
+      "scriptUnmodified": true,
+      "actualPublicApis": true,
+      "mockedValidatorsOrConsequencePorts": false,
+      "before": {
+        "exitCode": 1,
+        "executionError": null,
+        "cases": 6,
+        "matched": 4,
+        "mismatched": 2,
+        "X01": "view/free0 called zero-effects provider once; returned revision1/HP12/E0 plan",
+        "X02": "view/free0 called healthLoss12/exposuresAdded1 provider once; returned revision1/HP0/E0 death plan",
+        "inputUnchanged": true,
+        "log": "before/full-api-results.json",
+        "sha256": "3d2aa04562308038454fbbb2ad7b7086581b6bb107fe724d1ae6578a09e49f40"
+      },
+      "after": {
+        "exitCode": 0,
+        "executionError": null,
+        "cases": 6,
+        "matched": 6,
+        "mismatched": 0,
+        "X01AndX02": "INVALID_INPUT before provider; providerCalls0; no plan; input revision0/HP12/E0 unchanged",
+        "controls": "view query, move query, E1/cost8 move plan, E0 organize plan all retain expected behavior",
+        "log": "after/full-api-results.json",
+        "sha256": "a16d8bb0268b1784889189c6e5fa1d6deeec9c2b9c4d6ac99f161bcf3c6a9331"
+      }
+    },
+    "iterations": [
+      { "command": "five-file targeted test run", "exitCode": 0, "files": 5, "tests": 169, "log": "targeted.log" },
+      { "command": "npm run typecheck", "exitCode": 1, "failure": "New integration test read source through a widened CycleClock variable (TS2339)", "fix": "Read the already-narrowed formal returned.snapshot.clock.source; test typing only", "log": "typecheck.log" },
+      { "command": "npm run typecheck", "exitCode": 0, "log": "typecheck-rerun.log" },
+      { "command": "five-file targeted rerun after test type correction", "exitCode": 0, "files": 5, "tests": 169, "log": "targeted-rerun.log" }
+    ],
+    "targeted": {
+      "command": "npm run test:run -- src/core/residence-config/residence-config.test.ts src/content/infected-residence-core-v0.1/config.test.ts src/core/residence-energy/energy.test.ts src/core/character-cycle/cycle.test.ts src/core/character-cycle/energy-cycle.integration.test.ts --reporter=default --reporter=json --outputFile=C:/Users/zjl/AppData/Local/Temp/energy-cycle-g1-r1-audit/targeted-results.json",
+      "exitCode": 0,
+      "files": 5,
+      "tests": 169,
+      "byFile": {
+        "src/core/residence-config/residence-config.test.ts": 21,
+        "src/content/infected-residence-core-v0.1/config.test.ts": 1,
+        "src/core/residence-energy/energy.test.ts": 67,
+        "src/core/character-cycle/cycle.test.ts": 54,
+        "src/core/character-cycle/energy-cycle.integration.test.ts": 26
+      },
+      "jsonSha256": "da5e3c460cac588075f46435ea33898c03af1d84e6ab27297d9500bfdf378b1a",
+      "addedExpandedTests": 25,
+      "replacedIncorrectViewPlanRow": 1,
+      "netNewTests": 24,
+      "newTestFiles": 0,
+      "existingFreeRowsStrengthened": 4,
+      "countNote": "Repeated runs and the original 145 G1 tests are not counted as new R1 tests."
+    },
+    "finalCheck": {
+      "command": "npm run check",
+      "exitCode": 0,
+      "architecture": { "exitCode": 0, "dec": 50, "coreProductionFiles": 235 },
+      "typecheck": { "exitCode": 0 },
+      "testRun": { "exitCode": 0, "files": 110, "tests": 2425, "durationSeconds": 48.34 },
+      "build": { "exitCode": 0, "modulesTransformed": 419 },
+      "warning": "Existing minified chunk over 500kB warning retained; no build configuration change",
+      "stdoutLog": "final-check.log",
+      "stdoutSha256": "2e5e0d222d15a64b3c0d3985625f35df2a5c5ada7de8ba2b7fb550240d752849"
+    },
+    "audit": {
+      "status": "PASS_WORKTREE_AND_STAGED; committed verification repeated after the single commit",
+      "script": "C:/Users/zjl/AppData/Local/Temp/energy-cycle-g1-r1-audit/audit.mjs",
+      "allowedPaths": 15,
+      "modifiedFiles": 13,
+      "newOriginalFiles": 2,
+      "newProductionFiles": 0,
+      "protectedBaseObjects": 701,
+      "indexWorktreeByteEquality": "PASS on all 15 paths, including the six tested source/test files and two original review copies; re-stage and recheck this report update before commit",
+      "originalG1InputFilesUnchanged": 5,
+      "fourOriginalDocumentPrefixes": "PASS byte-for-byte against R1 base",
+      "originalG1VerificationKeys": "PASS unchanged; r1 is the only new root key",
+      "packageSourceCopiesMatchStartGitBlobs": "PASS: energy.ts and cycle.ts",
+      "runtimeConfiguration": "PASS: unchanged unique TS configuration, exact approved recursive keys/values and 34 numeric leaves",
+      "testedSourceFingerprint": "98e87c3c5aeb80c26f9392887c5c20ee525a4aecb9cb84c958e0d3d237dc3943",
+      "fingerprintMethod": "SHA256 of JSON.stringify([{path,sha256},...]) for the six R1 source/test paths in whitelist order; bytes captured after targeted execution while full check ran; must still match worktree/index/commit.",
+      "reviewCopies": {
+        "ENG-RESIDENCE-ENERGY-CYCLE-001-R1-task-v1.0.md": "1b8775c75ba924b3a4a3fbf598fa1fe5d56ef47f29f89aa1725fb98eb59ded1f",
+        "AUD-9bbf5aa-ENG-RESIDENCE-ENERGY-CYCLE-001-review-v1.0.md": "37a57346ff15d6c53933436d434e1e85e9be7b475da7c9f02a519d07ce71a1ae"
+      },
+      "utf8LfNoBom": "PASS",
+      "relativeLinks": "PASS; only new relative links checked",
+      "diffChecks": "PASS ordinary, cached and R1-base checks; staged/committed audit repeats all gates",
+      "sourceDependencyScan": "Four modified production files: no reverse dependency, environment entropy, IO or new dependency; original cycle/config sources protected",
+      "authorReview": "All G1 public query/constructor/plan/trigger entries reverse-read. No remaining same-class issue found within scope; no cycle production change needed.",
+      "independentSubagentReview": "NOT RUN; author-only review",
+      "mainlineExactShaReview": "PENDING",
+      "harnessScope": "acceptPlan counter is test-only; no real Store, storage or notifications implemented or claimed"
+    },
+    "notRun": ["G2", "G3", "real storage", "browser", "Owner playtest", "historical paper models"],
+    "gitDelivery": "One ordinary commit after final staged checks, then push only origin HEAD:refs/heads/feature/residence-energy-cycle-core-001. Final SHA and remote result in post-commit report; no amend for self-reference.",
+    "ruleConflicts": [],
+    "unresolvedImplementationItems": []
+  }
 }

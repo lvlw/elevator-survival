@@ -586,3 +586,7 @@ DOC-WORLD-ENTRY-002 在 `9dfe21ef7f423c1e5d9801d26e4425b28444cf63` 已获[主线
 运行时仅 `src/content/infected-residence-core-v0.1/config.ts` 提供批准的 34 个数值叶；`residence-config` 只校验形状、配置绑定和安全整数。`residence-energy` 负责局部能量资格、独立已触发结果及命令绑定；`character-cycle` 持有一份局部身体／时钟输入，输出有序不可变计划。core 不反向读取 content/docs，也不注册产品 rulesVersion 或保存版本。
 
 独立受控上下文核对角色、规则／配置、revision、当前执行、A/C 休整资格、最新关闭来源和真实不同待接委托。截止计算产生需与期限关闭一起提交的 ready 计划；消费 ready 才要求已有关闭事实。普通返回不补夜，due 出发读取最新身体，ready 消费不重结。计划没有安装、任务关闭、物品／钱包、保存或通知权；完整事务将来只提交一次。现有医院、首身份核心及其恢复接口不变。G2/G3、五图接线、完整战斗、玩家入口、真实保存和 Owner 体验仍未实施／未验收。
+
+## G1-R1 查询／行动分类修订附记（2026-10-04）
+
+`9bbf5aaa` 的专项实审发现 view 可进入行动计划（F01）。本批作者修复将 view 仅保留于 ResidenceQueryRequest／queryResidenceAction；执行 constructor、ResidenceActionRequest、Completion 与 provider 结果 schema 均排除 view，在 provider 前严格拒绝。四类 E0 免费可执行行动、付费行动及独立触发后果保持，周期生产代码不改。见[当前 R1 实现与测试映射](engineering/residence-foundation/g1/implementation-notes.md)。状态为 G1-R1 作者修复待准确 SHA 复审，不是主线 PASS；G2/G3、玩家入口及保存未接。

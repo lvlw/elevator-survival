@@ -1,0 +1,150 @@
+{
+  "task": "ENG-RESIDENCE-LOCATION-001",
+  "status": "AUTHOR_LOCAL_VALIDATION_PASS_PENDING_EXACT_SHA_REVIEW",
+  "startSha": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+  "branch": "feature/residence-location-core-001",
+  "startWorkingTree": "clean",
+  "startIndex": "clean",
+  "evidenceOwner": {
+    "author": "Native local execution and self-review",
+    "assistantReview": "NOT RUN",
+    "mainlineExactShaReview": "PENDING"
+  },
+  "externalEvidenceDirectory": "C:/Users/zjl/AppData/Local/Temp/residence-location-g2-audit",
+  "baseline": {
+    "command": "npm run test:run",
+    "exitCode": 0,
+    "files": 110,
+    "tests": 2425,
+    "log": "baseline.log",
+    "source": "This task's pre-production native run, not historical CI"
+  },
+  "targeted": {
+    "g2": {
+      "command": "npm run test:run -- src/core/residence-location/location.test.ts src/core/residence-location/movement.test.ts src/core/residence-location/items-sources.test.ts src/core/residence-location/knowledge-random.test.ts src/core/residence-location/residence.integration.test.ts --reporter=default --reporter=json --outputFile.json=C:/Users/zjl/AppData/Local/Temp/residence-location-g2-audit/g2-targeted-results.json",
+      "exitCode": 0,
+      "files": 5,
+      "tests": 115,
+      "byFile": {
+        "location.test.ts": 55,
+        "movement.test.ts": 14,
+        "items-sources.test.ts": 25,
+        "knowledge-random.test.ts": 13,
+        "residence.integration.test.ts": 8
+      },
+      "log": "g2-targeted.log",
+      "json": "g2-targeted-results.json"
+    },
+    "g1": {
+      "command": "npm run test:run -- src/core/residence-config/residence-config.test.ts src/content/infected-residence-core-v0.1/config.test.ts src/core/residence-energy/energy.test.ts src/core/character-cycle/cycle.test.ts src/core/character-cycle/energy-cycle.integration.test.ts --reporter=default --reporter=json --outputFile.json=C:/Users/zjl/AppData/Local/Temp/residence-location-g2-audit/g1-targeted-results.json",
+      "exitCode": 0,
+      "files": 5,
+      "tests": 169,
+      "log": "g1-targeted.log",
+      "json": "g1-targeted-results.json"
+    }
+  },
+  "finalCheck": {
+    "command": "npm run check",
+    "exitCode": 0,
+    "architecture": "PASS",
+    "decCount": 50,
+    "coreProductionFileCount": 246,
+    "coreCountNote": "Existing checker includes test-fixtures.ts: ten new implementation files plus one test-only helper; baseline 235.",
+    "typecheck": "PASS",
+    "files": 115,
+    "tests": 2540,
+    "build": "PASS",
+    "log": "full-check.log",
+    "warnings": [
+      "Existing client bundle exceeds Vite's 500 kB advisory threshold; build succeeded, no threshold/configuration edits."
+    ]
+  },
+  "newTests": 115,
+  "newTestFiles": 5,
+  "modifiedExistingTests": 0,
+  "testedSource": {
+    "files": 16,
+    "sha256OfSortedPathSha256Array": "403b1eb1dd22d883aad0208224ab4bd81c12083919329085decc5fe4f76eea63",
+    "capture": "tested-source-hashes.json"
+  },
+  "iterations": [
+    {
+      "check": "initial typecheck",
+      "result": "FAIL: three catalog constructors required their physical definition ID argument",
+      "fix": "Passed the existing required public argument; later checks PASS"
+    },
+    {
+      "check": "first two-file targeted run",
+      "result": "60 PASS / 1 FAIL",
+      "fix": "Invalid-cost case had mutated shared fixture input; fixture now deep-copies, rerun 61/61 PASS"
+    },
+    {
+      "check": "initial architecture",
+      "result": "FAIL: core test helper imported content",
+      "fix": "Actual G1 config is injected by test files; no checker exception or copied runtime values"
+    },
+    {
+      "check": "external protection audit first attempt",
+      "result": "Raw hash differed for a historical CRLF worktree document versus LF Git object",
+      "fix": "Audit verifies byte equivalence after only CRLF-to-LF and identical existing Git-filtered object; records exceptions without rewriting protected files"
+    }
+  ],
+  "integrityAudit": {
+    "worktree": "PASS",
+    "changedPaths": 29,
+    "added": 25,
+    "modifiedAppendOnly": 4,
+    "protectedBaseGitObjects": 712,
+    "protectedHistoricalCrLfFiles": 9,
+    "historicalCrLfNote": "Only existing CRLF-to-LF checkout differences; filtered Git blobs exactly match baseline. No protected file rewritten.",
+    "originalDocumentPrefixes": "4/4 byte-exact",
+    "inputCopies": "5/5 byte-exact to extracted package; size, SHA-256 and Git blob recorded in audit-worktree.json",
+    "packageSha256Manifest": "4/4 PASS",
+    "approvedConfiguration": "34 numeric leaves and complete object equality PASS",
+    "newSourceFingerprint": "PASS; 16 tested source files unchanged",
+    "runtimeDependencyGraph": "84 modules parsed with existing Rolldown AST parser; 0 cycles involving new files",
+    "reverseDependenciesEntropyIo": "PASS; no added package, content/state/UI import, nondeterministic source or IO",
+    "newRelativeLinks": "19/19 resolve",
+    "utf8LfNoBom": "PASS",
+    "diffChecks": "PASS: worktree, cached and baseline comparison",
+    "index": "PASS: exactly 25 added / 4 append-only modified paths; staged bytes equal worktree, all 712 protected index objects equal baseline, tested source fingerprint matches",
+    "commitAudit": "Rechecked after ordinary commit; exact SHA and evidence returned in delivery message",
+    "externalAuditFiles": ["audit-worktree.json", "audit-staged.json", "audit-committed.json"]
+  },
+  "logHashes": {
+    "baseline.log": "04f18b4b9d2912c665255a4779ca63d9d383f26e89c033a168a82dc0785bc25d",
+    "g2-targeted.log": "faac42300ff38b4363240e9fbb942252d3fcb3740cd8284e3b5e8346421da6c7",
+    "g2-targeted-results.json": "1a66b9c382abfd1568058aabc4b4106e222b4b5e3cb95b8f5a4cad482840e47b",
+    "g1-targeted.log": "a2a681daf848ed44845d61579c44f8e53634aeb6c829c374982df111f6d96f45",
+    "g1-targeted-results.json": "34ec90d6decca011e5953c5c651c01df98807e94c153274d2009c53c7facde02",
+    "full-check.log": "6c2961404d6fd763b537d20f89ae945ebe19ae403d5b93c8f5f14e99686b0a31"
+  },
+  "notRun": [
+    "G3 coordinator",
+    "real browser storage/refresh/cold installation",
+    "multi-tab",
+    "new-world browser acceptance",
+    "Owner play/segmented-breakthrough review",
+    "mainline exact-SHA review"
+  ],
+  "scope": {
+    "oldProductionUnchanged": true,
+    "G1ImplementationUnchanged": true,
+    "approvedRulesUnchanged": true,
+    "approvedNumericLeaves": 34,
+    "newRulesVersion": false,
+    "newSaveFormat": false,
+    "newDependencies": false,
+    "playerEntry": false,
+    "fiveMapRegistration": false
+  },
+  "gitDelivery": {
+    "expectedParent": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+    "message": "feat: add persistent residence location core",
+    "pushTarget": "origin HEAD:refs/heads/feature/residence-location-core-001",
+    "finalSha": "Reported after ordinary commit; not self-amended into this document",
+    "pushResult": "Reported after push",
+    "protectedRefs": "Verify before and after push"
+  }
+}

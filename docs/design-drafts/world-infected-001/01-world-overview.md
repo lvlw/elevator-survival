@@ -107,3 +107,14 @@ DOC-WORLD-ENTRY-002 在 `9dfe21ef7f423c1e5d9801d26e4425b28444cf63` 已通过主�
 ## G1-R1 当前修订状态（2026-10-04）
 
 G1 在9bbf5aaa专项实审发现查看／行动分类缺陷；本批收口为 view 只读查询与排除 view 的可执行计划边界，保留 E0 免费变更及既有周期规则。详见[R1 交付记录](../../engineering/residence-foundation/g1/completion.md)。当前为作者修复待准确 SHA 复审；不改变已批准世界规则，不代表G2/G3、真实入口或体验验收完成。
+
+
+## G2 连续位置／持久现场作者实现附记（2026-10-04）
+
+G1-R1 在完整 SHA `942b2d93916c649f4c2ec6cd399035151269d2ca` 已通过[限定源码复审](../../engineering/residence-foundation/g2/inputs/AUD-942b2d9-ENG-RESIDENCE-ENERGY-CYCLE-001-R1-review-v1.0.md)；原9bbf5aaa的NEEDS REVISION与此前历史记述保持原样。本批按独立G2授权实现纯核心，当前状态为作者实现／本地验证、待最终准确SHA主线源码实审，非主线PASS。
+
+新增 residence-location 只组合一份G1身体／D/T／revision与同执行持续现场：单边移动、一次来源揭示、真实普通整实例拾取／留置、表层玩家知识及稳定来源／敌人游标。旧医院与G1生产实现、批准34项参数不改。真实实体／ItemState、道路／设施、敌人HP／已选意图／进度和来源兑现事实跨图及实际G1休整保留；查询不物化、不调用随机，不以未观察的远程真相冒充玩家知识。
+
+局部计划只建议一次revision递增；遇敌／死亡明确要求后续完整协调，不能借移动或休整跳过战斗。三种正式委托关闭后活动位置为空，旧地面不可再操作，合法携带实体不因此销毁。严格值候选和局部计划均无保存、安装、关闭或全历史防回滚权。详见[合同／支持与验收映射](../../engineering/residence-foundation/g2/contract-and-support.md)及[本轮检查](../../engineering/residence-foundation/g2/verification-results.json)。
+
+G3、五图注册、钱包、完整CTB／返回／截止、三专长、工具箱完整路线、玩家入口和真实存储仍属后续；浏览器／刷新／多标签与Owner分段突破、恢复负担体验为NOT RUN。O3及未批准内容／数值门槛不因本次作者测试关闭，不自动进入下一工程。

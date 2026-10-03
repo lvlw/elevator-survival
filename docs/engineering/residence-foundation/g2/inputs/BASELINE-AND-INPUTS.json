@@ -1,0 +1,113 @@
+{
+  "task": "ENG-RESIDENCE-LOCATION-001",
+  "shorthand": "G2",
+  "version": "v1.0",
+  "issued_date": "2026-10-04",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+  "start_commit_tree": "27995aee63ddcba9703d18e47641e605b418da3f",
+  "start_parent_sha": "9bbf5aaa0828b3144949ec6a01a76bb3ba06eceb",
+  "branch_to_create": "feature/residence-location-core-001",
+  "protected_remote_refs": {
+    "main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+    "feature/design-world-entry-002": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+    "feature/design-world-infected-world-001": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+    "feature/mission-lifecycle-core-001": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+    "feature/residence-energy-cycle-core-001": "942b2d93916c649f4c2ec6cd399035151269d2ca"
+  },
+  "remote_branch_observation": "new G2 branch absent in mainline heads read at issuance; local status and all target paths must be checked by Codex",
+  "source_blobs_read_at_start_sha": {
+    "AGENTS.md": "0055de32c18517d4d016b077e5fc287d9360317d",
+    "docs/05-design-decisions.md": "f13e8c5718583d08aec3ce09edd311df60ee61b0",
+    "docs/design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md": "41c986ef0070fb808abd7bd4d21353d50c39898b",
+    "src/core/residence-energy/types.ts": "95985ce05f59907d3f7aeb193bf0b73595900717",
+    "src/core/residence-energy/validation.ts": "f7d617cabb99d98f2fcd98335b7f291d04b903d9",
+    "src/core/residence-energy/energy.ts": "8fffac9a7d14c19cfb4c10b0fe50711e66ee847f",
+    "src/core/residence-energy/index.ts": "8b824d7147323ed149cf2adbb8de66e1e7c3bac7",
+    "src/core/random/random-stream.ts": "cf7d5f98246f829e9e76b4a04157ad94c7b75459",
+    "src/core/scene-navigation/scene-navigation.ts": "b3647c50654efe9f18b7bf16d01a70dd630e4349",
+    "src/core/scene-search/scene-search-materialization.ts": "03461c12ef87494af68dc18ad5fa392ebba0c659",
+    "src/core/scene-items/scene-items.ts": "a8cb50ff82d34d6781bdcdfa8ecc1c126518da21",
+    "src/core/combat/enemy-persistent-state.ts": "0a17af9c12dc526d054c850e24d4ad13fd2dd171",
+    "src/core/run-loadout/run-loadout-snapshot.ts": "d01b910ae31ecff904988367b9a3218e4474dd50",
+    "src/core/inventory/index.ts": "6073b1cfa5a0a65849b71f7bfb3afafacd1828c3"
+  },
+  "whitelist_count": 29,
+  "whitelist": [
+    "src/core/residence-location/types.ts",
+    "src/core/residence-location/validation.ts",
+    "src/core/residence-location/catalog.ts",
+    "src/core/residence-location/identity.ts",
+    "src/core/residence-location/knowledge.ts",
+    "src/core/residence-location/sources.ts",
+    "src/core/residence-location/items.ts",
+    "src/core/residence-location/movement.ts",
+    "src/core/residence-location/controlled.ts",
+    "src/core/residence-location/index.ts",
+    "src/core/residence-location/test-fixtures.ts",
+    "src/core/residence-location/location.test.ts",
+    "src/core/residence-location/movement.test.ts",
+    "src/core/residence-location/items-sources.test.ts",
+    "src/core/residence-location/knowledge-random.test.ts",
+    "src/core/residence-location/residence.integration.test.ts",
+    "docs/engineering/residence-foundation/g2/contract-and-support.md",
+    "docs/engineering/residence-foundation/g2/implementation-notes.md",
+    "docs/engineering/residence-foundation/g2/verification-results.json",
+    "docs/engineering/residence-foundation/g2/completion.md",
+    "docs/engineering/residence-foundation/g2/inputs/ENG-RESIDENCE-LOCATION-001-task-v1.0.md",
+    "docs/engineering/residence-foundation/g2/inputs/OWNER-authority-and-scope-G2-v1.0.md",
+    "docs/engineering/residence-foundation/g2/inputs/AUD-942b2d9-ENG-RESIDENCE-ENERGY-CYCLE-001-R1-review-v1.0.md",
+    "docs/engineering/residence-foundation/g2/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/residence-foundation/g2/inputs/SHA256SUMS.txt",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "append_only_existing_paths": [
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "package_payloads": [
+    {
+      "name": "AUD-942b2d9-ENG-RESIDENCE-ENERGY-CYCLE-001-R1-review-v1.0.md",
+      "bytes": 8085,
+      "sha256": "c47836d73c651c6c0c5a3bc2040ae8ad9b6573d63350ea27a22c082d7610bb3e",
+      "git_blob": "86781ff8c9192c1716d60a95787bf4ce1220e677"
+    },
+    {
+      "name": "ENG-RESIDENCE-LOCATION-001-task-v1.0.md",
+      "bytes": 28318,
+      "sha256": "7a84d62ebb0c808ccccf225660b41ac1e0cfdcd5f24a10ed061be93ccc196111",
+      "git_blob": "0a4a56a5d988e9bbc52d3bf6dd73fd53690ae203"
+    },
+    {
+      "name": "OWNER-authority-and-scope-G2-v1.0.md",
+      "bytes": 2169,
+      "sha256": "bc26bd768c42cdbc8bbe07a25b279cf970f68437543f6a1b8786632610565414",
+      "git_blob": "085b1e922efa9163377d3b4ba45dec5207a04453"
+    }
+  ],
+  "approval_source": "docs/design-drafts/world-infected-001/entry-002/adoption/inputs/OWNER-approval-WORLD-ENTRY-002-ADOPTION-v1.0.md",
+  "start_review": "AUD-942b2d9-ENG-RESIDENCE-ENERGY-CYCLE-001-R1-review-v1.0.md",
+  "historical_ci_only": {
+    "run_id": 37143698990,
+    "run_number": 130,
+    "head_sha": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+    "test_files": 110,
+    "tests": 2425,
+    "g1_targeted_total": 169,
+    "not_this_task_baseline": true
+  },
+  "new_task_baseline": "NOT RUN by mainline; Codex must execute npm run test:run before production writes",
+  "stop": "G2 exact final-SHA source review; no G3 or main merge",
+  "notes": [
+    "No production rulesVersion or save format registration",
+    "No new numerical approvals; content and geometry costs are explicit isolated test inputs",
+    "Whole-instance transfers are this headless implementation subset, not a new gameplay ban on partial pickup",
+    "Source reading and mainline static checks do not equal local native npm execution",
+    "This manifest is hashed by SHA256SUMS; it does not hash itself"
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "task": "ENG-RESIDENCE-ENERGY-CYCLE-001",
+  "alias": "G1",
+  "version": "v1.0",
+  "prepared_date": "2026-10-04",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+  "new_branch": "feature/residence-energy-cycle-core-001",
+  "base_commit_tree": "bccc8f85271cb769784a169f4c847bcb345fd575",
+  "remote_heads_at_read": {
+    "feature/design-world-entry-002": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+    "feature/design-world-infected-world-001": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+    "feature/mission-lifecycle-core-001": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+    "main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed"
+  },
+  "approval": "Owner WORLD-ENTRY-002-ADOPTION v1.0 + existing mainline task delegation; exact bounded permission in OWNER-authority-and-scope-G1-v1.0.md",
+  "required_sources": {
+    "docs/05-design-decisions.md": {
+      "git_blob": "f13e8c5718583d08aec3ce09edd311df60ee61b0",
+      "read": "DEC-049/050 and relevant scoped older decisions"
+    },
+    "docs/content/infected-residence-core-test-config-v0.1.json": {
+      "git_blob": "db6959ac02bf1e3bf8e816fe2b0d148ced9ca273",
+      "read": "full approved subset, 34 numeric leaves"
+    },
+    "docs/engineering/residence-foundation/energy-cycle-contract-v1.0.md": {
+      "git_blob": "0476720ddeaae8ffe6128d352bd496171a215832",
+      "read": "full G1 contract"
+    },
+    "docs/engineering/residence-foundation/runtime-restore-supplement-v1.0.md": {
+      "git_blob": "84deae2bb7a3c733b74af1bbd8321db13d0db0c2",
+      "read": "full boundary; not permission to implement G3"
+    },
+    "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md": {
+      "git_blob": "62e9fca4f10aeb6e5681a46e6af52be3f7851ba2",
+      "read": "original strict restore boundary stays unchanged"
+    },
+    "AGENTS.md": {
+      "git_blob": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "read": "full; actual nested rules must be checked"
+    },
+    "scripts/validate-architecture.mjs": {
+      "git_blob": "df9ff13d1e3a518ca441f78bd8428b32d383202f",
+      "read": "full existing checker; no modifications"
+    }
+  },
+  "initial_protected_objects": {
+    "src": "5dc57761e4dcabddec5b781401d808a6de1317ba",
+    "scripts": "a619e6b856375dfea3ab54551408b1835a66dcdf",
+    ".github": "026a7d1464c067e99f7ec653f0c9902b7519a71e",
+    "AGENTS.md": "0055de32c18517d4d016b077e5fc287d9360317d",
+    "package.json": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+    "package-lock.json": "3b320a8a79a1815c0909d8846e5e6248d4fc187e",
+    ".gitattributes": "94f480de94e1d767531580401cbf13844868e82b"
+  },
+  "source_paths": [
+    "src/core/residence-config/types.ts",
+    "src/core/residence-config/validation.ts",
+    "src/core/residence-config/index.ts",
+    "src/core/residence-config/residence-config.test.ts",
+    "src/core/residence-energy/types.ts",
+    "src/core/residence-energy/validation.ts",
+    "src/core/residence-energy/energy.ts",
+    "src/core/residence-energy/index.ts",
+    "src/core/residence-energy/energy.test.ts",
+    "src/core/character-cycle/types.ts",
+    "src/core/character-cycle/validation.ts",
+    "src/core/character-cycle/cycle.ts",
+    "src/core/character-cycle/index.ts",
+    "src/core/character-cycle/cycle.test.ts",
+    "src/core/character-cycle/energy-cycle.integration.test.ts",
+    "src/content/infected-residence-core-v0.1/config.ts",
+    "src/content/infected-residence-core-v0.1/config.test.ts"
+  ],
+  "source_paths_note": "Allowed creation slots, not a requirement to create unused stubs; all existing src paths protected",
+  "append_only_existing_documents": [
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "new_document_paths": [
+    "docs/engineering/residence-foundation/g1/implementation-notes.md",
+    "docs/engineering/residence-foundation/g1/verification-results.json",
+    "docs/engineering/residence-foundation/g1/completion.md",
+    "docs/engineering/residence-foundation/g1/inputs/ENG-RESIDENCE-ENERGY-CYCLE-001-task-v1.0.md",
+    "docs/engineering/residence-foundation/g1/inputs/OWNER-authority-and-scope-G1-v1.0.md",
+    "docs/engineering/residence-foundation/g1/inputs/AUD-9dfe21e-DOC-WORLD-ENTRY-002-review-v1.0.md",
+    "docs/engineering/residence-foundation/g1/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/residence-foundation/g1/inputs/SHA256SUMS.txt"
+  ],
+  "exact_whitelist": [
+    "src/core/residence-config/types.ts",
+    "src/core/residence-config/validation.ts",
+    "src/core/residence-config/index.ts",
+    "src/core/residence-config/residence-config.test.ts",
+    "src/core/residence-energy/types.ts",
+    "src/core/residence-energy/validation.ts",
+    "src/core/residence-energy/energy.ts",
+    "src/core/residence-energy/index.ts",
+    "src/core/residence-energy/energy.test.ts",
+    "src/core/character-cycle/types.ts",
+    "src/core/character-cycle/validation.ts",
+    "src/core/character-cycle/cycle.ts",
+    "src/core/character-cycle/index.ts",
+    "src/core/character-cycle/cycle.test.ts",
+    "src/core/character-cycle/energy-cycle.integration.test.ts",
+    "src/content/infected-residence-core-v0.1/config.ts",
+    "src/content/infected-residence-core-v0.1/config.test.ts",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/residence-foundation/g1/implementation-notes.md",
+    "docs/engineering/residence-foundation/g1/verification-results.json",
+    "docs/engineering/residence-foundation/g1/completion.md",
+    "docs/engineering/residence-foundation/g1/inputs/ENG-RESIDENCE-ENERGY-CYCLE-001-task-v1.0.md",
+    "docs/engineering/residence-foundation/g1/inputs/OWNER-authority-and-scope-G1-v1.0.md",
+    "docs/engineering/residence-foundation/g1/inputs/AUD-9dfe21e-DOC-WORLD-ENTRY-002-review-v1.0.md",
+    "docs/engineering/residence-foundation/g1/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/residence-foundation/g1/inputs/SHA256SUMS.txt"
+  ],
+  "runtime_configuration": {
+    "only_value_source": "src/content/infected-residence-core-v0.1/config.ts",
+    "shape_owner": "src/core/residence-config",
+    "configurationId": "infected-residence-core-test-v0.1",
+    "value_input": "configurationId and config only from the approved JSON",
+    "must_not": "register product rulesVersion, save format, tasks, browser entry, or extra numbers; core imports neither content nor docs"
+  },
+  "git_permission": {
+    "commit": true,
+    "push_branch": "feature/residence-energy-cycle-core-001",
+    "main": false,
+    "other_branches": false,
+    "merge": false,
+    "force_push": false,
+    "amend_history": false
+  },
+  "verification_required": {
+    "baseline": "npm run test:run before production writes",
+    "final": "npm run check",
+    "additional": "actual targeted and integration tests, config parity, whitelist, immutable archives, full diff checks; exact results in report"
+  },
+  "test_numbers": "Do not prefill historical baseline counts; author must run current commands",
+  "mainline_preparation_limits": [
+    "No access to Owner local worktree",
+    "No npm or browser execution in mainline documentation review",
+    "Current source tree checked unchanged from reviewed core",
+    "New G1 has not been implemented by mainline"
+  ],
+  "stop": "final exact-SHA G1 source review; no automatic G2/G3",
+  "archive_root": "docs/engineering/residence-foundation/g1/inputs",
+  "input_relative_paths": [
+    "ENG-RESIDENCE-ENERGY-CYCLE-001-task-v1.0.md",
+    "OWNER-authority-and-scope-G1-v1.0.md",
+    "AUD-9dfe21e-DOC-WORLD-ENTRY-002-review-v1.0.md",
+    "BASELINE-AND-INPUTS.json",
+    "SHA256SUMS.txt"
+  ],
+  "file_fingerprints": {
+    "ENG-RESIDENCE-ENERGY-CYCLE-001-task-v1.0.md": {
+      "bytes": 26080,
+      "sha256": "4f779f4514f00973dcbdd18e7d5f4dc463c0f2c80806d997f9191afc2a5b873e",
+      "git_blob": "5df0b57dc4e2bc0a276b636e0ccf7221dca38fdb"
+    },
+    "OWNER-authority-and-scope-G1-v1.0.md": {
+      "bytes": 2209,
+      "sha256": "7c1ae025278887d93ebdedeb9f4bd5b1c82f0484c0005d4a819ea265eecad2ae",
+      "git_blob": "f86c1de8c2a419b493a430b8b3af46f960c648c9"
+    },
+    "AUD-9dfe21e-DOC-WORLD-ENTRY-002-review-v1.0.md": {
+      "bytes": 7700,
+      "sha256": "75f56e360b65a4bdeff95e8aaddac71eaafa8696dd0591080dd18a46ac2e6ef0",
+      "git_blob": "173f22e089ec51ee29bbbba2170e128108bd6870"
+    }
+  }
+}

@@ -578,3 +578,11 @@ G1只产生单精力与身体周期纯规则的完整局部结果；不拥有全
 未来唯一应用持有者核对身体／周期／委托／位置／实体的一致性，各规则owner在确定有序编排中提出计划；完整后态一次提交、一次保存尝试、一次只读通知。写失败保留已提交内存，不由UI或异步订阅者补扣血／奖罚。持续敌人和来源只有一份事实，地面容器归属与活动执行绑定；关闭历史不给行动资格。
 
 恢复补充允许后续新增受控冷候选解析并整档校验／一次安装；候选没有安装权，原restoreMissionCandidate(raw, expected, scope)与K18/K19独立期望要求保持。没有已有current的冷启动不能复制候选伪造期望；读取失败／损坏不兜底new，已有current禁止第二bootstrap／replace。具体API、保存格式、Profile和支持矩阵未由本次注册；旧医院与原首核心不变。
+
+## G1 单精力／有序角色周期实现附记（2026-10-04）
+
+DOC-WORLD-ENTRY-002 在 `9dfe21ef7f423c1e5d9801d26e4425b28444cf63` 已获[主线文档实审 PASS](engineering/residence-foundation/g1/inputs/AUD-9dfe21e-DOC-WORLD-ENTRY-002-review-v1.0.md)。本次按独立授权实现 G1；作者实现与检查记录见[实现说明](engineering/residence-foundation/g1/implementation-notes.md)及[实际验证](engineering/residence-foundation/g1/verification-results.json)，交付后仍待主线准确 SHA 源码实审，不倒改上述历史状态。
+
+运行时仅 `src/content/infected-residence-core-v0.1/config.ts` 提供批准的 34 个数值叶；`residence-config` 只校验形状、配置绑定和安全整数。`residence-energy` 负责局部能量资格、独立已触发结果及命令绑定；`character-cycle` 持有一份局部身体／时钟输入，输出有序不可变计划。core 不反向读取 content/docs，也不注册产品 rulesVersion 或保存版本。
+
+独立受控上下文核对角色、规则／配置、revision、当前执行、A/C 休整资格、最新关闭来源和真实不同待接委托。截止计算产生需与期限关闭一起提交的 ready 计划；消费 ready 才要求已有关闭事实。普通返回不补夜，due 出发读取最新身体，ready 消费不重结。计划没有安装、任务关闭、物品／钱包、保存或通知权；完整事务将来只提交一次。现有医院、首身份核心及其恢复接口不变。G2/G3、五图接线、完整战斗、玩家入口、真实保存和 Owner 体验仍未实施／未验收。

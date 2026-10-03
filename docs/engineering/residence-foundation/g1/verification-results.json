@@ -1,0 +1,124 @@
+{
+  "task": "ENG-RESIDENCE-ENERGY-CYCLE-001",
+  "status": "AUTHOR_IMPLEMENTED_AWAITING_EXACT_SHA_REVIEW",
+  "startSha": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+  "initialBranch": "feature/design-world-entry-002",
+  "branch": "feature/residence-energy-cycle-core-001",
+  "initialWorktree": "clean",
+  "initialIndex": "clean",
+  "origin": "https://github.com/lvlw/elevator-survival.git",
+  "initialTargetBranch": "absent locally and remotely",
+  "initialProtectedRemoteHeads": {
+    "main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+    "feature/design-world-entry-002": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+    "feature/design-world-infected-world-001": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+    "feature/mission-lifecycle-core-001": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a"
+  },
+  "environment": {
+    "platform": "Windows / PowerShell",
+    "node": "v24.9.0",
+    "npm": "11.6.0",
+    "git": "2.46.0.windows.1",
+    "dependencyInstallation": "NOT NEEDED; no dependency or lockfile changes",
+    "toolingNote": "Default sandbox setup failed before process launch (helper_unknown_error). Authorized escalated commands worked. Direct apply_patch also failed to write; edits used the installed Codex apply-patch engine through the escalated terminal. No external tool installation."
+  },
+  "baseline": {
+    "command": "npm run test:run",
+    "beforeProductionWrites": true,
+    "exitCode": 0,
+    "files": 105,
+    "tests": 2256,
+    "durationSeconds": 59.92,
+    "evidence": "Actual tool stdout in this task (host start 00:38:02); not copied from historical counts. Raw stdout was not separately saved."
+  },
+  "iterations": [
+    {
+      "command": "npm run typecheck",
+      "exitCode": 1,
+      "failure": "CycleRequest combined normal-return/deadline tag did not narrow rest property",
+      "fix": "Separate discriminated variants; no rule change"
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 1,
+      "failure": "Test node:fs types unavailable; readonly fixture assignment errors",
+      "fix": "Test-only approved JSON import and explicit mutable fixture copy; no dependencies added"
+    },
+    { "command": "npm run typecheck", "exitCode": 0 },
+    { "command": "npx vitest run (five new G1 test files)", "exitCode": 0, "files": 5, "tests": 138 },
+    {
+      "authorReviewRevision": "Independent available A/C rest binding; infection sum overflow, actual suppression and body/wound negative cases",
+      "typecheckExitCode": 0,
+      "targetedExitCode": 0,
+      "files": 5,
+      "tests": 145
+    }
+  ],
+  "targeted": {
+    "command": "npx vitest run src/core/residence-config/residence-config.test.ts src/content/infected-residence-core-v0.1/config.test.ts src/core/residence-energy/energy.test.ts src/core/character-cycle/cycle.test.ts src/core/character-cycle/energy-cycle.integration.test.ts --reporter=default --reporter=json --outputFile=C:/Users/zjl/AppData/Local/Temp/energy-cycle-g1-audit/targeted-results.json",
+    "exitCode": 0,
+    "files": 5,
+    "tests": 145,
+    "byFile": {
+      "src/core/residence-config/residence-config.test.ts": 21,
+      "src/content/infected-residence-core-v0.1/config.test.ts": 1,
+      "src/core/residence-energy/energy.test.ts": 49,
+      "src/core/character-cycle/cycle.test.ts": 54,
+      "src/core/character-cycle/energy-cycle.integration.test.ts": 20
+    }
+  },
+  "finalCheck": {
+    "command": "npm run check",
+    "exitCode": 0,
+    "architecture": { "exitCode": 0, "dec": 50, "coreProductionFiles": 235 },
+    "typecheck": { "exitCode": 0 },
+    "testRun": { "exitCode": 0, "files": 110, "tests": 2401, "durationSeconds": 63.90 },
+    "build": { "exitCode": 0, "modulesTransformed": 419 },
+    "warning": "Existing Vite minified chunk exceeds 500 kB; non-failing, no out-of-scope bundling change",
+    "newTestFiles": 5,
+    "newTests": 145,
+    "stdoutLog": "C:/Users/zjl/AppData/Local/Temp/energy-cycle-g1-audit/final-check.log",
+    "stdoutSha256": "cea6945eb7ede23336f053e3e4ed9ee6df8c0efd346754549af0501798e324c9"
+  },
+  "audit": {
+    "status": "PASS_WORKTREE_AND_STAGED",
+    "script": "C:/Users/zjl/AppData/Local/Temp/energy-cycle-g1-audit/audit.mjs",
+    "scope": "29 exact paths, 4 append-only existing documents, 17 new source/test files, 3 new delivery records, 5 byte-preserved inputs",
+    "actualChangedPaths": 29,
+    "newPaths": 25,
+    "modifiedPaths": 4,
+    "protectedBaseFilesUnchanged": 685,
+    "approvedNumericLeaves": 34,
+    "configurationExactKeysAndValues": "PASS",
+    "newProductionDependencyFilesChecked": 12,
+    "newRuntimeImportCycles": 0,
+    "forbiddenDependenciesAndEntropy": "NONE",
+    "sourceAndTestFingerprint": "984182595161493606cbb78930604f98783351d0e603086a4fa187ad37b571b0",
+    "sourceFingerprintMethod": "SHA256 of JSON.stringify([{path,sha256},...]) in BASELINE-AND-INPUTS.source_paths order; each hash is actual file bytes. Final index must equal these tested files.",
+    "newRelativeLinksChecked": 13,
+    "utf8LfAndWhitespace": "PASS on all 29 paths; no new exceptions",
+    "allTwelveAcceptanceGroupsMapped": "PASS",
+    "passedRejectionOrImmutabilityNamedWitnesses": 69,
+    "fiveOriginalCopies": "PASS: all raw bytes match extracted package including SHA256SUMS itself; index blobs also match",
+    "originalSha256": {
+      "ENG-RESIDENCE-ENERGY-CYCLE-001-task-v1.0.md": "4f779f4514f00973dcbdd18e7d5f4dc463c0f2c80806d997f9191afc2a5b873e",
+      "OWNER-authority-and-scope-G1-v1.0.md": "7c1ae025278887d93ebdedeb9f4bd5b1c82f0484c0005d4a819ea265eecad2ae",
+      "AUD-9dfe21e-DOC-WORLD-ENTRY-002-review-v1.0.md": "75f56e360b65a4bdeff95e8aaddac71eaafa8696dd0591080dd18a46ac2e6ef0",
+      "BASELINE-AND-INPUTS.json": "31aa423b48b09be4312b0c3e938ad800eb5d3adfdd4b723a410a4524a7f1df65",
+      "SHA256SUMS.txt": "ed54f5af9e23020c2a94ececd2e5f4738faefce819385c13b8787217fb584a3c"
+    },
+    "fourDocumentOriginalPrefixes": "PASS byte-for-byte against the starting Git blobs; original lengths 58108 / 52309 / 12007 / 11163 bytes",
+    "ordinaryCachedAndBaselineDiffChecks": "PASS; complete binary-capable patches saved outside repository",
+    "indexWorktreeByteEquality": "PASS for all allowed files; reports re-staged and rechecked before commit",
+    "auditScriptIteration": "Initial external script failed because installed TypeScript 7 lacks the former compiler AST API. Replaced only the external scan with static import/export inspection of the actual files; no dependency or production change. Subsequent worktree and staged audits passed.",
+    "externalEvidenceDirectory": "C:/Users/zjl/AppData/Local/Temp/energy-cycle-g1-audit",
+    "testsForRejectionImmutability": "Parameterized rejection/forgery/overflow/provider tests assert mutable inputs unchanged, no caller freeze, invalid preconditions call provider zero times. Input parsers allocate independent normalized values; author reverse read covered all entry points.",
+    "authorReviewAxes": ["repeated cycles and ready bypass", "invalid numbers and side effects", "scope and sole runtime configuration"],
+    "independentSubagentReview": "NOT RUN; no subagents used",
+    "mainlineExactShaReview": "PENDING"
+  },
+  "notRun": ["G2", "G3", "real browser storage", "browser UI", "Owner playtest", "historical Python paper packages"],
+  "gitDelivery": "One ordinary commit and push only to feature/residence-energy-cycle-core-001 after final checks. Final SHA and remote outcome are reported after commit, without self-referential amendments.",
+  "ruleConflicts": [],
+  "unresolvedImplementationItems": []
+}

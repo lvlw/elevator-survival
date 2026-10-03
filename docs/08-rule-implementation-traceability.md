@@ -123,3 +123,16 @@ DEC-049／首契约的首次资格、活动继续、不可重接、空列表、�
 | 公开入口与完整体验 | O3未批准；经济／CTB／UI／真实保存及Owner首玩继续OPEN | 对应业务完整后才接入口；真实IO／多标签／稳定战斗保存及试玩另行实测 |
 
 旧模型、fixtures、expected、results、run-record和历史测试数量均保持各自提交证据身份；本轮不重跑，不把模型作为生产实现或默认参数注册表。
+
+## G1 当前实现追踪附记（2026-10-04）
+
+DOC-WORLD-ENTRY-002 在 `9dfe21ef7f423c1e5d9801d26e4425b28444cf63` 已经主线文档实审 PASS。本次仅实现已授权 G1；作者完成状态和实际检查见[交付记录](engineering/residence-foundation/g1/completion.md)，仍待准确 SHA 源码实审。
+
+| 正式契约 | 本轮实现 | 验证／后续边界 |
+| --- | --- | --- |
+| E01—E04：单精力与已触发结果 | residence-energy 的查询、单动作与独立触发计划；cost 有理数最后一次取整，E0 不新开付费行动 | [12 组实际 API／测试映射](engineering/residence-foundation/g1/implementation-notes.md#实际验收映射)；不提供完整目标／实例／容量资格 |
+| C01—C03：身体周期 | character-cycle 流血→感染→饥饿→生还重设，旧感染增长／新感染损血，真实伤势保留 | 合法死亡短路，不回血／止血／清伤／修物，不接医疗消费 |
+| C04—C06：正常返回、截止与衔接 | 独立当前事实、A/C 资格、due／来源绑定 ready；无内容查询不结算；截止计划不预要求已关闭 | 不安装、关闭或持有全历史；测试组合复用未修改的 mission-lifecycle |
+| R01—R02／唯一配置 | 唯一 content TS 配置，工厂校验冻结；批准 JSON 仅测试比对 34 数值叶与精确键集合 | [本轮真实基线与最终检查](engineering/residence-foundation/g1/verification-results.json)，不引用历史 Python 数量为执行成绩 |
+
+G2/G3、O3发布安排、五图／钱包／CTB／专长、浏览器保存／玩家入口与真实体验仍未实施或未验收。本附记是实现追踪，不扩展 DEC-050 规则，不将作者检查等同主线 PASS。

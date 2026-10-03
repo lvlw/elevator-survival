@@ -9,14 +9,14 @@
 | --- | --- | --- |
 | characterId／生还主体 | 应用受控首次创建；身份不随委托变化 | 根引用持久化；生死从唯一body.HP派生，不设第二alive可写值；死者不能治疗或继续 |
 | body {condition,infection,energy,satiety,cycleUsage} | 纯身体规则提出计划，完整应用owner持有一次后态 | 世界／Hub／Combat借只读引用，不复制身体；HP0与活动阶段冲突拒绝 |
-| calendar {cycle,transition} | 周期规则唯一递增；transition为first-ready/due/settled-ready(当前cycle) | 单日历；衔接与上一真实终局验证，不另造settledCycles集合或永久免检bool |
+| calendar {cycle,bridge} | 周期规则唯一递增；bridge为first／null待结／deadline来源引用 | 单日历；衔接与最新真实终局、执行起止周期联合验证，不另造settledCycles集合或永久免检bool |
 | missions[commissionId] | 首核心窄事实；声明集合恰每项一个unaccepted/active/closed | 唯一关闭事实；不另存claimed/closed列表。缺记录≠未接，声明目录≠历史 |
 | execution {runId,seed,rulesVersion} | 受控首次激活建立；活动跨图／跨夜保持；关闭后只读 | 复用RunIdentity值语义。全声明集的活动和历史执行ID不重复；不是新委托资格 |
-| residence {executionRef,taskDay,location} | 驻留owner；只有合法跨边改真实位置，生还休整改T | active至多一个；地图由node目录派生。关闭时留历史投影而非可重启现场 |
+| residence {executionRef,taskDay,location} | 驻留owner；只有合法跨边改真实位置，生还休整改T | active至多一个；地图由node目录派生。关闭node=null、last_node仅历史；地面绑定原执行，不能在Hub或异委托操作 |
 | world {roads,facilities,sources} | 同执行持续现场唯一owner；真实行动一次改写 | source.revealed是已兑现，不能当库存；安装历史只读，不能重生成消耗品 |
 | enemies[stableEnemyId] | 同现场敌人真相：HP/intent/progress/riskCursor/encountered | Combat仅持引用和临时CTB，不能各存一份可写HP；失能不复活，不离线行动 |
 | knowledge {observedNodes,observedEdges,lastObservation} | 正式表层观察产生；Draft同驻留跨夜持续 | 只持已知与最后观测，不自动等于真实通路／远程即时危险；query不消费随机 |
-| items[id]与容器membership | 容器聚合owner，真实实例状态唯一，移动不重建 | 身体不藏背包；每实例恰一真实位置、数量合法；重复ID／来源重复物化拒绝 |
+| items[id]与容器membership | 容器聚合owner，真实实例状态唯一，移动不重建 | 身体不藏背包；每实例恰一真实位置、数量/耐久/电量合法；地面引用commission/execution/node，携带容器不带地面权限；重复ID／来源重复物化拒绝 |
 | randomStreams {anchor,cursor} | 受控命名子流；消费已提交效果时前进 | 锚点执行+地点+来源/敌人+用途；不含首次到访日期／顺序；种子绑定执行。旧算法golden不改 |
 | combat {enemyRef,turn,timeline,tempEffects} | 当前唯一活动战斗协调器 | 稳定玩家决策点可存；未完战斗保留临时值，已结束接战临时CTB不跨下一战 |
 | economy port／余额 | 未来经济owner提出完整计划；只在完整事务一次应用 | 本稿不建钱包；奖罚和实物同提交，接口缺失即禁止相关产品入口 |
@@ -29,6 +29,37 @@
 声明全集由整档绑定的受支持内容版本决定；新目录新增委托不能自动补未接，目录减少不能丢弃closed。缺该版本必需事实拒绝；未来真实任务供给与版本映射另行授权。
 
 先核对严格形状与版本，再核对：受控声明全集→每条绑定→最多一活动→所有执行ID唯一／版本→phase与活动执行／世界／节点／T一致→身体与周期→实体与容器→来源／安装／敌人／知识引用→随机锚点／游标→稳定边界。任一失败拒绝整个候选，不能先安装身体再补其他部分。完整背包几何、任务物处置、战斗及经济尚未在本模型实现，生产接线必须使用各自严格验证器。
+
+<a id="r1-cycle"></a>
+## R1 周期与终局联合矩阵（Draft，非首核心Schema）
+
+执行时序附着唯一聚合生命周期事实：start_cycle；closed保留end_cycle/end_day。活动T与D须满足`D=start_cycle+T−1`；closed满足同一式的end_day/end_cycle，deadline必须end_day=7。所有加法结果安全；按start_cycle排序后第一项起于1，后项须接前项end_cycle+1，不能重叠、缺段、复用委托／run，死亡后无后项。最新事实由该顺序导出，不另存可改“最后关闭账”。不支持的复杂／缺损历史明确拒绝，不能补默认安装；这不证明离线历史未被整体伪造。
+
+| 聚合阶段／最近事实 | D、bridge及位置 | 合法后续／拒绝 |
+| --- | --- | --- |
+| fresh-hub、全未接 | D1，`{kind:first}`，无活动位置／执行 | 真实首次出发消费一次；非D1、已有历史则拒绝 |
+| active-world | 恰一active且最新，D=start+T−1，bridge=null | 同执行继续；D1/T7或活动ready拒绝 |
+| living-hub、正常success/failure | D=end_cycle，bridge=null，scene_ref=null | 待结；任何ready均拒绝，包括更早deadline来源 |
+| living-hub、deadline | D=end_cycle+1，bridge严格等于最新`{kind:deadline,commission,execution:run,settled_cycle:end_cycle}` | 来源缺失／错执行／错周期／旧ready拒绝；合法新出发只消费、不重刷额度 |
+| dead、活动执行死亡 | HP0、bridge=null、D=end_cycle，无活动位置 | 不能召回／治疗／激活 |
+| dead、下一出发结算死亡 | 最近正常success/failure仍保留，HP0、D=其end_cycle、bridge=null | 无新执行；不得把旧结果倒改death |
+
+无真实新委托时不执行以上出发转移；ready不消耗，健康不结。ready被消费后的新执行仍须正常日结／正常返回待结，旧deadline不是永久豁免。恢复context来自独立受控声明/格式配置，不从待检候选复制status/outcome作为期望。
+
+模型world将当前事实平铺、**仅把旧当前事实移入history**，二者是同一集合的分区，当前项必须最新，不重复保存当前关闭项；save候选使用missions集合，经共同temporal校验。sites按execution隔离；当前node关闭即null，last_node只读历史。地面ground_execution／save的ground_ref绑定的是容器，合法携出后清地面引用但保留实例状态；后续夹具不能读取旧现场作为活动现场。save模型仅验窄物品引用，不声称已序列化全部roads/enemies/knowledge。
+
+<a id="r1-intent"></a>
+## R1 意图先验与有限模型边界
+
+比较revision/cycle前须确认为严格安全整数，不能让True等于1；消耗按free=0、paid>0分支，先验缺／多字段、类型、范围、已知价格、倍率，再算安全乘积与最终ceil成本，再核全部后态与revision+1。拒绝时owner、完整输入、写／通知均不变；view无提交。合法E1承担8E仍完成并截0。
+
+owner.command的spend仅是**受控内部故障时序夹具**，不代表移动或G3命令；business_supported/complete是严格bool夹具前提，不授予生产写权。world.checks也只承接外部已验条件，不证明真实地图、背包容量或战斗完整合法。paid搜索/修理等主要见证E门禁；完整物品副作用未实现，不能据此接入口。数值非有限反例由命名fault在内存注入，JSON输入本身保持严格格式。
+
+| 证据映射 | R1能证明 | 不能扩大 |
+| --- | --- | --- |
+| V14—V19 + R1-F01 | 正常/期限/首次/死亡矩阵、最新ready来源、消费后续结、无内容不变、D/T一致 | 非生产周期迁移或绝对离线防回滚；旧overflow-cycle改为不可能D/T拒绝，不再证明其旧算术路径；另列internal-cycle-increment-overflow只验内部安全加法，不伪造完整历史 |
+| V06/V20 + R1-F02 | 同活动E0/跨夜拾取、三类关闭后拒取、异委托隔离、普通携出实例保留 | 无完整任务件清算、格子/重量、五图可达或真实保存证明 |
+| V02/V25—V32 + R1-F03 | 严格数字/形状、safe成本、非法输入与输出零提交、显式故障时序 | 不等于G3完整业务授权／真实浏览器IO；所有config仍保持原数值与来源 |
 
 ## 冷启动与现有API的接缝
 

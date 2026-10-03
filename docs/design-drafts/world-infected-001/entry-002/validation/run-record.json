@@ -1127,5 +1127,1740 @@
     "all_index_blobs_match_normalized_worktree": true,
     "five_inputs_raw_index_match": true,
     "five_existing_git_blob_prefixes_preserved": true
+  },
+  "R1": {
+    "task": "WORLD-ENTRY-002-R1",
+    "date": "2026-10-03",
+    "base_sha": "136e98aa2c4bff7f84cdd0f67056771d837d562a",
+    "branch": "feature/design-world-entry-002",
+    "evidence": "finite-design-model-only; original root record above remains 136e98a history",
+    "startup": {
+      "hashes": [
+        {
+          "path": "AUD-136e98a-WORLD-ENTRY-002-review-v1.0.md",
+          "sha256": "0afcaba95b268802717d7e51d41e6e4202c6f12a799e6704b16a48a920b7f8bc",
+          "bytes": 11519
+        },
+        {
+          "path": "WORLD-ENTRY-002-R1-task-v1.0.md",
+          "sha256": "ac3d799bb5b07ea8fd7c0ce0d429d711718a14854b011eaf8ba505e43338c8bf",
+          "bytes": 14736
+        },
+        {
+          "path": "evidence/README.md",
+          "sha256": "e81f5f2b4eca7d029c9de0063d163d8d8d20dcc43c90f10fb05c39e8aacd9f62",
+          "bytes": 2792
+        },
+        {
+          "path": "evidence/probe_support.py",
+          "sha256": "7d444bf4be7057c4e8cf2c10a407fd22cdd8a3c6fc963112e006a9c91b17a5ef",
+          "bytes": 3654
+        },
+        {
+          "path": "evidence/reproduce_review.py",
+          "sha256": "a6c7f928ddb973f455b125b82d8269116ccd381b71ff0dd5b894eea5d5263367",
+          "bytes": 10010
+        },
+        {
+          "path": "evidence/review-probes.json",
+          "sha256": "c4da54bb43d213e8d2261fe077e61bcd025b231dbb1af5fb6bb04e65b0459ff0",
+          "bytes": 15346
+        },
+        {
+          "path": "evidence/review-probes.txt",
+          "sha256": "d605c3224e6aacf1f70a4065f6ac066a64124b7ddd2577911a4a9a2cfa50f1f8",
+          "bytes": 3563
+        },
+        {
+          "path": "evidence/source/verify_entry_002.py",
+          "sha256": "6753220aab254ba13d363890da72797b9583d7ebcc95b38e25b23f3e43bfb0c5",
+          "bytes": 17333
+        },
+        {
+          "path": "evidence/source-manifest.json",
+          "sha256": "6db3dea62579933bfc87569a344fccc270b6640d66d3632cb6c1fa6775ea523e",
+          "bytes": 4561
+        }
+      ],
+      "commands": [
+        {
+          "command": [
+            "git",
+            "rev-parse",
+            "--show-toplevel"
+          ],
+          "exit_code": 0,
+          "stdout": "E:/projects/elevator-survival\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "remote",
+            "-v"
+          ],
+          "exit_code": 0,
+          "stdout": "origin lvlw/elevator-survival (URL redacted)",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "rev-parse",
+            "HEAD"
+          ],
+          "exit_code": 0,
+          "stdout": "136e98aa2c4bff7f84cdd0f67056771d837d562a\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "branch",
+            "--show-current"
+          ],
+          "exit_code": 0,
+          "stdout": "feature/design-world-entry-002\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "status",
+            "--short",
+            "--untracked-files=all"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--name-status"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--cached",
+            "--name-status"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "worktree",
+            "list",
+            "--porcelain"
+          ],
+          "exit_code": 0,
+          "stdout": "worktree E:/projects/elevator-survival\nHEAD 136e98aa2c4bff7f84cdd0f67056771d837d562a\nbranch refs/heads/feature/design-world-entry-002\n\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "ls-remote",
+            "--heads",
+            "origin",
+            "refs/heads/feature/design-world-entry-002",
+            "refs/heads/feature/mission-lifecycle-core-001",
+            "refs/heads/feature/design-world-infected-world-001",
+            "refs/heads/main"
+          ],
+          "exit_code": 0,
+          "stdout": "136e98aa2c4bff7f84cdd0f67056771d837d562a\trefs/heads/feature/design-world-entry-002\n6b48b3de6521d9a9c296754a4d8135c7f7c7ca35\trefs/heads/feature/design-world-infected-world-001\nd1d3b7927c6733cff709a4bfd617fb1e85e7485a\trefs/heads/feature/mission-lifecycle-core-001\na76e9c1c998051fc1643b6e0c3d53443fa55feed\trefs/heads/main\n",
+          "stderr": ""
+        }
+      ]
+    },
+    "baseline_reproduction": {
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-r1-tlw_qfs2\\run-real-baseline.py"
+      ],
+      "exit_code": 1,
+      "stdout": "{\"cases\": 24, \"matched\": 16, \"mismatched\": 8}\nMATCH C01 control {\"accepted\": true, \"output\": {\"values\": {\"energy\": 0, \"node\": \"C0\", \"revision\": 1}, \"events\": [], \"input_unchanged\": true}}\nMATCH C02 control {\"accepted\": false, \"reason\": \"energy\"}\nMATCH C03 control {\"accepted\": true, \"output\": {\"values\": {\"hp\": 8, \"energy\": 85, \"injury\": 1, \"cycle\": 2, \"task_day\": 2, \"items.pipe-1.durability\": 17}, \"events\": [\"infection\", \"hunger\", \"new-cycle\"], \"input_unchanged\": true}}\nMATCH C04 control {\"accepted\": true, \"output\": {\"values\": {\"hp\": 0, \"infection\": 110, \"exposure\": 1, \"satiety\": 6, \"cycle\": 1, \"phase\": \"dead\"}, \"events\": [\"bleed\", \"death\"], \"input_unchanged\": true}}\nMATCH C05 control {\"accepted\": true, \"output\": {\"values\": {\"hp\": 4, \"infection\": 69, \"satiety\": 2, \"cycle\": 2}, \"events\": [\"infection\", \"hunger\", \"new-cycle\"], \"input_unchanged\": true}}\nMATCH C06 control {\"accepted\": true, \"output\": {\"values\": {\"hp\": 0, \"infection\": 130, \"satiety\": 4, \"cycle\": 1, \"phase\": \"dead\"}, \"events\": [\"infection\", \"death\"], \"input_unchanged\": true}}\nMATCH C07 control {\"accepted\": true, \"output\": {\"values\": {\"hp\": 0, \"satiety\": 0, \"cycle\": 1, \"phase\": \"dead\"}, \"events\": [\"infection\", \"hunger\", \"death\"], \"input_unchanged\": true}}\nMATCH C08 control {\"accepted\": true, \"output\": {\"values\": {\"hp\": 1, \"infection\": 130, \"satiety\": 6, \"cycle\": 7, \"phase\": \"hub\", \"status\": \"success\", \"bridge\": null}, \"events\": [\"close\"], \"input_unchanged\": true}}\nMATCH C09 control {\"accepted\": true, \"output\": {\"values\": {\"hp\": 12, \"cycle\": 8, \"task_day\": 7, \"phase\": \"hub\", \"status\": \"failure\", \"bridge\": 8, \"balance\": 10}, \"events\": [\"infection\", \"hunger\", \"new-cycle\", \"recall\"], \"input_unchanged\": true}}\nMATCH C10 control {\"accepted\": true, \"output\": {\"same_hint\": true, \"risks\": [\"unknown\", \"unknown\"], \"hp_after\": [1, 0]}}\nMATCH C11 control {\"accepted\": true, \"output\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}}\nMATCH C12 control {\"accepted\": false, \"reason\": \"cross-character\"}\nMATCH C13 control {\"accepted\": true, \"output\": {\"phase\": \"ready\", \"revision\": 4, \"energy\": 100, \"reads\": 0, \"writes\": 0, \"notifications\": 0, \"errors\": [\"owner-exists\"]}}\nMATCH C14 control {\"accepted\": true, \"output\": {\"phase\": \"ready\", \"revision\": 6, \"energy\": 84, \"reads\": 0, \"writes\": 2, \"notifications\": 2, \"errors\": [\"save-error\"]}}\nMATCH C15 negative-control {\"accepted\": true, \"output\": {\"normal_reason\": \"cycle\", \"mutant_cycle\": 3}}\nMATCH C16 negative-control {\"accepted\": true, \"output\": {\"normal_reason\": \"cross-character\", \"mutant_character\": \"char-2\"}}\nMISMATCH X01 F01 {\"accepted\": true, \"output\": {\"rejected\": false, \"result\": \"candidate\"}}\nMISMATCH X02 F01 {\"accepted\": true, \"output\": {\"rejected\": false, \"result\": \"candidate\"}}\nMISMATCH X03 F02 {\"accepted\": true, \"output\": {\"rejected\": false, \"phase\": \"hub\", \"old_node\": \"C0\", \"item_container\": \"bag\", \"qty\": 2, \"closing_events\": [\"infection\", \"hunger\", \"new-cycle\", \"recall\"]}}\nMISMATCH X04 F02 {\"accepted\": true, \"output\": {\"rejected\": false, \"phase\": \"hub\", \"old_node\": \"H0\", \"item_container\": \"bag\", \"qty\": 2, \"closing_events\": [\"close\"]}}\nMISMATCH X05 F03 {\"accepted\": true, \"output\": {\"energy\": 55, \"revision\": 5, \"writes\": 1, \"notices\": 1, \"rejected\": false}}\nMISMATCH X06 F03 {\"accepted\": true, \"output\": {\"energy\": 49, \"revision\": 5, \"writes\": 1, \"notices\": 1, \"rejected\": false}}\nMISMATCH X07 F03 {\"accepted\": true, \"output\": {\"rejected\": false, \"energy\": 0, \"node\": \"C0\", \"final_cost\": 72057594037927928}}\nMISMATCH X08 F03 {\"accepted\": true, \"output\": {\"rejected\": false}}\n",
+      "stderr": "",
+      "real_repository_script_sha256": "6753220aab254ba13d363890da72797b9583d7ebcc95b38e25b23f3e43bfb0c5",
+      "result": {
+        "source_commit": "136e98aa2c4bff7f84cdd0f67056771d837d562a",
+        "source_git_blob": "59d75801e4570bf90bfc0cfebebf94b53c9dc570",
+        "source_sha256": "6753220aab254ba13d363890da72797b9583d7ebcc95b38e25b23f3e43bfb0c5",
+        "python": "3.12.14",
+        "scope": "16 control/negative-control probes plus 8 new counterexamples; not author 117 suite; no production tests",
+        "config_origin": "transcribed from fixtures.json config at source_commit, schema-shaped test snapshots are reviewer-created; not a repository fixtures byte copy",
+        "counts": {
+          "cases": 24,
+          "matched": 16,
+          "mismatched": 8
+        },
+        "rows": [
+          {
+            "id": "C01",
+            "group": "control",
+            "basis": "R02",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "energy": 0,
+                  "node": "C0",
+                  "revision": 1
+                },
+                "events": [],
+                "input_unchanged": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "energy": 0,
+                  "node": "C0",
+                  "revision": 1
+                },
+                "events": [],
+                "input_unchanged": true
+              }
+            },
+            "matches": true
+          },
+          {
+            "id": "C02",
+            "group": "control",
+            "basis": "R02",
+            "expected": {
+              "accepted": false,
+              "reason": "energy"
+            },
+            "actual": {
+              "accepted": false,
+              "reason": "energy"
+            },
+            "matches": true
+          },
+          {
+            "id": "C03",
+            "group": "control",
+            "basis": "R04",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "hp": 8,
+                  "energy": 85,
+                  "injury": 1,
+                  "cycle": 2,
+                  "task_day": 2,
+                  "items.pipe-1.durability": 17
+                },
+                "events": [
+                  "infection",
+                  "hunger",
+                  "new-cycle"
+                ],
+                "input_unchanged": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "hp": 8,
+                  "energy": 85,
+                  "injury": 1,
+                  "cycle": 2,
+                  "task_day": 2,
+                  "items.pipe-1.durability": 17
+                },
+                "events": [
+                  "infection",
+                  "hunger",
+                  "new-cycle"
+                ],
+                "input_unchanged": true
+              }
+            },
+            "matches": true
+          },
+          {
+            "id": "C04",
+            "group": "control",
+            "basis": "R04",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "hp": 0,
+                  "infection": 110,
+                  "exposure": 1,
+                  "satiety": 6,
+                  "cycle": 1,
+                  "phase": "dead"
+                },
+                "events": [
+                  "bleed",
+                  "death"
+                ],
+                "input_unchanged": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "hp": 0,
+                  "infection": 110,
+                  "exposure": 1,
+                  "satiety": 6,
+                  "cycle": 1,
+                  "phase": "dead"
+                },
+                "events": [
+                  "bleed",
+                  "death"
+                ],
+                "input_unchanged": true
+              }
+            },
+            "matches": true
+          },
+          {
+            "id": "C05",
+            "group": "control",
+            "basis": "R04",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "hp": 4,
+                  "infection": 69,
+                  "satiety": 2,
+                  "cycle": 2
+                },
+                "events": [
+                  "infection",
+                  "hunger",
+                  "new-cycle"
+                ],
+                "input_unchanged": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "hp": 4,
+                  "infection": 69,
+                  "satiety": 2,
+                  "cycle": 2
+                },
+                "events": [
+                  "infection",
+                  "hunger",
+                  "new-cycle"
+                ],
+                "input_unchanged": true
+              }
+            },
+            "matches": true
+          },
+          {
+            "id": "C06",
+            "group": "control",
+            "basis": "R04",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "hp": 0,
+                  "infection": 130,
+                  "satiety": 4,
+                  "cycle": 1,
+                  "phase": "dead"
+                },
+                "events": [
+                  "infection",
+                  "death"
+                ],
+                "input_unchanged": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "hp": 0,
+                  "infection": 130,
+                  "satiety": 4,
+                  "cycle": 1,
+                  "phase": "dead"
+                },
+                "events": [
+                  "infection",
+                  "death"
+                ],
+                "input_unchanged": true
+              }
+            },
+            "matches": true
+          },
+          {
+            "id": "C07",
+            "group": "control",
+            "basis": "R04",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "hp": 0,
+                  "satiety": 0,
+                  "cycle": 1,
+                  "phase": "dead"
+                },
+                "events": [
+                  "infection",
+                  "hunger",
+                  "death"
+                ],
+                "input_unchanged": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "hp": 0,
+                  "satiety": 0,
+                  "cycle": 1,
+                  "phase": "dead"
+                },
+                "events": [
+                  "infection",
+                  "hunger",
+                  "death"
+                ],
+                "input_unchanged": true
+              }
+            },
+            "matches": true
+          },
+          {
+            "id": "C08",
+            "group": "control",
+            "basis": "R05",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "hp": 1,
+                  "infection": 130,
+                  "satiety": 6,
+                  "cycle": 7,
+                  "phase": "hub",
+                  "status": "success",
+                  "bridge": null
+                },
+                "events": [
+                  "close"
+                ],
+                "input_unchanged": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "hp": 1,
+                  "infection": 130,
+                  "satiety": 6,
+                  "cycle": 7,
+                  "phase": "hub",
+                  "status": "success",
+                  "bridge": null
+                },
+                "events": [
+                  "close"
+                ],
+                "input_unchanged": true
+              }
+            },
+            "matches": true
+          },
+          {
+            "id": "C09",
+            "group": "control",
+            "basis": "R06",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "hp": 12,
+                  "cycle": 8,
+                  "task_day": 7,
+                  "phase": "hub",
+                  "status": "failure",
+                  "bridge": 8,
+                  "balance": 10
+                },
+                "events": [
+                  "infection",
+                  "hunger",
+                  "new-cycle",
+                  "recall"
+                ],
+                "input_unchanged": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "values": {
+                  "hp": 12,
+                  "cycle": 8,
+                  "task_day": 7,
+                  "phase": "hub",
+                  "status": "failure",
+                  "bridge": 8,
+                  "balance": 10
+                },
+                "events": [
+                  "infection",
+                  "hunger",
+                  "new-cycle",
+                  "recall"
+                ],
+                "input_unchanged": true
+              }
+            },
+            "matches": true
+          },
+          {
+            "id": "C10",
+            "group": "control",
+            "basis": "R07",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "same_hint": true,
+                "risks": [
+                  "unknown",
+                  "unknown"
+                ],
+                "hp_after": [
+                  1,
+                  0
+                ]
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "same_hint": true,
+                "risks": [
+                  "unknown",
+                  "unknown"
+                ],
+                "hp_after": [
+                  1,
+                  0
+                ]
+              }
+            },
+            "matches": true
+          },
+          {
+            "id": "C11",
+            "group": "control",
+            "basis": "W2 candidate subset",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "result": "candidate",
+                "unchanged": true,
+                "roundtrip_equal": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "result": "candidate",
+                "unchanged": true,
+                "roundtrip_equal": true
+              }
+            },
+            "matches": true
+          },
+          {
+            "id": "C12",
+            "group": "control",
+            "basis": "W2 aggregate",
+            "expected": {
+              "accepted": false,
+              "reason": "cross-character"
+            },
+            "actual": {
+              "accepted": false,
+              "reason": "cross-character"
+            },
+            "matches": true
+          },
+          {
+            "id": "C13",
+            "group": "control",
+            "basis": "W2 single owner",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "phase": "ready",
+                "revision": 4,
+                "energy": 100,
+                "reads": 0,
+                "writes": 0,
+                "notifications": 0,
+                "errors": [
+                  "owner-exists"
+                ]
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "phase": "ready",
+                "revision": 4,
+                "energy": 100,
+                "reads": 0,
+                "writes": 0,
+                "notifications": 0,
+                "errors": [
+                  "owner-exists"
+                ]
+              }
+            },
+            "matches": true
+          },
+          {
+            "id": "C14",
+            "group": "control",
+            "basis": "W2 save failure",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "phase": "ready",
+                "revision": 6,
+                "energy": 84,
+                "reads": 0,
+                "writes": 2,
+                "notifications": 2,
+                "errors": [
+                  "save-error"
+                ]
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "phase": "ready",
+                "revision": 6,
+                "energy": 84,
+                "reads": 0,
+                "writes": 2,
+                "notifications": 2,
+                "errors": [
+                  "save-error"
+                ]
+              }
+            },
+            "matches": true
+          },
+          {
+            "id": "C15",
+            "group": "negative-control",
+            "basis": "author cycle-dedup switch, independent input",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "normal_reason": "cycle",
+                "mutant_cycle": 3
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "normal_reason": "cycle",
+                "mutant_cycle": 3
+              }
+            },
+            "matches": true
+          },
+          {
+            "id": "C16",
+            "group": "negative-control",
+            "basis": "author cross-binding switch, independent input",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "normal_reason": "cross-character",
+                "mutant_character": "char-2"
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "normal_reason": "cross-character",
+                "mutant_character": "char-2"
+              }
+            },
+            "matches": true
+          },
+          {
+            "id": "X01",
+            "group": "F01",
+            "basis": "R03 / W2 bridge must follow actual terminal kind",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "rejected": false,
+                "result": "candidate"
+              }
+            },
+            "matches": false
+          },
+          {
+            "id": "X02",
+            "group": "F01",
+            "basis": "R03 / W2 same active residence advances D and T together",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "rejected": false,
+                "result": "candidate"
+              }
+            },
+            "matches": false
+          },
+          {
+            "id": "X03",
+            "group": "F02",
+            "basis": "R05/R06 unexported world ground is not a hub asset",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "rejected": false,
+                "phase": "hub",
+                "old_node": "C0",
+                "item_container": "bag",
+                "qty": 2,
+                "closing_events": [
+                  "infection",
+                  "hunger",
+                  "new-cycle",
+                  "recall"
+                ]
+              }
+            },
+            "matches": false
+          },
+          {
+            "id": "X04",
+            "group": "F02",
+            "basis": "R05 normal return also closes world access",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "rejected": false,
+                "phase": "hub",
+                "old_node": "H0",
+                "item_container": "bag",
+                "qty": 2,
+                "closing_events": [
+                  "close"
+                ]
+              }
+            },
+            "matches": false
+          },
+          {
+            "id": "X05",
+            "group": "F03",
+            "basis": "R04/G1 nonnegative exact safe integer intent, W2 precommit validation",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "energy": 50,
+                "revision": 4,
+                "writes": 0,
+                "notices": 0,
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "energy": 55,
+                "revision": 5,
+                "writes": 1,
+                "notices": 1,
+                "rejected": false
+              }
+            },
+            "matches": false
+          },
+          {
+            "id": "X06",
+            "group": "F03",
+            "basis": "R04/G1 bool is not an integer cost",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "energy": 50,
+                "revision": 4,
+                "writes": 0,
+                "notices": 0,
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "energy": 49,
+                "revision": 5,
+                "writes": 1,
+                "notices": 1,
+                "rejected": false
+              }
+            },
+            "matches": false
+          },
+          {
+            "id": "X07",
+            "group": "F03",
+            "basis": "R04/G1 final computed cost outside MAX_SAFE_INTEGER",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "rejected": false,
+                "energy": 0,
+                "node": "C0",
+                "final_cost": 72057594037927928
+              }
+            },
+            "matches": false
+          },
+          {
+            "id": "X08",
+            "group": "F03",
+            "basis": "R03/R04/G1 strictly typed cycle/revision requests",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "rejected": false
+              }
+            },
+            "matches": false
+          }
+        ]
+      },
+      "reviewer_inputs_unchanged": true
+    },
+    "development_runs": [
+      {
+        "command": [
+          "C:/Users/zjl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "docs/design-drafts/world-infected-001/entry-002/validation/verify_entry_002.py",
+          "--output",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-r1-tlw_qfs2\\dev1-results.json"
+        ],
+        "exit": 0,
+        "stdout": "{\"positive\": 36, \"expected-rejection\": 76, \"persistence-fault\": 1, \"unsupported\": 4, \"mismatch\": 0}\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:/Users/zjl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "docs/design-drafts/world-infected-001/entry-002/validation/verify_entry_002.py",
+          "--output",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-r1-tlw_qfs2\\dev2-results.json"
+        ],
+        "exit": 0,
+        "stdout": "{\"positive\": 45, \"expected-rejection\": 151, \"persistence-fault\": 1, \"unsupported\": 4, \"mismatch\": 0}\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:/Users/zjl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "docs/design-drafts/world-infected-001/entry-002/validation/verify_entry_002.py",
+          "--output",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-r1-tlw_qfs2\\dev3-results.json"
+        ],
+        "exit": 0,
+        "stdout": "{\"positive\": 45, \"expected-rejection\": 162, \"persistence-fault\": 1, \"unsupported\": 4, \"mismatch\": 0}\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:/Users/zjl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "docs/design-drafts/world-infected-001/entry-002/validation/verify_entry_002.py",
+          "--negative-control",
+          "cycle-dedup",
+          "--output",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-r1-tlw_qfs2\\dev3-cycle-results.json"
+        ],
+        "exit": 1,
+        "stdout": "{\"positive\": 45, \"expected-rejection\": 162, \"persistence-fault\": 1, \"unsupported\": 4, \"mismatch\": 1}\n{\"id\": \"old-cycle-new-revision\", \"family\": \"V14\", \"classification\": \"expected-rejection\", \"actual\": {\"values\": {\"cycle\": 3, \"revision\": 2, \"satiety\": 2}, \"events\": [\"infection\", \"hunger\", \"new-cycle\", \"infection\", \"hunger\", \"new-cycle\"], \"rejected\": []}, \"expected\": {\"values\": {\"cycle\": 2, \"revision\": 1, \"satiety\": 4}, \"events\": [\"infection\", \"hunger\", \"new-cycle\"], \"rejected\": [\"cycle\"]}, \"matches\": false}\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:/Users/zjl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "docs/design-drafts/world-infected-001/entry-002/validation/verify_entry_002.py",
+          "--negative-control",
+          "cross-binding",
+          "--output",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-r1-tlw_qfs2\\dev3-binding-results.json"
+        ],
+        "exit": 1,
+        "stdout": "{\"positive\": 45, \"expected-rejection\": 162, \"persistence-fault\": 1, \"unsupported\": 4, \"mismatch\": 1}\n{\"id\": \"cross-character\", \"family\": \"V26\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"cross-character\", \"unchanged\": true}, \"matches\": false}\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:/Users/zjl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "docs/design-drafts/world-infected-001/entry-002/validation/verify_entry_002.py",
+          "--negative-control",
+          "ready-source",
+          "--output",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-r1-tlw_qfs2\\dev3-ready-results.json"
+        ],
+        "exit": 1,
+        "stdout": "{\"positive\": 45, \"expected-rejection\": 162, \"persistence-fault\": 1, \"unsupported\": 4, \"mismatch\": 9}\n{\"id\": \"R1-X01-success-fake-ready\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"normal-due\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-X01-failure-fake-ready\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"normal-due\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-ready-missing\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"ready-source\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-ready-wrong-run\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"ready-source\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-ready-wrong-commission\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"ready-source\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-ready-wrong-cycle\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"ready-source\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-ready-old-current-cycle\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"ready-source\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-ready-first-from-deadline\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"ready-source\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-old-deadline-cannot-exempt-new-success\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"normal-due\", \"unchanged\": true}, \"matches\": false}\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:/Users/zjl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "docs/design-drafts/world-infected-001/entry-002/validation/verify_entry_002.py",
+          "--negative-control",
+          "closed-ground",
+          "--output",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-r1-tlw_qfs2\\dev3-ground-results.json"
+        ],
+        "exit": 1,
+        "stdout": "{\"positive\": 45, \"expected-rejection\": 162, \"persistence-fault\": 1, \"unsupported\": 4, \"mismatch\": 5}\n{\"id\": \"R1-X04-closed-H0-False\", \"family\": \"R1-F02\", \"classification\": \"expected-rejection\", \"actual\": {\"values\": {\"node\": null, \"last_node\": \"H0\", \"phase\": \"hub\", \"items.ration-1.container\": \"bag\", \"items.ration-1.ground_execution\": null, \"items.ration-1.qty\": 2, \"items.pipe-1.durability\": 17, \"items.pipe-1.electricity\": 7, \"revision\": 2, \"balance\": 10}, \"events\": [\"close\"], \"rejected\": []}, \"expected\": {\"values\": {\"node\": null, \"last_node\": \"H0\", \"phase\": \"hub\", \"items.ration-1.container\": \"H0\", \"items.ration-1.ground_execution\": \"run-1\", \"items.ration-1.qty\": 2, \"items.pipe-1.durability\": 17, \"items.pipe-1.electricity\": 7, \"revision\": 1, \"balance\": 10}, \"events\": [\"close\"], \"rejected\": [\"closed-world\"]}, \"matches\": false}\n{\"id\": \"R1-X04-closed-H0-True\", \"family\": \"R1-F02\", \"classification\": \"expected-rejection\", \"actual\": {\"values\": {\"node\": null, \"last_node\": \"H0\", \"phase\": \"hub\", \"items.ration-1.container\": \"bag\", \"items.ration-1.ground_execution\": null, \"items.ration-1.qty\": 2, \"items.pipe-1.durability\": 17, \"items.pipe-1.electricity\": 7, \"revision\": 2, \"balance\": 30}, \"events\": [\"close\"], \"rejected\": []}, \"expected\": {\"values\": {\"node\": null, \"last_node\": \"H0\", \"phase\": \"hub\", \"items.ration-1.container\": \"H0\", \"items.ration-1.ground_execution\": \"run-1\", \"items.ration-1.qty\": 2, \"items.pipe-1.durability\": 17, \"items.pipe-1.electricity\": 7, \"revision\": 1, \"balance\": 30}, \"events\": [\"close\"], \"rejected\": [\"closed-world\"]}, \"matches\": false}\n{\"id\": \"R1-X03-deadline-C0-ground\", \"family\": \"R1-F02\", \"classification\": \"expected-rejection\", \"actual\": {\"values\": {\"node\": null, \"last_node\": \"C0\", \"cycle\": 8, \"items.ration-1.container\": \"bag\", \"items.ration-1.qty\": 2, \"revision\": 2, \"balance\": 10}, \"events\": [\"infection\", \"hunger\", \"new-cycle\", \"recall\"], \"rejected\": []}, \"expected\": {\"values\": {\"node\": null, \"last_node\": \"C0\", \"cycle\": 8, \"items.ration-1.container\": \"C0\", \"items.ration-1.qty\": 2, \"revision\": 1, \"balance\": 10}, \"events\": [\"infection\", \"hunger\", \"new-cycle\", \"recall\"], \"rejected\": [\"closed-world\"]}, \"matches\": false}\n{\"id\": \"R1-later-task-cannot-pick-old-ground\", \"family\": \"R1-F02\", \"classification\": \"expected-rejection\", \"actual\": {\"values\": {\"node\": \"H0\", \"execution\": \"run-2\", \"items.ration-1.container\": \"bag\", \"items.ration-1.ground_execution\": null, \"revision\": 3, \"sites.run-1.sources.supply\": true, \"sites.run-2.sources\": {}}, \"events\": [\"close\", \"infection\", \"hunger\", \"new-cycle\"], \"rejected\": []}, \"expected\": {\"values\": {\"node\": \"H0\", \"execution\": \"run-2\", \"items.ration-1.container\": \"H0\", \"items.ration-1.ground_execution\": \"run-1\", \"revision\": 2, \"sites.run-1.sources.supply\": true, \"sites.run-2.sources\": {}}, \"events\": [\"close\", \"infection\", \"hunger\", \"new-cycle\"], \"rejected\": [\"ground-binding\"]}, \"matches\": false}\n{\"id\": \"R1-closed-world-action-combination\", \"family\": \"R1-F02\", \"classification\": \"expected-rejection\", \"actual\": {\"values\": {\"energy\": 100, \"revision\": 2, \"node\": null, \"sites.run-1.sources.supply\": true, \"items.ration-1.container\": \"bag\"}, \"events\": [\"close\"], \"rejected\": [\"unstable\", \"unstable\"]}, \"expected\": {\"values\": {\"energy\": 100, \"revision\": 1, \"node\": null, \"sites.run-1.sources.supply\": true, \"items.ration-1.container\": \"H0\"}, \"events\": [\"close\"], \"rejected\": [\"unstable\", \"unstable\", \"closed-world\"]}, \"matches\": false}\n",
+        "stderr": ""
+      }
+    ],
+    "freeze": {
+      "before": {
+        "fixtures.json": "c77312e97ebe1941f58f5934c1f5f0520ffe4940606144d708244831ab194aa9",
+        "expected.json": "2ce8522a519562f1456c8076a4846ea7fd76ef132ceaf6150d33f36bb2784375",
+        "verify_entry_002.py": "32b6188e695005ba2cca4c446652435780ee262538d71ee2952f65b76eb23881"
+      },
+      "after": {
+        "fixtures.json": "c77312e97ebe1941f58f5934c1f5f0520ffe4940606144d708244831ab194aa9",
+        "expected.json": "2ce8522a519562f1456c8076a4846ea7fd76ef132ceaf6150d33f36bb2784375",
+        "verify_entry_002.py": "32b6188e695005ba2cca4c446652435780ee262538d71ee2952f65b76eb23881"
+      },
+      "unchanged": true,
+      "runs": [
+        {
+          "name": "cycle-dedup",
+          "command": [
+            "C:/Users/zjl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+            "-B",
+            "-X",
+            "utf8",
+            "docs\\design-drafts\\world-infected-001\\entry-002\\validation\\verify_entry_002.py",
+            "--negative-control",
+            "cycle-dedup",
+            "--output",
+            "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-r1-tlw_qfs2\\frozen-cycle.json"
+          ],
+          "exit_code": 1,
+          "stdout": "{\"positive\": 45, \"expected-rejection\": 163, \"persistence-fault\": 1, \"unsupported\": 4, \"mismatch\": 1}\n{\"id\": \"old-cycle-new-revision\", \"family\": \"V14\", \"classification\": \"expected-rejection\", \"actual\": {\"values\": {\"cycle\": 3, \"revision\": 2, \"satiety\": 2}, \"events\": [\"infection\", \"hunger\", \"new-cycle\", \"infection\", \"hunger\", \"new-cycle\"], \"rejected\": []}, \"expected\": {\"values\": {\"cycle\": 2, \"revision\": 1, \"satiety\": 4}, \"events\": [\"infection\", \"hunger\", \"new-cycle\"], \"rejected\": [\"cycle\"]}, \"matches\": false}\n",
+          "stderr": "",
+          "counts": {
+            "positive": 45,
+            "expected-rejection": 163,
+            "persistence-fault": 1,
+            "unsupported": 4,
+            "mismatch": 1
+          },
+          "mismatch_ids": [
+            "old-cycle-new-revision"
+          ],
+          "model_errors": []
+        },
+        {
+          "name": "cross-binding",
+          "command": [
+            "C:/Users/zjl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+            "-B",
+            "-X",
+            "utf8",
+            "docs\\design-drafts\\world-infected-001\\entry-002\\validation\\verify_entry_002.py",
+            "--negative-control",
+            "cross-binding",
+            "--output",
+            "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-r1-tlw_qfs2\\frozen-binding.json"
+          ],
+          "exit_code": 1,
+          "stdout": "{\"positive\": 45, \"expected-rejection\": 163, \"persistence-fault\": 1, \"unsupported\": 4, \"mismatch\": 1}\n{\"id\": \"cross-character\", \"family\": \"V26\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"cross-character\", \"unchanged\": true}, \"matches\": false}\n",
+          "stderr": "",
+          "counts": {
+            "positive": 45,
+            "expected-rejection": 163,
+            "persistence-fault": 1,
+            "unsupported": 4,
+            "mismatch": 1
+          },
+          "mismatch_ids": [
+            "cross-character"
+          ],
+          "model_errors": []
+        },
+        {
+          "name": "ready-source",
+          "command": [
+            "C:/Users/zjl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+            "-B",
+            "-X",
+            "utf8",
+            "docs\\design-drafts\\world-infected-001\\entry-002\\validation\\verify_entry_002.py",
+            "--negative-control",
+            "ready-source",
+            "--output",
+            "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-r1-tlw_qfs2\\frozen-ready.json"
+          ],
+          "exit_code": 1,
+          "stdout": "{\"positive\": 45, \"expected-rejection\": 163, \"persistence-fault\": 1, \"unsupported\": 4, \"mismatch\": 9}\n{\"id\": \"R1-X01-success-fake-ready\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"normal-due\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-X01-failure-fake-ready\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"normal-due\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-ready-missing\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"ready-source\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-ready-wrong-run\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"ready-source\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-ready-wrong-commission\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"ready-source\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-ready-wrong-cycle\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"ready-source\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-ready-old-current-cycle\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"ready-source\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-ready-first-from-deadline\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"ready-source\", \"unchanged\": true}, \"matches\": false}\n{\"id\": \"R1-old-deadline-cannot-exempt-new-success\", \"family\": \"R1-F01\", \"classification\": \"expected-rejection\", \"actual\": {\"result\": \"candidate\", \"unchanged\": true, \"roundtrip_equal\": true}, \"expected\": {\"result\": \"normal-due\", \"unchanged\": true}, \"matches\": false}\n",
+          "stderr": "",
+          "counts": {
+            "positive": 45,
+            "expected-rejection": 163,
+            "persistence-fault": 1,
+            "unsupported": 4,
+            "mismatch": 9
+          },
+          "mismatch_ids": [
+            "R1-X01-success-fake-ready",
+            "R1-X01-failure-fake-ready",
+            "R1-ready-missing",
+            "R1-ready-wrong-run",
+            "R1-ready-wrong-commission",
+            "R1-ready-wrong-cycle",
+            "R1-ready-old-current-cycle",
+            "R1-ready-first-from-deadline",
+            "R1-old-deadline-cannot-exempt-new-success"
+          ],
+          "model_errors": []
+        },
+        {
+          "name": "closed-ground",
+          "command": [
+            "C:/Users/zjl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+            "-B",
+            "-X",
+            "utf8",
+            "docs\\design-drafts\\world-infected-001\\entry-002\\validation\\verify_entry_002.py",
+            "--negative-control",
+            "closed-ground",
+            "--output",
+            "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-r1-tlw_qfs2\\frozen-ground.json"
+          ],
+          "exit_code": 1,
+          "stdout": "{\"positive\": 45, \"expected-rejection\": 163, \"persistence-fault\": 1, \"unsupported\": 4, \"mismatch\": 5}\n{\"id\": \"R1-X04-closed-H0-False\", \"family\": \"R1-F02\", \"classification\": \"expected-rejection\", \"actual\": {\"values\": {\"node\": null, \"last_node\": \"H0\", \"phase\": \"hub\", \"items.ration-1.container\": \"bag\", \"items.ration-1.ground_execution\": null, \"items.ration-1.qty\": 2, \"items.pipe-1.durability\": 17, \"items.pipe-1.electricity\": 7, \"revision\": 2, \"balance\": 10}, \"events\": [\"close\"], \"rejected\": []}, \"expected\": {\"values\": {\"node\": null, \"last_node\": \"H0\", \"phase\": \"hub\", \"items.ration-1.container\": \"H0\", \"items.ration-1.ground_execution\": \"run-1\", \"items.ration-1.qty\": 2, \"items.pipe-1.durability\": 17, \"items.pipe-1.electricity\": 7, \"revision\": 1, \"balance\": 10}, \"events\": [\"close\"], \"rejected\": [\"closed-world\"]}, \"matches\": false}\n{\"id\": \"R1-X04-closed-H0-True\", \"family\": \"R1-F02\", \"classification\": \"expected-rejection\", \"actual\": {\"values\": {\"node\": null, \"last_node\": \"H0\", \"phase\": \"hub\", \"items.ration-1.container\": \"bag\", \"items.ration-1.ground_execution\": null, \"items.ration-1.qty\": 2, \"items.pipe-1.durability\": 17, \"items.pipe-1.electricity\": 7, \"revision\": 2, \"balance\": 30}, \"events\": [\"close\"], \"rejected\": []}, \"expected\": {\"values\": {\"node\": null, \"last_node\": \"H0\", \"phase\": \"hub\", \"items.ration-1.container\": \"H0\", \"items.ration-1.ground_execution\": \"run-1\", \"items.ration-1.qty\": 2, \"items.pipe-1.durability\": 17, \"items.pipe-1.electricity\": 7, \"revision\": 1, \"balance\": 30}, \"events\": [\"close\"], \"rejected\": [\"closed-world\"]}, \"matches\": false}\n{\"id\": \"R1-X03-deadline-C0-ground\", \"family\": \"R1-F02\", \"classification\": \"expected-rejection\", \"actual\": {\"values\": {\"node\": null, \"last_node\": \"C0\", \"cycle\": 8, \"items.ration-1.container\": \"bag\", \"items.ration-1.qty\": 2, \"revision\": 2, \"balance\": 10}, \"events\": [\"infection\", \"hunger\", \"new-cycle\", \"recall\"], \"rejected\": []}, \"expected\": {\"values\": {\"node\": null, \"last_node\": \"C0\", \"cycle\": 8, \"items.ration-1.container\": \"C0\", \"items.ration-1.qty\": 2, \"revision\": 1, \"balance\": 10}, \"events\": [\"infection\", \"hunger\", \"new-cycle\", \"recall\"], \"rejected\": [\"closed-world\"]}, \"matches\": false}\n{\"id\": \"R1-later-task-cannot-pick-old-ground\", \"family\": \"R1-F02\", \"classification\": \"expected-rejection\", \"actual\": {\"values\": {\"node\": \"H0\", \"execution\": \"run-2\", \"items.ration-1.container\": \"bag\", \"items.ration-1.ground_execution\": null, \"revision\": 3, \"sites.run-1.sources.supply\": true, \"sites.run-2.sources\": {}}, \"events\": [\"close\", \"infection\", \"hunger\", \"new-cycle\"], \"rejected\": []}, \"expected\": {\"values\": {\"node\": \"H0\", \"execution\": \"run-2\", \"items.ration-1.container\": \"H0\", \"items.ration-1.ground_execution\": \"run-1\", \"revision\": 2, \"sites.run-1.sources.supply\": true, \"sites.run-2.sources\": {}}, \"events\": [\"close\", \"infection\", \"hunger\", \"new-cycle\"], \"rejected\": [\"ground-binding\"]}, \"matches\": false}\n{\"id\": \"R1-closed-world-action-combination\", \"family\": \"R1-F02\", \"classification\": \"expected-rejection\", \"actual\": {\"values\": {\"energy\": 100, \"revision\": 2, \"node\": null, \"sites.run-1.sources.supply\": true, \"items.ration-1.container\": \"bag\"}, \"events\": [\"close\"], \"rejected\": [\"unstable\", \"unstable\"]}, \"expected\": {\"values\": {\"energy\": 100, \"revision\": 1, \"node\": null, \"sites.run-1.sources.supply\": true, \"items.ration-1.container\": \"H0\"}, \"events\": [\"close\"], \"rejected\": [\"unstable\", \"unstable\", \"closed-world\"]}, \"matches\": false}\n",
+          "stderr": "",
+          "counts": {
+            "positive": 45,
+            "expected-rejection": 163,
+            "persistence-fault": 1,
+            "unsupported": 4,
+            "mismatch": 5
+          },
+          "mismatch_ids": [
+            "R1-X04-closed-H0-False",
+            "R1-X04-closed-H0-True",
+            "R1-X03-deadline-C0-ground",
+            "R1-later-task-cannot-pick-old-ground",
+            "R1-closed-world-action-combination"
+          ],
+          "model_errors": []
+        },
+        {
+          "name": "first",
+          "command": [
+            "C:/Users/zjl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+            "-B",
+            "-X",
+            "utf8",
+            "docs\\design-drafts\\world-infected-001\\entry-002\\validation\\verify_entry_002.py"
+          ],
+          "exit_code": 0,
+          "stdout": "{\"positive\": 45, \"expected-rejection\": 163, \"persistence-fault\": 1, \"unsupported\": 4, \"mismatch\": 0}\n",
+          "stderr": "",
+          "counts": {
+            "positive": 45,
+            "expected-rejection": 163,
+            "persistence-fault": 1,
+            "unsupported": 4,
+            "mismatch": 0
+          },
+          "mismatch_ids": [],
+          "model_errors": []
+        },
+        {
+          "name": "second",
+          "command": [
+            "C:/Users/zjl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+            "-B",
+            "-X",
+            "utf8",
+            "docs\\design-drafts\\world-infected-001\\entry-002\\validation\\verify_entry_002.py",
+            "--output",
+            "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-002-r1-tlw_qfs2\\frozen-second.json"
+          ],
+          "exit_code": 0,
+          "stdout": "{\"positive\": 45, \"expected-rejection\": 163, \"persistence-fault\": 1, \"unsupported\": 4, \"mismatch\": 0}\n",
+          "stderr": "",
+          "counts": {
+            "positive": 45,
+            "expected-rejection": 163,
+            "persistence-fault": 1,
+            "unsupported": 4,
+            "mismatch": 0
+          },
+          "mismatch_ids": [],
+          "model_errors": []
+        }
+      ],
+      "byte_equal": true,
+      "normalized_equal": true,
+      "result_sha256": "70e77acc76b5821801f4f97ebbce94a20cc75eeedf2c024b4c3e21a0ac6eb74d"
+    },
+    "counts_once_only": {
+      "positive": 45,
+      "expected-rejection": 163,
+      "persistence-fault": 1,
+      "unsupported": 4,
+      "mismatch": 0
+    },
+    "unique_cases": 213,
+    "original_ids_retained": 117,
+    "auxiliary_review": {
+      "kind": "existing read-only agent; root sole writer; not WebGPT mainline review",
+      "first_pass": [
+        "25 ready/timing/ground selected cases matched",
+        "49 malformed move field probes no unexpected exceptions; checks empty and trigger_combat true are legitimate controlled inputs"
+      ],
+      "findings": [
+        "retained True/float values accepted by equality: fixed strict per-item prevalidation before comparison",
+        "malformed history rows model_error: fixed exact shape before outcome access"
+      ],
+      "final_report": [
+        "retained invalid qty/durability rejected with commit/save/notify zero",
+        "malformed history shape refused, no model_error",
+        "E0 paid owner fixture refused, no mutation/write/notify",
+        "legal latest current accepted; swapped old current rejected current-not-latest",
+        "00-03 preserve Draft, O1/O2 split and no production authority"
+      ],
+      "counts_not_added_to_suite": true
+    },
+    "model_configuration": "Actual model/reasoning setting not exposed by verifiable tools; no claim or upgrade to Ultra.",
+    "production_baseline": "NOT RUN",
+    "production_final": "NOT RUN",
+    "production_code_added": 0,
+    "production_tests_added": 0,
+    "production_build_browser_storage_owner_play": "NOT RUN",
+    "precommit_checks": {
+      "status": "PASS",
+      "errors": [],
+      "exact_whitelist": [
+        "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md",
+        "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+        "docs/design-drafts/world-infected-001/entry-002/02-runtime-restore-contract.md",
+        "docs/design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md",
+        "docs/design-drafts/world-infected-001/entry-002/validation/fixtures.json",
+        "docs/design-drafts/world-infected-001/entry-002/validation/expected.json",
+        "docs/design-drafts/world-infected-001/entry-002/validation/verify_entry_002.py",
+        "docs/design-drafts/world-infected-001/entry-002/validation/results.json",
+        "docs/design-drafts/world-infected-001/entry-002/validation/run-record.json",
+        "docs/design-drafts/world-infected-001/entry-002/reviews/review-and-fixes.md",
+        "docs/design-drafts/world-infected-001/entry-002/completion.md",
+        "docs/design-drafts/world-infected-001/entry-002/reviews/WORLD-ENTRY-002-R1-task-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-002/reviews/AUD-136e98a-WORLD-ENTRY-002-review-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-002/reviews/r1-regression-summary.json"
+      ],
+      "modified_existing": 11,
+      "new": 3,
+      "encoding": "strict UTF-8/LF/no BOM/no trailing whitespace",
+      "archives": [
+        {
+          "path": "docs\\design-drafts\\world-infected-001\\entry-002\\reviews\\WORLD-ENTRY-002-R1-task-v1.0.md",
+          "sha256": "ac3d799bb5b07ea8fd7c0ce0d429d711718a14854b011eaf8ba505e43338c8bf"
+        },
+        {
+          "path": "docs\\design-drafts\\world-infected-001\\entry-002\\reviews\\AUD-136e98a-WORLD-ENTRY-002-review-v1.0.md",
+          "sha256": "0afcaba95b268802717d7e51d41e6e4202c6f12a799e6704b16a48a920b7f8bc"
+        }
+      ],
+      "original_inputs": [
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md",
+          "sha256": "145810ebde164ff17eba4e5ad32e010ea0592fa90ece6947a5725a605125aa92"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-002/inputs/BASELINE-AND-INPUTS.json",
+          "sha256": "09c505488111b72376ceaa549fa428af0270a7f6f6dc9f4ef074b6ed35d88aca"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-002/inputs/OWNER-direction-and-scope-WORLD-ENTRY-002-v1.0.md",
+          "sha256": "a633dffa79bf7415334225f6d30173900220a8df3b564440e3f21fa93eb61922"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-002/inputs/SHA256SUMS.txt",
+          "sha256": "19cd7430d39e824f1c1f6780ceb136a4724bb01e750de941c176fc0e077e3f93"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-002/inputs/WORLD-ENTRY-002-task-v1.0.md",
+          "sha256": "c40d4668882c8b797195974563504b19d6b4e13d60e3f393167c52cf596c885d"
+        }
+      ],
+      "original_record_preserved": true,
+      "original_review_prefix_preserved": true,
+      "original_completion_suffix_preserved": true,
+      "config_and_provenance_unchanged": true,
+      "original_117_ids_retained": true,
+      "protected_objects": {
+        "src": "5dc57761e4dcabddec5b781401d808a6de1317ba",
+        "docs/05-design-decisions.md": "f172de6ae7eecaaa126dd519d3dc7d2b279ad3b9",
+        "docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md": "62e9fca4f10aeb6e5681a46e6af52be3f7851ba2"
+      },
+      "commands": [
+        {
+          "command": [
+            "git",
+            "rev-parse",
+            "HEAD"
+          ],
+          "exit_code": 0,
+          "stdout": "136e98aa2c4bff7f84cdd0f67056771d837d562a\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "branch",
+            "--show-current"
+          ],
+          "exit_code": 0,
+          "stdout": "feature/design-world-entry-002\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--name-only",
+            "136e98aa2c4bff7f84cdd0f67056771d837d562a"
+          ],
+          "exit_code": 0,
+          "stdout": "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md\ndocs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md\ndocs/design-drafts/world-infected-001/entry-002/02-runtime-restore-contract.md\ndocs/design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md\ndocs/design-drafts/world-infected-001/entry-002/completion.md\ndocs/design-drafts/world-infected-001/entry-002/reviews/review-and-fixes.md\ndocs/design-drafts/world-infected-001/entry-002/validation/expected.json\ndocs/design-drafts/world-infected-001/entry-002/validation/fixtures.json\ndocs/design-drafts/world-infected-001/entry-002/validation/results.json\ndocs/design-drafts/world-infected-001/entry-002/validation/run-record.json\ndocs/design-drafts/world-infected-001/entry-002/validation/verify_entry_002.py\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "ls-files",
+            "--others",
+            "--exclude-standard"
+          ],
+          "exit_code": 0,
+          "stdout": "docs/design-drafts/world-infected-001/entry-002/reviews/AUD-136e98a-WORLD-ENTRY-002-review-v1.0.md\ndocs/design-drafts/world-infected-001/entry-002/reviews/WORLD-ENTRY-002-R1-task-v1.0.md\ndocs/design-drafts/world-infected-001/entry-002/reviews/r1-regression-summary.json\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--cached",
+            "--name-only"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "show",
+            "136e98aa2c4bff7f84cdd0f67056771d837d562a:docs/design-drafts/world-infected-001/entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md"
+          ],
+          "exit_code": 0,
+          "stderr": "",
+          "stdout_summary": {
+            "read_only_payload_bytes": 17689,
+            "sha256": "145810ebde164ff17eba4e5ad32e010ea0592fa90ece6947a5725a605125aa92",
+            "full_payload": "baseline Git object named by command; not duplicated here"
+          }
+        },
+        {
+          "command": [
+            "git",
+            "show",
+            "136e98aa2c4bff7f84cdd0f67056771d837d562a:docs/design-drafts/world-infected-001/entry-002/inputs/BASELINE-AND-INPUTS.json"
+          ],
+          "exit_code": 0,
+          "stderr": "",
+          "stdout_summary": {
+            "read_only_payload_bytes": 6448,
+            "sha256": "09c505488111b72376ceaa549fa428af0270a7f6f6dc9f4ef074b6ed35d88aca",
+            "full_payload": "baseline Git object named by command; not duplicated here"
+          }
+        },
+        {
+          "command": [
+            "git",
+            "show",
+            "136e98aa2c4bff7f84cdd0f67056771d837d562a:docs/design-drafts/world-infected-001/entry-002/inputs/OWNER-direction-and-scope-WORLD-ENTRY-002-v1.0.md"
+          ],
+          "exit_code": 0,
+          "stderr": "",
+          "stdout_summary": {
+            "read_only_payload_bytes": 2560,
+            "sha256": "a633dffa79bf7415334225f6d30173900220a8df3b564440e3f21fa93eb61922",
+            "full_payload": "baseline Git object named by command; not duplicated here"
+          }
+        },
+        {
+          "command": [
+            "git",
+            "show",
+            "136e98aa2c4bff7f84cdd0f67056771d837d562a:docs/design-drafts/world-infected-001/entry-002/inputs/SHA256SUMS.txt"
+          ],
+          "exit_code": 0,
+          "stderr": "",
+          "stdout_summary": {
+            "read_only_payload_bytes": 421,
+            "sha256": "19cd7430d39e824f1c1f6780ceb136a4724bb01e750de941c176fc0e077e3f93",
+            "full_payload": "baseline Git object named by command; not duplicated here"
+          }
+        },
+        {
+          "command": [
+            "git",
+            "show",
+            "136e98aa2c4bff7f84cdd0f67056771d837d562a:docs/design-drafts/world-infected-001/entry-002/inputs/WORLD-ENTRY-002-task-v1.0.md"
+          ],
+          "exit_code": 0,
+          "stderr": "",
+          "stdout_summary": {
+            "read_only_payload_bytes": 37639,
+            "sha256": "c40d4668882c8b797195974563504b19d6b4e13d60e3f393167c52cf596c885d",
+            "full_payload": "baseline Git object named by command; not duplicated here"
+          }
+        },
+        {
+          "command": [
+            "git",
+            "show",
+            "136e98aa2c4bff7f84cdd0f67056771d837d562a:docs/design-drafts/world-infected-001/entry-002/validation/run-record.json"
+          ],
+          "exit_code": 0,
+          "stderr": "",
+          "stdout_summary": {
+            "read_only_payload_bytes": 43728,
+            "sha256": "72838931fca9f87769cca92f450dcd879c1ba99b270a74523109bf2db2fddf01",
+            "full_payload": "baseline Git object named by command; not duplicated here"
+          }
+        },
+        {
+          "command": [
+            "git",
+            "show",
+            "136e98aa2c4bff7f84cdd0f67056771d837d562a:docs/design-drafts/world-infected-001/entry-002/reviews/review-and-fixes.md"
+          ],
+          "exit_code": 0,
+          "stderr": "",
+          "stdout_summary": {
+            "read_only_payload_bytes": 6015,
+            "sha256": "1bc8eeb46f8ded4d3ee455ce4ab17cb70ee17ceae67b3be3a11f3d1ea1fb108f",
+            "full_payload": "baseline Git object named by command; not duplicated here"
+          }
+        },
+        {
+          "command": [
+            "git",
+            "show",
+            "136e98aa2c4bff7f84cdd0f67056771d837d562a:docs/design-drafts/world-infected-001/entry-002/completion.md"
+          ],
+          "exit_code": 0,
+          "stderr": "",
+          "stdout_summary": {
+            "read_only_payload_bytes": 5090,
+            "sha256": "8162492192a2abebcd708df79c4a71ba078694172dd3570f862eff5f586f0869",
+            "full_payload": "baseline Git object named by command; not duplicated here"
+          }
+        },
+        {
+          "command": [
+            "git",
+            "show",
+            "136e98aa2c4bff7f84cdd0f67056771d837d562a:docs/design-drafts/world-infected-001/entry-002/validation/fixtures.json"
+          ],
+          "exit_code": 0,
+          "stderr": "",
+          "stdout_summary": {
+            "read_only_payload_bytes": 202066,
+            "sha256": "f3e685dcf1b51b68ad1e3c611ec84445fb6dc9bee7d62604ea6b42ffaaffd699",
+            "full_payload": "baseline Git object named by command; not duplicated here"
+          }
+        },
+        {
+          "command": [
+            "git",
+            "rev-parse",
+            "136e98aa2c4bff7f84cdd0f67056771d837d562a:src"
+          ],
+          "exit_code": 0,
+          "stdout": "5dc57761e4dcabddec5b781401d808a6de1317ba\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "rev-parse",
+            "HEAD:src"
+          ],
+          "exit_code": 0,
+          "stdout": "5dc57761e4dcabddec5b781401d808a6de1317ba\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "rev-parse",
+            "136e98aa2c4bff7f84cdd0f67056771d837d562a:docs/05-design-decisions.md"
+          ],
+          "exit_code": 0,
+          "stdout": "f172de6ae7eecaaa126dd519d3dc7d2b279ad3b9\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "rev-parse",
+            "HEAD:docs/05-design-decisions.md"
+          ],
+          "exit_code": 0,
+          "stdout": "f172de6ae7eecaaa126dd519d3dc7d2b279ad3b9\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "rev-parse",
+            "136e98aa2c4bff7f84cdd0f67056771d837d562a:docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md"
+          ],
+          "exit_code": 0,
+          "stdout": "62e9fca4f10aeb6e5681a46e6af52be3f7851ba2\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "rev-parse",
+            "HEAD:docs/design-drafts/world-infected-001/readiness/03-first-engineering-contract-draft.md"
+          ],
+          "exit_code": 0,
+          "stdout": "62e9fca4f10aeb6e5681a46e6af52be3f7851ba2\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--cached",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check",
+            "136e98aa2c4bff7f84cdd0f67056771d837d562a"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      ],
+      "links_checked_count": 231,
+      "distinct_links_checked": [
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md",
+          "target": "01-local-rule-amendments-draft.md#r02"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md",
+          "target": "02-runtime-restore-contract.md"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md",
+          "target": "reviews/AUD-136e98a-WORLD-ENTRY-002-review-v1.0.md"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+          "target": "02-runtime-restore-contract.md#r1-cycle"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md",
+          "target": "01-local-rule-amendments-draft.md#r03"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md",
+          "target": "02-runtime-restore-contract.md#r1-cycle"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/completion.md",
+          "target": "reviews/r1-regression-summary.json"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/completion.md",
+          "target": "reviews/review-and-fixes.md"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/completion.md",
+          "target": "validation/run-record.json"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/reviews/review-and-fixes.md",
+          "target": "../validation/run-record.json"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/reviews/review-and-fixes.md",
+          "target": "AUD-136e98a-WORLD-ENTRY-002-review-v1.0.md"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/reviews/review-and-fixes.md",
+          "target": "WORLD-ENTRY-002-R1-task-v1.0.md"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/reviews/review-and-fixes.md",
+          "target": "r1-regression-summary.json"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/validation/expected.json",
+          "target": "../../03-location-design.md"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/validation/expected.json",
+          "target": "../01-local-rule-amendments-draft.md"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/validation/expected.json",
+          "target": "../01-local-rule-amendments-draft.md#r04"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/validation/expected.json",
+          "target": "../01-local-rule-amendments-draft.md#r07"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/validation/expected.json",
+          "target": "../02-runtime-restore-contract.md"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/validation/expected.json",
+          "target": "../02-runtime-restore-contract.md#r1-cycle"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/validation/expected.json",
+          "target": "../02-runtime-restore-contract.md#r1-intent"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/validation/fixtures.json",
+          "target": "../../03-location-design.md"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/validation/fixtures.json",
+          "target": "../../05-resource-economy.md"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/validation/fixtures.json",
+          "target": "../../reviews/endgame-candidates-v1.1.md#disease-day"
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/entry-002/validation/fixtures.json",
+          "target": "../../reviews/endgame-candidates-v1.1.md#owner-confirmation-003d"
+        }
+      ]
+    },
+    "cached_precommit_checks": {
+      "exact_staged_whitelist": true,
+      "commands": [
+        {
+          "command": [
+            "git",
+            "add",
+            "--",
+            "docs/design-drafts/world-infected-001/entry-002/00-owner-review.md",
+            "docs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md",
+            "docs/design-drafts/world-infected-001/entry-002/02-runtime-restore-contract.md",
+            "docs/design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md",
+            "docs/design-drafts/world-infected-001/entry-002/validation/fixtures.json",
+            "docs/design-drafts/world-infected-001/entry-002/validation/expected.json",
+            "docs/design-drafts/world-infected-001/entry-002/validation/verify_entry_002.py",
+            "docs/design-drafts/world-infected-001/entry-002/validation/results.json",
+            "docs/design-drafts/world-infected-001/entry-002/validation/run-record.json",
+            "docs/design-drafts/world-infected-001/entry-002/reviews/review-and-fixes.md",
+            "docs/design-drafts/world-infected-001/entry-002/completion.md",
+            "docs/design-drafts/world-infected-001/entry-002/reviews/WORLD-ENTRY-002-R1-task-v1.0.md",
+            "docs/design-drafts/world-infected-001/entry-002/reviews/AUD-136e98a-WORLD-ENTRY-002-review-v1.0.md",
+            "docs/design-drafts/world-infected-001/entry-002/reviews/r1-regression-summary.json"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--cached",
+            "--name-status"
+          ],
+          "exit_code": 0,
+          "stdout": "M\tdocs/design-drafts/world-infected-001/entry-002/00-owner-review.md\nM\tdocs/design-drafts/world-infected-001/entry-002/01-local-rule-amendments-draft.md\nM\tdocs/design-drafts/world-infected-001/entry-002/02-runtime-restore-contract.md\nM\tdocs/design-drafts/world-infected-001/entry-002/03-next-engineering-goals.md\nM\tdocs/design-drafts/world-infected-001/entry-002/completion.md\nA\tdocs/design-drafts/world-infected-001/entry-002/reviews/AUD-136e98a-WORLD-ENTRY-002-review-v1.0.md\nA\tdocs/design-drafts/world-infected-001/entry-002/reviews/WORLD-ENTRY-002-R1-task-v1.0.md\nA\tdocs/design-drafts/world-infected-001/entry-002/reviews/r1-regression-summary.json\nM\tdocs/design-drafts/world-infected-001/entry-002/reviews/review-and-fixes.md\nM\tdocs/design-drafts/world-infected-001/entry-002/validation/expected.json\nM\tdocs/design-drafts/world-infected-001/entry-002/validation/fixtures.json\nM\tdocs/design-drafts/world-infected-001/entry-002/validation/results.json\nM\tdocs/design-drafts/world-infected-001/entry-002/validation/run-record.json\nM\tdocs/design-drafts/world-infected-001/entry-002/validation/verify_entry_002.py\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--cached",
+            "--stat"
+          ],
+          "exit_code": 0,
+          "stdout": " .../entry-002/00-owner-review.md                   |     6 +-\n .../entry-002/01-local-rule-amendments-draft.md    |    12 +-\n .../entry-002/02-runtime-restore-contract.md       |    37 +-\n .../entry-002/03-next-engineering-goals.md         |    12 +-\n .../world-infected-001/entry-002/completion.md     |    18 +\n .../AUD-136e98a-WORLD-ENTRY-002-review-v1.0.md     |   128 +\n .../reviews/WORLD-ENTRY-002-R1-task-v1.0.md        |   217 +\n .../entry-002/reviews/r1-regression-summary.json   |  1659 +++\n .../entry-002/reviews/review-and-fixes.md          |    21 +\n .../entry-002/validation/expected.json             |  1563 ++-\n .../entry-002/validation/fixtures.json             | 12682 ++++++++++++++++---\n .../entry-002/validation/results.json              |  2748 +++-\n .../entry-002/validation/run-record.json           |  1652 +++\n .../entry-002/validation/verify_entry_002.py       |   260 +-\n 14 files changed, 19118 insertions(+), 1897 deletions(-)\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--cached",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check",
+            "136e98aa2c4bff7f84cdd0f67056771d837d562a"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      ]
+    }
   }
 }

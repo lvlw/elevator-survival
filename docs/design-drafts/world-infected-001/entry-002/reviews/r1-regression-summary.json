@@ -1,0 +1,1659 @@
+{
+  "task": "WORLD-ENTRY-002-R1",
+  "base_sha": "136e98aa2c4bff7f84cdd0f67056771d837d562a",
+  "status": "COMPLETE finite revision; not production/mainline approval",
+  "baseline_reproduction_counts": {
+    "cases": 24,
+    "matched": 16,
+    "mismatched": 8
+  },
+  "baseline_reproduction_exit": 1,
+  "findings": [
+    {
+      "id": "F01",
+      "status": "finite regression matched; waiting exact-SHA mainline review",
+      "fix_locations": [
+        "validation/verify_entry_002.py:temporal/validate_world/validate_save",
+        "01-local-rule-amendments-draft.md#r03",
+        "02-runtime-restore-contract.md#r1-cycle"
+      ],
+      "original_counterexamples": [
+        {
+          "baseline_probe": "X01",
+          "baseline": {
+            "id": "X01",
+            "group": "F01",
+            "basis": "R03 / W2 bridge must follow actual terminal kind",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "rejected": false,
+                "result": "candidate"
+              }
+            },
+            "matches": false
+          },
+          "migrated_cases": [
+            {
+              "id": "R1-X01-success-fake-ready",
+              "actual": {
+                "result": "normal-due",
+                "unchanged": true
+              },
+              "matches": true
+            },
+            {
+              "id": "R1-X01-failure-fake-ready",
+              "actual": {
+                "result": "normal-due",
+                "unchanged": true
+              },
+              "matches": true
+            }
+          ]
+        },
+        {
+          "baseline_probe": "X02",
+          "baseline": {
+            "id": "X02",
+            "group": "F01",
+            "basis": "R03 / W2 same active residence advances D and T together",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "rejected": false,
+                "result": "candidate"
+              }
+            },
+            "matches": false
+          },
+          "migrated_cases": [
+            {
+              "id": "R1-X02-D1-T7",
+              "actual": {
+                "result": "cycle-day",
+                "unchanged": true
+              },
+              "matches": true
+            }
+          ]
+        }
+      ],
+      "coverage_case_ids": [
+        "R1-X01-success-fake-ready",
+        "R1-X01-failure-fake-ready",
+        "R1-X02-D1-T7",
+        "R1-deadline-ready-roundtrip",
+        "R1-ready-missing",
+        "R1-ready-wrong-run",
+        "R1-ready-wrong-commission",
+        "R1-ready-wrong-cycle",
+        "R1-ready-old-current-cycle",
+        "R1-ready-first-from-deadline",
+        "R1-ready-missing-field",
+        "R1-ready-extra-field",
+        "R1-ready-bool-cycle",
+        "R1-deadline-wrong-end-day",
+        "R1-first-ready-D2",
+        "R1-death-on-next-launch-keeps-success",
+        "R1-later-normal-return-due",
+        "R1-old-deadline-cannot-exempt-new-success",
+        "R1-timeline-overlap",
+        "R1-timeline-gap",
+        "R1-timeline-duplicate-start",
+        "R1-start-cycle-bool",
+        "R1-no-content-keeps-ready",
+        "R1-ready-consumed-then-normal-due",
+        "R1-restore-revision-bool",
+        "R1-restore-cycle-bool",
+        "R1-history-row-null",
+        "R1-history-row-empty",
+        "R1-history-row-array",
+        "R1-history-row-string",
+        "R1-world-current-must-be-latest"
+      ]
+    },
+    {
+      "id": "F02",
+      "status": "finite regression matched; waiting exact-SHA mainline review",
+      "fix_locations": [
+        "validation/verify_entry_002.py:close_world/step/validate_world",
+        "01-local-rule-amendments-draft.md#r07",
+        "02-runtime-restore-contract.md#ownership"
+      ],
+      "original_counterexamples": [
+        {
+          "baseline_probe": "X03",
+          "baseline": {
+            "id": "X03",
+            "group": "F02",
+            "basis": "R05/R06 unexported world ground is not a hub asset",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "rejected": false,
+                "phase": "hub",
+                "old_node": "C0",
+                "item_container": "bag",
+                "qty": 2,
+                "closing_events": [
+                  "infection",
+                  "hunger",
+                  "new-cycle",
+                  "recall"
+                ]
+              }
+            },
+            "matches": false
+          },
+          "migrated_cases": [
+            {
+              "id": "R1-X03-deadline-C0-ground",
+              "actual": {
+                "values": {
+                  "node": null,
+                  "last_node": "C0",
+                  "cycle": 8,
+                  "items.ration-1.container": "C0",
+                  "items.ration-1.qty": 2,
+                  "revision": 1,
+                  "balance": 10
+                },
+                "events": [
+                  "infection",
+                  "hunger",
+                  "new-cycle",
+                  "recall"
+                ],
+                "rejected": [
+                  "closed-world"
+                ]
+              },
+              "matches": true
+            }
+          ]
+        },
+        {
+          "baseline_probe": "X04",
+          "baseline": {
+            "id": "X04",
+            "group": "F02",
+            "basis": "R05 normal return also closes world access",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "rejected": false,
+                "phase": "hub",
+                "old_node": "H0",
+                "item_container": "bag",
+                "qty": 2,
+                "closing_events": [
+                  "close"
+                ]
+              }
+            },
+            "matches": false
+          },
+          "migrated_cases": [
+            {
+              "id": "R1-X04-closed-H0-False",
+              "actual": {
+                "values": {
+                  "node": null,
+                  "last_node": "H0",
+                  "phase": "hub",
+                  "items.ration-1.container": "H0",
+                  "items.ration-1.ground_execution": "run-1",
+                  "items.ration-1.qty": 2,
+                  "items.pipe-1.durability": 17,
+                  "items.pipe-1.electricity": 7,
+                  "revision": 1,
+                  "balance": 10
+                },
+                "events": [
+                  "close"
+                ],
+                "rejected": [
+                  "closed-world"
+                ]
+              },
+              "matches": true
+            },
+            {
+              "id": "R1-X04-closed-H0-True",
+              "actual": {
+                "values": {
+                  "node": null,
+                  "last_node": "H0",
+                  "phase": "hub",
+                  "items.ration-1.container": "H0",
+                  "items.ration-1.ground_execution": "run-1",
+                  "items.ration-1.qty": 2,
+                  "items.pipe-1.durability": 17,
+                  "items.pipe-1.electricity": 7,
+                  "revision": 1,
+                  "balance": 30
+                },
+                "events": [
+                  "close"
+                ],
+                "rejected": [
+                  "closed-world"
+                ]
+              },
+              "matches": true
+            }
+          ]
+        }
+      ],
+      "coverage_case_ids": [
+        "R1-X04-closed-H0-False",
+        "R1-X04-closed-H0-True",
+        "R1-X03-deadline-C0-ground",
+        "R1-later-task-cannot-pick-old-ground",
+        "R1-carried-assets-continue",
+        "R1-closed-world-action-combination",
+        "R1-active-cross-night-E0-pickup"
+      ]
+    },
+    {
+      "id": "F03",
+      "status": "finite regression matched; waiting exact-SHA mainline review",
+      "fix_locations": [
+        "validation/verify_entry_002.py:intent/step/owner/terminal",
+        "02-runtime-restore-contract.md#r1-intent",
+        "03-next-engineering-goals.md#g1"
+      ],
+      "original_counterexamples": [
+        {
+          "baseline_probe": "X05",
+          "baseline": {
+            "id": "X05",
+            "group": "F03",
+            "basis": "R04/G1 nonnegative exact safe integer intent, W2 precommit validation",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "energy": 50,
+                "revision": 4,
+                "writes": 0,
+                "notices": 0,
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "energy": 55,
+                "revision": 5,
+                "writes": 1,
+                "notices": 1,
+                "rejected": false
+              }
+            },
+            "matches": false
+          },
+          "migrated_cases": [
+            {
+              "id": "R1-owner-X05-negative",
+              "actual": {
+                "phase": "ready",
+                "revision": 0,
+                "energy": 50,
+                "reads": 0,
+                "writes": 0,
+                "notifications": 0,
+                "errors": [
+                  "intent-number"
+                ],
+                "current_unchanged": true
+              },
+              "matches": true
+            }
+          ]
+        },
+        {
+          "baseline_probe": "X06",
+          "baseline": {
+            "id": "X06",
+            "group": "F03",
+            "basis": "R04/G1 bool is not an integer cost",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "energy": 50,
+                "revision": 4,
+                "writes": 0,
+                "notices": 0,
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "energy": 49,
+                "revision": 5,
+                "writes": 1,
+                "notices": 1,
+                "rejected": false
+              }
+            },
+            "matches": false
+          },
+          "migrated_cases": [
+            {
+              "id": "R1-owner-X06-bool",
+              "actual": {
+                "phase": "ready",
+                "revision": 0,
+                "energy": 50,
+                "reads": 0,
+                "writes": 0,
+                "notifications": 0,
+                "errors": [
+                  "intent-number"
+                ],
+                "current_unchanged": true
+              },
+              "matches": true
+            }
+          ]
+        },
+        {
+          "baseline_probe": "X07",
+          "baseline": {
+            "id": "X07",
+            "group": "F03",
+            "basis": "R04/G1 final computed cost outside MAX_SAFE_INTEGER",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "rejected": false,
+                "energy": 0,
+                "node": "C0",
+                "final_cost": 72057594037927928
+              }
+            },
+            "matches": false
+          },
+          "migrated_cases": [
+            {
+              "id": "R1-world-X07-product-overflow",
+              "actual": {
+                "values": {
+                  "node": "H0",
+                  "energy": 100,
+                  "revision": 0,
+                  "hp": 12
+                },
+                "events": [],
+                "rejected": [
+                  "cost-overflow"
+                ]
+              },
+              "matches": true
+            }
+          ]
+        },
+        {
+          "baseline_probe": "X08",
+          "baseline": {
+            "id": "X08",
+            "group": "F03",
+            "basis": "R03/R04/G1 strictly typed cycle/revision requests",
+            "expected": {
+              "accepted": true,
+              "output": {
+                "rejected": true
+              }
+            },
+            "actual": {
+              "accepted": true,
+              "output": {
+                "rejected": false
+              }
+            },
+            "matches": false
+          },
+          "migrated_cases": [
+            {
+              "id": "R1-world-X08-bool-revision-cycle",
+              "actual": {
+                "values": {
+                  "node": "H0",
+                  "energy": 100,
+                  "revision": 1,
+                  "hp": 12
+                },
+                "events": [],
+                "rejected": [
+                  "intent-number"
+                ]
+              },
+              "matches": true
+            }
+          ]
+        }
+      ],
+      "coverage_case_ids": [
+        "R1-owner-X05-negative",
+        "R1-owner-X06-bool",
+        "R1-owner-float",
+        "R1-owner-float-integer",
+        "R1-owner-string",
+        "R1-owner-null",
+        "R1-owner-overflow",
+        "R1-owner-nan",
+        "R1-owner-infinity",
+        "R1-owner-negative-infinity",
+        "R1-owner-missing-spend",
+        "R1-owner-missing-revision",
+        "R1-owner-missing-cost_kind",
+        "R1-owner-extra-field",
+        "R1-owner-revision-bool",
+        "R1-owner-free-negative",
+        "R1-owner-paid-zero",
+        "R1-owner-free-positive",
+        "R1-owner-free-zero",
+        "R1-owner-truthy-business_supported",
+        "R1-owner-truthy-complete",
+        "R1-owner-truthy-write_error",
+        "R1-owner-truthy-subscriber_write",
+        "R1-owner-E1-paid8",
+        "R1-owner-output-overflow",
+        "R1-world-X07-product-overflow",
+        "R1-world-X08-bool-revision-cycle",
+        "R1-world-cycle-bool",
+        "R1-world-revision-float",
+        "R1-world-cycle-negative",
+        "R1-world-multiplier-bool",
+        "R1-world-multiplier-float",
+        "R1-world-multiplier-zero",
+        "R1-world-multiplier-extra",
+        "R1-world-multiplier-string",
+        "R1-world-unknown-price",
+        "R1-world-extra",
+        "R1-world-checks-truthy",
+        "R1-world-checks-unknown",
+        "R1-world-trigger-truthy",
+        "R1-world-missing-to",
+        "R1-world-missing-price",
+        "R1-world-missing-op",
+        "R1-world-large-product-small-quotient",
+        "R1-world-legal-paid-ceiling",
+        "R1-world-return-success-type",
+        "R1-world-reveal-qty-bool",
+        "R1-world-rest-kind-type",
+        "R1-terminal-bool-revision",
+        "R1-terminal-bool-delta",
+        "R1-terminal-extra",
+        "R1-terminal-retained-qty-bool",
+        "R1-terminal-retained-qty-float",
+        "R1-terminal-retained-durability-float",
+        "R1-terminal-retained-qty-negative",
+        "R1-owner-E0-paid",
+        "R1-internal-cycle-increment-overflow",
+        "R1-world-infection-result-overflow"
+      ]
+    }
+  ],
+  "original_117_migrations": [
+    {
+      "id": "crossmap-return",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "overrun-edge",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "queue-stops",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "illegal-prerequisite",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "illegal-resource",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "illegal-capacity",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "illegal-location",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "unknown-edge",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "multiply-once",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "combat-at-zero",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "pending-at-zero",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "zero-view",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "zero-organize",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "zero-pickup",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "zero-food",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "zero-bandage",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "zero-suppressant",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "zero-extract",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "zero-search",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "zero-repair",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "zero-recharge",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "zero-deliver",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "zero-install",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "rest-A-0",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "rest-A-95",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "rest-C-0",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "rest-C-95",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "rest-reject-combat",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "rest-reject-pending",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "rest-reject-node",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "rest-reject-day7",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": true,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained.",
+        "Impossible D1/T7 migrated to first residence D7/T7; expected cycle shifted +6, deadline ready now references run-1/end7."
+      ]
+    },
+    {
+      "id": "bleed-death",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "infection-59",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "infection-89",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "infection-110",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "infection-0",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "infection-death",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "hunger-death",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "hunger-live",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "suppression-exposure-reset",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "med-quota-no-map-reset",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "duplicate-revision",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "old-cycle-new-revision",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "normal-return-False",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": true,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained.",
+        "Impossible D1/T7 migrated to first residence D7/T7; expected cycle shifted +6, deadline ready now references run-1/end7."
+      ]
+    },
+    {
+      "id": "normal-return-True",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": true,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained.",
+        "Impossible D1/T7 migrated to first residence D7/T7; expected cycle shifted +6, deadline ready now references run-1/end7."
+      ]
+    },
+    {
+      "id": "deadline-live",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": true,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained.",
+        "Impossible D1/T7 migrated to first residence D7/T7; expected cycle shifted +6, deadline ready now references run-1/end7."
+      ]
+    },
+    {
+      "id": "deadline-dead",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": true,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained.",
+        "Impossible D1/T7 migrated to first residence D7/T7; expected cycle shifted +6, deadline ready now references run-1/end7."
+      ]
+    },
+    {
+      "id": "deadline-combat",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": true,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained.",
+        "Impossible D1/T7 migrated to first residence D7/T7; expected cycle shifted +6, deadline ready now references run-1/end7."
+      ]
+    },
+    {
+      "id": "deadline-next-two-cycles",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": true,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained.",
+        "Impossible D1/T7 migrated to first residence D7/T7; expected cycle shifted +6, deadline ready now references run-1/end7."
+      ]
+    },
+    {
+      "id": "no-content",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "same-commission-no-retry",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "legal-launch-death",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "illegal-launch-before-danger",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "first-character-no-prepaid-night",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained.",
+        "Fresh Hub has no prior world site; fixture initial loose supply is Hub stock, not H0 ground."
+      ]
+    },
+    {
+      "id": "persistent-field-no-copy",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "stable-random-anchor",
+      "status": "retained",
+      "input_changed": false,
+      "expected_changed": false,
+      "reason": [
+        "Unchanged."
+      ]
+    },
+    {
+      "id": "same-public-different-hidden",
+      "status": "retained",
+      "input_changed": false,
+      "expected_changed": false,
+      "reason": [
+        "Unchanged."
+      ]
+    },
+    {
+      "id": "absent-explicit-create",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "read-error-no-create",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "corrupt-no-create",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "roundtrip-fresh",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "roundtrip-world",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "roundtrip-hub",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "roundtrip-combat-zero",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "roundtrip-dead",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "root-missing",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "root-extra",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "nested-missing",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "nested-extra",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "type",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "format",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "boolean-number",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "phase-pending",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "cross-character",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "cross-world",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "cross-template",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "cross-commission",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "cross-rules",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "cross-contract",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "cross-scene-execution",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "cross-run-version",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "two-active",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "reused-run",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "duplicate-item",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "closed-rebootstrap",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "first-save-failure",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "later-save-failure",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": true,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained.",
+        "Separate persistence-fault classification; no behavior/expectation change."
+      ]
+    },
+    {
+      "id": "duplicate-bootstrap",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "duplicate-submit-subscribe",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "old-format",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "old-rules",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "no-business",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "half-terminal",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "real-ctb-medical",
+      "status": "retained",
+      "input_changed": false,
+      "expected_changed": false,
+      "reason": [
+        "Unchanged."
+      ]
+    },
+    {
+      "id": "complete-terminal-ledger",
+      "status": "retained",
+      "input_changed": false,
+      "expected_changed": false,
+      "reason": [
+        "Unchanged."
+      ]
+    },
+    {
+      "id": "browser-storage-faults",
+      "status": "retained",
+      "input_changed": false,
+      "expected_changed": false,
+      "reason": [
+        "Unchanged."
+      ]
+    },
+    {
+      "id": "body-over-hp",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "body-over-energy",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "bridge-bool",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "active-has-ready",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "living-without-history",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "empty-item-id",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "control-character-seed",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "combat-explicitly-unsupported",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "missing-nested-run-field",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "missing-declared-history",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "source-reveal-once",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "terminal-complete",
+      "status": "retained",
+      "input_changed": false,
+      "expected_changed": false,
+      "reason": [
+        "Unchanged."
+      ]
+    },
+    {
+      "id": "terminal-missing-items",
+      "status": "retained",
+      "input_changed": false,
+      "expected_changed": false,
+      "reason": [
+        "Unchanged."
+      ]
+    },
+    {
+      "id": "terminal-wrong-economy",
+      "status": "retained",
+      "input_changed": false,
+      "expected_changed": false,
+      "reason": [
+        "Unchanged."
+      ]
+    },
+    {
+      "id": "terminal-old-revision",
+      "status": "retained",
+      "input_changed": false,
+      "expected_changed": false,
+      "reason": [
+        "Unchanged."
+      ]
+    },
+    {
+      "id": "terminal-repeated-close",
+      "status": "retained",
+      "input_changed": false,
+      "expected_changed": false,
+      "reason": [
+        "Unchanged."
+      ]
+    },
+    {
+      "id": "death-history-living",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "overflow-cycle",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": true,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained.",
+        "Original first-residence D=MAX/T1 is jointly impossible; now rejects cycle-day before arithmetic. R1 owner-output-overflow separately checks precommit numeric overflow.",
+        "R1-internal-cycle-increment-overflow separately covers settle arithmetic; expressly not a reachable full residence/save."
+      ]
+    },
+    {
+      "id": "overflow-revision",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "suppressant-no-target",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    },
+    {
+      "id": "A-rest-at-C-node",
+      "status": "retained",
+      "input_changed": true,
+      "expected_changed": false,
+      "reason": [
+        "Add execution timing / ready provenance / ground container references or explicit internal command cost kind; old assertion target retained."
+      ]
+    }
+  ],
+  "final_unique_cases": 213,
+  "counts_once_only": {
+    "positive": 45,
+    "expected-rejection": 163,
+    "persistence-fault": 1,
+    "unsupported": 4,
+    "mismatch": 0
+  },
+  "frozen_results_sha256": "70e77acc76b5821801f4f97ebbce94a20cc75eeedf2c024b4c3e21a0ac6eb74d",
+  "negative_controls": [
+    {
+      "name": "cycle-dedup",
+      "exit_code": 1,
+      "mismatch_ids": [
+        "old-cycle-new-revision"
+      ],
+      "model_errors": []
+    },
+    {
+      "name": "cross-binding",
+      "exit_code": 1,
+      "mismatch_ids": [
+        "cross-character"
+      ],
+      "model_errors": []
+    },
+    {
+      "name": "ready-source",
+      "exit_code": 1,
+      "mismatch_ids": [
+        "R1-X01-success-fake-ready",
+        "R1-X01-failure-fake-ready",
+        "R1-ready-missing",
+        "R1-ready-wrong-run",
+        "R1-ready-wrong-commission",
+        "R1-ready-wrong-cycle",
+        "R1-ready-old-current-cycle",
+        "R1-ready-first-from-deadline",
+        "R1-old-deadline-cannot-exempt-new-success"
+      ],
+      "model_errors": []
+    },
+    {
+      "name": "closed-ground",
+      "exit_code": 1,
+      "mismatch_ids": [
+        "R1-X04-closed-H0-False",
+        "R1-X04-closed-H0-True",
+        "R1-X03-deadline-C0-ground",
+        "R1-later-task-cannot-pick-old-ground",
+        "R1-closed-world-action-combination"
+      ],
+      "model_errors": []
+    }
+  ],
+  "evidence_limits": [
+    "Original117, reviewer24, auxiliary probes and repeated processes are not added to 213.",
+    "save model checks timing/entity references, not full site serialization or trusted offline history.",
+    "world checks and owner spend are controlled finite fixtures, not G3/public commands.",
+    "Internal cycle arithmetic probe does not claim reachable full history.",
+    "Production tests/build/browser/new storage IO/Owner play NOT RUN; production code/tests added 0.",
+    "O1/O2/O3 remain pending; G1-G3 not executed; approved first contract and original core PASS unchanged."
+  ]
+}

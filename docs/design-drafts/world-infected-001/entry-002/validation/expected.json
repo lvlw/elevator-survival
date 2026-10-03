@@ -500,7 +500,7 @@
       "evidence_layer": "finite model; no production execution",
       "value": {
         "values": {
-          "cycle": 1,
+          "cycle": 7,
           "task_day": 7,
           "revision": 0
         },
@@ -747,7 +747,7 @@
           "task_day": 7,
           "hp": 3,
           "infection": 130,
-          "cycle": 1,
+          "cycle": 7,
           "meds": 1,
           "phase": "hub",
           "bridge": null,
@@ -769,7 +769,7 @@
           "task_day": 7,
           "hp": 3,
           "infection": 130,
-          "cycle": 1,
+          "cycle": 7,
           "meds": 1,
           "phase": "hub",
           "bridge": null,
@@ -789,12 +789,17 @@
       "value": {
         "values": {
           "hp": 9,
-          "cycle": 2,
+          "cycle": 8,
           "task_day": 7,
           "phase": "hub",
           "status": "failure",
           "balance": 10,
-          "bridge": 2,
+          "bridge": {
+            "kind": "deadline",
+            "commission": "current",
+            "execution": "run-1",
+            "settled_cycle": 7
+          },
           "energy": 100
         },
         "events": [
@@ -813,7 +818,7 @@
       "value": {
         "values": {
           "hp": 0,
-          "cycle": 1,
+          "cycle": 7,
           "task_day": 7,
           "phase": "dead",
           "balance": 30,
@@ -832,7 +837,7 @@
       "evidence_layer": "finite model; no production execution",
       "value": {
         "values": {
-          "cycle": 1,
+          "cycle": 7,
           "hp": 12,
           "revision": 0
         },
@@ -848,7 +853,7 @@
       "evidence_layer": "finite model; no production execution",
       "value": {
         "values": {
-          "cycle": 3,
+          "cycle": 9,
           "task_day": 2,
           "meds": 0,
           "suppression": 0,
@@ -1306,7 +1311,7 @@
       }
     },
     "later-save-failure": {
-      "classification": "expected-rejection",
+      "classification": "persistence-fault",
       "source": "../02-runtime-restore-contract.md",
       "evidence_layer": "finite model; no production execution",
       "value": {
@@ -1691,7 +1696,7 @@
         },
         "events": [],
         "rejected": [
-          "overflow"
+          "cycle-day"
         ]
       }
     },
@@ -1741,6 +1746,1544 @@
         "events": [],
         "rejected": [
           "rest"
+        ]
+      }
+    },
+    "R1-X01-success-fake-ready": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "normal-due",
+        "unchanged": true
+      }
+    },
+    "R1-X01-failure-fake-ready": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "normal-due",
+        "unchanged": true
+      }
+    },
+    "R1-X02-D1-T7": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "cycle-day",
+        "unchanged": true
+      }
+    },
+    "R1-deadline-ready-roundtrip": {
+      "classification": "positive",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      }
+    },
+    "R1-ready-missing": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "ready-source",
+        "unchanged": true
+      }
+    },
+    "R1-ready-wrong-run": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "ready-source",
+        "unchanged": true
+      }
+    },
+    "R1-ready-wrong-commission": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "ready-source",
+        "unchanged": true
+      }
+    },
+    "R1-ready-wrong-cycle": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "ready-source",
+        "unchanged": true
+      }
+    },
+    "R1-ready-old-current-cycle": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "ready-source",
+        "unchanged": true
+      }
+    },
+    "R1-ready-first-from-deadline": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "ready-source",
+        "unchanged": true
+      }
+    },
+    "R1-ready-missing-field": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "shape",
+        "unchanged": true
+      }
+    },
+    "R1-ready-extra-field": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "shape",
+        "unchanged": true
+      }
+    },
+    "R1-ready-bool-cycle": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "bridge",
+        "unchanged": true
+      }
+    },
+    "R1-deadline-wrong-end-day": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "timeline-end",
+        "unchanged": true
+      }
+    },
+    "R1-first-ready-D2": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "fresh",
+        "unchanged": true
+      }
+    },
+    "R1-death-on-next-launch-keeps-success": {
+      "classification": "positive",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      }
+    },
+    "R1-later-normal-return-due": {
+      "classification": "positive",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      }
+    },
+    "R1-old-deadline-cannot-exempt-new-success": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "normal-due",
+        "unchanged": true
+      }
+    },
+    "R1-timeline-overlap": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "timeline-order",
+        "unchanged": true
+      }
+    },
+    "R1-timeline-gap": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "timeline-order",
+        "unchanged": true
+      }
+    },
+    "R1-timeline-duplicate-start": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "timeline-order",
+        "unchanged": true
+      }
+    },
+    "R1-start-cycle-bool": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "start-cycle",
+        "unchanged": true
+      }
+    },
+    "R1-no-content-keeps-ready": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "cycle": 8,
+          "bridge": {
+            "kind": "deadline",
+            "commission": "current",
+            "execution": "run-1",
+            "settled_cycle": 7
+          },
+          "revision": 1,
+          "phase": "hub",
+          "hp": 12,
+          "balance": 10,
+          "meds": 0
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle",
+          "recall"
+        ],
+        "rejected": [
+          "no-new-content"
+        ]
+      }
+    },
+    "R1-ready-consumed-then-normal-due": {
+      "classification": "positive",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "cycle": 9,
+          "bridge": null,
+          "task_day": 1,
+          "execution": "run-3",
+          "satiety": 2,
+          "revision": 4,
+          "balance": 10
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle",
+          "recall",
+          "consume-ready",
+          "close",
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      }
+    },
+    "R1-X04-closed-H0-False": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md#r07",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": null,
+          "last_node": "H0",
+          "phase": "hub",
+          "items.ration-1.container": "H0",
+          "items.ration-1.ground_execution": "run-1",
+          "items.ration-1.qty": 2,
+          "items.pipe-1.durability": 17,
+          "items.pipe-1.electricity": 7,
+          "revision": 1,
+          "balance": 10
+        },
+        "events": [
+          "close"
+        ],
+        "rejected": [
+          "closed-world"
+        ]
+      }
+    },
+    "R1-X04-closed-H0-True": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md#r07",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": null,
+          "last_node": "H0",
+          "phase": "hub",
+          "items.ration-1.container": "H0",
+          "items.ration-1.ground_execution": "run-1",
+          "items.ration-1.qty": 2,
+          "items.pipe-1.durability": 17,
+          "items.pipe-1.electricity": 7,
+          "revision": 1,
+          "balance": 30
+        },
+        "events": [
+          "close"
+        ],
+        "rejected": [
+          "closed-world"
+        ]
+      }
+    },
+    "R1-X03-deadline-C0-ground": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md#r07",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": null,
+          "last_node": "C0",
+          "cycle": 8,
+          "items.ration-1.container": "C0",
+          "items.ration-1.qty": 2,
+          "revision": 1,
+          "balance": 10
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle",
+          "recall"
+        ],
+        "rejected": [
+          "closed-world"
+        ]
+      }
+    },
+    "R1-later-task-cannot-pick-old-ground": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md#r07",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "execution": "run-2",
+          "items.ration-1.container": "H0",
+          "items.ration-1.ground_execution": "run-1",
+          "revision": 2,
+          "sites.run-1.sources.supply": true,
+          "sites.run-2.sources": {}
+        },
+        "events": [
+          "close",
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": [
+          "ground-binding"
+        ]
+      }
+    },
+    "R1-carried-assets-continue": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md#r07",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "items.ration-1.container": "bag",
+          "items.ration-1.ground_execution": null,
+          "items.ration-1.qty": 2,
+          "items.pipe-1.durability": 17,
+          "items.pipe-1.electricity": 7,
+          "balance": 10,
+          "revision": 3
+        },
+        "events": [
+          "close",
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      }
+    },
+    "R1-closed-world-action-combination": {
+      "classification": "expected-rejection",
+      "source": "../01-local-rule-amendments-draft.md#r07",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "energy": 100,
+          "revision": 1,
+          "node": null,
+          "sites.run-1.sources.supply": true,
+          "items.ration-1.container": "H0"
+        },
+        "events": [
+          "close"
+        ],
+        "rejected": [
+          "unstable",
+          "unstable",
+          "closed-world"
+        ]
+      }
+    },
+    "R1-active-cross-night-E0-pickup": {
+      "classification": "positive",
+      "source": "../01-local-rule-amendments-draft.md#r07",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "cycle": 2,
+          "task_day": 2,
+          "energy": 0,
+          "items.ration-1.container": "bag",
+          "items.ration-1.qty": 2,
+          "revision": 4
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      }
+    },
+    "R1-owner-X05-negative": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-X06-bool": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-float": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-float-integer": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-string": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-null": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-overflow": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-nan": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-infinity": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-negative-infinity": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-missing-spend": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-shape"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-missing-revision": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-shape"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-missing-cost_kind": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-shape"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-extra-field": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-shape"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-revision-bool": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-free-negative": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-paid-zero": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-cost"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-free-positive": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-cost"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-free-zero": {
+      "classification": "positive",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 1,
+        "energy": 50,
+        "reads": 0,
+        "writes": 1,
+        "notifications": 1,
+        "errors": []
+      }
+    },
+    "R1-owner-truthy-business_supported": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-bool"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-truthy-complete": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-bool"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-truthy-write_error": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-bool"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-truthy-subscriber_write": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-bool"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-owner-E1-paid8": {
+      "classification": "positive",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 1,
+        "energy": 0,
+        "reads": 0,
+        "writes": 1,
+        "notifications": 1,
+        "errors": []
+      }
+    },
+    "R1-owner-output-overflow": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 9007199254740991,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "revision"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-world-X07-product-overflow": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "cost-overflow"
+        ]
+      }
+    },
+    "R1-world-X08-bool-revision-cycle": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 1,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-number"
+        ]
+      }
+    },
+    "R1-world-cycle-bool": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-number"
+        ]
+      }
+    },
+    "R1-world-revision-float": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-number"
+        ]
+      }
+    },
+    "R1-world-cycle-negative": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-number"
+        ]
+      }
+    },
+    "R1-world-multiplier-bool": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "multiplier"
+        ]
+      }
+    },
+    "R1-world-multiplier-float": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "multiplier"
+        ]
+      }
+    },
+    "R1-world-multiplier-zero": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "multiplier"
+        ]
+      }
+    },
+    "R1-world-multiplier-extra": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "multiplier"
+        ]
+      }
+    },
+    "R1-world-multiplier-string": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "multiplier"
+        ]
+      }
+    },
+    "R1-world-unknown-price": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "cost"
+        ]
+      }
+    },
+    "R1-world-extra": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-shape"
+        ]
+      }
+    },
+    "R1-world-checks-truthy": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-checks"
+        ]
+      }
+    },
+    "R1-world-checks-unknown": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-checks"
+        ]
+      }
+    },
+    "R1-world-trigger-truthy": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-bool"
+        ]
+      }
+    },
+    "R1-world-missing-to": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "intent-shape"
+        ]
+      }
+    },
+    "R1-world-missing-price": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "intent-shape"
+        ]
+      }
+    },
+    "R1-world-missing-op": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "intent-shape"
+        ]
+      }
+    },
+    "R1-world-large-product-small-quotient": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "cost-overflow"
+        ]
+      }
+    },
+    "R1-world-legal-paid-ceiling": {
+      "classification": "positive",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "C0",
+          "energy": 91,
+          "revision": 1
+        },
+        "events": [],
+        "rejected": []
+      }
+    },
+    "R1-world-return-success-type": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "phase": "world",
+          "revision": 0,
+          "balance": 30
+        },
+        "events": [],
+        "rejected": [
+          "intent-bool"
+        ]
+      }
+    },
+    "R1-world-reveal-qty-bool": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "revision": 0,
+          "energy": 100
+        },
+        "events": [],
+        "rejected": [
+          "intent-number"
+        ]
+      }
+    },
+    "R1-world-rest-kind-type": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "revision": 0,
+          "cycle": 1
+        },
+        "events": [],
+        "rejected": [
+          "intent-id"
+        ]
+      }
+    },
+    "R1-restore-revision-bool": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "revision",
+        "unchanged": true
+      }
+    },
+    "R1-restore-cycle-bool": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "cycle",
+        "unchanged": true
+      }
+    },
+    "R1-terminal-bool-revision": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "intent-number",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      }
+    },
+    "R1-terminal-bool-delta": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "intent-number",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      }
+    },
+    "R1-terminal-extra": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "shape",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      }
+    },
+    "R1-history-row-null": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "shape"
+        ]
+      }
+    },
+    "R1-history-row-empty": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "shape"
+        ]
+      }
+    },
+    "R1-history-row-array": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "shape"
+        ]
+      }
+    },
+    "R1-history-row-string": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "shape"
+        ]
+      }
+    },
+    "R1-terminal-retained-qty-bool": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "item-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      }
+    },
+    "R1-terminal-retained-qty-float": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "item-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      }
+    },
+    "R1-terminal-retained-durability-float": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "item-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      }
+    },
+    "R1-terminal-retained-qty-negative": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "result": "item-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      }
+    },
+    "R1-owner-E0-paid": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "R1 finite model; independently specified expected behavior before execution",
+      "value": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 0,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "energy"
+        ],
+        "current_unchanged": true
+      }
+    },
+    "R1-internal-cycle-increment-overflow": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "Internal arithmetic probe only, NOT a reachable residence or save history",
+      "value": {
+        "result": "overflow",
+        "input_unchanged": true
+      }
+    },
+    "R1-world-infection-result-overflow": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-intent",
+      "evidence_layer": "Finite model, independently expected numeric result rejection",
+      "value": {
+        "values": {
+          "infection": 9007199254740991,
+          "cycle": 1,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "overflow"
+        ]
+      }
+    },
+    "R1-world-current-must-be-latest": {
+      "classification": "expected-rejection",
+      "source": "../02-runtime-restore-contract.md#r1-cycle",
+      "evidence_layer": "Finite model; independently specified partition/current invariant",
+      "value": {
+        "values": {
+          "cycle": 2,
+          "revision": 0,
+          "status": "failure"
+        },
+        "events": [],
+        "rejected": [
+          "current-not-latest"
         ]
       }
     }

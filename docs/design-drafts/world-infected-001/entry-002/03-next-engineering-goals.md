@@ -19,19 +19,19 @@ O2冷解析/安装补充契约批准 + G1/G2通过
 
 **可交付结果：** 下游能用纯TS判定一次动作的开始与完成，得到有序身体周期计划；不改医院、不接玩家、不造任务供给。规则和本契约批准后可直接下发此窄工程。
 
-前置：R02 E0动作界限、R03周期与额度、R04主配置、R05/R06衔接时点须局部正式落文；失败20／召回选择不重问。O1数字仅批准本配置试用，不包括商品、专长或战斗调度。现状态均候选，缺批准不得开工。
+前置：R02 E0动作界限、R03周期与额度、R04主配置、R05/R06衔接时点须局部正式落文；失败20／召回选择不重问。O1只包含G1直接依赖的R02/R03/R04及R05/R06周期接口；R07持续现场及冷启动安装均归O2，不能混批。O1数字仅批准本配置试用，不包括商品、专长或战斗调度。现状态均候选，缺批准不得开工。
 
 | 合同项 | 具体输入／输出／职责 |
 | --- | --- |
 | 单动作 | 输入只读 `{energy, cost, actionClass, stableContext, currentRevision, expectedRevision}`；正式内容或规则owner提供已验证的其他资格。当前revision取自受控快照，expectedRevision仅作比较。cost用显式union：付费类为正安全整数，查询/免费类为0，不能共用“正数”校验；输出accepted的完整E后态／拒绝。E>0不足价可截0，E0不新移动；不是任意调用方传eligible=true就构成合法世界命令 |
 | 即时结果 | 开始资格与已触发后果分开；E0不阻止已开始CTB/立即危险消费。G1只接受受控效果输入并组合，不实现CTB或制造敌人伤害 |
 | 身体周期 | 输入唯一身体HP/伤势/暴露/I/饱食/药效/额度、D、T、衔接状态、模式A/C/截止/未来出发、受控配置及新鲜度；严格完整字段。输出只读有序计划+完整后态+活/死亡原因；无save/熵/通知 |
-| 时钟 | 一处D、一处当前T；first-ready/due/settled-ready按R03；T7不能普通休整，截止活者D+1但无旧T8，下次消费ready不再重置用药。非法请求先拒绝，合法致死提交结果不rollback |
+| 时钟 | 一处D、一处当前T；first-ready/due/带最新终局来源的settled-ready按[R03](01-local-rule-amendments-draft.md#r03)与[联合矩阵](02-runtime-restore-contract.md#r1-cycle)；T7不能普通休整，截止活者D+1但无旧T8，下次消费ready不再重置用药。非法请求先拒绝，合法致死提交结果不rollback |
 | 使用者 | 候选G2/G3或之后终局协调器消费计划；不在本模块拥有钱包、物品或任务关闭。调用既有首核心只由未来完整协调器完成 |
 
 实际可参考`src/core/condition/health-operations.ts`的applyHealthLoss及`src/core/config/deep-freeze.ts`；`src/core/daily-settlement/daily-settlement.ts`只参考验证/计划/结果顺序，不直接调用其医院规则；旧world-threat终末语义不复用。未来路径候选（未实现）：`src/core/residence-energy/{types,energy,index,energy.test}.ts`、`src/core/character-cycle/{types,validation,cycle,index,cycle.test}.ts`及对应工程文档。预计只新增上述两个窄模块与测试，不改现有核心、依赖、CI、规则版本注册或UI；若共用出口需额外明确白名单而非默认可改。
 
-验收：V01—V19涉及的纯职责转为实际Vitest正反例，特别E1/8、负价/小数/溢出/未知字段、E0每类意图、循环请求新鲜度、旧I增长与新I伤害、三阶段短路、A/C重设、药限不因跨图/T1重建、截止一次桥接、无任务无结算、合法致死与拒绝区分。对冻结输入不mutation；同配置同输入确定；随机/React/state/content依赖和旧医院golden不变。组合测试必须由独立手算预期驱动，不能原样移植Python当规则真相。
+验收：V01—V19涉及的纯职责转为实际Vitest正反例，特别E1/8、负价/小数/溢出/未知字段、E0每类意图、循环请求新鲜度、旧I增长与新I伤害、三阶段短路、A/C重设、药限不因跨图/T1重建、正常返回非法ready、缺/错/旧ready来源、D/T不可能组合、截止一次桥接及消费后照常结新周期、无任务无结算、合法致死与拒绝区分。对冻结输入不mutation；同配置同输入确定；随机/React/state/content依赖和旧医院golden不变。组合测试必须由独立手算预期驱动，不能原样移植Python当规则真相。补True冒充revision/cycle、负/非有限消耗、缺/额外字段、倍率乘积与ceil超界的零提交反例；这是未来生产验收，R1有限检查不代替。
 
 开工实际`npm run test:run`记录真实baseline；完成实际`npm run check`（architecture→typecheck→test:run→build），分别记录exit与新增测试数；旧2256仅历史参照，不能预填。真实保存／浏览器NOT RUN且不宣称已接；完成源码准确SHA实审后停，不自动G2。
 
@@ -44,7 +44,7 @@ O2冷解析/安装补充契约批准 + G1/G2通过
 
 生产者参照现有`scene-navigation.ts`、`enemy-persistent-state.ts`、`scene-search-materialization.ts`与`run-loadout-snapshot.ts`；新消费者为G3。候选未实现路径`src/core/residence-location/`与其同目录测试（实际任务锁定文件），仅小型有向图与内容明确的实例／来源状态，不承包完整五图资产系统。沿既有random-stream纯算法，增加新锚点的独立golden；旧scene identity/医院golden保持。
 
-正例：同日A→B→A、休整仍同执行、敌伤/意图/物品ID/来源持续、局部知识到达更新、重载游标一致。反例：未知边、错节点、错执行、已兑现再生成、同实例两容器、远程未知危险泄露、队列越零后继续。组合：E1跨边触发立即结果只形成待协调计划，不提前宣称完整战斗已可保存；真实战斗尚未支持则玩家入口不接。完整格子几何继续使用容器规则，不能将本有限模型qty字典当生产负重验证。
+正例：同日A→B→A、休整仍同执行、敌伤/意图/物品ID/来源持续、局部知识到达更新、重载游标一致。反例：未知边、错节点、错执行、已兑现再生成、同实例两容器、远程未知危险泄露、队列越零后继续、成功/主动失败/期限失败后旧地面拾取、异委托冒用旧现场。关闭时活动位置消失但旧地面历史保留；合法携出实例不禁用、不重建。组合：E1跨边触发立即结果只形成待协调计划，不提前宣称完整战斗已可保存；真实战斗尚未支持则玩家入口不接。完整格子几何继续使用容器规则，不能将本有限模型qty字典当生产负重验证。
 
 不含任务件完整处置、经济、CTB、专长、全路线或自动寻路。基线与最终命令同G1，新增生产单元/组合实测；浏览器／真实新槽仍NOT RUN。提交准确SHA即实审持续状态，不自动G3。
 
@@ -55,13 +55,13 @@ O2冷解析/安装补充契约批准 + G1/G2通过
 
 支持矩阵主推荐：全未接fresh-hub、非战斗active稳定节点；可严格拒绝living-hub/dead/combat等**尚未接完整业务**的类型，不能丢字段重解释。这不是最终W2保存矩阵；真实新战斗稳定保存及全部终局必须后续独立补齐，产品入口在此之前保持未接。
 
-命令白名单：仅受控首次创建、冷恢复与G2已支持的非战斗单边移动；不提供launch/close/rest玩家入口。真实受控内容和候选计划判定该边是否引入未支持combat/立即结果/终局；遇到此类结果整笔拒绝、零提交，不能先改位置/E或忽略危险。无危险夹具不是永久禁止产品合法动作；本Goal产品入口保持未接，不接受调用方business_supported布尔值授予写权。
+命令白名单：仅受控首次创建、冷恢复与G2已支持的非战斗单边移动；不提供launch/close/rest玩家入口。真实受控内容和候选计划判定该边是否引入未支持combat/立即结果/终局；遇到此类结果整笔拒绝、零提交，不能先改位置/E或忽略危险。无危险夹具不是永久禁止产品合法动作；本Goal产品入口保持未接，不接受调用方business_supported布尔值授予写权。R1模型spend/free/paid只为内部故障序列，不能照抄成公开G3命令。
 
 输入：注入storage.read/write端口、受控内容版本与声明集、显式create意图；恢复只从read-success候选开始。受控cold候选API输出无安装权；全聚合检查、实例跨引用及世界/周期一致后由单owner一次安装。首次与后续写失败保留内存；第二bootstrap/create、任意replace、重复revision或订阅重入拒绝。无档/read-error/corrupt/unsupported分别返回，不用失败兜底new。
 
 候选未实现路径`src/state/residence-session/`、`src/state/residence-save/`及同目录测试；如批准增加cold parser，仅定点修改`src/core/mission-lifecycle/controlled.ts`及validation/测试，原公开restore保证保持，原测试不得删减。实际源头参照`production-bootstrap.ts`／`run-save-codec.ts`／`run-store.ts`，但不修改医院production-composition、旧codec/registry或main。最近消费者仅headless受控测试，不做React、玩家入口或新任务注册。
 
-验收：严格根/嵌套负例、缺失或重复声明、交叉角色/世界/模板/委托/执行/版本、两active、复用run、缺closed不补；从未建档显式创建与合法受支持roundtrip；首次/后续write故障后下一命令读内存；重入/旧revision/第二bootstrap拒绝无第二save/notify；完整body+position后态一次验证提交，不能仅closed。真实端口适配器单元故障注入与序列化往返须执行，不能只用PythonPASS。浏览器localStorage/刷新/多标签在公开接线前另开验收，本Goal未接就NOT RUN。
+验收：严格根/嵌套负例、缺失或重复声明、交叉角色/世界/模板/委托/执行/版本、两active、复用run、缺closed不补；从未建档显式创建与合法受支持roundtrip；首次/后续write故障后下一命令读内存；重入/旧revision/第二bootstrap拒绝无第二save/notify；完整body+position后态一次验证提交，不能仅closed。受支持阶段按R1周期矩阵验证来源及D/T，未支持终局仍显式拒绝；合法输出不能掩盖非法意图，写/通知前的最终数字与revision边界必须实测。真实端口适配器单元故障注入与序列化往返须执行，不能只用PythonPASS。浏览器localStorage/刷新/多标签在公开接线前另开验收，本Goal未接就NOT RUN。
 
 基线及最终`npm run check`同G1；同时核对旧格式/身份/golden未变。提交即停止新owner／保存边界实审；不扩大为钱包、终局、真实战斗保存或完整世界SDK。
 

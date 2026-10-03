@@ -1,3 +1,21 @@
+# WORLD-ENTRY-002-R1 完成记录
+
+**COMPLETE／等待WebGPT主线准确SHA专项实文件复审。** 本轮完成F01—F03有限候选返修，不是正式规则批准、生产实现或体验通过。起始SHA：`136e98aa2c4bff7f84cdd0f67056771d837d562a`；沿用`feature/design-world-entry-002`，不新建分支/worktree。最终SHA及普通commit/push实际结果以本文件所属提交和提交后交付消息为准，不amend自填SHA。
+
+- F01：ready绑定最新deadline执行与已结周期；正常返回due、首次D1、活动D/T、死亡及消费后继续结算共同校验。缺/错来源和历史ready豁免新周期均拒绝。
+- F02：关闭后无原世界行动位置；旧地面留历史但不能在中枢/异委托拾取。合法携出数量、耐久、电量和已发生状态保留，同活动E0与跨夜取物继续成立。
+- F03：数字/意图先验严格，非法消费、bool版本、超界乘积/ceil、缺/额外字段及非法后态零提交。owner spend是内部故障夹具，非G3玩家命令。
+
+改动仅任务书14文件：00—03；validation的fixtures/expected/verify_entry_002/results/run-record；reviews的review-and-fixes、两份原文归档和r1-regression-summary；本完成记录。[逐项摘要](reviews/r1-regression-summary.json)、[自查/只读复核](reviews/review-and-fixes.md)、[真实运行记录R1](validation/run-record.json)给精确证据与原117ID迁移。
+
+写入前原脚本复现24项/8缺口真实exit1。修订冻结后213项：45正例、163预期拒绝、1持久化故障、4未支持、0不符；两独立进程exit0、字节/规范化结果一致且输入不变。四负控实际exit1，分别检出1/1/9/5不符，无模型崩溃，不累计为额外测试数。归档SHA、LF/UTF-8、改动链接/锚点、白名单、保护对象与普通/暂存/基线diff的实际检查存run-record R1。
+
+O1只含G1直接依赖的R02/R03/R04及R05/R06周期接口；R07持续现场/冷安装属于O2，O3公开发布另审。所有未批准配置、完整实物经济、CTB、新保存与体验仍未验收。实际模型/推理配置没有可核验工具证据，未自行升级Ultra。无已知范围冲突；不改已批准首契约或原身份核心PASS。
+
+起始/最终生产测试均NOT RUN；生产构建、真实保存IO、浏览器及Owner试玩NOT RUN；新增生产代码0、生产测试0。完成本分支普通提交推送后停止，不执行G1—G3、不推其他分支或main。下文完整保留原WORLD-ENTRY-002交付历史，不将其解释成本轮主线已批准。
+
+---
+
 # WORLD-ENTRY-002 完成记录
 
 **设计交付COMPLETE／等待主线准确SHA实文件评审。** 完成是指本任务W1—W4候选与有限检查，不是正式规则批准、生产实现、Design Freeze或体验通过。

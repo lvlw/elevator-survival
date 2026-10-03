@@ -2,12 +2,16 @@
   "evidence": "finite-design-model-only",
   "negative_control": null,
   "counts": {
-    "positive": 36,
-    "expected-rejection": 77,
+    "positive": 45,
+    "expected-rejection": 163,
+    "persistence-fault": 1,
     "unsupported": 4,
     "mismatch": 0
   },
   "families": [
+    "R1-F01",
+    "R1-F02",
+    "R1-F03",
     "V01",
     "V02",
     "V03",
@@ -914,7 +918,7 @@
       "classification": "expected-rejection",
       "actual": {
         "values": {
-          "cycle": 1,
+          "cycle": 7,
           "task_day": 7,
           "revision": 0
         },
@@ -925,7 +929,7 @@
       },
       "expected": {
         "values": {
-          "cycle": 1,
+          "cycle": 7,
           "task_day": 7,
           "revision": 0
         },
@@ -1353,7 +1357,7 @@
           "task_day": 7,
           "hp": 3,
           "infection": 130,
-          "cycle": 1,
+          "cycle": 7,
           "meds": 1,
           "phase": "hub",
           "bridge": null,
@@ -1370,7 +1374,7 @@
           "task_day": 7,
           "hp": 3,
           "infection": 130,
-          "cycle": 1,
+          "cycle": 7,
           "meds": 1,
           "phase": "hub",
           "bridge": null,
@@ -1393,7 +1397,7 @@
           "task_day": 7,
           "hp": 3,
           "infection": 130,
-          "cycle": 1,
+          "cycle": 7,
           "meds": 1,
           "phase": "hub",
           "bridge": null,
@@ -1410,7 +1414,7 @@
           "task_day": 7,
           "hp": 3,
           "infection": 130,
-          "cycle": 1,
+          "cycle": 7,
           "meds": 1,
           "phase": "hub",
           "bridge": null,
@@ -1431,12 +1435,17 @@
       "actual": {
         "values": {
           "hp": 9,
-          "cycle": 2,
+          "cycle": 8,
           "task_day": 7,
           "phase": "hub",
           "status": "failure",
           "balance": 10,
-          "bridge": 2,
+          "bridge": {
+            "kind": "deadline",
+            "commission": "current",
+            "execution": "run-1",
+            "settled_cycle": 7
+          },
           "energy": 100
         },
         "events": [
@@ -1450,12 +1459,17 @@
       "expected": {
         "values": {
           "hp": 9,
-          "cycle": 2,
+          "cycle": 8,
           "task_day": 7,
           "phase": "hub",
           "status": "failure",
           "balance": 10,
-          "bridge": 2,
+          "bridge": {
+            "kind": "deadline",
+            "commission": "current",
+            "execution": "run-1",
+            "settled_cycle": 7
+          },
           "energy": 100
         },
         "events": [
@@ -1475,7 +1489,7 @@
       "actual": {
         "values": {
           "hp": 0,
-          "cycle": 1,
+          "cycle": 7,
           "task_day": 7,
           "phase": "dead",
           "balance": 30,
@@ -1490,7 +1504,7 @@
       "expected": {
         "values": {
           "hp": 0,
-          "cycle": 1,
+          "cycle": 7,
           "task_day": 7,
           "phase": "dead",
           "balance": 30,
@@ -1510,7 +1524,7 @@
       "classification": "expected-rejection",
       "actual": {
         "values": {
-          "cycle": 1,
+          "cycle": 7,
           "hp": 12,
           "revision": 0
         },
@@ -1521,7 +1535,7 @@
       },
       "expected": {
         "values": {
-          "cycle": 1,
+          "cycle": 7,
           "hp": 12,
           "revision": 0
         },
@@ -1538,7 +1552,7 @@
       "classification": "positive",
       "actual": {
         "values": {
-          "cycle": 3,
+          "cycle": 9,
           "task_day": 2,
           "meds": 0,
           "suppression": 0,
@@ -1560,7 +1574,7 @@
       },
       "expected": {
         "values": {
-          "cycle": 3,
+          "cycle": 9,
           "task_day": 2,
           "meds": 0,
           "suppression": 0,
@@ -2309,7 +2323,7 @@
     {
       "id": "later-save-failure",
       "family": "V29",
-      "classification": "expected-rejection",
+      "classification": "persistence-fault",
       "actual": {
         "phase": "ready",
         "revision": 2,
@@ -2957,7 +2971,7 @@
         },
         "events": [],
         "rejected": [
-          "overflow"
+          "cycle-day"
         ]
       },
       "expected": {
@@ -2969,7 +2983,7 @@
         },
         "events": [],
         "rejected": [
-          "overflow"
+          "cycle-day"
         ]
       },
       "matches": true
@@ -3056,6 +3070,2698 @@
         "events": [],
         "rejected": [
           "rest"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-X01-success-fake-ready",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "normal-due",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "normal-due",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-X01-failure-fake-ready",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "normal-due",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "normal-due",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-X02-D1-T7",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "cycle-day",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "cycle-day",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-deadline-ready-roundtrip",
+      "family": "R1-F01",
+      "classification": "positive",
+      "actual": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      },
+      "expected": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-ready-missing",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "ready-source",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "ready-source",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-ready-wrong-run",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "ready-source",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "ready-source",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-ready-wrong-commission",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "ready-source",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "ready-source",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-ready-wrong-cycle",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "ready-source",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "ready-source",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-ready-old-current-cycle",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "ready-source",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "ready-source",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-ready-first-from-deadline",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "ready-source",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "ready-source",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-ready-missing-field",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "shape",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "shape",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-ready-extra-field",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "shape",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "shape",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-ready-bool-cycle",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "bridge",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "bridge",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-deadline-wrong-end-day",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "timeline-end",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "timeline-end",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-first-ready-D2",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "fresh",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "fresh",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-death-on-next-launch-keeps-success",
+      "family": "R1-F01",
+      "classification": "positive",
+      "actual": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      },
+      "expected": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-later-normal-return-due",
+      "family": "R1-F01",
+      "classification": "positive",
+      "actual": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      },
+      "expected": {
+        "result": "candidate",
+        "unchanged": true,
+        "roundtrip_equal": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-old-deadline-cannot-exempt-new-success",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "normal-due",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "normal-due",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-timeline-overlap",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "timeline-order",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "timeline-order",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-timeline-gap",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "timeline-order",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "timeline-order",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-timeline-duplicate-start",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "timeline-order",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "timeline-order",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-start-cycle-bool",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "start-cycle",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "start-cycle",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-no-content-keeps-ready",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "cycle": 8,
+          "bridge": {
+            "kind": "deadline",
+            "commission": "current",
+            "execution": "run-1",
+            "settled_cycle": 7
+          },
+          "revision": 1,
+          "phase": "hub",
+          "hp": 12,
+          "balance": 10,
+          "meds": 0
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle",
+          "recall"
+        ],
+        "rejected": [
+          "no-new-content"
+        ]
+      },
+      "expected": {
+        "values": {
+          "cycle": 8,
+          "bridge": {
+            "kind": "deadline",
+            "commission": "current",
+            "execution": "run-1",
+            "settled_cycle": 7
+          },
+          "revision": 1,
+          "phase": "hub",
+          "hp": 12,
+          "balance": 10,
+          "meds": 0
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle",
+          "recall"
+        ],
+        "rejected": [
+          "no-new-content"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-ready-consumed-then-normal-due",
+      "family": "R1-F01",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "cycle": 9,
+          "bridge": null,
+          "task_day": 1,
+          "execution": "run-3",
+          "satiety": 2,
+          "revision": 4,
+          "balance": 10
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle",
+          "recall",
+          "consume-ready",
+          "close",
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "cycle": 9,
+          "bridge": null,
+          "task_day": 1,
+          "execution": "run-3",
+          "satiety": 2,
+          "revision": 4,
+          "balance": 10
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle",
+          "recall",
+          "consume-ready",
+          "close",
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-X04-closed-H0-False",
+      "family": "R1-F02",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": null,
+          "last_node": "H0",
+          "phase": "hub",
+          "items.ration-1.container": "H0",
+          "items.ration-1.ground_execution": "run-1",
+          "items.ration-1.qty": 2,
+          "items.pipe-1.durability": 17,
+          "items.pipe-1.electricity": 7,
+          "revision": 1,
+          "balance": 10
+        },
+        "events": [
+          "close"
+        ],
+        "rejected": [
+          "closed-world"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": null,
+          "last_node": "H0",
+          "phase": "hub",
+          "items.ration-1.container": "H0",
+          "items.ration-1.ground_execution": "run-1",
+          "items.ration-1.qty": 2,
+          "items.pipe-1.durability": 17,
+          "items.pipe-1.electricity": 7,
+          "revision": 1,
+          "balance": 10
+        },
+        "events": [
+          "close"
+        ],
+        "rejected": [
+          "closed-world"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-X04-closed-H0-True",
+      "family": "R1-F02",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": null,
+          "last_node": "H0",
+          "phase": "hub",
+          "items.ration-1.container": "H0",
+          "items.ration-1.ground_execution": "run-1",
+          "items.ration-1.qty": 2,
+          "items.pipe-1.durability": 17,
+          "items.pipe-1.electricity": 7,
+          "revision": 1,
+          "balance": 30
+        },
+        "events": [
+          "close"
+        ],
+        "rejected": [
+          "closed-world"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": null,
+          "last_node": "H0",
+          "phase": "hub",
+          "items.ration-1.container": "H0",
+          "items.ration-1.ground_execution": "run-1",
+          "items.ration-1.qty": 2,
+          "items.pipe-1.durability": 17,
+          "items.pipe-1.electricity": 7,
+          "revision": 1,
+          "balance": 30
+        },
+        "events": [
+          "close"
+        ],
+        "rejected": [
+          "closed-world"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-X03-deadline-C0-ground",
+      "family": "R1-F02",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": null,
+          "last_node": "C0",
+          "cycle": 8,
+          "items.ration-1.container": "C0",
+          "items.ration-1.qty": 2,
+          "revision": 1,
+          "balance": 10
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle",
+          "recall"
+        ],
+        "rejected": [
+          "closed-world"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": null,
+          "last_node": "C0",
+          "cycle": 8,
+          "items.ration-1.container": "C0",
+          "items.ration-1.qty": 2,
+          "revision": 1,
+          "balance": 10
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle",
+          "recall"
+        ],
+        "rejected": [
+          "closed-world"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-later-task-cannot-pick-old-ground",
+      "family": "R1-F02",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "execution": "run-2",
+          "items.ration-1.container": "H0",
+          "items.ration-1.ground_execution": "run-1",
+          "revision": 2,
+          "sites.run-1.sources.supply": true,
+          "sites.run-2.sources": {}
+        },
+        "events": [
+          "close",
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": [
+          "ground-binding"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "execution": "run-2",
+          "items.ration-1.container": "H0",
+          "items.ration-1.ground_execution": "run-1",
+          "revision": 2,
+          "sites.run-1.sources.supply": true,
+          "sites.run-2.sources": {}
+        },
+        "events": [
+          "close",
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": [
+          "ground-binding"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-carried-assets-continue",
+      "family": "R1-F02",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "items.ration-1.container": "bag",
+          "items.ration-1.ground_execution": null,
+          "items.ration-1.qty": 2,
+          "items.pipe-1.durability": 17,
+          "items.pipe-1.electricity": 7,
+          "balance": 10,
+          "revision": 3
+        },
+        "events": [
+          "close",
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "items.ration-1.container": "bag",
+          "items.ration-1.ground_execution": null,
+          "items.ration-1.qty": 2,
+          "items.pipe-1.durability": 17,
+          "items.pipe-1.electricity": 7,
+          "balance": 10,
+          "revision": 3
+        },
+        "events": [
+          "close",
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-closed-world-action-combination",
+      "family": "R1-F02",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "energy": 100,
+          "revision": 1,
+          "node": null,
+          "sites.run-1.sources.supply": true,
+          "items.ration-1.container": "H0"
+        },
+        "events": [
+          "close"
+        ],
+        "rejected": [
+          "unstable",
+          "unstable",
+          "closed-world"
+        ]
+      },
+      "expected": {
+        "values": {
+          "energy": 100,
+          "revision": 1,
+          "node": null,
+          "sites.run-1.sources.supply": true,
+          "items.ration-1.container": "H0"
+        },
+        "events": [
+          "close"
+        ],
+        "rejected": [
+          "unstable",
+          "unstable",
+          "closed-world"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-active-cross-night-E0-pickup",
+      "family": "R1-F02",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "cycle": 2,
+          "task_day": 2,
+          "energy": 0,
+          "items.ration-1.container": "bag",
+          "items.ration-1.qty": 2,
+          "revision": 4
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "cycle": 2,
+          "task_day": 2,
+          "energy": 0,
+          "items.ration-1.container": "bag",
+          "items.ration-1.qty": 2,
+          "revision": 4
+        },
+        "events": [
+          "infection",
+          "hunger",
+          "new-cycle"
+        ],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-X05-negative",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-X06-bool",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-float",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-float-integer",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-string",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-null",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-overflow",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-nan",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-infinity",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-negative-infinity",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-missing-spend",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-shape"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-shape"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-missing-revision",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-shape"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-shape"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-missing-cost_kind",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-shape"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-shape"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-extra-field",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-shape"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-shape"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-revision-bool",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-free-negative",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-number"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-paid-zero",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-cost"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-cost"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-free-positive",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-cost"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-cost"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-free-zero",
+      "family": "R1-F03",
+      "classification": "positive",
+      "actual": {
+        "phase": "ready",
+        "revision": 1,
+        "energy": 50,
+        "reads": 0,
+        "writes": 1,
+        "notifications": 1,
+        "errors": []
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 1,
+        "energy": 50,
+        "reads": 0,
+        "writes": 1,
+        "notifications": 1,
+        "errors": []
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-truthy-business_supported",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-bool"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-bool"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-truthy-complete",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-bool"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-bool"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-truthy-write_error",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-bool"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-bool"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-truthy-subscriber_write",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-bool"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "intent-bool"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-E1-paid8",
+      "family": "R1-F03",
+      "classification": "positive",
+      "actual": {
+        "phase": "ready",
+        "revision": 1,
+        "energy": 0,
+        "reads": 0,
+        "writes": 1,
+        "notifications": 1,
+        "errors": []
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 1,
+        "energy": 0,
+        "reads": 0,
+        "writes": 1,
+        "notifications": 1,
+        "errors": []
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-output-overflow",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 9007199254740991,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "revision"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 9007199254740991,
+        "energy": 50,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "revision"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-X07-product-overflow",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "cost-overflow"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "cost-overflow"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-X08-bool-revision-cycle",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 1,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-number"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 1,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-number"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-cycle-bool",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-number"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-number"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-revision-float",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-number"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-number"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-cycle-negative",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-number"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-number"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-multiplier-bool",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "multiplier"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "multiplier"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-multiplier-float",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "multiplier"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "multiplier"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-multiplier-zero",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "multiplier"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "multiplier"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-multiplier-extra",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "multiplier"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "multiplier"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-multiplier-string",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "multiplier"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "multiplier"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-unknown-price",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "cost"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "cost"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-extra",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-shape"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-shape"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-checks-truthy",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-checks"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-checks"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-checks-unknown",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-checks"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-checks"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-trigger-truthy",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-bool"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0,
+          "hp": 12
+        },
+        "events": [],
+        "rejected": [
+          "intent-bool"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-missing-to",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "intent-shape"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "intent-shape"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-missing-price",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "intent-shape"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "intent-shape"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-missing-op",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "intent-shape"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "intent-shape"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-large-product-small-quotient",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "cost-overflow"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "cost-overflow"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-legal-paid-ceiling",
+      "family": "R1-F03",
+      "classification": "positive",
+      "actual": {
+        "values": {
+          "node": "C0",
+          "energy": 91,
+          "revision": 1
+        },
+        "events": [],
+        "rejected": []
+      },
+      "expected": {
+        "values": {
+          "node": "C0",
+          "energy": 91,
+          "revision": 1
+        },
+        "events": [],
+        "rejected": []
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-return-success-type",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "phase": "world",
+          "revision": 0,
+          "balance": 30
+        },
+        "events": [],
+        "rejected": [
+          "intent-bool"
+        ]
+      },
+      "expected": {
+        "values": {
+          "phase": "world",
+          "revision": 0,
+          "balance": 30
+        },
+        "events": [],
+        "rejected": [
+          "intent-bool"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-reveal-qty-bool",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "revision": 0,
+          "energy": 100
+        },
+        "events": [],
+        "rejected": [
+          "intent-number"
+        ]
+      },
+      "expected": {
+        "values": {
+          "revision": 0,
+          "energy": 100
+        },
+        "events": [],
+        "rejected": [
+          "intent-number"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-rest-kind-type",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "revision": 0,
+          "cycle": 1
+        },
+        "events": [],
+        "rejected": [
+          "intent-id"
+        ]
+      },
+      "expected": {
+        "values": {
+          "revision": 0,
+          "cycle": 1
+        },
+        "events": [],
+        "rejected": [
+          "intent-id"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-restore-revision-bool",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "revision",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "revision",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-restore-cycle-bool",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "cycle",
+        "unchanged": true
+      },
+      "expected": {
+        "result": "cycle",
+        "unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-terminal-bool-revision",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "intent-number",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "expected": {
+        "result": "intent-number",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-terminal-bool-delta",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "intent-number",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "expected": {
+        "result": "intent-number",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-terminal-extra",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "shape",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "expected": {
+        "result": "shape",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-history-row-null",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "shape"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "shape"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-history-row-empty",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "shape"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "shape"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-history-row-array",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "shape"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "shape"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-history-row-string",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "shape"
+        ]
+      },
+      "expected": {
+        "values": {
+          "node": "H0",
+          "energy": 100,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "shape"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-terminal-retained-qty-bool",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "item-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "expected": {
+        "result": "item-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-terminal-retained-qty-float",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "item-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "expected": {
+        "result": "item-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-terminal-retained-durability-float",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "item-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "expected": {
+        "result": "item-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-terminal-retained-qty-negative",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "item-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "expected": {
+        "result": "item-plan",
+        "after": {
+          "revision": 0,
+          "hp": 9,
+          "balance": 30,
+          "status": "active",
+          "items": [
+            {
+              "id": "pipe-1",
+              "qty": 1,
+              "durability": 17
+            }
+          ]
+        },
+        "commits": 0,
+        "save_attempts": 0,
+        "notifications": 0,
+        "input_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-owner-E0-paid",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 0,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "energy"
+        ],
+        "current_unchanged": true
+      },
+      "expected": {
+        "phase": "ready",
+        "revision": 0,
+        "energy": 0,
+        "reads": 0,
+        "writes": 0,
+        "notifications": 0,
+        "errors": [
+          "energy"
+        ],
+        "current_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-internal-cycle-increment-overflow",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "result": "overflow",
+        "input_unchanged": true
+      },
+      "expected": {
+        "result": "overflow",
+        "input_unchanged": true
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-infection-result-overflow",
+      "family": "R1-F03",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "infection": 9007199254740991,
+          "cycle": 1,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "overflow"
+        ]
+      },
+      "expected": {
+        "values": {
+          "infection": 9007199254740991,
+          "cycle": 1,
+          "revision": 0
+        },
+        "events": [],
+        "rejected": [
+          "overflow"
+        ]
+      },
+      "matches": true
+    },
+    {
+      "id": "R1-world-current-must-be-latest",
+      "family": "R1-F01",
+      "classification": "expected-rejection",
+      "actual": {
+        "values": {
+          "cycle": 2,
+          "revision": 0,
+          "status": "failure"
+        },
+        "events": [],
+        "rejected": [
+          "current-not-latest"
+        ]
+      },
+      "expected": {
+        "values": {
+          "cycle": 2,
+          "revision": 0,
+          "status": "failure"
+        },
+        "events": [],
+        "rejected": [
+          "current-not-latest"
         ]
       },
       "matches": true

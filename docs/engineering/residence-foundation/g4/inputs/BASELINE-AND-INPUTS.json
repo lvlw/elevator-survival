@@ -1,0 +1,115 @@
+{
+  "task": "ENG-RESIDENCE-ACTIONS-001",
+  "shorthand": "G4",
+  "version": "v1.0",
+  "date": "2026-10-04",
+  "repository": "lvlw/elevator-survival",
+  "base_sha": "60e9c30732c5e22cfe9ff58b9b381de64b945180",
+  "base_tree": "cd5ced1ff8be1ee7def4df2cf2ac43e66f1a93a1",
+  "source_branch": "feature/residence-session-core-001",
+  "target_branch": "feature/residence-actions-core-001",
+  "allowed_paths": [
+    "src/state/residence-session/types.ts",
+    "src/state/residence-session/commands.ts",
+    "src/state/residence-session/session.ts",
+    "src/state/residence-session/controlled.ts",
+    "src/state/residence-session/index.ts",
+    "src/state/residence-session/launch.ts",
+    "src/state/residence-session/transitions.ts",
+    "src/state/residence-session/session.test.ts",
+    "src/state/residence-session/persistence.test.ts",
+    "src/state/residence-session/session.integration.test.ts",
+    "src/state/residence-session/test-fixtures.ts",
+    "src/state/residence-session/launch.test.ts",
+    "src/state/residence-session/operations.test.ts",
+    "src/state/residence-session/operation-persistence.test.ts",
+    "docs/engineering/residence-foundation/g4/contract-and-support.md",
+    "docs/engineering/residence-foundation/g4/implementation-notes.md",
+    "docs/engineering/residence-foundation/g4/verification-results.json",
+    "docs/engineering/residence-foundation/g4/completion.md",
+    "docs/engineering/residence-foundation/g4/inputs/ENG-RESIDENCE-ACTIONS-001-task-v1.0.md",
+    "docs/engineering/residence-foundation/g4/inputs/OWNER-authority-and-scope-G4-v1.0.md",
+    "docs/engineering/residence-foundation/g4/inputs/AUD-60e9c30-ENG-RESIDENCE-SESSION-RESTORE-001-review-v1.0.md",
+    "docs/engineering/residence-foundation/g4/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/residence-foundation/g4/inputs/SHA256SUMS.txt",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "allowed_path_limit": 27,
+  "source_paths": [
+    "src/state/residence-session/types.ts",
+    "src/state/residence-session/commands.ts",
+    "src/state/residence-session/session.ts",
+    "src/state/residence-session/controlled.ts",
+    "src/state/residence-session/index.ts",
+    "src/state/residence-session/launch.ts",
+    "src/state/residence-session/transitions.ts",
+    "src/state/residence-session/session.test.ts",
+    "src/state/residence-session/persistence.test.ts",
+    "src/state/residence-session/session.integration.test.ts",
+    "src/state/residence-session/test-fixtures.ts",
+    "src/state/residence-session/launch.test.ts",
+    "src/state/residence-session/operations.test.ts",
+    "src/state/residence-session/operation-persistence.test.ts"
+  ],
+  "base_blobs_observed_via_connector": {
+    "src/state/residence-session/types.ts": "19d7fd81e482eaba23cfcfa6f3b6f2a0b7aae325",
+    "src/state/residence-session/commands.ts": "7daa20bfe10539237fc502aa773dafccd640fbf1",
+    "src/state/residence-session/session.ts": "b68a3556f08ecc9330782321a147d2809b755212",
+    "src/state/residence-session/controlled.ts": "0ce054f110bace89e75d526e135b0106aff8ab83",
+    "src/state/residence-session/index.ts": "bbeeb375bf1184252bdb36863d3cf6b7a341e853",
+    "src/state/residence-session/session.test.ts": "b463a479fd45c3eb0882fc157e10ac8e26640a45",
+    "src/state/residence-session/persistence.test.ts": "cc3670e0e70816dd6166515f5c19e23f5fa2a115",
+    "src/state/residence-session/session.integration.test.ts": "5d9a78c96fceee00af567f0f3e872114e8c1c9c4",
+    "src/state/residence-session/test-fixtures.ts": "f5a5a667a0e6ea4c8f60b9efe4226c4a7e9e9794"
+  },
+  "prior_test_reference_only": {
+    "files": 121,
+    "tests": 2681,
+    "source": "G3 native report and CI #132; NOT the new G4 baseline"
+  },
+  "unchanged_codec": {
+    "format": "elevator-survival.residence-headless",
+    "formatVersion": 1,
+    "supported_phases": [
+      "fresh-hub",
+      "active-world"
+    ],
+    "production_files": "src/state/residence-save/ (read-only)"
+  },
+  "remote_refs_at_review": {
+    "main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+    "feature/design-world-infected-world-001": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+    "feature/design-world-entry-002": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+    "feature/mission-lifecycle-core-001": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+    "feature/residence-energy-cycle-core-001": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+    "feature/residence-location-core-001": "d7953bbf96dc842d2953e019f950275cd693bf09",
+    "feature/residence-session-core-001": "60e9c30732c5e22cfe9ff58b9b381de64b945180"
+  },
+  "inputs": [
+    {
+      "name": "AUD-60e9c30-ENG-RESIDENCE-SESSION-RESTORE-001-review-v1.0.md",
+      "bytes": 8825,
+      "sha256": "9ba16fe906cd0453815b401a695888c1f88bf59e274343facdcd1057fff651ac"
+    },
+    {
+      "name": "ENG-RESIDENCE-ACTIONS-001-task-v1.0.md",
+      "bytes": 23422,
+      "sha256": "0738440451dd5ad4971b6bd5340545f3e79bb0d36a096c5d799983efa1c58a8a"
+    },
+    {
+      "name": "OWNER-authority-and-scope-G4-v1.0.md",
+      "bytes": 2033,
+      "sha256": "6e2e1ee01ca8249c9670aa86b87d1190a58481451149e8c6b0a563999c87433d"
+    }
+  ],
+  "notes": [
+    "27 is a maximum whitelist, not a mandate for 27 changes",
+    "Old G3 ADDENDUM test edit permission does not apply to G4",
+    "This baseline manifest is hashed by SHA256SUMS, not by itself",
+    "No model or reasoning configuration is imposed by this task",
+    "No main merge/push or automatic subsequent goal"
+  ]
+}

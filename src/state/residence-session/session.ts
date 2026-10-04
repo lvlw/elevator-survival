@@ -1,11 +1,11 @@
 import { deepFreeze } from '../../core/config'
-import { sameResidenceValue } from '../../core/character-cycle/validation'
-import { safeAdd } from '../../core/residence-config/validation'
-import { planResidenceMove, assertResidenceLocationPlanCurrent, queryPlayerResidenceKnowledge } from '../../core/residence-location'
+import { queryPlayerResidenceKnowledge } from '../../core/residence-location'
 import { deserializeResidenceSave, serializeResidenceSave, validateResidenceAggregate, ResidenceSaveError,
   type ResidenceAggregate } from '../residence-save'
 import { requireResidenceSavePolicy, residenceActiveContext } from '../residence-save/validation'
 import { createResidenceSessionCommand } from './commands'
+import { proposeFirstResidenceLaunch } from './launch'
+import { proposeResidenceTransition } from './transitions'
 import { ResidenceSessionError, type ResidenceDomain, type ResidenceSessionComposition, type ResidenceSession,
   type ResidenceSessionView, type ResidenceCommit, type SessionStatus, type SessionDiagnostic, type Persistence } from './types'
 
@@ -24,7 +24,9 @@ export function buildResidenceSession(domain: ResidenceDomain, composition: Resi
   const policy = requireResidenceSavePolicy(composition.policy)
   const storage = composition.storage
   const factory = composition.createFirst
-  if (!storage || typeof storage.read !== 'function' || typeof storage.write !== 'function' || typeof factory !== 'function') {
+  const provideExecution = composition.provideFirstExecution
+  if (!storage || typeof storage.read !== 'function' || typeof storage.write !== 'function' || typeof factory !== 'function' ||
+    (provideExecution !== undefined && typeof provideExecution !== 'function')) {
     throw new ResidenceSessionError('INVALID_COMPOSITION', 'Synchronous storage and controlled factory required')
   }
   // Capture the controlled ports, not mutable composition properties.
@@ -107,29 +109,13 @@ export function buildResidenceSession(domain: ResidenceDomain, composition: Resi
       return commit(next, serialized)
     }),
     dispatch: (input: unknown) => guarded(() => {
-      if (status !== 'ready' || current?.phase !== 'active-world') return unavailable()
+      if (status !== 'ready' || current === null) return unavailable()
       const command = createResidenceSessionCommand(input)
       if (command.expectedRevision !== current.character.revision) throw new ResidenceSessionError('STALE_COMMAND', 'Old command revision')
-      if (!sameResidenceValue(command.binding, current.site.binding)) throw new ResidenceSessionError('BINDING_MISMATCH', 'Command belongs to another execution')
-      const ctx = residenceActiveContext(current, policy)
-      const edge = ctx.dependencies.catalog.data.edges.find((e) => e.id === command.edgeId)
-      if (edge && (edge.arrival.healthLoss !== 0 || edge.arrival.exposuresAdded !== 0)) {
-        throw new ResidenceSessionError('UNSUPPORTED_RESULT', 'Arrival event coordinator is not supported')
-      }
-      const plan = planResidenceMove(ctx.snapshot, command, ctx.authority, ctx.dependencies)
-      assertResidenceLocationPlanCurrent(ctx.snapshot, plan, ctx.authority, ctx.dependencies)
-      if (plan.coordination !== 'stable-local-result' || plan.snapshot.site.pending.kind !== 'none' ||
-        plan.snapshot.character.body.condition.currentHealth === 0) {
-        throw new ResidenceSessionError('UNSUPPORTED_RESULT', 'Combat or terminal result requires a future coordinator')
-      }
-      if (!sameResidenceValue(plan.snapshot.site.binding, current.site.binding) ||
-        !sameResidenceValue(plan.snapshot.character.identity, current.character.identity) ||
-        !sameResidenceValue(plan.snapshot.character.clock, current.character.clock) ||
-        plan.snapshot.character.cycle !== current.character.cycle ||
-        plan.snapshot.character.revision !== safeAdd(current.character.revision, 1)) {
-        throw new ResidenceSessionError('PLAN_MISMATCH', 'Plan changed execution or revision continuity')
-      }
-      const next = validateResidenceAggregate({ phase: 'active-world', ...plan.snapshot, missions: current.missions }, policy)
+      const proposed = command.kind === 'launch'
+        ? current.phase === 'fresh-hub' ? proposeFirstResidenceLaunch(current, command, policy, provideExecution) : unavailable()
+        : current.phase === 'active-world' ? proposeResidenceTransition(current, command, policy) : unavailable()
+      const next = validateResidenceAggregate(proposed, policy)
       const serialized = serializeResidenceSave(next, policy)
       return commit(next, serialized)
     }),

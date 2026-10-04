@@ -4,8 +4,49 @@ import * as random from '../../core/random'
 import { planResidenceLocationRest, restoreResidenceLocationCandidate } from '../../core/residence-location/controlled'
 import { planResidenceItemTransfer } from '../../core/residence-location'
 import { deserializeResidenceSave, serializeResidenceSave } from '../residence-save'
-import { binding, catalogInput, command, currentActive, fixture, harness, move, mutable, reveal } from './test-fixtures'
+import { binding, catalogInput, command, currentActive, fixture, harness, move, mutable, reveal,
+  firstHarness, launchCommand } from './test-fixtures'
 afterEach(() => vi.restoreAllMocks())
+
+describe('G4 A07/A08 real no-save long chain', () => {
+  it('read-null -> create -> launch -> reveal -> pickup -> move -> drop -> rest -> revisit -> pickup with one owner', () => {
+    const h = firstHarness(); expect(h.owner.bootstrap().status).toBe('no-save')
+    const seen = new Set<object>()
+    h.storage.hooks.write = () => { seen.add(h.owner.getState().current!) }
+    h.owner.createFirst()
+    const step = (input: unknown) => {
+      const before = h.owner.getState().current!; const writes = h.storage.port.write.mock.calls.length
+      const result = h.owner.dispatch(input)
+      expect(result.current).toBe(h.owner.getState().current)
+      expect(result.current.character.identity).toEqual(before.character.identity)
+      expect(result.current.character.revision).toBe(before.character.revision + 1)
+      expect(h.storage.port.write).toHaveBeenCalledTimes(writes + 1); expect(h.listener).toHaveBeenCalledTimes(writes + 1)
+      expect(deserializeResidenceSave(h.storage.value()!, h.policy)).toEqual(result.current)
+      if (before.phase === 'active-world') expect(currentActive(h).site.binding).toEqual(before.site.binding)
+    }
+    step(launchCommand(h))
+    step({ kind: 'reveal', ...binding(currentActive(h)), sourceId: 'fixed' })
+    const pipe = currentActive(h).site.ground[0].items[0]
+    const resource = currentActive(h).itemStates.states.find((s) => s.instanceId === pipe.instanceId)
+    step({ kind: 'pickup', ...binding(currentActive(h)), instanceId: currentActive(h).site.ground[0].items[0].instanceId,
+      placement: { x: 0, y: 0, rotated: false } })
+    step(command(currentActive(h)))
+    step({ kind: 'drop', ...binding(currentActive(h)), instanceId: currentActive(h).carried.backpack.items[0].instanceId })
+    const persistent = currentActive(h).site
+    step({ kind: 'rest', ...binding(currentActive(h)) })
+    expect(currentActive(h).site).toEqual(persistent)
+    step(command(currentActive(h), 'ba')); step(command(currentActive(h), 'ab'))
+    step({ kind: 'pickup', ...binding(currentActive(h)), instanceId: currentActive(h).site.ground.find((g) => g.nodeId === currentActive(h).site.nodeId)!.items[0].instanceId,
+      placement: { x: 2, y: 1, rotated: true } })
+    expect(currentActive(h).carried.backpack.items).toEqual([pipe])
+    expect(currentActive(h).itemStates.states.find((s) => s.instanceId === pipe.instanceId)).toEqual(resource)
+    expect(currentActive(h).site.sources[0].claimed).toBe(true)
+    expect(currentActive(h).character).toMatchObject({ revision: 9, cycle: 2, clock: { taskDay: 2, startCycle: 1 } })
+    expect(h.factory).toHaveBeenCalledTimes(1); expect(h.provider).toHaveBeenCalledTimes(1)
+    expect(h.storage.port.read).toHaveBeenCalledTimes(1); expect(h.storage.port.write).toHaveBeenCalledTimes(10)
+    expect(h.listener).toHaveBeenCalledTimes(10); expect(seen.size).toBe(10)
+  })
+})
 
 describe('G3 S07/S08/S11/S12 native composition', () => {
   it('three real session moves consume only preceding current; one revision/write/notification per step', () => {

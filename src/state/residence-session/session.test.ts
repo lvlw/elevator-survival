@@ -102,6 +102,7 @@ describe('G3 S07/S08/S10 move and query boundary', () => {
   it('returned state and copied command are frozen without freezing caller command', () => {
     const h = harness(); h.owner.bootstrap(); const raw = mutable(command(currentActive(h)))
     const parsed = ordinary.createResidenceSessionCommand(raw)
+    if (parsed.kind !== 'move') throw new Error('move command expected')
     expect(parsed).not.toBe(raw); expect(Object.isFrozen(parsed.binding.execution)).toBe(true); expect(Object.isFrozen(raw)).toBe(false)
     expect(() => Reflect.set(currentActive(h).character.body, 'energy', 0)).not.toThrow()
     expect(currentActive(h).character.body.energy).toBe(100)
@@ -134,7 +135,7 @@ describe('G3 S07/S08/S10 move and query boundary', () => {
     expect(() => h.owner.dispatch(command(currentActive(h), edgeId))).toThrow()
     expect(h.owner.getState().current).toBe(before); expect(h.storage.port.write).not.toHaveBeenCalled(); expect(h.listener).not.toHaveBeenCalled()
   })
-  it.each(['view', 'reveal', 'pickup', 'drop', 'rest', 'launch', 'close', 'combat', 'medical'])('does not dispatch unsupported %s', (kind) => {
+  it.each(['view', 'close', 'combat', 'medical'])('does not dispatch unsupported %s', (kind) => {
     const h = harness(); h.owner.bootstrap(); const plan = vi.spyOn(g2, 'planResidenceMove')
     expect(() => h.owner.dispatch({ ...command(currentActive(h)), kind })).toThrow()
     expect(plan).not.toHaveBeenCalled(); expect(h.storage.port.write).not.toHaveBeenCalled()

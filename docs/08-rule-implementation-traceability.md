@@ -159,3 +159,11 @@ G2 在 `d7953bbf96dc842d2953e019f950275cd693bf09` 已通过[限定源码实审](
 新增技术 headless envelope 和唯一私有会话 owner：仅生还首次 fresh-hub、首次 active-world 的严格冷安装，以及真实 G2 非战斗单边移动；根身份、声明全集、任务／D/T／现场／携带实体与版本一并校验。新冷候选不替代原独立 expected restore，也无安装权。已有 current 禁止二次 bootstrap/replace；完整后态预编码后一次内存提交、一次写入尝试、一次只读通知；写失败保留最新内存，不重放，重入写操作拒绝。
 
 详见[支持合同](engineering/residence-foundation/g3/contract-and-support.md)、[实现与续办记录](engineering/residence-foundation/g3/implementation-notes.md)、[实际检查](engineering/residence-foundation/g3/verification-results.json)。G1/G2 规则和 34 项参数、原医院存档／入口不改；普通源码无浏览器槽接线。关闭历史、完整终局／CTB、后续委托接续、五图、钱包、专长、玩家入口仍 OPEN；浏览器／多标签／Owner 分段突破与恢复负担体验 NOT RUN，O3 不由本批决定。
+
+## G4 首次出发／驻留事务作者实现附记（2026-10-04）
+
+G3 在完整 SHA `60e9c30732c5e22cfe9ff58b9b381de64b945180` 已通过[限定准确源码实审](engineering/residence-foundation/g4/inputs/AUD-60e9c30-ENG-RESIDENCE-SESSION-RESTORE-001-review-v1.0.md)。本批依独立 G4 授权扩展会话命令；此前历史正文、G3 当时仅 move 的合同保持原样。当前为作者实现／本地验证，待 G4 最终准确 SHA 主线实审，不是主线 PASS 或 Owner 试玩通过。
+
+唯一 headless session 新接受受控首次 launch、一次来源 reveal、普通整实例 pickup/drop 与真实节点 A/C rest，保留 move。首次从真实 read-null、显式 fresh 创建开始；执行材料不来自命令。各规则仍由首身份及 G1/G2 正式入口拥有，完整后态经原 G3 aggregate/codec 后一次提交、一次保存尝试、一次通知，写失败保留内存且不重放。恢复不重建现场或重抽来源。存档仍为 `elevator-survival.residence-headless / 1`，核心代码和批准 34 项参数不改。
+
+详见[G4 支持合同与 A01—A12 映射](engineering/residence-foundation/g4/contract-and-support.md)、[作者自查／修订](engineering/residence-foundation/g4/implementation-notes.md)及[实际验证](engineering/residence-foundation/g4/verification-results.json)。未支持的 pending/combat/death/closed 等完整结果继续不安装；该开发限制不是玩家避死玩法。完整终局、后续委托、钱包、战斗、五图、三专长、工具箱全路线、安全感染提示、玩家入口与浏览器存档仍为后续责任；O3 继续 OPEN，Owner 分段突破／恢复负担试玩及浏览器／多标签为 NOT RUN，不据此启动下一工程。

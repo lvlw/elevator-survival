@@ -1,0 +1,2104 @@
+{
+  "evidence": "EXPLICIT_TEST_FIXTURES_NOT_REGISTERED_CONTENT",
+  "base": {
+    "phase": "active-world",
+    "character": "C",
+    "revision": 4,
+    "D": 3,
+    "T": 3,
+    "start": 1,
+    "clock": {
+      "kind": "active",
+      "source": null
+    },
+    "body": {
+      "hp": 12,
+      "bleeding": false,
+      "infection": 0,
+      "exposures": 0,
+      "food": 6,
+      "suppression": 0,
+      "energy": 31,
+      "quota": 0
+    },
+    "wallet": {
+      "balance": 40
+    },
+    "declarations": [
+      "M"
+    ],
+    "missions": {
+      "M": {
+        "character": "C",
+        "status": "active",
+        "execution": "E",
+        "outcome": null
+      }
+    },
+    "site": {
+      "execution": "E",
+      "node": "H0",
+      "pending": "none",
+      "arrivalSettled": true,
+      "facts": {
+        "power": true,
+        "transfer": true
+      },
+      "sampleId": "sample"
+    },
+    "instances": {
+      "sample": {
+        "instanceId": "sample",
+        "definitionId": "designated-sample",
+        "quantity": 1,
+        "kind": "sample",
+        "origin": "M/E/H5"
+      },
+      "part": {
+        "instanceId": "part",
+        "definitionId": "part",
+        "quantity": 1,
+        "kind": "component",
+        "origin": "M/E/L2"
+      },
+      "permit": {
+        "instanceId": "permit",
+        "definitionId": "permit",
+        "quantity": 1,
+        "kind": "permission",
+        "origin": "M/E/C1"
+      },
+      "tool": {
+        "instanceId": "tool",
+        "definitionId": "tool",
+        "quantity": 1,
+        "kind": "ordinary",
+        "origin": "old-hub"
+      },
+      "food": {
+        "instanceId": "food",
+        "definitionId": "food",
+        "quantity": 3,
+        "kind": "ordinary",
+        "origin": "old-hub"
+      },
+      "bank": {
+        "instanceId": "bank",
+        "definitionId": "bank",
+        "quantity": 1,
+        "kind": "ordinary",
+        "origin": "old-hub"
+      },
+      "ground": {
+        "instanceId": "ground",
+        "definitionId": "ground",
+        "quantity": 1,
+        "kind": "ordinary",
+        "origin": "M/E/L0"
+      },
+      "installed": {
+        "instanceId": "installed",
+        "definitionId": "installed",
+        "quantity": 1,
+        "kind": "component",
+        "origin": "old-hub"
+      },
+      "consumed": {
+        "instanceId": "consumed",
+        "definitionId": "consumed",
+        "quantity": 1,
+        "kind": "ordinary",
+        "origin": "old-hub"
+      },
+      "prior-delivery": {
+        "instanceId": "prior-delivery",
+        "definitionId": "prior-delivery",
+        "quantity": 1,
+        "kind": "sample",
+        "origin": "old-hub"
+      }
+    },
+    "itemStates": {
+      "sample": {
+        "instanceId": "sample",
+        "definitionId": "designated-sample",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      },
+      "part": {
+        "instanceId": "part",
+        "definitionId": "part",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      },
+      "permit": {
+        "instanceId": "permit",
+        "definitionId": "permit",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      },
+      "tool": {
+        "instanceId": "tool",
+        "definitionId": "tool",
+        "resource": {
+          "kind": "durability",
+          "current": 2
+        }
+      },
+      "food": {
+        "instanceId": "food",
+        "definitionId": "food",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      },
+      "bank": {
+        "instanceId": "bank",
+        "definitionId": "bank",
+        "resource": {
+          "kind": "charge",
+          "current": 1
+        }
+      },
+      "ground": {
+        "instanceId": "ground",
+        "definitionId": "ground",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      },
+      "installed": {
+        "instanceId": "installed",
+        "definitionId": "installed",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      },
+      "consumed": {
+        "instanceId": "consumed",
+        "definitionId": "consumed",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      },
+      "prior-delivery": {
+        "instanceId": "prior-delivery",
+        "definitionId": "prior-delivery",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      }
+    },
+    "containers": {
+      "backpack": [
+        "sample",
+        "part",
+        "permit",
+        "food"
+      ],
+      "equipment": [
+        "tool"
+      ],
+      "quick": [],
+      "hub": [
+        "bank"
+      ],
+      "ground": [
+        "ground"
+      ],
+      "installed": [
+        "installed"
+      ],
+      "delivered": [
+        "prior-delivery"
+      ],
+      "consumed": [
+        "consumed"
+      ],
+      "destroyed": [],
+      "surrendered": [],
+      "unavailable": [],
+      "archived-ground": []
+    },
+    "history": [
+      {
+        "kind": "installed",
+        "instance": "installed"
+      },
+      {
+        "kind": "consumed",
+        "instance": "consumed"
+      },
+      {
+        "kind": "delivered_partial",
+        "instance": "prior-delivery"
+      }
+    ],
+    "closures": [],
+    "ledger": [],
+    "deathPoint": null
+  },
+  "fresh": {
+    "phase": "fresh-hub",
+    "character": "C",
+    "revision": 0,
+    "D": 1,
+    "T": 1,
+    "start": 1,
+    "clock": {
+      "kind": "first-ready",
+      "source": null
+    },
+    "body": {
+      "hp": 12,
+      "bleeding": false,
+      "infection": 0,
+      "exposures": 0,
+      "food": 6,
+      "suppression": 0,
+      "energy": 31,
+      "quota": 0
+    },
+    "wallet": {
+      "balance": 0
+    },
+    "declarations": [
+      "M"
+    ],
+    "missions": {
+      "M": {
+        "character": "C",
+        "status": "unaccepted",
+        "execution": null,
+        "outcome": null
+      }
+    },
+    "site": {
+      "execution": "E",
+      "node": "H0",
+      "pending": "none",
+      "arrivalSettled": true,
+      "facts": {
+        "power": true,
+        "transfer": true
+      },
+      "sampleId": "sample"
+    },
+    "instances": {
+      "sample": {
+        "instanceId": "sample",
+        "definitionId": "designated-sample",
+        "quantity": 1,
+        "kind": "sample",
+        "origin": "M/E/H5"
+      },
+      "part": {
+        "instanceId": "part",
+        "definitionId": "part",
+        "quantity": 1,
+        "kind": "component",
+        "origin": "M/E/L2"
+      },
+      "permit": {
+        "instanceId": "permit",
+        "definitionId": "permit",
+        "quantity": 1,
+        "kind": "permission",
+        "origin": "M/E/C1"
+      },
+      "tool": {
+        "instanceId": "tool",
+        "definitionId": "tool",
+        "quantity": 1,
+        "kind": "ordinary",
+        "origin": "old-hub"
+      },
+      "food": {
+        "instanceId": "food",
+        "definitionId": "food",
+        "quantity": 3,
+        "kind": "ordinary",
+        "origin": "old-hub"
+      },
+      "bank": {
+        "instanceId": "bank",
+        "definitionId": "bank",
+        "quantity": 1,
+        "kind": "ordinary",
+        "origin": "old-hub"
+      },
+      "ground": {
+        "instanceId": "ground",
+        "definitionId": "ground",
+        "quantity": 1,
+        "kind": "ordinary",
+        "origin": "M/E/L0"
+      },
+      "installed": {
+        "instanceId": "installed",
+        "definitionId": "installed",
+        "quantity": 1,
+        "kind": "component",
+        "origin": "old-hub"
+      },
+      "consumed": {
+        "instanceId": "consumed",
+        "definitionId": "consumed",
+        "quantity": 1,
+        "kind": "ordinary",
+        "origin": "old-hub"
+      },
+      "prior-delivery": {
+        "instanceId": "prior-delivery",
+        "definitionId": "prior-delivery",
+        "quantity": 1,
+        "kind": "sample",
+        "origin": "old-hub"
+      }
+    },
+    "itemStates": {
+      "sample": {
+        "instanceId": "sample",
+        "definitionId": "designated-sample",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      },
+      "part": {
+        "instanceId": "part",
+        "definitionId": "part",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      },
+      "permit": {
+        "instanceId": "permit",
+        "definitionId": "permit",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      },
+      "tool": {
+        "instanceId": "tool",
+        "definitionId": "tool",
+        "resource": {
+          "kind": "durability",
+          "current": 2
+        }
+      },
+      "food": {
+        "instanceId": "food",
+        "definitionId": "food",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      },
+      "bank": {
+        "instanceId": "bank",
+        "definitionId": "bank",
+        "resource": {
+          "kind": "charge",
+          "current": 1
+        }
+      },
+      "ground": {
+        "instanceId": "ground",
+        "definitionId": "ground",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      },
+      "installed": {
+        "instanceId": "installed",
+        "definitionId": "installed",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      },
+      "consumed": {
+        "instanceId": "consumed",
+        "definitionId": "consumed",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      },
+      "prior-delivery": {
+        "instanceId": "prior-delivery",
+        "definitionId": "prior-delivery",
+        "resource": {
+          "kind": "none",
+          "current": 0
+        }
+      }
+    },
+    "containers": {
+      "backpack": [
+        "sample",
+        "part",
+        "permit",
+        "food"
+      ],
+      "equipment": [
+        "tool"
+      ],
+      "quick": [],
+      "hub": [
+        "bank"
+      ],
+      "ground": [
+        "ground"
+      ],
+      "installed": [
+        "installed"
+      ],
+      "delivered": [
+        "prior-delivery"
+      ],
+      "consumed": [
+        "consumed"
+      ],
+      "destroyed": [],
+      "surrendered": [],
+      "unavailable": [],
+      "archived-ground": []
+    },
+    "history": [
+      {
+        "kind": "installed",
+        "instance": "installed"
+      },
+      {
+        "kind": "consumed",
+        "instance": "consumed"
+      },
+      {
+        "kind": "delivered_partial",
+        "instance": "prior-delivery"
+      }
+    ],
+    "closures": [],
+    "ledger": [],
+    "deathPoint": null
+  },
+  "parameter_oracle": {
+    "success_reward": 120,
+    "initial_balance": 0,
+    "balance_max": 2147483647,
+    "failure_penalty": 20
+  },
+  "clauses": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C10",
+    "C11",
+    "C12"
+  ],
+  "protected": [
+    {
+      "path": "docs/05-design-decisions.md",
+      "sha256": "66afe4c263d50e4885b5dabfff0cb052b290840874b49db644234979c120c35c"
+    },
+    {
+      "path": "docs/content/infected-residence-core-test-config-v0.1.json",
+      "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9"
+    },
+    {
+      "path": "src/content/infected-residence-core-v0.1/config.ts",
+      "sha256": "20c041f0e8ede68ad6c208c0606a73f78c8e7461f4b657a1240de1384b7f3012"
+    },
+    {
+      "path": "docs/engineering/residence-foundation/runtime-restore-supplement-v1.0.md",
+      "sha256": "8686f559296210265f3148788c1620a9574e18d0576794b3352aaffd253e827a"
+    },
+    {
+      "path": "docs/engineering/residence-foundation/energy-cycle-contract-v1.0.md",
+      "sha256": "e7f572a752bbc422a3d278d7044e68e60b103c4d581d85cdccf4a6010c39b84f"
+    }
+  ],
+  "cases": [
+    {
+      "id": "T01-complete",
+      "group": "T01",
+      "clause": "C01",
+      "category": "positive",
+      "op": "handover",
+      "expect": {
+        "phase": "living-hub",
+        "wallet.balance": 160,
+        "missions.M.outcome": "success",
+        "containers.delivered": [
+          "prior-delivery",
+          "sample"
+        ],
+        "clock.kind": "return-due",
+        "D": 3,
+        "body.quota": 0
+      }
+    },
+    {
+      "id": "T01-wounded-same-reward",
+      "group": "T01",
+      "clause": "C01",
+      "category": "positive",
+      "op": "handover",
+      "patch": {
+        "body.hp": 1,
+        "body.infection": 130
+      },
+      "expect": {
+        "wallet.balance": 160,
+        "body.hp": 1,
+        "body.infection": 130,
+        "body.food": 6
+      }
+    },
+    {
+      "id": "T01-no-ordinary-loot-same-reward",
+      "group": "T01",
+      "clause": "C01",
+      "category": "positive",
+      "op": "handover",
+      "relocate": {
+        "food": "ground",
+        "tool": "ground"
+      },
+      "expect": {
+        "wallet.balance": 160
+      }
+    },
+    {
+      "id": "T01-missing-power",
+      "group": "T01",
+      "clause": "C01",
+      "category": "expected-rejection",
+      "op": "handover",
+      "result": "rejected",
+      "patch": {
+        "site.facts.power": false
+      },
+      "code": "incomplete"
+    },
+    {
+      "id": "T01-missing-transfer",
+      "group": "T01",
+      "clause": "C01",
+      "category": "expected-rejection",
+      "op": "handover",
+      "result": "rejected",
+      "patch": {
+        "site.facts.transfer": false
+      },
+      "code": "incomplete"
+    },
+    {
+      "id": "T01-sample-ground",
+      "group": "T01",
+      "clause": "C01",
+      "category": "expected-rejection",
+      "op": "handover",
+      "result": "rejected",
+      "relocate": {
+        "sample": "ground"
+      },
+      "code": "incomplete"
+    },
+    {
+      "id": "T01-sample-delivered",
+      "group": "T01",
+      "clause": "C01",
+      "category": "expected-rejection",
+      "op": "handover",
+      "result": "rejected",
+      "relocate": {
+        "sample": "delivered"
+      },
+      "code": "incomplete"
+    },
+    {
+      "id": "T01-sample-destroyed",
+      "group": "T01",
+      "clause": "C01",
+      "category": "expected-rejection",
+      "op": "handover",
+      "result": "rejected",
+      "relocate": {
+        "sample": "destroyed"
+      },
+      "code": "incomplete"
+    },
+    {
+      "id": "T01-fake-same-name",
+      "group": "T01",
+      "clause": "C01",
+      "category": "expected-rejection",
+      "op": "handover",
+      "result": "rejected",
+      "patch": {
+        "instances.sample.definitionId": "fake",
+        "itemStates.sample.definitionId": "fake"
+      },
+      "code": "incomplete"
+    },
+    {
+      "id": "T01-wrong-sample-origin",
+      "group": "T01",
+      "clause": "C01",
+      "category": "expected-rejection",
+      "op": "handover",
+      "result": "rejected",
+      "patch": {
+        "instances.sample.origin": "another/E/H5"
+      },
+      "code": "incomplete"
+    },
+    {
+      "id": "T02-balance-0",
+      "group": "T02",
+      "clause": "C02",
+      "category": "positive",
+      "op": "withdraw",
+      "patch": {
+        "site.facts.transfer": false,
+        "wallet.balance": 0
+      },
+      "expect": {
+        "wallet.balance": 0,
+        "ledger.0.income": 0,
+        "ledger.0.penalty": 0,
+        "containers.equipment": [
+          "tool"
+        ],
+        "containers.hub": [
+          "bank"
+        ],
+        "itemStates.tool.resource.current": 2,
+        "instances.food.quantity": 3
+      }
+    },
+    {
+      "id": "T02-balance-19",
+      "group": "T02",
+      "clause": "C02",
+      "category": "positive",
+      "op": "withdraw",
+      "patch": {
+        "site.facts.transfer": false,
+        "wallet.balance": 19
+      },
+      "expect": {
+        "wallet.balance": 0,
+        "ledger.0.income": 0,
+        "ledger.0.penalty": 19,
+        "containers.equipment": [
+          "tool"
+        ],
+        "containers.hub": [
+          "bank"
+        ],
+        "itemStates.tool.resource.current": 2,
+        "instances.food.quantity": 3
+      }
+    },
+    {
+      "id": "T02-balance-20",
+      "group": "T02",
+      "clause": "C02",
+      "category": "positive",
+      "op": "withdraw",
+      "patch": {
+        "site.facts.transfer": false,
+        "wallet.balance": 20
+      },
+      "expect": {
+        "wallet.balance": 0,
+        "ledger.0.income": 0,
+        "ledger.0.penalty": 20,
+        "containers.equipment": [
+          "tool"
+        ],
+        "containers.hub": [
+          "bank"
+        ],
+        "itemStates.tool.resource.current": 2,
+        "instances.food.quantity": 3
+      }
+    },
+    {
+      "id": "T02-balance-47",
+      "group": "T02",
+      "clause": "C02",
+      "category": "positive",
+      "op": "withdraw",
+      "patch": {
+        "site.facts.transfer": false,
+        "wallet.balance": 47
+      },
+      "expect": {
+        "wallet.balance": 27,
+        "ledger.0.income": 0,
+        "ledger.0.penalty": 20,
+        "containers.equipment": [
+          "tool"
+        ],
+        "containers.hub": [
+          "bank"
+        ],
+        "itemStates.tool.resource.current": 2,
+        "instances.food.quantity": 3
+      }
+    },
+    {
+      "id": "T02-partial-sample-and-unused-parts",
+      "group": "T02",
+      "clause": "C02",
+      "category": "positive",
+      "op": "withdraw",
+      "patch": {
+        "site.facts.transfer": false
+      },
+      "expect": {
+        "containers.surrendered": [
+          "sample",
+          "part",
+          "permit"
+        ],
+        "containers.installed": [
+          "installed"
+        ],
+        "containers.delivered": [
+          "prior-delivery"
+        ]
+      }
+    },
+    {
+      "id": "T03-live",
+      "group": "T03",
+      "clause": "C03",
+      "category": "positive",
+      "op": "deadline",
+      "patch": {
+        "D": 7,
+        "T": 7,
+        "site.node": "H8"
+      },
+      "expect": {
+        "phase": "living-hub",
+        "D": 8,
+        "T": 7,
+        "clock.kind": "deadline-ready",
+        "wallet.balance": 20,
+        "body.food": 4,
+        "body.energy": 100,
+        "body.quota": 1
+      },
+      "trace": [
+        "blood",
+        "infection",
+        "hunger",
+        "reset"
+      ]
+    },
+    {
+      "id": "T03-death-blood",
+      "group": "T03",
+      "clause": "C03",
+      "category": "positive",
+      "op": "deadline",
+      "patch": {
+        "D": 7,
+        "T": 7,
+        "site.node": "H8",
+        "body.hp": 2,
+        "body.bleeding": true,
+        "body.infection": 110
+      },
+      "expect": {
+        "phase": "dead",
+        "body.hp": 0,
+        "D": 7,
+        "T": 7,
+        "wallet.balance": 0,
+        "ledger.0.income": 0,
+        "ledger.0.penalty": 0
+      },
+      "trace": [
+        "blood"
+      ]
+    },
+    {
+      "id": "T03-death-infection",
+      "group": "T03",
+      "clause": "C03",
+      "category": "positive",
+      "op": "deadline",
+      "patch": {
+        "D": 7,
+        "T": 7,
+        "site.node": "H8",
+        "body.hp": 3,
+        "body.infection": 110
+      },
+      "expect": {
+        "phase": "dead",
+        "body.hp": 0,
+        "D": 7,
+        "T": 7,
+        "wallet.balance": 0,
+        "ledger.0.income": 0,
+        "ledger.0.penalty": 0
+      },
+      "trace": [
+        "blood",
+        "infection"
+      ]
+    },
+    {
+      "id": "T03-death-hunger",
+      "group": "T03",
+      "clause": "C03",
+      "category": "positive",
+      "op": "deadline",
+      "patch": {
+        "D": 7,
+        "T": 7,
+        "site.node": "H8",
+        "body.hp": 1,
+        "body.food": 1
+      },
+      "expect": {
+        "phase": "dead",
+        "body.hp": 0,
+        "D": 7,
+        "T": 7,
+        "wallet.balance": 0,
+        "ledger.0.income": 0,
+        "ledger.0.penalty": 0
+      },
+      "trace": [
+        "blood",
+        "infection",
+        "hunger"
+      ]
+    },
+    {
+      "id": "T03-no-skip-battle",
+      "group": "T03",
+      "clause": "C03",
+      "category": "expected-rejection",
+      "op": "deadline",
+      "result": "rejected",
+      "patch": {
+        "D": 7,
+        "T": 7,
+        "site.node": "H8",
+        "site.pending": "battle"
+      },
+      "code": "unsettled"
+    },
+    {
+      "id": "T03-no-skip-immediate",
+      "group": "T03",
+      "clause": "C03",
+      "category": "expected-rejection",
+      "op": "deadline",
+      "result": "rejected",
+      "patch": {
+        "D": 7,
+        "T": 7,
+        "site.node": "H8",
+        "site.pending": "immediate"
+      },
+      "code": "unsettled"
+    },
+    {
+      "id": "T03-wrong-day",
+      "group": "T03",
+      "clause": "C03",
+      "category": "expected-rejection",
+      "op": "deadline",
+      "result": "rejected",
+      "code": "not-deadline"
+    },
+    {
+      "id": "T03-E0-not-automatic-deadline",
+      "group": "T03",
+      "clause": "C03",
+      "category": "positive",
+      "op": "view",
+      "patch": {
+        "body.energy": 0
+      },
+      "expect": {
+        "phase": "active-world",
+        "D": 3
+      }
+    },
+    {
+      "id": "T04-Day7-normal-success",
+      "group": "T04",
+      "clause": "C04",
+      "category": "positive",
+      "op": "handover",
+      "patch": {
+        "D": 7,
+        "T": 7,
+        "body.hp": 1,
+        "body.infection": 130,
+        "body.food": 1
+      },
+      "expect": {
+        "D": 7,
+        "body.hp": 1,
+        "body.food": 1,
+        "clock.kind": "return-due"
+      },
+      "trace": []
+    },
+    {
+      "id": "T04-Day7-normal-failure",
+      "group": "T04",
+      "clause": "C04",
+      "category": "positive",
+      "op": "withdraw",
+      "patch": {
+        "site.facts.transfer": false,
+        "D": 7,
+        "T": 7
+      },
+      "expect": {
+        "D": 7,
+        "clock.kind": "return-due",
+        "body.food": 6
+      },
+      "trace": []
+    },
+    {
+      "id": "T04-static-hub",
+      "group": "T04",
+      "clause": "C04",
+      "category": "positive",
+      "op": "static-hub",
+      "expect": {
+        "body.food": 6,
+        "body.energy": 31,
+        "body.quota": 0,
+        "D": 3
+      }
+    },
+    {
+      "id": "T04-no-teleport",
+      "group": "T04",
+      "clause": "C04",
+      "category": "expected-rejection",
+      "op": "handover",
+      "result": "rejected",
+      "patch": {
+        "site.node": "H8"
+      },
+      "code": "not-return-point"
+    },
+    {
+      "id": "T04-unsettled-arrival",
+      "group": "T04",
+      "clause": "C04",
+      "category": "expected-rejection",
+      "op": "handover",
+      "result": "rejected",
+      "patch": {
+        "site.arrivalSettled": false
+      },
+      "code": "unsettled"
+    },
+    {
+      "id": "T05-action-death",
+      "group": "T05",
+      "clause": "C05",
+      "category": "positive",
+      "op": "resolved-action",
+      "expect": {
+        "phase": "dead",
+        "wallet.balance": 0,
+        "D": 3,
+        "containers.backpack": [],
+        "containers.hub": [],
+        "containers.delivered": [
+          "prior-delivery"
+        ],
+        "containers.installed": [
+          "installed"
+        ]
+      },
+      "trace": [
+        "primary",
+        "action-blood"
+      ],
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      }
+    },
+    {
+      "id": "T05-rest-death",
+      "group": "T05",
+      "clause": "C05",
+      "category": "positive",
+      "op": "rest",
+      "patch": {
+        "body.hp": 2,
+        "body.bleeding": true
+      },
+      "expect": {
+        "phase": "dead",
+        "D": 3,
+        "T": 3,
+        "body.quota": 0
+      },
+      "trace": [
+        "blood"
+      ]
+    },
+    {
+      "id": "T05-later-retirement-preserves-success",
+      "group": "T05",
+      "clause": "C05",
+      "category": "positive",
+      "op": "history-retire",
+      "expect": {
+        "wallet.balance": 0,
+        "closures.0.outcome": "success",
+        "ledger.0.income": 120,
+        "containers.delivered": [
+          "prior-delivery",
+          "sample"
+        ]
+      }
+    },
+    {
+      "id": "T06-ordinary-resource-identity",
+      "group": "T06",
+      "clause": "C06",
+      "category": "positive",
+      "op": "handover",
+      "expect": {
+        "itemStates.bank.resource.current": 1,
+        "itemStates.tool.resource.current": 2,
+        "instances.food.quantity": 3,
+        "containers.archived-ground": [
+          "ground"
+        ]
+      }
+    },
+    {
+      "id": "T06-duplicate-owner",
+      "group": "T06",
+      "clause": "C06",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "patch": {
+        "containers.hub": [
+          "bank",
+          "tool"
+        ]
+      },
+      "code": "instance-ownership"
+    },
+    {
+      "id": "T06-missing-state",
+      "group": "T06",
+      "clause": "C06",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "remove": [
+        "itemStates.tool"
+      ],
+      "code": "instance-ownership"
+    },
+    {
+      "id": "T06-wrong-state-definition",
+      "group": "T06",
+      "clause": "C06",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "patch": {
+        "itemStates.tool.definitionId": "other"
+      },
+      "code": "resource-binding"
+    },
+    {
+      "id": "T07-failed-save-repeat-no-payment",
+      "group": "T07",
+      "clause": "C07",
+      "category": "fault",
+      "op": "retry",
+      "expect": {
+        "wallet.balance": 160
+      },
+      "counts": {
+        "plans": 1,
+        "commits": 1,
+        "writes": 2,
+        "notices": 1
+      }
+    },
+    {
+      "id": "T07-cannot-bootstrap-over-closed",
+      "group": "T07",
+      "clause": "C07",
+      "category": "positive",
+      "op": "bootstrap-replace",
+      "expect": {
+        "missions.M.status": "closed",
+        "wallet.balance": 160
+      }
+    },
+    {
+      "id": "T07-changed-title",
+      "group": "T07",
+      "clause": "C07",
+      "category": "expected-rejection",
+      "op": "invalid-request",
+      "result": "rejected",
+      "request": {
+        "title": "new"
+      },
+      "code": "invalid-fields"
+    },
+    {
+      "id": "T07-changed-execution",
+      "group": "T07",
+      "clause": "C07",
+      "category": "expected-rejection",
+      "op": "invalid-request",
+      "result": "rejected",
+      "request": {
+        "execution": "NEW"
+      },
+      "code": "request-binding"
+    },
+    {
+      "id": "T07-closed-cannot-launch",
+      "group": "T07",
+      "clause": "C07",
+      "category": "expected-rejection",
+      "op": "closed-launch",
+      "result": "rejected",
+      "code": "closed-no-retry"
+    },
+    {
+      "id": "T08-restore-success",
+      "group": "T08",
+      "clause": "C08",
+      "category": "positive",
+      "op": "restore",
+      "setup": "handover",
+      "patch": {},
+      "expect": {
+        "phase": "living-hub"
+      }
+    },
+    {
+      "id": "T08-restore-failure",
+      "group": "T08",
+      "clause": "C08",
+      "category": "positive",
+      "op": "restore",
+      "setup": "withdraw",
+      "patch": {
+        "site.facts.transfer": false
+      },
+      "expect": {
+        "phase": "living-hub"
+      }
+    },
+    {
+      "id": "T08-restore-deadline",
+      "group": "T08",
+      "clause": "C08",
+      "category": "positive",
+      "op": "restore",
+      "setup": "deadline",
+      "patch": {
+        "D": 7,
+        "T": 7,
+        "site.node": "H8"
+      },
+      "expect": {
+        "phase": "living-hub"
+      }
+    },
+    {
+      "id": "T08-restore-dead",
+      "group": "T08",
+      "clause": "C08",
+      "category": "positive",
+      "op": "restore",
+      "setup": "resolved-action",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "expect": {
+        "phase": "dead"
+      }
+    },
+    {
+      "id": "T08-missing-body",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "setup": "handover",
+      "tamper": {},
+      "delete": [
+        "body"
+      ]
+    },
+    {
+      "id": "T08-cross-character",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "setup": "handover",
+      "tamper": {
+        "character": "foreign"
+      },
+      "delete": []
+    },
+    {
+      "id": "T08-missing-closed",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "setup": "handover",
+      "tamper": {
+        "missions.M.status": "unaccepted",
+        "missions.M.execution": null,
+        "missions.M.outcome": null
+      },
+      "delete": []
+    },
+    {
+      "id": "T08-two-active",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "setup": "handover",
+      "tamper": {
+        "declarations": [
+          "M",
+          "N"
+        ],
+        "missions.N": {
+          "character": "C",
+          "status": "active",
+          "execution": "E2",
+          "outcome": null
+        }
+      },
+      "delete": []
+    },
+    {
+      "id": "T08-old-ready-source",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "setup": "handover",
+      "tamper": {
+        "clock.source.execution": "OLD"
+      },
+      "delete": []
+    },
+    {
+      "id": "T08-phase-hp",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "setup": "handover",
+      "tamper": {
+        "body.hp": 0
+      },
+      "delete": []
+    },
+    {
+      "id": "T08-missing-ledger",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "setup": "handover",
+      "tamper": {
+        "ledger": []
+      },
+      "delete": []
+    },
+    {
+      "id": "T08-wallet-mismatch",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "setup": "handover",
+      "tamper": {
+        "wallet.balance": 159
+      },
+      "delete": []
+    },
+    {
+      "id": "T08-missing-disposition",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "setup": "handover",
+      "tamper": {
+        "containers.surrendered": [
+          "sample"
+        ]
+      },
+      "delete": []
+    },
+    {
+      "id": "T08-old-model-format",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "format": "WE003-finite-model-v1",
+      "code": "unsupported-model-format"
+    },
+    {
+      "id": "T09-write-fault",
+      "group": "T09",
+      "clause": "C09",
+      "category": "fault",
+      "op": "handover",
+      "write_failure": true,
+      "expect": {
+        "wallet.balance": 160
+      },
+      "counts": {
+        "plans": 1,
+        "commits": 1,
+        "writes": 2,
+        "notices": 1
+      }
+    },
+    {
+      "id": "T09-write-fault-failure",
+      "group": "T09",
+      "clause": "C09",
+      "category": "fault",
+      "op": "withdraw",
+      "patch": {
+        "site.facts.transfer": false
+      },
+      "write_failure": true,
+      "expect": {
+        "wallet.balance": 20
+      },
+      "counts": {
+        "plans": 1,
+        "commits": 1,
+        "writes": 2,
+        "notices": 1
+      }
+    },
+    {
+      "id": "T09-callback-reentry",
+      "group": "T09",
+      "clause": "C09",
+      "category": "fault",
+      "op": "reentry",
+      "expect": {
+        "wallet.balance": 160
+      },
+      "counts": {
+        "plans": 1,
+        "commits": 1,
+        "writes": 1,
+        "notices": 1
+      }
+    },
+    {
+      "id": "T09-bad-request-no-commit",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "invalid-request",
+      "result": "rejected",
+      "request": {
+        "success": true
+      },
+      "code": "invalid-fields"
+    },
+    {
+      "id": "T10-wallet-negative",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "patch": {
+        "wallet.balance": -1
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T10-wallet-fraction",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "patch": {
+        "wallet.balance": 1.5
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T10-wallet-bool",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "patch": {
+        "wallet.balance": true
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T10-wallet-unsafe",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "patch": {
+        "wallet.balance": 9007199254740992
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T10-wallet-over-cap",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "patch": {
+        "wallet.balance": 2147483648
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T10-wallet-balance-NaN",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "special": {
+        "wallet.balance": "NaN"
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T10-wallet-balance-Infinity",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "special": {
+        "wallet.balance": "Infinity"
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T10-body-infection-NaN",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "special": {
+        "body.infection": "NaN"
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T10-body-infection-Infinity",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "special": {
+        "body.infection": "Infinity"
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T10-revision-NaN",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "special": {
+        "revision": "NaN"
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T10-revision-Infinity",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "restore",
+      "result": "rejected",
+      "special": {
+        "revision": "Infinity"
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T10-revision-overflow",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "handover",
+      "result": "rejected",
+      "patch": {
+        "revision": 9007199254740991
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T10-full-reward-at-cap",
+      "group": "T10",
+      "clause": "C10",
+      "category": "positive",
+      "op": "handover",
+      "patch": {
+        "wallet.balance": 2147483527
+      },
+      "expect": {
+        "wallet.balance": 2147483647
+      }
+    },
+    {
+      "id": "T10-reward-space-before-rule",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "launch-space",
+      "result": "rejected",
+      "patch": {
+        "wallet.balance": 2147483528
+      },
+      "code": "reward-space"
+    },
+    {
+      "id": "T10-hidden-invalid-exposure-before-blood",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "deadline",
+      "result": "rejected",
+      "patch": {
+        "D": 7,
+        "T": 7,
+        "site.node": "H8",
+        "body.hp": 2,
+        "body.bleeding": true,
+        "body.exposures": 9007199254740991
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T10-fake-dead-flag",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "invalid-request",
+      "result": "rejected",
+      "request": {
+        "dead": false
+      },
+      "code": "invalid-fields"
+    },
+    {
+      "id": "T11-combat",
+      "group": "T11",
+      "clause": "C11",
+      "category": "unsupported",
+      "op": "combat",
+      "result": "unsupported",
+      "code": "combat"
+    },
+    {
+      "id": "T11-medical",
+      "group": "T11",
+      "clause": "C11",
+      "category": "unsupported",
+      "op": "medical",
+      "result": "unsupported",
+      "code": "medical"
+    },
+    {
+      "id": "T11-second-real-mission",
+      "group": "T11",
+      "clause": "C11",
+      "category": "unsupported",
+      "op": "second-real-mission",
+      "result": "unsupported",
+      "code": "second-real-mission"
+    },
+    {
+      "id": "T11-browser-release",
+      "group": "T11",
+      "clause": "C11",
+      "category": "unsupported",
+      "op": "browser-release",
+      "result": "unsupported",
+      "code": "browser-release"
+    },
+    {
+      "id": "T12-old-ready-not-permanent-immunity",
+      "group": "T12",
+      "clause": "C12",
+      "category": "positive",
+      "op": "old-ready",
+      "expect": {
+        "D": 9,
+        "body.food": 0
+      }
+    },
+    {
+      "id": "T03-H0-does-not-expire",
+      "group": "T03",
+      "clause": "C03",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "deadline",
+      "patch": {
+        "D": 7,
+        "T": 7
+      },
+      "code": "normal-return-available"
+    },
+    {
+      "id": "T02-already-qualified-withdraw",
+      "group": "T02",
+      "clause": "C02",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "withdraw",
+      "code": "success-available"
+    },
+    {
+      "id": "T08-success-cannot-relabel-dead",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "handover",
+      "retire_before_tamper": true,
+      "tamper": {
+        "phase": "dead",
+        "body.hp": 0,
+        "deathPoint": {
+          "cycle": 3,
+          "kind": "resolved-action",
+          "execution": "E"
+        }
+      },
+      "code": "dead-closure"
+    },
+    {
+      "id": "T08-dead-source-cross-execution",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "resolved-action",
+      "tamper": {
+        "deathPoint.execution": "OTHER"
+      },
+      "code": "death-source",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      }
+    },
+    {
+      "id": "T08-dead-clock-forged-ready",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "resolved-action",
+      "tamper": {
+        "clock.kind": "deadline-ready"
+      },
+      "code": "dead-clock",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      }
+    },
+    {
+      "id": "T08-dead-source-missing",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "resolved-action",
+      "delete": [
+        "deathPoint.kind"
+      ],
+      "code": "invalid-fields",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      }
+    },
+    {
+      "id": "T08-history-erased",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "handover",
+      "tamper": {
+        "history": []
+      },
+      "code": "missing-disposition-history"
+    },
+    {
+      "id": "T08-success-sample-not-delivered",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "handover",
+      "post_relocate": {
+        "sample": "surrendered"
+      },
+      "tamper": {
+        "history.3.kind": "delivered_partial"
+      },
+      "code": "success-disposition"
+    },
+    {
+      "id": "T08-closed-site-unsettled",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "handover",
+      "tamper": {
+        "site.pending": "battle"
+      },
+      "code": "closed-unsettled"
+    },
+    {
+      "id": "T08-closed-time-disagrees",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "handover",
+      "tamper": {
+        "T": 2
+      },
+      "code": "closure-current-time"
+    },
+    {
+      "id": "T08-disposition-cross-execution",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "handover",
+      "tamper": {
+        "history.3.execution": "OTHER"
+      },
+      "code": "history-binding"
+    },
+    {
+      "id": "T08-source-bool-not-integer",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "handover",
+      "tamper": {
+        "clock.source.start": true
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T08-source-float-not-integer",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "handover",
+      "tamper": {
+        "clock.source.end": 3.0
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T08-missions-null",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "handover",
+      "tamper": {
+        "missions": null
+      },
+      "code": "missions-shape"
+    },
+    {
+      "id": "T08-nested-container-id",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "handover",
+      "tamper": {
+        "containers.backpack": [
+          []
+        ]
+      },
+      "code": "container"
+    },
+    {
+      "id": "T08-sample-id-array",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "handover",
+      "tamper": {
+        "site.sampleId": []
+      },
+      "code": "sample-id"
+    },
+    {
+      "id": "T08-instances-null",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "handover",
+      "tamper": {
+        "instances": null
+      },
+      "code": "items-shape"
+    },
+    {
+      "id": "T08-missing-history-instance-type",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "handover",
+      "tamper": {
+        "history.0.instance": []
+      },
+      "code": "history-fields"
+    },
+    {
+      "id": "T09-proposal-wrong-base-zero-effects",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "bad-proposal",
+      "proposal_patch": {
+        "base.wallet.balance": 39
+      },
+      "code": "plan-mismatch"
+    },
+    {
+      "id": "T09-proposal-bool-base-zero-effects",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "bad-proposal",
+      "proposal_patch": {
+        "base.start": true
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T09-proposal-malformed-body-zero-effects",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "bad-proposal",
+      "proposal_patch": {
+        "snapshot.body": null
+      },
+      "code": "invalid-fields"
+    },
+    {
+      "id": "T10-D-overflow-before-fatal-cycle",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "deadline",
+      "patch": {
+        "D": 9007199254740991,
+        "T": 7,
+        "start": 9007199254740985,
+        "site.node": "H8",
+        "body.hp": 2,
+        "body.bleeding": true
+      },
+      "code": "invalid-number"
+    },
+    {
+      "id": "T08-action-cannot-relabel-rest",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "resolved-action",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "tamper": {
+        "deathPoint.kind": "rest"
+      },
+      "code": "death-steps"
+    },
+    {
+      "id": "T08-death-cause-mismatch",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "resolved-action",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "tamper": {
+        "deathPoint.cause": "hunger"
+      },
+      "code": "death-steps"
+    },
+    {
+      "id": "T08-death-blood-without-bleeding",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "resolved-action",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "tamper": {
+        "body.bleeding": false
+      },
+      "code": "death-cause-body"
+    },
+    {
+      "id": "T08-death-steps-missing",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "result": "rejected",
+      "op": "restore",
+      "setup": "resolved-action",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "delete": [
+        "deathPoint.steps"
+      ],
+      "code": "invalid-fields"
+    }
+  ],
+  "parameter_status_oracle": {
+    "success_reward": "RECOMMENDED_DRAFT",
+    "initial_balance": "RECOMMENDED_DRAFT",
+    "balance_max": "RECOMMENDED_DRAFT",
+    "failure_penalty": "OWNER_CONFIRMED_PENDING_FORMAL_ADOPTION"
+  }
+}

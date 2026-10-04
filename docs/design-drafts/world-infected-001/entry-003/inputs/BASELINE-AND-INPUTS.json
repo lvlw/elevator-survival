@@ -1,0 +1,79 @@
+{
+  "task": "WORLD-ENTRY-003",
+  "version": "v1.0",
+  "kind": "DESIGN_AND_FINITE_VALIDATION_ONLY",
+  "repository": "lvlw/elevator-survival",
+  "startSha": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c",
+  "startTree": "4b5a39ef32f5b24e2cfa56076403bf301654324e",
+  "sourceBranch": "feature/residence-actions-core-001",
+  "newBranch": "feature/design-world-entry-003",
+  "allowedPaths": [
+    "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+    "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+    "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+    "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+    "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+    "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+    "docs/design-drafts/world-infected-001/entry-003/config-candidate.json",
+    "docs/design-drafts/world-infected-001/entry-003/validation/check.py",
+    "docs/design-drafts/world-infected-001/entry-003/validation/fixtures.json",
+    "docs/design-drafts/world-infected-001/entry-003/validation/results.json",
+    "docs/design-drafts/world-infected-001/entry-003/validation/review-notes.md",
+    "docs/design-drafts/world-infected-001/entry-003/validation/current-api-probe.mjs",
+    "docs/design-drafts/world-infected-001/entry-003/validation/probe-results.json",
+    "docs/design-drafts/world-infected-001/entry-003/completion.md",
+    "docs/design-drafts/world-infected-001/entry-003/inputs/WORLD-ENTRY-003-task-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/inputs/OWNER-authority-and-scope-WE003-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/inputs/AUD-7ca547a-ENG-RESIDENCE-ACTIONS-001-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/inputs/BASELINE-AND-INPUTS.json",
+    "docs/design-drafts/world-infected-001/entry-003/inputs/SHA256SUMS.txt",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "appendOnlyPaths": [
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "priorG4": {
+    "review": "PASS_G4_SCOPE_ONLY",
+    "ciRun": 37180698693,
+    "ciNumber": 133,
+    "tests": 2791,
+    "testFiles": 124,
+    "countRole": "historical baseline reference, NOT this design task execution"
+  },
+  "referenceRefs": {
+    "main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+    "feature/design-world-entry-002": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+    "feature/residence-session-core-001": "60e9c30732c5e22cfe9ff58b9b381de64b945180",
+    "feature/residence-location-core-001": "d7953bbf96dc842d2953e019f950275cd693bf09",
+    "feature/residence-energy-cycle-core-001": "942b2d93916c649f4c2ec6cd399035151269d2ca"
+  },
+  "permissions": {
+    "normalCommit": true,
+    "pushOnly": "refs/heads/feature/design-world-entry-003",
+    "productionChanges": false,
+    "formalDecChanges": false,
+    "merge": false,
+    "forcePush": false,
+    "mainPush": false,
+    "automaticNextEngineering": false
+  },
+  "newRulesApproved": false,
+  "numericDraftApproval": false,
+  "ownerActionsNow": "extract package outside repository; send task to original Codex design conversation; return final report to this WebGPT conversation",
+  "inputFiles": {
+    "WORLD-ENTRY-003-task-v1.0.md": {
+      "bytes": 19414,
+      "sha256": "468c2e7d315f6f53486665250c3a7a2d4635de363bab63c9da6c6fe1096ea37c"
+    },
+    "OWNER-authority-and-scope-WE003-v1.0.md": {
+      "bytes": 1871,
+      "sha256": "8a88d883320e9cea14173d5e2b707eda7726a2f79fab9748991c6450ffdcd874"
+    },
+    "AUD-7ca547a-ENG-RESIDENCE-ACTIONS-001-review-v1.0.md": {
+      "bytes": 11130,
+      "sha256": "c2deb808af931a184c41c9be4f4822845584e6b6fbc3720c537329750e17098d"
+    }
+  }
+}

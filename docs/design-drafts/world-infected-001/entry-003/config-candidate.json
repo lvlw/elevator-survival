@@ -1,0 +1,45 @@
+{
+  "kind": "DESIGN_DRAFT_NOT_RUNTIME_CONFIG",
+  "baseSha": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c",
+  "parameters": {
+    "success_reward": {
+      "value": 120,
+      "status": "RECOMMENDED_DRAFT",
+      "source": "11-points-hub-recovery.md §3; not approved by DEC-050",
+      "consumer": "future terminal wallet and launch validation"
+    },
+    "initial_balance": {
+      "value": 0,
+      "status": "RECOMMENDED_DRAFT",
+      "source": "11-points-hub-recovery.md §2",
+      "consumer": "future terminal wallet and launch validation"
+    },
+    "balance_max": {
+      "value": 2147483647,
+      "status": "RECOMMENDED_DRAFT",
+      "source": "11-points-hub-recovery.md §2; not a TS-required bound",
+      "consumer": "future terminal wallet and launch validation"
+    },
+    "failure_penalty": {
+      "value": 20,
+      "status": "OWNER_CONFIRMED_PENDING_FORMAL_ADOPTION",
+      "source": "003D current commission only; no debt",
+      "consumer": "future terminal wallet and launch validation"
+    }
+  },
+  "policies": {
+    "reward_space": {
+      "value": "check-full-reward-before-launch; no-world-wallet-credits",
+      "status": "RECOMMENDED_DRAFT"
+    },
+    "task_failure_disposition": {
+      "value": "sample-partial-delivery; unused-task-parts-surrender; local-permission-expire",
+      "status": "RECOMMENDED_DRAFT"
+    }
+  },
+  "exclusions": [
+    "G1 approved 34 values referenced, not copied",
+    "prices/services/medical/shop/unlocks",
+    "production rulesVersion or save registration"
+  ]
+}

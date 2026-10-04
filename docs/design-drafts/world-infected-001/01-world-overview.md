@@ -134,3 +134,11 @@ G3 在完整 SHA `60e9c30732c5e22cfe9ff58b9b381de64b945180` 已通过[限定准�
 唯一 headless session 新接受受控首次 launch、一次来源 reveal、普通整实例 pickup/drop 与真实节点 A/C rest，保留 move。首次从真实 read-null、显式 fresh 创建开始；执行材料不来自命令。各规则仍由首身份及 G1/G2 正式入口拥有，完整后态经原 G3 aggregate/codec 后一次提交、一次保存尝试、一次通知，写失败保留内存且不重放。恢复不重建现场或重抽来源。存档仍为 `elevator-survival.residence-headless / 1`，核心代码和批准 34 项参数不改。
 
 详见[G4 支持合同与 A01—A12 映射](../../engineering/residence-foundation/g4/contract-and-support.md)、[作者自查／修订](../../engineering/residence-foundation/g4/implementation-notes.md)及[实际验证](../../engineering/residence-foundation/g4/verification-results.json)。未支持的 pending/combat/death/closed 等完整结果继续不安装；该开发限制不是玩家避死玩法。完整终局、后续委托、钱包、战斗、五图、三专长、工具箱全路线、安全感染提示、玩家入口与浏览器存档仍为后续责任；O3 继续 OPEN，Owner 分段突破／恢复负担试玩及浏览器／多标签为 NOT RUN，不据此启动下一工程。
+
+## WORLD-ENTRY-003 准入候选（2026-10-04，追加状态）
+
+G4基线 `7ca547ab8ab4f411d1102a79baf8c0796f4b082c` 已获[主线限定实审PASS原件](entry-003/inputs/AUD-7ca547a-ENG-RESIDENCE-ACTIONS-001-review-v1.0.md)，不把上文历史“待审”当最新状态，也不扩大为完整世界批准。
+
+[本轮集中Owner审阅](entry-003/00-owner-review.md)与[三项工程合同候选](entry-003/04-next-engineering-contracts.md)为DESIGN DRAFT：终局完整清算、关闭态恢复、最小积分子集与任务件处置待分别采纳。失败20及单次驻留等已确认方向保留；120／初始0／上限仍为候选。实际源码边界与有限模型证据分层，旧重复供给实验不变。
+
+当前仍不支持生产完整终局；五图真实任务接线、战斗医疗、三专长／工具箱、安全提示／低资产UI、浏览器多标签、O3发布与Owner首玩Gate保留。等待本轮准确SHA实文件评审及后续正式落文／工程授权，不自动执行候选。

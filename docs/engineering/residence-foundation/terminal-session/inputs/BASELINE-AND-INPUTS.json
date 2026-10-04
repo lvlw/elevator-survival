@@ -1,0 +1,361 @@
+{
+  "task": "ENG-RESIDENCE-TERMINAL-SESSION-001",
+  "shorthand": "C",
+  "version": "v1.0",
+  "date": "2026-10-05",
+  "repository": "lvlw/elevator-survival",
+  "base_sha": "b9b1e0fee0e779669ca40e088ac9a867016bff82",
+  "base_parent": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf",
+  "base_tree": "e8939c6d65075e630e3960b619daa50de0eb9b53",
+  "base_src_tree": "05ed81d551d318a58b1a9005b493c4566936ef87",
+  "branch": "feature/residence-terminal-session-001",
+  "create_new_branch": true,
+  "predecessor_review": {
+    "object": "b9b1e0fee0e779669ca40e088ac9a867016bff82",
+    "result": "PASS_WITHIN_B_CONTRACT",
+    "report_file": "AUD-b9b1e0f-ENG-RESIDENCE-TERMINAL-RESTORE-001-review-v1.0.md"
+  },
+  "authority_records": [
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md"
+  ],
+  "approved_format": {
+    "format": "elevator-survival.residence-headless",
+    "formatVersion": 2,
+    "terminalConfigurationId": "infected-terminal-core-test-v0.1",
+    "g1_configuration": "existing separate approved handle; unchanged",
+    "v1_migration": "FORBIDDEN"
+  },
+  "reference_refs": {
+    "main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+    "feature/design-world-entry-003": "6438f7a38939297225538cdd68af24201ed7d34f",
+    "feature/design-world-entry-002": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+    "feature/design-world-infected-world-001": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+    "feature/mission-lifecycle-core-001": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+    "feature/residence-energy-cycle-core-001": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+    "feature/residence-location-core-001": "d7953bbf96dc842d2953e019f950275cd693bf09",
+    "feature/residence-session-core-001": "60e9c30732c5e22cfe9ff58b9b381de64b945180",
+    "feature/residence-actions-core-001": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c",
+    "feature/residence-terminal-core-001": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf",
+    "feature/residence-terminal-restore-001": "b9b1e0fee0e779669ca40e088ac9a867016bff82"
+  },
+  "current_authoritative_objects": {
+    "docs/05-design-decisions.md": {
+      "git_blob": "c739151493cd8b5e46e03d25008ea0fb128c3e14",
+      "mode": "read_only"
+    },
+    "docs/content/infected-terminal-core-test-config-v0.1.json": {
+      "git_blob": "fa999e7f456414daf6279fd8fbff3cd117394135",
+      "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+      "mode": "read_only"
+    },
+    "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md": {
+      "git_blob": "c52c08df1cd99b6d376e3d43174e72e0866758bf",
+      "sha256": "5f35b35cfe580aad5b1f8990954285dae88fb0451645ce43088ced9099fbcd50",
+      "mode": "read_only"
+    },
+    "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md": {
+      "git_blob": "cf308a1b16d932ba8d99da07bb0dcdce7201f0e1",
+      "sha256": "e6126982afc09c0174279418a6d8563b5b88645c2c080a38d698a53410c14fd5",
+      "mode": "read_only"
+    },
+    "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md": {
+      "git_blob": "f9e97aafdba863dad17a2fc51a624bb236a7dc07",
+      "mode": "read_only"
+    },
+    "AGENTS.md": {
+      "git_blob": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "mode": "read_only"
+    },
+    "package.json": {
+      "git_blob": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+      "mode": "read_only"
+    },
+    "package-lock.json": {
+      "git_blob": "3b320a8a79a1815c0909d8846e5e6248d4fc187e",
+      "mode": "read_only"
+    },
+    "src/core/mission-lifecycle/controlled.ts": {
+      "git_blob": "c618e1ebd687a304d2c0d85776109fba7b8bd1e0",
+      "mode": "read_only"
+    },
+    "src/core/residence-location/controlled.ts": {
+      "git_blob": "5807d37152a67d9dc8c9a3e4b95dc1574bccdcc2",
+      "mode": "read_only"
+    },
+    "src/core/residence-location/movement.ts": {
+      "git_blob": "369dce353ee79ce6b6f7990f0f9c1db972a18700",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/types.ts": {
+      "git_blob": "cf623de9fd8eb28aab077a86e40e4ac252987223",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/validation.ts": {
+      "git_blob": "7f33381eb69fbcb3b696f5b1606cc45c06e9e4ee",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/authority.ts": {
+      "git_blob": "1a643644e7311bed1fe2254b6a06bf59ad979877",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/controlled.ts": {
+      "git_blob": "c205b5753f1ce81656f21818e7b350e0a1f703b2",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/settlement.ts": {
+      "git_blob": "a0813f6ca38540c140d047418ddeefc46fcdc43e",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/plans.ts": {
+      "git_blob": "9a3fced8858aa1db81cecbc13f5ece10edebf34a",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/dispositions.ts": {
+      "git_blob": "55270a8eca294101b173637775f170f5a32235a2",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/index.ts": {
+      "git_blob": "68fae384e3ef6e0df51ed848f6121d169229c8cf",
+      "mode": "read_only"
+    },
+    "src/content/infected-terminal-core-v0.1/config.ts": {
+      "git_blob": "353de338c5fcb112f7e8077e9dff7789757fa5de",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/types.ts": {
+      "git_blob": "24ad2c0d5e2b9f43fbae716188d4aa91b507f86e",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/codec.ts": {
+      "git_blob": "fc91717d0833f0e62e1b153501b0cd37bf1815c2",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/validation.ts": {
+      "git_blob": "130e8bae56b46fba38b52e4b4cf763a7291b1f83",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/index.ts": {
+      "git_blob": "40105d44c92b3d208baf0b71eb526eb5d5550064",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/residence-save.test.ts": {
+      "git_blob": "eb7d210c0a9910097c74de0f1bc5378d6557f959",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/terminal-validation.ts": {
+      "git_blob": "411bbcd534a29cb6cb175ca7701b925b403ef1d5",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/terminal-history.ts": {
+      "git_blob": "62c6c2c46ec9f3f76c01751f456138449013ce68",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/terminal-expected.ts": {
+      "git_blob": "e13bcb937496f227adeaab6213fc021cdd899234",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/terminal-policy.ts": {
+      "git_blob": "788c109fe369348c9593183571f1897e2ef588de",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/terminal-codec.ts": {
+      "git_blob": "f5cd3bc028cb489992b209631fefc8cd62ab27bf",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/terminal-types.ts": {
+      "git_blob": "7e994560ec0ac9592083eb7afcbc34ac9d22cff7",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/terminal-index.ts": {
+      "git_blob": "ccd5216b525102fa59e03a9f6306043e3193d104",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/terminal-controlled.ts": {
+      "git_blob": "596c7d81e650554a281a1b720dbe194379fb346c",
+      "mode": "read_only"
+    },
+    "src/state/residence-session/session.ts": {
+      "git_blob": "c641c5ae8d88401589ac90bce133111868d9f9b0",
+      "mode": "domain_extraction_only"
+    },
+    "src/state/residence-session/transitions.ts": {
+      "git_blob": "988a6c67ea010365f774daa67675d6e6a3d49ef4",
+      "mode": "read_only"
+    },
+    "src/state/residence-session/types.ts": {
+      "git_blob": "48a8566b18c6670fd2a523d7e40b0bec76493deb",
+      "mode": "read_only"
+    },
+    "src/state/residence-session/test-fixtures.ts": {
+      "git_blob": "62d8851ebe2543552ec7c004860603b84a3bca86",
+      "mode": "read_only"
+    },
+    "src/state/residence-session/controlled.ts": {
+      "git_blob": "0ce054f110bace89e75d526e135b0106aff8ab83",
+      "mode": "read_only"
+    },
+    "src/state/residence-session/launch.ts": {
+      "git_blob": "77c649225d58c4b1dc8378d882309cc85166c936",
+      "mode": "read_only"
+    },
+    "src/state/residence-session/index.ts": {
+      "git_blob": "35ac1ce826816006394142fbe6701e4896eed9ab",
+      "mode": "read_only"
+    }
+  },
+  "allowed_path_count_limit": 33,
+  "allowed_paths": [
+    "src/state/residence-session/session.ts",
+    "src/state/residence-session/domain.ts",
+    "src/state/residence-session/terminal-types.ts",
+    "src/state/residence-session/terminal-commands.ts",
+    "src/state/residence-session/terminal-context.ts",
+    "src/state/residence-session/terminal-launch.ts",
+    "src/state/residence-session/terminal-transitions.ts",
+    "src/state/residence-session/terminal-session.ts",
+    "src/state/residence-session/terminal-controlled.ts",
+    "src/state/residence-session/terminal-index.ts",
+    "src/state/residence-session/terminal-owner.ts",
+    "src/state/residence-session/terminal-test-fixtures.ts",
+    "src/state/residence-session/terminal-session.test.ts",
+    "src/state/residence-session/terminal-actions.test.ts",
+    "src/state/residence-session/terminal-endings.test.ts",
+    "src/state/residence-session/terminal-persistence.test.ts",
+    "src/state/residence-session/terminal-reentry.test.ts",
+    "src/state/residence-session/terminal-history.test.ts",
+    "src/state/residence-session/terminal-compatibility.test.ts",
+    "src/state/residence-session/terminal.integration.test.ts",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/residence-foundation/terminal-session/contract-and-support.md",
+    "docs/engineering/residence-foundation/terminal-session/implementation-notes.md",
+    "docs/engineering/residence-foundation/terminal-session/verification-results.json",
+    "docs/engineering/residence-foundation/terminal-session/completion.md",
+    "docs/engineering/residence-foundation/terminal-session/inputs/ENG-RESIDENCE-TERMINAL-SESSION-001-task-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-session/inputs/OWNER-authority-and-scope-terminal-C-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-session/inputs/AUD-b9b1e0f-ENG-RESIDENCE-TERMINAL-RESTORE-001-review-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-session/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/residence-foundation/terminal-session/inputs/SHA256SUMS.txt"
+  ],
+  "path_modes": {
+    "src/state/residence-session/session.ts": "domain_extraction_only",
+    "src/state/residence-session/domain.ts": "new_file_only",
+    "src/state/residence-session/terminal-types.ts": "new_file_only",
+    "src/state/residence-session/terminal-commands.ts": "new_file_only",
+    "src/state/residence-session/terminal-context.ts": "new_file_only",
+    "src/state/residence-session/terminal-launch.ts": "new_file_only",
+    "src/state/residence-session/terminal-transitions.ts": "new_file_only",
+    "src/state/residence-session/terminal-session.ts": "new_file_only",
+    "src/state/residence-session/terminal-controlled.ts": "new_file_only",
+    "src/state/residence-session/terminal-index.ts": "new_file_only",
+    "src/state/residence-session/terminal-owner.ts": "new_file_only",
+    "src/state/residence-session/terminal-test-fixtures.ts": "new_file_only",
+    "src/state/residence-session/terminal-session.test.ts": "new_file_only",
+    "src/state/residence-session/terminal-actions.test.ts": "new_file_only",
+    "src/state/residence-session/terminal-endings.test.ts": "new_file_only",
+    "src/state/residence-session/terminal-persistence.test.ts": "new_file_only",
+    "src/state/residence-session/terminal-reentry.test.ts": "new_file_only",
+    "src/state/residence-session/terminal-history.test.ts": "new_file_only",
+    "src/state/residence-session/terminal-compatibility.test.ts": "new_file_only",
+    "src/state/residence-session/terminal.integration.test.ts": "new_file_only",
+    "docs/03-architecture.md": "append_only_preserve_full_base_prefix",
+    "docs/08-rule-implementation-traceability.md": "append_only_preserve_full_base_prefix",
+    "docs/design-drafts/world-infected-001/01-world-overview.md": "append_only_preserve_full_base_prefix",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md": "append_only_preserve_full_base_prefix",
+    "docs/engineering/residence-foundation/terminal-session/contract-and-support.md": "new_file_only",
+    "docs/engineering/residence-foundation/terminal-session/implementation-notes.md": "new_file_only",
+    "docs/engineering/residence-foundation/terminal-session/verification-results.json": "new_file_only",
+    "docs/engineering/residence-foundation/terminal-session/completion.md": "new_file_only",
+    "docs/engineering/residence-foundation/terminal-session/inputs/ENG-RESIDENCE-TERMINAL-SESSION-001-task-v1.0.md": "new_input_immutable",
+    "docs/engineering/residence-foundation/terminal-session/inputs/OWNER-authority-and-scope-terminal-C-v1.0.md": "new_input_immutable",
+    "docs/engineering/residence-foundation/terminal-session/inputs/AUD-b9b1e0f-ENG-RESIDENCE-TERMINAL-RESTORE-001-review-v1.0.md": "new_input_immutable",
+    "docs/engineering/residence-foundation/terminal-session/inputs/BASELINE-AND-INPUTS.json": "new_input_immutable",
+    "docs/engineering/residence-foundation/terminal-session/inputs/SHA256SUMS.txt": "new_input_immutable"
+  },
+  "entrypoints": {
+    "ordinary_file": "src/state/residence-session/terminal-index.ts",
+    "ordinary_exact_values": [
+      "TerminalResidenceSessionError",
+      "createTerminalResidenceSessionCommand"
+    ],
+    "controlled_file": "src/state/residence-session/terminal-controlled.ts",
+    "controlled_exact_values": [
+      "createResidenceSessionDomain",
+      "createTerminalResidenceSession"
+    ],
+    "policy_factory": "src/state/residence-save/terminal-controlled.ts#createTerminalResidenceSavePolicy",
+    "domain": "one common issued/claimed registry for old v1 and new v2; no gameplay current in registry",
+    "ordinary_commands": [
+      "launch",
+      "move",
+      "reveal",
+      "pickup",
+      "drop",
+      "rest",
+      "deliver",
+      "withdraw",
+      "deadline"
+    ],
+    "no_new_real_content": true,
+    "existing_v1_default_unchanged": true
+  },
+  "mandatory_test_commands": [
+    "npm run test:run",
+    "npm run test:run -- src/state/residence-session src/state/residence-save src/core/residence-terminal src/content/infected-terminal-core-v0.1 src/core/mission-lifecycle src/core/character-cycle src/core/residence-energy src/core/residence-location",
+    "npm run check",
+    "git diff --check",
+    "git diff --cached --check",
+    "git diff b9b1e0fee0e779669ca40e088ac9a867016bff82 --check"
+  ],
+  "historical_test_reference_only": {
+    "files": 139,
+    "tests": 3135,
+    "A": 156,
+    "B": 188,
+    "identity": 103,
+    "cold_candidate": 23,
+    "must_reexecute_baseline": true
+  },
+  "scope_permissions": {
+    "ordinary_commit": true,
+    "ordinary_push_only": "feature/residence-terminal-session-001",
+    "main_push": false,
+    "merge": false,
+    "force_push": false,
+    "modify_rule_or_config": false,
+    "modify_A_B_or_other_old_tests": false,
+    "browser_IO_or_UI": false,
+    "shutdown_restart_schedule": false
+  },
+  "test_gate_clarifications": [
+    "Existing v1 death refusals remain v1 tests; add actual full-death assertions for every corresponding v2 scenario.",
+    "Valid fresh balance is fixed 0. Capacity failure tested in the real launch guard and invalid-input boundary; no fake high-balance fresh bypass.",
+    "Mandatory real read-null first chain closes by lawful failure/death; success may start from separately documented actual A/B content fixture.",
+    "Second-declaration departure may use existing pure producers outside owner; C consumes current active/history; no player second-launch supply.",
+    "B same-progress expected restoration is not a commit validator for a legitimate successor; no candidate-derived expected."
+  ],
+  "stop": "Exact-SHA C source/headless recovery review; no automatic content/UI/browser/release continuation",
+  "input_objects": [
+    {
+      "name": "ENG-RESIDENCE-TERMINAL-SESSION-001-task-v1.0.md",
+      "bytes": 27169,
+      "sha256": "5b8b3ef5cc94ece592f27ff6ea56874a67216b4c90b0baae4d9aa3b38d2fde87",
+      "git_blob": "403b923d7335d80f43bccfd5df4edee34622ac3b"
+    },
+    {
+      "name": "OWNER-authority-and-scope-terminal-C-v1.0.md",
+      "bytes": 2038,
+      "sha256": "8de8034000239679bd27cd085fb8f296f12a0ec4fb4817a2f523edf6428c372a",
+      "git_blob": "7ebe564557ab4c73e8d3a94f68daed99b463b8d3"
+    },
+    {
+      "name": "AUD-b9b1e0f-ENG-RESIDENCE-TERMINAL-RESTORE-001-review-v1.0.md",
+      "bytes": 8037,
+      "sha256": "029d317b615ceb6362b665d60f5661de33a85fb12cceda15adcfc6c18f16a32d",
+      "git_blob": "632bd0cd9584753b196326068e9c263fcdfb707c"
+    }
+  ]
+}

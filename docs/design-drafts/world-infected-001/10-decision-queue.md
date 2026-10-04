@@ -171,3 +171,9 @@ G4基线 `7ca547ab8ab4f411d1102a79baf8c0796f4b082c` 已获[主线限定实审PAS
 A 准确 SHA `bfc6bd973eeb306df1e8ee916b2160c30b757cdf` 已获[限定源码 PASS](../../engineering/residence-foundation/terminal-restore/inputs/AUD-bfc6bd9-ENG-RESIDENCE-TERMINAL-001-review-v1.0.md)。本批在新工程分支实现 B 四态严格聚合、并列 v2 codec 和独立 expected 原生回归，旧接口、规则、参数和原工程保持不变；[B 支持与 B01—B12](../../engineering/residence-foundation/terminal-restore/contract-and-support.md)记录实际范围。
 
 下一 Gate 是本批准确 SHA 的主线恢复接缝实审，不自动进入 C。current／保存故障／重入、真实五图与玩家入口、O3、Owner 试玩仍 OPEN／NOT RUN 或未决定；不新增经济、战斗医疗、商品服务、专长／工具箱决策。旧队列正文保持历史时点。
+
+## C 工程进度与停止点附记（2026-10-05）
+
+前置 B 准确 SHA `b9b1e0fee0e779669ca40e088ac9a867016bff82` 已获[限定实审 PASS](../../engineering/residence-foundation/terminal-session/inputs/AUD-b9b1e0f-ENG-RESIDENCE-TERMINAL-RESTORE-001-review-v1.0.md)。C 显式 v2 会话、同域单 owner、完整死亡提交、三类保存故障及重入长链已完成作者实现，证据见 [C 交付记录](../../engineering/residence-foundation/terminal-session/completion.md)。
+
+下一 Gate 仅为当前主线对 C 最终准确 SHA 的源码／headless 恢复实审。不得自动推进五图、后继委托、CTB／医疗、商店、UI／浏览器或 O3；本批不新增规则参数或决策。Owner 试玩仍 OPEN／NOT RUN，旧队列保持原字节前缀。

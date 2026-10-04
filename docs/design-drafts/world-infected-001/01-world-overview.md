@@ -168,3 +168,9 @@ G4在7ca547ab8ab4f411d1102a79baf8c0796f4b082c的限定能力仍是生产边界�
 A 在 `bfc6bd973eeb306df1e8ee916b2160c30b757cdf` 的[准确源码限定实审](../../engineering/residence-foundation/terminal-restore/inputs/AUD-bfc6bd9-ENG-RESIDENCE-TERMINAL-001-review-v1.0.md)已通过。本批 B 新增独立 v2 四态严格恢复／纯 codec 和独立 expected，真实 A 四结果及两声明历史进入原生往返回归；不修改旧 v1、G4、批准规则或参数。详见 [B 支持合同](../../engineering/residence-foundation/terminal-restore/contract-and-support.md)。
 
 此处仅为作者实现状态，B 的准确 SHA 恢复接缝仍待主线实审；无 current 安装、存储或玩家入口。C、五图真实内容、完整终局会话、O3 发布、浏览器和 Owner 体验仍未执行／未决定，不把历史工程或本地检查升级成完整可玩 PASS。
+
+## 终局 C 作者工程状态附记（2026-10-05）
+
+B 在 `b9b1e0fee0e779669ca40e088ac9a867016bff82` 已通过[限定实审](../../engineering/residence-foundation/terminal-session/inputs/AUD-b9b1e0f-ENG-RESIDENCE-TERMINAL-RESTORE-001-review-v1.0.md)。本批在独立 C 工程分支新增显式 v2 唯一会话：真实首次创建／出发、G2 活动操作、A 完整终局及死亡原计划消费、B 预编码／冷恢复、保存故障与重入防护；旧 v1 默认消费不变。详见 [C 支持合同](../../engineering/residence-foundation/terminal-session/contract-and-support.md)。
+
+当前仅作者实现／本地验证，待 C 准确 SHA 源码／headless 恢复实审；五图内容生产者、后继任务供给、完整战斗医疗、专长／工具箱、玩家入口与浏览器存档仍未接。O3 未决定，浏览器／多标签及 Owner 分段突破、恢复负担体验仍 NOT RUN，不能据此称世界已可玩。上文历史时点不倒改。

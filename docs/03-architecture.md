@@ -639,3 +639,11 @@ G3 在完整 SHA `60e9c30732c5e22cfe9ff58b9b381de64b945180` 已通过[限定准�
 A 的准确 SHA `bfc6bd973eeb306df1e8ee916b2160c30b757cdf` 已获[限定源码 PASS](engineering/residence-foundation/terminal-restore/inputs/AUD-bfc6bd9-ENG-RESIDENCE-TERMINAL-001-review-v1.0.md)。本批 B 新增独立 terminal-index／terminal-controlled、四态严格聚合、v2 纯字符串 codec 与必需独立 expected 的同进度候选；旧 v1 和 G4 默认消费者保持不变。复用 A 完整值与 G1/G2 纯校验，补齐来源实物、历史顺序和最新身体事实联合检查，不重放动作、周期、随机或清算。
 
 B 只返回只读值，不保管或安装 current，不读写存储；v2 与 v1 双向拒绝，无隐式迁移。冷自洽不是离线防回滚，expected 校验不是安装许可。接口与边界见 [B 支持合同](engineering/residence-foundation/terminal-restore/contract-and-support.md)。本附记是作者实现状态，仍待 B 准确 SHA 主线恢复接缝实审；C、真实五图、玩家入口、浏览器保存、O3 与 Owner 体验未执行／未决定。上文历史时点不改写。
+
+## ENG-RESIDENCE-TERMINAL-SESSION-001 C 作者实现附记（2026-10-05）
+
+B 的准确 SHA `b9b1e0fee0e779669ca40e088ac9a867016bff82` 已获[限定恢复接缝实审 PASS](engineering/residence-foundation/terminal-session/inputs/AUD-b9b1e0f-ENG-RESIDENCE-TERMINAL-RESTORE-001-review-v1.0.md)。本批新增显式 v2 headless 会话；原 v1 默认入口／保存／测试保持原义，仅抽取共用 domain 发行和占用注册，使 v1/v2 在同域不能各自创建写入者。
+
+v2 唯一 current 接受真实 read-null 后首次创建／launch、G2 move/reveal/pickup/drop/rest、A deliver/withdraw/deadline。G2 致死原计划交给 A 一次，死亡完整后态经 B v2 聚合及预编码后才替换 current、尝试保存和发一批只读通知；不先提交 HP0 active、不重复动作／周期／随机、不多加 revision。正常返回仍保留真实 steps=[]。保存失败保留最新内存，retrySave 只重编码并写最新值；冷恢复不重放玩法。
+
+普通查询只复用 G2 已知信息及 A 终局资格；诊断 getState/订阅不是玩家 ViewModel。支持、故障计数及 C01—C12 见 [C 合同](engineering/residence-foundation/terminal-session/contract-and-support.md)和[实际检查](engineering/residence-foundation/terminal-session/verification-results.json)。当前是作者实现／本地验证，仍待 C 准确 SHA 主线实审；真实五图生产者、后继委托接续、CTB／医疗、玩家／浏览器接入、O3 与 Owner 体验未完成／未决定，历史附记保持原时点。

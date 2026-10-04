@@ -6,21 +6,14 @@ import { requireResidenceSavePolicy, residenceActiveContext } from '../residence
 import { createResidenceSessionCommand } from './commands'
 import { proposeFirstResidenceLaunch } from './launch'
 import { proposeResidenceTransition } from './transitions'
+import { assertResidenceDomainAvailable, claimResidenceDomain } from './domain'
+export { issueResidenceDomain } from './domain'
 import { ResidenceSessionError, type ResidenceDomain, type ResidenceSessionComposition, type ResidenceSession,
   type ResidenceSessionView, type ResidenceCommit, type SessionStatus, type SessionDiagnostic, type Persistence } from './types'
 
-// Capability registry only, not a second gameplay owner. No cross-tab claim is made.
-const domains = new WeakSet<object>()
-const claimed = new WeakSet<object>()
-export function issueResidenceDomain(): ResidenceDomain {
-  const domain = Object.freeze({}) as ResidenceDomain
-  domains.add(domain)
-  return domain
-}
 /** Implementation of the controlled composition boundary; never re-exported by ordinary index. */
 export function buildResidenceSession(domain: ResidenceDomain, composition: ResidenceSessionComposition): ResidenceSession {
-  if (!domain || !domains.has(domain)) throw new ResidenceSessionError('INVALID_DOMAIN', 'Composition-issued domain required')
-  if (claimed.has(domain)) throw new ResidenceSessionError('DOMAIN_CLAIMED', 'This application domain already owns a writer')
+  assertResidenceDomainAvailable(domain)
   const policy = requireResidenceSavePolicy(composition.policy)
   const storage = composition.storage
   const factory = composition.createFirst
@@ -32,7 +25,7 @@ export function buildResidenceSession(domain: ResidenceDomain, composition: Resi
   // Capture the controlled ports, not mutable composition properties.
   const read = storage.read.bind(storage)
   const write = storage.write.bind(storage)
-  claimed.add(domain)
+  claimResidenceDomain(domain)
   let current: ResidenceAggregate | null = null
   let status: SessionStatus = 'unbootstrapped'
   let diagnostic: SessionDiagnostic = null

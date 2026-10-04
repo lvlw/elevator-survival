@@ -1,0 +1,780 @@
+{
+  "task": "ENG-RESIDENCE-TERMINAL-SESSION-001",
+  "status": "AUTHOR_IMPLEMENTED_LOCALLY_VERIFIED_AWAITING_EXACT_SHA_REVIEW",
+  "base_sha": "b9b1e0fee0e779669ca40e088ac9a867016bff82",
+  "branch": "feature/residence-terminal-session-001",
+  "baseline": {
+    "command": "npm run test:run",
+    "exit_code": 0,
+    "files": 139,
+    "tests": 3135,
+    "source": "actual current execution",
+    "log": "C:/Users/zjl/AppData/Local/Temp/residence-terminal-c-audit/baseline.log"
+  },
+  "targeted": {
+    "exit_code": 0,
+    "files": 41,
+    "tests": 1099,
+    "log": "C:/Users/zjl/AppData/Local/Temp/residence-terminal-c-audit/target-all-02.log"
+  },
+  "full_check": {
+    "command": "npm run check",
+    "exit_code": 0,
+    "files": 147,
+    "tests": 3274,
+    "DEC": 51,
+    "core_production_files": 257,
+    "architecture": "PASS",
+    "typecheck": "PASS",
+    "build": "PASS",
+    "log": "C:/Users/zjl/AppData/Local/Temp/residence-terminal-c-audit/check-01.log"
+  },
+  "test_changes": {
+    "new_files": 8,
+    "added": 139,
+    "replaced": 0,
+    "deleted": 0,
+    "net": 139
+  },
+  "final_static_audit": {
+    "exit_code": 0,
+    "base_tracked_objects": 888,
+    "unchanged_base_objects": 883,
+    "allowed_existing_changes": [
+      "docs/03-architecture.md",
+      "docs/08-rule-implementation-traceability.md",
+      "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "src/state/residence-session/session.ts"
+    ],
+    "authoritative_manifest_objects": 40,
+    "protected_unmodified": true,
+    "raw_full_base_prefixes": [
+      {
+        "file": "docs/03-architecture.md",
+        "baseBytes": 69558,
+        "rawPrefix": true,
+        "gitNormalizedPrefix": true
+      },
+      {
+        "file": "docs/08-rule-implementation-traceability.md",
+        "baseBytes": 64027,
+        "rawPrefix": true,
+        "gitNormalizedPrefix": true
+      },
+      {
+        "file": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "baseBytes": 22834,
+        "rawPrefix": true,
+        "gitNormalizedPrefix": true
+      },
+      {
+        "file": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "baseBytes": 22072,
+        "rawPrefix": true,
+        "gitNormalizedPrefix": true
+      }
+    ],
+    "input_files": [
+      {
+        "name": "AUD-b9b1e0f-ENG-RESIDENCE-TERMINAL-RESTORE-001-review-v1.0.md",
+        "bytes": 8037,
+        "sha256": "029d317b615ceb6362b665d60f5661de33a85fb12cceda15adcfc6c18f16a32d",
+        "gitBlob": "632bd0cd9584753b196326068e9c263fcdfb707c"
+      },
+      {
+        "name": "BASELINE-AND-INPUTS.json",
+        "bytes": 17037,
+        "sha256": "654917d382d8c7aab9bd843723d4fb0471b3fc22b45c4a6cf1cc41a71ec44021",
+        "gitBlob": "b114fb8e29c2ab60aa1499ac587755e3ae2a294c"
+      },
+      {
+        "name": "ENG-RESIDENCE-TERMINAL-SESSION-001-task-v1.0.md",
+        "bytes": 27169,
+        "sha256": "5b8b3ef5cc94ece592f27ff6ea56874a67216b4c90b0baae4d9aa3b38d2fde87",
+        "gitBlob": "403b923d7335d80f43bccfd5df4edee34622ac3b"
+      },
+      {
+        "name": "OWNER-authority-and-scope-terminal-C-v1.0.md",
+        "bytes": 2038,
+        "sha256": "8de8034000239679bd27cd085fb8f296f12a0ec4fb4817a2f523edf6428c372a",
+        "gitBlob": "7ebe564557ab4c73e8d3a94f68daed99b463b8d3"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 444,
+        "sha256": "300b515580d06996abfcc79ba10a6f00dca01eaf5c1560ccb9019baad56e0efe",
+        "gitBlob": "b82cd200153606d33c0d660deac24e141548e8aa"
+      }
+    ],
+    "links_checked": 24,
+    "links_pass": true,
+    "value_import_cycles": [],
+    "forbidden_production_scan": [],
+    "note": "relative value-import static scan plus architecture/typecheck/runtime regressions; no claim of exhaustive arbitrary dynamic imports"
+  },
+  "not_run": [
+    "browser",
+    "refresh/multi-tab",
+    "Owner segmented-breakthrough and recovery-burden playtest",
+    "dependency security audit",
+    "remote CI until actual post-push query"
+  ],
+  "base_parent": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf",
+  "base_tree": "e8939c6d65075e630e3960b619daa50de0eb9b53",
+  "base_src_tree": "05ed81d551d318a58b1a9005b493c4566936ef87",
+  "initial": {
+    "branch": "feature/residence-terminal-restore-001",
+    "worktree": "clean",
+    "index": "empty",
+    "origin": "https://github.com/lvlw/elevator-survival.git",
+    "reference_heads": "11 matched at start"
+  },
+  "changed_paths": [
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/residence-foundation/terminal-session/completion.md",
+    "docs/engineering/residence-foundation/terminal-session/contract-and-support.md",
+    "docs/engineering/residence-foundation/terminal-session/implementation-notes.md",
+    "docs/engineering/residence-foundation/terminal-session/inputs/AUD-b9b1e0f-ENG-RESIDENCE-TERMINAL-RESTORE-001-review-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-session/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/residence-foundation/terminal-session/inputs/ENG-RESIDENCE-TERMINAL-SESSION-001-task-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-session/inputs/OWNER-authority-and-scope-terminal-C-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-session/inputs/SHA256SUMS.txt",
+    "docs/engineering/residence-foundation/terminal-session/verification-results.json",
+    "src/state/residence-session/domain.ts",
+    "src/state/residence-session/session.ts",
+    "src/state/residence-session/terminal-actions.test.ts",
+    "src/state/residence-session/terminal-commands.ts",
+    "src/state/residence-session/terminal-compatibility.test.ts",
+    "src/state/residence-session/terminal-context.ts",
+    "src/state/residence-session/terminal-controlled.ts",
+    "src/state/residence-session/terminal-endings.test.ts",
+    "src/state/residence-session/terminal-history.test.ts",
+    "src/state/residence-session/terminal-index.ts",
+    "src/state/residence-session/terminal-launch.ts",
+    "src/state/residence-session/terminal-persistence.test.ts",
+    "src/state/residence-session/terminal-reentry.test.ts",
+    "src/state/residence-session/terminal-session.test.ts",
+    "src/state/residence-session/terminal-session.ts",
+    "src/state/residence-session/terminal-test-fixtures.ts",
+    "src/state/residence-session/terminal-transitions.ts",
+    "src/state/residence-session/terminal-types.ts",
+    "src/state/residence-session/terminal.integration.test.ts"
+  ],
+  "change_counts": {
+    "modified": 5,
+    "new": 27,
+    "total": 32,
+    "allowed_max": 33
+  },
+  "commands": [
+    {
+      "command": "npm run test:run",
+      "exit_code": 0,
+      "files": 139,
+      "tests": 3135,
+      "start": "01:51:08",
+      "duration_seconds": 53.86,
+      "log": "baseline.log"
+    },
+    {
+      "command": "npm run test:run -- src/state/residence-session src/state/residence-save src/core/residence-terminal src/content/infected-terminal-core-v0.1 src/core/mission-lifecycle src/core/character-cycle src/core/residence-energy src/core/residence-location",
+      "exit_code": 0,
+      "files": 41,
+      "tests": 1099,
+      "start": "02:12:19",
+      "duration_seconds": 14.35,
+      "log": "target-all-02.log"
+    },
+    {
+      "command": "npm run check",
+      "exit_code": 0,
+      "files": 147,
+      "tests": 3274,
+      "start": "02:15:31",
+      "test_duration_seconds": 56.35,
+      "log": "check-01.log"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --cached --check",
+      "stage": "empty pre-stage index",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff b9b1e0fee0e779669ca40e088ac9a867016bff82 --check",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --no-index --check -- /dev/null EACH_NEW_FILE",
+      "files": 27,
+      "whitespace_errors": 0
+    },
+    {
+      "command": "node <external-audit-directory>/audit.mjs",
+      "exit_code": 0,
+      "log": "audit-03.json"
+    }
+  ],
+  "log_directory": "C:/Users/zjl/AppData/Local/Temp/residence-terminal-c-audit",
+  "preserved_logs": [
+    {
+      "file": "baseline.log",
+      "bytes": 295,
+      "sha256": "e1e60f34f8413270c67cfd44081b9ebcda2b30a3cd4eb045676c91e35533cd50"
+    },
+    {
+      "file": "check-01.log",
+      "bytes": 3414,
+      "sha256": "e1d1778881af98df6601aa91cc167f4b0c2012756c4699f676af7a33d1f64464"
+    },
+    {
+      "file": "endings-01.log",
+      "bytes": 2054,
+      "sha256": "9de8b72aa431aa01dbf80fe8d78859bc4a2a55f7390208a489e3fcd706f94672"
+    },
+    {
+      "file": "owner-boundary-01.log",
+      "bytes": 1900,
+      "sha256": "450d76e780a9532ccaecd35b7716e08288018e97d494dc01dd5f0f60c33642bc"
+    },
+    {
+      "file": "target-01.log",
+      "bytes": 387,
+      "sha256": "19cb22c104e59acc9ef40dc4802bd5c9e3748f136c4078d842667cc240d68edf"
+    },
+    {
+      "file": "target-all-01.log",
+      "bytes": 519,
+      "sha256": "c2970963a7bc618cd851dfb4383874d0f5c1fcd4565f08456003ced8c875793c"
+    },
+    {
+      "file": "target-all-02.log",
+      "bytes": 519,
+      "sha256": "a3783230ad6485d57d62dabc9d96a4fbbb5becf86f4b83da16e573aa1ec518fe"
+    },
+    {
+      "file": "terminal-chains-01.log",
+      "bytes": 444,
+      "sha256": "af1bedf3c9c79ec5df07a90a09ea8c49300f3d53ba358ca17b44a073bde9290d"
+    }
+  ],
+  "failures_and_repairs": [
+    {
+      "stage": "initial terminal-session targeted run",
+      "exit_code": 1,
+      "passed": 25,
+      "failed": 1,
+      "reason": "Test fixture suppression15 conflicted with unused suppressant quota1; set quota0 to represent a legal used suppressant. No rule change.",
+      "log": "tool output only; standalone log NOT SAVED"
+    },
+    {
+      "stage": "endings-01",
+      "exit_code": 1,
+      "passed": 23,
+      "failed": 3,
+      "reason": "Test passed entire terminal aggregate to exact G2 location boundary; use formal locationOf projection. Production rejection correct.",
+      "log": "endings-01.log"
+    },
+    {
+      "stage": "owner-boundary-01",
+      "exit_code": 1,
+      "passed": 36,
+      "failed": 2,
+      "reason": "Controlled issuer must reuse original exported wrapper identity, not only same backing issuer; new terminal-controlled reexports old createResidenceSessionDomain.",
+      "log": "owner-boundary-01.log"
+    },
+    {
+      "stage": "intermediate typecheck",
+      "exit_code": 1,
+      "reason": "Test mock argument is unknown; replaced direct .kind access with toMatchObject.",
+      "log": "tool output only; standalone log NOT SAVED"
+    },
+    {
+      "stage": "external audit helper initialization",
+      "exit_code": 1,
+      "attempts": 2,
+      "reason": "Windows absolute ESM specifier then absent TypeScript7 JS parser API; use built-in fs/Git plus static relative value-import scan. No dependency installed or repo change.",
+      "log": "tool output only; empty audit-01/02 JSON output is not verification evidence"
+    }
+  ],
+  "new_test_counts": {
+    "terminal-session.test.ts": 28,
+    "terminal-actions.test.ts": 23,
+    "terminal-endings.test.ts": 26,
+    "terminal-persistence.test.ts": 8,
+    "terminal-reentry.test.ts": 13,
+    "terminal-history.test.ts": 14,
+    "terminal-compatibility.test.ts": 25,
+    "terminal.integration.test.ts": 2
+  },
+  "acceptance": {
+    "C01": {
+      "files": [
+        "terminal-compatibility.test.ts"
+      ],
+      "evidence": "native same/alternate v1-v2 domains, invalid composition, clones; old v1 unchanged"
+    },
+    "C02": {
+      "files": [
+        "terminal-session.test.ts",
+        "terminal.integration.test.ts"
+      ],
+      "evidence": "native read-null, first factory, launch; capacity query exact bounds + actual guard injected false + invalid rich fresh rejection"
+    },
+    "C03": {
+      "files": [
+        "terminal-actions.test.ts",
+        "terminal.integration.test.ts"
+      ],
+      "evidence": "native G2 movement/source/whole entities/E0/transfers/rest/arrival; strict rejections"
+    },
+    "C04": {
+      "files": [
+        "terminal-endings.test.ts"
+      ],
+      "evidence": "A/B controlled content cold origin then actual A normal day1/day7 and deadline living/three death causes"
+    },
+    "C05": {
+      "files": [
+        "terminal-endings.test.ts",
+        "terminal-persistence.test.ts"
+      ],
+      "evidence": "native first chain death in move/reveal/A-C rest/primary arrival; original plan object consumed once"
+    },
+    "C06": {
+      "files": [
+        "terminal-session.test.ts",
+        "terminal-endings.test.ts"
+      ],
+      "evidence": "unfrozen caller input, signed native plans; copied/foreign proposals and pre-encode fault injection rejected before commit"
+    },
+    "C07": {
+      "files": [
+        "terminal-history.test.ts",
+        "terminal-session.test.ts"
+      ],
+      "evidence": "four real strings, zero rules; current blocks reread/recreation; corrupted/v1/read failure distinct"
+    },
+    "C08": {
+      "files": [
+        "terminal-persistence.test.ts"
+      ],
+      "evidence": "three independent fault chains below; newest current only"
+    },
+    "C09": {
+      "files": [
+        "terminal-reentry.test.ts"
+      ],
+      "evidence": "read/factory/provider/G2/A/encode/write/listener/retry encode/retry write; isolated listener errors and unsubscribe"
+    },
+    "C10": {
+      "files": [
+        "terminal-history.test.ts"
+      ],
+      "evidence": "native A/B previous success/failure/deadline then second active; C death or return preserves history; no C second launch"
+    },
+    "C11": {
+      "files": [
+        "terminal-compatibility.test.ts"
+      ],
+      "evidence": "exact export/value/type contracts, 9 command schemas and hidden facts equal player query; diagnostics explicitly not player VM"
+    },
+    "C12": {
+      "evidence": "full check, all base Git objects, raw inputs, 4 append-only prefixes, links, 34+4 unchanged config handles, staged/test fingerprints; remaining gates NOT RUN"
+    }
+  },
+  "counter_order": [
+    "activate",
+    "terminate",
+    "cycle",
+    "action",
+    "establish",
+    "move",
+    "reveal",
+    "transfer",
+    "rest",
+    "terminal",
+    "consume",
+    "draw",
+    "factory",
+    "provider",
+    "read",
+    "write",
+    "current_commits",
+    "notification_batches",
+    "listener1",
+    "listener2"
+  ],
+  "fault_chains": [
+    {
+      "name": "1-normal-success",
+      "origin": "A/B complete active cold",
+      "counts": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "1-normal-failure",
+      "origin": "A/B incomplete active cold",
+      "counts": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "2-source-rest-failure-ending",
+      "origin": "real read-null/create/launch",
+      "counts": [
+        1,
+        1,
+        3,
+        2,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        7,
+        6,
+        6,
+        6,
+        6
+      ]
+    },
+    {
+      "name": "2-source-rest-success-ending",
+      "origin": "A/B complete active cold",
+      "counts": [
+        0,
+        1,
+        2,
+        2,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        5,
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    {
+      "name": "3-move-death",
+      "origin": "A/B active cold",
+      "counts": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "3-reveal-death",
+      "origin": "A/B active cold",
+      "counts": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "3-rest-death",
+      "origin": "A/B active cold",
+      "counts": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "native_first_long_chain": {
+    "counts": [
+      1,
+      1,
+      3,
+      8,
+      1,
+      4,
+      1,
+      3,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      12,
+      12,
+      12,
+      12,
+      12
+    ],
+    "origin": "read-null -> first -> launch -> reveal -> pickup -> move -> drop -> rest -> revisit -> pickup -> H0 withdraw"
+  },
+  "cold_read": {
+    "phases": [
+      "fresh-hub",
+      "active-world",
+      "living-hub",
+      "dead"
+    ],
+    "each": {
+      "read": 1,
+      "cold_install": 1,
+      "gameplay_calls": 0,
+      "draw": 0,
+      "factory": 0,
+      "provider": 0,
+      "write": 0,
+      "notification": 0
+    },
+    "note": "cold installation observed independently; write-observed commit counter0 is not total current changes"
+  },
+  "counter_note": "fixture production excluded before spies; current commits observed as actual distinct current references at write, not by committed result tag; subsequent cold domain increments checked separately; retries contain no rules or notification",
+  "tested_source_fingerprints": [
+    {
+      "file": "src/state/residence-session/domain.ts",
+      "bytes": 853,
+      "sha256": "684d0085ef7be50a2ea2290ec329827acf1fa8335e5c84ceaf5c9fb7ab1682d1",
+      "gitBlob": "699ba6cc325b467e37e934ae50044c138e4a0ee6"
+    },
+    {
+      "file": "src/state/residence-session/session.ts",
+      "bytes": 6549,
+      "sha256": "825c8665aac59fd5277c68f6ee423107ae2e607b061ac6a550421831cd0d3dca",
+      "gitBlob": "821dec4f0b86e03fe29ad9513e2cf027abd69c51"
+    },
+    {
+      "file": "src/state/residence-session/terminal-actions.test.ts",
+      "bytes": 8050,
+      "sha256": "2dcea51fafb9f4c088e27dfbe0975f3b315de5a5608f53f62066937c7540637f",
+      "gitBlob": "49425686fecf4130ebd13ed7d7e732c91df44be5"
+    },
+    {
+      "file": "src/state/residence-session/terminal-commands.ts",
+      "bytes": 810,
+      "sha256": "b1fb54e762cf22bb90e33e5dff40622474cf059dc8995b91dc51d8bcabd0c5e2",
+      "gitBlob": "f85de8574ab17aafc4e3ecc89afa93ed85289c74"
+    },
+    {
+      "file": "src/state/residence-session/terminal-compatibility.test.ts",
+      "bytes": 9293,
+      "sha256": "6204396d27d2d5798ea7f3942a74e3e92280a0d6a9ae9e6943badad57d9b4e7a",
+      "gitBlob": "6dc101776baa9e9734c7fecd33e73d79255c0b84"
+    },
+    {
+      "file": "src/state/residence-session/terminal-context.ts",
+      "bytes": 2027,
+      "sha256": "14d5bf44b109288293bcfa82d356924ce24dfbe72ae67ec709fd7d47453734a3",
+      "gitBlob": "e91bb988ec87ee1a68168f243ea7730b8b297c57"
+    },
+    {
+      "file": "src/state/residence-session/terminal-controlled.ts",
+      "bytes": 277,
+      "sha256": "87f7b3174583887e1a85168827401cc580a94aa8c100e6fed480c13e678b250c",
+      "gitBlob": "9397103e6da9d0984c4fa233f1797f36f59ae03b"
+    },
+    {
+      "file": "src/state/residence-session/terminal-endings.test.ts",
+      "bytes": 9862,
+      "sha256": "3164a854cc65e1598c36824e8e416a37eeab260ae870e81bc529753fd11f2d65",
+      "gitBlob": "293299a8d273c6f02f492da18cb375a5fdefbb28"
+    },
+    {
+      "file": "src/state/residence-session/terminal-history.test.ts",
+      "bytes": 4425,
+      "sha256": "daa4443d5a7bac17205ef4b638013a247346d32d4925f4b4d254e5c2f6bc448a",
+      "gitBlob": "4227d400d28b38a66fcc5609d4a1fbeed01f0a4f"
+    },
+    {
+      "file": "src/state/residence-session/terminal-index.ts",
+      "bytes": 296,
+      "sha256": "951f7caea6f2c40a0776206c344207491fdaefb823688605c0b03e8cc7e5af4f",
+      "gitBlob": "54bd6baeb48891f80d718779603cfca3f2bcc5a1"
+    },
+    {
+      "file": "src/state/residence-session/terminal-launch.ts",
+      "bytes": 5095,
+      "sha256": "ccfef31d329e2e07b5ef95c91a674dcde17a079ff806e49512416c77a840696c",
+      "gitBlob": "3dde20b27c026c7500a14a38be186381a6c588d4"
+    },
+    {
+      "file": "src/state/residence-session/terminal-persistence.test.ts",
+      "bytes": 6973,
+      "sha256": "eb20b1e50a6f2f1cb62c60c260f43aa7625db35e92dfe5e00f7d26ff26c1297b",
+      "gitBlob": "255ea98de05290dcd214cbabad881763580ba0fc"
+    },
+    {
+      "file": "src/state/residence-session/terminal-reentry.test.ts",
+      "bytes": 5215,
+      "sha256": "c729f93717c62cd5c1ccbc740ec6c6154a61458b5afa11ca1c70c955b975391e",
+      "gitBlob": "ef3d920d76c7cfcf9bf3da3548aa3d68c35e9508"
+    },
+    {
+      "file": "src/state/residence-session/terminal-session.test.ts",
+      "bytes": 11388,
+      "sha256": "959191d30d1a27f7ccdee6daf2e59f5153c855ed8a3a983097eaf39c9d785029",
+      "gitBlob": "e1097e97a68177256588a14c119e436ba96b8758"
+    },
+    {
+      "file": "src/state/residence-session/terminal-session.ts",
+      "bytes": 8382,
+      "sha256": "0ee639e2c66122d40f03e4e7c6b326178dc74d79e05827ef50d67b23799f2544",
+      "gitBlob": "a9f37eb92abefbf9b2bb48ce33720e9b56fd4598"
+    },
+    {
+      "file": "src/state/residence-session/terminal-test-fixtures.ts",
+      "bytes": 6359,
+      "sha256": "54474a552fa243335efcd1b7f5d6e026930a84b80d68254256e1351272ea2c14",
+      "gitBlob": "9e4f2e88c201407565e9f53261da8a5449877ebd"
+    },
+    {
+      "file": "src/state/residence-session/terminal-transitions.ts",
+      "bytes": 3437,
+      "sha256": "2550e41192b88aaf03f372cd20124e9f11aaf814842ff432a2b707d9e2906c86",
+      "gitBlob": "a54efe3a27adc4384672f2bd911fcba9b785178f"
+    },
+    {
+      "file": "src/state/residence-session/terminal-types.ts",
+      "bytes": 2260,
+      "sha256": "3eb70ac88440ff6e3522d857c275b61b84988234569eff780d6fe725982ddbd2",
+      "gitBlob": "4b01b3e55022f644d749f520fe8acdd93a379ae2"
+    },
+    {
+      "file": "src/state/residence-session/terminal.integration.test.ts",
+      "bytes": 3576,
+      "sha256": "d9d93c23264b1070904bebea0299d30ae0e1f0155bdfe3f061b0ef97c9368554",
+      "gitBlob": "7c2b6edcd7e9922d6a2dc95dfdc1d7ea6b23c953"
+    }
+  ],
+  "commit_gate": {
+    "status": "PASS_PRECOMMIT",
+    "staged_paths": 32,
+    "staged_modified": 5,
+    "staged_new": 27,
+    "tested_source_blobs_and_raw_sha256_matched": 19,
+    "immutable_input_blobs_matched": 5,
+    "staged_diff_check_exit_code": 0,
+    "base_diff_check_exit_code": 0,
+    "remote_reference_heads_unchanged": 11,
+    "new_C_remote_absent_before_push": true,
+    "note": "Final report-only edits are restaged and rechecked before the single commit. Final SHA/parent/tree/push verification supplied after commit without self-referential amend."
+  },
+  "warnings": [
+    "Existing Vite minified chunk >500 kB (896.85 kB JS); no thresholds changed",
+    "No dependency audit performed; no security audit PASS claimed"
+  ],
+  "rule_conflicts": [],
+  "unresolved_in_scope": [],
+  "forbidden_work_performed": false
+}

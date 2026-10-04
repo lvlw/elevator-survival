@@ -206,3 +206,17 @@ A 在 `bfc6bd973eeb306df1e8ee916b2160c30b757cdf` 已获[限定实审 PASS](engin
 | A→B→C | B 仍待准确 SHA 主线恢复接缝实审；C、真实存储故障／重入、玩家／浏览器、五图、O3 和体验未执行／未决定 |
 
 详见 [B 支持与验收定位](engineering/residence-foundation/terminal-restore/contract-and-support.md)、[检查记录](engineering/residence-foundation/terminal-restore/verification-results.json)及[作者报告](engineering/residence-foundation/terminal-restore/completion.md)。本表不新增规则，不覆盖历史时点。
+
+## C 显式终局会话作者实现追踪（2026-10-05）
+
+前置 B 在 `b9b1e0fee0e779669ca40e088ac9a867016bff82` 已获[限定实审](engineering/residence-foundation/terminal-session/inputs/AUD-b9b1e0f-ENG-RESIDENCE-TERMINAL-RESTORE-001-review-v1.0.md)。本表不改规则，只追踪新增显式 v2 owner；旧 v1 默认行为不变。
+
+| 已有规则／边界 | 本批实现与证据 |
+| --- | --- |
+| 唯一持有者与首次流程 | 共用 domain、真实 read-null→createFirst→launch，奖励空间守卫在 execution provider 前；C01/C02 |
+| G2 局部动作与 A 完整终局 | 九类明确意图；整实例和持续现场承接；A 接原死亡计划一次，正常空步骤与截止短路保留；C03—C06 |
+| B v2 恢复与原接口 | 四态字符串冷恢复无规则重放；无 current 才能显式重读；原 v1／独立 expected 不放宽；C07 |
+| 保存故障与重入 | 三类独立故障链，保内存、最新值重写、零重抽／重算；BUSY 与监听异常隔离；C08/C09 |
+| 历史／安全查询 | 两声明历史由原生 A/B 测试生产者建立，C 只消费当前活动；普通输出不含诊断秘密；C10/C11 |
+
+详见 [C 支持及完整验收映射](engineering/residence-foundation/terminal-session/contract-and-support.md)、[作者检查](engineering/residence-foundation/terminal-session/verification-results.json)及[交付报告](engineering/residence-foundation/terminal-session/completion.md)。当前待准确 SHA 实审，不宣称真实五图／玩家入口／浏览器 IO 或体验已通过，O3 未决定；C12 保留这些 Gate。

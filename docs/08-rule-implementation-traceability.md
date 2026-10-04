@@ -193,3 +193,16 @@ G3 在完整 SHA `60e9c30732c5e22cfe9ff58b9b381de64b945180` 已通过[限定准�
 | A→B→C | A 作者检查不等于主线准确 SHA PASS；B/C、真实五图、玩家入口、存储与体验未实施 |
 
 实际接口、T01—T12、测试和调用计数见 [支持合同](engineering/residence-foundation/terminal-core/contract-and-support.md)、[验证记录](engineering/residence-foundation/terminal-core/verification-results.json)和[完成报告](engineering/residence-foundation/terminal-core/completion.md)。原正文保留其历史时点，本附记不新增规则。
+
+## ENG-RESIDENCE-TERMINAL-RESTORE-001 B 实现追踪附记（2026-10-05）
+
+A 在 `bfc6bd973eeb306df1e8ee916b2160c30b757cdf` 已获[限定实审 PASS](engineering/residence-foundation/terminal-restore/inputs/AUD-bfc6bd9-ENG-RESIDENCE-TERMINAL-001-review-v1.0.md)，不扩大为 B/C 验收。
+
+| 已批准合同 | B 作者实现与剩余 Gate |
+| --- | --- |
+| C08／C11、终局恢复补充 | fresh／active／living／dead 完整 v2 值和来源／钱包／实物／历史联合校验；真实 A 结果和两声明历史经字符串往返 |
+| 独立 expected 与旧恢复边界 | 必需独立同进度完整 expected，复用原 mission restore；冷候选无安装权，旧 v1 七值入口和 G4 默认消费不变 |
+| 纯度及原生验证 | 构造夹具后独立计数，codec 不执行规则计划／draw／IO；B01—B12 见支持合同及实际验证记录 |
+| A→B→C | B 仍待准确 SHA 主线恢复接缝实审；C、真实存储故障／重入、玩家／浏览器、五图、O3 和体验未执行／未决定 |
+
+详见 [B 支持与验收定位](engineering/residence-foundation/terminal-restore/contract-and-support.md)、[检查记录](engineering/residence-foundation/terminal-restore/verification-results.json)及[作者报告](engineering/residence-foundation/terminal-restore/completion.md)。本表不新增规则，不覆盖历史时点。

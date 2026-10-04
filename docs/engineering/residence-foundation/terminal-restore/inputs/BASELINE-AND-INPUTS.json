@@ -1,0 +1,260 @@
+{
+  "task": "ENG-RESIDENCE-TERMINAL-RESTORE-001",
+  "shorthand": "B",
+  "version": "v1.0",
+  "date": "2026-10-04",
+  "repository": "lvlw/elevator-survival",
+  "base_sha": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf",
+  "base_parent": "6438f7a38939297225538cdd68af24201ed7d34f",
+  "base_tree": "8429346ed7e1e42cf383f68d859c08801c84908e",
+  "branch": "feature/residence-terminal-restore-001",
+  "create_new_branch": true,
+  "predecessor_review": "AUD-bfc6bd9-ENG-RESIDENCE-TERMINAL-001-review-v1.0.md",
+  "authority_records": [
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md"
+  ],
+  "approved_format": {
+    "format": "elevator-survival.residence-headless",
+    "formatVersion": 2,
+    "terminalConfigurationId": "infected-terminal-core-test-v0.1",
+    "rulesVersion": "Existing controlled dependency value; no new player registration",
+    "g1_configuration": "Retain actual G1 configuration identity and all 34 approved values"
+  },
+  "reference_refs": {
+    "main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+    "feature/design-world-entry-003": "6438f7a38939297225538cdd68af24201ed7d34f",
+    "feature/design-world-entry-002": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+    "feature/design-world-infected-world-001": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+    "feature/mission-lifecycle-core-001": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+    "feature/residence-energy-cycle-core-001": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+    "feature/residence-location-core-001": "d7953bbf96dc842d2953e019f950275cd693bf09",
+    "feature/residence-session-core-001": "60e9c30732c5e22cfe9ff58b9b381de64b945180",
+    "feature/residence-actions-core-001": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c",
+    "feature/residence-terminal-core-001": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf"
+  },
+  "current_authoritative_objects": {
+    "docs/05-design-decisions.md": {
+      "git_blob": "c739151493cd8b5e46e03d25008ea0fb128c3e14",
+      "mode": "read_only"
+    },
+    "docs/content/infected-terminal-core-test-config-v0.1.json": {
+      "git_blob": "fa999e7f456414daf6279fd8fbff3cd117394135",
+      "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+      "mode": "read_only"
+    },
+    "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md": {
+      "git_blob": "c52c08df1cd99b6d376e3d43174e72e0866758bf",
+      "sha256": "5f35b35cfe580aad5b1f8990954285dae88fb0451645ce43088ced9099fbcd50",
+      "mode": "read_only"
+    },
+    "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md": {
+      "git_blob": "cf308a1b16d932ba8d99da07bb0dcdce7201f0e1",
+      "sha256": "e6126982afc09c0174279418a6d8563b5b88645c2c080a38d698a53410c14fd5",
+      "mode": "read_only"
+    },
+    "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md": {
+      "git_blob": "f9e97aafdba863dad17a2fc51a624bb236a7dc07",
+      "mode": "read_only"
+    },
+    "AGENTS.md": {
+      "git_blob": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "mode": "read_only"
+    },
+    "package.json": {
+      "git_blob": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+      "mode": "read_only"
+    },
+    "package-lock.json": {
+      "git_blob": "3b320a8a79a1815c0909d8846e5e6248d4fc187e",
+      "mode": "read_only"
+    },
+    "src/core/mission-lifecycle/controlled.ts": {
+      "git_blob": "c618e1ebd687a304d2c0d85776109fba7b8bd1e0",
+      "mode": "read_only"
+    },
+    "src/core/residence-location/controlled.ts": {
+      "git_blob": "5807d37152a67d9dc8c9a3e4b95dc1574bccdcc2",
+      "mode": "read_only"
+    },
+    "src/core/residence-location/movement.ts": {
+      "git_blob": "369dce353ee79ce6b6f7990f0f9c1db972a18700",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/types.ts": {
+      "git_blob": "cf623de9fd8eb28aab077a86e40e4ac252987223",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/validation.ts": {
+      "git_blob": "7f33381eb69fbcb3b696f5b1606cc45c06e9e4ee",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/authority.ts": {
+      "git_blob": "1a643644e7311bed1fe2254b6a06bf59ad979877",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/controlled.ts": {
+      "git_blob": "c205b5753f1ce81656f21818e7b350e0a1f703b2",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/settlement.ts": {
+      "git_blob": "a0813f6ca38540c140d047418ddeefc46fcdc43e",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/plans.ts": {
+      "git_blob": "9a3fced8858aa1db81cecbc13f5ece10edebf34a",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/dispositions.ts": {
+      "git_blob": "55270a8eca294101b173637775f170f5a32235a2",
+      "mode": "read_only"
+    },
+    "src/core/residence-terminal/index.ts": {
+      "git_blob": "68fae384e3ef6e0df51ed848f6121d169229c8cf",
+      "mode": "read_only"
+    },
+    "src/content/infected-terminal-core-v0.1/config.ts": {
+      "git_blob": "353de338c5fcb112f7e8077e9dff7789757fa5de",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/types.ts": {
+      "git_blob": "24ad2c0d5e2b9f43fbae716188d4aa91b507f86e",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/codec.ts": {
+      "git_blob": "fc91717d0833f0e62e1b153501b0cd37bf1815c2",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/validation.ts": {
+      "git_blob": "130e8bae56b46fba38b52e4b4cf763a7291b1f83",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/index.ts": {
+      "git_blob": "40105d44c92b3d208baf0b71eb526eb5d5550064",
+      "mode": "read_only"
+    },
+    "src/state/residence-save/residence-save.test.ts": {
+      "git_blob": "eb7d210c0a9910097c74de0f1bc5378d6557f959",
+      "mode": "read_only"
+    }
+  },
+  "allowed_path_count_limit": 28,
+  "allowed_paths": [
+    "src/state/residence-save/terminal-types.ts",
+    "src/state/residence-save/terminal-policy.ts",
+    "src/state/residence-save/terminal-validation.ts",
+    "src/state/residence-save/terminal-history.ts",
+    "src/state/residence-save/terminal-expected.ts",
+    "src/state/residence-save/terminal-codec.ts",
+    "src/state/residence-save/terminal-controlled.ts",
+    "src/state/residence-save/terminal-index.ts",
+    "src/state/residence-save/terminal-test-fixtures.ts",
+    "src/state/residence-save/terminal-save.test.ts",
+    "src/state/residence-save/terminal-aggregate.test.ts",
+    "src/state/residence-save/terminal-history.test.ts",
+    "src/state/residence-save/terminal-expected.test.ts",
+    "src/state/residence-save/terminal-compatibility.test.ts",
+    "src/state/residence-save/terminal-purity.test.ts",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/residence-foundation/terminal-restore/contract-and-support.md",
+    "docs/engineering/residence-foundation/terminal-restore/implementation-notes.md",
+    "docs/engineering/residence-foundation/terminal-restore/verification-results.json",
+    "docs/engineering/residence-foundation/terminal-restore/completion.md",
+    "docs/engineering/residence-foundation/terminal-restore/inputs/ENG-RESIDENCE-TERMINAL-RESTORE-001-task-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-restore/inputs/OWNER-authority-and-scope-terminal-B-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-restore/inputs/AUD-bfc6bd9-ENG-RESIDENCE-TERMINAL-001-review-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-restore/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/residence-foundation/terminal-restore/inputs/SHA256SUMS.txt"
+  ],
+  "path_modes": {
+    "src/state/residence-save/terminal-types.ts": "create_only",
+    "src/state/residence-save/terminal-policy.ts": "create_only",
+    "src/state/residence-save/terminal-validation.ts": "create_only",
+    "src/state/residence-save/terminal-history.ts": "create_only",
+    "src/state/residence-save/terminal-expected.ts": "create_only",
+    "src/state/residence-save/terminal-codec.ts": "create_only",
+    "src/state/residence-save/terminal-controlled.ts": "create_only",
+    "src/state/residence-save/terminal-index.ts": "create_only",
+    "src/state/residence-save/terminal-test-fixtures.ts": "create_only",
+    "src/state/residence-save/terminal-save.test.ts": "create_only",
+    "src/state/residence-save/terminal-aggregate.test.ts": "create_only",
+    "src/state/residence-save/terminal-history.test.ts": "create_only",
+    "src/state/residence-save/terminal-expected.test.ts": "create_only",
+    "src/state/residence-save/terminal-compatibility.test.ts": "create_only",
+    "src/state/residence-save/terminal-purity.test.ts": "create_only",
+    "docs/engineering/residence-foundation/terminal-restore/contract-and-support.md": "create_only",
+    "docs/engineering/residence-foundation/terminal-restore/implementation-notes.md": "create_only",
+    "docs/engineering/residence-foundation/terminal-restore/verification-results.json": "create_only",
+    "docs/engineering/residence-foundation/terminal-restore/completion.md": "create_only",
+    "docs/03-architecture.md": "append_only_preserve_baseline_prefix",
+    "docs/08-rule-implementation-traceability.md": "append_only_preserve_baseline_prefix",
+    "docs/design-drafts/world-infected-001/01-world-overview.md": "append_only_preserve_baseline_prefix",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md": "append_only_preserve_baseline_prefix",
+    "docs/engineering/residence-foundation/terminal-restore/inputs/ENG-RESIDENCE-TERMINAL-RESTORE-001-task-v1.0.md": "create_raw_input_bytes",
+    "docs/engineering/residence-foundation/terminal-restore/inputs/OWNER-authority-and-scope-terminal-B-v1.0.md": "create_raw_input_bytes",
+    "docs/engineering/residence-foundation/terminal-restore/inputs/AUD-bfc6bd9-ENG-RESIDENCE-TERMINAL-001-review-v1.0.md": "create_raw_input_bytes",
+    "docs/engineering/residence-foundation/terminal-restore/inputs/BASELINE-AND-INPUTS.json": "create_raw_input_bytes",
+    "docs/engineering/residence-foundation/terminal-restore/inputs/SHA256SUMS.txt": "create_raw_input_bytes"
+  },
+  "entrypoints": {
+    "ordinary_new": "src/state/residence-save/terminal-index.ts",
+    "controlled_new": "src/state/residence-save/terminal-controlled.ts",
+    "ordinary_value_exports": [
+      "TERMINAL_RESIDENCE_FORMAT",
+      "TERMINAL_RESIDENCE_FORMAT_VERSION",
+      "TerminalResidenceSaveError",
+      "createTerminalResidenceEnvelope",
+      "deserializeTerminalResidenceSave",
+      "restoreTerminalResidenceCandidate",
+      "serializeTerminalResidenceSave",
+      "validateTerminalResidenceAggregate"
+    ],
+    "controlled_value_exports": [
+      "createTerminalResidenceSavePolicy"
+    ],
+    "legacy_index_unchanged": true
+  },
+  "mandatory_test_commands": [
+    "npm run test:run",
+    "npm run test:run -- src/state/residence-save src/core/residence-terminal src/content/infected-terminal-core-v0.1 src/core/mission-lifecycle src/core/character-cycle src/core/residence-energy src/core/residence-location src/state/residence-session",
+    "npm run check"
+  ],
+  "historical_test_reference_only": {
+    "files": 133,
+    "tests": 2947,
+    "new_tests_in_A": 156,
+    "must_rerun_B_baseline": true
+  },
+  "scope_permissions": {
+    "normal_commit": true,
+    "push_same_named_branch_only": true,
+    "force_push": false,
+    "main_merge_or_push": false,
+    "change_rules_or_parameters": false,
+    "change_old_runtime_or_tests": false,
+    "C_execution": false,
+    "browser_storage_or_player_entry": false,
+    "shutdown_restart_scheduled_actions": false
+  },
+  "stop": "B exact-SHA mainline recovery seam review; no C or player/browser continuation",
+  "input_objects": {
+    "ENG-RESIDENCE-TERMINAL-RESTORE-001-task-v1.0.md": {
+      "bytes": 28670,
+      "sha256": "c8f7e5f205d84703c35a66ec13e60a2c7c71f8ed5b7f30dcd2032e76cbe0946e",
+      "git_blob": "3ddc978e892fdb164715fbfa22c0cebf81060711"
+    },
+    "OWNER-authority-and-scope-terminal-B-v1.0.md": {
+      "bytes": 2163,
+      "sha256": "e39f1042d56b3f65dfe5787fcf28a572c150f5bf5e13d66a08b8f6e105ad74c7",
+      "git_blob": "e1fdb7a614947557f435eeafecb70a8abb82d8cf"
+    },
+    "AUD-bfc6bd9-ENG-RESIDENCE-TERMINAL-001-review-v1.0.md": {
+      "bytes": 8840,
+      "sha256": "d21a60d6d0d597e9bbafc6a82af6c6ba06630f0b2de022129fc61dcb186d4a43",
+      "git_blob": "67ef610b24a8ffe1455c2dba136ac32408067b44"
+    }
+  }
+}

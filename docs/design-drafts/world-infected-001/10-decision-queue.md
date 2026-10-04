@@ -165,3 +165,9 @@ G4基线 `7ca547ab8ab4f411d1102a79baf8c0796f4b082c` 已获[主线限定实审PAS
 ## A 工程进度附记（2026-10-04）
 
 已通过 6438f7a 文档实审的批准子集，本批进入纯终局 A 作者实现／验证阶段，实际支持见 [A 合同与 T01—T12](../../engineering/residence-foundation/terminal-core/contract-and-support.md)。等待本批准确 SHA 专项源码实审；不得据本附记自动启动 B/C、接玩家内容、决定 O3、扩大经济机制或关闭 Owner 试玩。原未实现／待审行保留原记录时点。
+
+## B 工程进度附记（2026-10-05）
+
+A 准确 SHA `bfc6bd973eeb306df1e8ee916b2160c30b757cdf` 已获[限定源码 PASS](../../engineering/residence-foundation/terminal-restore/inputs/AUD-bfc6bd9-ENG-RESIDENCE-TERMINAL-001-review-v1.0.md)。本批在新工程分支实现 B 四态严格聚合、并列 v2 codec 和独立 expected 原生回归，旧接口、规则、参数和原工程保持不变；[B 支持与 B01—B12](../../engineering/residence-foundation/terminal-restore/contract-and-support.md)记录实际范围。
+
+下一 Gate 是本批准确 SHA 的主线恢复接缝实审，不自动进入 C。current／保存故障／重入、真实五图与玩家入口、O3、Owner 试玩仍 OPEN／NOT RUN 或未决定；不新增经济、战斗医疗、商品服务、专长／工具箱决策。旧队列正文保持历史时点。

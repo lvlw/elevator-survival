@@ -162,3 +162,9 @@ G4在7ca547ab8ab4f411d1102a79baf8c0796f4b082c的限定能力仍是生产边界�
 ## 终局 A 作者工程状态附记（2026-10-04）
 
 6438f7a 文档实审后，本批实现纯终局 A 的资格／四结果、唯一钱包与真实实物历史计划；没有安装 current、保存或注册五图玩家内容。此处仅同步作者实现状态，准确 SHA 主线源码实审仍待完成，B/C 及 Owner 体验不因此通过。接口和证据见 [A 支持合同](../../engineering/residence-foundation/terminal-core/contract-and-support.md)与[作者报告](../../engineering/residence-foundation/terminal-core/completion.md)。现有候选、未采纳数值、O3 与后续 Gate 保持原状态。
+
+## 终局 B 作者工程状态附记（2026-10-05）
+
+A 在 `bfc6bd973eeb306df1e8ee916b2160c30b757cdf` 的[准确源码限定实审](../../engineering/residence-foundation/terminal-restore/inputs/AUD-bfc6bd9-ENG-RESIDENCE-TERMINAL-001-review-v1.0.md)已通过。本批 B 新增独立 v2 四态严格恢复／纯 codec 和独立 expected，真实 A 四结果及两声明历史进入原生往返回归；不修改旧 v1、G4、批准规则或参数。详见 [B 支持合同](../../engineering/residence-foundation/terminal-restore/contract-and-support.md)。
+
+此处仅为作者实现状态，B 的准确 SHA 恢复接缝仍待主线实审；无 current 安装、存储或玩家入口。C、五图真实内容、完整终局会话、O3 发布、浏览器和 Owner 体验仍未执行／未决定，不把历史工程或本地检查升级成完整可玩 PASS。

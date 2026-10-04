@@ -633,3 +633,9 @@ G3 在完整 SHA `60e9c30732c5e22cfe9ff58b9b381de64b945180` 已通过[限定准�
 6438f7a 文档实审已通过；本批新增纯终局 A 与独立四值运行时依赖。普通入口仅查询资格／全奖容量；受控入口以完整前态权限组成正常返回／期限，或消费真实 G2 死亡原计划，生成身体、具体委托关闭、唯一余额、真实实物归属与被动收据的一笔 TerminalPlan。正常返回保留 G1 空步骤，死亡不重执行动作／周期／随机，不额外增加 revision。既成交付与本次终局处分分源；旧现场只有不可访问历史，没有第二份身体或可用库存。
 
 这是作者实现／本地验证，仍待本批准确 SHA 主线源码实审，不是玩家可玩或体验 PASS。B 编解码、C 唯一会话安装、真实五图内容桥、保存、UI、O3 与 Owner 试玩保持未完成／未决定。详见 [A 实际支持与接口](engineering/residence-foundation/terminal-core/contract-and-support.md)及[交付记录](engineering/residence-foundation/terminal-core/completion.md)；正式规则仍以 [A 契约](engineering/residence-foundation/terminal-core-contract-v1.0.md)为准。
+
+## ENG-RESIDENCE-TERMINAL-RESTORE-001 B 作者实现附记（2026-10-05）
+
+A 的准确 SHA `bfc6bd973eeb306df1e8ee916b2160c30b757cdf` 已获[限定源码 PASS](engineering/residence-foundation/terminal-restore/inputs/AUD-bfc6bd9-ENG-RESIDENCE-TERMINAL-001-review-v1.0.md)。本批 B 新增独立 terminal-index／terminal-controlled、四态严格聚合、v2 纯字符串 codec 与必需独立 expected 的同进度候选；旧 v1 和 G4 默认消费者保持不变。复用 A 完整值与 G1/G2 纯校验，补齐来源实物、历史顺序和最新身体事实联合检查，不重放动作、周期、随机或清算。
+
+B 只返回只读值，不保管或安装 current，不读写存储；v2 与 v1 双向拒绝，无隐式迁移。冷自洽不是离线防回滚，expected 校验不是安装许可。接口与边界见 [B 支持合同](engineering/residence-foundation/terminal-restore/contract-and-support.md)。本附记是作者实现状态，仍待 B 准确 SHA 主线恢复接缝实审；C、真实五图、玩家入口、浏览器保存、O3 与 Owner 体验未执行／未决定。上文历史时点不改写。

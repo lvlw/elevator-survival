@@ -1,0 +1,361 @@
+{
+  "task": "ENG-RESIDENCE-TERMINAL-RESTORE-001",
+  "shorthand": "B",
+  "evidence_kind": "author-native-tests-and-local-audit-not-mainline-review",
+  "base": {
+    "sha": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf",
+    "parent": "6438f7a38939297225538cdd68af24201ed7d34f",
+    "tree": "8429346ed7e1e42cf383f68d859c08801c84908e",
+    "entry_branch": "feature/residence-terminal-core-001",
+    "worktree": "clean",
+    "ordinary_diff": "empty",
+    "cached_diff": "empty"
+  },
+  "branch": "feature/residence-terminal-restore-001",
+  "logs_directory": "C:/Users/zjl/AppData/Local/Temp/residence-terminal-b-audit",
+  "runs": [
+    {
+      "command": "npm run test:run",
+      "phase": "baseline-before-production",
+      "exit": 0,
+      "files": 133,
+      "tests": 2947,
+      "seconds": 53.28,
+      "log": "baseline.log",
+      "sha256": "ca3908930e7bc5553ad0bbac89f78ed96a078b866ca82734cfa2f2070f7c9f8d"
+    },
+    {
+      "command": "npm run test:run -- src/state/residence-save src/core/residence-terminal src/content/infected-terminal-core-v0.1 src/core/mission-lifecycle src/core/character-cycle src/core/residence-energy src/core/residence-location src/state/residence-session",
+      "phase": "final",
+      "exit": 0,
+      "files": 33,
+      "tests": 960,
+      "seconds": 13.34,
+      "log": "targeted-final.log",
+      "sha256": "bbba85132ab0c3acc0a8b5836dce65306e9758ace921c40e6fdf078a7e83734d"
+    },
+    {
+      "command": "npm run check",
+      "phase": "final-runtime",
+      "exit": 0,
+      "architecture": "PASS",
+      "DEC": 51,
+      "core_production_files": 257,
+      "typecheck": "PASS",
+      "tests": "PASS",
+      "files": 139,
+      "test_count": 3135,
+      "test_seconds": 60.93,
+      "build": "PASS",
+      "warning": "existing >500kB output chunk; no threshold/config change",
+      "log": "check-final.log",
+      "sha256": "e402f7c7d37b3d38d1a16e3b9feae535a6852c3505a26c12aa163c522f997d9e"
+    },
+    {
+      "command": "npm run test:run -- src/state/residence-save --reporter=json --outputFile=C:/Users/zjl/AppData/Local/Temp/residence-terminal-b-audit/save-tests-final.json",
+      "exit": 0,
+      "files": 8,
+      "tests": 249,
+      "report": "save-tests-final.json",
+      "sha256": "b454477a6b8307c48cac098ee83eab009075e71bbb86977bd492a85136ac5bcd"
+    }
+  ],
+  "tests": {
+    "added_files": 6,
+    "added": 188,
+    "replaced": 0,
+    "deleted": 0,
+    "net_added": 188,
+    "by_new_file": {
+      "terminal-save.test.ts": 52,
+      "terminal-aggregate.test.ts": 58,
+      "terminal-history.test.ts": 53,
+      "terminal-expected.test.ts": 12,
+      "terminal-compatibility.test.ts": 4,
+      "terminal-purity.test.ts": 9
+    },
+    "preserved": {
+      "identity": 103,
+      "cold": 23,
+      "A": 156,
+      "all_old_tests": "unchanged; executed in targeted and full runs"
+    }
+  },
+  "self_review": [
+    {
+      "log": "second-tests.log",
+      "exit": 1,
+      "passed": 167,
+      "failed": 1,
+      "cause": "test-only quick-slot fixture quantity 3 violates real quantity 1 contract",
+      "fix": "single quick-slot item plus real quantity 3 backpack stack; production rules unchanged"
+    },
+    {
+      "command": "npm run typecheck",
+      "exit": 1,
+      "cause": "test imported node:fs without app Node type globals",
+      "fix": "Vite import.meta.glob raw source audit; no dependency/config change",
+      "log": "not saved as a separate file; original tool output only"
+    },
+    {
+      "log": "self-review-reproductions.log",
+      "exit": 1,
+      "passed": 100,
+      "failed": 4,
+      "cause": "B missing joint chronology / deadline energy / latest bleeding-body checks",
+      "fix": "new B history validation only; no old source changes"
+    },
+    {
+      "log": "self-review-fixed.log",
+      "exit": 0,
+      "files": 8,
+      "tests": 242
+    },
+    {
+      "log": "fourth-tests.log",
+      "exit": 0,
+      "files": 8,
+      "tests": 247
+    },
+    {
+      "log": "history-final.log",
+      "exit": 0,
+      "files": 1,
+      "tests": 53
+    }
+  ],
+  "codec_counters": {
+    "test_file": "src/state/residence-save/terminal-purity.test.ts",
+    "fixture_construction": "real producers observed then every spy mockClear before codec",
+    "cases": [
+      "fresh",
+      "active",
+      "normal",
+      "deadline",
+      "g2-death",
+      "two-history"
+    ],
+    "observed_entrances": 24,
+    "each_codec_count": 0,
+    "entrances": [
+      "planCharacterCycle",
+      "planResidenceAction",
+      "activateMission",
+      "terminateMission",
+      "establishMissionFact",
+      "establishResidenceLocation",
+      "createLocationCatalog",
+      "planResidenceMove",
+      "planResidenceSourceReveal",
+      "planResidenceItemTransfer",
+      "planResidenceLocationRest",
+      "planResidenceTerminal",
+      "consumeResidenceLocationDeath",
+      "createTerminalAuthority",
+      "issueTerminalPlan",
+      "drawIntInclusive",
+      "drawFloat01",
+      "drawChance",
+      "drawUint32",
+      "buildResidenceSession",
+      "Storage.getItem",
+      "Storage.setItem",
+      "Storage.removeItem",
+      "Storage.clear"
+    ],
+    "cursor_note": "sourceItemId uses pure createRandomCursor; this is not a draw or newly issued game identity",
+    "commit_and_notification": "no B APIs; API export and source dependency audit, not a fabricated session failure test"
+  },
+  "diff_checks": {
+    "ordinary": {
+      "exit": 0
+    },
+    "cached_before_stage": {
+      "exit": 0,
+      "note": "empty index"
+    },
+    "relative_to_base": {
+      "exit": 0
+    },
+    "staged_and_commit": "final external Git receipt; no self-SHA amendment"
+  },
+  "audits": {
+    "status": "PASS",
+    "command": "node C:/Users/zjl/AppData/Local/Temp/residence-terminal-b-audit/audit.mjs",
+    "exit": 0,
+    "report": "artifact-audit-initial.json",
+    "whitelist_max": 28,
+    "actual_paths": 28,
+    "shared_docs_append_only": 4,
+    "append_original_bytes_preserved": true,
+    "protected_manifest_objects": 25,
+    "protected_objects_match": true,
+    "old_tracked_changes_except_append_docs": 0,
+    "protected_worktree_CRLF_files": 1,
+    "line_endings": "filtered Git blobs and raw bytes recorded separately; Git configuration unchanged",
+    "original_inputs": [
+      {
+        "name": "AUD-bfc6bd9-ENG-RESIDENCE-TERMINAL-001-review-v1.0.md",
+        "bytes": 8840,
+        "sha256": "d21a60d6d0d597e9bbafc6a82af6c6ba06630f0b2de022129fc61dcb186d4a43",
+        "git_blob": "67ef610b24a8ffe1455c2dba136ac32408067b44",
+        "PASS": true
+      },
+      {
+        "name": "BASELINE-AND-INPUTS.json",
+        "bytes": 12640,
+        "sha256": "b4844e47cafe34b08e6eb7d0fae07cf3f47fef4c9313415fb0b4f9bdb07b0d36",
+        "git_blob": "69766c0bd738db1abbdbf8b6b78e0ecc5d512db3",
+        "PASS": true
+      },
+      {
+        "name": "ENG-RESIDENCE-TERMINAL-RESTORE-001-task-v1.0.md",
+        "bytes": 28670,
+        "sha256": "c8f7e5f205d84703c35a66ec13e60a2c7c71f8ed5b7f30dcd2032e76cbe0946e",
+        "git_blob": "3ddc978e892fdb164715fbfa22c0cebf81060711",
+        "PASS": true
+      },
+      {
+        "name": "OWNER-authority-and-scope-terminal-B-v1.0.md",
+        "bytes": 2163,
+        "sha256": "e39f1042d56b3f65dfe5787fcf28a572c150f5bf5e13d66a08b8f6e105ad74c7",
+        "git_blob": "e1fdb7a614947557f435eeafecb70a8abb82d8cf",
+        "PASS": true
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 436,
+        "sha256": "700ce3622193c59a5722ae9127589b103009eacf19bfe4afa10a392a4cf3cc13",
+        "git_blob": "85e53c6e10465abdc043c2a0429ab24509844187",
+        "PASS": true
+      }
+    ],
+    "sha256sum_entries": 4,
+    "sha256sums_match": true,
+    "new_relative_links": 18,
+    "new_links_pass": true,
+    "new_anchors": 0,
+    "verified_sources": [
+      {
+        "path": "src/state/residence-save/terminal-types.ts",
+        "bytes": 1603,
+        "sha256": "c33562ed152c8e6e59b4fd3f0ae50860c4ed52ab71f193d73f5cdb1c35d1728f",
+        "raw_git_blob": "7e994560ec0ac9592083eb7afcbc34ac9d22cff7",
+        "filtered_git_blob": "7e994560ec0ac9592083eb7afcbc34ac9d22cff7"
+      },
+      {
+        "path": "src/state/residence-save/terminal-policy.ts",
+        "bytes": 5464,
+        "sha256": "49d179fb5aa63c5dfdd81e9db116d22e26ff0f8c8225540951aa285fb3d54655",
+        "raw_git_blob": "788c109fe369348c9593183571f1897e2ef588de",
+        "filtered_git_blob": "788c109fe369348c9593183571f1897e2ef588de"
+      },
+      {
+        "path": "src/state/residence-save/terminal-validation.ts",
+        "bytes": 7600,
+        "sha256": "a8cbc0a62eb01f45b94159755b08e0798bd5961721430d3d905c232574916e2f",
+        "raw_git_blob": "411bbcd534a29cb6cb175ca7701b925b403ef1d5",
+        "filtered_git_blob": "411bbcd534a29cb6cb175ca7701b925b403ef1d5"
+      },
+      {
+        "path": "src/state/residence-save/terminal-history.ts",
+        "bytes": 6522,
+        "sha256": "b834586c91fe14b853e5783a28569d0e3f15ce2dc23c47551830b747aaaee263",
+        "raw_git_blob": "62c6c2c46ec9f3f76c01751f456138449013ce68",
+        "filtered_git_blob": "62c6c2c46ec9f3f76c01751f456138449013ce68"
+      },
+      {
+        "path": "src/state/residence-save/terminal-expected.ts",
+        "bytes": 2060,
+        "sha256": "be61f64c4fd45b3f9fb3a011ae7d2a149b443ac2e45569ee5602c92468a405eb",
+        "raw_git_blob": "e13bcb937496f227adeaab6213fc021cdd899234",
+        "filtered_git_blob": "e13bcb937496f227adeaab6213fc021cdd899234"
+      },
+      {
+        "path": "src/state/residence-save/terminal-codec.ts",
+        "bytes": 2081,
+        "sha256": "adc1001048a19f4a9d0a8e99e12d0074846c396c039f6aeef26ac46ffc577a66",
+        "raw_git_blob": "f5cd3bc028cb489992b209631fefc8cd62ab27bf",
+        "filtered_git_blob": "f5cd3bc028cb489992b209631fefc8cd62ab27bf"
+      },
+      {
+        "path": "src/state/residence-save/terminal-controlled.ts",
+        "bytes": 138,
+        "sha256": "4f66be93e588e9d282660776e3e5caa7ef3d5e1a835a69b4531ca4cb2074526e",
+        "raw_git_blob": "596c7d81e650554a281a1b720dbe194379fb346c",
+        "filtered_git_blob": "596c7d81e650554a281a1b720dbe194379fb346c"
+      },
+      {
+        "path": "src/state/residence-save/terminal-index.ts",
+        "bytes": 584,
+        "sha256": "e2e1bfe5f86c22287410f34fe0d3f480ae762425e51ab0ddb9f4019eece18333",
+        "raw_git_blob": "ccd5216b525102fa59e03a9f6306043e3193d104",
+        "filtered_git_blob": "ccd5216b525102fa59e03a9f6306043e3193d104"
+      },
+      {
+        "path": "src/state/residence-save/terminal-test-fixtures.ts",
+        "bytes": 12958,
+        "sha256": "61f5699984e6050359aa8c7415036c195daaa2b2ef25b723ac509d43f3ee9d75",
+        "raw_git_blob": "963221ef5c3fbf7541f1e4ccc12ee756730d38bf",
+        "filtered_git_blob": "963221ef5c3fbf7541f1e4ccc12ee756730d38bf"
+      },
+      {
+        "path": "src/state/residence-save/terminal-save.test.ts",
+        "bytes": 7807,
+        "sha256": "aa16c2db5eb866c59a689ab338a3a84f9fd877af4948257734e4213d1b3ea29e",
+        "raw_git_blob": "8e9ebbefc6621ba65c5a967d9d42159edaccb097",
+        "filtered_git_blob": "8e9ebbefc6621ba65c5a967d9d42159edaccb097"
+      },
+      {
+        "path": "src/state/residence-save/terminal-aggregate.test.ts",
+        "bytes": 11542,
+        "sha256": "36c0ac27013b339e382922c2da4ad3649a341095e2878ee9a9025b966b3f3d8e",
+        "raw_git_blob": "e56dedf2e9945dff2269d423fd95c68c32a4b2e3",
+        "filtered_git_blob": "e56dedf2e9945dff2269d423fd95c68c32a4b2e3"
+      },
+      {
+        "path": "src/state/residence-save/terminal-history.test.ts",
+        "bytes": 16139,
+        "sha256": "52db1feb1000fe75cf69e7a05d49d1bbf242110fd3254065c9abd3019ce55662",
+        "raw_git_blob": "53fa89c2af02c2394b32c436da748b74b70d034d",
+        "filtered_git_blob": "53fa89c2af02c2394b32c436da748b74b70d034d"
+      },
+      {
+        "path": "src/state/residence-save/terminal-expected.test.ts",
+        "bytes": 5012,
+        "sha256": "48eaeef222167fe488e482b0ab84dcd192306f667f7cc389cd46a30ee67457d2",
+        "raw_git_blob": "24625a789934adf4e8600e666be85bca151e80a1",
+        "filtered_git_blob": "24625a789934adf4e8600e666be85bca151e80a1"
+      },
+      {
+        "path": "src/state/residence-save/terminal-compatibility.test.ts",
+        "bytes": 2806,
+        "sha256": "775159b34e0a6cfff62fc41653916d4dab4d4ff0b1108493186fc5698a61fc05",
+        "raw_git_blob": "7b0893b238752a6c63db024097478445aa084987",
+        "filtered_git_blob": "7b0893b238752a6c63db024097478445aa084987"
+      },
+      {
+        "path": "src/state/residence-save/terminal-purity.test.ts",
+        "bytes": 6788,
+        "sha256": "142603e5deeb8d6687be25bbeca1a994456e5e07af1ddc968e8be83b54b1e78b",
+        "raw_git_blob": "707dfd58a68be77b9990d6a7cf08123c7a67b12a",
+        "filtered_git_blob": "707dfd58a68be77b9990d6a7cf08123c7a67b12a"
+      }
+    ]
+  },
+  "final_git": "normal commit and push receipt reported externally after all checks; only same named branch authorized",
+  "not_run": [
+    "B exact-SHA mainline recovery seam review",
+    "C current install/replace",
+    "real persistence failures and owner reentry",
+    "browser / multi-tab / player entry",
+    "five-map real producers",
+    "combat/medical, shops, specializations/tools",
+    "O3 publication",
+    "Owner playtest",
+    "shutdown/restart/schedule"
+  ],
+  "rule_conflicts": [],
+  "dependencies_changed": false,
+  "old_source_or_tests_changed": false
+}

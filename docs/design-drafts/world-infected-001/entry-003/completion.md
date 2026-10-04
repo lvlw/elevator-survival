@@ -37,3 +37,31 @@
 实际模型名称/推理强度无可独立核验接口，本轮未宣称切换或升级。未改正式规则、已批合同、src、生产测试、依赖/CI/配置、Project Sources、历史证据；未合并、未强推、未推main/G4/其他分支，未执行关机/重启/定时。
 
 完成普通提交/同名push并核验后，停止等待当前WebGPT主线准确SHA实文件评审，不自动正式归档或执行候选工程。
+
+
+## WORLD-ENTRY-003-R1完成追加（2026-10-04）
+
+**作者R1已完成，待新准确SHA主线专项复审。** 主线对原f93e17a为NEEDS REVISION / F01；本记录不改写原003完成过程，不自称主线PASS。起始/本次父提交为`f93e17ac7b47af39833f2ecf05681fea03dbf689`，分支`feature/design-world-entry-003`；最终提交SHA与push/远端回执在提交后的交付报告中报告，不能把未生成的SHA写入本提交。
+
+### 专项修复与合同
+
+F01改为先校验原死亡提案的完整字段、安全整数、任务/执行/角色绑定、原历史及所有权、非空合法steps，再复制提案执行清退/关闭/revision更新。仅内部允许待关闭HP0，公开恢复不准安装该中间态；合法HP0仍一次消费，不重算伤害、随机或物品效果。
+
+相邻自查补越权钱包/历史/数量/资源/位置与映射/列表/步骤反例；只读复核发现HP2可伪装致死，根实际复现后补固定来源致死范围校验。所有非法提案都保留current、disk及原提案，producerCalls=1而plans/commits/writes/notices=0。合法/低资源/保存失败重试对照保留。
+
+六份候选正文局部同步；O1/O2/O3、成功120等待审数值和G1参数不变。真实G2动作计划已递增revision，不能照搬有限producer保留输入revision的表示。两只读助手复核字段/错误码和合同一致性，根负责全部写入及实际执行；详见[自查](validation/review-notes.md)。
+
+### 本轮实际验证（与历史分开）
+
+- 修改前：原106项exit0；包内原样37专项26匹配、11不符（10误接受＋1 IndexError），exit1。修复后同一专项37匹配、0崩溃，exit0，含4项未支持边界。
+- 原106项和其结果逐项保留，新增69（66拒绝、2正例、1故障），删除/替换0、净增69，共175。分类30正例、136预期拒绝、5故障、4未支持。37专项未并入总数，重复运行不计新增。
+- 自查完成冻结30件（原18路径的R1当前指纹＋12份原字节输入）；原18件历史冻结在开工逐项核验，原记录完整保留。冻结后两独立进程均exit0、0不符、输出字节一致，SHA-256 `d4223a6fbda235331c774bcb5ab727e198ce8f4aa601efa261da45180f3fed55`。
+- 四负控均exit1且无崩溃：duplicate-settlement击中`T04-static-hub`、`T07-failed-save-repeat-no-payment`、`T07-closed-cannot-launch`；death-recall击中`T03-death-blood/infection/hunger`；old-ready击中`T12-old-ready-not-permanent-immunity`；reopen击中`T07-cannot-bootstrap-over-closed`。完整ID/结果/原始输出见[results.json](validation/results.json)的`r1`。
+- 未改的Node探针10项观察符合预期、exit0；95实际源码指纹与G4一致。实验性TypeScript转换警告照实保留。当前G4仍拒绝死亡终局、G3仍拒绝closed聚合，未宣称终局已投产。
+- `npm run validate:architecture` exit0：50 DEC、246核心生产文件。起始/最终生产测试、npm run check、build、浏览器、旧模拟/整包及A/B/C均NOT RUN；新增生产测试0。
+
+实际26路径、12新/5旧原件大小/SHA-256/blob、3完整原前缀、旧结果语义保留、只读对象、UTF-8/换行、新改链接/锚点以及普通/暂存/基线diff检查回执归入results.json的`r1.checks`。提交后再核对完整SHA/父/tree、冻结材料与Git对象、零范围外改动、干净工作区和真实远端；只向本同名分支普通push，不修改本记录来追加第二个回执提交。
+
+### 未完成与授权停止点
+
+无已知范围内修复阻塞；准确SHA专项复审、Owner集中采纳及A/B/C工程仍未执行。有限固定producer不是全生产签发/多任务/CTB证明，4项未支持不得计为实现。正式规则、批准参数、生产源码/测试、依赖/CI、原输入/原探针不改；无新分支/worktree、合并、强推或main操作，无关机/重启/定时。实际模型/推理强度无可核验运行配置接口，不声称已切换或升级。停止等待当前WebGPT主线准确SHA实文件专项复审。

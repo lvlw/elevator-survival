@@ -41,11 +41,14 @@ flowchart TD
 | 阶段 | 必须完成 | 失败行为 |
 | --- | --- | --- |
 | 意图校验／容量守卫 | 精确命令、身份、revision、可用阶段、接取前全额空间 | 零生产者调用、零随机、零提交／写盘／通知 |
-| 合法生产者与完整候选 | 身体/现场/实物真实变化＋资格分流＋任务/钱包/处置 | 非法提案拒绝；合法HP0按death完成，绝不当校验错复活 |
+| 原始死亡提案校验（R1） | 生产者一次调用后，先严校原字段/步骤与独立current所有权；允许尚未关闭的HP0，不改值求通过 | 非法提案语义Reject；producerCalls=1而plans/commits/writes/notices=0，current/disk/原提案不变 |
+| 完整终局候选 | 复制已验证提案，再完成真实效果承接＋资格分流＋任务/钱包/处置 | 合法HP0按death完成，不重调动作/周期，不复活 |
 | 聚合校验与编码预检 | 整个后态可恢复，task/receipt/body/clock一致 | 不安装任何部分；工程验收必须证明受支持合法结果不会卡在此处 |
 | 一次current安装 | revision更新一次，所有子状态及历史一致 | 不存在半closed／半钱包状态 |
 | 一次write及通知 | 写完整序列化后态，发布只读快照 | write失败保留current并显示未存；listener抛错不撤销 |
 | retrySave／重放 | 仅编码并写最新current；重复业务请求拒绝 | 不再奖励、扣款、交付、消费或抽样 |
+
+**R1所有权界限：** 中间死亡提案不是新phase或新保存格式；公开validate/restore仍拒绝active＋HP0。有限模型只给原固定流血producer `body.hp`变化权，原revision必须等于current，钱包/mission/声明/clock/既有closure/ledger/history及其他实物和状态逐项严校保持。内部共享完整字段验证允许HP0，既不先覆盖非法字段，也不把未来真实G2的可变字段误缩成仅HP；未来生产消费者须按真实签发结果与各生产者责任验证。
 
 ## 支持矩阵与新技术格式建议
 

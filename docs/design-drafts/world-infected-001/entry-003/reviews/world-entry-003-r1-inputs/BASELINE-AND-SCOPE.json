@@ -1,0 +1,135 @@
+{
+  "task": "WORLD-ENTRY-003-R1",
+  "version": "v1.0",
+  "baseSha": "f93e17ac7b47af39833f2ecf05681fea03dbf689",
+  "baseTree": "b7136d7e088b1881957a573e0210b6faf92a8a51",
+  "parentOfBase": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c",
+  "branch": "feature/design-world-entry-003",
+  "newBranch": false,
+  "allowedPaths": [
+    "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+    "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+    "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+    "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+    "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+    "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+    "docs/design-drafts/world-infected-001/entry-003/validation/check.py",
+    "docs/design-drafts/world-infected-001/entry-003/validation/fixtures.json",
+    "docs/design-drafts/world-infected-001/entry-003/validation/results.json",
+    "docs/design-drafts/world-infected-001/entry-003/validation/review-notes.md",
+    "docs/design-drafts/world-infected-001/entry-003/validation/probe-results.json",
+    "docs/design-drafts/world-infected-001/entry-003/completion.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/WORLD-ENTRY-003-R1-task-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/OWNER-authority-and-scope-WE003-R1-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/AUD-f93e17a-WORLD-ENTRY-003-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/BASELINE-AND-SCOPE.json",
+    "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/SHA256SUMS.txt",
+    "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/evidence/base-fixture.json",
+    "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/evidence/we003-review-probes.py",
+    "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/evidence/mainline-results.json",
+    "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/evidence/negative-duplicate-settlement.json",
+    "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/evidence/negative-death-recall.json",
+    "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/evidence/negative-old-ready.json",
+    "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/evidence/negative-reopen.json"
+  ],
+  "appendOnly": [
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/design-drafts/world-infected-001/entry-003/completion.md"
+  ],
+  "unchangedSourceTree": "4d28340ad020950e90bbbed1dc0b902a7f6880db",
+  "unchangedModelDependencies": {
+    "docs/content/infected-residence-core-test-config-v0.1.json": {
+      "bytes": 1417,
+      "gitBlob": "db6959ac02bf1e3bf8e816fe2b0d148ced9ca273",
+      "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9"
+    },
+    "docs/design-drafts/world-infected-001/entry-003/config-candidate.json": {
+      "bytes": 1521,
+      "gitBlob": "f0a5b2190feea4ca541e68fc0ea0e11ec53244b3",
+      "sha256": "86bc5f8ab2a89ad6b0d827747dd27f2054896da787817ab82f3f676311fe0504"
+    }
+  },
+  "baselineModel": {
+    "bytes": 29012,
+    "gitBlob": "e4219d0acc20608df8b889859830d6b1c7adae25",
+    "sha256": "b953839d79a907dbd6552c0ed22da04eb6b070ac06c97c10931de1c133bf297f"
+  },
+  "originalInputFingerprints": [
+    {
+      "file": "AUD-7ca547a-ENG-RESIDENCE-ACTIONS-001-review-v1.0.md",
+      "bytes": 11130,
+      "sha256": "c2deb808af931a184c41c9be4f4822845584e6b6fbc3720c537329750e17098d",
+      "gitBlob": "be8853b88cb73b1b544e10843ec2e4b56c530b7b",
+      "remoteGitBlob": "be8853b88cb73b1b544e10843ec2e4b56c530b7b",
+      "matches": true
+    },
+    {
+      "file": "BASELINE-AND-INPUTS.json",
+      "bytes": 3959,
+      "sha256": "74f16be5945a494a6dec4e94a53516048d4be1c912ee9b2e0f6b3ab915cb2753",
+      "gitBlob": "ba01236bfb8a4a3695282512947080481b368cc2",
+      "remoteGitBlob": "ba01236bfb8a4a3695282512947080481b368cc2",
+      "matches": true
+    },
+    {
+      "file": "OWNER-authority-and-scope-WE003-v1.0.md",
+      "bytes": 1871,
+      "sha256": "8a88d883320e9cea14173d5e2b707eda7726a2f79fab9748991c6450ffdcd874",
+      "gitBlob": "10496b3f8d7d3d0b3627c7877b97e3df034f09d0",
+      "remoteGitBlob": "10496b3f8d7d3d0b3627c7877b97e3df034f09d0",
+      "matches": true
+    },
+    {
+      "file": "SHA256SUMS.txt",
+      "bytes": 411,
+      "sha256": "6d973cfd0b2702c131892a75492b5bd1eb16665ae91f22a736ba4338367bbc7e",
+      "gitBlob": "76c262c7c7d3ba98e740e066f17a3ce08832fe15",
+      "remoteGitBlob": "76c262c7c7d3ba98e740e066f17a3ce08832fe15",
+      "matches": true
+    },
+    {
+      "file": "WORLD-ENTRY-003-task-v1.0.md",
+      "bytes": 19414,
+      "sha256": "468c2e7d315f6f53486665250c3a7a2d4635de363bab63c9da6c6fe1096ea37c",
+      "gitBlob": "d17e945b15ec32c8daedb0d991836de539c56278",
+      "remoteGitBlob": "d17e945b15ec32c8daedb0d991836de539c56278",
+      "matches": true
+    }
+  ],
+  "suppliedPackageToRepositoryArchive": {
+    "WORLD-ENTRY-003-R1-task-v1.0.md": "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/WORLD-ENTRY-003-R1-task-v1.0.md",
+    "OWNER-authority-and-scope-WE003-R1-v1.0.md": "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/OWNER-authority-and-scope-WE003-R1-v1.0.md",
+    "AUD-f93e17a-WORLD-ENTRY-003-review-v1.0.md": "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/AUD-f93e17a-WORLD-ENTRY-003-review-v1.0.md",
+    "BASELINE-AND-SCOPE.json": "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/BASELINE-AND-SCOPE.json",
+    "SHA256SUMS.txt": "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/SHA256SUMS.txt",
+    "evidence/base-fixture.json": "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/evidence/base-fixture.json",
+    "evidence/we003-review-probes.py": "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/evidence/we003-review-probes.py",
+    "evidence/mainline-results.json": "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/evidence/mainline-results.json",
+    "evidence/negative-duplicate-settlement.json": "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/evidence/negative-duplicate-settlement.json",
+    "evidence/negative-death-recall.json": "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/evidence/negative-death-recall.json",
+    "evidence/negative-old-ready.json": "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/evidence/negative-old-ready.json",
+    "evidence/negative-reopen.json": "docs/design-drafts/world-infected-001/entry-003/reviews/world-entry-003-r1-inputs/evidence/negative-reopen.json"
+  },
+  "readOnlyNotes": [
+    "all src including production tests",
+    "AGENTS/package/lock/scripts/.github/build config",
+    "formal DEC and all approved contracts",
+    "candidate numeric config and 34 approved numeric leaves",
+    "old entry-003/inputs five originals",
+    "current-api-probe.mjs remains unchanged; only its result may be refreshed"
+  ],
+  "evidence": {
+    "mainlineFiniteModelProbeCases": 37,
+    "matched": 26,
+    "gaps": 11,
+    "incorrectlyAccepted": 10,
+    "crashes": 1,
+    "unsupportedMatchedNotProductionPass": 4,
+    "fullAuthor106RerunByMainline": false,
+    "nativeApi10RerunByMainline": false
+  },
+  "stop": "exact-SHA mainline review, no adoption/archive/engineering continuation"
+}

@@ -2,6 +2,8 @@
 
 **DESIGN DRAFT，有限证明不等于生产支持。** 真实结果、命令退出码及冻结指纹见[results.json](validation/results.json)；当前源码探针见[probe-results.json](validation/probe-results.json)。源事实固定于 `7ca547ab8ab4f411d1102a79baf8c0796f4b082c`。
 
+**R1当前定位：** [主线F01](reviews/world-entry-003-r1-inputs/AUD-f93e17a-WORLD-ENTRY-003-review-v1.0.md)对f93e17a结论为NEEDS REVISION。原106项、18件冻结及旧执行结果保留；当前作者修订结果在results.json的`r1`，不是主线批准。固定37专项单列，含4项未支持，绝不与主套件相加或把复跑计为新增。
+
 ## 三层证据
 
 1. 原件与已生效事实：[inputs](inputs/BASELINE-AND-INPUTS.json)、既有DEC/合同、003A—D实际确认。G4原2791测试是历史参考，不计本批运行。
@@ -19,13 +21,15 @@
 | T05/C05 | 动作／休整HP0，当前资产不可继承；历史清退不改旧成功／处置 | 后者是清退子组件见证，不是完整第二任务安装测试 |
 | T06/C06 | 实例唯一归属、状态/定义一致、地面隔离、资源不重建 | 夹具仅代表none/durability/charge等资源，生产需全定义校验 |
 | T07/C07 | 重放、换execution/title、关闭后launch、替换初态均拒绝或不再结算 | 单会话内幂等，不承诺离线回档防护 |
-| T08/C08 | 四种合法终态恢复；缺字段／身份／闭合／账／处置／时序拒绝 | 固定单委托，未来历史活动由工程原生补充 |
-| T09/C09 | 错命令零副作用、write失败完整内存、retrySave只存、busy重入 | 模型存储替身；当前G4真实行为另见探针 |
-| T10/C10 | 数值负/小数/bool/NaN/Inf/unsafe/上限与revision溢出；非法输入不被清零洗白 | JS safe integer边界由模型显式限制，Python大整数不能冒充JS无界安全 |
+| T08/C08 | 四种合法终态恢复；原死亡提案绑定/阶段/终局凭证先验，拒绝中间HP0冷恢复；缺字段／身份／闭合／账／处置／时序拒绝 | 固定单委托，未来历史活动由工程原生补充 |
+| T09/C09 | 错命令零副作用；非法原提案调用1次而零提交/写/通知，current/disk/issued不变；合法HP0一次消费与保存故障重试 | 模型存储替身；当前G4真实行为另见探针 |
+| T10/C10 | 原字段覆盖前的负/小数/bool/NaN/Inf/unsafe/上限/revision；范围合法但无所有权的改写也拒绝 | JS safe integer边界由模型显式限制，Python大整数不能冒充JS无界安全 |
 | T11/C11 | CTB/医疗/第二真实任务/旧档发布unsupported | 明确未支持，不计通过数 |
 | T12/C12 | 条款锚点、参数oracle、保护指纹；旧ready不能免后续周期 | 锚点检查不能代替语义审查；跨文档由两名只读审查＋根整合补足 |
 
 `fixtures.json`每案有稳定ID、条款、分类、输入patch与独立期望。模型body只抽象本期日结字段和一项额度；夹具资源上界100不是生产配置；简化M/E/C和H0/H5/H8不定义世界Schema。`history-retire`只验证清退函数，临时HP0对象不作为可恢复聚合；`old-ready`只调用后续周期子过程，未注册第二任务。死亡入口/cause/步骤序列及当前身体必要条件在模型内联合检查；不从冷候选重跑伤害，也不证明用户同时伪造全套历史不可行。完整恢复、所有生产者提案不可伪造性和所有定义资源限制均属于后续工程验收。
+
+R1补足原106项未覆盖的提案入口：11个固定缺口及相邻字段/步骤回归均绑定C08/C09/C10；期望为具体语义Reject＋零副作用，不以提交后断言或异常代替。原base及既有用例不删不改，合法动作HP0、休整、成功/失败/期限对照保持；固定producerCalls与plans分开记录，既不再算流血也不复写原提案。
 
 ## 冻结和复跑规则
 
@@ -46,7 +50,7 @@ node docs/design-drafts/world-infected-001/entry-003/validation/current-api-prob
 npm run validate:architecture
 ```
 
-保护检查另核对21条精确白名单、原件大小/SHA256/blob、两共享文档完整基线前缀、所有范围外Git对象与工作树无改、相对链接/锚点、UTF8及换行、普通/暂存/基线/最终diff --check。归档原件若自带CRLF只按原字节保留并如实记录，不能为了统一LF破坏SHA；本批新写内容LF。没有空白例外授权，diff告警不能吞掉。
+原003的21路径/18件冻结属于历史；R1按[26路径与归档映射](reviews/world-entry-003-r1-inputs/BASELINE-AND-SCOPE.json)独立核对，并保留completion完整原前缀。保护检查核对当前精确白名单、原件大小/SHA256/blob、两共享文档完整基线前缀、所有范围外Git对象与工作树无改、相对链接/锚点、UTF8及换行、普通/暂存/基线/最终diff --check。归档原件若自带CRLF只按原字节保留并如实记录，不能为了统一LF破坏SHA；本批新写内容LF。没有空白例外授权，diff告警不能吞掉。
 
 ## 到下一次可玩版本的欠账
 

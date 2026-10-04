@@ -2093,6 +2093,1157 @@
         "deathPoint.steps"
       ],
       "code": "invalid-fields"
+    },
+    {
+      "id": "R1-F01-revision-negative",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-number",
+      "proposal_patch": {
+        "snapshot.revision": -1
+      }
+    },
+    {
+      "id": "R1-F01-revision-false",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-number",
+      "proposal_patch": {
+        "snapshot.revision": false
+      }
+    },
+    {
+      "id": "R1-F01-revision-true",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-number",
+      "proposal_patch": {
+        "snapshot.revision": true
+      }
+    },
+    {
+      "id": "R1-F01-revision-fraction",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-number",
+      "proposal_patch": {
+        "snapshot.revision": 1.5
+      }
+    },
+    {
+      "id": "R1-F01-revision-unsafe",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-number",
+      "proposal_patch": {
+        "snapshot.revision": 9007199254740992
+      }
+    },
+    {
+      "id": "R1-F01-revision-nan",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-number",
+      "proposal_special": {
+        "snapshot.revision": "NaN"
+      }
+    },
+    {
+      "id": "R1-F01-revision-infinity",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-number",
+      "proposal_special": {
+        "snapshot.revision": "Infinity"
+      }
+    },
+    {
+      "id": "R1-F01-execution",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "execution-identity",
+      "proposal_patch": {
+        "snapshot.missions.M.execution": "OTHER"
+      }
+    },
+    {
+      "id": "R1-F01-phase",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-phase",
+      "proposal_patch": {
+        "snapshot.phase": "not-a-phase"
+      }
+    },
+    {
+      "id": "R1-F01-deathPoint",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-terminal-state",
+      "proposal_patch": {
+        "snapshot.deathPoint": {
+          "bad": true
+        }
+      }
+    },
+    {
+      "id": "R1-F01-empty-steps",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-steps",
+      "proposal_patch": {
+        "steps": []
+      }
+    },
+    {
+      "id": "R1-revision-already-incremented",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-revision",
+      "proposal_patch": {
+        "snapshot.revision": 5
+      }
+    },
+    {
+      "id": "R1-valid-phase-not-pending",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-phase",
+      "proposal_patch": {
+        "snapshot.phase": "living-hub"
+      }
+    },
+    {
+      "id": "R1-mission-character",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "mission-identity",
+      "proposal_patch": {
+        "snapshot.missions.M.character": "OTHER"
+      }
+    },
+    {
+      "id": "R1-mission-unaccepted",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "active-history",
+      "proposal_patch": {
+        "snapshot.missions.M.status": "unaccepted",
+        "snapshot.missions.M.execution": null
+      }
+    },
+    {
+      "id": "R1-mission-outcome",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "outcome",
+      "proposal_patch": {
+        "snapshot.missions.M.outcome": "success"
+      }
+    },
+    {
+      "id": "R1-missions-null",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "missions-shape",
+      "proposal_patch": {
+        "snapshot.missions": null
+      }
+    },
+    {
+      "id": "R1-legal-wallet-change",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-wallet",
+      "proposal_patch": {
+        "snapshot.wallet.balance": 41
+      }
+    },
+    {
+      "id": "R1-wallet-null",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-fields",
+      "proposal_patch": {
+        "snapshot.wallet": null
+      }
+    },
+    {
+      "id": "R1-history-rewrite",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-history",
+      "proposal_patch": {
+        "snapshot.history.2.kind": "delivered"
+      }
+    },
+    {
+      "id": "R1-history-erased",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-history",
+      "proposal_patch": {
+        "snapshot.history": []
+      }
+    },
+    {
+      "id": "R1-history-null",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "history-shape",
+      "proposal_patch": {
+        "snapshot.history": null
+      }
+    },
+    {
+      "id": "R1-ledger-null",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "history-shape",
+      "proposal_patch": {
+        "snapshot.ledger": null
+      }
+    },
+    {
+      "id": "R1-closures-null",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "history-shape",
+      "proposal_patch": {
+        "snapshot.closures": null
+      }
+    },
+    {
+      "id": "R1-deathPoint-prebuilt",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-terminal-state",
+      "proposal_patch": {
+        "snapshot.deathPoint": {
+          "cycle": 3,
+          "kind": "resolved-action",
+          "execution": "E",
+          "cause": "action-blood",
+          "steps": [
+            "primary",
+            "action-blood"
+          ]
+        }
+      }
+    },
+    {
+      "id": "R1-coherent-cycle-change",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-D",
+      "proposal_patch": {
+        "snapshot.D": 4,
+        "snapshot.start": 2
+      }
+    },
+    {
+      "id": "R1-coherent-task-day-change",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-T",
+      "proposal_patch": {
+        "snapshot.T": 2,
+        "snapshot.start": 2
+      }
+    },
+    {
+      "id": "R1-clock-null",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-fields",
+      "proposal_patch": {
+        "snapshot.clock": null
+      }
+    },
+    {
+      "id": "R1-site-cross-execution",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "site-binding",
+      "proposal_patch": {
+        "snapshot.site.execution": "OTHER"
+      }
+    },
+    {
+      "id": "R1-site-legitimate-node-change",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-site",
+      "proposal_patch": {
+        "snapshot.site.node": "H8"
+      }
+    },
+    {
+      "id": "R1-site-battle-change",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-site",
+      "proposal_patch": {
+        "snapshot.site.pending": "battle"
+      }
+    },
+    {
+      "id": "R1-site-objective-change",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-site",
+      "proposal_patch": {
+        "snapshot.site.facts.power": false
+      }
+    },
+    {
+      "id": "R1-quantity-rebuilt",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-instances",
+      "proposal_patch": {
+        "snapshot.instances.food.quantity": 4
+      }
+    },
+    {
+      "id": "R1-resource-rebuilt",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-itemStates",
+      "proposal_patch": {
+        "snapshot.itemStates.tool.resource.current": 3
+      }
+    },
+    {
+      "id": "R1-resource-bool",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-number",
+      "proposal_patch": {
+        "snapshot.itemStates.tool.resource.current": true
+      }
+    },
+    {
+      "id": "R1-containers-empty-map",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-fields",
+      "proposal_patch": {
+        "snapshot.containers": {}
+      }
+    },
+    {
+      "id": "R1-backpack-null",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "container",
+      "proposal_patch": {
+        "snapshot.containers.backpack": null
+      }
+    },
+    {
+      "id": "R1-backpack-nested",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "container",
+      "proposal_patch": {
+        "snapshot.containers.backpack": [
+          []
+        ]
+      }
+    },
+    {
+      "id": "R1-snapshot-null",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-fields",
+      "proposal_patch": {
+        "snapshot": null
+      }
+    },
+    {
+      "id": "R1-base-null",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-fields",
+      "proposal_patch": {
+        "base": null
+      }
+    },
+    {
+      "id": "R1-hp-bool",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-number",
+      "proposal_patch": {
+        "snapshot.body.hp": false
+      }
+    },
+    {
+      "id": "R1-alive-result",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "not-death-result",
+      "proposal_patch": {
+        "snapshot.body.hp": 1
+      }
+    },
+    {
+      "id": "R1-bleeding-changed",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-body.bleeding",
+      "proposal_patch": {
+        "snapshot.body.bleeding": false
+      }
+    },
+    {
+      "id": "R1-energy-changed",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-body.energy",
+      "proposal_patch": {
+        "snapshot.body.energy": 30
+      }
+    },
+    {
+      "id": "R1-infection-changed",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-body.infection",
+      "proposal_patch": {
+        "snapshot.body.infection": 1
+      }
+    },
+    {
+      "id": "R1-quota-refreshed",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-body.quota",
+      "proposal_patch": {
+        "snapshot.body.quota": 1
+      }
+    },
+    {
+      "id": "R1-steps-null",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-steps",
+      "proposal_patch": {
+        "steps": null
+      }
+    },
+    {
+      "id": "R1-steps-text",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-steps",
+      "proposal_patch": {
+        "steps": "primary"
+      }
+    },
+    {
+      "id": "R1-steps-mapping",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-steps",
+      "proposal_patch": {
+        "steps": {}
+      }
+    },
+    {
+      "id": "R1-steps-non-string",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-steps",
+      "proposal_patch": {
+        "steps": [
+          "primary",
+          1
+        ]
+      }
+    },
+    {
+      "id": "R1-steps-nested",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-steps",
+      "proposal_patch": {
+        "steps": [
+          "primary",
+          []
+        ]
+      }
+    },
+    {
+      "id": "R1-steps-reverse",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-steps",
+      "proposal_patch": {
+        "steps": [
+          "action-blood",
+          "primary"
+        ]
+      }
+    },
+    {
+      "id": "R1-steps-duplicate",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-steps",
+      "proposal_patch": {
+        "steps": [
+          "primary",
+          "action-blood",
+          "action-blood"
+        ]
+      }
+    },
+    {
+      "id": "R1-steps-unknown",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-steps",
+      "proposal_patch": {
+        "steps": [
+          "primary",
+          "surprise"
+        ]
+      }
+    },
+    {
+      "id": "R1-steps-cycle",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-steps",
+      "proposal_patch": {
+        "steps": [
+          "blood",
+          "infection"
+        ]
+      }
+    },
+    {
+      "id": "R1-steps-missing",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-fields",
+      "proposal_delete": [
+        "steps"
+      ]
+    },
+    {
+      "id": "R1-revision-missing",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-fields",
+      "proposal_delete": [
+        "snapshot.revision"
+      ]
+    },
+    {
+      "id": "R1-hp-nan",
+      "group": "T10",
+      "clause": "C10",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-number",
+      "proposal_special": {
+        "snapshot.body.hp": "NaN"
+      }
+    },
+    {
+      "id": "R1-proposal-root-null",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-fields",
+      "proposal_root": null
+    },
+    {
+      "id": "R1-proposal-root-list",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "invalid-fields",
+      "proposal_root": []
+    },
+    {
+      "id": "R1-ground-smuggled",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-containers",
+      "proposal_relocate": {
+        "ground": "backpack"
+      }
+    },
+    {
+      "id": "R1-hub-relocated",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "proposal-owner-containers",
+      "proposal_relocate": {
+        "bank": "backpack"
+      }
+    },
+    {
+      "id": "R1-prior-disposition-moved",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "result": "rejected",
+      "code": "history-disposition",
+      "proposal_relocate": {
+        "prior-delivery": "ground"
+      }
+    },
+    {
+      "id": "R1-pending-not-restorable",
+      "group": "T08",
+      "clause": "C08",
+      "category": "expected-rejection",
+      "op": "restore",
+      "patch": {
+        "body.hp": 0
+      },
+      "result": "rejected",
+      "code": "living-hp"
+    },
+    {
+      "id": "R1-legal-once",
+      "group": "T09",
+      "clause": "C09",
+      "category": "positive",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "write_failure": false,
+      "expect": {
+        "phase": "dead",
+        "revision": 5,
+        "body.hp": 0,
+        "wallet.balance": 0
+      },
+      "trace": [
+        "primary",
+        "action-blood"
+      ]
+    },
+    {
+      "id": "R1-legal-depleted-assets",
+      "group": "T09",
+      "clause": "C09",
+      "category": "positive",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true,
+        "itemStates.tool.resource.current": 0,
+        "instances.food.quantity": 2
+      },
+      "write_failure": false,
+      "expect": {
+        "phase": "dead",
+        "revision": 5,
+        "body.hp": 0,
+        "wallet.balance": 0
+      },
+      "trace": [
+        "primary",
+        "action-blood"
+      ]
+    },
+    {
+      "id": "R1-legal-write-failure-once",
+      "group": "T09",
+      "clause": "C09",
+      "category": "fault",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": true
+      },
+      "write_failure": true,
+      "expect": {
+        "phase": "dead",
+        "revision": 5,
+        "body.hp": 0,
+        "wallet.balance": 0
+      },
+      "trace": [
+        "primary",
+        "action-blood"
+      ]
+    },
+    {
+      "id": "R1-source-cannot-kill-hp2",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 2,
+        "body.bleeding": true
+      },
+      "proposal_patch": {
+        "snapshot.body.hp": 0
+      },
+      "result": "rejected",
+      "code": "proposal-source"
+    },
+    {
+      "id": "R1-source-without-bleeding",
+      "group": "T09",
+      "clause": "C09",
+      "category": "expected-rejection",
+      "op": "proposal-regression",
+      "patch": {
+        "body.hp": 1,
+        "body.bleeding": false
+      },
+      "proposal_patch": {
+        "snapshot.body.hp": 0
+      },
+      "result": "rejected",
+      "code": "proposal-source"
     }
   ],
   "parameter_status_oracle": {

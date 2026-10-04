@@ -18,6 +18,8 @@
 
 接口候选：普通入口只暴露只读资格／结果查询与类型；受控入口由实际任务内容／返回／周期生产者构造并绑定完整前态，意图仅H0交付、H0失败撤出、稳定截止。包括rest在内的G2动作死亡消费原始LocationPlan，保留真实休整地点资格；仅正常返回／期限由受控组成直接获取一次G1 CyclePlan。G1计划不是不可伪造凭证（只有identity/revision base），须由组成私下调用并绑定完整前态再交A，不能接请求提供的结构化计划。任务事实的夹具工厂只在测试文件，不能在普通命令加入supported／success／dead证明。新模块校验死亡后快照，不能调用只支持active/living的G2恢复器强行通过。
 
+**R1验收补充：** A在任何清退、关闭、revision覆盖或步骤索引前校验原死亡提案完整结构/原数值/独立前态与非自有字段、非空合法步骤序列。允许合法HP0但不提前修值，按副本消费；增加原值非法和合法数值越权反例及生产者一次/零提交证据。有限模型保留输入revision的约定不可照搬实际G2已递增的提案。
+
 近期不实现五图任务生产者；以真实实例与受控任务内容夹具原生组合验证消费者，明确没有真实任务入口。所有合法输入先验证后执行，不靠公开`close(outcome)`万能接口。金额guard在纯核心可查询；真正launch接入由C完成。
 
 候选精确写入路径（未列即只读）：
@@ -84,7 +86,7 @@ docs/engineering/residence-foundation/terminal-restore/inputs/baseline.json
 docs/engineering/residence-foundation/terminal-restore/inputs/SHA256SUMS.txt
 ```
 
-接口：unknown→严格解析→冷候选语义验证→完整序列化；无安装／IO。调用现有mission独立expected校验；冷候选不得伪装现存历史。dead专用验证复用合法body读取，不把G1 CycleClosure新增death或用active假的mission去骗G2。新技术format名字和version由正式采纳后确定，本批设计不预注册。
+接口：unknown→严格解析→冷候选语义验证→完整序列化；无安装／IO。R1明确中间active＋HP0死亡提案不能由B冷安装或伪装最终dead，B的dead分支只验证已完整清算的终态。调用现有mission独立expected校验；冷候选不得伪装现存历史。dead专用验证复用合法body读取，不把G1 CycleClosure新增death或用active假的mission去骗G2。新技术format名字和version由正式采纳后确定，本批设计不预注册。
 
 原生验收：四合法终态roundtrip，active携带既有closed历史（两声明仅测试），根身份/声明缺失/两active/缺账/金额不符/重复清算键/实例双归属/资源越界/任务件泄漏/处置缺失/最新source与D/T不符/phase与HP不符均拒绝；v1送新接口拒绝，未知版本拒绝，无自动补齐；候选读写无副作用且重复解码不奖罚。独立expected的篡改拒绝与冷候选非防回档边界须有测试说明。
 
@@ -129,6 +131,8 @@ docs/engineering/residence-foundation/terminal-session/inputs/SHA256SUMS.txt
 ```
 
 接口：新的受控composition显式采用B格式；普通dispatch只读意图/绑定/revision，不接受outcome或调用方supported证明。资格桥从当前受控任务事实、现场、路径到达和pending状态导出authority；夹具工厂必须绑定具体内容/执行/版本，普通请求不可更换工厂。返回／截止用一次G1结果，G4 living动作仍原路径，死亡进入A完整消费而非重跑；一次commit后写完整B格式。只读摘要不包含隐藏精确感染或内部种子。
+
+R1组合验收：C保留生产者已调用一次的事实，非法提案零安装/写/通知且内存/磁盘/原提案不变；合法HP0一次完整提交，write失败后retrySave不再消费生产者或补扣伤害，不以一律拒绝死亡取得通过。
 
 最小旧断言同步：`operations.test.ts`六类death拒绝改为对应完整dead结果及负例；`session.integration.test.ts`旧death reject长链改完整关闭恢复；`session.test.ts`对close/combat/medical的旧断言拆开，万能close／combat／medical仍拒绝，新增受控返回意图及精确导出；保存/重入/通知throw/写失败原断言仍保留。新format与构成须同步test-fixtures和persistence两测试，不能只更改业务case躲开旧支持表。
 

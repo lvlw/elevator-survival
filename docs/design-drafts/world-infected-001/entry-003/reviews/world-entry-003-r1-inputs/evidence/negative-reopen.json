@@ -1,0 +1,552 @@
+{
+  "baseEqualsRepositoryExcerpt": false,
+  "baseFixture": {
+    "bytes": 4744,
+    "gitBlob": "d7cadbf1079d0d48bebf7128f6e7d6ab120792a5",
+    "sha256": "f78e557528e2c4499c55e2fdd78399ef0964b37b95c3d8902362e1853db7c4aa"
+  },
+  "counts": {
+    "cases": 26,
+    "failed": 1,
+    "matched": 25,
+    "modelCrashes": 0,
+    "unsupportedNotImplementationPass": 4
+  },
+  "evidence": "UNMODIFIED_FINITE_MODEL_FUNCTION_EXECUTION_NOT_PRODUCTION_OR_FULL_AUTHOR_SUITE",
+  "failedIds": [
+    "C13-reopen-control"
+  ],
+  "group": "controls",
+  "negativeControl": "reopen",
+  "phase": "baseline",
+  "reviewSha": "f93e17ac7b47af39833f2ecf05681fea03dbf689",
+  "rows": [
+    {
+      "crash": false,
+      "expected": {
+        "D": 3,
+        "T": 3,
+        "balance": 160,
+        "clock": "return-due",
+        "hp": 12,
+        "phase": "living-hub",
+        "steps": []
+      },
+      "group": "controls",
+      "id": "C01-success",
+      "matches": true,
+      "observed": {
+        "D": 3,
+        "T": 3,
+        "balance": 160,
+        "clock": "return-due",
+        "hp": 12,
+        "phase": "living-hub",
+        "steps": []
+      }
+    },
+    {
+      "crash": false,
+      "expected": {
+        "D": 3,
+        "T": 3,
+        "balance": 0,
+        "clock": "return-due",
+        "hp": 12,
+        "phase": "living-hub",
+        "steps": []
+      },
+      "group": "controls",
+      "id": "C02-failure-0",
+      "matches": true,
+      "observed": {
+        "D": 3,
+        "T": 3,
+        "balance": 0,
+        "clock": "return-due",
+        "hp": 12,
+        "phase": "living-hub",
+        "steps": []
+      }
+    },
+    {
+      "crash": false,
+      "expected": {
+        "D": 3,
+        "T": 3,
+        "balance": 0,
+        "clock": "return-due",
+        "hp": 12,
+        "phase": "living-hub",
+        "steps": []
+      },
+      "group": "controls",
+      "id": "C02-failure-19",
+      "matches": true,
+      "observed": {
+        "D": 3,
+        "T": 3,
+        "balance": 0,
+        "clock": "return-due",
+        "hp": 12,
+        "phase": "living-hub",
+        "steps": []
+      }
+    },
+    {
+      "crash": false,
+      "expected": {
+        "D": 3,
+        "T": 3,
+        "balance": 0,
+        "clock": "return-due",
+        "hp": 12,
+        "phase": "living-hub",
+        "steps": []
+      },
+      "group": "controls",
+      "id": "C02-failure-20",
+      "matches": true,
+      "observed": {
+        "D": 3,
+        "T": 3,
+        "balance": 0,
+        "clock": "return-due",
+        "hp": 12,
+        "phase": "living-hub",
+        "steps": []
+      }
+    },
+    {
+      "crash": false,
+      "expected": {
+        "D": 3,
+        "T": 3,
+        "balance": 27,
+        "clock": "return-due",
+        "hp": 12,
+        "phase": "living-hub",
+        "steps": []
+      },
+      "group": "controls",
+      "id": "C02-failure-47",
+      "matches": true,
+      "observed": {
+        "D": 3,
+        "T": 3,
+        "balance": 27,
+        "clock": "return-due",
+        "hp": 12,
+        "phase": "living-hub",
+        "steps": []
+      }
+    },
+    {
+      "crash": false,
+      "expected": {
+        "D": 7,
+        "T": 7,
+        "balance": 160,
+        "clock": "return-due",
+        "hp": 1,
+        "phase": "living-hub",
+        "steps": []
+      },
+      "group": "controls",
+      "id": "C03-normal-Day7-no-extra-night",
+      "matches": true,
+      "observed": {
+        "D": 7,
+        "T": 7,
+        "balance": 160,
+        "clock": "return-due",
+        "hp": 1,
+        "phase": "living-hub",
+        "steps": []
+      }
+    },
+    {
+      "crash": false,
+      "expected": {
+        "D": 8,
+        "T": 7,
+        "balance": 20,
+        "clock": "deadline-ready",
+        "hp": 12,
+        "phase": "living-hub",
+        "steps": [
+          "blood",
+          "infection",
+          "hunger",
+          "reset"
+        ]
+      },
+      "group": "controls",
+      "id": "C04-deadline-alive",
+      "matches": true,
+      "observed": {
+        "D": 8,
+        "T": 7,
+        "balance": 20,
+        "clock": "deadline-ready",
+        "hp": 12,
+        "phase": "living-hub",
+        "steps": [
+          "blood",
+          "infection",
+          "hunger",
+          "reset"
+        ]
+      }
+    },
+    {
+      "crash": false,
+      "expected": {
+        "D": 7,
+        "T": 7,
+        "balance": 0,
+        "clock": "active",
+        "hp": 0,
+        "phase": "dead",
+        "steps": [
+          "blood"
+        ]
+      },
+      "group": "controls",
+      "id": "C05-deadline-death-blood",
+      "matches": true,
+      "observed": {
+        "D": 7,
+        "T": 7,
+        "balance": 0,
+        "clock": "active",
+        "hp": 0,
+        "phase": "dead",
+        "steps": [
+          "blood"
+        ]
+      }
+    },
+    {
+      "crash": false,
+      "expected": {
+        "D": 7,
+        "T": 7,
+        "balance": 0,
+        "clock": "active",
+        "hp": 0,
+        "phase": "dead",
+        "steps": [
+          "blood",
+          "infection"
+        ]
+      },
+      "group": "controls",
+      "id": "C05-deadline-death-infection",
+      "matches": true,
+      "observed": {
+        "D": 7,
+        "T": 7,
+        "balance": 0,
+        "clock": "active",
+        "hp": 0,
+        "phase": "dead",
+        "steps": [
+          "blood",
+          "infection"
+        ]
+      }
+    },
+    {
+      "crash": false,
+      "expected": {
+        "D": 7,
+        "T": 7,
+        "balance": 0,
+        "clock": "active",
+        "hp": 0,
+        "phase": "dead",
+        "steps": [
+          "blood",
+          "infection",
+          "hunger"
+        ]
+      },
+      "group": "controls",
+      "id": "C05-deadline-death-hunger",
+      "matches": true,
+      "observed": {
+        "D": 7,
+        "T": 7,
+        "balance": 0,
+        "clock": "active",
+        "hp": 0,
+        "phase": "dead",
+        "steps": [
+          "blood",
+          "infection",
+          "hunger"
+        ]
+      }
+    },
+    {
+      "crash": false,
+      "expected": {
+        "D": 4,
+        "T": 4,
+        "balance": 40,
+        "clock": "active",
+        "hp": 12,
+        "phase": "active-world",
+        "steps": [
+          "blood",
+          "infection",
+          "hunger",
+          "reset"
+        ]
+      },
+      "group": "controls",
+      "id": "C06-rest-alive",
+      "matches": true,
+      "observed": {
+        "D": 4,
+        "T": 4,
+        "balance": 40,
+        "clock": "active",
+        "hp": 12,
+        "phase": "active-world",
+        "steps": [
+          "blood",
+          "infection",
+          "hunger",
+          "reset"
+        ]
+      }
+    },
+    {
+      "crash": false,
+      "expected": {
+        "D": 3,
+        "T": 3,
+        "balance": 0,
+        "clock": "active",
+        "hp": 0,
+        "phase": "dead",
+        "steps": [
+          "primary",
+          "action-blood"
+        ]
+      },
+      "group": "controls",
+      "id": "C07-real-action-death",
+      "matches": true,
+      "observed": {
+        "D": 3,
+        "T": 3,
+        "balance": 0,
+        "clock": "active",
+        "hp": 0,
+        "phase": "dead",
+        "steps": [
+          "primary",
+          "action-blood"
+        ]
+      }
+    },
+    {
+      "crash": false,
+      "expected": {
+        "counts": {
+          "commits": 0,
+          "notices": 0,
+          "plans": 0,
+          "writes": 0
+        },
+        "currentUnchanged": true,
+        "diskUnchanged": true,
+        "result": "rejected"
+      },
+      "group": "controls",
+      "id": "C08-base-mismatch",
+      "matches": true,
+      "observed": {
+        "counts": {
+          "commits": 0,
+          "notices": 0,
+          "plans": 0,
+          "writes": 0
+        },
+        "currentUnchanged": true,
+        "diskUnchanged": true,
+        "result": "rejected"
+      }
+    },
+    {
+      "crash": false,
+      "expected": {
+        "counts": {
+          "commits": 0,
+          "notices": 0,
+          "plans": 0,
+          "writes": 0
+        },
+        "currentUnchanged": true,
+        "diskUnchanged": true,
+        "result": "rejected"
+      },
+      "group": "controls",
+      "id": "C09-proposal-invalid-wallet",
+      "matches": true,
+      "observed": {
+        "counts": {
+          "commits": 0,
+          "notices": 0,
+          "plans": 0,
+          "writes": 0
+        },
+        "currentUnchanged": true,
+        "diskUnchanged": true,
+        "result": "rejected"
+      }
+    },
+    {
+      "crash": false,
+      "expected": {
+        "counts": {
+          "commits": 0,
+          "notices": 0,
+          "plans": 0,
+          "writes": 0
+        },
+        "currentUnchanged": true,
+        "diskUnchanged": true,
+        "result": "rejected"
+      },
+      "group": "controls",
+      "id": "C10-proposal-invalid-energy",
+      "matches": true,
+      "observed": {
+        "counts": {
+          "commits": 0,
+          "notices": 0,
+          "plans": 0,
+          "writes": 0
+        },
+        "currentUnchanged": true,
+        "diskUnchanged": true,
+        "result": "rejected"
+      }
+    },
+    {
+      "crash": false,
+      "expected": true,
+      "group": "controls",
+      "id": "C11-roundtrip-handover",
+      "matches": true,
+      "observed": true
+    },
+    {
+      "crash": false,
+      "expected": true,
+      "group": "controls",
+      "id": "C11-roundtrip-withdraw",
+      "matches": true,
+      "observed": true
+    },
+    {
+      "crash": false,
+      "expected": true,
+      "group": "controls",
+      "id": "C11-roundtrip-deadline",
+      "matches": true,
+      "observed": true
+    },
+    {
+      "crash": false,
+      "expected": true,
+      "group": "controls",
+      "id": "C11-roundtrip-resolved-action",
+      "matches": true,
+      "observed": true
+    },
+    {
+      "crash": false,
+      "expected": true,
+      "group": "controls",
+      "id": "C12-duplicate-settlement-control",
+      "matches": true,
+      "observed": true
+    },
+    {
+      "crash": false,
+      "expected": true,
+      "group": "controls",
+      "id": "C13-reopen-control",
+      "matches": false,
+      "observed": false
+    },
+    {
+      "crash": false,
+      "expected": {
+        "D": 9,
+        "food": 0
+      },
+      "group": "controls",
+      "id": "C14-old-ready-control",
+      "matches": true,
+      "observed": {
+        "D": 9,
+        "food": 0
+      }
+    },
+    {
+      "crash": false,
+      "expected": "unsupported-not-implemented",
+      "group": "controls",
+      "id": "C15-unsupported-combat",
+      "matches": true,
+      "observed": "unsupported-not-implemented"
+    },
+    {
+      "crash": false,
+      "expected": "unsupported-not-implemented",
+      "group": "controls",
+      "id": "C15-unsupported-medical",
+      "matches": true,
+      "observed": "unsupported-not-implemented"
+    },
+    {
+      "crash": false,
+      "expected": "unsupported-not-implemented",
+      "group": "controls",
+      "id": "C15-unsupported-second-real-mission",
+      "matches": true,
+      "observed": "unsupported-not-implemented"
+    },
+    {
+      "crash": false,
+      "expected": "unsupported-not-implemented",
+      "group": "controls",
+      "id": "C15-unsupported-browser-release",
+      "matches": true,
+      "observed": "unsupported-not-implemented"
+    }
+  ],
+  "sourceFiles": {
+    "docs/content/infected-residence-core-test-config-v0.1.json": {
+      "bytes": 1417,
+      "gitBlob": "db6959ac02bf1e3bf8e816fe2b0d148ced9ca273",
+      "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9"
+    },
+    "docs/design-drafts/world-infected-001/entry-003/config-candidate.json": {
+      "bytes": 1521,
+      "gitBlob": "f0a5b2190feea4ca541e68fc0ea0e11ec53244b3",
+      "sha256": "86bc5f8ab2a89ad6b0d827747dd27f2054896da787817ab82f3f676311fe0504"
+    },
+    "docs/design-drafts/world-infected-001/entry-003/validation/check.py": {
+      "bytes": 29012,
+      "gitBlob": "e4219d0acc20608df8b889859830d6b1c7adae25",
+      "sha256": "b953839d79a907dbd6552c0ed22da04eb6b070ac06c97c10931de1c133bf297f"
+    }
+  }
+}

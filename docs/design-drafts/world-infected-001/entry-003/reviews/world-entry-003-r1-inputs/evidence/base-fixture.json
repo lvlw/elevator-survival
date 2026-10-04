@@ -1,0 +1,249 @@
+{
+  "phase": "active-world",
+  "character": "C",
+  "revision": 4,
+  "D": 3,
+  "T": 3,
+  "start": 1,
+  "clock": {
+    "kind": "active",
+    "source": null
+  },
+  "body": {
+    "hp": 12,
+    "bleeding": false,
+    "infection": 0,
+    "exposures": 0,
+    "food": 6,
+    "suppression": 0,
+    "energy": 31,
+    "quota": 0
+  },
+  "wallet": {
+    "balance": 40
+  },
+  "declarations": [
+    "M"
+  ],
+  "missions": {
+    "M": {
+      "character": "C",
+      "status": "active",
+      "execution": "E",
+      "outcome": null
+    }
+  },
+  "site": {
+    "execution": "E",
+    "node": "H0",
+    "pending": "none",
+    "arrivalSettled": true,
+    "facts": {
+      "power": true,
+      "transfer": true
+    },
+    "sampleId": "sample"
+  },
+  "instances": {
+    "sample": {
+      "instanceId": "sample",
+      "definitionId": "designated-sample",
+      "quantity": 1,
+      "kind": "sample",
+      "origin": "M/E/H5"
+    },
+    "part": {
+      "instanceId": "part",
+      "definitionId": "part",
+      "quantity": 1,
+      "kind": "component",
+      "origin": "M/E/L2"
+    },
+    "permit": {
+      "instanceId": "permit",
+      "definitionId": "permit",
+      "quantity": 1,
+      "kind": "permission",
+      "origin": "M/E/C1"
+    },
+    "tool": {
+      "instanceId": "tool",
+      "definitionId": "tool",
+      "quantity": 1,
+      "kind": "ordinary",
+      "origin": "old-hub"
+    },
+    "food": {
+      "instanceId": "food",
+      "definitionId": "food",
+      "quantity": 3,
+      "kind": "ordinary",
+      "origin": "old-hub"
+    },
+    "bank": {
+      "instanceId": "bank",
+      "definitionId": "bank",
+      "quantity": 1,
+      "kind": "ordinary",
+      "origin": "old-hub"
+    },
+    "ground": {
+      "instanceId": "ground",
+      "definitionId": "ground",
+      "quantity": 1,
+      "kind": "ordinary",
+      "origin": "M/E/L0"
+    },
+    "installed": {
+      "instanceId": "installed",
+      "definitionId": "installed",
+      "quantity": 1,
+      "kind": "component",
+      "origin": "old-hub"
+    },
+    "consumed": {
+      "instanceId": "consumed",
+      "definitionId": "consumed",
+      "quantity": 1,
+      "kind": "ordinary",
+      "origin": "old-hub"
+    },
+    "prior-delivery": {
+      "instanceId": "prior-delivery",
+      "definitionId": "prior-delivery",
+      "quantity": 1,
+      "kind": "sample",
+      "origin": "old-hub"
+    }
+  },
+  "itemStates": {
+    "sample": {
+      "instanceId": "sample",
+      "definitionId": "designated-sample",
+      "resource": {
+        "kind": "none",
+        "current": 0
+      }
+    },
+    "part": {
+      "instanceId": "part",
+      "definitionId": "part",
+      "resource": {
+        "kind": "none",
+        "current": 0
+      }
+    },
+    "permit": {
+      "instanceId": "permit",
+      "definitionId": "permit",
+      "resource": {
+        "kind": "none",
+        "current": 0
+      }
+    },
+    "tool": {
+      "instanceId": "tool",
+      "definitionId": "tool",
+      "resource": {
+        "kind": "durability",
+        "current": 2
+      }
+    },
+    "food": {
+      "instanceId": "food",
+      "definitionId": "food",
+      "resource": {
+        "kind": "none",
+        "current": 0
+      }
+    },
+    "bank": {
+      "instanceId": "bank",
+      "definitionId": "bank",
+      "resource": {
+        "kind": "charge",
+        "current": 1
+      }
+    },
+    "ground": {
+      "instanceId": "ground",
+      "definitionId": "ground",
+      "resource": {
+        "kind": "none",
+        "current": 0
+      }
+    },
+    "installed": {
+      "instanceId": "installed",
+      "definitionId": "installed",
+      "resource": {
+        "kind": "none",
+        "current": 0
+      }
+    },
+    "consumed": {
+      "instanceId": "consumed",
+      "definitionId": "consumed",
+      "resource": {
+        "kind": "none",
+        "current": 0
+      }
+    },
+    "prior-delivery": {
+      "instanceId": "prior-delivery",
+      "definitionId": "prior-delivery",
+      "resource": {
+        "kind": "none",
+        "current": 0
+      }
+    }
+  },
+  "containers": {
+    "backpack": [
+      "sample",
+      "part",
+      "permit",
+      "food"
+    ],
+    "equipment": [
+      "tool"
+    ],
+    "quick": [],
+    "hub": [
+      "bank"
+    ],
+    "ground": [
+      "ground"
+    ],
+    "installed": [
+      "installed"
+    ],
+    "delivered": [
+      "prior-delivery"
+    ],
+    "consumed": [
+      "consumed"
+    ],
+    "destroyed": [],
+    "surrendered": [],
+    "unavailable": [],
+    "archived-ground": []
+  },
+  "history": [
+    {
+      "kind": "installed",
+      "instance": "installed"
+    },
+    {
+      "kind": "consumed",
+      "instance": "consumed"
+    },
+    {
+      "kind": "delivered_partial",
+      "instance": "prior-delivery"
+    }
+  ],
+  "closures": [],
+  "ledger": [],
+  "deathPoint": null
+}

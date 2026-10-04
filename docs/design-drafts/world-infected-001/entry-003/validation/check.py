@@ -45,7 +45,7 @@ def validate_closure(c):
     for k in ("start","end","day"): integer(c[k]); need(c[k]>0, "closure-time")
     need(c["day"]<=7 and c["end"]==c["start"]+c["day"]-1, "closure-time")
 
-def validate(s):
+def _validate_state(s, *, pending_action_death=False):
     exact(s, ["phase","character","revision","D","T","start","clock","body","wallet","declarations","missions",
               "site","instances","itemStates","containers","history","closures","ledger","deathPoint"])
     need(s["phase"] in ("fresh-hub","active-world","living-hub","dead"), "phase")
@@ -174,8 +174,56 @@ def validate(s):
         # This bounded model has only death during the current active task. Later-departure death is an engineering gate.
         need(s["clock"]=={"kind":"active","source":None}, "dead-clock")
     else:
-        need(s["body"]["hp"]>0 and s["deathPoint"] is None, "living-hp")
+        if pending_action_death:
+            need(s["phase"]=="active-world", "proposal-phase")
+            need(s["body"]["hp"]==0, "not-death-result")
+            need(s["deathPoint"] is None, "proposal-terminal-state")
+        else:
+            need(s["body"]["hp"]>0 and s["deathPoint"] is None, "living-hp")
     return s
+
+
+def validate(s):
+    # Install/restore boundary never admits the intermediate active + HP0 proposal.
+    return _validate_state(s)
+
+
+def same_data(a, b):
+    # Python bool/float equality must not grant an input permission owned by an int.
+    if type(a) is not type(b): return False
+    if type(a) is dict:
+        return a.keys()==b.keys() and all(same_data(a[k], b[k]) for k in a)
+    if type(a) is list:
+        return len(a)==len(b) and all(same_data(x,y) for x,y in zip(a,b))
+    return a==b
+
+
+def validate_death_proposal(current, proposal):
+    """Read original pending-death fields before any terminal overwrite; no rule replay.
+
+    This finite producer owns only body.hp and preserves input revision. It is NOT
+    the real G2 LocationPlan format, whose issued action result already advances revision.
+    """
+    exact(proposal, ["base","snapshot","steps"])
+    validate(proposal["base"])
+    need(same_data(proposal["base"],current), "plan-mismatch")
+    snapshot=proposal["snapshot"]
+    exact(snapshot, current.keys())
+    need(snapshot["phase"]=="active-world", "proposal-phase")
+    _validate_state(snapshot, pending_action_death=True)
+    steps=proposal["steps"]
+    need(type(steps) is list and len(steps)>0 and all(type(v) is str for v in steps), "proposal-steps")
+    need(steps==["primary","action-blood"], "proposal-steps")
+    for key in current:
+        if key!="body":
+            need(same_data(snapshot[key],current[key]), "proposal-owner-"+key)
+    for key in current["body"]:
+        if key!="hp":
+            need(same_data(snapshot["body"][key],current["body"][key]), "proposal-owner-body."+key)
+    # Verify the fixed source can be fatal; compare bounds only, never rerun damage.
+    need(snapshot["body"]["bleeding"] and 0 < current["body"]["hp"] <= G1["health"]["bleed_action"], "proposal-source")
+    # The terminal consumer owns its copies, never the producer's issued object.
+    return clone(snapshot), clone(steps)
 
 def settle_cycle(s):
     next_cycle=safe_add(s["D"],1)  # G1 preflights advancement even if this cycle later proves fatal.
@@ -240,15 +288,8 @@ def plan(current, request, producer=None):
     elif intent=="resolved-action":
         need(producer is not None,"missing-producer")
         proposal=producer(clone(s))
-        # An issued full proposal bound to the entire preceding state; the finite fixture does not model capability security.
-        exact(proposal, ["base","snapshot","steps"])
-        validate(proposal["base"])
-        need(proposal["base"]==current,"plan-mismatch")
-        exact(proposal["snapshot"], current.keys())
-        exact(proposal["snapshot"]["body"], current["body"].keys())
-        need(type(proposal["steps"]) is list and all(type(v) is str for v in proposal["steps"]), "proposal-steps")
-        s=proposal["snapshot"];need(s["body"]["hp"]==0,"not-death-result")
-        trace=proposal["steps"]; outcome="death"
+        s,trace=validate_death_proposal(current,proposal)
+        outcome="death"
     elif intent=="rest":
         need(s["T"]<7,"no-day8")
         trace=settle_cycle(s)
@@ -345,7 +386,7 @@ def bridge_probe(closed):
     if NEGATIVE!="old-ready": settle_cycle(n)
     return n
 
-def evaluate(fx, case):
+def evaluate(fx, case, evidence=None):
     s=clone(fx["base"])
     for p,v in case.get("patch",{}).items():set_path(s,p,v)
     for p in case.get("remove",[]):remove_path(s,p)
@@ -379,6 +420,46 @@ def evaluate(fx, case):
         except Reject:
             assert session.current==before and session.counts["commits"]==session.counts["writes"]==session.counts["notices"]==0
             raise
+    elif op=="proposal-regression":
+        session=Session(s); before=clone(s); disk=clone(session.disk)
+        issued=[]; issued_text=[]; producer_calls=0
+        def observed_producer(value):
+            nonlocal producer_calls
+            producer_calls+=1
+            proposed=producer(value)
+            for path,v in case.get("proposal_patch",{}).items(): set_path(proposed,path,v)
+            for path,v in case.get("proposal_special",{}).items(): set_path(proposed,path,float(v))
+            for iid,dest in case.get("proposal_relocate",{}).items(): move_instance(proposed["snapshot"],iid,dest)
+            for path in case.get("proposal_delete",[]): remove_path(proposed,path)
+            if "proposal_root" in case: proposed=clone(case["proposal_root"])
+            issued.append(proposed)
+            issued_text.append(json.dumps(proposed,sort_keys=True,allow_nan=True))
+            return proposed
+        try:
+            out,trace=session.dispatch(request(s,"resolved-action"),observed_producer,fail_write=case.get("write_failure",False))
+        except Reject:
+            assert producer_calls==1, "producer must be called exactly once before proposal rejection"
+            assert session.current==before and session.disk==disk and s==before, "rejection changed original state"
+            assert session.counts=={"plans":0,"commits":0,"writes":0,"notices":0}, "rejection was too late"
+            assert json.dumps(issued[0],sort_keys=True,allow_nan=True)==issued_text[0], "invalid proposal was overwritten"
+            if evidence is not None:
+                evidence.update(producerCalls=producer_calls,currentUnchanged=True,diskUnchanged=True,
+                                issuedUnchanged=True,counts=clone(session.counts))
+            raise
+        assert producer_calls==1 and s==before
+        assert json.dumps(issued[0],sort_keys=True,allow_nan=True)==issued_text[0], "legal issued proposal mutated"
+        assert out["revision"]==before["revision"]+1 and out["phase"]=="dead" and out["body"]["hp"]==0
+        if case.get("write_failure"):
+            assert session.disk==disk and session.current==out
+            try: session.dispatch(request(s,"resolved-action"),observed_producer)
+            except Reject: pass
+            assert producer_calls==1, "replay called producer again"
+            session.retry_save();assert session.disk==out
+        else: assert session.disk==out
+        counts=session.counts
+        assert counts=={"plans":1,"commits":1,"writes":2 if case.get("write_failure") else 1,"notices":1}
+        if evidence is not None:
+            evidence.update(producerCalls=producer_calls,issuedUnchanged=True,counts=clone(counts))
     elif op=="retry":
         session=Session(s);r=request(s,"handover");session.dispatch(r,fail_write=True)
         old=clone(session.current)
@@ -444,8 +525,8 @@ def main():
     fx=json.loads((HERE/"fixtures.json").read_bytes())
     rows=[]
     for case in fx["cases"]:
-        observed="accepted";detail=None
-        try:evaluate(fx,case)
+        observed="accepted";detail=None;evidence={}
+        try:evaluate(fx,case,evidence)
         except Reject as e:observed="rejected";detail=str(e)
         except Unsupported as e:observed="unsupported";detail=str(e)
         except AssertionError as e:observed="assertion-mismatch";detail=str(e)
@@ -454,6 +535,7 @@ def main():
         matched=observed==expected and (case.get("code") is None or case["code"]==detail)
         rows.append({"id":case["id"],"group":case["group"],"clause":case["clause"],"category":case["category"],
                      "expected":expected,"observed":observed,"detail":detail,"matches":matched})
+        if evidence: rows[-1]["transactionEvidence"]=evidence
     # Independent cross-document/config/approved-file assertions, not production coverage.
     drift=[]
     for item in fx["protected"]:
@@ -470,7 +552,8 @@ def main():
                  "expected":"matched","observed":"matched" if not drift else "drift","detail":drift,"matches":not drift})
     mismatches=[r["id"] for r in rows if not r["matches"]]
     category_counts={k:sum(r["category"]==k for r in rows) for k in ("positive","expected-rejection","fault","unsupported")}
-    result={"evidence":"FINITE_DESIGN_MODEL_NOT_PRODUCTION","baseSha":BASE,"negativeControl":NEGATIVE,
+    result={"evidence":"FINITE_DESIGN_MODEL_NOT_PRODUCTION","baseSha":BASE,
+            "modelRevision":"WORLD-ENTRY-003-R1","revisionBaseSha":"f93e17ac7b47af39833f2ecf05681fea03dbf689","negativeControl":NEGATIVE,
             "categoryCounts":category_counts,"mismatchCount":len(mismatches),"failedIds":mismatches,"cases":rows,
             "unsupportedNotPass":sum(r["category"]=="unsupported" for r in rows),
             "limits":["not five-map reachability","no geometry/CTB/browser","fixture facts are not public capabilities",

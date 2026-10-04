@@ -28,6 +28,10 @@
 
 以上路径的实际对象摘要见[验证汇总](validation/results.json)及[原生观察](validation/probe-results.json)。源码名称以实际路径为准，候选新文件在工程合同中另列，不冒充现存API。
 
+## R1技术澄清来源（独立于上表规则基线）
+
+[固定实审F01](reviews/world-entry-003-r1-inputs/AUD-f93e17a-WORLD-ENTRY-003-review-v1.0.md) §4：审查SHA `f93e17ac7b47af39833f2ecf05681fea03dbf689` 的check.py 240—283行，原提案revision/phase/mission/deathPoint被覆盖后才校验，空steps崩溃。[R1任务](reviews/world-entry-003-r1-inputs/WORLD-ENTRY-003-R1-task-v1.0.md) §3—5与[授权范围](reviews/world-entry-003-r1-inputs/OWNER-authority-and-scope-WE003-R1-v1.0.md)只授权入口修复、回归及候选合同对齐，不批准新玩法/数值。C05/C08/C09/C10新增中间提案校验和真实调用计数说明，仍以既定完整事务/独立事实/合法死亡原则为依据。
+
 ## 采纳边界
 
 本轮仅提出下一次正式覆盖清单：四终局资格、一次清算、任务专件具体处置、三项积分参数与空间守卫、新恢复格式及工程契约。它们须先按来源分别确认再另发正式文档任务；不预分配DEC编号，不覆盖已批准G1参数、首身份合同或任何G1—G4原件。共享overview/queue只追加本候选与真实G4实审入口，历史正文原字节保留。

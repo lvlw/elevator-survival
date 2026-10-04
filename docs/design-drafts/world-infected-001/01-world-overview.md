@@ -142,3 +142,9 @@ G4基线 `7ca547ab8ab4f411d1102a79baf8c0796f4b082c` 已获[主线限定实审PAS
 [本轮集中Owner审阅](entry-003/00-owner-review.md)与[三项工程合同候选](entry-003/04-next-engineering-contracts.md)为DESIGN DRAFT：终局完整清算、关闭态恢复、最小积分子集与任务件处置待分别采纳。失败20及单次驻留等已确认方向保留；120／初始0／上限仍为候选。实际源码边界与有限模型证据分层，旧重复供给实验不变。
 
 当前仍不支持生产完整终局；五图真实任务接线、战斗医疗、三专长／工具箱、安全提示／低资产UI、浏览器多标签、O3发布与Owner首玩Gate保留。等待本轮准确SHA实文件评审及后续正式落文／工程授权，不自动执行候选。
+
+## WORLD-ENTRY-003-R1 状态追加（2026-10-04）
+
+主线对f93e17ac7b47af39833f2ecf05681fea03dbf689的[准确SHA实审](entry-003/reviews/world-entry-003-r1-inputs/AUD-f93e17a-WORLD-ENTRY-003-review-v1.0.md)为 **NEEDS REVISION / F01**。作者R1集中修复原始死亡提案在覆盖前的结构/数值/所有权/步骤验证，保留合法HP0一次消费；[当前作者验证](entry-003/validation/results.json)见r1，待新准确SHA专项复审，不称主线已PASS。
+
+原候选O1/O2/O3、参数状态、生产G4支持边界及其他Gate不变；不执行A/B/C，不自动采纳、正式落文或注册新内容。

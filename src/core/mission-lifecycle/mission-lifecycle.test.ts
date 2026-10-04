@@ -375,6 +375,7 @@ describe('composition and actual export boundaries', () => {
       'queryMissionContinuation', 'restoreMissionCandidate',
     ].sort())
     expect(Object.keys(controlledApi).sort()).toEqual([
+      'parseMissionColdCandidate',
       'activateMission', 'createMissionScope', 'establishMissionFact', 'terminateMission',
     ].sort())
   })

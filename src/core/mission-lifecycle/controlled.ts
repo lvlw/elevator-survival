@@ -68,3 +68,9 @@ export function terminateMission(
     execution: value.execution, outcome: result.outcome,
   })
 }
+
+/** Cold value validation only: neither independent current history nor install authority. */
+export function parseMissionColdCandidate(input: unknown, expectedBinding: MissionBinding, scopeInput: MissionScope) {
+  return deepFreeze({ kind: 'mission-lifecycle-cold-candidate' as const,
+    value: readValue(input, expectedBinding, readScope(scopeInput)) })
+}

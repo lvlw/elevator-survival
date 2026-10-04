@@ -601,3 +601,11 @@ G1-R1 在完整 SHA `942b2d93916c649f4c2ec6cd399035151269d2ca` 已通过[限定�
 局部计划只建议一次revision递增；遇敌／死亡明确要求后续完整协调，不能借移动或休整跳过战斗。三种正式委托关闭后活动位置为空，旧地面不可再操作，合法携带实体不因此销毁。严格值候选和局部计划均无保存、安装、关闭或全历史防回滚权。详见[合同／支持与验收映射](engineering/residence-foundation/g2/contract-and-support.md)及[本轮检查](engineering/residence-foundation/g2/verification-results.json)。
 
 G3、五图注册、钱包、完整CTB／返回／截止、三专长、工具箱完整路线、玩家入口和真实存储仍属后续；浏览器／刷新／多标签与Owner分段突破、恢复负担体验为NOT RUN。O3及未批准内容／数值门槛不因本次作者测试关闭，不自动进入下一工程。
+
+## G3 受控 headless 会话／冷恢复作者实现附记（2026-10-04）
+
+G2 在 `d7953bbf96dc842d2953e019f950275cd693bf09` 已通过[限定源码实审](engineering/residence-foundation/g3/inputs/AUD-d7953bb-ENG-RESIDENCE-LOCATION-001-review-v1.0.md)。本次独立授权 G3 加 ADDENDUM-01 续办；上文历史记述不倒改。当前为作者实现／本地验证、待最终准确 SHA 主线实审，不是主线 PASS 或 Owner 体验通过。
+
+新增技术 headless envelope 和唯一私有会话 owner：仅生还首次 fresh-hub、首次 active-world 的严格冷安装，以及真实 G2 非战斗单边移动；根身份、声明全集、任务／D/T／现场／携带实体与版本一并校验。新冷候选不替代原独立 expected restore，也无安装权。已有 current 禁止二次 bootstrap/replace；完整后态预编码后一次内存提交、一次写入尝试、一次只读通知；写失败保留最新内存，不重放，重入写操作拒绝。
+
+详见[支持合同](engineering/residence-foundation/g3/contract-and-support.md)、[实现与续办记录](engineering/residence-foundation/g3/implementation-notes.md)、[实际检查](engineering/residence-foundation/g3/verification-results.json)。G1/G2 规则和 34 项参数、原医院存档／入口不改；普通源码无浏览器槽接线。关闭历史、完整终局／CTB、后续委托接续、五图、钱包、专长、玩家入口仍 OPEN；浏览器／多标签／Owner 分段突破与恢复负担体验 NOT RUN，O3 不由本批决定。

@@ -1,0 +1,429 @@
+{
+  "task": "ENG-RESIDENCE-SESSION-RESTORE-001",
+  "addendum": "ADDENDUM-01",
+  "status": "LOCAL_CHECK_WORKTREE_AND_STAGED_AUDIT_PASS",
+  "base_sha": "d7953bbf96dc842d2953e019f950275cd693bf09",
+  "expected_parent_sha": "d7953bbf96dc842d2953e019f950275cd693bf09",
+  "branch": "feature/residence-session-core-001",
+  "evidence_owner": "Author native execution, not independent mainline review",
+  "audit_directory": "C:/Users/zjl/AppData/Local/Temp/residence-session-g3-audit",
+  "resume": {
+    "head_unchanged": true,
+    "source_tests_dependencies_unchanged_during_pause": true,
+    "cached_diff_empty": true,
+    "preserved_blocker_notes": true,
+    "repeated_baseline": "NOT RUN: unchanged paused state; original actual run retained"
+  },
+  "scope": {
+    "original_allowed_paths": 30,
+    "effective_allowed_paths": 31,
+    "added_path": "src/core/mission-lifecycle/mission-lifecycle.test.ts",
+    "blocker": "K19/K20 enumerated exactly four controlled exports while the original task required a fifth and prohibited editing this test",
+    "resolution": "ADDENDUM-01 permits exactly one added expected-array entry; no weakened assertion",
+    "minimal_test_diff": "+      'parseMissionColdCandidate',",
+    "original_mission_tests": 103,
+    "export_list_change_new_test_count": 0,
+    "original_inputs_modified": false,
+    "final_audit": "PASS: exact 31-path worktree and staged index; committed tree check follows after commit"
+  },
+  "executions": [
+    {
+      "label": "actual baseline before production writes",
+      "command": "npm run test:run",
+      "exit_code": 0,
+      "files": 115,
+      "tests": 2540,
+      "start": "11:09:41",
+      "duration_seconds": 57.69,
+      "log": "baseline.log"
+    },
+    {
+      "label": "original mission boundary before source edits",
+      "command": "npm run test:run -- src/core/mission-lifecycle/mission-lifecycle.test.ts",
+      "exit_code": 0,
+      "files": 1,
+      "tests": 103,
+      "start": "11:24:56",
+      "duration_seconds": 2.12,
+      "log": "mission-boundary-check.log"
+    },
+    {
+      "label": "production typecheck",
+      "command": "npm run typecheck",
+      "exit_code": 0,
+      "log": "typecheck-1.log"
+    },
+    {
+      "label": "first test batch typecheck",
+      "command": "npm run typecheck",
+      "exit_code": 0,
+      "log": "typecheck-2.log"
+    },
+    {
+      "label": "first targeted iteration",
+      "exit_code": 1,
+      "files": 17,
+      "tests": 514,
+      "passed": 511,
+      "failed": 3,
+      "log": "targeted-1.log",
+      "correction": "Two new ItemState assertions now respect existing factory identity sorting; missing envelope.state is asserted as INVALID_ENVELOPE. No formal rule was changed."
+    },
+    {
+      "label": "second targeted iteration",
+      "exit_code": 0,
+      "files": 17,
+      "tests": 522,
+      "log": "targeted-2.log"
+    },
+    {
+      "label": "expanded targeted iteration",
+      "exit_code": 0,
+      "files": 17,
+      "tests": 528,
+      "log": "targeted-final.log"
+    },
+    {
+      "label": "first full check",
+      "command": "npm run check",
+      "exit_code": 0,
+      "files": 121,
+      "tests": 2681,
+      "log": "full-check.log"
+    },
+    {
+      "label": "final targeted run after review correction",
+      "command": "npm run test:run -- src/core/mission-lifecycle src/state/residence-save src/state/residence-session src/core/residence-config src/core/residence-energy src/core/character-cycle src/content/infected-residence-core-v0.1 src/core/residence-location --reporter=default --reporter=json --outputFile.json=C:/Users/zjl/AppData/Local/Temp/residence-session-g3-audit/targeted-final.json",
+      "exit_code": 0,
+      "files": 17,
+      "tests": 528,
+      "start": "12:03:10",
+      "duration_seconds": 10.02,
+      "log": "targeted-verified.log",
+      "machine_report": "targeted-final.json"
+    },
+    {
+      "label": "final full check",
+      "command": "npm run check",
+      "exit_code": 0,
+      "architecture": "PASS: 50 DEC / 246 core production files",
+      "typecheck": "PASS",
+      "tests": "PASS: 121 files / 2681 tests",
+      "build": "PASS: 419 modules",
+      "test_start": "12:03:25",
+      "test_duration_seconds": 68.13,
+      "log": "full-check-final.log",
+      "warnings": [
+        "Existing production bundle chunk exceeds 500 kB; no threshold/config changes."
+      ]
+    }
+  ],
+  "test_totals": {
+    "baseline_files": 115,
+    "baseline_tests": 2540,
+    "final_files": 121,
+    "final_tests": 2681,
+    "new_files": 6,
+    "new_tests": 141,
+    "retained_targeted_mission": 103,
+    "retained_targeted_g1": 169,
+    "retained_targeted_g2": 115,
+    "duplicate_runs_counted_as_new": false
+  },
+  "source_fingerprint": {
+    "algorithm": "SHA-256 of sorted path/raw SHA-256 records",
+    "value": "eb49126c2ac652e5d6836d850b86a6838bc46270ef81b19f926a0f0fe0003519",
+    "files": 18,
+    "evidence": "tested-source-hashes.json"
+  },
+  "save_failure_witness": {
+    "rule_plans": 2,
+    "memory_commits": 2,
+    "reads": 1,
+    "write_attempts": 3,
+    "gameplay_notifications": 2,
+    "scenario": "r -> r+1 failed save -> query -> r+2 failed save -> stale r rejected -> explicit retry saves r+2",
+    "rollback": false,
+    "automatic_retry": false,
+    "reload": false,
+    "rule_replay": false
+  },
+  "reentry": {
+    "read": "BUSY",
+    "factory": "BUSY",
+    "write": "BUSY",
+    "notification": "BUSY",
+    "current_during_write": "complete committed state",
+    "throwing_listener": "isolated LISTENER_FAILED; later listeners still called",
+    "registration_notification_count": 0
+  },
+  "self_review_correction": "The claimed-source re-reveal integration test now supplies an exact G2 snapshot and asserts NOT_AVAILABLE, preventing an extra-field rejection from producing a false-positive.",
+  "not_run": {
+    "browser_io": "NOT RUN: excluded; injected synchronous string ports exercised",
+    "multi_tab": "NOT RUN: excluded",
+    "closed_history_installation": "NOT RUN: excluded and explicitly rejected",
+    "mainline_exact_sha_review": "PENDING after final commit",
+    "ci": "NOT RUN locally; final remote status reported after push"
+  },
+  "integrity_checks": {
+    "worktree": "PASS",
+    "effective_paths": 31,
+    "modified": 6,
+    "added": 25,
+    "changed_paths": [
+      "docs/03-architecture.md",
+      "docs/08-rule-implementation-traceability.md",
+      "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "docs/engineering/residence-foundation/g3/completion.md",
+      "docs/engineering/residence-foundation/g3/contract-and-support.md",
+      "docs/engineering/residence-foundation/g3/implementation-notes.md",
+      "docs/engineering/residence-foundation/g3/inputs/AUD-d7953bb-ENG-RESIDENCE-LOCATION-001-review-v1.0.md",
+      "docs/engineering/residence-foundation/g3/inputs/BASELINE-AND-INPUTS.json",
+      "docs/engineering/residence-foundation/g3/inputs/ENG-RESIDENCE-SESSION-RESTORE-001-task-v1.0.md",
+      "docs/engineering/residence-foundation/g3/inputs/OWNER-authority-and-scope-G3-v1.0.md",
+      "docs/engineering/residence-foundation/g3/inputs/SHA256SUMS.txt",
+      "docs/engineering/residence-foundation/g3/verification-results.json",
+      "src/core/mission-lifecycle/cold-candidate.test.ts",
+      "src/core/mission-lifecycle/controlled.ts",
+      "src/core/mission-lifecycle/mission-lifecycle.test.ts",
+      "src/state/residence-save/aggregate.test.ts",
+      "src/state/residence-save/codec.ts",
+      "src/state/residence-save/index.ts",
+      "src/state/residence-save/residence-save.test.ts",
+      "src/state/residence-save/types.ts",
+      "src/state/residence-save/validation.ts",
+      "src/state/residence-session/commands.ts",
+      "src/state/residence-session/controlled.ts",
+      "src/state/residence-session/index.ts",
+      "src/state/residence-session/persistence.test.ts",
+      "src/state/residence-session/session.integration.test.ts",
+      "src/state/residence-session/session.test.ts",
+      "src/state/residence-session/session.ts",
+      "src/state/residence-session/test-fixtures.ts",
+      "src/state/residence-session/types.ts"
+    ],
+    "old_test_exact_single_line": "PASS",
+    "original_controlled_functions": "PASS",
+    "protected_base_files": 735,
+    "protected_git_content": "PASS; seven pre-existing checkout CRLF differences recorded separately, not claimed byte-identical",
+    "protected_checkout_eol": [
+      "docs/engineering/mission-lifecycle-001/completion.md",
+      "docs/engineering/mission-lifecycle-001/implementation-notes.md",
+      "docs/engineering/mission-lifecycle-001/verification-results.json",
+      "src/core/mission-lifecycle/index.ts",
+      "src/core/mission-lifecycle/queries.ts",
+      "src/core/mission-lifecycle/types.ts",
+      "src/core/mission-lifecycle/validation.ts"
+    ],
+    "existing_changed_checkout_eol": [
+      "src/core/mission-lifecycle/controlled.ts",
+      "src/core/mission-lifecycle/mission-lifecycle.test.ts"
+    ],
+    "append_only_prefixes": [
+      {
+        "path": "docs/03-architecture.md",
+        "originalBytes": 62178,
+        "originalSha256": "d42c1396d0038f341ec51389e659579c4464da76889d44247cfd1fda3e12a9e1",
+        "appendBytes": 1538
+      },
+      {
+        "path": "docs/08-rule-implementation-traceability.md",
+        "originalBytes": 56544,
+        "originalSha256": "c0ec22b03e9d361c98433c42912e77f580f4b5a87c56f10ccbc3cf20e3a36721",
+        "appendBytes": 1538
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "originalBytes": 14966,
+        "originalSha256": "8be8a5bbf5d1765280aacbc307b1b02289cbf89f1f1058a35fa61b45ec7d511b",
+        "appendBytes": 1562
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "originalBytes": 14053,
+        "originalSha256": "e0a91396040a5028b8a590f3b2de7810055da7ead24cf17928b121a0cef80f5b",
+        "appendBytes": 1562
+      }
+    ],
+    "original_inputs": [
+      {
+        "path": "docs/engineering/residence-foundation/g3/inputs/ENG-RESIDENCE-SESSION-RESTORE-001-task-v1.0.md",
+        "bytes": 32524,
+        "sha256": "7167503f891df9b4508e6f70cd2cf9d6e9515cf04c639cdb44e0a557da41d4c8",
+        "gitBlob": "65dad41c29504dc56f6a21ca7f16ef1aefe45b73"
+      },
+      {
+        "path": "docs/engineering/residence-foundation/g3/inputs/OWNER-authority-and-scope-G3-v1.0.md",
+        "bytes": 2499,
+        "sha256": "41bfbbe8b928fe14e14a4611953381a1f38d786468bdf02c86c0c139303fbe5a",
+        "gitBlob": "f7003e18eed81d06dcecab524720432e0ff0a79b"
+      },
+      {
+        "path": "docs/engineering/residence-foundation/g3/inputs/AUD-d7953bb-ENG-RESIDENCE-LOCATION-001-review-v1.0.md",
+        "bytes": 9088,
+        "sha256": "807e753c193fec1e854fb625720a577255598159ad47af70dbafa8d12dd36e93",
+        "gitBlob": "b2fa7efc117309fcf1f6374dfb02f534e8d8a790"
+      },
+      {
+        "path": "docs/engineering/residence-foundation/g3/inputs/BASELINE-AND-INPUTS.json",
+        "bytes": 8727,
+        "sha256": "bd61a09a51183f031a5664c40f176ede73000ccaf8eb073f17e7d8c45907a09f",
+        "gitBlob": "7bd1cc9c77b0d1e038806949229cc60be04456ff"
+      },
+      {
+        "path": "docs/engineering/residence-foundation/g3/inputs/SHA256SUMS.txt",
+        "bytes": 427,
+        "sha256": "57462c5281c29e66cf8e08220295cd0011bf923ad989c619557f3788c542d82b",
+        "gitBlob": "740b91c78b194c81d830f690bf869d3b183fae8e"
+      }
+    ],
+    "configuration_numeric_leaves": 34,
+    "configuration_parity": "PASS",
+    "tested_source_unchanged": "PASS",
+    "source_hashes": [
+      {
+        "path": "src/core/mission-lifecycle/cold-candidate.test.ts",
+        "sha256": "726d9855f98fa5300a77260226a853a8cb658a8a4901914db2c4a6158f7d344e"
+      },
+      {
+        "path": "src/core/mission-lifecycle/controlled.ts",
+        "sha256": "a58a7be71b22a10cbdb8e2b247f3a5a74a014acaa1f4a707f034fae8eb9aa3c9"
+      },
+      {
+        "path": "src/core/mission-lifecycle/mission-lifecycle.test.ts",
+        "sha256": "8ef0a3bfbe8be6dc5a4788d3ea8d05f9e86521bedbfeb3428f1d693137da032d"
+      },
+      {
+        "path": "src/state/residence-save/aggregate.test.ts",
+        "sha256": "03b312358f188e44852200975f59675b2ae058c0b9ffb2b21c6fefdfd9d88998"
+      },
+      {
+        "path": "src/state/residence-save/codec.ts",
+        "sha256": "4343e387a4b5e5ffd162d2372e3a0b70f2424af291ed5ebc4edf9b6ec8c2f2e1"
+      },
+      {
+        "path": "src/state/residence-save/index.ts",
+        "sha256": "c4007d76959e92892ef505ee8906f0443ed6c9b6ee04a8d0a1ca00dc13a21022"
+      },
+      {
+        "path": "src/state/residence-save/residence-save.test.ts",
+        "sha256": "67e849c71290da7689f2a198e63fd8f9e7fcabcc49d9ecf3ddb482b0c6837138"
+      },
+      {
+        "path": "src/state/residence-save/types.ts",
+        "sha256": "a88dbee53c173eb7127ebfa073bd781100a7f358c6a460143b613d3829026f94"
+      },
+      {
+        "path": "src/state/residence-save/validation.ts",
+        "sha256": "36256ce2ced0a06786c6e096628593025d360761a09ba000d7c41ad59c81390f"
+      },
+      {
+        "path": "src/state/residence-session/commands.ts",
+        "sha256": "301bfe471dbd2f8da75b7ca346d0441d9bd4ee858f997da817fb60781b9772a9"
+      },
+      {
+        "path": "src/state/residence-session/controlled.ts",
+        "sha256": "e325a515e93d2b449a561d56ef741e88495f7847744cfaf6849c9d0336673024"
+      },
+      {
+        "path": "src/state/residence-session/index.ts",
+        "sha256": "efa104e20ec0e48319ed3005760f5468d6243d9c74e2412467d1f514e7364a0c"
+      },
+      {
+        "path": "src/state/residence-session/persistence.test.ts",
+        "sha256": "69554185982a25c7fdd79d67d471576f78266565ce8ddae8561086feceddce38"
+      },
+      {
+        "path": "src/state/residence-session/session.integration.test.ts",
+        "sha256": "a1a85232ccb61352fa110e841e77b93af59d5a6781ad7bd3318b7da39a5c43b5"
+      },
+      {
+        "path": "src/state/residence-session/session.test.ts",
+        "sha256": "d5a8fa3450d7d81c0a42bbbfc2cb518bb68f6066fbed40a79aba515df3689544"
+      },
+      {
+        "path": "src/state/residence-session/session.ts",
+        "sha256": "fc957dc891c55718e07b7655a0c702836db63361825bbc2115fd1660e9145423"
+      },
+      {
+        "path": "src/state/residence-session/test-fixtures.ts",
+        "sha256": "5115f08b0768acc40eeb9b88a0479bef5452eeaff1404e264319389e7160eb58"
+      },
+      {
+        "path": "src/state/residence-session/types.ts",
+        "sha256": "ed469595ea9283b7a9df73de1f28620a314e7ab076716f4954bb118a65a63502"
+      }
+    ],
+    "new_runtime_cycles": 0,
+    "runtime_dependency_files": 91,
+    "new_relative_links": 23,
+    "utf8_no_bom": "PASS",
+    "new_files_lf": "PASS",
+    "new_trailing_whitespace": "NONE",
+    "ordinary_diff_check": "PASS",
+    "cached_diff_check": "PASS both before staging and with the complete 31-path staged diff",
+    "baseline_diff_check": "PASS",
+    "staged_index_match": "PASS: all 31 staged files match the worktree under existing Git EOL policy; 735 protected index objects match base; tested source fingerprint unchanged",
+    "committed_tree_match": "NOT RUN yet; required after commit",
+    "log_hashes": [
+      {
+        "file": "baseline.log",
+        "sha256": "c58bb412f15d74f985dfa6c6cf8ba0c40dd1ecd127f59e5b559f2f8d4c9bb721"
+      },
+      {
+        "file": "mission-boundary-check.log",
+        "sha256": "afbffee197cc2fe7433d1d2e0b9c806440a8bf413c11463e1ff409c143ed3e55"
+      },
+      {
+        "file": "typecheck-1.log",
+        "sha256": "d11ffe4794d55f89e05ba5796a42d42f732fe83d33b280c19738709f15fa4117"
+      },
+      {
+        "file": "typecheck-2.log",
+        "sha256": "d11ffe4794d55f89e05ba5796a42d42f732fe83d33b280c19738709f15fa4117"
+      },
+      {
+        "file": "targeted-1.log",
+        "sha256": "c33ea3d571e016c68eb3844e0b2fb025ef5de88b87ad8072a04caab71d025343"
+      },
+      {
+        "file": "targeted-2.log",
+        "sha256": "1ec7b7a095abdb243740d40c63e7a3d48a87a545f45be49da4086cf0d1e02f89"
+      },
+      {
+        "file": "targeted-final.log",
+        "sha256": "c2fe14ec137bec599860c2039fbce1e3c439a209558ec493f5bc8058fae9e40c"
+      },
+      {
+        "file": "targeted-final.json",
+        "sha256": "29f88471169156b869ab975ea213ee295e4d7ba9af11b697794986320015fb34"
+      },
+      {
+        "file": "full-check.log",
+        "sha256": "056b4fa45f205d73dc4e9c6f1795d6a84ce002300408f05d99ef43e3d8697a41"
+      },
+      {
+        "file": "full-check-final.log",
+        "sha256": "04b6e6019e2ab41ac8e010b158a709231178d431e5bf42de28792627eef24068"
+      },
+      {
+        "file": "targeted-verified.log",
+        "sha256": "94499e19bca704b7da42840c74f1a29dcc09c02a8fd39699bc4f36e0e4fe31dc"
+      }
+    ]
+  },
+  "git_delivery": {
+    "commit": "Scope and staged checks passed; one ordinary commit next, final SHA supplied in post-commit report without amend",
+    "push": "origin HEAD:refs/heads/feature/residence-session-core-001 only"
+  },
+  "boundaries": {
+    "g1_g2_production_changed": false,
+    "approved_rules_or_parameters_changed": false,
+    "old_restore_expected_relaxed": false,
+    "player_entry": false,
+    "browser_storage": false,
+    "o3_release_decision": false,
+    "shutdown_or_scheduling": false
+  }
+}

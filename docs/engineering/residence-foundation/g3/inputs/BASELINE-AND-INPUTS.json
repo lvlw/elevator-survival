@@ -1,0 +1,158 @@
+{
+  "task": "ENG-RESIDENCE-SESSION-RESTORE-001",
+  "shorthand": "G3",
+  "package_version": "v1.0",
+  "prepared_date": "2026-10-04",
+  "repository": "lvlw/elevator-survival",
+  "base_sha": "d7953bbf96dc842d2953e019f950275cd693bf09",
+  "base_parent_sha": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+  "base_tree": "e452251fd6d1f75e058749ffb8d515cecba6c712",
+  "target_branch": "feature/residence-session-core-001",
+  "remote_heads_observed": {
+    "main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+    "feature/design-world-infected-world-001": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+    "feature/design-world-entry-002": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+    "feature/mission-lifecycle-core-001": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+    "feature/residence-energy-cycle-core-001": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+    "feature/residence-location-core-001": "d7953bbf96dc842d2953e019f950275cd693bf09"
+  },
+  "runtime_format": {
+    "format": "elevator-survival.residence-headless",
+    "formatVersion": 1,
+    "public_release_registered": false
+  },
+  "installation_support": {
+    "fresh-hub": "Alive D1 first-ready; exact controlled declaration set, all unaccepted, no site/execution.",
+    "active-world": "Alive first active commission; startCycle=1, D=T in [1,7], other declarations explicitly unaccepted; validated G2 site pending=none.",
+    "closed_history": "Cold narrow mission parser preserves closed values; entire aggregate installation UNSUPPORTED, never omitted or reset.",
+    "unsupported": [
+      "living closed hub",
+      "return-due/deadline-ready installation",
+      "dead",
+      "combat",
+      "pending results",
+      "later-commission histories",
+      "browser storage",
+      "multi-tab"
+    ]
+  },
+  "ordinary_session_mutations": [
+    "move"
+  ],
+  "controlled_lifecycle": [
+    "bootstrap from storage",
+    "explicit first creation after successful read-null",
+    "retry-read only before current after read-error",
+    "retry-save current state without replay"
+  ],
+  "allowed_paths": [
+    "src/core/mission-lifecycle/controlled.ts",
+    "src/core/mission-lifecycle/cold-candidate.test.ts",
+    "src/state/residence-save/types.ts",
+    "src/state/residence-save/validation.ts",
+    "src/state/residence-save/codec.ts",
+    "src/state/residence-save/index.ts",
+    "src/state/residence-save/residence-save.test.ts",
+    "src/state/residence-save/aggregate.test.ts",
+    "src/state/residence-session/types.ts",
+    "src/state/residence-session/commands.ts",
+    "src/state/residence-session/session.ts",
+    "src/state/residence-session/controlled.ts",
+    "src/state/residence-session/index.ts",
+    "src/state/residence-session/session.test.ts",
+    "src/state/residence-session/persistence.test.ts",
+    "src/state/residence-session/session.integration.test.ts",
+    "src/state/residence-session/test-fixtures.ts",
+    "docs/engineering/residence-foundation/g3/contract-and-support.md",
+    "docs/engineering/residence-foundation/g3/implementation-notes.md",
+    "docs/engineering/residence-foundation/g3/verification-results.json",
+    "docs/engineering/residence-foundation/g3/completion.md",
+    "docs/engineering/residence-foundation/g3/inputs/ENG-RESIDENCE-SESSION-RESTORE-001-task-v1.0.md",
+    "docs/engineering/residence-foundation/g3/inputs/OWNER-authority-and-scope-G3-v1.0.md",
+    "docs/engineering/residence-foundation/g3/inputs/AUD-d7953bb-ENG-RESIDENCE-LOCATION-001-review-v1.0.md",
+    "docs/engineering/residence-foundation/g3/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/residence-foundation/g3/inputs/SHA256SUMS.txt",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "allowed_paths_count": 30,
+  "existing_source_restrictions": {
+    "src/core/mission-lifecycle/controlled.ts": "Add only parseMissionColdCandidate and necessary imports; preserve original functions. No public restore/schema/test weakening."
+  },
+  "append_only_paths": [
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "source_paths": [
+    "src/core/mission-lifecycle/controlled.ts",
+    "src/core/mission-lifecycle/cold-candidate.test.ts",
+    "src/state/residence-save/types.ts",
+    "src/state/residence-save/validation.ts",
+    "src/state/residence-save/codec.ts",
+    "src/state/residence-save/index.ts",
+    "src/state/residence-save/residence-save.test.ts",
+    "src/state/residence-save/aggregate.test.ts",
+    "src/state/residence-session/types.ts",
+    "src/state/residence-session/commands.ts",
+    "src/state/residence-session/session.ts",
+    "src/state/residence-session/controlled.ts",
+    "src/state/residence-session/index.ts",
+    "src/state/residence-session/session.test.ts",
+    "src/state/residence-session/persistence.test.ts",
+    "src/state/residence-session/session.integration.test.ts",
+    "src/state/residence-session/test-fixtures.ts"
+  ],
+  "archive_paths": {
+    "ENG-RESIDENCE-SESSION-RESTORE-001-task-v1.0.md": "docs/engineering/residence-foundation/g3/inputs/ENG-RESIDENCE-SESSION-RESTORE-001-task-v1.0.md",
+    "OWNER-authority-and-scope-G3-v1.0.md": "docs/engineering/residence-foundation/g3/inputs/OWNER-authority-and-scope-G3-v1.0.md",
+    "AUD-d7953bb-ENG-RESIDENCE-LOCATION-001-review-v1.0.md": "docs/engineering/residence-foundation/g3/inputs/AUD-d7953bb-ENG-RESIDENCE-LOCATION-001-review-v1.0.md",
+    "BASELINE-AND-INPUTS.json": "docs/engineering/residence-foundation/g3/inputs/BASELINE-AND-INPUTS.json",
+    "SHA256SUMS.txt": "docs/engineering/residence-foundation/g3/inputs/SHA256SUMS.txt"
+  },
+  "confirmed_read_blob_references": {
+    "AGENTS.md": "0055de32c18517d4d016b077e5fc287d9360317d",
+    "docs/05-design-decisions.md": "f13e8c5718583d08aec3ce09edd311df60ee61b0",
+    "docs/engineering/residence-foundation/runtime-restore-supplement-v1.0.md": "84deae2bb7a3c733b74af1bbd8321db13d0db0c2",
+    "src/core/mission-lifecycle/controlled.ts": "0b144aeb1cd8e91a46027a32a7cbdf30f15703ad",
+    "src/core/mission-lifecycle/validation.ts": "f38e559183f6034b7cf6f9a32f3fcdc628abc494",
+    "src/core/residence-location/types.ts": "29f26b2afb649843c38b6aca3b109ee6acf893e9",
+    "src/core/residence-location/validation.ts": "2ad2e89d66db41611ef94e0ae4e8d1d5e39aa8be",
+    "src/core/residence-location/catalog.ts": "d44e1afc4009540b802a79246b5d42f7cbd28e7c",
+    "src/core/residence-location/controlled.ts": "5807d37152a67d9dc8c9a3e4b95dc1574bccdcc2",
+    "src/core/residence-location/movement.ts": "369dce353ee79ce6b6f7990f0f9c1db972a18700",
+    "src/core/residence-location/items.ts": "ed179d87502340149bc99ae2919871161dfb9c2e",
+    "src/core/residence-location/sources.ts": "8efb08f48c53fbb8ebafa1b726d4e1d23558b9f2",
+    "src/core/residence-location/knowledge.ts": "acd9c2cead4c0a513b8c230d30e917b4a84f1611",
+    "src/core/residence-location/identity.ts": "31fc6920aaf605e84a597dc2f7cc6b647c00e86c",
+    "src/core/residence-location/index.ts": "29f1a7cfa9008d383e34ad85460422edece94e33",
+    "src/state/run-store/run-store.ts": "41717eaa9e7c08116668ca174c4379eb84ed895d",
+    "src/state/run-save/run-save-codec.ts": "cdbd029640aa9097ffe7871925cef4e1f9aa5947",
+    "src/app/production-bootstrap.ts": "a3b755f96e7763c8235dd28773cf7240d060fcdd"
+  },
+  "historical_ci": {
+    "number": 131,
+    "run_id": 37147031349,
+    "job_id": 111273003010,
+    "head_sha": "d7953bbf96dc842d2953e019f950275cd693bf09",
+    "test_files": 115,
+    "tests": 2540,
+    "meaning": "Prior G2 CI, independently read; NOT this G3 baseline."
+  },
+  "mainline_review_limits": [
+    "No full local repository clone",
+    "No independent native G2 API/full npm execution",
+    "Author integrity/link/diff checks not independently rerun in full"
+  ],
+  "notes": [
+    "Codex must re-read actual repository/AGENTS/status and establish native npm baseline before source writes.",
+    "Fresh support restrictions are this development-only Goal, not changes to approved gameplay or O3.",
+    "All unlisted files are protected, including G1/G2 sources, original 103 mission tests, config, formal DEC, scripts, dependencies, old app/save/UI.",
+    "Referenced blobs are actual connector-returned Git metadata, not a claim of full local byte copies.",
+    "Package input report is byte-preserved. SHA256SUMS hashes the other four files; compare the checksum file itself by original bytes.",
+    "No shutdown/restart/scheduling permission; no main/other-branch push, merge, rebase, amend or force-push."
+  ]
+}

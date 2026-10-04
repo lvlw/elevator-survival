@@ -1,3 +1,16 @@
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](../../../05-design-decisions.md#dec-051)、[四值试用配置](../../../content/infected-terminal-core-test-config-v0.1.json)、[A契约](../../../engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+本页以下为原集中候选，Owner已实际采纳其中本次限定范围；R1 c67fd4117065e2e0dbd1117cae4fbfaa83791599专项PASS。当前终局消费者资格、四态、真实物品处置、四值配置和工程门槛以正式入口为准，待本次准确SHA文档实审。旧O1/O2待采纳状态不再是这部分的当前状态；O3旧入口／旧槽发布及其他未批内容仍OPEN。
+
+成功120／初始0／上限2147483647为首批试用，失败20限本委托；原商品／治疗／地图等不整体采用。正常返回真实steps=[]，死亡真实非空且短路，日结不免步骤；没有A/B/C生产实现或新增可玩内容。
+
+---
+
+**以下完整原文为来源候选与历史记录；涉及本次已采纳范围，以顶部正式入口为准，其余仍保留原状态。**
+
 # WORLD-ENTRY-003 集中审阅页
 
 状态：**DESIGN DRAFT / Engineering Admission Candidate，待Owner采纳及主线准确SHA实审**。本批无生产实现、正式落文或参数批准。基线 `7ca547ab8ab4f411d1102a79baf8c0796f4b082c`。

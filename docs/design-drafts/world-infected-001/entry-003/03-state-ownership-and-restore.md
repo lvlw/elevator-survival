@@ -1,3 +1,16 @@
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](../../../05-design-decisions.md#dec-051)、[四值试用配置](../../../content/infected-terminal-core-test-config-v0.1.json)、[A契约](../../../engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+当前以正式恢复补充限定四态、单一余额／处分历史、周期关闭绑定及独立expected；新headless formatVersion=2为已定技术语法，尚未实现。B并列接口拒绝v1／未知版本，旧v1及原O2／expected保持，不将候选镜像作为expected，不从假active使命或虚构死亡closure拼终态。
+
+正常返回保留真实空步骤，死亡非空且满足来源／HP0短路，真实日结不免步骤；active＋HP0提案须经A完整消费，不能直接安装。B无安装／IO权，C等待A/B实审后承担完整预编码、一次提交和保存故障链；旧槽迁移／发布O3未决定。
+
+---
+
+**以下完整原文为来源候选与历史记录；涉及本次已采纳范围，以顶部正式入口为准，其余仍保留原状态。**
+
 # 唯一所有权、关闭态与恢复合同候选
 
 **DESIGN DRAFT，待正式采纳；不是现存v1能力。** 所有权图描述生产候选；有限模型的扁平JSON只是证明夹具，不是建议照抄的Schema。

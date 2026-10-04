@@ -1,0 +1,5 @@
+767140950ecd27d096eea41db600d1a12a8a21d16d0004ec8c6fe165d1d1b03e  AMENDMENT-AND-INPUTS.json
+f65b60df708c31f9908afcd88ddb0ec6dad4799c7dfef75f356394c640fcc38e  DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md
+f844779da9a650a2744e8d07e1198015966a1e50435a59101664b708e3fa934b  approved-documents/DEC-051-append.md
+5f35b35cfe580aad5b1f8990954285dae88fb0451645ce43088ced9099fbcd50  approved-documents/terminal-core-contract-v1.0.md
+e6126982afc09c0174279418a6d8563b5b88645c2c080a38d698a53410c14fd5  approved-documents/terminal-restore-contract-v1.0.md

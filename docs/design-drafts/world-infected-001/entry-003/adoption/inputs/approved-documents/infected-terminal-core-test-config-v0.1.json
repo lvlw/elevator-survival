@@ -1,0 +1,18 @@
+{
+  "configurationId": "infected-terminal-core-test-v0.1",
+  "status": "已批准首批试用；非经济平衡冻结；文档归档不注册运行时或玩家内容",
+  "scope": "《封锁区·未完成的转运》新连续驻留版本的终局核心",
+  "approval": "WORLD-ENTRY-003-ADOPTION v1.0，第3.4节；Owner实际批准2026-10-04；DEC-051",
+  "parameter_status": {
+    "success_reward": "本次批准首批试用",
+    "initial_balance": "本次批准首批试用",
+    "balance_max": "本次批准首批试用；非TypeScript强制上限",
+    "failure_penalty": "此前Owner确认；本次正式落文；仅当前委托"
+  },
+  "config": {
+    "success_reward": 120,
+    "initial_balance": 0,
+    "balance_max": 2147483647,
+    "failure_penalty": 20
+  }
+}

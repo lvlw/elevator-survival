@@ -1,3 +1,16 @@
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](../../../05-design-decisions.md#dec-051)、[四值试用配置](../../../content/infected-terminal-core-test-config-v0.1.json)、[A契约](../../../engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+以下仍是原工程候选；唯一当前A契约与A→B→C门槛见上方正式入口。A产纯TerminalPlan且无安装／保存权；B在A准确SHA实审后由主线锁定实际接口与路径；C等待A/B通过再消费完整结果。不得将此候选路径或未来SHA冒称现有模块。
+
+ADDENDUM-01按真实G1/G2来源划分正常返回空步骤、死亡非空步骤和真实日结，T04/T05同步消歧。本任务只完成文档归档，不执行任何工程、不注册内容；文档准确SHA实审仍是下一停止点。
+
+---
+
+**以下完整原文为来源候选与历史记录；涉及本次已采纳范围，以顶部正式入口为准，其余仍保留原状态。**
+
 # 最近三项完整工程合同候选
 
 **全部DESIGN DRAFT／未获执行授权。** 不是本轮生产白名单。基准源码为 `7ca547ab8ab4f411d1102a79baf8c0796f4b082c`；必须先完成本批准确SHA实审、Owner局部采纳及另行正式落文，才可下发任一工程。未知未来起始SHA不能虚填成当前HEAD或main。

@@ -1,0 +1,3276 @@
+{
+  "currentResult": "addendum01",
+  "currentStatus": "PASS_PRECOMMIT_DOCUMENT_CHECKS",
+  "historicalRootFields": "All original root keys below (including status/noNewCommit) are preserved verbatim in meaning as the initial blocked record. Read addendum01 for current continuation; no old input or checksum modified.",
+  "task": "DOC-WORLD-ENTRY-003",
+  "status": "BLOCKED_PAYLOAD_STEP_SCOPE",
+  "baseSha": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+  "baseTree": "23e4813756ab35972b98875b99f409f1aa583afb",
+  "baseParent": "f93e17ac7b47af39833f2ecf05681fea03dbf689",
+  "branch": "feature/design-world-entry-003",
+  "noNewCommit": true,
+  "mainlineDocumentReview": "PENDING",
+  "baseline": {
+    "task": "DOC-WORLD-ENTRY-003",
+    "baselineCommands": [
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "--show-toplevel"
+        ],
+        "at": "2026-10-04T10:34:25.925702+00:00",
+        "exitCode": 0,
+        "stdout": "E:/projects/elevator-survival\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "remote",
+          "-v"
+        ],
+        "at": "2026-10-04T10:34:25.956228+00:00",
+        "exitCode": 0,
+        "stdout": "elevator-survival\thttps://github.com/lvlw/elevator-survival.git (fetch)\nelevator-survival\thttps://github.com/lvlw/elevator-survival.git (push)\norigin\thttps://github.com/lvlw/elevator-survival.git (fetch)\norigin\thttps://github.com/lvlw/elevator-survival.git (push)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD"
+        ],
+        "at": "2026-10-04T10:34:25.987755+00:00",
+        "exitCode": 0,
+        "stdout": "c67fd4117065e2e0dbd1117cae4fbfaa83791599\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD^{tree}"
+        ],
+        "at": "2026-10-04T10:34:26.018783+00:00",
+        "exitCode": 0,
+        "stdout": "23e4813756ab35972b98875b99f409f1aa583afb\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "branch",
+          "--show-current"
+        ],
+        "at": "2026-10-04T10:34:26.048807+00:00",
+        "exitCode": 0,
+        "stdout": "feature/design-world-entry-003\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "status",
+          "--short",
+          "--untracked-files=all"
+        ],
+        "at": "2026-10-04T10:34:26.092345+00:00",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--name-status"
+        ],
+        "at": "2026-10-04T10:34:26.132880+00:00",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--cached",
+          "--name-status"
+        ],
+        "at": "2026-10-04T10:34:26.168411+00:00",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "worktree",
+          "list",
+          "--porcelain"
+        ],
+        "at": "2026-10-04T10:34:26.201939+00:00",
+        "exitCode": 0,
+        "stdout": "worktree E:/projects/elevator-survival\nHEAD c67fd4117065e2e0dbd1117cae4fbfaa83791599\nbranch refs/heads/feature/design-world-entry-003\n\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "ls-remote",
+          "--heads",
+          "origin"
+        ],
+        "at": "2026-10-04T10:34:27.177276+00:00",
+        "exitCode": 0,
+        "stdout": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63\trefs/heads/feature/design-world-entry-002\nc67fd4117065e2e0dbd1117cae4fbfaa83791599\trefs/heads/feature/design-world-entry-003\n6b48b3de6521d9a9c296754a4d8135c7f7c7ca35\trefs/heads/feature/design-world-infected-world-001\nd1d3b7927c6733cff709a4bfd617fb1e85e7485a\trefs/heads/feature/mission-lifecycle-core-001\n7ca547ab8ab4f411d1102a79baf8c0796f4b082c\trefs/heads/feature/residence-actions-core-001\n942b2d93916c649f4c2ec6cd399035151269d2ca\trefs/heads/feature/residence-energy-cycle-core-001\nd7953bbf96dc842d2953e019f950275cd693bf09\trefs/heads/feature/residence-location-core-001\n60e9c30732c5e22cfe9ff58b9b381de64b945180\trefs/heads/feature/residence-session-core-001\na76e9c1c998051fc1643b6e0c3d53443fa55feed\trefs/heads/main\n",
+        "stderr": ""
+      }
+    ],
+    "newTargetsAbsentAtStart": true,
+    "criticalBaseObjectsVerified": {
+      "docs/05-design-decisions.md": {
+        "git_blob": "f13e8c5718583d08aec3ce09edd311df60ee61b0",
+        "disposition": "exact append payload only"
+      },
+      "docs/07-decision-supersession-index.md": {
+        "git_blob": "073df511e46b0346075d95fc861c50ad62b632c3",
+        "disposition": "append-only"
+      },
+      "AGENTS.md": {
+        "git_blob": "0055de32c18517d4d016b077e5fc287d9360317d",
+        "disposition": "read-only"
+      },
+      "docs/engineering/residence-foundation/runtime-restore-supplement-v1.0.md": {
+        "git_blob": "84deae2bb7a3c733b74af1bbd8321db13d0db0c2",
+        "disposition": "read-only"
+      },
+      "docs/engineering/residence-foundation/energy-cycle-contract-v1.0.md": {
+        "git_blob": "0476720ddeaae8ffe6128d352bd496171a215832",
+        "disposition": "read-only"
+      },
+      "src/core/character-cycle/types.ts": {
+        "git_blob": "c360cb6ca13454defb43fffce752b1980c13756c",
+        "disposition": "read-only"
+      },
+      "src/core/residence-location/validation.ts": {
+        "git_blob": "2ad2e89d66db41611ef94e0ae4e8d1d5e39aa8be",
+        "disposition": "read-only"
+      }
+    },
+    "protectedRootsVerified": {
+      "src": {
+        "git_tree": "4d28340ad020950e90bbbed1dc0b902a7f6880db"
+      },
+      "scripts": {
+        "git_tree": "a619e6b856375dfea3ab54551408b1835a66dcdf"
+      },
+      ".github": {
+        "git_tree": "026a7d1464c067e99f7ec653f0c9902b7519a71e"
+      }
+    },
+    "inputHashManifestPassed": 10,
+    "archives": [
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+        "input": "DOC-WORLD-ENTRY-003-task-v1.0.md",
+        "bytes": 20657,
+        "sha256": "b2ce95b2eab888ad64345cac391cc05439903b7b71af590088bc760566941923",
+        "gitBlob": "80803a77a6733ecc7cdd619507e9c4e4d816ffd7"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+        "input": "WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+        "bytes": 11316,
+        "sha256": "8dc6f06060735c67449791dde428c19d09d7526ecdc9fb4e6359d93dca141c4c",
+        "gitBlob": "d04cf5c7230c845744b2511792b4b00e0144394e"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+        "input": "OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+        "bytes": 2415,
+        "sha256": "6c52b7fac95b8ea5c645efc898639d8c50c448edbc4664c341f888cd40e9e47a",
+        "gitBlob": "a20c7b5f2129b2d1cceb20bcb77f1039d0939a72"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+        "input": "AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+        "bytes": 7897,
+        "sha256": "0fc4d32b2bc24fd9d16832740d86f1aa4d08be7d44729924f9802fa5752d8995",
+        "gitBlob": "c8d73b831b051d5be784eb4337e71ac0c96cbe69"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+        "input": "BASELINE-AND-INPUTS.json",
+        "bytes": 13252,
+        "sha256": "799334be8def829b9881b8ad0e4e6c1c4a6a9c333a0f9c70e6ccdee2e1a16571",
+        "gitBlob": "70344c7212cffa671dec9c8be271841c472ac552"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+        "input": "SHA256SUMS.txt",
+        "bytes": 1109,
+        "sha256": "64511f72226b96a52399ad7fa64eef91b6df7c10a1a2a0d4720b6733f3218638",
+        "gitBlob": "9e9f6245530c705efc9f7bd4e6582bd62b19d677"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+        "input": "approved-documents/DEC-051-append.md",
+        "bytes": 14146,
+        "sha256": "f59c765f82a125c03316abbbd9b81c52c3faa11e9f31f99a34364fbbc08d955b",
+        "gitBlob": "574e1f4cc1fc76ff48c26217b27f911d03c56095"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+        "input": "approved-documents/infected-terminal-core-test-config-v0.1.json",
+        "bytes": 770,
+        "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+        "gitBlob": "fa999e7f456414daf6279fd8fbff3cd117394135"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+        "input": "approved-documents/terminal-core-contract-v1.0.md",
+        "bytes": 11026,
+        "sha256": "7287dcf18e1ee9a190ef4cae56763de918f94796ac28735e5ce6d95ef101936d",
+        "gitBlob": "33c964ad9460209fc589d5d2a9e746ceb1d54e34"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+        "input": "approved-documents/terminal-restore-contract-v1.0.md",
+        "bytes": 9680,
+        "sha256": "cb82c1d032a2ec3b3355c46980d16eb67139b1bceabc15cb4631fe100cbdac7c",
+        "gitBlob": "184f68867886cd1a7cc7dbe1d90c11ec1173ced3"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md",
+        "input": "approved-documents/terminal-batch-plan-v1.0.md",
+        "bytes": 5287,
+        "sha256": "33bd3880791f1bf2fda6fd121cfd55e2f3042b595da1adbe967a689414f37016",
+        "gitBlob": "f9e97aafdba863dad17a2fc51a624bb236a7dc07"
+      }
+    ],
+    "ancestorAgentObservation": "E:/AGENTS.md absent; E:/projects/AGENTS.md is a directory, not an instruction file. rg found only repository AGENTS.md. Initial combined locator exit1 was from absent optional ancestor path, not Git or hash checks."
+  },
+  "inputIsolation": {
+    "archivedInputChecks": [
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+        "bytes": 20657,
+        "sha256": "b2ce95b2eab888ad64345cac391cc05439903b7b71af590088bc760566941923",
+        "gitBlob": "80803a77a6733ecc7cdd619507e9c4e4d816ffd7",
+        "exactInput": true,
+        "utf8LfNoBomNoTrailingWhitespace": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+        "bytes": 11316,
+        "sha256": "8dc6f06060735c67449791dde428c19d09d7526ecdc9fb4e6359d93dca141c4c",
+        "gitBlob": "d04cf5c7230c845744b2511792b4b00e0144394e",
+        "exactInput": true,
+        "utf8LfNoBomNoTrailingWhitespace": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+        "bytes": 2415,
+        "sha256": "6c52b7fac95b8ea5c645efc898639d8c50c448edbc4664c341f888cd40e9e47a",
+        "gitBlob": "a20c7b5f2129b2d1cceb20bcb77f1039d0939a72",
+        "exactInput": true,
+        "utf8LfNoBomNoTrailingWhitespace": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+        "bytes": 7897,
+        "sha256": "0fc4d32b2bc24fd9d16832740d86f1aa4d08be7d44729924f9802fa5752d8995",
+        "gitBlob": "c8d73b831b051d5be784eb4337e71ac0c96cbe69",
+        "exactInput": true,
+        "utf8LfNoBomNoTrailingWhitespace": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+        "bytes": 13252,
+        "sha256": "799334be8def829b9881b8ad0e4e6c1c4a6a9c333a0f9c70e6ccdee2e1a16571",
+        "gitBlob": "70344c7212cffa671dec9c8be271841c472ac552",
+        "exactInput": true,
+        "utf8LfNoBomNoTrailingWhitespace": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+        "bytes": 1109,
+        "sha256": "64511f72226b96a52399ad7fa64eef91b6df7c10a1a2a0d4720b6733f3218638",
+        "gitBlob": "9e9f6245530c705efc9f7bd4e6582bd62b19d677",
+        "exactInput": true,
+        "utf8LfNoBomNoTrailingWhitespace": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+        "bytes": 14146,
+        "sha256": "f59c765f82a125c03316abbbd9b81c52c3faa11e9f31f99a34364fbbc08d955b",
+        "gitBlob": "574e1f4cc1fc76ff48c26217b27f911d03c56095",
+        "exactInput": true,
+        "utf8LfNoBomNoTrailingWhitespace": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+        "bytes": 770,
+        "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+        "gitBlob": "fa999e7f456414daf6279fd8fbff3cd117394135",
+        "exactInput": true,
+        "utf8LfNoBomNoTrailingWhitespace": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+        "bytes": 11026,
+        "sha256": "7287dcf18e1ee9a190ef4cae56763de918f94796ac28735e5ce6d95ef101936d",
+        "gitBlob": "33c964ad9460209fc589d5d2a9e746ceb1d54e34",
+        "exactInput": true,
+        "utf8LfNoBomNoTrailingWhitespace": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+        "bytes": 9680,
+        "sha256": "cb82c1d032a2ec3b3355c46980d16eb67139b1bceabc15cb4631fe100cbdac7c",
+        "gitBlob": "184f68867886cd1a7cc7dbe1d90c11ec1173ced3",
+        "exactInput": true,
+        "utf8LfNoBomNoTrailingWhitespace": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md",
+        "bytes": 5287,
+        "sha256": "33bd3880791f1bf2fda6fd121cfd55e2f3042b595da1adbe967a689414f37016",
+        "gitBlob": "f9e97aafdba863dad17a2fc51a624bb236a7dc07",
+        "exactInput": true,
+        "utf8LfNoBomNoTrailingWhitespace": true
+      }
+    ],
+    "trackedAndStagedChanges": 0,
+    "formalTargetsInstalled": 0,
+    "decPayloadAppended": false,
+    "head": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+    "sourceTree": "4d28340ad020950e90bbbed1dc0b902a7f6880db"
+  },
+  "pathModes": {
+    "exact_dec_append": [
+      "docs/05-design-decisions.md"
+    ],
+    "append_only": [
+      "docs/01-game-design-v0.1.md",
+      "docs/02-vertical-slice.md",
+      "docs/03-architecture.md",
+      "docs/07-decision-supersession-index.md",
+      "docs/08-rule-implementation-traceability.md",
+      "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+      "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md"
+    ],
+    "prepend_only": [
+      "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+      "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+      "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+      "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+      "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+      "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+      "docs/design-drafts/world-infected-001/04-main-mission.md",
+      "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+      "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md"
+    ],
+    "copy_payload_exact": [
+      "docs/content/infected-terminal-core-test-config-v0.1.json",
+      "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+      "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+      "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md"
+    ],
+    "new_reports": [
+      "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/checks.json"
+    ],
+    "archive_input_exact": [
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md"
+    ]
+  },
+  "allowedPaths": [
+    "docs/05-design-decisions.md",
+    "docs/01-game-design-v0.1.md",
+    "docs/02-vertical-slice.md",
+    "docs/03-architecture.md",
+    "docs/07-decision-supersession-index.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+    "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+    "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+    "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+    "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+    "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+    "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+    "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+    "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+    "docs/design-drafts/world-infected-001/04-main-mission.md",
+    "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+    "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+    "docs/content/infected-terminal-core-test-config-v0.1.json",
+    "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/checks.json",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md"
+  ],
+  "completedModes": [
+    "archive_input_exact",
+    "new_reports (blocked execution record only)"
+  ],
+  "formalTargetsInstalled": [],
+  "dec051Appended": false,
+  "approvedParameterComparison": {
+    "values": {
+      "success_reward": 120,
+      "initial_balance": 0,
+      "balance_max": 2147483647,
+      "failure_penalty": 20
+    },
+    "exactFourKeys": true,
+    "integerNotBool": true,
+    "unchangedCandidateMatches": true,
+    "status": "READ_ONLY_COMPARISON_NOT_INSTALLED"
+  },
+  "conflict": {
+    "kind": "Nonempty step requirement includes legitimate normal-return CyclePlan with empty steps",
+    "payloadLocations": {
+      "approved-documents/DEC-051-append.md": [
+        87
+      ],
+      "approved-documents/terminal-core-contract-v1.0.md": [
+        33,
+        35
+      ],
+      "approved-documents/terminal-restore-contract-v1.0.md": [
+        32,
+        34
+      ]
+    },
+    "sourceLocations": {
+      "src/core/character-cycle/cycle.ts": [
+        97,
+        113,
+        114,
+        115,
+        116,
+        137,
+        138
+      ],
+      "src/core/character-cycle/cycle.test.ts": [
+        103,
+        106,
+        107,
+        108,
+        109,
+        110
+      ]
+    },
+    "taskStopInstruction": "DOC-WORLD-ENTRY-003-task-v1.0.md:62; exact payload adoption required by section 4",
+    "resolution": "Mainline clarification or corrected deterministic payloads and matching manifests required; no unilateral changes applied"
+  },
+  "readOnlyCrossReview": [
+    "entry002_rules_readonly: approval/formal rules and payload scope; identified steps scope conflict",
+    "entry002_restore_readonly: real G1/G2/G3/G4 interfaces and tests; independently confirmed same conflict"
+  ],
+  "checks": {
+    "actualUntrackedTaskPaths": [
+      "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/checks.json",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md"
+    ],
+    "actualPathCount": 13,
+    "requiredPathCount": 37,
+    "scopeAcceptance": "PARTIAL_NOT_PASS",
+    "trackedChanges": 0,
+    "stagedChanges": 0,
+    "allExistingGitObjectsUnchanged": true,
+    "utf8LfNoBomNoTrailingWhitespaceFiles": 13,
+    "newReportLinks": [
+      "inputs/approved-documents/DEC-051-append.md",
+      "inputs/approved-documents/terminal-core-contract-v1.0.md",
+      "inputs/approved-documents/terminal-restore-contract-v1.0.md",
+      "../../../../../src/core/character-cycle/cycle.ts",
+      "../../../../../src/core/character-cycle/cycle.test.ts",
+      "inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+      "inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+      "inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+      "checks.json"
+    ],
+    "diffCoverageNote": "All three diff checks exit0 but tracked diff is empty; untracked 13 files separately byte/whitespace checked. No staged/full-37/postcommit acceptance claimed.",
+    "receipts": [
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "at": "2026-10-04T10:42:30.908145+00:00",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--cached",
+          "--check"
+        ],
+        "at": "2026-10-04T10:42:30.944176+00:00",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+          "--check"
+        ],
+        "at": "2026-10-04T10:42:30.987214+00:00",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "status",
+          "--short",
+          "--untracked-files=all"
+        ],
+        "at": "2026-10-04T10:42:31.031751+00:00",
+        "exitCode": 0,
+        "stdout": "?? docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/checks.json\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "ls-remote",
+          "--heads",
+          "origin"
+        ],
+        "at": "2026-10-04T10:42:32.228279+00:00",
+        "exitCode": 0,
+        "stdout": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63\trefs/heads/feature/design-world-entry-002\nc67fd4117065e2e0dbd1117cae4fbfaa83791599\trefs/heads/feature/design-world-entry-003\n6b48b3de6521d9a9c296754a4d8135c7f7c7ca35\trefs/heads/feature/design-world-infected-world-001\nd1d3b7927c6733cff709a4bfd617fb1e85e7485a\trefs/heads/feature/mission-lifecycle-core-001\n7ca547ab8ab4f411d1102a79baf8c0796f4b082c\trefs/heads/feature/residence-actions-core-001\n942b2d93916c649f4c2ec6cd399035151269d2ca\trefs/heads/feature/residence-energy-cycle-core-001\nd7953bbf96dc842d2953e019f950275cd693bf09\trefs/heads/feature/residence-location-core-001\n60e9c30732c5e22cfe9ff58b9b381de64b945180\trefs/heads/feature/residence-session-core-001\na76e9c1c998051fc1643b6e0c3d53443fa55feed\trefs/heads/main\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD",
+          "HEAD^",
+          "HEAD^{tree}"
+        ],
+        "at": "2026-10-04T10:42:32.258305+00:00",
+        "exitCode": 0,
+        "stdout": "c67fd4117065e2e0dbd1117cae4fbfaa83791599\nf93e17ac7b47af39833f2ecf05681fea03dbf689\n23e4813756ab35972b98875b99f409f1aa583afb\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+          "--name-only"
+        ],
+        "at": "2026-10-04T10:42:32.299340+00:00",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--cached",
+          "--name-only"
+        ],
+        "at": "2026-10-04T10:42:32.331367+00:00",
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "remoteRefsUnchanged": {
+      "feature/design-world-entry-002": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+      "feature/design-world-entry-003": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+      "feature/design-world-infected-world-001": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+      "feature/mission-lifecycle-core-001": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "feature/residence-actions-core-001": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c",
+      "feature/residence-energy-cycle-core-001": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+      "feature/residence-location-core-001": "d7953bbf96dc842d2953e019f950275cd693bf09",
+      "feature/residence-session-core-001": "60e9c30732c5e22cfe9ff58b9b381de64b945180",
+      "main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed"
+    },
+    "finalHeadStillBase": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+    "commit": "NOT RUN",
+    "push": "NOT RUN"
+  },
+  "productionCodeAdded": 0,
+  "productionTestsAdded": 0,
+  "notRun": [
+    "architecture (formal DEC-051 not installed due payload conflict)",
+    "production tests at start and finish",
+    "npm run check",
+    "historical model",
+    "API probe",
+    "build",
+    "browser/multitab",
+    "Owner playtest",
+    "A/B/C engineering",
+    "staged payload verification",
+    "postcommit diff checks"
+  ],
+  "incomplete": [
+    "W2 formal DEC and configuration",
+    "W3 three formal contracts",
+    "W4 nineteen current document append/prepend synchronizations",
+    "full 37-path final acceptance",
+    "ordinary commit/push and exact-SHA document review"
+  ],
+  "stop": "Await mainline payload scope clarification; no production continuation",
+  "addendum01": {
+    "task": "DOC-WORLD-ENTRY-003 + ADDENDUM-01",
+    "status": "PASS_PRECOMMIT_DOCUMENT_CHECKS",
+    "baseSha": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+    "expectedParentSha": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+    "baseTree": "23e4813756ab35972b98875b99f409f1aa583afb",
+    "baseSrcTree": "4d28340ad020950e90bbbed1dc0b902a7f6880db",
+    "branch": "feature/design-world-entry-003",
+    "timestampUtc": "2026-10-04T12:16:57.032243+00:00",
+    "W1": "17 immutable archives retained; original 10 and supplement 5 SHA entries checked; old three payloads remain historical inputs.",
+    "W2": "Exact DEC051 append and unique four-value trial config installed; 001-050 and G1 values retained.",
+    "W3": "New A and restore payloads exact; original batch plan exact; no production implementation.",
+    "W4": "19 status notes, preserved history in two reports, byte/parameter/link/path/protected-object checks and architecture/ordinary/cached/base diff checks passed; exact-SHA delivery receipts follow outside the self-referential commit.",
+    "effectiveAllowedPaths": [
+      "docs/05-design-decisions.md",
+      "docs/01-game-design-v0.1.md",
+      "docs/02-vertical-slice.md",
+      "docs/03-architecture.md",
+      "docs/07-decision-supersession-index.md",
+      "docs/08-rule-implementation-traceability.md",
+      "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+      "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+      "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+      "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+      "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+      "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+      "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+      "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+      "docs/design-drafts/world-infected-001/04-main-mission.md",
+      "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+      "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+      "docs/content/infected-terminal-core-test-config-v0.1.json",
+      "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+      "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+      "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/checks.json",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/SHA256SUMS.txt",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md"
+    ],
+    "pathModes": {
+      "exact_dec_append": [
+        "docs/05-design-decisions.md"
+      ],
+      "append_only": [
+        "docs/01-game-design-v0.1.md",
+        "docs/02-vertical-slice.md",
+        "docs/03-architecture.md",
+        "docs/07-decision-supersession-index.md",
+        "docs/08-rule-implementation-traceability.md",
+        "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+        "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+        "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md"
+      ],
+      "prepend_only": [
+        "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+        "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+        "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+        "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+        "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+        "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+        "docs/design-drafts/world-infected-001/04-main-mission.md",
+        "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+        "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md"
+      ],
+      "copy_payload_exact": [
+        "docs/content/infected-terminal-core-test-config-v0.1.json",
+        "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+        "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+        "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md"
+      ],
+      "new_reports": [
+        "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/checks.json"
+      ],
+      "archive_input_exact": [
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md"
+      ],
+      "addendum_archive_input_exact": [
+        "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/SHA256SUMS.txt",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md"
+      ]
+    },
+    "resume": {
+      "resumeReceipts": [
+        {
+          "command": [
+            "git",
+            "rev-parse",
+            "--show-toplevel"
+          ],
+          "at": "2026-10-04T11:56:41.910552+00:00",
+          "exitCode": 0,
+          "stdout": "E:/projects/elevator-survival\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "remote",
+            "-v"
+          ],
+          "at": "2026-10-04T11:56:41.942077+00:00",
+          "exitCode": 0,
+          "stdout": "elevator-survival\thttps://github.com/lvlw/elevator-survival.git (fetch)\nelevator-survival\thttps://github.com/lvlw/elevator-survival.git (push)\norigin\thttps://github.com/lvlw/elevator-survival.git (fetch)\norigin\thttps://github.com/lvlw/elevator-survival.git (push)\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "rev-parse",
+            "HEAD",
+            "HEAD^{tree}"
+          ],
+          "at": "2026-10-04T11:56:41.972600+00:00",
+          "exitCode": 0,
+          "stdout": "c67fd4117065e2e0dbd1117cae4fbfaa83791599\n23e4813756ab35972b98875b99f409f1aa583afb\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "branch",
+            "--show-current"
+          ],
+          "at": "2026-10-04T11:56:42.005628+00:00",
+          "exitCode": 0,
+          "stdout": "feature/design-world-entry-003\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "status",
+            "--short",
+            "--untracked-files=all"
+          ],
+          "at": "2026-10-04T11:56:42.048161+00:00",
+          "exitCode": 0,
+          "stdout": "?? docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/checks.json\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md\n?? docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--name-status"
+          ],
+          "at": "2026-10-04T11:56:42.088703+00:00",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--cached",
+            "--name-status"
+          ],
+          "at": "2026-10-04T11:56:42.125223+00:00",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "worktree",
+            "list",
+            "--porcelain"
+          ],
+          "at": "2026-10-04T11:56:42.159250+00:00",
+          "exitCode": 0,
+          "stdout": "worktree E:/projects/elevator-survival\nHEAD c67fd4117065e2e0dbd1117cae4fbfaa83791599\nbranch refs/heads/feature/design-world-entry-003\n\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "ls-remote",
+            "--heads",
+            "origin"
+          ],
+          "at": "2026-10-04T11:56:43.939669+00:00",
+          "exitCode": 0,
+          "stdout": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63\trefs/heads/feature/design-world-entry-002\nc67fd4117065e2e0dbd1117cae4fbfaa83791599\trefs/heads/feature/design-world-entry-003\n6b48b3de6521d9a9c296754a4d8135c7f7c7ca35\trefs/heads/feature/design-world-infected-world-001\nd1d3b7927c6733cff709a4bfd617fb1e85e7485a\trefs/heads/feature/mission-lifecycle-core-001\n7ca547ab8ab4f411d1102a79baf8c0796f4b082c\trefs/heads/feature/residence-actions-core-001\n942b2d93916c649f4c2ec6cd399035151269d2ca\trefs/heads/feature/residence-energy-cycle-core-001\nd7953bbf96dc842d2953e019f950275cd693bf09\trefs/heads/feature/residence-location-core-001\n60e9c30732c5e22cfe9ff58b9b381de64b945180\trefs/heads/feature/residence-session-core-001\na76e9c1c998051fc1643b6e0c3d53443fa55feed\trefs/heads/main\n",
+          "stderr": ""
+        }
+      ],
+      "preservedUntrackedPaths": [
+        "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/checks.json",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md"
+      ],
+      "original11BytesMatchZip": true,
+      "originalManifestEntries": 10,
+      "amendmentManifestEntries": 5,
+      "effectivePaths": [
+        "docs/05-design-decisions.md",
+        "docs/01-game-design-v0.1.md",
+        "docs/02-vertical-slice.md",
+        "docs/03-architecture.md",
+        "docs/07-decision-supersession-index.md",
+        "docs/08-rule-implementation-traceability.md",
+        "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+        "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+        "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+        "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+        "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+        "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+        "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+        "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+        "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+        "docs/design-drafts/world-infected-001/04-main-mission.md",
+        "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+        "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+        "docs/content/infected-terminal-core-test-config-v0.1.json",
+        "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+        "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+        "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/checks.json",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/SHA256SUMS.txt",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md",
+        "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md"
+      ],
+      "replacementDiffChecks": [
+        {
+          "input": "approved-documents/DEC-051-append.md",
+          "old": {
+            "bytes": 14146,
+            "sha256": "f59c765f82a125c03316abbbd9b81c52c3faa11e9f31f99a34364fbbc08d955b",
+            "git_blob": "574e1f4cc1fc76ff48c26217b27f911d03c56095"
+          },
+          "new": {
+            "bytes": 14863,
+            "sha256": "f844779da9a650a2744e8d07e1198015966a1e50435a59101664b708e3fa934b",
+            "git_blob": "ec5119cc2192b01ea78d94c751655fc6fc479a4f"
+          },
+          "manifestDiffEqualsActual": true
+        },
+        {
+          "input": "approved-documents/terminal-core-contract-v1.0.md",
+          "old": {
+            "bytes": 11026,
+            "sha256": "7287dcf18e1ee9a190ef4cae56763de918f94796ac28735e5ce6d95ef101936d",
+            "git_blob": "33c964ad9460209fc589d5d2a9e746ceb1d54e34"
+          },
+          "new": {
+            "bytes": 13141,
+            "sha256": "5f35b35cfe580aad5b1f8990954285dae88fb0451645ce43088ced9099fbcd50",
+            "git_blob": "c52c08df1cd99b6d376e3d43174e72e0866758bf"
+          },
+          "manifestDiffEqualsActual": true
+        },
+        {
+          "input": "approved-documents/terminal-restore-contract-v1.0.md",
+          "old": {
+            "bytes": 9680,
+            "sha256": "cb82c1d032a2ec3b3355c46980d16eb67139b1bceabc15cb4631fe100cbdac7c",
+            "git_blob": "184f68867886cd1a7cc7dbe1d90c11ec1173ced3"
+          },
+          "new": {
+            "bytes": 10413,
+            "sha256": "e6126982afc09c0174279418a6d8563b5b88645c2c080a38d698a53410c14fd5",
+            "git_blob": "cf308a1b16d932ba8d99da07bb0dcdce7201f0e1"
+          },
+          "manifestDiffEqualsActual": true
+        }
+      ],
+      "addedArchives": [
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+          "bytes": 10555,
+          "sha256": "f65b60df708c31f9908afcd88ddb0ec6dad4799c7dfef75f356394c640fcc38e",
+          "git_blob": "48527a23a65586f5815ebedfcd4d43496263e137"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json",
+          "bytes": 30416,
+          "sha256": "767140950ecd27d096eea41db600d1a12a8a21d16d0004ec8c6fe165d1d1b03e",
+          "git_blob": "f3ae9de80e6e7976291bdacdc31399f2602a3036"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/SHA256SUMS.txt",
+          "bytes": 536,
+          "sha256": "0ec2eef92b4ead6493c3946869808597f16d9fb4a677037d8d93b8f1027c40ec",
+          "git_blob": "d079edb6cf71a16a381a640bcd3f873655c2e880"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md",
+          "bytes": 14863,
+          "sha256": "f844779da9a650a2744e8d07e1198015966a1e50435a59101664b708e3fa934b",
+          "git_blob": "ec5119cc2192b01ea78d94c751655fc6fc479a4f"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md",
+          "bytes": 13141,
+          "sha256": "5f35b35cfe580aad5b1f8990954285dae88fb0451645ce43088ced9099fbcd50",
+          "git_blob": "c52c08df1cd99b6d376e3d43174e72e0866758bf"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md",
+          "bytes": 10413,
+          "sha256": "e6126982afc09c0174279418a6d8563b5b88645c2c080a38d698a53410c14fd5",
+          "git_blob": "cf308a1b16d932ba8d99da07bb0dcdce7201f0e1"
+        }
+      ],
+      "originalReportsSnapshot": {
+        "checks.json": {
+          "bytes": 31296,
+          "sha256": "5212d0db48a1f646a0e774051208b421989c83fed2b6c891b196c05ba1d8a95e",
+          "git_blob": "494f67ff8545f12832be21de1d40ad11e688dbe7"
+        },
+        "DOC-WORLD-ENTRY-003-completion.md": {
+          "bytes": 5529,
+          "sha256": "89059e7dfdfb23dfde0fcf4b0005de61eee01850340320838643ab1dbce3fccc",
+          "git_blob": "9dce68f02c38addf58e9e7103aebb7579b4c7e3d"
+        }
+      }
+    },
+    "documentAudit": {
+      "utc": "2026-10-04T12:16:57.170357+00:00",
+      "mode": "worktree",
+      "baseSha": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+      "effectivePathCount": 43,
+      "archives": [
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+          "bytes": 7897,
+          "sha256": "0fc4d32b2bc24fd9d16832740d86f1aa4d08be7d44729924f9802fa5752d8995",
+          "git_blob": "c8d73b831b051d5be784eb4337e71ac0c96cbe69",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+          "bytes": 13252,
+          "sha256": "799334be8def829b9881b8ad0e4e6c1c4a6a9c333a0f9c70e6ccdee2e1a16571",
+          "git_blob": "70344c7212cffa671dec9c8be271841c472ac552",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+          "bytes": 20657,
+          "sha256": "b2ce95b2eab888ad64345cac391cc05439903b7b71af590088bc760566941923",
+          "git_blob": "80803a77a6733ecc7cdd619507e9c4e4d816ffd7",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+          "bytes": 2415,
+          "sha256": "6c52b7fac95b8ea5c645efc898639d8c50c448edbc4664c341f888cd40e9e47a",
+          "git_blob": "a20c7b5f2129b2d1cceb20bcb77f1039d0939a72",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+          "bytes": 1109,
+          "sha256": "64511f72226b96a52399ad7fa64eef91b6df7c10a1a2a0d4720b6733f3218638",
+          "git_blob": "9e9f6245530c705efc9f7bd4e6582bd62b19d677",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+          "bytes": 11316,
+          "sha256": "8dc6f06060735c67449791dde428c19d09d7526ecdc9fb4e6359d93dca141c4c",
+          "git_blob": "d04cf5c7230c845744b2511792b4b00e0144394e",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+          "bytes": 14146,
+          "sha256": "f59c765f82a125c03316abbbd9b81c52c3faa11e9f31f99a34364fbbc08d955b",
+          "git_blob": "574e1f4cc1fc76ff48c26217b27f911d03c56095",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+          "bytes": 770,
+          "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+          "git_blob": "fa999e7f456414daf6279fd8fbff3cd117394135",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md",
+          "bytes": 5287,
+          "sha256": "33bd3880791f1bf2fda6fd121cfd55e2f3042b595da1adbe967a689414f37016",
+          "git_blob": "f9e97aafdba863dad17a2fc51a624bb236a7dc07",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+          "bytes": 11026,
+          "sha256": "7287dcf18e1ee9a190ef4cae56763de918f94796ac28735e5ce6d95ef101936d",
+          "git_blob": "33c964ad9460209fc589d5d2a9e746ceb1d54e34",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+          "bytes": 9680,
+          "sha256": "cb82c1d032a2ec3b3355c46980d16eb67139b1bceabc15cb4631fe100cbdac7c",
+          "git_blob": "184f68867886cd1a7cc7dbe1d90c11ec1173ced3",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json",
+          "bytes": 30416,
+          "sha256": "767140950ecd27d096eea41db600d1a12a8a21d16d0004ec8c6fe165d1d1b03e",
+          "git_blob": "f3ae9de80e6e7976291bdacdc31399f2602a3036",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+          "bytes": 10555,
+          "sha256": "f65b60df708c31f9908afcd88ddb0ec6dad4799c7dfef75f356394c640fcc38e",
+          "git_blob": "48527a23a65586f5815ebedfcd4d43496263e137",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/SHA256SUMS.txt",
+          "bytes": 536,
+          "sha256": "0ec2eef92b4ead6493c3946869808597f16d9fb4a677037d8d93b8f1027c40ec",
+          "git_blob": "d079edb6cf71a16a381a640bcd3f873655c2e880",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md",
+          "bytes": 14863,
+          "sha256": "f844779da9a650a2744e8d07e1198015966a1e50435a59101664b708e3fa934b",
+          "git_blob": "ec5119cc2192b01ea78d94c751655fc6fc479a4f",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md",
+          "bytes": 13141,
+          "sha256": "5f35b35cfe580aad5b1f8990954285dae88fb0451645ce43088ced9099fbcd50",
+          "git_blob": "c52c08df1cd99b6d376e3d43174e72e0866758bf",
+          "zipBytesEqual": true
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md",
+          "bytes": 10413,
+          "sha256": "e6126982afc09c0174279418a6d8563b5b88645c2c080a38d698a53410c14fd5",
+          "git_blob": "cf308a1b16d932ba8d99da07bb0dcdce7201f0e1",
+          "zipBytesEqual": true
+        }
+      ],
+      "sha256ManifestChecks": [
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+          "sha256": "0fc4d32b2bc24fd9d16832740d86f1aa4d08be7d44729924f9802fa5752d8995"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+          "sha256": "799334be8def829b9881b8ad0e4e6c1c4a6a9c333a0f9c70e6ccdee2e1a16571"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+          "sha256": "b2ce95b2eab888ad64345cac391cc05439903b7b71af590088bc760566941923"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+          "sha256": "6c52b7fac95b8ea5c645efc898639d8c50c448edbc4664c341f888cd40e9e47a"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+          "sha256": "8dc6f06060735c67449791dde428c19d09d7526ecdc9fb4e6359d93dca141c4c"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+          "sha256": "f59c765f82a125c03316abbbd9b81c52c3faa11e9f31f99a34364fbbc08d955b"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+          "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md",
+          "sha256": "33bd3880791f1bf2fda6fd121cfd55e2f3042b595da1adbe967a689414f37016"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+          "sha256": "7287dcf18e1ee9a190ef4cae56763de918f94796ac28735e5ce6d95ef101936d"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+          "sha256": "cb82c1d032a2ec3b3355c46980d16eb67139b1bceabc15cb4631fe100cbdac7c"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json",
+          "sha256": "767140950ecd27d096eea41db600d1a12a8a21d16d0004ec8c6fe165d1d1b03e"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+          "sha256": "f65b60df708c31f9908afcd88ddb0ec6dad4799c7dfef75f356394c640fcc38e"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md",
+          "sha256": "f844779da9a650a2744e8d07e1198015966a1e50435a59101664b708e3fa934b"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md",
+          "sha256": "5f35b35cfe580aad5b1f8990954285dae88fb0451645ce43088ced9099fbcd50"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md",
+          "sha256": "e6126982afc09c0174279418a6d8563b5b88645c2c080a38d698a53410c14fd5"
+        }
+      ],
+      "replacementDiffs": [
+        {
+          "target": "docs/05-design-decisions.md",
+          "old": {
+            "bytes": 14146,
+            "sha256": "f59c765f82a125c03316abbbd9b81c52c3faa11e9f31f99a34364fbbc08d955b",
+            "git_blob": "574e1f4cc1fc76ff48c26217b27f911d03c56095"
+          },
+          "new": {
+            "bytes": 14863,
+            "sha256": "f844779da9a650a2744e8d07e1198015966a1e50435a59101664b708e3fa934b",
+            "git_blob": "ec5119cc2192b01ea78d94c751655fc6fc479a4f"
+          },
+          "exactManifestDiff": true
+        },
+        {
+          "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+          "old": {
+            "bytes": 11026,
+            "sha256": "7287dcf18e1ee9a190ef4cae56763de918f94796ac28735e5ce6d95ef101936d",
+            "git_blob": "33c964ad9460209fc589d5d2a9e746ceb1d54e34"
+          },
+          "new": {
+            "bytes": 13141,
+            "sha256": "5f35b35cfe580aad5b1f8990954285dae88fb0451645ce43088ced9099fbcd50",
+            "git_blob": "c52c08df1cd99b6d376e3d43174e72e0866758bf"
+          },
+          "exactManifestDiff": true
+        },
+        {
+          "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+          "old": {
+            "bytes": 9680,
+            "sha256": "cb82c1d032a2ec3b3355c46980d16eb67139b1bceabc15cb4631fe100cbdac7c",
+            "git_blob": "184f68867886cd1a7cc7dbe1d90c11ec1173ced3"
+          },
+          "new": {
+            "bytes": 10413,
+            "sha256": "e6126982afc09c0174279418a6d8563b5b88645c2c080a38d698a53410c14fd5",
+            "git_blob": "cf308a1b16d932ba8d99da07bb0dcdce7201f0e1"
+          },
+          "exactManifestDiff": true
+        }
+      ],
+      "payloads": [
+        {
+          "input": "approved-documents/DEC-051-append.md",
+          "source_package": "ADDENDUM-01",
+          "target": "docs/05-design-decisions.md",
+          "operation": "append_after_two_lf",
+          "bytes": 14863,
+          "sha256": "f844779da9a650a2744e8d07e1198015966a1e50435a59101664b708e3fa934b",
+          "git_blob": "ec5119cc2192b01ea78d94c751655fc6fc479a4f",
+          "targetFingerprint": {
+            "bytes": 261442,
+            "sha256": "1c8d79d8db0859e6d1e571e6ca29df8c37e91e14520a00659a699c15fd084d5a",
+            "git_blob": "c739151493cd8b5e46e03d25008ea0fb128c3e14"
+          },
+          "exactEffectiveSource": true
+        },
+        {
+          "input": "approved-documents/infected-terminal-core-test-config-v0.1.json",
+          "source_package": "ORIGINAL-v1.0",
+          "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+          "operation": "copy_exact",
+          "bytes": 770,
+          "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+          "git_blob": "fa999e7f456414daf6279fd8fbff3cd117394135",
+          "targetFingerprint": {
+            "bytes": 770,
+            "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+            "git_blob": "fa999e7f456414daf6279fd8fbff3cd117394135"
+          },
+          "exactEffectiveSource": true
+        },
+        {
+          "input": "approved-documents/terminal-core-contract-v1.0.md",
+          "source_package": "ADDENDUM-01",
+          "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+          "operation": "copy_exact",
+          "bytes": 13141,
+          "sha256": "5f35b35cfe580aad5b1f8990954285dae88fb0451645ce43088ced9099fbcd50",
+          "git_blob": "c52c08df1cd99b6d376e3d43174e72e0866758bf",
+          "targetFingerprint": {
+            "bytes": 13141,
+            "sha256": "5f35b35cfe580aad5b1f8990954285dae88fb0451645ce43088ced9099fbcd50",
+            "git_blob": "c52c08df1cd99b6d376e3d43174e72e0866758bf"
+          },
+          "exactEffectiveSource": true
+        },
+        {
+          "input": "approved-documents/terminal-restore-contract-v1.0.md",
+          "source_package": "ADDENDUM-01",
+          "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+          "operation": "copy_exact",
+          "bytes": 10413,
+          "sha256": "e6126982afc09c0174279418a6d8563b5b88645c2c080a38d698a53410c14fd5",
+          "git_blob": "cf308a1b16d932ba8d99da07bb0dcdce7201f0e1",
+          "targetFingerprint": {
+            "bytes": 10413,
+            "sha256": "e6126982afc09c0174279418a6d8563b5b88645c2c080a38d698a53410c14fd5",
+            "git_blob": "cf308a1b16d932ba8d99da07bb0dcdce7201f0e1"
+          },
+          "exactEffectiveSource": true
+        },
+        {
+          "input": "approved-documents/terminal-batch-plan-v1.0.md",
+          "source_package": "ORIGINAL-v1.0",
+          "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+          "operation": "copy_exact",
+          "bytes": 5287,
+          "sha256": "33bd3880791f1bf2fda6fd121cfd55e2f3042b595da1adbe967a689414f37016",
+          "git_blob": "f9e97aafdba863dad17a2fc51a624bb236a7dc07",
+          "targetFingerprint": {
+            "bytes": 5287,
+            "sha256": "33bd3880791f1bf2fda6fd121cfd55e2f3042b595da1adbe967a689414f37016",
+            "git_blob": "f9e97aafdba863dad17a2fc51a624bb236a7dc07"
+          },
+          "exactEffectiveSource": true
+        }
+      ],
+      "dec": {
+        "exactBaselinePlusTwoLFPlusPayload": true,
+        "baseBlob": "f13e8c5718583d08aec3ce09edd311df60ee61b0",
+        "entries": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51
+        ],
+        "C01toC12": true
+      },
+      "baseTextPreservation": [
+        {
+          "path": "docs/01-game-design-v0.1.md",
+          "mode": "append_only",
+          "baseFingerprint": {
+            "bytes": 34338,
+            "sha256": "e70d8e62d31dc73923963cc00f691a12814d6a23e24edc93d4d4bd44f56a8092",
+            "git_blob": "ece3e94901f06a14f6c182240347e34d8822cb43"
+          },
+          "addedBytes": 1602
+        },
+        {
+          "path": "docs/02-vertical-slice.md",
+          "mode": "append_only",
+          "baseFingerprint": {
+            "bytes": 48164,
+            "sha256": "6a876ab28bf8de7a8fea5d787c077b95e3ff08d40f8bbf08df4b7baf0cfd8777",
+            "git_blob": "d48421cb7703788a859f94dedf1668f50b49cd3f"
+          },
+          "addedBytes": 1543
+        },
+        {
+          "path": "docs/03-architecture.md",
+          "mode": "append_only",
+          "baseFingerprint": {
+            "bytes": 65455,
+            "sha256": "2afabd3367bd03feeff22bc98aa94852443fb64e896c6f91584d10037b777720",
+            "git_blob": "d4ad68a1f5df6346c074f6e8b273b9af5ab6b55b"
+          },
+          "addedBytes": 1810
+        },
+        {
+          "path": "docs/07-decision-supersession-index.md",
+          "mode": "append_only",
+          "baseFingerprint": {
+            "bytes": 8931,
+            "sha256": "266161ed8748bbbd7210d05b635e7d2f15b8a97c9366630d8b337ca8d0d3182f",
+            "git_blob": "073df511e46b0346075d95fc861c50ad62b632c3"
+          },
+          "addedBytes": 1431
+        },
+        {
+          "path": "docs/08-rule-implementation-traceability.md",
+          "mode": "append_only",
+          "baseFingerprint": {
+            "bytes": 59821,
+            "sha256": "83164041fa5359d6734952d183acdb23cf872245c5ebdd20b119a001ba8ab359",
+            "git_blob": "54f59346dff124210d85d587da24e6d94fdaa5fb"
+          },
+          "addedBytes": 1671
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "mode": "append_only",
+          "baseFingerprint": {
+            "bytes": 19926,
+            "sha256": "aa7e561ccda569847a8553bd240ce876f679408297c58c4ba86aae670930a75c",
+            "git_blob": "1e62c8189e684b9c2357a148cb2efa06a95460a4"
+          },
+          "addedBytes": 1430
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "mode": "append_only",
+          "baseFingerprint": {
+            "bytes": 19013,
+            "sha256": "f55206bacb3fc70c818f00f70cde769585e81f5aa24711ed98280933b49cff6e",
+            "git_blob": "412109366b4ba5d765e4cbe6f67ad8c70904f57d"
+          },
+          "addedBytes": 1754
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+          "mode": "append_only",
+          "baseFingerprint": {
+            "bytes": 10520,
+            "sha256": "19413c87e0011799451275da4a0f32ce5526c17a98e83abd2e77cf2791a5dffb",
+            "git_blob": "c3998bcbef4100c82788b176b7d8fb33a2b5e7ee"
+          },
+          "addedBytes": 1390
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+          "mode": "append_only",
+          "baseFingerprint": {
+            "bytes": 16212,
+            "sha256": "a54aa04b2338929e114cd5618020dc2f30220c9d382fc5e97a6b943717f65a7b",
+            "git_blob": "d68c09d505393be1fd81157e516ccc6b47b772fe"
+          },
+          "addedBytes": 1575
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+          "mode": "append_only",
+          "baseFingerprint": {
+            "bytes": 10094,
+            "sha256": "90c04c6b55a0fe878863dfac54505c7fe74702f765cf0b774da291c90a041018",
+            "git_blob": "719dbbe5937e69278706a923cdd9dd6a74983ddd"
+          },
+          "addedBytes": 1491
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+          "mode": "prepend_only",
+          "baseFingerprint": {
+            "bytes": 4632,
+            "sha256": "745c860082bb16d70622d84ffea3d9c0861aa58de6635ce02782f05895269c65",
+            "git_blob": "c9feec518c5eb3c7138dd19283577bf511046e33"
+          },
+          "addedBytes": 1542
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+          "mode": "prepend_only",
+          "baseFingerprint": {
+            "bytes": 6932,
+            "sha256": "76b490110eed1831b7aad99dd7b874ad31891ad4b0a9ed57416b17dcb538e28a",
+            "git_blob": "f762e719b2253f1d97c77fbe6c8439eb82d305c7"
+          },
+          "addedBytes": 1417
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+          "mode": "prepend_only",
+          "baseFingerprint": {
+            "bytes": 12977,
+            "sha256": "d09158660de1e02980e928cbcfffbc5f3b6d9ae04c4714e02998f0ef8781f305",
+            "git_blob": "62fd4d6c4e58be84355e8a507bfadda7422af676"
+          },
+          "addedBytes": 1526
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+          "mode": "prepend_only",
+          "baseFingerprint": {
+            "bytes": 8960,
+            "sha256": "b9d3cc15057d9afe27c5ff7c27790d86d939201fbe7676b9ea4320fa7b445f8d",
+            "git_blob": "6521328f7c52c04b05a32bc63ce46919f5314312"
+          },
+          "addedBytes": 1528
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+          "mode": "prepend_only",
+          "baseFingerprint": {
+            "bytes": 14400,
+            "sha256": "0a3e8aca7599a12362416ee1e364818e934b86d0432b1856647b0c4cbd153880",
+            "git_blob": "cba0ef14b10a3248e5a6093c71f0e413400538be"
+          },
+          "addedBytes": 1427
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+          "mode": "prepend_only",
+          "baseFingerprint": {
+            "bytes": 8245,
+            "sha256": "86af89db95420f10bfad1dbee13fcceef03c3b8833620e82bf039f45fd2efb07",
+            "git_blob": "78bd23af63d6c50f61f7752b1c37744acbc57f74"
+          },
+          "addedBytes": 1492
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/04-main-mission.md",
+          "mode": "prepend_only",
+          "baseFingerprint": {
+            "bytes": 21733,
+            "sha256": "4802a90a99773b87f6ee3f905284015effc9aabfc680cdb51f221c3f424b7356",
+            "git_blob": "8c01dfd801e0f9992abeb8668b0500561f1b3e5f"
+          },
+          "addedBytes": 1621
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+          "mode": "prepend_only",
+          "baseFingerprint": {
+            "bytes": 35339,
+            "sha256": "c69162e7712dcbd7689267d0f19f058b77b3b97918fd94ff2f35d73332fa3159",
+            "git_blob": "8c483be4ee5f89fbf3f93c120c18e0df0930e802"
+          },
+          "addedBytes": 1714
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+          "mode": "prepend_only",
+          "baseFingerprint": {
+            "bytes": 37178,
+            "sha256": "8c789e5e662be66c88c84f02d9436adfb66d6c11b9540b679d50e8d11cc8cf44",
+            "git_blob": "873274ea93986308d15dcf2424a33b681bf08b7e"
+          },
+          "addedBytes": 1699
+        }
+      ],
+      "parameters": {
+        "oracle": {
+          "success_reward": 120,
+          "initial_balance": 0,
+          "balance_max": 2147483647,
+          "failure_penalty": 20
+        },
+        "exactKeysAndIntegers": true,
+        "unchangedCandidate": {
+          "bytes": 1521,
+          "sha256": "86bc5f8ab2a89ad6b0d827747dd27f2054896da787817ab82f3f676311fe0504",
+          "git_blob": "f0a5b2190feea4ca541e68fc0ea0e11ec53244b3"
+        },
+        "G1": {
+          "path": "docs/content/infected-residence-core-test-config-v0.1.json",
+          "bytes": 1417,
+          "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9",
+          "git_blob": "db6959ac02bf1e3bf8e816fe2b0d148ced9ca273",
+          "numericValues": 34
+        },
+        "adoptionTextComparison": "Root and two read-only reviewers checked approved trial scope; 120/0/max trial, 20 current commission only."
+      },
+      "encodingWhitespace": {
+        "checkedPaths": [
+          "docs/01-game-design-v0.1.md",
+          "docs/02-vertical-slice.md",
+          "docs/03-architecture.md",
+          "docs/05-design-decisions.md",
+          "docs/07-decision-supersession-index.md",
+          "docs/08-rule-implementation-traceability.md",
+          "docs/content/infected-terminal-core-test-config-v0.1.json",
+          "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "docs/design-drafts/world-infected-001/04-main-mission.md",
+          "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+          "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+          "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+          "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+          "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+          "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+          "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/SHA256SUMS.txt",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/checks.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+          "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+          "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+          "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+          "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+          "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+          "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+          "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md"
+        ],
+        "scope": "New bytes only in existing files; full archive/payload/report bytes for newly added files; existing baseline bytes preserved."
+      },
+      "blockedHistoryPreserved": {
+        "completionBytePrefix": true,
+        "checksAllPreviousKeysValues": true
+      },
+      "links": {
+        "count": 191,
+        "checks": [
+          {
+            "source": "docs/05-design-decisions.md",
+            "reference": "design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md mapped to formal destination"
+          },
+          {
+            "source": "docs/05-design-decisions.md",
+            "reference": "design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md mapped to formal destination"
+          },
+          {
+            "source": "docs/05-design-decisions.md",
+            "reference": "engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md mapped to formal destination"
+          },
+          {
+            "source": "docs/05-design-decisions.md",
+            "reference": "content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md mapped to formal destination"
+          },
+          {
+            "source": "docs/05-design-decisions.md",
+            "reference": "engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md mapped to formal destination"
+          },
+          {
+            "source": "docs/05-design-decisions.md",
+            "reference": "engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md mapped to formal destination"
+          },
+          {
+            "source": "docs/05-design-decisions.md",
+            "reference": "engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md mapped to formal destination"
+          },
+          {
+            "source": "docs/05-design-decisions.md",
+            "reference": "design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/05-design-decisions.md",
+            "reference": "design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/05-design-decisions.md",
+            "reference": "engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/05-design-decisions.md",
+            "reference": "content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/05-design-decisions.md",
+            "reference": "engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/05-design-decisions.md",
+            "reference": "engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/05-design-decisions.md",
+            "reference": "engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "reference": "../../design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "reference": "../../design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "reference": "../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "reference": "terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "reference": "../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "reference": "../../design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "reference": "../../design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "reference": "../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "reference": "terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "reference": "../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "reference": "../../design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "reference": "../../design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "reference": "../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "reference": "runtime-restore-supplement-v1.0.md",
+            "target": "docs/engineering/residence-foundation/runtime-restore-supplement-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "reference": "terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "reference": "terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "reference": "../../design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "reference": "../../design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "reference": "../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "reference": "runtime-restore-supplement-v1.0.md",
+            "target": "docs/engineering/residence-foundation/runtime-restore-supplement-v1.0.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "reference": "terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "reference": "terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "original historical payload mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "reference": "../../design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "reference": "../../design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "reference": "../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "reference": "terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "reference": "terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md mapped to formal destination"
+          },
+          {
+            "source": "docs/01-game-design-v0.1.md",
+            "reference": "design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/01-game-design-v0.1.md",
+            "reference": "design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/01-game-design-v0.1.md",
+            "reference": "05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/01-game-design-v0.1.md",
+            "reference": "content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/01-game-design-v0.1.md",
+            "reference": "engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/01-game-design-v0.1.md",
+            "reference": "engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/01-game-design-v0.1.md",
+            "reference": "engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/02-vertical-slice.md",
+            "reference": "design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/02-vertical-slice.md",
+            "reference": "design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/02-vertical-slice.md",
+            "reference": "05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/02-vertical-slice.md",
+            "reference": "content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/02-vertical-slice.md",
+            "reference": "engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/02-vertical-slice.md",
+            "reference": "engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/02-vertical-slice.md",
+            "reference": "engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/03-architecture.md",
+            "reference": "design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/03-architecture.md",
+            "reference": "design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/03-architecture.md",
+            "reference": "05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/03-architecture.md",
+            "reference": "content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/03-architecture.md",
+            "reference": "engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/03-architecture.md",
+            "reference": "engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/03-architecture.md",
+            "reference": "engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/07-decision-supersession-index.md",
+            "reference": "design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/07-decision-supersession-index.md",
+            "reference": "design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/07-decision-supersession-index.md",
+            "reference": "05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/07-decision-supersession-index.md",
+            "reference": "content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/07-decision-supersession-index.md",
+            "reference": "engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/07-decision-supersession-index.md",
+            "reference": "engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/07-decision-supersession-index.md",
+            "reference": "engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/08-rule-implementation-traceability.md",
+            "reference": "design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/08-rule-implementation-traceability.md",
+            "reference": "design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/08-rule-implementation-traceability.md",
+            "reference": "05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/08-rule-implementation-traceability.md",
+            "reference": "content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/08-rule-implementation-traceability.md",
+            "reference": "engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/08-rule-implementation-traceability.md",
+            "reference": "engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/08-rule-implementation-traceability.md",
+            "reference": "engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/01-world-overview.md",
+            "reference": "entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/01-world-overview.md",
+            "reference": "entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/01-world-overview.md",
+            "reference": "../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/01-world-overview.md",
+            "reference": "../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/01-world-overview.md",
+            "reference": "../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/01-world-overview.md",
+            "reference": "../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/01-world-overview.md",
+            "reference": "../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+            "reference": "entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+            "reference": "entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+            "reference": "../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+            "reference": "../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+            "reference": "../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+            "reference": "../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+            "reference": "../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+            "reference": "../entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+            "reference": "../entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+            "reference": "../../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+            "reference": "../../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+            "reference": "../../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+            "reference": "../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+            "reference": "../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+            "reference": "../entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+            "reference": "../entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+            "reference": "../../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+            "reference": "../../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+            "reference": "../../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+            "reference": "../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+            "reference": "../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+            "reference": "../entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+            "reference": "../entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+            "reference": "../../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+            "reference": "../../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+            "reference": "../../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+            "reference": "../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+            "reference": "../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+            "reference": "adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+            "reference": "adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+            "reference": "../../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+            "reference": "../../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+            "reference": "../../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+            "reference": "../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+            "reference": "../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+            "reference": "adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+            "reference": "adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+            "reference": "../../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+            "reference": "../../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+            "reference": "../../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+            "reference": "../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+            "reference": "../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+            "reference": "adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+            "reference": "adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+            "reference": "../../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+            "reference": "../../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+            "reference": "../../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+            "reference": "../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+            "reference": "../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+            "reference": "adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+            "reference": "adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+            "reference": "../../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+            "reference": "../../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+            "reference": "../../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+            "reference": "../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+            "reference": "../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+            "reference": "adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+            "reference": "adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+            "reference": "../../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+            "reference": "../../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+            "reference": "../../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+            "reference": "../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+            "reference": "../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+            "reference": "adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+            "reference": "adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+            "reference": "../../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+            "reference": "../../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+            "reference": "../../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+            "reference": "../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+            "reference": "../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/04-main-mission.md",
+            "reference": "entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/04-main-mission.md",
+            "reference": "entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/04-main-mission.md",
+            "reference": "../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/04-main-mission.md",
+            "reference": "../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/04-main-mission.md",
+            "reference": "../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/04-main-mission.md",
+            "reference": "../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/04-main-mission.md",
+            "reference": "../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+            "reference": "entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+            "reference": "entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+            "reference": "../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+            "reference": "../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+            "reference": "../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+            "reference": "../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+            "reference": "../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+            "reference": "../entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+            "reference": "../entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+            "reference": "../../../05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+            "reference": "../../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+            "reference": "../../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+            "reference": "../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+            "reference": "../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "new current note"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "inputs/approved-documents/DEC-051-append.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "inputs/approved-documents/terminal-core-contract-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "inputs/approved-documents/terminal-restore-contract-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "../../../../../src/core/character-cycle/cycle.ts",
+            "target": "src/core/character-cycle/cycle.ts",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "../../../../../src/core/character-cycle/cycle.test.ts",
+            "target": "src/core/character-cycle/cycle.test.ts",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "checks.json",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/checks.json",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "../../../../../docs/05-design-decisions.md#dec-051",
+            "target": "docs/05-design-decisions.md",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "../../../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "../../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "../../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "../../../../content/infected-terminal-core-test-config-v0.1.json",
+            "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json",
+            "scope": "completion includes preserved blocked history"
+          },
+          {
+            "source": "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+            "reference": "checks.json",
+            "target": "docs/design-drafts/world-infected-001/entry-003/adoption/checks.json",
+            "scope": "completion includes preserved blocked history"
+          }
+        ],
+        "historicalInputPolicy": "Original 17 inputs immutable; payload Markdown links mapped to their formal target locations. Other old prose/code references remain historical evidence; not a whole-repository link audit."
+      },
+      "pathObjects": {
+        "allChangedPaths": [
+          "docs/01-game-design-v0.1.md",
+          "docs/02-vertical-slice.md",
+          "docs/03-architecture.md",
+          "docs/05-design-decisions.md",
+          "docs/07-decision-supersession-index.md",
+          "docs/08-rule-implementation-traceability.md",
+          "docs/content/infected-terminal-core-test-config-v0.1.json",
+          "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "docs/design-drafts/world-infected-001/04-main-mission.md",
+          "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+          "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+          "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+          "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+          "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+          "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+          "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/SHA256SUMS.txt",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/checks.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+          "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+          "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+          "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+          "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+          "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+          "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+          "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md"
+        ],
+        "outsideWhitelistChanges": [],
+        "mode": "worktree git diff and all untracked paths; full index object audit required before commit"
+      },
+      "sourceReadOnlyEvidence": [
+        {
+          "path": "src/core/character-cycle/cycle.ts",
+          "ref": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+          "git_blob": "1995dbc50e47ad4a799c52cdad18b0965261e577",
+          "read": "完整文件；只读代码核对",
+          "supports": "result初始steps=[]；normal-return只生成return-due，body/cycle不变，不调用settleBody；deadline/rest按真实日结步骤",
+          "actualFingerprint": {
+            "bytes": 9453,
+            "sha256": "09c3da4f1d1bebf4d4ceeb80d8b461e0e88c0c5ceb6b199a7f6671185045e8ff",
+            "git_blob": "1995dbc50e47ad4a799c52cdad18b0965261e577"
+          }
+        },
+        {
+          "path": "src/core/character-cycle/cycle.test.ts",
+          "ref": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+          "git_blob": "4cb5a7d0a22f583814033a77d0103ecc19e9df3f",
+          "read": "第70—145行；只读测试内容核对",
+          "supports": "normal Day7 return at E0：result.steps精确为空、body原样、cycle=7、return-due",
+          "actualFingerprint": {
+            "bytes": 16044,
+            "sha256": "4d9b590e3fbfb81e265733da3b61ef033c698cc24ac55ac85925ccaa379899dc",
+            "git_blob": "4cb5a7d0a22f583814033a77d0103ecc19e9df3f"
+          }
+        },
+        {
+          "path": "src/core/residence-location/types.ts",
+          "ref": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+          "git_blob": "29f26b2afb649843c38b6aca3b109ee6acf893e9",
+          "read": "完整文件；只读类型核对",
+          "supports": "LocationPlan.steps为BodyStep[]，不是有限模型字符串列表",
+          "actualFingerprint": {
+            "bytes": 3168,
+            "sha256": "6cbc9eb289b52711d0101980a895279d24a3cfd82e8950b471d6923e200677db",
+            "git_blob": "29f26b2afb649843c38b6aca3b109ee6acf893e9"
+          }
+        },
+        {
+          "path": "src/core/character-cycle/types.ts",
+          "actualFingerprint": {
+            "bytes": 3087,
+            "sha256": "3386ca1fabb471990f571b9f2122e380ef9bd5bab3aabfd70bcb7fbc1bdf1296",
+            "git_blob": "c360cb6ca13454defb43fffce752b1980c13756c"
+          },
+          "read": "full file; BodyStep objects"
+        }
+      ],
+      "result": "PASS_DOCUMENT_CHECKS_ONLY"
+    },
+    "nativeCommandsInitial": [
+      {
+        "command": [
+          "npm.cmd",
+          "run",
+          "validate:architecture"
+        ],
+        "exitCode": 0,
+        "stdout": "\n> elevator-survival@0.0.0 validate:architecture\n> node scripts/validate-architecture.mjs\n\nArchitecture validation passed: 51 DEC entries and 246 core production files checked.\n",
+        "stderr": "",
+        "utc": "2026-10-04T12:11:38.740458+00:00"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exitCode": 2,
+        "stdout": "docs/01-game-design-v0.1.md:1204: new blank line at EOF.\ndocs/02-vertical-slice.md:635: new blank line at EOF.\ndocs/03-architecture.md:630: new blank line at EOF.\ndocs/07-decision-supersession-index.md:96: new blank line at EOF.\ndocs/08-rule-implementation-traceability.md:185: new blank line at EOF.\ndocs/design-drafts/world-infected-001/01-world-overview.md:161: new blank line at EOF.\ndocs/design-drafts/world-infected-001/10-decision-queue.md:164: new blank line at EOF.\ndocs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md:80: new blank line at EOF.\ndocs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md:101: new blank line at EOF.\ndocs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md:89: new blank line at EOF.\n",
+        "stderr": "",
+        "utc": "2026-10-04T12:11:38.815519+00:00"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--cached",
+          "--check"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "utc": "2026-10-04T12:11:38.847545+00:00"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+          "--check"
+        ],
+        "exitCode": 2,
+        "stdout": "docs/01-game-design-v0.1.md:1204: new blank line at EOF.\ndocs/02-vertical-slice.md:635: new blank line at EOF.\ndocs/03-architecture.md:630: new blank line at EOF.\ndocs/07-decision-supersession-index.md:96: new blank line at EOF.\ndocs/08-rule-implementation-traceability.md:185: new blank line at EOF.\ndocs/design-drafts/world-infected-001/01-world-overview.md:161: new blank line at EOF.\ndocs/design-drafts/world-infected-001/10-decision-queue.md:164: new blank line at EOF.\ndocs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md:80: new blank line at EOF.\ndocs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md:101: new blank line at EOF.\ndocs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md:89: new blank line at EOF.\n",
+        "stderr": "",
+        "utc": "2026-10-04T12:11:38.922606+00:00"
+      }
+    ],
+    "nativeCommandsAfterRepair": [
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "utc": "2026-10-04T12:14:52.382481+00:00"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--cached",
+          "--check"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "utc": "2026-10-04T12:14:52.419512+00:00"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+          "--check"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "utc": "2026-10-04T12:14:52.497077+00:00"
+      }
+    ],
+    "revisions": [
+      {
+        "issue": "Previous BLOCKED_PAYLOAD_STEP_SCOPE",
+        "resolution": "Authorized ADDENDUM-01 replaces only effective DEC/A/restore payloads; old inputs, manifests and report history retained."
+      },
+      {
+        "issue": "Temporary Python shell writer had nested quote SyntaxError; process exit 1; attempted script did not exist",
+        "effect": "No repository bytes were changed by failed attempt; corrected direct writer succeeded; no check output suppressed."
+      },
+      {
+        "issue": "Initial ordinary and base diff checks exit 2: 10 new blank lines at EOF; cached exit0 with nothing staged",
+        "resolution": "Removed one new trailing LF only from each appended note; all baseline prefixes intact; true original diagnostics and repaired exit0 retained."
+      },
+      {
+        "issue": "Self-review improved traceability labels",
+        "resolution": "C08/C11 mapped to recovery, C10 to parameters; changed only new note, no payload or old正文 rewrite."
+      }
+    ],
+    "semanticSelfReview": {
+      "normalReturn": "Real G1 steps=[]; alive/null/null; body and cycle unchanged, revision+1 and bound return-due; legal H0/independent provenance still required; no night/no fake steps.",
+      "deadlineAndRest": "Retain actual ordered G1/G2 body steps; alive deadline-ready only after true settlement; no Day8 and no duplicate same cycle; future real cycles not exempt.",
+      "death": "Actual nonempty typed BodyStep sequence, source/cause/order and HP0 short circuit before consuming tail; never replay damage/random/effects; no bonus/fine/recall/legacy inheritance.",
+      "scope": "Approved only current commission, four trial integers, real carried assets and new technical contract; no new ordinary-item list, frozen wallet, retries, producers or O3 decision.",
+      "ownership": "A pure plan; B strict aggregate and parallel v2 codec without install/IO; C after exact-SHA A/B reviews complete preencode/current/write/notify. Independent expected and old O2/v1 unchanged.",
+      "currentSource": "G4 limited headless capabilities remain; no new closed/death/terminal production support claimed.",
+      "authorityAndEvidence": "Owner actual approval and Addendum are current; original payloads/history retained. Historical 106/175 and mainline37/43 not counted as this task."
+    },
+    "readOnlyCrossReview": [
+      {
+        "reviewer": "entry002_rules_readonly",
+        "scope": "All19 added notes and effective payload map; full new payloads and fixed source before writing",
+        "result": "No substantive conflict; no checks/tests executed by reviewer."
+      },
+      {
+        "reviewer": "entry002_restore_readonly",
+        "scope": "9 ownership/restore/terminal added notes; fixed G1/G2 source/types and exact replacement diffs",
+        "result": "No substantive conflict; no checks/tests executed by reviewer."
+      }
+    ],
+    "productionCodeAdded": 0,
+    "productionTestsAdded": 0,
+    "notRun": {
+      "initial production tests": "NOT RUN",
+      "final production tests": "NOT RUN",
+      "npm run check": "NOT RUN",
+      "historical finite models": "NOT RUN",
+      "native API probes": "NOT RUN",
+      "build": "NOT RUN",
+      "browser / multi-tab": "NOT RUN",
+      "Owner playtest": "NOT RUN"
+    },
+    "unresolved": [
+      "Exact-SHA mainline document review PENDING",
+      "A/B/C implementation not executed and requires later tasks/reviews",
+      "Goods/treatment/unlocks/specialties/toolkit/full content and player entry remain outside adopted subset",
+      "O3 old hospital entry/slot release remains OPEN; browser and Owner experience gates NOT RUN"
+    ],
+    "stop": "After one ordinary commit/push and exact remote/object verification, wait for current WebGPT mainline document review; no next engineering.",
+    "indexAuditBeforeFinalReportRestage": {
+      "result": "PASS_DOCUMENT_CHECKS_ONLY",
+      "utc": "2026-10-04T12:19:11.487524+00:00",
+      "pathObjects": {
+        "allChangedPaths": [
+          "docs/01-game-design-v0.1.md",
+          "docs/02-vertical-slice.md",
+          "docs/03-architecture.md",
+          "docs/05-design-decisions.md",
+          "docs/07-decision-supersession-index.md",
+          "docs/08-rule-implementation-traceability.md",
+          "docs/content/infected-terminal-core-test-config-v0.1.json",
+          "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "docs/design-drafts/world-infected-001/04-main-mission.md",
+          "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+          "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+          "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+          "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+          "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+          "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+          "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/SHA256SUMS.txt",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/checks.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+          "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+          "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+          "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+          "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+          "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+          "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+          "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md"
+        ],
+        "outsideWhitelistChanges": [],
+        "protectedRootTrees": [
+          {
+            "path": "src",
+            "tree": "4d28340ad020950e90bbbed1dc0b902a7f6880db"
+          },
+          {
+            "path": "scripts",
+            "tree": "a619e6b856375dfea3ab54551408b1835a66dcdf"
+          },
+          {
+            "path": ".github",
+            "tree": "026a7d1464c067e99f7ec653f0c9902b7519a71e"
+          }
+        ],
+        "unchangedOutsideWhitelistCount": 791,
+        "mode": "index",
+        "tree": "4f5c97967376e27298d17af2f3723d5f21d4628c"
+      },
+      "archives": 17,
+      "manifestChecks": 15,
+      "payloadsExact": 5,
+      "oldPrefixes": 10,
+      "oldSuffixes": 9,
+      "links": 191,
+      "note": "Full index blobs inspected before these last report additions. Final report restage and diff/object recheck will be recorded externally; no self-referential commit hash."
+    },
+    "nativeCommandsStaged": [
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "utc": "2026-10-04T12:19:58.410472+00:00"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--cached",
+          "--check"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "utc": "2026-10-04T12:19:58.470022+00:00"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+          "--check"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "utc": "2026-10-04T12:19:58.537578+00:00"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--cached",
+          "--name-status"
+        ],
+        "exitCode": 0,
+        "stdout": "M\tdocs/01-game-design-v0.1.md\nM\tdocs/02-vertical-slice.md\nM\tdocs/03-architecture.md\nM\tdocs/05-design-decisions.md\nM\tdocs/07-decision-supersession-index.md\nM\tdocs/08-rule-implementation-traceability.md\nA\tdocs/content/infected-terminal-core-test-config-v0.1.json\nM\tdocs/design-drafts/world-infected-001/01-world-overview.md\nM\tdocs/design-drafts/world-infected-001/04-main-mission.md\nM\tdocs/design-drafts/world-infected-001/10-decision-queue.md\nM\tdocs/design-drafts/world-infected-001/11-points-hub-recovery.md\nM\tdocs/design-drafts/world-infected-001/entry-003/00-owner-review.md\nM\tdocs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md\nM\tdocs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md\nM\tdocs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md\nM\tdocs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md\nM\tdocs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/SHA256SUMS.txt\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/checks.json\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md\nA\tdocs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md\nM\tdocs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md\nM\tdocs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md\nM\tdocs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md\nM\tdocs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md\nA\tdocs/engineering/residence-foundation/terminal-batch-plan-v1.0.md\nA\tdocs/engineering/residence-foundation/terminal-core-contract-v1.0.md\nA\tdocs/engineering/residence-foundation/terminal-restore-contract-v1.0.md\n",
+        "stderr": "",
+        "utc": "2026-10-04T12:19:58.574608+00:00"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--name-status"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "utc": "2026-10-04T12:19:58.615142+00:00"
+      }
+    ],
+    "stagePermissionRecord": {
+      "firstAttempt": {
+        "command": [
+          "git",
+          "add",
+          "--",
+          "docs/05-design-decisions.md",
+          "docs/01-game-design-v0.1.md",
+          "docs/02-vertical-slice.md",
+          "docs/03-architecture.md",
+          "docs/07-decision-supersession-index.md",
+          "docs/08-rule-implementation-traceability.md",
+          "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+          "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+          "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+          "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+          "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+          "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+          "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+          "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+          "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+          "docs/design-drafts/world-infected-001/04-main-mission.md",
+          "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+          "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+          "docs/content/infected-terminal-core-test-config-v0.1.json",
+          "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+          "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+          "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/checks.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/SHA256SUMS.txt",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md"
+        ],
+        "exitCode": 128,
+        "stdout": "",
+        "stderr": "fatal: Unable to create 'E:/projects/elevator-survival/.git/index.lock': Permission denied\n",
+        "utc": "2026-10-04T12:17:27.815190+00:00"
+      },
+      "authorizedContinuation": "Escalated git add completed as confirmed by subsequent exact43 staged object audit. Receipt writer then failed with PermissionError writing sandbox-owned temp file; the outer Python exit1 is not reported as git add failure or exit0. Future Git calls use direct commands and default sandbox records receipts.",
+      "dependentInitialIndexAttempt": "After initial denied staging, index audit stopped on missing unstaged manifest (git show exit128); it was not a passed audit. After authorized staging full index audit passed."
+    },
+    "gitDelivery": "Pending one ordinary commit and same-branch push; final SHA/parent/tree and actual remote receipts in final user message."
+  }
+}

@@ -83,3 +83,13 @@ DOC-WORLD-ENTRY-001于2026-10-03归档；权威正文为[DEC-049](05-design-deci
 | 原首契约B2／B4／B5／B6 | 后续冷候选／聚合／安装／完整事务依独立补充合同 | 原expected及K18/K19、原契约字节及身份核心PASS |
 
 具体试用值仅以唯一配置为准；索引不增加051、不采纳地图价／物品效果或O3发布选择。
+
+
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](05-design-decisions.md#dec-051)、[四值试用配置](content/infected-terminal-core-test-config-v0.1.json)、[A契约](engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+DEC-051局部补齐当前新委托的H0资格与明确意图、四终局、任务件／普通实物处置、四数值、容量守卫及关闭恢复。它不整体废止DEC-001—050；DEC-049／050的身份、单次驻留、日级和原恢复要求继续适用。旧医院现行规则与O3旧入口／旧槽发布安排不由本条改动。
+
+来源稿中120／初始0／上限的旧“待审”仅在该首批终局子集内被采纳；商品、治疗、战斗、地图等其余候选不随之批准。旧三份归档载荷的统一非空措辞已由ADDENDUM-01局部替换，原件保留；本索引只定位覆盖关系，不新增规则或052。

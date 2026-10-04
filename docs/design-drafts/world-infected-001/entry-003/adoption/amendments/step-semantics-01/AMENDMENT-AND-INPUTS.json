@@ -1,0 +1,383 @@
+{
+  "task": "DOC-WORLD-ENTRY-003",
+  "addendum": "ADDENDUM-01",
+  "version": "v1.0",
+  "date": "2026-10-04",
+  "purpose": "确定载荷的来源／结果分支消歧；保留已批准正常返回无夜与死亡提案严格验证；不是新玩法或生产实现",
+  "base_sha": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+  "expected_parent_sha": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+  "base_tree": "23e4813756ab35972b98875b99f409f1aa583afb",
+  "base_src_tree": "4d28340ad020950e90bbbed1dc0b902a7f6880db",
+  "branch": "feature/design-world-entry-003",
+  "original_package": {
+    "filename": "DOC-WORLD-ENTRY-003-Codex-Package-v1.0.zip",
+    "bytes": 49139,
+    "sha256": "8acbb1f94eae7b82d1ff569faec82262858a5502959560a4307d19ad1649f3aa",
+    "git_blob": "5de35082132d8346168fa0d3bc62006d02c10cef",
+    "original_manifest": {
+      "bytes": 13252,
+      "sha256": "799334be8def829b9881b8ad0e4e6c1c4a6a9c333a0f9c70e6ccdee2e1a16571",
+      "git_blob": "70344c7212cffa671dec9c8be271841c472ac552"
+    },
+    "original_checksum_file": {
+      "bytes": 1109,
+      "sha256": "64511f72226b96a52399ad7fa64eef91b6df7c10a1a2a0d4720b6733f3218638",
+      "git_blob": "9e9f6245530c705efc9f7bd4e6582bd62b19d677"
+    },
+    "sha256sum_entries_verified_by_mainline": 10,
+    "original_archived_file_count": 11,
+    "preserve_original_bytes": true
+  },
+  "current_remote_check": {
+    "source": "GitHub GET git/ref/heads/feature/design-world-entry-003",
+    "observed_sha": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+    "observation_scope": "主线远端只读；非用户本地HEAD/status核验"
+  },
+  "source_evidence": [
+    {
+      "path": "src/core/character-cycle/cycle.ts",
+      "ref": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+      "git_blob": "1995dbc50e47ad4a799c52cdad18b0965261e577",
+      "read": "完整文件；只读代码核对",
+      "supports": "result初始steps=[]；normal-return只生成return-due，body/cycle不变，不调用settleBody；deadline/rest按真实日结步骤"
+    },
+    {
+      "path": "src/core/character-cycle/cycle.test.ts",
+      "ref": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+      "git_blob": "4cb5a7d0a22f583814033a77d0103ecc19e9df3f",
+      "read": "第70—145行；只读测试内容核对",
+      "supports": "normal Day7 return at E0：result.steps精确为空、body原样、cycle=7、return-due"
+    },
+    {
+      "path": "src/core/residence-location/types.ts",
+      "ref": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+      "git_blob": "29f26b2afb649843c38b6aca3b109ee6acf893e9",
+      "read": "完整文件；只读类型核对",
+      "supports": "LocationPlan.steps为BodyStep[]，不是有限模型字符串列表"
+    }
+  ],
+  "original_inputs_to_preserve": [
+    {
+      "input": "AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+      "bytes": 7897,
+      "sha256": "0fc4d32b2bc24fd9d16832740d86f1aa4d08be7d44729924f9802fa5752d8995",
+      "git_blob": "c8d73b831b051d5be784eb4337e71ac0c96cbe69"
+    },
+    {
+      "input": "BASELINE-AND-INPUTS.json",
+      "bytes": 13252,
+      "sha256": "799334be8def829b9881b8ad0e4e6c1c4a6a9c333a0f9c70e6ccdee2e1a16571",
+      "git_blob": "70344c7212cffa671dec9c8be271841c472ac552"
+    },
+    {
+      "input": "DOC-WORLD-ENTRY-003-task-v1.0.md",
+      "bytes": 20657,
+      "sha256": "b2ce95b2eab888ad64345cac391cc05439903b7b71af590088bc760566941923",
+      "git_blob": "80803a77a6733ecc7cdd619507e9c4e4d816ffd7"
+    },
+    {
+      "input": "OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+      "bytes": 2415,
+      "sha256": "6c52b7fac95b8ea5c645efc898639d8c50c448edbc4664c341f888cd40e9e47a",
+      "git_blob": "a20c7b5f2129b2d1cceb20bcb77f1039d0939a72"
+    },
+    {
+      "input": "SHA256SUMS.txt",
+      "bytes": 1109,
+      "sha256": "64511f72226b96a52399ad7fa64eef91b6df7c10a1a2a0d4720b6733f3218638",
+      "git_blob": "9e9f6245530c705efc9f7bd4e6582bd62b19d677"
+    },
+    {
+      "input": "WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+      "bytes": 11316,
+      "sha256": "8dc6f06060735c67449791dde428c19d09d7526ecdc9fb4e6359d93dca141c4c",
+      "git_blob": "d04cf5c7230c845744b2511792b4b00e0144394e"
+    },
+    {
+      "input": "approved-documents/DEC-051-append.md",
+      "bytes": 14146,
+      "sha256": "f59c765f82a125c03316abbbd9b81c52c3faa11e9f31f99a34364fbbc08d955b",
+      "git_blob": "574e1f4cc1fc76ff48c26217b27f911d03c56095"
+    },
+    {
+      "input": "approved-documents/infected-terminal-core-test-config-v0.1.json",
+      "bytes": 770,
+      "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+      "git_blob": "fa999e7f456414daf6279fd8fbff3cd117394135"
+    },
+    {
+      "input": "approved-documents/terminal-batch-plan-v1.0.md",
+      "bytes": 5287,
+      "sha256": "33bd3880791f1bf2fda6fd121cfd55e2f3042b595da1adbe967a689414f37016",
+      "git_blob": "f9e97aafdba863dad17a2fc51a624bb236a7dc07"
+    },
+    {
+      "input": "approved-documents/terminal-core-contract-v1.0.md",
+      "bytes": 11026,
+      "sha256": "7287dcf18e1ee9a190ef4cae56763de918f94796ac28735e5ce6d95ef101936d",
+      "git_blob": "33c964ad9460209fc589d5d2a9e746ceb1d54e34"
+    },
+    {
+      "input": "approved-documents/terminal-restore-contract-v1.0.md",
+      "bytes": 9680,
+      "sha256": "cb82c1d032a2ec3b3355c46980d16eb67139b1bceabc15cb4631fe100cbdac7c",
+      "git_blob": "184f68867886cd1a7cc7dbe1d90c11ec1173ced3"
+    }
+  ],
+  "replacement_payloads": [
+    {
+      "input": "approved-documents/DEC-051-append.md",
+      "target": "docs/05-design-decisions.md",
+      "old": {
+        "bytes": 14146,
+        "sha256": "f59c765f82a125c03316abbbd9b81c52c3faa11e9f31f99a34364fbbc08d955b",
+        "git_blob": "574e1f4cc1fc76ff48c26217b27f911d03c56095"
+      },
+      "new": {
+        "bytes": 14863,
+        "sha256": "f844779da9a650a2744e8d07e1198015966a1e50435a59101664b708e3fa934b",
+        "git_blob": "ec5119cc2192b01ea78d94c751655fc6fc479a4f"
+      },
+      "scope": "步骤按真实来源及结果分支校验；正常返回不补夜，死亡提案仍严格非空；对应验收文字消歧",
+      "unified_diff": "--- original/approved-documents/DEC-051-append.md\n+++ addendum-01/approved-documents/DEC-051-append.md\n@@ -84,7 +84,9 @@\n \n ### C09. 完整事务、原提案校验与保存故障\n \n-命令形状、原数值、身份、revision、阶段及受控前态在任何相关规则调用前验证；该阶段非法输入零provider／规则／随机、零提交／写入／通知。已有一次受控结果时，在原字段被覆盖前严格检查提案结构、来源、独立前态、非自有字段及非空合法步骤，再复制进行终局清退和关闭；合法HP0不能被修复成生还。\n+命令形状、原数值、身份、revision、阶段及受控前态在任何相关规则调用前验证；该阶段非法输入零provider／规则／随机、零提交／写入／通知。已有一次受控结果时，在原字段被覆盖前严格检查提案结构、来源、独立前态、非自有字段及与真实生产者／结果种类相符的步骤，再复制进行终局清退和关闭；合法HP0不能被修复成生还。\n+\n+步骤不得一律要求非空。当前G1正常H0成功／失败返回合法产生身体步骤`steps=[]`，表示不追加身体日结；仍须验证生还、合法返回资格、独立前态及正确的return-due，身体、角色周期与额度保持，适用revision只推进一次。死亡提案则必须具有与真实来源、死亡原因及HP0短路一致的非空合法步骤，先验证再读取末项；实际执行的休整／截止日结仍保留G1/G2应有步骤，不借正常返回的空步骤免除日结。不得补假步骤、空操作或虚构伤害。身体步骤为空不等于终局无事可做，任务关闭、实物处置与奖罚仍组成一次完整结果。\n \n 生产者已被调用而提案不合法时，如实记录实际调用，但不得改变current、disk或原提案，不提交、不保存、不通知。通过后完整身体／现场／物品结果、关闭、钱包和收据一起验证且预编码，再由唯一入口一次提交。不得为验证或重试重新抽取、计算伤害、执行周期或重建实物。\n \n"
+    },
+    {
+      "input": "approved-documents/terminal-core-contract-v1.0.md",
+      "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+      "old": {
+        "bytes": 11026,
+        "sha256": "7287dcf18e1ee9a190ef4cae56763de918f94796ac28735e5ce6d95ef101936d",
+        "git_blob": "33c964ad9460209fc589d5d2a9e746ceb1d54e34"
+      },
+      "new": {
+        "bytes": 13141,
+        "sha256": "5f35b35cfe580aad5b1f8990954285dae88fb0451645ce43088ced9099fbcd50",
+        "git_blob": "c52c08df1cd99b6d376e3d43174e72e0866758bf"
+      },
+      "scope": "步骤按真实来源及结果分支校验；正常返回不补夜，死亡提案仍严格非空；对应验收文字消歧",
+      "unified_diff": "--- original/approved-documents/terminal-core-contract-v1.0.md\n+++ addendum-01/approved-documents/terminal-core-contract-v1.0.md\n@@ -32,7 +32,17 @@\n | G2休整死亡 | 真实planResidenceLocationRest产生的LocationPlan，保留地点A/C资格及内部G1结果 | 丢掉地点验证另取一次CyclePlan或再结日级后果 |\n | 正常返回／期限 | 受控组成私下调用G1一次，将CyclePlan和完整独立前态绑定后再消费 | 普通调用者直接拼CyclePlan；只有identity/revision相符就信任所有body字段 |\n \n-原提案的结构、原数值、前态和非自有字段、非空合法步骤须在清退／覆盖前验证。通过后复制并构造终局；不得修改调用者或生产者对象，不用改HP／phase／mission骗生还验证。最终死亡验证独立，不给现有G1 CycleClosure新增不存在的death字面量。\n+原提案的结构、原数值、前态和非自有字段，以及与真实生产者／结果种类相符的步骤，须在清退／覆盖前验证。通过后复制并构造终局；不得修改调用者或生产者对象，不用改HP／phase／mission骗生还验证。最终死亡验证独立，不给现有G1 CycleClosure新增不存在的death字面量。\n+\n+步骤按来源和结果分支校验，不能在所有提案入口统一要求非空：\n+\n+| 受控来源／结果 | 本契约要求 |\n+| --- | --- |\n+| G1 `normal-return`，成功或主动失败的生还返回 | 当前G1的身体步骤必须是`steps=[]`；`outcome='alive'`、`deathCause=null`、`requiresDeadlineClosure=null`。与独立前态相比，body整体及cycle不变、revision恰加1；clock成为正确绑定本委托／执行／startCycle／endCycle／taskDay／正常结果的return-due。合法H0资格及来源仍独立检查，空数组自身不是返回凭证。 |\n+| G1期限生还日结 | 保留真实G1产生的非空有序步骤：cycle-bleeding→infection→hunger→end-cycle；正确承接deadline-ready及requiresDeadlineClosure，不因同为生还而接受空步骤。休整生还仍按原G1/G2职责处理，不因此扩大A的终局范围。 |\n+| G1／G2实际死亡提案，包括动作、休整和期限死亡 | 步骤先验证为非空合法数组，且与真实签发／受控来源、步骤顺序、实际死亡原因和HP0短路相符，再读取末项。保留实际致死步骤，不追加死亡后的end-cycle；空、畸形、错序或与来源／结果矛盾的步骤拒绝。不能只凭非空信任提案，也不能把合法序列限成有限模型的固定流血模板。 |\n+\n+这些是原结果消费约束，不授权重新执行伤害、周期、随机或物品效果来验证。正常返回不得调用settleBody、补假BodyStep、noop或虚构伤害来凑非空；身体步骤为空也不能跳过本次任务关闭、奖罚与实物处置。首次出发或已结衔接的其他合法空步骤仍由原G1契约负责，本条不为这些路径增设通用非空门槛。\n \n 真实G1／G2计划本身已更新适用revision，A不得为了清算再次推进一次。有限Python producer保留输入revision只属于其证明夹具，不能作为生产类型或计数标准。终局包装承接一次合法结果，不再决定同次伤害、随机或物品效果。\n \n@@ -65,8 +75,8 @@\n | T01 完整成功 | 正常／重伤／少普通物同奖；供电／转运或真实样本缺项拒绝；地面、另交、毁失、同名、错定义／来源／执行／ItemState；不要求酒店 |\n | T02 失败及分流 | P=0/19/20/47，一次有限罚和0收入；达标失败意图拒绝，不达标可合法失败；缺资格错误不移钱移物，不自动执行另一终局 |\n | T03 期限与短路 | Day7异地稳定：流血／感染／饥饿逐阶段致死及生还ready；H0截止、pending／战斗拒绝；不虚增死者周期、不生旧Day8 |\n-| T04 正常返回 | Day1—7合法正常返回无附加夜、body/D/额度不变、due来源绑定；非H0或未处理到达拒绝；无内容静态窗口不结病情 |\n-| T05 真实死亡消费 | 原生G2动作／休整及一次G1返回／期限结果；保留来源和真实效果；终局消费不增加动作／周期／随机计数、不二次revision；合法死亡不撤销 |\n+| T04 正常返回 | Day1—7合法正常成功／主动失败返回无附加夜、body/D/额度不变、due来源绑定；至少原生覆盖Day1与Day7的两种正常结果，真实G1 `steps=[]`可消费且只承接一次revision；伪造非空／错误outcome、deathCause、requiresDeadlineClosure或前后态拒绝，不补假步骤。非H0或未处理到达拒绝；无内容静态窗口不结病情 |\n+| T05 真实死亡消费 | 原生G2动作／休整及一次G1期限死亡结果；与T04正常生还返回分开，空／畸形／错序死亡步骤及伪造来源拒绝，合法非空HP0结果可消费。保留来源和真实效果；终局消费不增加动作／周期／随机计数、不二次revision；合法死亡不撤销 |\n | T06 实物及历史 | 普通携出／旧仓保留，任务件分流、地面不可访问；唯一归属／定义资源／数量不重建；安装／消费／交付及旧成功不改；完整两声明后来死亡见证 |\n | T07 幂等和权限 | 重复关闭、旧revision、换执行／标题／空初态拒绝；普通导出精确断言；受控来源不因结构复制成为合法计划 |\n | T08 联合结果 | 任务／body／D/T／source／钱包／收据／物品彼此一致；原expected仍独立，不从候选复制；这里只验纯值，不宣称安装或codec通过 |\n"
+    },
+    {
+      "input": "approved-documents/terminal-restore-contract-v1.0.md",
+      "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+      "old": {
+        "bytes": 9680,
+        "sha256": "cb82c1d032a2ec3b3355c46980d16eb67139b1bceabc15cb4631fe100cbdac7c",
+        "git_blob": "184f68867886cd1a7cc7dbe1d90c11ec1173ced3"
+      },
+      "new": {
+        "bytes": 10413,
+        "sha256": "e6126982afc09c0174279418a6d8563b5b88645c2c080a38d698a53410c14fd5",
+        "git_blob": "cf308a1b16d932ba8d99da07bb0dcdce7201f0e1"
+      },
+      "scope": "步骤按真实来源及结果分支校验；正常返回不补夜，死亡提案仍严格非空；对应验收文字消歧",
+      "unified_diff": "--- original/approved-documents/terminal-restore-contract-v1.0.md\n+++ addendum-01/approved-documents/terminal-restore-contract-v1.0.md\n@@ -31,7 +31,9 @@\n \n 真实G2 LocationPlan已包含动作revision、身体／实物／现场后果和签发来源，终局消费不能重跑行动或多加一次revision。G2休整也返回LocationPlan，不能丢掉地点资格另调一次G1。正常返回／期限才由受控组成私下调用G1一次，并将结果绑定完整独立前态；结构上像CyclePlan不等于有来源权限。\n \n-先对收到的原提案做完整结构、原数值、身份／前态、非自有字段及步骤校验，再复制和清退。允许受控内部存在尚未关闭的真实HP0，不改HP、phase、mission或revision来套生还校验；最终dead另验完整清算。步骤必须在索引前有合法非空序列／来源，错误不能靠普通异常、覆盖后归零或最终合法值洗白。\n+先对收到的原提案做完整结构、原数值、身份／前态、非自有字段及与来源／结果相符的步骤校验，再复制和清退。允许受控内部存在尚未关闭的真实HP0，不改HP、phase、mission或revision来套生还校验；最终dead另验完整清算。对死亡提案，必须先验证合法非空步骤序列及真实来源／死亡短路一致性，再索引步骤；错误不能靠普通异常、覆盖后归零或最终合法值洗白。\n+\n+本节死亡提案的非空要求不是所有返回结果的通用门禁。当前G1正常H0成功／失败返回的身体步骤应为`steps=[]`，outcome为alive、deathCause及requiresDeadlineClosure为null；独立前态绑定、合法H0资格、body/cycle保持、一次revision和正确return-due仍须验证，不能补假步骤或追加身体日结。实际休整／截止日结的步骤仍按原G1/G2验证，不能套用正常返回的空步骤。合法正常返回即使没有身体步骤，关闭、钱包、实物和收据仍须完整构造、验证和一次提交；空死亡提案与未清算active＋HP0仍不得编码或安装。\n \n 有限模型producer只改变HP、保留输入revision的约定不是真实G2契约。工程必须验证真实来源、实际前后态和各生产者职责，既不放过畸形提案，也不一律拒绝合法死亡。不得给G1当前不支持的CycleClosure凭空加death或构造假active使命骗过恢复。\n \n"
+    }
+  ],
+  "effective_payloads": [
+    {
+      "input": "approved-documents/DEC-051-append.md",
+      "source_package": "ADDENDUM-01",
+      "target": "docs/05-design-decisions.md",
+      "operation": "append_after_two_lf",
+      "bytes": 14863,
+      "sha256": "f844779da9a650a2744e8d07e1198015966a1e50435a59101664b708e3fa934b",
+      "git_blob": "ec5119cc2192b01ea78d94c751655fc6fc479a4f"
+    },
+    {
+      "input": "approved-documents/infected-terminal-core-test-config-v0.1.json",
+      "source_package": "ORIGINAL-v1.0",
+      "target": "docs/content/infected-terminal-core-test-config-v0.1.json",
+      "operation": "copy_exact",
+      "bytes": 770,
+      "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+      "git_blob": "fa999e7f456414daf6279fd8fbff3cd117394135"
+    },
+    {
+      "input": "approved-documents/terminal-core-contract-v1.0.md",
+      "source_package": "ADDENDUM-01",
+      "target": "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+      "operation": "copy_exact",
+      "bytes": 13141,
+      "sha256": "5f35b35cfe580aad5b1f8990954285dae88fb0451645ce43088ced9099fbcd50",
+      "git_blob": "c52c08df1cd99b6d376e3d43174e72e0866758bf"
+    },
+    {
+      "input": "approved-documents/terminal-restore-contract-v1.0.md",
+      "source_package": "ADDENDUM-01",
+      "target": "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+      "operation": "copy_exact",
+      "bytes": 10413,
+      "sha256": "e6126982afc09c0174279418a6d8563b5b88645c2c080a38d698a53410c14fd5",
+      "git_blob": "cf308a1b16d932ba8d99da07bb0dcdce7201f0e1"
+    },
+    {
+      "input": "approved-documents/terminal-batch-plan-v1.0.md",
+      "source_package": "ORIGINAL-v1.0",
+      "target": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+      "operation": "copy_exact",
+      "bytes": 5287,
+      "sha256": "33bd3880791f1bf2fda6fd121cfd55e2f3042b595da1adbe967a689414f37016",
+      "git_blob": "f9e97aafdba863dad17a2fc51a624bb236a7dc07"
+    }
+  ],
+  "original_allowed_path_count": 37,
+  "added_archive_paths": [
+    "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/SHA256SUMS.txt",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md"
+  ],
+  "effective_allowed_path_count": 43,
+  "effective_allowed_paths": [
+    "docs/05-design-decisions.md",
+    "docs/01-game-design-v0.1.md",
+    "docs/02-vertical-slice.md",
+    "docs/03-architecture.md",
+    "docs/07-decision-supersession-index.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+    "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+    "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+    "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+    "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+    "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+    "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+    "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+    "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+    "docs/design-drafts/world-infected-001/04-main-mission.md",
+    "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+    "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md",
+    "docs/content/infected-terminal-core-test-config-v0.1.json",
+    "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/checks.json",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/SHA256SUMS.txt",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md"
+  ],
+  "path_modes": {
+    "exact_dec_append": [
+      "docs/05-design-decisions.md"
+    ],
+    "append_only": [
+      "docs/01-game-design-v0.1.md",
+      "docs/02-vertical-slice.md",
+      "docs/03-architecture.md",
+      "docs/07-decision-supersession-index.md",
+      "docs/08-rule-implementation-traceability.md",
+      "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+      "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md"
+    ],
+    "prepend_only": [
+      "docs/design-drafts/world-infected-001/entry-003/00-owner-review.md",
+      "docs/design-drafts/world-infected-001/entry-003/01-source-and-adoption-map.md",
+      "docs/design-drafts/world-infected-001/entry-003/02-terminal-outcomes-and-settlement.md",
+      "docs/design-drafts/world-infected-001/entry-003/03-state-ownership-and-restore.md",
+      "docs/design-drafts/world-infected-001/entry-003/04-next-engineering-contracts.md",
+      "docs/design-drafts/world-infected-001/entry-003/05-validation-and-open-gates.md",
+      "docs/design-drafts/world-infected-001/04-main-mission.md",
+      "docs/design-drafts/world-infected-001/11-points-hub-recovery.md",
+      "docs/design-drafts/world-infected-001/reviews/endgame-candidates-v1.1.md"
+    ],
+    "copy_payload_exact": [
+      "docs/content/infected-terminal-core-test-config-v0.1.json",
+      "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md",
+      "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+      "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md"
+    ],
+    "new_reports": [
+      "docs/design-drafts/world-infected-001/entry-003/adoption/DOC-WORLD-ENTRY-003-completion.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/checks.json"
+    ],
+    "archive_input_exact": [
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/DOC-WORLD-ENTRY-003-task-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/BASELINE-AND-INPUTS.json",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/SHA256SUMS.txt",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/DEC-051-append.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/infected-terminal-core-test-config-v0.1.json",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-core-contract-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-restore-contract-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/approved-documents/terminal-batch-plan-v1.0.md"
+    ],
+    "addendum_archive_input_exact": [
+      "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/AMENDMENT-AND-INPUTS.json",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/SHA256SUMS.txt",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/DEC-051-append.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-core-contract-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/approved-documents/terminal-restore-contract-v1.0.md"
+    ]
+  },
+  "addendum_archive": {
+    "prefix": "docs/design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01",
+    "file_count": 6,
+    "relative_paths": [
+      "DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md",
+      "AMENDMENT-AND-INPUTS.json",
+      "SHA256SUMS.txt",
+      "approved-documents/DEC-051-append.md",
+      "approved-documents/terminal-core-contract-v1.0.md",
+      "approved-documents/terminal-restore-contract-v1.0.md"
+    ],
+    "checksum_entries": 5
+  },
+  "approved_parameter_oracle": {
+    "success_reward": 120,
+    "initial_balance": 0,
+    "balance_max": 2147483647,
+    "failure_penalty": 20
+  },
+  "technical_format_assignment": {
+    "format": "elevator-survival.residence-headless",
+    "formatVersion": 2,
+    "configurationId": "infected-terminal-core-test-v0.1",
+    "runtime_registration_this_task": false,
+    "rulesVersion_policy": "no new player literal; controlled injected version fully bound, concrete composition fixed in future engineering task"
+  },
+  "scope_permissions": {
+    "commit": true,
+    "push_branch": "feature/design-world-entry-003",
+    "main_push": false,
+    "merge": false,
+    "force_push": false,
+    "production_write": false,
+    "production_tests": false,
+    "dependency_install_or_update": false,
+    "shutdown_restart_schedule": false
+  },
+  "validation_scope": {
+    "mainline_production_tests": "NOT RUN",
+    "mainline_model_probes": "NOT RUN",
+    "mainline_architecture_build_browser": "NOT RUN",
+    "source_semantics": "只读实际代码与测试；输入和修订载荷采用字节/hash/diff检查",
+    "codex_required": "原任务全部文档、范围、原文、原件、载荷、链接、架构和diff检查，按本补充有效映射执行"
+  },
+  "stop": "文档普通commit/push后准确SHA实审；不自动开始A/B/C"
+}

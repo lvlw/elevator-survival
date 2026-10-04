@@ -1,3 +1,16 @@
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](../../05-design-decisions.md#dec-051)、[四值试用配置](../../content/infected-terminal-core-test-config-v0.1.json)、[A契约](../../engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](../../engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](../../engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+本页经济候选仅四值子集转为唯一正式试用配置：success_reward=120、initial_balance=0、balance_max=2147483647、failure_penalty=20，均为整数。前三值首批试用，20为本委托已确认条款；主动失败／期限失败收入0且仅扣min(P,20)，真实死亡不叠成功奖或失败罚。完整成功含重伤同奖，样本仍必要。
+
+出发在producer／周期／随机／提交之前守住足额奖励空间，active期间无其他积分收支，恢复同验；无冻结或第二钱包。普通合法携出物保留，任务件按DEC-051分类；正常H0返回真实空步骤并进静态中枢。下方商品六价、治疗20／40／80、兑换与解锁等其余经济内容仍Draft，旧重复供给仅条件压力证据，不恢复同委托重接或表示长期经济已验收。
+
+---
+
+**以下完整原文为来源候选与历史记录；涉及本次已采纳范围，以顶部正式入口为准，其余仍保留原状态。**
+
 # 11 积分、中枢恢复、补给兑换与失败比较
 
 > **DESIGN DRAFT — WORLD-DESIGN-004 / Draft v1.4 / Engineering Review Candidate。** 本页是积分、身体服务与商品价格／资格的唯一当前主规格；05拥有世界来源与维护量，唯一终局稿拥有出口和日级时序。正常返回静态整备、明确下一次出发时处理衔接为Owner暂定编排；默认售粮／金属、具体目录、价格等仍为Draft；[003D审定](reviews/endgame-candidates-v1.1.md#owner-confirmation-003d)已确认本委托失败20／普通合法携出与末日先结后召回，待正式落文，不是生产实现或试玩通过。

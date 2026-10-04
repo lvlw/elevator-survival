@@ -144,3 +144,20 @@ G4基线 `7ca547ab8ab4f411d1102a79baf8c0796f4b082c` 已获[主线限定实审PAS
 主线对f93e17ac7b47af39833f2ecf05681fea03dbf689的[准确SHA实审](entry-003/reviews/world-entry-003-r1-inputs/AUD-f93e17a-WORLD-ENTRY-003-review-v1.0.md)为 **NEEDS REVISION / F01**。作者R1集中修复原始死亡提案在覆盖前的结构/数值/所有权/步骤验证，保留合法HP0一次消费；[当前作者验证](entry-003/validation/results.json)见r1，待新准确SHA专项复审，不称主线已PASS。
 
 原候选O1/O2/O3、参数状态、生产G4支持边界及其他Gate不变；不执行A/B/C，不自动采纳、正式落文或注册新内容。
+
+
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](../../05-design-decisions.md#dec-051)、[四值试用配置](../../content/infected-terminal-core-test-config-v0.1.json)、[A契约](../../engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](../../engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](../../engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+| 队列项 | 当前状态 |
+| --- | --- |
+| 当前委托H0消费者资格、四终局、真实资产处置、奖罚与容量守卫 | Owner已采纳，DEC-051正式落文，待准确SHA文档实审 |
+| 成功120／初始0／上限2147483647、失败20 | 唯一配置已归档；前三值首批试用，20为本委托既定罚额，不泛化未来任务 |
+| 步骤分流、关闭恢复、A→B→C | ADDENDUM-01校勘已采用；A纯计划／B严格v2／C完整消费均未在本任务实施 |
+| R1专项 | c67fd4117065e2e0dbd1117cae4fbfaa83791599主线PASS仅关闭F01，不是全产品验收 |
+| 商品／治疗20、40、80／兑换解锁、地图生产者、三专长与工具箱 | 仍按未采纳范围保留，不因终局四值配置升级 |
+| 旧医院入口／旧槽发布O3、浏览器／多标签、Owner体验 | OPEN；无新发布决定，无试玩通过 |
+
+单次委托不重接继续有效；旧重复供给实验仅条件证据，不能恢复当前委托入口或宣称长期经济已解决。

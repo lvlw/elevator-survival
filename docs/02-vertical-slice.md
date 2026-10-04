@@ -622,3 +622,13 @@ DEC-046—048 已确认完整感染世界的部分设计方向：不以固定访
 原医院一日切片范围、数值、入口、phase、保存及全部验收保留。DEC-050只在新感染连续驻留版本采纳共享精力、有序周期、无免费治疗及同活动持续现场；不能用旧每日单场景门禁否决新驻留，也不能将新规则回写成旧医院验收已改变。
 
 首身份／关闭资格核心已完成限定实审；G1待本次文档准确SHA实审及主线正式工程任务，届时须重新实际执行npm基线、正反例与组合测试及最终check，不预填历史测试数。G2／G3、完整CTB／经济、新保存、玩家入口尚未实现；完整世界三专长、工具箱路线、安全查询和Owner实际分段突破试玩继续OPEN，本轮没有新可玩验收。
+
+
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](05-design-decisions.md#dec-051)、[四值试用配置](content/infected-terminal-core-test-config-v0.1.json)、[A契约](engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+当前开发阶段新增的是已批准的终局文档基线，待准确SHA文档实审，未执行A/B/C。H0达标显式成功、未达标合法主动失败、Day7异地稳定截止先结后召回及真实死亡由DEC-051限定；正常生还返回不补夜，失败不重接。G4已审范围仍为首次出发、移动、来源揭示、普通整实例拾放与A/C休整，拒绝死亡／关闭等开发态结果不是免死玩法。
+
+下一切口A只产完整纯TerminalPlan；A准确SHA实审后才定稿B，A/B实审后才进入C会话消费。旧医院现行回归基线保持；当前新世界完整流程不可据此宣称可玩。生产测试、浏览器／多标签、Owner试玩本次均NOT RUN；其余内容、参数、玩家入口及O3未验收。

@@ -167,3 +167,18 @@ G3 在完整 SHA `60e9c30732c5e22cfe9ff58b9b381de64b945180` 已通过[限定准�
 唯一 headless session 新接受受控首次 launch、一次来源 reveal、普通整实例 pickup/drop 与真实节点 A/C rest，保留 move。首次从真实 read-null、显式 fresh 创建开始；执行材料不来自命令。各规则仍由首身份及 G1/G2 正式入口拥有，完整后态经原 G3 aggregate/codec 后一次提交、一次保存尝试、一次通知，写失败保留内存且不重放。恢复不重建现场或重抽来源。存档仍为 `elevator-survival.residence-headless / 1`，核心代码和批准 34 项参数不改。
 
 详见[G4 支持合同与 A01—A12 映射](engineering/residence-foundation/g4/contract-and-support.md)、[作者自查／修订](engineering/residence-foundation/g4/implementation-notes.md)及[实际验证](engineering/residence-foundation/g4/verification-results.json)。未支持的 pending/combat/death/closed 等完整结果继续不安装；该开发限制不是玩家避死玩法。完整终局、后续委托、钱包、战斗、五图、三专长、工具箱全路线、安全感染提示、玩家入口与浏览器存档仍为后续责任；O3 继续 OPEN，Owner 分段突破／恢复负担试玩及浏览器／多标签为 NOT RUN，不据此启动下一工程。
+
+
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](05-design-decisions.md#dec-051)、[四值试用配置](content/infected-terminal-core-test-config-v0.1.json)、[A契约](engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+| 条款／合同 | 当前落文与实际缺口 |
+| --- | --- |
+| DEC-051 C01—C07、C10及唯一四值配置 | 已批准归档；资格、奖罚、资产与完整终局尚未生产接入，不能用有限模型替代实现 |
+| C09与A契约 | 正常返回真实空步骤；死亡真实非空且短路；纯计划不安装、不重算效果，待A工程和准确SHA源码实审 |
+| C08、C11与终局恢复补充 | 金额／全历史／四态及独立expected联合校验，v2并列接口待B工程；原O2及v1不改 |
+| C12与批次计划 | C完整预编码／提交／写入／通知在A/B实审之后；当前G4仍拒绝死亡／关闭等未支持结果 |
+
+本次文档检查不产生新生产测试成绩，G4与R1各自历史审查不能扩大为新终局或浏览器PASS；三专长、工具箱、真实五图生产者、CTB／医疗、UI、存储与Owner体验仍有后续Gate。

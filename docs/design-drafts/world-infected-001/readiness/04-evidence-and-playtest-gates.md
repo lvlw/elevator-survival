@@ -76,3 +76,13 @@
 | 玩家体验与内容 | OPEN／NOT RUN | 三专长差异、工具箱路线、分段突破、信息安全、召回／恢复负担和Owner首玩不因排除而取消 |
 
 仅文档架构检查不是生产测试／build，也不证明平衡或体验；所有尚未执行事项保留NOT RUN／未实现，不统一标PASS。
+
+
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](../entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](../entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](../../../05-design-decisions.md#dec-051)、[四值试用配置](../../../content/infected-terminal-core-test-config-v0.1.json)、[A契约](../../../engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+R1在c67fd4117065e2e0dbd1117cae4fbfaa83791599获主线专项PASS，仅关闭F01；原106／175及主线37／43分别留在原提交证据中。本次不重跑、不改历史模型或其保护指纹，不把旧API观察计入本次测试。当前验收只覆盖原件／载荷字节、参数、文档链接、保护对象、架构和diff。
+
+本次生产测试、npm run check、模型／API探针、build、浏览器／多标签与Owner试玩均NOT RUN，新增生产测试0。文档准确SHA实审仍PENDING；A源码、B恢复、C消费接缝需各自实审。五图、三专长、工具箱、信息安全、旧入口／旧槽O3、Owner分段突破和恢复负担体验保持OPEN，已批准数值不等于体验通过。

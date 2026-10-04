@@ -1191,3 +1191,13 @@ DEC-046—048 仅为未来完整感染世界确认以下边界：每日仍只承
 新《封锁区·未完成的转运》在同次驻留内共享单精力，按真实合法路径跨图；正E的一次合法动作可完成后截零，队列逐边再验。身体按流血→感染→饥饿检查，HP0短路，生还才推进周期；休整无免费治疗、清伤或补给。角色周期与任务日期分工、正常返回不补夜、末日先结后生还召回依DEC-050，不把旧医院感染终末阈值移植为新世界死亡开关。
 
 同活动现场／地面与知识按列明范围跨夜持续；委托关闭后未携出地面物只有历史含义。原医院每日单场景、预算、返回、日结、存档与验收含义保持；新版本尚无可玩入口。三专长、工具箱完整路线、信息安全、真实保存与分段突破的Owner首玩仍各待对应阶段完成。
+
+
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](design-drafts/world-infected-001/entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](05-design-decisions.md#dec-051)、[四值试用配置](content/infected-terminal-core-test-config-v0.1.json)、[A契约](engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+本次仅对当前新连续驻留委托正式补齐消费者资格、四终局、实物处置和积分子集。H0实际合法抵达且供电、转运、随身指定样本齐备时，由明确成功意图完成；未达标可合法主动失败，达标不改判主动失败。正常第1—7日返回均不追加过夜，中枢静态整备。失败结束委托但不自动杀死生还角色；同角色不重接，HP0仍是真实死亡。
+
+成功120、初始0、上限2147483647为首批试用；失败仅一次扣min(P,20)，其余经济／商品／服务未整体采纳。当前G4仍为已审headless子集，完整终局和新格式尚未实现；本次不是可玩世界或旧医院规则替换。五图真实生产者、三专长、工具箱、UI、浏览器与Owner体验及旧入口／旧槽O3继续保留门槛。

@@ -1,3 +1,16 @@
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](../../05-design-decisions.md#dec-051)、[四值试用配置](../../content/infected-terminal-core-test-config-v0.1.json)、[A契约](../../engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](../../engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](../../engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+任务说明中H0消费者资格、显式意图、四终局及任务件处置已按DEC-051局部落文：供电／转运成立且指定样本真实随身、合法稳定H0生还时显式成功；达标不能改为主动失败，未达标可合法失败。本角色成功／失败结束后不重接；正常第1—7日返回无追加过夜，G1真实steps=[]。
+
+成功120／初始0／上限2147483647为已批首试值；失败0收入、一次min(P,20)，普通合法携出按真实状态保留。Day7异地截止先结日级后果，HP0死亡不召回，尚活才失败召回且不生成旧Day8；死亡非空步骤与真实日结要求不放宽。五图节点／路线成本和任务生产者仍不由本次批准或实现。
+
+---
+
+**以下完整原文为来源候选与历史记录；涉及本次已采纳范围，以顶部正式入口为准，其余仍保留原状态。**
+
 # 04 主线任务：携回样本，恢复未完成的转运
 
 > **DESIGN DRAFT — WORLD-DESIGN-004 / Draft v1.4 / Engineering Review Candidate。** 任务名称、地点索引和步骤不是新增运行时状态或实现授权；旧医院主线不改。本文引用 [统一终局候选](reviews/endgame-candidates-v1.1.md) 的结果与实物账，不另立一套返回罚则。

@@ -67,3 +67,13 @@
 当前采用基线为8245cc61a59a6404984129415bf8aac904926ce0，加本任务指定DEC-050及三份唯一目标；不再把旧“等待O1/O2批准”作为开工材料缺口。实际G1生产执行仍须本次文档实审及主线下一任务的准确SHA／分支／白名单。
 
 版本差异只落在已批准单精力／有序周期、正常返回与截止衔接、同活动持续现场及恢复／事务边界。旧医院维持原版本；原首契约不倒改。原新世界草案中的药物使用效果、行动费用、负重／伤势倍率、装备／战斗、服务商品及专长继续独立Draft或后续待审，不从旧完整config取更宽子集，不整包升级。
+
+
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](../entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](../entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](../../../05-design-decisions.md#dec-051)、[四值试用配置](../../../content/infected-terminal-core-test-config-v0.1.json)、[A契约](../../../engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+本次基线c67fd4117065e2e0dbd1117cae4fbfaa83791599的R1专项已由主线PASS；Owner已实际采纳本次终局子集。DEC-051、唯一四值配置、A契约、恢复补充和批次门槛已归档，待本次准确SHA文档实审。旧候选／BLOCKED经过保留，原统一非空步骤阻塞由ADDENDUM-01修订载荷解除，正常返回不补夜也不补假步骤。
+
+当前生产仍以已审G4子集为界，完整终局／v2／钱包尚未接入；原身份、G1／G2及O2规则不重开。其余商城／医疗数值、专长／工具箱、五图真实生产者、玩家入口、O3和体验仍是独立门槛。

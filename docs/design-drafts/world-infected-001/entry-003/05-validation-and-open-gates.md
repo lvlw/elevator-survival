@@ -1,3 +1,16 @@
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](../../../05-design-decisions.md#dec-051)、[四值试用配置](../../../content/infected-terminal-core-test-config-v0.1.json)、[A契约](../../../engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+R1 c67fd4117065e2e0dbd1117cae4fbfaa83791599主线专项PASS仅关闭F01。以下原106／175、主线37／43、API观察和冻结证据保留原归属；本次不重跑、不更改保护指纹，不能将旧成绩加为当前检查。步骤消歧仅作固定源码文字对照，未运行生产测试。
+
+本次只检查文档字节、参数、链接、范围／对象、架构与diff；生产测试／npm run check／模型／API／build／浏览器／Owner试玩均NOT RUN。文档实审PENDING，完整终局、v2保存、真实内容／CTB、专长／工具箱、UI、O3和体验Gate继续保留。
+
+---
+
+**以下完整原文为来源候选与历史记录；涉及本次已采纳范围，以顶部正式入口为准，其余仍保留原状态。**
+
 # 验证范围与开放Gate
 
 **DESIGN DRAFT，有限证明不等于生产支持。** 真实结果、命令退出码及冻结指纹见[results.json](validation/results.json)；当前源码探针见[probe-results.json](validation/probe-results.json)。源事实固定于 `7ca547ab8ab4f411d1102a79baf8c0796f4b082c`。

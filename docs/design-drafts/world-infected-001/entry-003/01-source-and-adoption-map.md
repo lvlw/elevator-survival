@@ -1,3 +1,16 @@
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](../../../05-design-decisions.md#dec-051)、[四值试用配置](../../../content/infected-terminal-core-test-config-v0.1.json)、[A契约](../../../engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+来源分层更新：Owner实际批准限定采纳范围；DEC-051及正式目标承载当前规则；ADDENDUM-01仅修正三份载荷的步骤量词与T04/T05。原11件和新6件独立归档，旧三份载荷是已局部替换的历史输入，不再与修订目标并列适用。
+
+R1专项PASS不等于整包实现批准，候选C01—C12主题仅按DEC-051明确子集落文。正常返回空步骤／死亡非空／实际日结有步骤分别成立；G4源码未变、其余经济和内容仍Draft，文档实审PENDING。
+
+---
+
+**以下完整原文为来源候选与历史记录；涉及本次已采纳范围，以顶部正式入口为准，其余仍保留原状态。**
+
 # 来源、权威与局部采纳表
 
 **DESIGN DRAFT，固定读取基线 `7ca547ab8ab4f411d1102a79baf8c0796f4b082c`。** 下表所有仓库来源均指这个完整SHA；章节为稳定定位，行号仅辅助。原件归档的[授权范围](inputs/OWNER-authority-and-scope-WE003-v1.0.md)授予本设计与交付，不替Owner批准新参数。冲突时正式DEC优先，候选不能覆盖。

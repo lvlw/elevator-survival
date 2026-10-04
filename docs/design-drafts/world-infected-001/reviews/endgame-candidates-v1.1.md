@@ -1,3 +1,16 @@
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](../entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](../entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](../../../05-design-decisions.md#dec-051)、[四值试用配置](../../../content/infected-terminal-core-test-config-v0.1.json)、[A契约](../../../engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+003C单次委托与003D失败／召回方向已由DEC-051在当前新委托范围正式承接，并补齐H0消费者资格、四终局、实物处置和四值配置。完整成功与重伤同奖；失败结束委托不自动杀死生还角色，实际HP0仍死亡且无召回／复活；同委托关闭后不重接，旧历史不重写。
+
+正常H0生还返回保留G1 steps=[]、body/cycle不变和return-due，不补夜；实际截止先结后果且死亡短路，尚活才ready／失败召回，不建旧Day8或重结同周期；以后真实周期仍须结算。死亡真实非空步骤及休整／截止应有步骤严格保留。任务专件和实际携出样本按正式细则处置，其余旧参数与历史替代不整体采纳；生产完整终局／v2和体验未验收。
+
+---
+
+**以下完整原文为来源候选与历史记录；涉及本次已采纳范围，以顶部正式入口为准，其余仍保留原状态。**
+
 # 当前终局 Draft v1.4 / Engineering Review Candidate：正常返回、静态整备与真实出发
 
 <a id="owner-confirmation-003d"></a>

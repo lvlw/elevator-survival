@@ -1,0 +1,10 @@
+0fc4d32b2bc24fd9d16832740d86f1aa4d08be7d44729924f9802fa5752d8995  AUD-c67fd41-WORLD-ENTRY-003-R1-review-v1.0.md
+799334be8def829b9881b8ad0e4e6c1c4a6a9c333a0f9c70e6ccdee2e1a16571  BASELINE-AND-INPUTS.json
+b2ce95b2eab888ad64345cac391cc05439903b7b71af590088bc760566941923  DOC-WORLD-ENTRY-003-task-v1.0.md
+6c52b7fac95b8ea5c645efc898639d8c50c448edbc4664c341f888cd40e9e47a  OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md
+8dc6f06060735c67449791dde428c19d09d7526ecdc9fb4e6359d93dca141c4c  WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md
+f59c765f82a125c03316abbbd9b81c52c3faa11e9f31f99a34364fbbc08d955b  approved-documents/DEC-051-append.md
+a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18  approved-documents/infected-terminal-core-test-config-v0.1.json
+33bd3880791f1bf2fda6fd121cfd55e2f3042b595da1adbe967a689414f37016  approved-documents/terminal-batch-plan-v1.0.md
+7287dcf18e1ee9a190ef4cae56763de918f94796ac28735e5ce6d95ef101936d  approved-documents/terminal-core-contract-v1.0.md
+cb82c1d032a2ec3b3355c46980d16eb67139b1bceabc15cb4631fe100cbdac7c  approved-documents/terminal-restore-contract-v1.0.md

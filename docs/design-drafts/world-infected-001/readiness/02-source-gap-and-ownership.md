@@ -88,3 +88,13 @@
 上文源码盘点保留其原读取时点；当前首身份／关闭资格核心已在d1d3b79限定实审通过，源码定点复核仅用于合同关系核对。本轮不实现新增能力，也不将旧盘点改为重新源码认证。
 
 原restore需要独立expected，只能形成同进度候选，不能直接充当冷boot安装。新补充合同已批准独立受控冷候选与唯一应用持有者的聚合／安装职责，但尚未实现；新周期G1先输出局部纯结果，持续现场G2、安装／保存G3后续分别实审。身体、物品、经济、终局业务齐备前不能半笔提交closed，也不新增通用Profile／任务SDK填空。
+
+
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](../entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](../entry-003/adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](../../../05-design-decisions.md#dec-051)、[四值试用配置](../../../content/infected-terminal-core-test-config-v0.1.json)、[A契约](../../../engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+G4已审headless会话支持首次出发、move、reveal、普通整实例pickup/drop与A/C休整；死亡、关闭及战斗仍未支持安装。上文较早“G1—G3未执行”等描述仅属当时记录。新增正式合同规定A纯计划消费真实G1/G2结果，B联合严格校验与并列v2 codec，C才拥有完整current提交／保存权；尚未新增这些生产能力或接口。
+
+正常返回空BodyStep数组与死亡非空步骤按来源分别校验，实际休整／截止保留原日结；不将有限模型字符串直接当生产BodyStep对象。真实内容事实桥、关闭历史、唯一积分事实与实物处分需随A/B/C落地；旧独立expected／O2与原v1不降级。五图任务件生产者、后续任务供给、CTB／医疗及玩家入口不由文档补成已实现。

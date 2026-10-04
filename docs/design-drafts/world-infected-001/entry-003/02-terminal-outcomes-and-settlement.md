@@ -1,3 +1,16 @@
+<a id="doc-world-entry-003"></a>
+## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
+
+批准与校勘：[Owner实际采纳](adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md)、[ADDENDUM-01](adoption/amendments/step-semantics-01/DOC-WORLD-ENTRY-003-ADDENDUM-01-v1.0.md)。唯一正式入口：[DEC-051](../../../05-design-decisions.md#dec-051)、[四值试用配置](../../../content/infected-terminal-core-test-config-v0.1.json)、[A契约](../../../engineering/residence-foundation/terminal-core-contract-v1.0.md)、[终局恢复补充](../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md)、[A→B→C门槛](../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md)。
+
+四终局已局部正式化：H0达标显式成功、未达标合法主动失败、Day7异地合法截止先结后召回、实际HP0死亡。正常生还G1返回steps=[]且不补夜；死亡必须有真实非空步骤并在HP0短路；截止／休整不能免日结。正常与重伤成功同奖，必要样本不能豁免。
+
+实际携出样本成功交付／失败部分交付但收入0，任务专件及当地权限依正式受控分类处置；普通合法实物保留真实状态，旧历史不重写、不补物。积分仅四值子集获批；金额、实物、关闭、身体和周期须完整一次提交，尚未实现A/B/C。
+
+---
+
+**以下完整原文为来源候选与历史记录；涉及本次已采纳范围，以顶部正式入口为准，其余仍保留原状态。**
+
 # 终局资格与完整清算候选
 
 **DESIGN DRAFT / 待采纳。** 来源状态逐项见[来源表](01-source-and-adoption-map.md)；本页不是生产支持声明。字母C为本批条款定位，不是DEC编号。当前内容为《封锁区·未完成的转运》，五图结构不变。

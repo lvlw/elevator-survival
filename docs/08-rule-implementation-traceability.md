@@ -182,3 +182,14 @@ G3 在完整 SHA `60e9c30732c5e22cfe9ff58b9b381de64b945180` 已通过[限定准�
 | C12与批次计划 | C完整预编码／提交／写入／通知在A/B实审之后；当前G4仍拒绝死亡／关闭等未支持结果 |
 
 本次文档检查不产生新生产测试成绩，G4与R1各自历史审查不能扩大为新终局或浏览器PASS；三专长、工具箱、真实五图生产者、CTB／医疗、UI、存储与Owner体验仍有后续Gate。
+
+## ENG-RESIDENCE-TERMINAL-001 A 实现追踪附记（2026-10-04）
+
+| 已批准合同 | 本批作者实现与剩余 Gate |
+| --- | --- |
+| DEC-051 资格／正常返回／期限／死亡 | 新 terminal 只读资格、受控 G1 组成与原 G2 HP0 消费；真实空步骤和有序死亡短路已列入原生回归 |
+| 唯一四值、钱包、真实资产／旧历史 | 单一 content 配置；完整计划同步关闭、奖罚、实物处分；两明确测试声明的旧成功／旧失败后死亡组合覆盖 |
+| 来源／权限／完整值 | 独立完整前态能力、原签发校验、严格形状与安全算术、最新收据和身体交叉关系；无安装或 IO |
+| A→B→C | A 作者检查不等于主线准确 SHA PASS；B/C、真实五图、玩家入口、存储与体验未实施 |
+
+实际接口、T01—T12、测试和调用计数见 [支持合同](engineering/residence-foundation/terminal-core/contract-and-support.md)、[验证记录](engineering/residence-foundation/terminal-core/verification-results.json)和[完成报告](engineering/residence-foundation/terminal-core/completion.md)。原正文保留其历史时点，本附记不新增规则。

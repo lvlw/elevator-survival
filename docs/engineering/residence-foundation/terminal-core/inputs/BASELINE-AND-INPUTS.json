@@ -1,0 +1,218 @@
+{
+  "task": "ENG-RESIDENCE-TERMINAL-001",
+  "shorthand": "A",
+  "version": "v1.0",
+  "date": "2026-10-04",
+  "repository": "lvlw/elevator-survival",
+  "base_sha": "6438f7a38939297225538cdd68af24201ed7d34f",
+  "base_parent": "c67fd4117065e2e0dbd1117cae4fbfaa83791599",
+  "base_tree": "2afeb4504960b23585f5eb9b718473e2b3e4d161",
+  "base_src_tree": "4d28340ad020950e90bbbed1dc0b902a7f6880db",
+  "branch": "feature/residence-terminal-core-001",
+  "create_new_branch": true,
+  "predecessor_review": "AUD-6438f7a-DOC-WORLD-ENTRY-003-review-v1.0.md",
+  "authority_records": [
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/WORLD-ENTRY-003-ADOPTION-owner-review-v1.0.md"
+  ],
+  "current_authoritative_objects": {
+    "docs/05-design-decisions.md": {
+      "git_blob": "c739151493cd8b5e46e03d25008ea0fb128c3e14",
+      "mode": "read_only"
+    },
+    "docs/content/infected-terminal-core-test-config-v0.1.json": {
+      "git_blob": "fa999e7f456414daf6279fd8fbff3cd117394135",
+      "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+      "mode": "read_only"
+    },
+    "docs/engineering/residence-foundation/terminal-core-contract-v1.0.md": {
+      "git_blob": "c52c08df1cd99b6d376e3d43174e72e0866758bf",
+      "sha256": "5f35b35cfe580aad5b1f8990954285dae88fb0451645ce43088ced9099fbcd50",
+      "mode": "read_only"
+    },
+    "docs/engineering/residence-foundation/terminal-restore-contract-v1.0.md": {
+      "git_blob": "cf308a1b16d932ba8d99da07bb0dcdce7201f0e1",
+      "sha256": "e6126982afc09c0174279418a6d8563b5b88645c2c080a38d698a53410c14fd5",
+      "mode": "read_only"
+    },
+    "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md": {
+      "git_blob": "f9e97aafdba863dad17a2fc51a624bb236a7dc07",
+      "mode": "read_only"
+    },
+    "AGENTS.md": {
+      "git_blob": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "mode": "read_only"
+    },
+    "package.json": {
+      "git_blob": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+      "mode": "read_only"
+    },
+    "package-lock.json": {
+      "git_blob": "3b320a8a79a1815c0909d8846e5e6248d4fc187e",
+      "mode": "read_only"
+    },
+    "src/core/mission-lifecycle/controlled.ts": {
+      "git_blob": "c618e1ebd687a304d2c0d85776109fba7b8bd1e0",
+      "mode": "read_only"
+    },
+    "src/core/residence-location/controlled.ts": {
+      "git_blob": "5807d37152a67d9dc8c9a3e4b95dc1574bccdcc2",
+      "mode": "read_only"
+    },
+    "src/core/residence-location/movement.ts": {
+      "git_blob": "369dce353ee79ce6b6f7990f0f9c1db972a18700",
+      "mode": "read_only"
+    }
+  },
+  "reference_refs": {
+    "main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+    "feature/design-world-entry-003": "6438f7a38939297225538cdd68af24201ed7d34f",
+    "feature/design-world-entry-002": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+    "feature/design-world-infected-world-001": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+    "feature/mission-lifecycle-core-001": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+    "feature/residence-energy-cycle-core-001": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+    "feature/residence-location-core-001": "d7953bbf96dc842d2953e019f950275cd693bf09",
+    "feature/residence-session-core-001": "60e9c30732c5e22cfe9ff58b9b381de64b945180",
+    "feature/residence-actions-core-001": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c"
+  },
+  "allowed_path_count_limit": 36,
+  "allowed_paths": [
+    "src/core/residence-terminal/types.ts",
+    "src/core/residence-terminal/validation.ts",
+    "src/core/residence-terminal/config.ts",
+    "src/core/residence-terminal/config.test.ts",
+    "src/core/residence-terminal/authority.ts",
+    "src/core/residence-terminal/plans.ts",
+    "src/core/residence-terminal/dispositions.ts",
+    "src/core/residence-terminal/settlement.ts",
+    "src/core/residence-terminal/controlled.ts",
+    "src/core/residence-terminal/queries.ts",
+    "src/core/residence-terminal/index.ts",
+    "src/core/residence-terminal/test-fixtures.ts",
+    "src/core/residence-terminal/terminal.test.ts",
+    "src/core/residence-terminal/terminal.integration.test.ts",
+    "src/core/residence-terminal/validation.test.ts",
+    "src/core/residence-terminal/history.test.ts",
+    "src/core/residence-terminal/step-semantics.test.ts",
+    "src/core/residence-terminal/authority.test.ts",
+    "src/core/residence-terminal/queries.test.ts",
+    "src/content/infected-terminal-core-v0.1/config.ts",
+    "src/content/infected-terminal-core-v0.1/config.test.ts",
+    "src/core/mission-lifecycle/mission-lifecycle.test.ts",
+    "src/core/mission-lifecycle/cold-candidate.test.ts",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/residence-foundation/terminal-core/contract-and-support.md",
+    "docs/engineering/residence-foundation/terminal-core/implementation-notes.md",
+    "docs/engineering/residence-foundation/terminal-core/verification-results.json",
+    "docs/engineering/residence-foundation/terminal-core/completion.md",
+    "docs/engineering/residence-foundation/terminal-core/inputs/ENG-RESIDENCE-TERMINAL-001-task-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-core/inputs/OWNER-authority-and-scope-terminal-A-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-core/inputs/AUD-6438f7a-DOC-WORLD-ENTRY-003-review-v1.0.md",
+    "docs/engineering/residence-foundation/terminal-core/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/residence-foundation/terminal-core/inputs/SHA256SUMS.txt"
+  ],
+  "path_modes": {
+    "new_source_optional_files": [
+      "src/core/residence-terminal/types.ts",
+      "src/core/residence-terminal/validation.ts",
+      "src/core/residence-terminal/config.ts",
+      "src/core/residence-terminal/config.test.ts",
+      "src/core/residence-terminal/authority.ts",
+      "src/core/residence-terminal/plans.ts",
+      "src/core/residence-terminal/dispositions.ts",
+      "src/core/residence-terminal/settlement.ts",
+      "src/core/residence-terminal/controlled.ts",
+      "src/core/residence-terminal/queries.ts",
+      "src/core/residence-terminal/index.ts",
+      "src/core/residence-terminal/test-fixtures.ts",
+      "src/core/residence-terminal/terminal.test.ts",
+      "src/core/residence-terminal/terminal.integration.test.ts",
+      "src/core/residence-terminal/validation.test.ts",
+      "src/core/residence-terminal/history.test.ts",
+      "src/core/residence-terminal/step-semantics.test.ts",
+      "src/core/residence-terminal/authority.test.ts",
+      "src/core/residence-terminal/queries.test.ts",
+      "src/content/infected-terminal-core-v0.1/config.ts",
+      "src/content/infected-terminal-core-v0.1/config.test.ts"
+    ],
+    "existing_tests_additive_only_optional": [
+      "src/core/mission-lifecycle/mission-lifecycle.test.ts",
+      "src/core/mission-lifecycle/cold-candidate.test.ts"
+    ],
+    "append_only": [
+      "docs/03-architecture.md",
+      "docs/08-rule-implementation-traceability.md",
+      "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "docs/design-drafts/world-infected-001/10-decision-queue.md"
+    ],
+    "new_reports": [
+      "docs/engineering/residence-foundation/terminal-core/contract-and-support.md",
+      "docs/engineering/residence-foundation/terminal-core/implementation-notes.md",
+      "docs/engineering/residence-foundation/terminal-core/verification-results.json",
+      "docs/engineering/residence-foundation/terminal-core/completion.md"
+    ],
+    "archive_exact": [
+      "docs/engineering/residence-foundation/terminal-core/inputs/ENG-RESIDENCE-TERMINAL-001-task-v1.0.md",
+      "docs/engineering/residence-foundation/terminal-core/inputs/OWNER-authority-and-scope-terminal-A-v1.0.md",
+      "docs/engineering/residence-foundation/terminal-core/inputs/AUD-6438f7a-DOC-WORLD-ENTRY-003-review-v1.0.md",
+      "docs/engineering/residence-foundation/terminal-core/inputs/BASELINE-AND-INPUTS.json",
+      "docs/engineering/residence-foundation/terminal-core/inputs/SHA256SUMS.txt"
+    ]
+  },
+  "runtime_configuration": {
+    "configurationId": "infected-terminal-core-test-v0.1",
+    "config": {
+      "success_reward": 120,
+      "initial_balance": 0,
+      "balance_max": 2147483647,
+      "failure_penalty": 20
+    },
+    "four_keys_exact": true,
+    "g1_configuration_unchanged": true,
+    "core_reads_docs_at_runtime": false,
+    "new_player_rulesVersion": false
+  },
+  "required_commands": {
+    "fresh_baseline": "npm run test:run",
+    "final": "npm run check",
+    "targeted": "npm run test:run -- src/core/residence-terminal src/content/infected-terminal-core-v0.1 src/core/mission-lifecycle src/core/character-cycle src/core/residence-energy src/core/residence-location src/state/residence-save src/state/residence-session"
+  },
+  "test_count_reference": {
+    "files": 124,
+    "tests": 2791,
+    "source": "historical G4 final check; NOT this task actual baseline"
+  },
+  "scope_permissions": {
+    "commit": true,
+    "push_branch": "feature/residence-terminal-core-001",
+    "merge": false,
+    "main_push": false,
+    "force_push": false,
+    "other_branch_push": false,
+    "dependency_upgrade": false,
+    "locked_npm_ci_if_needed": true,
+    "B_C_execution": false,
+    "shutdown_restart_schedule": false
+  },
+  "input_objects": {
+    "ENG-RESIDENCE-TERMINAL-001-task-v1.0.md": {
+      "bytes": 29058,
+      "sha256": "c4e753fe1fce818d2592ec11e03bcb577c9ae75473d6cfd520bd89975b3afafa",
+      "git_blob": "bb3ea8a417cd40ab0f6db46b961b36f01784aa74"
+    },
+    "OWNER-authority-and-scope-terminal-A-v1.0.md": {
+      "bytes": 2314,
+      "sha256": "0689ddc4e8e97b0b3986f04c8c41ddfee3cbf7161bc4e2db8d527b8f4c8ad351",
+      "git_blob": "385b0245f4b9aec0d686ce28cf970249cffbc6ba"
+    },
+    "AUD-6438f7a-DOC-WORLD-ENTRY-003-review-v1.0.md": {
+      "bytes": 7376,
+      "sha256": "f40950e899a652df7673a61e11884b16d56a7c3aa0d3563764ca933473f6a883",
+      "git_blob": "0d8a48ec77378962cb5440d31b099dcc7dc998ec"
+    }
+  },
+  "stop": "A exact-SHA mainline source review; no B/C, UI, browser or release continuation"
+}

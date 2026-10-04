@@ -158,3 +158,7 @@ G4基线 `7ca547ab8ab4f411d1102a79baf8c0796f4b082c` 已获[主线限定实审PAS
 WORLD-ENTRY-003-ADOPTION v1.0已获Owner实际采纳，R1在c67fd4117065e2e0dbd1117cae4fbfaa83791599已专项PASS；旧“待Owner／待R1”保留原时点。当前正式终局子集和四值配置已经归档，待本次准确SHA文档实审。五图、本地转运＋指定样本仅给出消费者资格，不等于所有地图节点、生产者和路线参数获批。
 
 G4在7ca547ab8ab4f411d1102a79baf8c0796f4b082c的限定能力仍是生产边界；未执行A/B/C，不新增可玩内容。同委托结束不重接，无下一真实内容时生还角色停在静态中枢。其余商品／服务、专长、工具箱、安全展示、发布O3、浏览器和Owner体验保留。
+
+## 终局 A 作者工程状态附记（2026-10-04）
+
+6438f7a 文档实审后，本批实现纯终局 A 的资格／四结果、唯一钱包与真实实物历史计划；没有安装 current、保存或注册五图玩家内容。此处仅同步作者实现状态，准确 SHA 主线源码实审仍待完成，B/C 及 Owner 体验不因此通过。接口和证据见 [A 支持合同](../../engineering/residence-foundation/terminal-core/contract-and-support.md)与[作者报告](../../engineering/residence-foundation/terminal-core/completion.md)。现有候选、未采纳数值、O3 与后续 Gate 保持原状态。

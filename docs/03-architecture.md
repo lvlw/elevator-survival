@@ -627,3 +627,9 @@ G3 在完整 SHA `60e9c30732c5e22cfe9ff58b9b381de64b945180` 已通过[限定准�
 本次确定“纯终局计划A→严格聚合／编解码B→唯一会话消费C”的职责，生产模块尚未新增。身份核心拥有具体委托资格／关闭；G1拥有身体／周期，G2拥有位置／现场；A一次消费受控事实、算奖罚与真实物品处置并产完整计划，无安装／IO权；B纯验证与codec无安装权；C才在预编码后一次替换current、一次写尝试、一次只读通知。写失败保内存，retrySave只重写最新状态，不重放玩法。
 
 正常G1返回保留steps=[]，仍严校独立前态、body/cycle不变、revision+1与return-due；死亡必须保留真实合法非空步骤及HP0短路，实际日结不免步骤。新headless formatVersion=2仅是已定技术合同，B并列接口拒绝v1／未知版本，原v1接口及原独立expected不降级，不从候选自造expected。钱包由单一角色账户事实拥有，不另立冻结／备用余额；受控真实内容桥、v2实现和终局会话接线仍待后续工程，O3发布未决定。
+
+## ENG-RESIDENCE-TERMINAL-001 A 作者实现附记（2026-10-04）
+
+6438f7a 文档实审已通过；本批新增纯终局 A 与独立四值运行时依赖。普通入口仅查询资格／全奖容量；受控入口以完整前态权限组成正常返回／期限，或消费真实 G2 死亡原计划，生成身体、具体委托关闭、唯一余额、真实实物归属与被动收据的一笔 TerminalPlan。正常返回保留 G1 空步骤，死亡不重执行动作／周期／随机，不额外增加 revision。既成交付与本次终局处分分源；旧现场只有不可访问历史，没有第二份身体或可用库存。
+
+这是作者实现／本地验证，仍待本批准确 SHA 主线源码实审，不是玩家可玩或体验 PASS。B 编解码、C 唯一会话安装、真实五图内容桥、保存、UI、O3 与 Owner 试玩保持未完成／未决定。详见 [A 实际支持与接口](engineering/residence-foundation/terminal-core/contract-and-support.md)及[交付记录](engineering/residence-foundation/terminal-core/completion.md)；正式规则仍以 [A 契约](engineering/residence-foundation/terminal-core-contract-v1.0.md)为准。

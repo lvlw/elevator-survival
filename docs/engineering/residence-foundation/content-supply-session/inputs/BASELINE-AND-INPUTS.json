@@ -1,0 +1,128 @@
+{
+  "task": "ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001",
+  "phase": "E01-S",
+  "version": "1.0",
+  "date": "2026-10-05",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "84eb6dff5e9d3238c3e651525b6ed28412132549",
+  "start_tree": "327e3474a3f6b90d156f6e34dbbcc0288f7efe87",
+  "start_parent": "346902461c3fd1f01ec88132d4d2e7c3ef1d50bd",
+  "source_branch": "feature/residence-content-supply-restore-001",
+  "target_branch": "feature/residence-content-supply-session-001",
+  "review": {
+    "status": "PASS_WITH_APPROVED_W01_ARCHIVE_EXCEPTION",
+    "F01": "CLOSED",
+    "source_blob": "b2bd29c90ae8858a04733e12bf2b6c097f079720",
+    "mainline_independent_execution": "32 isolated original-function checks; 32 matched; not native codec or npm",
+    "ci": {
+      "number": 145,
+      "run": 37300333381,
+      "job": 111731266579,
+      "head_sha": "84eb6dff5e9d3238c3e651525b6ed28412132549",
+      "status": "success",
+      "files": 169,
+      "tests": 3494
+    },
+    "mainline_native_npm": "NOT RUN; container git clone DNS failure exit128; connected source reads worked"
+  },
+  "historical_counts": {
+    "P_tests": 91,
+    "R_tests": 129,
+    "R1_tests_included_in_R": 22,
+    "baseline_files": 169,
+    "baseline_tests": 3494,
+    "not_a_new_task_test_run": true
+  },
+  "allowed_paths": [
+    "src/state/residence-session/supply-types.ts",
+    "src/state/residence-session/supply-commands.ts",
+    "src/state/residence-session/supply-context.ts",
+    "src/state/residence-session/supply-initial.ts",
+    "src/state/residence-session/supply-expectation.ts",
+    "src/state/residence-session/supply-proposals.ts",
+    "src/state/residence-session/supply-persistence.ts",
+    "src/state/residence-session/supply-session.ts",
+    "src/state/residence-session/supply-composition.ts",
+    "src/state/residence-session/supply-index.ts",
+    "src/state/residence-session/supply-controlled.ts",
+    "src/state/residence-session/supply-test-fixtures.ts",
+    "src/state/residence-session/supply-session.test.ts",
+    "src/state/residence-session/supply-initial.test.ts",
+    "src/state/residence-session/supply-operations.test.ts",
+    "src/state/residence-session/supply-terminal.test.ts",
+    "src/state/residence-session/supply-persistence.test.ts",
+    "src/state/residence-session/supply-reentry.test.ts",
+    "src/state/residence-session/supply-compatibility.test.ts",
+    "src/state/residence-session/supply-longchain.integration.test.ts",
+    "src/state/residence-session/supply-faults.test.ts",
+    "src/state/residence-session/supply-expected.test.ts",
+    "docs/engineering/residence-foundation/content-supply-session/implementation-notes.md",
+    "docs/engineering/residence-foundation/content-supply-session/contract-and-support.md",
+    "docs/engineering/residence-foundation/content-supply-session/completion.md",
+    "docs/engineering/residence-foundation/content-supply-session/verification-results.json",
+    "docs/engineering/residence-foundation/content-supply-session/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-task-v1.0.md",
+    "docs/engineering/residence-foundation/content-supply-session/inputs/OWNER-authority-and-scope-E01-S-v1.0.md",
+    "docs/engineering/residence-foundation/content-supply-session/inputs/AUD-84eb6df-ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-R1-review-v1.0.md",
+    "docs/engineering/residence-foundation/content-supply-session/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/residence-foundation/content-supply-session/inputs/SHA256SUMS.txt",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "all_existing_production_and_tests_read_only": true,
+  "shared_docs_append_only": [
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "archive_prefix": "docs/engineering/residence-foundation/content-supply-session/inputs/",
+  "input_files": [
+    "ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-task-v1.0.md",
+    "OWNER-authority-and-scope-E01-S-v1.0.md",
+    "AUD-84eb6df-ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-R1-review-v1.0.md",
+    "BASELINE-AND-INPUTS.json",
+    "SHA256SUMS.txt"
+  ],
+  "W01": {
+    "cumulative_base": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+    "observed_cumulative_exit": 2,
+    "exact_legacy_inputs": [
+      {
+        "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+        "sha256": "bab11e7b844b831f28c25d6b0904696ab72cad2345efddcec785ecd157618d48",
+        "git_blob": "76f01dfb2bb2fa303da88ab0296c6c48e94550c0",
+        "lines": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+        "sha256": "64f8040c04cae74937af837998211957bbc509adede451869cf5bc15e0c871d2",
+        "git_blob": "921bfac5ee42b7a95684f83357a748ddf231bb76",
+        "lines": [
+          7,
+          8,
+          9
+        ]
+      }
+    ],
+    "new_task_diff_must_exit": 0
+  },
+  "cold_restore_contract": {
+    "requires_candidate_external_full_expectation": true,
+    "provider_must_not_receive_untrusted_candidate": true,
+    "self_contained_browser_bootstrap_not_implemented_here": true,
+    "no_persistent_expected_sidecar": true
+  },
+  "actual_read_interfaces": {
+    "domain.ts": "699ba6cc325b467e37e934ae50044c138e4a0ee6",
+    "terminal-session.ts": "a9f37eb92abefbf9b2bb48ce33720e9b56fd4598",
+    "content-supply-restore-contract-v1.0.md": "726dcb8d67e0a7b7f78daa13853319143b642e0d"
+  },
+  "stop": "Commit/push only E01-S branch; report exact SHA and stop for mainline review; no E02/E03/browser."
+}

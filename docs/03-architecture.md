@@ -686,3 +686,14 @@ G1仍拥有身体／精力／周期，G2仍拥有现场，A共享结算拥有钱
 针对 3469024 实审 F01，v3 历史检查现将已记录行动／周期流血实扣量绑定到既有 G1 配置并保留 HP 截零；cycle 起步的局部死亡必须满足历史现场休整资格、非截止日及无待战斗／存活遭遇。历史现场按其自身 catalog 绑定查询，不从最新伤口状态推断旧历史，不重放玩法或改写来源。
 
 原生模板已实际复现四个三入口错误接受，返修回归与两类仓库外语义负控见[本批验证记录](engineering/residence-foundation/content-supply-restore/verification-results.json)。W01 只保留两份旧输入原件的七处硬换行；本轮新增差异无此例外。原接口、独立 expected、v3 格式及批准规则不变；E01-S/E02/E03、玩家入口、浏览器存储及 O3 不随本次接入或决定。等待准确 SHA 专项复审，Owner 试玩仍 NOT RUN。
+
+
+## E01-S 显式内容供给会话附记（2026-10-05，作者交付待审）
+
+在独立 `supply-index.ts`／`supply-controlled.ts` 入口下，现已接入同域唯一 v3 headless 会话：复用原 domain 占用、P 真实初配与出发／任务／来源／搬运／拆合／药食／维护、原死亡计划消费和四终局，并在 R 完整验证及预编码后只提交一次 current、一次保存尝试和一批通知。保存失败保留最新内存；显式 retrySave 只编码并保存，不重放规则。
+
+冷恢复仍须候选外的受控独立 expected 启动材料；不从读到的存档或 initial origins 反推后自证。四态加载不写盘、不发物、不重放动作／周期／随机。存活 combat-required 后态原子拒绝，合法死亡优先完成 dead；复杂任务路线的已解除危险前态明确为 TEST-only，不代表 CTB／完整五图可玩或 Owner 体验通过。
+
+本附记仅更新此前 S 未接入的工程状态，不倒改历史结论。P/R/F01、G1/G2、旧 A/B/C、保存格式、规则与参数保持不变；E02/E03、玩家入口、浏览器存储、多标签与 O3 仍未接入或决定。等待准确 SHA 会话及保存故障实审，Owner 试玩仍 NOT RUN。
+
+接口及 S01—S12 见[本批契约](engineering/residence-foundation/content-supply-session/contract-and-support.md)，实跑、独立计数、范围和 W01 见[验证记录](engineering/residence-foundation/content-supply-session/verification-results.json)及[完成报告](engineering/residence-foundation/content-supply-session/completion.md)。

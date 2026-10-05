@@ -57,3 +57,15 @@ F01：逐操作原字段、数值、布尔、容器、选择器及决策边界�
 首次348项冻结与暂存审计通过后，最后相邻检视补上活态场次ID—入场revision关系及两项反例；中间实际结果仍保存在freeze-1和manifest历史，最终重新冻结350项双跑与23项原生观察。未以旧结果代替新代码验证。
 
 最终工作区及暂存对象实审：33/36白名单路径、253相对链接／锚点、34冻结输入、12新／5旧原件与历史前缀、1107范围外Git对象均通过；普通／基线／cached diff --check均exit0、无新增告警。暂存回执已存checks；提交后对象与远端核验在仓库外继续留痕。
+
+
+<a id="doc-world-entry-005"></a>
+## DOC-WORLD-ENTRY-005 技术合同定稿附记（2026-10-06）
+
+[主线技术定稿](adoption/inputs/MAINLINE-technical-ratification-WORLD-ENTRY-005-v1.0.md)以 `464b59d657184636b897f72375eb6b61bd2c5786` 的[R1专项PASS](adoption/inputs/AUD-464b59d-WORLD-ENTRY-005-R1-review-v1.0.md)为依据，关闭F01／F02。本次只正式安装五份技术合同，不新增玩法、DEC或参数，Owner无需新增玩法采纳。
+
+当前同范围正式入口：[P→R→S批次门槛](../../../engineering/residence-foundation/active-combat-batch-plan-v1.0.md)、[E02-P纯核心合同](../../../engineering/residence-foundation/active-combat-core-contract-v1.0.md)、[活战斗时序合同](../../../engineering/residence-foundation/active-combat-lifecycle-contract-v1.0.md)、[E02-R恢复合同](../../../engineering/residence-foundation/active-combat-restore-contract-v1.0.md)、[E02-S会话合同](../../../engineering/residence-foundation/active-combat-session-contract-v1.0.md)。
+
+上文原WORLD-ENTRY-005及R1报告、106／350有限项、23项原生观察、修前失败与冻结结果均保持原字节、原提交与原证据身份。本轮没有重跑模型、探针或改写这些结果，也没有将主线专项复审计作作者新增测试。
+
+本次[归档报告](adoption/DOC-WORLD-ENTRY-005-completion.md)与[实际检查](adoption/checks.json)独立记账。E02／E03、玩家入口、浏览器存储及多标签未执行，O3未决定；不承诺永久维护开发格式，不自动进入生产。当前停止点为WebGPT主线准确SHA文档实审。

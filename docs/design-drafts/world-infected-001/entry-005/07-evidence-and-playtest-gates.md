@@ -1,3 +1,16 @@
+<a id="doc-world-entry-005"></a>
+## DOC-WORLD-ENTRY-005 技术定稿附记（2026-10-06）
+
+[R1专项实审](adoption/inputs/AUD-464b59d-WORLD-ENTRY-005-R1-review-v1.0.md)确认准确SHA `464b59d657184636b897f72375eb6b61bd2c5786` 为限定PASS，F01／F02已关闭；不是整个世界或生产实现验收。[MAINLINE技术定稿](adoption/inputs/MAINLINE-technical-ratification-WORLD-ENTRY-005-v1.0.md)确定独立v4及E02-P→E02-R→E02-S逐项准确SHA停审，不新增玩法、DEC或参数；Owner无需新增玩法采纳。
+
+正式技术依据：[P→R→S批次门槛](../../../engineering/residence-foundation/active-combat-batch-plan-v1.0.md)、[E02-P纯核心合同](../../../engineering/residence-foundation/active-combat-core-contract-v1.0.md)、[活战斗时序合同](../../../engineering/residence-foundation/active-combat-lifecycle-contract-v1.0.md)、[E02-R恢复合同](../../../engineering/residence-foundation/active-combat-restore-contract-v1.0.md)、[E02-S会话合同](../../../engineering/residence-foundation/active-combat-session-contract-v1.0.md)。
+
+本次文档交付仍待当前WebGPT主线准确SHA文档实审；其后另行下发E02-P完整任务，不自动开工。E02／E03、玩家入口和浏览器未执行，O3未决定。[本轮报告](adoption/DOC-WORLD-ENTRY-005-completion.md)与[本轮检查](adoption/checks.json)只记本次实际文档核验。
+
+以下原文（含R1附记）逐字节保留；其中“候选／待审／未定稿”、旧通过和旧失败均为当时历史状态，当前技术合同状态以上述附记为准。
+
+---
+
 # W4 — 证据身份、交叉自查与体验门槛
 
 ## 本轮能证明什么

@@ -1,0 +1,147 @@
+{
+  "task": "DOC-WORLD-ENTRY-005",
+  "version": "1.0",
+  "date": "2026-10-06",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "464b59d657184636b897f72375eb6b61bd2c5786",
+  "start_parent": "df1c3ff6979703b72bf76d73761b3915e59eb5b2",
+  "start_tree": "f9d019450cdb1c77e2b45103cc5337481919c95c",
+  "src_tree": "10501d897195173df2023b1ebd73f9f097228512",
+  "branch": "feature/design-world-entry-005",
+  "source_blobs": {
+    "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md": "bbc1f5bb23449e57f272f729b8a53436e242c790",
+    "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md": "9ff47e96441f81b9cb9c55a0c1319986aa7b54dd",
+    "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md": "c818fdbb94809be4a4fe376252002650c0ebbcbb",
+    "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md": "ba964587c1bba2177f83ebe9c23bef570e27b971",
+    "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md": "56b8a3cc7b52ff50bd2aed35fb91d75a287642e3",
+    "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md": "eea984d85d4f8c74044f7bf7a05447e6f0e56976",
+    "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md": "143c14705a5c0b5d1af0be0587278e6ec8096014",
+    "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md": "dac70d82bc3a1e165d36e66fb1c7377f21b8e1c9"
+  },
+  "source_declared_config_sha256": {
+    "docs/content/infected-residence-core-test-config-v0.1.json": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9",
+    "docs/content/infected-terminal-core-test-config-v0.1.json": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+    "docs/content/infected-world-entry-test-config-v0.1.json": "15624fee92e615e1d4ffcec39d071057b10a8de6ce16408cca0ffb4e94f5d8e6",
+    "docs/content/infected-world-entry-content-v0.1.json": "05dabf10796ee027ea31037641ae91b95fc9346b9b98f032f1b7c99dada88925"
+  },
+  "hash_provenance": "Source-declared configuration digests from exact source 05-approved-data-and-gaps.md; Codex must independently recompute against Git baseline and final. Source Git blobs and source/root metadata fetched independently by mainline.",
+  "archive_files": [
+    "DOC-WORLD-ENTRY-005-task-v1.0.md",
+    "MAINLINE-technical-ratification-WORLD-ENTRY-005-v1.0.md",
+    "AUD-464b59d-WORLD-ENTRY-005-R1-review-v1.0.md",
+    "BASELINE-AND-INPUTS.json",
+    "verify-doc-package.py",
+    "SHA256SUMS.txt",
+    "approved-documents/active-combat-batch-plan-v1.0.md",
+    "approved-documents/active-combat-core-contract-v1.0.md",
+    "approved-documents/active-combat-lifecycle-contract-v1.0.md",
+    "approved-documents/active-combat-restore-contract-v1.0.md",
+    "approved-documents/active-combat-session-contract-v1.0.md"
+  ],
+  "archive_map": {
+    "DOC-WORLD-ENTRY-005-task-v1.0.md": "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/DOC-WORLD-ENTRY-005-task-v1.0.md",
+    "MAINLINE-technical-ratification-WORLD-ENTRY-005-v1.0.md": "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/MAINLINE-technical-ratification-WORLD-ENTRY-005-v1.0.md",
+    "AUD-464b59d-WORLD-ENTRY-005-R1-review-v1.0.md": "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/AUD-464b59d-WORLD-ENTRY-005-R1-review-v1.0.md",
+    "BASELINE-AND-INPUTS.json": "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/BASELINE-AND-INPUTS.json",
+    "verify-doc-package.py": "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/verify-doc-package.py",
+    "SHA256SUMS.txt": "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/SHA256SUMS.txt",
+    "approved-documents/active-combat-batch-plan-v1.0.md": "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/approved-documents/active-combat-batch-plan-v1.0.md",
+    "approved-documents/active-combat-core-contract-v1.0.md": "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/approved-documents/active-combat-core-contract-v1.0.md",
+    "approved-documents/active-combat-lifecycle-contract-v1.0.md": "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/approved-documents/active-combat-lifecycle-contract-v1.0.md",
+    "approved-documents/active-combat-restore-contract-v1.0.md": "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/approved-documents/active-combat-restore-contract-v1.0.md",
+    "approved-documents/active-combat-session-contract-v1.0.md": "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/approved-documents/active-combat-session-contract-v1.0.md"
+  },
+  "payload_map": {
+    "approved-documents/active-combat-batch-plan-v1.0.md": "docs/engineering/residence-foundation/active-combat-batch-plan-v1.0.md",
+    "approved-documents/active-combat-core-contract-v1.0.md": "docs/engineering/residence-foundation/active-combat-core-contract-v1.0.md",
+    "approved-documents/active-combat-lifecycle-contract-v1.0.md": "docs/engineering/residence-foundation/active-combat-lifecycle-contract-v1.0.md",
+    "approved-documents/active-combat-restore-contract-v1.0.md": "docs/engineering/residence-foundation/active-combat-restore-contract-v1.0.md",
+    "approved-documents/active-combat-session-contract-v1.0.md": "docs/engineering/residence-foundation/active-combat-session-contract-v1.0.md"
+  },
+  "allowed_paths": [
+    "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/DOC-WORLD-ENTRY-005-task-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/MAINLINE-technical-ratification-WORLD-ENTRY-005-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/AUD-464b59d-WORLD-ENTRY-005-R1-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/BASELINE-AND-INPUTS.json",
+    "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/verify-doc-package.py",
+    "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/SHA256SUMS.txt",
+    "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/approved-documents/active-combat-batch-plan-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/approved-documents/active-combat-core-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/approved-documents/active-combat-lifecycle-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/approved-documents/active-combat-restore-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/approved-documents/active-combat-session-contract-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-batch-plan-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-core-contract-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-lifecycle-contract-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-restore-contract-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-session-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/adoption/DOC-WORLD-ENTRY-005-completion.md",
+    "docs/design-drafts/world-infected-001/entry-005/adoption/checks.json",
+    "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+    "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+    "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+    "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+    "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+    "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+    "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+    "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/residence-foundation/world-content-batch-plan-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/completion.md"
+  ],
+  "prepend_only_paths": [
+    "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+    "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+    "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+    "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+    "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+    "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+    "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+    "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md"
+  ],
+  "append_only_paths": [
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/residence-foundation/world-content-batch-plan-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/completion.md"
+  ],
+  "mainline_review": {
+    "result": "PASS",
+    "fixed_before": {
+      "total": 34,
+      "matched": 17,
+      "exceptions": 3
+    },
+    "fixed_after": {
+      "total": 34,
+      "matched": 34,
+      "exceptions": 0,
+      "unsupported": 3
+    },
+    "adjacent": {
+      "total": 56,
+      "matched": 56,
+      "exceptions": 0
+    },
+    "negative_control_mode": "six selected direct validate probes; not full author CLI rerun",
+    "author_350_rerun": false,
+    "native_23_rerun": false,
+    "production_tests_run": false
+  },
+  "stop": "Ordinary commit/push this design branch only; exact-SHA document review next; no E02 production execution",
+  "new_dec_authorized": false,
+  "new_gameplay_authorized": false,
+  "technical_format_ratification": 4,
+  "payload_sha256": {
+    "approved-documents/active-combat-batch-plan-v1.0.md": "525b53b209c37caef1e35426f8c9db29bec3448cc074d92487e09c568e217484",
+    "approved-documents/active-combat-core-contract-v1.0.md": "e05411bd23fd9077566a144f0234f4070097a273efac97845391d3e63723a590",
+    "approved-documents/active-combat-lifecycle-contract-v1.0.md": "a9b5df587ab99346050cd147a2063e3b5236874a85f7f8bdc5085ffafb5c3c2b",
+    "approved-documents/active-combat-restore-contract-v1.0.md": "d7ce75ab12f53ee43a9d07cb7a839d87037cfb0f45bdef8fd52dfc2a3fef364d",
+    "approved-documents/active-combat-session-contract-v1.0.md": "3ea4eed266bf419d6343d1d7e826ce97b2d14007281c8892fcffc8d9392b2ed2"
+  }
+}

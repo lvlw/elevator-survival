@@ -259,3 +259,15 @@ E01-S在`9c3c8a8c97c374bd1def6217c691137f3df10096`已获限定实审；本轮重
 ## WORLD-ENTRY-005-R1 限定返修附记
 
 原df1c3ff交付的有限检查发现原值／决策边界及固定首场死亡锚缺口；本次在同设计分支修复并提交[专项审阅入口](entry-005/00-owner-review.md#world-entry-005-r1)。已批玩法、原38／103配置及真实内容不改，Owner无需新增玩法采纳。新技术证据等待当前WebGPT准确SHA专项复审，不自动正式归档或执行E02-P/R/S、E03；旧报告保留历史身份。
+
+
+<a id="doc-world-entry-005"></a>
+## DOC-WORLD-ENTRY-005 技术合同定稿附记（2026-10-06）
+
+[主线技术定稿](entry-005/adoption/inputs/MAINLINE-technical-ratification-WORLD-ENTRY-005-v1.0.md)以 `464b59d657184636b897f72375eb6b61bd2c5786` 的[R1专项PASS](entry-005/adoption/inputs/AUD-464b59d-WORLD-ENTRY-005-R1-review-v1.0.md)为依据，关闭F01／F02。本次只正式安装五份技术合同，不新增玩法、DEC或参数，Owner无需新增玩法采纳。
+
+当前同范围正式入口：[P→R→S批次门槛](../../engineering/residence-foundation/active-combat-batch-plan-v1.0.md)、[E02-P纯核心合同](../../engineering/residence-foundation/active-combat-core-contract-v1.0.md)、[活战斗时序合同](../../engineering/residence-foundation/active-combat-lifecycle-contract-v1.0.md)、[E02-R恢复合同](../../engineering/residence-foundation/active-combat-restore-contract-v1.0.md)、[E02-S会话合同](../../engineering/residence-foundation/active-combat-session-contract-v1.0.md)。
+
+当前阶段是技术合同已定稿、文档交付待准确SHA实审；下阶段只有主线另行下发的E02-P，不把旧候选的“待审”恢复为重复玩法采纳。三敌真实CTB、v4恢复和会话长链仍须后续工程验收，整包未冻结、未宣称可玩。
+
+本次[归档报告](entry-005/adoption/DOC-WORLD-ENTRY-005-completion.md)与[实际检查](entry-005/adoption/checks.json)独立记账。E02／E03、玩家入口、浏览器存储及多标签未执行，O3未决定；不承诺永久维护开发格式，不自动进入生产。当前停止点为WebGPT主线准确SHA文档实审。

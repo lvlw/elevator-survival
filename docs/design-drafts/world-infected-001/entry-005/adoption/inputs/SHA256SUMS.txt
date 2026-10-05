@@ -1,0 +1,10 @@
+1c4a5876cc897103f1daf637f99d5583d309ae125fbcc80c6069500416592f83  AUD-464b59d-WORLD-ENTRY-005-R1-review-v1.0.md
+697d8aca6f31d912e49ca67711e7ed4f98fd0b232e2c1072dc8be9199f368903  BASELINE-AND-INPUTS.json
+a9e2a246414bfcbb0e73c5b01f59b019860827d3907d1fb55c344ce058a886d4  DOC-WORLD-ENTRY-005-task-v1.0.md
+3ad2d7d7b43046b0ae29093e57853d3bfa28d5e2411c35f7b2d6a13c8edc2b54  MAINLINE-technical-ratification-WORLD-ENTRY-005-v1.0.md
+525b53b209c37caef1e35426f8c9db29bec3448cc074d92487e09c568e217484  approved-documents/active-combat-batch-plan-v1.0.md
+e05411bd23fd9077566a144f0234f4070097a273efac97845391d3e63723a590  approved-documents/active-combat-core-contract-v1.0.md
+a9b5df587ab99346050cd147a2063e3b5236874a85f7f8bdc5085ffafb5c3c2b  approved-documents/active-combat-lifecycle-contract-v1.0.md
+d7ce75ab12f53ee43a9d07cb7a839d87037cfb0f45bdef8fd52dfc2a3fef364d  approved-documents/active-combat-restore-contract-v1.0.md
+3ea4eed266bf419d6343d1d7e826ce97b2d14007281c8892fcffc8d9392b2ed2  approved-documents/active-combat-session-contract-v1.0.md
+9ce6fd2692d6f2502247af3d08b5b5953a1d2fe0057d76c7b3a2baed80c96117  verify-doc-package.py

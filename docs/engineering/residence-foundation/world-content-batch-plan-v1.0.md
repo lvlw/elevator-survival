@@ -40,3 +40,15 @@ O3在浏览器槽路由／公开入口接线之前明确：旧医院入口、旧
 新增103键与原38值严格分源，未经批准不得为了让路线全绿而自动调参。锁定内容数据未注册为玩家入口；输入／fixtures外部伤害、CTB轨迹、测试初态不成为默认。H2随机没有额外固定消毒剂，专业电子不可双花。
 
 每次工程必须重新读取实际AGENTS、规则和源码，跑真实测试基线；普通commit／push只在指定分支，不合并、不推main、不强推，不自动下一项。作者证据、主线执行、CI和Owner体验分层，未执行写NOT RUN。商城／身体服务、第二委托、跨未来改专长、通用事件总线／任务SDK等仍排除。
+
+
+<a id="doc-world-entry-005"></a>
+## DOC-WORLD-ENTRY-005 技术合同定稿附记（2026-10-06）
+
+[主线技术定稿](../../design-drafts/world-infected-001/entry-005/adoption/inputs/MAINLINE-technical-ratification-WORLD-ENTRY-005-v1.0.md)以 `464b59d657184636b897f72375eb6b61bd2c5786` 的[R1专项PASS](../../design-drafts/world-infected-001/entry-005/adoption/inputs/AUD-464b59d-WORLD-ENTRY-005-R1-review-v1.0.md)为依据，关闭F01／F02。本次只正式安装五份技术合同，不新增玩法、DEC或参数，Owner无需新增玩法采纳。
+
+当前同范围正式入口：[P→R→S批次门槛](active-combat-batch-plan-v1.0.md)、[E02-P纯核心合同](active-combat-core-contract-v1.0.md)、[活战斗时序合同](active-combat-lifecycle-contract-v1.0.md)、[E02-R恢复合同](active-combat-restore-contract-v1.0.md)、[E02-S会话合同](active-combat-session-contract-v1.0.md)。
+
+本附记接续原E01批次：E02-P真实纯计划、E02-R严格v4、E02-S唯一会话分别完成各自完整任务后立即停在准确SHA源码实审；前项通过才由主线另发下一项。旧E02方向及原批次正文保留历史身份，不作为自动贯穿三项的授权。
+
+本次[归档报告](../../design-drafts/world-infected-001/entry-005/adoption/DOC-WORLD-ENTRY-005-completion.md)与[实际检查](../../design-drafts/world-infected-001/entry-005/adoption/checks.json)独立记账。E02／E03、玩家入口、浏览器存储及多标签未执行，O3未决定；不承诺永久维护开发格式，不自动进入生产。当前停止点为WebGPT主线准确SHA文档实审。

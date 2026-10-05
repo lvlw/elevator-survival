@@ -697,3 +697,15 @@ G1仍拥有身体／精力／周期，G2仍拥有现场，A共享结算拥有钱
 本附记仅更新此前 S 未接入的工程状态，不倒改历史结论。P/R/F01、G1/G2、旧 A/B/C、保存格式、规则与参数保持不变；E02/E03、玩家入口、浏览器存储、多标签与 O3 仍未接入或决定。等待准确 SHA 会话及保存故障实审，Owner 试玩仍 NOT RUN。
 
 接口及 S01—S12 见[本批契约](engineering/residence-foundation/content-supply-session/contract-and-support.md)，实跑、独立计数、范围和 W01 见[验证记录](engineering/residence-foundation/content-supply-session/verification-results.json)及[完成报告](engineering/residence-foundation/content-supply-session/completion.md)。
+
+
+<a id="doc-world-entry-005"></a>
+## DOC-WORLD-ENTRY-005 技术合同定稿附记（2026-10-06）
+
+[主线技术定稿](design-drafts/world-infected-001/entry-005/adoption/inputs/MAINLINE-technical-ratification-WORLD-ENTRY-005-v1.0.md)以 `464b59d657184636b897f72375eb6b61bd2c5786` 的[R1专项PASS](design-drafts/world-infected-001/entry-005/adoption/inputs/AUD-464b59d-WORLD-ENTRY-005-R1-review-v1.0.md)为依据，关闭F01／F02。本次只正式安装五份技术合同，不新增玩法、DEC或参数，Owner无需新增玩法采纳。
+
+当前同范围正式入口：[P→R→S批次门槛](engineering/residence-foundation/active-combat-batch-plan-v1.0.md)、[E02-P纯核心合同](engineering/residence-foundation/active-combat-core-contract-v1.0.md)、[活战斗时序合同](engineering/residence-foundation/active-combat-lifecycle-contract-v1.0.md)、[E02-R恢复合同](engineering/residence-foundation/active-combat-restore-contract-v1.0.md)、[E02-S会话合同](engineering/residence-foundation/active-combat-session-contract-v1.0.md)。
+
+现有E01-S稳定v3与旧医院CTB能力保持；E02实现尚未开始。新合同固定真实移动前入场证据、唯一身体／实物／敌人、新typed combat-death及一次消费；R严格v4和独立expected不授予安装权，S复用同域唯一current。新旧版本双向拒绝，无静默迁移。正常H0保留空身体步骤，真实日结和死亡仍验证应有步骤。
+
+本次[归档报告](design-drafts/world-infected-001/entry-005/adoption/DOC-WORLD-ENTRY-005-completion.md)与[实际检查](design-drafts/world-infected-001/entry-005/adoption/checks.json)独立记账。E02／E03、玩家入口、浏览器存储及多标签未执行，O3未决定；不承诺永久维护开发格式，不自动进入生产。当前停止点为WebGPT主线准确SHA文档实审。

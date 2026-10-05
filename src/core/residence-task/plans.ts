@@ -6,29 +6,30 @@ import { tableValue, numberValue } from '../residence-supply/config'
 import { consumeSupplyUnits, carriedSupplyItem, issueSupplyOrigin } from '../residence-supply/allocations'
 import { originalInstanceId } from '../residence-supply/provenance'
 import { selectWeightedSupply } from './random'
-import type { SupplyValue, SupplyDependencies, SupplyProduction } from '../residence-supply/types'
+import type { SupplyDependencies, SupplyProduction } from '../residence-supply/types'
+import type { SupplyDomain } from '../residence-supply/shared-types'
 
-export function taskFact(v: SupplyValue, id: string) { return v.site?.facts.some(f => f.id === id && f.value) ?? false }
-export function assertTaskPrerequisites(v: SupplyValue, ids: readonly string[]) {
+export function taskFact(v: SupplyDomain, id: string) { return v.site?.facts.some(f => f.id === id && f.value) ?? false }
+export function assertTaskPrerequisites(v: SupplyDomain, ids: readonly string[]) {
   ensure(ids.every(id => taskFact(v, id)), 'Missing actual task prerequisite', 'NOT_AVAILABLE')
 }
-export function taskAlreadyProduced(v: SupplyValue, id: string) {
+export function taskAlreadyProduced(v: SupplyDomain, id: string) {
   return v.site && v.productions.some(p => p.producerId === id && p.binding.execution.runId === v.site!.binding.execution.runId)
 }
-export function markSupplyProduction(v: SupplyValue, id: string, method: string, originIds: readonly string[], factId: string | null, drawIndex: number): SupplyValue {
+export function markSupplyProduction<V extends SupplyDomain>(v: V, id: string, method: string, originIds: readonly string[], factId: string | null, drawIndex: number): V {
   ensure(v.site && !taskAlreadyProduced(v, id), 'Already produced', 'NOT_AVAILABLE')
   const production: SupplyProduction = { binding: v.site.binding, producerId: id, method, originIds, factId, drawIndex, revision: v.character.revision }
   return { ...v, productions: [...v.productions, production], site: { ...v.site,
     facts: v.site.facts.map(f => f.id === factId ? { ...f, value: true } : f) } }
 }
-export function spendEquippedSupplyTool(v: SupplyValue, id: string | undefined, definitionId: string, costKey: string, deps: SupplyDependencies): SupplyValue {
+export function spendEquippedSupplyTool<V extends SupplyDomain>(v: V, id: string | undefined, definitionId: string, costKey: string, deps: SupplyDependencies): V {
   const tool = v.carried.equipment.utility
   ensure(id && tool?.instanceId === id && tool.definitionId === definitionId, 'Explicit equipped tool required', 'NOT_AVAILABLE')
   const state = v.itemStates.states.find(s => s.instanceId === id)!
   const result = consumeCommittedResource(state, numberValue(deps.configuration, costKey))
   return { ...v, itemStates: { states: v.itemStates.states.map(s => s.instanceId === id ? result.state : s) } }
 }
-export function consumeSupplyRecipe(v: SupplyValue, inputs: readonly { instanceId: string; quantity: number }[], recipeKey: string | Readonly<Record<string, number>>,
+export function consumeSupplyRecipe<V extends SupplyDomain>(v: V, inputs: readonly { instanceId: string; quantity: number }[], recipeKey: string | Readonly<Record<string, number>>,
   deps: SupplyDependencies, installed = false) {
   ensure(new Set(inputs.map(i => i.instanceId)).size === inputs.length, 'Repeated consumption target')
   const recipe = typeof recipeKey === 'string' ? tableValue(deps.configuration, recipeKey) : recipeKey, actual = new Map<string, number>()
@@ -49,7 +50,7 @@ export function consumeSupplyRecipe(v: SupplyValue, inputs: readonly { instanceI
   for (const selected of inputs) next = consumeSupplyUnits(next, selected.instanceId, selected.quantity, deps, installed ? 'installed' : 'consumed')
   return next
 }
-export function grantSupplyTask(v: SupplyValue, id: string, alias: string, quantity: number,
+export function grantSupplyTask<V extends SupplyDomain>(v: V, id: string, alias: string, quantity: number,
   placement: { x: number; y: number; rotated: boolean }, drawIndex: number, deps: SupplyDependencies) {
   ensure(v.site, 'No site')
   const definitionId = deps.tasks.data.items.find(i => i.alias === alias)!.id
@@ -60,11 +61,11 @@ export function grantSupplyTask(v: SupplyValue, id: string, alias: string, quant
     produced.value.carried.backpack, produced.items[0], { instanceId: produced.items[0].instanceId, ...placement }, deps.catalog.physical) } },
     originId: produced.value.origins.at(-1)!.id }
 }
-export function requireSupplyCard(v: SupplyValue, deps: SupplyDependencies, id: string | undefined) {
+export function requireSupplyCard(v: SupplyDomain, deps: SupplyDependencies, id: string | undefined) {
   const definition = deps.tasks.data.items.find(i => i.alias === 'card')!.id
   ensure(id && carriedItems(v.carried).some(i => i.instanceId === id && i.definitionId === definition), 'Real held permission required', 'NOT_AVAILABLE')
 }
-export function materializeSupplySource(v: SupplyValue, sourceId: string, method: string, deps: SupplyDependencies) {
+export function materializeSupplySource<V extends SupplyDomain>(v: V, sourceId: string, method: string, deps: SupplyDependencies) {
   const s = deps.tasks.data.sources.find(s => s.id === sourceId)!
   ensure(s && v.site && v.site.nodeId === s.node && !taskAlreadyProduced(v, s.id), 'Source already issued or not here', 'NOT_AVAILABLE')
   assertTaskPrerequisites(v, s.requires)

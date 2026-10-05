@@ -1,14 +1,16 @@
+import { combatRules } from './combat-legacy-profile'
+import type { CombatEngineDependencies } from './combat-profile'
 import { deepFreeze } from '../config'
 import { createPlayerCondition } from '../condition'
 import { calculateBackpackWeightSubtotal } from '../inventory'
 import { classifyLoad } from '../load'
 import { createItemStateCollectionSnapshot } from '../item-state'
 import { createCarriedItemContainersSnapshot } from '../quick-slot'
-import { validateCombatDependencies } from './combat-dependencies'
+import { validateCombatDependencies, validateCombatEngineDependencies } from './combat-dependencies'
 import { CombatError } from './combat-errors'
 import {
   createEnemyPersistentCombatState,
-  createExplorationCombatUsage,
+  createCombatUsageWithMaximum,
 } from './enemy-persistent-state'
 import { hasExactObjectKeys } from './combat-validation'
 import type {
@@ -38,11 +40,12 @@ type EncounterInput = Omit<
   'enemyNextActionCtb' | 'temporaryDefense' | 'enemy'
 > & { readonly enemy: EnemyPersistentCombatState }
 
-export function createCombatEncounterSnapshot(
+export function createCombatEngineSnapshot(
   input: CombatEncounterSnapshot,
-  dependencies: CombatDependencies,
+  dependencies: CombatEngineDependencies,
 ): CombatEncounterSnapshot {
-  validateCombatDependencies(dependencies)
+  validateCombatEngineDependencies(dependencies)
+  const rules = combatRules(dependencies)
   if (!hasExactObjectKeys(input, COMBAT_SNAPSHOT_KEYS)) {
     throw new CombatError('INVALID_COMBAT_SNAPSHOT', '战斗快照顶层字段无效')
   }
@@ -75,15 +78,15 @@ export function createCombatEncounterSnapshot(
     },
   )
   if (
-    carried.backpack.width !== dependencies.config.backpack.width ||
-    carried.backpack.height !== dependencies.config.backpack.height ||
-    carried.quickSlots.slots.length !== dependencies.config.backpack.quickSlotCount
+    carried.backpack.width !== rules.backpack.width ||
+    carried.backpack.height !== rules.backpack.height ||
+    carried.quickSlots.slots.length !== rules.backpack.quickSlotCount
   ) {
     throw new CombatError('INVALID_COMBAT_SNAPSHOT', '战斗携带容器与版本配置不一致')
   }
   if (!classifyLoad(
     calculateBackpackWeightSubtotal(carried.backpack, dependencies.physicalCatalog),
-    dependencies.config.backpack,
+    rules.backpack,
   ).canCarry) {
     throw new CombatError('INVALID_COMBAT_SNAPSHOT', '稳定战斗背包处于无法携带状态')
   }
@@ -103,10 +106,10 @@ export function createCombatEncounterSnapshot(
   )
   const playerCondition = createPlayerCondition(
     input.playerCondition,
-    dependencies.config.combat.player,
+    rules.player,
   )
   const enemy = createEnemyPersistentCombatState(input.enemy, definition)
-  const usage = createExplorationCombatUsage(input.usage, dependencies.config)
+  const usage = createCombatUsageWithMaximum(input.usage, rules.metalPipe.chargedStrike.maxUsesPerExploration)
   if (
     !Number.isSafeInteger(input.currentCtb) || input.currentCtb < 0 ||
     !Number.isSafeInteger(input.playerNextActionCtb) || input.playerNextActionCtb < 0 ||
@@ -145,6 +148,10 @@ export function createCombatEncounterSnapshot(
     usage,
     temporaryDefense: null,
   })
+}
+
+export function createCombatEncounterSnapshot(input: CombatEncounterSnapshot, dependencies: CombatDependencies): CombatEncounterSnapshot {
+  return createCombatEngineSnapshot(input, dependencies)
 }
 
 export function createFirstCombatEncounter(

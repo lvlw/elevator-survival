@@ -3,8 +3,9 @@ import { parseResidence, countSchema } from '../residence-config/validation'
 import { same } from '../residence-terminal/validation'
 import { ensure } from '../residence-supply/validation'
 import { tableValue } from '../residence-supply/config'
-import type { SupplyValue, SupplyDependencies } from '../residence-supply/types'
-export function drawSupplyInteger(value: SupplyValue, producerId: string, max: number, deps: SupplyDependencies) {
+import type { SupplyDependencies } from '../residence-supply/types'
+import type { SupplyDomain } from '../residence-supply/shared-types'
+export function drawSupplyInteger(value: SupplyDomain, producerId: string, max: number, deps: SupplyDependencies) {
   ensure(value.site, 'Random needs real site')
   const b = value.site.binding
   const cursor = createRandomCursor(b.execution.seed, createStreamId('supply-content-v1', b.catalogId, b.catalogVersion,
@@ -16,7 +17,7 @@ export function drawSupplyInteger(value: SupplyValue, producerId: string, max: n
   ensure(number >= 1 && number <= max && same(draw.nextCursor, { ...cursor, drawIndex: cursor.drawIndex + 1 }), 'Invalid random producer proposal')
   return number
 }
-export function selectWeightedSupply(value: SupplyValue, producerId: string, key: string, choices: readonly string[], deps: SupplyDependencies) {
+export function selectWeightedSupply(value: SupplyDomain, producerId: string, key: string, choices: readonly string[], deps: SupplyDependencies) {
   const weights = tableValue(deps.configuration, key)
   ensure(Object.keys(weights).length === choices.length && choices.every(c => Number.isSafeInteger(weights[c]) && weights[c] > 0), 'Invalid weights')
   const total = choices.reduce((sum, c) => sum + weights[c], 0)

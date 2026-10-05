@@ -4,6 +4,12 @@ import type { BodyStep } from '../character-cycle'
 import { readAuthorizedSupply } from './authority'
 import { ensure, readSupplyValue } from './validation'
 import type { SupplyAuthority, SupplyDependencies, SupplyPlan, SupplyValue } from './types'
+import type { SupplyDomainContext } from './shared-types'
+
+export function legacySupplyDomainContext(deps: SupplyDependencies, issue: typeof issueSupplyPlan): SupplyDomainContext<SupplyValue, SupplyPlan> {
+  return { dependencies: deps, read: input => readSupplyValue(input, deps),
+    issue: (before, after, producer, steps, cost) => issue(before, after, deps, producer, steps, cost) }
+}
 
 const issued = new WeakMap<object, { base: SupplyValue; dependencies: SupplyDependencies }>()
 export function issueSupplyPlan(before: SupplyValue, proposed: SupplyValue, deps: SupplyDependencies,

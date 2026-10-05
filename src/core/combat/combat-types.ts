@@ -239,6 +239,7 @@ export type CombatEffect =
       purpose: 'injury' | 'infection-exposure'
     } & CombatRiskTrace>
   | Readonly<{ kind: 'open-wound-added'; wound: OpenWoundSnapshot }>
+  | Readonly<{ kind: 'minor-contusion-added'; before: number; after: number }>
   | Readonly<{
       kind: 'bleeding-changed'
       before: boolean

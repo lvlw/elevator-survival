@@ -1,3 +1,6 @@
+import { createStreamId } from '../random'
+import { combatRules } from './combat-legacy-profile'
+import { isProfiledCombat, type CombatEngineDependencies } from './combat-profile'
 import { deepFreeze } from '../config'
 import {
   activatePainkiller,
@@ -10,9 +13,9 @@ import {
   enemyActsBeforePlayerCompletion,
   evaluateCombatPostPlayerActionBleeding,
 } from './combat-action-checkpoints'
-import { createCombatEnemyActionPrimaryPlan } from './combat-enemy-action-primary-plan'
-import { createCombatPlayerActionPrimaryPlan } from './combat-player-action-primary-plan'
-import { validateCombatDependencies } from './combat-dependencies'
+import { createCombatEngineEnemyPrimaryPlan } from './combat-enemy-action-primary-plan'
+import { createCombatEnginePlayerPrimaryPlan } from './combat-player-action-primary-plan'
+import { validateCombatEngineDependencies } from './combat-dependencies'
 import {
   getAvailableCombatPlayerCommandsFromValidatedSnapshot,
   getCombatResourceState,
@@ -23,7 +26,6 @@ import {
   createTemporaryDefenseSnapshot,
 } from './combat-validation'
 import type {
-  CombatDependencies,
   CombatEffect,
   CombatEncounterSnapshot,
   CombatTransitionPlan,
@@ -33,15 +35,15 @@ import type {
 export function buildCombatTransitionPlan(
   snapshot: CombatEncounterSnapshot,
   commandInput: unknown,
-  dependencies: CombatDependencies,
+  dependencies: CombatEngineDependencies,
 ): CombatTransitionPlan {
-  validateCombatDependencies(dependencies)
+  validateCombatEngineDependencies(dependencies)
   const command = createCombatPlayerActionCommand(commandInput)
   if (snapshot.status !== 'awaiting-player') {
     throw new CombatError('COMBAT_NOT_ACTIVE', '战斗不在玩家决策点')
   }
   const escapePrimary = command.kind === 'escape'
-    ? createCombatPlayerActionPrimaryPlan(snapshot, command, dependencies)
+    ? createCombatEnginePlayerPrimaryPlan(snapshot, command, dependencies)
     : null
   const isAvailable = getAvailableCombatPlayerCommandsFromValidatedSnapshot(
     snapshot,
@@ -60,7 +62,7 @@ export function buildCombatTransitionPlan(
   if (!isAvailable) {
     throw new CombatError('ACTION_NOT_AVAILABLE', '玩家战斗行动不可用')
   }
-  const primary = escapePrimary ?? createCombatPlayerActionPrimaryPlan(
+  const primary = escapePrimary ?? createCombatEnginePlayerPrimaryPlan(
     snapshot, command, dependencies,
   )
 
@@ -291,7 +293,7 @@ export function buildCombatTransitionPlan(
     const checkpoint = evaluateCombatPostPlayerActionBleeding(
       playerHealth,
       bleeding,
-      dependencies.config.combat.postPlayerActionBleedingDamage,
+      combatRules(dependencies).postPlayerActionBleedingDamage,
     )
     effects.push({
       kind: 'player-health-lost',
@@ -353,7 +355,7 @@ export function buildCombatTransitionPlan(
     enemyHealth > 0
   ) {
     const action = definition.actions.find(({ id }) => id === intentId)!
-    const enemyPrimary = createCombatEnemyActionPrimaryPlan(
+    const enemyPrimary = createCombatEngineEnemyPrimaryPlan(
       snapshot, action, armorResourceCurrent, defense, dependencies,
     )
     const usedHeavyCoat = enemyPrimary.usedHeavyCoat
@@ -419,16 +421,16 @@ export function buildCombatTransitionPlan(
       usedDefense,
       dependencies,
     )
-    if (injury.succeeded) {
+    if (injury.succeeded && enemyPrimary.injuryKind === 'contusion') {
+      const before = snapshot.playerCondition.minorContusions + effects.filter(e => e.kind === 'minor-contusion-added').length
+      effects.push({ kind: 'minor-contusion-added', before, after: before + 1 })
+    } else if (injury.succeeded && enemyPrimary.injuryKind !== 'contusion') {
       const wound = {
-        id: createStableCombatWoundId(
-          snapshot.enemy.enemyInstanceId,
-          resolvedActionCount,
-          action.id,
-        ),
-        kind: action.kind === 'scratch'
-          ? 'laceration' as const
-          : 'bite' as const,
+        id: isProfiledCombat(dependencies)
+          ? createStreamId('residence-combat-wound', dependencies.riskAddress.executionId,
+              snapshot.enemy.enemyInstanceId, String(resolvedActionCount), action.id, 'injury')
+          : createStableCombatWoundId(snapshot.enemy.enemyInstanceId, resolvedActionCount, action.id),
+        kind: enemyPrimary.injuryKind,
         treatment: 'untreated' as const,
       }
       effects.push({ kind: 'open-wound-added', wound })
@@ -516,7 +518,7 @@ export function buildCombatTransitionPlan(
       const checkpoint = evaluateCombatPostPlayerActionBleeding(
         playerHealth,
         bleeding,
-        dependencies.config.combat.postPlayerActionBleedingDamage,
+        combatRules(dependencies).postPlayerActionBleedingDamage,
       )
       effects.push({
         kind: 'player-health-lost',

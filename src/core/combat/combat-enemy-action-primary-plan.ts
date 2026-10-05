@@ -1,3 +1,5 @@
+import { combatRules, enemyActionProfile } from './combat-legacy-profile'
+import type { CombatEngineDependencies } from './combat-profile'
 import { deepFreeze } from '../config'
 import { getItemState, previewCommittedResourceAction } from '../item-state'
 import { reduceRiskTier } from './combat-risk'
@@ -25,16 +27,15 @@ export interface CombatEnemyActionPrimaryPlan {
 }
 
 /** Formal deterministic consequences of one enemy action, before risk draws. */
-export function createCombatEnemyActionPrimaryPlan(
+export function createCombatEngineEnemyPrimaryPlan(
   snapshot: CombatEncounterSnapshot,
   action: EnemyActionDefinition,
   armorResourceCurrent: number | null,
   defense: TemporaryDefenseSnapshot | null,
-  dependencies: CombatDependencies,
-): CombatEnemyActionPrimaryPlan {
-  const rules = action.kind === 'scratch'
-    ? dependencies.config.combat.infectedOrderly.actions.scratch
-    : dependencies.config.combat.infectedOrderly.actions.lungeBite
+  dependencies: CombatEngineDependencies,
+): CombatEnemyActionPrimaryPlan & Readonly<{ injuryKind: 'contusion' | 'laceration' | 'bite' }> {
+  const shared = combatRules(dependencies)
+  const rules = enemyActionProfile(dependencies, action)
   const armor = snapshot.equipment.armor
   const armorState = armor ? getItemState(snapshot.itemStates, armor.instanceId) : null
   const usedHeavyCoat =
@@ -45,22 +46,23 @@ export function createCombatEnemyActionPrimaryPlan(
     ? previewCommittedResourceAction({
         ...armorState,
         resource: { kind: 'integrity', current: armorResourceCurrent! },
-      }, dependencies.config.combat.heavyCoat.integrityCostPerAttack)
+      }, shared.heavyCoat.integrityCostPerAttack)
     : null
   const usedDefense = defense !== null
   let damage = Math.max(
     0,
     rules.damage - (usedHeavyCoat
-      ? dependencies.config.combat.heavyCoat.directDamageReduction
+      ? shared.heavyCoat.directDamageReduction
       : 0),
   )
   if (usedDefense) {
     damage = Math.ceil(
-      damage * dependencies.config.combat.defend.remainingDamagePercent / 100,
+      damage * shared.defend.remainingDamagePercent / 100,
     )
   }
   return deepFreeze({
     action,
+    injuryKind: rules.injuryKind,
     actionCtb: rules.ctb,
     requestedDirectDamage: damage,
     usedHeavyCoat,
@@ -72,18 +74,25 @@ export function createCombatEnemyActionPrimaryPlan(
     injuryFinalTier: reduceRiskTier(
       rules.injuryRiskTier,
       (usedHeavyCoat
-        ? dependencies.config.combat.heavyCoat.injuryRiskTierReduction
+        ? shared.heavyCoat.injuryRiskTierReduction
         : 0) +
       (usedDefense
-        ? dependencies.config.combat.defend.injuryRiskTierReduction
+        ? shared.defend.injuryRiskTierReduction
         : 0),
     ),
     exposureOriginalTier: rules.exposureRiskTier,
     exposureFinalTier: reduceRiskTier(
       rules.exposureRiskTier,
       usedHeavyCoat
-        ? dependencies.config.combat.heavyCoat.exposureRiskTierReduction
+        ? shared.heavyCoat.exposureRiskTierReduction
         : 0,
     ),
   })
+}
+
+export function createCombatEnemyActionPrimaryPlan(snapshot: CombatEncounterSnapshot, action: EnemyActionDefinition,
+  armorResourceCurrent: number | null, defense: TemporaryDefenseSnapshot | null, dependencies: CombatDependencies) {
+  const { injuryKind, ...legacy } = createCombatEngineEnemyPrimaryPlan(snapshot, action, armorResourceCurrent, defense, dependencies)
+  void injuryKind
+  return deepFreeze(legacy)
 }

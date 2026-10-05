@@ -74,12 +74,18 @@ export function createExplorationCombatUsage(
   input: ExplorationCombatUsageSnapshot,
   config: CombatDependencies['config'],
 ): ExplorationCombatUsageSnapshot {
+  return createCombatUsageWithMaximum(input, config.combat.metalPipe.chargedStrike.maxUsesPerExploration)
+}
+
+/** Internal shared raw usage validation; the owner supplies its formal quota. */
+export function createCombatUsageWithMaximum(input: ExplorationCombatUsageSnapshot, maximum: number): ExplorationCombatUsageSnapshot {
   if (
+    !Number.isSafeInteger(maximum) || maximum < 0 ||
     !hasExactObjectKeys(input, ['metalPipeChargedStrikeUses']) ||
     !Number.isSafeInteger(input.metalPipeChargedStrikeUses) ||
     input.metalPipeChargedStrikeUses < 0 ||
     input.metalPipeChargedStrikeUses >
-      config.combat.metalPipe.chargedStrike.maxUsesPerExploration
+      maximum
   ) {
     throw new CombatError('INVALID_COMBAT_SNAPSHOT', '探索战斗使用次数无效')
   }

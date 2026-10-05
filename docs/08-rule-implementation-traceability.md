@@ -287,3 +287,11 @@ G1仍拥有身体／精力／周期，G2仍拥有现场，A共享结算拥有钱
 现有E01-S稳定v3与旧医院CTB能力保持；E02实现尚未开始。新合同固定真实移动前入场证据、唯一身体／实物／敌人、新typed combat-death及一次消费；R严格v4和独立expected不授予安装权，S复用同域唯一current。新旧版本双向拒绝，无静默迁移。正常H0保留空身体步骤，真实日结和死亡仍验证应有步骤。
 
 本次[归档报告](design-drafts/world-infected-001/entry-005/adoption/DOC-WORLD-ENTRY-005-completion.md)与[实际检查](design-drafts/world-infected-001/entry-005/adoption/checks.json)独立记账。E02／E03、玩家入口、浏览器存储及多标签未执行，O3未决定；不承诺永久维护开发格式，不自动进入生产。当前停止点为WebGPT主线准确SHA文档实审。
+
+## ENG-RESIDENCE-COMBAT-CORE-001（E02-P）实现增量
+
+本节是上述历史文档阶段之后的追加实现记录，不改写原历史结论或正式合同。独立纯核心协议 `residence-combat-pure-v1` 已接入三敌真实 profile、真实 G2 移动入场、CTB 行动、退却再入、胜退一次精力结算、真实快捷消费／G1 日额及 typed combat-death 原计划一次消费。身体、实物、持续敌人与来源历史各只有一份事实；旧 CTB 和 P 稳定动作共用正式实现，旧公开协议、签发隔离和既有测试保留。
+
+战后真实任务／来源／搬运／拆合／药食／维护／休整与 A 终局可在新聚合接续；原生测试覆盖三敌真实胜利后完整生产交付链及后继场次死亡，不以清敌或手设 completed 替代生产者。新纯计划不代表存档／会话／浏览器／试玩已经通过。
+
+实现范围与十二组证据见[支持矩阵](engineering/residence-foundation/active-combat-core/contract-and-support.md)，实际检查见[验证记录](engineering/residence-foundation/active-combat-core/verification-results.json)和[完成报告](engineering/residence-foundation/active-combat-core/completion.md)。E02-R v4 codec、E02-S current／保存、E03 玩家入口、多标签与 O3 均 NOT RUN；未自动进入下一批，停止等待准确 SHA 纯核心源码实审。

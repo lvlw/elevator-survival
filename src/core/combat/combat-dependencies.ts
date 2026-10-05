@@ -1,3 +1,5 @@
+import { isProfiledCombat, type CombatEngineDependencies } from './combat-profile'
+import { requireProfiledCombatDependencies } from './combat-profile-validation'
 import { CombatError } from './combat-errors'
 import { hasExactObjectKeys } from './combat-validation'
 import type {
@@ -142,4 +144,10 @@ export function validateCombatDependencies(
 
   validateMedicalBinding(bindings.bandageDefinitionId)
   validateMedicalBinding(bindings.painkillerDefinitionId)
+}
+
+/** Internal dispatch, never a bypass for legacy content validation. */
+export function validateCombatEngineDependencies(d: CombatEngineDependencies): void {
+  if (isProfiledCombat(d)) requireProfiledCombatDependencies(d)
+  else validateCombatDependencies(d)
 }

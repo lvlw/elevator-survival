@@ -2,10 +2,11 @@ import { same } from '../residence-terminal/validation'
 import { settleTerminalBalance } from '../residence-terminal/settlement-shared'
 import { originalInstanceId } from './provenance'
 import { tableValue, numberValue } from './config'
-import { SupplyError, type SupplyDependencies, type SupplyValue } from './types'
+import { SupplyError, type SupplyDependencies } from './types'
+import type { SupplyDomain } from './shared-types'
 const assert = (ok: unknown, text: string): void => { if (!ok) throw new SupplyError('INVALID_PROVENANCE', text) }
 /** Finite evidence consistency, not proof against an entirely rewritten offline history. */
-export function verifySupplyHistory(v: SupplyValue, deps: SupplyDependencies) {
+export function verifySupplyHistory(v: SupplyDomain, deps: SupplyDependencies) {
   const sites = [...v.archives.map(a => a.site), ...(v.site ? [v.site] : [])]
   const bindings = new Set(sites.map(s => s.binding.execution.runId))
   const keys = v.productions.map(p => p.binding.execution.runId + ':' + p.producerId)
@@ -76,6 +77,8 @@ export function verifySupplyHistory(v: SupplyValue, deps: SupplyDependencies) {
       r.endCycle === r.startCycle + r.taskDay - 1, 'Impossible receipt cycle')
     if (r.source === 'normal-return') assert(r.steps.length === 0 && r.outcome !== 'death' &&
       v.archives[n].site.nodeId === deps.tasks.data.goal.return, 'Normal return must be real H0 and empty steps')
+    else if (r.source === 'combat-death') assert(r.steps.length === 0 && r.outcome === 'death' &&
+      typeof r.combatDeathReceiptId === 'string' && r.combatDeathReceiptId.length > 0, 'Invalid combat death reference')
     else assert(r.steps.length > 0 && (r.source !== 'deadline' || r.taskDay === deps.residence.configuration.config.limits.days), 'Missing actual terminal trace')
     for (const id of r.dispositionIds) {
       assert(!dispositionOwners.has(id), 'Disposition used by two closures')

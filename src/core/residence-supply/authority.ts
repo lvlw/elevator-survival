@@ -6,6 +6,7 @@ import type { MissionLifecycleValue } from '../mission-lifecycle'
 import { same } from '../residence-terminal/validation'
 import { readCycleContext } from '../character-cycle'
 import { readSupplyValue, ensure } from './validation'
+import { requireSupplyDomainAction } from './shared-validation'
 import type { SupplyAuthority, SupplyDependencies, SupplyIndependentContext, SupplyValue } from './types'
 
 const authorities = new WeakMap<object, { value: SupplyValue; dependencies: SupplyDependencies }>()
@@ -27,6 +28,5 @@ export function readAuthorizedSupply(input: unknown, authority: SupplyAuthority)
   return { value, dependencies: ctx.dependencies }
 }
 export function requireSupplyAction(value: SupplyValue, paid = false): asserts value is SupplyValue & { site: NonNullable<SupplyValue['site']> } {
-  ensure(value.phase === 'active-world' && value.site && value.site.pending.kind === 'none' &&
-    value.character.body.condition.currentHealth > 0 && (!paid || value.character.body.energy > 0), 'Requires living stable world', 'NOT_AVAILABLE')
+  requireSupplyDomainAction(value, paid)
 }

@@ -1,3 +1,5 @@
+import { combatRules } from './combat-legacy-profile'
+import { isProfiledCombat, type CombatEngineDependencies } from './combat-profile'
 import { deepFreeze } from '../config'
 import {
   RANDOM_ALGORITHM_VERSION,
@@ -6,6 +8,8 @@ import {
   drawIntInclusive,
 } from '../random'
 import { CombatError } from './combat-errors'
+import { z } from 'zod'
+import { parseResidence, countSchema, idSchema } from '../residence-config/validation'
 import type {
   CombatDependencies,
   CombatEffect,
@@ -47,9 +51,12 @@ export function addCombatRiskEffect(
   finalTier: CombatRiskTier,
   usedHeavyCoat: boolean,
   usedDefense: boolean,
-  dependencies: CombatDependencies,
+  dependencies: CombatEngineDependencies,
 ): CombatRiskTrace {
-  const streamId = createStreamId(
+  const streamId = isProfiledCombat(dependencies)
+    ? createStreamId('residence-combat-risk', dependencies.riskAddress.executionId, dependencies.riskAddress.catalogId,
+        snapshot.enemy.enemyInstanceId, String(resolvedActionCount), actionId, purpose)
+    : createStreamId(
     'combat-risk',
     dependencies.sceneInstanceId,
     snapshot.enemy.enemyInstanceId,
@@ -57,12 +64,19 @@ export function addCombatRiskEffect(
     actionId,
     purpose,
   )
-  const draw = drawIntInclusive(
+  const draw = (isProfiledCombat(dependencies) ? dependencies.draw : drawIntInclusive)(
     createRandomCursor(dependencies.runSeed, streamId),
     1,
     100,
   )
-  const riskPercent = riskTierToPercent(finalTier, dependencies.config)
+  if (isProfiledCombat(dependencies)) parseResidence(z.strictObject({ value: countSchema,
+    nextCursor: z.strictObject({ seed:idSchema,streamId:idSchema,algorithmVersion:idSchema,drawIndex:countSchema }) }), draw)
+  if (!Number.isSafeInteger(draw.value) || draw.value < 1 || draw.value > 100 ||
+    draw.nextCursor.seed !== dependencies.runSeed || draw.nextCursor.streamId !== streamId || draw.nextCursor.drawIndex !== 1 ||
+    draw.nextCursor.algorithmVersion !== RANDOM_ALGORITHM_VERSION) {
+    throw new CombatError('INVALID_COMBAT_DEPENDENCIES', 'Invalid injected combat random result')
+  }
+  const riskPercent = combatRules(dependencies).riskTiers[finalTier]
   const trace = deepFreeze({
     algorithmVersion: RANDOM_ALGORITHM_VERSION,
     streamId,

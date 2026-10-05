@@ -1,7 +1,8 @@
 import { createStreamId } from '../random'
 import { deriveStableSplitInstanceId } from '../inventory'
 import { sourceItemId } from '../residence-location/identity'
-import type { SupplyOrigin, UnitRange, SupplyValue } from './types'
+import type { SupplyOrigin, UnitRange } from './types'
+import type { SupplyDomain } from './shared-types'
 import { SupplyError } from './types'
 
 export function originId(origin: Omit<SupplyOrigin, 'id'>): string {
@@ -28,7 +29,7 @@ export function partitionRanges(ranges: readonly UnitRange[], amount: number) {
   if (left !== 0) throw new SupplyError('INVALID_PROVENANCE', 'Not enough allocated units')
   return { taken, kept }
 }
-export function verifyOriginConservation(value: SupplyValue, live: readonly { instanceId: string; definitionId: string; quantity: number }[]) {
+export function verifyOriginConservation(value: SupplyDomain, live: readonly { instanceId: string; definitionId: string; quantity: number }[]) {
   const fail = (text: string): never => { throw new SupplyError('INVALID_PROVENANCE', text) }
   const origins = new Map(value.origins.map(o => [o.id, o]))
   if (origins.size !== value.origins.length || new Set(value.allocations.map(a => a.instanceId)).size !== value.allocations.length ||

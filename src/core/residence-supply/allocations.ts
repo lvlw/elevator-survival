@@ -6,14 +6,15 @@ import type { ItemInstance } from '../inventory'
 import type { LocationBinding } from '../residence-location'
 import { originId, partitionRanges } from './provenance'
 import { ensure } from './validation'
-import type { SupplyValue, SupplyDependencies, SupplyOrigin, SupplyDisposition } from './types'
+import type { SupplyDependencies, SupplyOrigin, SupplyDisposition } from './types'
+import type { SupplyDomain } from './shared-types'
 
-export function carriedSupplyItem(v: SupplyValue, id: string) {
+export function carriedSupplyItem(v: SupplyDomain, id: string) {
   const item = [...v.carried.backpack.items, ...v.carried.quickSlots.slots.filter(i => i !== null)].find(i => i.instanceId === id)
   ensure(item, 'No material/consumable in backpack or quick slot', 'NOT_AVAILABLE')
   return item
 }
-export function replaceCarriedQuantity(v: SupplyValue, id: string, quantity: number, deps: SupplyDependencies): SupplyValue {
+export function replaceCarriedQuantity<V extends SupplyDomain>(v: V, id: string, quantity: number, deps: SupplyDependencies): V {
   const bp = v.carried.backpack
   const backpack = createBackpackSnapshot({ ...bp, items: bp.items.flatMap(i => i.instanceId === id ? quantity ? [{ ...i, quantity }] : [] : [i]),
     placements: bp.placements.filter(p => quantity || p.instanceId !== id) }, deps.catalog.physical)
@@ -21,8 +22,8 @@ export function replaceCarriedQuantity(v: SupplyValue, id: string, quantity: num
     i?.instanceId === id ? quantity ? { ...i, quantity } : null : i) } },
     itemStates: { states: v.itemStates.states.filter(s => quantity || s.instanceId !== id) } }
 }
-export function consumeSupplyUnits(v: SupplyValue, id: string, quantity: number, deps: SupplyDependencies,
-  kind: SupplyDisposition['kind'] = 'consumed', reason: SupplyDisposition['reason'] = 'recipe'): SupplyValue {
+export function consumeSupplyUnits<V extends SupplyDomain>(v: V, id: string, quantity: number, deps: SupplyDependencies,
+  kind: SupplyDisposition['kind'] = 'consumed', reason: SupplyDisposition['reason'] = 'recipe'): V {
   ensure(Number.isSafeInteger(quantity) && quantity > 0, 'Invalid consumed quantity')
   const item = carriedSupplyItem(v, id)
   ensure(quantity <= item.quantity, 'Insufficient actual units', 'NOT_AVAILABLE')
@@ -36,9 +37,9 @@ export function consumeSupplyUnits(v: SupplyValue, id: string, quantity: number,
   return { ...next, allocations: next.allocations.flatMap(a => a.instanceId === id ?
     ranges.kept.length ? [{ ...a, ranges: ranges.kept }] : [] : [a]), dispositions: [...next.dispositions, disposition] }
 }
-export function issueSupplyOrigin(v: SupplyValue, binding: LocationBinding, placeId: string, nodeId: string,
+export function issueSupplyOrigin<V extends SupplyDomain>(v: V, binding: LocationBinding, placeId: string, nodeId: string,
   producerId: string, ordinal: number, definitionId: string, quantity: number, kind: SupplyOrigin['kind'], drawIndex: number,
-  deps: SupplyDependencies): { value: SupplyValue; items: readonly ItemInstance[] } {
+  deps: SupplyDependencies): { value: V; items: readonly ItemInstance[] } {
   const bare = { binding, placeId, nodeId, producerId, ordinal, definitionId, quantity, kind, drawIndex,
     initialSpecialty: kind === 'initial' ? v.choices.specialty : null }
   const origin: SupplyOrigin = { ...bare, id: originId(bare) }

@@ -1,3 +1,5 @@
+import { combatRules } from './combat-legacy-profile'
+import type { CombatEngineDependencies } from './combat-profile'
 import { deepFreeze } from '../config'
 import { getUntreatedOpenWounds } from '../condition'
 import { getItemState } from '../item-state'
@@ -21,7 +23,7 @@ export function getCombatResourceState(
 
 export function getAvailableCombatPlayerActionsFromValidatedSnapshot(
   snapshot: CombatEncounterSnapshot,
-  dependencies: CombatDependencies,
+  dependencies: CombatEngineDependencies,
 ): readonly CombatPlayerActionCommand['kind'][] {
   const commands = getAvailableCombatPlayerCommandsFromValidatedSnapshot(
     snapshot,
@@ -38,7 +40,7 @@ function commandSortKey(command: CombatPlayerActionCommand): string {
 
 export function getAvailableCombatPlayerCommandsFromValidatedSnapshot(
   snapshot: CombatEncounterSnapshot,
-  dependencies: CombatDependencies,
+  dependencies: CombatEngineDependencies,
 ): readonly CombatPlayerActionCommand[] {
   if (snapshot.status !== 'awaiting-player') return deepFreeze([])
   const weapon = snapshot.equipment.weapon
@@ -52,14 +54,14 @@ export function getAvailableCombatPlayerCommandsFromValidatedSnapshot(
     snapshot.backpack,
     dependencies.physicalCatalog,
   )
-  if (classifyLoad(backpackWeight, dependencies.config.backpack).canCarry) {
+  if (classifyLoad(backpackWeight, combatRules(dependencies).backpack).canCarry) {
     commands.push({ kind: 'escape' })
   }
   if (usablePipe) {
     commands.push({ kind: 'metal-pipe-basic-attack' })
     if (
       snapshot.usage.metalPipeChargedStrikeUses <
-      dependencies.config.combat.metalPipe.chargedStrike.maxUsesPerExploration
+      combatRules(dependencies).metalPipe.chargedStrike.maxUsesPerExploration
     ) {
       commands.push({ kind: 'metal-pipe-charged-strike' })
     }
@@ -79,7 +81,7 @@ export function getAvailableCombatPlayerCommandsFromValidatedSnapshot(
     if (
       item.definitionId === dependencies.bindings.bandageDefinitionId &&
       (
-        snapshot.playerCondition.currentHealth < dependencies.config.combat.player.maxHealth ||
+        snapshot.playerCondition.currentHealth < combatRules(dependencies).player.maxHealth ||
         snapshot.playerCondition.bleeding ||
         untreatedWounds.length > 0
       )

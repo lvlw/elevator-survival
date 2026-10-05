@@ -1,3 +1,5 @@
+import { combatRules } from './combat-legacy-profile'
+import { isProfiledCombat, type CombatEngineDependencies } from './combat-profile'
 import { deepFreeze } from '../config'
 import {
   calculateEscapeWoundCtbModifier,
@@ -17,17 +19,18 @@ import type {
 } from './combat-types'
 
 /** Formal deterministic facts for one legal player action. */
-export function createCombatPlayerActionPrimaryPlan(
+export function createCombatEnginePlayerPrimaryPlan(
   snapshot: CombatEncounterSnapshot,
   command: CombatPlayerActionCommand,
-  dependencies: CombatDependencies,
+  dependencies: CombatEngineDependencies,
 ): CombatPlayerActionPrimaryPlan {
+  const shared = combatRules(dependencies)
   if (command.kind === 'escape') {
     const backpackWeight = calculateBackpackWeightSubtotal(
       snapshot.backpack,
       dependencies.physicalCatalog,
     )
-    const load = classifyLoad(backpackWeight, dependencies.config.backpack)
+    const load = classifyLoad(backpackWeight, shared.backpack)
     if (!load.canCarry) {
       throw new CombatError(
         'CANNOT_ESCAPE_WHILE_UNCARRYABLE',
@@ -35,10 +38,10 @@ export function createCombatPlayerActionPrimaryPlan(
       )
     }
     const wound = calculateEscapeWoundCtbModifier(snapshot.playerCondition, {
-      escape: dependencies.config.combat.escape,
-      painkiller: dependencies.config.medical.painkiller,
+      escape: shared.escape,
+      painkiller: shared.painkiller,
     })
-    const baseCtb = dependencies.config.combat.escape.baseCtb[load.tier]
+    const baseCtb = shared.escape.baseCtb[load.tier]
     const actionCtb = baseCtb + wound.finalWoundCtb
     return deepFreeze({
       kind: 'escape',
@@ -60,8 +63,8 @@ export function createCombatPlayerActionPrimaryPlan(
     const recovery = isBandage
       ? restoreHealth(
           snapshot.playerCondition,
-          dependencies.config.medical.bandage.healthRecovery,
-          dependencies.config.combat.player,
+          shared.bandage.healthRecovery,
+          shared.player,
         )
       : null
     const targetWound = command.targetOpenWoundId === undefined
@@ -78,8 +81,8 @@ export function createCombatPlayerActionPrimaryPlan(
     return deepFreeze({
       kind: 'quick-slot-item',
       actionCtb: isBandage
-        ? dependencies.config.medical.bandage.combatCtb
-        : dependencies.config.medical.painkiller.combatCtb,
+        ? shared.bandage.combatCtb
+        : shared.painkiller.combatCtb,
       quickSlotIndex: command.quickSlotIndex,
       itemKind: isBandage ? 'bandage' : 'painkiller',
       healthBeforeRecovery: snapshot.playerCondition.currentHealth,
@@ -87,7 +90,7 @@ export function createCombatPlayerActionPrimaryPlan(
       actualHealthRecovery: recovery?.actualRecovery ?? 0,
       healthAfterRecovery: recovery?.healthAfter ?? snapshot.playerCondition.currentHealth,
       unusedHealthRecovery: recovery?.unusedRecovery ?? 0,
-      stopsBleeding: isBandage && dependencies.config.medical.bandage.stopsBleeding,
+      stopsBleeding: isBandage && shared.bandage.stopsBleeding,
       treatsOpenWound: isBandage && command.targetOpenWoundId !== undefined,
       targetWound,
       activatesPainkiller: !isBandage,
@@ -95,7 +98,7 @@ export function createCombatPlayerActionPrimaryPlan(
   }
 
   if (command.kind === 'defend') {
-    const actionCtb = dependencies.config.combat.defend.ctb
+    const actionCtb = shared.defend.ctb
     return deepFreeze({
       kind: 'defend',
       actionCtb,
@@ -106,10 +109,10 @@ export function createCombatPlayerActionPrimaryPlan(
   }
 
   const rules = command.kind === 'metal-pipe-basic-attack'
-    ? dependencies.config.combat.metalPipe.basicAttack
+    ? shared.metalPipe.basicAttack
     : command.kind === 'metal-pipe-charged-strike'
-      ? dependencies.config.combat.metalPipe.chargedStrike
-      : dependencies.config.combat.temporaryAttack
+      ? shared.metalPipe.chargedStrike
+      : shared.temporaryAttack
   const weaponState = getCombatResourceState(snapshot, 'weapon')
   const resource = command.kind === 'temporary-attack' || !weaponState
     ? null
@@ -127,7 +130,14 @@ export function createCombatPlayerActionPrimaryPlan(
     weaponDurabilityConsumed: resource?.consumed ?? 0,
     weaponDurabilityDepleted: resource?.depleted ?? false,
     enemyActionDelay: command.kind === 'metal-pipe-charged-strike'
-      ? dependencies.config.combat.metalPipe.chargedStrike.enemyActionDelay
+      ? shared.metalPipe.chargedStrike.enemyActionDelay + (isProfiledCombat(dependencies) &&
+        dependencies.enemyCatalog.get(snapshot.enemy.definitionId).weaknessTags.includes('blunt')
+        ? dependencies.profile.bluntActionDelayBonus : 0)
       : 0,
   })
+}
+
+export function createCombatPlayerActionPrimaryPlan(snapshot: CombatEncounterSnapshot, command: CombatPlayerActionCommand,
+  dependencies: CombatDependencies): CombatPlayerActionPrimaryPlan {
+  return createCombatEnginePlayerPrimaryPlan(snapshot, command, dependencies)
 }

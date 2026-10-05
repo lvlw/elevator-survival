@@ -1,0 +1,495 @@
+{
+  "task": "ENG-RESIDENCE-COMBAT-CORE-001",
+  "phase": "E02-P",
+  "baseline": "4166fb25ab2898ca602043fbddacbb88d3444fdf",
+  "baselineParent": "464b59d657184636b897f72375eb6b61bd2c5786",
+  "baselineTree": "88f85400fe094918c122bab87a6384eb97f7291f",
+  "branch": "feature/residence-combat-core-001",
+  "origin": "https://github.com/lvlw/elevator-survival.git",
+  "baselineState": {
+    "worktree": "clean",
+    "index": "empty",
+    "files": 179,
+    "tests": 3621,
+    "command": "npm run test:run",
+    "exitCode": 0,
+    "durationSeconds": 79.44,
+    "log": "baseline-test.log"
+  },
+  "final": {
+    "command": "npm run check",
+    "exitCode": 0,
+    "status": "PASS",
+    "log": "final-check-after-profile-binding.log",
+    "testStartLocal": "2026-10-06 04:21:14 Asia/Shanghai",
+    "testDurationSeconds": 85.74,
+    "sourceFileCount": 87,
+    "finalAllNewAfterBinding": { "files": 19, "tests": 102, "exitCode": 0, "log": "final-all-new-after-binding.log" },
+    "sourceSnapshotSha256": "1b025d91c30fb9b1d5929219f18e7e1464549c0f4d50961cdfcad77c8236ff50",
+    "sourceFingerprintEncoding": "SHA256 UTF-8 of sorted changed src relative paths plus space plus raw SHA256, LF joined, no trailing LF",
+    "testFiles": 198,
+    "tests": 3723,
+    "architectureDEC": 52,
+    "architectureCoreProductionFiles": 327,
+    "newTestFiles": 19,
+    "newTests": 102,
+    "replacedTests": 0,
+    "deletedTests": 0,
+    "modifiedBaselineTests": 0,
+    "netTests": 102,
+    "priorCompletedCheckExitCode": 0,
+    "buildWarning": "Existing >500 kB client chunk; no unrelated adjustment"
+  },
+  "targeted": [
+    {
+      "command": "npm exec vitest -- run src/core/residence-combat",
+      "files": 16,
+      "tests": 85,
+      "exitCode": 0
+    },
+    {
+      "command": "npm exec vitest -- run src/core/combat/combat-profile.test.ts src/core/combat/combat-profiled-resolution.test.ts src/content/infected-world-v0.1/combat-profile.test.ts",
+      "files": 3,
+      "tests": 17,
+      "exitCode": 0
+    },
+    {
+      "command": "npm run test:run -- src/core/combat src/content/hospital-v0.1/combat src/core/residence-supply src/core/residence-task src/core/residence-terminal src/state/residence-session src/state/residence-save",
+      "files": 65,
+      "tests": 1259,
+      "exitCode": 0
+    }
+  ],
+  "selfReview": [
+    {
+      "failure": "legacy issuer spy compatibility",
+      "resolution": "pass original imported issuer through shared context"
+    },
+    {
+      "failure": "partial initial grant validation",
+      "resolution": "compose/validate after all four real grants"
+    },
+    {
+      "failure": "core test helper content import",
+      "exitCode": 1,
+      "resolution": "dependency factory injected by test files; validator unchanged"
+    },
+    {
+      "failure": "two new CTB tests retained old helper imports",
+      "exitCode": 1,
+      "resolution": "adapt only new tests"
+    },
+    {
+      "failure": "changed reentry CTB accepted by controlled dependency factory",
+      "exitCode": 1,
+      "failedTests": 1,
+      "passedTests": 6,
+      "resolution": "bind available profile facts to original approved configuration; 7/7 native after fix"
+    }
+  ],
+  "negativeControls": [
+    {
+      "kind": "first entry accidentally uses reentry 50",
+      "commandLoader": "native",
+      "exitCode": 1,
+      "failed": 4,
+      "passed": 3
+    },
+    {
+      "kind": "double alive exit energy debit",
+      "commandLoader": "native",
+      "exitCode": 1,
+      "failed": 1,
+      "passed": 5
+    },
+    {
+      "kind": "raw trace validation bypass",
+      "commandLoader": "native",
+      "exitCode": 1,
+      "failed": 6,
+      "passed": 7
+    },
+    {
+      "kind": "death consumer replays real CTB resolution",
+      "commandLoader": "native",
+      "exitCode": 1,
+      "failed": 1,
+      "passed": 1
+    }
+  ],
+  "excludedNegativeRun": {
+    "reason": "Vite .vite-temp permission error before business tests; not counted",
+    "log": "negative-first-entry.log"
+  },
+  "counters": {
+    "firstCreation": {
+      "origins": 4,
+      "activate": 1,
+      "cycle": 1,
+      "action": 0,
+      "g2Move": 0
+    },
+    "nextMoveIncrement": {
+      "action": 1,
+      "g2Move": 1
+    },
+    "healDeathOriginal": {
+      "ctb": 1,
+      "effectReduction": 1,
+      "riskDraw": 0
+    },
+    "healDeathConsumptionIncrement": {
+      "ctb": 0,
+      "effectReduction": 0,
+      "riskDraw": 0,
+      "g1Action": 0,
+      "cycle": 0,
+      "terminate": 1,
+      "extraRevision": 0
+    },
+    "multipleResponse": {
+      "enemyResponses": 2,
+      "riskDraws": 3,
+      "ctbs": [
+        640,
+        750
+      ]
+    },
+    "quickUnit": {
+      "quantity": 1,
+      "useWitness": 1,
+      "disposition": 1
+    },
+    "aliveExit": {
+      "receipts": 1,
+      "energyCharges": 1
+    },
+    "normalH0AndDeadline": {
+      "action": 0,
+      "cycle": 1,
+      "terminate": 1
+    },
+    "repeatedPureQueryIncrement": {
+      "ctb": 0,
+      "action": 0,
+      "cycle": 0,
+      "origin": 0,
+      "terminate": 0,
+      "draw": 0
+    },
+    "io": "NOT CONNECTED; no current/storage/notification claim"
+  },
+  "integrity": {
+    "allowlistMax": 116,
+    "actualFiles": 100,
+    "modifiedFiles": 32,
+    "newFiles": 68,
+    "outsidePaths": [],
+    "baselineTestsAndHelpers": "unchanged canonical objects",
+    "protectedGroups": "G1/G2/identity, state/app/UI, old ordinary exports and v1/v2/v3 codecs/session, approved rules/content/config, AGENTS, dependencies/lock, CI/scripts unchanged",
+    "inputs": [
+      {
+        "path": "docs/engineering/residence-foundation/active-combat-core/inputs/ENG-RESIDENCE-COMBAT-CORE-001-task-v1.0.md",
+        "sourceSha256": "85a218a788c2084b25f02056a04b2147880bcbf65c0b61ddb60200740a68deb5",
+        "outputSha256": "85a218a788c2084b25f02056a04b2147880bcbf65c0b61ddb60200740a68deb5",
+        "blob": "456a586400500bc0c2e2a8a494b8116fad39d6bd"
+      },
+      {
+        "path": "docs/engineering/residence-foundation/active-combat-core/inputs/OWNER-authority-and-scope-E02-P-v1.0.md",
+        "sourceSha256": "c38acf61d5803c83f25fe296a045266ded38e9694dd812b1277740b9daf47dc9",
+        "outputSha256": "c38acf61d5803c83f25fe296a045266ded38e9694dd812b1277740b9daf47dc9",
+        "blob": "473b76ad6d25266f002817dcb46c419af7d2bf5b"
+      },
+      {
+        "path": "docs/engineering/residence-foundation/active-combat-core/inputs/AUD-4166fb2-DOC-WORLD-ENTRY-005-review-v1.0.md",
+        "sourceSha256": "c94e8460b0bc4099fce705c924b5f832ecb98635a04a102fb362c53309e90009",
+        "outputSha256": "c94e8460b0bc4099fce705c924b5f832ecb98635a04a102fb362c53309e90009",
+        "blob": "0e997310741745e7c0294601ce765ed972b41a93"
+      },
+      {
+        "path": "docs/engineering/residence-foundation/active-combat-core/inputs/BASELINE-AND-INPUTS.json",
+        "sourceSha256": "1a591dae87a89233ad60ef5c64827b851ecd1ccef48eaa26be88d151daa7bacf",
+        "outputSha256": "1a591dae87a89233ad60ef5c64827b851ecd1ccef48eaa26be88d151daa7bacf",
+        "blob": "469be4824f1d7dc2d935aee1cf5c4d2f45dd7a23"
+      },
+      {
+        "path": "docs/engineering/residence-foundation/active-combat-core/inputs/SHA256SUMS.txt",
+        "sourceSha256": "ddca431058e13bdd1b3e94350e010395ab6d0f61a52ba511c72c5eceba9e5948",
+        "outputSha256": "ddca431058e13bdd1b3e94350e010395ab6d0f61a52ba511c72c5eceba9e5948",
+        "blob": "f54b997eb3edf56ea6faf398b6e82c31b23d8159"
+      }
+    ],
+    "formalContracts": [
+      {
+        "path": "docs/engineering/residence-foundation/active-combat-batch-plan-v1.0.md",
+        "sha256": "525b53b209c37caef1e35426f8c9db29bec3448cc074d92487e09c568e217484",
+        "blob": "a8c09b916fdd29a5ddf9cedd1dd0349764aa0421",
+        "expected": {
+          "git_blob": "a8c09b916fdd29a5ddf9cedd1dd0349764aa0421",
+          "sha256": "525b53b209c37caef1e35426f8c9db29bec3448cc074d92487e09c568e217484"
+        }
+      },
+      {
+        "path": "docs/engineering/residence-foundation/active-combat-core-contract-v1.0.md",
+        "sha256": "e05411bd23fd9077566a144f0234f4070097a273efac97845391d3e63723a590",
+        "blob": "227b7438abda5b9a3abf645d4d92942379bcb638",
+        "expected": {
+          "git_blob": "227b7438abda5b9a3abf645d4d92942379bcb638",
+          "sha256": "e05411bd23fd9077566a144f0234f4070097a273efac97845391d3e63723a590"
+        }
+      },
+      {
+        "path": "docs/engineering/residence-foundation/active-combat-lifecycle-contract-v1.0.md",
+        "sha256": "a9b5df587ab99346050cd147a2063e3b5236874a85f7f8bdc5085ffafb5c3c2b",
+        "blob": "91ac8ef6ed47b059e4ac55af761a80a034f9d1fa",
+        "expected": {
+          "git_blob": "91ac8ef6ed47b059e4ac55af761a80a034f9d1fa",
+          "sha256": "a9b5df587ab99346050cd147a2063e3b5236874a85f7f8bdc5085ffafb5c3c2b"
+        }
+      },
+      {
+        "path": "docs/engineering/residence-foundation/active-combat-restore-contract-v1.0.md",
+        "sha256": "d7ce75ab12f53ee43a9d07cb7a839d87037cfb0f45bdef8fd52dfc2a3fef364d",
+        "blob": "0a3bbca9ad13daf4cc48719f04611e84817238ec",
+        "expected": {
+          "git_blob": "0a3bbca9ad13daf4cc48719f04611e84817238ec",
+          "sha256": "d7ce75ab12f53ee43a9d07cb7a839d87037cfb0f45bdef8fd52dfc2a3fef364d"
+        }
+      },
+      {
+        "path": "docs/engineering/residence-foundation/active-combat-session-contract-v1.0.md",
+        "sha256": "3ea4eed266bf419d6343d1d7e826ce97b2d14007281c8892fcffc8d9392b2ed2",
+        "blob": "0adc431f0878a12f610af9e1957c1be9d080734d",
+        "expected": {
+          "git_blob": "0adc431f0878a12f610af9e1957c1be9d080734d",
+          "sha256": "3ea4eed266bf419d6343d1d7e826ce97b2d14007281c8892fcffc8d9392b2ed2"
+        }
+      }
+    ],
+    "configAndContent": [
+      {
+        "path": "docs/content/infected-residence-core-test-config-v0.1.json",
+        "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9",
+        "expected": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9"
+      },
+      {
+        "path": "docs/content/infected-terminal-core-test-config-v0.1.json",
+        "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+        "expected": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18"
+      },
+      {
+        "path": "docs/content/infected-world-entry-test-config-v0.1.json",
+        "sha256": "15624fee92e615e1d4ffcec39d071057b10a8de6ce16408cca0ffb4e94f5d8e6",
+        "expected": "15624fee92e615e1d4ffcec39d071057b10a8de6ce16408cca0ffb4e94f5d8e6"
+      },
+      {
+        "path": "docs/content/infected-world-entry-content-v0.1.json",
+        "sha256": "05dabf10796ee027ea31037641ae91b95fc9346b9b98f032f1b7c99dada88925",
+        "expected": "05dabf10796ee027ea31037641ae91b95fc9346b9b98f032f1b7c99dada88925"
+      }
+    ],
+    "sharedDocOriginalPrefixes": [
+      {
+        "path": "docs/03-architecture.md",
+        "bytes": 80028,
+        "sha256": "f2318d68efefc8b2b7eb6e2a15179670b0dc9e547261fa64c81d85d263b69ca4",
+        "preserved": true
+      },
+      {
+        "path": "docs/08-rule-implementation-traceability.md",
+        "bytes": 74765,
+        "sha256": "1a40f4b94a7be0336541020d481e3af88924aa75fde23aaec18b760786eefa36",
+        "preserved": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "bytes": 35129,
+        "sha256": "9999a19f3b04878d195b2f06392025b07ef4958257187264bc47bd08097f76bb",
+        "preserved": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "bytes": 34543,
+        "sha256": "0334980fd58e09e1eb29ef6b07e8a8bb781c0c1b5b3e5bcd364b811159e7ed5f",
+        "preserved": true
+      }
+    ]
+  },
+  "diffChecks": {
+    "ordinary": {
+      "exitCode": 0
+    },
+    "cached": {
+      "exitCode": 0,
+      "scope": "100 allowed paths staged; whitespace, byte/canonical-object and exact path checks PASS"
+    },
+    "exactStart": {
+      "exitCode": 0
+    },
+    "cumulativeW01": {
+      "base": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+      "exitCode": 2,
+      "oldHardBreaks": 7,
+      "newExceptions": 0,
+      "paths": [
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+          "lines": [
+            7,
+            8,
+            9
+          ],
+          "blob": "921bfac5ee42b7a95684f83357a748ddf231bb76"
+        },
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+          "lines": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "blob": "76f01dfb2bb2fa303da88ab0296c6c48e94550c0"
+        }
+      ]
+    }
+  },
+  "gitDelivery": {
+    "ordinaryCommit": "authorized after all checks",
+    "pushOnly": "origin HEAD:feature/residence-combat-core-001",
+    "finalSha": "external final receipt, not self-referential",
+    "ci": "UNCONFIRMED before push; query exact final SHA after push"
+  },
+  "conflicts": [],
+  "unfinishedWithinP": [],
+  "notRun": [
+    "E02-R",
+    "E02-S",
+    "E03",
+    "v4 codec",
+    "current installation",
+    "storage/browser/player",
+    "multi-tab",
+    "O3",
+    "subsequent engineering"
+  ],
+  "files": [
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/residence-foundation/active-combat-core/completion.md",
+    "docs/engineering/residence-foundation/active-combat-core/contract-and-support.md",
+    "docs/engineering/residence-foundation/active-combat-core/implementation-notes.md",
+    "docs/engineering/residence-foundation/active-combat-core/inputs/AUD-4166fb2-DOC-WORLD-ENTRY-005-review-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-core/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/residence-foundation/active-combat-core/inputs/ENG-RESIDENCE-COMBAT-CORE-001-task-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-core/inputs/OWNER-authority-and-scope-E02-P-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-core/inputs/SHA256SUMS.txt",
+    "docs/engineering/residence-foundation/active-combat-core/verification-results.json",
+    "src/content/infected-world-v0.1/combat-initial.ts",
+    "src/content/infected-world-v0.1/combat-profile.test.ts",
+    "src/content/infected-world-v0.1/combat-profile.ts",
+    "src/core/combat/combat-dependencies.ts",
+    "src/core/combat/combat-effect-application.ts",
+    "src/core/combat/combat-effect-reducer.ts",
+    "src/core/combat/combat-enemy-action-primary-plan.ts",
+    "src/core/combat/combat-legacy-profile.ts",
+    "src/core/combat/combat-player-action-primary-plan.ts",
+    "src/core/combat/combat-profile-validation.ts",
+    "src/core/combat/combat-profile.test.ts",
+    "src/core/combat/combat-profile.ts",
+    "src/core/combat/combat-profiled-resolution.test.ts",
+    "src/core/combat/combat-profiled-resolution.ts",
+    "src/core/combat/combat-risk.ts",
+    "src/core/combat/combat-selectors.ts",
+    "src/core/combat/combat-snapshot.ts",
+    "src/core/combat/combat-transition-plan.ts",
+    "src/core/combat/combat-types.ts",
+    "src/core/combat/enemy-persistent-state.ts",
+    "src/core/combat/profiled-controlled.ts",
+    "src/core/residence-combat/actions.test.ts",
+    "src/core/residence-combat/actions.ts",
+    "src/core/residence-combat/authority.test.ts",
+    "src/core/residence-combat/authority.ts",
+    "src/core/residence-combat/compatibility.test.ts",
+    "src/core/residence-combat/controlled.ts",
+    "src/core/residence-combat/dependencies.ts",
+    "src/core/residence-combat/effects.test.ts",
+    "src/core/residence-combat/effects.ts",
+    "src/core/residence-combat/enemies.test.ts",
+    "src/core/residence-combat/entry-witness.ts",
+    "src/core/residence-combat/entry.test.ts",
+    "src/core/residence-combat/entry.ts",
+    "src/core/residence-combat/exit.test.ts",
+    "src/core/residence-combat/exit.ts",
+    "src/core/residence-combat/history.test.ts",
+    "src/core/residence-combat/history.ts",
+    "src/core/residence-combat/index.ts",
+    "src/core/residence-combat/initial.ts",
+    "src/core/residence-combat/integration.test.ts",
+    "src/core/residence-combat/medical.test.ts",
+    "src/core/residence-combat/plans.ts",
+    "src/core/residence-combat/projection.ts",
+    "src/core/residence-combat/purity.test.ts",
+    "src/core/residence-combat/queries.ts",
+    "src/core/residence-combat/reentry.test.ts",
+    "src/core/residence-combat/schema.ts",
+    "src/core/residence-combat/stable.test.ts",
+    "src/core/residence-combat/stable.ts",
+    "src/core/residence-combat/terminal.test.ts",
+    "src/core/residence-combat/terminal.ts",
+    "src/core/residence-combat/test-fixtures.ts",
+    "src/core/residence-combat/trace.ts",
+    "src/core/residence-combat/types.ts",
+    "src/core/residence-combat/usage-resources.test.ts",
+    "src/core/residence-combat/validation.test.ts",
+    "src/core/residence-combat/validation.ts",
+    "src/core/residence-supply/allocations.ts",
+    "src/core/residence-supply/authority.ts",
+    "src/core/residence-supply/controlled.ts",
+    "src/core/residence-supply/cycle-adapter.ts",
+    "src/core/residence-supply/history.ts",
+    "src/core/residence-supply/initial.ts",
+    "src/core/residence-supply/inventory.ts",
+    "src/core/residence-supply/maintenance.ts",
+    "src/core/residence-supply/medical.ts",
+    "src/core/residence-supply/plans.ts",
+    "src/core/residence-supply/provenance.ts",
+    "src/core/residence-supply/shared-actions.ts",
+    "src/core/residence-supply/shared-initial.ts",
+    "src/core/residence-supply/shared-inventory.ts",
+    "src/core/residence-supply/shared-maintenance.ts",
+    "src/core/residence-supply/shared-medical.ts",
+    "src/core/residence-supply/shared-types.ts",
+    "src/core/residence-supply/shared-validation.ts",
+    "src/core/residence-supply/validation.ts",
+    "src/core/residence-task/actions.ts",
+    "src/core/residence-task/plans.ts",
+    "src/core/residence-task/random.ts",
+    "src/core/residence-task/shared-actions.ts",
+    "src/core/residence-task/shared-sources.ts",
+    "src/core/residence-task/shared-transfer.ts",
+    "src/core/residence-task/sources.ts",
+    "src/core/residence-task/transfer.ts",
+    "src/core/residence-terminal/supply-settlement-shared.ts",
+    "src/core/residence-terminal/supply-terminal.ts"
+  ],
+  "logs": [
+    {"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-p-d5791ad99ad24771acf5ae2a5074f05d\\baseline-test.log","bytes":296,"sha256":"1bf375c02e00750c5b27b998b8f937d17d96df43d0a55349f574b106a10c7020"},
+    {"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-p-d5791ad99ad24771acf5ae2a5074f05d\\ctb-compatibility-first-pass.log","bytes":332,"sha256":"f5338140d806a82c346d49f7cfead4a34e45547705c9238aaa32b04ff2ee57f7"},
+    {"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-p-d5791ad99ad24771acf5ae2a5074f05d\\final-check-after-helper-fix.log","bytes":808,"sha256":"8029ac21f63cc04ac5bffab5718c6003370057a3f851821b24aebad4de576a8c"},
+    {"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-p-d5791ad99ad24771acf5ae2a5074f05d\\final-check-after-profile-binding.log","bytes":3415,"sha256":"af5b4ea6a2c8dad0b8a2137c27cfef397d143fa60b73b68e609b27c3b1df5b2a"},
+    {"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-p-d5791ad99ad24771acf5ae2a5074f05d\\final-check.log","bytes":3415,"sha256":"948371060975ac5f73833050b8cf25cb6c388cf10a6155a87fd68e37bf1c4ff0"},
+    {"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-p-d5791ad99ad24771acf5ae2a5074f05d\\final-combined-targeted.log","bytes":236,"sha256":"258eea1bbf7e69902a3430b05525b75ccbd4c28981a8f83533ec60855baa5672"},
+    {"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-p-d5791ad99ad24771acf5ae2a5074f05d\\final-core-targeted.log","bytes":233,"sha256":"6f6931433b07581845f9f22cee3dc42b39a132ac02d40ec92e06c6a9c8eed8b7"},
+    {"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-p-d5791ad99ad24771acf5ae2a5074f05d\\final-profile-content.log","bytes":227,"sha256":"ce03ac60b16da142870530f10cf980f17474a655771f122441df45477744568a"},
+    {"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-p-d5791ad99ad24771acf5ae2a5074f05d\\profile-binding-after-fix.log","bytes":225,"sha256":"5f78e3e81a4e64f726905aaf5aed77c78758c6cda1ad4a143410fab2f57db09e"},
+    {"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-p-d5791ad99ad24771acf5ae2a5074f05d\\profile-binding-before-fix.log","bytes":1406,"sha256":"cfd3f455a11c5a06f09bd6d1ef4c7354ada088f3d26da1743d645d27aa1700d9"},
+    {"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-negative-a22ac860e5274129845574e748500b55\\negative-death-replay.log","bytes":1507,"sha256":"905e6f1de2869da18e22f19005055e53dcc821c3cef02b08b0b7495071cf2971"},
+    {"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-negative-a22ac860e5274129845574e748500b55\\negative-duplicate-fee.log","bytes":1440,"sha256":"d8d3ed2480e153d63cc76838b8ae72dd963fa8a0303193735e1d1a42224878a8"},
+    {"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-negative-a22ac860e5274129845574e748500b55\\negative-first-entry-native.log","bytes":4291,"sha256":"8d6d26cf5be9573c0448585ab8d2c6e4263165b0aa42f367d063045e1f986c21"},
+    {"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-negative-a22ac860e5274129845574e748500b55\\negative-first-entry.log","bytes":1867,"sha256":"574a886f734e551d6bd28cd357c12b9a0ac5eb22a05e5c12e8c0c0f78f705b7b"},
+    {"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-negative-a22ac860e5274129845574e748500b55\\negative-raw-trace.log","bytes":3271,"sha256":"91c3cba136f3fa3953115982a9da688cb1649552c6fba135c560c3d6f510d70d"}
+  ]
+}

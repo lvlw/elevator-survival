@@ -1,0 +1,143 @@
+{
+  "task": "WORLD-ENTRY-005",
+  "version": "1.0",
+  "date": "2026-10-05",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "9c3c8a8c97c374bd1def6217c691137f3df10096",
+  "start_parent": "84eb6dff5e9d3238c3e651525b6ed28412132549",
+  "start_tree": "1333c0031b67ab47a9a0b832d7d372eaaf781079",
+  "src_tree": "10501d897195173df2023b1ebd73f9f097228512",
+  "source_branch": "feature/residence-content-supply-session-001",
+  "target_branch": "feature/design-world-entry-005",
+  "review_result": "E01-S PASS; legacy W01 exception retained",
+  "ci": {
+    "commit": "9c3c8a8c97c374bd1def6217c691137f3df10096",
+    "run_number": 146,
+    "run_id": 37312459898,
+    "job_id": 111770956534,
+    "conclusion": "success",
+    "evidence": "GitHub connected run metadata, jobs and complete job log actually read by mainline",
+    "architecture": {
+      "dec": 52,
+      "core": 289
+    },
+    "test_files": 179,
+    "tests": 3621,
+    "typecheck": "PASS",
+    "build": "PASS",
+    "mainline_full_npm": "NOT RUN; independent container git fetch DNS failure exit128",
+    "authors_initial": {
+      "files": 169,
+      "tests": 3494
+    },
+    "added_tests": 127,
+    "replaced_tests": 0,
+    "deleted_tests": 0,
+    "do_not_sum_repeated_test_runs": true
+  },
+  "mainline_isolated_checks": {
+    "count": 62,
+    "passed": 62,
+    "failed": 0,
+    "native_full_stack": false
+  },
+  "allowed_paths": [
+    "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+    "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+    "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+    "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+    "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+    "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+    "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+    "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+    "docs/design-drafts/world-infected-001/entry-005/validation/state-candidates.json",
+    "docs/design-drafts/world-infected-001/entry-005/validation/check.py",
+    "docs/design-drafts/world-infected-001/entry-005/validation/cases.json",
+    "docs/design-drafts/world-infected-001/entry-005/validation/results.json",
+    "docs/design-drafts/world-infected-001/entry-005/validation/negative-controls.json",
+    "docs/design-drafts/world-infected-001/entry-005/validation/native-probe.test.ts",
+    "docs/design-drafts/world-infected-001/entry-005/validation/vitest.probe.config.ts",
+    "docs/design-drafts/world-infected-001/entry-005/validation/native-results.json",
+    "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+    "docs/design-drafts/world-infected-001/entry-005/completion.md",
+    "docs/design-drafts/world-infected-001/entry-005/checks.json",
+    "docs/design-drafts/world-infected-001/entry-005/frozen-manifest.json",
+    "docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
+    "docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "input_files": [
+    "WORLD-ENTRY-005-task-v1.0.md",
+    "OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+    "AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+    "BASELINE-AND-INPUTS.json",
+    "SHA256SUMS.txt"
+  ],
+  "archive_prefix": "docs/design-drafts/world-infected-001/entry-005/inputs/",
+  "shared_docs_append_only": [
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "required_sources": [
+    "AGENTS.md",
+    "docs/01-game-design-v0.1.md",
+    "docs/02-vertical-slice.md",
+    "docs/03-architecture.md",
+    "docs/05-design-decisions.md",
+    "docs/content/infected-world-entry-test-config-v0.1.json",
+    "docs/content/infected-world-entry-content-v0.1.json",
+    "docs/engineering/residence-foundation/content-supply-core-contract-v1.0.md",
+    "docs/engineering/residence-foundation/content-supply-restore-contract-v1.0.md",
+    "docs/engineering/residence-foundation/world-content-batch-plan-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-004/03-combat-medical-contract.md",
+    "docs/design-drafts/world-infected-001/entry-004/04-specialties-tools-and-loadout.md",
+    "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+    "docs/design-drafts/world-infected-001/entry-004/06-next-engineering-contracts.md",
+    "docs/design-drafts/world-infected-001/entry-004/07-playable-and-release-gates.md",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/WORLD-ENTRY-004-ADOPTION-owner-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md",
+    "docs/engineering/residence-foundation/content-supply-core/contract-and-support.md",
+    "docs/engineering/residence-foundation/content-supply-restore/contract-and-support.md",
+    "docs/engineering/residence-foundation/content-supply-session/contract-and-support.md"
+  ],
+  "protected_objects": {
+    "src": "10501d897195173df2023b1ebd73f9f097228512",
+    "AGENTS.md": "0055de32c18517d4d016b077e5fc287d9360317d",
+    "package.json": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+    "package-lock.json": "3b320a8a79a1815c0909d8846e5e6248d4fc187e",
+    ".github": "026a7d1464c067e99f7ec653f0c9902b7519a71e",
+    "scripts": "a619e6b856375dfea3ab54551408b1835a66dcdf",
+    "vite.config.ts": "9b630ac9166409f0519e6c5c499e9def6399cf67"
+  },
+  "authority_scope": "design docs, isolated validation/probes and this branch normal commit/push only",
+  "W01": {
+    "legacy_cumulative_base": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+    "legacy_task_lines": [
+      7,
+      8,
+      9
+    ],
+    "legacy_review_lines": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "new_diff_exception": false,
+    "do_not_modify_legacy_archives": true
+  },
+  "not_authorized": [
+    "production edits",
+    "DEC edits",
+    "new parameters",
+    "v3 migration",
+    "E02/E03 implementation",
+    "browser/UI/O3",
+    "merge/main/force push"
+  ],
+  "stop": "Exact final SHA design review by WebGPT; no automatic production or formal archival."
+}

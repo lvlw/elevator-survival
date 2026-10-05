@@ -247,3 +247,10 @@ G1仍拥有身体／精力／周期，G2仍拥有现场，A共享结算拥有钱
 本附记仅更新此前 S 未接入的工程状态，不倒改历史结论。P/R/F01、G1/G2、旧 A/B/C、保存格式、规则与参数保持不变；E02/E03、玩家入口、浏览器存储、多标签与 O3 仍未接入或决定。等待准确 SHA 会话及保存故障实审，Owner 试玩仍 NOT RUN。
 
 接口及 S01—S12 见[本批契约](../../engineering/residence-foundation/content-supply-session/contract-and-support.md)，实跑、独立计数、范围和 W01 见[验证记录](../../engineering/residence-foundation/content-supply-session/verification-results.json)及[完成报告](../../engineering/residence-foundation/content-supply-session/completion.md)。
+
+
+## WORLD-ENTRY-005：E02合同候选提交待审（2026-10-05）
+
+E01-S在`9c3c8a8c97c374bd1def6217c691137f3df10096`已获限定实审；本轮重新据该源码核对，未沿用旧设计基线。当前稳定P/R/S与旧CTB可复用，新三敌profile、活态v4及会话接缝仍未实现。
+
+[集中审阅](entry-005/00-owner-review.md)、[三项工程合同候选](entry-005/06-engineering-contracts.md)、[本轮证据边界](entry-005/07-evidence-and-playtest-gates.md)。DEC-052及38/103配置保持，Owner无需新增玩法采纳；技术合同待当前WebGPT准确SHA实审和正式定稿。有限检查和原生观察各自单列，不算完整路线／试玩或工程批准。不自动进入E02/E03、玩家／浏览器或O3。

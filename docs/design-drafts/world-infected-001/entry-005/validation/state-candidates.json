@@ -1,0 +1,70 @@
+{
+  "status": "TECHNICAL CANDIDATE; normalized finite fixtures, NOT production schema or initial loadout",
+  "scope": "Checks relationships in proposed boundary records; no CTB simulator, capability implementation, world path search or authenticity proof.",
+  "baseline": "9c3c8a8c97c374bd1def6217c691137f3df10096",
+  "bindings": {
+    "character": "TEST-character",
+    "mission": "TEST-commission",
+    "execution": "TEST-execution",
+    "config": "infected-world-entry-test-v0.1",
+    "content": "infected-world-entry-content-v0.1"
+  },
+  "state": {
+    "phase": "stable",
+    "revision": 10,
+    "cycle": 1,
+    "taskDay": 1,
+    "hp": 8,
+    "energy": 20,
+    "bleeding": false,
+    "firstBandageUsed": false,
+    "quota": 1,
+    "specialty": "survival",
+    "node": "H1",
+    "closed": false,
+    "originUnits": [
+      "origin:bandage:0"
+    ],
+    "consumed": [],
+    "enemy": {
+      "id": "orderly",
+      "hp": 14,
+      "intent": "basic",
+      "count": 0,
+      "risk": 0,
+      "encountered": false,
+      "defeated": false
+    },
+    "battle": null,
+    "exitIds": [],
+    "terminal": null
+  },
+  "activeBattle": {
+    "id": "TEST-execution:11:orderly",
+    "entryRevision": 11,
+    "from": "H1",
+    "node": "H4",
+    "edge": "H1-H4:forward",
+    "engagement": "first",
+    "current": 0,
+    "playerNext": 0,
+    "enemyNext": 70,
+    "defense": null,
+    "escape": null,
+    "binding": "TEST-execution",
+    "enemyId": "orderly",
+    "entryEnemyCount": 0,
+    "entryRisk": 0
+  },
+  "unsupported": [
+    "real-new-world-CTB-reachability",
+    "browser-bootstrap",
+    "complete-five-map-nine-combination-play"
+  ],
+  "negativeControls": {
+    "duplicate-exit": "exit-single-charge",
+    "persistent-reset": "persistent-enemy-continuity",
+    "consumption-rollback": "resource-lineage",
+    "binding-acceptance": "queue-source-death-binding"
+  }
+}

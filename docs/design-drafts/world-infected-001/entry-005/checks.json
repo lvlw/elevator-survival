@@ -1,0 +1,2112 @@
+{
+  "task": "WORLD-ENTRY-005",
+  "recordBoundary": "Precommit validation record; exact final SHA/tree/push are in final delivery and external git receipts, not a self-referential claim",
+  "baseline": {
+    "start_sha": "9c3c8a8c97c374bd1def6217c691137f3df10096",
+    "start_parent": "84eb6dff5e9d3238c3e651525b6ed28412132549",
+    "start_tree": "1333c0031b67ab47a9a0b832d7d372eaaf781079",
+    "src_tree": "10501d897195173df2023b1ebd73f9f097228512",
+    "source_branch": "feature/residence-content-supply-session-001",
+    "target_branch": "feature/design-world-entry-005"
+  },
+  "zip": {
+    "path": "D:\\浏览器下载\\WORLD-ENTRY-005-Codex-Package-v1.0.zip",
+    "bytes": 19749,
+    "sha256": "5a7d943a51d03f705a29387484461aed49ac1628369fcabb5161bca521438d28"
+  },
+  "baselineReceipt": {
+    "commands": [
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD"
+        ],
+        "exit_code": 0,
+        "stdout": "9c3c8a8c97c374bd1def6217c691137f3df10096\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD^"
+        ],
+        "exit_code": 0,
+        "stdout": "84eb6dff5e9d3238c3e651525b6ed28412132549\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD^{tree}"
+        ],
+        "exit_code": 0,
+        "stdout": "1333c0031b67ab47a9a0b832d7d372eaaf781079\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD:src"
+        ],
+        "exit_code": 0,
+        "stdout": "10501d897195173df2023b1ebd73f9f097228512\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "branch",
+          "--show-current"
+        ],
+        "exit_code": 0,
+        "stdout": "feature/residence-content-supply-session-001\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "status",
+          "--short",
+          "--untracked-files=all"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--cached"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "branch",
+          "--list",
+          "feature/design-world-entry-005"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "ls-remote",
+          "--heads",
+          "origin"
+        ],
+        "exit_code": 0,
+        "stdout": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63\trefs/heads/feature/design-world-entry-002\n6438f7a38939297225538cdd68af24201ed7d34f\trefs/heads/feature/design-world-entry-003\nad56a7d9dfc08e38f966f20cf7e07c71c08c09dc\trefs/heads/feature/design-world-entry-004\n6b48b3de6521d9a9c296754a4d8135c7f7c7ca35\trefs/heads/feature/design-world-infected-world-001\nd1d3b7927c6733cff709a4bfd617fb1e85e7485a\trefs/heads/feature/mission-lifecycle-core-001\n7ca547ab8ab4f411d1102a79baf8c0796f4b082c\trefs/heads/feature/residence-actions-core-001\n8c19ca0d28058cf743b41c8547cc2629c8eac767\trefs/heads/feature/residence-content-supply-core-001\n84eb6dff5e9d3238c3e651525b6ed28412132549\trefs/heads/feature/residence-content-supply-restore-001\n9c3c8a8c97c374bd1def6217c691137f3df10096\trefs/heads/feature/residence-content-supply-session-001\n942b2d93916c649f4c2ec6cd399035151269d2ca\trefs/heads/feature/residence-energy-cycle-core-001\nd7953bbf96dc842d2953e019f950275cd693bf09\trefs/heads/feature/residence-location-core-001\n60e9c30732c5e22cfe9ff58b9b381de64b945180\trefs/heads/feature/residence-session-core-001\nbfc6bd973eeb306df1e8ee916b2160c30b757cdf\trefs/heads/feature/residence-terminal-core-001\nb9b1e0fee0e779669ca40e088ac9a867016bff82\trefs/heads/feature/residence-terminal-restore-001\n0921df3f219f368479d1bf3401d8fecddc0d5f71\trefs/heads/feature/residence-terminal-session-001\na76e9c1c998051fc1643b6e0c3d53443fa55feed\trefs/heads/main\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD:src"
+        ],
+        "exit_code": 0,
+        "stdout": "10501d897195173df2023b1ebd73f9f097228512\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD:AGENTS.md"
+        ],
+        "exit_code": 0,
+        "stdout": "0055de32c18517d4d016b077e5fc287d9360317d\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD:package.json"
+        ],
+        "exit_code": 0,
+        "stdout": "e52c8b2716f8f44f4678066443516de5c738a3b8\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD:package-lock.json"
+        ],
+        "exit_code": 0,
+        "stdout": "3b320a8a79a1815c0909d8846e5e6248d4fc187e\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD:.github"
+        ],
+        "exit_code": 0,
+        "stdout": "026a7d1464c067e99f7ec653f0c9902b7519a71e\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD:scripts"
+        ],
+        "exit_code": 0,
+        "stdout": "a619e6b856375dfea3ab54551408b1835a66dcdf\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD:vite.config.ts"
+        ],
+        "exit_code": 0,
+        "stdout": "9b630ac9166409f0519e6c5c499e9def6399cf67\n",
+        "stderr": ""
+      }
+    ],
+    "refs": {
+      "feature/design-world-entry-002": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+      "feature/design-world-entry-003": "6438f7a38939297225538cdd68af24201ed7d34f",
+      "feature/design-world-entry-004": "ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc",
+      "feature/design-world-infected-world-001": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+      "feature/mission-lifecycle-core-001": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "feature/residence-actions-core-001": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c",
+      "feature/residence-content-supply-core-001": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+      "feature/residence-content-supply-restore-001": "84eb6dff5e9d3238c3e651525b6ed28412132549",
+      "feature/residence-content-supply-session-001": "9c3c8a8c97c374bd1def6217c691137f3df10096",
+      "feature/residence-energy-cycle-core-001": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+      "feature/residence-location-core-001": "d7953bbf96dc842d2953e019f950275cd693bf09",
+      "feature/residence-session-core-001": "60e9c30732c5e22cfe9ff58b9b381de64b945180",
+      "feature/residence-terminal-core-001": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf",
+      "feature/residence-terminal-restore-001": "b9b1e0fee0e779669ca40e088ac9a867016bff82",
+      "feature/residence-terminal-session-001": "0921df3f219f368479d1bf3401d8fecddc0d5f71",
+      "main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed"
+    },
+    "input_checks": [
+      {
+        "path": "AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+        "bytes": 10175,
+        "sha256": "0f1e4358fa3d6a4ab22d9f50286c78272bd56d47c46658ac174ea65297d89a79"
+      },
+      {
+        "path": "BASELINE-AND-INPUTS.json",
+        "bytes": 6796,
+        "sha256": "1fcd8b23d87be18a49166b3d34067a74747ec320d32d4eb20a31a13765d489b2"
+      },
+      {
+        "path": "OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+        "bytes": 1421,
+        "sha256": "e82c37465ddef32ef1e2147eb4f720c1014ebdf08b8307d64aaad602818e8e27"
+      },
+      {
+        "path": "WORLD-ENTRY-005-task-v1.0.md",
+        "bytes": 22651,
+        "sha256": "de110d42d7df8827c7bd2f8b750fd8a1d59f390ba4f6defb8bf8015296a6c1aa"
+      }
+    ],
+    "protected_objects": {
+      "src": "10501d897195173df2023b1ebd73f9f097228512",
+      "AGENTS.md": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "package.json": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+      "package-lock.json": "3b320a8a79a1815c0909d8846e5e6248d4fc187e",
+      ".github": "026a7d1464c067e99f7ec653f0c9902b7519a71e",
+      "scripts": "a619e6b856375dfea3ab54551408b1835a66dcdf",
+      "vite.config.ts": "9b630ac9166409f0519e6c5c499e9def6399cf67"
+    }
+  },
+  "whitelist": [
+    "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+    "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+    "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+    "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+    "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+    "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+    "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+    "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+    "docs/design-drafts/world-infected-001/entry-005/validation/state-candidates.json",
+    "docs/design-drafts/world-infected-001/entry-005/validation/check.py",
+    "docs/design-drafts/world-infected-001/entry-005/validation/cases.json",
+    "docs/design-drafts/world-infected-001/entry-005/validation/results.json",
+    "docs/design-drafts/world-infected-001/entry-005/validation/negative-controls.json",
+    "docs/design-drafts/world-infected-001/entry-005/validation/native-probe.test.ts",
+    "docs/design-drafts/world-infected-001/entry-005/validation/vitest.probe.config.ts",
+    "docs/design-drafts/world-infected-001/entry-005/validation/native-results.json",
+    "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+    "docs/design-drafts/world-infected-001/entry-005/completion.md",
+    "docs/design-drafts/world-infected-001/entry-005/checks.json",
+    "docs/design-drafts/world-infected-001/entry-005/frozen-manifest.json",
+    "docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
+    "docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "allowedOwnerNewGameplayChoices": 0,
+  "modelConfiguration": "Actual model/reasoning configuration not independently verifiable; no claimed switch",
+  "finite": {
+    "kind": "FINITE_CONTRACT_BOUNDARIES_NOT_ENGINE",
+    "total": 106,
+    "matched": 106,
+    "categories": {
+      "expected-rejection": 67,
+      "supported-boundary": 36,
+      "unsupported": 3
+    },
+    "mismatchIds": [],
+    "exceptions": 0,
+    "inputs": {
+      "cases.json": "29f9fadf0829356ecccaf9920e7d48a380632a9daae7ba4342e0b6d6f67eba46",
+      "check.py": "76523be2b2dca7fab9c162f6294645d8d11df3408264e9648c0dbf16a37e9dc2",
+      "state-candidates.json": "8784ed1db9db891dd80a6db112535cf275a29beb2815b2bc8091aca894868efa"
+    }
+  },
+  "native": {
+    "numTotalTestSuites": 2,
+    "numPassedTestSuites": 2,
+    "numFailedTestSuites": 0,
+    "numTotalTests": 23,
+    "numPassedTests": 23,
+    "numFailedTests": 0,
+    "success": true
+  },
+  "nativeMeaning": "23 isolated tests, actual existing combat/G1/G2/P/R/S, not new-world CTB or E02 implementation; memory fault ports and TEST initial states only",
+  "negativeControls": {
+    "meaning": "One named constraint disabled per run; normal expectations unchanged",
+    "controls": [
+      {
+        "id": "duplicate-exit",
+        "exitCode": 1,
+        "mismatchIds": [
+          "X-repeat-debit",
+          "X-replayed-receipt"
+        ],
+        "exceptions": 0,
+        "total": 106,
+        "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-duplicate-exit.json",
+        "sha256": "a6310f3c006ffb5b71a7e797d2227613ce9f9b5a31dffb13056de18638a24e60",
+        "semanticDetected": true
+      },
+      {
+        "id": "persistent-reset",
+        "exitCode": 1,
+        "mismatchIds": [
+          "P-reset-hp",
+          "P-reset-count",
+          "P-reset-risk",
+          "P-reset-intent"
+        ],
+        "exceptions": 0,
+        "total": 106,
+        "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-persistent-reset.json",
+        "sha256": "cc2267d4c09d4cf34a745eebaf6716960bdf4b0a814cbfd65613967e7f838668",
+        "semanticDetected": true
+      },
+      {
+        "id": "consumption-rollback",
+        "exitCode": 1,
+        "mismatchIds": [
+          "P-reset-first",
+          "P-reset-quota",
+          "M-origin-rollback",
+          "M-first-rollback",
+          "Q-rollback"
+        ],
+        "exceptions": 0,
+        "total": 106,
+        "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-consumption-rollback.json",
+        "sha256": "cabd0e3a0a1d03a0f913ef914b79d101e785c795a18d27df6c7aac552a078c31",
+        "semanticDetected": true
+      },
+      {
+        "id": "binding-acceptance",
+        "exitCode": 1,
+        "mismatchIds": [
+          "T-wrong-source",
+          "T-wrong-battle",
+          "R-bad-revision",
+          "R-bad-risk",
+          "R-bad-battle",
+          "R-bad-queue",
+          "R-bad-entry",
+          "R-bad-execution",
+          "R-full-compare",
+          "R-dead-wrong-source",
+          "R-dead-wrong-battle"
+        ],
+        "exceptions": 0,
+        "total": 106,
+        "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-binding-acceptance.json",
+        "sha256": "7769220d8d6481a7bc4c2f877518a0a5af1c099661cf69afe85fe7b31c4ea9a5",
+        "semanticDetected": true
+      }
+    ]
+  },
+  "freeze": {
+    "file": "frozen-manifest.json",
+    "count": 21,
+    "independentProcesses": 2,
+    "byteEqual": true,
+    "outputs": [
+      {
+        "path": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\finite-frozen-1.json",
+        "bytes": 244440,
+        "sha256": "bd9208680fb5834a428e72fda35bdf2142f41f71c880f3be0cd34945b9f03c0f"
+      },
+      {
+        "path": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\finite-frozen-2.json",
+        "bytes": 244440,
+        "sha256": "bd9208680fb5834a428e72fda35bdf2142f41f71c880f3be0cd34945b9f03c0f"
+      }
+    ],
+    "nativeAfterFreeze": true,
+    "generation": 2
+  },
+  "commands": [
+    {
+      "id": "architecture",
+      "command": [
+        "D:\\develop\\nodejs\\npm.cmd",
+        "run",
+        "validate:architecture"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 0,
+      "stdout": "\n> elevator-survival@0.0.0 validate:architecture\n> node scripts/validate-architecture.mjs\n\nArchitecture validation passed: 52 DEC entries and 289 core production files checked.\n",
+      "stderr": "",
+      "seconds": 0.623
+    },
+    {
+      "id": "finite-frozen-1",
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+        "--cases",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\finite-frozen-1.json"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 0,
+      "stdout": "{\"total\": 106, \"matched\": 106, \"categories\": {\"expected-rejection\": 67, \"supported-boundary\": 36, \"unsupported\": 3}, \"mismatchIds\": [], \"exceptions\": 0, \"negativeControl\": null}\r\n",
+      "stderr": "",
+      "seconds": 0.094
+    },
+    {
+      "id": "finite-frozen-2",
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+        "--cases",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\finite-frozen-2.json"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 0,
+      "stdout": "{\"total\": 106, \"matched\": 106, \"categories\": {\"expected-rejection\": 67, \"supported-boundary\": 36, \"unsupported\": 3}, \"mismatchIds\": [], \"exceptions\": 0, \"negativeControl\": null}\r\n",
+      "stderr": "",
+      "seconds": 0.098
+    },
+    {
+      "id": "architecture",
+      "command": [
+        "D:\\develop\\nodejs\\npm.cmd",
+        "run",
+        "validate:architecture"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 0,
+      "stdout": "\n> elevator-survival@0.0.0 validate:architecture\n> node scripts/validate-architecture.mjs\n\nArchitecture validation passed: 52 DEC entries and 289 core production files checked.\n",
+      "stderr": "",
+      "seconds": 0.636
+    },
+    {
+      "id": "finite-frozen-1",
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+        "--cases",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\finite-frozen-1.json"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 0,
+      "stdout": "{\"total\": 102, \"matched\": 102, \"categories\": {\"expected-rejection\": 63, \"supported-boundary\": 36, \"unsupported\": 3}, \"mismatchIds\": [], \"exceptions\": 0, \"negativeControl\": null}\r\n",
+      "stderr": "",
+      "seconds": 0.134
+    },
+    {
+      "id": "finite-frozen-2",
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+        "--cases",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\finite-frozen-2.json"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 0,
+      "stdout": "{\"total\": 102, \"matched\": 102, \"categories\": {\"expected-rejection\": 63, \"supported-boundary\": 36, \"unsupported\": 3}, \"mismatchIds\": [], \"exceptions\": 0, \"negativeControl\": null}\r\n",
+      "stderr": "",
+      "seconds": 0.097
+    },
+    {
+      "id": "native-frozen",
+      "command": [
+        "D:\\develop\\nodejs\\npm.cmd",
+        "exec",
+        "vitest",
+        "--",
+        "run",
+        "--config",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\vitest.probe.config.ts",
+        "--reporter=json",
+        "--outputFile=E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\native-results.json"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 0,
+      "stdout": "JSON report written to E:/projects/elevator-survival/docs/design-drafts/world-infected-001/entry-005/validation/native-results.json\n",
+      "stderr": "",
+      "seconds": 4.419
+    },
+    {
+      "id": "negative-binding-acceptance",
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+        "--cases",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-binding-acceptance.json",
+        "--negative-control",
+        "binding-acceptance"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 1,
+      "stdout": "{\"total\": 102, \"matched\": 91, \"categories\": {\"expected-rejection\": 63, \"supported-boundary\": 36, \"unsupported\": 3}, \"mismatchIds\": [\"T-wrong-source\", \"T-wrong-battle\", \"R-bad-revision\", \"R-bad-risk\", \"R-bad-battle\", \"R-bad-queue\", \"R-bad-entry\", \"R-bad-execution\", \"R-full-compare\", \"R-dead-wrong-source\", \"R-dead-wrong-battle\"], \"exceptions\": 0, \"negativeControl\": \"binding-acceptance\"}\r\n",
+      "stderr": "",
+      "seconds": 0.093
+    },
+    {
+      "id": "negative-consumption-rollback",
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+        "--cases",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-consumption-rollback.json",
+        "--negative-control",
+        "consumption-rollback"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 1,
+      "stdout": "{\"total\": 102, \"matched\": 97, \"categories\": {\"expected-rejection\": 63, \"supported-boundary\": 36, \"unsupported\": 3}, \"mismatchIds\": [\"P-reset-first\", \"P-reset-quota\", \"M-origin-rollback\", \"M-first-rollback\", \"Q-rollback\"], \"exceptions\": 0, \"negativeControl\": \"consumption-rollback\"}\r\n",
+      "stderr": "",
+      "seconds": 0.096
+    },
+    {
+      "id": "negative-duplicate-exit",
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+        "--cases",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-duplicate-exit.json",
+        "--negative-control",
+        "duplicate-exit"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 1,
+      "stdout": "{\"total\": 102, \"matched\": 100, \"categories\": {\"expected-rejection\": 63, \"supported-boundary\": 36, \"unsupported\": 3}, \"mismatchIds\": [\"X-repeat-debit\", \"X-replayed-receipt\"], \"exceptions\": 0, \"negativeControl\": \"duplicate-exit\"}\r\n",
+      "stderr": "",
+      "seconds": 0.097
+    },
+    {
+      "id": "negative-persistent-reset",
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+        "--cases",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-persistent-reset.json",
+        "--negative-control",
+        "persistent-reset"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 1,
+      "stdout": "{\"total\": 102, \"matched\": 98, \"categories\": {\"expected-rejection\": 63, \"supported-boundary\": 36, \"unsupported\": 3}, \"mismatchIds\": [\"P-reset-hp\", \"P-reset-count\", \"P-reset-risk\", \"P-reset-intent\"], \"exceptions\": 0, \"negativeControl\": \"persistent-reset\"}\r\n",
+      "stderr": "",
+      "seconds": 0.099
+    },
+    {
+      "id": "native-frozen",
+      "command": [
+        "D:\\develop\\nodejs\\npm.cmd",
+        "exec",
+        "vitest",
+        "--",
+        "run",
+        "--config",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\vitest.probe.config.ts",
+        "--reporter=json",
+        "--outputFile=E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\native-results.json"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 0,
+      "stdout": "JSON report written to E:/projects/elevator-survival/docs/design-drafts/world-infected-001/entry-005/validation/native-results.json\n",
+      "stderr": "",
+      "seconds": 4.971
+    },
+    {
+      "id": "negative-binding-acceptance",
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+        "--cases",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-binding-acceptance.json",
+        "--negative-control",
+        "binding-acceptance"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 1,
+      "stdout": "{\"total\": 106, \"matched\": 95, \"categories\": {\"expected-rejection\": 67, \"supported-boundary\": 36, \"unsupported\": 3}, \"mismatchIds\": [\"T-wrong-source\", \"T-wrong-battle\", \"R-bad-revision\", \"R-bad-risk\", \"R-bad-battle\", \"R-bad-queue\", \"R-bad-entry\", \"R-bad-execution\", \"R-full-compare\", \"R-dead-wrong-source\", \"R-dead-wrong-battle\"], \"exceptions\": 0, \"negativeControl\": \"binding-acceptance\"}\r\n",
+      "stderr": "",
+      "seconds": 0.092
+    },
+    {
+      "id": "negative-consumption-rollback",
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+        "--cases",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-consumption-rollback.json",
+        "--negative-control",
+        "consumption-rollback"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 1,
+      "stdout": "{\"total\": 106, \"matched\": 101, \"categories\": {\"expected-rejection\": 67, \"supported-boundary\": 36, \"unsupported\": 3}, \"mismatchIds\": [\"P-reset-first\", \"P-reset-quota\", \"M-origin-rollback\", \"M-first-rollback\", \"Q-rollback\"], \"exceptions\": 0, \"negativeControl\": \"consumption-rollback\"}\r\n",
+      "stderr": "",
+      "seconds": 0.096
+    },
+    {
+      "id": "negative-duplicate-exit",
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+        "--cases",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-duplicate-exit.json",
+        "--negative-control",
+        "duplicate-exit"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 1,
+      "stdout": "{\"total\": 106, \"matched\": 104, \"categories\": {\"expected-rejection\": 67, \"supported-boundary\": 36, \"unsupported\": 3}, \"mismatchIds\": [\"X-repeat-debit\", \"X-replayed-receipt\"], \"exceptions\": 0, \"negativeControl\": \"duplicate-exit\"}\r\n",
+      "stderr": "",
+      "seconds": 0.094
+    },
+    {
+      "id": "negative-persistent-reset",
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+        "--cases",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-persistent-reset.json",
+        "--negative-control",
+        "persistent-reset"
+      ],
+      "cwd": "E:\\projects\\elevator-survival",
+      "exitCode": 1,
+      "stdout": "{\"total\": 106, \"matched\": 102, \"categories\": {\"expected-rejection\": 67, \"supported-boundary\": 36, \"unsupported\": 3}, \"mismatchIds\": [\"P-reset-hp\", \"P-reset-count\", \"P-reset-risk\", \"P-reset-intent\"], \"exceptions\": 0, \"negativeControl\": \"persistent-reset\"}\r\n",
+      "stderr": "",
+      "seconds": 0.1
+    },
+    {
+      "command": [
+        "git",
+        "ls-remote",
+        "--heads",
+        "origin"
+      ],
+      "exitCode": 0,
+      "stdout": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63\trefs/heads/feature/design-world-entry-002\n6438f7a38939297225538cdd68af24201ed7d34f\trefs/heads/feature/design-world-entry-003\nad56a7d9dfc08e38f966f20cf7e07c71c08c09dc\trefs/heads/feature/design-world-entry-004\n6b48b3de6521d9a9c296754a4d8135c7f7c7ca35\trefs/heads/feature/design-world-infected-world-001\nd1d3b7927c6733cff709a4bfd617fb1e85e7485a\trefs/heads/feature/mission-lifecycle-core-001\n7ca547ab8ab4f411d1102a79baf8c0796f4b082c\trefs/heads/feature/residence-actions-core-001\n8c19ca0d28058cf743b41c8547cc2629c8eac767\trefs/heads/feature/residence-content-supply-core-001\n84eb6dff5e9d3238c3e651525b6ed28412132549\trefs/heads/feature/residence-content-supply-restore-001\n9c3c8a8c97c374bd1def6217c691137f3df10096\trefs/heads/feature/residence-content-supply-session-001\n942b2d93916c649f4c2ec6cd399035151269d2ca\trefs/heads/feature/residence-energy-cycle-core-001\nd7953bbf96dc842d2953e019f950275cd693bf09\trefs/heads/feature/residence-location-core-001\n60e9c30732c5e22cfe9ff58b9b381de64b945180\trefs/heads/feature/residence-session-core-001\nbfc6bd973eeb306df1e8ee916b2160c30b757cdf\trefs/heads/feature/residence-terminal-core-001\nb9b1e0fee0e779669ca40e088ac9a867016bff82\trefs/heads/feature/residence-terminal-restore-001\n0921df3f219f368479d1bf3401d8fecddc0d5f71\trefs/heads/feature/residence-terminal-session-001\na76e9c1c998051fc1643b6e0c3d53443fa55feed\trefs/heads/main\n",
+      "stderr": ""
+    }
+  ],
+  "development": {
+    "finite": [
+      {
+        "run": 1,
+        "artifact": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\finite-development-1.json",
+        "total": 98,
+        "matched": 98,
+        "mismatchIds": [],
+        "exceptions": 0,
+        "exitCode": 0
+      },
+      {
+        "run": 2,
+        "artifact": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\finite-development-2.json",
+        "total": 102,
+        "matched": 102,
+        "mismatchIds": [],
+        "exceptions": 0,
+        "exitCode": 0
+      },
+      {
+        "run": 3,
+        "artifact": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\finite-development-3.json",
+        "total": 106,
+        "matched": 104,
+        "mismatchIds": [
+          "R-defense-intermediate",
+          "R-extra-field"
+        ],
+        "exceptions": 0,
+        "exitCode": 1
+      },
+      {
+        "run": 4,
+        "artifact": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\finite-development-4.json",
+        "total": 106,
+        "matched": 106,
+        "mismatchIds": [],
+        "exceptions": 0,
+        "exitCode": 0
+      }
+    ],
+    "native": [
+      {
+        "run": 1,
+        "artifact": {
+          "path": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\native-development-1.json",
+          "bytes": 10579,
+          "sha256": "9e323bc9c70e9397fba214278d062590081cdfa2b12c4b2712bf686912933ce7"
+        },
+        "numTotalTests": 20,
+        "numPassedTests": 18,
+        "numFailedTests": 2,
+        "exitCode": 1
+      },
+      {
+        "run": 2,
+        "artifact": {
+          "path": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\native-development-2.json",
+          "bytes": 9580,
+          "sha256": "57bdf7c89a2488f8c66e250ef000b613c59f4755c733ff7153d27f64f1dabb2a"
+        },
+        "numTotalTests": 20,
+        "numPassedTests": 19,
+        "numFailedTests": 1,
+        "exitCode": 1
+      },
+      {
+        "run": 3,
+        "artifact": {
+          "path": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\native-development-3.json",
+          "bytes": 8541,
+          "sha256": "87829697dab7d581c291057f61b4bbbf4c4b97a7e7f3416255c2209fa6b354dc"
+        },
+        "numTotalTests": 20,
+        "numPassedTests": 20,
+        "numFailedTests": 0,
+        "exitCode": 0
+      },
+      {
+        "run": 4,
+        "artifact": {
+          "path": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\native-development-4.json",
+          "bytes": 8983,
+          "sha256": "bc8d6c2c4cccc8ba020f79617768246fb7277374dfbfa01875ea77bfc392ce68"
+        },
+        "numTotalTests": 21,
+        "numPassedTests": 21,
+        "numFailedTests": 0,
+        "exitCode": 0
+      },
+      {
+        "run": 5,
+        "artifact": {
+          "path": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\native-development-5.json",
+          "bytes": 9856,
+          "sha256": "43081217d990ebabd35bf5b01c7e4c07794a44c33177017c04024917b083ff44"
+        },
+        "numTotalTests": 23,
+        "numPassedTests": 23,
+        "numFailedTests": 0,
+        "exitCode": 0
+      }
+    ],
+    "fixes": [
+      "Probe fixture: damaged enemy was incorrectly unencountered; initialize real first snapshot then TEST damaged encountered enemy",
+      "Probe fixture: G2 enemy encountered flag is nested under state",
+      "Probe expected: first constructor uses INVALID_ENEMY_STATE, not INVALID_COMBAT_SNAPSHOT",
+      "Docs writer: wrong key woundKinds produced KeyError before output; corrected to actual content.wounds",
+      "File patch tool rejected reparse point, ordinary authorized file writing used without changing security configuration",
+      "Added four terminal-source regressions and corrected finite E0 movement pre-energy2; no prior expected answers relaxed",
+      "Precommit review: bool/int and integer-float equality in proposal witnesses; four regressions expose old checker acceptance (exit1/exceptions0). Strict raw type pass added. Existing structural diagnostics preserved by moving raw pass after schema; initial104/106 retained, final106/106."
+    ],
+    "numericBeforeRepair": {
+      "command": [
+        "python",
+        "numeric-before/check.py",
+        "--cases",
+        "numeric-before/cases.json",
+        "--output",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\numeric-before-results.json"
+      ],
+      "exitCode": 1,
+      "sha256": "70b6abbd230a021b90d48fbf0c66454f87f76551d9c2e0e8b874b4e95b79feaf",
+      "total": 106,
+      "matched": 102,
+      "mismatchIds": [
+        "RAW-entry-boolean",
+        "RAW-exit-float",
+        "RAW-charge-quota",
+        "RAW-medicine-quota"
+      ],
+      "exceptions": 0
+    },
+    "toolingNotes": [
+      "First staging elevation could not read sandbox-owned external temp files; Get-Content access denied, git add had no path arguments, no files staged; retried with identical archived whitelist inside repository, exit0. No approval rejection or security configuration change."
+    ]
+  },
+  "scopeAudit": {
+    "phase": "working",
+    "assertions": [
+      {
+        "check": "branch",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "HEAD gate",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "working scope",
+        "pass": true,
+        "details": [
+          "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+          "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+          "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+          "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+          "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+          "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+          "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+          "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+          "docs/design-drafts/world-infected-001/entry-005/checks.json",
+          "docs/design-drafts/world-infected-001/entry-005/completion.md",
+          "docs/design-drafts/world-infected-001/entry-005/frozen-manifest.json",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+          "docs/design-drafts/world-infected-001/entry-005/validation/cases.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/check.py",
+          "docs/design-drafts/world-infected-001/entry-005/validation/native-probe.test.ts",
+          "docs/design-drafts/world-infected-001/entry-005/validation/native-results.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/negative-controls.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/results.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/state-candidates.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/vitest.probe.config.ts"
+        ]
+      },
+      {
+        "check": "all 27 paths exist",
+        "pass": true,
+        "details": 27
+      },
+      {
+        "check": "tracked diff scope",
+        "pass": true,
+        "details": [
+          "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+          "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+          "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+          "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+          "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+          "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+          "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+          "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+          "docs/design-drafts/world-infected-001/entry-005/checks.json",
+          "docs/design-drafts/world-infected-001/entry-005/completion.md",
+          "docs/design-drafts/world-infected-001/entry-005/frozen-manifest.json",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+          "docs/design-drafts/world-infected-001/entry-005/validation/cases.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/check.py",
+          "docs/design-drafts/world-infected-001/entry-005/validation/native-probe.test.ts",
+          "docs/design-drafts/world-infected-001/entry-005/validation/native-results.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/negative-controls.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/results.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/state-candidates.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/vitest.probe.config.ts"
+        ]
+      },
+      {
+        "check": "all out-of-scope Git objects",
+        "pass": true,
+        "details": 1102
+      },
+      {
+        "check": "archive working WORLD-ENTRY-005-task-v1.0.md",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "archive working OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "archive working AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "archive working BASELINE-AND-INPUTS.json",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "archive working SHA256SUMS.txt",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "append prefix docs/design-drafts/world-infected-001/01-world-overview.md",
+        "pass": true,
+        "details": 32283
+      },
+      {
+        "check": "append prefix docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "pass": true,
+        "details": 31697
+      },
+      {
+        "check": "frozen excludes itself",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "21 frozen bytes remain",
+        "pass": true,
+        "details": 21
+      },
+      {
+        "check": "UTF8/JSON all whitelist",
+        "pass": true,
+        "details": 27
+      },
+      {
+        "check": "relative links/anchors",
+        "pass": true,
+        "details": {
+          "count": 57,
+          "errors": []
+        }
+      },
+      {
+        "check": "diff --check",
+        "pass": true,
+        "details": {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      {
+        "check": "diff --cached --check",
+        "pass": true,
+        "details": {
+          "command": [
+            "git",
+            "diff",
+            "--cached",
+            "--check"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      {
+        "check": "diff 9c3c8a8c97c374bd1def6217c691137f3df10096 --check",
+        "pass": true,
+        "details": {
+          "command": [
+            "git",
+            "diff",
+            "9c3c8a8c97c374bd1def6217c691137f3df10096",
+            "--check"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      {
+        "check": "src tree baseline",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "all prior local branch refs",
+        "pass": true,
+        "details": 16
+      }
+    ],
+    "archives": [
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
+        "bytes": 22651,
+        "sha256": "de110d42d7df8827c7bd2f8b750fd8a1d59f390ba4f6defb8bf8015296a6c1aa",
+        "gitBlob": null
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+        "bytes": 1421,
+        "sha256": "e82c37465ddef32ef1e2147eb4f720c1014ebdf08b8307d64aaad602818e8e27",
+        "gitBlob": null
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+        "bytes": 10175,
+        "sha256": "0f1e4358fa3d6a4ab22d9f50286c78272bd56d47c46658ac174ea65297d89a79",
+        "gitBlob": null
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
+        "bytes": 6796,
+        "sha256": "1fcd8b23d87be18a49166b3d34067a74747ec320d32d4eb20a31a13765d489b2",
+        "gitBlob": null
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
+        "bytes": 436,
+        "sha256": "c9d6901bbd5270695cc3a51825954958460bc4db282714dc1ab7d2ca3169ff40",
+        "gitBlob": null
+      }
+    ],
+    "links": [
+      {
+        "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "target": "entry-005/00-owner-review.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "target": "entry-005/06-engineering-contracts.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "target": "entry-005/07-evidence-and-playtest-gates.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "target": "entry-005/00-owner-review.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "target": "entry-005/06-engineering-contracts.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "target": "entry-005/07-evidence-and-playtest-gates.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "../../../05-design-decisions.md#dec-052",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "../entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "02-combat-lifecycle-and-order.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "03-single-truth-and-effects.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "04-active-combat-save-contract.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "06-engineering-contracts.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "validation/results.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "validation/native-results.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "checks.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "validation/README.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "completion.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+        "target": "inputs/BASELINE-AND-INPUTS.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+        "target": "checks.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+        "target": "validation/native-probe.test.ts",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+        "target": "05-approved-data-and-gaps.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+        "target": "../../../05-design-decisions.md#dec-052",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+        "target": "05-approved-data-and-gaps.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+        "target": "03-single-truth-and-effects.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+        "target": "04-active-combat-save-contract.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+        "target": "validation/state-candidates.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+        "target": "../../../../src/core/residence-supply/types.ts",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+        "target": "03-single-truth-and-effects.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+        "target": "../../../content/infected-world-entry-test-config-v0.1.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+        "target": "../../../content/infected-world-entry-content-v0.1.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+        "target": "../../../05-design-decisions.md#dec-052",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+        "target": "05-approved-data-and-gaps.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+        "target": "03-single-truth-and-effects.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+        "target": "04-active-combat-save-contract.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+        "target": "validation/check.py",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+        "target": "validation/native-probe.test.ts",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+        "target": "checks.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+        "target": "validation/negative-controls.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+        "target": "../../../09-ui-design-record.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "01-current-baseline-and-reuse.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "02-combat-lifecycle-and-order.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "05-approved-data-and-gaps.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "03-single-truth-and-effects.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "04-active-combat-save-contract.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "validation/results.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "validation/native-results.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "validation/negative-controls.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "00-owner-review.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "06-engineering-contracts.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "07-evidence-and-playtest-gates.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "checks.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+        "target": "../frozen-manifest.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+        "target": "results.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+        "target": "native-results.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+        "target": "negative-controls.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+        "target": "../checks.json",
+        "pass": true
+      }
+    ],
+    "diffReceipts": [
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--cached",
+          "--check"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "9c3c8a8c97c374bd1def6217c691137f3df10096",
+          "--check"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "status": [
+      "M  docs/design-drafts/world-infected-001/01-world-overview.md",
+      "M  docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+      "AM docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+      "AM docs/design-drafts/world-infected-001/entry-005/checks.json",
+      "AM docs/design-drafts/world-infected-001/entry-005/completion.md",
+      "AM docs/design-drafts/world-infected-001/entry-005/frozen-manifest.json",
+      "A  docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
+      "A  docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
+      "A  docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+      "AM docs/design-drafts/world-infected-001/entry-005/validation/cases.json",
+      "AM docs/design-drafts/world-infected-001/entry-005/validation/check.py",
+      "A  docs/design-drafts/world-infected-001/entry-005/validation/native-probe.test.ts",
+      "AM docs/design-drafts/world-infected-001/entry-005/validation/native-results.json",
+      "AM docs/design-drafts/world-infected-001/entry-005/validation/negative-controls.json",
+      "AM docs/design-drafts/world-infected-001/entry-005/validation/results.json",
+      "A  docs/design-drafts/world-infected-001/entry-005/validation/state-candidates.json",
+      "A  docs/design-drafts/world-infected-001/entry-005/validation/vitest.probe.config.ts"
+    ],
+    "allPassed": true
+  },
+  "notRun": [
+    "starting full production tests",
+    "final full production tests",
+    "typecheck",
+    "production build",
+    "browser",
+    "real Storage",
+    "multi-tab",
+    "Owner playtest",
+    "historical models/suites",
+    "E02-P/R/S",
+    "E03"
+  ],
+  "newProductionTests": 0,
+  "legacyTests": {
+    "historicalCI": 3621,
+    "executedInThisTask": false
+  },
+  "ruleConflicts": [],
+  "unresolved": [
+    "Technical v4/contract draft awaits exact SHA review",
+    "New three-enemy CTB, full five-map/nine-combination play and browser anchors not implemented",
+    "O3/long-term economy/subsequent content remain out of scope"
+  ],
+  "stop": "Await WebGPT exact SHA file review; no production or formal archival next step",
+  "previousFreeze": {
+    "manifest": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\freeze-1-frozen-manifest.json",
+    "results": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\freeze-1-finite-frozen-1.json",
+    "native": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\freeze-1-validation-native-results.json",
+    "meaning": "102-case first freeze preserved; superseded only because adjacent numeric validation gap was found; final freeze is106 cases"
+  },
+  "stagedAudit": {
+    "phase": "staged",
+    "assertions": [
+      {
+        "check": "branch",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "HEAD gate",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "working scope",
+        "pass": true,
+        "details": [
+          "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+          "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+          "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+          "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+          "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+          "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+          "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+          "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+          "docs/design-drafts/world-infected-001/entry-005/checks.json",
+          "docs/design-drafts/world-infected-001/entry-005/completion.md",
+          "docs/design-drafts/world-infected-001/entry-005/frozen-manifest.json",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+          "docs/design-drafts/world-infected-001/entry-005/validation/cases.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/check.py",
+          "docs/design-drafts/world-infected-001/entry-005/validation/native-probe.test.ts",
+          "docs/design-drafts/world-infected-001/entry-005/validation/native-results.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/negative-controls.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/results.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/state-candidates.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/vitest.probe.config.ts"
+        ]
+      },
+      {
+        "check": "all 27 paths exist",
+        "pass": true,
+        "details": 27
+      },
+      {
+        "check": "tracked diff scope",
+        "pass": true,
+        "details": [
+          "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+          "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+          "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+          "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+          "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+          "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+          "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+          "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+          "docs/design-drafts/world-infected-001/entry-005/checks.json",
+          "docs/design-drafts/world-infected-001/entry-005/completion.md",
+          "docs/design-drafts/world-infected-001/entry-005/frozen-manifest.json",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+          "docs/design-drafts/world-infected-001/entry-005/validation/cases.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/check.py",
+          "docs/design-drafts/world-infected-001/entry-005/validation/native-probe.test.ts",
+          "docs/design-drafts/world-infected-001/entry-005/validation/native-results.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/negative-controls.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/results.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/state-candidates.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/vitest.probe.config.ts"
+        ]
+      },
+      {
+        "check": "exact staged/commit paths",
+        "pass": true,
+        "details": [
+          "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+          "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+          "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+          "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+          "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+          "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+          "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+          "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+          "docs/design-drafts/world-infected-001/entry-005/checks.json",
+          "docs/design-drafts/world-infected-001/entry-005/completion.md",
+          "docs/design-drafts/world-infected-001/entry-005/frozen-manifest.json",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
+          "docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
+          "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+          "docs/design-drafts/world-infected-001/entry-005/validation/cases.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/check.py",
+          "docs/design-drafts/world-infected-001/entry-005/validation/native-probe.test.ts",
+          "docs/design-drafts/world-infected-001/entry-005/validation/native-results.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/negative-controls.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/results.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/state-candidates.json",
+          "docs/design-drafts/world-infected-001/entry-005/validation/vitest.probe.config.ts"
+        ]
+      },
+      {
+        "check": "all out-of-scope Git objects",
+        "pass": true,
+        "details": 1102
+      },
+      {
+        "check": "archive working WORLD-ENTRY-005-task-v1.0.md",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "archive object WORLD-ENTRY-005-task-v1.0.md",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "archive working OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "archive object OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "archive working AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "archive object AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "archive working BASELINE-AND-INPUTS.json",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "archive object BASELINE-AND-INPUTS.json",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "archive working SHA256SUMS.txt",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "archive object SHA256SUMS.txt",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "append prefix docs/design-drafts/world-infected-001/01-world-overview.md",
+        "pass": true,
+        "details": 32283
+      },
+      {
+        "check": "append prefix docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "pass": true,
+        "details": 31697
+      },
+      {
+        "check": "frozen excludes itself",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "21 frozen bytes remain",
+        "pass": true,
+        "details": 21
+      },
+      {
+        "check": "UTF8/JSON all whitelist",
+        "pass": true,
+        "details": 27
+      },
+      {
+        "check": "relative links/anchors",
+        "pass": true,
+        "details": {
+          "count": 57,
+          "errors": []
+        }
+      },
+      {
+        "check": "diff --check",
+        "pass": true,
+        "details": {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      {
+        "check": "diff --cached --check",
+        "pass": true,
+        "details": {
+          "command": [
+            "git",
+            "diff",
+            "--cached",
+            "--check"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      {
+        "check": "diff 9c3c8a8c97c374bd1def6217c691137f3df10096 --check",
+        "pass": true,
+        "details": {
+          "command": [
+            "git",
+            "diff",
+            "9c3c8a8c97c374bd1def6217c691137f3df10096",
+            "--check"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      {
+        "check": "src tree baseline",
+        "pass": true,
+        "details": null
+      },
+      {
+        "check": "all prior local branch refs",
+        "pass": true,
+        "details": 16
+      }
+    ],
+    "archives": [
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
+        "bytes": 22651,
+        "sha256": "de110d42d7df8827c7bd2f8b750fd8a1d59f390ba4f6defb8bf8015296a6c1aa",
+        "gitBlob": "87e0204ed648875069d3dd7abf006ff5a37555a3"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+        "bytes": 1421,
+        "sha256": "e82c37465ddef32ef1e2147eb4f720c1014ebdf08b8307d64aaad602818e8e27",
+        "gitBlob": "9f9bcb5b4a2270f9ea1e34f787d14002f609d8c0"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+        "bytes": 10175,
+        "sha256": "0f1e4358fa3d6a4ab22d9f50286c78272bd56d47c46658ac174ea65297d89a79",
+        "gitBlob": "c70e1db39dcef3a0d3b19d77b94cc38a5ae22339"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
+        "bytes": 6796,
+        "sha256": "1fcd8b23d87be18a49166b3d34067a74747ec320d32d4eb20a31a13765d489b2",
+        "gitBlob": "b04efd29529e5b9dc7b5c5e45686934d83da84c0"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
+        "bytes": 436,
+        "sha256": "c9d6901bbd5270695cc3a51825954958460bc4db282714dc1ab7d2ca3169ff40",
+        "gitBlob": "8eacb99c10bb427b7bd9dd0fe66ece7011d5ff52"
+      }
+    ],
+    "links": [
+      {
+        "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "target": "entry-005/00-owner-review.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "target": "entry-005/06-engineering-contracts.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "target": "entry-005/07-evidence-and-playtest-gates.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "target": "entry-005/00-owner-review.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "target": "entry-005/06-engineering-contracts.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "target": "entry-005/07-evidence-and-playtest-gates.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "../../../05-design-decisions.md#dec-052",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "../entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "02-combat-lifecycle-and-order.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "03-single-truth-and-effects.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "04-active-combat-save-contract.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "06-engineering-contracts.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "validation/results.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "validation/native-results.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "checks.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "validation/README.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "target": "completion.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+        "target": "inputs/BASELINE-AND-INPUTS.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+        "target": "checks.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+        "target": "validation/native-probe.test.ts",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+        "target": "05-approved-data-and-gaps.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+        "target": "../../../05-design-decisions.md#dec-052",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+        "target": "05-approved-data-and-gaps.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+        "target": "03-single-truth-and-effects.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+        "target": "04-active-combat-save-contract.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+        "target": "validation/state-candidates.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+        "target": "../../../../src/core/residence-supply/types.ts",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+        "target": "03-single-truth-and-effects.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+        "target": "../../../content/infected-world-entry-test-config-v0.1.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+        "target": "../../../content/infected-world-entry-content-v0.1.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+        "target": "../../../05-design-decisions.md#dec-052",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+        "target": "05-approved-data-and-gaps.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+        "target": "03-single-truth-and-effects.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+        "target": "04-active-combat-save-contract.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+        "target": "validation/check.py",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+        "target": "validation/native-probe.test.ts",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+        "target": "checks.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+        "target": "validation/negative-controls.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+        "target": "../../../09-ui-design-record.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "01-current-baseline-and-reuse.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "02-combat-lifecycle-and-order.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "05-approved-data-and-gaps.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "03-single-truth-and-effects.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "04-active-combat-save-contract.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "validation/results.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "validation/native-results.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "validation/negative-controls.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "00-owner-review.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "06-engineering-contracts.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "07-evidence-and-playtest-gates.md",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/completion.md",
+        "target": "checks.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+        "target": "../frozen-manifest.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+        "target": "results.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+        "target": "native-results.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+        "target": "negative-controls.json",
+        "pass": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+        "target": "../checks.json",
+        "pass": true
+      }
+    ],
+    "diffReceipts": [
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--cached",
+          "--check"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "9c3c8a8c97c374bd1def6217c691137f3df10096",
+          "--check"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "status": [
+      "M  docs/design-drafts/world-infected-001/01-world-overview.md",
+      "M  docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/checks.json",
+      "A  docs/design-drafts/world-infected-001/entry-005/completion.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/frozen-manifest.json",
+      "A  docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
+      "A  docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
+      "A  docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+      "A  docs/design-drafts/world-infected-001/entry-005/validation/cases.json",
+      "A  docs/design-drafts/world-infected-001/entry-005/validation/check.py",
+      "A  docs/design-drafts/world-infected-001/entry-005/validation/native-probe.test.ts",
+      "A  docs/design-drafts/world-infected-001/entry-005/validation/native-results.json",
+      "A  docs/design-drafts/world-infected-001/entry-005/validation/negative-controls.json",
+      "A  docs/design-drafts/world-infected-001/entry-005/validation/results.json",
+      "A  docs/design-drafts/world-infected-001/entry-005/validation/state-candidates.json",
+      "A  docs/design-drafts/world-infected-001/entry-005/validation/vitest.probe.config.ts"
+    ],
+    "allPassed": true
+  },
+  "commitGate": "PASS; exact27 staged paths, all5 index blobs match originals, three diff checks0, frozen inputs unchanged"
+}

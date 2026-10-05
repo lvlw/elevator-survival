@@ -1,0 +1,81 @@
+{
+  "task": "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001",
+  "phase": "E01-R",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+  "parent_sha": "ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc",
+  "start_tree": "7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936",
+  "source_branch": "feature/residence-content-supply-core-001",
+  "target_branch": "feature/residence-content-supply-restore-001",
+  "verified_remote_ci": {
+    "run_number": 143,
+    "run_id": 37279314677,
+    "conclusion": "success",
+    "stages": [
+      "validate:architecture",
+      "typecheck",
+      "test:run",
+      "build"
+    ]
+  },
+  "author_reported_start_tests": {
+    "files": 147,
+    "tests": 3274
+  },
+  "author_reported_final_tests": {
+    "files": 161,
+    "tests": 3365
+  },
+  "author_reported_new_tests": 91,
+  "mainline_review": {
+    "result": "PASS",
+    "mainline_full_npm_rerun": false,
+    "notes": [
+      "Exact commit/source/diff and critical modules reviewed.",
+      "Remote CI #143 independently confirmed success.",
+      "E01-R must independently bind first-hub pending execution; candidate origins cannot self-prove expected execution."
+    ]
+  },
+  "allowed_paths": [
+    "src/state/residence-save/supply-types.ts",
+    "src/state/residence-save/supply-schema.ts",
+    "src/state/residence-save/supply-policy.ts",
+    "src/state/residence-save/supply-validation.ts",
+    "src/state/residence-save/supply-history.ts",
+    "src/state/residence-save/supply-expected.ts",
+    "src/state/residence-save/supply-codec.ts",
+    "src/state/residence-save/supply-index.ts",
+    "src/state/residence-save/supply-controlled.ts",
+    "src/state/residence-save/supply-test-fixtures.ts",
+    "src/state/residence-save/supply-validation.test.ts",
+    "src/state/residence-save/supply-history.test.ts",
+    "src/state/residence-save/supply-expected.test.ts",
+    "src/state/residence-save/supply-codec.test.ts",
+    "src/state/residence-save/supply-compatibility.test.ts",
+    "src/state/residence-save/supply-purity.test.ts",
+    "src/state/residence-save/supply-roundtrip.test.ts",
+    "docs/engineering/residence-foundation/content-supply-restore/completion.md",
+    "docs/engineering/residence-foundation/content-supply-restore/contract-and-support.md",
+    "docs/engineering/residence-foundation/content-supply-restore/implementation-notes.md",
+    "docs/engineering/residence-foundation/content-supply-restore/verification-results.json",
+    "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+    "docs/engineering/residence-foundation/content-supply-restore/inputs/OWNER-authority-and-scope-E01-R-v1.0.md",
+    "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+    "docs/engineering/residence-foundation/content-supply-restore/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/residence-foundation/content-supply-restore/inputs/SHA256SUMS.txt",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "forbidden": [
+    "main merge/push",
+    "force push",
+    "E01-S current/session/storage",
+    "old v1/v2 semantic changes",
+    "DEC or approved parameter changes",
+    "E02/E03",
+    "React/UI/browser/O3",
+    "new dependencies"
+  ]
+}

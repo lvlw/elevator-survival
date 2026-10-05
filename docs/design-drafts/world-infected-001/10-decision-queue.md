@@ -220,3 +220,13 @@ G1仍拥有身体／精力／周期，G2仍拥有现场，A共享结算拥有钱
 原生长链实际使用初发、单边移动、来源、药食／维护、任务搬运／安装和终局；危险已解决的TEST前态保留三敌人声明，不是完整CTB通关或Owner体验通过。测试工程记录不覆盖后续准确SHA源码实审。
 
 实际接口／支持矩阵见[contract-and-support](../../engineering/residence-foundation/content-supply-core/contract-and-support.md)，执行过程见[implementation-notes](../../engineering/residence-foundation/content-supply-core/implementation-notes.md)，实跑证据见[verification-results](../../engineering/residence-foundation/content-supply-core/verification-results.json)，交付及未执行边界见[completion](../../engineering/residence-foundation/content-supply-core/completion.md)。原文完整字节前缀保留，本段只追加实现状态，不改变历史结论。
+
+## E01-R 严格供给恢复工程附记（2026-10-05，作者交付）
+
+已实现独立 headless `elevator-survival.residence-headless / formatVersion=3` 聚合与字符串 codec，直接复用 E01-P 的 SupplyValue、来源份额守恒、实物／ItemState、消费、安装、交样和终局历史校验。支持 first-hub、稳定 active-world、living-hub、dead；活 pending combat 明确拒绝而非清除。旧 v1/v2 入口、数据语义与测试不变，三个版本互不静默迁移。
+
+外部受控 policy 固定规则／G1／供给／终局配置与内容、声明范围；每次调用另需独立角色、phase、revision、cycle、mission/execution expected。first-hub 的初始 execution 必须来自候选之外，不能读取 initial origins 后自证。同进度恢复还比较独立完整 committed 值。解码只返回冻结严格候选，不授予 SupplyAuthority、current 安装权或 Storage 写权限；不重跑动作、周期、随机、任务关闭或奖罚。
+
+本段更新此前附记中的 R 实现状态，不改写历史结论或批准规则。E01-S 唯一会话／保存、E02 活战斗、E03 玩家入口与 O3 仍未接入或决定；两声明与已解除危险的 TEST 前态不代表新增真实委托、完整 CTB 或 Owner 体验通过。等待准确 SHA 的 v3 恢复接缝实审。
+
+接口与十二组验收映射见[contract-and-support](../../engineering/residence-foundation/content-supply-restore/contract-and-support.md)，实跑与边界见[verification-results](../../engineering/residence-foundation/content-supply-restore/verification-results.json)及[completion](../../engineering/residence-foundation/content-supply-restore/completion.md)。

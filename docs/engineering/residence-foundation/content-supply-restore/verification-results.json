@@ -1,0 +1,251 @@
+{
+  "task": "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001",
+  "phase": "E01-R",
+  "date": "2026-10-05",
+  "baseline": {
+    "sha": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+    "parent": "ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc",
+    "tree": "7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936",
+    "worktree": "clean",
+    "index": "clean",
+    "files": 161,
+    "tests": 3365,
+    "command": "npm run test:run",
+    "started": "16:21:13",
+    "durationSeconds": 94.99,
+    "status": "PASS",
+    "evidence": "actual local run, not inherited CI"
+  },
+  "branch": "feature/residence-content-supply-restore-001",
+  "final": {
+    "files": 168,
+    "tests": 3472,
+    "newFiles": 7,
+    "added": 107,
+    "replaced": 0,
+    "deleted": 0,
+    "net": 107
+  },
+  "checks": {
+    "architecture": {
+      "status": "PASS",
+      "dec": 52,
+      "coreProductionFiles": 289
+    },
+    "typecheck": "PASS",
+    "targeted": {
+      "files": 7,
+      "tests": 107,
+      "status": "PASS"
+    },
+    "e01P": {
+      "files": 14,
+      "tests": 91,
+      "status": "PASS"
+    },
+    "oldBC": {
+      "files": 14,
+      "tests": 327,
+      "status": "PASS"
+    },
+    "check": {
+      "command": "npm run check",
+      "exitCode": 0,
+      "status": "PASS",
+      "fullTestsStarted": "17:05:00",
+      "fullTestDurationSeconds": 96.43
+    },
+    "build": {
+      "status": "PASS",
+      "modules": 419,
+      "warning": "existing chunk larger than 500 kB advisory"
+    }
+  },
+  "roundtrip": {
+    "phases": [
+      "first-hub",
+      "active-world",
+      "living-hub",
+      "dead"
+    ],
+    "deeplyFrozen": true,
+    "mutableInputUnchanged": true,
+    "byteStable": true,
+    "wrongExpectedPerPhaseRejected": true,
+    "actualG2Death": true,
+    "actualSupplyDeath": true,
+    "deadlineDeaths": [
+      "cycle-bleeding",
+      "infection",
+      "hunger"
+    ],
+    "normalH0Steps": [],
+    "realInstalledAndDeliveredPreserved": true,
+    "splitMergeConsumptionGroundPreserved": true,
+    "twoDeclarationHistory": [
+      "old success then next source/death",
+      "old voluntary-failure then next source/death"
+    ]
+  },
+  "independentExpected": {
+    "initialExecution": "mandatory external runId/seed/rulesVersion; never inferred from candidate origins",
+    "proof": "A genuine other-seed first-hub passes P readSupplyValue but rejects EXPECTED_MISMATCH against first external expected; the correct separately held expected passes",
+    "sameProgress": "Full independent committed SupplyValue comparison; legal-but-different energy rejects",
+    "offlineAuthentication": "NOT PROVIDED"
+  },
+  "formats": {
+    "v3RejectsV1": true,
+    "v3RejectsV2": true,
+    "v1RejectsV3": true,
+    "v2RejectsV3": true,
+    "oldExportListsUnchanged": true,
+    "livePendingCombat": "UNSUPPORTED_STAGE; no clearing"
+  },
+  "zeroReplay": {
+    "cases": 12,
+    "operations": [
+      "encode",
+      "decode",
+      "restore"
+    ],
+    "perOperationPhases": 4,
+    "observedFunctionSpies": 29,
+    "allObservedCalls": 0,
+    "injectedDraw": 0,
+    "storageGetItem": 0,
+    "storageSetItem": 0,
+    "eventDispatch": 0,
+    "storageEvidence": "jsdom Storage/EventTarget prototypes; no real storage adapter or current is implemented",
+    "pureValidation": "P historical balance comparison and deterministic ID verification are validation, not producer/award/RNG re-execution"
+  },
+  "scope": {
+    "allowedPaths": 30,
+    "usedPaths": 30,
+    "modifiedExisting": 4,
+    "newFiles": 26,
+    "sharedDocOriginalPrefixesPreserved": true,
+    "oldSourceAndTestsChanged": 0,
+    "dependencyChanges": 0,
+    "decChanges": 0,
+    "approvedParameterChanges": 0,
+    "ciChanges": 0,
+    "relativeLinks": "PASS; no broken new or appended local links"
+  },
+  "inputArchive": {
+    "byteMatch": true,
+    "stagedBlobByteMatch": true,
+    "shaManifestMatch": true,
+    "files": [
+      {
+        "file": "AUD-8c19ca0-E01-P-review-v1.0.md",
+        "bytes": 4655,
+        "sha256": "bab11e7b844b831f28c25d6b0904696ab72cad2345efddcec785ecd157618d48"
+      },
+      {
+        "file": "BASELINE-AND-INPUTS.json",
+        "bytes": 3464,
+        "sha256": "8b92166cfb1c6a52a34bff41724c834ad67626a8412e7f7299cff471bc4210ff"
+      },
+      {
+        "file": "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+        "bytes": 10339,
+        "sha256": "64f8040c04cae74937af837998211957bbc509adede451869cf5bc15e0c871d2"
+      },
+      {
+        "file": "OWNER-authority-and-scope-E01-R-v1.0.md",
+        "bytes": 1109,
+        "sha256": "920345a0214e48e64ec818d188c4653907a4cb4ed4495c02843e51e4052cf82d"
+      },
+      {
+        "file": "SHA256SUMS.txt",
+        "bytes": 416,
+        "sha256": "484bb5244d5bf2fe877eef705af1d4d180e92b123e5d973ffeddc888b99b7938"
+      }
+    ]
+  },
+  "whitespace": {
+    "ordinaryTrackedDiff": "PASS",
+    "fullCachedDiff": "EXIT 1; exactly seven original-input trailing whitespace warnings verified",
+    "baseToIndex": "EXIT 1; exactly the same seven original-input warnings verified against start SHA",
+    "baseToFinal": "Post-commit check reported in final response; staged tree preserves those original bytes",
+    "nonInputChanges": "PASS",
+    "originalInputTrailingWhitespace": {
+      "taskLines": [
+        7,
+        8,
+        9
+      ],
+      "reviewLines": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "count": 7
+    },
+    "explanation": "Original Markdown hard breaks are preserved byte-for-byte; no git setting/attribute override and no false PASS."
+  },
+  "evidenceLogs": {
+    "directory": "C:/Users/zjl/AppData/Local/Temp/e01-r-input-4af9524421d34e5889c5439a8f7c98d7",
+    "files": [
+      {
+        "file": "baseline-test.log",
+        "bytes": 296,
+        "sha256": "ddb5728b2554d7d6581298deb79a6a058ff2ede25eaa23192fc40537e463c6c5"
+      },
+      {
+        "file": "targeted-tests-final.log",
+        "bytes": 230,
+        "sha256": "927a57615bc6bfa08d16a535d31d20cd7f03a943a4a66ba715eb4f939ada3e66"
+      },
+      {
+        "file": "e01-p-regression.log",
+        "bytes": 232,
+        "sha256": "92c7aca030963dcfeb790cff83412e65c0c394259f9ad8e6289a7cccb2e37af8"
+      },
+      {
+        "file": "b-c-regression.log",
+        "bytes": 233,
+        "sha256": "845ff83f4f69b08bbf0cbb39f107f31f5bce4d2d4f29c16d3d4fc3824debfefe"
+      },
+      {
+        "file": "full-check.log",
+        "bytes": 3415,
+        "sha256": "c50b31db3df51a2a9c0d1be18949ea18b5471ac6fd480c7eb37ee4786f004718"
+      }
+    ],
+    "archivedInRepository": false,
+    "reason": "log paths outside the 30-path whitelist remain outside repository"
+  },
+  "acceptance": {
+    "R01": "format/policy/config binding",
+    "R02": "four stable state roundtrips",
+    "R03": "independent initial execution and complete committed expected",
+    "R04": "strict illegal values/getters/extra fields",
+    "R05": "native bidirectional version rejection",
+    "R06": "origins/units/lineage/transfer",
+    "R07": "production/medical/recipe/sample history",
+    "R08": "terminal body/receipt/balance/archive relationships",
+    "R09": "two TEST declarations preserve old success/failure",
+    "R10": "independent zero-replay counters",
+    "R11": "read-only exact public exports and no authority",
+    "R12": "whitelist/input integrity/old regressions/full check"
+  },
+  "manual": {
+    "browser": "NOT RUN - outside E01-R",
+    "realStorage": "NOT RUN - E01-S not implemented",
+    "ownerPlaytest": "NOT RUN - outside E01-R"
+  },
+  "git": {
+    "commitMessage": "feat(state): add strict supply residence v3 restore",
+    "deliverySha": "reported after ordinary commit in final response",
+    "parent": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+    "pushTarget": "origin HEAD:refs/heads/feature/residence-content-supply-restore-001",
+    "ci": "UNCONFIRMED at document creation; final response must report actual new-commit query"
+  },
+  "unresolved": [
+    "Seven pre-existing input Markdown whitespace warnings preserved for archive integrity.",
+    "Exact-SHA v3 seam review remains pending."
+  ],
+  "stoppingPoint": "Wait for mainline exact-SHA review; do not enter E01-S/E02/E03."
+}

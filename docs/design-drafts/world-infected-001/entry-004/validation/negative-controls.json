@@ -1,0 +1,137 @@
+{
+  "status": "all four semantic controls detected with exit1; not crashes",
+  "controls": [
+    {
+      "name": "source-duplication",
+      "exitCode": 1,
+      "expectedDetector": "source-once",
+      "failedCases": [
+        {
+          "id": "source-once",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "SOURCE_USED",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields"
+        }
+      ],
+      "fullOutputSHA256": "b383ea12c6bd2df4ffc4f5360d841867425723d0eb79c99120eee876f31b4c91",
+      "counts": {
+        "positive": 48,
+        "expected-rejection": 38,
+        "fault-injection": 7,
+        "unsupported": 5,
+        "mismatch": 1
+      }
+    },
+    {
+      "name": "terminal-reopen",
+      "exitCode": 1,
+      "expectedDetector": "closed-reopen",
+      "failedCases": [
+        {
+          "id": "closed-reopen",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "CLOSED",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields"
+        }
+      ],
+      "fullOutputSHA256": "d584b9e6970a9d1cff3666b2a5743c6504901e40d435f829b3a5c90478adebd7",
+      "counts": {
+        "positive": 48,
+        "expected-rejection": 38,
+        "fault-injection": 7,
+        "unsupported": 5,
+        "mismatch": 1
+      }
+    },
+    {
+      "name": "double-body-cycle",
+      "exitCode": 1,
+      "expectedDetector": "normal-empty-cycle",
+      "failedCases": [
+        {
+          "id": "normal-empty-cycle",
+          "category": "positive",
+          "expected": {
+            "D": 1,
+            "T": 1,
+            "hp": 3,
+            "E": 0,
+            "points": 0,
+            "receipt": {
+              "outcome": "failure",
+              "before": 0,
+              "penalty": 0,
+              "steps": [],
+              "endD": 1,
+              "endT": 1
+            }
+          },
+          "actual": {
+            "D": 2,
+            "T": 1,
+            "hp": 1,
+            "E": 0,
+            "points": 0,
+            "receipt": {
+              "outcome": "failure",
+              "before": 0,
+              "penalty": 0,
+              "steps": [],
+              "endD": 1,
+              "endT": 1
+            }
+          },
+          "match": false,
+          "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields"
+        }
+      ],
+      "fullOutputSHA256": "19ec85b404ae1bcd1af84c3d7eeccb92cfafd0832753bf6a2583523064ee177a",
+      "counts": {
+        "positive": 48,
+        "expected-rejection": 38,
+        "fault-injection": 7,
+        "unsupported": 5,
+        "mismatch": 1
+      }
+    },
+    {
+      "name": "hidden-data-leak",
+      "exitCode": 1,
+      "expectedDetector": "hidden-pair",
+      "failedCases": [
+        {
+          "id": "hidden-pair",
+          "category": "positive",
+          "expected": {
+            "equal": true,
+            "unchanged": true
+          },
+          "actual": {
+            "equal": false,
+            "unchanged": true
+          },
+          "match": false,
+          "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields"
+        }
+      ],
+      "fullOutputSHA256": "44ede96e04bd655520f4e8aac6b38246fc69393ff83c85758931061e96d466e9",
+      "counts": {
+        "positive": 48,
+        "expected-rejection": 38,
+        "fault-injection": 7,
+        "unsupported": 5,
+        "mismatch": 1
+      }
+    }
+  ]
+}

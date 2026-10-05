@@ -1,0 +1,4230 @@
+{
+  "status": "isolated finite inputs; seeded cases are not content registration",
+  "cases": [
+    {
+      "id": "source-once",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {},
+      "prefix": [
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "source",
+          "id": "H1-search",
+          "item": "cloth"
+        }
+      ],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "source",
+        "id": "H1-search",
+        "item": "cloth"
+      },
+      "select": [],
+      "expect": {
+        "reject": "SOURCE_USED",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "closed-reopen",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {},
+      "prefix": [
+        {
+          "op": "return",
+          "outcome": "failure"
+        }
+      ],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "reopen"
+      },
+      "select": [],
+      "expect": {
+        "reject": "CLOSED",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "normal-empty-cycle",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "hp": 3,
+        "bleed": true,
+        "E": 0
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "return",
+        "outcome": "failure"
+      },
+      "select": [
+        "D",
+        "T",
+        "hp",
+        "E",
+        "points",
+        "receipt"
+      ],
+      "expect": {
+        "D": 1,
+        "T": 1,
+        "hp": 3,
+        "E": 0,
+        "points": 0,
+        "receipt": {
+          "outcome": "failure",
+          "before": 0,
+          "penalty": 0,
+          "steps": [],
+          "endD": 1,
+          "endT": 1
+        }
+      }
+    },
+    {
+      "id": "hidden-pair",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {},
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {},
+      "select": [
+        "equal",
+        "unchanged"
+      ],
+      "expect": {
+        "equal": true,
+        "unchanged": true
+      },
+      "query": "hidden-pair"
+    },
+    {
+      "id": "last-paid-overrun",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "E": 1
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "move",
+        "to": "H1"
+      },
+      "select": [
+        "E",
+        "node"
+      ],
+      "expect": {
+        "E": 0,
+        "node": "H1"
+      }
+    },
+    {
+      "id": "e0-no-move",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "E": 0
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "move",
+        "to": "H1"
+      },
+      "select": [],
+      "expect": {
+        "reject": "E0_PAID",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "e0-pickup",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "E": 3
+      },
+      "prefix": [
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "source",
+          "id": "H1-search",
+          "item": "cloth"
+        }
+      ],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "pickup",
+        "id": "H1-search:metal:0",
+        "at": [
+          0,
+          0,
+          false
+        ]
+      },
+      "select": [
+        "E"
+      ],
+      "expect": {
+        "E": 0
+      }
+    },
+    {
+      "id": "e0-no-search",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "E": 2
+      },
+      "prefix": [
+        {
+          "op": "move",
+          "to": "H1"
+        }
+      ],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "source",
+        "id": "H1-search",
+        "item": "cloth"
+      },
+      "select": [],
+      "expect": {
+        "reject": "E0_PAID",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "e0-bandage",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "hp": 2,
+        "bleed": true,
+        "E": 0
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      },
+      "select": [
+        "hp",
+        "bleed",
+        "E"
+      ],
+      "expect": {
+        "hp": 3,
+        "bleed": false,
+        "E": 0
+      }
+    },
+    {
+      "id": "bandage-no-target",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {},
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      },
+      "select": [],
+      "expect": {
+        "reject": "NO_TARGET",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "bandage-target-required",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "wounds": [
+          {
+            "id": "w",
+            "treated": false
+          }
+        ]
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      },
+      "select": [],
+      "expect": {
+        "reject": "TARGET_REQUIRED",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "bandage-selected-wound",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "wounds": [
+          {
+            "id": "w",
+            "treated": false
+          }
+        ],
+        "bleed": true
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "target": "w",
+        "id": "initial-bandage"
+      },
+      "select": [
+        "wounds",
+        "bleed"
+      ],
+      "expect": {
+        "wounds": [
+          {
+            "id": "w",
+            "treated": true
+          }
+        ],
+        "bleed": false
+      }
+    },
+    {
+      "id": "food-full",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {},
+      "prefix": [],
+      "seedItems": [
+        {
+          "source": "isolated-food",
+          "grants": {
+            "food": 1
+          }
+        }
+      ],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "medical",
+        "item": "food",
+        "id": "isolated-food:food:0"
+      },
+      "select": [],
+      "expect": {
+        "reject": "NO_TARGET",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "food-unit-once",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "sat": 5
+      },
+      "prefix": [],
+      "seedItems": [
+        {
+          "source": "isolated-food",
+          "grants": {
+            "food": 2
+          }
+        }
+      ],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "medical",
+        "item": "food",
+        "id": "isolated-food:food:0"
+      },
+      "select": [
+        "sat"
+      ],
+      "expect": {
+        "sat": 6
+      }
+    },
+    {
+      "id": "disinfect-layer",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "I": 60,
+        "exposure": 1
+      },
+      "prefix": [],
+      "seedItems": [
+        {
+          "source": "isolated-disinfect",
+          "grants": {
+            "disinfect": 1
+          }
+        }
+      ],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "medical",
+        "item": "disinfect",
+        "id": "isolated-disinfect:disinfect:0"
+      },
+      "select": [
+        "I",
+        "exposure"
+      ],
+      "expect": {
+        "I": 60,
+        "exposure": 0
+      }
+    },
+    {
+      "id": "disinfect-quota",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "exposure": 2
+      },
+      "prefix": [
+        {
+          "op": "medical",
+          "item": "disinfect",
+          "id": "isolated-disinfect:disinfect:0"
+        }
+      ],
+      "seedItems": [
+        {
+          "source": "isolated-disinfect",
+          "grants": {
+            "disinfect": 2
+          }
+        }
+      ],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "medical",
+        "item": "disinfect",
+        "id": "isolated-disinfect:disinfect:0"
+      },
+      "select": [],
+      "expect": {
+        "reject": "QUOTA_USED",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "suppressant-layer",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "I": 60
+      },
+      "prefix": [],
+      "seedItems": [
+        {
+          "source": "isolated-suppressant",
+          "grants": {
+            "suppressant": 1
+          }
+        }
+      ],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "medical",
+        "item": "suppressant",
+        "id": "isolated-suppressant:suppressant:0"
+      },
+      "select": [
+        "I",
+        "suppression"
+      ],
+      "expect": {
+        "I": 60,
+        "suppression": 15
+      }
+    },
+    {
+      "id": "firstaid-target",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "hp": 9,
+        "contusion": true
+      },
+      "prefix": [],
+      "seedItems": [
+        {
+          "source": "isolated-firstaid",
+          "grants": {
+            "firstaid": 1
+          }
+        }
+      ],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "medical",
+        "item": "firstaid",
+        "target": "contusion",
+        "id": "isolated-firstaid:firstaid:0"
+      },
+      "select": [
+        "hp",
+        "contusion"
+      ],
+      "expect": {
+        "hp": 12,
+        "contusion": false
+      }
+    },
+    {
+      "id": "painkiller-no-heal",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "hp": 4,
+        "contusion": true
+      },
+      "prefix": [],
+      "seedItems": [
+        {
+          "source": "isolated-painkiller",
+          "grants": {
+            "painkiller": 1
+          }
+        }
+      ],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "medical",
+        "item": "painkiller",
+        "id": "isolated-painkiller:painkiller:0"
+      },
+      "select": [
+        "hp",
+        "painkiller",
+        "contusion"
+      ],
+      "expect": {
+        "hp": 4,
+        "painkiller": true,
+        "contusion": true
+      }
+    },
+    {
+      "id": "repair-full",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {},
+      "prefix": [],
+      "seedItems": [
+        {
+          "source": "isolated-metal",
+          "grants": {
+            "metal": 1
+          }
+        }
+      ],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "repair",
+        "target": "pipe"
+      },
+      "select": [],
+      "expect": {
+        "reject": "NO_TARGET",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "repair-e0",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "E": 0,
+        "gear": {
+          "pipe": 0,
+          "coat": 12,
+          "crow": 12
+        }
+      },
+      "prefix": [],
+      "seedItems": [
+        {
+          "source": "isolated-metal",
+          "grants": {
+            "metal": 1
+          }
+        }
+      ],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "repair",
+        "target": "pipe"
+      },
+      "select": [],
+      "expect": {
+        "reject": "E0_PAID",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "repair-real",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "gear": {
+          "pipe": 0,
+          "coat": 12,
+          "crow": 12
+        }
+      },
+      "prefix": [],
+      "seedItems": [
+        {
+          "source": "isolated-metal",
+          "grants": {
+            "metal": 1
+          }
+        }
+      ],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "repair",
+        "target": "pipe"
+      },
+      "select": [
+        "gear",
+        "E"
+      ],
+      "expect": {
+        "gear": {
+          "pipe": 15,
+          "coat": 12,
+          "crow": 12
+        },
+        "E": 94
+      }
+    },
+    {
+      "id": "toolbox-missing-electronic",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "gear": {
+          "pipe": 30,
+          "coat": 12,
+          "toolbox": 1
+        }
+      },
+      "prefix": [],
+      "seedItems": [
+        {
+          "source": "isolated-metal",
+          "grants": {
+            "metal": 1
+          }
+        }
+      ],
+      "tool": "toolbox",
+      "specialty": "scout",
+      "action": {
+        "op": "repair",
+        "target": "toolbox"
+      },
+      "select": [],
+      "expect": {
+        "reject": "MISSING_ITEM",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "battery-real",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "gear": {
+          "pipe": 30,
+          "coat": 12,
+          "lamp": 0
+        }
+      },
+      "prefix": [],
+      "seedItems": [
+        {
+          "source": "isolated-battery",
+          "grants": {
+            "battery": 1
+          }
+        }
+      ],
+      "tool": "lamp",
+      "specialty": "scout",
+      "action": {
+        "op": "repair",
+        "target": "lamp"
+      },
+      "select": [
+        "gear",
+        "E"
+      ],
+      "expect": {
+        "gear": {
+          "pipe": 30,
+          "coat": 12,
+          "lamp": 4
+        },
+        "E": 96
+      }
+    },
+    {
+      "id": "day7-no-rest",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "D": 7,
+        "T": 7
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "rest"
+      },
+      "select": [],
+      "expect": {
+        "reject": "DEADLINE_DAY",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "deadline-alive",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "D": 7,
+        "T": 7
+      },
+      "prefix": [
+        {
+          "op": "move",
+          "to": "H1"
+        }
+      ],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "deadline"
+      },
+      "select": [
+        "D",
+        "T",
+        "outcome",
+        "points"
+      ],
+      "expect": {
+        "D": 8,
+        "T": 7,
+        "outcome": "deadline",
+        "points": 0
+      }
+    },
+    {
+      "id": "deadline-bleed-death",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "D": 7,
+        "T": 7,
+        "node": "H1",
+        "hp": 2,
+        "bleed": true
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "deadline"
+      },
+      "select": [
+        "D",
+        "T",
+        "hp",
+        "outcome"
+      ],
+      "expect": {
+        "D": 7,
+        "T": 7,
+        "hp": 0,
+        "outcome": "death"
+      }
+    },
+    {
+      "id": "deadline-infection-death",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "D": 7,
+        "T": 7,
+        "node": "H1",
+        "hp": 1,
+        "I": 60
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "deadline"
+      },
+      "select": [
+        "D",
+        "T",
+        "hp",
+        "sat",
+        "outcome"
+      ],
+      "expect": {
+        "D": 7,
+        "T": 7,
+        "hp": 0,
+        "sat": 6,
+        "outcome": "death"
+      }
+    },
+    {
+      "id": "deadline-hunger-death",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "D": 7,
+        "T": 7,
+        "node": "H1",
+        "hp": 1,
+        "sat": 1
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "deadline"
+      },
+      "select": [
+        "D",
+        "T",
+        "hp",
+        "outcome"
+      ],
+      "expect": {
+        "D": 7,
+        "T": 7,
+        "hp": 0,
+        "outcome": "death"
+      }
+    },
+    {
+      "id": "deadline-h0-reject",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "D": 7,
+        "T": 7
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "deadline"
+      },
+      "select": [],
+      "expect": {
+        "reject": "NORMAL_RETURN_REQUIRED",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "cycle-no-recovery",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "hp": 4,
+        "contusion": true,
+        "E": 95
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "rest"
+      },
+      "select": [
+        "hp",
+        "T",
+        "D",
+        "E",
+        "contusion"
+      ],
+      "expect": {
+        "hp": 4,
+        "T": 2,
+        "D": 2,
+        "E": 85,
+        "contusion": true
+      }
+    },
+    {
+      "id": "pending-no-rest",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "pending": "orderly"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "rest"
+      },
+      "select": [],
+      "expect": {
+        "reject": "PENDING",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "pending-no-exit",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "pending": "orderly"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "return",
+        "outcome": "failure"
+      },
+      "select": [],
+      "expect": {
+        "reject": "PENDING",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "deadline-pending",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "D": 7,
+        "T": 7,
+        "node": "H4",
+        "pending": "orderly"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "deadline"
+      },
+      "select": [],
+      "expect": {
+        "reject": "PENDING",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "unknown-side-route",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "C5"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "move",
+        "to": "H7"
+      },
+      "select": [],
+      "expect": {
+        "reject": "UNKNOWN_ROUTE",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "wrong-match-location",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "C3"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "task",
+        "id": "match"
+      },
+      "select": [],
+      "expect": {
+        "reject": "WRONG_LOCATION",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "install-no-material",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "H8",
+        "facts": [
+          "power"
+        ]
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "task",
+        "id": "install"
+      },
+      "select": [],
+      "expect": {
+        "reject": "MISSING_ITEM",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "install-no-power",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "H8"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "task",
+        "id": "install"
+      },
+      "select": [],
+      "expect": {
+        "reject": "MISSING_FACT",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "component-danger",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "L2",
+        "pending": "porter"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "task",
+        "id": "verify"
+      },
+      "select": [],
+      "expect": {
+        "reject": "PENDING",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "no-sample-no-success",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "facts": [
+          "power",
+          "transfer"
+        ]
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "return",
+        "outcome": "success"
+      },
+      "select": [],
+      "expect": {
+        "reject": "WRONG_TERMINAL_INTENT",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "no-remote-success",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "H8"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "return",
+        "outcome": "success"
+      },
+      "select": [],
+      "expect": {
+        "reject": "WRONG_LOCATION",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "ground-sample",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "facts": [
+          "power",
+          "transfer"
+        ]
+      },
+      "prefix": [],
+      "seedItems": [
+        {
+          "source": "TASK-sample",
+          "grants": {
+            "sample": 1
+          },
+          "where": "ground:H0"
+        }
+      ],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "return",
+        "outcome": "success"
+      },
+      "select": [],
+      "expect": {
+        "reject": "WRONG_TERMINAL_INTENT",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "prior-success-closed",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "phase": "hub",
+        "outcome": "success"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "move",
+        "to": "H1"
+      },
+      "select": [],
+      "expect": {
+        "reject": "CLOSED",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "stale",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {},
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "move",
+        "to": "H1",
+        "expectedRevision": 1
+      },
+      "select": [],
+      "expect": {
+        "reject": "STALE",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "intent-not-fact",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {},
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "task",
+        "id": "power",
+        "completed": true
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "raw-bool",
+      "category": "fault-injection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {},
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {},
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "query": "validate",
+      "mutations": [
+        {
+          "path": [
+            "hp"
+          ],
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "raw-negative",
+      "category": "fault-injection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {},
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {},
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "query": "validate",
+      "mutations": [
+        {
+          "path": [
+            "hp"
+          ],
+          "value": -1
+        }
+      ]
+    },
+    {
+      "id": "raw-fraction",
+      "category": "fault-injection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {},
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {},
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "query": "validate",
+      "mutations": [
+        {
+          "path": [
+            "hp"
+          ],
+          "value": 1.5
+        }
+      ]
+    },
+    {
+      "id": "raw-string",
+      "category": "fault-injection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {},
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {},
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "query": "validate",
+      "mutations": [
+        {
+          "path": [
+            "hp"
+          ],
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "raw-unsafe",
+      "category": "fault-injection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {},
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {},
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "query": "validate",
+      "mutations": [
+        {
+          "path": [
+            "hp"
+          ],
+          "value": 9007199254740992
+        }
+      ]
+    },
+    {
+      "id": "missing-output",
+      "category": "fault-injection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {},
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {},
+      "select": [],
+      "expect": {
+        "reject": "MISSING_OUTPUT",
+        "zeroCommit": true
+      },
+      "query": "validate",
+      "mutations": [
+        {
+          "path": [
+            "items"
+          ],
+          "value": {}
+        }
+      ]
+    },
+    {
+      "id": "duplicated-unit",
+      "category": "fault-injection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {},
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {},
+      "select": [],
+      "expect": {
+        "reject": "DUPLICATE_UNIT",
+        "zeroCommit": true
+      },
+      "query": "validate",
+      "mutations": [
+        {
+          "path": [
+            "disposed"
+          ],
+          "value": [
+            {
+              "alias": "bandage",
+              "units": [
+                "initial:bandage:0"
+              ],
+              "where": "consumed",
+              "at": null,
+              "execution": "finite-execution"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nine-scout-crow",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "C1"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "task",
+        "id": "match"
+      },
+      "select": [
+        "E"
+      ],
+      "expect": {
+        "E": 96
+      }
+    },
+    {
+      "id": "nine-scout-lamp",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "C1"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "lamp",
+      "specialty": "scout",
+      "action": {
+        "op": "task",
+        "id": "match"
+      },
+      "select": [
+        "E"
+      ],
+      "expect": {
+        "E": 96
+      }
+    },
+    {
+      "id": "nine-scout-toolbox",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "C1"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "toolbox",
+      "specialty": "scout",
+      "action": {
+        "op": "task",
+        "id": "match"
+      },
+      "select": [
+        "E"
+      ],
+      "expect": {
+        "E": 96
+      }
+    },
+    {
+      "id": "nine-engineer-crow",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "L2",
+        "facts": [
+          "verified",
+          "enemy-porter-cleared",
+          "method"
+        ]
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "engineer",
+      "action": {
+        "op": "task",
+        "id": "fix",
+        "mode": "manual"
+      },
+      "select": [
+        "E"
+      ],
+      "expect": {
+        "E": 90
+      }
+    },
+    {
+      "id": "nine-engineer-lamp",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "L2",
+        "facts": [
+          "verified",
+          "enemy-porter-cleared",
+          "method"
+        ]
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "lamp",
+      "specialty": "engineer",
+      "action": {
+        "op": "task",
+        "id": "fix",
+        "mode": "manual"
+      },
+      "select": [
+        "E"
+      ],
+      "expect": {
+        "E": 90
+      }
+    },
+    {
+      "id": "nine-engineer-toolbox",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "L2",
+        "facts": [
+          "verified",
+          "enemy-porter-cleared",
+          "method"
+        ]
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "toolbox",
+      "specialty": "engineer",
+      "action": {
+        "op": "task",
+        "id": "fix",
+        "mode": "manual"
+      },
+      "select": [
+        "E"
+      ],
+      "expect": {
+        "E": 90
+      }
+    },
+    {
+      "id": "nine-survival-crow",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "hp": 4
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "survival",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      },
+      "select": [
+        "hp",
+        "survivalUsed"
+      ],
+      "expect": {
+        "hp": 6,
+        "survivalUsed": true
+      }
+    },
+    {
+      "id": "nine-survival-lamp",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "hp": 4
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "lamp",
+      "specialty": "survival",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      },
+      "select": [
+        "hp",
+        "survivalUsed"
+      ],
+      "expect": {
+        "hp": 6,
+        "survivalUsed": true
+      }
+    },
+    {
+      "id": "nine-survival-toolbox",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "hp": 4
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "toolbox",
+      "specialty": "survival",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      },
+      "select": [
+        "hp",
+        "survivalUsed"
+      ],
+      "expect": {
+        "hp": 6,
+        "survivalUsed": true
+      }
+    },
+    {
+      "id": "wrong-instance-sample",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "facts": [
+          "power",
+          "transfer"
+        ]
+      },
+      "prefix": [],
+      "seedItems": [
+        {
+          "source": "other-sample",
+          "grants": {
+            "sample": 1
+          },
+          "where": "quick"
+        }
+      ],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "return",
+        "outcome": "success"
+      },
+      "select": [],
+      "expect": {
+        "reject": "WRONG_TERMINAL_INTENT",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "tool-scout-crow",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "H1"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "task",
+        "id": "fire-door",
+        "mode": "crow"
+      },
+      "select": [
+        "E",
+        "gear"
+      ],
+      "expect": {
+        "E": 94,
+        "gear": {
+          "pipe": 30,
+          "coat": 12,
+          "crow": 11
+        }
+      }
+    },
+    {
+      "id": "tool-scout-lamp",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "H1"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "lamp",
+      "specialty": "scout",
+      "action": {
+        "op": "source",
+        "id": "H1-search",
+        "mode": "lit",
+        "item": "cloth"
+      },
+      "select": [
+        "E",
+        "gear"
+      ],
+      "expect": {
+        "E": 92,
+        "gear": {
+          "pipe": 30,
+          "coat": 12,
+          "lamp": 7
+        }
+      }
+    },
+    {
+      "id": "tool-scout-toolbox",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "H1"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "toolbox",
+      "specialty": "scout",
+      "action": {
+        "op": "task",
+        "id": "fire-door",
+        "mode": "toolbox"
+      },
+      "select": [
+        "E",
+        "gear"
+      ],
+      "expect": {
+        "E": 90,
+        "gear": {
+          "pipe": 30,
+          "coat": 12,
+          "toolbox": 5
+        }
+      }
+    },
+    {
+      "id": "tool-engineer-crow",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "H1"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "engineer",
+      "action": {
+        "op": "task",
+        "id": "fire-door",
+        "mode": "crow"
+      },
+      "select": [
+        "E",
+        "gear"
+      ],
+      "expect": {
+        "E": 94,
+        "gear": {
+          "pipe": 30,
+          "coat": 12,
+          "crow": 11
+        }
+      }
+    },
+    {
+      "id": "tool-engineer-lamp",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "H1"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "lamp",
+      "specialty": "engineer",
+      "action": {
+        "op": "source",
+        "id": "H1-search",
+        "mode": "lit",
+        "item": "cloth"
+      },
+      "select": [
+        "E",
+        "gear"
+      ],
+      "expect": {
+        "E": 92,
+        "gear": {
+          "pipe": 30,
+          "coat": 12,
+          "lamp": 7
+        }
+      }
+    },
+    {
+      "id": "tool-engineer-toolbox",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "H1"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "toolbox",
+      "specialty": "engineer",
+      "action": {
+        "op": "task",
+        "id": "fire-door",
+        "mode": "toolbox"
+      },
+      "select": [
+        "E",
+        "gear"
+      ],
+      "expect": {
+        "E": 90,
+        "gear": {
+          "pipe": 30,
+          "coat": 12,
+          "toolbox": 5
+        }
+      }
+    },
+    {
+      "id": "tool-survival-crow",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "H1"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "survival",
+      "action": {
+        "op": "task",
+        "id": "fire-door",
+        "mode": "crow"
+      },
+      "select": [
+        "E",
+        "gear"
+      ],
+      "expect": {
+        "E": 94,
+        "gear": {
+          "pipe": 30,
+          "coat": 12,
+          "crow": 11
+        }
+      }
+    },
+    {
+      "id": "tool-survival-lamp",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "H1"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "lamp",
+      "specialty": "survival",
+      "action": {
+        "op": "source",
+        "id": "H1-search",
+        "mode": "lit",
+        "item": "cloth"
+      },
+      "select": [
+        "E",
+        "gear"
+      ],
+      "expect": {
+        "E": 92,
+        "gear": {
+          "pipe": 30,
+          "coat": 12,
+          "lamp": 7
+        }
+      }
+    },
+    {
+      "id": "tool-survival-toolbox",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "H1"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "toolbox",
+      "specialty": "survival",
+      "action": {
+        "op": "task",
+        "id": "fire-door",
+        "mode": "toolbox"
+      },
+      "select": [
+        "E",
+        "gear"
+      ],
+      "expect": {
+        "E": 90,
+        "gear": {
+          "pipe": 30,
+          "coat": 12,
+          "toolbox": 5
+        }
+      }
+    },
+    {
+      "id": "split-merge-consume",
+      "category": "positive",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "sat": 2,
+        "items": {
+          "food-stack": {
+            "alias": "food",
+            "units": [
+              "seed:food:0",
+              "seed:food:1"
+            ],
+            "where": "pack",
+            "at": [
+              0,
+              0,
+              false
+            ],
+            "execution": "finite-execution"
+          }
+        },
+        "origins": {
+          "seed:food:0": "food",
+          "seed:food:1": "food"
+        }
+      },
+      "prefix": [
+        {
+          "op": "split",
+          "id": "food-stack",
+          "quantity": 1,
+          "at": [
+            1,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "merge",
+          "id": "food-stack:split:0",
+          "target": "food-stack"
+        }
+      ],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "medical",
+        "item": "food",
+        "id": "food-stack"
+      },
+      "select": [
+        "sat",
+        "items"
+      ],
+      "expect": {
+        "sat": 4,
+        "items": {
+          "food-stack": {
+            "alias": "food",
+            "units": [
+              "seed:food:0"
+            ],
+            "where": "pack",
+            "at": [
+              0,
+              0,
+              false
+            ],
+            "execution": "finite-execution"
+          }
+        }
+      }
+    },
+    {
+      "id": "split-no-space",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "sat": 2,
+        "items": {
+          "food-stack": {
+            "alias": "food",
+            "units": [
+              "seed:food:0",
+              "seed:food:1"
+            ],
+            "where": "pack",
+            "at": [
+              0,
+              0,
+              false
+            ],
+            "execution": "finite-execution"
+          }
+        },
+        "origins": {
+          "seed:food:0": "food",
+          "seed:food:1": "food"
+        }
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "split",
+        "id": "food-stack",
+        "quantity": 1,
+        "at": [
+          0,
+          0,
+          false
+        ]
+      },
+      "select": [],
+      "expect": {
+        "reject": "NO_SPACE",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "split-unsafe-number",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "sat": 2,
+        "items": {
+          "food-stack": {
+            "alias": "food",
+            "units": [
+              "seed:food:0",
+              "seed:food:1"
+            ],
+            "where": "pack",
+            "at": [
+              0,
+              0,
+              false
+            ],
+            "execution": "finite-execution"
+          }
+        },
+        "origins": {
+          "seed:food:0": "food",
+          "seed:food:1": "food"
+        }
+      },
+      "prefix": [],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "split",
+        "id": "food-stack",
+        "quantity": true,
+        "at": [
+          1,
+          0,
+          false
+        ]
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "consumed-unit-not-usable",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "hp": 2
+      },
+      "prefix": [
+        {
+          "op": "medical",
+          "item": "bandage",
+          "id": "initial-bandage"
+        }
+      ],
+      "seedItems": [],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "medical",
+        "item": "bandage"
+      },
+      "select": [],
+      "expect": {
+        "reject": "MISSING_ITEM",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "exchange-no-space",
+      "category": "expected-rejection",
+      "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields",
+      "initial": {
+        "node": "T1"
+      },
+      "prefix": [],
+      "seedItems": [
+        {
+          "source": "isolated-disinfect",
+          "grants": {
+            "disinfect": 1
+          }
+        }
+      ],
+      "tool": "crow",
+      "specialty": "scout",
+      "action": {
+        "op": "exchange",
+        "at": [
+          6,
+          4,
+          false
+        ]
+      },
+      "select": [],
+      "expect": {
+        "reject": "NO_SPACE",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "actual-wrong-execution-sample",
+      "category": "expected-rejection",
+      "oracle": "D01/D03 exact current-execution instance and allocation conservation; fixed independent expectation",
+      "tool": "crow",
+      "specialty": "scout",
+      "initial": {
+        "facts": [
+          "power",
+          "transfer"
+        ],
+        "items": {
+          "actual-sample": {
+            "alias": "sample",
+            "units": [
+              "TASK-sample:sample:0"
+            ],
+            "where": "pack",
+            "at": [
+              0,
+              0,
+              false
+            ],
+            "execution": "other-execution"
+          }
+        },
+        "origins": {
+          "TASK-sample:sample:0": "sample"
+        }
+      },
+      "prefix": [],
+      "seedItems": [],
+      "action": {
+        "op": "return",
+        "outcome": "success"
+      },
+      "select": [],
+      "expect": {
+        "reject": "WRONG_TERMINAL_INTENT",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "already-delivered-sample",
+      "category": "expected-rejection",
+      "oracle": "D01/D03 exact current-execution instance and allocation conservation; fixed independent expectation",
+      "tool": "crow",
+      "specialty": "scout",
+      "initial": {
+        "facts": [
+          "power",
+          "transfer"
+        ],
+        "items": {},
+        "origins": {
+          "TASK-sample:sample:0": "sample"
+        },
+        "disposed": [
+          {
+            "alias": "sample",
+            "units": [
+              "TASK-sample:sample:0"
+            ],
+            "where": "delivered",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      },
+      "prefix": [],
+      "seedItems": [],
+      "action": {
+        "op": "return",
+        "outcome": "success"
+      },
+      "select": [],
+      "expect": {
+        "reject": "WRONG_TERMINAL_INTENT",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "actual-wrong-instance-sample",
+      "category": "expected-rejection",
+      "oracle": "D01/D03 exact current-execution instance and allocation conservation; fixed independent expectation",
+      "tool": "crow",
+      "specialty": "scout",
+      "initial": {
+        "facts": [
+          "power",
+          "transfer"
+        ],
+        "items": {
+          "actual-sample": {
+            "alias": "sample",
+            "units": [
+              "wrong:sample:0"
+            ],
+            "where": "pack",
+            "at": [
+              0,
+              0,
+              false
+            ],
+            "execution": "finite-execution"
+          }
+        },
+        "origins": {
+          "wrong:sample:0": "sample"
+        }
+      },
+      "prefix": [],
+      "seedItems": [],
+      "action": {
+        "op": "return",
+        "outcome": "success"
+      },
+      "select": [],
+      "expect": {
+        "reject": "WRONG_TERMINAL_INTENT",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "real-sample-success",
+      "category": "positive",
+      "oracle": "D01/D03 exact current-execution instance and allocation conservation; fixed independent expectation",
+      "tool": "crow",
+      "specialty": "scout",
+      "initial": {
+        "facts": [
+          "power",
+          "transfer"
+        ],
+        "items": {
+          "actual-sample": {
+            "alias": "sample",
+            "units": [
+              "TASK-sample:sample:0"
+            ],
+            "where": "pack",
+            "at": [
+              0,
+              0,
+              false
+            ],
+            "execution": "finite-execution"
+          }
+        },
+        "origins": {
+          "TASK-sample:sample:0": "sample"
+        }
+      },
+      "prefix": [],
+      "seedItems": [],
+      "action": {
+        "op": "return",
+        "outcome": "success"
+      },
+      "select": [
+        "outcome",
+        "points"
+      ],
+      "expect": {
+        "outcome": "success",
+        "points": 120
+      }
+    },
+    {
+      "id": "medical-wrong-selector",
+      "category": "expected-rejection",
+      "oracle": "D01/D03 exact current-execution instance and allocation conservation; fixed independent expectation",
+      "tool": "crow",
+      "specialty": "scout",
+      "initial": {
+        "hp": 2
+      },
+      "prefix": [],
+      "seedItems": [],
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "invented"
+      },
+      "select": [],
+      "expect": {
+        "reject": "TARGET_INSTANCE",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "same-instance-consumed",
+      "category": "expected-rejection",
+      "oracle": "D01/D03 exact current-execution instance and allocation conservation; fixed independent expectation",
+      "tool": "crow",
+      "specialty": "scout",
+      "initial": {
+        "hp": 2
+      },
+      "prefix": [
+        {
+          "op": "medical",
+          "item": "bandage",
+          "id": "initial-bandage"
+        }
+      ],
+      "seedItems": [],
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      },
+      "select": [],
+      "expect": {
+        "reject": "MISSING_ITEM",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "facility-repeat",
+      "category": "expected-rejection",
+      "oracle": "D01/D03 exact current-execution instance and allocation conservation; fixed independent expectation",
+      "tool": "crow",
+      "specialty": "scout",
+      "initial": {
+        "node": "P1",
+        "facts": [
+          "power-survey"
+        ]
+      },
+      "prefix": [
+        {
+          "op": "task",
+          "id": "power"
+        }
+      ],
+      "seedItems": [],
+      "action": {
+        "op": "task",
+        "id": "power"
+      },
+      "select": [],
+      "expect": {
+        "reject": "ALREADY_DONE",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "death-preserves-history",
+      "category": "positive",
+      "oracle": "D01/D03 exact current-execution instance and allocation conservation; fixed independent expectation",
+      "tool": "crow",
+      "specialty": "scout",
+      "initial": {
+        "D": 7,
+        "T": 7,
+        "node": "H1",
+        "hp": 2,
+        "bleed": true,
+        "origins": {
+          "initial:bandage:0": "bandage",
+          "old:bandage:0": "bandage"
+        },
+        "disposed": [
+          {
+            "alias": "bandage",
+            "units": [
+              "old:bandage:0"
+            ],
+            "where": "delivered",
+            "at": null,
+            "execution": "old-execution"
+          }
+        ]
+      },
+      "prefix": [],
+      "seedItems": [],
+      "action": {
+        "op": "deadline"
+      },
+      "select": [
+        "disposed"
+      ],
+      "expect": {
+        "disposed": [
+          {
+            "alias": "bandage",
+            "units": [
+              "old:bandage:0"
+            ],
+            "where": "delivered",
+            "at": null,
+            "execution": "old-execution"
+          },
+          {
+            "alias": "bandage",
+            "units": [
+              "initial:bandage:0"
+            ],
+            "where": "death-unavailable",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      }
+    },
+    {
+      "id": "unsupported-live-reload",
+      "category": "unsupported",
+      "oracle": "Finite model has no live CTB schema; rejection is NOT permanent gameplay rule",
+      "tool": "crow",
+      "specialty": "scout",
+      "initial": {
+        "pending": "orderly"
+      },
+      "prefix": [],
+      "seedItems": [],
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "PENDING",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "read-rest-preserves-enemy",
+      "category": "positive",
+      "oracle": "D01/D03 exact current-execution instance and allocation conservation; fixed independent expectation",
+      "tool": "crow",
+      "specialty": "scout",
+      "initial": {
+        "node": "H3",
+        "enemies": {
+          "orderly": {
+            "hp": 8,
+            "encountered": true,
+            "cursor": 1,
+            "intent": 1
+          },
+          "porter": {
+            "hp": 16,
+            "encountered": false,
+            "cursor": 0,
+            "intent": 0
+          },
+          "technician": {
+            "hp": 16,
+            "encountered": false,
+            "cursor": 0,
+            "intent": 0
+          }
+        }
+      },
+      "prefix": [
+        {
+          "op": "rest"
+        }
+      ],
+      "seedItems": [],
+      "action": {
+        "op": "reload"
+      },
+      "select": [
+        "enemies"
+      ],
+      "expect": {
+        "enemies": {
+          "orderly": {
+            "hp": 8,
+            "encountered": true,
+            "cursor": 1,
+            "intent": 1
+          },
+          "porter": {
+            "hp": 16,
+            "encountered": false,
+            "cursor": 0,
+            "intent": 0
+          },
+          "technician": {
+            "hp": 16,
+            "encountered": false,
+            "cursor": 0,
+            "intent": 0
+          }
+        }
+      }
+    }
+  ],
+  "routes": [
+    {
+      "id": "route-hotel-bypass",
+      "tool": "crow",
+      "specialty": "scout",
+      "scope": "conditional complete itinerary with exact positions; combat HP/CTB/wear are EXTERNAL fixtures, no RNG/CTB reachability assertion",
+      "actions": [
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "source",
+          "id": "H1-search",
+          "mode": "dark",
+          "item": "cloth"
+        },
+        {
+          "op": "pickup",
+          "id": "H1-search:metal:0",
+          "at": [
+            0,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "H2"
+        },
+        {
+          "op": "source",
+          "id": "H2-search",
+          "mode": "dark",
+          "item": "painkiller"
+        },
+        {
+          "op": "pickup",
+          "id": "H2-search:bandage:0",
+          "at": [
+            1,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "move",
+          "to": "H3"
+        },
+        {
+          "op": "source",
+          "id": "H3-search",
+          "mode": "dark"
+        },
+        {
+          "op": "pickup",
+          "id": "H3-search:card:0",
+          "at": [
+            2,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "H4"
+        },
+        {
+          "op": "combat",
+          "enemy": "orderly",
+          "ctb": 300,
+          "damage": 2,
+          "enemyDamage": 14,
+          "wear": 5,
+          "coatWear": 2,
+          "bleeding": false,
+          "exposure": 0,
+          "outcome": "victory"
+        },
+        {
+          "op": "move",
+          "to": "H5"
+        },
+        {
+          "op": "task",
+          "id": "sample",
+          "at": [
+            3,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "H4"
+        },
+        {
+          "op": "move",
+          "to": "H3"
+        },
+        {
+          "op": "move",
+          "to": "H6"
+        },
+        {
+          "op": "move",
+          "to": "H7"
+        },
+        {
+          "op": "move",
+          "to": "L0"
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "move",
+          "to": "L1"
+        },
+        {
+          "op": "task",
+          "id": "l1-open",
+          "mode": "crow"
+        },
+        {
+          "op": "source",
+          "id": "L1-cabinet",
+          "mode": "dark"
+        },
+        {
+          "op": "pickup",
+          "id": "L1-cabinet:food:0",
+          "at": [
+            5,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "pickup",
+          "id": "L1-cabinet:bandage:0",
+          "at": [
+            0,
+            1,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "L2"
+        },
+        {
+          "op": "combat",
+          "enemy": "porter",
+          "ctb": 300,
+          "damage": 2,
+          "enemyDamage": 16,
+          "wear": 5,
+          "coatWear": 2,
+          "bleeding": false,
+          "exposure": 0,
+          "outcome": "victory"
+        },
+        {
+          "op": "medical",
+          "item": "bandage",
+          "id": "initial-bandage"
+        },
+        {
+          "op": "task",
+          "id": "verify"
+        },
+        {
+          "op": "task",
+          "id": "fix",
+          "mode": "crow"
+        },
+        {
+          "op": "task",
+          "id": "component",
+          "at": [
+            1,
+            1,
+            false
+          ]
+        },
+        {
+          "op": "source",
+          "id": "L2-search",
+          "mode": "dark"
+        },
+        {
+          "op": "pickup",
+          "id": "L2-search:food:0",
+          "at": [
+            5,
+            1,
+            false
+          ]
+        },
+        {
+          "op": "pickup",
+          "id": "L2-search:food:2",
+          "at": [
+            0,
+            2,
+            false
+          ]
+        },
+        {
+          "op": "pickup",
+          "id": "L2-search:metal:0",
+          "at": [
+            3,
+            2,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "L1"
+        },
+        {
+          "op": "move",
+          "to": "L3"
+        },
+        {
+          "op": "medical",
+          "item": "food",
+          "id": "L1-cabinet:food:0"
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "task",
+          "id": "l3-open",
+          "mode": "crow"
+        },
+        {
+          "op": "source",
+          "id": "L3-rack",
+          "mode": "dark"
+        },
+        {
+          "op": "pickup",
+          "id": "L3-rack:electronic:0",
+          "at": [
+            4,
+            2,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "L1"
+        },
+        {
+          "op": "move",
+          "to": "L0"
+        },
+        {
+          "op": "move",
+          "to": "P0"
+        },
+        {
+          "op": "move",
+          "to": "P1"
+        },
+        {
+          "op": "task",
+          "id": "power-survey"
+        },
+        {
+          "op": "task",
+          "id": "power"
+        },
+        {
+          "op": "move",
+          "to": "P0"
+        },
+        {
+          "op": "move",
+          "to": "L0"
+        },
+        {
+          "op": "move",
+          "to": "C0"
+        },
+        {
+          "op": "medical",
+          "item": "food",
+          "id": "L1-cabinet:food:0"
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "move",
+          "to": "C1"
+        },
+        {
+          "op": "task",
+          "id": "match"
+        },
+        {
+          "op": "move",
+          "to": "C4"
+        },
+        {
+          "op": "task",
+          "id": "bypass-survey"
+        },
+        {
+          "op": "task",
+          "id": "bypass",
+          "mode": "crow"
+        },
+        {
+          "op": "move",
+          "to": "C3"
+        },
+        {
+          "op": "task",
+          "id": "module",
+          "at": [
+            5,
+            2,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "C4"
+        },
+        {
+          "op": "move",
+          "to": "C1"
+        },
+        {
+          "op": "move",
+          "to": "C0"
+        },
+        {
+          "op": "move",
+          "to": "H0"
+        },
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "move",
+          "to": "H7"
+        },
+        {
+          "op": "move",
+          "to": "H8"
+        },
+        {
+          "op": "task",
+          "id": "install"
+        },
+        {
+          "op": "medical",
+          "item": "food",
+          "id": "L2-search:food:0"
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "move",
+          "to": "H7"
+        },
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "move",
+          "to": "H0"
+        },
+        {
+          "op": "return",
+          "outcome": "success"
+        }
+      ],
+      "expect": {
+        "outcome": "success",
+        "points": 120,
+        "node": "H0",
+        "hotelVisited": false
+      }
+    },
+    {
+      "id": "route-hotel-benefit",
+      "tool": "lamp",
+      "specialty": "scout",
+      "scope": "conditional complete itinerary with exact positions; combat HP/CTB/wear are EXTERNAL fixtures, no RNG/CTB reachability assertion",
+      "actions": [
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "source",
+          "id": "H1-search",
+          "mode": "lit",
+          "item": "cloth"
+        },
+        {
+          "op": "pickup",
+          "id": "H1-search:metal:0",
+          "at": [
+            0,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "H2"
+        },
+        {
+          "op": "source",
+          "id": "H2-search",
+          "mode": "lit",
+          "item": "disinfect"
+        },
+        {
+          "op": "pickup",
+          "id": "H2-search:bandage:0",
+          "at": [
+            1,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "pickup",
+          "id": "H2-random:disinfect:0",
+          "at": [
+            2,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "move",
+          "to": "H3"
+        },
+        {
+          "op": "source",
+          "id": "H3-search",
+          "mode": "lit"
+        },
+        {
+          "op": "pickup",
+          "id": "H3-search:card:0",
+          "at": [
+            3,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "H4"
+        },
+        {
+          "op": "combat",
+          "enemy": "orderly",
+          "ctb": 300,
+          "damage": 2,
+          "enemyDamage": 14,
+          "wear": 5,
+          "coatWear": 2,
+          "bleeding": false,
+          "exposure": 0,
+          "outcome": "victory"
+        },
+        {
+          "op": "move",
+          "to": "H5"
+        },
+        {
+          "op": "task",
+          "id": "sample",
+          "at": [
+            4,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "H4"
+        },
+        {
+          "op": "move",
+          "to": "H3"
+        },
+        {
+          "op": "move",
+          "to": "H6"
+        },
+        {
+          "op": "move",
+          "to": "H7"
+        },
+        {
+          "op": "move",
+          "to": "L0"
+        },
+        {
+          "op": "move",
+          "to": "L1"
+        },
+        {
+          "op": "task",
+          "id": "l1-open",
+          "mode": "manual"
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "source",
+          "id": "L1-cabinet",
+          "mode": "lit"
+        },
+        {
+          "op": "pickup",
+          "id": "L1-cabinet:food:0",
+          "at": [
+            0,
+            1,
+            false
+          ]
+        },
+        {
+          "op": "pickup",
+          "id": "L1-cabinet:bandage:0",
+          "at": [
+            1,
+            1,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "L2"
+        },
+        {
+          "op": "combat",
+          "enemy": "porter",
+          "ctb": 300,
+          "damage": 2,
+          "enemyDamage": 16,
+          "wear": 5,
+          "coatWear": 2,
+          "bleeding": false,
+          "exposure": 0,
+          "outcome": "victory"
+        },
+        {
+          "op": "medical",
+          "item": "bandage",
+          "id": "initial-bandage"
+        },
+        {
+          "op": "task",
+          "id": "verify"
+        },
+        {
+          "op": "task",
+          "id": "fix",
+          "mode": "manual"
+        },
+        {
+          "op": "task",
+          "id": "component",
+          "at": [
+            2,
+            1,
+            false
+          ]
+        },
+        {
+          "op": "source",
+          "id": "L2-search",
+          "mode": "lit"
+        },
+        {
+          "op": "pickup",
+          "id": "L2-search:food:0",
+          "at": [
+            0,
+            2,
+            false
+          ]
+        },
+        {
+          "op": "pickup",
+          "id": "L2-search:food:2",
+          "at": [
+            1,
+            2,
+            false
+          ]
+        },
+        {
+          "op": "pickup",
+          "id": "L2-search:metal:0",
+          "at": [
+            4,
+            2,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "L1"
+        },
+        {
+          "op": "move",
+          "to": "L3"
+        },
+        {
+          "op": "medical",
+          "item": "food",
+          "id": "L1-cabinet:food:0"
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "task",
+          "id": "l3-open",
+          "mode": "manual"
+        },
+        {
+          "op": "source",
+          "id": "L3-rack",
+          "mode": "lit"
+        },
+        {
+          "op": "pickup",
+          "id": "L3-rack:electronic:0",
+          "at": [
+            5,
+            2,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "L1"
+        },
+        {
+          "op": "move",
+          "to": "L0"
+        },
+        {
+          "op": "move",
+          "to": "P0"
+        },
+        {
+          "op": "move",
+          "to": "T0"
+        },
+        {
+          "op": "move",
+          "to": "T1"
+        },
+        {
+          "op": "exchange",
+          "at": [
+            0,
+            3,
+            false
+          ]
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "move",
+          "to": "T0"
+        },
+        {
+          "op": "move",
+          "to": "P0"
+        },
+        {
+          "op": "move",
+          "to": "P1"
+        },
+        {
+          "op": "task",
+          "id": "power-survey"
+        },
+        {
+          "op": "task",
+          "id": "power"
+        },
+        {
+          "op": "move",
+          "to": "P0"
+        },
+        {
+          "op": "move",
+          "to": "L0"
+        },
+        {
+          "op": "move",
+          "to": "C0"
+        },
+        {
+          "op": "move",
+          "to": "C1"
+        },
+        {
+          "op": "task",
+          "id": "match"
+        },
+        {
+          "op": "move",
+          "to": "C4"
+        },
+        {
+          "op": "task",
+          "id": "bypass-survey"
+        },
+        {
+          "op": "task",
+          "id": "bypass",
+          "mode": "manual"
+        },
+        {
+          "op": "medical",
+          "item": "food",
+          "id": "L1-cabinet:food:0"
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "move",
+          "to": "C3"
+        },
+        {
+          "op": "task",
+          "id": "module",
+          "at": [
+            1,
+            0,
+            true
+          ]
+        },
+        {
+          "op": "move",
+          "to": "C4"
+        },
+        {
+          "op": "move",
+          "to": "C1"
+        },
+        {
+          "op": "move",
+          "to": "C0"
+        },
+        {
+          "op": "move",
+          "to": "H0"
+        },
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "move",
+          "to": "H7"
+        },
+        {
+          "op": "move",
+          "to": "H8"
+        },
+        {
+          "op": "task",
+          "id": "install"
+        },
+        {
+          "op": "move",
+          "to": "H7"
+        },
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "move",
+          "to": "H0"
+        },
+        {
+          "op": "return",
+          "outcome": "success"
+        }
+      ],
+      "expect": {
+        "outcome": "success",
+        "points": 120,
+        "node": "H0",
+        "hotelVisited": true
+      }
+    },
+    {
+      "id": "route-segmented",
+      "tool": "crow",
+      "specialty": "survival",
+      "scope": "conditional complete itinerary with exact positions; combat HP/CTB/wear are EXTERNAL fixtures, no RNG/CTB reachability assertion",
+      "actions": [
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "source",
+          "id": "H1-search",
+          "mode": "dark",
+          "item": "cloth"
+        },
+        {
+          "op": "pickup",
+          "id": "H1-search:metal:0",
+          "at": [
+            0,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "H2"
+        },
+        {
+          "op": "source",
+          "id": "H2-search",
+          "mode": "dark",
+          "item": "painkiller"
+        },
+        {
+          "op": "pickup",
+          "id": "H2-search:bandage:0",
+          "at": [
+            1,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "move",
+          "to": "H3"
+        },
+        {
+          "op": "source",
+          "id": "H3-search",
+          "mode": "dark"
+        },
+        {
+          "op": "pickup",
+          "id": "H3-search:card:0",
+          "at": [
+            2,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "H4"
+        },
+        {
+          "op": "combat",
+          "enemy": "orderly",
+          "ctb": 100,
+          "damage": 1,
+          "enemyDamage": 6,
+          "wear": 2,
+          "coatWear": 1,
+          "bleeding": false,
+          "exposure": 0,
+          "outcome": "retreat"
+        },
+        {
+          "op": "medical",
+          "item": "bandage",
+          "id": "initial-bandage"
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "move",
+          "to": "H4"
+        },
+        {
+          "op": "combat",
+          "enemy": "orderly",
+          "ctb": 300,
+          "damage": 2,
+          "enemyDamage": 8,
+          "wear": 5,
+          "coatWear": 2,
+          "bleeding": false,
+          "exposure": 0,
+          "outcome": "victory"
+        },
+        {
+          "op": "move",
+          "to": "H5"
+        },
+        {
+          "op": "task",
+          "id": "sample",
+          "at": [
+            3,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "H4"
+        },
+        {
+          "op": "move",
+          "to": "H3"
+        },
+        {
+          "op": "move",
+          "to": "H6"
+        },
+        {
+          "op": "move",
+          "to": "H7"
+        },
+        {
+          "op": "move",
+          "to": "L0"
+        },
+        {
+          "op": "move",
+          "to": "L1"
+        },
+        {
+          "op": "task",
+          "id": "l1-open",
+          "mode": "crow"
+        },
+        {
+          "op": "source",
+          "id": "L1-cabinet",
+          "mode": "dark"
+        },
+        {
+          "op": "pickup",
+          "id": "L1-cabinet:food:0",
+          "at": [
+            5,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "pickup",
+          "id": "L1-cabinet:bandage:0",
+          "at": [
+            0,
+            1,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "L2"
+        },
+        {
+          "op": "combat",
+          "enemy": "porter",
+          "ctb": 300,
+          "damage": 2,
+          "enemyDamage": 16,
+          "wear": 5,
+          "coatWear": 2,
+          "bleeding": false,
+          "exposure": 0,
+          "outcome": "victory"
+        },
+        {
+          "op": "medical",
+          "item": "bandage",
+          "id": "H2-search:bandage:0"
+        },
+        {
+          "op": "medical",
+          "item": "food",
+          "id": "L1-cabinet:food:0"
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "task",
+          "id": "verify"
+        },
+        {
+          "op": "task",
+          "id": "fix",
+          "mode": "crow"
+        },
+        {
+          "op": "task",
+          "id": "component",
+          "at": [
+            1,
+            1,
+            false
+          ]
+        },
+        {
+          "op": "source",
+          "id": "L2-search",
+          "mode": "dark"
+        },
+        {
+          "op": "pickup",
+          "id": "L2-search:food:0",
+          "at": [
+            1,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "pickup",
+          "id": "L2-search:food:2",
+          "at": [
+            5,
+            1,
+            false
+          ]
+        },
+        {
+          "op": "pickup",
+          "id": "L2-search:metal:0",
+          "at": [
+            0,
+            2,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "L1"
+        },
+        {
+          "op": "move",
+          "to": "L3"
+        },
+        {
+          "op": "task",
+          "id": "l3-open",
+          "mode": "crow"
+        },
+        {
+          "op": "source",
+          "id": "L3-rack",
+          "mode": "dark"
+        },
+        {
+          "op": "pickup",
+          "id": "L3-rack:electronic:0",
+          "at": [
+            3,
+            2,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "L1"
+        },
+        {
+          "op": "move",
+          "to": "L0"
+        },
+        {
+          "op": "move",
+          "to": "P0"
+        },
+        {
+          "op": "move",
+          "to": "P1"
+        },
+        {
+          "op": "task",
+          "id": "power-survey"
+        },
+        {
+          "op": "medical",
+          "item": "food",
+          "id": "L1-cabinet:food:0"
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "task",
+          "id": "power"
+        },
+        {
+          "op": "move",
+          "to": "P0"
+        },
+        {
+          "op": "move",
+          "to": "L0"
+        },
+        {
+          "op": "move",
+          "to": "C0"
+        },
+        {
+          "op": "move",
+          "to": "C1"
+        },
+        {
+          "op": "task",
+          "id": "match"
+        },
+        {
+          "op": "move",
+          "to": "C4"
+        },
+        {
+          "op": "task",
+          "id": "bypass-survey"
+        },
+        {
+          "op": "task",
+          "id": "bypass",
+          "mode": "crow"
+        },
+        {
+          "op": "move",
+          "to": "C3"
+        },
+        {
+          "op": "task",
+          "id": "module",
+          "at": [
+            4,
+            2,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "C4"
+        },
+        {
+          "op": "medical",
+          "item": "food",
+          "id": "L2-search:food:0"
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "move",
+          "to": "C1"
+        },
+        {
+          "op": "move",
+          "to": "C0"
+        },
+        {
+          "op": "move",
+          "to": "H0"
+        },
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "move",
+          "to": "H7"
+        },
+        {
+          "op": "move",
+          "to": "H8"
+        },
+        {
+          "op": "task",
+          "id": "install"
+        },
+        {
+          "op": "move",
+          "to": "H7"
+        },
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "move",
+          "to": "H0"
+        },
+        {
+          "op": "return",
+          "outcome": "success"
+        }
+      ],
+      "expect": {
+        "outcome": "success",
+        "points": 120,
+        "node": "H0",
+        "hotelVisited": false
+      }
+    },
+    {
+      "id": "route-toolbox",
+      "tool": "toolbox",
+      "specialty": "engineer",
+      "scope": "conditional complete itinerary with exact positions; combat HP/CTB/wear are EXTERNAL fixtures, no RNG/CTB reachability assertion",
+      "actions": [
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "source",
+          "id": "H1-search",
+          "mode": "dark",
+          "item": "cloth"
+        },
+        {
+          "op": "pickup",
+          "id": "H1-search:metal:0",
+          "at": [
+            0,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "H2"
+        },
+        {
+          "op": "source",
+          "id": "H2-search",
+          "mode": "dark",
+          "item": "painkiller"
+        },
+        {
+          "op": "pickup",
+          "id": "H2-search:bandage:0",
+          "at": [
+            1,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "task",
+          "id": "fire-door",
+          "mode": "toolbox"
+        },
+        {
+          "op": "pickup",
+          "id": "H1-toolbox:electronic:0",
+          "at": [
+            2,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "repair",
+          "target": "toolbox"
+        },
+        {
+          "op": "move",
+          "to": "H4"
+        },
+        {
+          "op": "combat",
+          "enemy": "orderly",
+          "ctb": 300,
+          "damage": 2,
+          "enemyDamage": 14,
+          "wear": 5,
+          "coatWear": 2,
+          "bleeding": false,
+          "exposure": 0,
+          "outcome": "victory"
+        },
+        {
+          "op": "move",
+          "to": "H5"
+        },
+        {
+          "op": "task",
+          "id": "sample",
+          "at": [
+            2,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "H4"
+        },
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "move",
+          "to": "H7"
+        },
+        {
+          "op": "move",
+          "to": "L0"
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "move",
+          "to": "L1"
+        },
+        {
+          "op": "task",
+          "id": "l1-open",
+          "mode": "manual"
+        },
+        {
+          "op": "source",
+          "id": "L1-cabinet",
+          "mode": "dark"
+        },
+        {
+          "op": "pickup",
+          "id": "L1-cabinet:food:0",
+          "at": [
+            0,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "pickup",
+          "id": "L1-cabinet:bandage:0",
+          "at": [
+            4,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "L2"
+        },
+        {
+          "op": "combat",
+          "enemy": "porter",
+          "ctb": 300,
+          "damage": 2,
+          "enemyDamage": 16,
+          "wear": 5,
+          "coatWear": 2,
+          "bleeding": false,
+          "exposure": 0,
+          "outcome": "victory"
+        },
+        {
+          "op": "medical",
+          "item": "bandage",
+          "id": "initial-bandage"
+        },
+        {
+          "op": "task",
+          "id": "verify"
+        },
+        {
+          "op": "task",
+          "id": "fix",
+          "mode": "manual"
+        },
+        {
+          "op": "task",
+          "id": "component",
+          "at": [
+            0,
+            1,
+            false
+          ]
+        },
+        {
+          "op": "source",
+          "id": "L2-search",
+          "mode": "dark"
+        },
+        {
+          "op": "pickup",
+          "id": "L2-search:food:0",
+          "at": [
+            5,
+            0,
+            false
+          ]
+        },
+        {
+          "op": "pickup",
+          "id": "L2-search:food:2",
+          "at": [
+            4,
+            1,
+            false
+          ]
+        },
+        {
+          "op": "pickup",
+          "id": "L2-search:metal:0",
+          "at": [
+            5,
+            1,
+            false
+          ]
+        },
+        {
+          "op": "medical",
+          "item": "food",
+          "id": "L1-cabinet:food:0"
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "move",
+          "to": "L1"
+        },
+        {
+          "op": "move",
+          "to": "L3"
+        },
+        {
+          "op": "task",
+          "id": "l3-open",
+          "mode": "manual"
+        },
+        {
+          "op": "source",
+          "id": "L3-rack",
+          "mode": "dark"
+        },
+        {
+          "op": "pickup",
+          "id": "L3-rack:electronic:0",
+          "at": [
+            2,
+            2,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "L1"
+        },
+        {
+          "op": "move",
+          "to": "L0"
+        },
+        {
+          "op": "move",
+          "to": "P0"
+        },
+        {
+          "op": "move",
+          "to": "P1"
+        },
+        {
+          "op": "task",
+          "id": "power-survey"
+        },
+        {
+          "op": "task",
+          "id": "power"
+        },
+        {
+          "op": "move",
+          "to": "P0"
+        },
+        {
+          "op": "move",
+          "to": "L0"
+        },
+        {
+          "op": "medical",
+          "item": "food",
+          "id": "L1-cabinet:food:0"
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "move",
+          "to": "C0"
+        },
+        {
+          "op": "move",
+          "to": "C1"
+        },
+        {
+          "op": "task",
+          "id": "match"
+        },
+        {
+          "op": "move",
+          "to": "C4"
+        },
+        {
+          "op": "task",
+          "id": "bypass-survey"
+        },
+        {
+          "op": "task",
+          "id": "bypass",
+          "mode": "manual"
+        },
+        {
+          "op": "move",
+          "to": "C3"
+        },
+        {
+          "op": "task",
+          "id": "module",
+          "at": [
+            3,
+            2,
+            false
+          ]
+        },
+        {
+          "op": "move",
+          "to": "C4"
+        },
+        {
+          "op": "move",
+          "to": "C1"
+        },
+        {
+          "op": "move",
+          "to": "C0"
+        },
+        {
+          "op": "move",
+          "to": "H0"
+        },
+        {
+          "op": "medical",
+          "item": "food",
+          "id": "L2-search:food:0"
+        },
+        {
+          "op": "rest"
+        },
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "move",
+          "to": "H7"
+        },
+        {
+          "op": "move",
+          "to": "H8"
+        },
+        {
+          "op": "task",
+          "id": "install"
+        },
+        {
+          "op": "move",
+          "to": "H7"
+        },
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "move",
+          "to": "H0"
+        },
+        {
+          "op": "return",
+          "outcome": "success"
+        }
+      ],
+      "expect": {
+        "outcome": "success",
+        "points": 120,
+        "node": "H0",
+        "hotelVisited": false
+      }
+    }
+  ],
+  "unsupported": [
+    {
+      "id": "U-CTB",
+      "reason": "真实CTB调度、风险抽样与路线战斗结果可达性未接；外部条件不能证明"
+    },
+    {
+      "id": "U-live-codec",
+      "reason": "未来活战斗、来源拆合消费的生产codec与session未实现"
+    },
+    {
+      "id": "U-browser-owner",
+      "reason": "浏览器多标签、安全UI、Owner试玩未执行"
+    },
+    {
+      "id": "U-nine-wins",
+      "reason": "九组合仅局部差异，不是九套完整通关或概率证明"
+    }
+  ]
+}

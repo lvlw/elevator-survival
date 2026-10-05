@@ -86,3 +86,10 @@
 R1在c67fd4117065e2e0dbd1117cae4fbfaa83791599获主线专项PASS，仅关闭F01；原106／175及主线37／43分别留在原提交证据中。本次不重跑、不改历史模型或其保护指纹，不把旧API观察计入本次测试。当前验收只覆盖原件／载荷字节、参数、文档链接、保护对象、架构和diff。
 
 本次生产测试、npm run check、模型／API探针、build、浏览器／多标签与Owner试玩均NOT RUN，新增生产测试0。文档准确SHA实审仍PENDING；A源码、B恢复、C消费接缝需各自实审。五图、三专长、工具箱、信息安全、旧入口／旧槽O3、Owner分段突破和恢复负担体验保持OPEN，已批准数值不等于体验通过。
+
+
+## WORLD-ENTRY-004 当前入口（2026-10-05，DESIGN DRAFT）
+
+准确源码基线为 `0921df3f219f368479d1bf3401d8fecddc0d5f71`。C PASS仅覆盖已审九命令/稳定四态，不代表真实五图、战斗医疗或试玩完成。新增内容、来源消费、三专长/工具箱及活战斗接缝仍待采纳；38已批参数不重开。
+
+集中入口：[Owner审阅](../entry-004/00-owner-review.md)、[能力与缺口](../entry-004/01-current-production-and-gaps.md)、[验证边界](../entry-004/validation/README.md)、[最多三项工程候选](../entry-004/06-next-engineering-contracts.md)。旧正文和旧证据保留原适用状态；本批不注册内容、不执行工程，O3继续待审。

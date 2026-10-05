@@ -1,0 +1,736 @@
+{
+  "status": "DESIGN DRAFT / 待Owner采纳；不是运行时默认",
+  "approvedReadOnly": [
+    {
+      "path": "docs/content/infected-residence-core-test-config-v0.1.json",
+      "configurationId": "infected-residence-core-test-v0.1",
+      "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9"
+    },
+    {
+      "path": "docs/content/infected-terminal-core-test-config-v0.1.json",
+      "configurationId": "infected-terminal-core-test-v0.1",
+      "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18"
+    }
+  ],
+  "draft": {
+    "move.local": {
+      "value": 2,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "move.cross": {
+      "value": 8,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "move.side": {
+      "value": 6,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "search.dark": {
+      "value": 12,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "search.lit": {
+      "value": 8,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "search.fixed": {
+      "value": 8,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "door.crow": {
+      "value": 6,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "door.manual": {
+      "value": 14,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "door.toolbox": {
+      "value": 10,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "本轮D01补齐新精力映射"
+    },
+    "door.card": {
+      "value": 4,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "本轮D01补齐新精力映射"
+    },
+    "survey": {
+      "value": 6,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "restore.power": {
+      "value": 12,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "investigate": {
+      "value": 4,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "verify.full": {
+      "value": 6,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "verify.fast": {
+      "value": 4,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "verify.scout.full": {
+      "value": 4,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "verify.scout.fast": {
+      "value": 3,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "fix.method": {
+      "value": 10,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "extract.part": {
+      "value": 10,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "extract.sample.cautious": {
+      "value": 10,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../evidence/parameters.json (prices.sample_careful)"
+    },
+    "extract.sample.direct": {
+      "value": 6,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "install": {
+      "value": 12,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "bypass.crow": {
+      "value": 8,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "exchange": {
+      "value": 2,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "maintenance.mechanical": {
+      "value": 6,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "maintenance.coat": {
+      "value": 6,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "maintenance.toolbox": {
+      "value": 8,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "recharge": {
+      "value": 4,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "medical.free": {
+      "value": 0,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "load.bands": {
+      "value": [
+        [
+          0,
+          16,
+          100
+        ],
+        [
+          17,
+          24,
+          110
+        ],
+        [
+          25,
+          28,
+          125
+        ]
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../evidence/parameters.json (load_thresholds)"
+    },
+    "load.contusion_percent": {
+      "value": 110,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "grid": {
+      "value": [
+        6,
+        4
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "quick.slots": {
+      "value": 2,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "capacity.pipe": {
+      "value": 30,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "capacity.coat": {
+      "value": 12,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "capacity.crow": {
+      "value": 12,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "capacity.lamp": {
+      "value": 8,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "capacity.toolbox": {
+      "value": 6,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "restore.metal_pool": {
+      "value": 15,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "restore.coat": {
+      "value": 6,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "restore.lamp": {
+      "value": 4,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "restore.toolbox": {
+      "value": 3,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "wear.tool": {
+      "value": 1,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "wear.lamp": {
+      "value": 1,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "wear.pipe.basic": {
+      "value": 1,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "wear.pipe.signature": {
+      "value": 3,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "bandage.hp": {
+      "value": 1,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "survival.hp": {
+      "value": 2,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../07-enemy-continuity.md#minimal-specialties"
+    },
+    "firstaid.hp": {
+      "value": 4,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "ration.satiety": {
+      "value": 2,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "disinfect.exposure": {
+      "value": 1,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "unit": {
+      "value": 1,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "bandage.ctb": {
+      "value": 80,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "painkiller.ctb": {
+      "value": 80,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "retreat.normal": {
+      "value": 80,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "retreat.overloaded": {
+      "value": 110,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "retreat.wound": {
+      "value": 10,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "retreat.wound_cap": {
+      "value": 20,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "painkiller.retreat": {
+      "value": 10,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "combat.minimum": {
+      "value": 6,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../07-enemy-continuity.md"
+    },
+    "combat.ctb_step": {
+      "value": 100,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../07-enemy-continuity.md"
+    },
+    "combat.energy_step": {
+      "value": 4,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../07-enemy-continuity.md"
+    },
+    "reentry.enemy": {
+      "value": 50,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "reentry.player": {
+      "value": 0,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "sample.exposure": {
+      "value": 1,
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "sample.risks": {
+      "value": [
+        20,
+        60
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "sample.coat_risks": {
+      "value": [
+        0,
+        40
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "physical.food": {
+      "value": [
+        1,
+        1,
+        1,
+        2
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "physical.bandage": {
+      "value": [
+        1,
+        1,
+        1,
+        3
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "physical.disinfect": {
+      "value": [
+        1,
+        1,
+        1,
+        3
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "physical.suppressant": {
+      "value": [
+        1,
+        1,
+        1,
+        2
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "physical.painkiller": {
+      "value": [
+        1,
+        1,
+        1,
+        3
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "physical.firstaid": {
+      "value": [
+        1,
+        2,
+        2,
+        1
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "physical.metal": {
+      "value": [
+        1,
+        1,
+        1,
+        5
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "physical.electronic": {
+      "value": [
+        1,
+        1,
+        1,
+        5
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "physical.cloth": {
+      "value": [
+        1,
+        1,
+        1,
+        5
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "physical.battery": {
+      "value": [
+        1,
+        1,
+        1,
+        4
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "physical.card": {
+      "value": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "physical.sample": {
+      "value": [
+        2,
+        2,
+        4,
+        1
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../../../content/items.md"
+    },
+    "physical.component": {
+      "value": [
+        2,
+        2,
+        4,
+        1
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../04-main-mission.md"
+    },
+    "physical.module": {
+      "value": [
+        1,
+        2,
+        2,
+        1
+      ],
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../04-main-mission.md"
+    },
+    "grant.H1-search": {
+      "value": {
+        "metal": 1
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "grant.H2-search": {
+      "value": {
+        "bandage": 1
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "grant.H3-search": {
+      "value": {
+        "card": 1,
+        "battery": 1
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "grant.L1-cabinet": {
+      "value": {
+        "food": 2,
+        "bandage": 1
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "grant.L2-search": {
+      "value": {
+        "food": 3,
+        "metal": 1,
+        "cloth": 1
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "grant.L3-rack": {
+      "value": {
+        "metal": 1,
+        "electronic": 1,
+        "battery": 1
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "grant.C4-cabinet": {
+      "value": {
+        "metal": 1,
+        "electronic": 1,
+        "battery": 1
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "grant.C4-food": {
+      "value": {
+        "food": 1
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "grant.H1-toolbox": {
+      "value": {
+        "electronic": 1
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "grant.T1-exchange": {
+      "value": {
+        "food": 2
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "exchange.inputs": {
+      "value": {
+        "bandage": 1,
+        "disinfect": 1
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../06-event-pack.md"
+    },
+    "grant.H2-random": {
+      "value": {
+        "disinfect": 1
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "install.inputs": {
+      "value": {
+        "component": 1,
+        "module": 1,
+        "metal": 1,
+        "electronic": 1
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../04-main-mission.md"
+    },
+    "enemy.orderly": {
+      "value": {
+        "hp": 14,
+        "first": 70,
+        "damages": [
+          3,
+          7
+        ],
+        "waits": [
+          100,
+          140
+        ]
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../07-enemy-continuity.md"
+    },
+    "enemy.porter": {
+      "value": {
+        "hp": 16,
+        "first": 150,
+        "damages": [
+          6,
+          3
+        ],
+        "waits": [
+          240,
+          100
+        ]
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../07-enemy-continuity.md"
+    },
+    "enemy.technician": {
+      "value": {
+        "hp": 16,
+        "first": 60,
+        "damages": [
+          2,
+          5
+        ],
+        "waits": [
+          110,
+          180
+        ]
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../07-enemy-continuity.md"
+    },
+    "maintenance.inputs": {
+      "value": {
+        "pipe": {
+          "metal": 1
+        },
+        "crow": {
+          "metal": 1
+        },
+        "coat": {
+          "cloth": 1
+        },
+        "toolbox": {
+          "metal": 1,
+          "electronic": 1
+        },
+        "lamp": {
+          "battery": 1
+        }
+      },
+      "status": "DESIGN DRAFT / 待Owner采纳",
+      "source": "../05-resource-economy.md"
+    },
+    "pipe.basic.damage": {
+      "value": 4,
+      "status": "DESIGN DRAFT / 旧物品值在新驻留的适用待采纳",
+      "source": "../../../content/items.md"
+    },
+    "pipe.basic.ctb": {
+      "value": 100,
+      "status": "DESIGN DRAFT / 旧物品值在新驻留的适用待采纳",
+      "source": "../../../content/items.md"
+    },
+    "pipe.signature.damage": {
+      "value": 6,
+      "status": "DESIGN DRAFT / 旧物品值在新驻留的适用待采纳",
+      "source": "../../../content/items.md"
+    },
+    "pipe.signature.ctb": {
+      "value": 180,
+      "status": "DESIGN DRAFT / 旧物品值在新驻留的适用待采纳",
+      "source": "../../../content/items.md"
+    },
+    "random.H1": {
+      "value": {
+        "battery": 40,
+        "cloth": 30,
+        "electronic": 30
+      },
+      "status": "DESIGN DRAFT / 旧医院权重接入新驻留待采纳",
+      "source": "../../../../src/content/hospital-v0.1/search/hospital-search-definitions.ts"
+    },
+    "random.H2": {
+      "value": {
+        "disinfect": 35,
+        "painkiller": 30,
+        "firstaid": 20,
+        "suppressant": 15
+      },
+      "status": "DESIGN DRAFT / 旧医院权重接入新驻留待采纳",
+      "source": "../../../../src/content/hospital-v0.1/search/hospital-search-definitions.ts"
+    }
+  },
+  "excluded": [
+    "商城价格",
+    "身体服务",
+    "第二委托",
+    "新rulesVersion",
+    "新保存版本"
+  ]
+}

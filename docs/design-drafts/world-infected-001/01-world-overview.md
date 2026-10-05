@@ -174,3 +174,10 @@ A 在 `bfc6bd973eeb306df1e8ee916b2160c30b757cdf` 的[准确源码限定实审](.
 B 在 `b9b1e0fee0e779669ca40e088ac9a867016bff82` 已通过[限定实审](../../engineering/residence-foundation/terminal-session/inputs/AUD-b9b1e0f-ENG-RESIDENCE-TERMINAL-RESTORE-001-review-v1.0.md)。本批在独立 C 工程分支新增显式 v2 唯一会话：真实首次创建／出发、G2 活动操作、A 完整终局及死亡原计划消费、B 预编码／冷恢复、保存故障与重入防护；旧 v1 默认消费不变。详见 [C 支持合同](../../engineering/residence-foundation/terminal-session/contract-and-support.md)。
 
 当前仅作者实现／本地验证，待 C 准确 SHA 源码／headless 恢复实审；五图内容生产者、后继任务供给、完整战斗医疗、专长／工具箱、玩家入口与浏览器存档仍未接。O3 未决定，浏览器／多标签及 Owner 分段突破、恢复负担体验仍 NOT RUN，不能据此称世界已可玩。上文历史时点不倒改。
+
+
+## WORLD-ENTRY-004 当前入口（2026-10-05，DESIGN DRAFT）
+
+准确源码基线为 `0921df3f219f368479d1bf3401d8fecddc0d5f71`。C PASS仅覆盖已审九命令/稳定四态，不代表真实五图、战斗医疗或试玩完成。新增内容、来源消费、三专长/工具箱及活战斗接缝仍待采纳；38已批参数不重开。
+
+集中入口：[Owner审阅](entry-004/00-owner-review.md)、[能力与缺口](entry-004/01-current-production-and-gaps.md)、[验证边界](entry-004/validation/README.md)、[最多三项工程候选](entry-004/06-next-engineering-contracts.md)。旧正文和旧证据保留原适用状态；本批不注册内容、不执行工程，O3继续待审。

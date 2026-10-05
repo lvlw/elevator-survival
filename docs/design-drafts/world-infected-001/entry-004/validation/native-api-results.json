@@ -1,0 +1,392 @@
+{
+  "kind": "current-source-native-observations",
+  "sourceSha": "0921df3f219f368479d1bf3401d8fecddc0d5f71",
+  "fixtureContent": "existing isolated test helpers; no test runner, no production content registration",
+  "counts": {
+    "positive": 12,
+    "expected-rejection": 5,
+    "fault-injection": 2,
+    "unsupported": 5,
+    "mismatch": 0
+  },
+  "cases": [
+    {
+      "id": "G1-overrun",
+      "category": "positive",
+      "expected": {
+        "energy": 0,
+        "steps": [
+          "primary"
+        ]
+      },
+      "actual": {
+        "energy": 0,
+        "steps": [
+          "primary"
+        ]
+      },
+      "match": true,
+      "scope": "Actual G1 action; isolated input"
+    },
+    {
+      "id": "G2-e0-no-move",
+      "category": "expected-rejection",
+      "expected": {
+        "reject": "ACTION_NOT_AVAILABLE",
+        "zeroCommit": true
+      },
+      "actual": {
+        "reject": "ACTION_NOT_AVAILABLE",
+        "zeroCommit": true
+      },
+      "match": true,
+      "scope": "Actual G2→G1"
+    },
+    {
+      "id": "G2-source-repeat",
+      "category": "expected-rejection",
+      "expected": {
+        "reject": "NOT_AVAILABLE",
+        "zeroCommit": true
+      },
+      "actual": {
+        "reject": "NOT_AVAILABLE",
+        "zeroCommit": true
+      },
+      "match": true,
+      "scope": "Actual source once"
+    },
+    {
+      "id": "G2-task-not-ordinary",
+      "category": "unsupported",
+      "expected": {
+        "reject": "NOT_AVAILABLE",
+        "zeroCommit": true
+      },
+      "actual": {
+        "reject": "NOT_AVAILABLE",
+        "zeroCommit": true
+      },
+      "match": true,
+      "scope": "Task producer absent; production rejection observed"
+    },
+    {
+      "id": "A-normal-empty",
+      "category": "positive",
+      "expected": {
+        "phase": "living-hub",
+        "balance": 0,
+        "steps": [],
+        "hp": 3,
+        "cycle": 1
+      },
+      "actual": {
+        "phase": "living-hub",
+        "balance": 0,
+        "steps": [],
+        "hp": 3,
+        "cycle": 1
+      },
+      "match": true,
+      "scope": "Actual A→G1 no night"
+    },
+    {
+      "id": "A-success-real-sample-fixture",
+      "category": "positive",
+      "expected": {
+        "balance": 120,
+        "reward": 120,
+        "phase": "living-hub"
+      },
+      "actual": {
+        "balance": 120,
+        "reward": 120,
+        "phase": "living-hub"
+      },
+      "match": true,
+      "scope": "A consumer only; TEST helper places task item/facts, NOT task producer"
+    },
+    {
+      "id": "A-day7-death",
+      "category": "positive",
+      "expected": {
+        "phase": "dead",
+        "hp": 0,
+        "reward": 0,
+        "steps": [
+          "cycle-bleeding"
+        ]
+      },
+      "actual": {
+        "phase": "dead",
+        "hp": 0,
+        "reward": 0,
+        "steps": [
+          "cycle-bleeding"
+        ]
+      },
+      "match": true,
+      "scope": "Actual G1 short circuit→A death"
+    },
+    {
+      "id": "A-original-death",
+      "category": "positive",
+      "expected": {
+        "phase": "dead",
+        "hp": 0,
+        "revision": 1
+      },
+      "actual": {
+        "phase": "dead",
+        "hp": 0,
+        "revision": 1
+      },
+      "match": true,
+      "scope": "Original issued G2 plan consumed, no replay"
+    },
+    {
+      "id": "A-cloned-death-rejected",
+      "category": "expected-rejection",
+      "expected": {
+        "reject": "STALE_PLAN",
+        "zeroCommit": true
+      },
+      "actual": {
+        "reject": "STALE_PLAN",
+        "zeroCommit": true
+      },
+      "match": true,
+      "scope": "Exact capability provenance, not structural lookalike"
+    },
+    {
+      "id": "B-stable-roundtrip",
+      "category": "positive",
+      "expected": true,
+      "actual": true,
+      "match": true,
+      "scope": "Actual strict codec"
+    },
+    {
+      "id": "B-live-pending",
+      "category": "unsupported",
+      "expected": {
+        "reject": "UNSUPPORTED_STAGE",
+        "zeroCommit": true
+      },
+      "actual": {
+        "reject": "UNSUPPORTED_STAGE",
+        "zeroCommit": true
+      },
+      "match": true,
+      "scope": "Actual alive encounter stage currently unencodable"
+    },
+    {
+      "id": "B-source-output-removal",
+      "category": "unsupported",
+      "expected": {
+        "reject": "INVALID_STATE",
+        "zeroCommit": true
+      },
+      "actual": {
+        "reject": "INVALID_STATE",
+        "zeroCommit": true
+      },
+      "match": true,
+      "scope": "No consumed ledger in current B; removing both item and ItemState is not valid consumption"
+    },
+    {
+      "id": "C-pending-zero-commit",
+      "category": "unsupported",
+      "expected": {
+        "reject": "UNSUPPORTED_RESULT",
+        "zeroCommit": true
+      },
+      "actual": {
+        "reject": "UNSUPPORTED_RESULT",
+        "zeroCommit": true
+      },
+      "match": true,
+      "scope": "Actual C refuses installing pending; no future combat implied"
+    },
+    {
+      "id": "C-death-stale-no-replay",
+      "category": "positive",
+      "expected": {
+        "phase": "dead",
+        "revision": 1,
+        "writes": 2,
+        "rejection": {
+          "reject": "STALE_COMMAND",
+          "zeroCommit": true
+        },
+        "retryUnchanged": true
+      },
+      "actual": {
+        "phase": "dead",
+        "revision": 1,
+        "writes": 2,
+        "rejection": {
+          "reject": "STALE_COMMAND",
+          "zeroCommit": true
+        },
+        "retryUnchanged": true
+      },
+      "match": true,
+      "scope": "Single current owner + stale command + persistence only retry"
+    },
+    {
+      "id": "C-save-failure-commit-once",
+      "category": "fault-injection",
+      "expected": {
+        "phase": "living-hub",
+        "persistence": "save-failed",
+        "same": true,
+        "writes": 2
+      },
+      "actual": {
+        "phase": "living-hub",
+        "persistence": "save-failed",
+        "same": true,
+        "writes": 2
+      },
+      "match": true,
+      "scope": "Storage failure after commit does not undo/reapply penalty"
+    },
+    {
+      "id": "C-bad-save-no-reset",
+      "category": "fault-injection",
+      "expected": {
+        "status": "blocked",
+        "writes": 0,
+        "rejection": {
+          "reject": "NOT_AVAILABLE",
+          "zeroCommit": true
+        }
+      },
+      "actual": {
+        "status": "blocked",
+        "writes": 0,
+        "rejection": {
+          "reject": "NOT_AVAILABLE",
+          "zeroCommit": true
+        }
+      },
+      "match": true,
+      "scope": "Bad save never triggers first factory"
+    },
+    {
+      "id": "C-closed-no-reentry",
+      "category": "expected-rejection",
+      "expected": {
+        "reject": "NOT_AVAILABLE",
+        "zeroCommit": true
+      },
+      "actual": {
+        "reject": "NOT_AVAILABLE",
+        "zeroCommit": true
+      },
+      "match": true,
+      "scope": "Same execution cannot reopen"
+    },
+    {
+      "id": "C-medical-command-absent",
+      "category": "unsupported",
+      "expected": {
+        "reject": "INVALID_INPUT",
+        "zeroCommit": true
+      },
+      "actual": {
+        "reject": "INVALID_INPUT",
+        "zeroCommit": true
+      },
+      "match": true,
+      "scope": "Nine-command closed vocabulary; no invented API"
+    },
+    {
+      "id": "old-durability-overrun",
+      "category": "positive",
+      "expected": {
+        "consumed": 1,
+        "after": 0
+      },
+      "actual": {
+        "consumed": 1,
+        "after": 0
+      },
+      "match": true,
+      "scope": "Narrow old pure module; no container history proof"
+    },
+    {
+      "id": "old-charge-insufficient",
+      "category": "expected-rejection",
+      "expected": {
+        "reject": "INSUFFICIENT_RESOURCE",
+        "zeroCommit": true
+      },
+      "actual": {
+        "reject": "INSUFFICIENT_RESOURCE",
+        "zeroCommit": true
+      },
+      "match": true,
+      "scope": "Charge requires complete cost"
+    },
+    {
+      "id": "old-bandage-primary",
+      "category": "positive",
+      "expected": {
+        "hp": 5,
+        "bleeding": false
+      },
+      "actual": {
+        "hp": 5,
+        "bleeding": false
+      },
+      "match": true,
+      "scope": "Only primary effects; does not consume inventory or install G1/C state"
+    },
+    {
+      "id": "old-ctb-scene-time",
+      "category": "positive",
+      "expected": {
+        "sceneTimeCost": 30,
+        "remainingTimeAfter": 0,
+        "overtimeDebt": 29
+      },
+      "actual": {
+        "sceneTimeCost": 30,
+        "remainingTimeAfter": 0,
+        "overtimeDebt": 29
+      },
+      "match": true,
+      "scope": "Old Scene Time/debt MUST NOT become residence energy"
+    },
+    {
+      "id": "C-safe-knowledge-hidden-pair",
+      "category": "positive",
+      "expected": true,
+      "actual": true,
+      "match": true,
+      "scope": "Current map projection only; future health risk UI not implemented"
+    },
+    {
+      "id": "C-first-launch",
+      "category": "positive",
+      "expected": {
+        "phase": "active-world",
+        "taskDay": 1,
+        "cycle": 1,
+        "hp": 12
+      },
+      "actual": {
+        "phase": "active-world",
+        "taskDay": 1,
+        "cycle": 1,
+        "hp": 12
+      },
+      "match": true,
+      "scope": "Actual fresh-hub codec and first launch; isolated declared mission, no new player content"
+    }
+  ],
+  "productionTestSuite": "NOT RUN",
+  "newProductionTests": 0
+}

@@ -177,3 +177,10 @@ A 准确 SHA `bfc6bd973eeb306df1e8ee916b2160c30b757cdf` 已获[限定源码 PASS
 前置 B 准确 SHA `b9b1e0fee0e779669ca40e088ac9a867016bff82` 已获[限定实审 PASS](../../engineering/residence-foundation/terminal-session/inputs/AUD-b9b1e0f-ENG-RESIDENCE-TERMINAL-RESTORE-001-review-v1.0.md)。C 显式 v2 会话、同域单 owner、完整死亡提交、三类保存故障及重入长链已完成作者实现，证据见 [C 交付记录](../../engineering/residence-foundation/terminal-session/completion.md)。
 
 下一 Gate 仅为当前主线对 C 最终准确 SHA 的源码／headless 恢复实审。不得自动推进五图、后继委托、CTB／医疗、商店、UI／浏览器或 O3；本批不新增规则参数或决策。Owner 试玩仍 OPEN／NOT RUN，旧队列保持原字节前缀。
+
+
+## WORLD-ENTRY-004 当前入口（2026-10-05，DESIGN DRAFT）
+
+准确源码基线为 `0921df3f219f368479d1bf3401d8fecddc0d5f71`。C PASS仅覆盖已审九命令/稳定四态，不代表真实五图、战斗医疗或试玩完成。新增内容、来源消费、三专长/工具箱及活战斗接缝仍待采纳；38已批参数不重开。
+
+集中入口：[Owner审阅](entry-004/00-owner-review.md)、[能力与缺口](entry-004/01-current-production-and-gaps.md)、[验证边界](entry-004/validation/README.md)、[最多三项工程候选](entry-004/06-next-engineering-contracts.md)。旧正文和旧证据保留原适用状态；本批不注册内容、不执行工程，O3继续待审。

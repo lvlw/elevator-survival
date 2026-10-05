@@ -1,0 +1,1002 @@
+{
+  "reviewBaseCommit": "0362460b259cba6ea160e79ad04a6cb14181cef0",
+  "modelGitBlob": "4d3c0e443dd02232ca1cc8c7fbac25588ca06bd7",
+  "matchesReviewBaseModelBlob": true,
+  "mode": "source-derived-dependency-slice",
+  "scope": "Unmodified Model methods; independent targeted prepared states; not the author 98-case suite or native TS/CTB execution. No storage or notification exists in this finite model.",
+  "counts": {
+    "checks": 31,
+    "matched": 17,
+    "mismatch": 14,
+    "unexpectedExceptions": 3
+  },
+  "cases": [
+    {
+      "id": "control-valid-E0-bandage",
+      "expected": "accept",
+      "actual": {
+        "kind": "accepted",
+        "hp": 9,
+        "E": 0,
+        "revision": 1,
+        "facts": [],
+        "phase": "active",
+        "outcome": null,
+        "points": 0,
+        "D": 1,
+        "T": 1,
+        "disposed": [
+          {
+            "alias": "bandage",
+            "units": [
+              "initial:bandage:0"
+            ],
+            "where": "consumed",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      }
+    },
+    {
+      "id": "control-no-target-bandage",
+      "expected": "reject",
+      "actual": {
+        "kind": "semantic-reject",
+        "code": "NO_TARGET"
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      }
+    },
+    {
+      "id": "control-pending-medical",
+      "expected": "reject",
+      "actual": {
+        "kind": "semantic-reject",
+        "code": "PENDING"
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      }
+    },
+    {
+      "id": "control-closed-medical",
+      "expected": "reject",
+      "actual": {
+        "kind": "semantic-reject",
+        "code": "CLOSED"
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      }
+    },
+    {
+      "id": "illegal-medical-quantity-negative",
+      "expected": "reject",
+      "actual": {
+        "kind": "accepted",
+        "hp": 9,
+        "E": 0,
+        "revision": 1,
+        "facts": [],
+        "phase": "active",
+        "outcome": null,
+        "points": 0,
+        "D": 1,
+        "T": 1,
+        "disposed": [
+          {
+            "alias": "bandage",
+            "units": [
+              "initial:bandage:0"
+            ],
+            "where": "consumed",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      },
+      "match": false,
+      "inputUnchanged": true,
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "quantity": -1
+      }
+    },
+    {
+      "id": "illegal-medical-quantity-bool",
+      "expected": "reject",
+      "actual": {
+        "kind": "accepted",
+        "hp": 9,
+        "E": 0,
+        "revision": 1,
+        "facts": [],
+        "phase": "active",
+        "outcome": null,
+        "points": 0,
+        "D": 1,
+        "T": 1,
+        "disposed": [
+          {
+            "alias": "bandage",
+            "units": [
+              "initial:bandage:0"
+            ],
+            "where": "consumed",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      },
+      "match": false,
+      "inputUnchanged": true,
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "quantity": true
+      }
+    },
+    {
+      "id": "illegal-medical-quantity-fraction",
+      "expected": "reject",
+      "actual": {
+        "kind": "accepted",
+        "hp": 9,
+        "E": 0,
+        "revision": 1,
+        "facts": [],
+        "phase": "active",
+        "outcome": null,
+        "points": 0,
+        "D": 1,
+        "T": 1,
+        "disposed": [
+          {
+            "alias": "bandage",
+            "units": [
+              "initial:bandage:0"
+            ],
+            "where": "consumed",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      },
+      "match": false,
+      "inputUnchanged": true,
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "quantity": 0.5
+      }
+    },
+    {
+      "id": "illegal-medical-quantity-unsafe",
+      "expected": "reject",
+      "actual": {
+        "kind": "accepted",
+        "hp": 9,
+        "E": 0,
+        "revision": 1,
+        "facts": [],
+        "phase": "active",
+        "outcome": null,
+        "points": 0,
+        "D": 1,
+        "T": 1,
+        "disposed": [
+          {
+            "alias": "bandage",
+            "units": [
+              "initial:bandage:0"
+            ],
+            "where": "consumed",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      },
+      "match": false,
+      "inputUnchanged": true,
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "quantity": 9007199254740992
+      }
+    },
+    {
+      "id": "illegal-revision-false",
+      "expected": "reject",
+      "actual": {
+        "kind": "accepted",
+        "hp": 9,
+        "E": 0,
+        "revision": 1,
+        "facts": [],
+        "phase": "active",
+        "outcome": null,
+        "points": 0,
+        "D": 1,
+        "T": 1,
+        "disposed": [
+          {
+            "alias": "bandage",
+            "units": [
+              "initial:bandage:0"
+            ],
+            "where": "consumed",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      },
+      "match": false,
+      "inputUnchanged": true,
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "expectedRevision": false
+      }
+    },
+    {
+      "id": "control-stale-revision",
+      "expected": "reject",
+      "actual": {
+        "kind": "semantic-reject",
+        "code": "STALE"
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "expectedRevision": 2
+      }
+    },
+    {
+      "id": "missing-medical-instance",
+      "expected": "reject",
+      "actual": {
+        "kind": "semantic-reject",
+        "code": "TARGET_INSTANCE"
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "medical",
+        "item": "bandage"
+      }
+    },
+    {
+      "id": "missing-op",
+      "expected": "reject",
+      "actual": {
+        "kind": "unexpected-exception",
+        "type": "KeyError",
+        "message": "'op'"
+      },
+      "match": false,
+      "inputUnchanged": true,
+      "action": {
+        "item": "bandage",
+        "id": "initial-bandage"
+      }
+    },
+    {
+      "id": "unknown-source-id",
+      "expected": "reject",
+      "actual": {
+        "kind": "unexpected-exception",
+        "type": "KeyError",
+        "message": "'unknown'"
+      },
+      "match": false,
+      "inputUnchanged": true,
+      "action": {
+        "op": "source",
+        "id": "unknown"
+      }
+    },
+    {
+      "id": "unknown-task-id",
+      "expected": "reject",
+      "actual": {
+        "kind": "unexpected-exception",
+        "type": "KeyError",
+        "message": "'unknown'"
+      },
+      "match": false,
+      "inputUnchanged": true,
+      "action": {
+        "op": "task",
+        "id": "unknown"
+      }
+    },
+    {
+      "id": "extra-business-outcome-medical",
+      "expected": "reject",
+      "actual": {
+        "kind": "accepted",
+        "hp": 9,
+        "E": 0,
+        "revision": 1,
+        "facts": [],
+        "phase": "active",
+        "outcome": null,
+        "points": 0,
+        "D": 1,
+        "T": 1,
+        "disposed": [
+          {
+            "alias": "bandage",
+            "units": [
+              "initial:bandage:0"
+            ],
+            "where": "consumed",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      },
+      "match": false,
+      "inputUnchanged": true,
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "outcome": "success"
+      }
+    },
+    {
+      "id": "control-valid-task-install",
+      "expected": "accept",
+      "actual": {
+        "kind": "accepted",
+        "hp": 12,
+        "E": 68,
+        "revision": 5,
+        "facts": [
+          "verified",
+          "fixed",
+          "enemy-porter-cleared",
+          "matched",
+          "power",
+          "transfer"
+        ],
+        "phase": "active",
+        "outcome": null,
+        "points": 0,
+        "D": 1,
+        "T": 1,
+        "disposed": [
+          {
+            "alias": "component",
+            "units": [
+              "TASK-component:component:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "module",
+            "units": [
+              "TASK-module:module:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "metal",
+            "units": [
+              "L3-rack:metal:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "electronic",
+            "units": [
+              "L3-rack:electronic:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "task",
+        "id": "install"
+      }
+    },
+    {
+      "id": "foreign-execution-component-install",
+      "expected": "reject",
+      "actual": {
+        "kind": "accepted",
+        "hp": 12,
+        "E": 68,
+        "revision": 5,
+        "facts": [
+          "verified",
+          "fixed",
+          "enemy-porter-cleared",
+          "matched",
+          "power",
+          "transfer"
+        ],
+        "phase": "active",
+        "outcome": null,
+        "points": 0,
+        "D": 1,
+        "T": 1,
+        "disposed": [
+          {
+            "alias": "component",
+            "units": [
+              "TASK-component:component:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "other-execution"
+          },
+          {
+            "alias": "module",
+            "units": [
+              "TASK-module:module:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "metal",
+            "units": [
+              "L3-rack:metal:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "electronic",
+            "units": [
+              "L3-rack:electronic:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      },
+      "match": false,
+      "inputUnchanged": true,
+      "action": {
+        "op": "task",
+        "id": "install"
+      }
+    },
+    {
+      "id": "foreign-execution-module-install",
+      "expected": "reject",
+      "actual": {
+        "kind": "accepted",
+        "hp": 12,
+        "E": 68,
+        "revision": 5,
+        "facts": [
+          "verified",
+          "fixed",
+          "enemy-porter-cleared",
+          "matched",
+          "power",
+          "transfer"
+        ],
+        "phase": "active",
+        "outcome": null,
+        "points": 0,
+        "D": 1,
+        "T": 1,
+        "disposed": [
+          {
+            "alias": "component",
+            "units": [
+              "TASK-component:component:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "module",
+            "units": [
+              "TASK-module:module:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "other-execution"
+          },
+          {
+            "alias": "metal",
+            "units": [
+              "L3-rack:metal:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "electronic",
+            "units": [
+              "L3-rack:electronic:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      },
+      "match": false,
+      "inputUnchanged": true,
+      "action": {
+        "op": "task",
+        "id": "install"
+      }
+    },
+    {
+      "id": "control-ground-component-install",
+      "expected": "reject",
+      "actual": {
+        "kind": "semantic-reject",
+        "code": "MISSING_ITEM"
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "task",
+        "id": "install"
+      }
+    },
+    {
+      "id": "control-repeat-install",
+      "expected": "reject",
+      "actual": {
+        "kind": "semantic-reject",
+        "code": "ALREADY_DONE"
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "task",
+        "id": "install"
+      }
+    },
+    {
+      "id": "control-E0-install",
+      "expected": "reject",
+      "actual": {
+        "kind": "semantic-reject",
+        "code": "E0_PAID"
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "task",
+        "id": "install"
+      }
+    },
+    {
+      "id": "missing-source-claim-install",
+      "expected": "reject",
+      "actual": {
+        "kind": "accepted",
+        "hp": 12,
+        "E": 68,
+        "revision": 5,
+        "facts": [
+          "verified",
+          "fixed",
+          "enemy-porter-cleared",
+          "matched",
+          "power",
+          "transfer"
+        ],
+        "phase": "active",
+        "outcome": null,
+        "points": 0,
+        "D": 1,
+        "T": 1,
+        "disposed": [
+          {
+            "alias": "component",
+            "units": [
+              "TASK-component:component:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "module",
+            "units": [
+              "TASK-module:module:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "metal",
+            "units": [
+              "L3-rack:metal:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "electronic",
+            "units": [
+              "L3-rack:electronic:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      },
+      "match": false,
+      "inputUnchanged": true,
+      "action": {
+        "op": "task",
+        "id": "install"
+      }
+    },
+    {
+      "id": "control-valid-success",
+      "expected": "accept",
+      "actual": {
+        "kind": "accepted",
+        "hp": 12,
+        "E": 58,
+        "revision": 7,
+        "facts": [
+          "verified",
+          "fixed",
+          "enemy-porter-cleared",
+          "matched",
+          "power",
+          "transfer",
+          "enemy-orderly-cleared"
+        ],
+        "phase": "hub",
+        "outcome": "success",
+        "points": 120,
+        "D": 1,
+        "T": 1,
+        "disposed": [
+          {
+            "alias": "component",
+            "units": [
+              "TASK-component:component:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "module",
+            "units": [
+              "TASK-module:module:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "metal",
+            "units": [
+              "L3-rack:metal:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "electronic",
+            "units": [
+              "L3-rack:electronic:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "battery",
+            "units": [
+              "L3-rack:battery:0"
+            ],
+            "where": "unreachable",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "sample",
+            "units": [
+              "TASK-sample:sample:0"
+            ],
+            "where": "delivered",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "return",
+        "outcome": "success"
+      }
+    },
+    {
+      "id": "control-foreign-sample-return",
+      "expected": "reject",
+      "actual": {
+        "kind": "semantic-reject",
+        "code": "WRONG_TERMINAL_INTENT"
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "return",
+        "outcome": "success"
+      }
+    },
+    {
+      "id": "missing-sample-source-claim-return",
+      "expected": "reject",
+      "actual": {
+        "kind": "accepted",
+        "hp": 12,
+        "E": 58,
+        "revision": 7,
+        "facts": [
+          "verified",
+          "fixed",
+          "enemy-porter-cleared",
+          "matched",
+          "power",
+          "transfer",
+          "enemy-orderly-cleared"
+        ],
+        "phase": "hub",
+        "outcome": "success",
+        "points": 120,
+        "D": 1,
+        "T": 1,
+        "disposed": [
+          {
+            "alias": "component",
+            "units": [
+              "TASK-component:component:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "module",
+            "units": [
+              "TASK-module:module:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "metal",
+            "units": [
+              "L3-rack:metal:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "electronic",
+            "units": [
+              "L3-rack:electronic:0"
+            ],
+            "where": "installed",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "battery",
+            "units": [
+              "L3-rack:battery:0"
+            ],
+            "where": "unreachable",
+            "at": null,
+            "execution": "finite-execution"
+          },
+          {
+            "alias": "sample",
+            "units": [
+              "TASK-sample:sample:0"
+            ],
+            "where": "delivered",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      },
+      "match": false,
+      "inputUnchanged": true,
+      "action": {
+        "op": "return",
+        "outcome": "success"
+      }
+    },
+    {
+      "id": "control-ground-sample-return",
+      "expected": "reject",
+      "actual": {
+        "kind": "semantic-reject",
+        "code": "WRONG_TERMINAL_INTENT"
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "return",
+        "outcome": "success"
+      }
+    },
+    {
+      "id": "invalid-wound-treated-number",
+      "expected": "reject",
+      "actual": {
+        "kind": "accepted",
+        "hp": 9,
+        "E": 0,
+        "revision": 1,
+        "facts": [],
+        "phase": "active",
+        "outcome": null,
+        "points": 0,
+        "D": 1,
+        "T": 1,
+        "disposed": [
+          {
+            "alias": "bandage",
+            "units": [
+              "initial:bandage:0"
+            ],
+            "where": "consumed",
+            "at": null,
+            "execution": "finite-execution"
+          }
+        ]
+      },
+      "match": false,
+      "inputUnchanged": true,
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      }
+    },
+    {
+      "id": "control-duplicate-unit",
+      "expected": "reject",
+      "actual": {
+        "kind": "semantic-reject",
+        "code": "DUPLICATE_UNIT"
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      }
+    },
+    {
+      "id": "control-missing-unit",
+      "expected": "reject",
+      "actual": {
+        "kind": "semantic-reject",
+        "code": "MISSING_OUTPUT"
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      }
+    },
+    {
+      "id": "control-normal-return-empty-cycle",
+      "expected": "accept",
+      "actual": {
+        "kind": "accepted",
+        "hp": 12,
+        "E": 100,
+        "revision": 1,
+        "facts": [],
+        "phase": "hub",
+        "outcome": "failure",
+        "points": 0,
+        "D": 1,
+        "T": 1,
+        "disposed": []
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "return",
+        "outcome": "failure"
+      }
+    },
+    {
+      "id": "control-final-over-budget-action",
+      "expected": "accept",
+      "actual": {
+        "kind": "accepted",
+        "hp": 12,
+        "E": 0,
+        "revision": 1,
+        "facts": [
+          "power-survey",
+          "power"
+        ],
+        "phase": "active",
+        "outcome": null,
+        "points": 0,
+        "D": 1,
+        "T": 1,
+        "disposed": []
+      },
+      "match": true,
+      "inputUnchanged": true,
+      "action": {
+        "op": "task",
+        "id": "power"
+      }
+    }
+  ]
+}

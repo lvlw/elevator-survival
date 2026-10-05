@@ -5,9 +5,6 @@ class Reject(Exception): pass
 def req(ok,code):
     if not ok: raise Reject(code)
 def integer(x,lo=0): req(type(x) is int and lo<=x<=9007199254740991,'INVALID_NUMBER')
-def string(x,code='STATE_SHAPE'): req(type(x) is str and bool(x),code)
-def shape(x,required,optional=(),code='STATE_SHAPE'):
-    req(type(x) is dict and set(required)<=set(x) and set(x)<=set(required)|set(optional),code)
 def canon(x): return json.dumps(x,ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False)
 class Model:
     def __init__(self,root,mutation=None):
@@ -49,108 +46,20 @@ class Model:
             req(not cells&occupied,'NO_SPACE');occupied|=cells
         req(self.weight(s)<=self.p['load.bands'][-1][1],'OVERWEIGHT')
     def validate(self,s):
-        # Finite values only; this is not the production aggregate/codec or proof of history.
-        shape(s,self.initial().keys())
         for k in ['D','T','E','hp','sat','I','exposure','suppression','points','revision']:integer(s[k])
         req(1<=s['T']<=self.g['limits']['days'] and s['D']>=s['T'],'CLOCK')
         req(s['E']<=self.g['limits']['energy'] and s['hp']<=self.g['limits']['hp'] and s['sat']<=self.g['limits']['satiety'],'BODY_RANGE')
-        string(s['node']);string(s['phase']);string(s['execution'])
-        req(s['node'] in self.nodes and s['phase'] in ['active','hub','dead'],'STATE_TAG')
         req(s['phase']=='dead' if s['hp']==0 else s['phase']!='dead','PHASE_HP')
-        req(s['outcome'] in (None,'success','failure','deadline','death'),'STATE_TAG')
-        req((s['phase']=='active' and s['outcome'] is None) or (s['phase']=='hub' and s['outcome'] in ['success','failure','deadline']) or (s['phase']=='dead' and s['outcome']=='death'),'PHASE_OUTCOME')
-        string(s['tool']);string(s['specialty'])
-        req(s['tool'] in ['crow','lamp','toolbox'] and s['specialty'] in ['scout','engineer','survival'],'STATE_TAG')
-        shape(s['gear'],['pipe','coat',s['tool']]);shape(s['quota'],self.g['quota'])
         for k,v in s['gear'].items():integer(v);req(v<=self.p['capacity.'+k],'RESOURCE_RANGE')
         for k,v in s['quota'].items():integer(v);req(v<=self.g['quota'][k],'QUOTA')
+        req(s['node'] in self.nodes and s['phase'] in ['active','hub','dead'],'STATE_TAG')
         for key in ['bleed','contusion','painkiller','survivalUsed']:req(type(s[key]) is bool,'STATE_BOOL')
-        req(type(s['wounds']) is list,'STATE_SHAPE');wound_ids=[]
-        for w in s['wounds']:
-            shape(w,['id','treated']);string(w['id']);req(type(w['treated']) is bool,'STATE_BOOL');wound_ids.append(w['id'])
-        req(len(wound_ids)==len(set(wound_ids)),'WOUND_ID')
-        shape(s['enemies'],[e['id'] for e in self.content['enemies']])
-        for id,enemy in s['enemies'].items():
-            shape(enemy,['hp','cursor','intent','encountered'])
+        for enemy in s['enemies'].values():
             for key in ['hp','cursor','intent']:integer(enemy[key])
-            req(type(enemy['encountered']) is bool,'STATE_BOOL');req(enemy['hp']<=self.p['enemy.'+id]['hp'],'BODY_RANGE')
-        for key,domain in [('pending',s['enemies']),('previous',self.nodes)]:
-            req(s[key] is None or (type(s[key]) is str and s[key] in domain),'STATE_SELECTOR')
-        req(s['pending'] is None or (s['phase']=='active' and s['enemies'][s['pending']]['hp']>0),'STATE_PENDING')
-        for key in ['claimed','facts','knowledge','visited']:
-            req(type(s[key]) is list and all(type(x) is str and x for x in s[key]),'STATE_SHAPE')
-            req(len(s[key])==len(set(s[key])) or (key=='claimed' and self.mutation=='source-duplication'),'STATE_DUPLICATE')
-        req(type(s['items']) is dict and type(s['origins']) is dict and type(s['disposed']) is list,'STATE_SHAPE')
-        for id in s['items']:string(id)
-        aliases={i['alias'] for i in self.content['items']}
-        for u,alias in s['origins'].items():string(u);req(type(alias) is str and alias in aliases,'ORIGIN')
         units=[]
-        for active,items in [(True,list(s['items'].values())),(False,s['disposed'])]:
-            for i in items:
-                shape(i,['alias','units','where','at','execution']);string(i['alias']);string(i['where']);string(i['execution'])
-                req(i['alias'] in aliases and type(i['units']) is list and i['units'] and all(type(u) is str for u in i['units']),'ORIGIN')
-                req(all(u in s['origins'] and s['origins'][u]==i['alias'] for u in i['units']),'ORIGIN');units.extend(i['units'])
-                local=i['where'].startswith('ground:') and i['where'][7:] in self.nodes
-                req((i['where'] in ['pack','quick'] or local) if active else i['where'] in ['consumed','installed','delivered','partial-delivery','returned-special','revoked','unreachable','death-unavailable','destroyed'],'ITEM_LOCATION')
-                req(i['at'] is None or i['where']=='pack','PLACEMENT')
-        req(len(units)==len(set(units)),'DUPLICATE_UNIT');req(set(units)==set(s['origins']),'MISSING_OUTPUT')
-        self.validate_sources(s);self.placements(s)
-    def validate_sources(self,s):
-        # Allocation identities survive split/merge, consumption and disposition.
-        # Ordinary prepared historical sources are intentionally not tied to this execution.
         for i in list(s['items'].values())+s['disposed']:
-            if i['alias'] not in ['component','module','sample']:continue
-            alias=i['alias'];code='WRONG_TERMINAL_INTENT' if alias=='sample' else 'TASK_SOURCE'
-            req(i['units']==['TASK-'+alias+':'+alias+':0'],code)
-            if self.mutation!='task-execution-omission':
-                req(i['execution']==s['execution'],'WRONG_TERMINAL_INTENT' if alias=='sample' else 'TASK_EXECUTION')
-        definitions={id:([{a:self.p['unit']} for a in d['choices']] if 'choices' in d else [self.p[d['grants']]]) for id,d in self.sources.items()}
-        definitions.update({'TASK-'+a:[{a:self.p['unit']}] for a in ['component','module','sample']})
-        for source,choices in definitions.items():
-            actual={u:a for u,a in s['origins'].items() if u.startswith(source+':')}
-            req(bool(actual)==(source in s['claimed']),'SOURCE_CLAIM')
-            if not actual:continue
-            if self.mutation=='source-duplication' and source in self.sources:continue
-            declared=[{source+':'+a+':'+str(n):a for a,count in grant.items() for n in range(count)} for grant in choices]
-            req(actual in declared,'SOURCE_ALLOCATION')
-    def validate_intent(self,a):
-        req(type(a) is dict,'INTENT_SHAPE');req('op' in a,'INTENT_SHAPE');string(a['op'],'INTENT_SHAPE')
-        specs={'move':(['to'],[]),'source':(['id'],['mode','item']),'pickup':(['id','at'],[]),
-        'split':(['id','quantity','at'],[]),'merge':(['id','target'],[]),'drop':(['id'],[]),
-        'task':(['id'],['mode','at']),'combat':(['enemy','ctb','damage','enemyDamage','wear','coatWear','bleeding','exposure','outcome'],[]),
-        'medical':(['item','id'],['target','quantity']),'repair':(['target'],[]),'exchange':(['at'],[]),
-        'rest':([],[]),'return':(['outcome'],[]),'deadline':([],[]),'reload':([],[]),'reopen':([],[])}
-        op=a['op'];req(op in specs,'UNKNOWN_INTENT');required,optional=specs[op]
-        shape(a,['op']+required,optional+['expectedRevision'],'INTENT_FIELDS')
-        for key in ['id','to','mode','item','target','enemy','outcome']:
-            if key in a:string(a[key],'INTENT_SELECTOR')
-        if 'expectedRevision' in a and self.mutation!='intent-original-value-omission':integer(a['expectedRevision'])
-        if 'at' in a:
-            req(type(a['at']) is list and len(a['at'])==3,'PLACEMENT');integer(a['at'][0]);integer(a['at'][1]);req(type(a['at'][2]) is bool,'PLACEMENT')
-        if op=='split':integer(a['quantity'],1)
-        if op=='move':req(a['to'] in self.nodes,'UNKNOWN_ROUTE')
-        if op=='source':
-            req(a['id'] in self.sources,'UNKNOWN_SOURCE');d=self.sources[a['id']]
-            modes=['dark','lit'] if d['cost']=='search.dark' else ['manual','crow'] if d['id']=='C4-cabinet' else []
-            req('mode' not in a or a['mode'] in modes,'SOURCE_MODE')
-            paired=d['id'] in ['H1-search','H2-search']
-            req(('item' in a)==paired,'RANDOM_BRANCH')
-            if paired:req(a['item'] in self.sources[d['id'][:2]+'-random']['choices'],'RANDOM_BRANCH')
-        if op=='task':
-            req(a['id'] in self.actions,'UNKNOWN_TASK');d=self.actions[a['id']]
-            req(('at' in a)==bool(d['grant']),'INTENT_FIELDS')
-            modes=['manual','crow'] if d['id'] in ['l1-open','l3-open','c-gate','fix','bypass'] else ['toolbox','crow','card'] if d['id']=='fire-door' else ['cautious'] if d['id']=='sample' else []
-            req('mode' not in a or a['mode'] in modes,'TASK_MODE')
-            if d['id']=='fire-door':req('mode' in a,'DOOR_METHOD')
-        if op=='medical':
-            req(a['item'] in ['food','bandage','firstaid','disinfect','suppressant','painkiller'],'MEDICAL_KIND')
-            req('target' not in a or a['item'] in ['bandage','firstaid'],'INTENT_FIELDS')
-            if 'quantity' in a and self.mutation!='intent-original-value-omission':integer(a['quantity'],1);req(a['quantity']==1,'MEDICAL_QUANTITY')
-        if op=='combat':
-            req(a['enemy'] in {e['id'] for e in self.content['enemies']},'UNKNOWN_ENEMY')
-            for k in ['ctb','damage','enemyDamage','wear','coatWear','exposure']:integer(a[k])
-            req(type(a['bleeding']) is bool,'TRACE_BOOL');req(a['outcome'] in ['victory','retreat','death'],'COMBAT_OUTCOME')
-        if op=='return':req(a['outcome'] in ['success','failure'],'TERMINAL_INTENT')
+            req(i['units'] and all(u in s['origins'] and s['origins'][u]==i['alias'] for u in i['units']),'ORIGIN');units.extend(i['units'])
+        req(len(units)==len(set(units)),'DUPLICATE_UNIT');req(set(units)==set(s['origins']),'MISSING_OUTPUT');self.placements(s)
     def charge(self,s,cost):
         integer(cost);req(cost==0 or s['E']>0,'E0_PAID');s['E']=max(0,s['E']-cost)
     def consume(self,s,alias,n,kind='consumed',instance=None):
@@ -203,7 +112,8 @@ class Model:
         if self.mutation=='hidden-data-leak':v['infection']=s['I']
         return v
     def step(self,before,a):
-        self.validate_intent(a);self.validate(before);s=copy.deepcopy(before);cost=0;op=a['op']
+        self.validate(before);s=copy.deepcopy(before);cost=0;op=a['op']
+        req(set(a)<= {'op','id','to','mode','at','enemy','ctb','damage','enemyDamage','wear','coatWear','bleeding','exposure','outcome','item','target','expectedRevision','quantity'},'INTENT_FIELDS')
         if 'expectedRevision' in a:req(a['expectedRevision']==s['revision'],'STALE')
         if op=='reopen' and self.mutation=='terminal-reopen':s['phase']='active';s['outcome']=None;return s
         req(s['phase']=='active','CLOSED');req(s['hp']>0,'DEAD');req(s['pending'] is None or op=='combat','PENDING')
@@ -271,8 +181,6 @@ class Model:
             for k in ['ctb','damage','enemyDamage','wear','coatWear','exposure']:integer(a[k])
             req(type(a['bleeding']) is bool,'TRACE_BOOL');req(a['outcome'] in ['victory','retreat','death'],'COMBAT_OUTCOME')
             req(s['gear']['pipe']>=a['wear'] and s['gear']['coat']>=a['coatWear'],'TRACE_RESOURCE');req(a['enemyDamage']<=en['hp'],'TRACE_DAMAGE')
-            req((a['outcome']=='death')==(a['damage']>=s['hp']),'TRACE_OUTCOME')
-            if a['outcome']=='retreat':req(s['previous'] is not None,'TRACE_LOCATION')
             cost=max(self.p['combat.minimum'],math.ceil(a['ctb']/self.p['combat.ctb_step'])*self.p['combat.energy_step'])
             s['E']=max(0,s['E']-cost);s['hp']=max(0,s['hp']-a['damage']);s['gear']['pipe']-=a['wear'];s['gear']['coat']-=a['coatWear'];s['exposure']+=a['exposure'];s['bleed']=a['bleeding'];en['hp']-=a['enemyDamage'];en['cursor']+=1;en['intent']+=1
             if s['hp']==0:self.end(s,'death',['external-combat-primary'])
@@ -280,9 +188,6 @@ class Model:
             else:req(a['outcome']=='victory' and en['hp']==0,'TRACE_OUTCOME');s['facts'].append('enemy-'+a['enemy']+'-cleared');s['pending']=None
         elif op=='medical':
             alias=a['item'];req(self.count(s,alias)>0,'MISSING_ITEM');req(a.get('id') in s['items'] and s['items'][a['id']]['alias']==alias and s['items'][a['id']]['where'] in ['pack','quick'],'TARGET_INSTANCE');req(alias in ['food','bandage','firstaid','disinfect','suppressant','painkiller'],'MEDICAL_KIND')
-            if 'target' in a:
-                targets=[w['id'] for w in s['wounds'] if alias=='firstaid' or not w['treated']]+(['contusion'] if alias=='firstaid' and s['contusion'] else [])
-                req(a['target'] in targets,'TARGET_REQUIRED')
             if alias=='food':req(s['sat']<self.g['limits']['satiety'],'NO_TARGET');s['sat']=min(self.g['limits']['satiety'],s['sat']+self.p['ration.satiety'])
             if alias=='bandage':
                 eligible=[w for w in s['wounds'] if not w['treated']]
@@ -346,20 +251,11 @@ def run(root,mutation=None):
     graph_ok=graph_ok and all(a['node'] in m.nodes and all(f in producers for f in a['requires']) and a['cost'] in m.p for a in m.actions.values())
     graph_ok=graph_ok and all(eid in m.edges and n['id'] in m.edges[eid]['ends'] for n in m.nodes.values() for eid in n['surfaceEdges'])
     record('graph-integrity','positive',True,graph_ok,'03-location-design 24 nodes + edge/dependency IDs')
-    for case in f['cases']+f.get('r1Cases',[]):
+    for case in f['cases']:
         s=m.initial(case.get('tool','crow'),case.get('specialty','scout'));s.update(copy.deepcopy(case.get('initial',{})))
         for seed in case.get('seedItems',[]):m.grant(s,seed['source'],seed['grants'],seed.get('where','quick'))
         for a in case.get('prefix',[]):s=m.step(s,a)
-        if 'prefixRoute' in case:
-            route=next(r for r in f['routes'] if r['id']==case['prefixRoute']['id'])
-            for a in route['actions'][:case['prefixRoute']['end']]:s=m.step(s,a)
-        for a in case.get('afterPrefix',[]):s=m.step(s,a)
-        if case.get('query')!='validate':
-            for change in case.get('mutations',[]):
-                parent=s
-                for key in change['path'][:-1]:parent=parent[key]
-                parent[change['path'][-1]]=copy.deepcopy(change['value'])
-        before=canon(s);actual=None;checked=s
+        before=canon(s);actual=None
         try:
             if case.get('query')=='hidden-pair':
                 other=copy.deepcopy(s);other['I']=110;other['execution']='other-seed-fixture';actual={'equal':m.projection(s)==m.projection(other),'unchanged':before==canon(s)}
@@ -369,13 +265,10 @@ def run(root,mutation=None):
                     parent=raw
                     for key in change['path'][:-1]:parent=parent[key]
                     parent[change['path'][-1]]=change['value']
-                checked=raw;before=canon(raw);m.validate(raw);actual={'accepted':True}
+                m.validate(raw);actual={'accepted':True}
             else:
-                out=m.step(s,case['action']);actual={k:out[k] for k in case.get('select',[]) if case.get('query')!='installation'}
-                if case.get('query')=='installation':
-                    actual={'transfer':'transfer' in out['facts'],'installed':sorted(u for i in out['disposed'] if i['where']=='installed' for u in i['units']),
-                    'taskItemsRemaining':sum(i['alias'] in ['component','module'] for i in out['items'].values())}
-        except Reject as e:actual={'reject':str(e),'zeroCommit':canon(checked)==before}
+                out=m.step(s,case['action']);actual={k:out[k] for k in case.get('select',[])}
+        except Reject as e:actual={'reject':str(e),'zeroCommit':canon(s)==before}
         except Exception as e:actual={'modelError':type(e).__name__,'message':str(e)}
         record(case['id'],case['category'],case['expect'],actual,case['oracle'])
     for route in f['routes']:
@@ -395,8 +288,8 @@ def run(root,mutation=None):
         traces[route['id']]={'scope':route['scope'],'trace':trace,'termination':actual,'remainingHP':s['hp'],'D/T':[s['D'],s['T']]}
     for x in f['unsupported']:record(x['id'],'unsupported','UNSUPPORTED','UNSUPPORTED',x['reason'])
     mismatch=sum(not r['match'] for r in rows);counts={k:sum(r['category']==k for r in rows) for k in ['positive','expected-rejection','fault-injection','unsupported']};counts['mismatch']=mismatch
-    return {'kind':'WORLD-ENTRY-004-R1-isolated-finite-design-evidence','mutation':mutation,'counts':counts,'cases':rows,'routes':traces,'productionTests':'NOT RUN','productionCalls':0}
+    return {'kind':'isolated-finite-design-evidence','mutation':mutation,'counts':counts,'cases':rows,'routes':traces,'productionTests':'NOT RUN','productionCalls':0}
 if __name__=='__main__':
-    a=argparse.ArgumentParser();a.add_argument('--repo-root',required=True);a.add_argument('--out',required=True);a.add_argument('--negative-control',choices=['source-duplication','terminal-reopen','double-body-cycle','hidden-data-leak','task-execution-omission','intent-original-value-omission']);args=a.parse_args()
+    a=argparse.ArgumentParser();a.add_argument('--repo-root',required=True);a.add_argument('--out',required=True);a.add_argument('--negative-control',choices=['source-duplication','terminal-reopen','double-body-cycle','hidden-data-leak']);args=a.parse_args()
     result=run(args.repo_root,args.negative_control);out=Path(args.out);out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes((json.dumps(result,ensure_ascii=False,indent=2,allow_nan=False)+'\n').encode())
     print(json.dumps({'counts':result['counts'],'failedIDs':[r['id'] for r in result['cases'] if not r['match']]},ensure_ascii=False));raise SystemExit(1 if result['counts']['mismatch'] else 0)

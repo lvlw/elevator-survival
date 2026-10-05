@@ -1,0 +1,321 @@
+{
+  "provenance": "Exact-SHA entry-004 candidate values, limited to nodes/actions/parameters used by these probes; not complete files or routes. No Model method is replaced. Prepared states and ordinary resources are explicit setup fixtures, not five-map route evidence. Unknown-source case uses an ID absent from the full candidate as well as this slice.",
+  "parameters": {
+    "grid": [
+      6,
+      4
+    ],
+    "load.bands": [
+      [
+        0,
+        16,
+        100
+      ],
+      [
+        17,
+        24,
+        110
+      ],
+      [
+        25,
+        28,
+        125
+      ]
+    ],
+    "load.contusion_percent": 110,
+    "capacity.pipe": 30,
+    "capacity.coat": 12,
+    "capacity.crow": 12,
+    "capacity.lamp": 8,
+    "capacity.toolbox": 6,
+    "unit": 1,
+    "bandage.hp": 1,
+    "survival.hp": 2,
+    "firstaid.hp": 4,
+    "ration.satiety": 2,
+    "disinfect.exposure": 1,
+    "extract.part": 10,
+    "extract.sample.cautious": 10,
+    "install": 12,
+    "survey": 6,
+    "restore.power": 12,
+    "verify.full": 6,
+    "verify.fast": 4,
+    "verify.scout.full": 4,
+    "verify.scout.fast": 3,
+    "fix.method": 10,
+    "door.manual": 14,
+    "door.crow": 6,
+    "door.toolbox": 10,
+    "door.card": 4,
+    "wear.tool": 1,
+    "wear.lamp": 1,
+    "search.dark": 12,
+    "search.lit": 8,
+    "search.fixed": 8,
+    "move.local": 2,
+    "move.cross": 8,
+    "move.side": 6,
+    "enemy.orderly": {
+      "hp": 14
+    },
+    "enemy.porter": {
+      "hp": 16
+    },
+    "enemy.technician": {
+      "hp": 16
+    },
+    "combat.minimum": 6,
+    "combat.ctb_step": 100,
+    "combat.energy_step": 4,
+    "install.inputs": {
+      "component": 1,
+      "module": 1,
+      "metal": 1,
+      "electronic": 1
+    },
+    "physical.bandage": [
+      1,
+      1,
+      1,
+      3
+    ],
+    "physical.food": [
+      1,
+      1,
+      1,
+      2
+    ],
+    "physical.disinfect": [
+      1,
+      1,
+      1,
+      3
+    ],
+    "physical.suppressant": [
+      1,
+      1,
+      1,
+      2
+    ],
+    "physical.painkiller": [
+      1,
+      1,
+      1,
+      3
+    ],
+    "physical.firstaid": [
+      1,
+      2,
+      2,
+      1
+    ],
+    "physical.metal": [
+      1,
+      1,
+      1,
+      5
+    ],
+    "physical.electronic": [
+      1,
+      1,
+      1,
+      5
+    ],
+    "physical.cloth": [
+      1,
+      1,
+      1,
+      5
+    ],
+    "physical.battery": [
+      1,
+      1,
+      1,
+      4
+    ],
+    "physical.card": [
+      1,
+      1,
+      0,
+      1
+    ],
+    "physical.sample": [
+      2,
+      2,
+      4,
+      1
+    ],
+    "physical.component": [
+      2,
+      2,
+      4,
+      1
+    ],
+    "physical.module": [
+      1,
+      2,
+      2,
+      1
+    ]
+  },
+  "content": {
+    "nodes": [
+      {
+        "id": "H0",
+        "rest": "C",
+        "surfaceEdges": [
+          "H0-H1",
+          "C0-H0",
+          "H0-T0"
+        ],
+        "enemy": null
+      },
+      {
+        "id": "H1",
+        "rest": "C",
+        "surfaceEdges": [
+          "H0-H1",
+          "H1-H2",
+          "H1-H3",
+          "H1-H7",
+          "H1-H4"
+        ],
+        "enemy": null
+      },
+      {
+        "id": "H5",
+        "rest": "C",
+        "surfaceEdges": [
+          "H4-H5"
+        ],
+        "enemy": null
+      },
+      {
+        "id": "H8",
+        "rest": "C",
+        "surfaceEdges": [
+          "H7-H8"
+        ],
+        "enemy": null
+      },
+      {
+        "id": "P1",
+        "rest": "C",
+        "surfaceEdges": [
+          "P0-P1"
+        ],
+        "enemy": null
+      },
+      {
+        "id": "L2",
+        "rest": "C",
+        "surfaceEdges": [
+          "L1-L2"
+        ],
+        "enemy": "porter"
+      },
+      {
+        "id": "C3",
+        "rest": "C",
+        "surfaceEdges": [
+          "C2-C3",
+          "C4-C3"
+        ],
+        "enemy": null
+      }
+    ],
+    "edges": [],
+    "sources": [],
+    "actions": [
+      {
+        "id": "component",
+        "node": "L2",
+        "cost": "extract.part",
+        "requires": [
+          "fixed",
+          "enemy-porter-cleared"
+        ],
+        "fact": null,
+        "consume": null,
+        "grant": "component",
+        "outputQuantity": "unit"
+      },
+      {
+        "id": "module",
+        "node": "C3",
+        "cost": "extract.part",
+        "requires": [
+          "matched"
+        ],
+        "fact": null,
+        "consume": null,
+        "grant": "module",
+        "outputQuantity": "unit"
+      },
+      {
+        "id": "sample",
+        "node": "H5",
+        "cost": "extract.sample.cautious",
+        "requires": [
+          "enemy-orderly-cleared"
+        ],
+        "fact": null,
+        "consume": null,
+        "grant": "sample",
+        "outputQuantity": "unit"
+      },
+      {
+        "id": "install",
+        "node": "H8",
+        "cost": "install",
+        "requires": [
+          "power"
+        ],
+        "fact": "transfer",
+        "consume": "install.inputs",
+        "grant": null
+      },
+      {
+        "id": "power-survey",
+        "node": "P1",
+        "cost": "survey",
+        "requires": [],
+        "fact": "power-survey",
+        "consume": null,
+        "grant": null
+      },
+      {
+        "id": "power",
+        "node": "P1",
+        "cost": "restore.power",
+        "requires": [
+          "power-survey"
+        ],
+        "fact": "power",
+        "consume": null,
+        "grant": null
+      }
+    ],
+    "goal": {
+      "facts": [
+        "power",
+        "transfer"
+      ]
+    },
+    "enemies": [
+      {
+        "id": "orderly",
+        "parameters": "enemy.orderly"
+      },
+      {
+        "id": "porter",
+        "parameters": "enemy.porter"
+      },
+      {
+        "id": "technician",
+        "parameters": "enemy.technician"
+      }
+    ]
+  }
+}

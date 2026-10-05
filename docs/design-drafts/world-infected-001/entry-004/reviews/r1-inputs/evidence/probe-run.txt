@@ -1,0 +1,15 @@
+{"checks": 31, "matched": 17, "mismatch": 14, "unexpectedExceptions": 3}
+illegal-medical-quantity-negative: accepted
+illegal-medical-quantity-bool: accepted
+illegal-medical-quantity-fraction: accepted
+illegal-medical-quantity-unsafe: accepted
+illegal-revision-false: accepted
+missing-op: unexpected-exception
+unknown-source-id: unexpected-exception
+unknown-task-id: unexpected-exception
+extra-business-outcome-medical: accepted
+foreign-execution-component-install: accepted
+foreign-execution-module-install: accepted
+missing-source-claim-install: accepted
+missing-sample-source-claim-return: accepted
+invalid-wound-treated-number: accepted

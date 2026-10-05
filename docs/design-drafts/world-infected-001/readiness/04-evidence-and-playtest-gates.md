@@ -93,3 +93,8 @@ R1在c67fd4117065e2e0dbd1117cae4fbfaa83791599获主线专项PASS，仅关闭F01�
 准确源码基线为 `0921df3f219f368479d1bf3401d8fecddc0d5f71`。C PASS仅覆盖已审九命令/稳定四态，不代表真实五图、战斗医疗或试玩完成。新增内容、来源消费、三专长/工具箱及活战斗接缝仍待采纳；38已批参数不重开。
 
 集中入口：[Owner审阅](../entry-004/00-owner-review.md)、[能力与缺口](../entry-004/01-current-production-and-gaps.md)、[验证边界](../entry-004/validation/README.md)、[最多三项工程候选](../entry-004/06-next-engineering-contracts.md)。旧正文和旧证据保留原适用状态；本批不注册内容、不执行工程，O3继续待审。
+
+
+## WORLD-ENTRY-004-R1专项返修状态（2026-10-05）
+
+从`0362460b259cba6ea160e79ad04a6cb14181cef0`续修任务来源／执行与逐意图原值校验；原31项先在完整数据复现，原98覆盖保留，新回归、六负控、冻结双跑及原生24分别交证。当前为作者返修、待准确SHA专项实审，不是主线PASS；D01—D04未采纳，E01—E03不启动，38项批准配置与生产树不改。原历史正文及成绩保持所属提交，不能叠入新通过。见[R1审阅入口](../entry-004/00-owner-review.md)、[实际检查](../entry-004/checks.json)与[验证边界](../entry-004/validation/README.md)。

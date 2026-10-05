@@ -45,3 +45,11 @@ B验证联合来源和战斗投影；C唯一安装current，先全部验真并�
 拆分产生受控子身份及不重叠来源份额；合并只同定义/资源兼容，保留各份额而非另造物。任务件不堆叠，保留原指定身份，不能用新子ID冒充样本。证据仅覆盖本委托受控动作，不记录任意完整事件流或第二钱包；不能删除B现有整输出检查而没有替代联合约束。
 
 证据见`split-merge-consume`、`missing-output`、`duplicated-unit`、`consumed-unit-not-usable`与原生`B-source-output-removal`。有限模型单位列表是隔离检查表达，不是推荐生产保存字段。原生结果确认旧B拒绝“输出消失”，尚未实现部分消费reader；这项unsupported不能计为实现通过。
+
+## R1：严格输入及模型支持边界
+
+每个op单独定义必需／可选字段；先验原形状、选择器、数值，再验证前态、复制并计算。medical不能夹带combat的damage/outcome；固定一次用药允许省略quantity或显式安全整数1，其余值拒绝，不新增批量治疗。expectedRevision必须是非负安全整数，False/True不等于0/1。伤口id唯一、treated必须布尔；有目标字段时必须实际存在且合格，不能先治疗覆盖非法标志。
+
+source/task/物品／维修目标不存在均为明确Reject，不能冒出KeyError代替语义结果。任务生产者各自限制mode/at；固定来源不接受不起作用的照明模式。combat仍是外部条件见证，独立检查数值、布尔、敌人和死亡／胜退结果相容性；不开放为普通医疗参数，不证明CTB可达性。
+
+有限前态严格检查phase／outcome／HP0、D/T范围及D不落后T、pending选择器、既有额度与资源键、伤口和原始标志。活pending恢复、完整收据／跨委托防回滚、战斗队列及完整ItemState仍未支持；局部准备态不推导全局可达。普通异常仍记录modelError/mismatch。拒绝对实际被检查的原输入验证不变，合法死亡照常产生一次后态；正常H0仍保留空身体步骤。

@@ -1,290 +1,2275 @@
 {
-  "task": "WORLD-ENTRY-004",
-  "base": "0921df3f219f368479d1bf3401d8fecddc0d5f71",
+  "task": "WORLD-ENTRY-004-R1",
+  "base": "0362460b259cba6ea160e79ad04a6cb14181cef0",
+  "parentOfBase": "0921df3f219f368479d1bf3401d8fecddc0d5f71",
+  "baseTree": "a69fbf20abac1b7ed4b041298f4fc3746a7828a7",
+  "protectedSrcTree": "98c840dd0b6b1a6cc014df4ac9165bc94bf2c794",
   "branch": "feature/design-world-entry-004",
   "model": {
-    "requested": "GPT-6 Astra / XHigh",
-    "actualVerification": "Exact runtime model/reasoning not independently exposed; no Ultra switch requested or performed"
+    "requested": "GPT-6 Astra / XHigh (session requirement)",
+    "actualVerification": "Exact runtime model/reasoning not independently exposed; no configuration escalation or model switch performed"
   },
-  "baselineReceipts": [
-    {
-      "args": [
-        "git",
-        "remote",
-        "-v"
-      ],
-      "exit": 0,
-      "stdout": "elevator-survival\thttps://github.com/lvlw/elevator-survival.git (fetch)\nelevator-survival\thttps://github.com/lvlw/elevator-survival.git (push)\norigin\thttps://github.com/lvlw/elevator-survival.git (fetch)\norigin\thttps://github.com/lvlw/elevator-survival.git (push)\n",
-      "stderr": ""
-    },
-    {
-      "args": [
-        "git",
-        "rev-parse",
-        "HEAD",
-        "HEAD^",
-        "HEAD^{tree}",
-        "HEAD:src"
-      ],
-      "exit": 0,
-      "stdout": "0921df3f219f368479d1bf3401d8fecddc0d5f71\nb9b1e0fee0e779669ca40e088ac9a867016bff82\nf835130ec111dcb387619168cd8bfccce7c72963\n98c840dd0b6b1a6cc014df4ac9165bc94bf2c794\n",
-      "stderr": ""
-    },
-    {
-      "args": [
-        "git",
-        "worktree",
-        "list",
-        "--porcelain"
-      ],
-      "exit": 0,
-      "stdout": "worktree E:/projects/elevator-survival\nHEAD 0921df3f219f368479d1bf3401d8fecddc0d5f71\nbranch refs/heads/feature/residence-terminal-session-001\n\n",
-      "stderr": ""
-    },
-    {
-      "args": [
-        "git",
-        "ls-remote",
-        "--heads",
-        "origin"
-      ],
-      "exit": 0,
-      "stdout": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63\trefs/heads/feature/design-world-entry-002\n6438f7a38939297225538cdd68af24201ed7d34f\trefs/heads/feature/design-world-entry-003\n6b48b3de6521d9a9c296754a4d8135c7f7c7ca35\trefs/heads/feature/design-world-infected-world-001\nd1d3b7927c6733cff709a4bfd617fb1e85e7485a\trefs/heads/feature/mission-lifecycle-core-001\n7ca547ab8ab4f411d1102a79baf8c0796f4b082c\trefs/heads/feature/residence-actions-core-001\n942b2d93916c649f4c2ec6cd399035151269d2ca\trefs/heads/feature/residence-energy-cycle-core-001\nd7953bbf96dc842d2953e019f950275cd693bf09\trefs/heads/feature/residence-location-core-001\n60e9c30732c5e22cfe9ff58b9b381de64b945180\trefs/heads/feature/residence-session-core-001\nbfc6bd973eeb306df1e8ee916b2160c30b757cdf\trefs/heads/feature/residence-terminal-core-001\nb9b1e0fee0e779669ca40e088ac9a867016bff82\trefs/heads/feature/residence-terminal-restore-001\n0921df3f219f368479d1bf3401d8fecddc0d5f71\trefs/heads/feature/residence-terminal-session-001\na76e9c1c998051fc1643b6e0c3d53443fa55feed\trefs/heads/main\n",
-      "stderr": ""
-    },
-    {
-      "args": [
-        "git",
-        "branch",
-        "--list",
-        "feature/design-world-entry-004"
-      ],
-      "exit": 0,
-      "stdout": "",
-      "stderr": ""
-    }
-  ],
-  "frozenVerification": {
-    "frozenInputsUnchanged": true,
-    "positiveRun1SHA256": "99b6a23ea648cd155b817bb7d21e1550c1c38f59ec42e2a1edf7d1476764e411",
-    "positiveRun2SHA256": "99b6a23ea648cd155b817bb7d21e1550c1c38f59ec42e2a1edf7d1476764e411",
-    "byteEqual": true,
+  "authorization": "R1 archived task and Owner scope; D01-D04 unadopted, E01-E03 not executed",
+  "historicalEvidence": {
+    "commit": "0362460b259cba6ea160e79ad04a6cb14181cef0",
+    "status": "Original model findings retained; historical author 98/native24 not summed as new PASS",
+    "paths": [
+      "validation/results.json",
+      "validation/native-api-results.json",
+      "validation/negative-controls.json",
+      "validation/freeze-manifest.json",
+      "checks.json",
+      "completion.md"
+    ]
+  },
+  "inputArchive": {
+    "zip": "D:/浏览器下载/WORLD-ENTRY-004-R1-Codex-Package-v1.0.zip",
+    "zipBytes": 35941,
+    "zipSHA256": "5a640c679f5c638b1956263d69c222ad367757a9a7ab0b368f3c4cd20c5f3312",
+    "unpackedOutsideRepository": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\WORLD-ENTRY-004-R1-Codex-Package-v1.0",
+    "newArchives": 14,
+    "oldInputsUnchanged": 5
+  },
+  "baseline": {
+    "inputSHA256": [
+      {
+        "path": "AUD-0362460-WORLD-ENTRY-004-review-v1.0.md",
+        "bytes": 9634,
+        "sha256": "a4b9957a2f274b80bd3b54e9ebecffd1b382b172de5d5ac305827fb9f8ab92d9"
+      },
+      {
+        "path": "BASELINE-AND-SCOPE.json",
+        "bytes": 9465,
+        "sha256": "ed5bc7734e2b742fe25375139982725aa5a7f57fc7a23d6a777581f7f01e21cf"
+      },
+      {
+        "path": "OWNER-authority-and-scope-WORLD-ENTRY-004-R1-v1.0.md",
+        "bytes": 1475,
+        "sha256": "eb8d9ec42fd8283a5d7c6187fe8cee5dd9755f39ce00eafd51cafb170e7244c1"
+      },
+      {
+        "path": "WORLD-ENTRY-004-R1-task-v1.0.md",
+        "bytes": 14660,
+        "sha256": "b77b1e8fa52024f72b6ff8620ec69c248834ad10f664c0bda0ee45650b9e17c5"
+      },
+      {
+        "path": "evidence/README.md",
+        "bytes": 1774,
+        "sha256": "52d68799acc17e8cb653c9a65f757dbae66ecc095acbf5bdef7ea2b542495b24"
+      },
+      {
+        "path": "evidence/dependency-slice.json",
+        "bytes": 5692,
+        "sha256": "e55959a2386a9e89a03edd5345a568e703754596434b69de37519969e744ef46"
+      },
+      {
+        "path": "evidence/input-audit.json",
+        "bytes": 1647,
+        "sha256": "b5dfb5a75168aaacbf4c1db3da3fed1adc07fa4c7842cad21e236a07a03f447e"
+      },
+      {
+        "path": "evidence/probe-results.json",
+        "bytes": 22899,
+        "sha256": "97b5ae767ec74eb520c5c53da45053a8e92f9c9091f29538b2e0eb984158ef8c"
+      },
+      {
+        "path": "evidence/probe-run.txt",
+        "bytes": 640,
+        "sha256": "700c1473ad5e6eb558d4fc4d4307d23bbb763096ee240091ecb811eaa56dcca1"
+      },
+      {
+        "path": "evidence/probe.py",
+        "bytes": 8049,
+        "sha256": "864c092f7ecfa303ca7c0d1e50c43aa6c52811166d82ef6dec20a224a1e94257"
+      },
+      {
+        "path": "source/check.py",
+        "bytes": 25957,
+        "sha256": "56aa97136e017b36e3b8ded6b5191d60e047e7845e19ae55046e4635b8db7460"
+      },
+      {
+        "path": "source/infected-residence-core-test-config-v0.1.json",
+        "bytes": 1417,
+        "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9"
+      },
+      {
+        "path": "source/infected-terminal-core-test-config-v0.1.json",
+        "bytes": 770,
+        "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18"
+      }
+    ],
     "receipts": [
       {
-        "label": "positive-one",
-        "argv": [
-          "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
-          "-B",
-          "-X",
-          "utf8",
-          "docs/design-drafts/world-infected-001/entry-004/validation/check.py",
-          "--repo-root",
-          ".",
-          "--out",
-          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-4mey0s37\\frozen-run-1\\results.json"
-        ],
-        "cwd": "E:\\projects\\elevator-survival",
-        "startedUTC": "2026-10-05T01:49:16.027411+00:00",
-        "exitCode": 0,
-        "stdout": "{\"counts\": {\"positive\": 48, \"expected-rejection\": 38, \"fault-injection\": 7, \"unsupported\": 5, \"mismatch\": 0}, \"failedIDs\": []}\n",
-        "stderr": ""
-      },
-      {
-        "label": "positive-two",
-        "argv": [
-          "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
-          "-B",
-          "-X",
-          "utf8",
-          "docs/design-drafts/world-infected-001/entry-004/validation/check.py",
-          "--repo-root",
-          ".",
-          "--out",
-          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-4mey0s37\\frozen-run-2\\results.json"
-        ],
-        "cwd": "E:\\projects\\elevator-survival",
-        "startedUTC": "2026-10-05T01:49:16.291136+00:00",
-        "exitCode": 0,
-        "stdout": "{\"counts\": {\"positive\": 48, \"expected-rejection\": 38, \"fault-injection\": 7, \"unsupported\": 5, \"mismatch\": 0}, \"failedIDs\": []}\n",
-        "stderr": ""
-      },
-      {
-        "label": "negative-source-duplication",
-        "argv": [
-          "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
-          "-B",
-          "-X",
-          "utf8",
-          "docs/design-drafts/world-infected-001/entry-004/validation/check.py",
-          "--repo-root",
-          ".",
-          "--negative-control",
-          "source-duplication",
-          "--out",
-          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-4mey0s37\\frozen-run-1\\negative-source-duplication.json"
-        ],
-        "cwd": "E:\\projects\\elevator-survival",
-        "startedUTC": "2026-10-05T01:49:16.550857+00:00",
-        "exitCode": 1,
-        "stdout": "{\"counts\": {\"positive\": 48, \"expected-rejection\": 38, \"fault-injection\": 7, \"unsupported\": 5, \"mismatch\": 1}, \"failedIDs\": [\"source-once\"]}\n",
-        "stderr": ""
-      },
-      {
-        "label": "negative-terminal-reopen",
-        "argv": [
-          "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
-          "-B",
-          "-X",
-          "utf8",
-          "docs/design-drafts/world-infected-001/entry-004/validation/check.py",
-          "--repo-root",
-          ".",
-          "--negative-control",
-          "terminal-reopen",
-          "--out",
-          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-4mey0s37\\frozen-run-1\\negative-terminal-reopen.json"
-        ],
-        "cwd": "E:\\projects\\elevator-survival",
-        "startedUTC": "2026-10-05T01:49:16.855618+00:00",
-        "exitCode": 1,
-        "stdout": "{\"counts\": {\"positive\": 48, \"expected-rejection\": 38, \"fault-injection\": 7, \"unsupported\": 5, \"mismatch\": 1}, \"failedIDs\": [\"closed-reopen\"]}\n",
-        "stderr": ""
-      },
-      {
-        "label": "negative-double-body-cycle",
-        "argv": [
-          "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
-          "-B",
-          "-X",
-          "utf8",
-          "docs/design-drafts/world-infected-001/entry-004/validation/check.py",
-          "--repo-root",
-          ".",
-          "--negative-control",
-          "double-body-cycle",
-          "--out",
-          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-4mey0s37\\frozen-run-1\\negative-double-body-cycle.json"
-        ],
-        "cwd": "E:\\projects\\elevator-survival",
-        "startedUTC": "2026-10-05T01:49:17.136358+00:00",
-        "exitCode": 1,
-        "stdout": "{\"counts\": {\"positive\": 48, \"expected-rejection\": 38, \"fault-injection\": 7, \"unsupported\": 5, \"mismatch\": 1}, \"failedIDs\": [\"normal-empty-cycle\"]}\n",
-        "stderr": ""
-      },
-      {
-        "label": "negative-hidden-data-leak",
-        "argv": [
-          "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
-          "-B",
-          "-X",
-          "utf8",
-          "docs/design-drafts/world-infected-001/entry-004/validation/check.py",
-          "--repo-root",
-          ".",
-          "--negative-control",
-          "hidden-data-leak",
-          "--out",
-          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-4mey0s37\\frozen-run-1\\negative-hidden-data-leak.json"
-        ],
-        "cwd": "E:\\projects\\elevator-survival",
-        "startedUTC": "2026-10-05T01:49:17.414596+00:00",
-        "exitCode": 1,
-        "stdout": "{\"counts\": {\"positive\": 48, \"expected-rejection\": 38, \"fault-injection\": 7, \"unsupported\": 5, \"mismatch\": 1}, \"failedIDs\": [\"hidden-pair\"]}\n",
-        "stderr": ""
-      },
-      {
-        "label": "native-current-source",
-        "argv": [
-          "node",
-          "docs/design-drafts/world-infected-001/entry-004/validation/native-api-probes.mjs",
-          "--repo-root",
-          ".",
-          "--out",
-          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-4mey0s37\\frozen-run-1\\native-api-results.json"
-        ],
-        "cwd": "E:\\projects\\elevator-survival",
-        "startedUTC": "2026-10-05T01:49:17.696336+00:00",
-        "exitCode": 0,
-        "stdout": "{\"counts\":{\"positive\":12,\"expected-rejection\":5,\"fault-injection\":2,\"unsupported\":5,\"mismatch\":0},\"failures\":[]}\n",
-        "stderr": "(node:22988) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:\n--import 'data:text/javascript,import { register } from \"node:module\"; import { pathToFileURL } from \"node:url\"; register(\"file%3A///C%3A/Users/zjl/AppData/Local/Temp/entry004-native-hgforb/loader.mjs\", pathToFileURL(\"./\"));'\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:22988) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
-      },
-      {
-        "label": "architecture",
-        "argv": [
-          "npm.cmd",
-          "run",
-          "validate:architecture"
-        ],
-        "cwd": "E:\\projects\\elevator-survival",
-        "startedUTC": "2026-10-05T01:49:18.522542+00:00",
-        "exitCode": 0,
-        "stdout": "\n> elevator-survival@0.0.0 validate:architecture\n> node scripts/validate-architecture.mjs\n\nArchitecture validation passed: 51 DEC entries and 257 core production files checked.\n",
-        "stderr": ""
-      },
-      {
-        "label": "working-diff",
         "argv": [
           "git",
-          "diff",
-          "--check"
+          "remote",
+          "-v"
         ],
-        "cwd": "E:\\projects\\elevator-survival",
-        "startedUTC": "2026-10-05T01:49:19.282691+00:00",
+        "exitCode": 0,
+        "stdout": "elevator-survival\thttps://github.com/lvlw/elevator-survival.git (fetch)\nelevator-survival\thttps://github.com/lvlw/elevator-survival.git (push)\norigin\thttps://github.com/lvlw/elevator-survival.git (fetch)\norigin\thttps://github.com/lvlw/elevator-survival.git (push)\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "git",
+          "rev-parse",
+          "HEAD",
+          "HEAD^",
+          "HEAD^{tree}",
+          "HEAD:src"
+        ],
+        "exitCode": 0,
+        "stdout": "0362460b259cba6ea160e79ad04a6cb14181cef0\n0921df3f219f368479d1bf3401d8fecddc0d5f71\na69fbf20abac1b7ed4b041298f4fc3746a7828a7\n98c840dd0b6b1a6cc014df4ac9165bc94bf2c794\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "git",
+          "branch",
+          "--show-current"
+        ],
+        "exitCode": 0,
+        "stdout": "feature/design-world-entry-004\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "git",
+          "status",
+          "--porcelain=v1",
+          "--untracked-files=all"
+        ],
         "exitCode": 0,
         "stdout": "",
         "stderr": ""
       },
       {
-        "label": "cached-before-stage",
+        "argv": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
         "argv": [
           "git",
           "diff",
           "--cached",
           "--check"
         ],
-        "cwd": "E:\\projects\\elevator-survival",
-        "startedUTC": "2026-10-05T01:49:19.333234+00:00",
         "exitCode": 0,
         "stdout": "",
         "stderr": ""
       },
       {
-        "label": "base-diff-before-stage",
         "argv": [
-          "git",
-          "diff",
-          "0921df3f219f368479d1bf3401d8fecddc0d5f71",
-          "--check"
+          "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\WORLD-ENTRY-004-R1-Codex-Package-v1.0\\evidence\\probe.py",
+          "--repo-root",
+          ".",
+          "--out",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\before-probe.json"
         ],
-        "cwd": "E:\\projects\\elevator-survival",
-        "startedUTC": "2026-10-05T01:49:19.366763+00:00",
-        "exitCode": 0,
-        "stdout": "",
+        "exitCode": 1,
+        "stdout": "{\"checks\": 31, \"matched\": 17, \"mismatch\": 14, \"unexpectedExceptions\": 3}\nillegal-medical-quantity-negative: accepted\nillegal-medical-quantity-bool: accepted\nillegal-medical-quantity-fraction: accepted\nillegal-medical-quantity-unsafe: accepted\nillegal-revision-false: accepted\nmissing-op: unexpected-exception\nunknown-source-id: unexpected-exception\nunknown-task-id: unexpected-exception\nextra-business-outcome-medical: accepted\nforeign-execution-component-install: accepted\nforeign-execution-module-install: accepted\nmissing-source-claim-install: accepted\nmissing-sample-source-claim-return: accepted\ninvalid-wound-treated-number: accepted\n",
         "stderr": ""
       }
     ]
   },
-  "finiteCounts": {
-    "positive": 48,
-    "expected-rejection": 38,
-    "fault-injection": 7,
-    "unsupported": 5,
-    "mismatch": 0
+  "reproduction": {
+    "before": {
+      "reviewBaseCommit": "0362460b259cba6ea160e79ad04a6cb14181cef0",
+      "modelGitBlob": "4d3c0e443dd02232ca1cc8c7fbac25588ca06bd7",
+      "matchesReviewBaseModelBlob": true,
+      "mode": "full-repository-data",
+      "scope": "Unmodified Model methods; independent targeted prepared states; not the author 98-case suite or native TS/CTB execution. No storage or notification exists in this finite model.",
+      "counts": {
+        "checks": 31,
+        "matched": 17,
+        "mismatch": 14,
+        "unexpectedExceptions": 3
+      },
+      "cases": [
+        {
+          "id": "control-valid-E0-bandage",
+          "expected": "accept",
+          "actual": {
+            "kind": "accepted",
+            "hp": 9,
+            "E": 0,
+            "revision": 1,
+            "facts": [],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "bandage",
+                "units": [
+                  "initial:bandage:0"
+                ],
+                "where": "consumed",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "control-no-target-bandage",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "NO_TARGET"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "control-pending-medical",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "PENDING"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "control-closed-medical",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "CLOSED"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "illegal-medical-quantity-negative",
+          "expected": "reject",
+          "actual": {
+            "kind": "accepted",
+            "hp": 9,
+            "E": 0,
+            "revision": 1,
+            "facts": [],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "bandage",
+                "units": [
+                  "initial:bandage:0"
+                ],
+                "where": "consumed",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": false,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage",
+            "quantity": -1
+          }
+        },
+        {
+          "id": "illegal-medical-quantity-bool",
+          "expected": "reject",
+          "actual": {
+            "kind": "accepted",
+            "hp": 9,
+            "E": 0,
+            "revision": 1,
+            "facts": [],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "bandage",
+                "units": [
+                  "initial:bandage:0"
+                ],
+                "where": "consumed",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": false,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage",
+            "quantity": true
+          }
+        },
+        {
+          "id": "illegal-medical-quantity-fraction",
+          "expected": "reject",
+          "actual": {
+            "kind": "accepted",
+            "hp": 9,
+            "E": 0,
+            "revision": 1,
+            "facts": [],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "bandage",
+                "units": [
+                  "initial:bandage:0"
+                ],
+                "where": "consumed",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": false,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage",
+            "quantity": 0.5
+          }
+        },
+        {
+          "id": "illegal-medical-quantity-unsafe",
+          "expected": "reject",
+          "actual": {
+            "kind": "accepted",
+            "hp": 9,
+            "E": 0,
+            "revision": 1,
+            "facts": [],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "bandage",
+                "units": [
+                  "initial:bandage:0"
+                ],
+                "where": "consumed",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": false,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage",
+            "quantity": 9007199254740992
+          }
+        },
+        {
+          "id": "illegal-revision-false",
+          "expected": "reject",
+          "actual": {
+            "kind": "accepted",
+            "hp": 9,
+            "E": 0,
+            "revision": 1,
+            "facts": [],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "bandage",
+                "units": [
+                  "initial:bandage:0"
+                ],
+                "where": "consumed",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": false,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage",
+            "expectedRevision": false
+          }
+        },
+        {
+          "id": "control-stale-revision",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "STALE"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage",
+            "expectedRevision": 2
+          }
+        },
+        {
+          "id": "missing-medical-instance",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "TARGET_INSTANCE"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage"
+          }
+        },
+        {
+          "id": "missing-op",
+          "expected": "reject",
+          "actual": {
+            "kind": "unexpected-exception",
+            "type": "KeyError",
+            "message": "'op'"
+          },
+          "match": false,
+          "inputUnchanged": true,
+          "action": {
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "unknown-source-id",
+          "expected": "reject",
+          "actual": {
+            "kind": "unexpected-exception",
+            "type": "KeyError",
+            "message": "'unknown'"
+          },
+          "match": false,
+          "inputUnchanged": true,
+          "action": {
+            "op": "source",
+            "id": "unknown"
+          }
+        },
+        {
+          "id": "unknown-task-id",
+          "expected": "reject",
+          "actual": {
+            "kind": "unexpected-exception",
+            "type": "KeyError",
+            "message": "'unknown'"
+          },
+          "match": false,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "unknown"
+          }
+        },
+        {
+          "id": "extra-business-outcome-medical",
+          "expected": "reject",
+          "actual": {
+            "kind": "accepted",
+            "hp": 9,
+            "E": 0,
+            "revision": 1,
+            "facts": [],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "bandage",
+                "units": [
+                  "initial:bandage:0"
+                ],
+                "where": "consumed",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": false,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage",
+            "outcome": "success"
+          }
+        },
+        {
+          "id": "control-valid-task-install",
+          "expected": "accept",
+          "actual": {
+            "kind": "accepted",
+            "hp": 12,
+            "E": 68,
+            "revision": 5,
+            "facts": [
+              "verified",
+              "fixed",
+              "enemy-porter-cleared",
+              "matched",
+              "power",
+              "transfer"
+            ],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "component",
+                "units": [
+                  "TASK-component:component:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "module",
+                "units": [
+                  "TASK-module:module:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "metal",
+                "units": [
+                  "L3-rack:metal:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "electronic",
+                "units": [
+                  "L3-rack:electronic:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "install"
+          }
+        },
+        {
+          "id": "foreign-execution-component-install",
+          "expected": "reject",
+          "actual": {
+            "kind": "accepted",
+            "hp": 12,
+            "E": 68,
+            "revision": 5,
+            "facts": [
+              "verified",
+              "fixed",
+              "enemy-porter-cleared",
+              "matched",
+              "power",
+              "transfer"
+            ],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "component",
+                "units": [
+                  "TASK-component:component:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "other-execution"
+              },
+              {
+                "alias": "module",
+                "units": [
+                  "TASK-module:module:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "metal",
+                "units": [
+                  "L3-rack:metal:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "electronic",
+                "units": [
+                  "L3-rack:electronic:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": false,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "install"
+          }
+        },
+        {
+          "id": "foreign-execution-module-install",
+          "expected": "reject",
+          "actual": {
+            "kind": "accepted",
+            "hp": 12,
+            "E": 68,
+            "revision": 5,
+            "facts": [
+              "verified",
+              "fixed",
+              "enemy-porter-cleared",
+              "matched",
+              "power",
+              "transfer"
+            ],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "component",
+                "units": [
+                  "TASK-component:component:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "module",
+                "units": [
+                  "TASK-module:module:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "other-execution"
+              },
+              {
+                "alias": "metal",
+                "units": [
+                  "L3-rack:metal:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "electronic",
+                "units": [
+                  "L3-rack:electronic:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": false,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "install"
+          }
+        },
+        {
+          "id": "control-ground-component-install",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "MISSING_ITEM"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "install"
+          }
+        },
+        {
+          "id": "control-repeat-install",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "ALREADY_DONE"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "install"
+          }
+        },
+        {
+          "id": "control-E0-install",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "E0_PAID"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "install"
+          }
+        },
+        {
+          "id": "missing-source-claim-install",
+          "expected": "reject",
+          "actual": {
+            "kind": "accepted",
+            "hp": 12,
+            "E": 68,
+            "revision": 5,
+            "facts": [
+              "verified",
+              "fixed",
+              "enemy-porter-cleared",
+              "matched",
+              "power",
+              "transfer"
+            ],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "component",
+                "units": [
+                  "TASK-component:component:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "module",
+                "units": [
+                  "TASK-module:module:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "metal",
+                "units": [
+                  "L3-rack:metal:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "electronic",
+                "units": [
+                  "L3-rack:electronic:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": false,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "install"
+          }
+        },
+        {
+          "id": "control-valid-success",
+          "expected": "accept",
+          "actual": {
+            "kind": "accepted",
+            "hp": 12,
+            "E": 58,
+            "revision": 7,
+            "facts": [
+              "verified",
+              "fixed",
+              "enemy-porter-cleared",
+              "matched",
+              "power",
+              "transfer",
+              "enemy-orderly-cleared"
+            ],
+            "phase": "hub",
+            "outcome": "success",
+            "points": 120,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "component",
+                "units": [
+                  "TASK-component:component:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "module",
+                "units": [
+                  "TASK-module:module:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "metal",
+                "units": [
+                  "L3-rack:metal:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "electronic",
+                "units": [
+                  "L3-rack:electronic:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "battery",
+                "units": [
+                  "L3-rack:battery:0"
+                ],
+                "where": "unreachable",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "sample",
+                "units": [
+                  "TASK-sample:sample:0"
+                ],
+                "where": "delivered",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "return",
+            "outcome": "success"
+          }
+        },
+        {
+          "id": "control-foreign-sample-return",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "WRONG_TERMINAL_INTENT"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "return",
+            "outcome": "success"
+          }
+        },
+        {
+          "id": "missing-sample-source-claim-return",
+          "expected": "reject",
+          "actual": {
+            "kind": "accepted",
+            "hp": 12,
+            "E": 58,
+            "revision": 7,
+            "facts": [
+              "verified",
+              "fixed",
+              "enemy-porter-cleared",
+              "matched",
+              "power",
+              "transfer",
+              "enemy-orderly-cleared"
+            ],
+            "phase": "hub",
+            "outcome": "success",
+            "points": 120,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "component",
+                "units": [
+                  "TASK-component:component:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "module",
+                "units": [
+                  "TASK-module:module:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "metal",
+                "units": [
+                  "L3-rack:metal:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "electronic",
+                "units": [
+                  "L3-rack:electronic:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "battery",
+                "units": [
+                  "L3-rack:battery:0"
+                ],
+                "where": "unreachable",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "sample",
+                "units": [
+                  "TASK-sample:sample:0"
+                ],
+                "where": "delivered",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": false,
+          "inputUnchanged": true,
+          "action": {
+            "op": "return",
+            "outcome": "success"
+          }
+        },
+        {
+          "id": "control-ground-sample-return",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "WRONG_TERMINAL_INTENT"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "return",
+            "outcome": "success"
+          }
+        },
+        {
+          "id": "invalid-wound-treated-number",
+          "expected": "reject",
+          "actual": {
+            "kind": "accepted",
+            "hp": 9,
+            "E": 0,
+            "revision": 1,
+            "facts": [],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "bandage",
+                "units": [
+                  "initial:bandage:0"
+                ],
+                "where": "consumed",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": false,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "control-duplicate-unit",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "DUPLICATE_UNIT"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "control-missing-unit",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "MISSING_OUTPUT"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "control-normal-return-empty-cycle",
+          "expected": "accept",
+          "actual": {
+            "kind": "accepted",
+            "hp": 12,
+            "E": 100,
+            "revision": 1,
+            "facts": [],
+            "phase": "hub",
+            "outcome": "failure",
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": []
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "return",
+            "outcome": "failure"
+          }
+        },
+        {
+          "id": "control-final-over-budget-action",
+          "expected": "accept",
+          "actual": {
+            "kind": "accepted",
+            "hp": 12,
+            "E": 0,
+            "revision": 1,
+            "facts": [
+              "power-survey",
+              "power"
+            ],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": []
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "power"
+          }
+        }
+      ]
+    },
+    "after": {
+      "reviewBaseCommit": "0362460b259cba6ea160e79ad04a6cb14181cef0",
+      "modelGitBlob": "5258bb4e37420ee117b029efee8c2c386b650eda",
+      "matchesReviewBaseModelBlob": false,
+      "mode": "full-repository-data",
+      "scope": "Unmodified Model methods; independent targeted prepared states; not the author 98-case suite or native TS/CTB execution. No storage or notification exists in this finite model.",
+      "counts": {
+        "checks": 31,
+        "matched": 31,
+        "mismatch": 0,
+        "unexpectedExceptions": 0
+      },
+      "cases": [
+        {
+          "id": "control-valid-E0-bandage",
+          "expected": "accept",
+          "actual": {
+            "kind": "accepted",
+            "hp": 9,
+            "E": 0,
+            "revision": 1,
+            "facts": [],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "bandage",
+                "units": [
+                  "initial:bandage:0"
+                ],
+                "where": "consumed",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "control-no-target-bandage",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "NO_TARGET"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "control-pending-medical",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "PENDING"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "control-closed-medical",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "CLOSED"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "illegal-medical-quantity-negative",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "INVALID_NUMBER"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage",
+            "quantity": -1
+          }
+        },
+        {
+          "id": "illegal-medical-quantity-bool",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "INVALID_NUMBER"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage",
+            "quantity": true
+          }
+        },
+        {
+          "id": "illegal-medical-quantity-fraction",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "INVALID_NUMBER"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage",
+            "quantity": 0.5
+          }
+        },
+        {
+          "id": "illegal-medical-quantity-unsafe",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "INVALID_NUMBER"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage",
+            "quantity": 9007199254740992
+          }
+        },
+        {
+          "id": "illegal-revision-false",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "INVALID_NUMBER"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage",
+            "expectedRevision": false
+          }
+        },
+        {
+          "id": "control-stale-revision",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "STALE"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage",
+            "expectedRevision": 2
+          }
+        },
+        {
+          "id": "missing-medical-instance",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "INTENT_FIELDS"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage"
+          }
+        },
+        {
+          "id": "missing-op",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "INTENT_SHAPE"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "unknown-source-id",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "UNKNOWN_SOURCE"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "source",
+            "id": "unknown"
+          }
+        },
+        {
+          "id": "unknown-task-id",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "UNKNOWN_TASK"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "unknown"
+          }
+        },
+        {
+          "id": "extra-business-outcome-medical",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "INTENT_FIELDS"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage",
+            "outcome": "success"
+          }
+        },
+        {
+          "id": "control-valid-task-install",
+          "expected": "accept",
+          "actual": {
+            "kind": "accepted",
+            "hp": 12,
+            "E": 68,
+            "revision": 5,
+            "facts": [
+              "verified",
+              "fixed",
+              "enemy-porter-cleared",
+              "matched",
+              "power",
+              "transfer"
+            ],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "component",
+                "units": [
+                  "TASK-component:component:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "module",
+                "units": [
+                  "TASK-module:module:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "metal",
+                "units": [
+                  "L3-rack:metal:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "electronic",
+                "units": [
+                  "L3-rack:electronic:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "install"
+          }
+        },
+        {
+          "id": "foreign-execution-component-install",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "TASK_EXECUTION"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "install"
+          }
+        },
+        {
+          "id": "foreign-execution-module-install",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "TASK_EXECUTION"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "install"
+          }
+        },
+        {
+          "id": "control-ground-component-install",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "MISSING_ITEM"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "install"
+          }
+        },
+        {
+          "id": "control-repeat-install",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "ALREADY_DONE"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "install"
+          }
+        },
+        {
+          "id": "control-E0-install",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "E0_PAID"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "install"
+          }
+        },
+        {
+          "id": "missing-source-claim-install",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "SOURCE_CLAIM"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "install"
+          }
+        },
+        {
+          "id": "control-valid-success",
+          "expected": "accept",
+          "actual": {
+            "kind": "accepted",
+            "hp": 12,
+            "E": 58,
+            "revision": 7,
+            "facts": [
+              "verified",
+              "fixed",
+              "enemy-porter-cleared",
+              "matched",
+              "power",
+              "transfer",
+              "enemy-orderly-cleared"
+            ],
+            "phase": "hub",
+            "outcome": "success",
+            "points": 120,
+            "D": 1,
+            "T": 1,
+            "disposed": [
+              {
+                "alias": "component",
+                "units": [
+                  "TASK-component:component:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "module",
+                "units": [
+                  "TASK-module:module:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "metal",
+                "units": [
+                  "L3-rack:metal:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "electronic",
+                "units": [
+                  "L3-rack:electronic:0"
+                ],
+                "where": "installed",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "battery",
+                "units": [
+                  "L3-rack:battery:0"
+                ],
+                "where": "unreachable",
+                "at": null,
+                "execution": "finite-execution"
+              },
+              {
+                "alias": "sample",
+                "units": [
+                  "TASK-sample:sample:0"
+                ],
+                "where": "delivered",
+                "at": null,
+                "execution": "finite-execution"
+              }
+            ]
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "return",
+            "outcome": "success"
+          }
+        },
+        {
+          "id": "control-foreign-sample-return",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "WRONG_TERMINAL_INTENT"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "return",
+            "outcome": "success"
+          }
+        },
+        {
+          "id": "missing-sample-source-claim-return",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "SOURCE_CLAIM"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "return",
+            "outcome": "success"
+          }
+        },
+        {
+          "id": "control-ground-sample-return",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "WRONG_TERMINAL_INTENT"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "return",
+            "outcome": "success"
+          }
+        },
+        {
+          "id": "invalid-wound-treated-number",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "STATE_BOOL"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "control-duplicate-unit",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "DUPLICATE_UNIT"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "control-missing-unit",
+          "expected": "reject",
+          "actual": {
+            "kind": "semantic-reject",
+            "code": "MISSING_OUTPUT"
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "medical",
+            "item": "bandage",
+            "id": "initial-bandage"
+          }
+        },
+        {
+          "id": "control-normal-return-empty-cycle",
+          "expected": "accept",
+          "actual": {
+            "kind": "accepted",
+            "hp": 12,
+            "E": 100,
+            "revision": 1,
+            "facts": [],
+            "phase": "hub",
+            "outcome": "failure",
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": []
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "return",
+            "outcome": "failure"
+          }
+        },
+        {
+          "id": "control-final-over-budget-action",
+          "expected": "accept",
+          "actual": {
+            "kind": "accepted",
+            "hp": 12,
+            "E": 0,
+            "revision": 1,
+            "facts": [
+              "power-survey",
+              "power"
+            ],
+            "phase": "active",
+            "outcome": null,
+            "points": 0,
+            "D": 1,
+            "T": 1,
+            "disposed": []
+          },
+          "match": true,
+          "inputUnchanged": true,
+          "action": {
+            "op": "task",
+            "id": "power"
+          }
+        }
+      ]
+    },
+    "originalProbeUnmodified": true,
+    "beforeExit": 1,
+    "afterExit": 0,
+    "beforeUnexpectedExceptions": 3,
+    "afterUnexpectedExceptions": 0,
+    "note": "matchesReviewBaseModelBlob false after repair is identity only"
   },
-  "nativeCounts": {
-    "positive": 12,
-    "expected-rejection": 5,
-    "fault-injection": 2,
-    "unsupported": 5,
-    "mismatch": 0
+  "finite": {
+    "counts": {
+      "positive": 55,
+      "expected-rejection": 127,
+      "fault-injection": 7,
+      "unsupported": 5,
+      "mismatch": 0
+    },
+    "original98Retained": 98,
+    "newRegressionCount": 96,
+    "originalExpectedChanged": 0,
+    "deleted": 0,
+    "skipped": 0,
+    "replaced": 0,
+    "adaptedIDs": [
+      {
+        "id": "consumed-unit-not-usable",
+        "change": "select the actually consumed instance; original expected unchanged"
+      },
+      {
+        "id": "actual-wrong-execution-sample",
+        "change": "prepared claimed TASK-sample; original expected unchanged"
+      },
+      {
+        "id": "already-delivered-sample",
+        "change": "prepared claimed TASK-sample; original expected unchanged"
+      },
+      {
+        "id": "real-sample-success",
+        "change": "prepared claimed TASK-sample; original expected unchanged"
+      },
+      {
+        "id": "route-hotel-bypass",
+        "change": "remove inert lighting labels from fixed sources; same actions/costs/expectation",
+        "actionIndices": [
+          22,
+          31,
+          40
+        ]
+      },
+      {
+        "id": "route-hotel-benefit",
+        "change": "remove inert lighting labels from fixed sources; same actions/costs/expectation",
+        "actionIndices": [
+          23,
+          32,
+          41
+        ]
+      },
+      {
+        "id": "route-segmented",
+        "change": "remove inert lighting labels from fixed sources; same actions/costs/expectation",
+        "actionIndices": [
+          25,
+          36,
+          43
+        ]
+      },
+      {
+        "id": "route-toolbox",
+        "change": "remove inert lighting labels from fixed sources; same actions/costs/expectation",
+        "actionIndices": [
+          21,
+          30,
+          39
+        ]
+      }
+    ],
+    "all194IDsUnique": true,
+    "unsupportedIsNotImplemented": true
+  },
+  "native": {
+    "counts": {
+      "positive": 12,
+      "expected-rejection": 5,
+      "fault-injection": 2,
+      "unsupported": 5,
+      "mismatch": 0
+    },
+    "rerun": true,
+    "originalScriptUnchanged": true,
+    "outputBytesIdenticalTo036": true,
+    "note": "Byte identity does not replace new process execution; see receipts"
+  },
+  "freeze": {
+    "inputCount": 55,
+    "runs": 2,
+    "separateProcesses": true,
+    "byteIdentical": true,
+    "resultsSHA256": "5619fbfc942d753a76f6ecb32335984d066ca822a1247bf9b95f999d53402654",
+    "postRunInputsUnchanged": true
+  },
+  "commands": [
+    {
+      "name": "frozen-positive-1",
+      "argv": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-004\\validation\\check.py",
+        "--repo-root",
+        "E:\\projects\\elevator-survival",
+        "--out",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\run1\\results.json"
+      ],
+      "exit": 0,
+      "stdout": "{\"counts\": {\"positive\": 55, \"expected-rejection\": 127, \"fault-injection\": 7, \"unsupported\": 5, \"mismatch\": 0}, \"failedIDs\": []}\n",
+      "stderr": ""
+    },
+    {
+      "name": "frozen-positive-2",
+      "argv": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-004\\validation\\check.py",
+        "--repo-root",
+        "E:\\projects\\elevator-survival",
+        "--out",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\run2\\results.json"
+      ],
+      "exit": 0,
+      "stdout": "{\"counts\": {\"positive\": 55, \"expected-rejection\": 127, \"fault-injection\": 7, \"unsupported\": 5, \"mismatch\": 0}, \"failedIDs\": []}\n",
+      "stderr": ""
+    },
+    {
+      "name": "original-probe-after",
+      "argv": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\WORLD-ENTRY-004-R1-Codex-Package-v1.0\\evidence\\probe.py",
+        "--repo-root",
+        "E:\\projects\\elevator-survival",
+        "--out",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\after-probe.json"
+      ],
+      "exit": 0,
+      "stdout": "{\"checks\": 31, \"matched\": 31, \"mismatch\": 0, \"unexpectedExceptions\": 0}\n\n",
+      "stderr": ""
+    },
+    {
+      "name": "negative-source-duplication",
+      "argv": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-004\\validation\\check.py",
+        "--repo-root",
+        "E:\\projects\\elevator-survival",
+        "--negative-control",
+        "source-duplication",
+        "--out",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\run1\\negative-source-duplication.json"
+      ],
+      "exit": 1,
+      "stdout": "{\"counts\": {\"positive\": 55, \"expected-rejection\": 127, \"fault-injection\": 7, \"unsupported\": 5, \"mismatch\": 2}, \"failedIDs\": [\"source-once\", \"R1-source-wrong-cardinality\"]}\n",
+      "stderr": ""
+    },
+    {
+      "name": "negative-terminal-reopen",
+      "argv": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-004\\validation\\check.py",
+        "--repo-root",
+        "E:\\projects\\elevator-survival",
+        "--negative-control",
+        "terminal-reopen",
+        "--out",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\run1\\negative-terminal-reopen.json"
+      ],
+      "exit": 1,
+      "stdout": "{\"counts\": {\"positive\": 55, \"expected-rejection\": 127, \"fault-injection\": 7, \"unsupported\": 5, \"mismatch\": 1}, \"failedIDs\": [\"closed-reopen\"]}\n",
+      "stderr": ""
+    },
+    {
+      "name": "negative-double-body-cycle",
+      "argv": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-004\\validation\\check.py",
+        "--repo-root",
+        "E:\\projects\\elevator-survival",
+        "--negative-control",
+        "double-body-cycle",
+        "--out",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\run1\\negative-double-body-cycle.json"
+      ],
+      "exit": 1,
+      "stdout": "{\"counts\": {\"positive\": 55, \"expected-rejection\": 127, \"fault-injection\": 7, \"unsupported\": 5, \"mismatch\": 1}, \"failedIDs\": [\"normal-empty-cycle\"]}\n",
+      "stderr": ""
+    },
+    {
+      "name": "negative-hidden-data-leak",
+      "argv": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-004\\validation\\check.py",
+        "--repo-root",
+        "E:\\projects\\elevator-survival",
+        "--negative-control",
+        "hidden-data-leak",
+        "--out",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\run1\\negative-hidden-data-leak.json"
+      ],
+      "exit": 1,
+      "stdout": "{\"counts\": {\"positive\": 55, \"expected-rejection\": 127, \"fault-injection\": 7, \"unsupported\": 5, \"mismatch\": 1}, \"failedIDs\": [\"hidden-pair\"]}\n",
+      "stderr": ""
+    },
+    {
+      "name": "negative-task-execution-omission",
+      "argv": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-004\\validation\\check.py",
+        "--repo-root",
+        "E:\\projects\\elevator-survival",
+        "--negative-control",
+        "task-execution-omission",
+        "--out",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\run1\\negative-task-execution-omission.json"
+      ],
+      "exit": 1,
+      "stdout": "{\"counts\": {\"positive\": 55, \"expected-rejection\": 127, \"fault-injection\": 7, \"unsupported\": 5, \"mismatch\": 4}, \"failedIDs\": [\"R1-foreign-component-install\", \"R1-foreign-module-install\", \"R1-component-foreign-pickup\", \"R1-installed-task-foreign-execution\"]}\n",
+      "stderr": ""
+    },
+    {
+      "name": "negative-intent-original-value-omission",
+      "argv": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-004\\validation\\check.py",
+        "--repo-root",
+        "E:\\projects\\elevator-survival",
+        "--negative-control",
+        "intent-original-value-omission",
+        "--out",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\run1\\negative-intent-original-value-omission.json"
+      ],
+      "exit": 1,
+      "stdout": "{\"counts\": {\"positive\": 55, \"expected-rejection\": 127, \"fault-injection\": 7, \"unsupported\": 5, \"mismatch\": 12}, \"failedIDs\": [\"R1-medical-quantity-negative\", \"R1-medical-quantity-boolean\", \"R1-medical-quantity-fraction\", \"R1-medical-quantity-unsafe\", \"R1-medical-quantity-zero\", \"R1-medical-quantity-string\", \"R1-medical-quantity-null\", \"R1-medical-quantity-two\", \"R1-revision-false\", \"R1-revision-true\", \"R1-revision-fraction\", \"R1-revision-unsafe\"]}\n",
+      "stderr": ""
+    },
+    {
+      "name": "native-api",
+      "argv": [
+        "node",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-004\\validation\\native-api-probes.mjs",
+        "--repo-root",
+        "E:\\projects\\elevator-survival",
+        "--out",
+        "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\run1\\native-api-results.json"
+      ],
+      "exit": 0,
+      "stdout": "{\"counts\":{\"positive\":12,\"expected-rejection\":5,\"fault-injection\":2,\"unsupported\":5,\"mismatch\":0},\"failures\":[]}\n",
+      "stderr": "(node:20544) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:\n--import 'data:text/javascript,import { register } from \"node:module\"; import { pathToFileURL } from \"node:url\"; register(\"file%3A///C%3A/Users/zjl/AppData/Local/Temp/entry004-native-r2pKfR/loader.mjs\", pathToFileURL(\"./\"));'\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:20544) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "name": "architecture",
+      "argv": [
+        "npm.cmd",
+        "run",
+        "validate:architecture"
+      ],
+      "exit": 0,
+      "stdout": "\n> elevator-survival@0.0.0 validate:architecture\n> node scripts/validate-architecture.mjs\n\nArchitecture validation passed: 51 DEC entries and 257 core production files checked.\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-diff",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "cached-diff-before-stage",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "base-diff",
+      "argv": [
+        "git",
+        "diff",
+        "0362460b259cba6ea160e79ad04a6cb14181cef0",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "development": {
+    "original31": {
+      "matched": 17,
+      "mismatch": 14,
+      "unexpectedExceptions": 3
+    },
+    "firstModelPatch": [
+      {
+        "name": "after-probe-first",
+        "argv": [
+          "C:/Users/zjl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\WORLD-ENTRY-004-R1-Codex-Package-v1.0\\evidence\\probe.py",
+          "--repo-root",
+          ".",
+          "--out",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\after-probe-first.json"
+        ],
+        "exit": 0,
+        "stdout": "{\"checks\": 31, \"matched\": 31, \"mismatch\": 0, \"unexpectedExceptions\": 0}\n\n",
+        "stderr": ""
+      },
+      {
+        "name": "suite-first",
+        "argv": [
+          "C:/Users/zjl/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "docs/design-drafts/world-infected-001/entry-004/validation/check.py",
+          "--repo-root",
+          ".",
+          "--out",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-004-r1-xgy385mx\\suite-first.json"
+        ],
+        "exit": 1,
+        "stdout": "{\"counts\": {\"positive\": 48, \"expected-rejection\": 38, \"fault-injection\": 7, \"unsupported\": 5, \"mismatch\": 7}, \"failedIDs\": [\"consumed-unit-not-usable\", \"already-delivered-sample\", \"real-sample-success\", \"route-hotel-bypass\", \"route-hotel-benefit\", \"route-segmented\", \"route-toolbox\"]}\n",
+        "stderr": ""
+      }
+    ],
+    "originalSuiteAfterAdaptation": {
+      "positive": 48,
+      "expected-rejection": 38,
+      "fault-injection": 7,
+      "unsupported": 5,
+      "mismatch": 0
+    },
+    "newRegressionFirstRunFailures": [
+      {
+        "id": "R1-real-installation",
+        "category": "positive",
+        "expected": {
+          "transfer": true,
+          "installed": [
+            "H1-search:metal:0",
+            "L3-rack:electronic:0",
+            "TASK-component:component:0",
+            "TASK-module:module:0"
+          ],
+          "taskItemsRemaining": 0
+        },
+        "actual": {
+          "modelError": "KeyError",
+          "message": "'transfer'"
+        },
+        "match": false,
+        "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+      },
+      {
+        "id": "R1-task-local-transport-install",
+        "category": "positive",
+        "expected": {
+          "transfer": true,
+          "installed": [
+            "H1-search:metal:0",
+            "L3-rack:electronic:0",
+            "TASK-component:component:0",
+            "TASK-module:module:0"
+          ],
+          "taskItemsRemaining": 0
+        },
+        "actual": {
+          "modelError": "KeyError",
+          "message": "'transfer'"
+        },
+        "match": false,
+        "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+      },
+      {
+        "id": "R1-source-wrong-cardinality",
+        "category": "expected-rejection",
+        "expected": {
+          "reject": "SOURCE_ALLOCATION",
+          "zeroCommit": true
+        },
+        "actual": {
+          "reject": "TASK_SOURCE",
+          "zeroCommit": true
+        },
+        "match": false,
+        "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+      }
+    ],
+    "corrections": [
+      "Installation summary query must not first read summary keys from the raw state; fixed query output without changing expected",
+      "Cardinality test separated ordinary source output mismatch from earlier task ordinal rejection; both retained",
+      "Sample/disposed missing-claim tests isolated only their target source, not all ordinary claims"
+    ]
   },
   "negativeControls": {
-    "status": "all four semantic controls detected with exit1; not crashes",
-    "controls": [
+    "task": "WORLD-ENTRY-004-R1",
+    "mutations": [
       {
         "name": "source-duplication",
-        "exitCode": 1,
-        "expectedDetector": "source-once",
+        "exit": 1,
+        "counts": {
+          "positive": 55,
+          "expected-rejection": 127,
+          "fault-injection": 7,
+          "unsupported": 5,
+          "mismatch": 2
+        },
         "failedCases": [
           {
             "id": "source-once",
@@ -296,21 +2281,32 @@
             "actual": {},
             "match": false,
             "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields"
+          },
+          {
+            "id": "R1-source-wrong-cardinality",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "SOURCE_ALLOCATION",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
           }
         ],
-        "fullOutputSHA256": "b383ea12c6bd2df4ffc4f5360d841867425723d0eb79c99120eee876f31b4c91",
-        "counts": {
-          "positive": 48,
-          "expected-rejection": 38,
-          "fault-injection": 7,
-          "unsupported": 5,
-          "mismatch": 1
-        }
+        "sha256": "b563fd2d756d40152d675f74e71d071815b3df11c3757e9f76a544211b5e4a39",
+        "unexpectedExceptions": 0
       },
       {
         "name": "terminal-reopen",
-        "exitCode": 1,
-        "expectedDetector": "closed-reopen",
+        "exit": 1,
+        "counts": {
+          "positive": 55,
+          "expected-rejection": 127,
+          "fault-injection": 7,
+          "unsupported": 5,
+          "mismatch": 1
+        },
         "failedCases": [
           {
             "id": "closed-reopen",
@@ -324,19 +2320,19 @@
             "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields"
           }
         ],
-        "fullOutputSHA256": "d584b9e6970a9d1cff3666b2a5743c6504901e40d435f829b3a5c90478adebd7",
-        "counts": {
-          "positive": 48,
-          "expected-rejection": 38,
-          "fault-injection": 7,
-          "unsupported": 5,
-          "mismatch": 1
-        }
+        "sha256": "845548c79fd415ae8e1a2d6685dfe20abeecc0a56cb0a53d74842ed5f4d7ba4f",
+        "unexpectedExceptions": 0
       },
       {
         "name": "double-body-cycle",
-        "exitCode": 1,
-        "expectedDetector": "normal-empty-cycle",
+        "exit": 1,
+        "counts": {
+          "positive": 55,
+          "expected-rejection": 127,
+          "fault-injection": 7,
+          "unsupported": 5,
+          "mismatch": 1
+        },
         "failedCases": [
           {
             "id": "normal-empty-cycle",
@@ -375,19 +2371,19 @@
             "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields"
           }
         ],
-        "fullOutputSHA256": "19ec85b404ae1bcd1af84c3d7eeccb92cfafd0832753bf6a2583523064ee177a",
-        "counts": {
-          "positive": 48,
-          "expected-rejection": 38,
-          "fault-injection": 7,
-          "unsupported": 5,
-          "mismatch": 1
-        }
+        "sha256": "3405104b53bb28afc8df2b278917f275a6ba9b223073fad7e7a9d79fe332e53d",
+        "unexpectedExceptions": 0
       },
       {
         "name": "hidden-data-leak",
-        "exitCode": 1,
-        "expectedDetector": "hidden-pair",
+        "exit": 1,
+        "counts": {
+          "positive": 55,
+          "expected-rejection": 127,
+          "fault-injection": 7,
+          "unsupported": 5,
+          "mismatch": 1
+        },
         "failedCases": [
           {
             "id": "hidden-pair",
@@ -404,824 +2400,773 @@
             "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields"
           }
         ],
-        "fullOutputSHA256": "44ede96e04bd655520f4e8aac6b38246fc69393ff83c85758931061e96d466e9",
+        "sha256": "b7c19933de2b3317071b0d55d0ce88fc02b3e848e7eec6c881cabdc75502b389",
+        "unexpectedExceptions": 0
+      },
+      {
+        "name": "task-execution-omission",
+        "exit": 1,
         "counts": {
-          "positive": 48,
-          "expected-rejection": 38,
+          "positive": 55,
+          "expected-rejection": 127,
           "fault-injection": 7,
           "unsupported": 5,
-          "mismatch": 1
-        }
-      }
-    ]
-  },
-  "freezeManifest": "validation/freeze-manifest.json",
-  "preFreezeHistory": [
-    {
-      "file": "first-finite.json",
-      "sha256": "41c31799c32637552fc60918bc30e4de78bbd9386ed60345e435c74114baa97b",
-      "counts": {
-        "positive": 35,
-        "expected-rejection": 27,
-        "fault-injection": 7,
-        "unsupported": 4,
-        "mismatch": 0
-      },
-      "failedCases": []
-    },
-    {
-      "file": "refined-finite.json",
-      "sha256": "9ed6b9c75d7a657e0e3e888bdf53dbb2625bebc77b6b913946ec27cbdc41cea0",
-      "counts": {
-        "positive": 45,
-        "expected-rejection": 32,
-        "fault-injection": 7,
-        "unsupported": 4,
-        "mismatch": 0
-      },
-      "failedCases": []
-    },
-    {
-      "file": "native-second.json",
-      "sha256": "9a4495eb795a73fafcae29a276c3eb1d01976628d2fccc89c70de5704b59d808",
-      "counts": {
-        "positive": 10,
-        "expected-rejection": 5,
-        "fault-injection": 2,
-        "unsupported": 5,
-        "mismatch": 5
-      },
-      "failedCases": [
-        {
-          "id": "G2-task-not-ordinary",
-          "category": "unsupported",
-          "expected": {
-            "reject": "NOT_AVAILABLE",
-            "zeroCommit": true
-          },
-          "actual": {
-            "unexpected": "INVALID_INPUT",
-            "message": "Invalid residence value shape or number"
-          },
-          "match": false,
-          "scope": "Task producer absent; production rejection observed"
+          "mismatch": 4
         },
-        {
-          "id": "A-original-death",
-          "category": "positive",
-          "expected": {
-            "phase": "dead",
-            "hp": 0,
-            "revision": 1
+        "failedCases": [
+          {
+            "id": "R1-foreign-component-install",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "TASK_EXECUTION",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
           },
-          "actual": {
-            "unexpected": "INVALID_INPUT",
-            "message": "Invalid residence value shape or number"
+          {
+            "id": "R1-foreign-module-install",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "TASK_EXECUTION",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
           },
-          "match": false,
-          "scope": "Original issued G2 plan consumed, no replay"
+          {
+            "id": "R1-component-foreign-pickup",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "TASK_EXECUTION",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+          },
+          {
+            "id": "R1-installed-task-foreign-execution",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "TASK_EXECUTION",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "F01 already-installed component at disposition index 3 retains the same execution; preceding three entries are actual bandage/food consumption"
+          }
+        ],
+        "sha256": "b1609cfdebc6fe29bd3d4b91d09167a7578c9b511e5a8fcb962c8df9060bbe68",
+        "unexpectedExceptions": 0
+      },
+      {
+        "name": "intent-original-value-omission",
+        "exit": 1,
+        "counts": {
+          "positive": 55,
+          "expected-rejection": 127,
+          "fault-injection": 7,
+          "unsupported": 5,
+          "mismatch": 12
         },
-        {
-          "id": "A-cloned-death-rejected",
-          "category": "expected-rejection",
-          "expected": {
-            "reject": "STALE_PLAN",
-            "zeroCommit": true
+        "failedCases": [
+          {
+            "id": "R1-medical-quantity-negative",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "INVALID_NUMBER",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
           },
-          "actual": {
-            "unexpected": "INVALID_INPUT",
-            "message": "Invalid residence value shape or number"
+          {
+            "id": "R1-medical-quantity-boolean",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "INVALID_NUMBER",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
           },
-          "match": false,
-          "scope": "Exact capability provenance, not structural lookalike"
-        },
-        {
-          "id": "B-live-pending",
-          "category": "unsupported",
-          "expected": {
-            "reject": "UNSUPPORTED_STAGE",
-            "zeroCommit": true
+          {
+            "id": "R1-medical-quantity-fraction",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "INVALID_NUMBER",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
           },
-          "actual": {
-            "unexpected": "INVALID_INPUT",
-            "message": "Invalid residence value shape or number"
+          {
+            "id": "R1-medical-quantity-unsafe",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "INVALID_NUMBER",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
           },
-          "match": false,
-          "scope": "Actual alive encounter stage currently unencodable"
-        },
-        {
-          "id": "B-source-output-removal",
-          "category": "unsupported",
-          "expected": {
-            "reject": "INVALID_AGGREGATE",
-            "zeroCommit": true
+          {
+            "id": "R1-medical-quantity-zero",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "INVALID_NUMBER",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
           },
-          "actual": {
-            "unexpected": "INVALID_INPUT",
-            "message": "Invalid residence value shape or number"
+          {
+            "id": "R1-medical-quantity-string",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "INVALID_NUMBER",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
           },
-          "match": false,
-          "scope": "No consumed ledger in current B; removing both item and ItemState is not valid consumption"
-        }
-      ]
-    },
-    {
-      "file": "native-third.json",
-      "sha256": "23151beb02ea113fb77cbea9bc555383829824433f8cd557165de38f1cfe4929",
-      "counts": {
-        "positive": 10,
-        "expected-rejection": 5,
-        "fault-injection": 2,
-        "unsupported": 5,
-        "mismatch": 1
-      },
-      "failedCases": [
-        {
-          "id": "B-source-output-removal",
-          "category": "unsupported",
-          "expected": {
-            "reject": "INVALID_AGGREGATE",
-            "zeroCommit": true
+          {
+            "id": "R1-medical-quantity-null",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "INVALID_NUMBER",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
           },
-          "actual": {
-            "reject": "INVALID_STATE",
-            "zeroCommit": true
+          {
+            "id": "R1-medical-quantity-two",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "MEDICAL_QUANTITY",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
           },
-          "match": false,
-          "scope": "No consumed ledger in current B; removing both item and ItemState is not valid consumption"
-        }
-      ]
-    },
-    {
-      "file": "native-fourth.json",
-      "sha256": "b33bd739002eebe78d145c5d01b4876e39d6a88f63bbc2873710e07402ac605e",
-      "counts": {
-        "positive": 12,
-        "expected-rejection": 5,
-        "fault-injection": 2,
-        "unsupported": 5,
-        "mismatch": 0
-      },
-      "failedCases": []
-    }
-  ],
-  "authoringAndHarnessCorrections": [
-    {
-      "stage": "route authoring",
-      "exitCode": 1,
-      "error": "author no place module",
-      "resolution": "Explicit rotated placement stored in fixed fixture; no runtime auto-pack"
-    },
-    {
-      "stage": "native loader initial",
-      "exitCode": 1,
-      "error": "TypeError: Cannot read properties of undefined (reading 'ESNext')",
-      "cause": "Installed TypeScript 7 exposes version module rather than transpile API",
-      "resolution": "Current Node builtin stripTypeScriptTypes transform in external loader; no install"
-    },
-    {
-      "stage": "native command typo",
-      "exitCode": 1,
-      "error": "MODULE_NOT_FOUND: world-infected-world-001 path",
-      "resolution": "Reran actual allowed world-infected-001 script"
-    },
-    {
-      "stage": "scope link check before outputs existed",
-      "exitCode": 1,
-      "error": "native-api-results.json absent before native output copied",
-      "resolution": "Final scope check runs against actual generated output; no ignored final missing links"
-    }
-  ],
-  "scopeCheck": {
-    "whitelist": {
-      "actual": [
-        "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
-        "docs/design-drafts/world-infected-001/entry-004/01-current-production-and-gaps.md",
-        "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
-        "docs/design-drafts/world-infected-001/entry-004/03-combat-medical-contract.md",
-        "docs/design-drafts/world-infected-001/entry-004/04-specialties-tools-and-loadout.md",
-        "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "docs/design-drafts/world-infected-001/entry-004/06-next-engineering-contracts.md",
-        "docs/design-drafts/world-infected-001/entry-004/07-playable-and-release-gates.md",
-        "docs/design-drafts/world-infected-001/entry-004/checks.json",
-        "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "docs/design-drafts/world-infected-001/entry-004/content-candidate.json",
-        "docs/design-drafts/world-infected-001/entry-004/inputs/AUD-0921df3-ENG-RESIDENCE-TERMINAL-SESSION-001-review-v1.0.md",
-        "docs/design-drafts/world-infected-001/entry-004/inputs/BASELINE-AND-INPUTS.json",
-        "docs/design-drafts/world-infected-001/entry-004/inputs/OWNER-authority-and-scope-WORLD-ENTRY-004-v1.0.md",
-        "docs/design-drafts/world-infected-001/entry-004/inputs/SHA256SUMS.txt",
-        "docs/design-drafts/world-infected-001/entry-004/inputs/WORLD-ENTRY-004-task-v1.0.md",
-        "docs/design-drafts/world-infected-001/entry-004/parameter-candidate.json",
-        "docs/design-drafts/world-infected-001/entry-004/validation/README.md",
-        "docs/design-drafts/world-infected-001/entry-004/validation/check.py",
-        "docs/design-drafts/world-infected-001/entry-004/validation/fixtures.json",
-        "docs/design-drafts/world-infected-001/entry-004/validation/freeze-manifest.json",
-        "docs/design-drafts/world-infected-001/entry-004/validation/native-api-probes.mjs",
-        "docs/design-drafts/world-infected-001/entry-004/validation/native-api-results.json",
-        "docs/design-drafts/world-infected-001/entry-004/validation/negative-controls.json",
-        "docs/design-drafts/world-infected-001/entry-004/validation/results.json",
-        "docs/design-drafts/world-infected-001/01-world-overview.md",
-        "docs/design-drafts/world-infected-001/10-decision-queue.md",
-        "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
-        "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md"
-      ],
-      "limit": 29,
-      "outside": []
-    },
-    "archives": {
-      "AUD-0921df3-ENG-RESIDENCE-TERMINAL-SESSION-001-review-v1.0.md": {
-        "bytes": 10031,
-        "sha256": "21993be973a3afe87d6f3c34298e883a8c65cee3d0fea01e8da8e604e5c5517f",
-        "rawEqual": true
-      },
-      "BASELINE-AND-INPUTS.json": {
-        "bytes": 13140,
-        "sha256": "5fdf3e1540073a5aab207b79bc740bfc26959073e345e8d560473b9198415673",
-        "rawEqual": true
-      },
-      "OWNER-authority-and-scope-WORLD-ENTRY-004-v1.0.md": {
-        "bytes": 1957,
-        "sha256": "26fdc008ce2bf4d929f42c0c88f1519ae32813a681e1f974c2fe36a2df556a1a",
-        "rawEqual": true
-      },
-      "SHA256SUMS.txt": {
-        "bytes": 430,
-        "sha256": "b2c1b57bb9e71366072d93d80741846e7388fe7e3b62ac007b9eca3b1e596f67",
-        "rawEqual": true
-      },
-      "WORLD-ENTRY-004-task-v1.0.md": {
-        "bytes": 26378,
-        "sha256": "8c0b20bbead749ce5f6fad2b2dd010275c6ae624a95deddda0df0cab35531af6",
-        "rawEqual": true
-      }
-    },
-    "prefixes": {
-      "docs/design-drafts/world-infected-001/01-world-overview.md": {
-        "bytes": 23808,
-        "sha256": "0360aa9c9b0aab44d0b582f62ed52624a01a2976b56741eb8a9d16e4e30d294c",
-        "equal": true
-      },
-      "docs/design-drafts/world-infected-001/10-decision-queue.md": {
-        "bytes": 22846,
-        "sha256": "3c3bb02dee1f11b8c1dfc8c811271d8817d321a6554caffba3fbbbd8e6dfb409",
-        "equal": true
-      },
-      "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md": {
-        "bytes": 11910,
-        "sha256": "62e96ee7c1d024fba7bc6841207239b02356e93cbce4ddf360f742363dda41c4",
-        "equal": true
-      },
-      "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md": {
-        "bytes": 11585,
-        "sha256": "8289aa5dfd1435f70c9b238d50d99b590f515ed3939528df8806b8f6812eb4ce",
-        "equal": true
-      }
-    },
-    "text": {
-      "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/01-current-production-and-gaps.md": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/03-combat-medical-contract.md": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/04-specialties-tools-and-loadout.md": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/06-next-engineering-contracts.md": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/07-playable-and-release-gates.md": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/content-candidate.json": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/parameter-candidate.json": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/validation/check.py": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/validation/fixtures.json": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/validation/results.json": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/validation/negative-controls.json": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/validation/native-api-probes.mjs": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/validation/native-api-results.json": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/validation/freeze-manifest.json": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/validation/README.md": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/completion.md": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/entry-004/checks.json": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/01-world-overview.md": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/10-decision-queue.md": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      },
-      "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md": {
-        "utf8": true,
-        "newTextLF": true,
-        "noBOM": true,
-        "trailingWhitespace": 0
-      }
-    },
-    "links": [
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
-        "target": "02-world-content-and-mission-contract.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
-        "target": "03-combat-medical-contract.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
-        "target": "03-combat-medical-contract.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
-        "target": "04-specialties-tools-and-loadout.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
-        "target": "06-next-engineering-contracts.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
-        "target": "07-playable-and-release-gates.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
-        "target": "05-source-and-adoption-map.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
-        "target": "validation/README.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/01-current-production-and-gaps.md",
-        "target": "validation/native-api-probes.mjs",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/01-current-production-and-gaps.md",
-        "target": "validation/native-api-results.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/01-current-production-and-gaps.md",
-        "target": "validation/results.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
-        "target": "content-candidate.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
-        "target": "parameter-candidate.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
-        "target": "../03-location-design.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
-        "target": "../06-event-pack.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
-        "target": "validation/fixtures.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
-        "target": "validation/results.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/03-combat-medical-contract.md",
-        "target": "parameter-candidate.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/04-specialties-tools-and-loadout.md",
-        "target": "../07-enemy-continuity.md#minimal-specialties",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/04-specialties-tools-and-loadout.md",
-        "target": "parameter-candidate.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/04-specialties-tools-and-loadout.md",
-        "target": "07-playable-and-release-gates.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "target": "inputs/SHA256SUMS.txt",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "target": "../../../05-design-decisions.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "target": "../../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "target": "../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "target": "../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "target": "../04-main-mission.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "target": "../readiness/01-current-baseline-and-adoption.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "target": "../reviews/OWNER-endings-followup-6de365d-v1.0.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "target": "00-owner-review.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "target": "validation/fixtures.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "target": "validation/check.py",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "target": "../08-balance-budget.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "target": "../11-points-hub-recovery.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "target": "01-current-production-and-gaps.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-        "target": "validation/native-api-results.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/07-playable-and-release-gates.md",
-        "target": "../../../09-ui-design-record.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/validation/README.md",
-        "target": "../checks.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/validation/README.md",
-        "target": "freeze-manifest.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "target": "01-current-production-and-gaps.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "target": "02-world-content-and-mission-contract.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "target": "content-candidate.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "target": "03-combat-medical-contract.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "target": "04-specialties-tools-and-loadout.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "target": "parameter-candidate.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "target": "05-source-and-adoption-map.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "target": "validation/README.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "target": "validation/results.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "target": "validation/native-api-results.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "target": "validation/negative-controls.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "target": "00-owner-review.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "target": "06-next-engineering-contracts.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "target": "07-playable-and-release-gates.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/entry-004/completion.md",
-        "target": "checks.json",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
-        "target": "entry-004/00-owner-review.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
-        "target": "entry-004/01-current-production-and-gaps.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
-        "target": "entry-004/validation/README.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
-        "target": "entry-004/06-next-engineering-contracts.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
-        "target": "entry-004/00-owner-review.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
-        "target": "entry-004/01-current-production-and-gaps.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
-        "target": "entry-004/validation/README.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
-        "target": "entry-004/06-next-engineering-contracts.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
-        "target": "../entry-004/00-owner-review.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
-        "target": "../entry-004/01-current-production-and-gaps.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
-        "target": "../entry-004/validation/README.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
-        "target": "../entry-004/06-next-engineering-contracts.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
-        "target": "../entry-004/00-owner-review.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
-        "target": "../entry-004/01-current-production-and-gaps.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
-        "target": "../entry-004/validation/README.md",
-        "exists": true
-      },
-      {
-        "path": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
-        "target": "../entry-004/06-next-engineering-contracts.md",
-        "exists": true
+          {
+            "id": "R1-revision-false",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "INVALID_NUMBER",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+          },
+          {
+            "id": "R1-revision-true",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "INVALID_NUMBER",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+          },
+          {
+            "id": "R1-revision-fraction",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "INVALID_NUMBER",
+              "zeroCommit": true
+            },
+            "actual": {},
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+          },
+          {
+            "id": "R1-revision-unsafe",
+            "category": "expected-rejection",
+            "expected": {
+              "reject": "INVALID_NUMBER",
+              "zeroCommit": true
+            },
+            "actual": {
+              "reject": "STALE",
+              "zeroCommit": true
+            },
+            "match": false,
+            "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+          }
+        ],
+        "sha256": "73d41047240ee53fdd07bc52efbb8f7d3e8a131ab880c229adb92cd0cf66e469",
+        "unexpectedExceptions": 0
       }
     ],
-    "sourceTree": "98c840dd0b6b1a6cc014df4ac9165bc94bf2c794",
-    "status": "PASS",
-    "parameterIdentity": "two approved hashes unchanged; all referenced Draft keys resolved",
-    "existingReferences": "fixed Git objects checked; no outside tracked diff"
+    "note": "Each independently returns exit 1 from semantic mismatch, zero modelError. These are isolated model controls, not production faults."
+  },
+  "remoteBeforeCommit": {
+    "argv": [
+      "git",
+      "ls-remote",
+      "--heads",
+      "origin"
+    ],
+    "exit": 0,
+    "stdout": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63\trefs/heads/feature/design-world-entry-002\n6438f7a38939297225538cdd68af24201ed7d34f\trefs/heads/feature/design-world-entry-003\n0362460b259cba6ea160e79ad04a6cb14181cef0\trefs/heads/feature/design-world-entry-004\n6b48b3de6521d9a9c296754a4d8135c7f7c7ca35\trefs/heads/feature/design-world-infected-world-001\nd1d3b7927c6733cff709a4bfd617fb1e85e7485a\trefs/heads/feature/mission-lifecycle-core-001\n7ca547ab8ab4f411d1102a79baf8c0796f4b082c\trefs/heads/feature/residence-actions-core-001\n942b2d93916c649f4c2ec6cd399035151269d2ca\trefs/heads/feature/residence-energy-cycle-core-001\nd7953bbf96dc842d2953e019f950275cd693bf09\trefs/heads/feature/residence-location-core-001\n60e9c30732c5e22cfe9ff58b9b381de64b945180\trefs/heads/feature/residence-session-core-001\nbfc6bd973eeb306df1e8ee916b2160c30b757cdf\trefs/heads/feature/residence-terminal-core-001\nb9b1e0fee0e779669ca40e088ac9a867016bff82\trefs/heads/feature/residence-terminal-restore-001\n0921df3f219f368479d1bf3401d8fecddc0d5f71\trefs/heads/feature/residence-terminal-session-001\na76e9c1c998051fc1643b6e0c3d53443fa55feed\trefs/heads/main\n",
+    "stderr": ""
   },
   "productionTests": {
-    "initial": "NOT RUN",
+    "baseline": "NOT RUN",
     "final": "NOT RUN",
-    "newProductionTests": 0
+    "added": 0,
+    "build": "NOT RUN",
+    "browser": "NOT RUN",
+    "ownerPlaytest": "NOT RUN"
   },
-  "notRun": [
-    "production full tests",
-    "build",
-    "browser",
-    "Owner playtest",
-    "historical finite models",
-    "real CTB route solver",
-    "long-term economy"
+  "pendingDelivery": "Explicit staging, staged diff checks, ordinary commit/push and postcommit remote/worktree verification reported in final response; no self-referential commit hash embedded",
+  "remaining": [
+    "Real CTB and RNG route reachability",
+    "Live combat save and partial consumption production codec",
+    "Full aggregate history authenticity and offline rollback",
+    "D01-D04 adoption / E01-E03 execution authorization",
+    "O3, browser entry/storage, Owner playtest"
   ],
-  "gitDelivery": {
-    "status": "commit and push performed after this report; exact SHA and remote receipts delivered in final message, no self-reference amend"
+  "scopeAndDocuments": {
+    "status": "PASS",
+    "allowedPathCount": 38,
+    "changedPathCount": 31,
+    "changedPaths": [
+      "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
+      "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
+      "docs/design-drafts/world-infected-001/entry-004/03-combat-medical-contract.md",
+      "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+      "docs/design-drafts/world-infected-001/entry-004/06-next-engineering-contracts.md",
+      "docs/design-drafts/world-infected-001/entry-004/checks.json",
+      "docs/design-drafts/world-infected-001/entry-004/completion.md",
+      "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/AUD-0362460-WORLD-ENTRY-004-review-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/BASELINE-AND-SCOPE.json",
+      "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/OWNER-authority-and-scope-WORLD-ENTRY-004-R1-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/SHA256SUMS.txt",
+      "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/WORLD-ENTRY-004-R1-task-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/README.md",
+      "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/dependency-slice.json",
+      "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/input-audit.json",
+      "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe-results.json",
+      "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe-run.txt",
+      "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe.py",
+      "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/source/check.py",
+      "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/source/infected-residence-core-test-config-v0.1.json",
+      "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/source/infected-terminal-core-test-config-v0.1.json",
+      "docs/design-drafts/world-infected-001/entry-004/validation/README.md",
+      "docs/design-drafts/world-infected-001/entry-004/validation/check.py",
+      "docs/design-drafts/world-infected-001/entry-004/validation/fixtures.json",
+      "docs/design-drafts/world-infected-001/entry-004/validation/freeze-manifest.json",
+      "docs/design-drafts/world-infected-001/entry-004/validation/negative-controls.json",
+      "docs/design-drafts/world-infected-001/entry-004/validation/results.json",
+      "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md"
+    ],
+    "newArchiveByteChecks": [
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/WORLD-ENTRY-004-R1-task-v1.0.md",
+        "bytes": 14660,
+        "sha256": "b77b1e8fa52024f72b6ff8620ec69c248834ad10f664c0bda0ee45650b9e17c5"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/OWNER-authority-and-scope-WORLD-ENTRY-004-R1-v1.0.md",
+        "bytes": 1475,
+        "sha256": "eb8d9ec42fd8283a5d7c6187fe8cee5dd9755f39ce00eafd51cafb170e7244c1"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/AUD-0362460-WORLD-ENTRY-004-review-v1.0.md",
+        "bytes": 9634,
+        "sha256": "a4b9957a2f274b80bd3b54e9ebecffd1b382b172de5d5ac305827fb9f8ab92d9"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/BASELINE-AND-SCOPE.json",
+        "bytes": 9465,
+        "sha256": "ed5bc7734e2b742fe25375139982725aa5a7f57fc7a23d6a777581f7f01e21cf"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/SHA256SUMS.txt",
+        "bytes": 1276,
+        "sha256": "fe03d7d0b58ffbd728f572ebdc96f3c7c4c9ef3b49dad9cb66c162168ba0a5a4"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe.py",
+        "bytes": 8049,
+        "sha256": "864c092f7ecfa303ca7c0d1e50c43aa6c52811166d82ef6dec20a224a1e94257"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe-results.json",
+        "bytes": 22899,
+        "sha256": "97b5ae767ec74eb520c5c53da45053a8e92f9c9091f29538b2e0eb984158ef8c"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/dependency-slice.json",
+        "bytes": 5692,
+        "sha256": "e55959a2386a9e89a03edd5345a568e703754596434b69de37519969e744ef46"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/README.md",
+        "bytes": 1774,
+        "sha256": "52d68799acc17e8cb653c9a65f757dbae66ecc095acbf5bdef7ea2b542495b24"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/input-audit.json",
+        "bytes": 1647,
+        "sha256": "b5dfb5a75168aaacbf4c1db3da3fed1adc07fa4c7842cad21e236a07a03f447e"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe-run.txt",
+        "bytes": 640,
+        "sha256": "700c1473ad5e6eb558d4fc4d4307d23bbb763096ee240091ecb811eaa56dcca1"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/source/check.py",
+        "bytes": 25957,
+        "sha256": "56aa97136e017b36e3b8ded6b5191d60e047e7845e19ae55046e4635b8db7460"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/source/infected-residence-core-test-config-v0.1.json",
+        "bytes": 1417,
+        "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/source/infected-terminal-core-test-config-v0.1.json",
+        "bytes": 770,
+        "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18"
+      }
+    ],
+    "oldFiveInputs": [
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/inputs/AUD-0921df3-ENG-RESIDENCE-TERMINAL-SESSION-001-review-v1.0.md",
+        "sha256": "21993be973a3afe87d6f3c34298e883a8c65cee3d0fea01e8da8e604e5c5517f"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/inputs/BASELINE-AND-INPUTS.json",
+        "sha256": "5fdf3e1540073a5aab207b79bc740bfc26959073e345e8d560473b9198415673"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/inputs/OWNER-authority-and-scope-WORLD-ENTRY-004-v1.0.md",
+        "sha256": "26fdc008ce2bf4d929f42c0c88f1519ae32813a681e1f974c2fe36a2df556a1a"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/inputs/SHA256SUMS.txt",
+        "sha256": "b2c1b57bb9e71366072d93d80741846e7388fe7e3b62ac007b9eca3b1e596f67"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/inputs/WORLD-ENTRY-004-task-v1.0.md",
+        "sha256": "8c0b20bbead749ce5f6fad2b2dd010275c6ae624a95deddda0df0cab35531af6"
+      }
+    ],
+    "appendOnly": [
+      {
+        "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "prefixBytes": 24504,
+        "prefixSHA256": "6d5738bafa20af077ae211cc1bc048042fc9db426f1c3857f315ad2796532aeb",
+        "appendedBytes": 636
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "prefixBytes": 23542,
+        "prefixSHA256": "cf7ededa0017a307939f9fe41d3aec01a7019df169d982a80cbe230f25a4faa7",
+        "appendedBytes": 636
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+        "prefixBytes": 12618,
+        "prefixSHA256": "6f716338fba8ed17fb554ba2c72886caae3347066ab0da54b16e19cb6702ca89",
+        "appendedBytes": 645
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+        "prefixBytes": 12293,
+        "prefixSHA256": "a1ee3f22a69fe8f407437ab5419c40e75bcf74bede9572afc2505dcb82a07fc4",
+        "appendedBytes": 645
+      }
+    ],
+    "UTF8AndJSON": "PASS all changed files",
+    "markdownLinksChecked": 55,
+    "links": [
+      {
+        "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "target": "entry-004/00-owner-review.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "target": "entry-004/checks.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "target": "entry-004/validation/README.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "target": "entry-004/00-owner-review.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "target": "entry-004/checks.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "target": "entry-004/validation/README.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
+        "target": "reviews/r1-inputs/WORLD-ENTRY-004-R1-task-v1.0.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
+        "target": "checks.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
+        "target": "validation/README.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
+        "target": "02-world-content-and-mission-contract.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
+        "target": "03-combat-medical-contract.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
+        "target": "03-combat-medical-contract.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
+        "target": "04-specialties-tools-and-loadout.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
+        "target": "06-next-engineering-contracts.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
+        "target": "07-playable-and-release-gates.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
+        "target": "05-source-and-adoption-map.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
+        "target": "validation/README.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
+        "target": "content-candidate.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
+        "target": "parameter-candidate.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
+        "target": "../03-location-design.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
+        "target": "../06-event-pack.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
+        "target": "validation/fixtures.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
+        "target": "validation/results.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/03-combat-medical-contract.md",
+        "target": "parameter-candidate.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "inputs/SHA256SUMS.txt",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "../../../05-design-decisions.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "../../../engineering/residence-foundation/terminal-core-contract-v1.0.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "../../../engineering/residence-foundation/terminal-restore-contract-v1.0.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "../../../engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "../04-main-mission.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "../readiness/01-current-baseline-and-adoption.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "../reviews/OWNER-endings-followup-6de365d-v1.0.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "00-owner-review.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "validation/fixtures.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "validation/check.py",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "../08-balance-budget.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "../11-points-hub-recovery.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "01-current-production-and-gaps.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "validation/native-api-results.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+        "target": "reviews/r1-inputs/SHA256SUMS.txt",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/completion.md",
+        "target": "reviews/r1-inputs/SHA256SUMS.txt",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/completion.md",
+        "target": "validation/negative-controls.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/completion.md",
+        "target": "checks.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/completion.md",
+        "target": "validation/README.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/completion.md",
+        "target": "validation/freeze-manifest.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/completion.md",
+        "target": "05-source-and-adoption-map.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/validation/README.md",
+        "target": "../checks.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/validation/README.md",
+        "target": "freeze-manifest.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/entry-004/validation/README.md",
+        "target": "../reviews/r1-inputs/evidence/probe.py",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+        "target": "../entry-004/00-owner-review.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+        "target": "../entry-004/checks.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+        "target": "../entry-004/validation/README.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+        "target": "../entry-004/00-owner-review.md",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+        "target": "../entry-004/checks.json",
+        "exists": true,
+        "anchorOK": true
+      },
+      {
+        "from": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+        "target": "../entry-004/validation/README.md",
+        "exists": true,
+        "anchorOK": true
+      }
+    ],
+    "frozen55Unchanged": true,
+    "configs38Unchanged": [
+      {
+        "path": "docs/content/infected-residence-core-test-config-v0.1.json",
+        "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9"
+      },
+      {
+        "path": "docs/content/infected-terminal-core-test-config-v0.1.json",
+        "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18"
+      }
+    ],
+    "unchangedRootObjects": [
+      "100644 blob 94f480de94e1d767531580401cbf13844868e82b\t.gitattributes",
+      "040000 tree 026a7d1464c067e99f7ec653f0c9902b7519a71e\t.github",
+      "100644 blob f712a6c1046701967cb9083b9bc3be091c88506f\t.gitignore",
+      "100644 blob 0055de32c18517d4d016b077e5fc287d9360317d\tAGENTS.md",
+      "100644 blob 6dabaad4d6a66eb9f87dcaf80597e42c52eebf3f\tREADME.md",
+      "100644 blob 1ed379b5c917e30bb573b7ef5058d669e2a009f5\tindex.html",
+      "100644 blob 3b320a8a79a1815c0909d8846e5e6248d4fc187e\tpackage-lock.json",
+      "100644 blob e52c8b2716f8f44f4678066443516de5c738a3b8\tpackage.json",
+      "040000 tree a619e6b856375dfea3ab54551408b1835a66dcdf\tscripts",
+      "040000 tree 98c840dd0b6b1a6cc014df4ac9165bc94bf2c794\tsrc",
+      "100644 blob 7a7a882313447f536d7862b36011ee665c5717fc\ttsconfig.app.json",
+      "100644 blob 1ffef600d959ec9e396d5a260bd3f5b927b2cef8\ttsconfig.json",
+      "100644 blob a5d5843cf5188585f99223c232febb1ce68061d4\ttsconfig.node.json",
+      "100644 blob 9b630ac9166409f0519e6c5c499e9def6399cf67\tvite.config.ts"
+    ],
+    "protectedTrackedObjects": 916,
+    "outsideWhitelistIndexObjectsUnchanged": true,
+    "allWorktreeChangedPathsWithinWhitelist": true,
+    "productionSourceTree": "98c840dd0b6b1a6cc014df4ac9165bc94bf2c794"
   },
-  "shutdown": "Cancelled by latest human instruction; no shutdown/reboot/schedule will be performed",
-  "stop": "wait exact-SHA mainline design review; no adoption or engineering execution",
-  "inputSHA256SUMS": [
-    {
-      "file": "AUD-0921df3-ENG-RESIDENCE-TERMINAL-SESSION-001-review-v1.0.md",
-      "expected": "21993be973a3afe87d6f3c34298e883a8c65cee3d0fea01e8da8e604e5c5517f",
-      "actual": "21993be973a3afe87d6f3c34298e883a8c65cee3d0fea01e8da8e604e5c5517f"
-    },
-    {
-      "file": "BASELINE-AND-INPUTS.json",
-      "expected": "5fdf3e1540073a5aab207b79bc740bfc26959073e345e8d560473b9198415673",
-      "actual": "5fdf3e1540073a5aab207b79bc740bfc26959073e345e8d560473b9198415673"
-    },
-    {
-      "file": "OWNER-authority-and-scope-WORLD-ENTRY-004-v1.0.md",
-      "expected": "26fdc008ce2bf4d929f42c0c88f1519ae32813a681e1f974c2fe36a2df556a1a",
-      "actual": "26fdc008ce2bf4d929f42c0c88f1519ae32813a681e1f974c2fe36a2df556a1a"
-    },
-    {
-      "file": "WORLD-ENTRY-004-task-v1.0.md",
-      "expected": "8c0b20bbead749ce5f6fad2b2dd010275c6ae624a95deddda0df0cab35531af6",
-      "actual": "8c0b20bbead749ce5f6fad2b2dd010275c6ae624a95deddda0df0cab35531af6"
-    }
-  ],
-  "stagedVerification": {
+  "staging": {
+    "explicitPathCount": 31,
     "receipts": [
       {
         "argv": [
@@ -1229,8 +3174,8 @@
           "rev-parse",
           "HEAD"
         ],
-        "exitCode": 0,
-        "stdout": "0921df3f219f368479d1bf3401d8fecddc0d5f71\n",
+        "exit": 0,
+        "stdout": "0362460b259cba6ea160e79ad04a6cb14181cef0\n",
         "stderr": ""
       },
       {
@@ -1239,7 +3184,7 @@
           "branch",
           "--show-current"
         ],
-        "exitCode": 0,
+        "exit": 0,
         "stdout": "feature/design-world-entry-004\n",
         "stderr": ""
       },
@@ -1247,30 +3192,9 @@
         "argv": [
           "git",
           "diff",
-          "--name-only"
-        ],
-        "exitCode": 0,
-        "stdout": "",
-        "stderr": ""
-      },
-      {
-        "argv": [
-          "git",
-          "diff",
-          "--cached",
-          "--name-only"
-        ],
-        "exitCode": 0,
-        "stdout": "docs/design-drafts/world-infected-001/01-world-overview.md\ndocs/design-drafts/world-infected-001/10-decision-queue.md\ndocs/design-drafts/world-infected-001/entry-004/00-owner-review.md\ndocs/design-drafts/world-infected-001/entry-004/01-current-production-and-gaps.md\ndocs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md\ndocs/design-drafts/world-infected-001/entry-004/03-combat-medical-contract.md\ndocs/design-drafts/world-infected-001/entry-004/04-specialties-tools-and-loadout.md\ndocs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md\ndocs/design-drafts/world-infected-001/entry-004/06-next-engineering-contracts.md\ndocs/design-drafts/world-infected-001/entry-004/07-playable-and-release-gates.md\ndocs/design-drafts/world-infected-001/entry-004/checks.json\ndocs/design-drafts/world-infected-001/entry-004/completion.md\ndocs/design-drafts/world-infected-001/entry-004/content-candidate.json\ndocs/design-drafts/world-infected-001/entry-004/inputs/AUD-0921df3-ENG-RESIDENCE-TERMINAL-SESSION-001-review-v1.0.md\ndocs/design-drafts/world-infected-001/entry-004/inputs/BASELINE-AND-INPUTS.json\ndocs/design-drafts/world-infected-001/entry-004/inputs/OWNER-authority-and-scope-WORLD-ENTRY-004-v1.0.md\ndocs/design-drafts/world-infected-001/entry-004/inputs/SHA256SUMS.txt\ndocs/design-drafts/world-infected-001/entry-004/inputs/WORLD-ENTRY-004-task-v1.0.md\ndocs/design-drafts/world-infected-001/entry-004/parameter-candidate.json\ndocs/design-drafts/world-infected-001/entry-004/validation/README.md\ndocs/design-drafts/world-infected-001/entry-004/validation/check.py\ndocs/design-drafts/world-infected-001/entry-004/validation/fixtures.json\ndocs/design-drafts/world-infected-001/entry-004/validation/freeze-manifest.json\ndocs/design-drafts/world-infected-001/entry-004/validation/native-api-probes.mjs\ndocs/design-drafts/world-infected-001/entry-004/validation/native-api-results.json\ndocs/design-drafts/world-infected-001/entry-004/validation/negative-controls.json\ndocs/design-drafts/world-infected-001/entry-004/validation/results.json\ndocs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md\ndocs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md\n",
-        "stderr": ""
-      },
-      {
-        "argv": [
-          "git",
-          "diff",
           "--check"
         ],
-        "exitCode": 0,
+        "exit": 0,
         "stdout": "",
         "stderr": ""
       },
@@ -1281,7 +3205,7 @@
           "--cached",
           "--check"
         ],
-        "exitCode": 0,
+        "exit": 0,
         "stdout": "",
         "stderr": ""
       },
@@ -1289,88 +3213,111 @@
         "argv": [
           "git",
           "diff",
-          "0921df3f219f368479d1bf3401d8fecddc0d5f71",
+          "0362460b259cba6ea160e79ad04a6cb14181cef0",
           "--check"
         ],
-        "exitCode": 0,
+        "exit": 0,
         "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "git",
+          "diff",
+          "--cached",
+          "--name-status"
+        ],
+        "exit": 0,
+        "stdout": "M\tdocs/design-drafts/world-infected-001/01-world-overview.md\nM\tdocs/design-drafts/world-infected-001/10-decision-queue.md\nM\tdocs/design-drafts/world-infected-001/entry-004/00-owner-review.md\nM\tdocs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md\nM\tdocs/design-drafts/world-infected-001/entry-004/03-combat-medical-contract.md\nM\tdocs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md\nM\tdocs/design-drafts/world-infected-001/entry-004/06-next-engineering-contracts.md\nM\tdocs/design-drafts/world-infected-001/entry-004/checks.json\nM\tdocs/design-drafts/world-infected-001/entry-004/completion.md\nA\tdocs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/AUD-0362460-WORLD-ENTRY-004-review-v1.0.md\nA\tdocs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/BASELINE-AND-SCOPE.json\nA\tdocs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/OWNER-authority-and-scope-WORLD-ENTRY-004-R1-v1.0.md\nA\tdocs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/SHA256SUMS.txt\nA\tdocs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/WORLD-ENTRY-004-R1-task-v1.0.md\nA\tdocs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/README.md\nA\tdocs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/dependency-slice.json\nA\tdocs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/input-audit.json\nA\tdocs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe-results.json\nA\tdocs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe-run.txt\nA\tdocs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe.py\nA\tdocs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/source/check.py\nA\tdocs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/source/infected-residence-core-test-config-v0.1.json\nA\tdocs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/source/infected-terminal-core-test-config-v0.1.json\nM\tdocs/design-drafts/world-infected-001/entry-004/validation/README.md\nM\tdocs/design-drafts/world-infected-001/entry-004/validation/check.py\nM\tdocs/design-drafts/world-infected-001/entry-004/validation/fixtures.json\nM\tdocs/design-drafts/world-infected-001/entry-004/validation/freeze-manifest.json\nM\tdocs/design-drafts/world-infected-001/entry-004/validation/negative-controls.json\nM\tdocs/design-drafts/world-infected-001/entry-004/validation/results.json\nM\tdocs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md\nM\tdocs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md\n",
         "stderr": ""
       }
     ],
-    "exactPaths": [
-      "docs/design-drafts/world-infected-001/01-world-overview.md",
-      "docs/design-drafts/world-infected-001/10-decision-queue.md",
-      "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
-      "docs/design-drafts/world-infected-001/entry-004/01-current-production-and-gaps.md",
-      "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
-      "docs/design-drafts/world-infected-001/entry-004/03-combat-medical-contract.md",
-      "docs/design-drafts/world-infected-001/entry-004/04-specialties-tools-and-loadout.md",
-      "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-      "docs/design-drafts/world-infected-001/entry-004/06-next-engineering-contracts.md",
-      "docs/design-drafts/world-infected-001/entry-004/07-playable-and-release-gates.md",
-      "docs/design-drafts/world-infected-001/entry-004/checks.json",
-      "docs/design-drafts/world-infected-001/entry-004/completion.md",
-      "docs/design-drafts/world-infected-001/entry-004/content-candidate.json",
-      "docs/design-drafts/world-infected-001/entry-004/inputs/AUD-0921df3-ENG-RESIDENCE-TERMINAL-SESSION-001-review-v1.0.md",
-      "docs/design-drafts/world-infected-001/entry-004/inputs/BASELINE-AND-INPUTS.json",
-      "docs/design-drafts/world-infected-001/entry-004/inputs/OWNER-authority-and-scope-WORLD-ENTRY-004-v1.0.md",
-      "docs/design-drafts/world-infected-001/entry-004/inputs/SHA256SUMS.txt",
-      "docs/design-drafts/world-infected-001/entry-004/inputs/WORLD-ENTRY-004-task-v1.0.md",
-      "docs/design-drafts/world-infected-001/entry-004/parameter-candidate.json",
-      "docs/design-drafts/world-infected-001/entry-004/validation/README.md",
-      "docs/design-drafts/world-infected-001/entry-004/validation/check.py",
-      "docs/design-drafts/world-infected-001/entry-004/validation/fixtures.json",
-      "docs/design-drafts/world-infected-001/entry-004/validation/freeze-manifest.json",
-      "docs/design-drafts/world-infected-001/entry-004/validation/native-api-probes.mjs",
-      "docs/design-drafts/world-infected-001/entry-004/validation/native-api-results.json",
-      "docs/design-drafts/world-infected-001/entry-004/validation/negative-controls.json",
-      "docs/design-drafts/world-infected-001/entry-004/validation/results.json",
-      "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
-      "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md"
-    ],
-    "archives": [
+    "archiveIndexVerification": [
       {
-        "path": "docs/design-drafts/world-infected-001/entry-004/inputs/AUD-0921df3-ENG-RESIDENCE-TERMINAL-SESSION-001-review-v1.0.md",
-        "stagedRawEqual": true,
-        "sha256": "21993be973a3afe87d6f3c34298e883a8c65cee3d0fea01e8da8e604e5c5517f"
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/WORLD-ENTRY-004-R1-task-v1.0.md",
+        "indexBlob": "0215fb2c0ccc0916582c79ae14a119aae6183933",
+        "sha256": "b77b1e8fa52024f72b6ff8620ec69c248834ad10f664c0bda0ee45650b9e17c5",
+        "matchesAttachment": true
       },
       {
-        "path": "docs/design-drafts/world-infected-001/entry-004/inputs/BASELINE-AND-INPUTS.json",
-        "stagedRawEqual": true,
-        "sha256": "5fdf3e1540073a5aab207b79bc740bfc26959073e345e8d560473b9198415673"
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/OWNER-authority-and-scope-WORLD-ENTRY-004-R1-v1.0.md",
+        "indexBlob": "15f07caf749009e45c5553f46f2ff4b4b1a04bee",
+        "sha256": "eb8d9ec42fd8283a5d7c6187fe8cee5dd9755f39ce00eafd51cafb170e7244c1",
+        "matchesAttachment": true
       },
       {
-        "path": "docs/design-drafts/world-infected-001/entry-004/inputs/OWNER-authority-and-scope-WORLD-ENTRY-004-v1.0.md",
-        "stagedRawEqual": true,
-        "sha256": "26fdc008ce2bf4d929f42c0c88f1519ae32813a681e1f974c2fe36a2df556a1a"
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/AUD-0362460-WORLD-ENTRY-004-review-v1.0.md",
+        "indexBlob": "24d0d27f583ccdde70b32c7c21e558588111e3bf",
+        "sha256": "a4b9957a2f274b80bd3b54e9ebecffd1b382b172de5d5ac305827fb9f8ab92d9",
+        "matchesAttachment": true
       },
       {
-        "path": "docs/design-drafts/world-infected-001/entry-004/inputs/SHA256SUMS.txt",
-        "stagedRawEqual": true,
-        "sha256": "b2c1b57bb9e71366072d93d80741846e7388fe7e3b62ac007b9eca3b1e596f67"
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/BASELINE-AND-SCOPE.json",
+        "indexBlob": "3e56d39333bebb5f7a2852f438d31a1c6c438393",
+        "sha256": "ed5bc7734e2b742fe25375139982725aa5a7f57fc7a23d6a777581f7f01e21cf",
+        "matchesAttachment": true
       },
       {
-        "path": "docs/design-drafts/world-infected-001/entry-004/inputs/WORLD-ENTRY-004-task-v1.0.md",
-        "stagedRawEqual": true,
-        "sha256": "8c0b20bbead749ce5f6fad2b2dd010275c6ae624a95deddda0df0cab35531af6"
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/SHA256SUMS.txt",
+        "indexBlob": "798f1140efe7e23caf45094f15ced76494bb4ce8",
+        "sha256": "fe03d7d0b58ffbd728f572ebdc96f3c7c4c9ef3b49dad9cb66c162168ba0a5a4",
+        "matchesAttachment": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe.py",
+        "indexBlob": "d7f29349aee2d5b559eecd28aef5e94cbdc829fb",
+        "sha256": "864c092f7ecfa303ca7c0d1e50c43aa6c52811166d82ef6dec20a224a1e94257",
+        "matchesAttachment": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe-results.json",
+        "indexBlob": "98e337959a5d4cebf8c25ee32300678b050e55f9",
+        "sha256": "97b5ae767ec74eb520c5c53da45053a8e92f9c9091f29538b2e0eb984158ef8c",
+        "matchesAttachment": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/dependency-slice.json",
+        "indexBlob": "a3a855dffb39f876267fb90b2732ec291b189d92",
+        "sha256": "e55959a2386a9e89a03edd5345a568e703754596434b69de37519969e744ef46",
+        "matchesAttachment": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/README.md",
+        "indexBlob": "83412ab94bfe2aae87feb71e24b28554bdbc78e4",
+        "sha256": "52d68799acc17e8cb653c9a65f757dbae66ecc095acbf5bdef7ea2b542495b24",
+        "matchesAttachment": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/input-audit.json",
+        "indexBlob": "7884cec105722ebf8c03a542b44995a44272f6bb",
+        "sha256": "b5dfb5a75168aaacbf4c1db3da3fed1adc07fa4c7842cad21e236a07a03f447e",
+        "matchesAttachment": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe-run.txt",
+        "indexBlob": "4b627c916352b7be2cda431bfba44e09db8828d5",
+        "sha256": "700c1473ad5e6eb558d4fc4d4307d23bbb763096ee240091ecb811eaa56dcca1",
+        "matchesAttachment": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/source/check.py",
+        "indexBlob": "4d3c0e443dd02232ca1cc8c7fbac25588ca06bd7",
+        "sha256": "56aa97136e017b36e3b8ded6b5191d60e047e7845e19ae55046e4635b8db7460",
+        "matchesAttachment": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/source/infected-residence-core-test-config-v0.1.json",
+        "indexBlob": "db6959ac02bf1e3bf8e816fe2b0d148ced9ca273",
+        "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9",
+        "matchesAttachment": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/source/infected-terminal-core-test-config-v0.1.json",
+        "indexBlob": "fa999e7f456414daf6279fd8fbff3cd117394135",
+        "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+        "matchesAttachment": true
       }
     ],
-    "allStagedEqualWorktree": true,
-    "frozenInputsUnchanged": true,
-    "outsideIndexPathsChanged": 0
-  },
-  "stagingReceipt": [
-    {
-      "command": "git add --pathspec-from-file=<external temp list>",
-      "exitCode": 1,
-      "stderr": "fatal: could not open 'C:/Users/zjl/AppData/Local/Temp/world-entry-004-4mey0s37/stage-paths.txt' for reading: Permission denied\n",
-      "resolution": "No file staged in failed call; same 29 paths then passed directly"
-    },
-    {
-      "command": "git add -- <29 explicit allowed paths>",
-      "exitCode": 0,
-      "stdout": "",
-      "stderr": ""
-    }
-  ]
+    "nextStep": "Restage only these excluded report files, recheck index and commit once"
+  }
 }

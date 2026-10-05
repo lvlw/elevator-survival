@@ -2139,7 +2139,8 @@
       "specialty": "scout",
       "action": {
         "op": "medical",
-        "item": "bandage"
+        "item": "bandage",
+        "id": "initial-bandage"
       },
       "select": [],
       "expect": {
@@ -2207,7 +2208,10 @@
         },
         "origins": {
           "TASK-sample:sample:0": "sample"
-        }
+        },
+        "claimed": [
+          "TASK-sample"
+        ]
       },
       "prefix": [],
       "seedItems": [],
@@ -2246,6 +2250,9 @@
             "at": null,
             "execution": "finite-execution"
           }
+        ],
+        "claimed": [
+          "TASK-sample"
         ]
       },
       "prefix": [],
@@ -2330,7 +2337,10 @@
         },
         "origins": {
           "TASK-sample:sample:0": "sample"
-        }
+        },
+        "claimed": [
+          "TASK-sample"
+        ]
       },
       "prefix": [],
       "seedItems": [],
@@ -2700,8 +2710,7 @@
         },
         {
           "op": "source",
-          "id": "L1-cabinet",
-          "mode": "dark"
+          "id": "L1-cabinet"
         },
         {
           "op": "pickup",
@@ -2762,8 +2771,7 @@
         },
         {
           "op": "source",
-          "id": "L2-search",
-          "mode": "dark"
+          "id": "L2-search"
         },
         {
           "op": "pickup",
@@ -2815,8 +2823,7 @@
         },
         {
           "op": "source",
-          "id": "L3-rack",
-          "mode": "dark"
+          "id": "L3-rack"
         },
         {
           "op": "pickup",
@@ -3107,8 +3114,7 @@
         },
         {
           "op": "source",
-          "id": "L1-cabinet",
-          "mode": "lit"
+          "id": "L1-cabinet"
         },
         {
           "op": "pickup",
@@ -3169,8 +3175,7 @@
         },
         {
           "op": "source",
-          "id": "L2-search",
-          "mode": "lit"
+          "id": "L2-search"
         },
         {
           "op": "pickup",
@@ -3222,8 +3227,7 @@
         },
         {
           "op": "source",
-          "id": "L3-rack",
-          "mode": "lit"
+          "id": "L3-rack"
         },
         {
           "op": "pickup",
@@ -3545,8 +3549,7 @@
         },
         {
           "op": "source",
-          "id": "L1-cabinet",
-          "mode": "dark"
+          "id": "L1-cabinet"
         },
         {
           "op": "pickup",
@@ -3615,8 +3618,7 @@
         },
         {
           "op": "source",
-          "id": "L2-search",
-          "mode": "dark"
+          "id": "L2-search"
         },
         {
           "op": "pickup",
@@ -3660,8 +3662,7 @@
         },
         {
           "op": "source",
-          "id": "L3-rack",
-          "mode": "dark"
+          "id": "L3-rack"
         },
         {
           "op": "pickup",
@@ -3939,8 +3940,7 @@
         },
         {
           "op": "source",
-          "id": "L1-cabinet",
-          "mode": "dark"
+          "id": "L1-cabinet"
         },
         {
           "op": "pickup",
@@ -4001,8 +4001,7 @@
         },
         {
           "op": "source",
-          "id": "L2-search",
-          "mode": "dark"
+          "id": "L2-search"
         },
         {
           "op": "pickup",
@@ -4054,8 +4053,7 @@
         },
         {
           "op": "source",
-          "id": "L3-rack",
-          "mode": "dark"
+          "id": "L3-rack"
         },
         {
           "op": "pickup",
@@ -4225,6 +4223,2217 @@
     {
       "id": "U-nine-wins",
       "reason": "九组合仅局部差异，不是九套完整通关或概率证明"
+    }
+  ],
+  "r1Identity": {
+    "base": "0362460b259cba6ea160e79ad04a6cb14181cef0",
+    "originalIDsRetained": 98,
+    "originalExpectedChanged": 0,
+    "adaptations": [
+      {
+        "id": "consumed-unit-not-usable",
+        "change": "select the actually consumed instance; original expected unchanged"
+      },
+      {
+        "id": "actual-wrong-execution-sample",
+        "change": "prepared claimed TASK-sample; original expected unchanged"
+      },
+      {
+        "id": "already-delivered-sample",
+        "change": "prepared claimed TASK-sample; original expected unchanged"
+      },
+      {
+        "id": "real-sample-success",
+        "change": "prepared claimed TASK-sample; original expected unchanged"
+      },
+      {
+        "id": "route-hotel-bypass",
+        "change": "remove inert lighting labels from fixed sources; same actions/costs/expectation",
+        "actionIndices": [
+          22,
+          31,
+          40
+        ]
+      },
+      {
+        "id": "route-hotel-benefit",
+        "change": "remove inert lighting labels from fixed sources; same actions/costs/expectation",
+        "actionIndices": [
+          23,
+          32,
+          41
+        ]
+      },
+      {
+        "id": "route-segmented",
+        "change": "remove inert lighting labels from fixed sources; same actions/costs/expectation",
+        "actionIndices": [
+          25,
+          36,
+          43
+        ]
+      },
+      {
+        "id": "route-toolbox",
+        "change": "remove inert lighting labels from fixed sources; same actions/costs/expectation",
+        "actionIndices": [
+          21,
+          30,
+          39
+        ]
+      }
+    ],
+    "prefixRoute": "Actual model actions of original conditional route until exclusive step index; still conditional CTB, not path discovery. Mutations alter the raw test input after preparation.",
+    "newRegressionCount": 96
+  },
+  "r1Cases": [
+    {
+      "id": "R1-medical-quantity-negative",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "quantity": -1
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "E": 0
+      }
+    },
+    {
+      "id": "R1-medical-quantity-boolean",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "quantity": true
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "E": 0
+      }
+    },
+    {
+      "id": "R1-medical-quantity-fraction",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "quantity": 1.5
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "E": 0
+      }
+    },
+    {
+      "id": "R1-medical-quantity-unsafe",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "quantity": 9007199254740992
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "E": 0
+      }
+    },
+    {
+      "id": "R1-medical-quantity-zero",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "quantity": 0
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "E": 0
+      }
+    },
+    {
+      "id": "R1-medical-quantity-string",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "quantity": "1"
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "E": 0
+      }
+    },
+    {
+      "id": "R1-medical-quantity-null",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "quantity": null
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "E": 0
+      }
+    },
+    {
+      "id": "R1-medical-quantity-two",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "quantity": 2
+      },
+      "select": [],
+      "expect": {
+        "reject": "MEDICAL_QUANTITY",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-medical-unit-explicit",
+      "category": "positive",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "quantity": 1
+      },
+      "select": [
+        "hp",
+        "E",
+        "revision"
+      ],
+      "expect": {
+        "hp": 3,
+        "E": 0,
+        "revision": 1
+      },
+      "initial": {
+        "hp": 2,
+        "E": 0
+      }
+    },
+    {
+      "id": "R1-revision-false",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "expectedRevision": false
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "revision": 0
+      }
+    },
+    {
+      "id": "R1-revision-true",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "expectedRevision": true
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "revision": 1
+      }
+    },
+    {
+      "id": "R1-revision-fraction",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "expectedRevision": 0.0
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "revision": 0
+      }
+    },
+    {
+      "id": "R1-revision-unsafe",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "expectedRevision": 9007199254740992
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "revision": 0
+      }
+    },
+    {
+      "id": "R1-missing-op",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {},
+      "select": [],
+      "expect": {
+        "reject": "INTENT_SHAPE",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-null",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": null,
+      "select": [],
+      "expect": {
+        "reject": "INTENT_SHAPE",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-array",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": [],
+      "select": [],
+      "expect": {
+        "reject": "INTENT_SHAPE",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-op-number",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": 0
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_SHAPE",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-unknown-op",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "heal-everything"
+      },
+      "select": [],
+      "expect": {
+        "reject": "UNKNOWN_INTENT",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-unknown-source",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "source",
+        "id": "absent"
+      },
+      "select": [],
+      "expect": {
+        "reject": "UNKNOWN_SOURCE",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-unknown-task",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "task",
+        "id": "absent"
+      },
+      "select": [],
+      "expect": {
+        "reject": "UNKNOWN_TASK",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-missing-medical-id",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage"
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-medical-selector-array",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": []
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_SELECTOR",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-missing-move-to",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "move"
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-unknown-repair",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "repair",
+        "target": "absent"
+      },
+      "select": [],
+      "expect": {
+        "reject": "TOOL",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-unknown-drop",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "drop",
+        "id": "absent"
+      },
+      "select": [],
+      "expect": {
+        "reject": "NO_CARRIED_ITEM",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-unknown-pickup",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "pickup",
+        "id": "absent",
+        "at": [
+          0,
+          0,
+          false
+        ]
+      },
+      "select": [],
+      "expect": {
+        "reject": "NO_LOCAL_ITEM",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-unknown-merge",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "merge",
+        "id": "absent",
+        "target": "initial-bandage"
+      },
+      "select": [],
+      "expect": {
+        "reject": "NO_CARRIED_ITEM",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-return-selector",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "return",
+        "outcome": "death"
+      },
+      "select": [],
+      "expect": {
+        "reject": "TERMINAL_INTENT",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-target-number",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "target": 1
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_SELECTOR",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-target-absent",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "target": "absent"
+      },
+      "select": [],
+      "expect": {
+        "reject": "TARGET_REQUIRED",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-cross-intent-medical",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "outcome": "success"
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-cross-intent-move",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "move",
+        "to": "H1",
+        "damage": 1
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-cross-intent-source",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "source",
+        "id": "H1-search",
+        "item": "cloth",
+        "quantity": 1
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-cross-intent-pickup",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "pickup",
+        "id": "absent",
+        "at": [
+          0,
+          0,
+          false
+        ],
+        "outcome": "success"
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-cross-intent-split",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "split",
+        "id": "absent",
+        "quantity": 1,
+        "at": [
+          0,
+          0,
+          false
+        ],
+        "damage": 1
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-cross-intent-merge",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "merge",
+        "id": "absent",
+        "target": "a",
+        "quantity": 1
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-cross-intent-drop",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "drop",
+        "id": "absent",
+        "at": [
+          0,
+          0,
+          false
+        ]
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-cross-intent-task",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "task",
+        "id": "install",
+        "outcome": "success"
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-cross-intent-repair",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "repair",
+        "target": "pipe",
+        "damage": 1
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-cross-intent-exchange",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "exchange",
+        "at": [
+          0,
+          0,
+          false
+        ],
+        "item": "food"
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-cross-intent-rest",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "rest",
+        "ctb": 1
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-cross-intent-return",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "return",
+        "outcome": "failure",
+        "damage": 1
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-cross-intent-deadline",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "deadline",
+        "target": "a"
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-cross-intent-reload",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload",
+        "quantity": 1
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2
+      }
+    },
+    {
+      "id": "R1-treated-number",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      },
+      "select": [],
+      "expect": {
+        "reject": "STATE_BOOL",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "wounds": [
+          {
+            "id": "w",
+            "treated": -1
+          }
+        ]
+      }
+    },
+    {
+      "id": "R1-treated-null",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      },
+      "select": [],
+      "expect": {
+        "reject": "STATE_BOOL",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "wounds": [
+          {
+            "id": "w",
+            "treated": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "R1-wound-missing-flag",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      },
+      "select": [],
+      "expect": {
+        "reject": "STATE_SHAPE",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "wounds": [
+          {
+            "id": "w"
+          }
+        ]
+      }
+    },
+    {
+      "id": "R1-wound-id-list",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      },
+      "select": [],
+      "expect": {
+        "reject": "STATE_SHAPE",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "wounds": [
+          {
+            "id": [],
+            "treated": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "R1-wound-duplicate-id",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      },
+      "select": [],
+      "expect": {
+        "reject": "WOUND_ID",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "wounds": [
+          {
+            "id": "w",
+            "treated": false
+          },
+          {
+            "id": "w",
+            "treated": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "R1-target-already-treated",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage",
+        "target": "w"
+      },
+      "select": [],
+      "expect": {
+        "reject": "TARGET_REQUIRED",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 2,
+        "wounds": [
+          {
+            "id": "w",
+            "treated": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "R1-phase-unknown",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "STATE_TAG",
+        "zeroCommit": true
+      },
+      "mutations": [
+        {
+          "path": [
+            "phase"
+          ],
+          "value": "unknown"
+        }
+      ]
+    },
+    {
+      "id": "R1-phase-outcome",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "PHASE_OUTCOME",
+        "zeroCommit": true
+      },
+      "mutations": [
+        {
+          "path": [
+            "outcome"
+          ],
+          "value": "success"
+        }
+      ]
+    },
+    {
+      "id": "R1-D-bool",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "mutations": [
+        {
+          "path": [
+            "D"
+          ],
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "R1-T-zero",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "CLOCK",
+        "zeroCommit": true
+      },
+      "mutations": [
+        {
+          "path": [
+            "T"
+          ],
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "R1-T-day8",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "CLOCK",
+        "zeroCommit": true
+      },
+      "mutations": [
+        {
+          "path": [
+            "T"
+          ],
+          "value": 8
+        }
+      ]
+    },
+    {
+      "id": "R1-D-behind",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "CLOCK",
+        "zeroCommit": true
+      },
+      "mutations": [
+        {
+          "path": [
+            "T"
+          ],
+          "value": 2
+        }
+      ]
+    },
+    {
+      "id": "R1-pending-unknown",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "STATE_SELECTOR",
+        "zeroCommit": true
+      },
+      "mutations": [
+        {
+          "path": [
+            "pending"
+          ],
+          "value": "alien"
+        }
+      ]
+    },
+    {
+      "id": "R1-pending-array",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "STATE_SELECTOR",
+        "zeroCommit": true
+      },
+      "mutations": [
+        {
+          "path": [
+            "pending"
+          ],
+          "value": []
+        }
+      ]
+    },
+    {
+      "id": "R1-quota-boolean",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "mutations": [
+        {
+          "path": [
+            "quota",
+            "disinfectant"
+          ],
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "R1-quota-missing",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "STATE_SHAPE",
+        "zeroCommit": true
+      },
+      "mutations": [
+        {
+          "path": [
+            "quota"
+          ],
+          "value": {}
+        }
+      ]
+    },
+    {
+      "id": "R1-bleeding-number",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "STATE_BOOL",
+        "zeroCommit": true
+      },
+      "mutations": [
+        {
+          "path": [
+            "bleed"
+          ],
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "R1-survival-flag",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "STATE_BOOL",
+        "zeroCommit": true
+      },
+      "mutations": [
+        {
+          "path": [
+            "survivalUsed"
+          ],
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "R1-hp0-no-medicine",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      },
+      "select": [],
+      "expect": {
+        "reject": "CLOSED",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 0,
+        "phase": "dead",
+        "outcome": "death"
+      }
+    },
+    {
+      "id": "R1-active-hp0-no-repair",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      },
+      "select": [],
+      "expect": {
+        "reject": "PHASE_HP",
+        "zeroCommit": true
+      },
+      "initial": {
+        "hp": 0
+      }
+    },
+    {
+      "id": "R1-survival-second-use",
+      "category": "positive",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "extra:bandage:0"
+      },
+      "select": [
+        "hp",
+        "survivalUsed"
+      ],
+      "expect": {
+        "hp": 5,
+        "survivalUsed": true
+      },
+      "specialty": "survival",
+      "initial": {
+        "hp": 2,
+        "E": 0
+      },
+      "seedItems": [
+        {
+          "source": "extra",
+          "grants": {
+            "bandage": 1
+          }
+        }
+      ],
+      "prefix": [
+        {
+          "op": "medical",
+          "item": "bandage",
+          "id": "initial-bandage"
+        }
+      ]
+    },
+    {
+      "id": "R1-foreign-component-install",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "task",
+        "id": "install"
+      },
+      "select": [],
+      "expect": {
+        "reject": "TASK_EXECUTION",
+        "zeroCommit": true
+      },
+      "prefixRoute": {
+        "id": "route-hotel-bypass",
+        "end": 67
+      },
+      "mutations": [
+        {
+          "path": [
+            "items",
+            "TASK-component:component:0",
+            "execution"
+          ],
+          "value": "foreign"
+        }
+      ]
+    },
+    {
+      "id": "R1-foreign-module-install",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "task",
+        "id": "install"
+      },
+      "select": [],
+      "expect": {
+        "reject": "TASK_EXECUTION",
+        "zeroCommit": true
+      },
+      "prefixRoute": {
+        "id": "route-hotel-bypass",
+        "end": 67
+      },
+      "mutations": [
+        {
+          "path": [
+            "items",
+            "TASK-module:module:0",
+            "execution"
+          ],
+          "value": "foreign"
+        }
+      ]
+    },
+    {
+      "id": "R1-source-claim-install",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "task",
+        "id": "install"
+      },
+      "select": [],
+      "expect": {
+        "reject": "SOURCE_CLAIM",
+        "zeroCommit": true
+      },
+      "prefixRoute": {
+        "id": "route-hotel-bypass",
+        "end": 67
+      },
+      "mutations": [
+        {
+          "path": [
+            "claimed"
+          ],
+          "value": [
+            "H1-search",
+            "H1-random",
+            "H2-search",
+            "H2-random",
+            "H3-search",
+            "TASK-sample",
+            "L1-cabinet",
+            "L2-search",
+            "L3-rack",
+            "TASK-module"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R1-real-installation",
+      "category": "positive",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "task",
+        "id": "install"
+      },
+      "select": [
+        "transfer",
+        "installed",
+        "taskItemsRemaining"
+      ],
+      "expect": {
+        "transfer": true,
+        "installed": [
+          "H1-search:metal:0",
+          "L3-rack:electronic:0",
+          "TASK-component:component:0",
+          "TASK-module:module:0"
+        ],
+        "taskItemsRemaining": 0
+      },
+      "query": "installation",
+      "prefixRoute": {
+        "id": "route-hotel-bypass",
+        "end": 67
+      }
+    },
+    {
+      "id": "R1-install-e0",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "task",
+        "id": "install"
+      },
+      "select": [],
+      "expect": {
+        "reject": "E0_PAID",
+        "zeroCommit": true
+      },
+      "prefixRoute": {
+        "id": "route-hotel-bypass",
+        "end": 67
+      },
+      "mutations": [
+        {
+          "path": [
+            "E"
+          ],
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "R1-installed-repeat",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "task",
+        "id": "install"
+      },
+      "select": [],
+      "expect": {
+        "reject": "ALREADY_DONE",
+        "zeroCommit": true
+      },
+      "prefixRoute": {
+        "id": "route-hotel-bypass",
+        "end": 68
+      }
+    },
+    {
+      "id": "R1-source-claim-disposed",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "SOURCE_CLAIM",
+        "zeroCommit": true
+      },
+      "prefixRoute": {
+        "id": "route-hotel-bypass",
+        "end": 68
+      },
+      "mutations": [
+        {
+          "path": [
+            "claimed"
+          ],
+          "value": [
+            "H1-search",
+            "H1-random",
+            "H2-search",
+            "H2-random",
+            "H3-search",
+            "TASK-sample",
+            "L1-cabinet",
+            "TASK-component",
+            "L2-search",
+            "L3-rack"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R1-sample-claim-success",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "return",
+        "outcome": "success"
+      },
+      "select": [],
+      "expect": {
+        "reject": "SOURCE_CLAIM",
+        "zeroCommit": true
+      },
+      "prefixRoute": {
+        "id": "route-hotel-bypass",
+        "end": 73
+      },
+      "mutations": [
+        {
+          "path": [
+            "claimed"
+          ],
+          "value": [
+            "H1-search",
+            "H1-random",
+            "H2-search",
+            "H2-random",
+            "H3-search",
+            "L1-cabinet",
+            "TASK-component",
+            "L2-search",
+            "L3-rack",
+            "TASK-module"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R1-sample-real-success",
+      "category": "positive",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "return",
+        "outcome": "success"
+      },
+      "select": [
+        "outcome",
+        "points"
+      ],
+      "expect": {
+        "outcome": "success",
+        "points": 120
+      },
+      "prefixRoute": {
+        "id": "route-hotel-bypass",
+        "end": 73
+      }
+    },
+    {
+      "id": "R1-sample-foreign-success",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "return",
+        "outcome": "success"
+      },
+      "select": [],
+      "expect": {
+        "reject": "WRONG_TERMINAL_INTENT",
+        "zeroCommit": true
+      },
+      "prefixRoute": {
+        "id": "route-hotel-bypass",
+        "end": 73
+      },
+      "mutations": [
+        {
+          "path": [
+            "items",
+            "TASK-sample:sample:0",
+            "execution"
+          ],
+          "value": "foreign"
+        }
+      ]
+    },
+    {
+      "id": "R1-component-ground-install",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "task",
+        "id": "install"
+      },
+      "select": [],
+      "expect": {
+        "reject": "MISSING_ITEM",
+        "zeroCommit": true
+      },
+      "prefixRoute": {
+        "id": "route-hotel-bypass",
+        "end": 67
+      },
+      "mutations": [
+        {
+          "path": [
+            "items",
+            "TASK-component:component:0",
+            "where"
+          ],
+          "value": "ground:H8"
+        },
+        {
+          "path": [
+            "items",
+            "TASK-component:component:0",
+            "at"
+          ],
+          "value": null
+        }
+      ]
+    },
+    {
+      "id": "R1-task-local-transport-install",
+      "category": "positive",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "task",
+        "id": "install"
+      },
+      "select": [
+        "transfer",
+        "installed",
+        "taskItemsRemaining"
+      ],
+      "expect": {
+        "transfer": true,
+        "installed": [
+          "H1-search:metal:0",
+          "L3-rack:electronic:0",
+          "TASK-component:component:0",
+          "TASK-module:module:0"
+        ],
+        "taskItemsRemaining": 0
+      },
+      "query": "installation",
+      "prefixRoute": {
+        "id": "route-hotel-bypass",
+        "end": 67
+      },
+      "afterPrefix": [
+        {
+          "op": "drop",
+          "id": "TASK-component:component:0"
+        },
+        {
+          "op": "pickup",
+          "id": "TASK-component:component:0",
+          "at": [
+            1,
+            1,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R1-component-foreign-pickup",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "pickup",
+        "id": "TASK-component:component:0",
+        "at": [
+          1,
+          1,
+          false
+        ]
+      },
+      "select": [],
+      "expect": {
+        "reject": "TASK_EXECUTION",
+        "zeroCommit": true
+      },
+      "prefixRoute": {
+        "id": "route-hotel-bypass",
+        "end": 67
+      },
+      "mutations": [
+        {
+          "path": [
+            "items",
+            "TASK-component:component:0",
+            "where"
+          ],
+          "value": "ground:H8"
+        },
+        {
+          "path": [
+            "items",
+            "TASK-component:component:0",
+            "at"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "items",
+            "TASK-component:component:0",
+            "execution"
+          ],
+          "value": "foreign"
+        }
+      ]
+    },
+    {
+      "id": "R1-ordinary-history-usable",
+      "category": "positive",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "medical",
+        "item": "bandage",
+        "id": "initial-bandage"
+      },
+      "select": [
+        "hp",
+        "E"
+      ],
+      "expect": {
+        "hp": 3,
+        "E": 0
+      },
+      "initial": {
+        "hp": 2,
+        "E": 0
+      },
+      "mutations": [
+        {
+          "path": [
+            "items",
+            "initial-bandage",
+            "execution"
+          ],
+          "value": "old-execution"
+        }
+      ]
+    },
+    {
+      "id": "R1-ordinary-source-missing-claim",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "SOURCE_CLAIM",
+        "zeroCommit": true
+      },
+      "prefix": [
+        {
+          "op": "move",
+          "to": "H1"
+        },
+        {
+          "op": "source",
+          "id": "H1-search",
+          "item": "cloth"
+        }
+      ],
+      "mutations": [
+        {
+          "path": [
+            "claimed"
+          ],
+          "value": []
+        }
+      ]
+    },
+    {
+      "id": "R1-claimed-without-allocation",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "SOURCE_CLAIM",
+        "zeroCommit": true
+      },
+      "initial": {
+        "claimed": [
+          "TASK-component"
+        ]
+      }
+    },
+    {
+      "id": "R1-source-wrong-cardinality",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "reload"
+      },
+      "select": [],
+      "expect": {
+        "reject": "SOURCE_ALLOCATION",
+        "zeroCommit": true
+      },
+      "seedItems": [
+        {
+          "source": "H1-search",
+          "grants": {
+            "metal": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "R1-source-mode-typo",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "source",
+        "id": "H1-search",
+        "item": "cloth",
+        "mode": "ligt"
+      },
+      "select": [],
+      "expect": {
+        "reject": "SOURCE_MODE",
+        "zeroCommit": true
+      },
+      "initial": {
+        "node": "H1"
+      }
+    },
+    {
+      "id": "R1-fixed-source-inert-mode",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "source",
+        "id": "L3-rack",
+        "mode": "lit"
+      },
+      "select": [],
+      "expect": {
+        "reject": "SOURCE_MODE",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "R1-task-mode-typo",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "task",
+        "id": "fix",
+        "mode": "crouw"
+      },
+      "select": [],
+      "expect": {
+        "reject": "TASK_MODE",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "R1-task-placement-missing",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "task",
+        "id": "component"
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "R1-task-unrelated-placement",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "task",
+        "id": "install",
+        "at": [
+          0,
+          0,
+          false
+        ]
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "R1-placement-bool-coordinate",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "pickup",
+        "id": "unknown",
+        "at": [
+          true,
+          0,
+          false
+        ]
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "R1-external-death-once",
+      "category": "positive",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "combat",
+        "enemy": "orderly",
+        "ctb": 100,
+        "damage": 12,
+        "enemyDamage": 0,
+        "wear": 1,
+        "coatWear": 1,
+        "bleeding": false,
+        "exposure": 0,
+        "outcome": "death"
+      },
+      "select": [
+        "hp",
+        "phase",
+        "outcome",
+        "revision",
+        "receipt"
+      ],
+      "expect": {
+        "hp": 0,
+        "phase": "dead",
+        "outcome": "death",
+        "revision": 1,
+        "receipt": {
+          "outcome": "death",
+          "before": 0,
+          "penalty": 0,
+          "steps": [
+            "external-combat-primary"
+          ],
+          "endD": 1,
+          "endT": 1
+        }
+      },
+      "initial": {
+        "pending": "orderly",
+        "node": "H4",
+        "previous": "H3"
+      }
+    },
+    {
+      "id": "R1-combat-unknown-enemy",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "combat",
+        "enemy": "alien",
+        "ctb": 100,
+        "damage": 12,
+        "enemyDamage": 0,
+        "wear": 1,
+        "coatWear": 1,
+        "bleeding": false,
+        "exposure": 0,
+        "outcome": "death"
+      },
+      "select": [],
+      "expect": {
+        "reject": "UNKNOWN_ENEMY",
+        "zeroCommit": true
+      },
+      "initial": {
+        "pending": "orderly",
+        "node": "H4",
+        "previous": "H3"
+      }
+    },
+    {
+      "id": "R1-combat-bool-damage",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "combat",
+        "enemy": "orderly",
+        "ctb": 100,
+        "damage": true,
+        "enemyDamage": 0,
+        "wear": 1,
+        "coatWear": 1,
+        "bleeding": false,
+        "exposure": 0,
+        "outcome": "death"
+      },
+      "select": [],
+      "expect": {
+        "reject": "INVALID_NUMBER",
+        "zeroCommit": true
+      },
+      "initial": {
+        "pending": "orderly",
+        "node": "H4",
+        "previous": "H3"
+      }
+    },
+    {
+      "id": "R1-combat-flag-number",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "combat",
+        "enemy": "orderly",
+        "ctb": 100,
+        "damage": 12,
+        "enemyDamage": 0,
+        "wear": 1,
+        "coatWear": 1,
+        "bleeding": 1,
+        "exposure": 0,
+        "outcome": "death"
+      },
+      "select": [],
+      "expect": {
+        "reject": "TRACE_BOOL",
+        "zeroCommit": true
+      },
+      "initial": {
+        "pending": "orderly",
+        "node": "H4",
+        "previous": "H3"
+      }
+    },
+    {
+      "id": "R1-combat-death-mislabeled",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "combat",
+        "enemy": "orderly",
+        "ctb": 100,
+        "damage": 12,
+        "enemyDamage": 0,
+        "wear": 1,
+        "coatWear": 1,
+        "bleeding": false,
+        "exposure": 0,
+        "outcome": "victory"
+      },
+      "select": [],
+      "expect": {
+        "reject": "TRACE_OUTCOME",
+        "zeroCommit": true
+      },
+      "initial": {
+        "pending": "orderly",
+        "node": "H4",
+        "previous": "H3"
+      }
+    },
+    {
+      "id": "R1-combat-quantity",
+      "category": "expected-rejection",
+      "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged",
+      "action": {
+        "op": "combat",
+        "enemy": "orderly",
+        "ctb": 100,
+        "damage": 12,
+        "enemyDamage": 0,
+        "wear": 1,
+        "coatWear": 1,
+        "bleeding": false,
+        "exposure": 0,
+        "outcome": "death",
+        "quantity": 1
+      },
+      "select": [],
+      "expect": {
+        "reject": "INTENT_FIELDS",
+        "zeroCommit": true
+      },
+      "initial": {
+        "pending": "orderly",
+        "node": "H4",
+        "previous": "H3"
+      }
+    },
+    {
+      "id": "R1-task-invalid-allocation-ordinal",
+      "category": "expected-rejection",
+      "oracle": "F01 task alias must have the one declared original share; arbitrary second ordinal is not a task unit",
+      "seedItems": [
+        {
+          "source": "TASK-component",
+          "grants": {
+            "component": 2
+          }
+        }
+      ],
+      "action": {
+        "op": "reload"
+      },
+      "expect": {
+        "reject": "TASK_SOURCE",
+        "zeroCommit": true
+      }
+    },
+    {
+      "id": "R1-installed-task-foreign-execution",
+      "category": "expected-rejection",
+      "oracle": "F01 already-installed component at disposition index 3 retains the same execution; preceding three entries are actual bandage/food consumption",
+      "prefixRoute": {
+        "id": "route-hotel-bypass",
+        "end": 68
+      },
+      "mutations": [
+        {
+          "path": [
+            "disposed",
+            3,
+            "execution"
+          ],
+          "value": "foreign"
+        }
+      ],
+      "action": {
+        "op": "reload"
+      },
+      "expect": {
+        "reject": "TASK_EXECUTION",
+        "zeroCommit": true
+      }
     }
   ]
 }

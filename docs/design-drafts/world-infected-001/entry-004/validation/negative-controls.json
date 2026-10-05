@@ -1,10 +1,16 @@
 {
-  "status": "all four semantic controls detected with exit1; not crashes",
-  "controls": [
+  "task": "WORLD-ENTRY-004-R1",
+  "mutations": [
     {
       "name": "source-duplication",
-      "exitCode": 1,
-      "expectedDetector": "source-once",
+      "exit": 1,
+      "counts": {
+        "positive": 55,
+        "expected-rejection": 127,
+        "fault-injection": 7,
+        "unsupported": 5,
+        "mismatch": 2
+      },
       "failedCases": [
         {
           "id": "source-once",
@@ -16,21 +22,32 @@
           "actual": {},
           "match": false,
           "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields"
+        },
+        {
+          "id": "R1-source-wrong-cardinality",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "SOURCE_ALLOCATION",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
         }
       ],
-      "fullOutputSHA256": "b383ea12c6bd2df4ffc4f5360d841867425723d0eb79c99120eee876f31b4c91",
-      "counts": {
-        "positive": 48,
-        "expected-rejection": 38,
-        "fault-injection": 7,
-        "unsupported": 5,
-        "mismatch": 1
-      }
+      "sha256": "b563fd2d756d40152d675f74e71d071815b3df11c3757e9f76a544211b5e4a39",
+      "unexpectedExceptions": 0
     },
     {
       "name": "terminal-reopen",
-      "exitCode": 1,
-      "expectedDetector": "closed-reopen",
+      "exit": 1,
+      "counts": {
+        "positive": 55,
+        "expected-rejection": 127,
+        "fault-injection": 7,
+        "unsupported": 5,
+        "mismatch": 1
+      },
       "failedCases": [
         {
           "id": "closed-reopen",
@@ -44,19 +61,19 @@
           "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields"
         }
       ],
-      "fullOutputSHA256": "d584b9e6970a9d1cff3666b2a5743c6504901e40d435f829b3a5c90478adebd7",
-      "counts": {
-        "positive": 48,
-        "expected-rejection": 38,
-        "fault-injection": 7,
-        "unsupported": 5,
-        "mismatch": 1
-      }
+      "sha256": "845548c79fd415ae8e1a2d6685dfe20abeecc0a56cb0a53d74842ed5f4d7ba4f",
+      "unexpectedExceptions": 0
     },
     {
       "name": "double-body-cycle",
-      "exitCode": 1,
-      "expectedDetector": "normal-empty-cycle",
+      "exit": 1,
+      "counts": {
+        "positive": 55,
+        "expected-rejection": 127,
+        "fault-injection": 7,
+        "unsupported": 5,
+        "mismatch": 1
+      },
       "failedCases": [
         {
           "id": "normal-empty-cycle",
@@ -95,19 +112,19 @@
           "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields"
         }
       ],
-      "fullOutputSHA256": "19ec85b404ae1bcd1af84c3d7eeccb92cfafd0832753bf6a2583523064ee177a",
-      "counts": {
-        "positive": 48,
-        "expected-rejection": 38,
-        "fault-injection": 7,
-        "unsupported": 5,
-        "mismatch": 1
-      }
+      "sha256": "3405104b53bb28afc8df2b278917f275a6ba9b223073fad7e7a9d79fe332e53d",
+      "unexpectedExceptions": 0
     },
     {
       "name": "hidden-data-leak",
-      "exitCode": 1,
-      "expectedDetector": "hidden-pair",
+      "exit": 1,
+      "counts": {
+        "positive": 55,
+        "expected-rejection": 127,
+        "fault-injection": 7,
+        "unsupported": 5,
+        "mismatch": 1
+      },
       "failedCases": [
         {
           "id": "hidden-pair",
@@ -124,14 +141,218 @@
           "oracle": "DEC-049/050/051 or entry-004 D01-D04; hand-stated expected fields"
         }
       ],
-      "fullOutputSHA256": "44ede96e04bd655520f4e8aac6b38246fc69393ff83c85758931061e96d466e9",
+      "sha256": "b7c19933de2b3317071b0d55d0ce88fc02b3e848e7eec6c881cabdc75502b389",
+      "unexpectedExceptions": 0
+    },
+    {
+      "name": "task-execution-omission",
+      "exit": 1,
       "counts": {
-        "positive": 48,
-        "expected-rejection": 38,
+        "positive": 55,
+        "expected-rejection": 127,
         "fault-injection": 7,
         "unsupported": 5,
-        "mismatch": 1
-      }
+        "mismatch": 4
+      },
+      "failedCases": [
+        {
+          "id": "R1-foreign-component-install",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "TASK_EXECUTION",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+        },
+        {
+          "id": "R1-foreign-module-install",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "TASK_EXECUTION",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+        },
+        {
+          "id": "R1-component-foreign-pickup",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "TASK_EXECUTION",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+        },
+        {
+          "id": "R1-installed-task-foreign-execution",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "TASK_EXECUTION",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "F01 already-installed component at disposition index 3 retains the same execution; preceding three entries are actual bandage/food consumption"
+        }
+      ],
+      "sha256": "b1609cfdebc6fe29bd3d4b91d09167a7578c9b511e5a8fcb962c8df9060bbe68",
+      "unexpectedExceptions": 0
+    },
+    {
+      "name": "intent-original-value-omission",
+      "exit": 1,
+      "counts": {
+        "positive": 55,
+        "expected-rejection": 127,
+        "fault-injection": 7,
+        "unsupported": 5,
+        "mismatch": 12
+      },
+      "failedCases": [
+        {
+          "id": "R1-medical-quantity-negative",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "INVALID_NUMBER",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+        },
+        {
+          "id": "R1-medical-quantity-boolean",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "INVALID_NUMBER",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+        },
+        {
+          "id": "R1-medical-quantity-fraction",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "INVALID_NUMBER",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+        },
+        {
+          "id": "R1-medical-quantity-unsafe",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "INVALID_NUMBER",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+        },
+        {
+          "id": "R1-medical-quantity-zero",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "INVALID_NUMBER",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+        },
+        {
+          "id": "R1-medical-quantity-string",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "INVALID_NUMBER",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+        },
+        {
+          "id": "R1-medical-quantity-null",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "INVALID_NUMBER",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+        },
+        {
+          "id": "R1-medical-quantity-two",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "MEDICAL_QUANTITY",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+        },
+        {
+          "id": "R1-revision-false",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "INVALID_NUMBER",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+        },
+        {
+          "id": "R1-revision-true",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "INVALID_NUMBER",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+        },
+        {
+          "id": "R1-revision-fraction",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "INVALID_NUMBER",
+            "zeroCommit": true
+          },
+          "actual": {},
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+        },
+        {
+          "id": "R1-revision-unsafe",
+          "category": "expected-rejection",
+          "expected": {
+            "reject": "INVALID_NUMBER",
+            "zeroCommit": true
+          },
+          "actual": {
+            "reject": "STALE",
+            "zeroCommit": true
+          },
+          "match": false,
+          "oracle": "R1 F01/F02: independently stated semantic expectation; raw rejection must leave exact input unchanged"
+        }
+      ],
+      "sha256": "73d41047240ee53fdd07bc52efbb8f7d3e8a131ab880c229adb92cd0cf66e469",
+      "unexpectedExceptions": 0
     }
-  ]
+  ],
+  "note": "Each independently returns exit 1 from semantic mismatch, zero modelError. These are isolated model controls, not production faults."
 }

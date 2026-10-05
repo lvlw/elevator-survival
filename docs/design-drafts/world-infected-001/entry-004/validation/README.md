@@ -1,4 +1,4 @@
-# WORLD-ENTRY-004 验证边界与复跑
+# WORLD-ENTRY-004-R1 验证边界与复跑
 
 A类：`check.py`与JSON是隔离有限Draft模型，productionCalls=0；不会调用或替代正式游戏规则实现。B类：`native-api-probes.mjs`直接加载当前TS源码，使用已有隔离test-fixtures作输入，调用G1/G2/A/B/C和旧纯模块；没有执行生产测试runner或注册内容。两类分别统计，不相加。
 
@@ -13,11 +13,13 @@ python docs/design-drafts/world-infected-001/entry-004/validation/check.py --rep
 python docs/design-drafts/world-infected-001/entry-004/validation/check.py --repo-root . --negative-control terminal-reopen --out <OUT1>/negative-terminal.json
 python docs/design-drafts/world-infected-001/entry-004/validation/check.py --repo-root . --negative-control double-body-cycle --out <OUT1>/negative-cycle.json
 python docs/design-drafts/world-infected-001/entry-004/validation/check.py --repo-root . --negative-control hidden-data-leak --out <OUT1>/negative-visible.json
+python docs/design-drafts/world-infected-001/entry-004/validation/check.py --repo-root . --negative-control task-execution-omission --out <OUT1>/negative-task-execution.json
+python docs/design-drafts/world-infected-001/entry-004/validation/check.py --repo-root . --negative-control intent-original-value-omission --out <OUT1>/negative-intent.json
 node docs/design-drafts/world-infected-001/entry-004/validation/native-api-probes.mjs --repo-root . --out <OUT1>/native-api-results.json
 npm run validate:architecture
 ```
 
-正套件两个独立进程exit0，结果原字节相同；四负控应exit1且有对应语义失败，不是启动异常。Node临时加载API有experimental提示，保留真实stderr，不等同语义失败。实际命令/退出码/哈希在[checks](../checks.json)。
+正套件两个独立进程exit0，结果原字节相同；六负控应exit1且有对应语义失败，不是启动异常。Node临时加载API有experimental提示，保留真实stderr，不等同语义失败。实际命令/退出码/哈希在[checks](../checks.json)。
 
 ## Oracle、分层与检测器
 
@@ -42,3 +44,21 @@ source-duplication在grant允许同来源多签单位，命中`source-once`；te
 [freeze-manifest](freeze-manifest.json)列正文、候选、脚本、夹具、输入及只读参照摘要。排除results/native/negative输出、freeze自身、checks/completion自引用。最终改动后冻结，复跑后核对所有摘要；两个正套件在独立进程执行，所有输出无时间/绝对机器路径。运行时间/实际路径只在checks回执。
 
 修订前原生加载失败、错误聚合传参及错误预期代码分别保留在checks；模型构造路线时的格位错误也记入completion。不改历史175/213/269及旧输出哈希。起始/最终生产全套NOT RUN，新增生产测试0；无浏览器、人工体验或长期经济模拟。
+
+## R1复现与适配
+
+在完整仓库修前／修后分别执行同一[原probe](../reviews/r1-inputs/evidence/probe.py)：
+
+```text
+python docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe.py --repo-root . --out <OUTSIDE>/after-probe.json
+```
+
+修前复现31项17符合／14不符／3异常，保存在checks的完整复现记录；修后31项独立记录。原probe只读，matchesReviewBaseModelBlob在修后为false是正常身份变化。原作者98、主线31、原生24及本轮新增96分别报告，不合并为生产测试数。
+
+原98覆盖由4配置／图项+86局部case+4条件路线+4静态未支持项构成；另一个活战斗读取case也分类unsupported，共5未支持。R1新增96（7正例／89拒绝），字段矩阵、原值、伤口／阶段／额度、任务来源／已处分及实际提取链列在fixtures.r1Cases。原expected不改，适配8个ID详列r1Identity；不删除、skip或替换原覆盖。
+
+prefixRoute调用原固定路线的真实模型动作作局部前置，再按需实际拾放，mutations仅故意损坏待检查的原输入；它仍依赖外部CTB条件，不是另找新路线。普通历史种子与简化quick域保持原限制。校验源声明／claimed／原始份额／执行，不将这些Python字段推荐为生产存档，也不能验证任意伪造的历史可达性。
+
+task-execution-omission只跳过任务件execution比较，须命中新组件／模块／拾取／处分回归；intent-original-value-omission只跳过quantity与expectedRevision原始类型门禁，须命中新数量／布尔revision回归。六负控每次独立启用，非零退出须由语义不符产生，modelError不得充数。冻结双跑是两个独立进程，非独立人员评审。
+
+起始／最终生产测试与build均NOT RUN，新增生产测试0；原生24与架构实际重跑。旧修订经过见0362460原checks/completion，本轮开发差异及修订见当前checks/completion。历史模型与旧输出不修改。

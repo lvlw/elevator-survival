@@ -1,7 +1,9 @@
 {
-  "status": "frozen final inputs before independent processes",
-  "sourceSha": "0921df3f219f368479d1bf3401d8fecddc0d5f71",
+  "task": "WORLD-ENTRY-004-R1",
+  "status": "inputs frozen before two independent reruns",
+  "baseSha": "0362460b259cba6ea160e79ad04a6cb14181cef0",
   "sourceTree": "98c840dd0b6b1a6cc014df4ac9165bc94bf2c794",
+  "historicalEvidence": "0362460b259cba6ea160e79ad04a6cb14181cef0:entry-004 old results/checks/freeze/completion are immutable history",
   "excluded": [
     "checks.json",
     "completion.md",
@@ -12,178 +14,9 @@
   ],
   "files": [
     {
-      "path": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
-      "bytes": 4875,
-      "sha256": "0151c942e0dbe8826a5b540fb5f15ede2e426cc0401876ff75a6dd2dbd0a4e96"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/01-current-production-and-gaps.md",
-      "bytes": 5381,
-      "sha256": "60ad081f401bb15e43dbcf3f692e8a0bd84dd1c8ba8573b4af165ac2fef6f55e"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
-      "bytes": 6001,
-      "sha256": "250f6cf6d1167893f2a58d4f71c690f8a8d3191fbe2be3892f21411ae539994a"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/03-combat-medical-contract.md",
-      "bytes": 6738,
-      "sha256": "e247ad6a73d64f3aadfbb7ce37708bf3e6a0196dc5c0b28eda67a53ae6106114"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/04-specialties-tools-and-loadout.md",
-      "bytes": 4683,
-      "sha256": "5612f8ded5e73453b4008347e3b7cf8750198cc5f4b2ed5cfb410e711f7770e4"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
-      "bytes": 5168,
-      "sha256": "e038791ca0c394180af0a1f22a4c8cbf12a9b1166cb2edb83041b913e51bfa6c"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/06-next-engineering-contracts.md",
-      "bytes": 7612,
-      "sha256": "7fda20a2cee66e6245b8b5eeda888afa290e52cc751d46fcd5b4f255720c7c47"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/07-playable-and-release-gates.md",
-      "bytes": 3510,
-      "sha256": "2af3b221dd4c344cd12b4c189591a74b7e0de9cb2b9125de618ec3cc7dacec4b"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/content-candidate.json",
-      "bytes": 22418,
-      "sha256": "6bdf46b42035bf3cd8ce71772a9c00e97cb2ffdd09ba27393e3928763bb722b7"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/parameter-candidate.json",
-      "bytes": 18248,
-      "sha256": "4cea3a0584d12562afb3fb8dacaf766e3e8a757faf78856c1e2501ff772a11e5"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/validation/check.py",
-      "bytes": 25957,
-      "sha256": "56aa97136e017b36e3b8ded6b5191d60e047e7845e19ae55046e4635b8db7460"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/validation/fixtures.json",
-      "bytes": 87213,
-      "sha256": "b60dbcc47f15e60af215186b1e45ed0e1501c728a4209f6846b4e198ec92be51"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/validation/native-api-probes.mjs",
-      "bytes": 14557,
-      "sha256": "51a6cbcb16e6c8d260fefb58570e7817968058ed2e846399691c9bda1204f025"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/validation/README.md",
-      "bytes": 4711,
-      "sha256": "f9a1564c79d6efee42a8068c25488bdff39e6bdf1f72b2f43c01e79c9e7148f2"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/inputs/WORLD-ENTRY-004-task-v1.0.md",
-      "bytes": 26378,
-      "sha256": "8c0b20bbead749ce5f6fad2b2dd010275c6ae624a95deddda0df0cab35531af6"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/inputs/OWNER-authority-and-scope-WORLD-ENTRY-004-v1.0.md",
-      "bytes": 1957,
-      "sha256": "26fdc008ce2bf4d929f42c0c88f1519ae32813a681e1f974c2fe36a2df556a1a"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/inputs/AUD-0921df3-ENG-RESIDENCE-TERMINAL-SESSION-001-review-v1.0.md",
-      "bytes": 10031,
-      "sha256": "21993be973a3afe87d6f3c34298e883a8c65cee3d0fea01e8da8e604e5c5517f"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/inputs/BASELINE-AND-INPUTS.json",
-      "bytes": 13140,
-      "sha256": "5fdf3e1540073a5aab207b79bc740bfc26959073e345e8d560473b9198415673"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-004/inputs/SHA256SUMS.txt",
-      "bytes": 430,
-      "sha256": "b2c1b57bb9e71366072d93d80741846e7388fe7e3b62ac007b9eca3b1e596f67"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
-      "bytes": 24504,
-      "sha256": "6d5738bafa20af077ae211cc1bc048042fc9db426f1c3857f315ad2796532aeb"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
-      "bytes": 23542,
-      "sha256": "cf7ededa0017a307939f9fe41d3aec01a7019df169d982a80cbe230f25a4faa7"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
-      "bytes": 12618,
-      "sha256": "6f716338fba8ed17fb554ba2c72886caae3347066ab0da54b16e19cb6702ca89"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
-      "bytes": 12293,
-      "sha256": "a1ee3f22a69fe8f407437ab5419c40e75bcf74bede9572afc2505dcb82a07fc4"
-    },
-    {
       "path": "AGENTS.md",
       "bytes": 2024,
       "sha256": "00c2cad61c99530c1343ca9faad9a32994d67e5ca4aeb991156bb9828e5c501e",
-      "role": "read-only baseline reference"
-    },
-    {
-      "path": "package.json",
-      "bytes": 824,
-      "sha256": "f6b6752aebd3aa6161a0c802ef49ee1b2ddbbffeb19b76e2e4d581f2465e5346",
-      "role": "read-only baseline reference"
-    },
-    {
-      "path": "package-lock.json",
-      "bytes": 77694,
-      "sha256": "d701893a8f89f88e33f1278129df58718d0341f2dd1caee232315bd1dddf5990",
-      "role": "read-only baseline reference"
-    },
-    {
-      "path": "src/state/residence-session/session.ts",
-      "bytes": 6549,
-      "sha256": "825c8665aac59fd5277c68f6ee423107ae2e607b061ac6a550421831cd0d3dca",
-      "role": "read-only baseline reference"
-    },
-    {
-      "path": "src/state/residence-session/terminal-session.ts",
-      "bytes": 8382,
-      "sha256": "0ee639e2c66122d40f03e4e7c6b326178dc74d79e05827ef50d67b23799f2544",
-      "role": "read-only baseline reference"
-    },
-    {
-      "path": "src/state/residence-session/domain.ts",
-      "bytes": 853,
-      "sha256": "684d0085ef7be50a2ea2290ec329827acf1fa8335e5c84ceaf5c9fb7ab1682d1",
-      "role": "read-only baseline reference"
-    },
-    {
-      "path": "src/state/residence-session/terminal-context.ts",
-      "bytes": 2027,
-      "sha256": "14d5bf44b109288293bcfa82d356924ce24dfbe72ae67ec709fd7d47453734a3",
-      "role": "read-only baseline reference"
-    },
-    {
-      "path": "src/state/residence-session/terminal-launch.ts",
-      "bytes": 5095,
-      "sha256": "ccfef31d329e2e07b5ef95c91a674dcde17a079ff806e49512416c77a840696c",
-      "role": "read-only baseline reference"
-    },
-    {
-      "path": "src/state/residence-session/terminal-transitions.ts",
-      "bytes": 3437,
-      "sha256": "2550e41192b88aaf03f372cd20124e9f11aaf814842ff432a2b707d9e2906c86",
-      "role": "read-only baseline reference"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/07-enemy-continuity.md",
-      "bytes": 20244,
-      "sha256": "4280043a338dcb3172b88efc7906efe8c0572aca0327cb8fd7147c13872447e1",
       "role": "read-only baseline reference"
     },
     {
@@ -193,9 +26,249 @@
       "role": "read-only baseline reference"
     },
     {
+      "path": "docs/content/infected-residence-core-test-config-v0.1.json",
+      "bytes": 1417,
+      "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9",
+      "role": "read-only baseline reference"
+    },
+    {
       "path": "docs/content/infected-terminal-core-test-config-v0.1.json",
       "bytes": 770,
       "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+      "role": "read-only baseline reference"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "bytes": 25140,
+      "sha256": "90d9c3ea86ec533bf0f35571311772bf9938980f832768436802beb0d799b74b",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/07-enemy-continuity.md",
+      "bytes": 20244,
+      "sha256": "4280043a338dcb3172b88efc7906efe8c0572aca0327cb8fd7147c13872447e1",
+      "role": "read-only baseline reference"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "bytes": 24178,
+      "sha256": "a6e52d33047b402d16cb88ffd0b6d6bb656dd154b83c8c5dce34b9629051ffcf",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
+      "bytes": 5370,
+      "sha256": "4566fff492d950b1d2adc42b85dce61f46235d7416cfa450650e5350d34d8982",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/01-current-production-and-gaps.md",
+      "bytes": 5381,
+      "sha256": "60ad081f401bb15e43dbcf3f692e8a0bd84dd1c8ba8573b4af165ac2fef6f55e",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
+      "bytes": 7000,
+      "sha256": "bf62bc127fa4d3851b8c2c210bd02cdbb1bef20883ee271bd285effc1b807532",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/03-combat-medical-contract.md",
+      "bytes": 8055,
+      "sha256": "76d3feaea471ed488e46322ebc5dd2d72617341976993081202ee99bcd618c7a",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/04-specialties-tools-and-loadout.md",
+      "bytes": 4683,
+      "sha256": "5612f8ded5e73453b4008347e3b7cf8750198cc5f4b2ed5cfb410e711f7770e4",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+      "bytes": 6959,
+      "sha256": "d7a601fd989fa082cca2fe774fb2f170978fb1e3bd410656a3c06c8d33233921",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/06-next-engineering-contracts.md",
+      "bytes": 8460,
+      "sha256": "57812288925f887181f00fd1d294c4c3ed0a8b19518bb2243973861c9cedc130",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/07-playable-and-release-gates.md",
+      "bytes": 3510,
+      "sha256": "2af3b221dd4c344cd12b4c189591a74b7e0de9cb2b9125de618ec3cc7dacec4b",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/content-candidate.json",
+      "bytes": 22418,
+      "sha256": "6bdf46b42035bf3cd8ce71772a9c00e97cb2ffdd09ba27393e3928763bb722b7",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/inputs/AUD-0921df3-ENG-RESIDENCE-TERMINAL-SESSION-001-review-v1.0.md",
+      "bytes": 10031,
+      "sha256": "21993be973a3afe87d6f3c34298e883a8c65cee3d0fea01e8da8e604e5c5517f",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/inputs/BASELINE-AND-INPUTS.json",
+      "bytes": 13140,
+      "sha256": "5fdf3e1540073a5aab207b79bc740bfc26959073e345e8d560473b9198415673",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/inputs/OWNER-authority-and-scope-WORLD-ENTRY-004-v1.0.md",
+      "bytes": 1957,
+      "sha256": "26fdc008ce2bf4d929f42c0c88f1519ae32813a681e1f974c2fe36a2df556a1a",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/inputs/SHA256SUMS.txt",
+      "bytes": 430,
+      "sha256": "b2c1b57bb9e71366072d93d80741846e7388fe7e3b62ac007b9eca3b1e596f67",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/inputs/WORLD-ENTRY-004-task-v1.0.md",
+      "bytes": 26378,
+      "sha256": "8c0b20bbead749ce5f6fad2b2dd010275c6ae624a95deddda0df0cab35531af6",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/parameter-candidate.json",
+      "bytes": 18248,
+      "sha256": "4cea3a0584d12562afb3fb8dacaf766e3e8a757faf78856c1e2501ff772a11e5",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/AUD-0362460-WORLD-ENTRY-004-review-v1.0.md",
+      "bytes": 9634,
+      "sha256": "a4b9957a2f274b80bd3b54e9ebecffd1b382b172de5d5ac305827fb9f8ab92d9",
+      "role": "immutable R1 input archive"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/BASELINE-AND-SCOPE.json",
+      "bytes": 9465,
+      "sha256": "ed5bc7734e2b742fe25375139982725aa5a7f57fc7a23d6a777581f7f01e21cf",
+      "role": "immutable R1 input archive"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/OWNER-authority-and-scope-WORLD-ENTRY-004-R1-v1.0.md",
+      "bytes": 1475,
+      "sha256": "eb8d9ec42fd8283a5d7c6187fe8cee5dd9755f39ce00eafd51cafb170e7244c1",
+      "role": "immutable R1 input archive"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/SHA256SUMS.txt",
+      "bytes": 1276,
+      "sha256": "fe03d7d0b58ffbd728f572ebdc96f3c7c4c9ef3b49dad9cb66c162168ba0a5a4",
+      "role": "immutable R1 input archive"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/WORLD-ENTRY-004-R1-task-v1.0.md",
+      "bytes": 14660,
+      "sha256": "b77b1e8fa52024f72b6ff8620ec69c248834ad10f664c0bda0ee45650b9e17c5",
+      "role": "immutable R1 input archive"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/README.md",
+      "bytes": 1774,
+      "sha256": "52d68799acc17e8cb653c9a65f757dbae66ecc095acbf5bdef7ea2b542495b24",
+      "role": "immutable R1 input archive"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/dependency-slice.json",
+      "bytes": 5692,
+      "sha256": "e55959a2386a9e89a03edd5345a568e703754596434b69de37519969e744ef46",
+      "role": "immutable R1 input archive"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/input-audit.json",
+      "bytes": 1647,
+      "sha256": "b5dfb5a75168aaacbf4c1db3da3fed1adc07fa4c7842cad21e236a07a03f447e",
+      "role": "immutable R1 input archive"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe-results.json",
+      "bytes": 22899,
+      "sha256": "97b5ae767ec74eb520c5c53da45053a8e92f9c9091f29538b2e0eb984158ef8c",
+      "role": "immutable R1 input archive"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe-run.txt",
+      "bytes": 640,
+      "sha256": "700c1473ad5e6eb558d4fc4d4307d23bbb763096ee240091ecb811eaa56dcca1",
+      "role": "immutable R1 input archive"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/evidence/probe.py",
+      "bytes": 8049,
+      "sha256": "864c092f7ecfa303ca7c0d1e50c43aa6c52811166d82ef6dec20a224a1e94257",
+      "role": "immutable R1 input archive"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/source/check.py",
+      "bytes": 25957,
+      "sha256": "56aa97136e017b36e3b8ded6b5191d60e047e7845e19ae55046e4635b8db7460",
+      "role": "immutable R1 input archive"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/source/infected-residence-core-test-config-v0.1.json",
+      "bytes": 1417,
+      "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9",
+      "role": "immutable R1 input archive"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/reviews/r1-inputs/source/infected-terminal-core-test-config-v0.1.json",
+      "bytes": 770,
+      "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+      "role": "immutable R1 input archive"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/validation/README.md",
+      "bytes": 7074,
+      "sha256": "b7f700bd06e29cc63a800909dac7fb4ac4593a94663ccae40563210409dfc979",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/validation/check.py",
+      "bytes": 34985,
+      "sha256": "6eeac7e3c1d5a4afede4c25b8cc2eb3bff4ba9e1c1336812d106fbdab1253410",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/validation/fixtures.json",
+      "bytes": 141751,
+      "sha256": "28afcb320b4a6e7327aa66befc4a2684f3aeaa04d8cd8e4b5385411bb78772b3",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/validation/native-api-probes.mjs",
+      "bytes": 14557,
+      "sha256": "51a6cbcb16e6c8d260fefb58570e7817968058ed2e846399691c9bda1204f025",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+      "bytes": 13263,
+      "sha256": "fecf6b71f7b9d2276c7340ead77c8530c73d28e2079a3680374b410636e66575",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+      "bytes": 12938,
+      "sha256": "88b415ba7c11316c99625abbfe307558237fe39277e43d615cee1ae18847fdfd",
+      "role": "frozen design input"
+    },
+    {
+      "path": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
+      "bytes": 5287,
+      "sha256": "33bd3880791f1bf2fda6fd121cfd55e2f3042b595da1adbe967a689414f37016",
       "role": "read-only baseline reference"
     },
     {
@@ -211,15 +284,63 @@
       "role": "read-only baseline reference"
     },
     {
-      "path": "docs/engineering/residence-foundation/terminal-batch-plan-v1.0.md",
-      "bytes": 5287,
-      "sha256": "33bd3880791f1bf2fda6fd121cfd55e2f3042b595da1adbe967a689414f37016",
+      "path": "package-lock.json",
+      "bytes": 77694,
+      "sha256": "d701893a8f89f88e33f1278129df58718d0341f2dd1caee232315bd1dddf5990",
       "role": "read-only baseline reference"
     },
     {
-      "path": "docs/content/infected-residence-core-test-config-v0.1.json",
-      "bytes": 1417,
-      "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9",
+      "path": "package.json",
+      "bytes": 824,
+      "sha256": "f6b6752aebd3aa6161a0c802ef49ee1b2ddbbffeb19b76e2e4d581f2465e5346",
+      "role": "read-only baseline reference"
+    },
+    {
+      "path": "src/core/residence-terminal/plans.ts",
+      "bytes": 7960,
+      "sha256": "8255b842853c98cca51d79c4404ca72e56921da9458b7e0d3133a5a58dc04386",
+      "role": "read-only production joint validation reference"
+    },
+    {
+      "path": "src/state/residence-save/terminal-history.ts",
+      "bytes": 6522,
+      "sha256": "b834586c91fe14b853e5783a28569d0e3f15ce2dc23c47551830b747aaaee263",
+      "role": "read-only production joint validation reference"
+    },
+    {
+      "path": "src/state/residence-session/domain.ts",
+      "bytes": 853,
+      "sha256": "684d0085ef7be50a2ea2290ec329827acf1fa8335e5c84ceaf5c9fb7ab1682d1",
+      "role": "read-only baseline reference"
+    },
+    {
+      "path": "src/state/residence-session/session.ts",
+      "bytes": 6549,
+      "sha256": "825c8665aac59fd5277c68f6ee423107ae2e607b061ac6a550421831cd0d3dca",
+      "role": "read-only baseline reference"
+    },
+    {
+      "path": "src/state/residence-session/terminal-context.ts",
+      "bytes": 2027,
+      "sha256": "14d5bf44b109288293bcfa82d356924ce24dfbe72ae67ec709fd7d47453734a3",
+      "role": "read-only baseline reference"
+    },
+    {
+      "path": "src/state/residence-session/terminal-launch.ts",
+      "bytes": 5095,
+      "sha256": "ccfef31d329e2e07b5ef95c91a674dcde17a079ff806e49512416c77a840696c",
+      "role": "read-only baseline reference"
+    },
+    {
+      "path": "src/state/residence-session/terminal-session.ts",
+      "bytes": 8382,
+      "sha256": "0ee639e2c66122d40f03e4e7c6b326178dc74d79e05827ef50d67b23799f2544",
+      "role": "read-only baseline reference"
+    },
+    {
+      "path": "src/state/residence-session/terminal-transitions.ts",
+      "bytes": 3437,
+      "sha256": "2550e41192b88aaf03f372cd20124e9f11aaf814842ff432a2b707d9e2906c86",
       "role": "read-only baseline reference"
     }
   ]

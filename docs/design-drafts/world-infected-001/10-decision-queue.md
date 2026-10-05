@@ -189,3 +189,23 @@ A 准确 SHA `bfc6bd973eeb306df1e8ee916b2160c30b757cdf` 已获[限定源码 PASS
 ## WORLD-ENTRY-004-R1专项返修状态（2026-10-05）
 
 从`0362460b259cba6ea160e79ad04a6cb14181cef0`续修任务来源／执行与逐意图原值校验；原31项先在完整数据复现，原98覆盖保留，新回归、六负控、冻结双跑及原生24分别交证。当前为作者返修、待准确SHA专项实审，不是主线PASS；D01—D04未采纳，E01—E03不启动，38项批准配置与生产树不改。原历史正文及成绩保持所属提交，不能叠入新通过。见[R1审阅入口](entry-004/00-owner-review.md)、[实际检查](entry-004/checks.json)与[验证边界](entry-004/validation/README.md)。
+
+
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+当前队列更新以本附记为准；此前D01—D04“未采纳”保留历史时点，不再重复询问已确认子集。
+
+| 分类 | 当前状态 |
+| --- | --- |
+| 已确认设计 | DEC-052局部规则、真实五图与任务来源、三专长及工具箱边界 |
+| 已批试用参数 | 103键／193数值叶及限定内容；排除grant.H2-random，原38值保持，不是平衡冻结 |
+| 已批待工程 | E01-P纯生产者、R来源聚合／v3、S唯一current；各自准确SHA停审 |
+| 仍待后续 | P实际结构与R具体字段锁定、E02活战斗格式、E03安全查询／完整路线及体验复审 |
+| 未采纳／后置 | 商城／身体服务、未来改专长、后续真实委托、O3旧入口／旧槽发布 |
+
+不凭有限证据关闭长期经济、全部来源软锁、九组合可达或人工体验问题；本轮未执行候选工程。
+
+当前依据：[唯一103键试用配置](../../content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](../../content/infected-world-entry-content-v0.1.json)、[E01-P首契约](../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](../../engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](../../engineering/residence-foundation/world-content-batch-plan-v1.0.md)。

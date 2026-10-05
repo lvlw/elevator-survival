@@ -93,3 +93,21 @@ DOC-WORLD-ENTRY-001于2026-10-03归档；权威正文为[DEC-049](05-design-deci
 DEC-051局部补齐当前新委托的H0资格与明确意图、四终局、任务件／普通实物处置、四数值、容量守卫及关闭恢复。它不整体废止DEC-001—050；DEC-049／050的身份、单次驻留、日级和原恢复要求继续适用。旧医院现行规则与O3旧入口／旧槽发布安排不由本条改动。
 
 来源稿中120／初始0／上限的旧“待审”仅在该首批终局子集内被采纳；商品、治疗、战斗、地图等其余候选不随之批准。旧三份归档载荷的统一非空措辞已由ADDENDUM-01局部替换，原件保留；本索引只定位覆盖关系，不新增规则或052。
+
+
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](design-drafts/world-infected-001/entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+本索引仅辅助定位局部覆盖，规则权威仍为DEC。
+
+| 旧来源／历史排除 | 本次新感染委托局部采纳 | 保留 |
+| --- | --- | --- |
+| DEC-024／025／030／031／035 | 单精力版本战斗退出一次成本、药食与行动后果边界 | 旧医院时间与CTB版本、原子行动与真实死亡 |
+| DEC-021／022／026／034／036／040 | 获批医疗、维修、充能、真实消费及工具箱来源 | 实例／ItemState分责、快捷资格不等于战斗资格 |
+| DEC-005／041及049—051历史排除 | 当前三专长、首配、五图和103键限定试用 | 旧医院暂缓专长、原38值、非平衡冻结及未采纳系统 |
+
+不整体废止任何旧DEC；五图数据不是运行时注册，旧参数候选／有限模型字段不并列成为正式规则源。
+
+当前依据：[唯一103键试用配置](content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](content/infected-world-entry-content-v0.1.json)、[E01-P首契约](engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](engineering/residence-foundation/world-content-batch-plan-v1.0.md)。

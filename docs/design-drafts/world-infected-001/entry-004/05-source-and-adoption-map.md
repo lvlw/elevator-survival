@@ -1,3 +1,18 @@
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+当前权威链为实际批准→DEC-052→唯一试用配置／限定内容→首契约／恢复／批次；原源JSON和获批稿原件按锁定字节保留。来源中的origin／note／technicalMapping仍是历史说明，不使获批子集退回待采纳，也不注册运行时。
+
+103键逐值来自104键中排除grant.H2-random，193数值叶及数组顺序不变；data只允许H2-random.grants改null。原38值只引用；测试初态、route expected、Python字段与外部CTB轨迹不进入正式配置。
+
+当前依据：[唯一103键试用配置](../../../content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](../../../content/infected-world-entry-content-v0.1.json)、[E01-P首契约](../../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](../../../engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](../../../engineering/residence-foundation/world-content-batch-plan-v1.0.md)。
+
+---
+
+以下为612ac6673223cc93237184892e6713e789a9dce1时的历史正文，保留原字节；已覆盖子项的旧待采纳／候选表述以上述批准为准，其余不因本附记自动获批。
+
 # 来源、事实分层与交叉审查
 
 R1针对`0362460b259cba6ea160e79ad04a6cb14181cef0`的实际材料；生产src树仍为`98c840dd0b6b1a6cc014df4ac9165bc94bf2c794`，与原C受审源码一致。精确最终提交由交付消息给出。原件见[输入清单](inputs/SHA256SUMS.txt)，不更改包内授权或审查原话。

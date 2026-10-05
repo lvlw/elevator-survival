@@ -1,3 +1,18 @@
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+本期三选一专长及钢管、厚外套、一件选择工具、快捷绷带1的首配已批试用，不配初始口粮。侦查C1为4／3E，工程L2手动10E不叠折扣，生存首个合格世界绷带总恢复2HP且休整不刷新。
+
+工具箱首开H1电子是真地面来源，替代方式先开不补领；维修15为总恢复池，不能多件各得15；末次不足耐久可截零，充能须足额。未来改专长、九组合完整可达与体验均未获本轮验证，恢复字段不由有限模型定义。
+
+当前依据：[唯一103键试用配置](../../../content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](../../../content/infected-world-entry-content-v0.1.json)、[E01-P首契约](../../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[工程批次门槛](../../../engineering/residence-foundation/world-content-batch-plan-v1.0.md)。
+
+---
+
+以下为612ac6673223cc93237184892e6713e789a9dce1时的历史正文，保留原字节；已覆盖子项的旧待采纳／候选表述以上述批准为准，其余不因本附记自动获批。
+
 # D04：三专长、工具箱与首次准备
 
 DESIGN DRAFT / 待Owner采纳；承接[旧专长最小稿](../07-enemy-continuity.md#minimal-specialties)，不把旧ASSUMPTION当生产规则。数值统一见[参数](parameter-candidate.json)，不增加等级、词条、职业树或另一份委托。

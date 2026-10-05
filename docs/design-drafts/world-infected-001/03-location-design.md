@@ -1,3 +1,18 @@
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+五地图和节点拓扑继续沿用，当前获批子集以24节点／29连接正式内容为准；通行、休整、来源与知识须真实到达和合法条件，不用地图数量代替履约。旧其他参数不并行作当前规则源。
+
+H2随机为单分支真实来源，无固定附赠消毒剂；地图／来源文档尚未注册到玩家入口。真实任务件提取和安装按首契约落地，不从有限模型初态或条件路线推断可达。
+
+当前依据：[唯一103键试用配置](../../content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](../../content/infected-world-entry-content-v0.1.json)、[E01-P首契约](../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)。
+
+---
+
+以下为612ac6673223cc93237184892e6713e789a9dce1时的历史正文，保留原字节；已覆盖子项的旧待采纳／候选表述以上述批准为准，其余不因本附记自动获批。
+
 # 03 地点设计：五图相连、真实位置与跨日成果
 
 > **DESIGN DRAFT — WORLD-DESIGN-004 / Draft v1.4 / Engineering Review Candidate。** 本文是未来完整世界的可审主案，不修改旧医院、正式 DEC、代码或存档。H/T/P/L/C 是作者位置索引，不是新增运行时 ID。具体参数与逐行动证据见 [08](08-balance-budget.md) 和 [evidence](evidence/README.md)。

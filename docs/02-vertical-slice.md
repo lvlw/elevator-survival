@@ -632,3 +632,15 @@ DEC-046—048 已确认完整感染世界的部分设计方向：不以固定访
 当前开发阶段新增的是已批准的终局文档基线，待准确SHA文档实审，未执行A/B/C。H0达标显式成功、未达标合法主动失败、Day7异地稳定截止先结后召回及真实死亡由DEC-051限定；正常生还返回不补夜，失败不重接。G4已审范围仍为首次出发、移动、来源揭示、普通整实例拾放与A/C休整，拒绝死亡／关闭等开发态结果不是免死玩法。
 
 下一切口A只产完整纯TerminalPlan；A准确SHA实审后才定稿B，A/B实审后才进入C会话消费。旧医院现行回归基线保持；当前新世界完整流程不可据此宣称可玩。生产测试、浏览器／多标签、Owner试玩本次均NOT RUN；其余内容、参数、玩家入口及O3未验收。
+
+
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](design-drafts/world-infected-001/entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+旧医院切片的范围、数值、保存和验收不倒改；新感染世界采用DEC-052限定内容与试用配置。现有C已审范围是九命令和稳定四态，不等于真实五图、战斗药食或三专长已可玩。
+
+本次完成文档采纳，下一切口为E01-P完整纯生产者；准确SHA实审后另发E01-R，再经实审另发E01-S。E02活战斗、E03完整路线／安全查询及Owner试玩仍有独立门槛，本轮不注册玩家入口或处理O3。
+
+当前依据：[E01-P首契约](engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](engineering/residence-foundation/world-content-batch-plan-v1.0.md)、[本次采纳总入口](design-drafts/world-infected-001/entry-004/00-owner-review.md#doc-world-entry-004)。

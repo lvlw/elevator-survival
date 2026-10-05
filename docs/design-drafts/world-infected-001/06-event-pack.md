@@ -1,3 +1,18 @@
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+本期供电、L2组件、C3模块、H5样本、H8安装及T1交换按正式内容与首契约执行前提、消费和来源唯一性；事件结果不能由玩家意图直接上传。H1工具箱首开产物留地面，先用其他方式开不补发。
+
+H2随机无额外固定消毒剂，样本谨慎／直接均保留；历史条件路线和随机显式分支不证明全部概率／可达性，也不成为生产者的外部结果输入。正式入口仍未接线。
+
+当前依据：[唯一103键试用配置](../../content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](../../content/infected-world-entry-content-v0.1.json)、[E01-P首契约](../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)。
+
+---
+
+以下为612ac6673223cc93237184892e6713e789a9dce1时的历史正文，保留原字节；已覆盖子项的旧待采纳／候选表述以上述批准为准，其余不因本附记自动获批。
+
 # 06 事件包：调查、取舍与世界成果
 
 > **DESIGN DRAFT — WORLD-DESIGN-004 / Draft v1.4 / Engineering Review Candidate。** 以下14个候选事件是内容规格，不是新增正式事件ID、DEC、任务布尔字段或实现授权。全部成本为新世界精力试尺；不得覆盖医院一日的10/20/30时间、随机风险或冻结搜索。总账见 [资源经济](05-resource-economy.md) 和 [数值预算](08-balance-budget.md)。

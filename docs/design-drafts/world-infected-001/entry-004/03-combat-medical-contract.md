@@ -1,3 +1,18 @@
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+获批新驻留战斗胜利／退却仅一次扣max(6,ceil(CTB/100)×4)精力并截零；不叠旧SceneTime或行动后流血。已触发的战斗／立即结果须解决，合法E0稳定自救按真实目标和完整药品单位验证。
+
+quickEligible不等于战斗资格：战斗只允许快捷绷带／镇痛，消毒剂可入快捷但不可战斗用。新医疗可先治疗再结流血，其合法死亡须按真实生产者验真，不套旧单调伤害提案。E02负责真实CTB，旧模型外部伤害／磨损轨迹没有获准成为生产输入。
+
+当前依据：[唯一103键试用配置](../../../content/infected-world-entry-test-config-v0.1.json)、[E01-P首契约](../../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](../../../engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](../../../engineering/residence-foundation/world-content-batch-plan-v1.0.md)。
+
+---
+
+以下为612ac6673223cc93237184892e6713e789a9dce1时的历史正文，保留原字节；已覆盖子项的旧待采纳／候选表述以上述批准为准，其余不因本附记自动获批。
+
 # D02／D03：战斗、医疗与真实物品合同
 
 DESIGN DRAFT / 待Owner采纳。已批G1能量和日级公式不变；数值均引用[候选参数](parameter-candidate.json)的ID，正式34+4仍在两份只读配置。这里提出真实行为和恢复边界，不是字段即授权。

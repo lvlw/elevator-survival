@@ -1,0 +1,12 @@
+66c7f634a2a11f79df6558fed6fb19324fc419a2fcabde44febba2abdae24476  AUD-612ac66-WORLD-ENTRY-004-R1-review-v1.0.md
+f50b0c9ab139a740a44b3e92513330cbe07d2bd4df3f7db9e98547f52bf7dc0c  BASELINE-AND-INPUTS.json
+abd19aa4133fcf5f110452c80499f91932cae3254bbae0ff90a8dded11b19b20  DOC-WORLD-ENTRY-004-task-v1.0.md
+9b6b79a26e53ec6ec2b57d831f5be61a60e505d141dd3de2e4137b7ea13032e4  OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md
+e9efa773e1a5862991e15a704c1c27579664abe17206ca344f3672aac9a2b26b  WORLD-ENTRY-004-ADOPTION-owner-review-v1.0.md
+3f31d17f5b3b1373b9946a291548e82ad63007f66ed84bfdeec10f94e2e0aa26  approved-documents/DEC-052-append.md
+ac55594cce4d90922ff49fe2bc34e58e834f0e6606f1bc4430caec6fe6f40dcd  approved-documents/content-supply-core-contract-v1.0.md
+2f116bcc15fa6e5d105e9a57bbcff5b5f93940c20db86a271d90d911720adb4f  approved-documents/content-supply-restore-contract-v1.0.md
+05dabf10796ee027ea31037641ae91b95fc9346b9b98f032f1b7c99dada88925  approved-documents/infected-world-entry-content-v0.1.json
+15624fee92e615e1d4ffcec39d071057b10a8de6ce16408cca0ffb4e94f5d8e6  approved-documents/infected-world-entry-test-config-v0.1.json
+55bb93a298e1a78e87709a1853b4ecdda684d131071d08530a62e04b7090ed94  approved-documents/world-content-batch-plan-v1.0.md
+b853c0f0464dc3313751c336d514bb2f57f29d9f946e2a5a1f89608acb59a24d  verify-doc-package.py

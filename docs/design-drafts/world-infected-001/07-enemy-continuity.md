@@ -1,3 +1,18 @@
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+敌人持续状态及危险处理仍是真实现场事实，不因跨图、休整或重新进入而复活／重抽。战斗退出单次精力成本与三专长限定效果已采纳；快捷资格不扩大为任意战斗用药资格。
+
+旧第10节三专长中本次覆盖部分已确认，未列未来改选与服务仍待定；生存首绷带总恢复2且不随休整刷新。外部战斗轨迹只是历史条件证据，E02真实CTB及E03九组合／体验另验；本轮无敌人AI或生产字段实现。
+
+当前依据：[唯一103键试用配置](../../content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](../../content/infected-world-entry-content-v0.1.json)、[E01-P首契约](../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[工程批次门槛](../../engineering/residence-foundation/world-content-batch-plan-v1.0.md)。
+
+---
+
+以下为612ac6673223cc93237184892e6713e789a9dce1时的历史正文，保留原字节；已覆盖子项的旧待采纳／候选表述以上述批准为准，其余不因本附记自动获批。
+
 # 07 敌人与持续世界
 
 > **DESIGN DRAFT — WORLD-DESIGN-004 / Draft v1.4 / Engineering Review Candidate。** 只描述内容、事实和职责；不创建RunState、运行时类型、存档字段或新生命周期状态。连续驻留的日期/区域/探索窗口按[02](02-seven-day-structure.md)，地点按[03](03-location-design.md)。

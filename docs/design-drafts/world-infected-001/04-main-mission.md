@@ -1,3 +1,18 @@
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+本地供电＋急救转运＋本执行指定实带样本及合法H0返回仍共同决定完整成功；正式关闭后不重接。真实组件／模块／样本提取、搬运和安装按受控声明／来源／执行／实例联合校验，不接受完成标志或同名物顶替。
+
+正常H0生还返回保留G1 steps=[]与完整一次终局；死亡消费已结真实结果，不重算药效／伤害。谨慎和直接样本方案均可合法选择，旧谨慎外套路线只是证据子集；本轮不改DEC-049—051奖罚与四终局。
+
+当前依据：[唯一103键试用配置](../../content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](../../content/infected-world-entry-content-v0.1.json)、[E01-P首契约](../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](../../engineering/residence-foundation/content-supply-restore-contract-v1.0.md)。
+
+---
+
+以下为612ac6673223cc93237184892e6713e789a9dce1时的历史正文，保留原字节；已覆盖子项的旧待采纳／候选表述以上述批准为准，其余不因本附记自动获批。
+
 <a id="doc-world-entry-003"></a>
 ## DOC-WORLD-ENTRY-003 + ADDENDUM-01 采纳附记（2026-10-04）
 

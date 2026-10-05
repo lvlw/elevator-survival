@@ -89,3 +89,15 @@
 ## WORLD-ENTRY-004-R1专项返修状态（2026-10-05）
 
 从`0362460b259cba6ea160e79ad04a6cb14181cef0`续修任务来源／执行与逐意图原值校验；原31项先在完整数据复现，原98覆盖保留，新回归、六负控、冻结双跑及原生24分别交证。当前为作者返修、待准确SHA专项实审，不是主线PASS；D01—D04未采纳，E01—E03不启动，38项批准配置与生产树不改。原历史正文及成绩保持所属提交，不能叠入新通过。见[R1审阅入口](../entry-004/00-owner-review.md)、[实际检查](../entry-004/checks.json)与[验证边界](../entry-004/validation/README.md)。
+
+
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](../entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+本轮固定起点612ac6673223cc93237184892e6713e789a9dce1，生产src tree为98c840dd0b6b1a6cc014df4ac9165bc94bf2c794。R1主线专项PASS已关闭F01/F02审查缺口；本次实际批准另行关闭D01—D04限定采纳子项，不将专项实审当Owner批准。
+
+DEC-052、五份正式载荷和13份输入已归档；旧DEC、首契约、38值、候选JSON及历史验证不变。源码仍是现有C支持，新增生产者／v3／玩家内容未实现。本轮准确SHA文档实审及后续工程授权仍是停止门槛。
+
+当前依据：[唯一103键试用配置](../../../content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](../../../content/infected-world-entry-content-v0.1.json)、[E01-P首契约](../../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](../../../engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](../../../engineering/residence-foundation/world-content-batch-plan-v1.0.md)、[612ac66专项实审](../entry-004/adoption/inputs/AUD-612ac66-WORLD-ENTRY-004-R1-review-v1.0.md)。

@@ -1,3 +1,18 @@
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+新增试用参数以103键配置为唯一入口，原38值保持；其他未列价格、商城与中枢服务仍未采纳。首配无口粮，H2只按真实随机一支生成，不能以固定消毒剂保证酒店交换。
+
+药食按真实完整单位消费，材料／维修／充能按实例和ItemState校验；维修15是总池，真实剩余状态不重建。工具箱H1电子与H8安装存在实物竞争。来源／库存／已处分份额守恒，旧重复供给和外部战斗轨迹不代表本期可重复入口或平衡已验。
+
+当前依据：[唯一103键试用配置](../../content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](../../content/infected-world-entry-content-v0.1.json)、[E01-P首契约](../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)。
+
+---
+
+以下为612ac6673223cc93237184892e6713e789a9dce1时的历史正文，保留原字节；已覆盖子项的旧待采纳／候选表述以上述批准为准，其余不因本附记自动获批。
+
 # 05 资源经济、积分与连续准备
 
 > 状态：**DESIGN DRAFT**，WORLD-DESIGN-004 Draft v1.4 / Engineering Review Candidate。连续驻留、原位休整、单精力和本轮取消每日区域硬门禁是当前设计输入；具体配方、数量、价格和容量均为工作假设，不修改医院冻结版本。正式边界及本轮方向来源见[世界总览](01-world-overview.md)，跨日顺序见[七日结构](02-seven-day-structure.md)。

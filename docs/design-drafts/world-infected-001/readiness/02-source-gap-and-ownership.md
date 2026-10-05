@@ -98,3 +98,15 @@
 G4已审headless会话支持首次出发、move、reveal、普通整实例pickup/drop与A/C休整；死亡、关闭及战斗仍未支持安装。上文较早“G1—G3未执行”等描述仅属当时记录。新增正式合同规定A纯计划消费真实G1/G2结果，B联合严格校验与并列v2 codec，C才拥有完整current提交／保存权；尚未新增这些生产能力或接口。
 
 正常返回空BodyStep数组与死亡非空步骤按来源分别校验，实际休整／截止保留原日结；不将有限模型字符串直接当生产BodyStep对象。真实内容事实桥、关闭历史、唯一积分事实与实物处分需随A/B/C落地；旧独立expected／O2与原v1不降级。五图任务件生产者、后续任务供给、CTB／医疗及玩家入口不由文档补成已实现。
+
+
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](../entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+上文源码盘点保留原读取时点；当前已有C九命令／稳定四态，不把旧“终局未实现”延用为当前结论。新五图、任务件提取／安装、药食、维修与来源消费仍需E01-P真实纯生产者。
+
+G1身体周期、G2现场、ItemInstance／ItemState、A终局、B恢复、C唯一current分责保持。先治疗后流血的新来源不得伪装旧单调伤害步骤；合法死亡只消费一次，正常H0保留steps=[]。E01-R补有界原始份额与v3严格联合恢复，不放宽v2整输出；E01-S才接保存与完整提交，无第二来源库存、身体或关闭账。
+
+当前依据：[E01-P首契约](../../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](../../../engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](../../../engineering/residence-foundation/world-content-batch-plan-v1.0.md)。

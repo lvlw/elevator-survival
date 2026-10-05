@@ -647,3 +647,15 @@ B 的准确 SHA `b9b1e0fee0e779669ca40e088ac9a867016bff82` 已获[限定恢复�
 v2 唯一 current 接受真实 read-null 后首次创建／launch、G2 move/reveal/pickup/drop/rest、A deliver/withdraw/deadline。G2 致死原计划交给 A 一次，死亡完整后态经 B v2 聚合及预编码后才替换 current、尝试保存和发一批只读通知；不先提交 HP0 active、不重复动作／周期／随机、不多加 revision。正常返回仍保留真实 steps=[]。保存失败保留最新内存，retrySave 只重编码并写最新值；冷恢复不重放玩法。
 
 普通查询只复用 G2 已知信息及 A 终局资格；诊断 getState/订阅不是玩家 ViewModel。支持、故障计数及 C01—C12 见 [C 合同](engineering/residence-foundation/terminal-session/contract-and-support.md)和[实际检查](engineering/residence-foundation/terminal-session/verification-results.json)。当前是作者实现／本地验证，仍待 C 准确 SHA 主线实审；真实五图生产者、后继委托接续、CTB／医疗、玩家／浏览器接入、O3 与 Owner 体验未完成／未决定，历史附记保持原时点。
+
+
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](design-drafts/world-infected-001/entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+已有G1负责身体／角色周期，G2负责现场，A负责终局，B负责聚合校验／codec，C拥有唯一current及保存。新供给生产者仅产纯结果；任务实例绑定具体执行，来源领取／原始输出／活份额／处分守恒，不另造可用库存或钱包。
+
+正常H0返回保留G1空身体步骤；新医疗／来源死亡按真实来源独立验真，不能套用或放宽旧G2单调伤害分支，也不能重算效果。E01-R文档指定headless formatVersion=3，字段须接P实际纯值；旧v1/v2不静默迁移，E01-S才提交完整current。未注册生产格式，E02活战斗格式与O3仍另定。
+
+当前依据：[E01-P首契约](engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](engineering/residence-foundation/world-content-batch-plan-v1.0.md)。

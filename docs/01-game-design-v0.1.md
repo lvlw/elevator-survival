@@ -1201,3 +1201,15 @@ DEC-046—048 仅为未来完整感染世界确认以下边界：每日仍只承
 本次仅对当前新连续驻留委托正式补齐消费者资格、四终局、实物处置和积分子集。H0实际合法抵达且供电、转运、随身指定样本齐备时，由明确成功意图完成；未达标可合法主动失败，达标不改判主动失败。正常第1—7日返回均不追加过夜，中枢静态整备。失败结束委托但不自动杀死生还角色；同角色不重接，HP0仍是真实死亡。
 
 成功120、初始0、上限2147483647为首批试用；失败仅一次扣min(P,20)，其余经济／商品／服务未整体采纳。当前G4仍为已审headless子集，完整终局和新格式尚未实现；本次不是可玩世界或旧医院规则替换。五图真实生产者、三专长、工具箱、UI、浏览器与Owner体验及旧入口／旧槽O3继续保留门槛。
+
+
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](design-drafts/world-infected-001/entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+本次只在新感染委托采纳真实五图／任务生产者、战斗与药食边界、真实物品消费、三专长和工具箱的获批子集。局部规则已确认，103键／193数值叶为首批试用，非平衡冻结；原38项配置和旧医院版本保持。
+
+当前C能力与新内容生产者未接线部分分开，完整世界仍未完成可玩验收。商城／中枢服务、未来改专长、第二委托和O3发布安排不因本次归档获批。
+
+当前依据：[唯一103键试用配置](content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](content/infected-world-entry-content-v0.1.json)、[E01-P首契约](engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](engineering/residence-foundation/world-content-batch-plan-v1.0.md)。

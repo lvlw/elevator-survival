@@ -1,3 +1,18 @@
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+原E01方向现在按正式批次划分P纯生产者、R来源聚合／v3 codec、S唯一current及保存故障；三者共同交付完整来源消费与恢复责任。第一项执行依据为E01-P首契约，不把下文宽口径候选当并行开工授权。
+
+P准确SHA实审后，R任务依据P实际纯值锁定具体字段；R实审后才发S。每批独立授权与停止，不自动连跑；E02真实战斗、E03完整路线／安全查询及O3门槛保留。
+
+当前依据：[E01-P首契约](../../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](../../../engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](../../../engineering/residence-foundation/world-content-batch-plan-v1.0.md)。
+
+---
+
+以下为612ac6673223cc93237184892e6713e789a9dce1时的历史正文，保留原字节；已覆盖子项的旧待采纳／候选表述以上述批准为准，其余不因本附记自动获批。
+
 # 最近三项工程契约候选
 
 DESIGN DRAFT / NOT AUTHORIZED。以下不是本轮执行清单，也不是已批准A/B/C合同的覆盖。先准确SHA设计实审→Owner采纳对应局部条款→正式确定载荷/路径白名单→单项执行授权；任一步不能由本批提交自动替代。工程起始SHA须届时重新指定，不能将本设计基线假定为未来最新工程基线。

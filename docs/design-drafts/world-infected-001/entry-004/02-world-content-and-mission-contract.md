@@ -1,3 +1,18 @@
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+获批24节点／29连接及本执行任务件来源以正式数据为准。受控提取、真实搬运、安装和指定样本联合资格仍须生产实现，不能由调用方上传完成事实；来源份额与已处分历史守恒。
+
+样本谨慎／直接两方案均保留；下文“谨慎且外套有效”只属旧有限路线条件，不限制正式玩法。H2只按choices／weights／unit抽一分支，正式配置无grant.H2-random，不能固定多送消毒剂；局部初态与外部战斗轨迹不迁入内容。
+
+当前依据：[唯一103键试用配置](../../../content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](../../../content/infected-world-entry-content-v0.1.json)、[E01-P首契约](../../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](../../../engineering/residence-foundation/content-supply-restore-contract-v1.0.md)。
+
+---
+
+以下为612ac6673223cc93237184892e6713e789a9dce1时的历史正文，保留原字节；已覆盖子项的旧待采纳／候选表述以上述批准为准，其余不因本附记自动获批。
+
 # D01：真实五图与任务生产者候选
 
 DESIGN DRAFT。数据唯一入口：[content-candidate.json](content-candidate.json)，新增数值唯一入口：[parameter-candidate.json](parameter-candidate.json)。地图源为[原地点设计](../03-location-design.md)，事件源为[事件包](../06-event-pack.md)。H/T/P/L/C及原物品ID承接，不以新run/day/标题刷新来源；两新任务件ID仅Draft映射，不注册rulesVersion或玩家任务。

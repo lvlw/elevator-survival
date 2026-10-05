@@ -98,3 +98,15 @@ R1在c67fd4117065e2e0dbd1117cae4fbfaa83791599获主线专项PASS，仅关闭F01�
 ## WORLD-ENTRY-004-R1专项返修状态（2026-10-05）
 
 从`0362460b259cba6ea160e79ad04a6cb14181cef0`续修任务来源／执行与逐意图原值校验；原31项先在完整数据复现，原98覆盖保留，新回归、六负控、冻结双跑及原生24分别交证。当前为作者返修、待准确SHA专项实审，不是主线PASS；D01—D04未采纳，E01—E03不启动，38项批准配置与生产树不改。原历史正文及成绩保持所属提交，不能叠入新通过。见[R1审阅入口](../entry-004/00-owner-review.md)、[实际检查](../entry-004/checks.json)与[验证边界](../entry-004/validation/README.md)。
+
+
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](../entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+证据分层：R1作者194项有限检查／24项原生观察、原31项复现和主线41项专项检查保留各自来源及未支持分类，本轮全部未重跑；主线专项PASS仅在其已审范围成立。Owner批准与本轮文档检查另记，均不冒充生产或体验验收。
+
+本轮只核原件／载荷／逐值／前后缀／链接／保护对象、架构及diff。生产测试、构建、模型、浏览器／多标签、Owner试玩均NOT RUN，新增生产测试0，远端CI未核验。E01-P/R/S逐项源码实审、E02真实CTB与信息边界、E03路线／九组合及恢复负担体验仍须实证，O3仍未决定。
+
+当前依据：[612ac66专项实审](../entry-004/adoption/inputs/AUD-612ac66-WORLD-ENTRY-004-R1-review-v1.0.md)、[E01-P首契约](../../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[工程批次门槛](../../../engineering/residence-foundation/world-content-batch-plan-v1.0.md)、[本轮完成记录](../entry-004/adoption/DOC-WORLD-ENTRY-004-completion.md)、[实际检查](../entry-004/adoption/checks.json)。

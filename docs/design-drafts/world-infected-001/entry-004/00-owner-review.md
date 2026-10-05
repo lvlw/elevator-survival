@@ -1,3 +1,18 @@
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+Owner已实际采纳WORLD-ENTRY-004-ADOPTION v1.0列明的D01—D04规则和试用参数。103键／193叶来自锁定612ac66完整源，排除grant.H2-random；九字段内容只将H2-random.grants置null，随机choices／weights／unit保持。未列系统和试用平衡不扩批。
+
+R1实审PASS与Owner批准分别留痕；本轮文档提交仍待准确SHA实审。E01-P是下一个完整工程切口，R/S逐项停审，E02/E03后续；没有生产开发、玩家内容注册或浏览器保存。以下D01—D04待采纳及工程候选文字是历史，不再代表已覆盖子项的当前状态。
+
+当前依据：[唯一103键试用配置](../../../content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](../../../content/infected-world-entry-content-v0.1.json)、[E01-P首契约](../../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](../../../engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](../../../engineering/residence-foundation/world-content-batch-plan-v1.0.md)、[612ac66专项实审](adoption/inputs/AUD-612ac66-WORLD-ENTRY-004-R1-review-v1.0.md)、[本轮完成记录](adoption/DOC-WORLD-ENTRY-004-completion.md)、[实际检查](adoption/checks.json)。
+
+---
+
+以下为612ac6673223cc93237184892e6713e789a9dce1时的历史正文，保留原字节；已覆盖子项的旧待采纳／候选表述以上述批准为准，其余不因本附记自动获批。
+
 # WORLD-ENTRY-004：集中审阅与待采纳稿
 
 状态：DESIGN DRAFT / WORLD-ENTRY-004-R1，待主线准确SHA专项实审；D01—D04仍待Owner采纳。返修基线 `0362460b259cba6ea160e79ad04a6cb14181cef0`，生产仍为原C受审树。本批没有新增正式DEC、配置或玩家内容。

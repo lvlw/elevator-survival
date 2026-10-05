@@ -1,0 +1,240 @@
+{
+  "task": "DOC-WORLD-ENTRY-004",
+  "version": "v1.0",
+  "date": "2026-10-05",
+  "repo": "lvlw/elevator-survival",
+  "base_sha": "612ac6673223cc93237184892e6713e789a9dce1",
+  "base_parent": "0362460b259cba6ea160e79ad04a6cb14181cef0",
+  "base_tree": "b4a24ed36d181bb86fdd26c0339fe765c933255b",
+  "base_src_tree": "98c840dd0b6b1a6cc014df4ac9165bc94bf2c794",
+  "base_dec_blob": "c739151493cd8b5e46e03d25008ea0fb128c3e14",
+  "branch": "feature/design-world-entry-004",
+  "latest_dec_before": 51,
+  "only_new_dec": 52,
+  "archive_root": "docs/design-drafts/world-infected-001/entry-004/adoption/inputs",
+  "archive_files": [
+    "AUD-612ac66-WORLD-ENTRY-004-R1-review-v1.0.md",
+    "BASELINE-AND-INPUTS.json",
+    "DOC-WORLD-ENTRY-004-task-v1.0.md",
+    "OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md",
+    "SHA256SUMS.txt",
+    "WORLD-ENTRY-004-ADOPTION-owner-review-v1.0.md",
+    "approved-documents/DEC-052-append.md",
+    "approved-documents/content-supply-core-contract-v1.0.md",
+    "approved-documents/content-supply-restore-contract-v1.0.md",
+    "approved-documents/infected-world-entry-content-v0.1.json",
+    "approved-documents/infected-world-entry-test-config-v0.1.json",
+    "approved-documents/world-content-batch-plan-v1.0.md",
+    "verify-doc-package.py"
+  ],
+  "payload_targets": [
+    {
+      "input": "approved-documents/DEC-052-append.md",
+      "target": "docs/05-design-decisions.md",
+      "mode": "append-dec",
+      "bytes": 14128,
+      "sha256": "3f31d17f5b3b1373b9946a291548e82ad63007f66ed84bfdeec10f94e2e0aa26",
+      "git_blob": "29f46f24faeab2b0ec16466280bfc8691bed63ef"
+    },
+    {
+      "input": "approved-documents/infected-world-entry-test-config-v0.1.json",
+      "target": "docs/content/infected-world-entry-test-config-v0.1.json",
+      "mode": "copy",
+      "bytes": 6213,
+      "sha256": "15624fee92e615e1d4ffcec39d071057b10a8de6ce16408cca0ffb4e94f5d8e6",
+      "git_blob": "40ba0e3edd1a13843e40be5f8d420bef6afeb8f0"
+    },
+    {
+      "input": "approved-documents/infected-world-entry-content-v0.1.json",
+      "target": "docs/content/infected-world-entry-content-v0.1.json",
+      "mode": "copy",
+      "bytes": 25804,
+      "sha256": "05dabf10796ee027ea31037641ae91b95fc9346b9b98f032f1b7c99dada88925",
+      "git_blob": "dece5112e546af127943f846d7003e384ff97a21"
+    },
+    {
+      "input": "approved-documents/content-supply-core-contract-v1.0.md",
+      "target": "docs/engineering/residence-foundation/content-supply-core-contract-v1.0.md",
+      "mode": "copy",
+      "bytes": 10269,
+      "sha256": "ac55594cce4d90922ff49fe2bc34e58e834f0e6606f1bc4430caec6fe6f40dcd",
+      "git_blob": "4b31a312bcad79d5b5a9de99706433ba34316b53"
+    },
+    {
+      "input": "approved-documents/content-supply-restore-contract-v1.0.md",
+      "target": "docs/engineering/residence-foundation/content-supply-restore-contract-v1.0.md",
+      "mode": "copy",
+      "bytes": 9004,
+      "sha256": "2f116bcc15fa6e5d105e9a57bbcff5b5f93940c20db86a271d90d911720adb4f",
+      "git_blob": "726dcb8d67e0a7b7f78daa13853319143b642e0d"
+    },
+    {
+      "input": "approved-documents/world-content-batch-plan-v1.0.md",
+      "target": "docs/engineering/residence-foundation/world-content-batch-plan-v1.0.md",
+      "mode": "copy",
+      "bytes": 5185,
+      "sha256": "55bb93a298e1a78e87709a1853b4ecdda684d131071d08530a62e04b7090ed94",
+      "git_blob": "1f6ef2d8df467b19c439cdd6e34f9941561052d9"
+    }
+  ],
+  "append_only_paths": [
+    "docs/01-game-design-v0.1.md",
+    "docs/02-vertical-slice.md",
+    "docs/03-architecture.md",
+    "docs/07-decision-supersession-index.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+    "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+    "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md"
+  ],
+  "prepend_only_paths": [
+    "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
+    "docs/design-drafts/world-infected-001/entry-004/01-current-production-and-gaps.md",
+    "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
+    "docs/design-drafts/world-infected-001/entry-004/03-combat-medical-contract.md",
+    "docs/design-drafts/world-infected-001/entry-004/04-specialties-tools-and-loadout.md",
+    "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+    "docs/design-drafts/world-infected-001/entry-004/06-next-engineering-contracts.md",
+    "docs/design-drafts/world-infected-001/entry-004/07-playable-and-release-gates.md",
+    "docs/design-drafts/world-infected-001/03-location-design.md",
+    "docs/design-drafts/world-infected-001/04-main-mission.md",
+    "docs/design-drafts/world-infected-001/05-resource-economy.md",
+    "docs/design-drafts/world-infected-001/06-event-pack.md",
+    "docs/design-drafts/world-infected-001/07-enemy-continuity.md"
+  ],
+  "report_paths": [
+    "docs/design-drafts/world-infected-001/entry-004/adoption/DOC-WORLD-ENTRY-004-completion.md",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/checks.json"
+  ],
+  "allowed_paths": [
+    "docs/01-game-design-v0.1.md",
+    "docs/02-vertical-slice.md",
+    "docs/03-architecture.md",
+    "docs/05-design-decisions.md",
+    "docs/07-decision-supersession-index.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/content/infected-world-entry-content-v0.1.json",
+    "docs/content/infected-world-entry-test-config-v0.1.json",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/03-location-design.md",
+    "docs/design-drafts/world-infected-001/04-main-mission.md",
+    "docs/design-drafts/world-infected-001/05-resource-economy.md",
+    "docs/design-drafts/world-infected-001/06-event-pack.md",
+    "docs/design-drafts/world-infected-001/07-enemy-continuity.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/design-drafts/world-infected-001/entry-004/00-owner-review.md",
+    "docs/design-drafts/world-infected-001/entry-004/01-current-production-and-gaps.md",
+    "docs/design-drafts/world-infected-001/entry-004/02-world-content-and-mission-contract.md",
+    "docs/design-drafts/world-infected-001/entry-004/03-combat-medical-contract.md",
+    "docs/design-drafts/world-infected-001/entry-004/04-specialties-tools-and-loadout.md",
+    "docs/design-drafts/world-infected-001/entry-004/05-source-and-adoption-map.md",
+    "docs/design-drafts/world-infected-001/entry-004/06-next-engineering-contracts.md",
+    "docs/design-drafts/world-infected-001/entry-004/07-playable-and-release-gates.md",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/DOC-WORLD-ENTRY-004-completion.md",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/checks.json",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/AUD-612ac66-WORLD-ENTRY-004-R1-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/BASELINE-AND-INPUTS.json",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/DOC-WORLD-ENTRY-004-task-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/SHA256SUMS.txt",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/WORLD-ENTRY-004-ADOPTION-owner-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/approved-documents/DEC-052-append.md",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/approved-documents/content-supply-core-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/approved-documents/content-supply-restore-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/approved-documents/infected-world-entry-content-v0.1.json",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/approved-documents/infected-world-entry-test-config-v0.1.json",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/approved-documents/world-content-batch-plan-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/verify-doc-package.py",
+    "docs/design-drafts/world-infected-001/readiness/01-current-baseline-and-adoption.md",
+    "docs/design-drafts/world-infected-001/readiness/02-source-gap-and-ownership.md",
+    "docs/design-drafts/world-infected-001/readiness/04-evidence-and-playtest-gates.md",
+    "docs/engineering/residence-foundation/content-supply-core-contract-v1.0.md",
+    "docs/engineering/residence-foundation/content-supply-restore-contract-v1.0.md",
+    "docs/engineering/residence-foundation/world-content-batch-plan-v1.0.md"
+  ],
+  "reference_heads_observed_via_live_GitHub_2026_10_05": {
+    "feature/design-world-entry-002": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+    "feature/design-world-entry-003": "6438f7a38939297225538cdd68af24201ed7d34f",
+    "feature/design-world-entry-004": "612ac6673223cc93237184892e6713e789a9dce1",
+    "feature/design-world-infected-world-001": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+    "feature/mission-lifecycle-core-001": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+    "feature/residence-actions-core-001": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c",
+    "feature/residence-energy-cycle-core-001": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+    "feature/residence-location-core-001": "d7953bbf96dc842d2953e019f950275cd693bf09",
+    "feature/residence-session-core-001": "60e9c30732c5e22cfe9ff58b9b381de64b945180",
+    "feature/residence-terminal-core-001": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf",
+    "feature/residence-terminal-restore-001": "b9b1e0fee0e779669ca40e088ac9a867016bff82",
+    "feature/residence-terminal-session-001": "0921df3f219f368479d1bf3401d8fecddc0d5f71",
+    "main": "a76e9c1c998051fc1643b6e0c3d53443fa55feed"
+  },
+  "locked_sources": {
+    "parameters": {
+      "path": "docs/design-drafts/world-infected-001/entry-004/parameter-candidate.json",
+      "git_blob": "baaa1604f4f9d4a4f816f7dcdaa44c07cd8e22fe",
+      "sha256": "4cea3a0584d12562afb3fb8dacaf766e3e8a757faf78856c1e2501ff772a11e5",
+      "bytes": 18248
+    },
+    "content": {
+      "path": "docs/design-drafts/world-infected-001/entry-004/content-candidate.json",
+      "git_blob": "73ffb7ce7f804914d7723983c7eff0c20b6ef2d6",
+      "sha256": "6bdf46b42035bf3cd8ce71772a9c00e97cb2ffdd09ba27393e3928763bb722b7",
+      "bytes": 22418
+    }
+  },
+  "existing_approved_configs": [
+    {
+      "path": "docs/content/infected-residence-core-test-config-v0.1.json",
+      "configurationId": "infected-residence-core-test-v0.1",
+      "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9"
+    },
+    {
+      "path": "docs/content/infected-terminal-core-test-config-v0.1.json",
+      "configurationId": "infected-terminal-core-test-v0.1",
+      "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18"
+    }
+  ],
+  "expected_new_config": {
+    "keys_before_exclusion": 104,
+    "keys_after_exclusion": 103,
+    "numeric_leaves": 193,
+    "excluded_key": "grant.H2-random"
+  },
+  "content_transform": "Select nine source fields; only change sources[id=H2-random].grants to null. Preserve all other selected data, including original provenance notes. Add explicit document metadata; no runtime registration.",
+  "direct_archived_originals": {
+    "WORLD-ENTRY-004-ADOPTION-owner-review-v1.0.md": {
+      "bytes": 14051,
+      "sha256": "e9efa773e1a5862991e15a704c1c27579664abe17206ca344f3672aac9a2b26b",
+      "git_blob": "7928d59de61c9b1b873218e2221ff83ec167645f"
+    },
+    "AUD-612ac66-WORLD-ENTRY-004-R1-review-v1.0.md": {
+      "bytes": 9714,
+      "sha256": "66c7f634a2a11f79df6558fed6fb19324fc419a2fcabde44febba2abdae24476",
+      "git_blob": "c4be27f2f8065b3a25d02ac3c513b4c3564351f2"
+    }
+  },
+  "baseline_assertions": {
+    "AGENTS.md": "0055de32c18517d4d016b077e5fc287d9360317d",
+    "package.json": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+    "package-lock.json": "3b320a8a79a1815c0909d8846e5e6248d4fc187e"
+  },
+  "execution_boundary": {
+    "production_edit": false,
+    "production_tests": "NOT RUN in document task",
+    "model_rerun": false,
+    "install_or_update_dependencies": false,
+    "commit": "ordinary on named branch only",
+    "push": "ordinary named branch only",
+    "main_push_merge_force": false,
+    "stop": "exact-SHA document review before E01-P"
+  },
+  "package_preparation_evidence": {
+    "source_JSONs": "Full reconstructed file bytes match GitHub-reported exact Git blobs; generated values checked against these entire source JSONs, not a probe subset.",
+    "remote_refs": "Read via live GitHub connector; local disk state NOT observed by mainline.",
+    "repository_doc_final_checks": "NOT RUN by mainline; Codex runs in its repository after installation.",
+    "production_tests": "NOT RUN",
+    "finite_model_tests": "NOT RUN",
+    "historical_review": "Carried forward as immutable original, not rerun or upgraded."
+  }
+}

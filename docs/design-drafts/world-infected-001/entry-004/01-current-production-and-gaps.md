@@ -1,3 +1,18 @@
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+当前C九命令与稳定四态是已有支持；真实五图、供给与任务件、三专长／工具箱已获文档批准但尚未生产接线。G1/G2/A/B/C已有职责不因新增来源被替换。
+
+新来源纯结果由E01-P负责，E01-R按P实值锁定v3聚合／codec，E01-S保唯一current与故障边界；活战斗及安全查询仍属E02/E03。原v1/v2和正常steps=[]保持，新来源死亡独立验证，不伪造或重放身体步骤。
+
+当前依据：[E01-P首契约](../../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](../../../engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](../../../engineering/residence-foundation/world-content-batch-plan-v1.0.md)。
+
+---
+
+以下为612ac6673223cc93237184892e6713e789a9dce1时的历史正文，保留原字节；已覆盖子项的旧待采纳／候选表述以上述批准为准，其余不因本附记自动获批。
+
 # 当前生产能力与唯一所有权
 
 审查基线：`0921df3f219f368479d1bf3401d8fecddc0d5f71`；parent `b9b1e0fee0e779669ca40e088ac9a867016bff82`；tree `f835130ec111dcb387619168cd8bfccce7c72963`；src tree `98c840dd0b6b1a6cc014df4ac9165bc94bf2c794`。这些是实际读源码的对象，不是完整世界版本。

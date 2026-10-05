@@ -220,3 +220,20 @@ A 在 `bfc6bd973eeb306df1e8ee916b2160c30b757cdf` 已获[限定实审 PASS](engin
 | 历史／安全查询 | 两声明历史由原生 A/B 测试生产者建立，C 只消费当前活动；普通输出不含诊断秘密；C10/C11 |
 
 详见 [C 支持及完整验收映射](engineering/residence-foundation/terminal-session/contract-and-support.md)、[作者检查](engineering/residence-foundation/terminal-session/verification-results.json)及[交付报告](engineering/residence-foundation/terminal-session/completion.md)。当前待准确 SHA 实审，不宣称真实五图／玩家入口／浏览器 IO 或体验已通过，O3 未决定；C12 保留这些 Gate。
+
+
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](design-drafts/world-infected-001/entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+| 规则／合同 | 当前生产与交付状态 |
+| --- | --- |
+| DEC-049—051，G1/G2/A/B/C | 当前C限定实审覆盖九命令／稳定四态；不扩大为完整世界通过 |
+| DEC-052、真实五图／来源／任务件／药食／三专长 | 已批准文档与试用数据；E01-P未执行 |
+| 来源份额守恒、新来源死亡、v3严格恢复 | 已批合同；E01-P→R→S逐项实审，原v2整输出校验不删 |
+| CTB联合与可玩接线 | E02／E03门槛保留；本次无生产、浏览器或体验验证 |
+
+正常H0空步骤、合法HP0一次消费、保存失败保完整内存均须按来源延续。历史194／24／31／41不是本轮测试数；源码定位仅供合同核对，未构成新生产实审。
+
+当前依据：[E01-P首契约](engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](engineering/residence-foundation/world-content-batch-plan-v1.0.md)、[612ac66专项实审](design-drafts/world-infected-001/entry-004/adoption/inputs/AUD-612ac66-WORLD-ENTRY-004-R1-review-v1.0.md)。

@@ -186,3 +186,15 @@ B 在 `b9b1e0fee0e779669ca40e088ac9a867016bff82` 已通过[限定实审](../../e
 ## WORLD-ENTRY-004-R1专项返修状态（2026-10-05）
 
 从`0362460b259cba6ea160e79ad04a6cb14181cef0`续修任务来源／执行与逐意图原值校验；原31项先在完整数据复现，原98覆盖保留，新回归、六负控、冻结双跑及原生24分别交证。当前为作者返修、待准确SHA专项实审，不是主线PASS；D01—D04未采纳，E01—E03不启动，38项批准配置与生产树不改。原历史正文及成绩保持所属提交，不能叠入新通过。见[R1审阅入口](entry-004/00-owner-review.md)、[实际检查](entry-004/checks.json)与[验证边界](entry-004/validation/README.md)。
+
+
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+D01—D04中本次列明的真实五图、药食／战斗、来源与任务生产、三专长／工具箱方向已由Owner采纳，未列子集仍保留原草案状态。五地图、本地转运＋指定样本、单次驻留和失败不重接保持。
+
+本次锁定103键试用参数及九字段内容；H2随机只抽一支，没有额外固定消毒剂。旧有限模型初态／外部战斗轨迹不构成真实供给；当前仍只有一委托，完整世界实现与体验未验收。
+
+当前依据：[唯一103键试用配置](../../content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](../../content/infected-world-entry-content-v0.1.json)、[E01-P首契约](../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](../../engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](../../engineering/residence-foundation/world-content-batch-plan-v1.0.md)。

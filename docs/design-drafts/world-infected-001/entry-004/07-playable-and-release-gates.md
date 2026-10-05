@@ -1,3 +1,18 @@
+<a id="doc-world-entry-004"></a>
+## DOC-WORLD-ENTRY-004 采纳附记（2026-10-05）
+
+[Owner实际批准](adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md)、[DEC-052](../../../05-design-decisions.md#dec-052)：仅当前新感染委托的获批子集生效。
+
+已采纳局部规则和试用内容，不等于已注册五图或可玩。E01-P/R/S分别完成纯结果、严格恢复和唯一提交，E02完成真实战斗，E03验证完整路线／三专长工具组合与安全查询；人工体验仍须实际执行。
+
+文档formatVersion=3仅定位E01稳定来源扩展，旧v1/v2语义和测试保持，E02活战斗格式另定。O3旧入口／旧槽、浏览器存档／多标签、UI及第二委托未获本轮授权。本次无生产测试、模型重跑或试玩。
+
+当前依据：[E01-P首契约](../../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](../../../engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](../../../engineering/residence-foundation/world-content-batch-plan-v1.0.md)、[本轮完成记录](adoption/DOC-WORLD-ENTRY-004-completion.md)。
+
+---
+
+以下为612ac6673223cc93237184892e6713e789a9dce1时的历史正文，保留原字节；已覆盖子项的旧待采纳／候选表述以上述批准为准，其余不因本附记自动获批。
+
 # 从当前C到首玩的接入门槛
 
 DESIGN DRAFT。现状是C的九命令/稳定四态，不是五图可玩；本页不批准UI、浏览器、内容注册或O3发布安排。

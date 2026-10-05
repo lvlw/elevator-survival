@@ -8,6 +8,7 @@ import { countSchema, parseResidence, safeAdd, safeMultiply } from '../residence
 import { locationBindingSchema } from '../residence-location/identity'
 import { readAuthorized, locationOf } from './authority'
 import { disposeTerminalAssets } from './dispositions'
+import { settleTerminalBalance } from './settlement-shared'
 import { eligibility } from './queries'
 import { issueTerminalPlan, terminalCommandSchema, verifyCycleResult, verifySteps } from './plans'
 import { ensure, readTerminalSnapshot, same, stepSchema } from './validation'
@@ -19,10 +20,7 @@ function finish(ctx: ReturnType<typeof readAuthorized>, result: ResidenceLocatio
   const clock = before.character.clock
   ensure(clock.kind === 'active', 'No active execution')
   const config = dependencies.configuration.config
-  const reward = outcome === 'success' ? config.success_reward : 0
-  const penalty = outcome === 'voluntary-failure' || outcome === 'deadline-failure' ? Math.min(before.balance, config.failure_penalty) : 0
-  const forfeited = outcome === 'death' ? before.balance : 0
-  const balance = safeAdd(before.balance - penalty - forfeited, reward)
+  const { reward, penalty, forfeited, balance } = settleTerminalBalance(before.balance, outcome, config)
   const assets = disposeTerminalAssets(before, result, outcome, policy)
   const receipt: TerminalReceipt = { binding: result.site.binding, outcome, source, steps,
     startCycle: clock.startCycle, endCycle: before.character.cycle, taskDay: clock.taskDay, revision: result.character.revision,

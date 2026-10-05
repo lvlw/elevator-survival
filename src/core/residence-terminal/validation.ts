@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { validateResidencePassiveSite } from '../residence-location/supply-location'
 import { deepFreeze } from '../config'
 import { readCycleContext, type CharacterCycleState } from '../character-cycle'
 import { createEnemyPersistentCombatState } from '../combat'
@@ -157,40 +158,7 @@ function checkHistorySteps(r: z.infer<typeof receiptSchema>, limits: TerminalDep
 /** Validate a passive site without inventing an active mission or resurrected body. */
 function checkSite(site: ResidenceSite, deps: TerminalDependencies, character: CharacterCycleState) {
   const p = policyFor(site.binding, deps)
-  const c = p.catalog.data
-  ensure(same(site.binding.identity, character.identity), 'Historical site identity mismatch')
-  const sets = (actual: readonly string[], expected: readonly string[]) => {
-    unique(actual, 'site members'); ensure(same([...actual].sort(), [...new Set(expected)].sort()), 'Incorrect site member set')
-  }
-  ensure(c.nodes.some((n) => n.id === site.nodeId), 'Unknown site position')
-  sets(site.facts.map((f) => f.id), c.facts.map((f) => f.id))
-  sets(site.sources.map((s) => s.id), c.sources.map((s) => s.id))
-  sets(site.ground.map((g) => g.nodeId), c.nodes.map((n) => n.id))
-  sets(site.enemies.map((e) => e.id), c.enemies.map((e) => e.id))
-  for (const s of site.sources) {
-    const definition = c.sources.find((d) => d.id === s.id)!
-    ensure((!s.claimed || definition.contents.kind === 'fixed') ? s.drawIndex === 0 : s.drawIndex > 0, 'Bad historical source cursor')
-  }
-  for (const e of site.enemies) {
-    const d = c.enemies.find((v) => v.id === e.id)!
-    ensure(e.state.enemyInstanceId === e.id && e.state.definitionId === d.definition.id, 'Enemy history binding')
-    createEnemyPersistentCombatState(e.state, p.catalog.enemies.get(d.definition.id))
-    ensure(e.state.hasBeenEncountered || e.riskDrawIndex === 0, 'Unencountered risk history')
-  }
-  if (site.pending.kind === 'combat-required') {
-    const id = site.pending.enemyId
-    ensure(c.enemies.some((e) => e.id === id && e.nodeId === site.nodeId) &&
-      site.enemies.some((e) => e.id === id && e.state.hasBeenEncountered && !e.state.defeated), 'Invalid pending history')
-  }
-  const k = site.knowledge
-  unique(k.visitedNodeIds, 'visited nodes')
-  ensure(k.visitedNodeIds.includes(c.entryNodeId) && k.visitedNodeIds.includes(site.nodeId) &&
-    k.visitedNodeIds.every((id) => c.nodes.some((n) => n.id === id)), 'Invalid arrival history')
-  sets(k.knownEdgeIds, c.nodes.filter((n) => k.visitedNodeIds.includes(n.id)).flatMap((n) => n.surfaceEdgeIds))
-  sets(k.knownNodeIds, [...k.visitedNodeIds, ...c.edges.filter((e) => k.knownEdgeIds.includes(e.id)).flatMap((e) => [e.from, e.to])])
-  sets(k.routes.map((r) => r.edgeId), k.knownEdgeIds)
-  ensure(k.routes.every((r) => k.visitedNodeIds.includes(r.observedFromNodeId) &&
-    c.nodes.find((n) => n.id === r.observedFromNodeId)!.surfaceEdgeIds.includes(r.edgeId)), 'Invalid observation history')
+  validateResidencePassiveSite(site, p.catalog, character.identity, message => { throw new TerminalError('INVALID_INPUT', message) })
   return p
 }
 

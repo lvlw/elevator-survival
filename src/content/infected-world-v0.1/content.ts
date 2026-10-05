@@ -1,0 +1,1155 @@
+import { deepFreeze } from '../../core/config'
+/** Local approved declarations, not a player entry or CTB producer. */
+export const infectedWorldSupplyContent = deepFreeze({
+  contentId: 'infected-world-entry-content-v0.1', configurationId: 'infected-world-entry-test-v0.1',
+  data: {
+  "identity": {
+    "world": "感染封锁区五图",
+    "commission": "封锁区·未完成的转运",
+    "technicalMapping": "H/T/P/L/C from 03-location-design; no run/day in content IDs; runtime IDs not registered"
+  },
+  "maps": {
+    "H": "医院",
+    "T": "酒店",
+    "P": "供电所",
+    "L": "物流",
+    "C": "通信"
+  },
+  "nodes": [
+    {
+      "id": "H0",
+      "map": "H",
+      "name": "电梯前室",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "H0-H1",
+        "C0-H0",
+        "H0-T0"
+      ]
+    },
+    {
+      "id": "H1",
+      "map": "H",
+      "name": "大厅",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "H0-H1",
+        "H1-H2",
+        "H1-H3",
+        "H1-H7",
+        "H1-H4"
+      ]
+    },
+    {
+      "id": "H2",
+      "map": "H",
+      "name": "药房",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "H1-H2"
+      ]
+    },
+    {
+      "id": "H3",
+      "map": "H",
+      "name": "保安室",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "H1-H3",
+        "H3-H6",
+        "H3-H4"
+      ]
+    },
+    {
+      "id": "H4",
+      "map": "H",
+      "name": "隔离走廊",
+      "rest": "C",
+      "enemy": "orderly",
+      "surfaceEdges": [
+        "H1-H4",
+        "H3-H4",
+        "H4-H5"
+      ]
+    },
+    {
+      "id": "H5",
+      "map": "H",
+      "name": "冷藏室",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "H4-H5"
+      ]
+    },
+    {
+      "id": "H6",
+      "map": "H",
+      "name": "值班休息室",
+      "rest": "A",
+      "enemy": null,
+      "surfaceEdges": [
+        "H3-H6",
+        "H6-H7"
+      ]
+    },
+    {
+      "id": "H7",
+      "map": "H",
+      "name": "后勤控制间",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "H6-H7",
+        "H1-H7",
+        "H7-H8",
+        "H7-L0"
+      ]
+    },
+    {
+      "id": "H8",
+      "map": "H",
+      "name": "转运平台",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "H7-H8"
+      ]
+    },
+    {
+      "id": "T0",
+      "map": "T",
+      "name": "酒店入口",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "T0-T1",
+        "H0-T0",
+        "T0-P0"
+      ]
+    },
+    {
+      "id": "T1",
+      "map": "T",
+      "name": "林岑安置点",
+      "rest": "A",
+      "enemy": null,
+      "surfaceEdges": [
+        "T0-T1"
+      ]
+    },
+    {
+      "id": "P0",
+      "map": "P",
+      "name": "配线廊",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "P0-P1",
+        "T0-P0",
+        "P0-L0"
+      ]
+    },
+    {
+      "id": "P1",
+      "map": "P",
+      "name": "转运支路柜",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "P0-P1"
+      ]
+    },
+    {
+      "id": "L0",
+      "map": "L",
+      "name": "岗亭",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "L0-L1",
+        "H7-L0",
+        "L0-C0",
+        "P0-L0"
+      ]
+    },
+    {
+      "id": "L1",
+      "map": "L",
+      "name": "登记室",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "L0-L1",
+        "L1-L2",
+        "L1-L3",
+        "L1-L5"
+      ]
+    },
+    {
+      "id": "L2",
+      "map": "L",
+      "name": "装卸场",
+      "rest": "C",
+      "enemy": "porter",
+      "surfaceEdges": [
+        "L1-L2"
+      ]
+    },
+    {
+      "id": "L3",
+      "map": "L",
+      "name": "维修库",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "L1-L3"
+      ]
+    },
+    {
+      "id": "C0",
+      "map": "C",
+      "name": "入口",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "C0-C1",
+        "L0-C0",
+        "C0-H0"
+      ]
+    },
+    {
+      "id": "C1",
+      "map": "C",
+      "name": "档案室",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "C0-C1",
+        "C1-C4",
+        "C1-C5",
+        "C1-C2"
+      ]
+    },
+    {
+      "id": "C2",
+      "map": "C",
+      "name": "检修走廊",
+      "rest": "C",
+      "enemy": "technician",
+      "surfaceEdges": [
+        "C2-C3",
+        "C1-C2"
+      ]
+    },
+    {
+      "id": "C3",
+      "map": "C",
+      "name": "机房",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "C2-C3",
+        "C4-C3"
+      ]
+    },
+    {
+      "id": "C4",
+      "map": "C",
+      "name": "检修间",
+      "rest": "A",
+      "enemy": null,
+      "surfaceEdges": [
+        "C1-C4",
+        "C4-C3"
+      ]
+    },
+    {
+      "id": "C5",
+      "map": "C",
+      "name": "播控侧门",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "C1-C5"
+      ]
+    },
+    {
+      "id": "L5",
+      "map": "L",
+      "name": "周衡休息室",
+      "rest": "A",
+      "enemy": null,
+      "surfaceEdges": [
+        "L1-L5"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "H0-H1",
+      "ends": [
+        "H0",
+        "H1"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "H1-H2",
+      "ends": [
+        "H1",
+        "H2"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "H1-H3",
+      "ends": [
+        "H1",
+        "H3"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "H3-H6",
+      "ends": [
+        "H3",
+        "H6"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "H6-H7",
+      "ends": [
+        "H6",
+        "H7"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "H1-H7",
+      "ends": [
+        "H1",
+        "H7"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "H7-H8",
+      "ends": [
+        "H7",
+        "H8"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "T0-T1",
+      "ends": [
+        "T0",
+        "T1"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "P0-P1",
+      "ends": [
+        "P0",
+        "P1"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "L0-L1",
+      "ends": [
+        "L0",
+        "L1"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "L1-L2",
+      "ends": [
+        "L1",
+        "L2"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "L1-L3",
+      "ends": [
+        "L1",
+        "L3"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "L1-L5",
+      "ends": [
+        "L1",
+        "L5"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "C0-C1",
+      "ends": [
+        "C0",
+        "C1"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "C1-C4",
+      "ends": [
+        "C1",
+        "C4"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "C1-C5",
+      "ends": [
+        "C1",
+        "C5"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "C2-C3",
+      "ends": [
+        "C2",
+        "C3"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "H1-H4",
+      "ends": [
+        "H1",
+        "H4"
+      ],
+      "cost": "move.local",
+      "fact": "fire-door",
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "H3-H4",
+      "ends": [
+        "H3",
+        "H4"
+      ],
+      "cost": "move.local",
+      "fact": null,
+      "item": "card",
+      "revealBy": null
+    },
+    {
+      "id": "H4-H5",
+      "ends": [
+        "H4",
+        "H5"
+      ],
+      "cost": "move.local",
+      "fact": "enemy-orderly-cleared",
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "C1-C2",
+      "ends": [
+        "C1",
+        "C2"
+      ],
+      "cost": "move.local",
+      "fact": "c-gate",
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "C4-C3",
+      "ends": [
+        "C4",
+        "C3"
+      ],
+      "cost": "move.local",
+      "fact": "bypass",
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "H7-L0",
+      "ends": [
+        "H7",
+        "L0"
+      ],
+      "cost": "move.cross",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "L0-C0",
+      "ends": [
+        "L0",
+        "C0"
+      ],
+      "cost": "move.cross",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "C0-H0",
+      "ends": [
+        "C0",
+        "H0"
+      ],
+      "cost": "move.cross",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "H0-T0",
+      "ends": [
+        "H0",
+        "T0"
+      ],
+      "cost": "move.cross",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "T0-P0",
+      "ends": [
+        "T0",
+        "P0"
+      ],
+      "cost": "move.cross",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "P0-L0",
+      "ends": [
+        "P0",
+        "L0"
+      ],
+      "cost": "move.cross",
+      "fact": null,
+      "item": null,
+      "revealBy": null
+    },
+    {
+      "id": "C5-H7",
+      "ends": [
+        "C5",
+        "H7"
+      ],
+      "cost": "move.side",
+      "fact": "side-door",
+      "item": null,
+      "revealBy": "side-survey"
+    }
+  ],
+  "items": [
+    {
+      "id": "consumable_ration",
+      "alias": "food",
+      "profile": "physical.food",
+      "ordinary": true,
+      "quickEligible": false,
+      "resource": "none",
+      "origin": "existing physical definition; local Draft use"
+    },
+    {
+      "id": "consumable_bandage",
+      "alias": "bandage",
+      "profile": "physical.bandage",
+      "ordinary": true,
+      "quickEligible": true,
+      "resource": "none",
+      "origin": "existing physical definition; local Draft use"
+    },
+    {
+      "id": "consumable_disinfectant",
+      "alias": "disinfect",
+      "profile": "physical.disinfect",
+      "ordinary": true,
+      "quickEligible": true,
+      "resource": "none",
+      "origin": "existing physical definition; local Draft use"
+    },
+    {
+      "id": "consumable_infection_suppressant",
+      "alias": "suppressant",
+      "profile": "physical.suppressant",
+      "ordinary": true,
+      "quickEligible": false,
+      "resource": "none",
+      "origin": "existing physical definition; local Draft use"
+    },
+    {
+      "id": "consumable_painkiller",
+      "alias": "painkiller",
+      "profile": "physical.painkiller",
+      "ordinary": true,
+      "quickEligible": true,
+      "resource": "none",
+      "origin": "existing physical definition; local Draft use"
+    },
+    {
+      "id": "consumable_first_aid_kit",
+      "alias": "firstaid",
+      "profile": "physical.firstaid",
+      "ordinary": true,
+      "quickEligible": false,
+      "resource": "none",
+      "origin": "existing physical definition; local Draft use"
+    },
+    {
+      "id": "material_metal_parts",
+      "alias": "metal",
+      "profile": "physical.metal",
+      "ordinary": true,
+      "quickEligible": false,
+      "resource": "none",
+      "origin": "existing physical definition; local Draft use"
+    },
+    {
+      "id": "material_electronic_components",
+      "alias": "electronic",
+      "profile": "physical.electronic",
+      "ordinary": true,
+      "quickEligible": false,
+      "resource": "none",
+      "origin": "existing physical definition; local Draft use"
+    },
+    {
+      "id": "material_fabric",
+      "alias": "cloth",
+      "profile": "physical.cloth",
+      "ordinary": true,
+      "quickEligible": false,
+      "resource": "none",
+      "origin": "existing physical definition; local Draft use"
+    },
+    {
+      "id": "supply_standard_battery",
+      "alias": "battery",
+      "profile": "physical.battery",
+      "ordinary": true,
+      "quickEligible": false,
+      "resource": "none",
+      "origin": "existing physical definition; local Draft use"
+    },
+    {
+      "id": "access_card_isolation_ward",
+      "alias": "card",
+      "profile": "physical.card",
+      "ordinary": false,
+      "quickEligible": false,
+      "resource": "none",
+      "origin": "existing physical definition; local Draft use"
+    },
+    {
+      "id": "quest_sealed_pathogen_case",
+      "alias": "sample",
+      "profile": "physical.sample",
+      "ordinary": false,
+      "quickEligible": false,
+      "resource": "none",
+      "origin": "existing physical definition; local Draft use"
+    },
+    {
+      "id": "draft_transfer_control_component",
+      "alias": "component",
+      "profile": "physical.component",
+      "ordinary": false,
+      "quickEligible": false,
+      "resource": "none",
+      "origin": "new Draft ID; unregistered"
+    },
+    {
+      "id": "draft_transfer_start_module",
+      "alias": "module",
+      "profile": "physical.module",
+      "ordinary": false,
+      "quickEligible": false,
+      "resource": "none",
+      "origin": "new Draft ID; unregistered"
+    }
+  ],
+  "sources": [
+    {
+      "id": "H1-search",
+      "node": "H1",
+      "grants": "grant.H1-search",
+      "cost": "search.dark",
+      "requires": [],
+      "mode": "ground-once"
+    },
+    {
+      "id": "H2-search",
+      "node": "H2",
+      "grants": "grant.H2-search",
+      "cost": "search.dark",
+      "requires": [],
+      "mode": "ground-once"
+    },
+    {
+      "id": "H3-search",
+      "node": "H3",
+      "grants": "grant.H3-search",
+      "cost": "search.dark",
+      "requires": [],
+      "mode": "ground-once"
+    },
+    {
+      "id": "L1-cabinet",
+      "node": "L1",
+      "grants": "grant.L1-cabinet",
+      "cost": "search.fixed",
+      "requires": [
+        "l1-open"
+      ],
+      "mode": "ground-once"
+    },
+    {
+      "id": "L2-search",
+      "node": "L2",
+      "grants": "grant.L2-search",
+      "cost": "search.fixed",
+      "requires": [
+        "enemy-porter-cleared"
+      ],
+      "mode": "ground-once"
+    },
+    {
+      "id": "L3-rack",
+      "node": "L3",
+      "grants": "grant.L3-rack",
+      "cost": "search.fixed",
+      "requires": [
+        "l3-open"
+      ],
+      "mode": "ground-once"
+    },
+    {
+      "id": "C4-cabinet",
+      "node": "C4",
+      "grants": "grant.C4-cabinet",
+      "cost": "door.manual",
+      "requires": [],
+      "mode": "ground-once"
+    },
+    {
+      "id": "C4-food",
+      "node": "C4",
+      "grants": "grant.C4-food",
+      "cost": "search.fixed",
+      "requires": [],
+      "mode": "ground-once"
+    },
+    {
+      "id": "H1-toolbox",
+      "node": "H1",
+      "grants": "grant.H1-toolbox",
+      "cost": "door.toolbox",
+      "requires": [],
+      "mode": "only-with-first-toolbox-door"
+    },
+    {
+      "id": "T1-exchange",
+      "node": "T1",
+      "grants": "grant.T1-exchange",
+      "cost": "exchange",
+      "requires": [],
+      "mode": "atomic-exchange",
+      "inputs": "exchange.inputs"
+    },
+    {
+      "id": "H2-random",
+      "node": "H2",
+      "grants": null,
+      "cost": "medical.free",
+      "requires": [],
+      "mode": "paired-H2-search-choice",
+      "choices": [
+        "disinfect",
+        "painkiller",
+        "firstaid",
+        "suppressant"
+      ],
+      "note": "旧医院四分支权重的本地候选；不是保证消毒剂",
+      "weights": "random.H2"
+    },
+    {
+      "id": "H1-random",
+      "node": "H1",
+      "cost": "medical.free",
+      "requires": [],
+      "mode": "paired-H1-search-choice",
+      "choices": [
+        "battery",
+        "cloth",
+        "electronic"
+      ],
+      "weights": "random.H1",
+      "grants": null
+    }
+  ],
+  "actions": [
+    {
+      "id": "l1-open",
+      "node": "L1",
+      "cost": "door.manual",
+      "requires": [],
+      "fact": "l1-open",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "l3-open",
+      "node": "L3",
+      "cost": "door.manual",
+      "requires": [],
+      "fact": "l3-open",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "c-gate",
+      "node": "C1",
+      "cost": "door.manual",
+      "requires": [],
+      "fact": "c-gate",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "fire-door",
+      "node": "H1",
+      "cost": "door.toolbox",
+      "requires": [],
+      "fact": "fire-door",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "verify",
+      "node": "L2",
+      "cost": "verify.full",
+      "requires": [
+        "enemy-porter-cleared"
+      ],
+      "fact": "verified",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "fix",
+      "node": "L2",
+      "cost": "door.manual",
+      "requires": [
+        "verified",
+        "enemy-porter-cleared"
+      ],
+      "fact": "fixed",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "component",
+      "node": "L2",
+      "cost": "extract.part",
+      "requires": [
+        "fixed",
+        "enemy-porter-cleared"
+      ],
+      "fact": null,
+      "consume": null,
+      "grant": "component",
+      "outputQuantity": "unit"
+    },
+    {
+      "id": "match",
+      "node": "C1",
+      "cost": "verify.full",
+      "requires": [],
+      "fact": "matched",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "module",
+      "node": "C3",
+      "cost": "extract.part",
+      "requires": [
+        "matched"
+      ],
+      "fact": null,
+      "consume": null,
+      "grant": "module",
+      "outputQuantity": "unit"
+    },
+    {
+      "id": "power-survey",
+      "node": "P1",
+      "cost": "survey",
+      "requires": [],
+      "fact": "power-survey",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "power",
+      "node": "P1",
+      "cost": "restore.power",
+      "requires": [
+        "power-survey"
+      ],
+      "fact": "power",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "bypass-survey",
+      "node": "C4",
+      "cost": "survey",
+      "requires": [],
+      "fact": "bypass-survey",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "bypass",
+      "node": "C4",
+      "cost": "door.manual",
+      "requires": [
+        "bypass-survey"
+      ],
+      "fact": "bypass",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "side-survey",
+      "node": "C5",
+      "cost": "investigate",
+      "requires": [],
+      "fact": "side-survey",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "side-door",
+      "node": "C5",
+      "cost": "investigate",
+      "requires": [
+        "side-survey"
+      ],
+      "fact": "side-door",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "method",
+      "node": "L5",
+      "cost": "investigate",
+      "requires": [],
+      "fact": "method",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "workorder",
+      "node": "H7",
+      "cost": "investigate",
+      "requires": [],
+      "fact": "workorder",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "old-bill",
+      "node": "L1",
+      "cost": "survey",
+      "requires": [],
+      "fact": "old-bill",
+      "consume": null,
+      "grant": null
+    },
+    {
+      "id": "sample",
+      "node": "H5",
+      "cost": "extract.sample.cautious",
+      "requires": [
+        "enemy-orderly-cleared"
+      ],
+      "fact": null,
+      "consume": null,
+      "grant": "sample",
+      "outputQuantity": "unit"
+    },
+    {
+      "id": "install",
+      "node": "H8",
+      "cost": "install",
+      "requires": [
+        "power"
+      ],
+      "fact": "transfer",
+      "consume": "install.inputs",
+      "grant": null
+    }
+  ],
+  "enemies": [
+    {
+      "id": "orderly",
+      "node": "H4",
+      "parameters": "enemy.orderly",
+      "wounds": [
+        "laceration",
+        "bite"
+      ],
+      "woundRisk": [
+        "high",
+        "very-high"
+      ],
+      "exposureRisk": [
+        "none",
+        "high"
+      ],
+      "bluntWeakness": true,
+      "persistent": [
+        "hp",
+        "intent",
+        "resolvedActionCount",
+        "riskCursor",
+        "encountered",
+        "defeated"
+      ]
+    },
+    {
+      "id": "porter",
+      "node": "L2",
+      "parameters": "enemy.porter",
+      "wounds": [
+        "contusion",
+        "laceration"
+      ],
+      "woundRisk": [
+        "high",
+        "high"
+      ],
+      "exposureRisk": [
+        "none",
+        "none"
+      ],
+      "bluntWeakness": false,
+      "persistent": [
+        "hp",
+        "intent",
+        "resolvedActionCount",
+        "riskCursor",
+        "encountered",
+        "defeated"
+      ]
+    },
+    {
+      "id": "technician",
+      "node": "C2",
+      "parameters": "enemy.technician",
+      "wounds": [
+        "contusion",
+        "bite"
+      ],
+      "woundRisk": [
+        "medium",
+        "high"
+      ],
+      "exposureRisk": [
+        "none",
+        "medium"
+      ],
+      "bluntWeakness": false,
+      "persistent": [
+        "hp",
+        "intent",
+        "resolvedActionCount",
+        "riskCursor",
+        "encountered",
+        "defeated"
+      ]
+    }
+  ],
+  "goal": {
+    "return": "H0",
+    "facts": [
+      "power",
+      "transfer"
+    ],
+    "carried": "sample",
+    "hotelRequired": false
+  }
+},
+} as const)

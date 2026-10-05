@@ -1,5 +1,6 @@
 import { deepFreeze } from '../config'
 import type { ResidenceActionPlan } from '../residence-energy'
+import type { ResidenceCost } from '../residence-energy'
 import { planResidenceAction } from '../residence-energy'
 import type { CyclePlan } from '../character-cycle'
 import { sameResidenceValue } from '../character-cycle/validation'
@@ -40,15 +41,21 @@ export function markArrivalEncounter(snapshot: ResidenceLocationSnapshot, deps: 
     enemies: snapshot.site.enemies.map((e) => e.id === live.id ? { ...e, state: { ...e.state, hasBeenEncountered: true } } : e) } }
 }
 export function planResidenceMove(input: unknown, request: unknown, authority: LocationAuthority, deps: LocationDependencies): LocationPlan {
+  return planResidenceBoundMove(input, request, authority, deps)
+}
+/** Internal explicit pure composition seam. Old public entry keeps its exact policy. */
+export function planResidenceBoundMove(input: unknown, request: unknown, authority: LocationAuthority, deps: LocationDependencies,
+  policy?: { cost: (snapshot: ResidenceLocationSnapshot, edge: LocationDependencies['catalog']['data']['edges'][number]) => ResidenceCost;
+    knownEdges: (snapshot: ResidenceLocationSnapshot) => readonly string[] }): LocationPlan {
   const ctx = requireActionContext(input, request, authority, deps)
   const { command, snapshot, catalog } = ctx
   if (command.kind !== 'move') throw new LocationError('INVALID_INPUT', 'Move command required')
   const edge = catalog.data.edges.find((e) => e.id === command.edgeId)
-  if (!edge || edge.from !== snapshot.site.nodeId || !snapshot.site.knowledge.knownEdgeIds.includes(edge.id) || !edgePassable(snapshot, edge)) {
+  if (!edge || edge.from !== snapshot.site.nodeId || !(policy?.knownEdges(snapshot) ?? snapshot.site.knowledge.knownEdgeIds).includes(edge.id) || !edgePassable(snapshot, edge)) {
     throw new LocationError('NOT_AVAILABLE', 'Not a known currently traversable outgoing edge')
   }
   const body = planResidenceAction(snapshot.character, { identity: snapshot.character.identity,
-    expectedRevision: snapshot.character.revision, action: 'move', cost: edge.cost }, ctx.authority.cycle, deps.residence,
+    expectedRevision: snapshot.character.revision, action: 'move', cost: policy?.cost(snapshot, edge) ?? edge.cost }, ctx.authority.cycle, deps.residence,
   (completion) => ({ completion, effects: edge.arrival }))
   let proposed: ResidenceLocationSnapshot = { ...snapshot, site: { ...snapshot.site, nodeId: edge.to } }
   proposed = observeLocationArrival(proposed, deps)

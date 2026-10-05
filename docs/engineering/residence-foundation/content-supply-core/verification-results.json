@@ -1,0 +1,539 @@
+{
+  "task": "ENG-RESIDENCE-CONTENT-SUPPLY-001",
+  "goal": "E01-P",
+  "authorReviewOnly": true,
+  "base": "ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc",
+  "parentExpected": "ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc",
+  "branch": "feature/residence-content-supply-core-001",
+  "initialWorkspace": "clean",
+  "initialIndex": "empty",
+  "environment": {
+    "os": "Windows",
+    "shell": "PowerShell",
+    "packageManager": "existing npm",
+    "noInstall": true,
+    "evidenceDirectory": "C:/Users/zjl/AppData/Local/Temp/e01-p-input-33b655aee96d495fb8452a56bc350b56"
+  },
+  "baseline": {
+    "command": "npm run test:run",
+    "head": "ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc",
+    "exit": 0,
+    "files": 147,
+    "tests": 3274,
+    "start": "12:48:23",
+    "durationSeconds": 65.08,
+    "log": "baseline-test.log",
+    "evidence": "actual execution this task; not historical 194/24/31/41"
+  },
+  "target": {
+    "command": "npm run test:run -- src/core/residence-supply src/core/residence-task src/content/infected-world-v0.1 src/core/residence-location src/core/residence-terminal src/core/character-cycle src/core/residence-energy src/core/mission-lifecycle src/state/residence-save src/state/residence-session",
+    "exit": 0,
+    "files": 54,
+    "tests": 1189,
+    "start": "15:18:43",
+    "durationSeconds": 27.63,
+    "log": "target-final-counters.log"
+  },
+  "priorFullCheck": {
+    "command": "npm run check",
+    "exit": 0,
+    "files": 161,
+    "tests": 3365,
+    "start": "14:57:31",
+    "durationSeconds": 78.97,
+    "log": "check-second.log",
+    "note": "before final extra native counter assertions; target rerun above covers them"
+  },
+  "finalCheck": {
+    "status": "PASS",
+    "command": "npm run check",
+    "exit": 0,
+    "architecture": "PASS: 52 DEC / 289 core production files",
+    "typecheck": "PASS",
+    "files": 161,
+    "tests": 3365,
+    "start": "15:24:13",
+    "testDurationSeconds": 74.98,
+    "build": "PASS: 419 modules, existing chunk-size warning retained",
+    "log": "final-check.log",
+    "node": "v24.9.0",
+    "npm": "11.6.0"
+  },
+  "testDelta": {
+    "newFiles": 14,
+    "newTests": 91,
+    "replaced": 0,
+    "deleted": 0,
+    "net": 91,
+    "finalFiles": 161,
+    "finalTests": 3365
+  },
+  "newTestFiles": [
+    "src/content/infected-world-v0.1/catalog.test.ts",
+    "src/content/infected-world-v0.1/config.test.ts",
+    "src/core/residence-supply/authority.test.ts",
+    "src/core/residence-supply/history.test.ts",
+    "src/core/residence-supply/initial.test.ts",
+    "src/core/residence-supply/inventory.test.ts",
+    "src/core/residence-supply/maintenance.test.ts",
+    "src/core/residence-supply/medical.test.ts",
+    "src/core/residence-supply/supply.integration.test.ts",
+    "src/core/residence-task/sample.test.ts",
+    "src/core/residence-task/sources.test.ts",
+    "src/core/residence-task/tasks.test.ts",
+    "src/core/residence-task/transfer.test.ts",
+    "src/core/residence-terminal/supply-terminal.test.ts"
+  ],
+  "architecture": {
+    "dec": 52,
+    "coreProductionFiles": 289,
+    "priorCheck": "PASS"
+  },
+  "nativeCounters": {
+    "sourceH1": {
+      "g1Action": 1,
+      "g1Cycle": 0,
+      "draw": 1,
+      "origin": 2,
+      "materialization": 2,
+      "supplyPlan": 1,
+      "terminate": 0
+    },
+    "ordinaryPickup": {
+      "g1FreeAction": 1,
+      "g2ItemTransfer": 1,
+      "supplyPlan": 1
+    },
+    "maintenance": {
+      "g1PaidAction": 1,
+      "restoreItemResource": 1,
+      "supplyPlan": 1
+    },
+    "medical": {
+      "g1FreeAction": 1,
+      "restoreHealth": 1,
+      "supplyPlan": 1
+    },
+    "h0Closure": {
+      "g1Action": 0,
+      "g1Cycle": 1,
+      "terminalConsumer": 1,
+      "supplyPlan": 1,
+      "terminate": 1,
+      "steps": [],
+      "drawAndOriginsUnchanged": true
+    },
+    "taskDeath": {
+      "beforeA": {
+        "g1Action": 1,
+        "g1Cycle": 0,
+        "draw": 0,
+        "origin": 1,
+        "supplyPlan": 1,
+        "terminate": 0
+      },
+      "afterA": {
+        "g1Action": 1,
+        "g1Cycle": 0,
+        "draw": 0,
+        "origin": 1,
+        "supplyPlan": 2,
+        "terminate": 1
+      },
+      "steps": [
+        "primary",
+        "action-bleeding"
+      ],
+      "revisionDelta": 1
+    },
+    "maintenanceDeath": {
+      "beforeA": {
+        "g1Action": 1,
+        "g1Cycle": 0,
+        "draw": 0,
+        "origin": 0,
+        "supplyPlan": 1,
+        "terminate": 0
+      },
+      "afterA": {
+        "g1Action": 1,
+        "g1Cycle": 0,
+        "draw": 0,
+        "origin": 0,
+        "supplyPlan": 2,
+        "terminate": 1
+      },
+      "revisionDelta": 1
+    },
+    "g2MoveDeath": {
+      "g1Action": 1,
+      "g1Cycle": 0,
+      "terminate": 1,
+      "revisionDelta": 1,
+      "stepsMatchOriginal": true
+    },
+    "day7Home": {
+      "g1Action": 0,
+      "g1Cycle": 1,
+      "terminate": 1,
+      "steps": []
+    },
+    "day7Remote": {
+      "g1Action": 0,
+      "g1Cycle": 1,
+      "terminate": 1,
+      "steps": [
+        "cycle-bleeding",
+        "infection",
+        "hunger",
+        "end-cycle"
+      ]
+    },
+    "preReject": {
+      "draw": 0,
+      "origin": 0,
+      "g1Action": 0,
+      "supplyPlan": 0
+    },
+    "injectedDrawProducerFault": {
+      "draw": 1,
+      "origin": 1,
+      "g1Action": 0,
+      "supplyPlan": 0,
+      "originalUnchanged": true,
+      "exceptionRethrown": true
+    }
+  },
+  "audit": {
+    "allowedPaths": 95,
+    "actualFiles": 70,
+    "modifiedTracked": 7,
+    "newFiles": 63,
+    "outside": [],
+    "oldTestsChanged": [],
+    "oldBarrelExportSetsChanged": false,
+    "configOracle": {
+      "keys": 103,
+      "numericLeaves": 193,
+      "existingValues": 38,
+      "fullValuesMatch": true
+    },
+    "inputsByteMatch": true,
+    "prefixes": [
+      {
+        "path": "docs/03-architecture.md",
+        "baseBytes": 72357,
+        "intact": true
+      },
+      {
+        "path": "docs/08-rule-implementation-traceability.md",
+        "baseBytes": 67094,
+        "intact": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "baseBytes": 26391,
+        "intact": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "baseBytes": 25805,
+        "intact": true
+      }
+    ],
+    "protected": [
+      {
+        "path": "AGENTS.md",
+        "expected": "0055de32c18517d4d016b077e5fc287d9360317d",
+        "actual": "0055de32c18517d4d016b077e5fc287d9360317d",
+        "intact": true
+      },
+      {
+        "path": "package.json",
+        "expected": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+        "actual": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+        "intact": true
+      },
+      {
+        "path": "package-lock.json",
+        "expected": "3b320a8a79a1815c0909d8846e5e6248d4fc187e",
+        "actual": "3b320a8a79a1815c0909d8846e5e6248d4fc187e",
+        "intact": true
+      },
+      {
+        "path": "docs/05-design-decisions.md",
+        "expected": "9daf6f1b3c9d0aaf4d752b7d3e4701403d45be10",
+        "actual": "9daf6f1b3c9d0aaf4d752b7d3e4701403d45be10",
+        "intact": true
+      },
+      {
+        "path": "docs/content/infected-world-entry-test-config-v0.1.json",
+        "expected": "40ba0e3edd1a13843e40be5f8d420bef6afeb8f0",
+        "actual": "40ba0e3edd1a13843e40be5f8d420bef6afeb8f0",
+        "intact": true
+      },
+      {
+        "path": "docs/content/infected-world-entry-content-v0.1.json",
+        "expected": "dece5112e546af127943f846d7003e384ff97a21",
+        "actual": "dece5112e546af127943f846d7003e384ff97a21",
+        "intact": true
+      },
+      {
+        "path": "docs/engineering/residence-foundation/content-supply-core-contract-v1.0.md",
+        "expected": "4b31a312bcad79d5b5a9de99706433ba34316b53",
+        "actual": "4b31a312bcad79d5b5a9de99706433ba34316b53",
+        "intact": true
+      },
+      {
+        "path": "docs/engineering/residence-foundation/content-supply-restore-contract-v1.0.md",
+        "expected": "726dcb8d67e0a7b7f78daa13853319143b642e0d",
+        "actual": "726dcb8d67e0a7b7f78daa13853319143b642e0d",
+        "intact": true
+      },
+      {
+        "path": "docs/engineering/residence-foundation/world-content-batch-plan-v1.0.md",
+        "expected": "1f6ef2d8df467b19c439cdd6e34f9941561052d9",
+        "actual": "1f6ef2d8df467b19c439cdd6e34f9941561052d9",
+        "intact": true
+      },
+      {
+        "path": "docs/content/infected-residence-core-test-config-v0.1.json",
+        "expected": "db6959ac02bf1e3bf8e816fe2b0d148ced9ca273",
+        "actual": "db6959ac02bf1e3bf8e816fe2b0d148ced9ca273",
+        "intact": true
+      },
+      {
+        "path": "docs/content/infected-terminal-core-test-config-v0.1.json",
+        "expected": "fa999e7f456414daf6279fd8fbff3cd117394135",
+        "actual": "fa999e7f456414daf6279fd8fbff3cd117394135",
+        "intact": true
+      },
+      {
+        "path": "src/content/infected-residence-core-v0.1/config.ts",
+        "expected": "8e7e07e0b6905f1df1126ed73d9166b4d0754b3f",
+        "actual": "8e7e07e0b6905f1df1126ed73d9166b4d0754b3f",
+        "intact": true
+      },
+      {
+        "path": "src/core/residence-energy/energy.ts",
+        "expected": "8fffac9a7d14c19cfb4c10b0fe50711e66ee847f",
+        "actual": "8fffac9a7d14c19cfb4c10b0fe50711e66ee847f",
+        "intact": true
+      },
+      {
+        "path": "src/core/residence-energy/types.ts",
+        "expected": "95985ce05f59907d3f7aeb193bf0b73595900717",
+        "actual": "95985ce05f59907d3f7aeb193bf0b73595900717",
+        "intact": true
+      },
+      {
+        "path": "src/core/character-cycle/validation.ts",
+        "expected": "7c3b0c0951fcdbe48f4af7888894921b51bfa1fa",
+        "actual": "7c3b0c0951fcdbe48f4af7888894921b51bfa1fa",
+        "intact": true
+      }
+    ],
+    "utf8LfNewSource": true,
+    "forbiddenProductionSources": [],
+    "runtimeGraph": {
+      "method": "static import/export-from scan excludes type-only clauses, no dynamic imports in new code; native load tests also pass",
+      "reachableModules": 133,
+      "cycles": []
+    },
+    "auditToolAttempt": {
+      "status": "FAILED then replaced",
+      "reason": "TypeScript 7 default export has no former AST API; no dependency installed/changed"
+    }
+  },
+  "whitespace": {
+    "ordinary": 0,
+    "baselineToWorktree": 0,
+    "untracked": "PASS: 70 no-index whitespace checks emitted no warnings; exit1 is content difference, not whitespace failure",
+    "cached": 0,
+    "baselineToFinalCommit": "Final chat/outside post-commit evidence; no self-referential amend"
+  },
+  "notRun": [
+    "Browser",
+    "storage adapter",
+    "save-failure/reentry",
+    "multi-tab",
+    "Owner playability",
+    "CTB combat route",
+    "WebGPT exact-source review",
+    "CI actual status"
+  ],
+  "notImplemented": [
+    "E01-R codec/independent expected restore",
+    "E01-S current/IO",
+    "E02 CTB",
+    "E03 player entry",
+    "O3 arrangement",
+    "second production commission"
+  ],
+  "unchanged": [
+    "identity core",
+    "G1 production",
+    "B/C",
+    "old tests",
+    "approved rule values",
+    "dependencies",
+    "old save formats",
+    "global entry/registry",
+    "React/UI",
+    "AGENTS",
+    "CI/scripts"
+  ],
+  "git": {
+    "authorizedSingleCommit": true,
+    "message": "feat(core): add residence content and supply producers",
+    "push": "git push -u origin HEAD:refs/heads/feature/residence-content-supply-core-001",
+    "protectedRefsComparedAtStart": 13,
+    "finalRefComparison": "Final chat/outside evidence after push",
+    "finalSha": "reported in final chat; do not amend to include own SHA"
+  },
+  "ruleConflicts": [],
+  "e01PBlockers": [],
+  "downstreamReview": "OPEN",
+  "changedFiles": [
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/residence-foundation/content-supply-core/completion.md",
+    "docs/engineering/residence-foundation/content-supply-core/contract-and-support.md",
+    "docs/engineering/residence-foundation/content-supply-core/implementation-notes.md",
+    "docs/engineering/residence-foundation/content-supply-core/inputs/AUD-ad56a7d-DOC-WORLD-ENTRY-004-review-v1.0.md",
+    "docs/engineering/residence-foundation/content-supply-core/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/residence-foundation/content-supply-core/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-001-task-v1.0.md",
+    "docs/engineering/residence-foundation/content-supply-core/inputs/OWNER-authority-and-scope-E01-P-v1.0.md",
+    "docs/engineering/residence-foundation/content-supply-core/inputs/SHA256SUMS.txt",
+    "docs/engineering/residence-foundation/content-supply-core/verification-results.json",
+    "src/content/infected-world-v0.1/catalog.test.ts",
+    "src/content/infected-world-v0.1/catalog.ts",
+    "src/content/infected-world-v0.1/config.test.ts",
+    "src/content/infected-world-v0.1/config.ts",
+    "src/content/infected-world-v0.1/content.ts",
+    "src/content/infected-world-v0.1/enemies.ts",
+    "src/content/infected-world-v0.1/identity.ts",
+    "src/content/infected-world-v0.1/index.ts",
+    "src/content/infected-world-v0.1/initial.ts",
+    "src/content/infected-world-v0.1/items.ts",
+    "src/core/residence-location/movement.ts",
+    "src/core/residence-location/supply-knowledge.ts",
+    "src/core/residence-location/supply-location.ts",
+    "src/core/residence-supply/allocations.ts",
+    "src/core/residence-supply/authority.test.ts",
+    "src/core/residence-supply/authority.ts",
+    "src/core/residence-supply/config.ts",
+    "src/core/residence-supply/controlled.ts",
+    "src/core/residence-supply/cycle-adapter.ts",
+    "src/core/residence-supply/history.test.ts",
+    "src/core/residence-supply/history.ts",
+    "src/core/residence-supply/index.ts",
+    "src/core/residence-supply/initial.test.ts",
+    "src/core/residence-supply/initial.ts",
+    "src/core/residence-supply/inventory.test.ts",
+    "src/core/residence-supply/inventory.ts",
+    "src/core/residence-supply/maintenance.test.ts",
+    "src/core/residence-supply/maintenance.ts",
+    "src/core/residence-supply/medical.test.ts",
+    "src/core/residence-supply/medical.ts",
+    "src/core/residence-supply/plans.ts",
+    "src/core/residence-supply/provenance.ts",
+    "src/core/residence-supply/queries.ts",
+    "src/core/residence-supply/supply.integration.test.ts",
+    "src/core/residence-supply/test-fixtures.ts",
+    "src/core/residence-supply/types.ts",
+    "src/core/residence-supply/validation.ts",
+    "src/core/residence-task/actions.ts",
+    "src/core/residence-task/catalog.ts",
+    "src/core/residence-task/controlled.ts",
+    "src/core/residence-task/index.ts",
+    "src/core/residence-task/plans.ts",
+    "src/core/residence-task/random.ts",
+    "src/core/residence-task/sample.test.ts",
+    "src/core/residence-task/sources.test.ts",
+    "src/core/residence-task/sources.ts",
+    "src/core/residence-task/tasks.test.ts",
+    "src/core/residence-task/test-fixtures.ts",
+    "src/core/residence-task/transfer.test.ts",
+    "src/core/residence-task/transfer.ts",
+    "src/core/residence-task/validation.ts",
+    "src/core/residence-terminal/settlement-shared.ts",
+    "src/core/residence-terminal/settlement.ts",
+    "src/core/residence-terminal/supply-controlled.ts",
+    "src/core/residence-terminal/supply-terminal.test.ts",
+    "src/core/residence-terminal/supply-terminal.ts",
+    "src/core/residence-terminal/validation.ts"
+  ],
+  "testedCodeAndRawInputAndAppendDocFingerprints": [
+    {"path":"docs/03-architecture.md","bytes":73979,"sha256":"0313397556617d378b2408faa13cf6ed19964ced08df89929da217f3bef254dd","blob":"2dca16c5d1058b07b87d59463d0eb647dd9dbbc3","new":false},
+    {"path":"docs/08-rule-implementation-traceability.md","bytes":68716,"sha256":"73727a2c56f25c1a8507877bbad4e6249e321fd9d72a9a939e30333626c99c02","blob":"ec8bb7a44d0a28536ec6eee4ab59f60073bd7e43","new":false},
+    {"path":"docs/design-drafts/world-infected-001/01-world-overview.md","bytes":28037,"sha256":"41aedbe0259ce4df014c6692009eb533b8f33d48afc972d1ab186e6fb51298a8","blob":"a370ec5e21c893103873e844b97f5762bebda923","new":false},
+    {"path":"docs/design-drafts/world-infected-001/10-decision-queue.md","bytes":27451,"sha256":"76ba41342134d43710f61496031dd1783773cc4d65e08f25a2045d5ba32d5166","blob":"f28a18af85084a4ad41d1ae1f99e31dbf847dd4f","new":false},
+    {"path":"docs/engineering/residence-foundation/content-supply-core/inputs/AUD-ad56a7d-DOC-WORLD-ENTRY-004-review-v1.0.md","bytes":9662,"sha256":"6efb34a46b3a512b0a3e54ef081b4597ed79eca77293aba94ee9d8fa46e6de8d","blob":"caa7d01ccb5f38d605fac5ee486a411bfd6bb0ff","new":true},
+    {"path":"docs/engineering/residence-foundation/content-supply-core/inputs/BASELINE-AND-INPUTS.json","bytes":16496,"sha256":"9c58f5f50369936233609d2eeda848add9a7d793295ad9be3c471bc37d85166c","blob":"f6b5ee7f344fc7642cf09048cbaab77525332a86","new":true},
+    {"path":"docs/engineering/residence-foundation/content-supply-core/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-001-task-v1.0.md","bytes":35924,"sha256":"4b742fc71c2ebe03846345b28d429d60908ba5cadf89704991318866611c32a2","blob":"28f7c812d86040a453db88f2d36db40980f6cb80","new":true},
+    {"path":"docs/engineering/residence-foundation/content-supply-core/inputs/OWNER-authority-and-scope-E01-P-v1.0.md","bytes":2765,"sha256":"37e06cfe426d4d0ef07c26d499f80df8542a1bbc3c7c19eef0a5a6c9375ec6c2","blob":"644906f837346c622f88e3e7ecb04a6668190cc4","new":true},
+    {"path":"docs/engineering/residence-foundation/content-supply-core/inputs/SHA256SUMS.txt","bytes":422,"sha256":"d9468ab02100a20716ccd7e97d76ac01f10d9473efd71835ad6729d9221b6183","blob":"b04017110e892e32890f50bda106a07c574110e9","new":true},
+    {"path":"src/content/infected-world-v0.1/catalog.test.ts","bytes":1765,"sha256":"957377a26e01d8af9f3e3aa4d64503eecbb5d10f2393a42648d7f36ea404ad24","blob":"8e69d4b7366c5a516c85994ceb932e3f2afa3e5c","new":true},
+    {"path":"src/content/infected-world-v0.1/catalog.ts","bytes":2597,"sha256":"f3ce87ec14d0409e995685159bedf59c47f446ec050441fa7570f609c5d88a98","blob":"b7dc598e7d94f3cbb36b4b3d8216c992e81228fd","new":true},
+    {"path":"src/content/infected-world-v0.1/config.test.ts","bytes":2581,"sha256":"31ea87941c79b378e63502869537ba4cbadbadb49e3279e00c70e82e71097965","blob":"6165dc5498999ad11ae0df706d5edf57d9cf2a67","new":true},
+    {"path":"src/content/infected-world-v0.1/config.ts","bytes":4594,"sha256":"0a430232564c517f43a3980d7098424f2985dd60a06b405941fe24939d90379c","blob":"bcefab46d5d59a9cad987a1928b46a607946b768","new":true},
+    {"path":"src/content/infected-world-v0.1/content.ts","bytes":22145,"sha256":"e84900d5e39b61a8e9615885677b691937502c6cef50a0aff677650d59e34624","blob":"17328e8cd910f34f2243fa941301dcb9de8f2fa5","new":true},
+    {"path":"src/content/infected-world-v0.1/enemies.ts","bytes":1308,"sha256":"fa63710f68e5551cf0ad2901b6c3542f1b43a46d059d46db87f14a9a0c4f4bf9","blob":"c1abce3ee6658153225198136a4c0b881d02e89e","new":true},
+    {"path":"src/content/infected-world-v0.1/identity.ts","bytes":386,"sha256":"01570a6a760c79fb81417b4898a6d3a34ce26dc06830c33121cf21b3d596f57b","blob":"b37ce52cb24990ce6d1047b0fa1d95006a30133c","new":true},
+    {"path":"src/content/infected-world-v0.1/index.ts","bytes":201,"sha256":"554444f2c51f282d3dfaece64985d69e001dec4c4e5d93ff73064d068ce72577","blob":"2cb807f53584a8508b81aca523eb0eeae6386614","new":true},
+    {"path":"src/content/infected-world-v0.1/initial.ts","bytes":1529,"sha256":"38ad20c87456ef305f81679d440070add2df00174c23310e1d06aec559dfcde3","blob":"d60e9823627651fee32c844d5f623324754748e1","new":true},
+    {"path":"src/content/infected-world-v0.1/items.ts","bytes":2219,"sha256":"071bab35764bad8244b64b64127a98732f860623efb7829cb583b87649eea381","blob":"7e4e2c7738306fda8b3b739c205bfcdf220ffcae","new":true},
+    {"path":"src/core/residence-location/movement.ts","bytes":5039,"sha256":"630e55f5e4cd5197d3bcfe7101bbe56fcac7fb66f894e8678a027c7bcc86b9ab","blob":"a978f2a37653dc962416a9856948ac7fdcd714ab","new":false},
+    {"path":"src/core/residence-location/supply-knowledge.ts","bytes":355,"sha256":"bea197cca6739601d3cd985a3d0ff1a5afc87379a47e085847e254906ce2d702","blob":"c734298dbc48ba72ca9fea46f93dda196bdc7abe","new":true},
+    {"path":"src/core/residence-location/supply-location.ts","bytes":4984,"sha256":"796a503a5b9efc58d38a29fffb394f8e8b17869e68c0becef6d562a594493b78","blob":"e94215e91bb35f24078ba1e9d7c83db2721bfb40","new":true},
+    {"path":"src/core/residence-supply/allocations.ts","bytes":5491,"sha256":"0263dcd1f86df88ef3b4686647c0ad9c8e0e5a410c41b117a4a58b2827178817","blob":"32c5908ae77972246b7e98842bb67e5c0dd0aaf9","new":true},
+    {"path":"src/core/residence-supply/authority.test.ts","bytes":4108,"sha256":"3a7f96bfe258922c63720e862d592fbcf291842eaf57b6051249e63c9a312f70","blob":"8b7ff2f16d0dc28275ed46167334e33dd899a3db","new":true},
+    {"path":"src/core/residence-supply/authority.ts","bytes":2165,"sha256":"eec40b5a57bbb7a79967fdb38fbe0ff12e64df781a52983ba15fd586a374d751","blob":"142449f6d30abe345380d3f47224f8911ac2e847","new":true},
+    {"path":"src/core/residence-supply/config.ts","bytes":10537,"sha256":"4200284a0ac59baa2043a3b2095f727c272cdc52f174d7498e933cafef9a7431","blob":"3a35a067bd191ca1c9c2845f1fd8db2f834eb3c4","new":true},
+    {"path":"src/core/residence-supply/controlled.ts","bytes":2826,"sha256":"2bef4fa61e84176ed09d8759c11379c9772b2f3caaa7ae8299afd5a856517653","blob":"790886c52398d862bcdcf42d9fa75800551650c0","new":true},
+    {"path":"src/core/residence-supply/cycle-adapter.ts","bytes":2889,"sha256":"27e1c8ee73435e506a517b73038ffc54dbfbc389104d115702d75b274bcd650e","blob":"c86905b656562230ecd7b64c69655d40b9e78ffa","new":true},
+    {"path":"src/core/residence-supply/history.test.ts","bytes":3814,"sha256":"af32ed5d8efddd0df5ab390dc3c08cbf87661e3542805884961cd9e42d32471c","blob":"f15cf5ccad348aa76b9d4d6228c5299af4443925","new":true},
+    {"path":"src/core/residence-supply/history.ts","bytes":9005,"sha256":"ad0c5543532e16725ef317a7d3d423cda021b7f897efe8e46703f1d47fce9077","blob":"da3cf316eb55c9279d312e3703e4d07e0d49f161","new":true},
+    {"path":"src/core/residence-supply/index.ts","bytes":208,"sha256":"5ecab638a9fe2023222116f552d8b59e64477aac6d39ec70ab2913534e7a9e3e","blob":"c72fd6d2818799ac6bcbc298693616faa714c742","new":true},
+    {"path":"src/core/residence-supply/initial.test.ts","bytes":2374,"sha256":"74d061594b8a800c23880d2e9bcedc0ebce2c8655ab1b4680fa1f7c0c1f04026","blob":"d954d48f590967017184b3cf2d0d1083c3fd3a1f","new":true},
+    {"path":"src/core/residence-supply/initial.ts","bytes":5950,"sha256":"d090f86bb59b5ecb94abceda45f11cdcb091125b23a3e8f8a16e588929820701","blob":"45837416bb2bed841d5d0ee0f0c72f77af413dd8","new":true},
+    {"path":"src/core/residence-supply/inventory.test.ts","bytes":9496,"sha256":"b5dbef33b1309f3646e602323a724da68374d16a1ae7a032f2abdf95c7d675e5","blob":"f31285453098b771fba72197bd1b01716e0bdfcb","new":true},
+    {"path":"src/core/residence-supply/inventory.ts","bytes":8715,"sha256":"89c327d7d2114bf1b36cb4392a9df8af3fab5f01bf4b7c587212c149a701fb36","blob":"6ae9c57e3c964e06a09493f746703c446dde2abf","new":true},
+    {"path":"src/core/residence-supply/maintenance.test.ts","bytes":5336,"sha256":"ee644ad7de791ac847fa2283b315a5912213acca998476df1ca9e49ef268d227","blob":"c6623b7111e7a0e37f4d63c8fd4a39d381ff4554","new":true},
+    {"path":"src/core/residence-supply/maintenance.ts","bytes":4112,"sha256":"0dc1c2d46ba4019c445bc8594217983fb2c6ccd192e556dcd676e393cc02aa15","blob":"6fe1edf51cf9d21ba8870358439788ebcb33b552","new":true},
+    {"path":"src/core/residence-supply/medical.test.ts","bytes":6058,"sha256":"6d6b5244dc24b7cdd1a525e46597787b3fa45b7ed8e7588d6b3ac00001802e17","blob":"62699b07fd474ac6cf4c528cc2f752730766c891","new":true},
+    {"path":"src/core/residence-supply/medical.ts","bytes":5966,"sha256":"23014dd5f432e216a1483410701fcb09023a39736cf517a511712d5391770f44","blob":"ae16419bcaa834e5d4ce198aa6f4d2f548edb76f","new":true},
+    {"path":"src/core/residence-supply/plans.ts","bytes":1849,"sha256":"8f1752157369771c32e672309c4f6916133640176a96a740576eccf5c17a0dd3","blob":"0ce29cb417f84ae6bbb307121d1c32ea7f4bdf45","new":true},
+    {"path":"src/core/residence-supply/provenance.ts","bytes":7994,"sha256":"90e50df23cfebdf735950124d4e35be22f7de2f2d8b25e4b0e6cac2e21489985","blob":"518a80224d7f3e47ca09b52fd97a0f815e02b00c","new":true},
+    {"path":"src/core/residence-supply/queries.ts","bytes":2100,"sha256":"ebcd739070fa8b4056404de42e421c6925ef3c437361a70c3916870de6fc3e2d","blob":"a414deb4956bbf20943a22ac6454d0dc558e2329","new":true},
+    {"path":"src/core/residence-supply/supply.integration.test.ts","bytes":15391,"sha256":"f29a032de1b6c38b54b0573c5f7ca09c5e4491d78fc4ae04c009c6c9dfaf6e76","blob":"c8f7588974b9cc4fc6af7096cff71b8e4024d176","new":true},
+    {"path":"src/core/residence-supply/test-fixtures.ts","bytes":2305,"sha256":"a7842dbcccae85315e4dc107d6fa3830a49b5976c1ccc4569dde5a1befe21d10","blob":"43075a7862ac05003698e51a38fbb4772e487061","new":true},
+    {"path":"src/core/residence-supply/types.ts","bytes":4875,"sha256":"d4a4ea81cfa344812e68e508712462bdf5816c352804992eefa683c86a7a9fca","blob":"fe9816810967cff29691a9b4ff51ec307016afa1","new":true},
+    {"path":"src/core/residence-supply/validation.ts","bytes":14710,"sha256":"37fb9adfc16ed9a7182657ff8a36189d218a3368d6ed1392cf512c66b0ca3a30","blob":"7e7b26da76112931b34cdd34a7563922bb53c880","new":true},
+    {"path":"src/core/residence-task/actions.ts","bytes":5669,"sha256":"0a5b4e0c9b6f2965f76af7a85aca4c947cc14b845640eee99950680bab5b7735","blob":"2b0e38db87291923be526f441ea347dbc65d3730","new":true},
+    {"path":"src/core/residence-task/catalog.ts","bytes":5151,"sha256":"aa33d9606faa83b38850fb7d46545d53f0503b106f5cfa423c6636c00f35a747","blob":"6250d13986ce56cce76eed2e404ab6aae6393f55","new":true},
+    {"path":"src/core/residence-task/controlled.ts","bytes":198,"sha256":"717b884cb11faf30cc87f038c2c2074c136cbfcbe4108a4b56244b58e72dabb4","blob":"ebf6f350e98a20863182432494d26d3f343f80cf","new":true},
+    {"path":"src/core/residence-task/index.ts","bytes":45,"sha256":"782d94d5e0612140d23639fae2bad341101ed80c1fe3da7d61b138933defb4a9","blob":"a71523e5047fd809b315acdeb15f1bfd6efdc156","new":true},
+    {"path":"src/core/residence-task/plans.ts","bytes":6435,"sha256":"e65598ab17c77a182eadc20caf535724bb1e2ba5186f6f43ed7ff875243c02e9","blob":"b6a92e4f02b58b16177847ae4772f2644a0a434f","new":true},
+    {"path":"src/core/residence-task/random.ts","bytes":1914,"sha256":"9f2685e6f77a7b06d6ea133c75953dd53e45e817d4ac67cb96c1a4b9e4d33339","blob":"7dcd6b7df3d21af7cfb177a26cb380ed7aa94c1c","new":true},
+    {"path":"src/core/residence-task/sample.test.ts","bytes":5055,"sha256":"3e9138cbce44c9a953b27e6488b52451d50a9e2c8ab4a5cda1869b3387659a17","blob":"965a21e2c03eda444f920f0f8bb1c3060bf9074b","new":true},
+    {"path":"src/core/residence-task/sources.test.ts","bytes":6522,"sha256":"5034507878176b75ca5fb5f7df3b4665458bfaca73b72c9902b8ebe954716a52","blob":"bedbfd3aa9c72cba1712b49a3df9dd0dae9f4121","new":true},
+    {"path":"src/core/residence-task/sources.ts","bytes":5006,"sha256":"d0e022515fced5f53d0783a6cafef1da1f0d397eda71d032c33f8d3457e2e911","blob":"848ba006a9bcbe712202394ae112d4f938e77a37","new":true},
+    {"path":"src/core/residence-task/tasks.test.ts","bytes":6606,"sha256":"9bab22715cb58537ad1fb2cd125ba23f37c64c10a10e1e3c715d8830a4694626","blob":"5ccd70197a020d017b32c66ed5ac7d40cecf8916","new":true},
+    {"path":"src/core/residence-task/test-fixtures.ts","bytes":6883,"sha256":"11d3d07b5b1f07a9ee80085853df7368e1e4ebcc0bcaafc60b6a0ae17234a1e6","blob":"b0b1f18d8230d80ff76728ff1dc567364084c537","new":true},
+    {"path":"src/core/residence-task/transfer.test.ts","bytes":2371,"sha256":"d279d0c715a3e54b47446f467a5c11ccc5c1e1c85eafa11096b99bd8bbb42230","blob":"5693f50f012be663ee9970519d6f6daee59058d4","new":true},
+    {"path":"src/core/residence-task/transfer.ts","bytes":2811,"sha256":"a99bb9c869495e3b09f04edf1d6cf8923f263207282a1133659e869680cd7164","blob":"8fff2829fb1e62e9f4b5871653a9b1f2bcea6d4a","new":true},
+    {"path":"src/core/residence-task/validation.ts","bytes":2223,"sha256":"cbe587207f8218b33f875637e8e985b13ef5447bae1e15e941c22edbad24c60a","blob":"12abbec347f529e99190625ba7a2d4de0aa047cc","new":true},
+    {"path":"src/core/residence-terminal/settlement-shared.ts","bytes":677,"sha256":"7c569f619f2f2294afe88a9ec4f6f00dc71543eceeddb66957379f71c77ec97c","blob":"9b10b66049679547f5b13892a800c21f1bea34f6","new":true},
+    {"path":"src/core/residence-terminal/settlement.ts","bytes":7666,"sha256":"11e469e5da151e4b613a465cad17ab8e40e8935805b9f32618a4604b537ec684","blob":"d8dfd910473eb1c11087683605e118d44c6c6cc2","new":false},
+    {"path":"src/core/residence-terminal/supply-controlled.ts","bytes":103,"sha256":"66dd318a506f5b465a2c0bd512ba4b79aea3a6f485598c83355726a57ee80bea","blob":"c85ebea52d6b8c1443e4fc33be7b59da20c711ae","new":true},
+    {"path":"src/core/residence-terminal/supply-terminal.test.ts","bytes":2030,"sha256":"b2e0d2517340dd8e3f1c82bada5312e98bb896d1b7af47b5b3ede3f8846fe986","blob":"a1594fe33d02897fd3afd6395e0f3c311620c497","new":true},
+    {"path":"src/core/residence-terminal/supply-terminal.ts","bytes":9798,"sha256":"78351c5800a6e4ebae8242eca49db6b2dbc14bf61bfc365cb4c11efb6d344a26","blob":"3f2fbc07777532093ca7ad956563f7304bed31d3","new":true},
+    {"path":"src/core/residence-terminal/validation.ts","bytes":25939,"sha256":"7bebb6853d590f9a9ec9dd8ff6465d86a053e870667a7bef96a92c033c2f4dff","blob":"4dfc567494ef67bf0472ace8b4706239fb9ab1f0","new":false}
+  ],
+  "stageAudit": {"status":"PASS","stagedFiles":70,"newFiles":63,"modifiedFiles":7,"verifiedFingerprints":66,"rawInputBytesMatch":true,"outsidePaths":[],"errors":[],"evidence":"stage-audit.json"},
+  "fingerprintNote": "Report files excluded from self-referential hashes; all actual file hashes are checked externally at stage/commit. Source fingerprints are compared after final test, stage and commit. Only this verification record metadata was updated after stage; restaged and rechecked before commit."
+}

@@ -209,3 +209,14 @@ A 准确 SHA `bfc6bd973eeb306df1e8ee916b2160c30b757cdf` 已获[限定源码 PASS
 不凭有限证据关闭长期经济、全部来源软锁、九组合可达或人工体验问题；本轮未执行候选工程。
 
 当前依据：[唯一103键试用配置](../../content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](../../content/infected-world-entry-content-v0.1.json)、[E01-P首契约](../../engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](../../engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](../../engineering/residence-foundation/world-content-batch-plan-v1.0.md)。
+
+
+## E01-P 纯核心工程附记（2026-10-05，作者交付）
+
+本批已实现隔离的五图供给／任务纯值生产：唯一103键配置与24节点／29双向连接绑定，真实初配与驻留选择，一次来源、任务生产／原实例搬运、拆合份额守恒、六类战外药食、维护充电及G1/G2/A组合。旧38值配置、旧公开入口和旧测试保持；没有修改正式规则或医院历史基线。
+
+G1仍拥有身体／精力／周期，G2仍拥有现场，A共享结算拥有钱包与关闭；P只返回完整签发纯计划，不持有current、不保存。新来源／份额／处分与旧v2不兼容，不能剥去字段骗旧恢复。E01-R独立严格编解码、E01-S唯一会话提交、E02活战斗、E03玩家入口及O3均未实现或决定。
+
+原生长链实际使用初发、单边移动、来源、药食／维护、任务搬运／安装和终局；危险已解决的TEST前态保留三敌人声明，不是完整CTB通关或Owner体验通过。测试工程记录不覆盖后续准确SHA源码实审。
+
+实际接口／支持矩阵见[contract-and-support](../../engineering/residence-foundation/content-supply-core/contract-and-support.md)，执行过程见[implementation-notes](../../engineering/residence-foundation/content-supply-core/implementation-notes.md)，实跑证据见[verification-results](../../engineering/residence-foundation/content-supply-core/verification-results.json)，交付及未执行边界见[completion](../../engineering/residence-foundation/content-supply-core/completion.md)。原文完整字节前缀保留，本段只追加实现状态，不改变历史结论。

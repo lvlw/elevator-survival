@@ -1,0 +1,301 @@
+import { deepFreeze } from '../../core/config'
+import { createSupplyConfig } from '../../core/residence-supply/config'
+/** Sole executable new approved parameters. No product registration. */
+export const infectedWorldSupplyValues = deepFreeze({
+  "move.local": 2,
+  "move.cross": 8,
+  "move.side": 6,
+  "search.dark": 12,
+  "search.lit": 8,
+  "search.fixed": 8,
+  "door.crow": 6,
+  "door.manual": 14,
+  "door.toolbox": 10,
+  "door.card": 4,
+  "survey": 6,
+  "restore.power": 12,
+  "investigate": 4,
+  "verify.full": 6,
+  "verify.fast": 4,
+  "verify.scout.full": 4,
+  "verify.scout.fast": 3,
+  "fix.method": 10,
+  "extract.part": 10,
+  "extract.sample.cautious": 10,
+  "extract.sample.direct": 6,
+  "install": 12,
+  "bypass.crow": 8,
+  "exchange": 2,
+  "maintenance.mechanical": 6,
+  "maintenance.coat": 6,
+  "maintenance.toolbox": 8,
+  "recharge": 4,
+  "medical.free": 0,
+  "load.bands": [
+    [
+      0,
+      16,
+      100
+    ],
+    [
+      17,
+      24,
+      110
+    ],
+    [
+      25,
+      28,
+      125
+    ]
+  ],
+  "load.contusion_percent": 110,
+  "grid": [
+    6,
+    4
+  ],
+  "quick.slots": 2,
+  "capacity.pipe": 30,
+  "capacity.coat": 12,
+  "capacity.crow": 12,
+  "capacity.lamp": 8,
+  "capacity.toolbox": 6,
+  "restore.metal_pool": 15,
+  "restore.coat": 6,
+  "restore.lamp": 4,
+  "restore.toolbox": 3,
+  "wear.tool": 1,
+  "wear.lamp": 1,
+  "wear.pipe.basic": 1,
+  "wear.pipe.signature": 3,
+  "bandage.hp": 1,
+  "survival.hp": 2,
+  "firstaid.hp": 4,
+  "ration.satiety": 2,
+  "disinfect.exposure": 1,
+  "unit": 1,
+  "bandage.ctb": 80,
+  "painkiller.ctb": 80,
+  "retreat.normal": 80,
+  "retreat.overloaded": 110,
+  "retreat.wound": 10,
+  "retreat.wound_cap": 20,
+  "painkiller.retreat": 10,
+  "combat.minimum": 6,
+  "combat.ctb_step": 100,
+  "combat.energy_step": 4,
+  "reentry.enemy": 50,
+  "reentry.player": 0,
+  "sample.exposure": 1,
+  "sample.risks": [
+    20,
+    60
+  ],
+  "sample.coat_risks": [
+    0,
+    40
+  ],
+  "physical.food": [
+    1,
+    1,
+    1,
+    2
+  ],
+  "physical.bandage": [
+    1,
+    1,
+    1,
+    3
+  ],
+  "physical.disinfect": [
+    1,
+    1,
+    1,
+    3
+  ],
+  "physical.suppressant": [
+    1,
+    1,
+    1,
+    2
+  ],
+  "physical.painkiller": [
+    1,
+    1,
+    1,
+    3
+  ],
+  "physical.firstaid": [
+    1,
+    2,
+    2,
+    1
+  ],
+  "physical.metal": [
+    1,
+    1,
+    1,
+    5
+  ],
+  "physical.electronic": [
+    1,
+    1,
+    1,
+    5
+  ],
+  "physical.cloth": [
+    1,
+    1,
+    1,
+    5
+  ],
+  "physical.battery": [
+    1,
+    1,
+    1,
+    4
+  ],
+  "physical.card": [
+    1,
+    1,
+    0,
+    1
+  ],
+  "physical.sample": [
+    2,
+    2,
+    4,
+    1
+  ],
+  "physical.component": [
+    2,
+    2,
+    4,
+    1
+  ],
+  "physical.module": [
+    1,
+    2,
+    2,
+    1
+  ],
+  "grant.H1-search": {
+    "metal": 1
+  },
+  "grant.H2-search": {
+    "bandage": 1
+  },
+  "grant.H3-search": {
+    "card": 1,
+    "battery": 1
+  },
+  "grant.L1-cabinet": {
+    "food": 2,
+    "bandage": 1
+  },
+  "grant.L2-search": {
+    "food": 3,
+    "metal": 1,
+    "cloth": 1
+  },
+  "grant.L3-rack": {
+    "metal": 1,
+    "electronic": 1,
+    "battery": 1
+  },
+  "grant.C4-cabinet": {
+    "metal": 1,
+    "electronic": 1,
+    "battery": 1
+  },
+  "grant.C4-food": {
+    "food": 1
+  },
+  "grant.H1-toolbox": {
+    "electronic": 1
+  },
+  "grant.T1-exchange": {
+    "food": 2
+  },
+  "exchange.inputs": {
+    "bandage": 1,
+    "disinfect": 1
+  },
+  "install.inputs": {
+    "component": 1,
+    "module": 1,
+    "metal": 1,
+    "electronic": 1
+  },
+  "enemy.orderly": {
+    "hp": 14,
+    "first": 70,
+    "damages": [
+      3,
+      7
+    ],
+    "waits": [
+      100,
+      140
+    ]
+  },
+  "enemy.porter": {
+    "hp": 16,
+    "first": 150,
+    "damages": [
+      6,
+      3
+    ],
+    "waits": [
+      240,
+      100
+    ]
+  },
+  "enemy.technician": {
+    "hp": 16,
+    "first": 60,
+    "damages": [
+      2,
+      5
+    ],
+    "waits": [
+      110,
+      180
+    ]
+  },
+  "maintenance.inputs": {
+    "pipe": {
+      "metal": 1
+    },
+    "crow": {
+      "metal": 1
+    },
+    "coat": {
+      "cloth": 1
+    },
+    "toolbox": {
+      "metal": 1,
+      "electronic": 1
+    },
+    "lamp": {
+      "battery": 1
+    }
+  },
+  "pipe.basic.damage": 4,
+  "pipe.basic.ctb": 100,
+  "pipe.signature.damage": 6,
+  "pipe.signature.ctb": 180,
+  "random.H1": {
+    "battery": 40,
+    "cloth": 30,
+    "electronic": 30
+  },
+  "random.H2": {
+    "disinfect": 35,
+    "painkiller": 30,
+    "firstaid": 20,
+    "suppressant": 15
+  }
+} as const)
+export const infectedWorldSupplyConfig = createSupplyConfig({
+  configurationId: 'infected-world-entry-test-v0.1', values: infectedWorldSupplyValues,
+})

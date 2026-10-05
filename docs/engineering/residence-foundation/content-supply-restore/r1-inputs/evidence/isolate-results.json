@@ -1,0 +1,158 @@
+{
+  "mode": "ISOLATED_ORIGINAL_FUNCTION_WITH_UTILITY_STUBS_NOT_NATIVE_CODEC",
+  "sourcePath": "src/state/residence-save/supply-history.ts",
+  "sourceGitBlob": "57aa42a2947870863c8254a716e7592032d875d2",
+  "sourceSha256": "a1155c002d3adac7ff10566a6fe6b9f56dc812e7ae969a6905b1ad04df3fa9e4",
+  "commit": "346902461c3fd1f01ec88132d4d2e7c3ef1d50bd",
+  "fixtures": "Minimal projection for history-function isolation; NOT full P-valid snapshots.",
+  "total": 16,
+  "matched": 12,
+  "mismatched": 4,
+  "crashes": 0,
+  "rows": [
+    {
+      "id": "C01_action_bleed_HP1",
+      "expected": "accept",
+      "actual": "accept",
+      "match": true,
+      "inputUnchanged": true,
+      "code": null,
+      "error": null
+    },
+    {
+      "id": "C02_primary_loss_then_bleed_HP1",
+      "expected": "accept",
+      "actual": "accept",
+      "match": true,
+      "inputUnchanged": true,
+      "code": null,
+      "error": null
+    },
+    {
+      "id": "C03_deadline_clipped_night_bleed_HP1",
+      "expected": "accept",
+      "actual": "accept",
+      "match": true,
+      "inputUnchanged": true,
+      "code": null,
+      "error": null
+    },
+    {
+      "id": "C04_Day6_rest_death",
+      "expected": "accept",
+      "actual": "accept",
+      "match": true,
+      "inputUnchanged": true,
+      "code": null,
+      "error": null
+    },
+    {
+      "id": "C05_Day7_action_death",
+      "expected": "accept",
+      "actual": "accept",
+      "match": true,
+      "inputUnchanged": true,
+      "code": null,
+      "error": null
+    },
+    {
+      "id": "C06_Day7_normal_return_empty_steps",
+      "expected": "accept",
+      "actual": "accept",
+      "match": true,
+      "inputUnchanged": true,
+      "code": null,
+      "error": null
+    },
+    {
+      "id": "N01_damage_field_inconsistent",
+      "expected": "reject",
+      "actual": "reject",
+      "match": true,
+      "inputUnchanged": true,
+      "code": "INVALID_STATE",
+      "error": "Checkpoint damage contradiction"
+    },
+    {
+      "id": "N02_wrong_order",
+      "expected": "reject",
+      "actual": "reject",
+      "match": true,
+      "inputUnchanged": true,
+      "code": "INVALID_STATE",
+      "error": "Invalid historical checkpoint order"
+    },
+    {
+      "id": "N03_continues_after_zero",
+      "expected": "reject",
+      "actual": "reject",
+      "match": true,
+      "inputUnchanged": true,
+      "code": "INVALID_STATE",
+      "error": "Invalid historical checkpoint order"
+    },
+    {
+      "id": "N04_deadline_at_H0",
+      "expected": "reject",
+      "actual": "reject",
+      "match": true,
+      "inputUnchanged": true,
+      "code": "INVALID_STATE",
+      "error": "Deadline at return node"
+    },
+    {
+      "id": "N05_death_as_normal_return",
+      "expected": "reject",
+      "actual": "reject",
+      "match": true,
+      "inputUnchanged": true,
+      "code": "INVALID_STATE",
+      "error": "Wrong closure source"
+    },
+    {
+      "id": "N06_latest_HP_contradiction",
+      "expected": "reject",
+      "actual": "reject",
+      "match": true,
+      "inputUnchanged": true,
+      "code": "INVALID_STATE",
+      "error": "Latest body HP differs"
+    },
+    {
+      "id": "F01_A_action_bleed_HP2_to0_damage2",
+      "expected": "reject",
+      "actual": "accept",
+      "match": false,
+      "inputUnchanged": true,
+      "code": null,
+      "error": null
+    },
+    {
+      "id": "F01_B_cycle_bleed_HP3_to0_damage3",
+      "expected": "reject",
+      "actual": "accept",
+      "match": false,
+      "inputUnchanged": true,
+      "code": null,
+      "error": null
+    },
+    {
+      "id": "F01_C_Day7_deadline_relabel_supply_death",
+      "expected": "reject",
+      "actual": "accept",
+      "match": false,
+      "inputUnchanged": true,
+      "code": null,
+      "error": null
+    },
+    {
+      "id": "F01_D_Day7_deadline_relabel_location_death",
+      "expected": "reject",
+      "actual": "accept",
+      "match": false,
+      "inputUnchanged": true,
+      "code": null,
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "task": "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-R1",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "346902461c3fd1f01ec88132d4d2e7c3ef1d50bd",
+  "start_parent": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+  "start_tree": "5df149782169e37a6a8211945c6fbaf7cc1fda49",
+  "branch": "feature/residence-content-supply-restore-001",
+  "review_status": "NEEDS_REVISION_F01_W01_ACCEPTED",
+  "allowed_paths": [
+    "src/state/residence-save/supply-history.ts",
+    "src/state/residence-save/supply-step-consistency.ts",
+    "src/state/residence-save/supply-validation.ts",
+    "src/state/residence-save/supply-history.test.ts",
+    "src/state/residence-save/supply-roundtrip.test.ts",
+    "src/state/residence-save/supply-codec.test.ts",
+    "src/state/residence-save/supply-validation.test.ts",
+    "src/state/residence-save/supply-expected.test.ts",
+    "src/state/residence-save/supply-compatibility.test.ts",
+    "src/state/residence-save/supply-purity.test.ts",
+    "src/state/residence-save/supply-review-regression.test.ts",
+    "src/state/residence-save/supply-test-fixtures.ts",
+    "docs/engineering/residence-foundation/content-supply-restore/completion.md",
+    "docs/engineering/residence-foundation/content-supply-restore/contract-and-support.md",
+    "docs/engineering/residence-foundation/content-supply-restore/implementation-notes.md",
+    "docs/engineering/residence-foundation/content-supply-restore/verification-results.json",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/residence-foundation/content-supply-restore/r1-inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-R1-task-v1.0.md",
+    "docs/engineering/residence-foundation/content-supply-restore/r1-inputs/AUD-3469024-ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-review-v1.0.md",
+    "docs/engineering/residence-foundation/content-supply-restore/r1-inputs/OWNER-authority-and-scope-E01-R-R1-v1.0.md",
+    "docs/engineering/residence-foundation/content-supply-restore/r1-inputs/BASELINE-AND-SCOPE.json",
+    "docs/engineering/residence-foundation/content-supply-restore/r1-inputs/SHA256SUMS.txt",
+    "docs/engineering/residence-foundation/content-supply-restore/r1-inputs/source/supply-history.ts",
+    "docs/engineering/residence-foundation/content-supply-restore/r1-inputs/evidence/isolate-history.cjs",
+    "docs/engineering/residence-foundation/content-supply-restore/r1-inputs/evidence/isolate-results.json",
+    "docs/engineering/residence-foundation/content-supply-restore/r1-inputs/evidence/supply-review-regression.test.ts",
+    "docs/engineering/residence-foundation/content-supply-restore/r1-inputs/evidence/archive-verification.json"
+  ],
+  "archive_root": "docs/engineering/residence-foundation/content-supply-restore/r1-inputs",
+  "input_paths": [
+    "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-R1-task-v1.0.md",
+    "AUD-3469024-ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-review-v1.0.md",
+    "OWNER-authority-and-scope-E01-R-R1-v1.0.md",
+    "BASELINE-AND-SCOPE.json",
+    "SHA256SUMS.txt",
+    "source/supply-history.ts",
+    "evidence/isolate-history.cjs",
+    "evidence/isolate-results.json",
+    "evidence/supply-review-regression.test.ts",
+    "evidence/archive-verification.json"
+  ],
+  "mainline_execution": {
+    "isolated_total": 16,
+    "isolated_match": 12,
+    "isolated_mismatch": 4,
+    "isolated_crashes": 0,
+    "isolated_exit_code": 1,
+    "native_regression_13": "NOT RUN",
+    "full_npm": "NOT RUN",
+    "native_clone_attempt": "failed DNS resolution; no user disk access"
+  },
+  "ci": {
+    "run": 144,
+    "run_id": 37288884152,
+    "job_id": 111694316434,
+    "head_sha": "346902461c3fd1f01ec88132d4d2e7c3ef1d50bd",
+    "result": "SUCCESS",
+    "log_read": true,
+    "tests": 3472,
+    "files": 168
+  },
+  "F01_cases": [
+    "action bleeding2 fromHP2",
+    "cycle bleeding3 fromHP3",
+    "Day7 deadline relabeled supply-death cycle",
+    "Day7 deadline relabeled location-death cycle"
+  ],
+  "W01": {
+    "accepted_now": true,
+    "original_archives": [
+      {
+        "file": "AUD-8c19ca0-E01-P-review-v1.0.md",
+        "bytes": 4655,
+        "sha256": "bab11e7b844b831f28c25d6b0904696ab72cad2345efddcec785ecd157618d48",
+        "gitBlob": "76f01dfb2bb2fa303da88ab0296c6c48e94550c0",
+        "remoteGitBlob": "76f01dfb2bb2fa303da88ab0296c6c48e94550c0",
+        "matched": true
+      },
+      {
+        "file": "BASELINE-AND-INPUTS.json",
+        "bytes": 3464,
+        "sha256": "8b92166cfb1c6a52a34bff41724c834ad67626a8412e7f7299cff471bc4210ff",
+        "gitBlob": "0f4259858edd5c185934507dabb93f8ba01d1454",
+        "remoteGitBlob": "0f4259858edd5c185934507dabb93f8ba01d1454",
+        "matched": true
+      },
+      {
+        "file": "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+        "bytes": 10339,
+        "sha256": "64f8040c04cae74937af837998211957bbc509adede451869cf5bc15e0c871d2",
+        "gitBlob": "921bfac5ee42b7a95684f83357a748ddf231bb76",
+        "remoteGitBlob": "921bfac5ee42b7a95684f83357a748ddf231bb76",
+        "matched": true
+      },
+      {
+        "file": "OWNER-authority-and-scope-E01-R-v1.0.md",
+        "bytes": 1109,
+        "sha256": "920345a0214e48e64ec818d188c4653907a4cb4ed4495c02843e51e4052cf82d",
+        "gitBlob": "de68708d4485f8b9da1701cc845206f880e7188e",
+        "remoteGitBlob": "de68708d4485f8b9da1701cc845206f880e7188e",
+        "matched": true
+      },
+      {
+        "file": "SHA256SUMS.txt",
+        "bytes": 416,
+        "sha256": "484bb5244d5bf2fe877eef705af1d4d180e92b123e5d973ffeddc888b99b7938",
+        "gitBlob": "30c18c9de641277620e6af1b1cfe33e39c15a3ce",
+        "remoteGitBlob": "30c18c9de641277620e6af1b1cfe33e39c15a3ce",
+        "matched": true
+      }
+    ],
+    "exact_lines": [
+      {
+        "file": "AUD-8c19ca0-E01-P-review-v1.0.md",
+        "line": 3,
+        "text": "状态：**PASS / 可进入 E01-R**  ",
+        "trailing_hex": "2020"
+      },
+      {
+        "file": "AUD-8c19ca0-E01-P-review-v1.0.md",
+        "line": 4,
+        "text": "受审准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  ",
+        "trailing_hex": "2020"
+      },
+      {
+        "file": "AUD-8c19ca0-E01-P-review-v1.0.md",
+        "line": 5,
+        "text": "父 SHA：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  ",
+        "trailing_hex": "2020"
+      },
+      {
+        "file": "AUD-8c19ca0-E01-P-review-v1.0.md",
+        "line": 6,
+        "text": "Tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  ",
+        "trailing_hex": "2020"
+      },
+      {
+        "file": "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+        "line": 7,
+        "text": "起始准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  ",
+        "trailing_hex": "2020"
+      },
+      {
+        "file": "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+        "line": 8,
+        "text": "父基线：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  ",
+        "trailing_hex": "2020"
+      },
+      {
+        "file": "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+        "line": 9,
+        "text": "起始 tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  ",
+        "trailing_hex": "2020"
+      }
+    ],
+    "note": "No global whitespace waiver; incremental R1 diff must be clean."
+  },
+  "protected_rules": "DEC-049—052 and all 38+103 key configuration/content; old P/G1/A/B/C/v1/v2 production and tests",
+  "author_evidence": {
+    "baseline_files": 161,
+    "baseline_tests": 3365,
+    "new_tests": 107,
+    "final_files": 168,
+    "final_tests": 3472
+  }
+}

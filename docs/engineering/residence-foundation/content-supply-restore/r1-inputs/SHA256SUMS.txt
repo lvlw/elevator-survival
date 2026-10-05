@@ -1,0 +1,9 @@
+9838ccf8e041b10bca82f53272669e59e5d8d665df6d41af50c99c4a2958a812  AUD-3469024-ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-review-v1.0.md
+df5db6b9c6dd46c4e86e22388c70f45db50ec999e9a673f7f58bc8dc44c666a0  BASELINE-AND-SCOPE.json
+d1c2bc80943592108fc29bed3090346196d949a88a4566acf374b1ba4761b095  ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-R1-task-v1.0.md
+9b7fe3f50bee2d409ee4d28767ccb26b177baf3e36f7a9aa93f80d553cb157df  OWNER-authority-and-scope-E01-R-R1-v1.0.md
+ee71bad3aa702891d8e1838afda636104f011dcc0446ef91ab4ad83be8b8883c  evidence/archive-verification.json
+caba8070abf696d652629cc16c347dd2aa900689cea4fe742af4c9717ee867ad  evidence/isolate-history.cjs
+291ea05e1232eaa0c17e782dff74b3fbf79279a8b93fc0a0f43a962c02ecee8b  evidence/isolate-results.json
+9df3af444bfa3b6314d455c4ad3302bf4a7344f7a6fd1642bac6180e75595d6b  evidence/supply-review-regression.test.ts
+a1155c002d3adac7ff10566a6fe6b9f56dc812e7ae969a6905b1ad04df3fa9e4  source/supply-history.ts

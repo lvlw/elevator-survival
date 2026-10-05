@@ -64,3 +64,13 @@ Each result is a deeply frozen `{ kind: 'supply-residence-candidate', value }`. 
 All test filenames above are under `src/state/residence-save/`. The second declaration and danger-cleared prestates are TEST-only controlled fixtures; they preserve enemy definitions and do not claim a real CTB victory, new player content or Owner acceptance.
 
 See [implementation notes](implementation-notes.md), [verification](verification-results.json), [completion](completion.md) and the unchanged [approved restore contract](../content-supply-restore-contract-v1.0.md).
+
+## R1 historical-step consistency addendum (2026-10-05)
+
+This is the narrow F01 repair, not a format or authority change. Only supply-history.ts production code changes. Historical action-bleeding loss equals min(recorded healthBefore, G1 health.bleed_action); nonzero cycle-bleeding loss equals min(recorded healthBefore, G1 health.bleed_night). Zero cycle loss remains possible without inventing an older wound flag. Latest-body checks remain distinct.
+
+A supply-death/location-death receipt starting with cycle-bleeding must have taskDay below configured days, a rest-enabled node in its own archived catalog, no pending encounter and no live encounter at that node. It cannot relabel a deadline. A Day7 primary-start death is still supported. No step/source is repaired, no producer is invoked and no extra revision is issued.
+
+Regression: the unchanged 13-case supplied template was first executed before production edits (4 semantic failures / 9 passes); all 13 pass after repair. The delivered file strengthens expected immutability and independent zero-replay counters, and adds nine focused cases: actual G2 primary damage/short circuit, G2 Day6 rest, two sources with forbidden rest/pending encounter, understated bleeding, and two-declaration old bleeding with later treatment. Original 107 tests are untouched.
+
+Two outside-repository mutants remove only the bleeding or local-rest constraint respectively. Targeted semantic failures prove each constraint is exercised; startup permission errors are separately recorded, not counted as evidence of detection. See the R1 object in [verification](verification-results.json).

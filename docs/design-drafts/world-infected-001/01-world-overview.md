@@ -219,3 +219,9 @@ G1仍拥有身体／精力／周期，G2仍拥有现场，A共享结算拥有钱
 本段更新此前附记中的 R 实现状态，不改写历史结论或批准规则。E01-S 唯一会话／保存、E02 活战斗、E03 玩家入口与 O3 仍未接入或决定；两声明与已解除危险的 TEST 前态不代表新增真实委托、完整 CTB 或 Owner 体验通过。等待准确 SHA 的 v3 恢复接缝实审。
 
 接口与十二组验收映射见[contract-and-support](../../engineering/residence-foundation/content-supply-restore/contract-and-support.md)，实跑与边界见[verification-results](../../engineering/residence-foundation/content-supply-restore/verification-results.json)及[completion](../../engineering/residence-foundation/content-supply-restore/completion.md)。
+
+## E01-R-R1 限定返修附记（2026-10-05，作者交付待审）
+
+针对 3469024 实审 F01，v3 历史检查现将已记录行动／周期流血实扣量绑定到既有 G1 配置并保留 HP 截零；cycle 起步的局部死亡必须满足历史现场休整资格、非截止日及无待战斗／存活遭遇。历史现场按其自身 catalog 绑定查询，不从最新伤口状态推断旧历史，不重放玩法或改写来源。
+
+原生模板已实际复现四个三入口错误接受，返修回归与两类仓库外语义负控见[本批验证记录](../../engineering/residence-foundation/content-supply-restore/verification-results.json)。W01 只保留两份旧输入原件的七处硬换行；本轮新增差异无此例外。原接口、独立 expected、v3 格式及批准规则不变；E01-S/E02/E03、玩家入口、浏览器存储及 O3 不随本次接入或决定。等待准确 SHA 专项复审，Owner 试玩仍 NOT RUN。

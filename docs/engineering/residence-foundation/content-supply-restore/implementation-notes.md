@@ -30,3 +30,19 @@ Final targeted run: 7 files / 107 tests. Original P: 14 / 91. Original B/C: 14 /
 All 29 watched producer/authority/RNG functions, injected draw, jsdom Storage read/write and event dispatch remain at zero for each of 12 pure-operation cases. Fixture production runs before spies; authority misuse rejection is tested after the zero counts. Real Storage, current installation and browser/Owner acceptance are NOT RUN/out of scope, not inferred from these tests.
 
 The four shared docs receive append-only status updates; their original byte prefixes and the five raw input files are checked. Logs remain in the outside-repository input temp directory and are hashed in verification-results.json. No log, extra source path, dependency or threshold is added to get a check to pass.
+
+## R1 actual reproduction and narrow repair (2026-10-05)
+
+Start HEAD 346902461c3fd1f01ec88132d4d2e7c3ef1d50bd, same feature/residence-content-supply-restore-001 branch, clean worktree/index. Actual baseline npm run test:run: 168 files / 3472 tests, exit 0, 18:29:57, 102.64 s. Read the ten payload files and verified the nine entries of SHA256SUMS before production edits. Original AGENTS, DEC-049 through DEC-052, relevant GDD/VS/Architecture/content and actual G1/G2/P/A/v3 boundaries were reread.
+
+The byte-identical supplied native template ran first: 13 cases, 4 failed / 9 passed, exit 1, 18:32:24. Each F01 mutation passed P self-consistency and all three v3 aggregate/serialize/deserialize seams returned ACCEPTED. There was no template import/type adaptation, no fabricated failure and no initial production edit. Supplied mainline isolation evidence is separate; isolate-history.cjs was NOT RUN locally (not needed; native repository execution is the proof).
+
+Production repair adds only stored-fact/configuration comparisons in supply-history.ts: clipped configured bleeding magnitude and historical local-rest qualification. Self-review also rejects a live encounter whose pending marker alone was removed. It reads the archived catalog, not current catalog/body; old wound qualification is not reconstructed. No helper module, format, expected, G1/P/A/B/C or old interface changes were necessary.
+
+Unmodified template after repair: 13/13 PASS at 18:38:02. Final expanded suite: 22 cases (13 original cases retained plus 9 focused adjacent cases); original seven v3 test files remain byte-identical. The four native rejections each monitor all three APIs independently: 18 observed producer/RNG/IO/event functions and the injected draw remain zero, with input/expected unchanged. Original 12 pure-operation cases with 29 function spies also remain unchanged.
+
+Negative controls were copied outside the repository under the task temp directory, with existing node_modules linked for dependencies. First attempts hit EPERM in Vite temporary-cache creation before tests (logs retained; not semantic evidence). Authorized reruns succeeded in starting and failed semantically: removing bleeding checks gives 3 failed / 19 passed; removing rest checks gives 6 failed / 16 passed. All failures are ACCEPTED versus INVALID_STATE assertions, not type/import/crash failures. Mutants never replace repository source and are not staged.
+
+Old P regression: 14 files / 91 PASS. Old B/C: 14 files / 327 PASS. V3 regression: 8 files / 129 PASS, including the untouched 107 originals. Actual full-check and scope/input/whitespace results are recorded in the appended R1 verification object and completion section; historical figures above are not overwritten.
+
+W01 is the explicit exact-file exception in this input package: original task lines 7-9 and original review lines 3-6 only, all raw bytes preserved. Incremental R1 changes must pass with exit 0; cumulative P-to-R1 warnings remain fully disclosed rather than suppressed. No whitespace setting or attributes are changed.

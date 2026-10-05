@@ -247,5 +247,370 @@
     "Seven pre-existing input Markdown whitespace warnings preserved for archive integrity.",
     "Exact-SHA v3 seam review remains pending."
   ],
-  "stoppingPoint": "Wait for mainline exact-SHA review; do not enter E01-S/E02/E03."
+  "stoppingPoint": "Wait for mainline exact-SHA review; do not enter E01-S/E02/E03.",
+  "r1": {
+    "task": "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-R1",
+    "date": "2026-10-05",
+    "baseline": {
+      "sha": "346902461c3fd1f01ec88132d4d2e7c3ef1d50bd",
+      "tree": "5df149782169e37a6a8211945c6fbaf7cc1fda49",
+      "branch": "feature/residence-content-supply-restore-001",
+      "worktree": "clean",
+      "index": "clean",
+      "command": "npm run test:run",
+      "exitCode": 0,
+      "files": 168,
+      "tests": 3472,
+      "started": "18:29:57",
+      "durationSeconds": 102.64,
+      "evidence": "actual native local run, baseline-test.log"
+    },
+    "final": {
+      "files": 169,
+      "tests": 3494,
+      "added": 22,
+      "replaced": 0,
+      "deleted": 0,
+      "net": 22,
+      "newTestFiles": 1,
+      "old107Unchanged": true
+    },
+    "nativeReproduction": {
+      "command": "npm run test:run -- src/state/residence-save/supply-review-regression.test.ts",
+      "before": {
+        "exitCode": 1,
+        "passed": 9,
+        "failed": 4,
+        "total": 13,
+        "started": "18:32:24",
+        "sourceUnmodified": true,
+        "templateByteIdentical": true,
+        "eachMutationResults": [
+          "ACCEPTED",
+          "ACCEPTED",
+          "ACCEPTED"
+        ]
+      },
+      "afterOriginalTemplate": {
+        "exitCode": 0,
+        "passed": 13,
+        "total": 13,
+        "started": "18:38:02"
+      },
+      "expanded": {
+        "exitCode": 0,
+        "passed": 22,
+        "total": 22
+      },
+      "finalEachMutationResults": [
+        "INVALID_STATE",
+        "INVALID_STATE",
+        "INVALID_STATE"
+      ],
+      "publicSeams": [
+        "validateSupplyResidenceAggregate",
+        "serializeSupplyResidenceSave",
+        "deserializeSupplyResidenceSave"
+      ],
+      "inputAndIndependentExpectedUnchanged": true,
+      "templateAdaptationBeforeReproduction": "NONE",
+      "suppliedIsolateScript": "NOT RUN locally; supplied isolation evidence is not native proof"
+    },
+    "checks": {
+      "v3": {
+        "command": "npm run test:run -- src/state/residence-save/supply-",
+        "files": 8,
+        "tests": 129,
+        "exitCode": 0,
+        "started": "18:44:11"
+      },
+      "e01P": {
+        "files": 14,
+        "tests": 91,
+        "exitCode": 0,
+        "started": "18:47:14",
+        "commandEvidence": "p-regression.log contains all fourteen exact test paths"
+      },
+      "oldBC": {
+        "command": "npm run test:run -- src/state/residence-save/terminal- src/state/residence-session/terminal",
+        "files": 14,
+        "tests": 327,
+        "exitCode": 0,
+        "started": "18:47:32"
+      },
+      "typecheck": {
+        "command": "npm run typecheck",
+        "exitCode": 0
+      },
+      "check": {
+        "command": "npm run check",
+        "exitCode": 0,
+        "architecture": "PASS",
+        "dec": 52,
+        "coreProductionFiles": 289,
+        "typecheck": "PASS",
+        "files": 169,
+        "tests": 3494,
+        "testsStarted": "18:50:51",
+        "durationSeconds": 105.28,
+        "build": "PASS",
+        "modules": 419,
+        "warning": "existing >500 kB bundle advisory; not suppressed"
+      }
+    },
+    "negativeControls": {
+      "location": "outside repository only; task temporary directory",
+      "bleeding": {
+        "removed": "only new configured bleeding constraint",
+        "command": "npm run test:run -- src/state/residence-save/supply-review-regression.test.ts",
+        "exitCode": 1,
+        "failed": 3,
+        "passed": 19,
+        "started": "18:46:31",
+        "semantic": "ACCEPTED versus INVALID_STATE; F01 A/B plus understated nonzero cycle bleeding"
+      },
+      "localRest": {
+        "removed": "only new historical local-rest qualification block",
+        "command": "same targeted command in mutant-rest",
+        "exitCode": 1,
+        "failed": 6,
+        "passed": 16,
+        "started": "18:46:40",
+        "semantic": "ACCEPTED versus INVALID_STATE; F01 C/D plus forbidden node and pending encounter for both sources"
+      },
+      "firstAttempts": {
+        "exitCode": 1,
+        "tests": "NOT RUN",
+        "reason": "Vite config cache EPERM through dependency junction; separate original logs retained, not semantic evidence"
+      },
+      "repositorySourceNeverSwapped": true,
+      "noCommittedMutants": true
+    },
+    "zeroReplay": {
+      "oldCases": 12,
+      "oldObservedFunctionSpies": 29,
+      "oldSourceUnchanged": true,
+      "newCases": 4,
+      "independentOperationsPerCase": 3,
+      "operationCount": 12,
+      "observedFunctionsPerOperation": 18,
+      "allObservedCalls": 0,
+      "injectedDraw": 0,
+      "storageGetItem": 0,
+      "storageSetItem": 0,
+      "eventDispatch": 0,
+      "realStorage": "NOT RUN; jsdom prototype observations only; no current or adapter added"
+    },
+    "scope": {
+      "allowedPaths": 30,
+      "usedPaths": 20,
+      "modifiedExisting": 9,
+      "newFiles": 11,
+      "productionFilesModified": [
+        "src/state/residence-save/supply-history.ts"
+      ],
+      "productionDiff": {
+        "added": 15,
+        "deleted": 0
+      },
+      "testFilesAdded": [
+        "src/state/residence-save/supply-review-regression.test.ts"
+      ],
+      "originalTestFilesModified": 0,
+      "markdownPrefixesPreserved": 7,
+      "oldVerificationPropertiesPreserved": true,
+      "unchanged": [
+        "v3 schema/export/expected/authority",
+        "G1/G2/P/A/B/C",
+        "v1/v2",
+        "DEC/config/content",
+        "dependencies",
+        "CI",
+        "UI"
+      ],
+      "noRuleConflicts": true
+    },
+    "archive": {
+      "zipSha256": "3f75e2b45889c6ea588674c03fcf26b27af4534bd1840ffb7a1e1dc3a51f1118",
+      "rawNewFiles": 10,
+      "manifestEntries": 9,
+      "newInputByteMatch": true,
+      "oldInputWorktreeIndexHeadByteMatch": true,
+      "oldEvidence": "Five old hashes and exact W01 locations retained in r1-inputs/BASELINE-AND-SCOPE.json; independently checked, not simply inherited",
+      "newInputs": [
+        {
+          "file": "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-R1-task-v1.0.md",
+          "bytes": 10335,
+          "sha256": "d1c2bc80943592108fc29bed3090346196d949a88a4566acf374b1ba4761b095"
+        },
+        {
+          "file": "AUD-3469024-ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-review-v1.0.md",
+          "bytes": 8440,
+          "sha256": "9838ccf8e041b10bca82f53272669e59e5d8d665df6d41af50c99c4a2958a812"
+        },
+        {
+          "file": "OWNER-authority-and-scope-E01-R-R1-v1.0.md",
+          "bytes": 1187,
+          "sha256": "9b7fe3f50bee2d409ee4d28767ccb26b177baf3e36f7a9aa93f80d553cb157df"
+        },
+        {
+          "file": "BASELINE-AND-SCOPE.json",
+          "bytes": 7640,
+          "sha256": "df5db6b9c6dd46c4e86e22388c70f45db50ec999e9a673f7f58bc8dc44c666a0"
+        },
+        {
+          "file": "SHA256SUMS.txt",
+          "bytes": 947,
+          "sha256": "847febf5614ed3a7a79a7932fed6cb21f2f304efb0345ede462c2c514aa90a6a"
+        },
+        {
+          "file": "source/supply-history.ts",
+          "bytes": 9944,
+          "sha256": "a1155c002d3adac7ff10566a6fe6b9f56dc812e7ae969a6905b1ad04df3fa9e4"
+        },
+        {
+          "file": "evidence/isolate-history.cjs",
+          "bytes": 6813,
+          "sha256": "caba8070abf696d652629cc16c347dd2aa900689cea4fe742af4c9717ee867ad"
+        },
+        {
+          "file": "evidence/isolate-results.json",
+          "bytes": 3982,
+          "sha256": "291ea05e1232eaa0c17e782dff74b3fbf79279a8b93fc0a0f43a962c02ecee8b"
+        },
+        {
+          "file": "evidence/supply-review-regression.test.ts",
+          "bytes": 6707,
+          "sha256": "9df3af444bfa3b6314d455c4ad3302bf4a7344f7a6fd1642bac6180e75595d6b"
+        },
+        {
+          "file": "evidence/archive-verification.json",
+          "bytes": 4828,
+          "sha256": "ee71bad3aa702891d8e1838afda636104f011dcc0446ef91ab4ad83be8b8883c"
+        }
+      ]
+    },
+    "whitespace": {
+      "status": "WITH_APPROVED_W01_ARCHIVE_EXCEPTION",
+      "ordinary": {
+        "command": "git diff --check",
+        "exitCode": 0
+      },
+      "cached": {
+        "command": "git diff --cached --check",
+        "exitCode": 0,
+        "note": "Repeated after staging; post-commit confirmation in final response"
+      },
+      "incremental": {
+        "command": "git diff 346902461c3fd1f01ec88132d4d2e7c3ef1d50bd --check",
+        "exitCode": 0
+      },
+      "newUntracked": {
+        "files": 11,
+        "command": "git diff --no-index --check -- /dev/null <each exact new path>",
+        "eachExitCode": 1,
+        "warnings": 0,
+        "meaning": "content difference; actual no-index exit retained"
+      },
+      "cumulative": {
+        "command": "git diff 8c19ca0d28058cf743b41c8547cc2629c8eac767 --check",
+        "exitCode": 2,
+        "warnings": [
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:3: trailing whitespace.",
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:4: trailing whitespace.",
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:5: trailing whitespace.",
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:6: trailing whitespace.",
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:7: trailing whitespace.",
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:8: trailing whitespace.",
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:9: trailing whitespace."
+        ],
+        "additionalWarnings": 0
+      },
+      "gitConfigOrAttributesChanged": false,
+      "auditHarnessCorrection": "External harness initially expected no-index=0/cumulative=1; actual native values are 1/2. Harness corrected without changing repository or hiding warnings."
+    },
+    "git": {
+      "plannedCommitMessage": "fix(state): validate supply death history constraints",
+      "parent": "346902461c3fd1f01ec88132d4d2e7c3ef1d50bd",
+      "prePushRemote": "346902461c3fd1f01ec88132d4d2e7c3ef1d50bd",
+      "target": "origin HEAD:refs/heads/feature/residence-content-supply-restore-001",
+      "deliveryShaTreeRemoteAndCI": "Report actual post-commit verification in final response; no self-referential amend"
+    },
+    "notRun": [
+      "local isolate-history.cjs (native proof used)",
+      "browser/storage/Owner playtest (out of scope)"
+    ],
+    "remaining": [
+      "exact-SHA mainline review",
+      "E01-S/E02/E03 not started",
+      "O3 not decided"
+    ],
+    "evidenceLogs": {
+      "directory": "C:/Users/zjl/AppData/Local/Temp/e01-r-r1-7b1aefb4bb364df7a95da8beec2a01df",
+      "files": [
+        {
+          "file": "b-c-regression.log",
+          "bytes": 361,
+          "sha256": "10cf97e03ad026d5da36149001cdefefc5037b48a37eefd051349bf624673b7c"
+        },
+        {
+          "file": "baseline-test.log",
+          "bytes": 297,
+          "sha256": "2fc0c8b33e80b137e0a0b319bac88d10ea4fa22fe13506334b5691f35d321dfd"
+        },
+        {
+          "file": "full-check.log",
+          "bytes": 3416,
+          "sha256": "4d67aeccc6fe445e26ddc6b8006933d6708eec9425ab3c115c88e70995a4a4be"
+        },
+        {
+          "file": "mutant-bleeding-native.log",
+          "bytes": 3116,
+          "sha256": "7f86ba5cdaa02cb586412a721648b267d83a3d22390f00ef936936a1dd7c9a16"
+        },
+        {
+          "file": "mutant-bleeding.log",
+          "bytes": 1922,
+          "sha256": "1bcce153ffe577f9630e361b99eb18b81c360424c4c1398204eda5ccb08aa4a7"
+        },
+        {
+          "file": "mutant-rest-native.log",
+          "bytes": 4896,
+          "sha256": "94bd7e48889fc60b5857c6faecb97df5d2cfb94084626889b7f8b9af55dd21e2"
+        },
+        {
+          "file": "mutant-rest.log",
+          "bytes": 1908,
+          "sha256": "bdc4a5928aa06884f4af0afd6e25138e107246e11e24e65c07555966dacc3ecf"
+        },
+        {
+          "file": "native-after-template.log",
+          "bytes": 339,
+          "sha256": "72b6ae281d7b71e0dd6fadd2137487ab2d6d864db8d394232162a53e05b0d257"
+        },
+        {
+          "file": "native-before.log",
+          "bytes": 2583,
+          "sha256": "3f8ae4518a6cd48ed87f138d277d28335df07a2fca5371625a0931e144c23c05"
+        },
+        {
+          "file": "native-extended-first.log",
+          "bytes": 339,
+          "sha256": "6265984df868c5a8bf500693ed9d10716b20de2c0ed6e88b9ae1eaaf1383dfea"
+        },
+        {
+          "file": "p-regression.log",
+          "bytes": 905,
+          "sha256": "0599830d00d6495ad69955048f5a1b8119139b627240d7300fee74d0c2f97e90"
+        },
+        {
+          "file": "v3-all.log",
+          "bytes": 319,
+          "sha256": "a78f6debc8067592eff8ac99d1cee8589bd01f6d5091598e801c08e598012036"
+        }
+      ],
+      "archivedInRepository": false
+    },
+    "recordStatus": "author delivery awaiting exact-SHA review"
+  }
 }

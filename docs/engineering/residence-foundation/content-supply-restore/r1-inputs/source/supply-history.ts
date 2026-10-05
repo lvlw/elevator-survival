@@ -37,14 +37,6 @@ export function validateSupplyResidenceHistory(v: SupplyValue, deps: SupplyDepen
       infection: ['progressBefore', 'progressAfter', 'exposuresConverted', 'suppression', 'damage'],
       hunger: ['satietyBefore', 'satietyAfter', 'damage'], 'end-cycle': ['energyBefore', 'energyAfter'] }
     check(r.source !== 'deadline' || !action, 'Deadline has action trace')
-    if (['supply-death', 'location-death'].includes(r.source) && r.steps[0]?.kind === 'cycle-bleeding') {
-      const historical = deps.catalogs.find(catalog => catalog.data.id === a.site.binding.catalogId)
-      const node = historical?.data.nodes.find(node => node.id === a.site.nodeId)
-      const liveEncounter = historical?.data.enemies.some(enemy => enemy.nodeId === a.site.nodeId &&
-        a.site.enemies.some(stored => stored.id === enemy.id && !stored.state.defeated))
-      check(r.taskDay < deps.residence.configuration.config.limits.days && node && node.rest !== null &&
-        a.site.pending.kind === 'none' && !liveEncounter, 'Local rest death lacks historical rest qualification')
-    }
     for (const [n, s] of r.steps.entries()) {
       check(s.kind === order[n] && s.healthBefore > 0 && s.healthBefore <= deps.residence.configuration.config.limits.hp &&
         s.healthAfter <= s.healthBefore && (previousHealth === undefined || s.healthBefore === previousHealth) &&
@@ -53,13 +45,6 @@ export function validateSupplyResidenceHistory(v: SupplyValue, deps: SupplyDepen
         Object.values(s.facts).every(x => typeof x === 'number'), 'Invalid historical checkpoint fields')
       check(s.kind === 'end-cycle' ? s.healthBefore === s.healthAfter :
         s.healthBefore - s.healthAfter === s.facts[s.kind === 'primary' ? 'healthLoss' : 'damage'], 'Checkpoint damage contradiction')
-      // The step records actual loss, including HP clipping, not a new body settlement.
-      // Older cycle traces do not carry the pre-cycle wound flag; zero remains possible.
-      if (s.kind === 'action-bleeding' || (s.kind === 'cycle-bleeding' && s.facts.damage !== 0)) {
-        const health = deps.residence.configuration.config.health
-        const damage = s.kind === 'action-bleeding' ? health.bleed_action : health.bleed_night
-        check(s.facts.damage === Math.min(s.healthBefore, damage), 'Historical bleeding exceeds or understates configured loss')
-      }
       if (s.kind === 'infection') check(Number(s.facts.progressAfter) >= Number(s.facts.progressBefore), 'Infection trace decreases progress')
       if (s.kind === 'hunger') check(Number(s.facts.satietyAfter) <= Number(s.facts.satietyBefore) &&
         Number(s.facts.satietyBefore) <= deps.residence.configuration.config.limits.satiety, 'Hunger trace increases satiety')

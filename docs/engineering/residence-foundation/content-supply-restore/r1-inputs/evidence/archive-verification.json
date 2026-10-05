@@ -1,0 +1,107 @@
+{
+  "mode": "LOCAL_ZIP_BYTES_VS_EXACT_REMOTE_BLOB_IDS",
+  "commit": "346902461c3fd1f01ec88132d4d2e7c3ef1d50bd",
+  "rows": [
+    {
+      "file": "AUD-8c19ca0-E01-P-review-v1.0.md",
+      "bytes": 4655,
+      "sha256": "bab11e7b844b831f28c25d6b0904696ab72cad2345efddcec785ecd157618d48",
+      "gitBlob": "76f01dfb2bb2fa303da88ab0296c6c48e94550c0",
+      "remoteGitBlob": "76f01dfb2bb2fa303da88ab0296c6c48e94550c0",
+      "matched": true
+    },
+    {
+      "file": "BASELINE-AND-INPUTS.json",
+      "bytes": 3464,
+      "sha256": "8b92166cfb1c6a52a34bff41724c834ad67626a8412e7f7299cff471bc4210ff",
+      "gitBlob": "0f4259858edd5c185934507dabb93f8ba01d1454",
+      "remoteGitBlob": "0f4259858edd5c185934507dabb93f8ba01d1454",
+      "matched": true
+    },
+    {
+      "file": "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+      "bytes": 10339,
+      "sha256": "64f8040c04cae74937af837998211957bbc509adede451869cf5bc15e0c871d2",
+      "gitBlob": "921bfac5ee42b7a95684f83357a748ddf231bb76",
+      "remoteGitBlob": "921bfac5ee42b7a95684f83357a748ddf231bb76",
+      "matched": true
+    },
+    {
+      "file": "OWNER-authority-and-scope-E01-R-v1.0.md",
+      "bytes": 1109,
+      "sha256": "920345a0214e48e64ec818d188c4653907a4cb4ed4495c02843e51e4052cf82d",
+      "gitBlob": "de68708d4485f8b9da1701cc845206f880e7188e",
+      "remoteGitBlob": "de68708d4485f8b9da1701cc845206f880e7188e",
+      "matched": true
+    },
+    {
+      "file": "SHA256SUMS.txt",
+      "bytes": 416,
+      "sha256": "484bb5244d5bf2fe877eef705af1d4d180e92b123e5d973ffeddc888b99b7938",
+      "gitBlob": "30c18c9de641277620e6af1b1cfe33e39c15a3ce",
+      "remoteGitBlob": "30c18c9de641277620e6af1b1cfe33e39c15a3ce",
+      "matched": true
+    }
+  ],
+  "trailingWhitespace": [
+    {
+      "file": "AUD-8c19ca0-E01-P-review-v1.0.md",
+      "line": 3,
+      "text": "状态：**PASS / 可进入 E01-R**  ",
+      "trailing_hex": "2020"
+    },
+    {
+      "file": "AUD-8c19ca0-E01-P-review-v1.0.md",
+      "line": 4,
+      "text": "受审准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  ",
+      "trailing_hex": "2020"
+    },
+    {
+      "file": "AUD-8c19ca0-E01-P-review-v1.0.md",
+      "line": 5,
+      "text": "父 SHA：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  ",
+      "trailing_hex": "2020"
+    },
+    {
+      "file": "AUD-8c19ca0-E01-P-review-v1.0.md",
+      "line": 6,
+      "text": "Tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  ",
+      "trailing_hex": "2020"
+    },
+    {
+      "file": "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+      "line": 7,
+      "text": "起始准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  ",
+      "trailing_hex": "2020"
+    },
+    {
+      "file": "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+      "line": 8,
+      "text": "父基线：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  ",
+      "trailing_hex": "2020"
+    },
+    {
+      "file": "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+      "line": 9,
+      "text": "起始 tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  ",
+      "trailing_hex": "2020"
+    }
+  ],
+  "mainlineNoIndexRecheck": [
+    {
+      "file": "AUD-8c19ca0-E01-P-review-v1.0.md",
+      "mode": "scratch no-index check against empty; NOT user staged diff",
+      "exitCode": 3,
+      "stdout": "/mnt/data/review_e01r/original_inputs/AUD-8c19ca0-E01-P-review-v1.0.md:3: trailing whitespace.\n+状态：**PASS / 可进入 E01-R**  \n/mnt/data/review_e01r/original_inputs/AUD-8c19ca0-E01-P-review-v1.0.md:4: trailing whitespace.\n+受审准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  \n/mnt/data/review_e01r/original_inputs/AUD-8c19ca0-E01-P-review-v1.0.md:5: trailing whitespace.\n+父 SHA：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  \n/mnt/data/review_e01r/original_inputs/AUD-8c19ca0-E01-P-review-v1.0.md:6: trailing whitespace.\n+Tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  \n",
+      "stderr": ""
+    },
+    {
+      "file": "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+      "mode": "scratch no-index check against empty; NOT user staged diff",
+      "exitCode": 3,
+      "stdout": "/mnt/data/review_e01r/original_inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:7: trailing whitespace.\n+起始准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  \n/mnt/data/review_e01r/original_inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:8: trailing whitespace.\n+父基线：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  \n/mnt/data/review_e01r/original_inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:9: trailing whitespace.\n+起始 tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  \n",
+      "stderr": ""
+    }
+  ],
+  "disposition": "W01: mainline now accepts only these exact seven original Markdown hard breaks; no retroactive claim that prior checks exited zero."
+}

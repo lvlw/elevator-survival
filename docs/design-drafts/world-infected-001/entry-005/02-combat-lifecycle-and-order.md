@@ -38,3 +38,10 @@ ExitReceipt绑定battleId、entry/exit revision、执行、enemyId、结果、el
 稳定点才能休整、战外医疗／维护、物品整理、正常返回或截止；战斗中不日结，deadline不能抢过应结战斗。正常抵达H0且合法生还按旧A判断成功／失败，G1真实steps=[]，第七日正常返回也不追加过夜。异地第七日合法稳定截止先结身体后果，HP0死、尚活才失败召回；同周期衔接不重扣、不刷新第二次日额。
 
 首绷标记跨战／战外／休整／读档，pipe_signature只由真正G1周期刷新。失败关闭不重接；生还无下份任务仍在静态中枢。active restore不重放动作、伤害、随机、费用、夜晚或奖励。上述入口的技术joint checks见[03](03-single-truth-and-effects.md)、[04](04-active-combat-save-contract.md)。
+
+
+## R1 原值与入场决策边界补充（技术候选）
+
+逐操作先验必要／可选键、对象／数组／null分支、标签、真实布尔、非空ID及安全整数，再比较、索引或推导。入场原HP/E须分别在0—12/0—100，arrivalPending必须布尔；活决策不含临时防御／逃跑对象，绑定实际执行、入场revision与敌人，队列合法。HP0短路不制造活battle，合法最后正E到达0仍可入场。
+
+有序trace先验steps数组及每步原数字；finalHp不能用false冒充0，firstBefore/After不能用字符串，outcome必须是明确的生还／死亡标签。正常H0仅允许生还空步骤；行动／死亡非空且HP0后短路。以上有限关系检查不重算真实CTB、伤害或随机，不证明任意trace都可达。

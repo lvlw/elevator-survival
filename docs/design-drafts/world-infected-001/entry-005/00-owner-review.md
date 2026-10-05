@@ -26,3 +26,11 @@ DESIGN / ENGINEERING REVIEW CANDIDATE，未正式落文、未执行工程。准�
 [有限检查](validation/results.json)验证固定边界关系，不生成真实战斗或证明路线可达；[原生观察](validation/native-results.json)调用真实旧combat/G1/G2/P/R/S，旧医院数值与TEST初态明确隔离。四类负控和冻结复跑见[检查](checks.json)、[验证说明](validation/README.md)。没有把历史3621项、旧路线、旧重复供给合计到本轮。
 
 真实新世界三敌CTB长链、九组合完整路线、浏览器／多标签、E03安全查询、Owner分段突破和恢复负担体验仍未验收。旧可见战斗投影仍含raw CTB，不能直接当最终玩家视图。素材、商城、新委托、O3发布与旧槽安排不展开。[完成报告](completion.md)记录实际检查与修订；交付后停止等待当前WebGPT准确SHA实文件审查。
+
+
+<a id="world-entry-005-r1"></a>
+## WORLD-ENTRY-005-R1 限定返修（待准确SHA专项复审）
+
+依据[主线审查原件](r1-inputs/AUD-df1c3ff-WORLD-ENTRY-005-review-v1.0.md)修复F01/F02；原34项在完整仓库修前复现17符合/17不符（12误接受、3异常、2误拒绝），与主线一致。上文106项、四负控及旧交付状态是df1c3ff历史，不代表曾覆盖这些缺口。
+
+当前候选补上逐意图原值／结构检查、决策边界与实际场次死亡锚；正常H0空steps、E0到达、HP0入场前短路、治疗封顶、后续场次合法死亡均保留。没有新增玩法选择，Owner仍无需新增玩法采纳；技术修订仍待主线准确SHA实审。最新分类与未执行项见[本轮报告](completion.md#world-entry-005-r1)、[专项结果](validation/r1-review-results.json)。不自动正式归档或执行E02-P/R/S、E03。

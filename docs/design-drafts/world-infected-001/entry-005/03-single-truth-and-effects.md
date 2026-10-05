@@ -80,3 +80,10 @@ core不读state/content/docs；R不安装；S不算伤害；监听器不参与�
 最小证据：EntryWitness留真实from/to/edge及移动前敌count/risk/encountered和G1立即结果；DecisionWitness留上一动作的绑定、起止CTB、各队列变化原因、敌count/risk前后与资源变更引用；ClosedBattleReceipt留入/退出锚、结果、elapsed/E扣额及已消费引用。它们是不可操作历史，不能替代当前库存；不用保存整场每一版body或建立通用事件溯源库。
 
 当前有限检查只检验这些关系的局部实例。冷候选没有独立完整历史时，最小证据只能保证内部一致性，不证明完全重写的离线历史真实；能力防伪属于原生工程测试，不能由Python的TEST字符串证明。
+
+
+## R1 原始值与死亡上下文补充（技术候选）
+
+F01相邻自查覆盖exit、medicine、charge、order、continuity、blocked及事务表：先验原字段和嵌套容器，再检查选择器／消费／时序关系；缺键或非法原值明确Reject，KeyError／TypeError均为检查失败。绷带wound可省略，有值须非空ID；提案selectedWound在无伤口选择时才可为null，不靠覆盖非法输入得合法输出。
+
+F02使用该条真实combat前态的battle/execution/entryRevision及独立终局锚，不借spec.activeBattle的首场ID、默认节点或revision。先验前态与terminal，再核对场次、执行、入场关系、原HP、终局revision和真实非空trace；不删sourceBattle核验，不重算任何伤害／抽签／用药。后续场次死亡与错误场次反例同检。

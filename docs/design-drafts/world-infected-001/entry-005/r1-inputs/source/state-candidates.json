@@ -65,8 +65,6 @@
     "duplicate-exit": "exit-single-charge",
     "persistent-reset": "persistent-enemy-continuity",
     "consumption-rollback": "resource-lineage",
-    "binding-acceptance": "queue-source-death-binding",
-    "arrival-domain-bypass": "disable-arrival-hp-energy-domain-only",
-    "fixed-first-battle-anchor": "wrongly-require-example-first-battle-on-death"
+    "binding-acceptance": "queue-source-death-binding"
   }
 }

@@ -1,0 +1,51 @@
+{
+  "mode": "CONVERSATION_ORIGINAL_ZIP_BYTES_VS_REMOTE_EXACT_COMMIT_CONTENTS_BLOB_IDS",
+  "commit": "df1c3ff6979703b72bf76d73761b3915e59eb5b2",
+  "rows": [
+    {
+      "name": "AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+      "bytes": 10175,
+      "remoteBytes": 10175,
+      "localGitBlob": "c70e1db39dcef3a0d3b19d77b94cc38a5ae22339",
+      "remoteGitBlob": "c70e1db39dcef3a0d3b19d77b94cc38a5ae22339",
+      "sha256": "0f1e4358fa3d6a4ab22d9f50286c78272bd56d47c46658ac174ea65297d89a79",
+      "match": true
+    },
+    {
+      "name": "BASELINE-AND-INPUTS.json",
+      "bytes": 6796,
+      "remoteBytes": 6796,
+      "localGitBlob": "b04efd29529e5b9dc7b5c5e45686934d83da84c0",
+      "remoteGitBlob": "b04efd29529e5b9dc7b5c5e45686934d83da84c0",
+      "sha256": "1fcd8b23d87be18a49166b3d34067a74747ec320d32d4eb20a31a13765d489b2",
+      "match": true
+    },
+    {
+      "name": "OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+      "bytes": 1421,
+      "remoteBytes": 1421,
+      "localGitBlob": "9f9bcb5b4a2270f9ea1e34f787d14002f609d8c0",
+      "remoteGitBlob": "9f9bcb5b4a2270f9ea1e34f787d14002f609d8c0",
+      "sha256": "e82c37465ddef32ef1e2147eb4f720c1014ebdf08b8307d64aaad602818e8e27",
+      "match": true
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 436,
+      "remoteBytes": 436,
+      "localGitBlob": "8eacb99c10bb427b7bd9dd0fe66ece7011d5ff52",
+      "remoteGitBlob": "8eacb99c10bb427b7bd9dd0fe66ece7011d5ff52",
+      "sha256": "c9d6901bbd5270695cc3a51825954958460bc4db282714dc1ab7d2ca3169ff40",
+      "match": true
+    },
+    {
+      "name": "WORLD-ENTRY-005-task-v1.0.md",
+      "bytes": 22651,
+      "remoteBytes": 22651,
+      "localGitBlob": "87e0204ed648875069d3dd7abf006ff5a37555a3",
+      "remoteGitBlob": "87e0204ed648875069d3dd7abf006ff5a37555a3",
+      "sha256": "de110d42d7df8827c7bd2f8b750fd8a1d59f390ba4f6defb8bf8015296a6c1aa",
+      "match": true
+    }
+  ]
+}

@@ -1,0 +1,320 @@
+{
+  "caseSha256": "c31db2612074c2db81dcc4346da557787fc8b3112dbace3e1b206cb74dbb5f54",
+  "exceptions": 0,
+  "matched": 34,
+  "mismatched": 0,
+  "mode": "FINITE_REVIEW_CASE_RUN_NOT_NATIVE_GAME",
+  "rows": [
+    {
+      "actual": "ACTIVE_DECISION",
+      "classification": "ACCEPTED",
+      "exception": null,
+      "expected": "ACTIVE_DECISION",
+      "id": "C01-first-entry",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "ACTIVE_DECISION",
+      "classification": "ACCEPTED",
+      "exception": null,
+      "expected": "ACTIVE_DECISION",
+      "id": "C02-E0-arrival",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "DEAD_ONLY",
+      "classification": "ACCEPTED",
+      "exception": null,
+      "expected": "DEAD_ONLY",
+      "id": "C03-death-before-live-entry",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "ACTIVE_DECISION",
+      "classification": "ACCEPTED",
+      "exception": null,
+      "expected": "ACTIVE_DECISION",
+      "id": "C04-reentry",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "DEAD_ONLY",
+      "classification": "ACCEPTED",
+      "exception": null,
+      "expected": "DEAD_ONLY",
+      "id": "C05-HP1-bleeding-death",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "TRACE_ALIVE",
+      "classification": "ACCEPTED",
+      "exception": null,
+      "expected": "TRACE_ALIVE",
+      "id": "C06-heal-clips-then-damage",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "NORMAL_EMPTY",
+      "classification": "ACCEPTED",
+      "exception": null,
+      "expected": "NORMAL_EMPTY",
+      "id": "C07-normal-H0-empty",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "RESTORED",
+      "classification": "ACCEPTED",
+      "exception": null,
+      "expected": "RESTORED",
+      "id": "C08-active-cold",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "RESTORED",
+      "classification": "ACCEPTED",
+      "exception": null,
+      "expected": "RESTORED",
+      "id": "C09-first-battle-dead-cold",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:RAW_NUMBER",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "C10-bool-revision-already-rejected",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:TRACE_NUMBER",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "C11-bool-step-already-rejected",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:BINDING",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "C12-wrong-binding-already-rejected",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "RESTORED",
+      "classification": "ACCEPTED",
+      "exception": null,
+      "expected": "RESTORED",
+      "id": "C13-reentry-active-cold",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:RANGE",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "F01-arrival-HP13",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:RANGE",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "F01-arrival-E101",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:RAW_BOOLEAN",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "F01-arrivalPending-int",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:INTERMEDIATE_SAVE",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "F01-entry-defense-in-progress",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:INTERMEDIATE_SAVE",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "F01-entry-escape-in-progress",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:RAW_ID",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "F01-empty-battle-id",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:RAW_NUMBER",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "F01-bool-finalHP0",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:DEATH_PRIORITY",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "F01-unknown-outcome",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:RAW_BOOLEAN",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "F01-string-firstAfter",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:SHAPE",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "F01-null-steps",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:RAW_NUMBER",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "F01-bool-expected-revision",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:RAW_BOOLEAN",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "F01-int-expected-boolean",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:RAW_NUMBER",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "F01-bool-expected-queue",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:SHAPE",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "F01-missing-terminal-binding",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:MISSING_ANCHOR",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "F01-null-independent-current",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "RESTORED",
+      "classification": "ACCEPTED",
+      "exception": null,
+      "expected": "RESTORED",
+      "id": "F02-second-battle-death-cold",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "RESTORED",
+      "classification": "ACCEPTED",
+      "exception": null,
+      "expected": "RESTORED",
+      "id": "F02-second-battle-death-same-progress",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "REJECT:BINDING",
+      "classification": "REJECTED",
+      "exception": null,
+      "expected": "REJECTED",
+      "id": "C14-wrong-second-battle-still-rejects",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "UNSUPPORTED",
+      "classification": "ACCEPTED",
+      "exception": null,
+      "expected": "UNSUPPORTED",
+      "id": "U-real-new-world-CTB-reachability",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "UNSUPPORTED",
+      "classification": "ACCEPTED",
+      "exception": null,
+      "expected": "UNSUPPORTED",
+      "id": "U-browser-bootstrap",
+      "inputUnchanged": true,
+      "match": true
+    },
+    {
+      "actual": "UNSUPPORTED",
+      "classification": "ACCEPTED",
+      "exception": null,
+      "expected": "UNSUPPORTED",
+      "id": "U-complete-five-map-nine-combination-play",
+      "inputUnchanged": true,
+      "match": true
+    }
+  ],
+  "sourceGitBlob": "c72114fa66f1ac086c51c6760609fdab56f53b43",
+  "sourceSha256": "8855047aecce035b2411ebe3c98518617bea784395a2834505c9e58d1777f79a",
+  "specGitBlob": "712a9757a54d4019db0fe68c9d3e4d87bf7506ea",
+  "total": 34,
+  "unsupported": 3
+}

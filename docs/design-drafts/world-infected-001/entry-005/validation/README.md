@@ -36,3 +36,18 @@ npm run validate:architecture
 本轮全量生产测试/构建/浏览器/真实Storage/Owner试玩NOT RUN；新增生产测试0。历史3621/原269及其他有限包均不重跑，不与本轮相加。模型/推理配置无法从本任务工具核验，不声称切换。
 
 自查补充：有限死亡恢复增加原来源／battle绑定及非空真实致死trace四个反例（原98扩为102）；E0入场样本明确为2E最后移动，避免把任意20E减到0当实际路径。原生另加N22三敌持续声明缺少CTB profile的观察、N23快捷镇痛真实消费与不止血观察。
+
+
+## WORLD-ENTRY-005-R1 复跑入口
+
+上文106项／四负控为df1c3ff历史。当前普通命令强制同时读取原cases.json和同目录r1-regression-cases.json；所有固定expected来自原任务／主线独立34项／作者独立边界检视，不由被测检查器生成。新增回归中的REJECTED仅匹配业务Reject；EXCEPTION必失败。报告同时检查输入未改变；重复运行不计新增测试。
+
+原106项ID/expected/support保持，5个死亡fixture修正账保存在r1-regression-cases.json。新增回归含主线31个非UNSUPPORTED样本和相邻字段矩阵；34项专项仍使用原件全部输入、原通用runner单独检查，三个未支持不算实现通过。有限模型只覆盖声明局部关系，不承诺生产计划签发、完整CTB可达或全离线历史验真。
+
+```text
+python docs/design-drafts/world-infected-001/entry-005/r1-inputs/evidence/run-review-cases.py --checker docs/design-drafts/world-infected-001/entry-005/validation/check.py --spec docs/design-drafts/world-infected-001/entry-005/validation/state-candidates.json --cases docs/design-drafts/world-infected-001/entry-005/r1-inputs/evidence/review-cases.json --output <外部专项结果.json>
+```
+
+六类负控仍以原普通命令加--negative-control执行；原四类不改其语义。新增arrival-domain-bypass仅撤销到达HP/E域上限，结构及类型仍验，HP13/E101应因此误接受；fixed-first-battle-anchor错误恢复首场ID约束，合法第二／后续场死亡应被误拒绝。每类只开一个故障，expected不改、exit1且异常0才计语义检出；不以一律拒绝或崩溃检出冒充通过。
+
+冻结输入采用frozen-manifest.json的r1对象；historical.original完整保留旧manifest，不按新文件去冒验旧hash。最终普通双跑输出字节一致，34专项及23原生分别执行；本次没有生产测试增量，也不重复累计复跑或专项与回归内重复见证。

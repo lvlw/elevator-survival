@@ -1,112 +1,597 @@
 {
-  "task": "WORLD-ENTRY-005",
-  "baseline": "9c3c8a8c97c374bd1def6217c691137f3df10096",
-  "meaning": "Existing input/contract/script files frozen before independent runs; outputs and this manifest excluded",
-  "files": [
+  "task": "WORLD-ENTRY-005-R1",
+  "historical": {
+    "commit": "df1c3ff6979703b72bf76d73761b3915e59eb5b2",
+    "status": "Original WORLD-ENTRY-005 freeze; historical only, not current hashes",
+    "original": {
+      "task": "WORLD-ENTRY-005",
+      "baseline": "9c3c8a8c97c374bd1def6217c691137f3df10096",
+      "meaning": "Existing input/contract/script files frozen before independent runs; outputs and this manifest excluded",
+      "files": [
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+          "bytes": 3487,
+          "sha256": "d8e8e4554bdc7e988816e1269cf490f874e97783e272251948e6e4dc11f07b76"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+          "bytes": 6497,
+          "sha256": "e7efb537030801ab6c966814632f46bbd609fc2a5dae6c529d60525fc0c9699c"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+          "bytes": 5572,
+          "sha256": "cba55cafecf8f593a54acdedc18be221cb7dc869cac7f5c2244da7bf517c7cb5"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+          "bytes": 8488,
+          "sha256": "06b9c535de8df6dbc30cbce3759ce76058a51e8d9f841bf6b51be9b3da1f6dbc"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+          "bytes": 7306,
+          "sha256": "d64202f90f98bd84de3382a2307f8b95b54274225e472eb709801da9e62b13a7"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+          "bytes": 5457,
+          "sha256": "6a0613e7eec4e91054c23beaade0b2d827b9e9d6888ae882afde3664b2394c2d"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+          "bytes": 11165,
+          "sha256": "ca7cc4e8295c7fe4f1cbbdfb0fe1a89a859b2d4d128ff63b26e786f293cf9dc3"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+          "bytes": 5507,
+          "sha256": "350c6a90dc8c8bb397ac23c2378376e2d29c9eb376ef95abeaeb2dc45ae18ccf"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/validation/state-candidates.json",
+          "bytes": 1862,
+          "sha256": "8784ed1db9db891dd80a6db112535cf275a29beb2815b2bc8091aca894868efa"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/validation/check.py",
+          "bytes": 16672,
+          "sha256": "76523be2b2dca7fab9c162f6294645d8d11df3408264e9648c0dbf16a37e9dc2"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/validation/cases.json",
+          "bytes": 234981,
+          "sha256": "29f9fadf0829356ecccaf9920e7d48a380632a9daae7ba4342e0b6d6f67eba46"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/validation/native-probe.test.ts",
+          "bytes": 19920,
+          "sha256": "cbcfa215084a7750eb222e22d3e8c555513ab398ad4d2cd68ef4a14b44c41cb3"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/validation/vitest.probe.config.ts",
+          "bytes": 501,
+          "sha256": "89b3b48130d7982c107310e3215435c8238166679430704dc4be5575bdc3bc84"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+          "bytes": 3934,
+          "sha256": "e0eb99808bcffc8e673a8247a84b550aa4719d0ce99b10507f5b68798b557a41"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
+          "bytes": 22651,
+          "sha256": "de110d42d7df8827c7bd2f8b750fd8a1d59f390ba4f6defb8bf8015296a6c1aa"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+          "bytes": 1421,
+          "sha256": "e82c37465ddef32ef1e2147eb4f720c1014ebdf08b8307d64aaad602818e8e27"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+          "bytes": 10175,
+          "sha256": "0f1e4358fa3d6a4ab22d9f50286c78272bd56d47c46658ac174ea65297d89a79"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
+          "bytes": 6796,
+          "sha256": "1fcd8b23d87be18a49166b3d34067a74747ec320d32d4eb20a31a13765d489b2"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
+          "bytes": 436,
+          "sha256": "c9d6901bbd5270695cc3a51825954958460bc4db282714dc1ab7d2ca3169ff40"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "bytes": 33024,
+          "sha256": "d6a854dfc4a874e66599da9c88b0790cf8066592a477f7519aee05137ad2f4ef"
+        },
+        {
+          "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "bytes": 32438,
+          "sha256": "8f8210fab7637349be72426ef0b118358b5e1404d62542a95da9d5fd4cf1c512"
+        }
+      ]
+    }
+  },
+  "r1": {
+    "baseline": "df1c3ff6979703b72bf76d73761b3915e59eb5b2",
+    "meaning": "Frozen inputs before two independent processes and final native observation; manifest and generated outputs excluded",
+    "files": [
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+        "bytes": 4370,
+        "sha256": "30443fa16e8e0271f7d3830c3a954df11964af370b042b468032278674391395"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+        "bytes": 7130,
+        "sha256": "c5f705cba15d116d1b8df4b38fe29ccead01e3c8ceb68eb7306e83ea2eb4b5ad"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+        "bytes": 6365,
+        "sha256": "a43c42736a9ef96601de2854f3d6d20d1d1e02da78903442098120d1248ca0c9"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+        "bytes": 9319,
+        "sha256": "ab6ddd3df2476b5af18d9da22cfe788298b9557644496af22615e3bdf9a402da"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+        "bytes": 9156,
+        "sha256": "c400746be3f90b867dd684e0b1c198b5b8b1e104741c3c7413104485abb1d6a5"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+        "bytes": 5457,
+        "sha256": "6a0613e7eec4e91054c23beaade0b2d827b9e9d6888ae882afde3664b2394c2d"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+        "bytes": 11880,
+        "sha256": "95a2449f3b1274c740e353e0c493c6ba42f062113dacfcd6169676f0611ed668"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+        "bytes": 6779,
+        "sha256": "4d51017cee9ae2037d9c5110b4d8c509ba1fca87bfa0b84222e10a7b6411ca9b"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/validation/state-candidates.json",
+        "bytes": 2014,
+        "sha256": "94feb26e5750e3532fbac38b7170d0416a6c7fb4f9961bd2873ef2228cab2e9b"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/validation/check.py",
+        "bytes": 23675,
+        "sha256": "8855047aecce035b2411ebe3c98518617bea784395a2834505c9e58d1777f79a"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/validation/cases.json",
+        "bytes": 237251,
+        "sha256": "d77dcbe79b7978416694bfccdcf55cf551a48259f2e43047d95ac49c90d295ee"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/validation/native-probe.test.ts",
+        "bytes": 19920,
+        "sha256": "cbcfa215084a7750eb222e22d3e8c555513ab398ad4d2cd68ef4a14b44c41cb3"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/validation/vitest.probe.config.ts",
+        "bytes": 501,
+        "sha256": "89b3b48130d7982c107310e3215435c8238166679430704dc4be5575bdc3bc84"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+        "bytes": 5885,
+        "sha256": "d47c903cb25d4297078d75804181952938b4d5f497d52fb7f019e43824a20587"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "bytes": 33494,
+        "sha256": "2ef6710205bb642fe270a64d23706af8ad4a0a888e8b77c1bd0d48c61f2d97bb"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "bytes": 32908,
+        "sha256": "90a461310e62d6a5a2da8de8150450183943a7bb7d276f7a1de58c2b8af585af"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/validation/r1-regression-cases.json",
+        "bytes": 581239,
+        "sha256": "cfd0583303b55091dc1ebe8f50eda29735fbd1438bae90745c69ab5dc4fc7b25"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/WORLD-ENTRY-005-R1-task-v1.0.md",
+        "bytes": 13469,
+        "sha256": "44732de812d756577b49033880d22217e31a1c2e20ebd56ef303be2cc1be6016"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-R1-v1.0.md",
+        "bytes": 1105,
+        "sha256": "e3371bec7e0fff04239728c6d2d06adac3ac2c1cc9feb130e7dcf8e3d1d777a3"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/AUD-df1c3ff-WORLD-ENTRY-005-review-v1.0.md",
+        "bytes": 8157,
+        "sha256": "1526ee0cbad3ef48e1c02f2d23453cf4369e09b579eb4bb22e8136079e6ebb0b"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/BASELINE-AND-SCOPE.json",
+        "bytes": 5083,
+        "sha256": "12c47988d74d3fe51c217d26821b63100561b4d9c19a1dce9dab56e58594358e"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/SHA256SUMS.txt",
+        "bytes": 1069,
+        "sha256": "3819adff55a90999a78445883daebfea581c41410a7c1965c0efcafac1d00345"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/source/check.py",
+        "bytes": 16672,
+        "sha256": "76523be2b2dca7fab9c162f6294645d8d11df3408264e9648c0dbf16a37e9dc2"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/source/state-candidates.json",
+        "bytes": 1862,
+        "sha256": "8784ed1db9db891dd80a6db112535cf275a29beb2815b2bc8091aca894868efa"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/evidence/review-probes.py",
+        "bytes": 8172,
+        "sha256": "8eeca8348f84a75a6fbfdc1da89f48cfc75250ad4c6cb669b46734055641c1c3"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/evidence/review-results.json",
+        "bytes": 98853,
+        "sha256": "b2d14c5ae6cba294d830f3ee71049f6a7505d01368d1b5284ab2832df2536f3a"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/evidence/review-cases.json",
+        "bytes": 89192,
+        "sha256": "c31db2612074c2db81dcc4346da557787fc8b3112dbace3e1b206cb74dbb5f54"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/evidence/run-review-cases.py",
+        "bytes": 3014,
+        "sha256": "d2634f3099e38ea70e3fb04875ffde78e04570138e0ee79f1b268d2157fc7d2f"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/evidence/archive-verification.json",
+        "bytes": 1925,
+        "sha256": "dc6f1f9a396203cef1e667b6d7670e66158ebdfbf76ae3c4ef1a5c65a5b7964a"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+        "bytes": 10175,
+        "sha256": "0f1e4358fa3d6a4ab22d9f50286c78272bd56d47c46658ac174ea65297d89a79"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
+        "bytes": 6796,
+        "sha256": "1fcd8b23d87be18a49166b3d34067a74747ec320d32d4eb20a31a13765d489b2"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+        "bytes": 1421,
+        "sha256": "e82c37465ddef32ef1e2147eb4f720c1014ebdf08b8307d64aaad602818e8e27"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
+        "bytes": 436,
+        "sha256": "c9d6901bbd5270695cc3a51825954958460bc4db282714dc1ab7d2ca3169ff40"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
+        "bytes": 22651,
+        "sha256": "de110d42d7df8827c7bd2f8b750fd8a1d59f390ba4f6defb8bf8015296a6c1aa"
+      }
+    ]
+  },
+  "priorR1Freezes": [
     {
-      "path": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
-      "bytes": 3487,
-      "sha256": "d8e8e4554bdc7e988816e1269cf490f874e97783e272251948e6e4dc11f07b76"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
-      "bytes": 6497,
-      "sha256": "e7efb537030801ab6c966814632f46bbd609fc2a5dae6c529d60525fc0c9699c"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
-      "bytes": 5572,
-      "sha256": "cba55cafecf8f593a54acdedc18be221cb7dc869cac7f5c2244da7bf517c7cb5"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
-      "bytes": 8488,
-      "sha256": "06b9c535de8df6dbc30cbce3759ce76058a51e8d9f841bf6b51be9b3da1f6dbc"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
-      "bytes": 7306,
-      "sha256": "d64202f90f98bd84de3382a2307f8b95b54274225e472eb709801da9e62b13a7"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
-      "bytes": 5457,
-      "sha256": "6a0613e7eec4e91054c23beaade0b2d827b9e9d6888ae882afde3664b2394c2d"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
-      "bytes": 11165,
-      "sha256": "ca7cc4e8295c7fe4f1cbbdfb0fe1a89a859b2d4d128ff63b26e786f293cf9dc3"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
-      "bytes": 5507,
-      "sha256": "350c6a90dc8c8bb397ac23c2378376e2d29c9eb376ef95abeaeb2dc45ae18ccf"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/validation/state-candidates.json",
-      "bytes": 1862,
-      "sha256": "8784ed1db9db891dd80a6db112535cf275a29beb2815b2bc8091aca894868efa"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/validation/check.py",
-      "bytes": 16672,
-      "sha256": "76523be2b2dca7fab9c162f6294645d8d11df3408264e9648c0dbf16a37e9dc2"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/validation/cases.json",
-      "bytes": 234981,
-      "sha256": "29f9fadf0829356ecccaf9920e7d48a380632a9daae7ba4342e0b6d6f67eba46"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/validation/native-probe.test.ts",
-      "bytes": 19920,
-      "sha256": "cbcfa215084a7750eb222e22d3e8c555513ab398ad4d2cd68ef4a14b44c41cb3"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/validation/vitest.probe.config.ts",
-      "bytes": 501,
-      "sha256": "89b3b48130d7982c107310e3215435c8238166679430704dc4be5575bdc3bc84"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
-      "bytes": 3934,
-      "sha256": "e0eb99808bcffc8e673a8247a84b550aa4719d0ce99b10507f5b68798b557a41"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
-      "bytes": 22651,
-      "sha256": "de110d42d7df8827c7bd2f8b750fd8a1d59f390ba4f6defb8bf8015296a6c1aa"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
-      "bytes": 1421,
-      "sha256": "e82c37465ddef32ef1e2147eb4f720c1014ebdf08b8307d64aaad602818e8e27"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
-      "bytes": 10175,
-      "sha256": "0f1e4358fa3d6a4ab22d9f50286c78272bd56d47c46658ac174ea65297d89a79"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
-      "bytes": 6796,
-      "sha256": "1fcd8b23d87be18a49166b3d34067a74747ec320d32d4eb20a31a13765d489b2"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
-      "bytes": 436,
-      "sha256": "c9d6901bbd5270695cc3a51825954958460bc4db282714dc1ab7d2ca3169ff40"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
-      "bytes": 33024,
-      "sha256": "d6a854dfc4a874e66599da9c88b0790cf8066592a477f7519aee05137ad2f4ef"
-    },
-    {
-      "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
-      "bytes": 32438,
-      "sha256": "8f8210fab7637349be72426ef0b118358b5e1404d62542a95da9d5fd4cf1c512"
+      "status": "Intermediate 348-case freeze superseded by final adjacent fix; real successful outputs retained",
+      "manifest": {
+        "task": "WORLD-ENTRY-005-R1",
+        "historical": {
+          "commit": "df1c3ff6979703b72bf76d73761b3915e59eb5b2",
+          "status": "Original WORLD-ENTRY-005 freeze; historical only, not current hashes",
+          "original": {
+            "task": "WORLD-ENTRY-005",
+            "baseline": "9c3c8a8c97c374bd1def6217c691137f3df10096",
+            "meaning": "Existing input/contract/script files frozen before independent runs; outputs and this manifest excluded",
+            "files": [
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+                "bytes": 3487,
+                "sha256": "d8e8e4554bdc7e988816e1269cf490f874e97783e272251948e6e4dc11f07b76"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+                "bytes": 6497,
+                "sha256": "e7efb537030801ab6c966814632f46bbd609fc2a5dae6c529d60525fc0c9699c"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+                "bytes": 5572,
+                "sha256": "cba55cafecf8f593a54acdedc18be221cb7dc869cac7f5c2244da7bf517c7cb5"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+                "bytes": 8488,
+                "sha256": "06b9c535de8df6dbc30cbce3759ce76058a51e8d9f841bf6b51be9b3da1f6dbc"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+                "bytes": 7306,
+                "sha256": "d64202f90f98bd84de3382a2307f8b95b54274225e472eb709801da9e62b13a7"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+                "bytes": 5457,
+                "sha256": "6a0613e7eec4e91054c23beaade0b2d827b9e9d6888ae882afde3664b2394c2d"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+                "bytes": 11165,
+                "sha256": "ca7cc4e8295c7fe4f1cbbdfb0fe1a89a859b2d4d128ff63b26e786f293cf9dc3"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+                "bytes": 5507,
+                "sha256": "350c6a90dc8c8bb397ac23c2378376e2d29c9eb376ef95abeaeb2dc45ae18ccf"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/validation/state-candidates.json",
+                "bytes": 1862,
+                "sha256": "8784ed1db9db891dd80a6db112535cf275a29beb2815b2bc8091aca894868efa"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/validation/check.py",
+                "bytes": 16672,
+                "sha256": "76523be2b2dca7fab9c162f6294645d8d11df3408264e9648c0dbf16a37e9dc2"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/validation/cases.json",
+                "bytes": 234981,
+                "sha256": "29f9fadf0829356ecccaf9920e7d48a380632a9daae7ba4342e0b6d6f67eba46"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/validation/native-probe.test.ts",
+                "bytes": 19920,
+                "sha256": "cbcfa215084a7750eb222e22d3e8c555513ab398ad4d2cd68ef4a14b44c41cb3"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/validation/vitest.probe.config.ts",
+                "bytes": 501,
+                "sha256": "89b3b48130d7982c107310e3215435c8238166679430704dc4be5575bdc3bc84"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+                "bytes": 3934,
+                "sha256": "e0eb99808bcffc8e673a8247a84b550aa4719d0ce99b10507f5b68798b557a41"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
+                "bytes": 22651,
+                "sha256": "de110d42d7df8827c7bd2f8b750fd8a1d59f390ba4f6defb8bf8015296a6c1aa"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+                "bytes": 1421,
+                "sha256": "e82c37465ddef32ef1e2147eb4f720c1014ebdf08b8307d64aaad602818e8e27"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+                "bytes": 10175,
+                "sha256": "0f1e4358fa3d6a4ab22d9f50286c78272bd56d47c46658ac174ea65297d89a79"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
+                "bytes": 6796,
+                "sha256": "1fcd8b23d87be18a49166b3d34067a74747ec320d32d4eb20a31a13765d489b2"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
+                "bytes": 436,
+                "sha256": "c9d6901bbd5270695cc3a51825954958460bc4db282714dc1ab7d2ca3169ff40"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
+                "bytes": 33024,
+                "sha256": "d6a854dfc4a874e66599da9c88b0790cf8066592a477f7519aee05137ad2f4ef"
+              },
+              {
+                "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+                "bytes": 32438,
+                "sha256": "8f8210fab7637349be72426ef0b118358b5e1404d62542a95da9d5fd4cf1c512"
+              }
+            ]
+          }
+        },
+        "r1": {
+          "baseline": "df1c3ff6979703b72bf76d73761b3915e59eb5b2",
+          "meaning": "Frozen inputs before two independent processes and final native observation; manifest and generated outputs excluded",
+          "files": [
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/00-owner-review.md",
+              "bytes": 4370,
+              "sha256": "30443fa16e8e0271f7d3830c3a954df11964af370b042b468032278674391395"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/01-current-baseline-and-reuse.md",
+              "bytes": 7130,
+              "sha256": "c5f705cba15d116d1b8df4b38fe29ccead01e3c8ceb68eb7306e83ea2eb4b5ad"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/02-combat-lifecycle-and-order.md",
+              "bytes": 6365,
+              "sha256": "a43c42736a9ef96601de2854f3d6d20d1d1e02da78903442098120d1248ca0c9"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/03-single-truth-and-effects.md",
+              "bytes": 9319,
+              "sha256": "ab6ddd3df2476b5af18d9da22cfe788298b9557644496af22615e3bdf9a402da"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/04-active-combat-save-contract.md",
+              "bytes": 8879,
+              "sha256": "f1c620745780e8f5b1640c1db88c9f3ff83584bdd06b07460e197cccc3722779"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/05-approved-data-and-gaps.md",
+              "bytes": 5457,
+              "sha256": "6a0613e7eec4e91054c23beaade0b2d827b9e9d6888ae882afde3664b2394c2d"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/06-engineering-contracts.md",
+              "bytes": 11880,
+              "sha256": "95a2449f3b1274c740e353e0c493c6ba42f062113dacfcd6169676f0611ed668"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/07-evidence-and-playtest-gates.md",
+              "bytes": 6491,
+              "sha256": "db7b6d0f8889e85591e48410063c5494c5f04b394897f006f8ab549864f3326f"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/validation/state-candidates.json",
+              "bytes": 2014,
+              "sha256": "94feb26e5750e3532fbac38b7170d0416a6c7fb4f9961bd2873ef2228cab2e9b"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/validation/check.py",
+              "bytes": 23368,
+              "sha256": "85afa8815087f059109e0435ed6cfb9cb304bff7be30a51c1a14c7e674521c41"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/validation/cases.json",
+              "bytes": 237251,
+              "sha256": "d77dcbe79b7978416694bfccdcf55cf551a48259f2e43047d95ac49c90d295ee"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/validation/native-probe.test.ts",
+              "bytes": 19920,
+              "sha256": "cbcfa215084a7750eb222e22d3e8c555513ab398ad4d2cd68ef4a14b44c41cb3"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/validation/vitest.probe.config.ts",
+              "bytes": 501,
+              "sha256": "89b3b48130d7982c107310e3215435c8238166679430704dc4be5575bdc3bc84"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/validation/README.md",
+              "bytes": 5885,
+              "sha256": "d47c903cb25d4297078d75804181952938b4d5f497d52fb7f019e43824a20587"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
+              "bytes": 33494,
+              "sha256": "2ef6710205bb642fe270a64d23706af8ad4a0a888e8b77c1bd0d48c61f2d97bb"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+              "bytes": 32908,
+              "sha256": "90a461310e62d6a5a2da8de8150450183943a7bb7d276f7a1de58c2b8af585af"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/validation/r1-regression-cases.json",
+              "bytes": 573514,
+              "sha256": "69d67d9e4469ce37f1e7bbd7254de848a0e57b48487f66ad88a09074f9bb0ef0"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/WORLD-ENTRY-005-R1-task-v1.0.md",
+              "bytes": 13469,
+              "sha256": "44732de812d756577b49033880d22217e31a1c2e20ebd56ef303be2cc1be6016"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-R1-v1.0.md",
+              "bytes": 1105,
+              "sha256": "e3371bec7e0fff04239728c6d2d06adac3ac2c1cc9feb130e7dcf8e3d1d777a3"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/AUD-df1c3ff-WORLD-ENTRY-005-review-v1.0.md",
+              "bytes": 8157,
+              "sha256": "1526ee0cbad3ef48e1c02f2d23453cf4369e09b579eb4bb22e8136079e6ebb0b"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/BASELINE-AND-SCOPE.json",
+              "bytes": 5083,
+              "sha256": "12c47988d74d3fe51c217d26821b63100561b4d9c19a1dce9dab56e58594358e"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/SHA256SUMS.txt",
+              "bytes": 1069,
+              "sha256": "3819adff55a90999a78445883daebfea581c41410a7c1965c0efcafac1d00345"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/source/check.py",
+              "bytes": 16672,
+              "sha256": "76523be2b2dca7fab9c162f6294645d8d11df3408264e9648c0dbf16a37e9dc2"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/source/state-candidates.json",
+              "bytes": 1862,
+              "sha256": "8784ed1db9db891dd80a6db112535cf275a29beb2815b2bc8091aca894868efa"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/evidence/review-probes.py",
+              "bytes": 8172,
+              "sha256": "8eeca8348f84a75a6fbfdc1da89f48cfc75250ad4c6cb669b46734055641c1c3"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/evidence/review-results.json",
+              "bytes": 98853,
+              "sha256": "b2d14c5ae6cba294d830f3ee71049f6a7505d01368d1b5284ab2832df2536f3a"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/evidence/review-cases.json",
+              "bytes": 89192,
+              "sha256": "c31db2612074c2db81dcc4346da557787fc8b3112dbace3e1b206cb74dbb5f54"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/evidence/run-review-cases.py",
+              "bytes": 3014,
+              "sha256": "d2634f3099e38ea70e3fb04875ffde78e04570138e0ee79f1b268d2157fc7d2f"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/r1-inputs/evidence/archive-verification.json",
+              "bytes": 1925,
+              "sha256": "dc6f1f9a396203cef1e667b6d7670e66158ebdfbf76ae3c4ef1a5c65a5b7964a"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+              "bytes": 10175,
+              "sha256": "0f1e4358fa3d6a4ab22d9f50286c78272bd56d47c46658ac174ea65297d89a79"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/inputs/BASELINE-AND-INPUTS.json",
+              "bytes": 6796,
+              "sha256": "1fcd8b23d87be18a49166b3d34067a74747ec320d32d4eb20a31a13765d489b2"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/inputs/OWNER-authority-and-scope-WORLD-ENTRY-005-v1.0.md",
+              "bytes": 1421,
+              "sha256": "e82c37465ddef32ef1e2147eb4f720c1014ebdf08b8307d64aaad602818e8e27"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/inputs/SHA256SUMS.txt",
+              "bytes": 436,
+              "sha256": "c9d6901bbd5270695cc3a51825954958460bc4db282714dc1ab7d2ca3169ff40"
+            },
+            {
+              "path": "docs/design-drafts/world-infected-001/entry-005/inputs/WORLD-ENTRY-005-task-v1.0.md",
+              "bytes": 22651,
+              "sha256": "de110d42d7df8827c7bd2f8b750fd8a1d59f390ba4f6defb8bf8015296a6c1aa"
+            }
+          ]
+        }
+      },
+      "evidenceDirectory": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-r1-9q81gawt\\freeze-1",
+      "resultSha256": "632a928133dbd6a822752f54b4b7ab074b95c40df6bf9119a257eeb2fc6c2f6f"
     }
   ]
 }

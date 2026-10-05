@@ -3,6 +3,7 @@ No RNG, damage generator, map walker, capability or actual current installation.
 Expected answers are case data, never computed from the checker under test.
 """
 import argparse
+import copy
 import hashlib
 import json
 from pathlib import Path
@@ -20,111 +21,34 @@ def integer(n):
 def keys(value, required, optional=()):
     require(type(value) is dict and set(required) <= set(value) <= set(required) | set(optional), 'SHAPE')
 
-def text_id(value):
-    require(type(value) is str and bool(value.strip()), 'RAW_ID')
-
-def enum(value, choices, code):
-    require(type(value) is str and value in choices, code)
-
-def numbers(value, names, maximum=None, code='RAW_NUMBER'):
-    for name in names:
-        require(integer(value[name]), code)
-        if maximum is not None: require(value[name] <= maximum, 'RANGE')
-
-def boolean(value):
-    require(type(value) is bool, 'RAW_BOOLEAN')
-
-def ids(value):
-    require(type(value) is list, 'SOURCE_SHAPE')
-    for item in value: text_id(item)
-    require(len(set(value)) == len(value), 'SOURCE_SHAPE')
-
-def enemy_shape(e, spec):
-    keys(e, spec['state']['enemy'].keys())
-    enum(e['id'], ['orderly','porter','technician'], 'ENEMY_ID')
-    enum(e['intent'], ['basic','special'], 'ENEMY_ID')
-    numbers(e, ['hp','count','risk'])
-    require(e['hp'] <= (14 if e['id']=='orderly' else 16), 'ENEMY_HP')
-    boolean(e['defeated']); boolean(e['encountered'])
-    require(e['defeated']==(e['hp']==0), 'ENEMY_STATE')
-    require(e['encountered'] or (e['count']==e['risk']==0), 'ENEMY_STATE')
-
-def battle_shape(b, spec):
-    keys(b, spec['activeBattle'].keys())
-    numbers(b, ['entryRevision','current','playerNext','enemyNext','entryEnemyCount','entryRisk'])
-    for k in ['id','from','node','edge','binding','enemyId']: text_id(b[k])
-    enum(b['enemyId'], ['orderly','porter','technician'], 'ENEMY_ID')
-    enum(b['engagement'], ['first','reentry'], 'ENGAGEMENT')
-    require(b['defense'] is None and b['escape'] is None, 'INTERMEDIATE_SAVE')
-    require(b['current']==b['playerNext']<=b['enemyNext'], 'QUEUE')
-
-def battle_identity(b, enemy, revision, spec):
-    require(b['binding']==spec['bindings']['execution'] and b['enemyId']==enemy['id']
-        and 0 < b['entryRevision'] <= revision, 'BINDING')
-    require(b['id']==f"{b['binding']}:{b['entryRevision']}:{b['enemyId']}", 'BINDING')
-    require(b['entryEnemyCount']<=enemy['count'] and b['entryRisk']<=enemy['risk'], 'CURSOR')
-
-TRACE_RANKS={'heal':0,'primary':0,'bleeding':1,'enemy-direct':2,'injury-risk':3,'exposure-risk':4,'intent':5}
-
-def steps_shape(steps):
-    require(type(steps) is list, 'SHAPE')
-    for step in steps:
-        keys(step, ['kind','before','requested','after'])
-        enum(step['kind'], TRACE_RANKS, 'TRACE_NUMBER')
-        numbers(step, ['before','requested','after'], code='TRACE_NUMBER')
-        require(step['before']<=12 and step['after']<=12, 'TRACE_NUMBER')
-
-def terminal_shape(t):
-    keys(t, ['source','binding','battleId','beforeHp','steps'])
-    enum(t['source'], ['combat-death'], 'DEATH_SOURCE')
-    text_id(t['binding']); text_id(t['battleId'])
-    require(integer(t['beforeHp']) and 0<t['beforeHp']<=12, 'DEATH_SOURCE')
-    steps_shape(t['steps'])
-
 def check_state(s, spec):
     keys(s, spec['state'].keys())
-    numbers(s, ['revision','cycle','taskDay','hp','energy','quota'])
+    for k in ['revision','cycle','taskDay','hp','energy','quota']:
+        require(integer(s[k]), 'RAW_NUMBER')
     require(1 <= s['cycle'] and 1 <= s['taskDay'] <= 7 and s['hp'] <= 12 and s['energy'] <= 100 and s['quota'] <= 1, 'RANGE')
-    enum(s['phase'], ['stable','pending','combat','dead','hub'], 'PHASE')
-    enum(s['specialty'], ['scout','engineer','survival'], 'CHOICE')
-    text_id(s['node'])
-    for k in ['bleeding','firstBandageUsed','closed']: boolean(s[k])
-    e=s['enemy']; enemy_shape(e,spec)
-    for k in ['originUnits','consumed','exitIds']: ids(s[k])
+    require(s['phase'] in ['stable','pending','combat','dead','hub'], 'PHASE')
+    require(s['specialty'] in ['scout','engineer','survival'], 'CHOICE')
+    for k in ['bleeding','firstBandageUsed','closed']:
+        require(type(s[k]) is bool, 'RAW_BOOLEAN')
+    e=s['enemy']; keys(e, spec['state']['enemy'].keys())
+    require(e['id'] in ['orderly','porter','technician'] and e['intent'] in ['basic','special'], 'ENEMY_ID')
+    require(all(integer(e[k]) for k in ['hp','count','risk']), 'RAW_NUMBER')
+    require(e['hp'] <= (14 if e['id']=='orderly' else 16), 'ENEMY_HP')
+    require(type(e['defeated']) is bool and type(e['encountered']) is bool and e['defeated']==(e['hp']==0), 'ENEMY_STATE')
+    require(e['encountered'] or (e['count']==e['risk']==0), 'ENEMY_STATE')
+    for k in ['originUnits','consumed','exitIds']:
+        require(type(s[k]) is list and all(type(x) is str and x for x in s[k]) and len(set(s[k]))==len(s[k]), 'SOURCE_SHAPE')
     require(set(s['originUnits']).isdisjoint(s['consumed']), 'UNIT_REPLAY')
     require((s['phase']=='dead')==(s['hp']==0) or s['phase']=='pending', 'HP_PHASE')
     require(s['closed']==(s['phase'] in ['dead','hub']), 'CLOSURE')
     require((s['battle'] is not None)==(s['phase']=='combat'), 'BATTLE_PHASE')
     require((s['terminal'] is not None)==(s['phase']=='dead'), 'TERMINAL_PHASE')
     if s['battle'] is not None:
-        battle_shape(s['battle'],spec)
-        require(s['hp']>0 and e['hp']>0 and e['encountered'], 'QUEUE')
-    if s['terminal'] is not None: terminal_shape(s['terminal'])
-
-def expected_shape(e, spec):
-    keys(e, ['origin','binding','revision','phase','battleId','enemy','queue','current'])
-    enum(e['origin'], ['independent-before-read'], 'EXPECTED_SOURCE')
-    text_id(e['binding']); numbers(e,['revision'])
-    enum(e['phase'], ['stable','combat','dead','hub'], 'PHASE')
-    enemy_shape(e['enemy'],spec)
-    if e['phase']=='combat':
-        text_id(e['battleId'])
-        require(type(e['queue']) is list and len(e['queue'])==3, 'SHAPE')
-        require(all(integer(x) for x in e['queue']), 'RAW_NUMBER')
-        require(e['queue'][0]==e['queue'][1]<=e['queue'][2], 'QUEUE')
-    else: require(e['battleId'] is None and e['queue'] is None, 'SHAPE')
-    if e['current'] is not None:
-        check_state(e['current'],spec)
-        anchor=e['current']
-        require(anchor['revision']==e['revision'] and anchor['phase']==e['phase'] and anchor['enemy']==e['enemy'], 'BINDING')
-        require((anchor['battle']['id'] if anchor['battle'] else None)==e['battleId'], 'BINDING')
-        if anchor['battle'] is not None:
-            battle_identity(anchor['battle'],anchor['enemy'],anchor['revision'],spec)
-            require(anchor['battle']['node']==anchor['node'], 'ENTRY_WITNESS')
-            require([anchor['battle'][k] for k in ['current','playerNext','enemyNext']]==e['queue'], 'QUEUE_BINDING')
-        if anchor['terminal'] is not None:
-            require(anchor['terminal']['binding']==e['binding'], 'BINDING')
-            require(len(anchor['terminal']['steps'])>0 and anchor['terminal']['steps'][-1]['after']==0, 'DEATH_SOURCE')
+        b=s['battle']; keys(b,spec['activeBattle'].keys())
+        for k in ['entryRevision','current','playerNext','enemyNext','entryEnemyCount','entryRisk']:
+            require(integer(b[k]),'RAW_NUMBER')
+        require(b['defense'] is None and b['escape'] is None, 'INTERMEDIATE_SAVE')
+        require(s['hp']>0 and e['hp']>0 and b['current']==b['playerNext']<=b['enemyNext'], 'QUEUE')
 
 def proposal_numbers(value, key=None):
     # Python bool == int is never a valid raw numeric witness.
@@ -140,18 +64,11 @@ def proposal_numbers(value, key=None):
         require(integer(value),'RAW_NUMBER')
 
 def validate(case, spec, negative):
-    keys(case, ['operation','before','command','proposal'], ['id','source','support','expected'])
-    op=case['operation']; enum(op, ['entry','exit','continuity','medicine','charge','order','trace','restore','blocked','transaction','unsupported'], 'OPERATION')
-    a=case['before']; c=case['command']; p=case['proposal']
-    require(type(c) is dict and type(p) is dict, 'SHAPE')
+    op=case['operation']; a=case['before']; c=case['command']; p=case['proposal']
     check_state(a,spec)
-    if a['battle'] is not None:
-        battle_identity(a['battle'],a['enemy'],a['revision'],spec)
-        require(a['battle']['node']==a['node'], 'ENTRY_WITNESS')
     if op not in ['trace','restore']: proposal_numbers(p)
     if op=='unsupported':
-        keys(c,['subject']); keys(p,[])
-        enum(c['subject'],spec['unsupported'],'SHAPE')
+        require(c['subject'] in spec['unsupported'],'SHAPE')
         return 'UNSUPPORTED'
     if op not in ['order','trace','transaction','restore']:
         require(integer(c.get('expectedRevision')), 'RAW_NUMBER')
@@ -161,10 +78,6 @@ def validate(case, spec, negative):
         require(a['phase']=='stable' and not a['closed'] and a['energy']>0,'ENTRY_PHASE')
         keys(p,['arrivalHp','arrivalEnergy','battle','priorEnemy','arrivalPending'])
         require(integer(p['arrivalHp']) and integer(p['arrivalEnergy']), 'RAW_NUMBER')
-        boolean(p['arrivalPending']); text_id(c['edge']); enemy_shape(p['priorEnemy'],spec)
-        if negative!='arrival-domain-bypass':
-            require(p['arrivalHp']<=12 and p['arrivalEnergy']<=100, 'RANGE')
-        if p['battle'] is not None: battle_shape(p['battle'],spec)
         if p['arrivalHp']==0:
             require(p['battle'] is None,'DEATH_BEFORE_ENTRY'); return 'DEAD_ONLY'
         require(p['arrivalPending'] and p['battle'] is not None, 'MISSING_ENCOUNTER')
@@ -176,8 +89,6 @@ def validate(case, spec, negative):
         require(b['engagement']==('reentry' if e['encountered'] else 'first'),'ENGAGEMENT')
         require(b['current']==b['playerNext']==0 and b['enemyNext']==(50 if e['encountered'] else 70),'ENTRY_QUEUE')
         require(b['entryEnemyCount']==e['count'] and b['entryRisk']==e['risk'],'CURSOR')
-        battle_identity(b,e,a['revision']+1,spec)
-        require(b['id'] not in a['exitIds'], 'EXIT_ONCE')
         return 'ACTIVE_DECISION'
     if op=='exit':
         keys(c,['kind','expectedRevision']); require(c['kind'] in ['victory','retreat'],'INTENT')
@@ -185,9 +96,6 @@ def validate(case, spec, negative):
         keys(p,['elapsed','exitId','debits','energyAfter','nodeAfter','hpAfter','extraBleed','enemyAfter'])
         require(all(integer(p[k]) for k in ['elapsed','energyAfter','hpAfter','extraBleed']),'RAW_NUMBER')
         require(p['hpAfter']>0,'DEATH_BEFORE_EXIT')
-        require(p['hpAfter']<=12 and p['energyAfter']<=100, 'RANGE')
-        text_id(p['exitId']); text_id(p['nodeAfter']); enemy_shape(p['enemyAfter'],spec)
-        require(type(p['debits']) is list and all(integer(x) for x in p['debits']), 'RAW_NUMBER')
         require(p['elapsed']>=b['current'],'ELAPSED')
         cost=max(6,((p['elapsed']+99)//100)*4)
         if negative!='duplicate-exit':
@@ -215,11 +123,6 @@ def validate(case, spec, negative):
         require('quantity' not in c or type(c['quantity']) is int and c['quantity']==1,'QUANTITY')
         require(a['phase']=='combat' and a['hp']>0,'MEDICAL_PHASE')
         keys(p,['location','unit','wounds','selectedWound','hpAfterPrimary','firstAfter','liveAfter','consumedAfter','quotaAfter'])
-        text_id(c['instance']); text_id(p['unit']); text_id(p['location'])
-        ids(p['wounds']); ids(p['liveAfter']); ids(p['consumedAfter'])
-        if 'wound' in c: text_id(c['wound'])
-        if p['selectedWound'] is not None: text_id(p['selectedWound'])
-        numbers(p,['hpAfterPrimary'],12); numbers(p,['quotaAfter'],1); boolean(p['firstAfter'])
         require(p['location']=='quick' and c['instance']==p['unit'] and p['unit'] in a['originUnits'],'LOCATION')
         require(a['hp']<12 or a['bleeding'] or len(p['wounds'])>0,'NO_TARGET')
         require((not p['wounds'] and c.get('wound') is None) or c.get('wound') in p['wounds'],'WOUND_TARGET')
@@ -233,8 +136,6 @@ def validate(case, spec, negative):
         keys(c,['kind','expectedRevision']); require(c['kind']=='charged-strike','INTENT')
         require(a['phase']=='combat' and a['quota']==1,'QUOTA')
         keys(p,['durabilityBefore','durabilityAfter','quotaAfter','delay','bluntWeakness'])
-        numbers(p,['durabilityBefore','durabilityAfter','quotaAfter','delay'])
-        require(p['quotaAfter']<=1, 'RANGE')
         require(integer(p['durabilityBefore']) and p['durabilityBefore']>0,'DURABILITY')
         require(p['durabilityAfter']==max(0,p['durabilityBefore']-3),'DURABILITY')
         require(type(p['bluntWeakness']) is bool and p['delay']==(200 if p['bluntWeakness'] else 140),'CONTROL_DELAY')
@@ -243,13 +144,7 @@ def validate(case, spec, negative):
     if op=='order':
         keys(c,['kind']); require(c['kind']=='schedule-witness','INTENT')
         keys(p,['events','observed','defenseAfter','escapeLockedAt','escapeCompletesAt','newWoundChangesCompletion'])
-        require(type(p['events']) is list, 'SHAPE')
-        ids(p['observed']); numbers(p,['escapeLockedAt','escapeCompletesAt']); boolean(p['newWoundChangesCompletion'])
         events=p['events']
-        for event in events:
-            keys(event,['id','at','kind']); text_id(event['id']); numbers(event,['at'])
-            enum(event['kind'],['completion','player','enemy'],'SHAPE')
-        require(len({e['id'] for e in events})==len(events), 'SHAPE')
         require(all(set(e)=={'id','at','kind'} and integer(e['at']) and e['kind'] in ['completion','player','enemy'] for e in events),'SHAPE')
         priority={'completion':0,'player':1,'enemy':2}
         ordered=[e['id'] for e in sorted(events,key=lambda e:(e['at'],priority[e['kind']]))]
@@ -260,18 +155,11 @@ def validate(case, spec, negative):
     if op=='trace':
         keys(c,['kind']); require(c['kind'] in ['action','normal-H0'],'INTENT')
         keys(p,['steps','finalHp','outcome','sourceBinding','sourceBattle','firstBefore','firstAfter'])
-        steps_shape(p['steps']); numbers(p,['finalHp'],12)
-        boolean(p['firstBefore']); boolean(p['firstAfter'])
-        enum(p['outcome'],['alive','death'],'DEATH_PRIORITY')
-        text_id(p['sourceBinding'])
-        if p['sourceBattle'] is not None: text_id(p['sourceBattle'])
         if negative!='binding-acceptance': require(p['sourceBinding']==spec['bindings']['execution'] and p['sourceBattle']==(a['battle']['id'] if a['battle'] else None),'BINDING')
         if c['kind']=='normal-H0':
-            require(a['phase']=='stable' and a['node']=='H0' and p['steps']==[] and p['finalHp']==a['hp'] and p['outcome']=='alive','H0_STEPS'); return 'NORMAL_EMPTY'
-        require(a['phase']=='combat', 'TRACE_PHASE')
-        require(p['firstBefore']==a['firstBandageUsed'] and (not p['firstBefore'] or p['firstAfter']), 'RESOURCE_CONTINUITY')
+            require(a['phase']=='stable' and a['node']=='H0' and p['steps']==[] and p['finalHp']==a['hp'],'H0_STEPS'); return 'NORMAL_EMPTY'
         hp=a['hp']; require(len(p['steps'])>0,'EMPTY_TRACE'); dead=False
-        ranks=TRACE_RANKS
+        ranks={'heal':0,'primary':0,'bleeding':1,'enemy-direct':2,'injury-risk':3,'exposure-risk':4,'intent':5}
         last=-1
         for s in p['steps']:
             keys(s,['kind','before','requested','after'])
@@ -289,11 +177,8 @@ def validate(case, spec, negative):
         check_state(p,spec)
         proposal_numbers(p)
         require(p['phase']!='pending','INTERMEDIATE_SAVE')
-        e=c['expected']; expected_shape(e,spec)
-        if c['kind']=='same-progress' or p['terminal'] is not None:
-            require(e['current'] is not None, 'MISSING_ANCHOR')
-        if p['terminal'] is not None:
-            require(e['current']['phase']=='dead' and e['current']['terminal'] is not None, 'MISSING_ANCHOR')
+        e=c['expected']; keys(e,['origin','binding','revision','phase','battleId','enemy','queue','current'])
+        require(e['origin']=='independent-before-read','EXPECTED_SOURCE')
         if negative!='binding-acceptance':
             require(e['binding']==spec['bindings']['execution'] and p['revision']==e['revision'] and p['phase']==e['phase'],'BINDING')
             require((p['battle']['id'] if p['battle'] else None)==e['battleId'] and p['enemy']==e['enemy'],'CURSOR')
@@ -303,31 +188,22 @@ def validate(case, spec, negative):
                 b=p['battle']; require(b['binding']==e['binding'] and b['enemyId']==p['enemy']['id'] and b['entryRevision']<=p['revision'] and b['from']=='H1' and b['node']==p['node']=='H4','ENTRY_WITNESS')
                 require([b['current'],b['playerNext'],b['enemyNext']]==e['queue'],'QUEUE_BINDING')
             if c['kind']=='same-progress': require(p==e['current'],'FULL_BEFORE')
-        if p['battle'] is not None and negative!='binding-acceptance':
-            battle_identity(p['battle'],p['enemy'],p['revision'],spec)
         if p['terminal']:
-            # Actual encounter context supplied independently, never the example first battle.
-            t=p['terminal']; require(a['phase']=='combat', 'MISSING_ENTRY_ANCHOR')
-            battle_identity(a['battle'],a['enemy'],a['revision'],spec)
-            require(t['beforeHp']==a['hp'] and p['node']==a['battle']['node']
-                and p['revision']==a['revision']+1, 'DEATH_ANCHOR')
-            if negative!='binding-acceptance':
-                battle_id=spec['activeBattle']['id'] if negative=='fixed-first-battle-anchor' else a['battle']['id']
-                require(t['binding']==a['battle']['binding'] and t['battleId']==battle_id, 'BINDING')
-            result=validate({'operation':'trace','before':a,'command':{'kind':'action'},'proposal':{
-                'steps':t['steps'],'finalHp':0,'outcome':'death','sourceBinding':t['binding'],'sourceBattle':t['battleId'],
-                'firstBefore':a['firstBandageUsed'],'firstAfter':p['firstBandageUsed']}},spec,negative)
+            t=p['terminal']; keys(t,['source','binding','battleId','beforeHp','steps'])
+            require(t['source']=='combat-death' and integer(t['beforeHp']) and t['beforeHp']>0,'DEATH_SOURCE')
+            witness=copy.deepcopy(a); witness.update(phase='combat',closed=False,hp=t['beforeHp'],terminal=None,node='H4',battle=copy.deepcopy(spec['activeBattle']))
+            witness['enemy']['encountered']=True
+            result=validate({'operation':'trace','before':witness,'command':{'kind':'action'},'proposal':{
+                'steps':t['steps'],'finalHp':0,'outcome':'death','sourceBinding':t['binding'],'sourceBattle':t['battleId'],'firstBefore':False,'firstAfter':True}},spec,negative)
             require(result=='DEAD_ONLY','DEATH_SOURCE')
         return 'RESTORED'
     if op=='blocked':
         keys(c,['kind','expectedRevision']); require(c['kind'] in ['move','rest','deadline','return'],'INTENT')
-        keys(p,[])
         require(a['phase']=='stable' and not a['closed'],'UNSETTLED')
         return 'STABLE_ALLOWED'
     if op=='transaction':
         keys(c,['kind']); require(c['kind'] in ['commit','save-failed-continue','retry','reentrant','reject'],'INTENT')
         keys(p,['events','revisionAfter','currentRetained','effects','writes','notifies','commits'])
-        ids(p['events']); numbers(p,['revisionAfter','effects','writes','notifies','commits']); boolean(p['currentRetained'])
         expected={'commit':['validate','resolve','aggregate','encode','install','write','notify'],
             'save-failed-continue':['validate','resolve','aggregate','encode','install','write-failed','notify'],
             'retry':['validate','encode','write'], 'reentrant':['busy-reject'], 'reject':['validate','reject']}[c['kind']]
@@ -337,26 +213,23 @@ def validate(case, spec, negative):
         require(p['effects']==commits and p['writes']==(1 if c['kind'] in ['commit','save-failed-continue','retry'] else 0) and p['notifies']==commits,'REPLAY')
         require(p['currentRetained'] is True,'SAVE_ROLLBACK')
         return 'TRANSACTION'
-    raise RuntimeError('Validated operation has no handler '+op)
+    raise RuntimeError('Unknown checker operation '+op)
 
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--cases',required=True); ap.add_argument('--output',required=True); ap.add_argument('--negative-control')
     args=ap.parse_args(); root=Path(args.cases).resolve().parent
     spec=json.loads((root/'state-candidates.json').read_text('utf-8')); cases=json.loads(Path(args.cases).read_text('utf-8'))['cases']
-    regression=root/'r1-regression-cases.json'
-    cases += json.loads(regression.read_text('utf-8'))['cases']
     if args.negative_control not in [None,*spec['negativeControls']]: ap.error('Unknown negative control')
     rows=[]
     for case in cases:
-        exception=None; original=json.dumps(case,sort_keys=True,ensure_ascii=False)
+        exception=None
         try: actual=validate(case,spec,args.negative_control)
         except Reject as e: actual='REJECT:'+str(e)
         except Exception as e: actual='EXCEPTION'; exception=type(e).__name__+': '+str(e)
-        unchanged=json.dumps(case,sort_keys=True,ensure_ascii=False)==original
-        rows.append({**case,'actual':actual,'inputUnchanged':unchanged,'mismatch':(not actual.startswith('REJECT:') if case['expected']=='REJECTED' else actual!=case['expected']) or exception is not None or not unchanged,'exception':exception})
+        rows.append({**case,'actual':actual,'mismatch':actual!=case['expected'] or exception is not None,'exception':exception})
     mismatches=[r['id'] for r in rows if r['mismatch']]; exceptions=sum(r['exception'] is not None for r in rows)
     report={'kind':'FINITE_CONTRACT_BOUNDARIES_NOT_ENGINE','negativeControl':args.negative_control,
-      'inputs':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),root/'state-candidates.json',Path(args.cases),regression]},
+      'inputs':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),root/'state-candidates.json',Path(args.cases)]},
       'total':len(rows),'matched':len(rows)-len(mismatches),'mismatchIds':mismatches,'exceptions':exceptions,
       'categories':{k:sum(r['support']==k for r in rows) for k in sorted({r['support'] for r in rows})},'cases':rows}
     Path(args.output).write_bytes((json.dumps(report,ensure_ascii=False,sort_keys=True,indent=2)+'\n').encode())

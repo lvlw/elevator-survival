@@ -1,37 +1,178 @@
 {
-  "meaning": "One named constraint disabled per run; normal expectations unchanged",
-  "controls": [
+  "task": "WORLD-ENTRY-005-R1",
+  "historical": {
+    "commit": "df1c3ff6979703b72bf76d73761b3915e59eb5b2",
+    "original": {
+      "meaning": "One named constraint disabled per run; normal expectations unchanged",
+      "controls": [
+        {
+          "id": "duplicate-exit",
+          "exitCode": 1,
+          "mismatchIds": [
+            "X-repeat-debit",
+            "X-replayed-receipt"
+          ],
+          "exceptions": 0,
+          "total": 106,
+          "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-duplicate-exit.json",
+          "sha256": "a6310f3c006ffb5b71a7e797d2227613ce9f9b5a31dffb13056de18638a24e60",
+          "semanticDetected": true
+        },
+        {
+          "id": "persistent-reset",
+          "exitCode": 1,
+          "mismatchIds": [
+            "P-reset-hp",
+            "P-reset-count",
+            "P-reset-risk",
+            "P-reset-intent"
+          ],
+          "exceptions": 0,
+          "total": 106,
+          "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-persistent-reset.json",
+          "sha256": "cc2267d4c09d4cf34a745eebaf6716960bdf4b0a814cbfd65613967e7f838668",
+          "semanticDetected": true
+        },
+        {
+          "id": "consumption-rollback",
+          "exitCode": 1,
+          "mismatchIds": [
+            "P-reset-first",
+            "P-reset-quota",
+            "M-origin-rollback",
+            "M-first-rollback",
+            "Q-rollback"
+          ],
+          "exceptions": 0,
+          "total": 106,
+          "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-consumption-rollback.json",
+          "sha256": "cabd0e3a0a1d03a0f913ef914b79d101e785c795a18d27df6c7aac552a078c31",
+          "semanticDetected": true
+        },
+        {
+          "id": "binding-acceptance",
+          "exitCode": 1,
+          "mismatchIds": [
+            "T-wrong-source",
+            "T-wrong-battle",
+            "R-bad-revision",
+            "R-bad-risk",
+            "R-bad-battle",
+            "R-bad-queue",
+            "R-bad-entry",
+            "R-bad-execution",
+            "R-full-compare",
+            "R-dead-wrong-source",
+            "R-dead-wrong-battle"
+          ],
+          "exceptions": 0,
+          "total": 106,
+          "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-binding-acceptance.json",
+          "sha256": "7769220d8d6481a7bc4c2f877518a0a5af1c099661cf69afe85fe7b31c4ea9a5",
+          "semanticDetected": true
+        }
+      ]
+    }
+  },
+  "r1": [
     {
       "id": "duplicate-exit",
-      "exitCode": 1,
+      "exit": 1,
+      "exceptions": 0,
       "mismatchIds": [
         "X-repeat-debit",
         "X-replayed-receipt"
       ],
-      "exceptions": 0,
-      "total": 106,
-      "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-duplicate-exit.json",
-      "sha256": "a6310f3c006ffb5b71a7e797d2227613ce9f9b5a31dffb13056de18638a24e60",
-      "semanticDetected": true
+      "semanticMismatches": [
+        {
+          "id": "X-repeat-debit",
+          "expected": "REJECT:EXIT_ONCE",
+          "actual": "STABLE_EXIT"
+        },
+        {
+          "id": "X-replayed-receipt",
+          "expected": "REJECT:EXIT_ONCE",
+          "actual": "STABLE_EXIT"
+        }
+      ],
+      "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-r1-9q81gawt\\frozen-control-duplicate-exit.json",
+      "sha256": "ed6fe392f834b1825f499836298a7d391bb24874d02bad504d725e13328a7be2",
+      "receipt": {
+        "command": [
+          "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+          "--cases",
+          "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+          "--output",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-r1-9q81gawt\\frozen-control-duplicate-exit.json",
+          "--negative-control",
+          "duplicate-exit"
+        ],
+        "exit": 1,
+        "stdout": "{\"total\": 350, \"matched\": 348, \"categories\": {\"expected-rejection\": 293, \"supported-boundary\": 54, \"unsupported\": 3}, \"mismatchIds\": [\"X-repeat-debit\", \"X-replayed-receipt\"], \"exceptions\": 0, \"negativeControl\": \"duplicate-exit\"}\r\n",
+        "stderr": ""
+      }
     },
     {
       "id": "persistent-reset",
-      "exitCode": 1,
+      "exit": 1,
+      "exceptions": 0,
       "mismatchIds": [
         "P-reset-hp",
         "P-reset-count",
         "P-reset-risk",
         "P-reset-intent"
       ],
-      "exceptions": 0,
-      "total": 106,
-      "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-persistent-reset.json",
-      "sha256": "cc2267d4c09d4cf34a745eebaf6716960bdf4b0a814cbfd65613967e7f838668",
-      "semanticDetected": true
+      "semanticMismatches": [
+        {
+          "id": "P-reset-hp",
+          "expected": "REJECT:PERSISTENCE",
+          "actual": "CONTINUOUS"
+        },
+        {
+          "id": "P-reset-count",
+          "expected": "REJECT:PERSISTENCE",
+          "actual": "CONTINUOUS"
+        },
+        {
+          "id": "P-reset-risk",
+          "expected": "REJECT:PERSISTENCE",
+          "actual": "CONTINUOUS"
+        },
+        {
+          "id": "P-reset-intent",
+          "expected": "REJECT:PERSISTENCE",
+          "actual": "CONTINUOUS"
+        }
+      ],
+      "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-r1-9q81gawt\\frozen-control-persistent-reset.json",
+      "sha256": "7297e6bdda89d984196cddf588d05b31f8f156797178522cade3fc4ce3227dcd",
+      "receipt": {
+        "command": [
+          "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+          "--cases",
+          "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+          "--output",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-r1-9q81gawt\\frozen-control-persistent-reset.json",
+          "--negative-control",
+          "persistent-reset"
+        ],
+        "exit": 1,
+        "stdout": "{\"total\": 350, \"matched\": 346, \"categories\": {\"expected-rejection\": 293, \"supported-boundary\": 54, \"unsupported\": 3}, \"mismatchIds\": [\"P-reset-hp\", \"P-reset-count\", \"P-reset-risk\", \"P-reset-intent\"], \"exceptions\": 0, \"negativeControl\": \"persistent-reset\"}\r\n",
+        "stderr": ""
+      }
     },
     {
       "id": "consumption-rollback",
-      "exitCode": 1,
+      "exit": 1,
+      "exceptions": 0,
       "mismatchIds": [
         "P-reset-first",
         "P-reset-quota",
@@ -39,15 +180,58 @@
         "M-first-rollback",
         "Q-rollback"
       ],
-      "exceptions": 0,
-      "total": 106,
-      "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-consumption-rollback.json",
-      "sha256": "cabd0e3a0a1d03a0f913ef914b79d101e785c795a18d27df6c7aac552a078c31",
-      "semanticDetected": true
+      "semanticMismatches": [
+        {
+          "id": "P-reset-first",
+          "expected": "REJECT:RESOURCE_CONTINUITY",
+          "actual": "CONTINUOUS"
+        },
+        {
+          "id": "P-reset-quota",
+          "expected": "REJECT:RESOURCE_CONTINUITY",
+          "actual": "CONTINUOUS"
+        },
+        {
+          "id": "M-origin-rollback",
+          "expected": "REJECT:RESOURCE_CONTINUITY",
+          "actual": "MEDICINE"
+        },
+        {
+          "id": "M-first-rollback",
+          "expected": "REJECT:RESOURCE_CONTINUITY",
+          "actual": "MEDICINE"
+        },
+        {
+          "id": "Q-rollback",
+          "expected": "REJECT:RESOURCE_CONTINUITY",
+          "actual": "CHARGED"
+        }
+      ],
+      "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-r1-9q81gawt\\frozen-control-consumption-rollback.json",
+      "sha256": "47e014abe79b4bade567917ed6e28e8dad405f6512150b1d601fcee9db2337f1",
+      "receipt": {
+        "command": [
+          "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+          "--cases",
+          "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+          "--output",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-r1-9q81gawt\\frozen-control-consumption-rollback.json",
+          "--negative-control",
+          "consumption-rollback"
+        ],
+        "exit": 1,
+        "stdout": "{\"total\": 350, \"matched\": 345, \"categories\": {\"expected-rejection\": 293, \"supported-boundary\": 54, \"unsupported\": 3}, \"mismatchIds\": [\"P-reset-first\", \"P-reset-quota\", \"M-origin-rollback\", \"M-first-rollback\", \"Q-rollback\"], \"exceptions\": 0, \"negativeControl\": \"consumption-rollback\"}\r\n",
+        "stderr": ""
+      }
     },
     {
       "id": "binding-acceptance",
-      "exitCode": 1,
+      "exit": 1,
+      "exceptions": 0,
       "mismatchIds": [
         "T-wrong-source",
         "T-wrong-battle",
@@ -59,13 +243,197 @@
         "R-bad-execution",
         "R-full-compare",
         "R-dead-wrong-source",
-        "R-dead-wrong-battle"
+        "R-dead-wrong-battle",
+        "R1-review-C12-wrong-binding-already-rejected",
+        "R1-review-C14-wrong-second-battle-still-rejects",
+        "R1-active-identity-entry-revision-minimal"
       ],
+      "semanticMismatches": [
+        {
+          "id": "T-wrong-source",
+          "expected": "REJECT:BINDING",
+          "actual": "DEAD_ONLY"
+        },
+        {
+          "id": "T-wrong-battle",
+          "expected": "REJECT:BINDING",
+          "actual": "DEAD_ONLY"
+        },
+        {
+          "id": "R-bad-revision",
+          "expected": "REJECT:BINDING",
+          "actual": "RESTORED"
+        },
+        {
+          "id": "R-bad-risk",
+          "expected": "REJECT:CURSOR",
+          "actual": "RESTORED"
+        },
+        {
+          "id": "R-bad-battle",
+          "expected": "REJECT:CURSOR",
+          "actual": "RESTORED"
+        },
+        {
+          "id": "R-bad-queue",
+          "expected": "REJECT:QUEUE_BINDING",
+          "actual": "RESTORED"
+        },
+        {
+          "id": "R-bad-entry",
+          "expected": "REJECT:ENTRY_WITNESS",
+          "actual": "RESTORED"
+        },
+        {
+          "id": "R-bad-execution",
+          "expected": "REJECT:ENTRY_WITNESS",
+          "actual": "RESTORED"
+        },
+        {
+          "id": "R-full-compare",
+          "expected": "REJECT:FULL_BEFORE",
+          "actual": "RESTORED"
+        },
+        {
+          "id": "R-dead-wrong-source",
+          "expected": "REJECT:BINDING",
+          "actual": "RESTORED"
+        },
+        {
+          "id": "R-dead-wrong-battle",
+          "expected": "REJECT:BINDING",
+          "actual": "RESTORED"
+        },
+        {
+          "id": "R1-review-C12-wrong-binding-already-rejected",
+          "expected": "REJECTED",
+          "actual": "RESTORED"
+        },
+        {
+          "id": "R1-review-C14-wrong-second-battle-still-rejects",
+          "expected": "REJECTED",
+          "actual": "RESTORED"
+        },
+        {
+          "id": "R1-active-identity-entry-revision-minimal",
+          "expected": "REJECTED",
+          "actual": "RESTORED"
+        }
+      ],
+      "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-r1-9q81gawt\\frozen-control-binding-acceptance.json",
+      "sha256": "a5135375dda3e94f20c29235a1e73fddfd4c758614df239001141d12130a9289",
+      "receipt": {
+        "command": [
+          "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+          "--cases",
+          "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+          "--output",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-r1-9q81gawt\\frozen-control-binding-acceptance.json",
+          "--negative-control",
+          "binding-acceptance"
+        ],
+        "exit": 1,
+        "stdout": "{\"total\": 350, \"matched\": 336, \"categories\": {\"expected-rejection\": 293, \"supported-boundary\": 54, \"unsupported\": 3}, \"mismatchIds\": [\"T-wrong-source\", \"T-wrong-battle\", \"R-bad-revision\", \"R-bad-risk\", \"R-bad-battle\", \"R-bad-queue\", \"R-bad-entry\", \"R-bad-execution\", \"R-full-compare\", \"R-dead-wrong-source\", \"R-dead-wrong-battle\", \"R1-review-C12-wrong-binding-already-rejected\", \"R1-review-C14-wrong-second-battle-still-rejects\", \"R1-active-identity-entry-revision-minimal\"], \"exceptions\": 0, \"negativeControl\": \"binding-acceptance\"}\r\n",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "arrival-domain-bypass",
+      "exit": 1,
       "exceptions": 0,
-      "total": 106,
-      "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-ulewb12g\\negative-binding-acceptance.json",
-      "sha256": "7769220d8d6481a7bc4c2f877518a0a5af1c099661cf69afe85fe7b31c4ea9a5",
-      "semanticDetected": true
+      "mismatchIds": [
+        "R1-review-F01-arrival-HP13",
+        "R1-review-F01-arrival-E101"
+      ],
+      "semanticMismatches": [
+        {
+          "id": "R1-review-F01-arrival-HP13",
+          "expected": "REJECTED",
+          "actual": "ACTIVE_DECISION"
+        },
+        {
+          "id": "R1-review-F01-arrival-E101",
+          "expected": "REJECTED",
+          "actual": "ACTIVE_DECISION"
+        }
+      ],
+      "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-r1-9q81gawt\\frozen-control-arrival-domain-bypass.json",
+      "sha256": "c24e74410ca441fac4fbc81b465e24f41ecdb3fcf0039d83d73d6daf61756294",
+      "receipt": {
+        "command": [
+          "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+          "--cases",
+          "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+          "--output",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-r1-9q81gawt\\frozen-control-arrival-domain-bypass.json",
+          "--negative-control",
+          "arrival-domain-bypass"
+        ],
+        "exit": 1,
+        "stdout": "{\"total\": 350, \"matched\": 348, \"categories\": {\"expected-rejection\": 293, \"supported-boundary\": 54, \"unsupported\": 3}, \"mismatchIds\": [\"R1-review-F01-arrival-HP13\", \"R1-review-F01-arrival-E101\"], \"exceptions\": 0, \"negativeControl\": \"arrival-domain-bypass\"}\r\n",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "fixed-first-battle-anchor",
+      "exit": 1,
+      "exceptions": 0,
+      "mismatchIds": [
+        "R1-review-F02-second-battle-death-cold",
+        "R1-review-F02-second-battle-death-same-progress",
+        "R1-third-death-cold",
+        "R1-third-death-same-progress"
+      ],
+      "semanticMismatches": [
+        {
+          "id": "R1-review-F02-second-battle-death-cold",
+          "expected": "RESTORED",
+          "actual": "REJECT:BINDING"
+        },
+        {
+          "id": "R1-review-F02-second-battle-death-same-progress",
+          "expected": "RESTORED",
+          "actual": "REJECT:BINDING"
+        },
+        {
+          "id": "R1-third-death-cold",
+          "expected": "RESTORED",
+          "actual": "REJECT:BINDING"
+        },
+        {
+          "id": "R1-third-death-same-progress",
+          "expected": "RESTORED",
+          "actual": "REJECT:BINDING"
+        }
+      ],
+      "output": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-r1-9q81gawt\\frozen-control-fixed-first-battle-anchor.json",
+      "sha256": "76bf8a1dddf55923770970ddefff1fb8394ec3f3d26e11837dcd929c2132880b",
+      "receipt": {
+        "command": [
+          "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\check.py",
+          "--cases",
+          "E:\\projects\\elevator-survival\\docs\\design-drafts\\world-infected-001\\entry-005\\validation\\cases.json",
+          "--output",
+          "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-005-r1-9q81gawt\\frozen-control-fixed-first-battle-anchor.json",
+          "--negative-control",
+          "fixed-first-battle-anchor"
+        ],
+        "exit": 1,
+        "stdout": "{\"total\": 350, \"matched\": 346, \"categories\": {\"expected-rejection\": 293, \"supported-boundary\": 54, \"unsupported\": 3}, \"mismatchIds\": [\"R1-review-F02-second-battle-death-cold\", \"R1-review-F02-second-battle-death-same-progress\", \"R1-third-death-cold\", \"R1-third-death-same-progress\"], \"exceptions\": 0, \"negativeControl\": \"fixed-first-battle-anchor\"}\r\n",
+        "stderr": ""
+      }
     }
   ]
 }

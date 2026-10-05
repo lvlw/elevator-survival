@@ -48,3 +48,16 @@ DecisionWitness字段：`kind:entry|action、actionRevision、inputIntent、star
 写失败后最新内存及revision/receipt仍生效，标记save-failed；允许从此最新内存继续下一合法命令。`retrySave`只核验、编码、write最新current，不重复CTB、抽签、用药、扣E、奖罚、日额、安装或通知；其失败也不回滚。write及notify内部重入命令/创建/恢复/重试都BUSY；监听报错隔离且不成为玩法事务。
 
 恢复只安装已验证候选，不重演effects。关闭态没有旧site可操作入口；旧active计划无法覆盖closed。E02-S须原生测入场→决策→退却→实际休整→再入→胜利/死亡→冷恢复及多次写失败组合；本轮有限事件表仅约束次序，当前S原生N20只证明已有稳定命令故障语义。
+
+
+## R1 独立锚与实际场次（技术候选，取代旧检查器的固定首场做法）
+
+expected自身也须strict校验：安全整数revision、真实布尔enemy标记、整数队列、phase对应的null／数组分支，提供current时先验完整原值及其与外层锚的一致性。Python的True==1、False==0不能证明一致；terminal必要键验证在任何下标访问之前。
+
+本轮有限形状保持：dead冷恢复仍需要候选外expected.current作为终局锚，并需要case.before中的该场combat前态作为入场／原身体证据；缺任一者明确语义拒绝。它们是独立TEST输入，不是新增生产保存字段。active冷恢复可只持现有最小锚、current=null；同进度恢复必须有完整current。候选更一般的冷启动最小材料合同不因此被改成“永远必须全量committed”。
+
+terminal.battleId同时匹配该场前态和独立终局锚，binding匹配执行；入场revision绑定场次、终局revision接续该动作，node使用实际场次。再入场及后续场次可合法死后冷恢复／同进度恢复，敌count/risk不归零；错误执行／场次／缺独立锚仍拒绝。不从候选复制expected，不删除绑定，也不从示例首场补造历史。
+
+原106中5个死亡恢复夹具曾以stable H1/revision10作before，却带battle11终局；已明确纠正为真实combat H4/HP1/revision11→dead revision12，保留原ID、trace及接受／拒绝预期。旧／新完整夹具与理由见[修订账](validation/r1-regression-cases.json)，原件／历史不改。
+
+活态候选及提供的完整独立锚还须各自验证battleId与execution／entryRevision／enemyId的关系；相同错误ID同时出现在两者中不能靠等值放行。最小冷锚、完整冷锚分别有错入场revision反例，合法第二场活态继续保留。

@@ -5412,17 +5412,17 @@
       "operation": "restore",
       "source": "DEC-052 D04/D05; ../02-combat-lifecycle-and-order.md",
       "before": {
-        "phase": "stable",
-        "revision": 10,
+        "phase": "combat",
+        "revision": 11,
         "cycle": 1,
         "taskDay": 1,
-        "hp": 8,
+        "hp": 1,
         "energy": 20,
         "bleeding": false,
         "firstBandageUsed": false,
         "quota": 1,
         "specialty": "survival",
-        "node": "H1",
+        "node": "H4",
         "closed": false,
         "originUnits": [
           "origin:bandage:0"
@@ -5434,10 +5434,26 @@
           "intent": "basic",
           "count": 0,
           "risk": 0,
-          "encountered": false,
+          "encountered": true,
           "defeated": false
         },
-        "battle": null,
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
         "exitIds": [],
         "terminal": null
       },
@@ -5447,7 +5463,7 @@
         "expected": {
           "origin": "independent-before-read",
           "binding": "TEST-execution",
-          "revision": 10,
+          "revision": 12,
           "phase": "dead",
           "battleId": null,
           "enemy": {
@@ -5456,13 +5472,13 @@
             "intent": "basic",
             "count": 0,
             "risk": 0,
-            "encountered": false,
+            "encountered": true,
             "defeated": false
           },
           "queue": null,
           "current": {
             "phase": "dead",
-            "revision": 10,
+            "revision": 12,
             "cycle": 1,
             "taskDay": 1,
             "hp": 0,
@@ -5471,7 +5487,7 @@
             "firstBandageUsed": false,
             "quota": 1,
             "specialty": "survival",
-            "node": "H1",
+            "node": "H4",
             "closed": true,
             "originUnits": [
               "origin:bandage:0"
@@ -5483,7 +5499,7 @@
               "intent": "basic",
               "count": 0,
               "risk": 0,
-              "encountered": false,
+              "encountered": true,
               "defeated": false
             },
             "battle": null,
@@ -5507,7 +5523,7 @@
       },
       "proposal": {
         "phase": "dead",
-        "revision": 10,
+        "revision": 12,
         "cycle": 1,
         "taskDay": 1,
         "hp": 0,
@@ -5516,7 +5532,7 @@
         "firstBandageUsed": false,
         "quota": 1,
         "specialty": "survival",
-        "node": "H1",
+        "node": "H4",
         "closed": true,
         "originUnits": [
           "origin:bandage:0"
@@ -5528,7 +5544,7 @@
           "intent": "basic",
           "count": 0,
           "risk": 0,
-          "encountered": false,
+          "encountered": true,
           "defeated": false
         },
         "battle": null,
@@ -8457,17 +8473,17 @@
       "operation": "restore",
       "source": "DEC-052 D04/D05; ../02-combat-lifecycle-and-order.md",
       "before": {
-        "phase": "stable",
-        "revision": 10,
+        "phase": "combat",
+        "revision": 11,
         "cycle": 1,
         "taskDay": 1,
-        "hp": 8,
+        "hp": 1,
         "energy": 20,
         "bleeding": false,
         "firstBandageUsed": false,
         "quota": 1,
         "specialty": "survival",
-        "node": "H1",
+        "node": "H4",
         "closed": false,
         "originUnits": [
           "origin:bandage:0"
@@ -8479,10 +8495,26 @@
           "intent": "basic",
           "count": 0,
           "risk": 0,
-          "encountered": false,
+          "encountered": true,
           "defeated": false
         },
-        "battle": null,
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
         "exitIds": [],
         "terminal": null
       },
@@ -8492,7 +8524,7 @@
         "expected": {
           "origin": "independent-before-read",
           "binding": "TEST-execution",
-          "revision": 10,
+          "revision": 12,
           "phase": "dead",
           "battleId": null,
           "enemy": {
@@ -8501,13 +8533,13 @@
             "intent": "basic",
             "count": 0,
             "risk": 0,
-            "encountered": false,
+            "encountered": true,
             "defeated": false
           },
           "queue": null,
           "current": {
             "phase": "dead",
-            "revision": 10,
+            "revision": 12,
             "cycle": 1,
             "taskDay": 1,
             "hp": 0,
@@ -8516,7 +8548,7 @@
             "firstBandageUsed": false,
             "quota": 1,
             "specialty": "survival",
-            "node": "H1",
+            "node": "H4",
             "closed": true,
             "originUnits": [
               "origin:bandage:0"
@@ -8528,7 +8560,7 @@
               "intent": "basic",
               "count": 0,
               "risk": 0,
-              "encountered": false,
+              "encountered": true,
               "defeated": false
             },
             "battle": null,
@@ -8552,7 +8584,7 @@
       },
       "proposal": {
         "phase": "dead",
-        "revision": 10,
+        "revision": 12,
         "cycle": 1,
         "taskDay": 1,
         "hp": 0,
@@ -8561,7 +8593,7 @@
         "firstBandageUsed": false,
         "quota": 1,
         "specialty": "survival",
-        "node": "H1",
+        "node": "H4",
         "closed": true,
         "originUnits": [
           "origin:bandage:0"
@@ -8573,7 +8605,7 @@
           "intent": "basic",
           "count": 0,
           "risk": 0,
-          "encountered": false,
+          "encountered": true,
           "defeated": false
         },
         "battle": null,
@@ -8594,17 +8626,17 @@
       "operation": "restore",
       "source": "DEC-052 D04/D05; ../02-combat-lifecycle-and-order.md",
       "before": {
-        "phase": "stable",
-        "revision": 10,
+        "phase": "combat",
+        "revision": 11,
         "cycle": 1,
         "taskDay": 1,
-        "hp": 8,
+        "hp": 1,
         "energy": 20,
         "bleeding": false,
         "firstBandageUsed": false,
         "quota": 1,
         "specialty": "survival",
-        "node": "H1",
+        "node": "H4",
         "closed": false,
         "originUnits": [
           "origin:bandage:0"
@@ -8616,10 +8648,26 @@
           "intent": "basic",
           "count": 0,
           "risk": 0,
-          "encountered": false,
+          "encountered": true,
           "defeated": false
         },
-        "battle": null,
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
         "exitIds": [],
         "terminal": null
       },
@@ -8629,7 +8677,7 @@
         "expected": {
           "origin": "independent-before-read",
           "binding": "TEST-execution",
-          "revision": 10,
+          "revision": 12,
           "phase": "dead",
           "battleId": null,
           "enemy": {
@@ -8638,13 +8686,13 @@
             "intent": "basic",
             "count": 0,
             "risk": 0,
-            "encountered": false,
+            "encountered": true,
             "defeated": false
           },
           "queue": null,
           "current": {
             "phase": "dead",
-            "revision": 10,
+            "revision": 12,
             "cycle": 1,
             "taskDay": 1,
             "hp": 0,
@@ -8653,7 +8701,7 @@
             "firstBandageUsed": false,
             "quota": 1,
             "specialty": "survival",
-            "node": "H1",
+            "node": "H4",
             "closed": true,
             "originUnits": [
               "origin:bandage:0"
@@ -8665,7 +8713,7 @@
               "intent": "basic",
               "count": 0,
               "risk": 0,
-              "encountered": false,
+              "encountered": true,
               "defeated": false
             },
             "battle": null,
@@ -8689,7 +8737,7 @@
       },
       "proposal": {
         "phase": "dead",
-        "revision": 10,
+        "revision": 12,
         "cycle": 1,
         "taskDay": 1,
         "hp": 0,
@@ -8698,7 +8746,7 @@
         "firstBandageUsed": false,
         "quota": 1,
         "specialty": "survival",
-        "node": "H1",
+        "node": "H4",
         "closed": true,
         "originUnits": [
           "origin:bandage:0"
@@ -8710,7 +8758,7 @@
           "intent": "basic",
           "count": 0,
           "risk": 0,
-          "encountered": false,
+          "encountered": true,
           "defeated": false
         },
         "battle": null,
@@ -8738,17 +8786,17 @@
       "operation": "restore",
       "source": "DEC-052 D04/D05; ../02-combat-lifecycle-and-order.md",
       "before": {
-        "phase": "stable",
-        "revision": 10,
+        "phase": "combat",
+        "revision": 11,
         "cycle": 1,
         "taskDay": 1,
-        "hp": 8,
+        "hp": 1,
         "energy": 20,
         "bleeding": false,
         "firstBandageUsed": false,
         "quota": 1,
         "specialty": "survival",
-        "node": "H1",
+        "node": "H4",
         "closed": false,
         "originUnits": [
           "origin:bandage:0"
@@ -8760,10 +8808,26 @@
           "intent": "basic",
           "count": 0,
           "risk": 0,
-          "encountered": false,
+          "encountered": true,
           "defeated": false
         },
-        "battle": null,
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
         "exitIds": [],
         "terminal": null
       },
@@ -8773,7 +8837,7 @@
         "expected": {
           "origin": "independent-before-read",
           "binding": "TEST-execution",
-          "revision": 10,
+          "revision": 12,
           "phase": "dead",
           "battleId": null,
           "enemy": {
@@ -8782,13 +8846,13 @@
             "intent": "basic",
             "count": 0,
             "risk": 0,
-            "encountered": false,
+            "encountered": true,
             "defeated": false
           },
           "queue": null,
           "current": {
             "phase": "dead",
-            "revision": 10,
+            "revision": 12,
             "cycle": 1,
             "taskDay": 1,
             "hp": 0,
@@ -8797,7 +8861,7 @@
             "firstBandageUsed": false,
             "quota": 1,
             "specialty": "survival",
-            "node": "H1",
+            "node": "H4",
             "closed": true,
             "originUnits": [
               "origin:bandage:0"
@@ -8809,7 +8873,7 @@
               "intent": "basic",
               "count": 0,
               "risk": 0,
-              "encountered": false,
+              "encountered": true,
               "defeated": false
             },
             "battle": null,
@@ -8833,7 +8897,7 @@
       },
       "proposal": {
         "phase": "dead",
-        "revision": 10,
+        "revision": 12,
         "cycle": 1,
         "taskDay": 1,
         "hp": 0,
@@ -8842,7 +8906,7 @@
         "firstBandageUsed": false,
         "quota": 1,
         "specialty": "survival",
-        "node": "H1",
+        "node": "H4",
         "closed": true,
         "originUnits": [
           "origin:bandage:0"
@@ -8854,7 +8918,7 @@
           "intent": "basic",
           "count": 0,
           "risk": 0,
-          "encountered": false,
+          "encountered": true,
           "defeated": false
         },
         "battle": null,
@@ -8882,17 +8946,17 @@
       "operation": "restore",
       "source": "DEC-052 D04/D05; ../02-combat-lifecycle-and-order.md",
       "before": {
-        "phase": "stable",
-        "revision": 10,
+        "phase": "combat",
+        "revision": 11,
         "cycle": 1,
         "taskDay": 1,
-        "hp": 8,
+        "hp": 1,
         "energy": 20,
         "bleeding": false,
         "firstBandageUsed": false,
         "quota": 1,
         "specialty": "survival",
-        "node": "H1",
+        "node": "H4",
         "closed": false,
         "originUnits": [
           "origin:bandage:0"
@@ -8904,10 +8968,26 @@
           "intent": "basic",
           "count": 0,
           "risk": 0,
-          "encountered": false,
+          "encountered": true,
           "defeated": false
         },
-        "battle": null,
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
         "exitIds": [],
         "terminal": null
       },
@@ -8917,7 +8997,7 @@
         "expected": {
           "origin": "independent-before-read",
           "binding": "TEST-execution",
-          "revision": 10,
+          "revision": 12,
           "phase": "dead",
           "battleId": null,
           "enemy": {
@@ -8926,13 +9006,13 @@
             "intent": "basic",
             "count": 0,
             "risk": 0,
-            "encountered": false,
+            "encountered": true,
             "defeated": false
           },
           "queue": null,
           "current": {
             "phase": "dead",
-            "revision": 10,
+            "revision": 12,
             "cycle": 1,
             "taskDay": 1,
             "hp": 0,
@@ -8941,7 +9021,7 @@
             "firstBandageUsed": false,
             "quota": 1,
             "specialty": "survival",
-            "node": "H1",
+            "node": "H4",
             "closed": true,
             "originUnits": [
               "origin:bandage:0"
@@ -8953,7 +9033,7 @@
               "intent": "basic",
               "count": 0,
               "risk": 0,
-              "encountered": false,
+              "encountered": true,
               "defeated": false
             },
             "battle": null,
@@ -8977,7 +9057,7 @@
       },
       "proposal": {
         "phase": "dead",
-        "revision": 10,
+        "revision": 12,
         "cycle": 1,
         "taskDay": 1,
         "hp": 0,
@@ -8986,7 +9066,7 @@
         "firstBandageUsed": false,
         "quota": 1,
         "specialty": "survival",
-        "node": "H1",
+        "node": "H4",
         "closed": true,
         "originUnits": [
           "origin:bandage:0"
@@ -8998,7 +9078,7 @@
           "intent": "basic",
           "count": 0,
           "risk": 0,
-          "encountered": false,
+          "encountered": true,
           "defeated": false
         },
         "battle": null,

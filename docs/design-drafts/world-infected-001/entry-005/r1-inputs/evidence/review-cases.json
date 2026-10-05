@@ -1,0 +1,3488 @@
+{
+  "status": "MAINLINE INDEPENDENT FINITE PROBES; not native CTB or v4",
+  "cases": [
+    {
+      "id": "C01-first-entry",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "ACTIVE_DECISION",
+      "support": "supported-boundary",
+      "operation": "entry",
+      "before": {
+        "phase": "stable",
+        "revision": 10,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H1",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "move",
+        "expectedRevision": 10,
+        "edge": "H1-H4:forward"
+      },
+      "proposal": {
+        "arrivalHp": 8,
+        "arrivalEnergy": 16,
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "priorEnemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "arrivalPending": true
+      }
+    },
+    {
+      "id": "C02-E0-arrival",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "ACTIVE_DECISION",
+      "support": "supported-boundary",
+      "operation": "entry",
+      "before": {
+        "phase": "stable",
+        "revision": 10,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 2,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H1",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "move",
+        "expectedRevision": 10,
+        "edge": "H1-H4:forward"
+      },
+      "proposal": {
+        "arrivalHp": 8,
+        "arrivalEnergy": 0,
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "priorEnemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "arrivalPending": true
+      }
+    },
+    {
+      "id": "C03-death-before-live-entry",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "DEAD_ONLY",
+      "support": "supported-boundary",
+      "operation": "entry",
+      "before": {
+        "phase": "stable",
+        "revision": 10,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H1",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "move",
+        "expectedRevision": 10,
+        "edge": "H1-H4:forward"
+      },
+      "proposal": {
+        "arrivalHp": 0,
+        "arrivalEnergy": 16,
+        "battle": null,
+        "priorEnemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "arrivalPending": true
+      }
+    },
+    {
+      "id": "C04-reentry",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "ACTIVE_DECISION",
+      "support": "supported-boundary",
+      "operation": "entry",
+      "before": {
+        "phase": "stable",
+        "revision": 20,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H1",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 10,
+          "intent": "basic",
+          "count": 2,
+          "risk": 3,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [
+          "TEST-execution:11:orderly"
+        ],
+        "terminal": null
+      },
+      "command": {
+        "kind": "move",
+        "expectedRevision": 20,
+        "edge": "H1-H4:forward"
+      },
+      "proposal": {
+        "arrivalHp": 8,
+        "arrivalEnergy": 16,
+        "battle": {
+          "id": "TEST-execution:21:orderly",
+          "entryRevision": 21,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "reentry",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 50,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 2,
+          "entryRisk": 3
+        },
+        "priorEnemy": {
+          "id": "orderly",
+          "hp": 10,
+          "intent": "basic",
+          "count": 2,
+          "risk": 3,
+          "encountered": true,
+          "defeated": false
+        },
+        "arrivalPending": true
+      }
+    },
+    {
+      "id": "C05-HP1-bleeding-death",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "DEAD_ONLY",
+      "support": "supported-boundary",
+      "operation": "trace",
+      "before": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "action"
+      },
+      "proposal": {
+        "steps": [
+          {
+            "kind": "primary",
+            "before": 1,
+            "requested": 0,
+            "after": 1
+          },
+          {
+            "kind": "bleeding",
+            "before": 1,
+            "requested": 1,
+            "after": 0
+          }
+        ],
+        "finalHp": 0,
+        "outcome": "death",
+        "sourceBinding": "TEST-execution",
+        "sourceBattle": "TEST-execution:11:orderly",
+        "firstBefore": false,
+        "firstAfter": false
+      }
+    },
+    {
+      "id": "C06-heal-clips-then-damage",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "TRACE_ALIVE",
+      "support": "supported-boundary",
+      "operation": "trace",
+      "before": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 11,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "action"
+      },
+      "proposal": {
+        "steps": [
+          {
+            "kind": "heal",
+            "before": 11,
+            "requested": 2,
+            "after": 12
+          },
+          {
+            "kind": "enemy-direct",
+            "before": 12,
+            "requested": 2,
+            "after": 10
+          }
+        ],
+        "finalHp": 10,
+        "outcome": "alive",
+        "sourceBinding": "TEST-execution",
+        "sourceBattle": "TEST-execution:11:orderly",
+        "firstBefore": false,
+        "firstAfter": true
+      }
+    },
+    {
+      "id": "C07-normal-H0-empty",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "NORMAL_EMPTY",
+      "support": "supported-boundary",
+      "operation": "trace",
+      "before": {
+        "phase": "stable",
+        "revision": 10,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H0",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "normal-H0"
+      },
+      "proposal": {
+        "steps": [],
+        "finalHp": 8,
+        "outcome": "alive",
+        "sourceBinding": "TEST-execution",
+        "sourceBattle": null,
+        "firstBefore": false,
+        "firstAfter": false
+      }
+    },
+    {
+      "id": "C08-active-cold",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "RESTORED",
+      "support": "supported-boundary",
+      "operation": "restore",
+      "before": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "cold",
+        "format": 4,
+        "expected": {
+          "origin": "independent-before-read",
+          "binding": "TEST-execution",
+          "revision": 11,
+          "phase": "combat",
+          "battleId": "TEST-execution:11:orderly",
+          "enemy": {
+            "id": "orderly",
+            "hp": 14,
+            "intent": "basic",
+            "count": 0,
+            "risk": 0,
+            "encountered": true,
+            "defeated": false
+          },
+          "queue": [
+            0,
+            0,
+            70
+          ],
+          "current": {
+            "phase": "combat",
+            "revision": 11,
+            "cycle": 1,
+            "taskDay": 1,
+            "hp": 1,
+            "energy": 20,
+            "bleeding": true,
+            "firstBandageUsed": false,
+            "quota": 1,
+            "specialty": "survival",
+            "node": "H4",
+            "closed": false,
+            "originUnits": [
+              "origin:bandage:0"
+            ],
+            "consumed": [],
+            "enemy": {
+              "id": "orderly",
+              "hp": 14,
+              "intent": "basic",
+              "count": 0,
+              "risk": 0,
+              "encountered": true,
+              "defeated": false
+            },
+            "battle": {
+              "id": "TEST-execution:11:orderly",
+              "entryRevision": 11,
+              "from": "H1",
+              "node": "H4",
+              "edge": "H1-H4:forward",
+              "engagement": "first",
+              "current": 0,
+              "playerNext": 0,
+              "enemyNext": 70,
+              "defense": null,
+              "escape": null,
+              "binding": "TEST-execution",
+              "enemyId": "orderly",
+              "entryEnemyCount": 0,
+              "entryRisk": 0
+            },
+            "exitIds": [],
+            "terminal": null
+          }
+        }
+      },
+      "proposal": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      }
+    },
+    {
+      "id": "C09-first-battle-dead-cold",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "RESTORED",
+      "support": "supported-boundary",
+      "operation": "restore",
+      "before": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "cold",
+        "format": 4,
+        "expected": {
+          "origin": "independent-before-read",
+          "binding": "TEST-execution",
+          "revision": 12,
+          "phase": "dead",
+          "battleId": null,
+          "enemy": {
+            "id": "orderly",
+            "hp": 14,
+            "intent": "basic",
+            "count": 0,
+            "risk": 0,
+            "encountered": true,
+            "defeated": false
+          },
+          "queue": null,
+          "current": {
+            "phase": "dead",
+            "revision": 12,
+            "cycle": 1,
+            "taskDay": 1,
+            "hp": 0,
+            "energy": 20,
+            "bleeding": true,
+            "firstBandageUsed": false,
+            "quota": 1,
+            "specialty": "survival",
+            "node": "H4",
+            "closed": true,
+            "originUnits": [
+              "origin:bandage:0"
+            ],
+            "consumed": [],
+            "enemy": {
+              "id": "orderly",
+              "hp": 14,
+              "intent": "basic",
+              "count": 0,
+              "risk": 0,
+              "encountered": true,
+              "defeated": false
+            },
+            "battle": null,
+            "exitIds": [],
+            "terminal": {
+              "source": "combat-death",
+              "binding": "TEST-execution",
+              "battleId": "TEST-execution:11:orderly",
+              "beforeHp": 1,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "before": 1,
+                  "requested": 0,
+                  "after": 1
+                },
+                {
+                  "kind": "bleeding",
+                  "before": 1,
+                  "requested": 1,
+                  "after": 0
+                }
+              ]
+            }
+          }
+        }
+      },
+      "proposal": {
+        "phase": "dead",
+        "revision": 12,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 0,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": true,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": {
+          "source": "combat-death",
+          "binding": "TEST-execution",
+          "battleId": "TEST-execution:11:orderly",
+          "beforeHp": 1,
+          "steps": [
+            {
+              "kind": "primary",
+              "before": 1,
+              "requested": 0,
+              "after": 1
+            },
+            {
+              "kind": "bleeding",
+              "before": 1,
+              "requested": 1,
+              "after": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C10-bool-revision-already-rejected",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "entry",
+      "before": {
+        "phase": "stable",
+        "revision": 10,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H1",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "move",
+        "expectedRevision": true,
+        "edge": "H1-H4:forward"
+      },
+      "proposal": {
+        "arrivalHp": 8,
+        "arrivalEnergy": 16,
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "priorEnemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "arrivalPending": true
+      }
+    },
+    {
+      "id": "C11-bool-step-already-rejected",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "trace",
+      "before": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "action"
+      },
+      "proposal": {
+        "steps": [
+          {
+            "kind": "primary",
+            "before": 1,
+            "requested": false,
+            "after": 1
+          },
+          {
+            "kind": "bleeding",
+            "before": 1,
+            "requested": 1,
+            "after": 0
+          }
+        ],
+        "finalHp": 0,
+        "outcome": "death",
+        "sourceBinding": "TEST-execution",
+        "sourceBattle": "TEST-execution:11:orderly",
+        "firstBefore": false,
+        "firstAfter": false
+      }
+    },
+    {
+      "id": "C12-wrong-binding-already-rejected",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "restore",
+      "before": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "cold",
+        "format": 4,
+        "expected": {
+          "origin": "independent-before-read",
+          "binding": "TEST-other",
+          "revision": 11,
+          "phase": "combat",
+          "battleId": "TEST-execution:11:orderly",
+          "enemy": {
+            "id": "orderly",
+            "hp": 14,
+            "intent": "basic",
+            "count": 0,
+            "risk": 0,
+            "encountered": true,
+            "defeated": false
+          },
+          "queue": [
+            0,
+            0,
+            70
+          ],
+          "current": {
+            "phase": "combat",
+            "revision": 11,
+            "cycle": 1,
+            "taskDay": 1,
+            "hp": 1,
+            "energy": 20,
+            "bleeding": true,
+            "firstBandageUsed": false,
+            "quota": 1,
+            "specialty": "survival",
+            "node": "H4",
+            "closed": false,
+            "originUnits": [
+              "origin:bandage:0"
+            ],
+            "consumed": [],
+            "enemy": {
+              "id": "orderly",
+              "hp": 14,
+              "intent": "basic",
+              "count": 0,
+              "risk": 0,
+              "encountered": true,
+              "defeated": false
+            },
+            "battle": {
+              "id": "TEST-execution:11:orderly",
+              "entryRevision": 11,
+              "from": "H1",
+              "node": "H4",
+              "edge": "H1-H4:forward",
+              "engagement": "first",
+              "current": 0,
+              "playerNext": 0,
+              "enemyNext": 70,
+              "defense": null,
+              "escape": null,
+              "binding": "TEST-execution",
+              "enemyId": "orderly",
+              "entryEnemyCount": 0,
+              "entryRisk": 0
+            },
+            "exitIds": [],
+            "terminal": null
+          }
+        }
+      },
+      "proposal": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      }
+    },
+    {
+      "id": "C13-reentry-active-cold",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "RESTORED",
+      "support": "supported-boundary",
+      "operation": "restore",
+      "before": {
+        "phase": "combat",
+        "revision": 21,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 10,
+          "intent": "basic",
+          "count": 2,
+          "risk": 3,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:21:orderly",
+          "entryRevision": 21,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "reentry",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 50,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 2,
+          "entryRisk": 3
+        },
+        "exitIds": [
+          "TEST-execution:11:orderly"
+        ],
+        "terminal": null
+      },
+      "command": {
+        "kind": "cold",
+        "format": 4,
+        "expected": {
+          "origin": "independent-before-read",
+          "binding": "TEST-execution",
+          "revision": 21,
+          "phase": "combat",
+          "battleId": "TEST-execution:21:orderly",
+          "enemy": {
+            "id": "orderly",
+            "hp": 10,
+            "intent": "basic",
+            "count": 2,
+            "risk": 3,
+            "encountered": true,
+            "defeated": false
+          },
+          "queue": [
+            0,
+            0,
+            50
+          ],
+          "current": {
+            "phase": "combat",
+            "revision": 21,
+            "cycle": 1,
+            "taskDay": 1,
+            "hp": 1,
+            "energy": 20,
+            "bleeding": true,
+            "firstBandageUsed": false,
+            "quota": 1,
+            "specialty": "survival",
+            "node": "H4",
+            "closed": false,
+            "originUnits": [
+              "origin:bandage:0"
+            ],
+            "consumed": [],
+            "enemy": {
+              "id": "orderly",
+              "hp": 10,
+              "intent": "basic",
+              "count": 2,
+              "risk": 3,
+              "encountered": true,
+              "defeated": false
+            },
+            "battle": {
+              "id": "TEST-execution:21:orderly",
+              "entryRevision": 21,
+              "from": "H1",
+              "node": "H4",
+              "edge": "H1-H4:forward",
+              "engagement": "reentry",
+              "current": 0,
+              "playerNext": 0,
+              "enemyNext": 50,
+              "defense": null,
+              "escape": null,
+              "binding": "TEST-execution",
+              "enemyId": "orderly",
+              "entryEnemyCount": 2,
+              "entryRisk": 3
+            },
+            "exitIds": [
+              "TEST-execution:11:orderly"
+            ],
+            "terminal": null
+          }
+        }
+      },
+      "proposal": {
+        "phase": "combat",
+        "revision": 21,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 10,
+          "intent": "basic",
+          "count": 2,
+          "risk": 3,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:21:orderly",
+          "entryRevision": 21,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "reentry",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 50,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 2,
+          "entryRisk": 3
+        },
+        "exitIds": [
+          "TEST-execution:11:orderly"
+        ],
+        "terminal": null
+      }
+    },
+    {
+      "id": "F01-arrival-HP13",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "entry",
+      "before": {
+        "phase": "stable",
+        "revision": 10,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H1",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "move",
+        "expectedRevision": 10,
+        "edge": "H1-H4:forward"
+      },
+      "proposal": {
+        "arrivalHp": 13,
+        "arrivalEnergy": 16,
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "priorEnemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "arrivalPending": true
+      }
+    },
+    {
+      "id": "F01-arrival-E101",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "entry",
+      "before": {
+        "phase": "stable",
+        "revision": 10,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H1",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "move",
+        "expectedRevision": 10,
+        "edge": "H1-H4:forward"
+      },
+      "proposal": {
+        "arrivalHp": 8,
+        "arrivalEnergy": 101,
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "priorEnemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "arrivalPending": true
+      }
+    },
+    {
+      "id": "F01-arrivalPending-int",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "entry",
+      "before": {
+        "phase": "stable",
+        "revision": 10,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H1",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "move",
+        "expectedRevision": 10,
+        "edge": "H1-H4:forward"
+      },
+      "proposal": {
+        "arrivalHp": 8,
+        "arrivalEnergy": 16,
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "priorEnemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "arrivalPending": 1
+      }
+    },
+    {
+      "id": "F01-entry-defense-in-progress",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "entry",
+      "before": {
+        "phase": "stable",
+        "revision": 10,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H1",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "move",
+        "expectedRevision": 10,
+        "edge": "H1-H4:forward"
+      },
+      "proposal": {
+        "arrivalHp": 8,
+        "arrivalEnergy": 16,
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": {
+            "test": "not-stable"
+          },
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "priorEnemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "arrivalPending": true
+      }
+    },
+    {
+      "id": "F01-entry-escape-in-progress",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "entry",
+      "before": {
+        "phase": "stable",
+        "revision": 10,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H1",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "move",
+        "expectedRevision": 10,
+        "edge": "H1-H4:forward"
+      },
+      "proposal": {
+        "arrivalHp": 8,
+        "arrivalEnergy": 16,
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": {
+            "test": "not-stable"
+          },
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "priorEnemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "arrivalPending": true
+      }
+    },
+    {
+      "id": "F01-empty-battle-id",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "entry",
+      "before": {
+        "phase": "stable",
+        "revision": 10,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H1",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "move",
+        "expectedRevision": 10,
+        "edge": "H1-H4:forward"
+      },
+      "proposal": {
+        "arrivalHp": 8,
+        "arrivalEnergy": 16,
+        "battle": {
+          "id": "",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "priorEnemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "arrivalPending": true
+      }
+    },
+    {
+      "id": "F01-bool-finalHP0",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "trace",
+      "before": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "action"
+      },
+      "proposal": {
+        "steps": [
+          {
+            "kind": "primary",
+            "before": 1,
+            "requested": 0,
+            "after": 1
+          },
+          {
+            "kind": "bleeding",
+            "before": 1,
+            "requested": 1,
+            "after": 0
+          }
+        ],
+        "finalHp": false,
+        "outcome": "death",
+        "sourceBinding": "TEST-execution",
+        "sourceBattle": "TEST-execution:11:orderly",
+        "firstBefore": false,
+        "firstAfter": false
+      }
+    },
+    {
+      "id": "F01-unknown-outcome",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "trace",
+      "before": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "action"
+      },
+      "proposal": {
+        "steps": [
+          {
+            "kind": "primary",
+            "before": 1,
+            "requested": 0,
+            "after": 1
+          }
+        ],
+        "finalHp": 1,
+        "outcome": null,
+        "sourceBinding": "TEST-execution",
+        "sourceBattle": "TEST-execution:11:orderly",
+        "firstBefore": false,
+        "firstAfter": false
+      }
+    },
+    {
+      "id": "F01-string-firstAfter",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "trace",
+      "before": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "action"
+      },
+      "proposal": {
+        "steps": [
+          {
+            "kind": "primary",
+            "before": 1,
+            "requested": 0,
+            "after": 1
+          },
+          {
+            "kind": "bleeding",
+            "before": 1,
+            "requested": 1,
+            "after": 0
+          }
+        ],
+        "finalHp": 0,
+        "outcome": "death",
+        "sourceBinding": "TEST-execution",
+        "sourceBattle": "TEST-execution:11:orderly",
+        "firstBefore": false,
+        "firstAfter": "true"
+      }
+    },
+    {
+      "id": "F01-null-steps",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "trace",
+      "before": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "action"
+      },
+      "proposal": {
+        "steps": null,
+        "finalHp": 0,
+        "outcome": "death",
+        "sourceBinding": "TEST-execution",
+        "sourceBattle": "TEST-execution:11:orderly",
+        "firstBefore": false,
+        "firstAfter": false
+      }
+    },
+    {
+      "id": "F01-bool-expected-revision",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "restore",
+      "before": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "cold",
+        "format": 4,
+        "expected": {
+          "origin": "independent-before-read",
+          "binding": "TEST-execution",
+          "revision": true,
+          "phase": "stable",
+          "battleId": null,
+          "enemy": {
+            "id": "orderly",
+            "hp": 14,
+            "intent": "basic",
+            "count": 0,
+            "risk": 0,
+            "encountered": false,
+            "defeated": false
+          },
+          "queue": null,
+          "current": {
+            "phase": "stable",
+            "revision": 1,
+            "cycle": 1,
+            "taskDay": 1,
+            "hp": 8,
+            "energy": 20,
+            "bleeding": false,
+            "firstBandageUsed": false,
+            "quota": 1,
+            "specialty": "survival",
+            "node": "H1",
+            "closed": false,
+            "originUnits": [
+              "origin:bandage:0"
+            ],
+            "consumed": [],
+            "enemy": {
+              "id": "orderly",
+              "hp": 14,
+              "intent": "basic",
+              "count": 0,
+              "risk": 0,
+              "encountered": false,
+              "defeated": false
+            },
+            "battle": null,
+            "exitIds": [],
+            "terminal": null
+          }
+        }
+      },
+      "proposal": {
+        "phase": "stable",
+        "revision": 1,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H1",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": null
+      }
+    },
+    {
+      "id": "F01-int-expected-boolean",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "restore",
+      "before": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "cold",
+        "format": 4,
+        "expected": {
+          "origin": "independent-before-read",
+          "binding": "TEST-execution",
+          "revision": 11,
+          "phase": "combat",
+          "battleId": "TEST-execution:11:orderly",
+          "enemy": {
+            "id": "orderly",
+            "hp": 14,
+            "intent": "basic",
+            "count": 0,
+            "risk": 0,
+            "encountered": 1,
+            "defeated": false
+          },
+          "queue": [
+            0,
+            0,
+            70
+          ],
+          "current": {
+            "phase": "combat",
+            "revision": 11,
+            "cycle": 1,
+            "taskDay": 1,
+            "hp": 1,
+            "energy": 20,
+            "bleeding": true,
+            "firstBandageUsed": false,
+            "quota": 1,
+            "specialty": "survival",
+            "node": "H4",
+            "closed": false,
+            "originUnits": [
+              "origin:bandage:0"
+            ],
+            "consumed": [],
+            "enemy": {
+              "id": "orderly",
+              "hp": 14,
+              "intent": "basic",
+              "count": 0,
+              "risk": 0,
+              "encountered": true,
+              "defeated": false
+            },
+            "battle": {
+              "id": "TEST-execution:11:orderly",
+              "entryRevision": 11,
+              "from": "H1",
+              "node": "H4",
+              "edge": "H1-H4:forward",
+              "engagement": "first",
+              "current": 0,
+              "playerNext": 0,
+              "enemyNext": 70,
+              "defense": null,
+              "escape": null,
+              "binding": "TEST-execution",
+              "enemyId": "orderly",
+              "entryEnemyCount": 0,
+              "entryRisk": 0
+            },
+            "exitIds": [],
+            "terminal": null
+          }
+        }
+      },
+      "proposal": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      }
+    },
+    {
+      "id": "F01-bool-expected-queue",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "restore",
+      "before": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "cold",
+        "format": 4,
+        "expected": {
+          "origin": "independent-before-read",
+          "binding": "TEST-execution",
+          "revision": 11,
+          "phase": "combat",
+          "battleId": "TEST-execution:11:orderly",
+          "enemy": {
+            "id": "orderly",
+            "hp": 14,
+            "intent": "basic",
+            "count": 0,
+            "risk": 0,
+            "encountered": true,
+            "defeated": false
+          },
+          "queue": [
+            false,
+            false,
+            70
+          ],
+          "current": {
+            "phase": "combat",
+            "revision": 11,
+            "cycle": 1,
+            "taskDay": 1,
+            "hp": 1,
+            "energy": 20,
+            "bleeding": true,
+            "firstBandageUsed": false,
+            "quota": 1,
+            "specialty": "survival",
+            "node": "H4",
+            "closed": false,
+            "originUnits": [
+              "origin:bandage:0"
+            ],
+            "consumed": [],
+            "enemy": {
+              "id": "orderly",
+              "hp": 14,
+              "intent": "basic",
+              "count": 0,
+              "risk": 0,
+              "encountered": true,
+              "defeated": false
+            },
+            "battle": {
+              "id": "TEST-execution:11:orderly",
+              "entryRevision": 11,
+              "from": "H1",
+              "node": "H4",
+              "edge": "H1-H4:forward",
+              "engagement": "first",
+              "current": 0,
+              "playerNext": 0,
+              "enemyNext": 70,
+              "defense": null,
+              "escape": null,
+              "binding": "TEST-execution",
+              "enemyId": "orderly",
+              "entryEnemyCount": 0,
+              "entryRisk": 0
+            },
+            "exitIds": [],
+            "terminal": null
+          }
+        }
+      },
+      "proposal": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      }
+    },
+    {
+      "id": "F01-missing-terminal-binding",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "restore",
+      "before": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "cold",
+        "format": 4,
+        "expected": {
+          "origin": "independent-before-read",
+          "binding": "TEST-execution",
+          "revision": 12,
+          "phase": "dead",
+          "battleId": null,
+          "enemy": {
+            "id": "orderly",
+            "hp": 14,
+            "intent": "basic",
+            "count": 0,
+            "risk": 0,
+            "encountered": true,
+            "defeated": false
+          },
+          "queue": null,
+          "current": {
+            "phase": "dead",
+            "revision": 12,
+            "cycle": 1,
+            "taskDay": 1,
+            "hp": 0,
+            "energy": 20,
+            "bleeding": true,
+            "firstBandageUsed": false,
+            "quota": 1,
+            "specialty": "survival",
+            "node": "H4",
+            "closed": true,
+            "originUnits": [
+              "origin:bandage:0"
+            ],
+            "consumed": [],
+            "enemy": {
+              "id": "orderly",
+              "hp": 14,
+              "intent": "basic",
+              "count": 0,
+              "risk": 0,
+              "encountered": true,
+              "defeated": false
+            },
+            "battle": null,
+            "exitIds": [],
+            "terminal": {
+              "source": "combat-death",
+              "binding": "TEST-execution",
+              "battleId": "TEST-execution:11:orderly",
+              "beforeHp": 1,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "before": 1,
+                  "requested": 0,
+                  "after": 1
+                },
+                {
+                  "kind": "bleeding",
+                  "before": 1,
+                  "requested": 1,
+                  "after": 0
+                }
+              ]
+            }
+          }
+        }
+      },
+      "proposal": {
+        "phase": "dead",
+        "revision": 12,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 0,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": true,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": {
+          "source": "combat-death",
+          "battleId": "TEST-execution:11:orderly",
+          "beforeHp": 1,
+          "steps": [
+            {
+              "kind": "primary",
+              "before": 1,
+              "requested": 0,
+              "after": 1
+            },
+            {
+              "kind": "bleeding",
+              "before": 1,
+              "requested": 1,
+              "after": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "F01-null-independent-current",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "restore",
+      "before": {
+        "phase": "combat",
+        "revision": 11,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:11:orderly",
+          "entryRevision": 11,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "first",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 70,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 0,
+          "entryRisk": 0
+        },
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "kind": "cold",
+        "format": 4,
+        "expected": {
+          "origin": "independent-before-read",
+          "binding": "TEST-execution",
+          "revision": 12,
+          "phase": "dead",
+          "battleId": null,
+          "enemy": {
+            "id": "orderly",
+            "hp": 14,
+            "intent": "basic",
+            "count": 0,
+            "risk": 0,
+            "encountered": true,
+            "defeated": false
+          },
+          "queue": null,
+          "current": null
+        }
+      },
+      "proposal": {
+        "phase": "dead",
+        "revision": 12,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 0,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": true,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": {
+          "source": "combat-death",
+          "binding": "TEST-execution",
+          "battleId": "TEST-execution:11:orderly",
+          "beforeHp": 1,
+          "steps": [
+            {
+              "kind": "primary",
+              "before": 1,
+              "requested": 0,
+              "after": 1
+            },
+            {
+              "kind": "bleeding",
+              "before": 1,
+              "requested": 1,
+              "after": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "F02-second-battle-death-cold",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "RESTORED",
+      "support": "supported-boundary",
+      "operation": "restore",
+      "before": {
+        "phase": "combat",
+        "revision": 21,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 10,
+          "intent": "basic",
+          "count": 2,
+          "risk": 3,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:21:orderly",
+          "entryRevision": 21,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "reentry",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 50,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 2,
+          "entryRisk": 3
+        },
+        "exitIds": [
+          "TEST-execution:11:orderly"
+        ],
+        "terminal": null
+      },
+      "command": {
+        "kind": "cold",
+        "format": 4,
+        "expected": {
+          "origin": "independent-before-read",
+          "binding": "TEST-execution",
+          "revision": 22,
+          "phase": "dead",
+          "battleId": null,
+          "enemy": {
+            "id": "orderly",
+            "hp": 10,
+            "intent": "basic",
+            "count": 2,
+            "risk": 3,
+            "encountered": true,
+            "defeated": false
+          },
+          "queue": null,
+          "current": {
+            "phase": "dead",
+            "revision": 22,
+            "cycle": 1,
+            "taskDay": 1,
+            "hp": 0,
+            "energy": 20,
+            "bleeding": true,
+            "firstBandageUsed": false,
+            "quota": 1,
+            "specialty": "survival",
+            "node": "H4",
+            "closed": true,
+            "originUnits": [
+              "origin:bandage:0"
+            ],
+            "consumed": [],
+            "enemy": {
+              "id": "orderly",
+              "hp": 10,
+              "intent": "basic",
+              "count": 2,
+              "risk": 3,
+              "encountered": true,
+              "defeated": false
+            },
+            "battle": null,
+            "exitIds": [
+              "TEST-execution:11:orderly"
+            ],
+            "terminal": {
+              "source": "combat-death",
+              "binding": "TEST-execution",
+              "battleId": "TEST-execution:21:orderly",
+              "beforeHp": 1,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "before": 1,
+                  "requested": 0,
+                  "after": 1
+                },
+                {
+                  "kind": "bleeding",
+                  "before": 1,
+                  "requested": 1,
+                  "after": 0
+                }
+              ]
+            }
+          }
+        }
+      },
+      "proposal": {
+        "phase": "dead",
+        "revision": 22,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 0,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": true,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 10,
+          "intent": "basic",
+          "count": 2,
+          "risk": 3,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [
+          "TEST-execution:11:orderly"
+        ],
+        "terminal": {
+          "source": "combat-death",
+          "binding": "TEST-execution",
+          "battleId": "TEST-execution:21:orderly",
+          "beforeHp": 1,
+          "steps": [
+            {
+              "kind": "primary",
+              "before": 1,
+              "requested": 0,
+              "after": 1
+            },
+            {
+              "kind": "bleeding",
+              "before": 1,
+              "requested": 1,
+              "after": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "F02-second-battle-death-same-progress",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "RESTORED",
+      "support": "supported-boundary",
+      "operation": "restore",
+      "before": {
+        "phase": "combat",
+        "revision": 21,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 10,
+          "intent": "basic",
+          "count": 2,
+          "risk": 3,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:21:orderly",
+          "entryRevision": 21,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "reentry",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 50,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 2,
+          "entryRisk": 3
+        },
+        "exitIds": [
+          "TEST-execution:11:orderly"
+        ],
+        "terminal": null
+      },
+      "command": {
+        "kind": "same-progress",
+        "format": 4,
+        "expected": {
+          "origin": "independent-before-read",
+          "binding": "TEST-execution",
+          "revision": 22,
+          "phase": "dead",
+          "battleId": null,
+          "enemy": {
+            "id": "orderly",
+            "hp": 10,
+            "intent": "basic",
+            "count": 2,
+            "risk": 3,
+            "encountered": true,
+            "defeated": false
+          },
+          "queue": null,
+          "current": {
+            "phase": "dead",
+            "revision": 22,
+            "cycle": 1,
+            "taskDay": 1,
+            "hp": 0,
+            "energy": 20,
+            "bleeding": true,
+            "firstBandageUsed": false,
+            "quota": 1,
+            "specialty": "survival",
+            "node": "H4",
+            "closed": true,
+            "originUnits": [
+              "origin:bandage:0"
+            ],
+            "consumed": [],
+            "enemy": {
+              "id": "orderly",
+              "hp": 10,
+              "intent": "basic",
+              "count": 2,
+              "risk": 3,
+              "encountered": true,
+              "defeated": false
+            },
+            "battle": null,
+            "exitIds": [
+              "TEST-execution:11:orderly"
+            ],
+            "terminal": {
+              "source": "combat-death",
+              "binding": "TEST-execution",
+              "battleId": "TEST-execution:21:orderly",
+              "beforeHp": 1,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "before": 1,
+                  "requested": 0,
+                  "after": 1
+                },
+                {
+                  "kind": "bleeding",
+                  "before": 1,
+                  "requested": 1,
+                  "after": 0
+                }
+              ]
+            }
+          }
+        }
+      },
+      "proposal": {
+        "phase": "dead",
+        "revision": 22,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 0,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": true,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 10,
+          "intent": "basic",
+          "count": 2,
+          "risk": 3,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [
+          "TEST-execution:11:orderly"
+        ],
+        "terminal": {
+          "source": "combat-death",
+          "binding": "TEST-execution",
+          "battleId": "TEST-execution:21:orderly",
+          "beforeHp": 1,
+          "steps": [
+            {
+              "kind": "primary",
+              "before": 1,
+              "requested": 0,
+              "after": 1
+            },
+            {
+              "kind": "bleeding",
+              "before": 1,
+              "requested": 1,
+              "after": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C14-wrong-second-battle-still-rejects",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "REJECTED",
+      "support": "expected-rejection",
+      "operation": "restore",
+      "before": {
+        "phase": "combat",
+        "revision": 21,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 1,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 10,
+          "intent": "basic",
+          "count": 2,
+          "risk": 3,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": {
+          "id": "TEST-execution:21:orderly",
+          "entryRevision": 21,
+          "from": "H1",
+          "node": "H4",
+          "edge": "H1-H4:forward",
+          "engagement": "reentry",
+          "current": 0,
+          "playerNext": 0,
+          "enemyNext": 50,
+          "defense": null,
+          "escape": null,
+          "binding": "TEST-execution",
+          "enemyId": "orderly",
+          "entryEnemyCount": 2,
+          "entryRisk": 3
+        },
+        "exitIds": [
+          "TEST-execution:11:orderly"
+        ],
+        "terminal": null
+      },
+      "command": {
+        "kind": "cold",
+        "format": 4,
+        "expected": {
+          "origin": "independent-before-read",
+          "binding": "TEST-execution",
+          "revision": 22,
+          "phase": "dead",
+          "battleId": null,
+          "enemy": {
+            "id": "orderly",
+            "hp": 10,
+            "intent": "basic",
+            "count": 2,
+            "risk": 3,
+            "encountered": true,
+            "defeated": false
+          },
+          "queue": null,
+          "current": {
+            "phase": "dead",
+            "revision": 22,
+            "cycle": 1,
+            "taskDay": 1,
+            "hp": 0,
+            "energy": 20,
+            "bleeding": true,
+            "firstBandageUsed": false,
+            "quota": 1,
+            "specialty": "survival",
+            "node": "H4",
+            "closed": true,
+            "originUnits": [
+              "origin:bandage:0"
+            ],
+            "consumed": [],
+            "enemy": {
+              "id": "orderly",
+              "hp": 10,
+              "intent": "basic",
+              "count": 2,
+              "risk": 3,
+              "encountered": true,
+              "defeated": false
+            },
+            "battle": null,
+            "exitIds": [
+              "TEST-execution:11:orderly"
+            ],
+            "terminal": {
+              "source": "combat-death",
+              "binding": "TEST-execution",
+              "battleId": "TEST-execution:21:orderly",
+              "beforeHp": 1,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "before": 1,
+                  "requested": 0,
+                  "after": 1
+                },
+                {
+                  "kind": "bleeding",
+                  "before": 1,
+                  "requested": 1,
+                  "after": 0
+                }
+              ]
+            }
+          }
+        }
+      },
+      "proposal": {
+        "phase": "dead",
+        "revision": 22,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 0,
+        "energy": 20,
+        "bleeding": true,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H4",
+        "closed": true,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 10,
+          "intent": "basic",
+          "count": 2,
+          "risk": 3,
+          "encountered": true,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [
+          "TEST-execution:11:orderly"
+        ],
+        "terminal": {
+          "source": "combat-death",
+          "binding": "TEST-execution",
+          "battleId": "TEST-forged",
+          "beforeHp": 1,
+          "steps": [
+            {
+              "kind": "primary",
+              "before": 1,
+              "requested": 0,
+              "after": 1
+            },
+            {
+              "kind": "bleeding",
+              "before": 1,
+              "requested": 1,
+              "after": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "U-real-new-world-CTB-reachability",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "UNSUPPORTED",
+      "support": "unsupported",
+      "operation": "unsupported",
+      "before": {
+        "phase": "stable",
+        "revision": 10,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H1",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "subject": "real-new-world-CTB-reachability"
+      },
+      "proposal": {}
+    },
+    {
+      "id": "U-browser-bootstrap",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "UNSUPPORTED",
+      "support": "unsupported",
+      "operation": "unsupported",
+      "before": {
+        "phase": "stable",
+        "revision": 10,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H1",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "subject": "browser-bootstrap"
+      },
+      "proposal": {}
+    },
+    {
+      "id": "U-complete-five-map-nine-combination-play",
+      "source": "AUD-df1c3ff/WORLD-ENTRY-005: F01/F02 and independent controls",
+      "expected": "UNSUPPORTED",
+      "support": "unsupported",
+      "operation": "unsupported",
+      "before": {
+        "phase": "stable",
+        "revision": 10,
+        "cycle": 1,
+        "taskDay": 1,
+        "hp": 8,
+        "energy": 20,
+        "bleeding": false,
+        "firstBandageUsed": false,
+        "quota": 1,
+        "specialty": "survival",
+        "node": "H1",
+        "closed": false,
+        "originUnits": [
+          "origin:bandage:0"
+        ],
+        "consumed": [],
+        "enemy": {
+          "id": "orderly",
+          "hp": 14,
+          "intent": "basic",
+          "count": 0,
+          "risk": 0,
+          "encountered": false,
+          "defeated": false
+        },
+        "battle": null,
+        "exitIds": [],
+        "terminal": null
+      },
+      "command": {
+        "subject": "complete-five-map-nine-combination-play"
+      },
+      "proposal": {}
+    }
+  ]
+}

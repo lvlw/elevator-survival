@@ -1,0 +1,30 @@
+{
+  "task": "ENG-RESIDENCE-COMBAT-RESTORE-001",
+  "start_sha": "9ada1bd76c768b7bcff676b263e4533854064909",
+  "start_parent": "8512c991adb353775ffa4785599a011e419a81fa",
+  "start_tree": "8a0c09f43fb3be66a2ff07cf64b928aa6e1a7862",
+  "branch": "feature/residence-combat-restore-001",
+  "baseline": { "files": 204, "tests": 3819, "exit": 0, "seconds": 258.29, "workers": 2, "evidence": "native npm run test:run" },
+  "new_tests": { "files": 9, "added": 169, "replaced": 0, "deleted": 0, "net": 169 },
+  "targeted": { "files": 9, "tests": 164, "exit": 0, "seconds": 15.53, "subsequent_policy_case": { "aggregate_tests": 29, "exit": 0 } },
+  "combined": { "files": 89, "tests": 1481, "exit": 0, "seconds": 118.61, "note": "before one final policy ownership case; complete check includes it" },
+  "baseline_helper_differential": { "tests": 10, "exit": 0, "original_sha256": "858c020c48fee97a5a1025ffae222fdca8cdcf254a2c99b71121aa09aff0a096", "initial_sandbox_startup_exit": 1, "initial_semantic_evidence": false },
+  "negative_controls": [
+    { "kind": "omit_external_battle_comparison", "exit": 1, "business_assertion_failures": 1, "bad_value_accepted": true },
+    { "kind": "omit_historical_exit_energy_capacity", "exit": 1, "business_assertion_failures": 1, "bad_value_accepted_by": ["aggregate", "encode", "decode"] }
+  ],
+  "old_negative_controls": "NOT RE-RUN",
+  "codec_counts": { "apis": ["aggregate", "encode", "decode", "same-progress"], "branches_per_api": 2, "actual_spies_per_branch": 36, "all": 0, "injected_draw": 0 },
+  "continuation_counts": { "G2_bound_move": 1, "G1_action": 1, "separate_from_codec": true },
+  "real_storage_failure_and_reentry": "NOT RUN - no storage/session in E02-R",
+  "format_directions": { "v4_rejects": [1, 2, 3], "old_rejects_v4": [1, 2, 3], "migration": false },
+  "full_check_before_final_coverage": { "files": 213, "tests": 3984, "exit": 0, "seconds": 249.34, "architecture": "PASS 52 DEC / 329 core", "typecheck": "PASS", "build": "PASS with existing large-chunk warning" },
+  "final_coverage": { "continuation_tests": 11, "exit": 0, "note": "three real retreat/heal/rest/reentry/victory and E0 battle added" },
+  "full_check": { "command": "npm run check", "files": 213, "tests": 3988, "exit": 0, "seconds": 247.85, "workers": 2, "architecture": "PASS 52 DEC / 329 core", "typecheck": "PASS", "test_run": "PASS", "build": "PASS", "warning": "Existing >500 kB client chunk warning; no config change" },
+  "tested_source_fingerprint": { "algorithm": "sha256", "value": "af7e41d9ba8c4b480b52a27c7256dc9484dbf54ebaa1b46c88f8244cc981b3db", "files": 22, "recipe": "sha256(sorted path + space + raw-file-sha256 rows joined with LF; no final LF)" },
+  "increment_diff_check": { "ordinary_exit": 0, "untracked": "30 no-index checks exit 1 solely for new content; no whitespace errors" },
+  "cumulative_W01": { "base": "8c19ca0d28058cf743b41c8547cc2629c8eac767", "exit": 2, "hard_breaks": 7, "only_original_two_inputs": true },
+  "scope_byte_audit": { "allowed": 35, "modified": 5, "new": 30, "append_prefixes": 4, "protected_contracts": 5, "approved_configs": 4, "input_copies": 5, "utf8": "PASS", "relative_links": 6, "protected_changes": 0 },
+  "ci": "NOT OBSERVED - commit/push follows checked artifact",
+  "stop": "Exact-SHA v4 seam review; no automatic E02-S/E03/current/Storage/browser/UI/O3"
+}

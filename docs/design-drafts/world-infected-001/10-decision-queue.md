@@ -291,3 +291,9 @@ E01-S在`9c3c8a8c97c374bd1def6217c691137f3df10096`已获限定实审；本轮重
 F03修复仅调整共享维修内部验证时点，原F01队列与F02死亡来源校验及最新资源保护保留。原始before严格绑定后，正式维修／材料与G1结果组合一次，现有签发层验证最终完整值；维护死亡不重放CTB、随机或周期，不追加revision。
 
 实际正反例、负控与计数见[完成记录](../../engineering/residence-foundation/active-combat-core/completion.md)。本条是作者实现状态，后续准确SHA审查、E02-R/S/E03、v4及O3均未由本批推进。
+
+## E02-R 作者阶段附记
+
+独立 v4 恢复层已按受控 P 类型实现五类完整停点、候选外 expected、同进度完整 committed 比较、六向格式拒绝及零玩法重放。详细证据见[支持矩阵](../../engineering/residence-foundation/active-combat-restore/contract-and-support.md)。原规则与批准参数、旧 v1/v2/v3 reader／codec 和全部旧测试保持。
+
+停止等待准确 SHA 的 v4 恢复接缝实审；不自动启动 E02-S/E03，不决定 O3，不把源码测试升级为 Owner 体验结论。

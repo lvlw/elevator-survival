@@ -729,3 +729,9 @@ G1仍拥有身体／精力／周期，G2仍拥有现场，A共享结算拥有钱
 本批作者修复将共享维修的资源恢复、真实材料消费与G1身体结果先组合，再交现有签发边界完整验证。受控原始before仍由严格读取与独立authority绑定；完整已完成值的最新战斗资源保护不变。私有维修候选不伪造revision，不增加公共跳过验证能力，不改变维修、CTB或周期规则。生还与维护致死均推进一次revision，死亡消费原身体结果关闭一次。
 
 原生复现、计数、负控及范围见[本轮完成记录](engineering/residence-foundation/active-combat-core/completion.md)。这是作者实现与验证，不是主线准确SHA实审通过；E02-R/S/E03、v4、current、Storage、浏览器及O3仍未接入。
+
+## E02-R v4 活战斗恢复作者实现
+
+独立 state/residence-save/combat-index 与 combat-controlled 已接入三键 v4 外壳，state 直接采用 P 的 CombatValue。严格读取复用 P schema、F01 队列／F02 trace／F03 资源校验，并增加候选外版本、初始 execution／选择、实际场次与最新关闭锚；同进度恢复分别验证两个完整值后全值比较。decode 只形成深冻结候选，不签发动作能力、不安装 current、不调用 Storage 或通知。
+
+无版本历史断言抽取到 shared-supply-history，旧 v3 包装入口保留原四来源及错误类别；v4 显式验证 combat-death 与原 typed trace，保留旧 G1/P 流血幅度、休整资格、期限与正常 H0 空步骤。详见[支持矩阵](engineering/residence-foundation/active-combat-restore/contract-and-support.md)及[作者完成记录](engineering/residence-foundation/active-combat-restore/completion.md)。旧格式不迁移；E02-S/E03、current、实际存储、浏览器、多标签、玩家入口、O3 与 Owner 体验仍未接入／未验收，等待准确 SHA 恢复接缝实审。

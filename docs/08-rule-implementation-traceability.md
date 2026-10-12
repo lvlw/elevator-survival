@@ -307,3 +307,9 @@ G1仍拥有身体／精力／周期，G2仍拥有现场，A共享结算拥有钱
 共享维修在资源与材料主效果后复用G1，再由原完整计划签发入口验证最终值。真实退却／胜利后可立即修管和修外套；工具箱、充电及旧供给协议通过原生回归。最新已完成值原始资源篡改继续拒绝，付费维修流血致死保留真实恢复／消费并一次关闭。
 
 作者原生结果与独立计数见[完成记录](engineering/residence-foundation/active-combat-core/completion.md)，不新增规则或覆盖历史审查／超时结论。后续恢复、会话、玩家入口与Owner体验不由本批关闭。
+
+## E02-R v4 恢复实现追踪
+
+作者新增独立 CombatValue v4 聚合与字符串 codec，真实首次中枢、稳定活动、活战斗玩家决策点、生还中枢及最终死亡往返；恢复后的真实 P 命令接续验证包括退却立即维修再入、胜利修外套、治疗后死亡及后继场死亡。原 F01/F02/F03、来源份额、实物消费／安装／交样、钱包与旧关闭保持联合校验；候选外 expected 与完整 committed 比较不构成离线历史认证。
+
+原生 API、六向旧格式拒绝、零重放与语义负控见[本批支持矩阵](engineering/residence-foundation/active-combat-restore/contract-and-support.md)和[实际验证记录](engineering/residence-foundation/active-combat-restore/verification-results.json)。本段不创建规则，不回写历史测试／超时记录，也不宣称会话保存、浏览器或完整世界可玩。后续 E02-S/E03 和 Owner 体验 Gate 保持未完成。

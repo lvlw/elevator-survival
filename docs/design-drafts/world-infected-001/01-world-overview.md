@@ -280,3 +280,9 @@ E01-S在`9c3c8a8c97c374bd1def6217c691137f3df10096`已获限定实审；本轮重
 当前作者实现允许预先真实携带材料的玩家，在退却／胜利后立即按已有共享配方维护；无需插入整理、移动或空动作。完整原始值及最终计划仍严格验证，私有候选不代表可安装状态。规则、参数与旧接口保持。
 
 验收证据见[工程完成记录](../../engineering/residence-foundation/active-combat-core/completion.md)。待准确SHA主线复审；不宣称恢复／玩家接线、九组合平衡或Owner分段突破试玩已经通过。
+
+## E02-R 作者恢复接缝状态
+
+P 完整 CombatValue 的独立 v4 聚合、冻结冷候选及字符串 codec 已实现并进行原生验证。实际三敌／后继场、真实安装交样和旧两声明历史均保持；cold expected 来自候选外初始材料及已提交记录，解码不授予行动或 current 安装权。详见[本批完成记录](../../engineering/residence-foundation/active-combat-restore/completion.md)。
+
+这是作者实现状态，不是准确 SHA 主线复审或 Owner 体验通过。E02-S/E03、玩家入口、浏览器／多标签、O3、九组合平衡及分段突破试玩仍未由本批关闭。

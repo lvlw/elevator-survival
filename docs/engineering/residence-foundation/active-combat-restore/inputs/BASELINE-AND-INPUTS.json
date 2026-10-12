@@ -1,0 +1,191 @@
+{
+  "task": "ENG-RESIDENCE-COMBAT-RESTORE-001",
+  "phase": "E02-R",
+  "version": "1.0",
+  "date": "2026-10-13",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "9ada1bd76c768b7bcff676b263e4533854064909",
+  "parent_sha": "8512c991adb353775ffa4785599a011e419a81fa",
+  "start_tree": "8a0c09f43fb3be66a2ff07cf64b928aa6e1a7862",
+  "source_branch": "feature/residence-combat-core-001",
+  "target_branch": "feature/residence-combat-restore-001",
+  "mainline_review": {
+    "result": "PASS_F03_CLOSED",
+    "report": "AUD-9ada1bd-ENG-RESIDENCE-COMBAT-CORE-001-R2-review-v1.0.md",
+    "native_full_npm": "NOT_RUN_container_git_DNS_failed",
+    "isolated_before": {
+      "cases": 32,
+      "matched": 28,
+      "mismatched": 4,
+      "exceptions": 0,
+      "exit": 1
+    },
+    "isolated_after": {
+      "cases": 32,
+      "matched": 32,
+      "mismatched": 0,
+      "exceptions": 0,
+      "exit": 0
+    },
+    "isolated_mutants": [
+      {
+        "kind": "restore_intermediate_read",
+        "mismatches": 4,
+        "exit": 1
+      },
+      {
+        "kind": "remove_latest_resource_guard",
+        "mismatches": 2,
+        "exit": 1
+      }
+    ],
+    "archive_count": 41
+  },
+  "ci": {
+    "run_number": 152,
+    "run_id": 38278040514,
+    "job_id": 114908222086,
+    "head_sha": "9ada1bd76c768b7bcff676b263e4533854064909",
+    "status": "completed",
+    "conclusion": "success",
+    "four_stages": "success",
+    "full_log_downloaded_this_review": false
+  },
+  "author_tests_only": {
+    "baseline_files": 201,
+    "baseline_tests": 3781,
+    "final_files": 204,
+    "final_tests": 3819,
+    "new_files": 3,
+    "new_tests": 38,
+    "replaced": 0,
+    "deleted": 0,
+    "workers": "VITEST_MAX_WORKERS=2"
+  },
+  "envelope": {
+    "format": "elevator-survival.residence-headless",
+    "formatVersion": 4,
+    "keys": [
+      "format",
+      "formatVersion",
+      "state"
+    ],
+    "state_protocol": "residence-combat-pure-v1"
+  },
+  "contracts": {
+    "docs/engineering/residence-foundation/active-combat-batch-plan-v1.0.md": {
+      "git_blob": "a8c09b916fdd29a5ddf9cedd1dd0349764aa0421",
+      "sha256": "525b53b209c37caef1e35426f8c9db29bec3448cc074d92487e09c568e217484"
+    },
+    "docs/engineering/residence-foundation/active-combat-core-contract-v1.0.md": {
+      "git_blob": "227b7438abda5b9a3abf645d4d92942379bcb638",
+      "sha256": "e05411bd23fd9077566a144f0234f4070097a273efac97845391d3e63723a590"
+    },
+    "docs/engineering/residence-foundation/active-combat-lifecycle-contract-v1.0.md": {
+      "git_blob": "91ac8ef6ed47b059e4ac55af761a80a034f9d1fa",
+      "sha256": "a9b5df587ab99346050cd147a2063e3b5236874a85f7f8bdc5085ffafb5c3c2b"
+    },
+    "docs/engineering/residence-foundation/active-combat-restore-contract-v1.0.md": {
+      "git_blob": "0a3bbca9ad13daf4cc48719f04611e84817238ec",
+      "sha256": "d7ce75ab12f53ee43a9d07cb7a839d87037cfb0f45bdef8fd52dfc2a3fef364d"
+    },
+    "docs/engineering/residence-foundation/active-combat-session-contract-v1.0.md": {
+      "git_blob": "0adc431f0878a12f610af9e1957c1be9d080734d",
+      "sha256": "3ea4eed266bf419d6343d1d7e826ce97b2d14007281c8892fcffc8d9392b2ed2"
+    }
+  },
+  "contract_fingerprint_provenance": "前P任务输入原件转录，R与batch正文已在9ada1bd连接器重读；Codex开工逐件从当前Git重算并核对，其余不是本轮全件字节执行。",
+  "approved_config_sha256": {
+    "docs/content/infected-residence-core-test-config-v0.1.json": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9",
+    "docs/content/infected-terminal-core-test-config-v0.1.json": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+    "docs/content/infected-world-entry-test-config-v0.1.json": "15624fee92e615e1d4ffcec39d071057b10a8de6ce16408cca0ffb4e94f5d8e6",
+    "docs/content/infected-world-entry-content-v0.1.json": "05dabf10796ee027ea31037641ae91b95fc9346b9b98f032f1b7c99dada88925"
+  },
+  "configuration_provenance": "历史已批清单原件转录；不是本轮主线全套配置重新执行；任务开工和交付均须重算。",
+  "allowed_paths": [
+    "src/state/residence-save/combat-types.ts",
+    "src/state/residence-save/combat-schema.ts",
+    "src/state/residence-save/combat-policy.ts",
+    "src/state/residence-save/combat-validation.ts",
+    "src/state/residence-save/combat-expected.ts",
+    "src/state/residence-save/combat-history.ts",
+    "src/state/residence-save/combat-body-history.ts",
+    "src/state/residence-save/combat-codec.ts",
+    "src/state/residence-save/combat-index.ts",
+    "src/state/residence-save/combat-controlled.ts",
+    "src/state/residence-save/shared-supply-history.ts",
+    "src/state/residence-save/supply-history.ts",
+    "src/state/residence-save/combat-test-fixtures.ts",
+    "src/state/residence-save/combat-aggregate.test.ts",
+    "src/state/residence-save/combat-expected.test.ts",
+    "src/state/residence-save/combat-history.test.ts",
+    "src/state/residence-save/combat-roundtrip.test.ts",
+    "src/state/residence-save/combat-continuation.test.ts",
+    "src/state/residence-save/combat-compatibility.test.ts",
+    "src/state/residence-save/combat-purity.test.ts",
+    "src/state/residence-save/combat-review-regression.test.ts",
+    "src/state/residence-save/combat-history-sharing.test.ts",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/residence-foundation/active-combat-restore/implementation-notes.md",
+    "docs/engineering/residence-foundation/active-combat-restore/contract-and-support.md",
+    "docs/engineering/residence-foundation/active-combat-restore/completion.md",
+    "docs/engineering/residence-foundation/active-combat-restore/verification-results.json",
+    "docs/engineering/residence-foundation/active-combat-restore/inputs/ENG-RESIDENCE-COMBAT-RESTORE-001-task-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-restore/inputs/OWNER-authority-and-scope-E02-R-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-restore/inputs/AUD-9ada1bd-ENG-RESIDENCE-COMBAT-CORE-001-R2-review-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-restore/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/residence-foundation/active-combat-restore/inputs/SHA256SUMS.txt"
+  ],
+  "allowed_path_count": 35,
+  "optional_legacy_exception": {
+    "path": "src/state/residence-save/supply-history.ts",
+    "purpose": "仅无语义公共历史断言抽取，原四来源限制／接口／错误类别保持",
+    "new_shared_path": "src/state/residence-save/shared-supply-history.ts"
+  },
+  "input_members": [
+    "ENG-RESIDENCE-COMBAT-RESTORE-001-task-v1.0.md",
+    "OWNER-authority-and-scope-E02-R-v1.0.md",
+    "AUD-9ada1bd-ENG-RESIDENCE-COMBAT-CORE-001-R2-review-v1.0.md",
+    "BASELINE-AND-INPUTS.json",
+    "SHA256SUMS.txt"
+  ],
+  "archive_root": "docs/engineering/residence-foundation/active-combat-restore/inputs/",
+  "append_only_docs": [
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "delivery_docs": [
+    "docs/engineering/residence-foundation/active-combat-restore/implementation-notes.md",
+    "docs/engineering/residence-foundation/active-combat-restore/contract-and-support.md",
+    "docs/engineering/residence-foundation/active-combat-restore/completion.md",
+    "docs/engineering/residence-foundation/active-combat-restore/verification-results.json"
+  ],
+  "protected": [
+    "all src/core",
+    "all src/content",
+    "all baseline tests/helpers",
+    "old v1/v2/v3 schema/codec/index/expected/policy",
+    "state/residence-session",
+    "app/UI",
+    "approved DEC/config/content/contracts",
+    "AGENTS/package/lock/dependencies/CI"
+  ],
+  "W01": {
+    "cumulative_base": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+    "expected_cumulative_exit": 2,
+    "lines": "Original E01-R task7-9 and original E01-P review3-6 only",
+    "new_diff_exit": 0
+  },
+  "git_permissions": {
+    "normal_commit_push_own_branch": true,
+    "main_merge_push": false,
+    "force_push": false,
+    "other_branch_push": false
+  },
+  "stop": "准确SHA v4恢复接缝实审；不自动E02-S/E03/current/Storage/browser/UI/O3"
+}

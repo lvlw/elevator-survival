@@ -2,12 +2,14 @@ import { createStreamId } from '../random'
 import { same } from '../residence-terminal/validation'
 import { ensure } from '../residence-supply/shared-validation'
 import { numberValue } from '../residence-supply/config'
-import { verifyCombatBodyTrace } from './trace'
+import { verifyCombatBodyTrace, verifyDecisionTrace } from './trace'
+import { verifyDecisionQueue } from './history-queue'
+import { safeAdd, safeMultiply } from '../residence-config/validation'
 import type { CombatDependencies, CombatValue, EntryWitness, DecisionWitness } from './types'
 export function exitEnergyCost(elapsed: number, deps: CombatDependencies): number {
   ensure(Number.isSafeInteger(elapsed) && elapsed >= 0, 'Invalid elapsed CTB')
   const c = deps.supply.configuration
-  return Math.max(numberValue(c, 'combat.minimum'), Math.ceil(elapsed / numberValue(c, 'combat.ctb_step')) * numberValue(c, 'combat.energy_step'))
+  return Math.max(numberValue(c, 'combat.minimum'), safeMultiply(Math.ceil(elapsed / numberValue(c, 'combat.ctb_step')), numberValue(c, 'combat.energy_step')))
 }
 function verifyEntry(e: EntryWitness, v: CombatValue, deps: CombatDependencies) {
   const cat = deps.supply.catalogs.find(c => c.data.id === e.binding.catalogId)
@@ -20,6 +22,9 @@ function verifyEntry(e: EntryWitness, v: CombatValue, deps: CombatDependencies) 
     e.revision === e.baseRevision + 1 && e.revision <= v.character.revision &&
     e.id === createStreamId('residence-battle-v1', e.binding.execution.runId, String(e.revision), e.enemyInstanceId),
     'Invalid entry identity or route')
+  ensure(e.intent === enemy.definition.actionCycle[e.actionCount % enemy.definition.actionCycle.length] &&
+    e.nextCycleIndex === safeAdd(e.actionCount, 1) % enemy.definition.actionCycle.length,
+    'Entry intent does not bind persistent action count')
   ensure(e.enemyHealth <= enemy.definition.maxHealth && (e.previouslyEncountered || e.actionCount === 0 && e.riskIndex === 0), 'False first entry')
   if (!e.previouslyEncountered) ensure(e.enemyHealth === enemy.definition.maxHealth &&
     e.intent === enemy.definition.initialIntentActionId &&
@@ -33,7 +38,7 @@ function verifyEntry(e: EntryWitness, v: CombatValue, deps: CombatDependencies) 
   }
   ensure(hp === e.healthAfter, 'Entry health result differs')
 }
-function verifyDecision(d: DecisionWitness, e: EntryWitness, v: CombatValue, deps: CombatDependencies, dead = false) {
+export function verifyDecision(d: DecisionWitness, e: EntryWitness, v: CombatValue, deps: CombatDependencies, dead = false) {
   ensure(d.battleId === e.id && d.revision === d.baseRevision + 1 && d.baseRevision >= e.revision &&
     d.revision <= v.character.revision && d.ctbAfter >= d.ctbBefore && d.enemyHealthAfter <= d.enemyHealthBefore &&
     d.enemyHealthBefore <= deps.profiles.find(p => p.definitionId === e.definitionId)!.maxHealth &&
@@ -41,27 +46,8 @@ function verifyDecision(d: DecisionWitness, e: EntryWitness, v: CombatValue, dep
     d.quotaAfter <= d.quotaBefore && d.quotaBefore <= deps.supply.residence.configuration.config.quota.pipe_signature,
     'Decision binding/monotonic facts differ')
   verifyCombatBodyTrace(d.trace, d.healthBefore, d.healthAfter, deps.supply.residence.configuration.config.limits.hp, dead)
-  let queue = d.queue[0]
-  if (queue) {
-    ensure(queue.currentBefore === d.ctbBefore && queue.playerBefore === d.ctbBefore &&
-      ['player-action-scheduled','escape-preparation-scheduled'].includes(queue.reason), 'Queue original differs')
-    for (const next of d.queue.slice(1)) {
-      ensure(next.currentBefore === queue.currentAfter && next.playerBefore === queue.playerAfter &&
-        next.enemyBefore === queue.enemyAfter, 'Queue adjacency differs')
-      queue = next
-    }
-    ensure(queue.currentAfter === d.ctbAfter && queue.playerAfter === d.playerNext && queue.enemyAfter === d.enemyNext,
-      'Queue final differs')
-  } else ensure(d.ctbAfter === d.ctbBefore && (dead || d.enemyHealthAfter === 0), 'Missing queue evidence')
-  const profile = deps.profiles.find(p => p.definitionId === e.definitionId)!
-  const cycle = deps.supply.catalog.enemies.get(e.definitionId).actionCycle
-  let expectedRisk = 0
-  for (let n = d.actionCountBefore; n < d.actionCountAfter; n++) {
-    const action = profile.actions.find(a => a.actionId === cycle[n % cycle.length])!
-    expectedRisk += action.exposureRiskTier === 'none' ? 1 : 2
-  }
-  ensure(d.riskAfter - d.riskBefore === expectedRisk && d.enemyResponses === d.actionCountAfter - d.actionCountBefore +
-    (d.trace.some(t => t.kind === 'direct-damage' && t.healthAfter === 0) ? 1 : 0), 'Enemy response/risk count differs')
+  verifyDecisionQueue(d, e, v, deps)
+  verifyDecisionTrace(d, e, v, deps)
   for (const r of d.resources) ensure(r.consumed === Math.min(r.before, r.requested) && r.after === r.before - r.consumed, 'Resource trace differs')
   for (const r of d.resources) ensure(v.lineage.some(l => l.instanceId === r.instanceId) &&
     [v.carried.equipment.weapon, v.carried.equipment.armor, ...v.dispositions.map(d => d.item)].some(i => i?.instanceId === r.instanceId &&
@@ -95,7 +81,9 @@ export function verifyCombatHistory(v: CombatValue, deps: CombatDependencies) {
     ensure(r.exitRevision === r.decision.revision && r.elapsed === r.decision.ctbAfter &&
       r.requestedEnergy === exitEnergyCost(r.elapsed, deps) && r.energyAfter === Math.max(0, r.energyBefore - r.requestedEnergy) &&
       r.nodeId === (r.outcome === 'victory' ? r.entry.to : r.entry.from) &&
-      (r.outcome !== 'victory' || r.decision.enemyHealthAfter === 0) && r.decision.healthAfter > 0, 'Invalid surviving exit receipt')
+      (r.outcome === 'victory' ? r.decision.enemyHealthAfter === 0 :
+        r.decision.command.kind === 'escape' && r.decision.queue.at(-1)?.reason === 'escape-completed') &&
+      r.decision.healthAfter > 0, 'Invalid surviving exit receipt')
   }
   for (const r of v.combatDeaths) {
     verifyDecision(r.decision, r.entry, v, deps, true)

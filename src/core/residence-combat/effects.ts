@@ -1,4 +1,5 @@
 import { safeAdd } from '../residence-config/validation'
+import { captureDecisionContext } from './history-context'
 import { consumeSupplyUnits } from '../residence-supply/allocations'
 import { carriedItems } from '../residence-location/validation'
 import { ensure } from '../residence-supply/shared-validation'
@@ -27,6 +28,7 @@ export function composeCombatResolution(before: CombatValue, result: CombatResol
   verifyCombatBodyTrace(trace, before.character.body.condition.currentHealth, snapshot.playerCondition.currentHealth,
     deps.supply.residence.configuration.config.limits.hp, snapshot.status === 'defeat')
   const decision: DecisionWitness = { battleId: b.entry.id, revision, baseRevision: before.character.revision,
+    context: captureDecisionContext(before, result.plan.command, deps),
     command: result.plan.command, ctbBefore: b.currentCtb, ctbAfter: snapshot.currentCtb,
     playerNext: snapshot.playerNextActionCtb, enemyNext: snapshot.enemyNextActionCtb,
     healthBefore: before.character.body.condition.currentHealth, healthAfter: snapshot.playerCondition.currentHealth,

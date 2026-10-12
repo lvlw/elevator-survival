@@ -1,0 +1,46 @@
+{
+  "basis": "Mounted original ZIP bytes compared with exact-SHA GitHub inputs directory blob IDs",
+  "sha": "9f0eaacfbb83e49401c52fb57c3cfa061b2ef026",
+  "rows": [
+    {
+      "path": "AUD-4166fb2-DOC-WORLD-ENTRY-005-review-v1.0.md",
+      "bytes": 7252,
+      "git_blob": "0e997310741745e7c0294601ce765ed972b41a93",
+      "expected_git_blob": "0e997310741745e7c0294601ce765ed972b41a93",
+      "match": true,
+      "sha256": "c94e8460b0bc4099fce705c924b5f832ecb98635a04a102fb362c53309e90009"
+    },
+    {
+      "path": "BASELINE-AND-INPUTS.json",
+      "bytes": 18345,
+      "git_blob": "469be4824f1d7dc2d935aee1cf5c4d2f45dd7a23",
+      "expected_git_blob": "469be4824f1d7dc2d935aee1cf5c4d2f45dd7a23",
+      "match": true,
+      "sha256": "1a591dae87a89233ad60ef5c64827b851ecd1ccef48eaa26be88d151daa7bacf"
+    },
+    {
+      "path": "ENG-RESIDENCE-COMBAT-CORE-001-task-v1.0.md",
+      "bytes": 30688,
+      "git_blob": "456a586400500bc0c2e2a8a494b8116fad39d6bd",
+      "expected_git_blob": "456a586400500bc0c2e2a8a494b8116fad39d6bd",
+      "match": true,
+      "sha256": "85a218a788c2084b25f02056a04b2147880bcbf65c0b61ddb60200740a68deb5"
+    },
+    {
+      "path": "OWNER-authority-and-scope-E02-P-v1.0.md",
+      "bytes": 1443,
+      "git_blob": "473b76ad6d25266f002817dcb46c419af7d2bf5b",
+      "expected_git_blob": "473b76ad6d25266f002817dcb46c419af7d2bf5b",
+      "match": true,
+      "sha256": "c38acf61d5803c83f25fe296a045266ded38e9694dd812b1277740b9daf47dc9"
+    },
+    {
+      "path": "SHA256SUMS.txt",
+      "bytes": 419,
+      "git_blob": "f54b997eb3edf56ea6faf398b6e82c31b23d8159",
+      "expected_git_blob": "f54b997eb3edf56ea6faf398b6e82c31b23d8159",
+      "match": true,
+      "sha256": "ddca431058e13bdd1b3e94350e010395ab6d0f61a52ba511c72c5eceba9e5948"
+    }
+  ]
+}

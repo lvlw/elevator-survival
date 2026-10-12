@@ -23,6 +23,7 @@ export type CombatUseWitness = Readonly<{
 }>
 export type DecisionWitness = Readonly<{
   battleId: string; revision: number; baseRevision: number; command: CombatPlayerActionCommand
+  context: DecisionContext
   ctbBefore: number; ctbAfter: number; playerNext: number; enemyNext: number
   healthBefore: number; healthAfter: number; enemyHealthBefore: number; enemyHealthAfter: number
   actionCountBefore: number; actionCountAfter: number; enemyResponses: number
@@ -33,6 +34,14 @@ export type DecisionWitness = Readonly<{
   queue: readonly Readonly<{ reason: 'player-action-scheduled' | 'escape-preparation-scheduled' | 'enemy-action-resolved' |
     'enemy-action-terminal' | 'escape-completed' | 'player-decision-point'
     currentBefore: number; currentAfter: number; playerBefore: number; playerAfter: number; enemyBefore: number; enemyAfter: number }>[]
+}>
+/** Immutable start facts, not an actionable second body, enemy or inventory. */
+export type DecisionContext = Readonly<{
+  enemyNext: number; bleeding: boolean; painkiller: boolean; minorContusions: number
+  untreatedWoundIds: readonly string[]; firstBandageUsed: boolean
+  weapon: Readonly<{ instanceId: string; current: number }> | null
+  armor: Readonly<{ instanceId: string; current: number }> | null
+  escapeWeight: number | null
 }>
 export type Battle = Readonly<{ entry: EntryWitness; currentCtb: number; playerNext: number; enemyNext: number
   temporaryDefense: TemporaryDefenseSnapshot | null; decision: DecisionWitness | null }>

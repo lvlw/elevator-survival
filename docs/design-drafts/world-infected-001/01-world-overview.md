@@ -268,3 +268,9 @@ E01-S在`9c3c8a8c97c374bd1def6217c691137f3df10096`已获限定实审；本轮重
 战后真实任务／来源／搬运／拆合／药食／维护／休整与 A 终局可在新聚合接续；原生测试覆盖三敌真实胜利后完整生产交付链及后继场次死亡，不以清敌或手设 completed 替代生产者。新纯计划不代表存档／会话／浏览器／试玩已经通过。
 
 实现范围与十二组证据见[支持矩阵](../../engineering/residence-foundation/active-combat-core/contract-and-support.md)，实际检查见[验证记录](../../engineering/residence-foundation/active-combat-core/verification-results.json)和[完成报告](../../engineering/residence-foundation/active-combat-core/completion.md)。E02-R v4 codec、E02-S current／保存、E03 玩家入口、多标签与 O3 均 NOT RUN；未自动进入下一批，停止等待准确 SHA 纯核心源码实审。
+
+## E02-P-R1 队列与死亡证据补修
+
+本增量对应起点 `9f0eaacfbb83e49401c52fb57c3cfa061b2ef026` 的 F01／F02 源码复审，不覆盖上述历史阶段记录。原生模板实际复现八项误接受后，纯核心现在联合核对正式动作时长、敌行动间隔、蓄力延后、逃跑锁定、同点顺序，以及 trace 的来源／时点／请求幅度、真实药耗和保护耗损。最小行动前证据由真实生产者捕获；不保存第二身体／敌人／库存，不通过重跑 CTB、随机、G1 或终局验证历史。
+
+通用 HP 截零、治疗封顶、致胜立即结束和正常 H0 空 steps 保持。旧 102 项及更早测试只读；本批新增原生反例、真实接续、零重放与两类仓库外语义负控。详细证据见[本批完成记录](../../engineering/residence-foundation/active-combat-core/completion.md)。这是 P 纯协议证据收紧，不改变 v1/v2/v3 保存格式；E02-R/S、E03、current、存储、玩家入口和 O3 仍未执行。

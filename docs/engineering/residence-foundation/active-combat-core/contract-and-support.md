@@ -47,3 +47,24 @@ Paths below are relative to `src/core/` unless explicitly noted. The exact test 
 The aggregate has no second inventory/body/enemy owner and no per-decision whole snapshot. Validation checks evidence and references without re-running actions, RNG, G1 or settlement. Private in-memory issuance proves plan origin for this stage; pure self-consistency alone is not proof of offline historical authenticity. R expected inputs, v4 string codec and installation authority remain future work under a separate task.
 
 TEST low HP/E, injury, Day7 and earlier isolated history materials are explicitly annotated in tests. Only the older declaration history uses the pre-existing danger-cleared helper; every current-world first-entry, retreat/reentry, victory and later death is a real movement/CTB producer. The dependency-injected TEST harness is not imported by production.
+
+## E02-P-R1 support and minimal evidence refinement
+
+This append follows the F01/F02 review of `9f0eaacfbb83e49401c52fb57c3cfa061b2ef026`; the historical P report above is not rewritten into a mainline PASS.
+
+`DecisionWitness.context` now retains: original enemy opportunity; bleeding, painkiller and contusion/wound-target eligibility; first-bandage-used flag; original pipe/coat instance and resource; and escape-only backpack weight. These are immutable historical source facts captured from the independently validated before. They are neither a second actionable body/inventory/enemy nor a new save format. Current real resource state is also joined when the decision revision is the current revision; older receipts are not compared against later repaired equipment.
+
+`history-context.ts` supplies the minimal context and approved-profile constraints. `history-queue.ts` validates each recorded transition against action duration, enemy action identity/interval, charged delay, locked escape facts, strict-earlier priority and the terminal checkpoint. Work is bounded by evidence and formal duration, not an arbitrary candidate count interval. `trace.ts` preserves the generic clipped-HP arithmetic function and adds contextual source/time/request checks, medication/target binding, armor/defense sequence and real resource links. `terminal.ts` additionally compares death evidence with its independent original before; no historical verification invokes a planner or rule mutator.
+
+| R group | Native evidence (all paths under `src/core/residence-combat/`) |
+| --- | --- |
+| R01 | `review-regression.test.ts`, original 20-case template: four legal producer chains, eight pre-existing rejects, three F01 and five F02 new rejects; mutable input unchanged/unfrozen. |
+| R02 | Same file: all three profiles, 140/200 charged delay, two actual technician responses at 640/750, same-point ordering, consistent queue tampering, count/overflow and missing/duplicate transitions. Original `enemies.test.ts` and `effects.test.ts` retain their exact assertions. |
+| R03 | Same file: cross-enemy source, timing beyond completion, inflated direct/bleeding requests, final armor unit plus defense, source-bound latest resource, missing/duplicate/foreign events; original generic large-request clipping test remains. |
+| R04 | Same file and `review-history-integration.test.ts`: real heal before lethal response; full-HP untreated-wound target and actual heal0; first survival bandage total2 then real later unit total1; H0 genuine empty steps. |
+| R05 | `review-history-integration.test.ts`: three real retreat/medicine/rest/reentry/victory chains; real repair then later reentry death; Day6 rest death, Day7 action/deadline death. Original `history.test.ts` preserves both old success/failure declaration histories; original full production success chain remains. |
+| R06 | `review-purity.test.ts`: valid/invalid active, escaped and dead parse/query add zero CTB/planner/reducer/G1/medicine/origin/termination/random calls; real death production once, consumption adds only one termination and no revision; independent-before forgery reject. |
+
+External F01 and F02 mutants remove only the respective joint-check call in a copied `history.ts`. Native original expectations then fail specifically on the three F01 / five F02 acceptance bugs. These are not production toggles or test skips. Exact logs and commands are in the R1 verification record.
+
+Public/controlled export files, existing tests/helpers, old CTB, G1/G2, approved parameters and v1/v2/v3 readers/sessions remain unchanged. Pure evidence validation does not authenticate a completely rewritten offline history. v4, current installation, Storage, browser, player entry, E02-R/S/E03 and O3 remain NOT RUN.

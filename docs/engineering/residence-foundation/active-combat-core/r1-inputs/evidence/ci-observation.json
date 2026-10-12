@@ -1,0 +1,33 @@
+{
+  "evidence_kind": "Mainline notes of live GitHub run/job/log reads; not a raw log copy",
+  "sha": "9f0eaacfbb83e49401c52fb57c3cfa061b2ef026",
+  "run_id": 37369977295,
+  "run_number": 150,
+  "job_id": 111964433614,
+  "status": "completed",
+  "conclusion": "success",
+  "log_checkout_sha": "9f0eaacfbb83e49401c52fb57c3cfa061b2ef026",
+  "architecture": {
+    "dec": 52,
+    "core_files": 327,
+    "result": "PASS"
+  },
+  "typecheck": "PASS",
+  "tests": {
+    "files": 198,
+    "tests": 3723,
+    "result": "PASS"
+  },
+  "build": "PASS",
+  "previous_read": "Initially queued; later job success and refreshed run success; not a user-local execution",
+  "mainline_npm_run": false,
+  "retained_warnings": [
+    "Existing Vite large chunk warning",
+    "npm ci audit count 4 (2 moderate/2 high); not independently triaged; no audit fix authorized",
+    "Legacy action Node-runtime notices"
+  ],
+  "urls": [
+    "https://github.com/lvlw/elevator-survival/actions/runs/37369977295",
+    "https://api.github.com/repos/lvlw/elevator-survival/actions/jobs/111964433614/logs"
+  ]
+}

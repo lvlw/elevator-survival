@@ -70,3 +70,24 @@ Each shorthand above denotes the same-named `.ts` file under `src/core/`; the co
 ### Limits
 
 P validates pure values and controlled plan issuance, not offline historical authenticity or global rollback. Ordinary queries expose an explicit safe subset, but E03 player ViewModel/renderer wiring is NOT RUN. v4 codec, current installation, storage, browser/multi-tab, O3 and further batches are NOT RUN. No save/notification count is claimed; these layers are absent.
+
+## E02-P-R1 — design and native baseline (2026-10-12)
+
+Start: `9f0eaacfbb83e49401c52fb57c3cfa061b2ef026`, same feature branch, clean index/worktree. The package's isolated result is not substituted for native execution. The unedited native template ran first: 20 cases, 12 passed and all eight F01/F02 cases failed because invalid records were accepted; no import/type/fixture failure.
+
+The unmodified full baseline ran twice with default concurrency: both runs hit the existing 5000 ms supply-session long-chain timeout (3722/3723 passed). A third run with `--maxWorkers=2`, without changing timeout, source or config, passed 198 files / 3723 tests. All outputs remain separately recorded.
+
+R1 design: capture only decision-start evidence needed after resources/medicine are consumed (enemy queue start, bleeding/painkiller/wound eligibility, first-bandage flag, weapon/armor identity and resource, escape weight). No second body/enemy/inventory is stored. Bind recorded queue transitions to the approved profile, strict-earlier ordering, locked escape inputs, charged delay and actual terminal checkpoint. Bind trace rows to those response positions, profile damage, protection/resource consumption, medicine and bleeding checkpoints. Generic clipped-HP arithmetic stays separate and unchanged.
+
+Validation reads bounded recorded evidence and checks equations; it never calls the CTB planner/reducer, RNG, medicine, G1 or terminal settlement. The two joint checks are independently testable for external semantic negative controls. R01 retains the exact 20-case native template; R02/R03 cover neighboring queue/trace boundaries, R04 medicine, R05 real stable/reentry histories, and R06 zero replay/one original death production. All existing tests/helpers and old protocols remain read-only.
+
+### R1 self-review and execution record
+
+- The exact native template needed no import, type or fixture repair. All eight reported mistakes reproduced through full `readCombatValue`; the four legal chains and eight older rejects passed.
+- Added independent-before binding at death issuance as well as joint history validation. A fully self-consistent forged armor start/damage/current-resource combination is rejected against the actual original context, without re-running combat.
+- Neighbor review found that a latest armor state also needed to agree with its recorded consumption. Added that join only at the same revision, leaving later legitimate repair/consumption histories intact.
+- That earlier rejection caused one NEW fixture's expected rejection-location assertion to fail (142 passed / 1 failed). The test now also forges the proposed armor state, so the same intended self-consistent forgery reaches and proves the independent-before guard. Its expected error was not weakened; the original 102 tests and helpers were not edited. The repaired five-test purity file passed.
+- Entry intent/count, safe CTB/delay/interval arithmetic, exit-fee integer overflow, bounded queue lengths and resolved count/risk relations are checked without candidate-span loops. Generic HP clipping is unchanged. Risk outcomes are not recalculated; only a recorded outcome's eligibility, source and amount are checked.
+- First targeted implementation: 17 files / 105 tests passed. Final combined regression includes legacy CTB/hospital, E01-P/R/S, terminal/save/session, G1/G2/identity and R1: 130 files / 2390 tests passed. Final check and exact integrity results are recorded separately below/in JSON.
+- External negative copies are under the R1 temporary evidence directory; F01 removal produced three business assertion failures, F02 removal five. The original four P mutants were NOT re-run in R1; their historical records remain unchanged.
+- Standard apply_patch encountered a workspace reparse-point path error before any write. The installed Codex native apply-patch entry point performed the same patches; no shell-based source rewrite or protected-file workaround was used.

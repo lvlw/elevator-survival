@@ -8,6 +8,8 @@ import { readAuthorizedCombat } from './authority'
 import { issueCombatPlan } from './plans'
 import { combatValueSchema } from './schema'
 import { verifyCombatBodyTrace } from './trace'
+import { verifyDecision } from './history'
+import { captureDecisionContext } from './history-context'
 import type { CombatAuthority, CombatDependencies, CombatValue, CombatBodyTrace } from './types'
 export type CombatDeathProposal = Readonly<{ kind: 'combat-death-proposal'; battleId: string; revision: number; trace: readonly CombatBodyTrace[] }>
 const issued = new WeakMap<object, { before: CombatValue; proposed: CombatValue; deps: CombatDependencies; consumed: boolean }>()
@@ -19,6 +21,9 @@ export function issueCombatDeath(before: CombatValue, input: CombatValue, deps: 
     proposed.character.body.condition.currentHealth === 0 && b.decision?.battleId === prior.entry.id, 'Not a bound real combat death')
   verifyCombatBodyTrace(b.decision.trace, before.character.body.condition.currentHealth, 0,
     deps.supply.residence.configuration.config.limits.hp, true)
+  verifyDecision(b.decision, b.entry, proposed, deps, true)
+  ensure(same(b.decision.context, captureDecisionContext(before, b.decision.command, deps)),
+    'Death evidence differs from independent original context')
   const token = deepFreeze({ kind: 'combat-death-proposal' as const, battleId: b.entry.id,
     revision: proposed.character.revision, trace: b.decision.trace })
   issued.set(token, { before, proposed, deps, consumed: false }); return token
@@ -32,6 +37,7 @@ export function consumeCombatDeath(input: unknown, proposal: CombatDeathProposal
     b.decision!.healthBefore === value.character.body.condition.currentHealth, 'Death scene/context differs')
   verifyCombatBodyTrace(b.decision!.trace, value.character.body.condition.currentHealth, 0,
     dependencies.supply.residence.configuration.config.limits.hp, true)
+  verifyDecision(b.decision!, b.entry, result, dependencies, true)
   const receipt = { id: createStreamId('residence-combat-death-v1', b.entry.id, String(result.character.revision)),
     entry: b.entry, decision: b.decision!, revision: result.character.revision }
   const closed = settleSupplyDomain(value, { ...result, battle: null, combatDeaths: [...result.combatDeaths, receipt] },

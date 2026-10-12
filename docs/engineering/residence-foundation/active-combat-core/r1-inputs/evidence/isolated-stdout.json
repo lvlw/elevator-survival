@@ -1,0 +1,7 @@
+{
+  "format": "Lossless JSON wrapper of original UTF-8 stdout; not whitespace-trimmed",
+  "exit_code": 1,
+  "raw_bytes": 1123,
+  "raw_sha256": "1959c4f4371130c328be0be2ebdb197df164c69c950d629bea703f323fc1ac77",
+  "stdout": "{\"total\":20,\"matched\":12,\"mismatched\":8,\"exceptions\":0,\"adapterCalls\":{\"aggregate\":20,\"projection\":5}}\nC01-active-basic100 ACCEPT => ACCEPT \nC02-heal-then-death ACCEPT => ACCEPT \nC03-HP1-action-bleeding-clips0 ACCEPT => ACCEPT \nC04-escape80 ACCEPT => ACCEPT \nC05-wrong-battle-id REJECT => REJECT Invalid entry identity or route\nC06-broken-queue-adjacency REJECT => REJECT Queue adjacency differs\nC07-broken-HP-adjacency REJECT => REJECT Invalid typed HP adjacency\nC08-bool-trace REJECT => REJECT raw trace number\nC09-site-latest-HP REJECT => REJECT Latest decision differs from unique state\nC10-repeat-exit REJECT => REJECT Battle replay\nC11-wrong-fee REJECT => REJECT Invalid surviving exit receipt\nC12-wrong-medical-reference REJECT => REJECT Wrong consumption reference\nF01-player-basic-recovery80 REJECT => ACCEPT \nF01-enemy-interval430 REJECT => ACCEPT \nF01-escape-complete75 REJECT => ACCEPT \nF02-death-trace-after-exit REJECT => ACCEPT \nF02-death-wrong-action-source REJECT => ACCEPT \nF02-death-damage-inflated99 REJECT => ACCEPT \nF02-bleed-request2-clips1 REJECT => ACCEPT \nF02-bleed-wrong-source REJECT => ACCEPT \n"
+}

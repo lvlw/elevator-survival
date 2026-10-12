@@ -1,0 +1,26 @@
+[
+  {
+    "path": "validation.ts",
+    "bytes": 2980,
+    "git_blob": "8b96d1a500ceee1e68351da7a927576ec7512ddb",
+    "expected_git_blob": "8b96d1a500ceee1e68351da7a927576ec7512ddb",
+    "match": true,
+    "sha256": "5c894bfc4bb554e3c8c32884265b4ff770d89b4b72f3bbdf8eadfe3d02fdfb82"
+  },
+  {
+    "path": "history.ts",
+    "bytes": 9168,
+    "git_blob": "fcab350ac7af4c189b91c18e33304f49fc41286b",
+    "expected_git_blob": "fcab350ac7af4c189b91c18e33304f49fc41286b",
+    "match": true,
+    "sha256": "c407babd8878834669942c66190248dee9272824d4d18432c11aae60584893af"
+  },
+  {
+    "path": "trace.ts",
+    "bytes": 3425,
+    "git_blob": "d4d64dba30dce9ac9939870da0dad73cccfbdad9",
+    "expected_git_blob": "d4d64dba30dce9ac9939870da0dad73cccfbdad9",
+    "match": true,
+    "sha256": "e95f5ccb8f6def22c9dd520267e65d65c6afe2e5f582a2309bc7ad7a7bbb99ab"
+  }
+]

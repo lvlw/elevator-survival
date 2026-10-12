@@ -1,0 +1,6053 @@
+{
+  "kind": "ISOLATED_EXACT_SOURCE_NOT_NATIVE_AGGREGATE",
+  "sha": "9f0eaacfbb83e49401c52fb57c3cfa061b2ef026",
+  "adapters": [
+    "TypeScript transpile only",
+    "Zod/parse: strict trace adapter; outer aggregate clone (NOT full schema)",
+    "supply/G1/G2 validation and profile issuance: substituted; cropped TEST data",
+    "projection: boundary-only adapter",
+    "identity/config/equality/ensure primitives: local adapters"
+  ],
+  "sourceIntegrity": [
+    {
+      "path": "validation.ts",
+      "bytes": 2980,
+      "git_blob": "8b96d1a500ceee1e68351da7a927576ec7512ddb",
+      "expected_git_blob": "8b96d1a500ceee1e68351da7a927576ec7512ddb",
+      "match": true,
+      "sha256": "5c894bfc4bb554e3c8c32884265b4ff770d89b4b72f3bbdf8eadfe3d02fdfb82"
+    },
+    {
+      "path": "history.ts",
+      "bytes": 9168,
+      "git_blob": "fcab350ac7af4c189b91c18e33304f49fc41286b",
+      "expected_git_blob": "fcab350ac7af4c189b91c18e33304f49fc41286b",
+      "match": true,
+      "sha256": "c407babd8878834669942c66190248dee9272824d4d18432c11aae60584893af"
+    },
+    {
+      "path": "trace.ts",
+      "bytes": 3425,
+      "git_blob": "d4d64dba30dce9ac9939870da0dad73cccfbdad9",
+      "expected_git_blob": "d4d64dba30dce9ac9939870da0dad73cccfbdad9",
+      "match": true,
+      "sha256": "e95f5ccb8f6def22c9dd520267e65d65c6afe2e5f582a2309bc7ad7a7bbb99ab"
+    }
+  ],
+  "summary": {
+    "total": 20,
+    "matched": 12,
+    "mismatched": 8,
+    "exceptions": 0,
+    "adapterCalls": {
+      "aggregate": 20,
+      "projection": 5
+    }
+  },
+  "rows": [
+    {
+      "id": "C01-active-basic100",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "active-world",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 10
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "active",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "armor": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            }
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [],
+        "receipts": [],
+        "battles": [],
+        "combatDeaths": [],
+        "archives": [],
+        "site": {
+          "nodeId": "H4",
+          "binding": {
+            "identity": {
+              "characterId": "TEST-character",
+              "rulesVersion": "TEST-rules",
+              "configurationId": "TEST-G1"
+            },
+            "mission": {
+              "commissionId": "TEST-commission"
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            },
+            "catalogId": "TEST-catalog",
+            "catalogVersion": "TEST-content"
+          },
+          "pending": {
+            "kind": "combat-required",
+            "enemyId": "orderly"
+          },
+          "enemies": [
+            {
+              "id": "orderly",
+              "riskDrawIndex": 1,
+              "state": {
+                "enemyInstanceId": "orderly",
+                "definitionId": "infected-world-orderly",
+                "hasBeenEncountered": true,
+                "defeated": false,
+                "currentHealth": 10,
+                "currentIntentActionId": "orderly-special",
+                "nextCycleIndex": 0,
+                "resolvedActionCount": 1
+              }
+            }
+          ]
+        },
+        "battle": {
+          "entry": {
+            "id": "residence-battle-v1:TEST-run:4:orderly",
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            },
+            "revision": 4,
+            "baseRevision": 3,
+            "edgeId": "H1-H4:forward",
+            "from": "H1",
+            "to": "H4",
+            "enemyId": "orderly",
+            "enemyInstanceId": "orderly",
+            "definitionId": "infected-world-orderly",
+            "previouslyEncountered": false,
+            "enemyHealth": 14,
+            "intent": "orderly-basic",
+            "nextCycleIndex": 1,
+            "actionCount": 0,
+            "riskIndex": 0,
+            "healthBefore": 12,
+            "healthAfter": 12,
+            "steps": [
+              {
+                "kind": "primary",
+                "healthBefore": 12,
+                "healthAfter": 12,
+                "facts": {
+                  "healthLoss": 0,
+                  "exposures": 0
+                }
+              }
+            ]
+          },
+          "currentCtb": 100,
+          "playerNext": 100,
+          "enemyNext": 170,
+          "temporaryDefense": null,
+          "decision": {
+            "battleId": "residence-battle-v1:TEST-run:4:orderly",
+            "revision": 5,
+            "baseRevision": 4,
+            "command": {
+              "kind": "metal-pipe-basic-attack"
+            },
+            "ctbBefore": 0,
+            "ctbAfter": 100,
+            "playerNext": 100,
+            "enemyNext": 170,
+            "healthBefore": 12,
+            "healthAfter": 10,
+            "enemyHealthBefore": 14,
+            "enemyHealthAfter": 10,
+            "actionCountBefore": 0,
+            "actionCountAfter": 1,
+            "enemyResponses": 1,
+            "riskBefore": 0,
+            "riskAfter": 1,
+            "trace": [
+              {
+                "kind": "direct-damage",
+                "ctb": 70,
+                "requested": 2,
+                "actual": 2,
+                "healthBefore": 12,
+                "healthAfter": 10,
+                "actionId": "orderly-basic",
+                "reference": null
+              }
+            ],
+            "uses": [],
+            "resources": [
+              {
+                "instanceId": "TEST-pipe",
+                "before": 30,
+                "requested": 1,
+                "consumed": 1,
+                "after": 29
+              },
+              {
+                "instanceId": "TEST-coat",
+                "before": 12,
+                "requested": 1,
+                "consumed": 1,
+                "after": 11
+              }
+            ],
+            "quotaBefore": 1,
+            "quotaAfter": 1,
+            "queue": [
+              {
+                "reason": "player-action-scheduled",
+                "currentBefore": 0,
+                "currentAfter": 0,
+                "playerBefore": 0,
+                "playerAfter": 100,
+                "enemyBefore": 70,
+                "enemyAfter": 70
+              },
+              {
+                "reason": "enemy-action-resolved",
+                "currentBefore": 0,
+                "currentAfter": 70,
+                "playerBefore": 100,
+                "playerAfter": 100,
+                "enemyBefore": 70,
+                "enemyAfter": 170
+              },
+              {
+                "reason": "player-decision-point",
+                "currentBefore": 70,
+                "currentAfter": 100,
+                "playerBefore": 100,
+                "playerAfter": 100,
+                "enemyBefore": 170,
+                "enemyAfter": 170
+              }
+            ]
+          }
+        }
+      },
+      "expected": "ACCEPT",
+      "explanation": "Local legal shape for actual basic100 / enemy70+100",
+      "actual": "ACCEPT",
+      "detail": null,
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": true
+    },
+    {
+      "id": "C02-heal-then-death",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "dead",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 0
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "closed",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": null,
+            "armor": null
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [
+          {
+            "id": "TEST-use",
+            "reason": "medical",
+            "item": {
+              "instanceId": "TEST-bandage",
+              "definitionId": "consumable_bandage",
+              "quantity": 1
+            },
+            "revision": 4,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-pipe",
+            "item": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-coat",
+            "item": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "receipts": [
+          {
+            "source": "combat-death",
+            "combatDeathReceiptId": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "battles": [],
+        "combatDeaths": [
+          {
+            "id": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "entry": {
+              "id": "residence-battle-v1:TEST-run:4:orderly",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "revision": 4,
+              "baseRevision": 3,
+              "edgeId": "H1-H4:forward",
+              "from": "H1",
+              "to": "H4",
+              "enemyId": "orderly",
+              "enemyInstanceId": "orderly",
+              "definitionId": "infected-world-orderly",
+              "previouslyEncountered": false,
+              "enemyHealth": 14,
+              "intent": "orderly-basic",
+              "nextCycleIndex": 1,
+              "actionCount": 0,
+              "riskIndex": 0,
+              "healthBefore": 1,
+              "healthAfter": 1,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "healthBefore": 1,
+                  "healthAfter": 1,
+                  "facts": {
+                    "healthLoss": 0,
+                    "exposures": 0
+                  }
+                }
+              ]
+            },
+            "decision": {
+              "battleId": "residence-battle-v1:TEST-run:4:orderly",
+              "revision": 5,
+              "baseRevision": 4,
+              "command": {
+                "kind": "use-quick-slot-item",
+                "quickSlotIndex": 0
+              },
+              "ctbBefore": 0,
+              "ctbAfter": 70,
+              "playerNext": 80,
+              "enemyNext": 70,
+              "healthBefore": 1,
+              "healthAfter": 0,
+              "enemyHealthBefore": 14,
+              "enemyHealthAfter": 14,
+              "actionCountBefore": 0,
+              "actionCountAfter": 0,
+              "enemyResponses": 1,
+              "riskBefore": 0,
+              "riskAfter": 0,
+              "trace": [
+                {
+                  "kind": "heal",
+                  "ctb": 0,
+                  "requested": 1,
+                  "actual": 1,
+                  "healthBefore": 1,
+                  "healthAfter": 2,
+                  "actionId": "combat-bandage",
+                  "reference": null
+                },
+                {
+                  "kind": "direct-damage",
+                  "ctb": 70,
+                  "requested": 2,
+                  "actual": 2,
+                  "healthBefore": 2,
+                  "healthAfter": 0,
+                  "actionId": "orderly-basic",
+                  "reference": null
+                }
+              ],
+              "uses": [
+                {
+                  "instanceId": "TEST-bandage",
+                  "definitionId": "consumable_bandage",
+                  "slot": 0,
+                  "dispositionIds": [
+                    "TEST-use"
+                  ],
+                  "kind": "bandage",
+                  "quantity": 1
+                }
+              ],
+              "resources": [
+                {
+                  "instanceId": "TEST-coat",
+                  "before": 12,
+                  "requested": 1,
+                  "consumed": 1,
+                  "after": 11
+                }
+              ],
+              "quotaBefore": 1,
+              "quotaAfter": 1,
+              "queue": [
+                {
+                  "reason": "player-action-scheduled",
+                  "currentBefore": 0,
+                  "currentAfter": 0,
+                  "playerBefore": 0,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                },
+                {
+                  "reason": "enemy-action-terminal",
+                  "currentBefore": 0,
+                  "currentAfter": 70,
+                  "playerBefore": 80,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                }
+              ]
+            },
+            "revision": 5
+          }
+        ],
+        "archives": [
+          {
+            "site": {
+              "nodeId": "H4",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "pending": {
+                "kind": "combat-required",
+                "enemyId": "orderly"
+              },
+              "enemies": [
+                {
+                  "id": "orderly",
+                  "riskDrawIndex": 0,
+                  "state": {
+                    "enemyInstanceId": "orderly",
+                    "definitionId": "infected-world-orderly",
+                    "hasBeenEncountered": true,
+                    "defeated": false,
+                    "currentHealth": 14,
+                    "currentIntentActionId": "orderly-basic",
+                    "nextCycleIndex": 1,
+                    "resolvedActionCount": 0
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "site": null,
+        "battle": null
+      },
+      "expected": "ACCEPT",
+      "explanation": "HP1 heal1 then coat-reduced2 at70",
+      "actual": "ACCEPT",
+      "detail": null,
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": true
+    },
+    {
+      "id": "C03-HP1-action-bleeding-clips0",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "dead",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 0
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "closed",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": null,
+            "armor": null
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [
+          {
+            "id": "TEST-dead-pipe",
+            "item": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-coat",
+            "item": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "receipts": [
+          {
+            "source": "combat-death",
+            "combatDeathReceiptId": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "battles": [],
+        "combatDeaths": [
+          {
+            "id": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "entry": {
+              "id": "residence-battle-v1:TEST-run:4:orderly",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "revision": 4,
+              "baseRevision": 3,
+              "edgeId": "H1-H4:forward",
+              "from": "H1",
+              "to": "H4",
+              "enemyId": "orderly",
+              "enemyInstanceId": "orderly",
+              "definitionId": "infected-world-orderly",
+              "previouslyEncountered": false,
+              "enemyHealth": 14,
+              "intent": "orderly-basic",
+              "nextCycleIndex": 1,
+              "actionCount": 0,
+              "riskIndex": 0,
+              "healthBefore": 1,
+              "healthAfter": 1,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "healthBefore": 1,
+                  "healthAfter": 1,
+                  "facts": {
+                    "healthLoss": 0,
+                    "exposures": 0
+                  }
+                }
+              ]
+            },
+            "decision": {
+              "battleId": "residence-battle-v1:TEST-run:4:orderly",
+              "revision": 5,
+              "baseRevision": 4,
+              "command": {
+                "kind": "metal-pipe-basic-attack"
+              },
+              "ctbBefore": 0,
+              "ctbAfter": 0,
+              "playerNext": 0,
+              "enemyNext": 70,
+              "healthBefore": 1,
+              "healthAfter": 0,
+              "enemyHealthBefore": 14,
+              "enemyHealthAfter": 10,
+              "actionCountBefore": 0,
+              "actionCountAfter": 0,
+              "enemyResponses": 0,
+              "riskBefore": 0,
+              "riskAfter": 0,
+              "trace": [
+                {
+                  "kind": "post-action-bleeding",
+                  "ctb": 0,
+                  "requested": 1,
+                  "actual": 1,
+                  "healthBefore": 1,
+                  "healthAfter": 0,
+                  "actionId": "post-player-action-bleeding",
+                  "reference": null
+                }
+              ],
+              "uses": [],
+              "resources": [
+                {
+                  "instanceId": "TEST-pipe",
+                  "before": 30,
+                  "requested": 1,
+                  "consumed": 1,
+                  "after": 29
+                }
+              ],
+              "quotaBefore": 1,
+              "quotaAfter": 1,
+              "queue": []
+            },
+            "revision": 5
+          }
+        ],
+        "archives": [
+          {
+            "site": {
+              "nodeId": "H4",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "pending": {
+                "kind": "combat-required",
+                "enemyId": "orderly"
+              },
+              "enemies": [
+                {
+                  "id": "orderly",
+                  "riskDrawIndex": 0,
+                  "state": {
+                    "enemyInstanceId": "orderly",
+                    "definitionId": "infected-world-orderly",
+                    "hasBeenEncountered": true,
+                    "defeated": false,
+                    "currentHealth": 10,
+                    "currentIntentActionId": "orderly-basic",
+                    "nextCycleIndex": 1,
+                    "resolvedActionCount": 0
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "site": null,
+        "battle": null
+      },
+      "expected": "ACCEPT",
+      "explanation": "Legitimate final HP0 after one own-action bleed",
+      "actual": "ACCEPT",
+      "detail": null,
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": true
+    },
+    {
+      "id": "C04-escape80",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "active-world",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 10
+            },
+            "energy": 44,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "active",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "armor": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            }
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [],
+        "receipts": [],
+        "battles": [
+          {
+            "entry": {
+              "id": "residence-battle-v1:TEST-run:4:orderly",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "revision": 4,
+              "baseRevision": 3,
+              "edgeId": "H1-H4:forward",
+              "from": "H1",
+              "to": "H4",
+              "enemyId": "orderly",
+              "enemyInstanceId": "orderly",
+              "definitionId": "infected-world-orderly",
+              "previouslyEncountered": false,
+              "enemyHealth": 14,
+              "intent": "orderly-basic",
+              "nextCycleIndex": 1,
+              "actionCount": 0,
+              "riskIndex": 0,
+              "healthBefore": 12,
+              "healthAfter": 12,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "healthBefore": 12,
+                  "healthAfter": 12,
+                  "facts": {
+                    "healthLoss": 0,
+                    "exposures": 0
+                  }
+                }
+              ]
+            },
+            "decision": {
+              "battleId": "residence-battle-v1:TEST-run:4:orderly",
+              "revision": 5,
+              "baseRevision": 4,
+              "command": {
+                "kind": "escape"
+              },
+              "ctbBefore": 0,
+              "ctbAfter": 80,
+              "playerNext": 80,
+              "enemyNext": 170,
+              "healthBefore": 12,
+              "healthAfter": 10,
+              "enemyHealthBefore": 14,
+              "enemyHealthAfter": 14,
+              "actionCountBefore": 0,
+              "actionCountAfter": 1,
+              "enemyResponses": 1,
+              "riskBefore": 0,
+              "riskAfter": 1,
+              "trace": [
+                {
+                  "kind": "direct-damage",
+                  "ctb": 70,
+                  "requested": 2,
+                  "actual": 2,
+                  "healthBefore": 12,
+                  "healthAfter": 10,
+                  "actionId": "orderly-basic",
+                  "reference": null
+                }
+              ],
+              "uses": [],
+              "resources": [
+                {
+                  "instanceId": "TEST-coat",
+                  "before": 12,
+                  "requested": 1,
+                  "consumed": 1,
+                  "after": 11
+                }
+              ],
+              "quotaBefore": 1,
+              "quotaAfter": 1,
+              "queue": [
+                {
+                  "reason": "escape-preparation-scheduled",
+                  "currentBefore": 0,
+                  "currentAfter": 0,
+                  "playerBefore": 0,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                },
+                {
+                  "reason": "enemy-action-resolved",
+                  "currentBefore": 0,
+                  "currentAfter": 70,
+                  "playerBefore": 80,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 170
+                },
+                {
+                  "reason": "escape-completed",
+                  "currentBefore": 70,
+                  "currentAfter": 80,
+                  "playerBefore": 80,
+                  "playerAfter": 80,
+                  "enemyBefore": 170,
+                  "enemyAfter": 170
+                }
+              ]
+            },
+            "outcome": "escaped",
+            "exitRevision": 5,
+            "elapsed": 80,
+            "requestedEnergy": 6,
+            "energyBefore": 50,
+            "energyAfter": 44,
+            "nodeId": "H1"
+          }
+        ],
+        "combatDeaths": [],
+        "archives": [],
+        "site": {
+          "nodeId": "H1",
+          "binding": {
+            "identity": {
+              "characterId": "TEST-character",
+              "rulesVersion": "TEST-rules",
+              "configurationId": "TEST-G1"
+            },
+            "mission": {
+              "commissionId": "TEST-commission"
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            },
+            "catalogId": "TEST-catalog",
+            "catalogVersion": "TEST-content"
+          },
+          "pending": {
+            "kind": "none"
+          },
+          "enemies": [
+            {
+              "id": "orderly",
+              "riskDrawIndex": 1,
+              "state": {
+                "enemyInstanceId": "orderly",
+                "definitionId": "infected-world-orderly",
+                "hasBeenEncountered": true,
+                "defeated": false,
+                "currentHealth": 14,
+                "currentIntentActionId": "orderly-special",
+                "nextCycleIndex": 0,
+                "resolvedActionCount": 1
+              }
+            }
+          ]
+        },
+        "battle": null
+      },
+      "expected": "ACCEPT",
+      "explanation": "Response70 before escape80",
+      "actual": "ACCEPT",
+      "detail": null,
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": true
+    },
+    {
+      "id": "C05-wrong-battle-id",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "active-world",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 10
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "active",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "armor": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            }
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [],
+        "receipts": [],
+        "battles": [],
+        "combatDeaths": [],
+        "archives": [],
+        "site": {
+          "nodeId": "H4",
+          "binding": {
+            "identity": {
+              "characterId": "TEST-character",
+              "rulesVersion": "TEST-rules",
+              "configurationId": "TEST-G1"
+            },
+            "mission": {
+              "commissionId": "TEST-commission"
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            },
+            "catalogId": "TEST-catalog",
+            "catalogVersion": "TEST-content"
+          },
+          "pending": {
+            "kind": "combat-required",
+            "enemyId": "orderly"
+          },
+          "enemies": [
+            {
+              "id": "orderly",
+              "riskDrawIndex": 1,
+              "state": {
+                "enemyInstanceId": "orderly",
+                "definitionId": "infected-world-orderly",
+                "hasBeenEncountered": true,
+                "defeated": false,
+                "currentHealth": 10,
+                "currentIntentActionId": "orderly-special",
+                "nextCycleIndex": 0,
+                "resolvedActionCount": 1
+              }
+            }
+          ]
+        },
+        "battle": {
+          "entry": {
+            "id": "wrong",
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            },
+            "revision": 4,
+            "baseRevision": 3,
+            "edgeId": "H1-H4:forward",
+            "from": "H1",
+            "to": "H4",
+            "enemyId": "orderly",
+            "enemyInstanceId": "orderly",
+            "definitionId": "infected-world-orderly",
+            "previouslyEncountered": false,
+            "enemyHealth": 14,
+            "intent": "orderly-basic",
+            "nextCycleIndex": 1,
+            "actionCount": 0,
+            "riskIndex": 0,
+            "healthBefore": 12,
+            "healthAfter": 12,
+            "steps": [
+              {
+                "kind": "primary",
+                "healthBefore": 12,
+                "healthAfter": 12,
+                "facts": {
+                  "healthLoss": 0,
+                  "exposures": 0
+                }
+              }
+            ]
+          },
+          "currentCtb": 100,
+          "playerNext": 100,
+          "enemyNext": 170,
+          "temporaryDefense": null,
+          "decision": {
+            "battleId": "residence-battle-v1:TEST-run:4:orderly",
+            "revision": 5,
+            "baseRevision": 4,
+            "command": {
+              "kind": "metal-pipe-basic-attack"
+            },
+            "ctbBefore": 0,
+            "ctbAfter": 100,
+            "playerNext": 100,
+            "enemyNext": 170,
+            "healthBefore": 12,
+            "healthAfter": 10,
+            "enemyHealthBefore": 14,
+            "enemyHealthAfter": 10,
+            "actionCountBefore": 0,
+            "actionCountAfter": 1,
+            "enemyResponses": 1,
+            "riskBefore": 0,
+            "riskAfter": 1,
+            "trace": [
+              {
+                "kind": "direct-damage",
+                "ctb": 70,
+                "requested": 2,
+                "actual": 2,
+                "healthBefore": 12,
+                "healthAfter": 10,
+                "actionId": "orderly-basic",
+                "reference": null
+              }
+            ],
+            "uses": [],
+            "resources": [
+              {
+                "instanceId": "TEST-pipe",
+                "before": 30,
+                "requested": 1,
+                "consumed": 1,
+                "after": 29
+              },
+              {
+                "instanceId": "TEST-coat",
+                "before": 12,
+                "requested": 1,
+                "consumed": 1,
+                "after": 11
+              }
+            ],
+            "quotaBefore": 1,
+            "quotaAfter": 1,
+            "queue": [
+              {
+                "reason": "player-action-scheduled",
+                "currentBefore": 0,
+                "currentAfter": 0,
+                "playerBefore": 0,
+                "playerAfter": 100,
+                "enemyBefore": 70,
+                "enemyAfter": 70
+              },
+              {
+                "reason": "enemy-action-resolved",
+                "currentBefore": 0,
+                "currentAfter": 70,
+                "playerBefore": 100,
+                "playerAfter": 100,
+                "enemyBefore": 70,
+                "enemyAfter": 170
+              },
+              {
+                "reason": "player-decision-point",
+                "currentBefore": 70,
+                "currentAfter": 100,
+                "playerBefore": 100,
+                "playerAfter": 100,
+                "enemyBefore": 170,
+                "enemyAfter": 170
+              }
+            ]
+          }
+        }
+      },
+      "expected": "REJECT",
+      "explanation": "Wrong canonical identity",
+      "actual": "REJECT",
+      "detail": "Invalid entry identity or route",
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": true
+    },
+    {
+      "id": "C06-broken-queue-adjacency",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "active-world",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 10
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "active",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "armor": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            }
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [],
+        "receipts": [],
+        "battles": [],
+        "combatDeaths": [],
+        "archives": [],
+        "site": {
+          "nodeId": "H4",
+          "binding": {
+            "identity": {
+              "characterId": "TEST-character",
+              "rulesVersion": "TEST-rules",
+              "configurationId": "TEST-G1"
+            },
+            "mission": {
+              "commissionId": "TEST-commission"
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            },
+            "catalogId": "TEST-catalog",
+            "catalogVersion": "TEST-content"
+          },
+          "pending": {
+            "kind": "combat-required",
+            "enemyId": "orderly"
+          },
+          "enemies": [
+            {
+              "id": "orderly",
+              "riskDrawIndex": 1,
+              "state": {
+                "enemyInstanceId": "orderly",
+                "definitionId": "infected-world-orderly",
+                "hasBeenEncountered": true,
+                "defeated": false,
+                "currentHealth": 10,
+                "currentIntentActionId": "orderly-special",
+                "nextCycleIndex": 0,
+                "resolvedActionCount": 1
+              }
+            }
+          ]
+        },
+        "battle": {
+          "entry": {
+            "id": "residence-battle-v1:TEST-run:4:orderly",
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            },
+            "revision": 4,
+            "baseRevision": 3,
+            "edgeId": "H1-H4:forward",
+            "from": "H1",
+            "to": "H4",
+            "enemyId": "orderly",
+            "enemyInstanceId": "orderly",
+            "definitionId": "infected-world-orderly",
+            "previouslyEncountered": false,
+            "enemyHealth": 14,
+            "intent": "orderly-basic",
+            "nextCycleIndex": 1,
+            "actionCount": 0,
+            "riskIndex": 0,
+            "healthBefore": 12,
+            "healthAfter": 12,
+            "steps": [
+              {
+                "kind": "primary",
+                "healthBefore": 12,
+                "healthAfter": 12,
+                "facts": {
+                  "healthLoss": 0,
+                  "exposures": 0
+                }
+              }
+            ]
+          },
+          "currentCtb": 100,
+          "playerNext": 100,
+          "enemyNext": 170,
+          "temporaryDefense": null,
+          "decision": {
+            "battleId": "residence-battle-v1:TEST-run:4:orderly",
+            "revision": 5,
+            "baseRevision": 4,
+            "command": {
+              "kind": "metal-pipe-basic-attack"
+            },
+            "ctbBefore": 0,
+            "ctbAfter": 100,
+            "playerNext": 100,
+            "enemyNext": 170,
+            "healthBefore": 12,
+            "healthAfter": 10,
+            "enemyHealthBefore": 14,
+            "enemyHealthAfter": 10,
+            "actionCountBefore": 0,
+            "actionCountAfter": 1,
+            "enemyResponses": 1,
+            "riskBefore": 0,
+            "riskAfter": 1,
+            "trace": [
+              {
+                "kind": "direct-damage",
+                "ctb": 70,
+                "requested": 2,
+                "actual": 2,
+                "healthBefore": 12,
+                "healthAfter": 10,
+                "actionId": "orderly-basic",
+                "reference": null
+              }
+            ],
+            "uses": [],
+            "resources": [
+              {
+                "instanceId": "TEST-pipe",
+                "before": 30,
+                "requested": 1,
+                "consumed": 1,
+                "after": 29
+              },
+              {
+                "instanceId": "TEST-coat",
+                "before": 12,
+                "requested": 1,
+                "consumed": 1,
+                "after": 11
+              }
+            ],
+            "quotaBefore": 1,
+            "quotaAfter": 1,
+            "queue": [
+              {
+                "reason": "player-action-scheduled",
+                "currentBefore": 0,
+                "currentAfter": 0,
+                "playerBefore": 0,
+                "playerAfter": 100,
+                "enemyBefore": 70,
+                "enemyAfter": 70
+              },
+              {
+                "reason": "enemy-action-resolved",
+                "currentBefore": 9,
+                "currentAfter": 70,
+                "playerBefore": 100,
+                "playerAfter": 100,
+                "enemyBefore": 70,
+                "enemyAfter": 170
+              },
+              {
+                "reason": "player-decision-point",
+                "currentBefore": 70,
+                "currentAfter": 100,
+                "playerBefore": 100,
+                "playerAfter": 100,
+                "enemyBefore": 170,
+                "enemyAfter": 170
+              }
+            ]
+          }
+        }
+      },
+      "expected": "REJECT",
+      "explanation": "Ordinary adjacency check already effective",
+      "actual": "REJECT",
+      "detail": "Queue adjacency differs",
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": true
+    },
+    {
+      "id": "C07-broken-HP-adjacency",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "dead",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 0
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "closed",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": null,
+            "armor": null
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [
+          {
+            "id": "TEST-use",
+            "reason": "medical",
+            "item": {
+              "instanceId": "TEST-bandage",
+              "definitionId": "consumable_bandage",
+              "quantity": 1
+            },
+            "revision": 4,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-pipe",
+            "item": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-coat",
+            "item": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "receipts": [
+          {
+            "source": "combat-death",
+            "combatDeathReceiptId": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "battles": [],
+        "combatDeaths": [
+          {
+            "id": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "entry": {
+              "id": "residence-battle-v1:TEST-run:4:orderly",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "revision": 4,
+              "baseRevision": 3,
+              "edgeId": "H1-H4:forward",
+              "from": "H1",
+              "to": "H4",
+              "enemyId": "orderly",
+              "enemyInstanceId": "orderly",
+              "definitionId": "infected-world-orderly",
+              "previouslyEncountered": false,
+              "enemyHealth": 14,
+              "intent": "orderly-basic",
+              "nextCycleIndex": 1,
+              "actionCount": 0,
+              "riskIndex": 0,
+              "healthBefore": 1,
+              "healthAfter": 1,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "healthBefore": 1,
+                  "healthAfter": 1,
+                  "facts": {
+                    "healthLoss": 0,
+                    "exposures": 0
+                  }
+                }
+              ]
+            },
+            "decision": {
+              "battleId": "residence-battle-v1:TEST-run:4:orderly",
+              "revision": 5,
+              "baseRevision": 4,
+              "command": {
+                "kind": "use-quick-slot-item",
+                "quickSlotIndex": 0
+              },
+              "ctbBefore": 0,
+              "ctbAfter": 70,
+              "playerNext": 80,
+              "enemyNext": 70,
+              "healthBefore": 1,
+              "healthAfter": 0,
+              "enemyHealthBefore": 14,
+              "enemyHealthAfter": 14,
+              "actionCountBefore": 0,
+              "actionCountAfter": 0,
+              "enemyResponses": 1,
+              "riskBefore": 0,
+              "riskAfter": 0,
+              "trace": [
+                {
+                  "kind": "heal",
+                  "ctb": 0,
+                  "requested": 1,
+                  "actual": 1,
+                  "healthBefore": 1,
+                  "healthAfter": 2,
+                  "actionId": "combat-bandage",
+                  "reference": null
+                },
+                {
+                  "kind": "direct-damage",
+                  "ctb": 70,
+                  "requested": 2,
+                  "actual": 2,
+                  "healthBefore": 3,
+                  "healthAfter": 0,
+                  "actionId": "orderly-basic",
+                  "reference": null
+                }
+              ],
+              "uses": [
+                {
+                  "instanceId": "TEST-bandage",
+                  "definitionId": "consumable_bandage",
+                  "slot": 0,
+                  "dispositionIds": [
+                    "TEST-use"
+                  ],
+                  "kind": "bandage",
+                  "quantity": 1
+                }
+              ],
+              "resources": [
+                {
+                  "instanceId": "TEST-coat",
+                  "before": 12,
+                  "requested": 1,
+                  "consumed": 1,
+                  "after": 11
+                }
+              ],
+              "quotaBefore": 1,
+              "quotaAfter": 1,
+              "queue": [
+                {
+                  "reason": "player-action-scheduled",
+                  "currentBefore": 0,
+                  "currentAfter": 0,
+                  "playerBefore": 0,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                },
+                {
+                  "reason": "enemy-action-terminal",
+                  "currentBefore": 0,
+                  "currentAfter": 70,
+                  "playerBefore": 80,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                }
+              ]
+            },
+            "revision": 5
+          }
+        ],
+        "archives": [
+          {
+            "site": {
+              "nodeId": "H4",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "pending": {
+                "kind": "combat-required",
+                "enemyId": "orderly"
+              },
+              "enemies": [
+                {
+                  "id": "orderly",
+                  "riskDrawIndex": 0,
+                  "state": {
+                    "enemyInstanceId": "orderly",
+                    "definitionId": "infected-world-orderly",
+                    "hasBeenEncountered": true,
+                    "defeated": false,
+                    "currentHealth": 14,
+                    "currentIntentActionId": "orderly-basic",
+                    "nextCycleIndex": 1,
+                    "resolvedActionCount": 0
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "site": null,
+        "battle": null
+      },
+      "expected": "REJECT",
+      "explanation": "Arithmetic adjacency check already effective",
+      "actual": "REJECT",
+      "detail": "Invalid typed HP adjacency",
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": true
+    },
+    {
+      "id": "C08-bool-trace",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "dead",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 0
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "closed",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": null,
+            "armor": null
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [
+          {
+            "id": "TEST-use",
+            "reason": "medical",
+            "item": {
+              "instanceId": "TEST-bandage",
+              "definitionId": "consumable_bandage",
+              "quantity": 1
+            },
+            "revision": 4,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-pipe",
+            "item": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-coat",
+            "item": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "receipts": [
+          {
+            "source": "combat-death",
+            "combatDeathReceiptId": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "battles": [],
+        "combatDeaths": [
+          {
+            "id": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "entry": {
+              "id": "residence-battle-v1:TEST-run:4:orderly",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "revision": 4,
+              "baseRevision": 3,
+              "edgeId": "H1-H4:forward",
+              "from": "H1",
+              "to": "H4",
+              "enemyId": "orderly",
+              "enemyInstanceId": "orderly",
+              "definitionId": "infected-world-orderly",
+              "previouslyEncountered": false,
+              "enemyHealth": 14,
+              "intent": "orderly-basic",
+              "nextCycleIndex": 1,
+              "actionCount": 0,
+              "riskIndex": 0,
+              "healthBefore": 1,
+              "healthAfter": 1,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "healthBefore": 1,
+                  "healthAfter": 1,
+                  "facts": {
+                    "healthLoss": 0,
+                    "exposures": 0
+                  }
+                }
+              ]
+            },
+            "decision": {
+              "battleId": "residence-battle-v1:TEST-run:4:orderly",
+              "revision": 5,
+              "baseRevision": 4,
+              "command": {
+                "kind": "use-quick-slot-item",
+                "quickSlotIndex": 0
+              },
+              "ctbBefore": 0,
+              "ctbAfter": 70,
+              "playerNext": 80,
+              "enemyNext": 70,
+              "healthBefore": 1,
+              "healthAfter": 0,
+              "enemyHealthBefore": 14,
+              "enemyHealthAfter": 14,
+              "actionCountBefore": 0,
+              "actionCountAfter": 0,
+              "enemyResponses": 1,
+              "riskBefore": 0,
+              "riskAfter": 0,
+              "trace": [
+                {
+                  "kind": "heal",
+                  "ctb": 0,
+                  "requested": 1,
+                  "actual": 1,
+                  "healthBefore": 1,
+                  "healthAfter": 2,
+                  "actionId": "combat-bandage",
+                  "reference": null
+                },
+                {
+                  "kind": "direct-damage",
+                  "ctb": 70,
+                  "requested": true,
+                  "actual": 2,
+                  "healthBefore": 2,
+                  "healthAfter": 0,
+                  "actionId": "orderly-basic",
+                  "reference": null
+                }
+              ],
+              "uses": [
+                {
+                  "instanceId": "TEST-bandage",
+                  "definitionId": "consumable_bandage",
+                  "slot": 0,
+                  "dispositionIds": [
+                    "TEST-use"
+                  ],
+                  "kind": "bandage",
+                  "quantity": 1
+                }
+              ],
+              "resources": [
+                {
+                  "instanceId": "TEST-coat",
+                  "before": 12,
+                  "requested": 1,
+                  "consumed": 1,
+                  "after": 11
+                }
+              ],
+              "quotaBefore": 1,
+              "quotaAfter": 1,
+              "queue": [
+                {
+                  "reason": "player-action-scheduled",
+                  "currentBefore": 0,
+                  "currentAfter": 0,
+                  "playerBefore": 0,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                },
+                {
+                  "reason": "enemy-action-terminal",
+                  "currentBefore": 0,
+                  "currentAfter": 70,
+                  "playerBefore": 80,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                }
+              ]
+            },
+            "revision": 5
+          }
+        ],
+        "archives": [
+          {
+            "site": {
+              "nodeId": "H4",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "pending": {
+                "kind": "combat-required",
+                "enemyId": "orderly"
+              },
+              "enemies": [
+                {
+                  "id": "orderly",
+                  "riskDrawIndex": 0,
+                  "state": {
+                    "enemyInstanceId": "orderly",
+                    "definitionId": "infected-world-orderly",
+                    "hasBeenEncountered": true,
+                    "defeated": false,
+                    "currentHealth": 14,
+                    "currentIntentActionId": "orderly-basic",
+                    "nextCycleIndex": 1,
+                    "resolvedActionCount": 0
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "site": null,
+        "battle": null
+      },
+      "expected": "REJECT",
+      "explanation": "Explicit adapter duplicates numeric schema only",
+      "actual": "REJECT",
+      "detail": "raw trace number",
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": true
+    },
+    {
+      "id": "C09-site-latest-HP",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "active-world",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 10
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "active",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "armor": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            }
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [],
+        "receipts": [],
+        "battles": [],
+        "combatDeaths": [],
+        "archives": [],
+        "site": {
+          "nodeId": "H4",
+          "binding": {
+            "identity": {
+              "characterId": "TEST-character",
+              "rulesVersion": "TEST-rules",
+              "configurationId": "TEST-G1"
+            },
+            "mission": {
+              "commissionId": "TEST-commission"
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            },
+            "catalogId": "TEST-catalog",
+            "catalogVersion": "TEST-content"
+          },
+          "pending": {
+            "kind": "combat-required",
+            "enemyId": "orderly"
+          },
+          "enemies": [
+            {
+              "id": "orderly",
+              "riskDrawIndex": 1,
+              "state": {
+                "enemyInstanceId": "orderly",
+                "definitionId": "infected-world-orderly",
+                "hasBeenEncountered": true,
+                "defeated": false,
+                "currentHealth": 11,
+                "currentIntentActionId": "orderly-special",
+                "nextCycleIndex": 0,
+                "resolvedActionCount": 1
+              }
+            }
+          ]
+        },
+        "battle": {
+          "entry": {
+            "id": "residence-battle-v1:TEST-run:4:orderly",
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            },
+            "revision": 4,
+            "baseRevision": 3,
+            "edgeId": "H1-H4:forward",
+            "from": "H1",
+            "to": "H4",
+            "enemyId": "orderly",
+            "enemyInstanceId": "orderly",
+            "definitionId": "infected-world-orderly",
+            "previouslyEncountered": false,
+            "enemyHealth": 14,
+            "intent": "orderly-basic",
+            "nextCycleIndex": 1,
+            "actionCount": 0,
+            "riskIndex": 0,
+            "healthBefore": 12,
+            "healthAfter": 12,
+            "steps": [
+              {
+                "kind": "primary",
+                "healthBefore": 12,
+                "healthAfter": 12,
+                "facts": {
+                  "healthLoss": 0,
+                  "exposures": 0
+                }
+              }
+            ]
+          },
+          "currentCtb": 100,
+          "playerNext": 100,
+          "enemyNext": 170,
+          "temporaryDefense": null,
+          "decision": {
+            "battleId": "residence-battle-v1:TEST-run:4:orderly",
+            "revision": 5,
+            "baseRevision": 4,
+            "command": {
+              "kind": "metal-pipe-basic-attack"
+            },
+            "ctbBefore": 0,
+            "ctbAfter": 100,
+            "playerNext": 100,
+            "enemyNext": 170,
+            "healthBefore": 12,
+            "healthAfter": 10,
+            "enemyHealthBefore": 14,
+            "enemyHealthAfter": 10,
+            "actionCountBefore": 0,
+            "actionCountAfter": 1,
+            "enemyResponses": 1,
+            "riskBefore": 0,
+            "riskAfter": 1,
+            "trace": [
+              {
+                "kind": "direct-damage",
+                "ctb": 70,
+                "requested": 2,
+                "actual": 2,
+                "healthBefore": 12,
+                "healthAfter": 10,
+                "actionId": "orderly-basic",
+                "reference": null
+              }
+            ],
+            "uses": [],
+            "resources": [
+              {
+                "instanceId": "TEST-pipe",
+                "before": 30,
+                "requested": 1,
+                "consumed": 1,
+                "after": 29
+              },
+              {
+                "instanceId": "TEST-coat",
+                "before": 12,
+                "requested": 1,
+                "consumed": 1,
+                "after": 11
+              }
+            ],
+            "quotaBefore": 1,
+            "quotaAfter": 1,
+            "queue": [
+              {
+                "reason": "player-action-scheduled",
+                "currentBefore": 0,
+                "currentAfter": 0,
+                "playerBefore": 0,
+                "playerAfter": 100,
+                "enemyBefore": 70,
+                "enemyAfter": 70
+              },
+              {
+                "reason": "enemy-action-resolved",
+                "currentBefore": 0,
+                "currentAfter": 70,
+                "playerBefore": 100,
+                "playerAfter": 100,
+                "enemyBefore": 70,
+                "enemyAfter": 170
+              },
+              {
+                "reason": "player-decision-point",
+                "currentBefore": 70,
+                "currentAfter": 100,
+                "playerBefore": 100,
+                "playerAfter": 100,
+                "enemyBefore": 170,
+                "enemyAfter": 170
+              }
+            ]
+          }
+        }
+      },
+      "expected": "REJECT",
+      "explanation": "Unique-state projection mismatch",
+      "actual": "REJECT",
+      "detail": "Latest decision differs from unique state",
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": true
+    },
+    {
+      "id": "C10-repeat-exit",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "active-world",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 10
+            },
+            "energy": 44,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "active",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "armor": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            }
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [],
+        "receipts": [],
+        "battles": [
+          {
+            "entry": {
+              "id": "residence-battle-v1:TEST-run:4:orderly",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "revision": 4,
+              "baseRevision": 3,
+              "edgeId": "H1-H4:forward",
+              "from": "H1",
+              "to": "H4",
+              "enemyId": "orderly",
+              "enemyInstanceId": "orderly",
+              "definitionId": "infected-world-orderly",
+              "previouslyEncountered": false,
+              "enemyHealth": 14,
+              "intent": "orderly-basic",
+              "nextCycleIndex": 1,
+              "actionCount": 0,
+              "riskIndex": 0,
+              "healthBefore": 12,
+              "healthAfter": 12,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "healthBefore": 12,
+                  "healthAfter": 12,
+                  "facts": {
+                    "healthLoss": 0,
+                    "exposures": 0
+                  }
+                }
+              ]
+            },
+            "decision": {
+              "battleId": "residence-battle-v1:TEST-run:4:orderly",
+              "revision": 5,
+              "baseRevision": 4,
+              "command": {
+                "kind": "escape"
+              },
+              "ctbBefore": 0,
+              "ctbAfter": 80,
+              "playerNext": 80,
+              "enemyNext": 170,
+              "healthBefore": 12,
+              "healthAfter": 10,
+              "enemyHealthBefore": 14,
+              "enemyHealthAfter": 14,
+              "actionCountBefore": 0,
+              "actionCountAfter": 1,
+              "enemyResponses": 1,
+              "riskBefore": 0,
+              "riskAfter": 1,
+              "trace": [
+                {
+                  "kind": "direct-damage",
+                  "ctb": 70,
+                  "requested": 2,
+                  "actual": 2,
+                  "healthBefore": 12,
+                  "healthAfter": 10,
+                  "actionId": "orderly-basic",
+                  "reference": null
+                }
+              ],
+              "uses": [],
+              "resources": [
+                {
+                  "instanceId": "TEST-coat",
+                  "before": 12,
+                  "requested": 1,
+                  "consumed": 1,
+                  "after": 11
+                }
+              ],
+              "quotaBefore": 1,
+              "quotaAfter": 1,
+              "queue": [
+                {
+                  "reason": "escape-preparation-scheduled",
+                  "currentBefore": 0,
+                  "currentAfter": 0,
+                  "playerBefore": 0,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                },
+                {
+                  "reason": "enemy-action-resolved",
+                  "currentBefore": 0,
+                  "currentAfter": 70,
+                  "playerBefore": 80,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 170
+                },
+                {
+                  "reason": "escape-completed",
+                  "currentBefore": 70,
+                  "currentAfter": 80,
+                  "playerBefore": 80,
+                  "playerAfter": 80,
+                  "enemyBefore": 170,
+                  "enemyAfter": 170
+                }
+              ]
+            },
+            "outcome": "escaped",
+            "exitRevision": 5,
+            "elapsed": 80,
+            "requestedEnergy": 6,
+            "energyBefore": 50,
+            "energyAfter": 44,
+            "nodeId": "H1"
+          },
+          {
+            "entry": {
+              "id": "residence-battle-v1:TEST-run:4:orderly",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "revision": 4,
+              "baseRevision": 3,
+              "edgeId": "H1-H4:forward",
+              "from": "H1",
+              "to": "H4",
+              "enemyId": "orderly",
+              "enemyInstanceId": "orderly",
+              "definitionId": "infected-world-orderly",
+              "previouslyEncountered": false,
+              "enemyHealth": 14,
+              "intent": "orderly-basic",
+              "nextCycleIndex": 1,
+              "actionCount": 0,
+              "riskIndex": 0,
+              "healthBefore": 12,
+              "healthAfter": 12,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "healthBefore": 12,
+                  "healthAfter": 12,
+                  "facts": {
+                    "healthLoss": 0,
+                    "exposures": 0
+                  }
+                }
+              ]
+            },
+            "decision": {
+              "battleId": "residence-battle-v1:TEST-run:4:orderly",
+              "revision": 5,
+              "baseRevision": 4,
+              "command": {
+                "kind": "escape"
+              },
+              "ctbBefore": 0,
+              "ctbAfter": 80,
+              "playerNext": 80,
+              "enemyNext": 170,
+              "healthBefore": 12,
+              "healthAfter": 10,
+              "enemyHealthBefore": 14,
+              "enemyHealthAfter": 14,
+              "actionCountBefore": 0,
+              "actionCountAfter": 1,
+              "enemyResponses": 1,
+              "riskBefore": 0,
+              "riskAfter": 1,
+              "trace": [
+                {
+                  "kind": "direct-damage",
+                  "ctb": 70,
+                  "requested": 2,
+                  "actual": 2,
+                  "healthBefore": 12,
+                  "healthAfter": 10,
+                  "actionId": "orderly-basic",
+                  "reference": null
+                }
+              ],
+              "uses": [],
+              "resources": [
+                {
+                  "instanceId": "TEST-coat",
+                  "before": 12,
+                  "requested": 1,
+                  "consumed": 1,
+                  "after": 11
+                }
+              ],
+              "quotaBefore": 1,
+              "quotaAfter": 1,
+              "queue": [
+                {
+                  "reason": "escape-preparation-scheduled",
+                  "currentBefore": 0,
+                  "currentAfter": 0,
+                  "playerBefore": 0,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                },
+                {
+                  "reason": "enemy-action-resolved",
+                  "currentBefore": 0,
+                  "currentAfter": 70,
+                  "playerBefore": 80,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 170
+                },
+                {
+                  "reason": "escape-completed",
+                  "currentBefore": 70,
+                  "currentAfter": 80,
+                  "playerBefore": 80,
+                  "playerAfter": 80,
+                  "enemyBefore": 170,
+                  "enemyAfter": 170
+                }
+              ]
+            },
+            "outcome": "escaped",
+            "exitRevision": 5,
+            "elapsed": 80,
+            "requestedEnergy": 6,
+            "energyBefore": 50,
+            "energyAfter": 44,
+            "nodeId": "H1"
+          }
+        ],
+        "combatDeaths": [],
+        "archives": [],
+        "site": {
+          "nodeId": "H1",
+          "binding": {
+            "identity": {
+              "characterId": "TEST-character",
+              "rulesVersion": "TEST-rules",
+              "configurationId": "TEST-G1"
+            },
+            "mission": {
+              "commissionId": "TEST-commission"
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            },
+            "catalogId": "TEST-catalog",
+            "catalogVersion": "TEST-content"
+          },
+          "pending": {
+            "kind": "none"
+          },
+          "enemies": [
+            {
+              "id": "orderly",
+              "riskDrawIndex": 1,
+              "state": {
+                "enemyInstanceId": "orderly",
+                "definitionId": "infected-world-orderly",
+                "hasBeenEncountered": true,
+                "defeated": false,
+                "currentHealth": 14,
+                "currentIntentActionId": "orderly-special",
+                "nextCycleIndex": 0,
+                "resolvedActionCount": 1
+              }
+            }
+          ]
+        },
+        "battle": null
+      },
+      "expected": "REJECT",
+      "explanation": "Duplicate battle already rejected",
+      "actual": "REJECT",
+      "detail": "Battle replay",
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": true
+    },
+    {
+      "id": "C11-wrong-fee",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "active-world",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 10
+            },
+            "energy": 44,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "active",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "armor": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            }
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [],
+        "receipts": [],
+        "battles": [
+          {
+            "entry": {
+              "id": "residence-battle-v1:TEST-run:4:orderly",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "revision": 4,
+              "baseRevision": 3,
+              "edgeId": "H1-H4:forward",
+              "from": "H1",
+              "to": "H4",
+              "enemyId": "orderly",
+              "enemyInstanceId": "orderly",
+              "definitionId": "infected-world-orderly",
+              "previouslyEncountered": false,
+              "enemyHealth": 14,
+              "intent": "orderly-basic",
+              "nextCycleIndex": 1,
+              "actionCount": 0,
+              "riskIndex": 0,
+              "healthBefore": 12,
+              "healthAfter": 12,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "healthBefore": 12,
+                  "healthAfter": 12,
+                  "facts": {
+                    "healthLoss": 0,
+                    "exposures": 0
+                  }
+                }
+              ]
+            },
+            "decision": {
+              "battleId": "residence-battle-v1:TEST-run:4:orderly",
+              "revision": 5,
+              "baseRevision": 4,
+              "command": {
+                "kind": "escape"
+              },
+              "ctbBefore": 0,
+              "ctbAfter": 80,
+              "playerNext": 80,
+              "enemyNext": 170,
+              "healthBefore": 12,
+              "healthAfter": 10,
+              "enemyHealthBefore": 14,
+              "enemyHealthAfter": 14,
+              "actionCountBefore": 0,
+              "actionCountAfter": 1,
+              "enemyResponses": 1,
+              "riskBefore": 0,
+              "riskAfter": 1,
+              "trace": [
+                {
+                  "kind": "direct-damage",
+                  "ctb": 70,
+                  "requested": 2,
+                  "actual": 2,
+                  "healthBefore": 12,
+                  "healthAfter": 10,
+                  "actionId": "orderly-basic",
+                  "reference": null
+                }
+              ],
+              "uses": [],
+              "resources": [
+                {
+                  "instanceId": "TEST-coat",
+                  "before": 12,
+                  "requested": 1,
+                  "consumed": 1,
+                  "after": 11
+                }
+              ],
+              "quotaBefore": 1,
+              "quotaAfter": 1,
+              "queue": [
+                {
+                  "reason": "escape-preparation-scheduled",
+                  "currentBefore": 0,
+                  "currentAfter": 0,
+                  "playerBefore": 0,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                },
+                {
+                  "reason": "enemy-action-resolved",
+                  "currentBefore": 0,
+                  "currentAfter": 70,
+                  "playerBefore": 80,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 170
+                },
+                {
+                  "reason": "escape-completed",
+                  "currentBefore": 70,
+                  "currentAfter": 80,
+                  "playerBefore": 80,
+                  "playerAfter": 80,
+                  "enemyBefore": 170,
+                  "enemyAfter": 170
+                }
+              ]
+            },
+            "outcome": "escaped",
+            "exitRevision": 5,
+            "elapsed": 80,
+            "requestedEnergy": 12,
+            "energyBefore": 50,
+            "energyAfter": 44,
+            "nodeId": "H1"
+          }
+        ],
+        "combatDeaths": [],
+        "archives": [],
+        "site": {
+          "nodeId": "H1",
+          "binding": {
+            "identity": {
+              "characterId": "TEST-character",
+              "rulesVersion": "TEST-rules",
+              "configurationId": "TEST-G1"
+            },
+            "mission": {
+              "commissionId": "TEST-commission"
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            },
+            "catalogId": "TEST-catalog",
+            "catalogVersion": "TEST-content"
+          },
+          "pending": {
+            "kind": "none"
+          },
+          "enemies": [
+            {
+              "id": "orderly",
+              "riskDrawIndex": 1,
+              "state": {
+                "enemyInstanceId": "orderly",
+                "definitionId": "infected-world-orderly",
+                "hasBeenEncountered": true,
+                "defeated": false,
+                "currentHealth": 14,
+                "currentIntentActionId": "orderly-special",
+                "nextCycleIndex": 0,
+                "resolvedActionCount": 1
+              }
+            }
+          ]
+        },
+        "battle": null
+      },
+      "expected": "REJECT",
+      "explanation": "Exit arithmetic already checked",
+      "actual": "REJECT",
+      "detail": "Invalid surviving exit receipt",
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": true
+    },
+    {
+      "id": "C12-wrong-medical-reference",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "dead",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 0
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "closed",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": null,
+            "armor": null
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [
+          {
+            "id": "TEST-use",
+            "reason": "medical",
+            "item": {
+              "instanceId": "TEST-bandage",
+              "definitionId": "consumable_bandage",
+              "quantity": 1
+            },
+            "revision": 4,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-pipe",
+            "item": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-coat",
+            "item": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "receipts": [
+          {
+            "source": "combat-death",
+            "combatDeathReceiptId": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "battles": [],
+        "combatDeaths": [
+          {
+            "id": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "entry": {
+              "id": "residence-battle-v1:TEST-run:4:orderly",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "revision": 4,
+              "baseRevision": 3,
+              "edgeId": "H1-H4:forward",
+              "from": "H1",
+              "to": "H4",
+              "enemyId": "orderly",
+              "enemyInstanceId": "orderly",
+              "definitionId": "infected-world-orderly",
+              "previouslyEncountered": false,
+              "enemyHealth": 14,
+              "intent": "orderly-basic",
+              "nextCycleIndex": 1,
+              "actionCount": 0,
+              "riskIndex": 0,
+              "healthBefore": 1,
+              "healthAfter": 1,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "healthBefore": 1,
+                  "healthAfter": 1,
+                  "facts": {
+                    "healthLoss": 0,
+                    "exposures": 0
+                  }
+                }
+              ]
+            },
+            "decision": {
+              "battleId": "residence-battle-v1:TEST-run:4:orderly",
+              "revision": 5,
+              "baseRevision": 4,
+              "command": {
+                "kind": "use-quick-slot-item",
+                "quickSlotIndex": 0
+              },
+              "ctbBefore": 0,
+              "ctbAfter": 70,
+              "playerNext": 80,
+              "enemyNext": 70,
+              "healthBefore": 1,
+              "healthAfter": 0,
+              "enemyHealthBefore": 14,
+              "enemyHealthAfter": 14,
+              "actionCountBefore": 0,
+              "actionCountAfter": 0,
+              "enemyResponses": 1,
+              "riskBefore": 0,
+              "riskAfter": 0,
+              "trace": [
+                {
+                  "kind": "heal",
+                  "ctb": 0,
+                  "requested": 1,
+                  "actual": 1,
+                  "healthBefore": 1,
+                  "healthAfter": 2,
+                  "actionId": "combat-bandage",
+                  "reference": null
+                },
+                {
+                  "kind": "direct-damage",
+                  "ctb": 70,
+                  "requested": 2,
+                  "actual": 2,
+                  "healthBefore": 2,
+                  "healthAfter": 0,
+                  "actionId": "orderly-basic",
+                  "reference": null
+                }
+              ],
+              "uses": [
+                {
+                  "instanceId": "TEST-bandage",
+                  "definitionId": "consumable_bandage",
+                  "slot": 0,
+                  "dispositionIds": [
+                    "missing"
+                  ],
+                  "kind": "bandage",
+                  "quantity": 1
+                }
+              ],
+              "resources": [
+                {
+                  "instanceId": "TEST-coat",
+                  "before": 12,
+                  "requested": 1,
+                  "consumed": 1,
+                  "after": 11
+                }
+              ],
+              "quotaBefore": 1,
+              "quotaAfter": 1,
+              "queue": [
+                {
+                  "reason": "player-action-scheduled",
+                  "currentBefore": 0,
+                  "currentAfter": 0,
+                  "playerBefore": 0,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                },
+                {
+                  "reason": "enemy-action-terminal",
+                  "currentBefore": 0,
+                  "currentAfter": 70,
+                  "playerBefore": 80,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                }
+              ]
+            },
+            "revision": 5
+          }
+        ],
+        "archives": [
+          {
+            "site": {
+              "nodeId": "H4",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "pending": {
+                "kind": "combat-required",
+                "enemyId": "orderly"
+              },
+              "enemies": [
+                {
+                  "id": "orderly",
+                  "riskDrawIndex": 0,
+                  "state": {
+                    "enemyInstanceId": "orderly",
+                    "definitionId": "infected-world-orderly",
+                    "hasBeenEncountered": true,
+                    "defeated": false,
+                    "currentHealth": 14,
+                    "currentIntentActionId": "orderly-basic",
+                    "nextCycleIndex": 1,
+                    "resolvedActionCount": 0
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "site": null,
+        "battle": null
+      },
+      "expected": "REJECT",
+      "explanation": "Actual disposition reference checked",
+      "actual": "REJECT",
+      "detail": "Wrong consumption reference",
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": true
+    },
+    {
+      "id": "F01-player-basic-recovery80",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "active-world",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 10
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "active",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "armor": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            }
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [],
+        "receipts": [],
+        "battles": [],
+        "combatDeaths": [],
+        "archives": [],
+        "site": {
+          "nodeId": "H4",
+          "binding": {
+            "identity": {
+              "characterId": "TEST-character",
+              "rulesVersion": "TEST-rules",
+              "configurationId": "TEST-G1"
+            },
+            "mission": {
+              "commissionId": "TEST-commission"
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            },
+            "catalogId": "TEST-catalog",
+            "catalogVersion": "TEST-content"
+          },
+          "pending": {
+            "kind": "combat-required",
+            "enemyId": "orderly"
+          },
+          "enemies": [
+            {
+              "id": "orderly",
+              "riskDrawIndex": 1,
+              "state": {
+                "enemyInstanceId": "orderly",
+                "definitionId": "infected-world-orderly",
+                "hasBeenEncountered": true,
+                "defeated": false,
+                "currentHealth": 10,
+                "currentIntentActionId": "orderly-special",
+                "nextCycleIndex": 0,
+                "resolvedActionCount": 1
+              }
+            }
+          ]
+        },
+        "battle": {
+          "entry": {
+            "id": "residence-battle-v1:TEST-run:4:orderly",
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            },
+            "revision": 4,
+            "baseRevision": 3,
+            "edgeId": "H1-H4:forward",
+            "from": "H1",
+            "to": "H4",
+            "enemyId": "orderly",
+            "enemyInstanceId": "orderly",
+            "definitionId": "infected-world-orderly",
+            "previouslyEncountered": false,
+            "enemyHealth": 14,
+            "intent": "orderly-basic",
+            "nextCycleIndex": 1,
+            "actionCount": 0,
+            "riskIndex": 0,
+            "healthBefore": 12,
+            "healthAfter": 12,
+            "steps": [
+              {
+                "kind": "primary",
+                "healthBefore": 12,
+                "healthAfter": 12,
+                "facts": {
+                  "healthLoss": 0,
+                  "exposures": 0
+                }
+              }
+            ]
+          },
+          "currentCtb": 80,
+          "playerNext": 80,
+          "enemyNext": 170,
+          "temporaryDefense": null,
+          "decision": {
+            "battleId": "residence-battle-v1:TEST-run:4:orderly",
+            "revision": 5,
+            "baseRevision": 4,
+            "command": {
+              "kind": "metal-pipe-basic-attack"
+            },
+            "ctbBefore": 0,
+            "ctbAfter": 80,
+            "playerNext": 80,
+            "enemyNext": 170,
+            "healthBefore": 12,
+            "healthAfter": 10,
+            "enemyHealthBefore": 14,
+            "enemyHealthAfter": 10,
+            "actionCountBefore": 0,
+            "actionCountAfter": 1,
+            "enemyResponses": 1,
+            "riskBefore": 0,
+            "riskAfter": 1,
+            "trace": [
+              {
+                "kind": "direct-damage",
+                "ctb": 70,
+                "requested": 2,
+                "actual": 2,
+                "healthBefore": 12,
+                "healthAfter": 10,
+                "actionId": "orderly-basic",
+                "reference": null
+              }
+            ],
+            "uses": [],
+            "resources": [
+              {
+                "instanceId": "TEST-pipe",
+                "before": 30,
+                "requested": 1,
+                "consumed": 1,
+                "after": 29
+              },
+              {
+                "instanceId": "TEST-coat",
+                "before": 12,
+                "requested": 1,
+                "consumed": 1,
+                "after": 11
+              }
+            ],
+            "quotaBefore": 1,
+            "quotaAfter": 1,
+            "queue": [
+              {
+                "reason": "player-action-scheduled",
+                "currentBefore": 0,
+                "currentAfter": 0,
+                "playerBefore": 0,
+                "playerAfter": 80,
+                "enemyBefore": 70,
+                "enemyAfter": 70
+              },
+              {
+                "reason": "enemy-action-resolved",
+                "currentBefore": 0,
+                "currentAfter": 70,
+                "playerBefore": 80,
+                "playerAfter": 80,
+                "enemyBefore": 70,
+                "enemyAfter": 170
+              },
+              {
+                "reason": "player-decision-point",
+                "currentBefore": 70,
+                "currentAfter": 80,
+                "playerBefore": 80,
+                "playerAfter": 80,
+                "enemyBefore": 170,
+                "enemyAfter": 170
+              }
+            ]
+          }
+        }
+      },
+      "expected": "REJECT",
+      "explanation": "Basic profile CTB100 cannot become80 solely by consistent queue rewrite",
+      "actual": "ACCEPT",
+      "detail": null,
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": false
+    },
+    {
+      "id": "F01-enemy-interval430",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "active-world",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 10
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "active",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "armor": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            }
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [],
+        "receipts": [],
+        "battles": [],
+        "combatDeaths": [],
+        "archives": [],
+        "site": {
+          "nodeId": "H4",
+          "binding": {
+            "identity": {
+              "characterId": "TEST-character",
+              "rulesVersion": "TEST-rules",
+              "configurationId": "TEST-G1"
+            },
+            "mission": {
+              "commissionId": "TEST-commission"
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            },
+            "catalogId": "TEST-catalog",
+            "catalogVersion": "TEST-content"
+          },
+          "pending": {
+            "kind": "combat-required",
+            "enemyId": "orderly"
+          },
+          "enemies": [
+            {
+              "id": "orderly",
+              "riskDrawIndex": 1,
+              "state": {
+                "enemyInstanceId": "orderly",
+                "definitionId": "infected-world-orderly",
+                "hasBeenEncountered": true,
+                "defeated": false,
+                "currentHealth": 10,
+                "currentIntentActionId": "orderly-special",
+                "nextCycleIndex": 0,
+                "resolvedActionCount": 1
+              }
+            }
+          ]
+        },
+        "battle": {
+          "entry": {
+            "id": "residence-battle-v1:TEST-run:4:orderly",
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            },
+            "revision": 4,
+            "baseRevision": 3,
+            "edgeId": "H1-H4:forward",
+            "from": "H1",
+            "to": "H4",
+            "enemyId": "orderly",
+            "enemyInstanceId": "orderly",
+            "definitionId": "infected-world-orderly",
+            "previouslyEncountered": false,
+            "enemyHealth": 14,
+            "intent": "orderly-basic",
+            "nextCycleIndex": 1,
+            "actionCount": 0,
+            "riskIndex": 0,
+            "healthBefore": 12,
+            "healthAfter": 12,
+            "steps": [
+              {
+                "kind": "primary",
+                "healthBefore": 12,
+                "healthAfter": 12,
+                "facts": {
+                  "healthLoss": 0,
+                  "exposures": 0
+                }
+              }
+            ]
+          },
+          "currentCtb": 100,
+          "playerNext": 100,
+          "enemyNext": 500,
+          "temporaryDefense": null,
+          "decision": {
+            "battleId": "residence-battle-v1:TEST-run:4:orderly",
+            "revision": 5,
+            "baseRevision": 4,
+            "command": {
+              "kind": "metal-pipe-basic-attack"
+            },
+            "ctbBefore": 0,
+            "ctbAfter": 100,
+            "playerNext": 100,
+            "enemyNext": 500,
+            "healthBefore": 12,
+            "healthAfter": 10,
+            "enemyHealthBefore": 14,
+            "enemyHealthAfter": 10,
+            "actionCountBefore": 0,
+            "actionCountAfter": 1,
+            "enemyResponses": 1,
+            "riskBefore": 0,
+            "riskAfter": 1,
+            "trace": [
+              {
+                "kind": "direct-damage",
+                "ctb": 70,
+                "requested": 2,
+                "actual": 2,
+                "healthBefore": 12,
+                "healthAfter": 10,
+                "actionId": "orderly-basic",
+                "reference": null
+              }
+            ],
+            "uses": [],
+            "resources": [
+              {
+                "instanceId": "TEST-pipe",
+                "before": 30,
+                "requested": 1,
+                "consumed": 1,
+                "after": 29
+              },
+              {
+                "instanceId": "TEST-coat",
+                "before": 12,
+                "requested": 1,
+                "consumed": 1,
+                "after": 11
+              }
+            ],
+            "quotaBefore": 1,
+            "quotaAfter": 1,
+            "queue": [
+              {
+                "reason": "player-action-scheduled",
+                "currentBefore": 0,
+                "currentAfter": 0,
+                "playerBefore": 0,
+                "playerAfter": 100,
+                "enemyBefore": 70,
+                "enemyAfter": 70
+              },
+              {
+                "reason": "enemy-action-resolved",
+                "currentBefore": 0,
+                "currentAfter": 70,
+                "playerBefore": 100,
+                "playerAfter": 100,
+                "enemyBefore": 70,
+                "enemyAfter": 500
+              },
+              {
+                "reason": "player-decision-point",
+                "currentBefore": 70,
+                "currentAfter": 100,
+                "playerBefore": 100,
+                "playerAfter": 100,
+                "enemyBefore": 500,
+                "enemyAfter": 500
+              }
+            ]
+          }
+        }
+      },
+      "expected": "REJECT",
+      "explanation": "Orderly basic response at70 must schedule170, not500",
+      "actual": "ACCEPT",
+      "detail": null,
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": false
+    },
+    {
+      "id": "F01-escape-complete75",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "active-world",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 10
+            },
+            "energy": 44,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "active",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "armor": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            }
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [],
+        "receipts": [],
+        "battles": [
+          {
+            "entry": {
+              "id": "residence-battle-v1:TEST-run:4:orderly",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "revision": 4,
+              "baseRevision": 3,
+              "edgeId": "H1-H4:forward",
+              "from": "H1",
+              "to": "H4",
+              "enemyId": "orderly",
+              "enemyInstanceId": "orderly",
+              "definitionId": "infected-world-orderly",
+              "previouslyEncountered": false,
+              "enemyHealth": 14,
+              "intent": "orderly-basic",
+              "nextCycleIndex": 1,
+              "actionCount": 0,
+              "riskIndex": 0,
+              "healthBefore": 12,
+              "healthAfter": 12,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "healthBefore": 12,
+                  "healthAfter": 12,
+                  "facts": {
+                    "healthLoss": 0,
+                    "exposures": 0
+                  }
+                }
+              ]
+            },
+            "decision": {
+              "battleId": "residence-battle-v1:TEST-run:4:orderly",
+              "revision": 5,
+              "baseRevision": 4,
+              "command": {
+                "kind": "escape"
+              },
+              "ctbBefore": 0,
+              "ctbAfter": 75,
+              "playerNext": 75,
+              "enemyNext": 170,
+              "healthBefore": 12,
+              "healthAfter": 10,
+              "enemyHealthBefore": 14,
+              "enemyHealthAfter": 14,
+              "actionCountBefore": 0,
+              "actionCountAfter": 1,
+              "enemyResponses": 1,
+              "riskBefore": 0,
+              "riskAfter": 1,
+              "trace": [
+                {
+                  "kind": "direct-damage",
+                  "ctb": 70,
+                  "requested": 2,
+                  "actual": 2,
+                  "healthBefore": 12,
+                  "healthAfter": 10,
+                  "actionId": "orderly-basic",
+                  "reference": null
+                }
+              ],
+              "uses": [],
+              "resources": [
+                {
+                  "instanceId": "TEST-coat",
+                  "before": 12,
+                  "requested": 1,
+                  "consumed": 1,
+                  "after": 11
+                }
+              ],
+              "quotaBefore": 1,
+              "quotaAfter": 1,
+              "queue": [
+                {
+                  "reason": "escape-preparation-scheduled",
+                  "currentBefore": 0,
+                  "currentAfter": 0,
+                  "playerBefore": 0,
+                  "playerAfter": 75,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                },
+                {
+                  "reason": "enemy-action-resolved",
+                  "currentBefore": 0,
+                  "currentAfter": 70,
+                  "playerBefore": 75,
+                  "playerAfter": 75,
+                  "enemyBefore": 70,
+                  "enemyAfter": 170
+                },
+                {
+                  "reason": "escape-completed",
+                  "currentBefore": 70,
+                  "currentAfter": 75,
+                  "playerBefore": 75,
+                  "playerAfter": 75,
+                  "enemyBefore": 170,
+                  "enemyAfter": 170
+                }
+              ]
+            },
+            "outcome": "escaped",
+            "exitRevision": 5,
+            "elapsed": 75,
+            "requestedEnergy": 6,
+            "energyBefore": 50,
+            "energyAfter": 44,
+            "nodeId": "H1"
+          }
+        ],
+        "combatDeaths": [],
+        "archives": [],
+        "site": {
+          "nodeId": "H1",
+          "binding": {
+            "identity": {
+              "characterId": "TEST-character",
+              "rulesVersion": "TEST-rules",
+              "configurationId": "TEST-G1"
+            },
+            "mission": {
+              "commissionId": "TEST-commission"
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            },
+            "catalogId": "TEST-catalog",
+            "catalogVersion": "TEST-content"
+          },
+          "pending": {
+            "kind": "none"
+          },
+          "enemies": [
+            {
+              "id": "orderly",
+              "riskDrawIndex": 1,
+              "state": {
+                "enemyInstanceId": "orderly",
+                "definitionId": "infected-world-orderly",
+                "hasBeenEncountered": true,
+                "defeated": false,
+                "currentHealth": 14,
+                "currentIntentActionId": "orderly-special",
+                "nextCycleIndex": 0,
+                "resolvedActionCount": 1
+              }
+            }
+          ]
+        },
+        "battle": null
+      },
+      "expected": "REJECT",
+      "explanation": "No wound, no load change; approved escape80 cannot75",
+      "actual": "ACCEPT",
+      "detail": null,
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": false
+    },
+    {
+      "id": "F02-death-trace-after-exit",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "dead",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 0
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "closed",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": null,
+            "armor": null
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [
+          {
+            "id": "TEST-use",
+            "reason": "medical",
+            "item": {
+              "instanceId": "TEST-bandage",
+              "definitionId": "consumable_bandage",
+              "quantity": 1
+            },
+            "revision": 4,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-pipe",
+            "item": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-coat",
+            "item": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "receipts": [
+          {
+            "source": "combat-death",
+            "combatDeathReceiptId": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "battles": [],
+        "combatDeaths": [
+          {
+            "id": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "entry": {
+              "id": "residence-battle-v1:TEST-run:4:orderly",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "revision": 4,
+              "baseRevision": 3,
+              "edgeId": "H1-H4:forward",
+              "from": "H1",
+              "to": "H4",
+              "enemyId": "orderly",
+              "enemyInstanceId": "orderly",
+              "definitionId": "infected-world-orderly",
+              "previouslyEncountered": false,
+              "enemyHealth": 14,
+              "intent": "orderly-basic",
+              "nextCycleIndex": 1,
+              "actionCount": 0,
+              "riskIndex": 0,
+              "healthBefore": 1,
+              "healthAfter": 1,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "healthBefore": 1,
+                  "healthAfter": 1,
+                  "facts": {
+                    "healthLoss": 0,
+                    "exposures": 0
+                  }
+                }
+              ]
+            },
+            "decision": {
+              "battleId": "residence-battle-v1:TEST-run:4:orderly",
+              "revision": 5,
+              "baseRevision": 4,
+              "command": {
+                "kind": "use-quick-slot-item",
+                "quickSlotIndex": 0
+              },
+              "ctbBefore": 0,
+              "ctbAfter": 70,
+              "playerNext": 80,
+              "enemyNext": 70,
+              "healthBefore": 1,
+              "healthAfter": 0,
+              "enemyHealthBefore": 14,
+              "enemyHealthAfter": 14,
+              "actionCountBefore": 0,
+              "actionCountAfter": 0,
+              "enemyResponses": 1,
+              "riskBefore": 0,
+              "riskAfter": 0,
+              "trace": [
+                {
+                  "kind": "heal",
+                  "ctb": 0,
+                  "requested": 1,
+                  "actual": 1,
+                  "healthBefore": 1,
+                  "healthAfter": 2,
+                  "actionId": "combat-bandage",
+                  "reference": null
+                },
+                {
+                  "kind": "direct-damage",
+                  "ctb": 999,
+                  "requested": 2,
+                  "actual": 2,
+                  "healthBefore": 2,
+                  "healthAfter": 0,
+                  "actionId": "orderly-basic",
+                  "reference": null
+                }
+              ],
+              "uses": [
+                {
+                  "instanceId": "TEST-bandage",
+                  "definitionId": "consumable_bandage",
+                  "slot": 0,
+                  "dispositionIds": [
+                    "TEST-use"
+                  ],
+                  "kind": "bandage",
+                  "quantity": 1
+                }
+              ],
+              "resources": [
+                {
+                  "instanceId": "TEST-coat",
+                  "before": 12,
+                  "requested": 1,
+                  "consumed": 1,
+                  "after": 11
+                }
+              ],
+              "quotaBefore": 1,
+              "quotaAfter": 1,
+              "queue": [
+                {
+                  "reason": "player-action-scheduled",
+                  "currentBefore": 0,
+                  "currentAfter": 0,
+                  "playerBefore": 0,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                },
+                {
+                  "reason": "enemy-action-terminal",
+                  "currentBefore": 0,
+                  "currentAfter": 70,
+                  "playerBefore": 80,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                }
+              ]
+            },
+            "revision": 5
+          }
+        ],
+        "archives": [
+          {
+            "site": {
+              "nodeId": "H4",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "pending": {
+                "kind": "combat-required",
+                "enemyId": "orderly"
+              },
+              "enemies": [
+                {
+                  "id": "orderly",
+                  "riskDrawIndex": 0,
+                  "state": {
+                    "enemyInstanceId": "orderly",
+                    "definitionId": "infected-world-orderly",
+                    "hasBeenEncountered": true,
+                    "defeated": false,
+                    "currentHealth": 14,
+                    "currentIntentActionId": "orderly-basic",
+                    "nextCycleIndex": 1,
+                    "resolvedActionCount": 0
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "site": null,
+        "battle": null
+      },
+      "expected": "REJECT",
+      "explanation": "Death body event cannot occur after its recorded70CTB endpoint",
+      "actual": "ACCEPT",
+      "detail": null,
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": false
+    },
+    {
+      "id": "F02-death-wrong-action-source",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "dead",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 0
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "closed",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": null,
+            "armor": null
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [
+          {
+            "id": "TEST-use",
+            "reason": "medical",
+            "item": {
+              "instanceId": "TEST-bandage",
+              "definitionId": "consumable_bandage",
+              "quantity": 1
+            },
+            "revision": 4,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-pipe",
+            "item": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-coat",
+            "item": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "receipts": [
+          {
+            "source": "combat-death",
+            "combatDeathReceiptId": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "battles": [],
+        "combatDeaths": [
+          {
+            "id": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "entry": {
+              "id": "residence-battle-v1:TEST-run:4:orderly",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "revision": 4,
+              "baseRevision": 3,
+              "edgeId": "H1-H4:forward",
+              "from": "H1",
+              "to": "H4",
+              "enemyId": "orderly",
+              "enemyInstanceId": "orderly",
+              "definitionId": "infected-world-orderly",
+              "previouslyEncountered": false,
+              "enemyHealth": 14,
+              "intent": "orderly-basic",
+              "nextCycleIndex": 1,
+              "actionCount": 0,
+              "riskIndex": 0,
+              "healthBefore": 1,
+              "healthAfter": 1,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "healthBefore": 1,
+                  "healthAfter": 1,
+                  "facts": {
+                    "healthLoss": 0,
+                    "exposures": 0
+                  }
+                }
+              ]
+            },
+            "decision": {
+              "battleId": "residence-battle-v1:TEST-run:4:orderly",
+              "revision": 5,
+              "baseRevision": 4,
+              "command": {
+                "kind": "use-quick-slot-item",
+                "quickSlotIndex": 0
+              },
+              "ctbBefore": 0,
+              "ctbAfter": 70,
+              "playerNext": 80,
+              "enemyNext": 70,
+              "healthBefore": 1,
+              "healthAfter": 0,
+              "enemyHealthBefore": 14,
+              "enemyHealthAfter": 14,
+              "actionCountBefore": 0,
+              "actionCountAfter": 0,
+              "enemyResponses": 1,
+              "riskBefore": 0,
+              "riskAfter": 0,
+              "trace": [
+                {
+                  "kind": "heal",
+                  "ctb": 0,
+                  "requested": 1,
+                  "actual": 1,
+                  "healthBefore": 1,
+                  "healthAfter": 2,
+                  "actionId": "combat-bandage",
+                  "reference": null
+                },
+                {
+                  "kind": "direct-damage",
+                  "ctb": 70,
+                  "requested": 2,
+                  "actual": 2,
+                  "healthBefore": 2,
+                  "healthAfter": 0,
+                  "actionId": "porter-basic",
+                  "reference": null
+                }
+              ],
+              "uses": [
+                {
+                  "instanceId": "TEST-bandage",
+                  "definitionId": "consumable_bandage",
+                  "slot": 0,
+                  "dispositionIds": [
+                    "TEST-use"
+                  ],
+                  "kind": "bandage",
+                  "quantity": 1
+                }
+              ],
+              "resources": [
+                {
+                  "instanceId": "TEST-coat",
+                  "before": 12,
+                  "requested": 1,
+                  "consumed": 1,
+                  "after": 11
+                }
+              ],
+              "quotaBefore": 1,
+              "quotaAfter": 1,
+              "queue": [
+                {
+                  "reason": "player-action-scheduled",
+                  "currentBefore": 0,
+                  "currentAfter": 0,
+                  "playerBefore": 0,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                },
+                {
+                  "reason": "enemy-action-terminal",
+                  "currentBefore": 0,
+                  "currentAfter": 70,
+                  "playerBefore": 80,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                }
+              ]
+            },
+            "revision": 5
+          }
+        ],
+        "archives": [
+          {
+            "site": {
+              "nodeId": "H4",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "pending": {
+                "kind": "combat-required",
+                "enemyId": "orderly"
+              },
+              "enemies": [
+                {
+                  "id": "orderly",
+                  "riskDrawIndex": 0,
+                  "state": {
+                    "enemyInstanceId": "orderly",
+                    "definitionId": "infected-world-orderly",
+                    "hasBeenEncountered": true,
+                    "defeated": false,
+                    "currentHealth": 14,
+                    "currentIntentActionId": "orderly-basic",
+                    "nextCycleIndex": 1,
+                    "resolvedActionCount": 0
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "site": null,
+        "battle": null
+      },
+      "expected": "REJECT",
+      "explanation": "Orderly cannot cause a porter-basic death record",
+      "actual": "ACCEPT",
+      "detail": null,
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": false
+    },
+    {
+      "id": "F02-death-damage-inflated99",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "dead",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 0
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "closed",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": null,
+            "armor": null
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [
+          {
+            "id": "TEST-use",
+            "reason": "medical",
+            "item": {
+              "instanceId": "TEST-bandage",
+              "definitionId": "consumable_bandage",
+              "quantity": 1
+            },
+            "revision": 4,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-pipe",
+            "item": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-coat",
+            "item": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "receipts": [
+          {
+            "source": "combat-death",
+            "combatDeathReceiptId": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "battles": [],
+        "combatDeaths": [
+          {
+            "id": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "entry": {
+              "id": "residence-battle-v1:TEST-run:4:orderly",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "revision": 4,
+              "baseRevision": 3,
+              "edgeId": "H1-H4:forward",
+              "from": "H1",
+              "to": "H4",
+              "enemyId": "orderly",
+              "enemyInstanceId": "orderly",
+              "definitionId": "infected-world-orderly",
+              "previouslyEncountered": false,
+              "enemyHealth": 14,
+              "intent": "orderly-basic",
+              "nextCycleIndex": 1,
+              "actionCount": 0,
+              "riskIndex": 0,
+              "healthBefore": 1,
+              "healthAfter": 1,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "healthBefore": 1,
+                  "healthAfter": 1,
+                  "facts": {
+                    "healthLoss": 0,
+                    "exposures": 0
+                  }
+                }
+              ]
+            },
+            "decision": {
+              "battleId": "residence-battle-v1:TEST-run:4:orderly",
+              "revision": 5,
+              "baseRevision": 4,
+              "command": {
+                "kind": "use-quick-slot-item",
+                "quickSlotIndex": 0
+              },
+              "ctbBefore": 0,
+              "ctbAfter": 70,
+              "playerNext": 80,
+              "enemyNext": 70,
+              "healthBefore": 1,
+              "healthAfter": 0,
+              "enemyHealthBefore": 14,
+              "enemyHealthAfter": 14,
+              "actionCountBefore": 0,
+              "actionCountAfter": 0,
+              "enemyResponses": 1,
+              "riskBefore": 0,
+              "riskAfter": 0,
+              "trace": [
+                {
+                  "kind": "heal",
+                  "ctb": 0,
+                  "requested": 1,
+                  "actual": 1,
+                  "healthBefore": 1,
+                  "healthAfter": 2,
+                  "actionId": "combat-bandage",
+                  "reference": null
+                },
+                {
+                  "kind": "direct-damage",
+                  "ctb": 70,
+                  "requested": 99,
+                  "actual": 2,
+                  "healthBefore": 2,
+                  "healthAfter": 0,
+                  "actionId": "orderly-basic",
+                  "reference": null
+                }
+              ],
+              "uses": [
+                {
+                  "instanceId": "TEST-bandage",
+                  "definitionId": "consumable_bandage",
+                  "slot": 0,
+                  "dispositionIds": [
+                    "TEST-use"
+                  ],
+                  "kind": "bandage",
+                  "quantity": 1
+                }
+              ],
+              "resources": [
+                {
+                  "instanceId": "TEST-coat",
+                  "before": 12,
+                  "requested": 1,
+                  "consumed": 1,
+                  "after": 11
+                }
+              ],
+              "quotaBefore": 1,
+              "quotaAfter": 1,
+              "queue": [
+                {
+                  "reason": "player-action-scheduled",
+                  "currentBefore": 0,
+                  "currentAfter": 0,
+                  "playerBefore": 0,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                },
+                {
+                  "reason": "enemy-action-terminal",
+                  "currentBefore": 0,
+                  "currentAfter": 70,
+                  "playerBefore": 80,
+                  "playerAfter": 80,
+                  "enemyBefore": 70,
+                  "enemyAfter": 70
+                }
+              ]
+            },
+            "revision": 5
+          }
+        ],
+        "archives": [
+          {
+            "site": {
+              "nodeId": "H4",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "pending": {
+                "kind": "combat-required",
+                "enemyId": "orderly"
+              },
+              "enemies": [
+                {
+                  "id": "orderly",
+                  "riskDrawIndex": 0,
+                  "state": {
+                    "enemyInstanceId": "orderly",
+                    "definitionId": "infected-world-orderly",
+                    "hasBeenEncountered": true,
+                    "defeated": false,
+                    "currentHealth": 14,
+                    "currentIntentActionId": "orderly-basic",
+                    "nextCycleIndex": 1,
+                    "resolvedActionCount": 0
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "site": null,
+        "battle": null
+      },
+      "expected": "REJECT",
+      "explanation": "Orderly basic3 with actual coat protection is2, not99 even when HP clips",
+      "actual": "ACCEPT",
+      "detail": null,
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": false
+    },
+    {
+      "id": "F02-bleed-request2-clips1",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "dead",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 0
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "closed",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": null,
+            "armor": null
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [
+          {
+            "id": "TEST-dead-pipe",
+            "item": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-coat",
+            "item": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "receipts": [
+          {
+            "source": "combat-death",
+            "combatDeathReceiptId": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "battles": [],
+        "combatDeaths": [
+          {
+            "id": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "entry": {
+              "id": "residence-battle-v1:TEST-run:4:orderly",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "revision": 4,
+              "baseRevision": 3,
+              "edgeId": "H1-H4:forward",
+              "from": "H1",
+              "to": "H4",
+              "enemyId": "orderly",
+              "enemyInstanceId": "orderly",
+              "definitionId": "infected-world-orderly",
+              "previouslyEncountered": false,
+              "enemyHealth": 14,
+              "intent": "orderly-basic",
+              "nextCycleIndex": 1,
+              "actionCount": 0,
+              "riskIndex": 0,
+              "healthBefore": 1,
+              "healthAfter": 1,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "healthBefore": 1,
+                  "healthAfter": 1,
+                  "facts": {
+                    "healthLoss": 0,
+                    "exposures": 0
+                  }
+                }
+              ]
+            },
+            "decision": {
+              "battleId": "residence-battle-v1:TEST-run:4:orderly",
+              "revision": 5,
+              "baseRevision": 4,
+              "command": {
+                "kind": "metal-pipe-basic-attack"
+              },
+              "ctbBefore": 0,
+              "ctbAfter": 0,
+              "playerNext": 0,
+              "enemyNext": 70,
+              "healthBefore": 1,
+              "healthAfter": 0,
+              "enemyHealthBefore": 14,
+              "enemyHealthAfter": 10,
+              "actionCountBefore": 0,
+              "actionCountAfter": 0,
+              "enemyResponses": 0,
+              "riskBefore": 0,
+              "riskAfter": 0,
+              "trace": [
+                {
+                  "kind": "post-action-bleeding",
+                  "ctb": 0,
+                  "requested": 2,
+                  "actual": 1,
+                  "healthBefore": 1,
+                  "healthAfter": 0,
+                  "actionId": "post-player-action-bleeding",
+                  "reference": null
+                }
+              ],
+              "uses": [],
+              "resources": [
+                {
+                  "instanceId": "TEST-pipe",
+                  "before": 30,
+                  "requested": 1,
+                  "consumed": 1,
+                  "after": 29
+                }
+              ],
+              "quotaBefore": 1,
+              "quotaAfter": 1,
+              "queue": []
+            },
+            "revision": 5
+          }
+        ],
+        "archives": [
+          {
+            "site": {
+              "nodeId": "H4",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "pending": {
+                "kind": "combat-required",
+                "enemyId": "orderly"
+              },
+              "enemies": [
+                {
+                  "id": "orderly",
+                  "riskDrawIndex": 0,
+                  "state": {
+                    "enemyInstanceId": "orderly",
+                    "definitionId": "infected-world-orderly",
+                    "hasBeenEncountered": true,
+                    "defeated": false,
+                    "currentHealth": 10,
+                    "currentIntentActionId": "orderly-basic",
+                    "nextCycleIndex": 1,
+                    "resolvedActionCount": 0
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "site": null,
+        "battle": null
+      },
+      "expected": "REJECT",
+      "explanation": "Actual G1 combat bleed requested1 cannot become2 merely because HP1 clips",
+      "actual": "ACCEPT",
+      "detail": null,
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": false
+    },
+    {
+      "id": "F02-bleed-wrong-source",
+      "input": {
+        "protocol": "residence-combat-pure-v1",
+        "phase": "dead",
+        "character": {
+          "identity": {
+            "characterId": "TEST-character",
+            "rulesVersion": "TEST-rules",
+            "configurationId": "TEST-G1"
+          },
+          "revision": 5,
+          "cycle": 1,
+          "body": {
+            "condition": {
+              "currentHealth": 0
+            },
+            "energy": 50,
+            "quotasRemaining": {
+              "pipe_signature": 1
+            }
+          }
+        },
+        "missions": [
+          {
+            "status": "closed",
+            "binding": {
+              "mission": {
+                "commissionId": "TEST-commission"
+              }
+            },
+            "execution": {
+              "runId": "TEST-run",
+              "seed": "TEST-seed",
+              "rulesVersion": "TEST-rules"
+            }
+          }
+        ],
+        "carried": {
+          "equipment": {
+            "weapon": null,
+            "armor": null
+          }
+        },
+        "lineage": [
+          {
+            "instanceId": "TEST-pipe"
+          },
+          {
+            "instanceId": "TEST-coat"
+          },
+          {
+            "instanceId": "TEST-bandage"
+          }
+        ],
+        "dispositions": [
+          {
+            "id": "TEST-dead-pipe",
+            "item": {
+              "instanceId": "TEST-pipe",
+              "definitionId": "weapon_metal_pipe",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          },
+          {
+            "id": "TEST-dead-coat",
+            "item": {
+              "instanceId": "TEST-coat",
+              "definitionId": "armor_heavy_coat",
+              "quantity": 1
+            },
+            "reason": "terminal",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "receipts": [
+          {
+            "source": "combat-death",
+            "combatDeathReceiptId": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "revision": 5,
+            "binding": {
+              "identity": {
+                "characterId": "TEST-character",
+                "rulesVersion": "TEST-rules",
+                "configurationId": "TEST-G1"
+              },
+              "mission": {
+                "commissionId": "TEST-commission"
+              },
+              "execution": {
+                "runId": "TEST-run",
+                "seed": "TEST-seed",
+                "rulesVersion": "TEST-rules"
+              },
+              "catalogId": "TEST-catalog",
+              "catalogVersion": "TEST-content"
+            }
+          }
+        ],
+        "battles": [],
+        "combatDeaths": [
+          {
+            "id": "residence-combat-death-v1:residence-battle-v1%3ATEST-run%3A4%3Aorderly:5",
+            "entry": {
+              "id": "residence-battle-v1:TEST-run:4:orderly",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "revision": 4,
+              "baseRevision": 3,
+              "edgeId": "H1-H4:forward",
+              "from": "H1",
+              "to": "H4",
+              "enemyId": "orderly",
+              "enemyInstanceId": "orderly",
+              "definitionId": "infected-world-orderly",
+              "previouslyEncountered": false,
+              "enemyHealth": 14,
+              "intent": "orderly-basic",
+              "nextCycleIndex": 1,
+              "actionCount": 0,
+              "riskIndex": 0,
+              "healthBefore": 1,
+              "healthAfter": 1,
+              "steps": [
+                {
+                  "kind": "primary",
+                  "healthBefore": 1,
+                  "healthAfter": 1,
+                  "facts": {
+                    "healthLoss": 0,
+                    "exposures": 0
+                  }
+                }
+              ]
+            },
+            "decision": {
+              "battleId": "residence-battle-v1:TEST-run:4:orderly",
+              "revision": 5,
+              "baseRevision": 4,
+              "command": {
+                "kind": "metal-pipe-basic-attack"
+              },
+              "ctbBefore": 0,
+              "ctbAfter": 0,
+              "playerNext": 0,
+              "enemyNext": 70,
+              "healthBefore": 1,
+              "healthAfter": 0,
+              "enemyHealthBefore": 14,
+              "enemyHealthAfter": 10,
+              "actionCountBefore": 0,
+              "actionCountAfter": 0,
+              "enemyResponses": 0,
+              "riskBefore": 0,
+              "riskAfter": 0,
+              "trace": [
+                {
+                  "kind": "post-action-bleeding",
+                  "ctb": 0,
+                  "requested": 1,
+                  "actual": 1,
+                  "healthBefore": 1,
+                  "healthAfter": 0,
+                  "actionId": "orderly-special",
+                  "reference": null
+                }
+              ],
+              "uses": [],
+              "resources": [
+                {
+                  "instanceId": "TEST-pipe",
+                  "before": 30,
+                  "requested": 1,
+                  "consumed": 1,
+                  "after": 29
+                }
+              ],
+              "quotaBefore": 1,
+              "quotaAfter": 1,
+              "queue": []
+            },
+            "revision": 5
+          }
+        ],
+        "archives": [
+          {
+            "site": {
+              "nodeId": "H4",
+              "binding": {
+                "identity": {
+                  "characterId": "TEST-character",
+                  "rulesVersion": "TEST-rules",
+                  "configurationId": "TEST-G1"
+                },
+                "mission": {
+                  "commissionId": "TEST-commission"
+                },
+                "execution": {
+                  "runId": "TEST-run",
+                  "seed": "TEST-seed",
+                  "rulesVersion": "TEST-rules"
+                },
+                "catalogId": "TEST-catalog",
+                "catalogVersion": "TEST-content"
+              },
+              "pending": {
+                "kind": "combat-required",
+                "enemyId": "orderly"
+              },
+              "enemies": [
+                {
+                  "id": "orderly",
+                  "riskDrawIndex": 0,
+                  "state": {
+                    "enemyInstanceId": "orderly",
+                    "definitionId": "infected-world-orderly",
+                    "hasBeenEncountered": true,
+                    "defeated": false,
+                    "currentHealth": 10,
+                    "currentIntentActionId": "orderly-basic",
+                    "nextCycleIndex": 1,
+                    "resolvedActionCount": 0
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "site": null,
+        "battle": null
+      },
+      "expected": "REJECT",
+      "explanation": "post-action-bleeding requires its actual player checkpoint source",
+      "actual": "ACCEPT",
+      "detail": null,
+      "exception": null,
+      "inputUnchanged": true,
+      "matched": false
+    }
+  ]
+}

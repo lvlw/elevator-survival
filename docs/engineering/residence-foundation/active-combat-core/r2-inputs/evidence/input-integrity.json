@@ -1,0 +1,146 @@
+[
+  {
+    "source_zip": "ENG-RESIDENCE-COMBAT-CORE-001-R1-Codex-Package-v1.0.zip",
+    "files": 16,
+    "expected_remote_tree": "b062407a753397964026257977cd81f7372a18cc",
+    "computed_tree": "b062407a753397964026257977cd81f7372a18cc",
+    "match": true,
+    "members": [
+      {
+        "path": "AUD-9f0eaac-ENG-RESIDENCE-COMBAT-CORE-001-review-v1.0.md",
+        "bytes": 8267,
+        "git_blob": "19888e4171c70e2913e9f0794a4dfce64f832e43",
+        "sha256": "557bdcc6e256416e3a7fcd7f5b38b1f55f4f6d1c3f83c23b7e1e157efefe03e1"
+      },
+      {
+        "path": "BASELINE-AND-SCOPE.json",
+        "bytes": 7172,
+        "git_blob": "9bb937492889c115c80940fe3cc8ca8a59d03283",
+        "sha256": "467f4d2d62edef1aca967802371eb2ac29c3741ff423de1f907931df9002e05d"
+      },
+      {
+        "path": "ENG-RESIDENCE-COMBAT-CORE-001-R1-task-v1.0.md",
+        "bytes": 14106,
+        "git_blob": "097342c5f7bb6e9dae8d565c93088eb97edf5e50",
+        "sha256": "8ec7ed2df18c92860769992627b595f6822c73275d5cc0ff1b198e61d28ebe86"
+      },
+      {
+        "path": "OWNER-authority-and-scope-E02-P-R1-v1.0.md",
+        "bytes": 1163,
+        "git_blob": "4cb71732b49c345ffac604cfab29b66f00cc1318",
+        "sha256": "d3970196c9ff2fb3680bd2a6a2c81bfba108c91c4b3804ca01e9e6154b24572a"
+      },
+      {
+        "path": "SHA256SUMS.txt",
+        "bytes": 1460,
+        "git_blob": "e389c70705ac7e8afdd9e7f82744c150fde2bcb3",
+        "sha256": "8dfa697fa4ba2da178ce464de94e389956e049dd9bd0d56815d600c098bd8525"
+      },
+      {
+        "path": "evidence/README.md",
+        "bytes": 2206,
+        "git_blob": "e672619e2f3d57b9c11899c297d76a1a7c228066",
+        "sha256": "2c56a619457d4fe111b874b42d976e45e61f79585a16b92e0cfe813fb7945dbf"
+      },
+      {
+        "path": "evidence/ci-observation.json",
+        "bytes": 1071,
+        "git_blob": "5bb88a51d0166fc58588c85ae9b15376c1a66885",
+        "sha256": "c815561a214217d3d291db66f4ae2ea66f8cfd8b5e118d744c650e6766e9c25d"
+      },
+      {
+        "path": "evidence/input-integrity.json",
+        "bytes": 1781,
+        "git_blob": "3854852d594315b4027dbd3df6085295491da73a",
+        "sha256": "8e55614fcc02d7a95070c067a4754b91aa8373cd93dcd6b705db767e312afa64"
+      },
+      {
+        "path": "evidence/isolated-results.json",
+        "bytes": 182934,
+        "git_blob": "76ede7b551f28a167237d2367d65b64faff823fe",
+        "sha256": "b7c401c3b2b3b83d8d1dca109dbcd809fa9ad84bd8d025903ac6164ab9927fea"
+      },
+      {
+        "path": "evidence/isolated-stdout.json",
+        "bytes": 1386,
+        "git_blob": "397baa06fcd3ef5c57456ba39aecd2add7c21b76",
+        "sha256": "11d5bc4ea11e98301940b1b492f85f8b8898715ec5d88cff58242e5a23e8fd96"
+      },
+      {
+        "path": "evidence/native-review-regression.test.ts",
+        "bytes": 6607,
+        "git_blob": "6e9b1c02da54cc74921c027dc686a16e18587037",
+        "sha256": "bd134f0f9c909bc3ffe342b0c53ced5a54b61e6628aeea3856b735b0350e816a"
+      },
+      {
+        "path": "evidence/run-isolated-review.cjs",
+        "bytes": 14956,
+        "git_blob": "6e5541da867e9ee153b897f401a90a51c15957b7",
+        "sha256": "85e3d00ac41da9e412f7f5391d2443abdca61c444a56b87834be2a67412dc35a"
+      },
+      {
+        "path": "evidence/source-integrity.json",
+        "bytes": 853,
+        "git_blob": "7158b52978d17890839d21b83e08234afab6ea6d",
+        "sha256": "e7e914a86ea4aa470168b22720bce6de37b87a258875c9bcd798cdd1af606cde"
+      },
+      {
+        "path": "source/history.ts",
+        "bytes": 9168,
+        "git_blob": "fcab350ac7af4c189b91c18e33304f49fc41286b",
+        "sha256": "c407babd8878834669942c66190248dee9272824d4d18432c11aae60584893af"
+      },
+      {
+        "path": "source/trace.ts",
+        "bytes": 3425,
+        "git_blob": "d4d64dba30dce9ac9939870da0dad73cccfbdad9",
+        "sha256": "e95f5ccb8f6def22c9dd520267e65d65c6afe2e5f582a2309bc7ad7a7bbb99ab"
+      },
+      {
+        "path": "source/validation.ts",
+        "bytes": 2980,
+        "git_blob": "8b96d1a500ceee1e68351da7a927576ec7512ddb",
+        "sha256": "5c894bfc4bb554e3c8c32884265b4ff770d89b4b72f3bbdf8eadfe3d02fdfb82"
+      }
+    ]
+  },
+  {
+    "source_zip": "ENG-RESIDENCE-COMBAT-CORE-001-Codex-Package-v1.0.zip",
+    "files": 5,
+    "expected_remote_tree": "e59555f0f0edf35bf20a3b8070934a9c609f1f87",
+    "computed_tree": "e59555f0f0edf35bf20a3b8070934a9c609f1f87",
+    "match": true,
+    "members": [
+      {
+        "path": "AUD-4166fb2-DOC-WORLD-ENTRY-005-review-v1.0.md",
+        "bytes": 7252,
+        "git_blob": "0e997310741745e7c0294601ce765ed972b41a93",
+        "sha256": "c94e8460b0bc4099fce705c924b5f832ecb98635a04a102fb362c53309e90009"
+      },
+      {
+        "path": "BASELINE-AND-INPUTS.json",
+        "bytes": 18345,
+        "git_blob": "469be4824f1d7dc2d935aee1cf5c4d2f45dd7a23",
+        "sha256": "1a591dae87a89233ad60ef5c64827b851ecd1ccef48eaa26be88d151daa7bacf"
+      },
+      {
+        "path": "ENG-RESIDENCE-COMBAT-CORE-001-task-v1.0.md",
+        "bytes": 30688,
+        "git_blob": "456a586400500bc0c2e2a8a494b8116fad39d6bd",
+        "sha256": "85a218a788c2084b25f02056a04b2147880bcbf65c0b61ddb60200740a68deb5"
+      },
+      {
+        "path": "OWNER-authority-and-scope-E02-P-v1.0.md",
+        "bytes": 1443,
+        "git_blob": "473b76ad6d25266f002817dcb46c419af7d2bf5b",
+        "sha256": "c38acf61d5803c83f25fe296a045266ded38e9694dd812b1277740b9daf47dc9"
+      },
+      {
+        "path": "SHA256SUMS.txt",
+        "bytes": 419,
+        "git_blob": "f54b997eb3edf56ea6faf398b6e82c31b23d8159",
+        "sha256": "ddca431058e13bdd1b3e94350e010395ab6d0f61a52ba511c72c5eceba9e5948"
+      }
+    ]
+  }
+]

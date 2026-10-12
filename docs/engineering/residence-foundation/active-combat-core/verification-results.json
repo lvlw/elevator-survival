@@ -1,5 +1,7 @@
 {
   "historical": {
+  "r1Delivery": {
+  "historical": {
   "original": {
   "task": "ENG-RESIDENCE-COMBAT-CORE-001",
   "phase": "E02-P",
@@ -719,6 +721,256 @@
     "browser/player",
     "O3",
     "old four P mutants"
+  ]
+}
+}
+  },
+  "r2": {
+  "task": "ENG-RESIDENCE-COMBAT-CORE-001-R2",
+  "start": "8512c991adb353775ffa4785599a011e419a81fa",
+  "startParent": "9f0eaacfbb83e49401c52fb57c3cfa061b2ef026",
+  "startTree": "06dee9c83e2b00075f5a0103d6c87211d7c22744",
+  "branch": "feature/residence-combat-core-001",
+  "startWorktree": "clean",
+  "startIndex": "empty",
+  "evidenceDirectory": "C:/Users/zjl/AppData/Local/Temp/e02-r2-565fc58ed9e34121aea0ed39e97fe1bb",
+  "baseline": {
+    "command": "npm run test:run",
+    "environment": {
+      "VITEST_MAX_WORKERS": "2",
+      "scope": "command-local; prior value restored in finally"
+    },
+    "files": 201,
+    "tests": 3781,
+    "durationSeconds": 256.58,
+    "exitCode": 0,
+    "log": "baseline-tests.log",
+    "oldR1DefaultTimeouts": "preserved in historical.r1Delivery; not re-run or rewritten"
+  },
+  "nativeBefore": {
+    "command": "npm exec vitest -- run src/core/residence-combat/review-maintenance-regression.test.ts --maxWorkers=2",
+    "log": "native-before.log",
+    "snapshot": "native-before-source.zip",
+    "exitCode": 1,
+    "tests": 7,
+    "passed": 5,
+    "failed": 2,
+    "importTypeFixtureFailures": 0,
+    "templateByteExact": true,
+    "results": {
+      "immediateEscapedMechanical": "REJECT INVALID_INPUT / Latest real resource differs from decision evidence",
+      "immediateVictoryMechanical": "REJECT same guard",
+      "freeOrganizeControls": "both ACCEPT",
+      "rawTamper": "three REJECT"
+    }
+  },
+  "targeted": [
+    {
+      "log": "native-after-first.log",
+      "files": 2,
+      "tests": 12,
+      "exitCode": 0
+    },
+    {
+      "log": "adjacent-first.log",
+      "tests": 29,
+      "passed": 28,
+      "failed": 1,
+      "exitCode": 1,
+      "reason": "new lamp fixture tried unsupported manual fire-door method; not a semantic finding"
+    },
+    {
+      "log": "r2-targeted-first.log",
+      "files": 3,
+      "tests": 38,
+      "passed": 35,
+      "failed": 3,
+      "exitCode": 1,
+      "reason": "new lamp fixture used ordinary card pickup; two legacy imports from wrong module; not semantic findings"
+    },
+    {
+      "log": "r2-targeted-after-fixtures.log",
+      "files": 4,
+      "tests": 43,
+      "exitCode": 0
+    },
+    {
+      "log": "typecheck-first.log",
+      "exitCode": 0
+    },
+    {
+      "log": "r2-combined.log",
+      "files": 133,
+      "tests": 2428,
+      "exitCode": 0,
+      "durationSeconds": 173.42
+    }
+  ],
+  "testChanges": {
+    "newFiles": 3,
+    "newTests": 38,
+    "regression": 29,
+    "purity": 6,
+    "compatibility": 3,
+    "replaced": 0,
+    "deleted": 0,
+    "modifiedOldTests": 0,
+    "net": 38,
+    "originalP": 102,
+    "originalR1": 58,
+    "allBaselineTests": 3781
+  },
+  "implementation": {
+    "productionChanged": [
+      "src/core/residence-supply/shared-maintenance.ts"
+    ],
+    "change": "remove intermediate complete read of private resource/material candidate; compose real G1, delegate final validation to existing issue path",
+    "before": "existing complete authority read/binding unchanged",
+    "final": "existing complete living plan / original step-validated death closure and final dead plan unchanged",
+    "latestGuard": "trace.ts byte unchanged",
+    "ruleReplay": "none in reads or queries; production only once",
+    "noHelperOrSkipFlag": true
+  },
+  "negativeControls": [
+    {
+      "kind": "candidate-stage",
+      "file": "negative-candidate/src/core/residence-supply/shared-maintenance.ts",
+      "edit": "restore context.read(next) and use checked before G1",
+      "log": "negative-candidate.log",
+      "exitCode": 1,
+      "failed": 2,
+      "passed": 3,
+      "filtered": 24,
+      "failures": "two original immediate mechanical repair positives domain rejected"
+    },
+    {
+      "kind": "completed-resource",
+      "file": "negative-resource/src/core/residence-combat/trace.ts",
+      "edit": "remove only same-revision latest-resource block",
+      "log": "negative-resource.log",
+      "exitCode": 1,
+      "failed": 3,
+      "passed": 2,
+      "filtered": 24,
+      "failures": "escaped/victory/active raw tamper accepted"
+    }
+  ],
+  "negativeCommand": "node <repo>/node_modules/vitest/vitest.mjs run src/core/residence-combat/review-maintenance-regression.test.ts --configLoader native --maxWorkers=1 -t immediate real mechanical|raw forged resource",
+  "oldMutants": "original four P and two R1 NOT RE-RUN; historical evidence preserved",
+  "counters": {
+    "order": [
+      "resource restoration",
+      "recipe evaluation",
+      "unit consumption",
+      "G1 action",
+      "G1 cycle",
+      "CTB resolver",
+      "CTB planner",
+      "CTB reducer",
+      "issue attempt",
+      "termination"
+    ],
+    "living": [
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    "maintenanceDeath": [
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    "invalidOriginalBefore": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "wrongRecipe": [
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "invalidPrivateOutput": [
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    "invalidOutputIssueResult": "throws; zero successful plans returned",
+    "readQuery": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "randomAtMaintenanceAndRead": 0,
+    "revisionAdvance": 1,
+    "consumerExtraRevision": 0,
+    "io": "NOT CONNECTED; no write/current/notification counts"
+  },
+  "archivedInputs": [{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/ENG-RESIDENCE-COMBAT-CORE-001-R2-task-v1.0.md","bytes":12738,"sha256":"b9fd794baedd4f16d960bde2b783caa91186bc106d986607ec76f4a42728934f","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/OWNER-authority-and-scope-E02-P-R2-v1.0.md","bytes":1302,"sha256":"3b4ac52bce1e2cd9334451f33d53383135cb7a2ab9a7db25d3dabd7c90ffe217","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/AUD-8512c99-ENG-RESIDENCE-COMBAT-CORE-001-R1-review-v1.0.md","bytes":7484,"sha256":"cae576e2959c582b3707b6deb552e11071fda0eb45579402a1af34098c9a5442","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/BASELINE-AND-SCOPE.json","bytes":5991,"sha256":"b1b68696a013f5c5e47e9b4ee73cc9fc967d93a2f1e0b91b74e8516d5c2ed4ee","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/SHA256SUMS.txt","bytes":1827,"sha256":"6edaf0b9be6001185115c4bccdb7576cf85c1b0284074142e34166d11447705f","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/README.md","bytes":2669,"sha256":"82e3ae66e4bb7956d963599dd59a367381aa3cb5d03eb495f893b42be19c5847","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/ci-observation.json","bytes":1719,"sha256":"9501815d4a3973479fd425fd5d640711fc071a940d928e1a85012e16dfa981cb","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/input-integrity.json","bytes":5588,"sha256":"dda010c92ca295d9acf741c89aec71c833eb3d96d7c9ba135cf0a2ff0cbf5357","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/isolated-results.json","bytes":331938,"sha256":"4acd87eee12fc3274fb1e1cfbd67658ff57d4c80faf32549a24380c37f82df46","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/isolated-stdout.txt","bytes":5010,"sha256":"656444dfbd8c3894d14f7873fe1b60f4bdee41057c4bcaf42aa6220ed96221d0","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/native-maintenance-regression.test.ts","bytes":5920,"sha256":"d7ffa5dca002209ddbefc8f4adbf4e6ba67e6056aa6d70b8e4bf27668d377a20","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/run-isolated-review.cjs","bytes":26054,"sha256":"8572900ca4052b4dee0aaf8b9289b0d4fdb84fa97dfa1619d07ce3ee819bf4a8","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/source-integrity.json","bytes":2072,"sha256":"e374dcb20cb72cf01de3e8f1291508faf0ce87e2f9e406d21d7e2de651bc6892","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/source/history-context.ts","bytes":6416,"sha256":"23c7dd1efd629bbaf25c2645d4d018988c271751c4fa3c0b3a48ba8b302a44e4","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/source/history-queue.ts","bytes":3634,"sha256":"7914213c2b90c7100396e8d8339cabb9e15ea0247636fa943adc4dc8b608ae2d","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/source/history.ts","bytes":8392,"sha256":"aece7befe268aa55be770a0d738d9b9111ff7e0bbe398afa3346d05f900c00d7","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/source/shared-maintenance.ts","bytes":4100,"sha256":"d566b5a0e85ca8391b7412de45cdcf178a91069d816c603f7a63da888360c64b","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/source/stable.ts","bytes":4226,"sha256":"834d78791b1b6f2a961325635e08d2aaae4c644b43d65429732affb40079a0f4","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/source/trace.ts","bytes":8822,"sha256":"b50b1be0893f261f86d2de1ce6fbcd4e09c540b518dcc5dece551fc03fd9aac1","matches":true},{"path":"docs/engineering/residence-foundation/active-combat-core/r2-inputs/source/validation.ts","bytes":2980,"sha256":"5c894bfc4bb554e3c8c32884265b4ff770d89b4b72f3bbdf8eadfe3d02fdfb82","matches":true}],
+  "files": ["docs/03-architecture.md","docs/08-rule-implementation-traceability.md","docs/design-drafts/world-infected-001/01-world-overview.md","docs/design-drafts/world-infected-001/10-decision-queue.md","docs/engineering/residence-foundation/active-combat-core/completion.md","docs/engineering/residence-foundation/active-combat-core/contract-and-support.md","docs/engineering/residence-foundation/active-combat-core/implementation-notes.md","docs/engineering/residence-foundation/active-combat-core/r2-inputs/AUD-8512c99-ENG-RESIDENCE-COMBAT-CORE-001-R1-review-v1.0.md","docs/engineering/residence-foundation/active-combat-core/r2-inputs/BASELINE-AND-SCOPE.json","docs/engineering/residence-foundation/active-combat-core/r2-inputs/ENG-RESIDENCE-COMBAT-CORE-001-R2-task-v1.0.md","docs/engineering/residence-foundation/active-combat-core/r2-inputs/OWNER-authority-and-scope-E02-P-R2-v1.0.md","docs/engineering/residence-foundation/active-combat-core/r2-inputs/SHA256SUMS.txt","docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/README.md","docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/ci-observation.json","docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/input-integrity.json","docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/isolated-results.json","docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/isolated-stdout.txt","docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/native-maintenance-regression.test.ts","docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/run-isolated-review.cjs","docs/engineering/residence-foundation/active-combat-core/r2-inputs/evidence/source-integrity.json","docs/engineering/residence-foundation/active-combat-core/r2-inputs/source/history-context.ts","docs/engineering/residence-foundation/active-combat-core/r2-inputs/source/history-queue.ts","docs/engineering/residence-foundation/active-combat-core/r2-inputs/source/history.ts","docs/engineering/residence-foundation/active-combat-core/r2-inputs/source/shared-maintenance.ts","docs/engineering/residence-foundation/active-combat-core/r2-inputs/source/stable.ts","docs/engineering/residence-foundation/active-combat-core/r2-inputs/source/trace.ts","docs/engineering/residence-foundation/active-combat-core/r2-inputs/source/validation.ts","docs/engineering/residence-foundation/active-combat-core/verification-results.json","src/core/residence-combat/review-maintenance-compatibility.test.ts","src/core/residence-combat/review-maintenance-purity.test.ts","src/core/residence-combat/review-maintenance-regression.test.ts","src/core/residence-supply/shared-maintenance.ts"],
+  "sourceFiles": [{"path":"src/core/residence-combat/review-maintenance-compatibility.test.ts","bytes":3986,"sha256":"2edbb1de4ebd5b00e0afbe601a04b1d0a931ef5ab627e136ac34e34cbab8293a","status":"A"},{"path":"src/core/residence-combat/review-maintenance-purity.test.ts","bytes":7807,"sha256":"f483a9210b34eec417ecfdbc10aa0fdaa285bb051f63a76e0cb7e14d38feaf67","status":"A"},{"path":"src/core/residence-combat/review-maintenance-regression.test.ts","bytes":16009,"sha256":"c6e59880f1f00eb0f3aa987f18ec129f0126d1729da654bddff4a2cb88be8cb2","status":"A"},{"path":"src/core/residence-supply/shared-maintenance.ts","bytes":4158,"sha256":"65819cdca6d1f0031b0ac105c8a7a11acadb2c7a1f1217d0483a0c5602c2f266","status":"M"}],
+  "logs": [{"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-r2-565fc58ed9e34121aea0ed39e97fe1bb\\adjacent-first.log","bytes":1557,"sha256":"ca8c59ecaf88cb3c3e032c08b9dbb8df4d8846024744a3b8b5fd171eed5d2141"},{"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-r2-565fc58ed9e34121aea0ed39e97fe1bb\\baseline-tests.log","bytes":295,"sha256":"342469a8365297edd41b1f1ff2fae1a87fb783ad4ab3fcb25206b79b391ab81f"},{"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-r2-565fc58ed9e34121aea0ed39e97fe1bb\\final-check.log","bytes":3414,"sha256":"fdd1c2c0242c1e2e7b2800a8d2b14ae21280a7f957339ea6b922065469d3c215"},{"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-r2-565fc58ed9e34121aea0ed39e97fe1bb\\native-after-first.log","bytes":227,"sha256":"54d68f4f4137cba8055a66635ff29fb1d5b38fd664c7d9eb4be4a31f2f5012ab"},{"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-r2-565fc58ed9e34121aea0ed39e97fe1bb\\native-before-source.zip","bytes":856734,"sha256":"81100c716756f11b2531a0d6bfadba68d40c437593a984e4d2f0d028fd02636a"},{"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-r2-565fc58ed9e34121aea0ed39e97fe1bb\\native-before.log","bytes":2017,"sha256":"9cefad2384d966aed2fac88fe5cdf2482fc6e16d4baab8bc44cc339638199d10"},{"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-r2-565fc58ed9e34121aea0ed39e97fe1bb\\negative-candidate.log","bytes":2106,"sha256":"005c9c1cbec573f4739a2e40c6f7ab7722f3e94d91d6d33e6db2b49c74f92b9b"},{"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-r2-565fc58ed9e34121aea0ed39e97fe1bb\\negative-resource.log","bytes":2543,"sha256":"79fa5cce9b2b22476e13c88fcdc46577197e303c86a7c01164072362534cde74"},{"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-r2-565fc58ed9e34121aea0ed39e97fe1bb\\r2-combined.log","bytes":241,"sha256":"54463af0c438a1121a83062ff147ee548b0658bc41e774bc424b7dbae93f860c"},{"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-r2-565fc58ed9e34121aea0ed39e97fe1bb\\r2-targeted-after-fixtures.log","bytes":227,"sha256":"0af6b1472dd2124c5a6ac5bfbedf8c53d56ab9017117986bb2b25f9a275f7162"},{"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-r2-565fc58ed9e34121aea0ed39e97fe1bb\\r2-targeted-first.log","bytes":3136,"sha256":"86f7baf9b22baad526f6a0cf4abff0bf3187e305472c4f0174ba14659cfbac6d"},{"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-r2-565fc58ed9e34121aea0ed39e97fe1bb\\remote-before.txt","bytes":1631,"sha256":"299fa268f69a5d4184e942c27cf79cdc56a4bb9024e477c3c90b96eeca409251"},{"path":"C:\\Users\\zjl\\AppData\\Local\\Temp\\e02-r2-565fc58ed9e34121aea0ed39e97fe1bb\\typecheck-first.log","bytes":66,"sha256":"d11ffe4794d55f89e05ba5796a42d42f732fe83d33b280c19738709f15fa4117"}],
+  "sourceFingerprint": "bd8fc2c0e4d636d05884310ed5fc06fc8f57b06f3166435fb5843dbac4652841",
+  "sourceFingerprintFormat": "SHA256 UTF-8 LF joined sorted changed src paths + space + raw SHA256, no trailing LF",
+  "finalCheck": {"command":"npm run check","environment":{"VITEST_MAX_WORKERS":"2"},"status":"PASS","log":"final-check.log","exitCode":0,"architecture":"PASS","architectureDEC":52,"architectureCoreProductionFiles":329,"typecheck":"PASS","testFiles":204,"tests":3819,"testDurationSeconds":262.3,"build":"PASS","warning":"Existing >500kB client chunk unchanged"},
+  "integrity": {"status":"PASS_PRE_STAGE","allowlist":40,"archiveMembers":20,"checksumRecords":19,"actualFiles":32,"modifiedFiles":9,"newFiles":23,"outsidePaths":[],"UTF8":"PASS","links":[{"path":"docs/03-architecture.md","ref":"engineering/residence-foundation/active-combat-core/completion.md","exists":true},{"path":"docs/08-rule-implementation-traceability.md","ref":"engineering/residence-foundation/active-combat-core/completion.md","exists":true},{"path":"docs/design-drafts/world-infected-001/01-world-overview.md","ref":"../../engineering/residence-foundation/active-combat-core/completion.md","exists":true},{"path":"docs/design-drafts/world-infected-001/10-decision-queue.md","ref":"../../engineering/residence-foundation/active-combat-core/completion.md","exists":true}],"originalPrefixes":[{"path":"docs/03-architecture.md","bytes":82407,"sha256":"9dad316e2e3c1aabb9f9591a364187b5c8bcda8a44fdfd8787de7e27f3b41505","preserved":true},{"path":"docs/08-rule-implementation-traceability.md","bytes":77144,"sha256":"67a23c3f8617d2bf9a76109488beec9e6b3a9e7be91c3e0851c0939fc6700112","preserved":true},{"path":"docs/design-drafts/world-infected-001/01-world-overview.md","bytes":37532,"sha256":"01231aaf85cdcfe95bb628572f603178fd3d44c67a27e283369a9e56651de2e1","preserved":true},{"path":"docs/design-drafts/world-infected-001/10-decision-queue.md","bytes":36946,"sha256":"fd0cff97208c7fd865e75193ea8b015dfa25f1e1040dd7eaab32b564f6888876","preserved":true},{"path":"docs/engineering/residence-foundation/active-combat-core/implementation-notes.md","bytes":14012,"sha256":"c20e8df1584d267aa087c8d46e73b80942e3b0a97bd9cbb3b738d718754451dd","preserved":true},{"path":"docs/engineering/residence-foundation/active-combat-core/contract-and-support.md","bytes":10718,"sha256":"04654025ecd7c333857db02632a7b7aa706bb7ad2baf0919f739dd7f9c012739","preserved":true},{"path":"docs/engineering/residence-foundation/active-combat-core/completion.md","bytes":16319,"sha256":"ac642b416b66bb29047c089cbb67daf2c3bb0f0dd28001c13fa8f4625f2a4c08","preserved":true}],"allOriginalVerification":"deep equality preserved in historical.r1Delivery","testedSource":"matches final fingerprint","stagedAndCommittedBytes":"checked externally at actual boundary","increment":{"exitCode":0},"untrackedWhitespace":"all23 new files no errors","cumulativeW01":{"exitCode":2,"exceptions":7,"newExceptions":0,"status":"WITH_APPROVED_W01_ARCHIVE_EXCEPTION","output":"docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:3: trailing whitespace.\n+状态：**PASS / 可进入 E01-R**  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:4: trailing whitespace.\n+受审准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:5: trailing whitespace.\n+父 SHA：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:6: trailing whitespace.\n+Tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:7: trailing whitespace.\n+起始准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:8: trailing whitespace.\n+父基线：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:9: trailing whitespace.\n+起始 tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  \n"},"firstAudit":"six new EOF blanks were rejected; fixed only new appended bytes, old prefixes preserved"},
+  "git": {
+    "commit": "normal after checks; exact SHA/parent/tree in external receipt",
+    "pushTarget": "origin HEAD:feature/residence-combat-core-001",
+    "ci": "query actual new commit after push, not historical CI151"
+  },
+  "conflicts": [],
+  "notRun": [
+    "E02-R",
+    "E02-S",
+    "E03",
+    "v4",
+    "current",
+    "Storage/browser/player",
+    "O3",
+    "old P/R1 mutants"
   ]
 }
 }

@@ -68,3 +68,17 @@ This append follows the F01/F02 review of `9f0eaacfbb83e49401c52fb57c3cfa061b2ef
 External F01 and F02 mutants remove only the respective joint-check call in a copied `history.ts`. Native original expectations then fail specifically on the three F01 / five F02 acceptance bugs. These are not production toggles or test skips. Exact logs and commands are in the R1 verification record.
 
 Public/controlled export files, existing tests/helpers, old CTB, G1/G2, approved parameters and v1/v2/v3 readers/sessions remain unchanged. Pure evidence validation does not authenticate a completely rewritten offline history. v4, current installation, Storage, browser, player entry, E02-R/S/E03 and O3 remain NOT RUN.
+
+## E02-P-R2 maintenance validation boundary
+
+The exact before is strictly validated by the existing controlled wrapper before any maintenance producer. Shared maintenance still validates strict command, target/pool, recipe, energy and actual resource operations. Its primary candidate remains local; G1 supplies the one real body/revision result before the existing issue boundary performs full final validation. The public read/query contract and latest committed-resource protection are unchanged; no optional skipValidation or revision override is accepted.
+
+| R2 acceptance | Native evidence |
+| --- | --- |
+| Immediate repair and raw integrity | review-maintenance-regression.test.ts retains the byte-exact seven-case template: two immediate repair positives, two free-organize diagnostic controls, three raw-resource rejects. |
+| Adjacent maintenance | Same file: pre-entry real cloth/metal/electronic/battery, immediate coat after escape/victory, one mechanical pool with explicit two targets and partial restoration, cap waste, toolbox and charge. |
+| Rejections and continuation | Same file: strict/extra/bad quantities, wrong materials/target/recipe, duplicate/over-pool/E0/stale/live battle, full resources, cloned plans; two actual closed battles then later combat death; real H0 empty steps. |
+| Independent counts | review-maintenance-purity.test.ts: living and bleeding-death maintenance, invalid raw before, partial evaluation wrong recipe, final invalid output rejects, repeated read/query zero production. |
+| Legacy isolation | review-maintenance-compatibility.test.ts: genuine old initial/source/recipe, living and original death-plan consumption, old protocol output retained and cross-protocol rejection. |
+
+No schema/protocol/save-format change. The original 102 P tests, 58 R1 tests and earlier tests remain read-only; the complete suite includes existing Day6/Day7, three-enemy, same-point, escape, medicine and two-declaration regressions. R2 is author evidence pending exact-SHA review, not E02-R/S/E03 acceptance.

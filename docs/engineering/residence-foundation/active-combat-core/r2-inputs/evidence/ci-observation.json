@@ -1,0 +1,49 @@
+{
+  "evidence_kind": "MAINLINE_READ_REMOTE_CI_NOT_LOCAL_NPM_EXECUTION",
+  "repository": "lvlw/elevator-survival",
+  "sha": "8512c991adb353775ffa4785599a011e419a81fa",
+  "run_id": 38260725990,
+  "run_number": 151,
+  "job_id": 114850215158,
+  "status": "completed",
+  "conclusion": "success",
+  "full_job_log_read": true,
+  "observed_log": {
+    "checkout_sha": "8512c991adb353775ffa4785599a011e419a81fa",
+    "test_files": 201,
+    "tests": 3781,
+    "architecture_dec": 52,
+    "architecture_core": 329,
+    "new_files_counts": {
+      "review-regression.test.ts": 44,
+      "review-history-integration.test.ts": 9,
+      "review-purity.test.ts": 5
+    },
+    "steps": {
+      "architecture": "success",
+      "typecheck": "success",
+      "test:run": "success",
+      "build": "success"
+    },
+    "test_command": "npm run test:run -> vitest run",
+    "worker_override_shown_in_CI_step": false,
+    "test_duration_seconds": 92.46,
+    "warnings": [
+      "existing bundle >500kB",
+      "npm ci: 5 audit findings (2 moderate, 3 high); advisory/reachability analysis NOT RUN",
+      "checkout/setup-node Node20 deprecation warning"
+    ]
+  },
+  "author_local_execution": {
+    "default_baseline_attempts": 2,
+    "same_existing_long_chain_timeout_reported": true,
+    "reduced_workers_baseline_all_passed": true,
+    "final_env": "VITEST_MAX_WORKERS=2",
+    "final_check": "PASS"
+  },
+  "notes": [
+    "Local author timeouts remain real failed attempts; a reduced-worker all-test run does not erase them.",
+    "Remote CI succeeded on exact SHA. It does not rule out a missing adjacent regression.",
+    "No workflow rerun, source write, dependency update, or local complete npm execution performed by mainline."
+  ]
+}

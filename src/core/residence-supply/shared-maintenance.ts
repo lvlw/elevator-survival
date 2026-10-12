@@ -43,8 +43,8 @@ export function planSharedMaintenance<V extends SupplyDomain, P>(value: V, reque
   next = { ...next, itemStates: { states: states.filter(s => next.itemStates.states.some(n => n.instanceId === s.instanceId)) } }
   const cost = supplyPaidCost(value, numberValue(deps.configuration, c.kind === 'recharge' ? 'recharge' : 'maintenance.' + c.kind), deps)
   ensure(supplyEnergyQuery(value, deps, c.kind === 'recharge' ? 'recharge' : 'repair', cost).canStart, 'Maintenance energy unavailable', 'NOT_AVAILABLE')
-  const checked = context.read(next)
   const body = supplyBodyAction(value, deps, c.kind === 'recharge' ? 'recharge' : 'repair', cost)
-  const plan = context.issue(value, { ...checked, character: body.snapshot }, 'maintenance', body.steps, body.cost)
+  // next is a private primary candidate; the issued boundary validates the complete body result.
+  const plan = context.issue(value, { ...next, character: body.snapshot }, 'maintenance', body.steps, body.cost)
   return deepFreeze({ plan, resourceResult: actual, unusedPool: pool - actual.reduce((n, a) => n + a.restored, 0) })
 }

@@ -134,3 +134,72 @@ Actual logs, snapshots, source hashes and integrity records are in `C:/Users/zjl
 No approved rule/parameter, old CTB semantic, G1/G2/identity, old test/helper, old save/session, package/lock, CI, AGENTS, UI or asset changed. No rule conflict or remaining in-scope implementation blocker identified. The default-concurrency baseline timeout and unchanged bundle-size warning are disclosed above, not suppressed.
 
 One normal commit is authorized after checks, followed only by `git push origin HEAD:feature/residence-combat-core-001`. No amend, rebase, merge, reset, main/other-branch push or force-push. Final SHA/parent/tree, exact remote branch SHA and other remote refs are verified in the final receipt. E02-R/S/E03, v4, current, Storage, browser/player and O3 are NOT RUN. Stop and wait for exact-SHA mainline review; do not proceed automatically.
+
+## ENG-RESIDENCE-COMBAT-CORE-001-R2 completion (2026-10-13)
+
+Author native implementation/verification for F03, pending final exact-SHA mainline review. Original P/R1 reports, failed baseline attempts and then-observed CI states above are unchanged. The R2 package separately records the later observed CI151 success; it is not rewritten into the earlier author record.
+
+### Exact start and actual validation
+
+Start HEAD 8512c991adb353775ffa4785599a011e419a81fa; parent 9f0eaacfbb83e49401c52fb57c3cfa061b2ef026; tree 06dee9c83e2b00075f5a0103d6c87211d7c22744. Continued feature/residence-combat-core-001, clean worktree/index, no new branch. The original remote references were recorded before any edits.
+
+Actual baseline: command-local VITEST_MAX_WORKERS=2, npm run test:run exit0, 201 files / 3781 tests, 256.58s. Previous environment value restored in finally; no timeout/configuration or old test change. R1's earlier default-concurrency failures remain historical.
+
+Final npm run check with the same command-local setting: exit0, architecture 52 DEC / 329 core production files; typecheck PASS; 204 files / 3819 tests PASS, 262.30s; build PASS. The existing >500kB client chunk warning remains. Final combined regressions: 133 files / 2428 tests PASS, including all original combat/P/R1, CTB/hospital, supply/task, restore/session/save, G1/G2, terminal and identity suites.
+
+Added three native test files / 38 cases: regression29, purity6, compatibility3. Replaced0, deleted0, modified baseline tests/helpers0, net+38. All original102 P and58 R1 cases and all earlier tests remain unchanged.
+
+### First native reproduction and results
+
+The supplied seven-case template was copied byte-exact before production edits and ran through genuine initial/departure, pre-battle H1 metal source and pickup, fire-door handling, G2 entry, real CTB exit and maintenance. No enemy was erased and no closed receipt was manufactured. No import/type/fixture repair was needed for the original template.
+
+| Original native case | Before | After |
+| --- | --- | --- |
+| escaped -> immediate mechanical repair | INVALID_INPUT: Latest real resource differs from decision evidence | accepted |
+| victory -> immediate mechanical repair | same rejection | accepted |
+| escaped -> real free organize -> repair | accepted diagnostic control | accepted |
+| victory -> real free organize -> repair | accepted diagnostic control | accepted |
+| escaped latest raw resource tamper | rejected | rejected |
+| victory latest raw resource tamper | rejected | rejected |
+| active latest raw resource tamper | rejected | rejected |
+
+First native exit1: five passed / two failed on business expectations; after minimal fix the template and five original supply maintenance cases passed12/12. Frozen mainline32-case isolated output is retained in r2-inputs; it is not substituted for this native result. Native before source archive and full logs remain outside the repository.
+
+### Minimal implementation and boundaries
+
+Only src/core/residence-supply/shared-maintenance.ts production code changed: remove context.read(next) for the resource/material primary candidate, compose the actual G1 body/revision, then pass the complete proposal to the existing context.issue. The controlled wrappers still fully read and independently bind the original before. Existing living issueCombatPlan validates the full result; maintenance death uses the original facts/step-validated closure followed by full final dead validation. Legacy Supply before, output and capability checks are unchanged.
+
+The latest completed-resource guard in trace.ts is byte-unchanged, as are original F01/F02/history/schema/authority/plans and all CTB semantics. No public skipValidation, revision override, fake revision, intervening player action or new private context framework is introduced. Resource restore, pool/allocation/cap, recipe, cost, G1 and terminal formulas remain their original implementations. A failing final result never returns a signed plan; previous pure calls are counted truthfully.
+
+Real pre-entry metal/cloth supply allows immediate mechanical/coat repair after both exit outcomes. Adjacent tests cover explicit two-target pool allocation (requested10+5, actual5+1, unused9), partial restoration (requested/restored1, unused14), toolbox metal+electronic and actual battery recharge. Sources/permission transfers and materials all precede encounter. Two real closed battles, repair, rest, reentry and later combat death preserve prior evidence; genuine H0 return retains steps=[]. Original Day6/Day7, three enemies, tied CTB, defend/escape and cross-battle first-bandage regressions are included unchanged.
+
+### Negative cases, independent calls and semantic controls
+
+Strict extra fields, bad numbers, false material/target/recipe, insufficient/duplicate material, duplicate/over-pool targets, full resources, E0, stale revisions, live battle and cloned/stale plans remain rejected. Original complete input and closed/enemy history remain unchanged. An injected invalid private resource output reaches final validation and throws, returning zero successful plans; its already executed pure work is not misreported as zero.
+
+Counter order: resource restoration / recipe evaluation / unit consumption / G1 action / G1 cycle / CTB resolve / CTB plan / CTB reduce / issue attempt / termination.
+
+| Boundary | Actual calls |
+| --- | --- |
+| Living immediate repair | 1 / 1 / 1 / 1 / 0 / 0 / 0 / 0 / 1 / 0 |
+| Immediate repair then legal HP1 bleeding death | 1 / 1 / 1 / 1 / 0 / 0 / 0 / 0 / 1 / 1 |
+| Forged original completed resource | 0 / 0 / 0 / 0 / 0 / 0 / 0 / 0 / 0 / 0 |
+| Invalid recipe after resource evaluation | 1 / 1 / 0 / 0 / 0 / 0 / 0 / 0 / 0 / 0 |
+| Invalid private resource output | 1 / 1 / 1 / 1 / 0 / 0 / 0 / 0 / 1 / 0; issue throws, successful plans0 |
+| Repeated complete read/query | all0 |
+
+Maintenance/read random calls0; real maintenance advances exactly one revision. In the explicit HP1/bleeding/E1 TEST boundary, real restore and material consumption complete first, G1 records primary then action-bleeding, final dead retains restored pipe durability30 in its real terminal disposition and one recipe disposition. No HP0 active plan is returned, no CTB or body rule is re-run and no extra revision is added. No storage/current/notification layer is connected or claimed.
+
+External candidate-stage mutant restores the pre-G1 complete read in copied shared-maintenance: two immediate repair positives fail, three raw rejects pass,24 filtered, exit1. External completed-resource mutant removes only the copied latest-resource guard: three raw tamper negatives are incorrectly accepted, two immediate positives pass,24 filtered, exit1. Original assertions and native producers remain; failures are business semantics, not cache/import/type/fixture errors. Original four P/two R1 negative controls are NOT RE-RUN in R2, with historical records retained.
+
+New fixture self-review logs retain unsupported lamp fire-door method, ordinary permission pickup and a wrong legacy source import. Only new fixtures/imports were corrected to genuine card transfer, formal card method and the actual residence-task source API. These failures do not count as semantic findings or negative-control passes. Original template and all old tests remain byte-exact.
+
+### Integrity and stop point
+
+32 actual paths within maximum40: nine modified /23 new, comprising one production change, three new tests, eight reports/documentation and20 byte-exact input members. Nineteen package checksum records match. Original inputs/r1-inputs, five formal contracts, approved configuration/content, and every non-allowlisted Git object remain unchanged. Seven Markdown original byte prefixes are preserved; the entire original P/R1 verification object is retained under historical.r1Delivery.
+
+UTF-8, relative links, original native template prefix, new-file whitespace, ordinary/cached/increment diffs, and staged/committed source byte identity are checked. Final tested source fingerprint: bd8fc2c0e4d636d05884310ed5fc06fc8f57b06f3166435fb5843dbac4652841. New appended-document EOF blanks were caught and removed before delivery; original prefixes remained intact. Cumulative W01 retains actual exit2 solely for the two original input blobs/seven specified hard-break lines; no new exception.
+
+Detailed evidence, log SHA256/byte counts and commands are in verification-results.json. External logs/audits are under C:/Users/zjl/AppData/Local/Temp/e02-r2-565fc58ed9e34121aea0ed39e97fe1bb. Final own SHA/parent/tree, exact remote branch/reference comparison and new CI observation are supplied in the external post-commit receipt, avoiding self-reference or amend.
+
+No rule/parameter conflict or in-scope implementation blocker identified. Only a normal commit and origin HEAD:feature/residence-combat-core-001 push are authorized; no merge, main/other-branch push or force. E02-R/S/E03, v4, current, Storage/browser/player and O3 remain NOT RUN. Stop for final exact-SHA mainline source review; do not automatically proceed.

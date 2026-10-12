@@ -1,0 +1,58 @@
+[
+  {
+    "path": "validation.ts",
+    "expected_git_blob": "8b96d1a500ceee1e68351da7a927576ec7512ddb",
+    "computed_git_blob": "8b96d1a500ceee1e68351da7a927576ec7512ddb",
+    "sha256": "5c894bfc4bb554e3c8c32884265b4ff770d89b4b72f3bbdf8eadfe3d02fdfb82",
+    "bytes": 2980,
+    "match": true
+  },
+  {
+    "path": "history.ts",
+    "expected_git_blob": "7314b629ac2c216a30db04aa1c6c0949204bb8d9",
+    "computed_git_blob": "7314b629ac2c216a30db04aa1c6c0949204bb8d9",
+    "sha256": "aece7befe268aa55be770a0d738d9b9111ff7e0bbe398afa3346d05f900c00d7",
+    "bytes": 8392,
+    "match": true
+  },
+  {
+    "path": "trace.ts",
+    "expected_git_blob": "68effd34e29472b29424f5434c42e741c6915a75",
+    "computed_git_blob": "68effd34e29472b29424f5434c42e741c6915a75",
+    "sha256": "b50b1be0893f261f86d2de1ce6fbcd4e09c540b518dcc5dece551fc03fd9aac1",
+    "bytes": 8822,
+    "match": true
+  },
+  {
+    "path": "history-context.ts",
+    "expected_git_blob": "2b4e956f675ab3fee80e29cd16dfd506ea3c9b9e",
+    "computed_git_blob": "2b4e956f675ab3fee80e29cd16dfd506ea3c9b9e",
+    "sha256": "23c7dd1efd629bbaf25c2645d4d018988c271751c4fa3c0b3a48ba8b302a44e4",
+    "bytes": 6416,
+    "match": true
+  },
+  {
+    "path": "history-queue.ts",
+    "expected_git_blob": "aba9298acebd05f274e2b14a21780e62fe6afa4f",
+    "computed_git_blob": "aba9298acebd05f274e2b14a21780e62fe6afa4f",
+    "sha256": "7914213c2b90c7100396e8d8339cabb9e15ea0247636fa943adc4dc8b608ae2d",
+    "bytes": 3634,
+    "match": true
+  },
+  {
+    "path": "shared-maintenance.ts",
+    "bytes": 4100,
+    "sha256": "d566b5a0e85ca8391b7412de45cdcf178a91069d816c603f7a63da888360c64b",
+    "expected_git_blob": "a48afe9a2127d654654dd677dfedab68420972bf",
+    "computed_git_blob": "a48afe9a2127d654654dd677dfedab68420972bf",
+    "match": true
+  },
+  {
+    "path": "stable.ts",
+    "bytes": 4226,
+    "sha256": "834d78791b1b6f2a961325635e08d2aaae4c644b43d65429732affb40079a0f4",
+    "expected_git_blob": "46bfe6d4275c4aab0a6fd3178c9306e386d513f4",
+    "computed_git_blob": "46bfe6d4275c4aab0a6fd3178c9306e386d513f4",
+    "match": true
+  }
+]

@@ -735,3 +735,9 @@ G1仍拥有身体／精力／周期，G2仍拥有现场，A共享结算拥有钱
 独立 state/residence-save/combat-index 与 combat-controlled 已接入三键 v4 外壳，state 直接采用 P 的 CombatValue。严格读取复用 P schema、F01 队列／F02 trace／F03 资源校验，并增加候选外版本、初始 execution／选择、实际场次与最新关闭锚；同进度恢复分别验证两个完整值后全值比较。decode 只形成深冻结候选，不签发动作能力、不安装 current、不调用 Storage 或通知。
 
 无版本历史断言抽取到 shared-supply-history，旧 v3 包装入口保留原四来源及错误类别；v4 显式验证 combat-death 与原 typed trace，保留旧 G1/P 流血幅度、休整资格、期限与正常 H0 空步骤。详见[支持矩阵](engineering/residence-foundation/active-combat-restore/contract-and-support.md)及[作者完成记录](engineering/residence-foundation/active-combat-restore/completion.md)。旧格式不迁移；E02-S/E03、current、实际存储、浏览器、多标签、玩家入口、O3 与 Owner 体验仍未接入／未验收，等待准确 SHA 恢复接缝实审。
+
+## E02-R-R1 双方归零死亡归档修复
+
+作者在完整仓库原生复现 R-F01 后，仅修正 v4 死亡归档联合条件：以已验证本场 entry／decision、同一归档 binding／位置／敌实例与真实敌终态分流。敌仍活必须保留对应 combat-required；主要效果已击杀且随后动作流血死亡时保留真实 none。两类均仍为 final dead，不改 P、schema、policy、expected 或旧格式，不复活、不补胜退费或奖励。
+
+原生修前／修后、零重放与两类负控见[本轮作者完成记录](engineering/residence-foundation/active-combat-restore/completion.md#e02-r-r1-author-repair)。等待准确 SHA 专项实审；E02-S/E03、current、存储、浏览器、UI 与 O3 保持未执行。

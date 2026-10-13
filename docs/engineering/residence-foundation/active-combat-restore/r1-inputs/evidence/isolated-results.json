@@ -1,0 +1,224 @@
+{
+  "scope": "ISOLATED source-level composition/archive/closure validation. Resolver, full schemas, provenance, real RNG and codec NOT RUN.",
+  "sha": "55fbf0f48e6a76bea3030bd77354528816581776",
+  "sourceIntegrity": [
+    {
+      "file": "effects.ts",
+      "git_blob": "c36cf73bd235bf124881612fdb2264b0d12de856",
+      "bytes": 4834,
+      "sha256": "f96ee4826bfe43bacfabf59bd7b8916f96b2c853886b570a7953cc408be08e6e"
+    },
+    {
+      "file": "supply-settlement-shared.ts",
+      "git_blob": "5944faf16f5b76afa983714660c5fe7a4a27adc6",
+      "bytes": 7856,
+      "sha256": "65310ac73f02d2b8059cfc48d2cb0b291bf45d391d9b8677ab6641fcc158d1f6"
+    },
+    {
+      "file": "combat-body-history.ts",
+      "git_blob": "ab278b056b5ecd6623e74a4c25cc61b0338fd315",
+      "bytes": 2515,
+      "sha256": "ed9e1bda37d40961761225444284dc91be7841579e97ce9160677f565f29c9f2"
+    }
+  ],
+  "summary": {
+    "cases": 17,
+    "matched": 15,
+    "mismatched": 2,
+    "unexpectedExceptions": 0
+  },
+  "cases": [
+    {
+      "id": "C01-enemy-alive-death-keeps-pending",
+      "expected": "ACCEPT",
+      "observed": "ACCEPT",
+      "matched": true,
+      "inputUnchanged": true,
+      "error": null
+    },
+    {
+      "id": "F01-basic-simultaneous-zero-cleared-pending",
+      "expected": "ACCEPT",
+      "observed": "REJECT",
+      "matched": false,
+      "inputUnchanged": true,
+      "error": {
+        "name": "Error",
+        "code": "INVALID_STATE",
+        "message": "Combat death archive lacks real active encounter"
+      }
+    },
+    {
+      "id": "F02-charged-simultaneous-zero-cleared-pending",
+      "expected": "ACCEPT",
+      "observed": "REJECT",
+      "matched": false,
+      "inputUnchanged": true,
+      "error": {
+        "name": "Error",
+        "code": "INVALID_STATE",
+        "message": "Combat death archive lacks real active encounter"
+      }
+    },
+    {
+      "id": "N-wrong-source",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "matched": true,
+      "inputUnchanged": true,
+      "error": {
+        "name": "Error",
+        "code": "INVALID_STATE",
+        "message": "Expected typed combat closure"
+      }
+    },
+    {
+      "id": "N-wrong-outcome",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "matched": true,
+      "inputUnchanged": true,
+      "error": {
+        "name": "Error",
+        "code": "INVALID_STATE",
+        "message": "Combat death closure/typed checkpoint differs"
+      }
+    },
+    {
+      "id": "N-legacy-body-steps",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "matched": true,
+      "inputUnchanged": true,
+      "error": {
+        "name": "Error",
+        "code": "INVALID_STATE",
+        "message": "Combat death closure/typed checkpoint differs"
+      }
+    },
+    {
+      "id": "N-foreign-binding",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "matched": true,
+      "inputUnchanged": true,
+      "error": {
+        "name": "Error",
+        "code": "INVALID_STATE",
+        "message": "Combat death closure/typed checkpoint differs"
+      }
+    },
+    {
+      "id": "N-wrong-revision",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "matched": true,
+      "inputUnchanged": true,
+      "error": {
+        "name": "Error",
+        "code": "INVALID_STATE",
+        "message": "Combat death closure/typed checkpoint differs"
+      }
+    },
+    {
+      "id": "N-nonzero-final-HP",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "matched": true,
+      "inputUnchanged": true,
+      "error": {
+        "name": "Error",
+        "code": "INVALID_STATE",
+        "message": "Combat death closure/typed checkpoint differs"
+      }
+    },
+    {
+      "id": "N-nonzero-trace-end",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "matched": true,
+      "inputUnchanged": true,
+      "error": {
+        "name": "Error",
+        "code": "INVALID_STATE",
+        "message": "Combat death closure/typed checkpoint differs"
+      }
+    },
+    {
+      "id": "N-empty-trace",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "matched": true,
+      "inputUnchanged": true,
+      "error": {
+        "name": "Error",
+        "code": "INVALID_STATE",
+        "message": "Combat death closure/typed checkpoint differs"
+      }
+    },
+    {
+      "id": "N-missing-death",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "matched": true,
+      "inputUnchanged": true,
+      "error": {
+        "name": "Error",
+        "code": "INVALID_STATE",
+        "message": "Combat death closure/typed checkpoint differs"
+      }
+    },
+    {
+      "id": "N-wrong-node",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "matched": true,
+      "inputUnchanged": true,
+      "error": {
+        "name": "Error",
+        "code": "INVALID_STATE",
+        "message": "Combat death archive lacks real active encounter"
+      }
+    },
+    {
+      "id": "N-live-enemy-pending-discarded",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "matched": true,
+      "inputUnchanged": true,
+      "error": {
+        "name": "Error",
+        "code": "INVALID_STATE",
+        "message": "Combat death archive lacks real active encounter"
+      }
+    },
+    {
+      "id": "N-foreign-pending-enemy",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "matched": true,
+      "inputUnchanged": true,
+      "error": {
+        "name": "Error",
+        "code": "INVALID_STATE",
+        "message": "Combat death archive lacks real active encounter"
+      }
+    },
+    {
+      "id": "C02-known-error-translated",
+      "expected": true,
+      "observed": true,
+      "matched": true,
+      "inputUnchanged": true,
+      "error": null
+    },
+    {
+      "id": "C03-programming-error-rethrown",
+      "expected": true,
+      "observed": true,
+      "matched": true,
+      "inputUnchanged": true,
+      "error": null
+    }
+  ]
+}

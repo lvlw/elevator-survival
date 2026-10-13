@@ -286,3 +286,7 @@ E01-S在`9c3c8a8c97c374bd1def6217c691137f3df10096`已获限定实审；本轮重
 P 完整 CombatValue 的独立 v4 聚合、冻结冷候选及字符串 codec 已实现并进行原生验证。实际三敌／后继场、真实安装交样和旧两声明历史均保持；cold expected 来自候选外初始材料及已提交记录，解码不授予行动或 current 安装权。详见[本批完成记录](../../engineering/residence-foundation/active-combat-restore/completion.md)。
 
 这是作者实现状态，不是准确 SHA 主线复审或 Owner 体验通过。E02-S/E03、玩家入口、浏览器／多标签、O3、九组合平衡及分段突破试玩仍未由本批关闭。
+
+## E02-R-R1 作者限定返修
+
+双方归零仍判玩家死亡，保留真实敌人击杀。v4 现按本场决策、归档同一敌实例和终态保留正确 none／combat-required；不修改战斗、奖罚或保存协议。证据见[作者返修记录](../../engineering/residence-foundation/active-combat-restore/completion.md#e02-r-r1-author-repair)。专项准确 SHA 复审尚待主线执行，未进入 E02-S/E03 或 Owner 体验。

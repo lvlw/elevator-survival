@@ -28,11 +28,23 @@ export function validateCombatDeathClosure(v: CombatValue, index: number, check:
   const r = v.receipts[index]
   check(r.source === 'combat-death', 'Expected typed combat closure')
   const death = v.combatDeaths.find(d => d.id === r.combatDeathReceiptId)
-  check(death && r.outcome === 'death' && r.steps.length === 0 &&
+  check(death && v.phase === 'dead' && v.site === null && v.battle === null &&
+    v.character.body.condition.currentHealth === 0 && r.outcome === 'death' && r.steps.length === 0 &&
     same(r.binding, death.entry.binding) && r.revision === death.revision &&
     death.decision.healthAfter === 0 && death.decision.trace.at(-1)?.healthAfter === 0,
   'Combat death closure/typed checkpoint differs')
   const archive = v.archives[index]
-  check(archive.site.nodeId === death.entry.to && archive.site.pending.kind === 'combat-required' &&
-    archive.site.pending.enemyId === death.entry.enemyId, 'Combat death archive lacks real active encounter')
+  const enemy = archive.site.enemies.find(e => e.id === death.entry.enemyId)
+  check(same(archive.site.binding, death.entry.binding) && archive.site.nodeId === death.entry.to &&
+    enemy && enemy.state.enemyInstanceId === death.entry.enemyInstanceId &&
+    enemy.state.definitionId === death.entry.definitionId && enemy.state.hasBeenEncountered &&
+    enemy.state.currentHealth === death.decision.enemyHealthAfter &&
+    enemy.state.defeated === (death.decision.enemyHealthAfter === 0), 'Combat death archive/actual enemy differs')
+  // R-F01: pending follows this already-validated decision, not a generic dead flag.
+  if (enemy.state.defeated) {
+    check(['metal-pipe-basic-attack', 'metal-pipe-charged-strike', 'temporary-attack'].includes(death.decision.command.kind) &&
+      death.decision.enemyHealthBefore > 0 && death.decision.trace.at(-1)?.kind === 'post-action-bleeding' &&
+      archive.site.pending.kind === 'none', 'Killed enemy death lacks actual primary/bleeding/cleared pending')
+  } else check(archive.site.pending.kind === 'combat-required' && archive.site.pending.enemyId === death.entry.enemyId,
+    'Living enemy death must preserve its actual pending encounter')
 }

@@ -1,0 +1,37 @@
+{
+  "files": [
+    {
+      "path": "AUD-9ada1bd-ENG-RESIDENCE-COMBAT-CORE-001-R2-review-v1.0.md",
+      "bytes": 9441,
+      "sha256": "be2e4a966f58d0ce188c48e21060d4e82db0298a5cfc0499f1780c243f64893d",
+      "git_blob": "8e03e8409cc216bf16082e60766ae66e2fb39e5b"
+    },
+    {
+      "path": "BASELINE-AND-INPUTS.json",
+      "bytes": 8414,
+      "sha256": "fc69ed625f141eb161bdd9a80f30bb4cedb6f1b6e67cf802310638a296552221",
+      "git_blob": "727e9254c2bf2920d0d57b991e1971bd305c0aa2"
+    },
+    {
+      "path": "ENG-RESIDENCE-COMBAT-RESTORE-001-task-v1.0.md",
+      "bytes": 19570,
+      "sha256": "0ec9aa849023de37a2e399d6d1a668b136f0937a08108b9208fb1934857b4952",
+      "git_blob": "112a517ff0f75f57c4e8a2b37575e118db73abc7"
+    },
+    {
+      "path": "OWNER-authority-and-scope-E02-R-v1.0.md",
+      "bytes": 1666,
+      "sha256": "a8130ed2f9a6742a5a10ea36aa7e698e31f625755a26579bbdf74770269c49d8",
+      "git_blob": "b0a7dda9a1097d04cb6b2340b0f54d5712b4cada"
+    },
+    {
+      "path": "SHA256SUMS.txt",
+      "bytes": 435,
+      "sha256": "167398a542ef820fd4e83581ac4fb672dd5043e90c04bf0af640b26cdf41a4d9",
+      "git_blob": "9f5bc33c422a9c040d1799ed0491bd1e99acf9c7"
+    }
+  ],
+  "computed_git_tree": "d44810a59b585c5de3b89586fbf69aea78617be7",
+  "remote_git_tree": "d44810a59b585c5de3b89586fbf69aea78617be7",
+  "matched": true
+}

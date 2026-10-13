@@ -28,3 +28,15 @@ Test expectations are captured from independently produced records before prepar
 ## Scope
 
 No current installation, storage, browser, UI, E02-S/E03 or O3 decision. Existing tests and all core/content production files are read-only. Shared documentation is append-only. W01 is limited to the original two historical input files and seven hard breaks.
+
+## E02-R-R1 design and actual first execution
+
+Start 55fbf0f48e6a76bea3030bd77354528816581776, same feature/residence-combat-restore-001 branch, clean worktree/index. Actual full baseline 213 files / 3988 tests, exit 0, 342.92s, command-local two workers. All 13 listed payload hashes, 3 source blobs and 5 original E02-R input blobs matched before changes.
+
+The native template was copied byte-exact and run before production changes: 12 tests, 8 pass / 4 fail, exit 1. Real P simultaneous-zero production succeeded. Aggregate/encode/decode/same-progress first failed at validateCombatDeathClosure's overstrong active pending requirement (INVALID_STATE), not import, type or fixture code. The same unchanged template passed all 12 after the narrow fix.
+
+Only combat-body-history.ts changes production: require final dead, HP0 and complete typed binding, then jointly check archived execution/site/enemy/decision HP. A truly killed enemy additionally requires an actual attack followed by post-action bleeding and none pending; a still-living enemy requires its actual combat-required. No replay, repair or new rule. combat-history.ts remains unchanged.
+
+New fixtures set explicit TEST health/bleeding BEFORE entry; basic/charged final kill, real retreat/reentry and later technician death all use P. Expected is fixed from independent actual output before candidate copying/text. Full committed comparison is unchanged. All old tests/helpers are read-only.
+
+A new spy initially observed the controlled re-export rather than the internal consumer definition; its missed internal call was NOT semantic evidence. The test now spies on the actual terminal module and keeps the expected single consumer call. No production change was made for that observation issue.

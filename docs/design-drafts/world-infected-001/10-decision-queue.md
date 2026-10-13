@@ -297,3 +297,7 @@ F03修复仅调整共享维修内部验证时点，原F01队列与F02死亡来�
 独立 v4 恢复层已按受控 P 类型实现五类完整停点、候选外 expected、同进度完整 committed 比较、六向格式拒绝及零玩法重放。详细证据见[支持矩阵](../../engineering/residence-foundation/active-combat-restore/contract-and-support.md)。原规则与批准参数、旧 v1/v2/v3 reader／codec 和全部旧测试保持。
 
 停止等待准确 SHA 的 v4 恢复接缝实审；不自动启动 E02-S/E03，不决定 O3，不把源码测试升级为 Owner 体验结论。
+
+## E02-R-R1 作者修复状态
+
+R-F01 已在完整仓库原生复现并限定修复，合法双方归零死亡与敌仍活死亡按实际归档终态分流；原规则与参数保持。测试／负控／范围见[本轮完成记录](../../engineering/residence-foundation/active-combat-restore/completion.md#e02-r-r1-author-repair)。此作者附记不是专项复审 PASS，不自动进入 E02-S/E03、current、浏览器、UI 或 O3。

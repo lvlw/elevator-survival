@@ -1,0 +1,20 @@
+[
+  {
+    "file": "effects.ts",
+    "git_blob": "c36cf73bd235bf124881612fdb2264b0d12de856",
+    "bytes": 4834,
+    "sha256": "f96ee4826bfe43bacfabf59bd7b8916f96b2c853886b570a7953cc408be08e6e"
+  },
+  {
+    "file": "supply-settlement-shared.ts",
+    "git_blob": "5944faf16f5b76afa983714660c5fe7a4a27adc6",
+    "bytes": 7856,
+    "sha256": "65310ac73f02d2b8059cfc48d2cb0b291bf45d391d9b8677ab6641fcc158d1f6"
+  },
+  {
+    "file": "combat-body-history.ts",
+    "git_blob": "ab278b056b5ecd6623e74a4c25cc61b0338fd315",
+    "bytes": 2515,
+    "sha256": "ed9e1bda37d40961761225444284dc91be7841579e97ce9160677f565f29c9f2"
+  }
+]

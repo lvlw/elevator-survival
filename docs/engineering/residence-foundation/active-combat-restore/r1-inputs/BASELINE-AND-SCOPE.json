@@ -1,0 +1,122 @@
+{
+  "task": "ENG-RESIDENCE-COMBAT-RESTORE-001-R1",
+  "version": "1.0",
+  "date": "2026-10-13",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "55fbf0f48e6a76bea3030bd77354528816581776",
+  "parent_sha": "9ada1bd76c768b7bcff676b263e4533854064909",
+  "start_tree": "94b8f203cb97957ddb3ede1598b5e4938f81a7d9",
+  "branch": "feature/residence-combat-restore-001",
+  "new_branch": false,
+  "finding": {
+    "id": "R-F01",
+    "kind": "false_rejection",
+    "title": "合法双方归零死亡的归档pending被过强约束"
+  },
+  "mainline_review": {
+    "result": "NEEDS_REVISION",
+    "isolated_cases": 17,
+    "matched": 15,
+    "false_rejections": 2,
+    "unexpected_exceptions": 0,
+    "native_runtime": "NOT_RUN",
+    "full_npm": "NOT_RUN",
+    "native_template_syntax_transpile_errors": 0,
+    "scope": "Three Git-byte-matched original modules, with explicit imported adapters and reduced TEST records; NOT native full P/codec."
+  },
+  "ci": {
+    "run_number": 153,
+    "run_id": 38288642915,
+    "job_id": 114943016589,
+    "head_sha": "55fbf0f48e6a76bea3030bd77354528816581776",
+    "status": "completed",
+    "conclusion": "success",
+    "four_stages": "success",
+    "full_log_read": false
+  },
+  "author_tests_only": {
+    "start_files": 204,
+    "start_tests": 3819,
+    "final_files": 213,
+    "final_tests": 3988,
+    "new_tests": 169,
+    "replaced": 0,
+    "deleted": 0,
+    "workers": 2
+  },
+  "old_input_tree": "d44810a59b585c5de3b89586fbf69aea78617be7",
+  "allowed_paths": [
+    "src/state/residence-save/combat-body-history.ts",
+    "src/state/residence-save/combat-history.ts",
+    "src/state/residence-save/combat-review-simultaneous-death.test.ts",
+    "src/state/residence-save/combat-review-simultaneous-purity.test.ts",
+    "src/state/residence-save/combat-review-simultaneous-fixtures.ts",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/residence-foundation/active-combat-restore/implementation-notes.md",
+    "docs/engineering/residence-foundation/active-combat-restore/contract-and-support.md",
+    "docs/engineering/residence-foundation/active-combat-restore/completion.md",
+    "docs/engineering/residence-foundation/active-combat-restore/verification-results.json",
+    "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/ENG-RESIDENCE-COMBAT-RESTORE-001-R1-task-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/OWNER-authority-and-scope-E02-R-R1-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/AUD-55fbf0f-ENG-RESIDENCE-COMBAT-RESTORE-001-review-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/BASELINE-AND-SCOPE.json",
+    "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/SHA256SUMS.txt",
+    "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/source/combat-body-history.ts",
+    "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/source/effects.ts",
+    "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/source/supply-settlement-shared.ts",
+    "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/evidence/run-isolated-review.cjs",
+    "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/evidence/isolated-results.json",
+    "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/evidence/source-integrity.json",
+    "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/evidence/input-integrity.json",
+    "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/evidence/environment-notes.md",
+    "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/evidence/native-simultaneous-death.test.ts.template"
+  ],
+  "allowed_path_count": 27,
+  "inputs": [
+    "ENG-RESIDENCE-COMBAT-RESTORE-001-R1-task-v1.0.md",
+    "OWNER-authority-and-scope-E02-R-R1-v1.0.md",
+    "AUD-55fbf0f-ENG-RESIDENCE-COMBAT-RESTORE-001-review-v1.0.md",
+    "BASELINE-AND-SCOPE.json",
+    "SHA256SUMS.txt",
+    "source/combat-body-history.ts",
+    "source/effects.ts",
+    "source/supply-settlement-shared.ts",
+    "evidence/run-isolated-review.cjs",
+    "evidence/isolated-results.json",
+    "evidence/source-integrity.json",
+    "evidence/input-integrity.json",
+    "evidence/environment-notes.md",
+    "evidence/native-simultaneous-death.test.ts.template"
+  ],
+  "archive_root": "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/",
+  "append_only_docs": [
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/residence-foundation/active-combat-restore/implementation-notes.md",
+    "docs/engineering/residence-foundation/active-combat-restore/contract-and-support.md",
+    "docs/engineering/residence-foundation/active-combat-restore/completion.md"
+  ],
+  "w01": {
+    "comparison_base": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+    "old_task_lines": [
+      7,
+      8,
+      9
+    ],
+    "old_review_lines": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "count": 7,
+    "no_expansion": true
+  },
+  "commit_push": true,
+  "merge_main_force_push": false
+}

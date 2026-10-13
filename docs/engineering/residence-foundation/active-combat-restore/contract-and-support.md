@@ -43,3 +43,13 @@ All test paths below are under `src/state/residence-save/`.
 Cold consistency is not authentication of jointly forged candidate/external materials, cryptographic history signing or cross-device rollback protection. TEST day/HP/body boundaries are labeled. Only the older archived execution in the two-declaration test uses an existing danger-cleared TEST fixture; all current/later battles and the complete three-enemy success route use true CTB producers.
 
 Storage and notification spies prove no call during codec; they do not prove real save failure, retry, session reentry or current installation. Those are NOT RUN / outside E02-R. Older P/R1/R2 negative controls are NOT RE-RUN; two new R controls are counted separately. No E02-S/E03, browser/multitab/UI or O3 decision.
+
+## E02-R-R1 support addendum
+
+The exact original v4 API, schema and permissions stay unchanged. Joint death archive validation supports both actual killed-enemy none and living-enemy combat-required, tied to this receipt's entry/decision, execution, revision, node and enemy instance. Ordinary live-battle pending rules remain P-owned and strict.
+
+New native tests: combat-review-simultaneous-death.test.ts (35: original 12 byte-exact first-run cases plus 23 adjacent cases) and combat-review-simultaneous-purity.test.ts (9). The new fixtures are TEST-only. Cases include basic/charged simultaneous death, +1 HP living victory, living direct/bleed/heal death, real reentry and later C2 encounter, complete frozen roundtrip, wrong pending/binding/source/trace/money/disposition/phase/extra fields, and full independent committed comparison. No original 169 tests/helpers changed.
+
+Zero replay observes 36 actual spies per valid/rejected call across four APIs and both dead-enemy branches, plus injected draw. Real last action/death work is separately [CTB resolver, plan, reducer, death consumer, terminate, settlement]=[1,1,1,1,1,1]; G1 action/cycle and RNG draw are zero for this actual final kill. It does not prove real Storage failure, session reentry or browser behavior.
+
+Two outside-repository semantic mutants: restore the old overstrong killed-enemy pending requirement (legal positive fails); omit actual living-enemy pending requirement (P-valid malformed archive wrongly accepted and business assertion fails). Both exit 1 without import/fixture exceptions. Historical P/R1/R2 and initial E02-R mutants are NOT RE-RUN.

@@ -313,3 +313,7 @@ G1仍拥有身体／精力／周期，G2仍拥有现场，A共享结算拥有钱
 作者新增独立 CombatValue v4 聚合与字符串 codec，真实首次中枢、稳定活动、活战斗玩家决策点、生还中枢及最终死亡往返；恢复后的真实 P 命令接续验证包括退却立即维修再入、胜利修外套、治疗后死亡及后继场死亡。原 F01/F02/F03、来源份额、实物消费／安装／交样、钱包与旧关闭保持联合校验；候选外 expected 与完整 committed 比较不构成离线历史认证。
 
 原生 API、六向旧格式拒绝、零重放与语义负控见[本批支持矩阵](engineering/residence-foundation/active-combat-restore/contract-and-support.md)和[实际验证记录](engineering/residence-foundation/active-combat-restore/verification-results.json)。本段不创建规则，不回写历史测试／超时记录，也不宣称会话保存、浏览器或完整世界可玩。后续 E02-S/E03 和 Owner 体验 Gate 保持未完成。
+
+## E02-R-R1 同归零归档实现追踪
+
+原生 P 已真实保留敌人击杀与玩家动作流血死亡；修前 v4 四入口误要求活 pending，现按同场已验证决策和归档敌终态联合分流。严格独立 expected、完整 committed 比较、旧 G1/P 死亡来源和 H0 空 steps 保持。具体证据见[本轮完成记录](engineering/residence-foundation/active-combat-restore/completion.md#e02-r-r1-author-repair)。此段只追踪恢复 corrective，不创建玩法或关闭后续会话／试玩 Gate。

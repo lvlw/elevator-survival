@@ -290,3 +290,9 @@ P 完整 CombatValue 的独立 v4 聚合、冻结冷候选及字符串 codec 已
 ## E02-R-R1 作者限定返修
 
 双方归零仍判玩家死亡，保留真实敌人击杀。v4 现按本场决策、归档同一敌实例和终态保留正确 none／combat-required；不修改战斗、奖罚或保存协议。证据见[作者返修记录](../../engineering/residence-foundation/active-combat-restore/completion.md#e02-r-r1-author-repair)。专项准确 SHA 复审尚待主线执行，未进入 E02-S/E03 或 Owner 体验。
+
+## E02-S v4 headless combat session author implementation
+
+New explicit combat-controlled/combat-index entry shares the existing domain with v1/v2/v3. Real null startup, P first stock/departure/movement/CTB and stable operations form an authenticated complete result; R aggregate and pre-encoding precede one current/write/notification transaction. P already-completed death is never consumed again: both-zero stays dead with true enemy kill/none; living enemy death preserves combat-required. Cold expected is fixed before reading; native submit expected comes only from authenticated P output and retained initial material. Save failure keeps latest memory, retry does not replay gameplay.
+
+Actual S01-S12, native three-enemy/task success chain, four failure chains, five stop points and counter limits are in the [author support record](../../engineering/residence-foundation/active-combat-session/contract-and-support.md). This author state is not exact-SHA mainline PASS, browser/multitab/UI/Owner experience or O3 approval. E03 has not started. Historical text and formal rules remain unchanged.

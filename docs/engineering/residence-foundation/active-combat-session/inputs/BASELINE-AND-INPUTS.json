@@ -1,0 +1,140 @@
+{
+  "task": "ENG-RESIDENCE-COMBAT-SESSION-001",
+  "phase": "E02-S",
+  "version": "1.0",
+  "date": "2026-10-13",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "29a018a2ad64f8d5cbe56257381568bf3527cd08",
+  "start_parent_sha": "55fbf0f48e6a76bea3030bd77354528816581776",
+  "start_tree": "b7abd390b7a94d3367a79876588e87c1850feeac",
+  "source_branch": "feature/residence-combat-restore-001",
+  "target_branch": "feature/residence-combat-session-001",
+  "create_new_branch": true,
+  "allowed_paths": [
+    "src/state/residence-session/combat-types.ts",
+    "src/state/residence-session/combat-composition.ts",
+    "src/state/residence-session/combat-commands.ts",
+    "src/state/residence-session/combat-initial.ts",
+    "src/state/residence-session/combat-expectation.ts",
+    "src/state/residence-session/combat-proposals.ts",
+    "src/state/residence-session/combat-persistence.ts",
+    "src/state/residence-session/combat-session.ts",
+    "src/state/residence-session/combat-queries.ts",
+    "src/state/residence-session/combat-index.ts",
+    "src/state/residence-session/combat-controlled.ts",
+    "src/state/residence-session/combat-test-fixtures.ts",
+    "src/state/residence-session/combat-test-observers.ts",
+    "src/state/residence-session/combat-test-routes.ts",
+    "src/state/residence-session/combat-session.test.ts",
+    "src/state/residence-session/combat-domain.test.ts",
+    "src/state/residence-session/combat-initial.test.ts",
+    "src/state/residence-session/combat-expected.test.ts",
+    "src/state/residence-session/combat-actions.test.ts",
+    "src/state/residence-session/combat-medical.test.ts",
+    "src/state/residence-session/combat-stable.test.ts",
+    "src/state/residence-session/combat-terminal.test.ts",
+    "src/state/residence-session/combat-persistence.test.ts",
+    "src/state/residence-session/combat-reentry.test.ts",
+    "src/state/residence-session/combat-history.test.ts",
+    "src/state/residence-session/combat-longchain.integration.test.ts",
+    "src/state/residence-session/combat-compatibility.test.ts",
+    "src/state/residence-session/combat-atomicity.test.ts",
+    "docs/engineering/residence-foundation/active-combat-session/completion.md",
+    "docs/engineering/residence-foundation/active-combat-session/contract-and-support.md",
+    "docs/engineering/residence-foundation/active-combat-session/implementation-notes.md",
+    "docs/engineering/residence-foundation/active-combat-session/verification-results.json",
+    "docs/engineering/residence-foundation/active-combat-session/inputs/ENG-RESIDENCE-COMBAT-SESSION-001-task-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-session/inputs/OWNER-authority-and-scope-E02-S-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-session/inputs/AUD-29a018a-ENG-RESIDENCE-COMBAT-RESTORE-001-R1-review-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-session/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/residence-foundation/active-combat-session/inputs/SHA256SUMS.txt",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "allowed_path_count": 41,
+  "archive_root": "docs/engineering/residence-foundation/active-combat-session/inputs/",
+  "input_members": [
+    "ENG-RESIDENCE-COMBAT-SESSION-001-task-v1.0.md",
+    "OWNER-authority-and-scope-E02-S-v1.0.md",
+    "AUD-29a018a-ENG-RESIDENCE-COMBAT-RESTORE-001-R1-review-v1.0.md",
+    "BASELINE-AND-INPUTS.json",
+    "SHA256SUMS.txt"
+  ],
+  "append_only_docs": [
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "review": {
+    "result": "PASS",
+    "closed_finding": "R-F01",
+    "mainline_isolated_cases": 37,
+    "matched": 37,
+    "unexpected_exceptions": 0,
+    "mainline_native_npm": "NOT_RUN",
+    "mainline_full_codec": "NOT_RUN",
+    "input_archive_counts": [
+      5,
+      14
+    ],
+    "input_archive_trees": [
+      "d44810a59b585c5de3b89586fbf69aea78617be7",
+      "40418f7fecad4c335fee264e684216041402eaa5"
+    ]
+  },
+  "ci_verified": {
+    "run_number": 154,
+    "run_id": 38399164095,
+    "job_id": 115302021328,
+    "head_sha": "29a018a2ad64f8d5cbe56257381568bf3527cd08",
+    "status": "completed",
+    "conclusion": "success",
+    "full_log_read": false
+  },
+  "author_tests_not_mainline": {
+    "baseline_files": 213,
+    "baseline_tests": 3988,
+    "final_files": 215,
+    "final_tests": 4032,
+    "added": 44,
+    "replaced": 0,
+    "deleted": 0,
+    "workers": 2
+  },
+  "contract_paths": [
+    "docs/engineering/residence-foundation/active-combat-lifecycle-contract-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-core-contract-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-restore-contract-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-session-contract-v1.0.md",
+    "docs/engineering/residence-foundation/active-combat-batch-plan-v1.0.md"
+  ],
+  "existing_read_only_seams": {
+    "src/core/residence-combat/controlled.ts": "04c7e4ec9e4da6ac79663e2d38808f691fac19c9",
+    "src/core/residence-combat/actions.ts": "4c7a84e26046ca28ad97cb4efd6b03f93b8644ee",
+    "src/core/residence-combat/stable.ts": "46bfe6d4275c4aab0a6fd3178c9306e386d513f4",
+    "src/state/residence-save/combat-body-history.ts": "43ccddccd3b08a639f94983df3ccc928677891d1",
+    "src/state/residence-session/domain.ts": "699ba6cc325b467e37e934ae50044c138e4a0ee6"
+  },
+  "w01": {
+    "comparison_base": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+    "task_lines": [
+      7,
+      8,
+      9
+    ],
+    "review_lines": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "total": 7,
+    "no_expansion": true
+  },
+  "ordinary_commit_push": true,
+  "merge_main_force_push": false,
+  "stop": "Exact SHA session/headless persistence review; no automatic E03"
+}

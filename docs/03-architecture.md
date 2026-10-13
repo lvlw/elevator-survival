@@ -741,3 +741,9 @@ G1仍拥有身体／精力／周期，G2仍拥有现场，A共享结算拥有钱
 作者在完整仓库原生复现 R-F01 后，仅修正 v4 死亡归档联合条件：以已验证本场 entry／decision、同一归档 binding／位置／敌实例与真实敌终态分流。敌仍活必须保留对应 combat-required；主要效果已击杀且随后动作流血死亡时保留真实 none。两类均仍为 final dead，不改 P、schema、policy、expected 或旧格式，不复活、不补胜退费或奖励。
 
 原生修前／修后、零重放与两类负控见[本轮作者完成记录](engineering/residence-foundation/active-combat-restore/completion.md#e02-r-r1-author-repair)。等待准确 SHA 专项实审；E02-S/E03、current、存储、浏览器、UI 与 O3 保持未执行。
+
+## E02-S v4 headless combat session author implementation
+
+New explicit combat-controlled/combat-index entry shares the existing domain with v1/v2/v3. Real null startup, P first stock/departure/movement/CTB and stable operations form an authenticated complete result; R aggregate and pre-encoding precede one current/write/notification transaction. P already-completed death is never consumed again: both-zero stays dead with true enemy kill/none; living enemy death preserves combat-required. Cold expected is fixed before reading; native submit expected comes only from authenticated P output and retained initial material. Save failure keeps latest memory, retry does not replay gameplay.
+
+Actual S01-S12, native three-enemy/task success chain, four failure chains, five stop points and counter limits are in the [author support record](engineering/residence-foundation/active-combat-session/contract-and-support.md). This author state is not exact-SHA mainline PASS, browser/multitab/UI/Owner experience or O3 approval. E03 has not started. Historical text and formal rules remain unchanged.

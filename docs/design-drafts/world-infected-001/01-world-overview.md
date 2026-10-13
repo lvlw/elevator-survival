@@ -296,3 +296,10 @@ P 完整 CombatValue 的独立 v4 聚合、冻结冷候选及字符串 codec 已
 New explicit combat-controlled/combat-index entry shares the existing domain with v1/v2/v3. Real null startup, P first stock/departure/movement/CTB and stable operations form an authenticated complete result; R aggregate and pre-encoding precede one current/write/notification transaction. P already-completed death is never consumed again: both-zero stays dead with true enemy kill/none; living enemy death preserves combat-required. Cold expected is fixed before reading; native submit expected comes only from authenticated P output and retained initial material. Save failure keeps latest memory, retry does not replay gameplay.
 
 Actual S01-S12, native three-enemy/task success chain, four failure chains, five stop points and counter limits are in the [author support record](../../engineering/residence-foundation/active-combat-session/contract-and-support.md). This author state is not exact-SHA mainline PASS, browser/multitab/UI/Owner experience or O3 approval. E03 has not started. Historical text and formal rules remain unchanged.
+
+
+## E03-A 原生路线与查询合同作者交付
+
+本批只新增 TEST-only 会话验收：从真实 read-null 与获批初配，经 S 单笔 dispatch 实际完成四路线见证、九组合共同八默认种子、合法失败／分段／冷恢复。默认72条中63成功、9真实死亡；四路线限定Gate均有真实成功见证，非通用胜率、完整E03或Owner体验PASS。P/R/S、规则与数据均不修改；历史正文保持原时点。
+
+完整 getState 与含seed／execution的真实selector不是普通玩家视图；当前query的支持／缺口及下一单项工程仅为待主线技术审定候选。详见[作者交付](../../engineering/world-integration/route-acceptance/completion.md)、[字段矩阵](../../engineering/world-integration/route-acceptance/query-field-matrix.json)和[首玩门槛](../../engineering/world-integration/route-acceptance/first-play-and-release-gates.md)。安全查询生产、UI／browser／多标签、O3及Owner分段试玩仍OPEN/NOT RUN，不自动进入下一批。

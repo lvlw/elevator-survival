@@ -1,0 +1,138 @@
+{
+  "status": "READONLY_CONFIRMED_FINDINGS_NOT_REMEDIATED",
+  "mirror": {
+    "exit": 1,
+    "reason": "registry.npmmirror.com audit endpoint 404 NOT_IMPLEMENTED"
+  },
+  "official": {
+    "command": "npm audit --json --registry=https://registry.npmjs.org",
+    "exit": 1,
+    "counts": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 3,
+      "critical": 0,
+      "total": 5
+    }
+  },
+  "packages": [
+    {
+      "name": "@vitest/mocker",
+      "severity": "moderate",
+      "installed": "4.1.10",
+      "dev": true,
+      "advisories": [
+        {
+          "title": "Vitest: Path Traversal / Arbitrary File Read via @vitest/mocker Redirect Mock",
+          "url": "https://github.com/advisories/GHSA-82fw-gwwq-j7x9",
+          "range": ">=2.1.0 <4.1.11"
+        }
+      ]
+    },
+    {
+      "name": "nanoid",
+      "severity": "high",
+      "installed": "3.3.16",
+      "dev": true,
+      "advisories": [
+        {
+          "title": "nanoid: custom generators can loop indefinitely when size is zero",
+          "url": "https://github.com/advisories/GHSA-2v37-7h3g-55p8",
+          "range": "<3.3.18"
+        }
+      ]
+    },
+    {
+      "name": "source-map-js",
+      "severity": "high",
+      "installed": "1.2.1",
+      "dev": true,
+      "advisories": [
+        {
+          "title": "source-map-js allows event-loop denial of service through indexed source-map section offsets",
+          "url": "https://github.com/advisories/GHSA-68fv-2mgg-jv7q",
+          "range": ">=1.0.0 <1.2.2"
+        }
+      ]
+    },
+    {
+      "name": "undici",
+      "severity": "high",
+      "installed": "7.29.0",
+      "dev": true,
+      "advisories": [
+        {
+          "title": "undici vulnerable to Denial of Service via unhandled error in WebSocket permessage-deflate decompression",
+          "url": "https://github.com/advisories/GHSA-3wwx-pv8p-q78v",
+          "range": ">=7.28.0 <7.29.1"
+        },
+        {
+          "title": "undici vulnerable to Denial of Service via orphaned RetryHandler response body",
+          "url": "https://github.com/advisories/GHSA-pmjh-fq2x-6v4x",
+          "range": ">=7.11.0 <7.29.1"
+        },
+        {
+          "title": "undici vulnerable to downstream response splitting via retry interceptor",
+          "url": "https://github.com/advisories/GHSA-r53p-7pc4-xj5r",
+          "range": ">=7.0.0 <7.29.1"
+        },
+        {
+          "title": "undici vulnerable to Denial of Service via unrequested WebSocket subprotocol",
+          "url": "https://github.com/advisories/GHSA-rfgv-xxqx-mfg5",
+          "range": ">=7.0.0 <7.29.1"
+        },
+        {
+          "title": "undici vulnerable to Denial of Service via unbounded decompression of compressed responses",
+          "url": "https://github.com/advisories/GHSA-3xpg-4rpp-hhhm",
+          "range": ">=7.15.0 <7.29.1"
+        },
+        {
+          "title": "undici vulnerable to cross-user cookie disclosure via Set-Cookie caching in shared caches",
+          "url": "https://github.com/advisories/GHSA-2jfj-6hjv-fm6j",
+          "range": ">=7.0.0 <7.29.1"
+        },
+        {
+          "title": "undici vulnerable to response truncation via oversized chunked responses in the dump interceptor",
+          "url": "https://github.com/advisories/GHSA-2gqq-gqf2-x968",
+          "range": ">=7.1.0 <7.29.1"
+        },
+        {
+          "title": "undici vulnerable to TLS certificate validation bypass via dropped connect options in BalancedPool",
+          "url": "https://github.com/advisories/GHSA-w293-vg96-wgc3",
+          "range": ">=7.24.1 <7.29.1"
+        },
+        {
+          "title": "undici vulnerable to caching and replay of unsafe HTTP method responses",
+          "url": "https://github.com/advisories/GHSA-8436-99hf-9mmv",
+          "range": ">=7.0.0 <7.29.1"
+        },
+        {
+          "title": "undici vulnerable to Denial of Service via WebSocketStream unclean close",
+          "url": "https://github.com/advisories/GHSA-rx4f-c7p8-82vq",
+          "range": ">=7.0.0 <7.29.1"
+        }
+      ]
+    },
+    {
+      "name": "vitest",
+      "severity": "moderate",
+      "installed": "4.1.10",
+      "dev": true,
+      "advisories": [
+        {
+          "title": "Vitest: Path Traversal / Arbitrary File Read via @vitest/mocker Redirect Mock",
+          "url": "https://github.com/advisories/GHSA-82fw-gwwq-j7x9",
+          "range": ">=2.1.0 <4.1.11"
+        }
+      ]
+    }
+  ],
+  "runtimeDependencyTree": "npm ls --omit=dev confirmed react/react-dom/zod/zustand; advisory packages dev=true in lockfile",
+  "exploitability": "NOT_ASSESSED: dev-only classification is not a safety guarantee; exposed dev server/CI inputs need separate review",
+  "npmLsExit": 0,
+  "bundle": "existing >500kB build warning; confirm in final check log",
+  "actionsRuntime": "CI155 historical Node20 retirement warning from supplied exact-source review; no workflow change",
+  "mutations": 0,
+  "next": "Separate authorized maintenance before publication; no audit fix, install, upgrade or CI edits"
+}

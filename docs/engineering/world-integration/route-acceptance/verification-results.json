@@ -1,0 +1,371 @@
+{
+  "task": "ENG-WORLD-ROUTE-ACCEPTANCE-001",
+  "phase": "E03-A",
+  "status": "AUTHOR_COMPLETE_WITH_QUERY_AND_MAINTENANCE_FINDINGS",
+  "start": {
+    "sha": "713dd376ddb60d20d9afaedaee4505e695f89d94",
+    "parent": "29a018a2ad64f8d5cbe56257381568bf3527cd08",
+    "tree": "7839313a3e2475c93ae73c4dda9761a57c81ef3f",
+    "branch": "feature/residence-combat-session-001",
+    "worktree": "clean",
+    "index": "empty"
+  },
+  "branch": "feature/world-route-acceptance-001",
+  "baseline": {
+    "command": "npm run test:run",
+    "workers": "command-local VITEST_MAX_WORKERS=2, restored afterwards",
+    "exit": 0,
+    "files": 229,
+    "tests": 4194,
+    "durationSeconds": 263.71
+  },
+  "testDelta": {
+    "newFiles": 12,
+    "newTests": 112,
+    "replaced": 0,
+    "deleted": 0,
+    "net": 112,
+    "externalAdditionalProbe": 1,
+    "externalProbeNotIncludedInRepositoryCount": true
+  },
+  "targetedFrozenRuns": [
+    {
+      "exit": 0,
+      "files": 12,
+      "tests": 112,
+      "durationSeconds": 186.21
+    },
+    {
+      "exit": 0,
+      "files": 12,
+      "tests": 112,
+      "durationSeconds": 185.85
+    }
+  ],
+  "frozen": {
+    "version": "E03-A-frozen-v1",
+    "manifestSha256": "266a0fb31f489df425c90bc3deddf3d1dec17d976b7139e0b1829f687b8ab05d",
+    "sourceFiles": 18,
+    "reportFiles": 85,
+    "byteDifferences": 0,
+    "combinedSha256": "dcafbf5799ea383bacd5f1f768e690f35ba60804292cbad65961bfe3862a1d9e"
+  },
+  "finalCheck": {
+    "command": "npm run check",
+    "workers": 2,
+    "exit": 0,
+    "architecture": {
+      "status": "PASS",
+      "DEC": 52,
+      "coreProductionFiles": 329
+    },
+    "typecheck": "PASS",
+    "test": {
+      "status": "PASS",
+      "files": 241,
+      "tests": 4306,
+      "durationSeconds": 398.49
+    },
+    "build": "PASS_WITH_EXISTING_CHUNK_WARNING",
+    "sourceUnchangedSinceFrozenRuns": true,
+    "finalDocsArchitecture": "PASS: rerun after final documentation, 52 DEC / 329 core production files"
+  },
+  "routeDelivery": "COMPLETE",
+  "routeGate": "AUTHOR_NATIVE_PASS_4_OF_4_NOT_OWNER_PLAYABILITY",
+  "routes": [
+    {
+      "route": "route-hotel-bypass",
+      "seed": "E03-A-seed-01",
+      "tool": "crow",
+      "specialty": "engineer",
+      "gate": "PASS",
+      "dispatches": 75,
+      "writes": 76,
+      "notifications": 76,
+      "finalHP": 7,
+      "taskDay": 4,
+      "balance": 120,
+      "rawEvidence": "witness-hotel-bypass.json",
+      "sha256": "41d312a293402f2e96d953cf53479df3c15e47afbbfa576b36dfb8751fbcc8e8"
+    },
+    {
+      "route": "route-hotel-benefit",
+      "seed": "E03-A-seed-04",
+      "tool": "lamp",
+      "specialty": "survival",
+      "gate": "PASS",
+      "dispatches": 91,
+      "writes": 92,
+      "notifications": 92,
+      "finalHP": 8,
+      "taskDay": 6,
+      "balance": 120,
+      "rawEvidence": "witness-hotel-E03-A-seed-04.json",
+      "sha256": "6e74400a0284030f0427cfe3cb0239cfcb4472227d76411757ad2adfa27426e1"
+    },
+    {
+      "route": "route-segmented",
+      "seed": "E03-A-seed-01",
+      "tool": "crow",
+      "specialty": "survival",
+      "gate": "PASS",
+      "dispatches": 90,
+      "writes": 91,
+      "notifications": 91,
+      "finalHP": 10,
+      "taskDay": 6,
+      "balance": 120,
+      "rawEvidence": "witness-segmented.json",
+      "sha256": "bd58c29c6b4879efb0f08785bbbe3136e87fa7901babb1fecf10bbc306d1ab53"
+    },
+    {
+      "route": "route-toolbox",
+      "seed": "E03-A-seed-01",
+      "tool": "toolbox",
+      "specialty": "engineer",
+      "gate": "PASS",
+      "dispatches": 80,
+      "writes": 81,
+      "notifications": 81,
+      "finalHP": 7,
+      "taskDay": 5,
+      "balance": 120,
+      "rawEvidence": "witness-toolbox.json",
+      "sha256": "c14d9396cd79339f58e26399ee96488f59cc0fe1e94f1a8d579539f7338452e3"
+    }
+  ],
+  "defaultRng": {
+    "algorithm": "counter32-v1 / actual drawIntInclusive",
+    "override": 0,
+    "seeds": [
+      "E03-A-seed-01",
+      "E03-A-seed-02",
+      "E03-A-seed-03",
+      "E03-A-seed-04",
+      "E03-A-seed-05",
+      "E03-A-seed-06",
+      "E03-A-seed-07",
+      "E03-A-seed-08"
+    ],
+    "denominator": 72,
+    "success": 63,
+    "death": 9,
+    "other": 0,
+    "eachCombination": {
+      "success": 7,
+      "death": 1
+    },
+    "inference": "bounded fixed-strategy observations, not population win rate or optimality"
+  },
+  "conditions": {
+    "hotelSearchBudget": 64,
+    "hotelActualSearch": 8,
+    "selectedSeed": "E03-A-seed-04",
+    "requiredDisinfectant": "actually produced by H2 default RNG, never gifted",
+    "missingConditionWitness": "E03-A-seed-01 route-stopped, not death or mission failure"
+  },
+  "cold": {
+    "routeCheckpoints": 4,
+    "additionalBoundaries": [
+      "saved retreat",
+      "component",
+      "installed",
+      "terminal"
+    ],
+    "fullValueEquality": "PASS",
+    "independentExpected": "retained successful commit record and original initial material, fixed before candidate read",
+    "ruleReplayOnCold": 0
+  },
+  "mixedSaveFailure": {
+    "dispatch": 6,
+    "failedWriteAttempts": 6,
+    "totalWriteAttemptsIncludingRetry": 7,
+    "notifications": 6,
+    "retryCalls": 1,
+    "retryGameplay": 0,
+    "current": "latest retained, no rollback or disk reread",
+    "counterLimits": "exported native spies and injected default draw port; no claim to observe inaccessible lexical calls"
+  },
+  "queries": {
+    "fieldCount": 24,
+    "supported": 3,
+    "partial": 12,
+    "notSupported": 9,
+    "seedAndHiddenInfectionPairs": "PASS for current combat/terminal/G2 knowledge facts tested",
+    "rawSelectorFindings": [
+      "item selector includes seed",
+      "wound selector includes execution"
+    ],
+    "productionQueryCompletion": "NOT_COMPLETE",
+    "externalAllQueryZeroProbe": "PASS: S/P combat+terminal and G2 knowledge inside observation window; current unchanged; observed producer/draw/write/notify counts all 0",
+    "ownerNewKnowledgeDecisions": [],
+    "nextEngineering": "one DRAFT, NOT AUTHORIZED"
+  },
+  "negativeControls": {
+    "outsideRepository": true,
+    "types": [
+      "alter fee assertion",
+      "alter complete restore comparison"
+    ],
+    "exit": 1,
+    "failedTests": 2,
+    "semanticAssertionErrors": 2,
+    "importOrFixtureErrors": 0,
+    "meaning": "harness detects deliberately wrong observations; not a production defect"
+  },
+  "protection": {
+    "allowedPaths": 38,
+    "expectedChangedFiles": 38,
+    "expectedNewFiles": 34,
+    "expectedModifiedFiles": 4,
+    "protectedOldTrackedFiles": 1353,
+    "oldProductionAndTests": "byte fingerprint unchanged",
+    "sharedDocuments": "original byte prefixes preserved; append only",
+    "inputs": "all 5 raw SHA-256 match",
+    "frozenSources": "all 18 hashes unchanged",
+    "packageLockConfigCI": "unchanged",
+    "productionImportsOfNewTestHelpers": 0,
+    "newTestHelperCycles": 0,
+    "finalFileSetAudit": "PASS: 38 paths, 34 new / 4 append-only; UTF-8, all relative links, input/frozen hashes and protected bytes verified"
+  },
+  "whitespace": {
+    "increment": "PASS exit0 after correcting append-only EOF blank lines",
+    "untracked": "no whitespace errors; no-index difference exit1 is normal",
+    "cached": "PASS exit0: exactly 38 allowed paths, 34 A / 4 M; staged files and all five inputs byte-equal to worktree/raw originals",
+    "cumulativeW01": {
+      "base": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+      "exit": 2,
+      "originalHardBreaks": 7,
+      "newExceptions": 0,
+      "originalFilesUnchanged": true
+    }
+  },
+  "maintenance": {
+    "readonlyOfficialAuditExit": 1,
+    "moderate": 2,
+    "high": 3,
+    "lockfileClassification": "all advisory packages dev=true, not a safety guarantee",
+    "mirrorAudit": "404 NOT_IMPLEMENTED",
+    "npmLsExit": 0,
+    "fixes": 0,
+    "exploitable": "NOT_ASSESSED",
+    "actionsRuntime": "CI155 historical Node20 warning; no CI change"
+  },
+  "notRun": [
+    "Owner first play and segmented breakthrough review",
+    "browser/UI/storage/multitab acceptance",
+    "production safe query engineering",
+    "O3 release arrangement",
+    "dependency remediation"
+  ],
+  "git": {
+    "authorizedCommit": "normal commit on feature/world-route-acceptance-001",
+    "authorizedPush": "origin HEAD:feature/world-route-acceptance-001",
+    "result": "final SHA, tree, remote and current CI in post-commit receipt, no self-SHA amend cycle",
+    "CI": "NOT_YET_PUSHED_AT_RECORD_CREATION"
+  },
+  "evidence": {
+    "externalDirectory": "C:\\Users\\zjl\\AppData\\Local\\Temp\\e03-acceptance-e84d975f4a204cb29f1875f0f58b4828",
+    "logs": [
+      {
+        "file": "baseline-tests.log",
+        "bytes": 295,
+        "sha256": "69414698518b7a6d227ed2531e1e0020ea0f71577c9fcd24c4c25911e150eec3"
+      },
+      {
+        "file": "frozen-run-01.log",
+        "bytes": 236,
+        "sha256": "7c6643068c1cad4f02ea1115294f8b59d6855179a0e81d9eb978aa9e8e407ecc"
+      },
+      {
+        "file": "frozen-run-02.log",
+        "bytes": 236,
+        "sha256": "350f59422f4c68f44d83ec95abf44b1e40e1ce966a2d111a9e49aa9f12d9ece5"
+      },
+      {
+        "file": "full-check.log",
+        "bytes": 3415,
+        "sha256": "e6d78e59fabd0939d461d71bccfcf0be29165fff798826394951346f4d1b7c8a"
+      },
+      {
+        "file": "negative-controls.log",
+        "bytes": 2391,
+        "sha256": "efa353f37a553fd40f8240ce95efe0aa512f96e0422ccbf560f15387e532e197"
+      },
+      {
+        "file": "query-zero.log",
+        "bytes": 421,
+        "sha256": "b1fd581216e510c392896cb46602d826ab1a7274326c1d322cf6507f7772def3"
+      },
+      {
+        "file": "query-zero-rerun.log",
+        "bytes": 275,
+        "sha256": "4c7aa987df4ca6a9fe3b02ff1a9d240425fd86cbc52b61126cb4aeceee7f213b"
+      },
+      {
+        "file": "npm-audit.json",
+        "bytes": 1007,
+        "sha256": "4fb7c80d9aeb15e80422bdc9b79f93ab8cc22db7b932d4bf68e3e370e132e223"
+      },
+      {
+        "file": "npm-audit-official.json",
+        "bytes": 9812,
+        "sha256": "ab5237e217264be687138c50916d7500f53cb0d554303f4b543e28ecba5c0cf8"
+      },
+      {
+        "file": "npm-ls.json",
+        "bytes": 27746,
+        "sha256": "06440c703d2f7ad7d4350c54297580695735c4e035d488737ba71a57f23de32d"
+      },
+      {
+        "file": "npm-ls-production.json",
+        "bytes": 724,
+        "sha256": "e14aec44eb7a737eb394fd7ddb5975247d7704ee0cf9b6b51c92f52f33506b57"
+      },
+      {
+        "file": "acceptance-run-01.log",
+        "bytes": 1441,
+        "sha256": "914c92b93adaf11b80fc77f6b38b94342d575fc34e0f3980272c972fa45d18f3"
+      },
+      {
+        "file": "exploration.log",
+        "bytes": 231,
+        "sha256": "eafb9c16d830b02fb84def86e836fece7ccde04ea96c27a6fa2d2c5890d6d95f"
+      },
+      {
+        "file": "exploration-02.log",
+        "bytes": 225,
+        "sha256": "3e596f03a0e0a9ce97a73ee4524352fc1a5f84f1244d838c49281ef625e8d3f7"
+      },
+      {
+        "file": "exploration-03.log",
+        "bytes": 226,
+        "sha256": "1beda1d536fb12af6b9117bbf9152d4c897bb88db58ea74d4dee70168a5230f2"
+      },
+      {
+        "file": "protected-baseline.json",
+        "bytes": 201568,
+        "sha256": "6fcad22a330f4c3a1f47f3756551cc645f4ea6ca2f1fe7f5bc700c436f4b77b2"
+      },
+      {
+        "file": "remote-before.txt",
+        "bytes": 1764,
+        "sha256": "a94d152474e33c1827a5431c2a517cf76980340c6c707754c334ead8ecf7575f"
+      },
+      {
+        "file": "frozen-source-manifest.json",
+        "bytes": 3573,
+        "sha256": "b988c2038f4ae215fa14a4c83223646066ae986f95de8f7ffeb62e3f3d285480"
+      },
+      {
+        "file": "frozen-comparison.json",
+        "bytes": 128,
+        "sha256": "5b3b2283979bcf1ce464cd0cea6de72da3f9b60dff3b4088b85dd4a5ab359dec"
+      }
+    ],
+    "stderrNote": "Some stderr assertions/build warnings are in actual terminal outputs rather than stdout-only Tee logs; no reconstructed logs",
+    "unsavedExplorationNote": "Early Day7 wrong clock expectation output was not saved to a separate file; actual failure and corrective reason retained in implementation notes",
+    "normalizedTraceHash": "SHA-256 of JSON.stringify(parsed full default report) + LF; distinct from raw pretty-JSON file hashes",
+    "rerunNote": "Both 85-file raw evidence directories retained externally; fixture/strategy sources pinned and opt-in E03_REPORT_DIR permits reproduction"
+  }
+}

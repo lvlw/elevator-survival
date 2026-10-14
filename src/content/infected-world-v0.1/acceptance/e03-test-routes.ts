@@ -1,7 +1,7 @@
 // TEST ONLY. Fixed adjacent steps; no teleports, resource grants or cleared enemies.
 import { expect } from 'vitest'
 import { makeHarness, publicFacts, type Harness, type Tool, type Specialty } from './e03-test-harness'
-import { aliasId, bagItem, med, move, walk, task, source, ordinaryPick, pick, fight } from './e03-test-policy'
+import { aliasId, bagItem, med, move, walk, task, source, ordinaryPick, pick, fight, isCommittedRouteTerminal } from './e03-test-policy'
 import type { RouteId } from './e03-test-seeds'
 export class RouteConditionMissing extends Error {}
 
@@ -89,12 +89,15 @@ export function finishRoute(h: Harness, route: RouteId) {
 export function executeRoute(seed: string, tool: Tool, specialty: Specialty, route: RouteId = 'route-hotel-bypass') {
   const h = makeHarness(seed, tool, specialty)
   let failure: string | null = null
-  try { routePrefix(h, route === 'route-hotel-benefit'); finishRoute(h, route) }
+  try {
+    routePrefix(h, route === 'route-hotel-benefit')
+    if (h.current().phase === 'active-world') finishRoute(h, route)
+  }
   catch (e) {
-    // Genuine programming errors must fail the suite, not become a route outcome.
-    if (e instanceof TypeError || e instanceof RangeError || !(e instanceof Error)) throw e
-    if (h.current().phase === 'dead') failure = null
-    else if (e instanceof RouteConditionMissing || 'code' in e) failure = e.message
+    // No broad business-error catch is needed by these frozen routes.
+    // Invalid input, failed assertions and program/storage errors always fail the experiment.
+    if (isCommittedRouteTerminal(e, h)) failure = null
+    else if (e instanceof RouteConditionMissing && h.current().phase === 'active-world' && !h.current().battle) failure = e.message
     else throw e
   }
   const v = h.current(), outcome = v.receipts.at(-1)?.outcome ?? 'route-stopped'

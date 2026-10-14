@@ -32,3 +32,9 @@
 ## 审定与停止
 
 仅在现有知识边界内接安全查询不需新增 Owner 玩法采纳；感染未来的精确安全承诺不在建议合同中。若后续希望新增知识、风险精值、敌人扫描或新的策略提示，须先停止相关项交主线／Owner。本候选不批准 UI、browser storage、多标签、O3、资产制作或下一任务自动开工。
+
+## R1 术语与审查状态附记
+
+领域phase仍四种：first-hub、active-world、living-hub、dead。合法完整停点按恢复/查询职责分五类：首次中枢；active-world稳定点；active-world完整玩家战斗决策点；生还中枢；完整死亡。活战斗不新增第五领域phase，不能被“稳定四态”字样漏出候选验收。
+
+R1只修TEST执行预算/异常分类；本合同仍DRAFT/未授权，不实现opaque selector，不扩大玩家知识。真实item ID含seed、wound ID含execution的缺口和3/12/9支持分层保持。完整默认本机check的保护旧S时间门槛与准确新SHA CI各自记账，不据作者定向PASS宣布查询或首玩通过。

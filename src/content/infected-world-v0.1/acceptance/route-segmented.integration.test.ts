@@ -1,6 +1,7 @@
 import { test, expect } from 'vitest'
 import { executeRoute } from './e03-test-routes'
 import { emitReport } from './e03-test-report'
+import { NATIVE_ROUTE_BUDGET_MS } from './e03-test-budget'
 test('E03 route-segmented: real damage retreat immediate repair rest and same-enemy success', async () => {
   const { h, result } = executeRoute('E03-A-seed-01', 'crow', 'survival', 'route-segmented')
   await emitReport('witness-segmented', { result, ledger: h.ledger })
@@ -11,4 +12,4 @@ test('E03 route-segmented: real damage retreat immediate repair rest and same-en
   expect(reentry.entry.enemyHealth).toBe(8)
   expect(reentry.entry.actionCount).toBe(escape.decision.actionCountAfter)
   expect(reentry.entry.riskIndex).toBe(escape.decision.riskAfter)
-})
+}, NATIVE_ROUTE_BUDGET_MS)

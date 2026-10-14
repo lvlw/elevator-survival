@@ -1,0 +1,96 @@
+{
+  "exact_sha": "2258e1bad17ffb03297b691be51bf9bfe5883979",
+  "run_number": 156,
+  "run_id": 38451127806,
+  "attempt": 1,
+  "job_id": 115482027719,
+  "observed_status": "completed",
+  "observed_conclusion": "failure",
+  "stages": {
+    "architecture": "success",
+    "typecheck": "success",
+    "test:run": "failure",
+    "build": "skipped"
+  },
+  "test_files": {
+    "passed": 236,
+    "failed": 5,
+    "total": 241
+  },
+  "tests": {
+    "passed": 4295,
+    "failed": 11,
+    "total": 4306
+  },
+  "duration_seconds": 388.82,
+  "error": "Test timed out in 5000ms.",
+  "semantic_assertion_failures_reported": 0,
+  "failed_cases": [
+    {
+      "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+      "reported_ms": 5397,
+      "locator_description": "E03 cold checkpoint setup from true null route-hotel-bypass"
+    },
+    {
+      "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+      "reported_ms": 6349,
+      "locator_description": "E03 cold checkpoint setup from true null route-hotel-benefit"
+    },
+    {
+      "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+      "reported_ms": 5490,
+      "locator_description": "E03 cold checkpoint setup from true null route-segmented"
+    },
+    {
+      "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+      "reported_ms": 5014,
+      "locator_description": "E03 cold checkpoint setup from true null route-toolbox"
+    },
+    {
+      "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+      "reported_ms": 5492,
+      "locator_description": "E03 cold continuation complete-value equality route-hotel-benefit"
+    },
+    {
+      "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+      "reported_ms": 5081,
+      "locator_description": "E03 mixed-route save failure retains latest memory and retry never replays"
+    },
+    {
+      "file": "src/content/infected-world-v0.1/acceptance/nine-combinations.integration.test.ts",
+      "reported_ms": 5011,
+      "locator_description": "E03 default corpus crow scout E03-A-seed-01"
+    },
+    {
+      "file": "src/content/infected-world-v0.1/acceptance/nine-combinations.integration.test.ts",
+      "reported_ms": 5070,
+      "locator_description": "E03 default corpus crow scout E03-A-seed-04"
+    },
+    {
+      "file": "src/content/infected-world-v0.1/acceptance/route-hotel-benefit.integration.test.ts",
+      "reported_ms": 6289,
+      "locator_description": "E03 route-hotel-benefit: natural disinfect qualification E03-A-seed-04"
+    },
+    {
+      "file": "src/content/infected-world-v0.1/acceptance/route-segmented.integration.test.ts",
+      "reported_ms": 6860,
+      "locator_description": "E03 route-segmented: real damage retreat immediate repair rest and same-enemy success"
+    },
+    {
+      "file": "src/content/infected-world-v0.1/acceptance/route-toolbox.integration.test.ts",
+      "reported_ms": 5822,
+      "locator_description": "E03 route-toolbox: professional electronic spent, real C4 replacement installed"
+    }
+  ],
+  "runtime": {
+    "node": "24.21.0",
+    "npm": "11.19.0",
+    "vitest": "4.1.10",
+    "os": "Ubuntu 24.04.5"
+  },
+  "evidence_kind": "Mainline extracted structured summary from actual fetched complete workflow job log, not a local reproduction and not the original log bytes.",
+  "source_url": "https://github.com/lvlw/elevator-survival/actions/runs/38451127806",
+  "job_log_fetched_by": "GitHub.fetch_workflow_job_logs",
+  "warning": "Test timeouts are not proof of illegal gameplay outcomes; author local PASS remains separately recorded.",
+  "case_locator_notice": "Human-readable locators for the observed cases; not verbatim test titles or full original log bytes."
+}

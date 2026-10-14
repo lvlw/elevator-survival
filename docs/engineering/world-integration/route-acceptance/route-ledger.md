@@ -377,3 +377,7 @@
 | 80 | `{"kind":"terminal","command":{"kind":"deliver","expectedRevision":79}}` | living-hub | 5/5 | 29/7/6 | 1 | consumable_ration×1@3,1 | armor_heavy_coat:9; weapon_metal_pipe:19; utility_toolkit:6 | delivered:quest_sealed_pathogen_case×1; revoked-permission:access_card_isolation_ward×1 | 2 / saved |
 
 最终公开任务事实、指定真实样本处分、三敌实际终态和完整保存见 `route-results.json` 及原生断言；C4旁路不杀C2。完整内部来源／风险记录只在外部 raw evidence，禁止用于普通 UI。
+
+## R1 原生复跑附记
+
+本轮从真实null重新执行，85 raw文件两轮及相对旧输出均字节相同；以上四路线逐动作表仍是原作者记录，R1独立证据在route-results.json的r1键，不拿旧表替代新执行。局部30s是TEST墙钟硬预算，不是CTB/精力/玩法时钟。默认全量check有2保护旧S timeout，不能改称角色死亡或本表路线失败。

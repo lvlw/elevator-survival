@@ -1,0 +1,77 @@
+// Mainline native template. NOT RUN in mainline: complete repository unavailable.
+// Copy byte-exact to src/content/infected-world-v0.1/acceptance/review-exception-regression.test.ts.
+// R1 explicitly permits this 30s case budget for full native routes only.
+// No P/R/S mock, state replacement, death fixture or RNG override. The injected error
+// is raised AFTER the real policy has returned from the real S/CTB death, or after a real move.
+import { afterEach, expect, test, vi } from 'vitest'
+import * as policy from './e03-test-policy'
+import { executeRoute } from './e03-test-routes'
+
+afterEach(() => vi.restoreAllMocks())
+const LONG_ROUTE_MS = 30_000
+const NO_THROW = Symbol('route returned without surfacing the injected error')
+function observed(run: () => unknown): unknown {
+  try { run(); return NO_THROW } catch (error) { return error }
+}
+function assertionMarker(): unknown {
+  try { expect('injected-observation').toBe('expected-observation') }
+  catch (error) { return error }
+  throw new Error('TEST failed to create a real assertion error')
+}
+
+test('R1 C01 unmodified default seed05 is still a real committed death, not a harness failure', () => {
+  const { h, result } = executeRoute('E03-A-seed-05', 'crow', 'engineer')
+  expect(result.outcome).toBe('death')
+  expect(result.failure).toBeNull()
+  expect(h.current().phase).toBe('dead')
+  expect(h.current().receipts.at(-1)?.outcome).toBe('death')
+  expect(result.writes).toBe(result.dispatches + 1)
+  expect(result.notifications).toBe(result.writes)
+}, LONG_ROUTE_MS)
+
+test('R1 C02 real missing hotel condition remains a documented route stop, not death', () => {
+  const { h, result } = executeRoute('E03-A-seed-01', 'lamp', 'survival', 'route-hotel-benefit')
+  expect(result.outcome).toBe('route-stopped')
+  expect(result.failure).toContain('HOTEL_CONDITION_MISSING')
+  expect(h.current().phase).toBe('active-world')
+  expect(h.current().receipts).toHaveLength(0)
+}, LONG_ROUTE_MS)
+
+test('R1 C03 the original real successful route remains successful without injected exceptions', () => {
+  const { h, result } = executeRoute('E03-A-seed-01', 'crow', 'engineer')
+  expect(result.outcome).toBe('success')
+  expect(h.current().balance).toBe(120)
+}, LONG_ROUTE_MS)
+
+for (const kind of ['plain-error', 'assertion-error', 'coded-error', 'type-error', 'range-error'] as const) {
+  test(`R1 after actual committed death ${kind} must propagate unchanged`, () => {
+    const marker = kind === 'assertion-error' ? assertionMarker() : kind === 'type-error' ? new TypeError('R1 injected type error') :
+      kind === 'range-error' ? new RangeError('R1 injected range error') : kind === 'coded-error'
+        ? Object.assign(new Error('R1 injected infrastructure error'), { code: 'EACCES' }) : new Error('R1 injected helper bug')
+    const realFight = policy.fight
+    let injections = 0
+    vi.spyOn(policy, 'fight').mockImplementation(h => {
+      const result = realFight(h)
+      if (h.current().phase === 'dead') { injections++; throw marker }
+      return result
+    })
+    const caught = observed(() => executeRoute('E03-A-seed-05', 'crow', 'engineer'))
+    expect(injections, 'the real frozen seed must reach the actual committed death; no fake fixture').toBe(1)
+    expect(caught, 'death is not permission to swallow the following test/implementation error').toBe(marker)
+  }, LONG_ROUTE_MS)
+}
+
+test('R1 arbitrary code property on an implementation error is not a known route stop', () => {
+  const marker = Object.assign(new Error('R1 external evidence infrastructure failed'), { code: 'EACCES' })
+  const realMove = policy.move
+  let injections = 0
+  vi.spyOn(policy, 'move').mockImplementationOnce((...args) => {
+    realMove(...args)
+    expect(args[0].current().phase).toBe('active-world')
+    injections++
+    throw marker
+  })
+  const caught = observed(() => executeRoute('E03-A-seed-01', 'crow', 'engineer'))
+  expect(injections).toBe(1)
+  expect(caught).toBe(marker)
+}, LONG_ROUTE_MS)

@@ -101,3 +101,87 @@
 ## Git与停止点
 
 普通commit及push仅 feature/world-route-acceptance-001；不merge/rebase/amend、不推main／旧分支、不强推。最终完整SHA、父SHA、tree、远端与CI实际状态在提交后回执，不为自引用SHA循环改文档。交当前WebGPT主线准确SHA原生路线／查询契约实审后停止。
+
+<a id="e03-a-r1"></a>
+## E03-A-R1 作者限定返修完成记录
+
+状态：AUTHOR_FIX_COMPLETE_WITH_DEFAULT_CHECK_FINDINGS；F02原生PASS，本批长链预算回归PASS，但本机默认全量check有2保护旧S超时，F01完整默认门槛不宣称关闭。原E03-A、CI156失败、主线隔离与本轮结果是不同证据，历史正文和JSON旧对象全部保留。
+
+起点／本批父提交：2258e1bad17ffb03297b691be51bf9bfe5883979；起点父SHA：713dd376ddb60d20d9afaedaee4505e695f89d94；起点tree：4c041d6a048acf5b7029f88e6f4bb4aaa8b87d24。沿用feature/world-route-acceptance-001，不新建branch/worktree。
+
+| 实际执行 | 结果 |
+| --- | --- |
+| 默认基线 | 241 files / 4306 tests，4280pass/26timeout，exit1，234.25s |
+| 原字节9模板 | 3pass/6fail；5注入点未到达，非语义检出 |
+| 最小TEST send观察适配，修前 | 5pass/4真实语义fail |
+| 修后异常回归 | 12/12 PASS；最大2253.017ms |
+| 冻结第一次 | 13 files / 124 tests PASS；报告区间182.098s；最大7858.847ms |
+| 冻结第二次 | 13 files / 124 tests PASS；报告区间184.021s；最大7916.748ms |
+| 完整默认npm check | 242 files / 4318 tests，4316pass/2保护旧S timeout；exit1，248.51s，build skipped |
+| 保护旧两文件默认定向 | 原样10/10 PASS，最大2226.521ms；不是全量PASS |
+| 独立npm build | PASS，保留>500kB chunk告警 |
+
+局部硬预算30s只用于任务许可的完整长链／接续／异常见证；全局、旧测试、worker默认和CI未改。cold旧13标题和全部112验收意图保留，只把setup依赖改为可独立真实创建的惰性fixture。新增1测试文件/12tests、1 TEST预算helper；替换0、删除0、净增12；仓库总数242/4318。
+
+F02不再因current已dead吞任意异常，也不因Error带code就判route-stopped。只认绑定真实收据/revision/phase的私有终局控制信号，或active稳定点的显式条件缺失；其余异常原对象重抛。分类不rollback已真实提交的死亡／存活值，也不额外写入、通知或执行。原模板适配为何必要、失败尝试及guard相邻修订见[实施记录](implementation-notes.md)。
+
+### 四路线与72默认样本（本轮重新执行）
+
+| Route | Seed/工具/专长 | dispatch | write/notify（含createFirst） | 正式结局 |
+| --- | --- | ---: | ---: | --- |
+| route-hotel-bypass | E03-A-seed-01/crow/engineer | 75 | 76/76 | success / 120 |
+| route-hotel-benefit | E03-A-seed-04/lamp/survival | 91 | 92/92 | success / 120 |
+| route-segmented | E03-A-seed-01/crow/survival | 90 | 91/91 | success / 120 |
+| route-toolbox | E03-A-seed-01/toolbox/engineer | 80 | 81/81 | success / 120 |
+
+九组合各7成功/1死亡，共63/9。无更换策略、八seed、四route ID或默认draw；无清敌、补资源、手设completed。酒店缺消毒条件仍route-stopped，不是death；真实死亡仍来自收据。85原生输出与旧85逐字节相同，两轮亦相同；旧冻结manifest/摘要在historical，新20TS manifest与时间独立记录。最大/报告区间由Vitest JSON时标，非游戏耗时。
+
+两类仓库外catch突变负控真实24项/8AssertionError失败：5death吞错、3任意code停止，16保护对照通过。不是导入/fixture/超时检出，不是假称生产bug。原费用/restore负控NOT RE-RUN。
+
+### 范围、未关闭项与停止点
+
+14份R1原件及原5输入、旧生产/测试/helper/参数、P/R/S、格式、依赖、CI都不改；共同seed与routePrefix/finishRoute字节保持。原JSON完整对象保留到historical.e03AAt2258，Markdown只追加。新差异干净，W01累计仍exit2只原两文件7硬换行，无新增例外。全套原件、对象/前缀、链接、UTF-8和预算路径在提交前核验，结果见[验证记录](verification-results.json)。
+
+本机默认全量门槛未通过的精确范围是src/state/residence-session/combat-longchain.integration.test.ts:7与supply-longchain.integration.test.ts:19；R1不授权更改，不把单独PASS当全部PASS。主线可依据新准确SHA CI或另授权旧测试执行预算处理；本批不自动扩权。查询仍DRAFT（3supported/12partial/9unsupported及ID泄露发现保留），四领域phase/五合法停点术语仅澄清，不实现公开query、UI、浏览器、多标签或决定O3。Owner首玩/分段体验仍OPEN/NOT RUN。
+
+普通commit/push仅同名工程分支；最终完整SHA、真实parent/tree、远端及准确SHA CI在提交后回执，不amend追自身SHA。等待主线专项实审，不进入下一工程。
+
+### R1 实际修改路径（37项）
+
+- docs/03-architecture.md
+- docs/08-rule-implementation-traceability.md
+- docs/design-drafts/world-infected-001/01-world-overview.md
+- docs/design-drafts/world-infected-001/10-decision-queue.md
+- docs/engineering/world-integration/route-acceptance/completion.md
+- docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md
+- docs/engineering/world-integration/route-acceptance/implementation-notes.md
+- docs/engineering/world-integration/route-acceptance/next-engineering-contract-draft-v1.0.md
+- docs/engineering/world-integration/route-acceptance/nine-combinations.md
+- docs/engineering/world-integration/route-acceptance/query-contract-draft-v1.0.md
+- docs/engineering/world-integration/route-acceptance/route-ledger.md
+- docs/engineering/world-integration/route-acceptance/route-results.json
+- docs/engineering/world-integration/route-acceptance/verification-results.json
+- src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts
+- src/content/infected-world-v0.1/acceptance/e03-test-policy.ts
+- src/content/infected-world-v0.1/acceptance/e03-test-routes.ts
+- src/content/infected-world-v0.1/acceptance/nine-combinations.integration.test.ts
+- src/content/infected-world-v0.1/acceptance/route-hotel-benefit.integration.test.ts
+- src/content/infected-world-v0.1/acceptance/route-hotel-bypass.integration.test.ts
+- src/content/infected-world-v0.1/acceptance/route-segmented.integration.test.ts
+- src/content/infected-world-v0.1/acceptance/route-toolbox.integration.test.ts
+- docs/engineering/world-integration/route-acceptance/r1-inputs/AUD-2258e1b-ENG-WORLD-ROUTE-ACCEPTANCE-001-review-v1.0.md
+- docs/engineering/world-integration/route-acceptance/r1-inputs/BASELINE-AND-SCOPE.json
+- docs/engineering/world-integration/route-acceptance/r1-inputs/ENG-WORLD-ROUTE-ACCEPTANCE-001-R1-task-v1.0.md
+- docs/engineering/world-integration/route-acceptance/r1-inputs/OWNER-authority-and-scope-E03-A-R1-v1.0.md
+- docs/engineering/world-integration/route-acceptance/r1-inputs/SHA256SUMS.txt
+- docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/ci156-failure-summary.json
+- docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/ci156-observation-notes.md
+- docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/environment-notes.md
+- docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/input-integrity.json
+- docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/isolated-exception-results.json
+- docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/native-exception-regression.test.ts.template
+- docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/run-isolated-exception-review.cjs
+- docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/source-integrity.json
+- docs/engineering/world-integration/route-acceptance/r1-inputs/source/e03-test-routes.ts
+- src/content/infected-world-v0.1/acceptance/e03-test-budget.ts
+- src/content/infected-world-v0.1/acceptance/review-exception-regression.test.ts

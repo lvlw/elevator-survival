@@ -4,14 +4,26 @@ import { witnesses } from './e03-test-seeds'
 import { observe } from './e03-test-observers'
 import { emitReport } from './e03-test-report'
 import { expectation } from '../../../state/residence-save/combat-test-fixtures'
+import { NATIVE_ROUTE_BUDGET_MS } from './e03-test-budget'
 afterEach(() => vi.restoreAllMocks())
 const executions = new Map<string, ReturnType<typeof executeRoute>>()
-for (const w of witnesses) test(`E03 cold checkpoint setup from true null ${w.route}`, () => {
+// Lazily build one immutable canonical route/checkpoint set from true null.
+// Filtered continuation tests no longer depend on a preceding setup test running.
+function executionFor(route: typeof witnesses[number]['route']) {
+  const cached = executions.get(route)
+  if (cached) return cached
+  const w = witnesses.find(w => w.route === route)
+  if (!w) throw new Error('Unknown native cold fixture route')
   const execution = executeRoute(w.seed, w.tool, w.specialty, w.route)
-  expect(execution.result.outcome).toBe('success'); executions.set(w.route, execution)
-})
+  expect(execution.result.outcome).toBe('success')
+  executions.set(route, execution)
+  return execution
+}
+for (const w of witnesses) test(`E03 cold checkpoint setup from true null ${w.route}`, () => {
+  expect(executionFor(w.route).result.outcome).toBe('success')
+}, NATIVE_ROUTE_BUDGET_MS)
 for (const w of witnesses) test(`E03 cold continuation complete-value equality ${w.route}`, async () => {
-  const { h, result } = executions.get(w.route)!
+  const { h, result } = executionFor(w.route)
   expect(result.outcome).toBe('success')
   const index = w.route === 'route-segmented' ? h.ledger.findIndex(l => l.family === 'maintenance') :
     w.route === 'route-toolbox' ? h.ledger.findIndex(l => l.family === 'maintenance') :
@@ -30,16 +42,16 @@ for (const w of witnesses) test(`E03 cold continuation complete-value equality $
   expect(cold.writes).toHaveBeenCalledTimes(h.ledger.length - index - 1)
   await emitReport('cold-' + w.route, { checkpoint: index, coldReads: 1, coldWrites: 0,
     continuationCommands: cold.writes.mock.calls.length, completeEquality: true })
-})
+}, NATIVE_ROUTE_BUDGET_MS)
 for (const stop of ['retreat','component','installed','terminal'] as const) test(`E03 additional native saved ${stop} boundary resumes full result`,()=>{
-  const h=executions.get(stop==='retreat'?'route-segmented':'route-hotel-bypass')!.h
+  const h=executionFor(stop==='retreat'?'route-segmented':'route-hotel-bypass').h
   const index=stop==='retreat'?h.checkpoints.findIndex(p=>p.value.battles.at(-1)?.outcome==='escaped'):
     stop==='component'?h.ledger.findIndex(l=>l.family==='task'&&JSON.stringify(l.command).includes('"component"')):
       stop==='installed'?h.ledger.findIndex(l=>l.family==='task'&&JSON.stringify(l.command).includes('"install"')):h.checkpoints.length-1
   expect(index).toBeGreaterThan(0);const cold=h.cold(h.checkpoints[index])
   for(const step of h.ledger.slice(index+1))cold.owner.dispatch(step.command)
   expect(cold.owner.getState().current).toEqual(h.current())
-})
+}, NATIVE_ROUTE_BUDGET_MS)
 test('E03 mixed-route save failure retains latest memory and retry never replays', async () => {
   const { h } = executeRoute('E03-A-seed-01', 'crow', 'engineer')
   const checkpoint = h.checkpoints.find(p => p.value.battle !== null)!
@@ -74,4 +86,4 @@ test('E03 mixed-route save failure retains latest memory and retry never replays
   const { deserializeCombatResidenceSave }=await import('../../../state/residence-save/combat-codec')
   expect(deserializeCombatResidenceSave(disk,independentlyRetained,h.policy).value).toEqual(committed)
   await emitReport('mixed-save-failure', { dispatch: dispatches, writeAttempts: writes, notifications, retryGameplay: 0, beforeRetry:counts })
-})
+}, NATIVE_ROUTE_BUDGET_MS)

@@ -44,3 +44,9 @@
 验证未知选择器、跨会话／恢复后 selector、旧 revision／battle、getters／NaN／稀疏数组、末日与死亡短路；query／preview 不得生产、随机、写、通知或签发。拒绝不能把未知感染未来包装成确定生还；不允许全 raw current 经 JSON 转换后返回。
 
 四路线、九组合默认样本继续可复跑；新增针对 query 的正反例、独立计数与语义负控，实跑基线及完整 npm check，原件／范围保护。普通 commit／push 仅在另行指定的新分支。完成即准确 SHA 查询边界实审，禁止自动进入 UI 或 O3。
+
+## R1 术语与审查状态附记
+
+领域phase仍四种：first-hub、active-world、living-hub、dead。合法完整停点按恢复/查询职责分五类：首次中枢；active-world稳定点；active-world完整玩家战斗决策点；生还中枢；完整死亡。活战斗不新增第五领域phase，不能被“稳定四态”字样漏出候选验收。
+
+R1只修TEST执行预算/异常分类；本合同仍DRAFT/未授权，不实现opaque selector，不扩大玩家知识。真实item ID含seed、wound ID含execution的缺口和3/12/9支持分层保持。完整默认本机check的保护旧S时间门槛与准确新SHA CI各自记账，不据作者定向PASS宣布查询或首玩通过。

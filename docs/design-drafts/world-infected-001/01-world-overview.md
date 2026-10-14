@@ -303,3 +303,9 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 本批只新增 TEST-only 会话验收：从真实 read-null 与获批初配，经 S 单笔 dispatch 实际完成四路线见证、九组合共同八默认种子、合法失败／分段／冷恢复。默认72条中63成功、9真实死亡；四路线限定Gate均有真实成功见证，非通用胜率、完整E03或Owner体验PASS。P/R/S、规则与数据均不修改；历史正文保持原时点。
 
 完整 getState 与含seed／execution的真实selector不是普通玩家视图；当前query的支持／缺口及下一单项工程仅为待主线技术审定候选。详见[作者交付](../../engineering/world-integration/route-acceptance/completion.md)、[字段矩阵](../../engineering/world-integration/route-acceptance/query-field-matrix.json)和[首玩门槛](../../engineering/world-integration/route-acceptance/first-play-and-release-gates.md)。安全查询生产、UI／browser／多标签、O3及Owner分段试玩仍OPEN/NOT RUN，不自动进入下一批。
+
+## E03-A-R1 作者限定返修状态
+
+原2258e1b本地2worker PASS与CI156 11超时失败保留为各自历史。R1仅修TEST局部30s预算、cold独立前置及严格异常传播：私有实际终局信号/明确条件与程序Error分开；不改P/R/S、参数、数据或格式。四路线/共同八seed的72默认样本及85输出原生双跑保持，12新增异常见证PASS。
+
+本机默认全量check有2保护旧S 5000ms超时，R1未扩权改旧测试，不宣称全量默认门槛关闭；准确新SHA CI提交后另核对。详见[R1作者交付](../../engineering/world-integration/route-acceptance/completion.md#e03-a-r1)。四领域phase与五合法停点仅候选术语澄清，不接生产query/UI/browser、多标签或O3，不代表主线准确SHA已通过或Owner体验通过。

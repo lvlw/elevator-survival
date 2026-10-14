@@ -1,0 +1,149 @@
+{
+  "scope": "ISOLATED exact executeRoute/RouteConditionMissing AST selections with explicit route/state/assertion adapters. Native P/R/S, actual seeds and full route suites NOT RUN.",
+  "commit": "2258e1bad17ffb03297b691be51bf9bfe5883979",
+  "source": {
+    "gitBlob": "0707d9784fef3da7ca0bdd4fa41bbf5517ab13fd",
+    "sha256": "b94c642e121de61cbaf376a1256bfb207e5c5a92bfd905123a4340db3bf43b43",
+    "selectedNames": [
+      "RouteConditionMissing",
+      "executeRoute"
+    ],
+    "selectionSha256": "949c15ad44d9278834de33d16a3caa2ac0d4d3efc26c624fffb508bd3d8ce1dd"
+  },
+  "rows": [
+    {
+      "id": "C01-success",
+      "expected": "success",
+      "actual": "success",
+      "matched": true,
+      "unexpected": false,
+      "reason": null
+    },
+    {
+      "id": "C02-ordinary-death",
+      "expected": "death",
+      "actual": "death",
+      "matched": true,
+      "unexpected": false,
+      "reason": null
+    },
+    {
+      "id": "C03-declared-condition",
+      "expected": "route-stopped",
+      "actual": "route-stopped",
+      "matched": true,
+      "unexpected": false,
+      "reason": null
+    },
+    {
+      "id": "C04-plain-alive",
+      "expected": "THROWN_SAME",
+      "actual": "THROWN_SAME",
+      "matched": true,
+      "unexpected": false,
+      "reason": null
+    },
+    {
+      "id": "C05-type-alive",
+      "expected": "THROWN_SAME",
+      "actual": "THROWN_SAME",
+      "matched": true,
+      "unexpected": false,
+      "reason": null
+    },
+    {
+      "id": "C06-range-dead",
+      "expected": "THROWN_SAME",
+      "actual": "THROWN_SAME",
+      "matched": true,
+      "unexpected": false,
+      "reason": null
+    },
+    {
+      "id": "C07-type-dead",
+      "expected": "THROWN_SAME",
+      "actual": "THROWN_SAME",
+      "matched": true,
+      "unexpected": false,
+      "reason": null
+    },
+    {
+      "id": "C08-primitive-dead",
+      "expected": "THROWN_SAME",
+      "actual": "THROWN_SAME",
+      "matched": true,
+      "unexpected": false,
+      "reason": null
+    },
+    {
+      "id": "F02-assertion-alive",
+      "expected": "THROWN_SAME",
+      "actual": "route-stopped",
+      "matched": false,
+      "unexpected": false,
+      "reason": null
+    },
+    {
+      "id": "F02-plain-dead",
+      "expected": "THROWN_SAME",
+      "actual": "death",
+      "matched": false,
+      "unexpected": false,
+      "reason": null
+    },
+    {
+      "id": "F02-assertion-dead",
+      "expected": "THROWN_SAME",
+      "actual": "death",
+      "matched": false,
+      "unexpected": false,
+      "reason": null
+    },
+    {
+      "id": "F02-coded-alive",
+      "expected": "THROWN_SAME",
+      "actual": "route-stopped",
+      "matched": false,
+      "unexpected": false,
+      "reason": null
+    },
+    {
+      "id": "F02-coded-dead",
+      "expected": "THROWN_SAME",
+      "actual": "death",
+      "matched": false,
+      "unexpected": false,
+      "reason": null
+    },
+    {
+      "id": "C09-syntax-alive",
+      "expected": "THROWN_SAME",
+      "actual": "THROWN_SAME",
+      "matched": true,
+      "unexpected": false,
+      "reason": null
+    },
+    {
+      "id": "F02-syntax-dead",
+      "expected": "THROWN_SAME",
+      "actual": "death",
+      "matched": false,
+      "unexpected": false,
+      "reason": null
+    },
+    {
+      "id": "C10-range-alive",
+      "expected": "THROWN_SAME",
+      "actual": "THROWN_SAME",
+      "matched": true,
+      "unexpected": false,
+      "reason": null
+    }
+  ],
+  "summary": {
+    "total": 16,
+    "matched": 10,
+    "mismatched": 6,
+    "unexpectedExceptions": 0
+  }
+}

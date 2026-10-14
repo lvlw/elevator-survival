@@ -3,6 +3,7 @@ import { executeRoute } from './e03-test-routes'
 import { emitReport } from './e03-test-report'
 import { tools, specialties, defaultSeeds } from './e03-test-seeds'
 import { numberValue } from '../../../core/residence-supply/config'
+import { NATIVE_ROUTE_BUDGET_MS } from './e03-test-budget'
 for (const tool of tools) for (const specialty of specialties) for (const seed of defaultSeeds) {
   test(`E03 default corpus ${tool} ${specialty} ${seed}`, async () => {
     const { h, result } = executeRoute(seed, tool, specialty)
@@ -21,5 +22,5 @@ for (const tool of tools) for (const specialty of specialties) for (const seed o
     expect(fix.before!.body.energy - fix.after.body.energy).toBe(numberValue(h.deps.supply.configuration,
       specialty === 'engineer' ? 'fix.method' : 'door.manual'))
     expect(h.current().choices.firstBandageUsed).toBe(true)
-  })
+  }, NATIVE_ROUTE_BUDGET_MS)
 }

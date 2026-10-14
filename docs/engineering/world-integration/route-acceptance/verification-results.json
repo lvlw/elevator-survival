@@ -1,4 +1,6 @@
 {
+  "historical": {
+    "e03AAt2258": {
   "task": "ENG-WORLD-ROUTE-ACCEPTANCE-001",
   "phase": "E03-A",
   "status": "AUTHOR_COMPLETE_WITH_QUERY_AND_MAINTENANCE_FINDINGS",
@@ -368,4 +370,720 @@
     "normalizedTraceHash": "SHA-256 of JSON.stringify(parsed full default report) + LF; distinct from raw pretty-JSON file hashes",
     "rerunNote": "Both 85-file raw evidence directories retained externally; fixture/strategy sources pinned and opt-in E03_REPORT_DIR permits reproduction"
   }
+    }
+  },
+  "r1":
+{
+  "task": "ENG-WORLD-ROUTE-ACCEPTANCE-001-R1",
+  "startSha": "2258e1bad17ffb03297b691be51bf9bfe5883979",
+  "startParent": "713dd376ddb60d20d9afaedaee4505e695f89d94",
+  "startTree": "4c041d6a048acf5b7029f88e6f4bb4aaa8b87d24",
+  "branch": "feature/world-route-acceptance-001",
+  "delivery": "AUTHOR_FIX_COMPLETE_WITH_DEFAULT_CHECK_FINDINGS",
+  "F01": {
+    "eligibleLongCases": "PASS local 30000ms hard limit only",
+    "wholeDefaultCheck": "FAIL; 2 protected old S tests exceeded unchanged 5000ms",
+    "closed": false,
+    "noGlobalTimeoutChange": true,
+    "noWorkerOverride": true,
+    "noCIChange": true
+  },
+  "F02": {
+    "status": "AUTHOR_NATIVE_PASS",
+    "classification": "Only private committed-terminal control signals bound to actual receipt/revision/phase, or explicit RouteConditionMissing at active stable point. No broad business-error catch in frozen routes; all unexpected errors rethrow unchanged.",
+    "deathDoesNotAuthorizeSwallow": true,
+    "arbitraryCodeDoesNotAuthorizeStop": true
+  },
+  "baselineDefault": {
+    "command": "npm run test:run",
+    "exit": 1,
+    "files": 241,
+    "passedFiles": 234,
+    "failedFiles": 7,
+    "tests": 4306,
+    "passed": 4280,
+    "failed": 26,
+    "allFailures": "5000ms timeouts: 25 E03-A / 1 protected E02-S",
+    "durationSeconds": 234.25,
+    "workerOverride": null
+  },
+  "originalAuthorLocal": {
+    "source": "historical E03-A record, not R1 execution",
+    "workers": 2,
+    "files": 241,
+    "tests": 4306,
+    "status": "PASS"
+  },
+  "ci156": {
+    "exact_sha": "2258e1bad17ffb03297b691be51bf9bfe5883979",
+    "run_number": 156,
+    "run_id": 38451127806,
+    "attempt": 1,
+    "job_id": 115482027719,
+    "observed_status": "completed",
+    "observed_conclusion": "failure",
+    "stages": {
+      "architecture": "success",
+      "typecheck": "success",
+      "test:run": "failure",
+      "build": "skipped"
+    },
+    "test_files": {
+      "passed": 236,
+      "failed": 5,
+      "total": 241
+    },
+    "tests": {
+      "passed": 4295,
+      "failed": 11,
+      "total": 4306
+    },
+    "duration_seconds": 388.82,
+    "error": "Test timed out in 5000ms.",
+    "semantic_assertion_failures_reported": 0,
+    "failed_cases": [
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+        "reported_ms": 5397,
+        "locator_description": "E03 cold checkpoint setup from true null route-hotel-bypass"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+        "reported_ms": 6349,
+        "locator_description": "E03 cold checkpoint setup from true null route-hotel-benefit"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+        "reported_ms": 5490,
+        "locator_description": "E03 cold checkpoint setup from true null route-segmented"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+        "reported_ms": 5014,
+        "locator_description": "E03 cold checkpoint setup from true null route-toolbox"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+        "reported_ms": 5492,
+        "locator_description": "E03 cold continuation complete-value equality route-hotel-benefit"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+        "reported_ms": 5081,
+        "locator_description": "E03 mixed-route save failure retains latest memory and retry never replays"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/nine-combinations.integration.test.ts",
+        "reported_ms": 5011,
+        "locator_description": "E03 default corpus crow scout E03-A-seed-01"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/nine-combinations.integration.test.ts",
+        "reported_ms": 5070,
+        "locator_description": "E03 default corpus crow scout E03-A-seed-04"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/route-hotel-benefit.integration.test.ts",
+        "reported_ms": 6289,
+        "locator_description": "E03 route-hotel-benefit: natural disinfect qualification E03-A-seed-04"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/route-segmented.integration.test.ts",
+        "reported_ms": 6860,
+        "locator_description": "E03 route-segmented: real damage retreat immediate repair rest and same-enemy success"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/route-toolbox.integration.test.ts",
+        "reported_ms": 5822,
+        "locator_description": "E03 route-toolbox: professional electronic spent, real C4 replacement installed"
+      }
+    ],
+    "runtime": {
+      "node": "24.21.0",
+      "npm": "11.19.0",
+      "vitest": "4.1.10",
+      "os": "Ubuntu 24.04.5"
+    },
+    "evidence_kind": "Mainline extracted structured summary from actual fetched complete workflow job log, not a local reproduction and not the original log bytes.",
+    "source_url": "https://github.com/lvlw/elevator-survival/actions/runs/38451127806",
+    "job_log_fetched_by": "GitHub.fetch_workflow_job_logs",
+    "warning": "Test timeouts are not proof of illegal gameplay outcomes; author local PASS remains separately recorded.",
+    "case_locator_notice": "Human-readable locators for the observed cases; not verbatim test titles or full original log bytes.",
+    "authorFetchedCompleteJobLog": true,
+    "decodedLog": "ci156-decoded.log",
+    "notOriginalBinaryBytes": true
+  },
+  "mainlineIsolation": {
+    "total": 16,
+    "matched": 10,
+    "mismatched": 6,
+    "unexpected_exceptions": 0,
+    "exit": 1,
+    "native_repository_rerun": false,
+    "authorRerun": "NOT RE-RUN; preserved raw input and separate from native evidence"
+  },
+  "nativeOriginalByteAttempt": {
+    "file": "native-before.json",
+    "total": 9,
+    "passed": 3,
+    "failed": 6,
+    "files": 1,
+    "reportIntervalSeconds": 15.21420361328125,
+    "maxCaseMs": 2177.5784000000003,
+    "failures": [
+      {
+        "name": "R1 after actual committed death plain-error must propagate unchanged",
+        "messages": [
+          "AssertionError: the real frozen seed must reach the actual committed death; no fake fixture: expected +0 to be 1 // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after actual committed death assertion-error must propagate unchanged",
+        "messages": [
+          "AssertionError: the real frozen seed must reach the actual committed death; no fake fixture: expected +0 to be 1 // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after actual committed death coded-error must propagate unchanged",
+        "messages": [
+          "AssertionError: the real frozen seed must reach the actual committed death; no fake fixture: expected +0 to be 1 // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after actual committed death type-error must propagate unchanged",
+        "messages": [
+          "AssertionError: the real frozen seed must reach the actual committed death; no fake fixture: expected +0 to be 1 // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after actual committed death range-error must propagate unchanged",
+        "messages": [
+          "AssertionError: the real frozen seed must reach the actual committed death; no fake fixture: expected +0 to be 1 // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 arbitrary code property on an implementation error is not a known route stop",
+        "messages": [
+          "AssertionError: expected Symbol(route returned without surfacing the injected error) to be Error: R1 external evidence infrastructur… { code: '…' } // Object.is equality"
+        ]
+      }
+    ],
+    "classification": "3 controls pass; 5 death spies did not reach injection point; only arbitrary-code living case is semantic failure. Not 6 semantic findings."
+  },
+  "nativeExportedMoveAttempt": {
+    "file": "native-adapted-before.json",
+    "total": 9,
+    "passed": 3,
+    "failed": 6,
+    "files": 1,
+    "reportIntervalSeconds": 16.989756103515624,
+    "maxCaseMs": 2647.3208000000013,
+    "failures": [
+      {
+        "name": "R1 after actual committed death plain-error must propagate unchanged",
+        "messages": [
+          "AssertionError: the real frozen seed must reach the actual committed death; no fake fixture: expected +0 to be 1 // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after actual committed death assertion-error must propagate unchanged",
+        "messages": [
+          "AssertionError: the real frozen seed must reach the actual committed death; no fake fixture: expected +0 to be 1 // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after actual committed death coded-error must propagate unchanged",
+        "messages": [
+          "AssertionError: the real frozen seed must reach the actual committed death; no fake fixture: expected +0 to be 1 // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after actual committed death type-error must propagate unchanged",
+        "messages": [
+          "AssertionError: the real frozen seed must reach the actual committed death; no fake fixture: expected +0 to be 1 // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after actual committed death range-error must propagate unchanged",
+        "messages": [
+          "AssertionError: the real frozen seed must reach the actual committed death; no fake fixture: expected +0 to be 1 // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 arbitrary code property on an implementation error is not a known route stop",
+        "messages": [
+          "AssertionError: expected Symbol(route returned without surfacing the injected error) to be Error: R1 external evidence infrastructur… { code: '…' } // Object.is equality"
+        ]
+      }
+    ],
+    "classification": "walk calls lexical move, not exported spy; 5 still did not inject. Preserved, not counted semantic."
+  },
+  "nativeSendBoundaryBefore": {
+    "file": "native-send-before.json",
+    "total": 9,
+    "passed": 5,
+    "failed": 4,
+    "files": 1,
+    "reportIntervalSeconds": 15.273999267578125,
+    "maxCaseMs": 2250.0274,
+    "failures": [
+      {
+        "name": "R1 after actual committed death plain-error must propagate unchanged",
+        "messages": [
+          "AssertionError: death is not permission to swallow the following test/implementation error: expected Symbol(route returned without surfacing the injected error) to be Error: R1 injected helper bug // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after actual committed death assertion-error must propagate unchanged",
+        "messages": [
+          "AssertionError: death is not permission to swallow the following test/implementation error: expected Symbol(route returned without surfacing the injected error) to be AssertionError: expected 'injected-observ… { …(4) } // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after actual committed death coded-error must propagate unchanged",
+        "messages": [
+          "AssertionError: death is not permission to swallow the following test/implementation error: expected Symbol(route returned without surfacing the injected error) to be Error: R1 injected infrastructure error { code: '…' } // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 arbitrary code property on an implementation error is not a known route stop",
+        "messages": [
+          "AssertionError: expected Symbol(route returned without surfacing the injected error) to be Error: R1 external evidence infrastructur… { code: '…' } // Object.is equality"
+        ]
+      }
+    ],
+    "classification": "True S death after lexical move; 5 pass / 4 real semantic failures, no P/R/S or RNG mock."
+  },
+  "nativeAfterInitialFix": {
+    "file": "native-after.json",
+    "total": 12,
+    "passed": 11,
+    "failed": 1,
+    "files": 1,
+    "reportIntervalSeconds": 16.374039306640626,
+    "maxCaseMs": 2299.6503000000002,
+    "failures": [
+      {
+        "name": "R1 C01 unmodified default seed05 is still a real committed death, not a harness failure",
+        "messages": [
+          "Error: No declared adjacent route undefined -> P0"
+        ]
+      }
+    ],
+    "classification": "11 pass / 1 real control-flow gap: next move read undefined node after actual death. Corrected by terminal guard before adjacency lookup, not swallowed."
+  },
+  "nativeAfter": {
+    "file": "native-after-guard.json",
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "files": 1,
+    "reportIntervalSeconds": 15.678601318359375,
+    "maxCaseMs": 2253.0169000000005,
+    "failures": [],
+    "status": "PASS",
+    "originalNineIntentsKept": true,
+    "newLivingCases": 3,
+    "committedValueDiskAndCountsUnchanged": true
+  },
+  "testDelta": {
+    "addedFile": 1,
+    "addedTests": 12,
+    "replaced": 0,
+    "deleted": 0,
+    "net": 12,
+    "oldAcceptanceIntents": 112,
+    "acceptanceTotal": 124,
+    "repositoryTotal": 4318,
+    "repositoryFiles": 242
+  },
+  "coldFiltered": {
+    "file": "cold-filtered.json",
+    "total": 13,
+    "passed": 1,
+    "failed": 0,
+    "files": 1,
+    "reportIntervalSeconds": 9.07770947265625,
+    "maxCaseMs": null,
+    "failures": [],
+    "filter": "hotel complete-value continuation only; setup tests were not required",
+    "sharedFixture": "one real null-start route per witness, lazy canonical/checkpoint cache; no old JSON used as fixture"
+  },
+  "frozen": {
+    "manifest": {
+      "version": "E03-A-R1-frozen-v1",
+      "strategy": "E03-A-frozen-v1: routes/tools/specialties/eight seeds unchanged",
+      "files": [
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/capacity-materials.integration.test.ts",
+          "sha256": "bbc29f39dfc970230649102824a8e5642ea97e61d25cbf17298c88beabde1996"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+          "sha256": "e01030ef702caa219d5377295e9e5d6b37f4d7c4f2a4bb0f4f15594d0a5e59c6"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/e03-test-budget.ts",
+          "sha256": "71b285742eace181670291e7db57dc7136ae1128b9091da79cd7377d46516cdf"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/e03-test-harness.ts",
+          "sha256": "8e64ed584b7b7efff1870e9a8b83ff743491897015bcbf7dcf5d855af3195b68"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/e03-test-observers.ts",
+          "sha256": "dbd10def86d5201e4316db991320a3855b871344983d7f5053e24dee45343763"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/e03-test-policy.ts",
+          "sha256": "b9c69087b43551a2a872130c7207880d4ebae627dcef642cad03f0c634436863"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/e03-test-report.ts",
+          "sha256": "d91ec16dd377737a753112794e60f9bf1ff18f9fe04843a1b706a12284bdbb7a"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/e03-test-routes.ts",
+          "sha256": "73f1fb7b24bd4c69210a5f8672d3504a8a7f562e19410b5abae9fe2e2a7a93b7"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/e03-test-seeds.ts",
+          "sha256": "17f489fadee304b4056fc07c5b9c1388e01a00699e4fa1f17ae11bb293dc7081"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/failure-branches.integration.test.ts",
+          "sha256": "0e81485e487fae3fe2741fb3b8a031b6edc241190964867586bb094bf77599b4"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/harness-contract.test.ts",
+          "sha256": "580d3c39907951ca48fd227e37695a7be5bc55ef9562fcf81f7e9d4f1232da00"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/knowledge-boundary.test.ts",
+          "sha256": "fa78df6c51f61fe28537a0a7427f735b06ddac23a1b866d6e55a1f8f1f473694"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/lifecycle-boundaries.integration.test.ts",
+          "sha256": "c9bd6042831a99802a71c894407c1640f3dcdd594b8e45d48ae5e1c9231cb0c6"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/nine-combinations.integration.test.ts",
+          "sha256": "cd0db1978b3bc3562d5e937c6dee8a08e5dcd15eb9bdd23b8799b0bd836007c9"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/review-exception-regression.test.ts",
+          "sha256": "cf150c45328ac54f40af6fb74644b07945ee29a47b9aab171470c15c0f01ec6d"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/route-hotel-benefit.integration.test.ts",
+          "sha256": "f620b30f8490aec3b1374892530c616d9d0f584ee151bcfdfe85deb43b2439e9"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/route-hotel-bypass.integration.test.ts",
+          "sha256": "ee232ca00c18da0ad08a7db24fdd32cec001cafee4daea410a2cf7c88bb91f9a"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/route-segmented.integration.test.ts",
+          "sha256": "fbe47ad23deb81854169c6ef8926e7c13cf9b1bb2053a1963f93f5501ab408ea"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/route-toolbox.integration.test.ts",
+          "sha256": "cf6711351d2f69593d9d8b2b0cf24fd1393f811492b4eff998f0a0001983496b"
+        },
+        {
+          "path": "src/content/infected-world-v0.1/acceptance/seeded-outcomes.integration.test.ts",
+          "sha256": "98d344bbe447e32152278a1ba1ffccb6e812876b68d7f898e906f8ce4f85e478"
+        }
+      ],
+      "manifestSha256": "44b3bfd85f114251a9188f425b0bdf43db282477df4780e557733e8a499faf82"
+    },
+    "timing": [
+      {
+        "file": "frozen-01-tests.json",
+        "total": 124,
+        "passed": 124,
+        "failed": 0,
+        "files": 13,
+        "reportIntervalSeconds": 182.098345703125,
+        "maxCaseMs": 7858.847299999999,
+        "failures": []
+      },
+      {
+        "file": "frozen-02-tests.json",
+        "total": 124,
+        "passed": 124,
+        "failed": 0,
+        "files": 13,
+        "reportIntervalSeconds": 184.02061059570312,
+        "maxCaseMs": 7916.7483,
+        "failures": []
+      }
+    ],
+    "comparison": {
+      "files": 85,
+      "changes": [],
+      "oldDifferences": [],
+      "combinedSha256": "7d65aba49676f55f3e203df97ec205b95a65250bccb13ae947798639cd80e79a",
+      "runs": [
+        {
+          "file": "frozen-01-tests.json",
+          "total": 124,
+          "passed": 124,
+          "failed": 0,
+          "files": 13,
+          "wallSeconds": 182.098345703125,
+          "maxCaseMs": 7858.847299999999,
+          "maxCase": "E03 route-segmented: real damage retreat immediate repair rest and same-enemy success"
+        },
+        {
+          "file": "frozen-02-tests.json",
+          "total": 124,
+          "passed": 124,
+          "failed": 0,
+          "files": 13,
+          "wallSeconds": 184.02061059570312,
+          "maxCaseMs": 7916.7483,
+          "maxCase": "E03 route-segmented: real damage retreat immediate repair rest and same-enemy success"
+        }
+      ],
+      "counts": {
+        "success": 63,
+        "death": 9
+      }
+    },
+    "combinedHashAlgorithm": "SHA-256 of sorted filename:SHA256(raw-bytes) lines joined by LF without final LF; old combined hash uses its historical record. Explicit raw byte equality is authoritative."
+  },
+  "negativeControls": {
+    "file": "negative-results.json",
+    "total": 24,
+    "passed": 16,
+    "failed": 8,
+    "files": 2,
+    "reportIntervalSeconds": 17.99634814453125,
+    "maxCaseMs": 2724.5452000000005,
+    "failures": [
+      {
+        "name": "R1 after actual committed death coded-error must propagate unchanged",
+        "messages": [
+          "AssertionError: death is not permission to swallow the following test/implementation error: expected Symbol(route returned without surfacing the injected error) to be Error: R1 injected infrastructure error { code: '…' } // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 arbitrary code property on an implementation error is not a known route stop",
+        "messages": [
+          "AssertionError: expected Symbol(route returned without surfacing the injected error) to be Error: R1 external evidence infrastructur… { code: '…' } // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after a real living move known-code-error must propagate without changing the committed value",
+        "messages": [
+          "AssertionError: expected Symbol(route returned without surfacing the injected error) to be Error: R1 implementation error borrowing … { code: '…' } // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after actual committed death plain-error must propagate unchanged",
+        "messages": [
+          "AssertionError: death is not permission to swallow the following test/implementation error: expected Symbol(route returned without surfacing the injected error) to be Error: R1 injected helper bug // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after actual committed death assertion-error must propagate unchanged",
+        "messages": [
+          "AssertionError: death is not permission to swallow the following test/implementation error: expected Symbol(route returned without surfacing the injected error) to be AssertionError: expected 'injected-observ… { …(4) } // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after actual committed death coded-error must propagate unchanged",
+        "messages": [
+          "AssertionError: death is not permission to swallow the following test/implementation error: expected Symbol(route returned without surfacing the injected error) to be Error: R1 injected infrastructure error { code: '…' } // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after actual committed death type-error must propagate unchanged",
+        "messages": [
+          "AssertionError: death is not permission to swallow the following test/implementation error: expected Symbol(route returned without surfacing the injected error) to be TypeError: R1 injected type error // Object.is equality"
+        ]
+      },
+      {
+        "name": "R1 after actual committed death range-error must propagate unchanged",
+        "messages": [
+          "AssertionError: death is not permission to swallow the following test/implementation error: expected Symbol(route returned without surfacing the injected error) to be RangeError: R1 injected range error // Object.is equality"
+        ]
+      }
+    ],
+    "exit": 1,
+    "semanticFailures": 8,
+    "deathSwallowFailures": 5,
+    "arbitraryCodeFailures": 3,
+    "importFixtureTimeoutFailures": 0,
+    "location": "outside repository; only cloned TEST route catch mutated",
+    "wrongFeeWrongRestore": "NOT RE-RUN this batch; historical prior evidence retained"
+  },
+  "defaultCheck": {
+    "command": "npm run check",
+    "exit": 1,
+    "workerOverride": null,
+    "CIEnvironment": null,
+    "architecture": "PASS 52 DEC / 329 core production files",
+    "typecheck": "PASS",
+    "tests": {
+      "files": 242,
+      "passedFiles": 240,
+      "failedFiles": 2,
+      "total": 4318,
+      "passed": 4316,
+      "failed": 2,
+      "durationSeconds": 248.51
+    },
+    "failedCases": [
+      {
+        "file": "src/state/residence-session/combat-longchain.integration.test.ts",
+        "line": 7,
+        "name": "read-null to three true CTB victories, real production/install/sample and H0 success uses only S",
+        "ms": 6513
+      },
+      {
+        "file": "src/state/residence-session/supply-longchain.integration.test.ts",
+        "line": 19,
+        "name": "danger-cleared TEST cold prestate, ALL actual tasks/moves, failed install/save and success",
+        "ms": 5102
+      }
+    ],
+    "cause": "both unchanged protected 5000ms timeouts; all E03-A/R1 124 cases passed; no old assertion changed",
+    "build": "SKIPPED by failed npm check"
+  },
+  "protectedFocusedDefault": {
+    "file": "protected-default-focused.json",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "files": 2,
+    "reportIntervalSeconds": 6.551638671875,
+    "maxCaseMs": 2226.5214999999994,
+    "failures": [],
+    "status": "PASS; 10 unchanged cases; no worker or timeout override",
+    "notAWholeCheckPass": true
+  },
+  "standaloneBuild": {
+    "command": "npm run build",
+    "exit": 0,
+    "status": "PASS_WITH_EXISTING_CHUNK_WARNING",
+    "notRunByFailedCheck": true
+  },
+  "workers2Contrast": "NOT RUN in R1; no two-worker PASS used to replace default failure",
+  "protection": {
+    "allowedPaths": 42,
+    "originalInputs5": "unchanged",
+    "r1Inputs14": "all raw bytes matched",
+    "sourceSeedsAndRoutePrefixFinish": "byte unchanged",
+    "oldProductionCodeTestsConfigDependenciesCI": "unchanged",
+    "preDocAudit": "PASS",
+    "fullFinalAudit": "PASS: 37 changed paths inside 42; 16 new / 21 modified; old Markdown prefixes and both old JSON objects, protected bytes, 14 raw inputs, frozen sources, strategy/seeds, UTF-8/links and TEST-only import graph verified",
+    "packageAudit": "NOT RE-RUN; old findings retained"
+  },
+  "whitespace": {
+    "increment": "PASS exit0",
+    "cached": "PASS exit0: exactly 37 allowed paths / 16 A / 21 M; all staged bytes and 14 raw input bytes match, both historical objects retained",
+    "cumulative": {
+      "base": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+      "exit": 2,
+      "oldHardBreakLines": 7,
+      "newExceptions": 0
+    }
+  },
+  "query": "unchanged support 3/12/9; raw selector leak retained; four domain phases and five legal stop categories clarified as DRAFT; no query/UI authorization",
+  "uncompleted": [
+    "whole default local check gate: protected old S timeouts; cannot declare F01 fully closed",
+    "accurate new-SHA CI not yet pushed at record creation",
+    "Owner playability, query runtime, browser/multitab and O3 OPEN/NOT RUN"
+  ],
+  "git": "normal own-branch commit/push authorized; no main/other branch/merge/force/amend. Final SHA and current CI in receipt; no self-SHA amendment.",
+  "evidence": {
+    "externalDirectory": "C:\\Users\\zjl\\AppData\\Local\\Temp\\e03-r1-271c91c1266c444fb39cc700414b515a",
+    "logs": [
+      {
+        "file": "baseline-default.log",
+        "bytes": 13245,
+        "sha256": "12e7f0ac233d169e4cca2f61d5cab4fc896c0bc7e0eb00817148c4daa5130669"
+      },
+      {
+        "file": "ci156-decoded.log",
+        "bytes": 155846,
+        "sha256": "8cfbb671345726b18cf25fccd3a9cc65208a62051b79ef4f58ee358385519473"
+      },
+      {
+        "file": "native-before.json",
+        "bytes": 9871,
+        "sha256": "168a3eebef3582bd86b5128bcb8a3b6ab1fb7e27243f7e8acbfc9545614fb6eb"
+      },
+      {
+        "file": "native-adapted-before.json",
+        "bytes": 9863,
+        "sha256": "c6c65dda25a1d56783ffd60e11e799d722100760de6326459b08575b2969bc51"
+      },
+      {
+        "file": "native-send-before.json",
+        "bytes": 7982,
+        "sha256": "c90ee9ceaec22086b79e02787b120f81f3a4ddb44cf12c288b2714a926fdb17a"
+      },
+      {
+        "file": "native-after.json",
+        "bytes": 5331,
+        "sha256": "2735cd4004ade9692d8671fe02bf73ea2dde44326447b2da04094256e156506e"
+      },
+      {
+        "file": "native-after-guard.json",
+        "bytes": 4254,
+        "sha256": "1b91cc510c9c3b4930e35a279827c78780cf4771ae3719957687f9012e3230e6"
+      },
+      {
+        "file": "cold-filtered.json",
+        "bytes": 3749,
+        "sha256": "a601de987e14451da1a82b81058391147316866955e1ef55dd6d96dd4f71db7d"
+      },
+      {
+        "file": "negative-results.json",
+        "bytes": 17278,
+        "sha256": "343dffafc5daa595ab63410d12faeb2bec2bdd8993c944815de8193deb9e3b94"
+      },
+      {
+        "file": "frozen-01-tests.json",
+        "bytes": 34381,
+        "sha256": "29d14a8d5e6ccc11ca9d8e28b768221bbe4b9a11ea441a80183d7d38bc5fd325"
+      },
+      {
+        "file": "frozen-02-tests.json",
+        "bytes": 34301,
+        "sha256": "de1ad3419683abe48c346890a2a60ba7c0d0fe3353c2870d07c836838e82fafe"
+      },
+      {
+        "file": "frozen-comparison.json",
+        "bytes": 866,
+        "sha256": "b78209f3fff39b475ca95e9d689a0b989f635aacf3d285c954bead7115d6e516"
+      },
+      {
+        "file": "frozen-source-manifest.json",
+        "bytes": 4033,
+        "sha256": "64cd22cb26252abf4ad3aed9c09bb784360e9c1223f967a03cb953c22cd0ea27"
+      },
+      {
+        "file": "check-default.log",
+        "bytes": 4030,
+        "sha256": "2c5b3ee5756a884062579314ed7b8c3b1a8417e953bbbc84c2ffac95edd25490"
+      },
+      {
+        "file": "protected-default-focused.json",
+        "bytes": 4722,
+        "sha256": "9dac77d1c976dd922775206722eedbfadefc3118b70d7878104b4977e1678cc4"
+      },
+      {
+        "file": "build-standalone.log",
+        "bytes": 2743,
+        "sha256": "1b6e51ba797c074093d6c1411462443ff9729c6cc8ede8efbe51aed9c108ed72"
+      }
+    ],
+    "baselineFingerprintNote": "protected-baseline.json contains a checksum PASS preamble followed by the original one-line JSON; parser strips only this recorded preamble, baseline was not rebuilt after edits",
+    "timingNote": "reportIntervalSeconds is JSON maximum file endTime minus run startTime; CLI durations separately recorded where printed"
+  }
+}
 }

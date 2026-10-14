@@ -1,0 +1,231 @@
+{
+  "task": "ENG-WORLD-ROUTE-ACCEPTANCE-001-R1",
+  "version": "1.0",
+  "date": "2026-10-14",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "2258e1bad17ffb03297b691be51bf9bfe5883979",
+  "start_parent": "713dd376ddb60d20d9afaedaee4505e695f89d94",
+  "start_tree": "4c041d6a048acf5b7029f88e6f4bb4aaa8b87d24",
+  "branch": "feature/world-route-acceptance-001",
+  "new_branch": false,
+  "findings": {
+    "E03-A-F01": "Default CI #156: 11 new native long-route tests timed out at 5000ms; build skipped.",
+    "E03-A-F02": "Exact executeRoute selected-function isolation swallows test/program errors after death or with arbitrary code."
+  },
+  "ci156": {
+    "exact_sha": "2258e1bad17ffb03297b691be51bf9bfe5883979",
+    "run_number": 156,
+    "run_id": 38451127806,
+    "attempt": 1,
+    "job_id": 115482027719,
+    "observed_status": "completed",
+    "observed_conclusion": "failure",
+    "stages": {
+      "architecture": "success",
+      "typecheck": "success",
+      "test:run": "failure",
+      "build": "skipped"
+    },
+    "test_files": {
+      "passed": 236,
+      "failed": 5,
+      "total": 241
+    },
+    "tests": {
+      "passed": 4295,
+      "failed": 11,
+      "total": 4306
+    },
+    "duration_seconds": 388.82,
+    "error": "Test timed out in 5000ms.",
+    "semantic_assertion_failures_reported": 0,
+    "failed_cases": [
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+        "reported_ms": 5397,
+        "locator_description": "E03 cold checkpoint setup from true null route-hotel-bypass"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+        "reported_ms": 6349,
+        "locator_description": "E03 cold checkpoint setup from true null route-hotel-benefit"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+        "reported_ms": 5490,
+        "locator_description": "E03 cold checkpoint setup from true null route-segmented"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+        "reported_ms": 5014,
+        "locator_description": "E03 cold checkpoint setup from true null route-toolbox"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+        "reported_ms": 5492,
+        "locator_description": "E03 cold continuation complete-value equality route-hotel-benefit"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+        "reported_ms": 5081,
+        "locator_description": "E03 mixed-route save failure retains latest memory and retry never replays"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/nine-combinations.integration.test.ts",
+        "reported_ms": 5011,
+        "locator_description": "E03 default corpus crow scout E03-A-seed-01"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/nine-combinations.integration.test.ts",
+        "reported_ms": 5070,
+        "locator_description": "E03 default corpus crow scout E03-A-seed-04"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/route-hotel-benefit.integration.test.ts",
+        "reported_ms": 6289,
+        "locator_description": "E03 route-hotel-benefit: natural disinfect qualification E03-A-seed-04"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/route-segmented.integration.test.ts",
+        "reported_ms": 6860,
+        "locator_description": "E03 route-segmented: real damage retreat immediate repair rest and same-enemy success"
+      },
+      {
+        "file": "src/content/infected-world-v0.1/acceptance/route-toolbox.integration.test.ts",
+        "reported_ms": 5822,
+        "locator_description": "E03 route-toolbox: professional electronic spent, real C4 replacement installed"
+      }
+    ],
+    "runtime": {
+      "node": "24.21.0",
+      "npm": "11.19.0",
+      "vitest": "4.1.10",
+      "os": "Ubuntu 24.04.5"
+    },
+    "evidence_kind": "Mainline extracted structured summary from actual fetched complete workflow job log, not a local reproduction and not the original log bytes.",
+    "source_url": "https://github.com/lvlw/elevator-survival/actions/runs/38451127806",
+    "job_log_fetched_by": "GitHub.fetch_workflow_job_logs",
+    "warning": "Test timeouts are not proof of illegal gameplay outcomes; author local PASS remains separately recorded.",
+    "case_locator_notice": "Human-readable locators for the observed cases; not verbatim test titles or full original log bytes."
+  },
+  "mainline_isolated": {
+    "total": 16,
+    "matched": 10,
+    "mismatched": 6,
+    "unexpected_exceptions": 0,
+    "exit": 1,
+    "native_repository_rerun": false
+  },
+  "author_local_reference": {
+    "files": 241,
+    "tests": 4306,
+    "new_tests": 112,
+    "does_not_replace_r1_actual_baseline": true
+  },
+  "test_timeout_exception": {
+    "milliseconds_per_full_route_case": 30000,
+    "scope": "only six enumerated E03-A long-route test files and the new full-native exception regression, via local test/group option",
+    "global_or_old_test_change": false
+  },
+  "timeout_eligible_files": [
+    "src/content/infected-world-v0.1/acceptance/route-hotel-bypass.integration.test.ts",
+    "src/content/infected-world-v0.1/acceptance/route-hotel-benefit.integration.test.ts",
+    "src/content/infected-world-v0.1/acceptance/route-segmented.integration.test.ts",
+    "src/content/infected-world-v0.1/acceptance/route-toolbox.integration.test.ts",
+    "src/content/infected-world-v0.1/acceptance/nine-combinations.integration.test.ts",
+    "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+    "src/content/infected-world-v0.1/acceptance/review-exception-regression.test.ts"
+  ],
+  "allowed_paths": [
+    "src/content/infected-world-v0.1/acceptance/e03-test-harness.ts",
+    "src/content/infected-world-v0.1/acceptance/e03-test-routes.ts",
+    "src/content/infected-world-v0.1/acceptance/e03-test-policy.ts",
+    "src/content/infected-world-v0.1/acceptance/e03-test-observers.ts",
+    "src/content/infected-world-v0.1/acceptance/e03-test-report.ts",
+    "src/content/infected-world-v0.1/acceptance/route-hotel-bypass.integration.test.ts",
+    "src/content/infected-world-v0.1/acceptance/route-hotel-benefit.integration.test.ts",
+    "src/content/infected-world-v0.1/acceptance/route-segmented.integration.test.ts",
+    "src/content/infected-world-v0.1/acceptance/route-toolbox.integration.test.ts",
+    "src/content/infected-world-v0.1/acceptance/nine-combinations.integration.test.ts",
+    "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+    "src/content/infected-world-v0.1/acceptance/harness-contract.test.ts",
+    "src/content/infected-world-v0.1/acceptance/review-exception-regression.test.ts",
+    "src/content/infected-world-v0.1/acceptance/e03-test-budget.ts",
+    "docs/engineering/world-integration/route-acceptance/completion.md",
+    "docs/engineering/world-integration/route-acceptance/implementation-notes.md",
+    "docs/engineering/world-integration/route-acceptance/verification-results.json",
+    "docs/engineering/world-integration/route-acceptance/route-results.json",
+    "docs/engineering/world-integration/route-acceptance/route-ledger.md",
+    "docs/engineering/world-integration/route-acceptance/nine-combinations.md",
+    "docs/engineering/world-integration/route-acceptance/query-contract-draft-v1.0.md",
+    "docs/engineering/world-integration/route-acceptance/query-field-matrix.json",
+    "docs/engineering/world-integration/route-acceptance/next-engineering-contract-draft-v1.0.md",
+    "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/world-integration/route-acceptance/r1-inputs/ENG-WORLD-ROUTE-ACCEPTANCE-001-R1-task-v1.0.md",
+    "docs/engineering/world-integration/route-acceptance/r1-inputs/OWNER-authority-and-scope-E03-A-R1-v1.0.md",
+    "docs/engineering/world-integration/route-acceptance/r1-inputs/AUD-2258e1b-ENG-WORLD-ROUTE-ACCEPTANCE-001-review-v1.0.md",
+    "docs/engineering/world-integration/route-acceptance/r1-inputs/BASELINE-AND-SCOPE.json",
+    "docs/engineering/world-integration/route-acceptance/r1-inputs/SHA256SUMS.txt",
+    "docs/engineering/world-integration/route-acceptance/r1-inputs/source/e03-test-routes.ts",
+    "docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/run-isolated-exception-review.cjs",
+    "docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/isolated-exception-results.json",
+    "docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/native-exception-regression.test.ts.template",
+    "docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/ci156-failure-summary.json",
+    "docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/ci156-observation-notes.md",
+    "docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/input-integrity.json",
+    "docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/source-integrity.json",
+    "docs/engineering/world-integration/route-acceptance/r1-inputs/evidence/environment-notes.md"
+  ],
+  "allowed_path_count": 42,
+  "original_inputs_readonly": "docs/engineering/world-integration/route-acceptance/inputs/",
+  "original_input_tree": "fdf6de42db496cd9d91af9d676c0009ec8c7c4b3",
+  "archive_files": [
+    "ENG-WORLD-ROUTE-ACCEPTANCE-001-R1-task-v1.0.md",
+    "OWNER-authority-and-scope-E03-A-R1-v1.0.md",
+    "AUD-2258e1b-ENG-WORLD-ROUTE-ACCEPTANCE-001-review-v1.0.md",
+    "BASELINE-AND-SCOPE.json",
+    "SHA256SUMS.txt",
+    "source/e03-test-routes.ts",
+    "evidence/run-isolated-exception-review.cjs",
+    "evidence/isolated-exception-results.json",
+    "evidence/native-exception-regression.test.ts.template",
+    "evidence/ci156-failure-summary.json",
+    "evidence/ci156-observation-notes.md",
+    "evidence/input-integrity.json",
+    "evidence/source-integrity.json",
+    "evidence/environment-notes.md"
+  ],
+  "archive_count": 14,
+  "protected_subtrees": {
+    "src/core": "ad56eedab6ae2112b97f5de17c7fe14b1fcc4a88",
+    "src/state": "9649331383a977be2faca199789bf5669feb653f",
+    "src/app": "51cecd7afd6beef4b6d633ecbf580bb494a03575",
+    "src/ui": "2ec1b8bea6b1ca2d9c427abc97cb788e688118c8"
+  },
+  "default_seed_corpus": [
+    "E03-A-seed-01",
+    "E03-A-seed-02",
+    "E03-A-seed-03",
+    "E03-A-seed-04",
+    "E03-A-seed-05",
+    "E03-A-seed-06",
+    "E03-A-seed-07",
+    "E03-A-seed-08"
+  ],
+  "default_sample_denominator": 72,
+  "commit_push_own_branch": true,
+  "merge_main_force": false,
+  "not_authorized": [
+    "production changes",
+    "old tests",
+    "rule/parameter/content change",
+    "query runtime",
+    "UI/browser/multitab",
+    "O3",
+    "dependencies/CI"
+  ]
+}

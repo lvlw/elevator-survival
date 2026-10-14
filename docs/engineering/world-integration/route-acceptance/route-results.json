@@ -1,4 +1,6 @@
 {
+  "historical": {
+    "e03AAt2258": {
   "task": "E03-A",
   "status": "AUTHOR_NATIVE_ROUTE_GATE_PASS_WITH_QUERY_FINDINGS",
   "startSha": "713dd376ddb60d20d9afaedaee4505e695f89d94",
@@ -1487,4 +1489,1030 @@
     "hotel": "seed01 no disinfect, seed04/07 exploratory position collision with hotel food; explicit route-specific anchor fixed"
   },
   "caveat": "Fixed bounded strategies, not population win rate, optimum proof, Owner playability or E03 completion"
+    }
+  },
+  "r1":
+{
+  "task": "E03-A-R1",
+  "status": "AUTHOR_NATIVE_ROUTE_GATE_UNCHANGED_WITH_DEFAULT_CHECK_FINDINGS",
+  "startSha": "2258e1bad17ffb03297b691be51bf9bfe5883979",
+  "manifest": {
+    "version": "E03-A-R1-frozen-v1",
+    "strategy": "E03-A-frozen-v1: routes/tools/specialties/eight seeds unchanged",
+    "files": [
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/capacity-materials.integration.test.ts",
+        "sha256": "bbc29f39dfc970230649102824a8e5642ea97e61d25cbf17298c88beabde1996"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+        "sha256": "e01030ef702caa219d5377295e9e5d6b37f4d7c4f2a4bb0f4f15594d0a5e59c6"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/e03-test-budget.ts",
+        "sha256": "71b285742eace181670291e7db57dc7136ae1128b9091da79cd7377d46516cdf"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/e03-test-harness.ts",
+        "sha256": "8e64ed584b7b7efff1870e9a8b83ff743491897015bcbf7dcf5d855af3195b68"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/e03-test-observers.ts",
+        "sha256": "dbd10def86d5201e4316db991320a3855b871344983d7f5053e24dee45343763"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/e03-test-policy.ts",
+        "sha256": "b9c69087b43551a2a872130c7207880d4ebae627dcef642cad03f0c634436863"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/e03-test-report.ts",
+        "sha256": "d91ec16dd377737a753112794e60f9bf1ff18f9fe04843a1b706a12284bdbb7a"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/e03-test-routes.ts",
+        "sha256": "73f1fb7b24bd4c69210a5f8672d3504a8a7f562e19410b5abae9fe2e2a7a93b7"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/e03-test-seeds.ts",
+        "sha256": "17f489fadee304b4056fc07c5b9c1388e01a00699e4fa1f17ae11bb293dc7081"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/failure-branches.integration.test.ts",
+        "sha256": "0e81485e487fae3fe2741fb3b8a031b6edc241190964867586bb094bf77599b4"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/harness-contract.test.ts",
+        "sha256": "580d3c39907951ca48fd227e37695a7be5bc55ef9562fcf81f7e9d4f1232da00"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/knowledge-boundary.test.ts",
+        "sha256": "fa78df6c51f61fe28537a0a7427f735b06ddac23a1b866d6e55a1f8f1f473694"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/lifecycle-boundaries.integration.test.ts",
+        "sha256": "c9bd6042831a99802a71c894407c1640f3dcdd594b8e45d48ae5e1c9231cb0c6"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/nine-combinations.integration.test.ts",
+        "sha256": "cd0db1978b3bc3562d5e937c6dee8a08e5dcd15eb9bdd23b8799b0bd836007c9"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/review-exception-regression.test.ts",
+        "sha256": "cf150c45328ac54f40af6fb74644b07945ee29a47b9aab171470c15c0f01ec6d"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/route-hotel-benefit.integration.test.ts",
+        "sha256": "f620b30f8490aec3b1374892530c616d9d0f584ee151bcfdfe85deb43b2439e9"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/route-hotel-bypass.integration.test.ts",
+        "sha256": "ee232ca00c18da0ad08a7db24fdd32cec001cafee4daea410a2cf7c88bb91f9a"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/route-segmented.integration.test.ts",
+        "sha256": "fbe47ad23deb81854169c6ef8926e7c13cf9b1bb2053a1963f93f5501ab408ea"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/route-toolbox.integration.test.ts",
+        "sha256": "cf6711351d2f69593d9d8b2b0cf24fd1393f811492b4eff998f0a0001983496b"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/seeded-outcomes.integration.test.ts",
+        "sha256": "98d344bbe447e32152278a1ba1ffccb6e812876b68d7f898e906f8ce4f85e478"
+      }
+    ],
+    "manifestSha256": "44b3bfd85f114251a9188f425b0bdf43db282477df4780e557733e8a499faf82"
+  },
+  "frozenRerun": {
+    "files": 85,
+    "changes": [],
+    "oldDifferences": [],
+    "combinedSha256": "7d65aba49676f55f3e203df97ec205b95a65250bccb13ae947798639cd80e79a",
+    "runs": [
+      {
+        "file": "frozen-01-tests.json",
+        "total": 124,
+        "passed": 124,
+        "failed": 0,
+        "files": 13,
+        "wallSeconds": 182.098345703125,
+        "maxCaseMs": 7858.847299999999,
+        "maxCase": "E03 route-segmented: real damage retreat immediate repair rest and same-enemy success"
+      },
+      {
+        "file": "frozen-02-tests.json",
+        "total": 124,
+        "passed": 124,
+        "failed": 0,
+        "files": 13,
+        "wallSeconds": 184.02061059570312,
+        "maxCaseMs": 7916.7483,
+        "maxCase": "E03 route-segmented: real damage retreat immediate repair rest and same-enemy success"
+      }
+    ],
+    "counts": {
+      "success": 63,
+      "death": 9
+    }
+  },
+  "denominator": 72,
+  "counts": {
+    "crow / engineer": {
+      "success": 7,
+      "death": 1
+    },
+    "crow / scout": {
+      "success": 7,
+      "death": 1
+    },
+    "crow / survival": {
+      "success": 7,
+      "death": 1
+    },
+    "lamp / engineer": {
+      "success": 7,
+      "death": 1
+    },
+    "lamp / scout": {
+      "success": 7,
+      "death": 1
+    },
+    "lamp / survival": {
+      "success": 7,
+      "death": 1
+    },
+    "toolbox / engineer": {
+      "success": 7,
+      "death": 1
+    },
+    "toolbox / scout": {
+      "success": 7,
+      "death": 1
+    },
+    "toolbox / survival": {
+      "success": 7,
+      "death": 1
+    }
+  },
+  "defaultResults": [
+    {
+      "seed": "E03-A-seed-01",
+      "tool": "crow",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 75,
+      "writeAttempts": 76,
+      "notifications": 76,
+      "rawFile": "default-crow-engineer-E03-A-seed-01.json",
+      "rawSha256": "41d312a293402f2e96d953cf53479df3c15e47afbbfa576b36dfb8751fbcc8e8"
+    },
+    {
+      "seed": "E03-A-seed-02",
+      "tool": "crow",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 75,
+      "writeAttempts": 76,
+      "notifications": 76,
+      "rawFile": "default-crow-engineer-E03-A-seed-02.json",
+      "rawSha256": "21d2db13fe9c4177290daca4b883933c0d0ecd2fa9cb3dacb31240e3c75440ac"
+    },
+    {
+      "seed": "E03-A-seed-03",
+      "tool": "crow",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 75,
+      "writeAttempts": 76,
+      "notifications": 76,
+      "rawFile": "default-crow-engineer-E03-A-seed-03.json",
+      "rawSha256": "44d107fdbf04707edc7bb8cb19c765bc9e985d18305cf7f4e84dc0b6adb95eea"
+    },
+    {
+      "seed": "E03-A-seed-04",
+      "tool": "crow",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 75,
+      "writeAttempts": 76,
+      "notifications": 76,
+      "rawFile": "default-crow-engineer-E03-A-seed-04.json",
+      "rawSha256": "4195d0fbda68b7140841320d60c3d91caee94f1b7df131aefbb19b26a0c8c173"
+    },
+    {
+      "seed": "E03-A-seed-05",
+      "tool": "crow",
+      "specialty": "engineer",
+      "outcome": "death",
+      "dispatches": 60,
+      "writeAttempts": 61,
+      "notifications": 61,
+      "rawFile": "default-crow-engineer-E03-A-seed-05.json",
+      "rawSha256": "e01188e3f2fea1839105656366e1b0ca75120801edf4ec25ecad317c4d4af35f"
+    },
+    {
+      "seed": "E03-A-seed-06",
+      "tool": "crow",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-engineer-E03-A-seed-06.json",
+      "rawSha256": "ec8a13fa0a17b10ddc89ac34a6bb67022ddbd2fc2744fe46f0972a8abc5074fa"
+    },
+    {
+      "seed": "E03-A-seed-07",
+      "tool": "crow",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-engineer-E03-A-seed-07.json",
+      "rawSha256": "5b1a670ccf1cddd0a47c8a5e2ca9c1873086f094dcaa2f6850691000f28f2d9f"
+    },
+    {
+      "seed": "E03-A-seed-08",
+      "tool": "crow",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 75,
+      "writeAttempts": 76,
+      "notifications": 76,
+      "rawFile": "default-crow-engineer-E03-A-seed-08.json",
+      "rawSha256": "307c3643bcce10c58c3c2590fb8ce4a49752fe18c5d141fb5c6453094eaabd8c"
+    },
+    {
+      "seed": "E03-A-seed-01",
+      "tool": "crow",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-scout-E03-A-seed-01.json",
+      "rawSha256": "b946ffaa4179236ce2476ab448ac498d282a3eb573823150499571436d68f0e0"
+    },
+    {
+      "seed": "E03-A-seed-02",
+      "tool": "crow",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-scout-E03-A-seed-02.json",
+      "rawSha256": "04d0a5e4a6cf4f814a712b0cfd71936d8a0daae2fc82a5df6ef8a28c33bc530d"
+    },
+    {
+      "seed": "E03-A-seed-03",
+      "tool": "crow",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-scout-E03-A-seed-03.json",
+      "rawSha256": "eaca070ced627af332ab6353259839590804b4f263b585ae7b99e5456d30d0b0"
+    },
+    {
+      "seed": "E03-A-seed-04",
+      "tool": "crow",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-scout-E03-A-seed-04.json",
+      "rawSha256": "c5dd4a992b2e89fb26495237cbaa083460be6abbb76d20f505bb77a054227516"
+    },
+    {
+      "seed": "E03-A-seed-05",
+      "tool": "crow",
+      "specialty": "scout",
+      "outcome": "death",
+      "dispatches": 62,
+      "writeAttempts": 63,
+      "notifications": 63,
+      "rawFile": "default-crow-scout-E03-A-seed-05.json",
+      "rawSha256": "ac67ca93eab0b8cc75d7a81074f9e133f644c9f337c15dc36342fc723c04a828"
+    },
+    {
+      "seed": "E03-A-seed-06",
+      "tool": "crow",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-scout-E03-A-seed-06.json",
+      "rawSha256": "31d1f87f55ab8e229520dba08da2c814ef45ca04658ce0337c9e02711c2429b1"
+    },
+    {
+      "seed": "E03-A-seed-07",
+      "tool": "crow",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-scout-E03-A-seed-07.json",
+      "rawSha256": "821d63a9b40134252bf75b237a4db7879f3c39c942bc773be5064fbb66a72a1a"
+    },
+    {
+      "seed": "E03-A-seed-08",
+      "tool": "crow",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-scout-E03-A-seed-08.json",
+      "rawSha256": "4addfea784a658f7d9bae87622899222e0583f039fe8ef4adb3bb4929afa7eec"
+    },
+    {
+      "seed": "E03-A-seed-01",
+      "tool": "crow",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-survival-E03-A-seed-01.json",
+      "rawSha256": "c80df04a167725c803cef61c1c84a06c4d184a5dd1a5fecc0822a4f011bf09a2"
+    },
+    {
+      "seed": "E03-A-seed-02",
+      "tool": "crow",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-survival-E03-A-seed-02.json",
+      "rawSha256": "43a9aee80ab0d59cfdf8f8364fbab88cdbc1682ccaa07f39c92a78a3fe730af5"
+    },
+    {
+      "seed": "E03-A-seed-03",
+      "tool": "crow",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-survival-E03-A-seed-03.json",
+      "rawSha256": "3f5943ecb0548aede47b1676a54fa76739bfe093bac0e41fe0a3bbffc4e4ba2d"
+    },
+    {
+      "seed": "E03-A-seed-04",
+      "tool": "crow",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-survival-E03-A-seed-04.json",
+      "rawSha256": "82843d4305c9e53471e037dc48f1b0948a68fb7b7684eaacc4420fa637cca4c3"
+    },
+    {
+      "seed": "E03-A-seed-05",
+      "tool": "crow",
+      "specialty": "survival",
+      "outcome": "death",
+      "dispatches": 63,
+      "writeAttempts": 64,
+      "notifications": 64,
+      "rawFile": "default-crow-survival-E03-A-seed-05.json",
+      "rawSha256": "024be7d683e918df42b2927365e8ca35ef7dd1643fac385ebb7ac3026cec2087"
+    },
+    {
+      "seed": "E03-A-seed-06",
+      "tool": "crow",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-survival-E03-A-seed-06.json",
+      "rawSha256": "ef2d274563c3b2e3b25be540fa1a3fcb9b1969ae33e5948d110d6618aa7926b5"
+    },
+    {
+      "seed": "E03-A-seed-07",
+      "tool": "crow",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-survival-E03-A-seed-07.json",
+      "rawSha256": "97f9418741ac9277360ac5ae26589923603c03aacec7458699f06c0c3ee72fe3"
+    },
+    {
+      "seed": "E03-A-seed-08",
+      "tool": "crow",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-crow-survival-E03-A-seed-08.json",
+      "rawSha256": "3a75a9d9808f64f1829f944e0310dd101e5eeccd4001d0f1f209b99555280e9f"
+    },
+    {
+      "seed": "E03-A-seed-01",
+      "tool": "lamp",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-engineer-E03-A-seed-01.json",
+      "rawSha256": "2647811f7242eb1c02fc72c94b18ec9c6cfe3a6064c52bf5c292dd87cee19503"
+    },
+    {
+      "seed": "E03-A-seed-02",
+      "tool": "lamp",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-engineer-E03-A-seed-02.json",
+      "rawSha256": "b620e6d30c279b3e133843a65b6035120176e169aa5c7386b9f7d0109038678d"
+    },
+    {
+      "seed": "E03-A-seed-03",
+      "tool": "lamp",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-engineer-E03-A-seed-03.json",
+      "rawSha256": "05597cbe45d3b875ba7004ca6db2cc1727a3ea2fef1516957589c629af76bc94"
+    },
+    {
+      "seed": "E03-A-seed-04",
+      "tool": "lamp",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-engineer-E03-A-seed-04.json",
+      "rawSha256": "f76b1279db2132de8ac25c79671237d8487b154a1acd2f8be6842433c9f035a2"
+    },
+    {
+      "seed": "E03-A-seed-05",
+      "tool": "lamp",
+      "specialty": "engineer",
+      "outcome": "death",
+      "dispatches": 62,
+      "writeAttempts": 63,
+      "notifications": 63,
+      "rawFile": "default-lamp-engineer-E03-A-seed-05.json",
+      "rawSha256": "1dbb318af4ef4ed9f7c89794c8b7f6e94619422ff794f8c441f473aee6ae5767"
+    },
+    {
+      "seed": "E03-A-seed-06",
+      "tool": "lamp",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-engineer-E03-A-seed-06.json",
+      "rawSha256": "e1b39e2a6a2aac5edd5cdb8c956f009e1d523e6369de2f1950f100409aeebb0d"
+    },
+    {
+      "seed": "E03-A-seed-07",
+      "tool": "lamp",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-engineer-E03-A-seed-07.json",
+      "rawSha256": "113fce03ec4f96a2242651714bda1349b27b1f994b4ad82affc635d5b95bf398"
+    },
+    {
+      "seed": "E03-A-seed-08",
+      "tool": "lamp",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-engineer-E03-A-seed-08.json",
+      "rawSha256": "3fa5374474447704f306949b79934c6c5a4d080bd0e012b5445272b71dcb3f03"
+    },
+    {
+      "seed": "E03-A-seed-01",
+      "tool": "lamp",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-scout-E03-A-seed-01.json",
+      "rawSha256": "333541e93ae8c1ee5e20d996d8ddf6e7e3f752cbf5a4a37c2e0730d25ed514f8"
+    },
+    {
+      "seed": "E03-A-seed-02",
+      "tool": "lamp",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-scout-E03-A-seed-02.json",
+      "rawSha256": "dd6fa254908ea3fdca0e4fe5391d9d9d557e3c2589953c91d96d7cead50f0d50"
+    },
+    {
+      "seed": "E03-A-seed-03",
+      "tool": "lamp",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-scout-E03-A-seed-03.json",
+      "rawSha256": "a31fc2715f287bfffc4606317f592695c251d2659a952cbe199f440046b62757"
+    },
+    {
+      "seed": "E03-A-seed-04",
+      "tool": "lamp",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-scout-E03-A-seed-04.json",
+      "rawSha256": "b354b57447315176b6f3f4cb5a4a4bd73c1c63a2eda0744a3df997dbcd3c3562"
+    },
+    {
+      "seed": "E03-A-seed-05",
+      "tool": "lamp",
+      "specialty": "scout",
+      "outcome": "death",
+      "dispatches": 62,
+      "writeAttempts": 63,
+      "notifications": 63,
+      "rawFile": "default-lamp-scout-E03-A-seed-05.json",
+      "rawSha256": "89f2ec19ba0fdccb9aef51fd18123ed5ab5bbd52b8adc7d5a7eb74fdb96b6062"
+    },
+    {
+      "seed": "E03-A-seed-06",
+      "tool": "lamp",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-scout-E03-A-seed-06.json",
+      "rawSha256": "d70d4e84ed58cd3d48090b03f155fbfb13d182a76ac0791f9614e541fe150228"
+    },
+    {
+      "seed": "E03-A-seed-07",
+      "tool": "lamp",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-scout-E03-A-seed-07.json",
+      "rawSha256": "416af3869cf9b8ea5d67d0ce81e1a3200d888aa2289b1c3bcdc6a486209024d7"
+    },
+    {
+      "seed": "E03-A-seed-08",
+      "tool": "lamp",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-scout-E03-A-seed-08.json",
+      "rawSha256": "80e7baae77aae4a4000a7d717adbba5042f4fc94c160e3cfc9147d6c24d812ca"
+    },
+    {
+      "seed": "E03-A-seed-01",
+      "tool": "lamp",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-survival-E03-A-seed-01.json",
+      "rawSha256": "2e918409ea2a6cb7149691bb409d85543771b80a91ec49148711e44e520b183d"
+    },
+    {
+      "seed": "E03-A-seed-02",
+      "tool": "lamp",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-survival-E03-A-seed-02.json",
+      "rawSha256": "09064837de195974c30877f6d60b2d81775ea48cae2a6452ec001761a5e316b7"
+    },
+    {
+      "seed": "E03-A-seed-03",
+      "tool": "lamp",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-survival-E03-A-seed-03.json",
+      "rawSha256": "3a8bed58f3a379f14b39398f273b4f1351b2def4d9b6a089f943d2bf27310f43"
+    },
+    {
+      "seed": "E03-A-seed-04",
+      "tool": "lamp",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-survival-E03-A-seed-04.json",
+      "rawSha256": "03b3469fabee0d4a90da05607c07da99e57a938ae9b621ee3c789b322fd64960"
+    },
+    {
+      "seed": "E03-A-seed-05",
+      "tool": "lamp",
+      "specialty": "survival",
+      "outcome": "death",
+      "dispatches": 63,
+      "writeAttempts": 64,
+      "notifications": 64,
+      "rawFile": "default-lamp-survival-E03-A-seed-05.json",
+      "rawSha256": "df02f93e37f377d15503e913256ad9ed3aeb31729f34906f277210aae00bb158"
+    },
+    {
+      "seed": "E03-A-seed-06",
+      "tool": "lamp",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-survival-E03-A-seed-06.json",
+      "rawSha256": "4ec887c405513ef82b7b6431ce5c9788e8b75a010011b4b2d085f514f663d036"
+    },
+    {
+      "seed": "E03-A-seed-07",
+      "tool": "lamp",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-survival-E03-A-seed-07.json",
+      "rawSha256": "8985919ebb92e993d15f315ca37c06d8dde0c4a57fd49a29cff499569c5c87bb"
+    },
+    {
+      "seed": "E03-A-seed-08",
+      "tool": "lamp",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-lamp-survival-E03-A-seed-08.json",
+      "rawSha256": "bd0220911fb3955a088a07479f23c99172630d23ab514fded68087e18bd924e0"
+    },
+    {
+      "seed": "E03-A-seed-01",
+      "tool": "toolbox",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-engineer-E03-A-seed-01.json",
+      "rawSha256": "07efedee1dd845360549ed21ea83579cae91d548fd7ec7801ee830d7473aee48"
+    },
+    {
+      "seed": "E03-A-seed-02",
+      "tool": "toolbox",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-engineer-E03-A-seed-02.json",
+      "rawSha256": "4b4745eda613f9d03e219f224d21d88e9c8fc8bea16fcf05c9a6553a40f236d1"
+    },
+    {
+      "seed": "E03-A-seed-03",
+      "tool": "toolbox",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-engineer-E03-A-seed-03.json",
+      "rawSha256": "8579ce55fb4678b89f8ef34147ae2f34e64096d718c6e9108d3d54ba4cc7e331"
+    },
+    {
+      "seed": "E03-A-seed-04",
+      "tool": "toolbox",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-engineer-E03-A-seed-04.json",
+      "rawSha256": "6c2f75fbc9947c1e226a07f7cbcb51a3711572e0e7347e79b7a27ba8b58eab40"
+    },
+    {
+      "seed": "E03-A-seed-05",
+      "tool": "toolbox",
+      "specialty": "engineer",
+      "outcome": "death",
+      "dispatches": 62,
+      "writeAttempts": 63,
+      "notifications": 63,
+      "rawFile": "default-toolbox-engineer-E03-A-seed-05.json",
+      "rawSha256": "e42a796dfacf9655700c3994ccfd32d636b41e7829be0260143da95c80fb486a"
+    },
+    {
+      "seed": "E03-A-seed-06",
+      "tool": "toolbox",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-engineer-E03-A-seed-06.json",
+      "rawSha256": "525dd2769f1c1a8e4d63b8b17d3dcc5741f6baa17044aac9c60c62f939555d66"
+    },
+    {
+      "seed": "E03-A-seed-07",
+      "tool": "toolbox",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-engineer-E03-A-seed-07.json",
+      "rawSha256": "78ead31327de15235037a782d23439f895920b3c6f5db3d86324a6cb4f35da4d"
+    },
+    {
+      "seed": "E03-A-seed-08",
+      "tool": "toolbox",
+      "specialty": "engineer",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-engineer-E03-A-seed-08.json",
+      "rawSha256": "d02810619e18fcf648cb4b0993323c7f8070ed8e1596102c0e3895f45be6ce61"
+    },
+    {
+      "seed": "E03-A-seed-01",
+      "tool": "toolbox",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-scout-E03-A-seed-01.json",
+      "rawSha256": "52969de2f1b17b6cd1ec9f6bae22361193ffca79c43d5a83b20b6f25cb0aed4f"
+    },
+    {
+      "seed": "E03-A-seed-02",
+      "tool": "toolbox",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-scout-E03-A-seed-02.json",
+      "rawSha256": "59f823827367a06020cad2ff14a3bae139756f00e8c068d0bedba760faaad251"
+    },
+    {
+      "seed": "E03-A-seed-03",
+      "tool": "toolbox",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-scout-E03-A-seed-03.json",
+      "rawSha256": "d220591d1d44854935cbc542bb2d9fb67e316b281310fc558be03e14a78022b0"
+    },
+    {
+      "seed": "E03-A-seed-04",
+      "tool": "toolbox",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-scout-E03-A-seed-04.json",
+      "rawSha256": "2115f88194b83dd1fb7594390892fd3904d92c8984fdd9fe5cc1b4cd9615b298"
+    },
+    {
+      "seed": "E03-A-seed-05",
+      "tool": "toolbox",
+      "specialty": "scout",
+      "outcome": "death",
+      "dispatches": 62,
+      "writeAttempts": 63,
+      "notifications": 63,
+      "rawFile": "default-toolbox-scout-E03-A-seed-05.json",
+      "rawSha256": "54fa873d6bd7bec6118d926283057f23b66b9b5c65806954bcdb750d82df062f"
+    },
+    {
+      "seed": "E03-A-seed-06",
+      "tool": "toolbox",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-scout-E03-A-seed-06.json",
+      "rawSha256": "9db9bb180c21c1b102ec30ae2b6fec03e543f0dbafb4fe0cff7a1c7f1f68982f"
+    },
+    {
+      "seed": "E03-A-seed-07",
+      "tool": "toolbox",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-scout-E03-A-seed-07.json",
+      "rawSha256": "9adb01962cc621bd3c5da2223cea71670e5da308b383840b5181632e426bb7bf"
+    },
+    {
+      "seed": "E03-A-seed-08",
+      "tool": "toolbox",
+      "specialty": "scout",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-scout-E03-A-seed-08.json",
+      "rawSha256": "bc9080356d5c46d944457f0718e324c3b9b7627f04b0e40365b93f608d9564ff"
+    },
+    {
+      "seed": "E03-A-seed-01",
+      "tool": "toolbox",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-survival-E03-A-seed-01.json",
+      "rawSha256": "1c3d4b68d75dc3b59efb17b2e31c5351d61a0b9c22a527744dab59335466242e"
+    },
+    {
+      "seed": "E03-A-seed-02",
+      "tool": "toolbox",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-survival-E03-A-seed-02.json",
+      "rawSha256": "c5d52ada019f840fe8ecba1623f7eef3441847dee98245af9abbc3b6c5a298c9"
+    },
+    {
+      "seed": "E03-A-seed-03",
+      "tool": "toolbox",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-survival-E03-A-seed-03.json",
+      "rawSha256": "56ffc9ffb33c25468baa87b67fa399872e28d5a6d5b72cd0c24ace7cec2267b3"
+    },
+    {
+      "seed": "E03-A-seed-04",
+      "tool": "toolbox",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-survival-E03-A-seed-04.json",
+      "rawSha256": "e95168c907ba1f6c3905ee6ed752477f44bd3dcb62879dd58da8a6bc5f19b100"
+    },
+    {
+      "seed": "E03-A-seed-05",
+      "tool": "toolbox",
+      "specialty": "survival",
+      "outcome": "death",
+      "dispatches": 63,
+      "writeAttempts": 64,
+      "notifications": 64,
+      "rawFile": "default-toolbox-survival-E03-A-seed-05.json",
+      "rawSha256": "d76a2cfd99a085ddae4a6aadc83f75b8ad7ca0e47d27b3d0965d6896fb3bc133"
+    },
+    {
+      "seed": "E03-A-seed-06",
+      "tool": "toolbox",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-survival-E03-A-seed-06.json",
+      "rawSha256": "bb532715ee79e09d855655d39aed7fbdfdabb4f0ce419c2598bd031ce287ee8a"
+    },
+    {
+      "seed": "E03-A-seed-07",
+      "tool": "toolbox",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-survival-E03-A-seed-07.json",
+      "rawSha256": "27762546f51f06b2b3bff93d5e6d537ff291e3987213a2a1e68f0f9b938885e3"
+    },
+    {
+      "seed": "E03-A-seed-08",
+      "tool": "toolbox",
+      "specialty": "survival",
+      "outcome": "success",
+      "dispatches": 77,
+      "writeAttempts": 78,
+      "notifications": 78,
+      "rawFile": "default-toolbox-survival-E03-A-seed-08.json",
+      "rawSha256": "2ffaac5dbf6dd59cf7e23dd33590b3f376b1fdf8fc0d19b6d8217e23ee34319c"
+    }
+  ],
+  "witnesses": [
+    {
+      "route": "route-hotel-bypass",
+      "seed": "E03-A-seed-01",
+      "tool": "crow",
+      "specialty": "engineer",
+      "gate": "AUTHOR_PASS",
+      "dispatches": 75,
+      "writeAttempts": 76,
+      "notifications": 76,
+      "finalHP": 7,
+      "taskDay": 4,
+      "balance": 120,
+      "rawFile": "witness-hotel-bypass.json",
+      "rawSha256": "41d312a293402f2e96d953cf53479df3c15e47afbbfa576b36dfb8751fbcc8e8"
+    },
+    {
+      "route": "route-hotel-benefit",
+      "seed": "E03-A-seed-04",
+      "tool": "lamp",
+      "specialty": "survival",
+      "gate": "AUTHOR_PASS",
+      "dispatches": 91,
+      "writeAttempts": 92,
+      "notifications": 92,
+      "finalHP": 8,
+      "taskDay": 6,
+      "balance": 120,
+      "rawFile": "witness-hotel-E03-A-seed-04.json",
+      "rawSha256": "6e74400a0284030f0427cfe3cb0239cfcb4472227d76411757ad2adfa27426e1"
+    },
+    {
+      "route": "route-segmented",
+      "seed": "E03-A-seed-01",
+      "tool": "crow",
+      "specialty": "survival",
+      "gate": "AUTHOR_PASS",
+      "dispatches": 90,
+      "writeAttempts": 91,
+      "notifications": 91,
+      "finalHP": 10,
+      "taskDay": 6,
+      "balance": 120,
+      "rawFile": "witness-segmented.json",
+      "rawSha256": "bd58c29c6b4879efb0f08785bbbe3136e87fa7901babb1fecf10bbc306d1ab53"
+    },
+    {
+      "route": "route-toolbox",
+      "seed": "E03-A-seed-01",
+      "tool": "toolbox",
+      "specialty": "engineer",
+      "gate": "AUTHOR_PASS",
+      "dispatches": 80,
+      "writeAttempts": 81,
+      "notifications": 81,
+      "finalHP": 7,
+      "taskDay": 5,
+      "balance": 120,
+      "rawFile": "witness-toolbox.json",
+      "rawSha256": "c14d9396cd79339f58e26399ee96488f59cc0fe1e94f1a8d579539f7338452e3"
+    }
+  ],
+  "defaultCheck": "FAIL: 2 protected old S timeouts; not gameplay death or route condition",
+  "ownerGate": "OPEN / NOT RUN",
+  "frozenStrategy": "original eight seeds, four route IDs, routePrefix and finishRoute unchanged",
+  "rawOutputsEqualToOriginal85": true
+}
 }

@@ -1,0 +1,67 @@
+{
+  "exact_sha": "2258e1bad17ffb03297b691be51bf9bfe5883979",
+  "source": "actual mounted original E03-A ZIP versus GitHub exact commit tree",
+  "files": [
+    {
+      "path": "AUD-713dd37-ENG-RESIDENCE-COMBAT-SESSION-001-review-v1.0.md",
+      "bytes": 7137,
+      "sha256": "eb816e7e96407efdbb28fb07f43640648630399b3bb2e1be668dd21b49d03c95",
+      "git_blob": "62fcc95e46e61dc74f074485d6662fb3de229c56",
+      "remote_blob": "62fcc95e46e61dc74f074485d6662fb3de229c56",
+      "matched": true
+    },
+    {
+      "path": "BASELINE-AND-INPUTS.json",
+      "bytes": 6107,
+      "sha256": "f12a930cbba2382f19f94128c8fa417119b62141d8284e8105da8be479276187",
+      "git_blob": "f279ab1241be0cf655753a7cbc1b62219ffc7dfe",
+      "remote_blob": "f279ab1241be0cf655753a7cbc1b62219ffc7dfe",
+      "matched": true
+    },
+    {
+      "path": "ENG-WORLD-ROUTE-ACCEPTANCE-001-task-v1.0.md",
+      "bytes": 19589,
+      "sha256": "476a5930f55f571144ebb580a48e7d688b7be16a525530c434725de6c7146921",
+      "git_blob": "f86eced85989a0d352a0a4079f1d4db580f18e90",
+      "remote_blob": "f86eced85989a0d352a0a4079f1d4db580f18e90",
+      "matched": true
+    },
+    {
+      "path": "OWNER-authority-and-scope-E03-A-v1.0.md",
+      "bytes": 1142,
+      "sha256": "246bbd70c1361ae8db762f99d287aae109d7fcde04590f19edb1192bc3edc52b",
+      "git_blob": "023b8e3da60359376b1ab921f8f5e63d97db7bea",
+      "remote_blob": "023b8e3da60359376b1ab921f8f5e63d97db7bea",
+      "matched": true
+    },
+    {
+      "path": "SHA256SUMS.txt",
+      "bytes": 433,
+      "sha256": "8257f11038a0518ccabfeaa25878d36753019cd190890cd49fc90714d66198eb",
+      "git_blob": "1230b77c95ad57b78b6ba678fed54e39b2f3cbf4",
+      "remote_blob": "1230b77c95ad57b78b6ba678fed54e39b2f3cbf4",
+      "matched": true
+    }
+  ],
+  "tree": "fdf6de42db496cd9d91af9d676c0009ec8c7c4b3",
+  "remote_tree": "fdf6de42db496cd9d91af9d676c0009ec8c7c4b3",
+  "tree_match": true,
+  "package_checksums": [
+    {
+      "path": "AUD-713dd37-ENG-RESIDENCE-COMBAT-SESSION-001-review-v1.0.md",
+      "matched": true
+    },
+    {
+      "path": "BASELINE-AND-INPUTS.json",
+      "matched": true
+    },
+    {
+      "path": "ENG-WORLD-ROUTE-ACCEPTANCE-001-task-v1.0.md",
+      "matched": true
+    },
+    {
+      "path": "OWNER-authority-and-scope-E03-A-v1.0.md",
+      "matched": true
+    }
+  ]
+}

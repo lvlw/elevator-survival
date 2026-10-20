@@ -83,7 +83,7 @@ describe('S04 S08 S10 native headless long chains', () => {
     recordCounts('install/terminal:' + outcome, counts)
     coldLatest(h)
     reject(h, request(h, 'depart', { commissionId: f.dependencies.catalog.data.mission.commissionId }), 'NOT_AVAILABLE')
-  })
+  }, 30_000)
   it.each(['success', 'voluntary-failure'] as const)('two TEST declarations retain old %s through new actions/save/cold', outcome => {
     const prepared = history(outcome), h = cold(prepared.active, prepared.policy)
     // Second declaration is made only by the existing TEST producer; no session continue-next command.

@@ -185,3 +185,11 @@ F02不再因current已dead吞任意异常，也不因Error带code就判route-sto
 - docs/engineering/world-integration/route-acceptance/r1-inputs/source/e03-test-routes.ts
 - src/content/infected-world-v0.1/acceptance/e03-test-budget.ts
 - src/content/infected-world-v0.1/acceptance/review-exception-regression.test.ts
+
+## ENG-LONGCHAIN-TEST-BUDGET-001 检查预算收口附记
+
+起点de8f358，沿用原工程分支。本次独立许可仅为两处旧state长链调用增加30_000ms，覆盖三个展开用例；正文／断言／夹具／seed／策略／F02与其他测试均不变，测试增量0。移除新增参数后源码逐字节及整AST等值。
+
+本轮默认原样基线仍4316通过／2超时（5869／5290ms，283.85s）；修后默认目标10项通过，完整npm check两次均242 files /4318 tests PASS（282.93／296.04s，架构/typecheck/build均PASS）。E03原124项及72共同默认样本额外实际通过；外部120→121负控得到业务AssertionError。此前本机失败、CI156失败与CI157准确de8f358成功分别保留，CI157本轮已重新实际读取run/job及完整日志，不再把最终状态误作未确认。
+
+本次不证明生产性能优化。新准确SHA CI及主线复审提交后单独核验；不追改前文历史、不amend追自身SHA。详见[本批完成记录](../longchain-test-budget/completion.md)及[验证JSON](../longchain-test-budget/verification-results.json)。查询候选、UI/browser、多标签、O3和Owner体验门槛不因测试预算变更关闭。

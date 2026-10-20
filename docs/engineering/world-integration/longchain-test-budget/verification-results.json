@@ -1,0 +1,439 @@
+{
+  "task": "ENG-LONGCHAIN-TEST-BUDGET-001",
+  "recordStage": "pre-commit local verification; exact delivery commit and its CI are in the post-commit receipt",
+  "start": {
+    "sha": "de8f358d2d281eb4ff914d6ebc20f16986164701",
+    "parent": "2258e1bad17ffb03297b691be51bf9bfe5883979",
+    "tree": "785c2b6b4fedd369d46feddb3313a6ca558967d5",
+    "branch": "feature/world-route-acceptance-001",
+    "status": "clean",
+    "diff": "empty",
+    "cachedDiff": "empty"
+  },
+  "environment": {
+    "node": "v24.9.0",
+    "npm": "11.6.0",
+    "vitest": "4.1.10",
+    "os": "Windows 10 Pro",
+    "availableParallelism": 12,
+    "testEnv": {},
+    "overrides": "none",
+    "processAudit": "One Vitest main/worker tree; no duplicate test runner; read-only CIM after initial sandbox denial"
+  },
+  "baseline": {
+    "command": "npm run test:run",
+    "exit": 1,
+    "files": 242,
+    "tests": 4318,
+    "passed": 4316,
+    "failed": 2,
+    "vitestDurationSeconds": 283.85,
+    "failures": [
+      {
+        "file": "src/state/residence-session/combat-longchain.integration.test.ts",
+        "line": 7,
+        "title": "read-null to three true CTB victories, real production/install/sample and H0 success uses only S",
+        "kind": "5000ms timeout",
+        "durationMs": 5869
+      },
+      {
+        "file": "src/state/residence-session/supply-longchain.integration.test.ts",
+        "line": 19,
+        "title": "danger-cleared TEST cold prestate, ALL actual tasks/moves, failed install/save and success",
+        "kind": "5000ms timeout",
+        "durationMs": 5290
+      }
+    ],
+    "log": "baseline-default.log"
+  },
+  "edits": {
+    "callSites": 2,
+    "expandedAffectedCases": 3,
+    "timeoutMs": 30000,
+    "newTests": 0,
+    "replacedTests": 0,
+    "deletedTests": 0,
+    "netTests": 0,
+    "globalTimeoutChanged": false,
+    "workersChanged": false,
+    "ciChanged": false,
+    "productionChanged": false,
+    "F02Changed": false,
+    "sourceEquivalence": {
+      "parser": "installed rolldown/utils parseSync (TypeScript ESTree)",
+      "results": [
+        {
+          "file": "src/state/residence-session/combat-longchain.integration.test.ts",
+          "title": "read-null to three true CTB victories, real production/install/sample and H0 success uses only S",
+          "beforeBlob": "64a9a5407944efa684128e3bec5980f9c1a6de02",
+          "afterBlob": "fbe01336c6aa57f5056d17a96d1b23f75463bf46",
+          "inserted": ",30_000",
+          "entireSourceEqualAfterRemovingThirdParameter": true,
+          "normalizedFullAstEqual": true,
+          "callbackBytesEqual": true,
+          "callbackSha256": "686ef06d011b53fb79dae13e3dc5bf75ec36338ccd90b7691e46199520b13b7c",
+          "testedFileSha256": "6c0f1b73f9ea01361558061302b693150bc30221b87af194719f7340b2110d89"
+        },
+        {
+          "file": "src/state/residence-session/supply-longchain.integration.test.ts",
+          "title": "danger-cleared TEST cold prestate, ALL actual tasks/moves, failed install/save and %s",
+          "beforeBlob": "c9c9cf3a46cf12ec888b7a97e5fb1d58f444a8f3",
+          "afterBlob": "e3689797ecf1b0979ac5830fed90dad788e43849",
+          "inserted": ", 30_000",
+          "entireSourceEqualAfterRemovingThirdParameter": true,
+          "normalizedFullAstEqual": true,
+          "callbackBytesEqual": true,
+          "callbackSha256": "5885a07c1214b77d102f62faa06c942c143f1e9be46b2143f7ef55e88cecc102",
+          "testedFileSha256": "b1a32a77b58e18c47d2121655fa34996be91bcc63be229701d39e43f075a3c10"
+        }
+      ]
+    }
+  },
+  "targeted": {
+    "command": "npm run test:run -- <two exact target files> --reporter=json --outputFile=<outside path>",
+    "exit": 0,
+    "files": 2,
+    "tests": 10,
+    "cases": [
+      {
+        "name": "S04 S06 complete native session routes read-null to three true CTB victories, real production/install/sample and H0 success uses only S",
+        "status": "passed",
+        "durationMs": 2302.7875000000004
+      },
+      {
+        "name": "S04 S06 complete native session routes orderly real retreat rest reentry victory preserves the original enemy",
+        "status": "passed",
+        "durationMs": 168.33050000000003
+      },
+      {
+        "name": "S04 S06 complete native session routes porter real retreat rest reentry victory preserves the original enemy",
+        "status": "passed",
+        "durationMs": 207.5666000000001
+      },
+      {
+        "name": "S04 S06 complete native session routes technician real retreat rest reentry victory preserves the original enemy",
+        "status": "passed",
+        "durationMs": 187.5564999999997
+      },
+      {
+        "name": "S04 S06 complete native session routes real pre-entry materials enable immediate retreat repair and reentry without a filler action",
+        "status": "passed",
+        "durationMs": 259.16859999999997
+      },
+      {
+        "name": "S04 S08 S10 native headless long chains real read-null, initial, depart, safe movement/source and return never use an active fixture",
+        "status": "passed",
+        "durationMs": 195.31590000000006
+      },
+      {
+        "name": "S04 S08 S10 native headless long chains danger-cleared TEST cold prestate, ALL actual tasks/moves, failed install/save and success",
+        "status": "passed",
+        "durationMs": 1793.7132000000001
+      },
+      {
+        "name": "S04 S08 S10 native headless long chains danger-cleared TEST cold prestate, ALL actual tasks/moves, failed install/save and voluntary-failure",
+        "status": "passed",
+        "durationMs": 1493.4016000000001
+      },
+      {
+        "name": "S04 S08 S10 native headless long chains two TEST declarations retain old success through new actions/save/cold",
+        "status": "passed",
+        "durationMs": 401.85629999999946
+      },
+      {
+        "name": "S04 S08 S10 native headless long chains two TEST declarations retain old voluntary-failure through new actions/save/cold",
+        "status": "passed",
+        "durationMs": 127.27529999999933
+      }
+    ]
+  },
+  "frozen": {
+    "trackedTypeScriptFiles": 786,
+    "combinedSha256": "7a40498b028d2263dffd0f1a29ef72bff532777b3f56826b7bc4a11e2698e7f8",
+    "unchangedAcrossDefaultChecks": true
+  },
+  "defaultCompleteChecks": [
+    {
+      "command": "npm run check",
+      "sequence": 1,
+      "exit": 0,
+      "files": 242,
+      "tests": 4318,
+      "passed": 4318,
+      "failed": 0,
+      "vitestDurationSeconds": 282.93,
+      "architecture": "PASS: 52 DEC / 329 core production files",
+      "typecheck": "PASS",
+      "test": "PASS",
+      "build": "PASS",
+      "warning": "Existing >500kB output chunk warning retained",
+      "log": "check-default-01.log",
+      "logSha256": "fe807729a85d6ccd324efcffd832569c1244ce9efe8d70be4ee3a708da371213"
+    },
+    {
+      "command": "npm run check",
+      "sequence": 2,
+      "exit": 0,
+      "files": 242,
+      "tests": 4318,
+      "passed": 4318,
+      "failed": 0,
+      "vitestDurationSeconds": 296.04,
+      "architecture": "PASS: 52 DEC / 329 core production files",
+      "typecheck": "PASS",
+      "test": "PASS",
+      "build": "PASS",
+      "warning": "Existing >500kB output chunk warning retained",
+      "log": "check-default-02.log",
+      "logSha256": "9ca10e9fea24fbbe4ccf351aecfd0a29e7f7667d5ebb953069c17c9839c53672"
+    }
+  ],
+  "e03": {
+    "command": "npm run test:run -- src/content/infected-world-v0.1/acceptance --reporter=json --outputFile=<outside path>",
+    "exit": 0,
+    "files": 13,
+    "tests": 124,
+    "passed": 124,
+    "exceptionRegressionTests": 12,
+    "defaultSamples": 72,
+    "durationReportIntervalSeconds": 211.33126489257813,
+    "maxCaseDurationMs": 9259.7625,
+    "corpusAssertedOutcomes": {
+      "success": 63,
+      "death": 9
+    },
+    "seeds": "unchanged E03-A-seed-01 through 08 across all nine combinations",
+    "routes": [
+      "route-hotel-bypass",
+      "route-hotel-benefit",
+      "route-segmented",
+      "route-toolbox"
+    ],
+    "report": "e03-124-tests.json",
+    "sourceAndAssertionsUnchanged": true,
+    "note": "Actual native rerun; all cases also ran in both complete checks. No new 85-file gameplay output corpus generated; prior bytes remain protected."
+  },
+  "negativeControl": {
+    "location": "C:/Users/zjl/AppData/Local/Temp/longchain-budget-23bae50d75604dc396f3d89c9d679860/negative-longchain.test.ts",
+    "mutation": "only outside copy balance expectation 120 -> 121; relative imports adapted",
+    "command": "node node_modules/vitest/vitest.mjs run --config <outside config> -t \"read-null to three true CTB victories\" --reporter=json --outputFile=<outside path>",
+    "exit": 1,
+    "executed": 1,
+    "failed": 1,
+    "unselectedCopyCases": 4,
+    "type": "business AssertionError",
+    "message": "expected 120 to be 121",
+    "durationMs": 2019.167,
+    "mainRepositoryMutated": false,
+    "countsAsNewTest": false
+  },
+  "history": {
+    "ci156": {
+      "sha": "2258e1bad17ffb03297b691be51bf9bfe5883979",
+      "run": 38451127806,
+      "conclusion": "failure",
+      "passed": 4295,
+      "timeouts": 11,
+      "evidence": "preserved original R1 records; not queried again this task"
+    },
+    "r1Local": {
+      "passed": 4316,
+      "timeouts": 2,
+      "durationSeconds": 248.51,
+      "exit": 1,
+      "build": "skipped; separate build subsequently passed"
+    },
+    "ci157": {
+      "observedInThisTask": true,
+      "id": 38494359598,
+      "runNumber": 157,
+      "attempt": 1,
+      "sha": "de8f358d2d281eb4ff914d6ebc20f16986164701",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/lvlw/elevator-survival/actions/runs/38494359598",
+      "jobs": [
+        {
+          "id": 115626633068,
+          "name": "check",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38494359598,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run npm ci",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Run npm run validate:architecture",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Run npm run typecheck",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Run npm run test:run",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Run npm run build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17
+            }
+          ]
+        }
+      ],
+      "logExcerpt": [
+        "2026-10-14T01:11:50.7858869Z Architecture validation passed: 52 DEC entries and 329 core production files checked.",
+        "2026-10-14T01:13:09.9125018Z      \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m danger-cleared TEST cold prestate, ALL actual tasks/moves, failed install/save and success \u001b[33m 3437\u001b[2mms\u001b[22m\u001b[39m",
+        "2026-10-14T01:13:09.9367974Z      \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m danger-cleared TEST cold prestate, ALL actual tasks/moves, failed install/save and voluntary-failure \u001b[33m 2818\u001b[2mms\u001b[22m\u001b[39m",
+        "2026-10-14T01:14:49.3262121Z      \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m read-null to three true CTB victories, real production/install/sample and H0 success uses only S \u001b[33m 4202\u001b[2mms\u001b[22m\u001b[39m",
+        "2026-10-14T01:18:48.3726257Z \u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m242 passed\u001b[39m\u001b[22m\u001b[90m (242)\u001b[39m",
+        "2026-10-14T01:18:48.3746598Z \u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m4318 passed\u001b[39m\u001b[22m\u001b[90m (4318)\u001b[39m",
+        "2026-10-14T01:18:48.3751248Z \u001b[2m   Duration \u001b[22m 413.29s\u001b[2m (transform 9.72s, setup 0ms, import 77.75s, tests 529.07s, environment 196.71s)\u001b[22m"
+      ],
+      "note": "Decoded job log fetched in this task, not an original binary log archive; complete decoded text saved outside repository."
+    },
+    "legacyFailureRecordsRewritten": false
+  },
+  "inputArchive": [
+    {
+      "filename": "ENG-LONGCHAIN-TEST-BUDGET-001-task-v1.0.md",
+      "bytes": 8309,
+      "sha256": "08c3797c04f53cea6914490a58591a725dc8c3ecfb8506e5000095506eb406c7",
+      "gitBlob": "99a342e54d8810813414b8e9cb8802ef77ba09a8"
+    },
+    {
+      "filename": "OWNER-authority-and-scope-LONGCHAIN-BUDGET-001-v1.0.md",
+      "bytes": 996,
+      "sha256": "29db8f9ee11fd8f95bb09d6d920307218e426048d04c233fd8c7024e6408680c",
+      "gitBlob": "a7b6ec3375cbfd9cc53b882537d94240c21212cd"
+    },
+    {
+      "filename": "AUD-de8f358-ENG-WORLD-ROUTE-ACCEPTANCE-001-R1-review-v1.0.md",
+      "bytes": 8890,
+      "sha256": "025a0179e5f711e478d98bdcd6682f526e5aed59e680a9afac287fbed9de0f0a",
+      "gitBlob": "5f46693aa1a9ac3f435e4501cb420bc5939e7a47"
+    },
+    {
+      "filename": "BASELINE-AND-INPUTS.json",
+      "bytes": 2794,
+      "sha256": "577a491154592c07fac5ea783703ee65ee55a04ec1af2c5e43f171ed83d90470",
+      "gitBlob": "33102a66fa1b17cae0fae4e12f0bc70349ebf138"
+    },
+    {
+      "filename": "SHA256SUMS.txt",
+      "bytes": 448,
+      "sha256": "9c32dfd4ababcc33a02cbfbd781ba2e439336897f0fd597322d8c39333d317e0",
+      "gitBlob": "f4bf0778a08f47c3619128a1551a6319604c6376"
+    }
+  ],
+  "scope": {
+    "allowedPaths": [
+      "src/state/residence-session/combat-longchain.integration.test.ts",
+      "src/state/residence-session/supply-longchain.integration.test.ts",
+      "docs/engineering/world-integration/longchain-test-budget/completion.md",
+      "docs/engineering/world-integration/longchain-test-budget/implementation-notes.md",
+      "docs/engineering/world-integration/longchain-test-budget/verification-results.json",
+      "docs/engineering/world-integration/route-acceptance/completion.md",
+      "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+      "docs/engineering/world-integration/longchain-test-budget/inputs/ENG-LONGCHAIN-TEST-BUDGET-001-task-v1.0.md",
+      "docs/engineering/world-integration/longchain-test-budget/inputs/OWNER-authority-and-scope-LONGCHAIN-BUDGET-001-v1.0.md",
+      "docs/engineering/world-integration/longchain-test-budget/inputs/AUD-de8f358-ENG-WORLD-ROUTE-ACCEPTANCE-001-R1-review-v1.0.md",
+      "docs/engineering/world-integration/longchain-test-budget/inputs/BASELINE-AND-INPUTS.json",
+      "docs/engineering/world-integration/longchain-test-budget/inputs/SHA256SUMS.txt"
+    ],
+    "expectedChangedFiles": 12,
+    "expectedModified": 4,
+    "expectedNew": 8,
+    "protectedWorkingFiles": 1403,
+    "protectedRawBytesUnchanged": true,
+    "historyPrefixesAppendOnly": true,
+    "sourceAndHelperChangesOutsideTwoCalls": false,
+    "DEC": 52,
+    "coreProductionFiles": 329
+  },
+  "whitespace": {
+    "increment": "clean; rechecked during staging and final receipt",
+    "untrackedInputs": "no-index check has no whitespace diagnostics",
+    "cumulativeBase": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+    "cumulativeExit": 2,
+    "W01": {
+      "files": 2,
+      "trailingHardBreaks": 7,
+      "newExceptions": 0,
+      "locations": [
+        "AUD-8c19ca0-E01-P-review-v1.0.md:3-6",
+        "ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:7-9"
+      ]
+    }
+  },
+  "evidenceDirectory": "C:/Users/zjl/AppData/Local/Temp/longchain-budget-23bae50d75604dc396f3d89c9d679860",
+  "toolingNotes": [
+    "Installed TS7 exposes no legacy JS parser API; used existing Rolldown TS parser without installation.",
+    "First outside AST script import lacked file URL on Windows; corrected outside only, then AST proof passed.",
+    "Interim link audit before remaining reports existed correctly flagged not-yet-created links; final link audit repeated after creation.",
+    "Git/OpenSSL ls-remote failed; one-command schannel succeeded. No persistent Git/TLS/proxy change."
+  ],
+  "commitPush": {
+    "authorized": "ordinary existing feature branch only",
+    "exactShaAndCI": "post-commit external receipt; no amend to insert self SHA"
+  },
+  "openGates": [
+    "exact-SHA mainline review",
+    "public query contract ratification/production",
+    "UI/browser/multitab/player entry",
+    "O3",
+    "Owner playability"
+  ],
+  "ruleConflicts": [],
+  "implementationPendingInScope": [],
+  "noNextTaskStarted": true
+}

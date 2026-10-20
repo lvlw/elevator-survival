@@ -13,7 +13,7 @@ describe('S04 S06 complete native session routes',()=>{
     expect(h.factory).toHaveBeenCalledTimes(1);expect(h.storage.read).toHaveBeenCalledTimes(1)
     expect(h.listener).toHaveBeenCalledTimes(h.storage.write.mock.calls.length)
     expect(current(coldSaved(h))).toEqual(v)
-  })
+  },30_000)
   it.each(['orderly','porter','technician'] as const)('%s real retreat rest reentry victory preserves the original enemy',enemy=>{
     const h=harness();enter(h,enemy);const first=current(h).battle!.entry
     action(h,{kind:'escape'});const exit=current(h).battles.at(-1)!

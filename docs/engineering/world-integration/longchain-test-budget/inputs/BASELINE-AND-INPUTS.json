@@ -1,0 +1,62 @@
+{
+  "task": "ENG-LONGCHAIN-TEST-BUDGET-001",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "de8f358d2d281eb4ff914d6ebc20f16986164701",
+  "parent_sha": "2258e1bad17ffb03297b691be51bf9bfe5883979",
+  "start_tree": "785c2b6b4fedd369d46feddb3313a6ca558967d5",
+  "branch": "feature/world-route-acceptance-001",
+  "review": {
+    "source_repair": "PASS",
+    "overall_delivery": "WITH_FINDINGS",
+    "F02": "CLOSED",
+    "F01_e03_budget_and_ci": "PASS",
+    "F01_local_complete_default_gate": "OPEN"
+  },
+  "ci157": {
+    "run_id": 38494359598,
+    "job_id": 115626633068,
+    "attempt": 1,
+    "head_sha": "de8f358d2d281eb4ff914d6ebc20f16986164701",
+    "status": "completed",
+    "conclusion": "success",
+    "files": 242,
+    "tests": 4318,
+    "evidence": "Mainline read remote run, job and complete job log; not container native rerun"
+  },
+  "author_local_default": {
+    "tests": 4318,
+    "passed": 4316,
+    "timeout": 2,
+    "exit": 1
+  },
+  "target_before_blobs": {
+    "src/state/residence-session/combat-longchain.integration.test.ts": "64a9a5407944efa684128e3bec5980f9c1a6de02",
+    "src/state/residence-session/supply-longchain.integration.test.ts": "c9c9cf3a46cf12ec888b7a97e5fb1d58f444a8f3"
+  },
+  "allowed_paths": [
+    "src/state/residence-session/combat-longchain.integration.test.ts",
+    "src/state/residence-session/supply-longchain.integration.test.ts",
+    "docs/engineering/world-integration/longchain-test-budget/completion.md",
+    "docs/engineering/world-integration/longchain-test-budget/implementation-notes.md",
+    "docs/engineering/world-integration/longchain-test-budget/verification-results.json",
+    "docs/engineering/world-integration/route-acceptance/completion.md",
+    "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+    "docs/engineering/world-integration/longchain-test-budget/inputs/ENG-LONGCHAIN-TEST-BUDGET-001-task-v1.0.md",
+    "docs/engineering/world-integration/longchain-test-budget/inputs/OWNER-authority-and-scope-LONGCHAIN-BUDGET-001-v1.0.md",
+    "docs/engineering/world-integration/longchain-test-budget/inputs/AUD-de8f358-ENG-WORLD-ROUTE-ACCEPTANCE-001-R1-review-v1.0.md",
+    "docs/engineering/world-integration/longchain-test-budget/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/world-integration/longchain-test-budget/inputs/SHA256SUMS.txt"
+  ],
+  "allowed_timeout_ms": 30000,
+  "affected_expanded_cases": 3,
+  "expected_test_delta": 0,
+  "input_filenames": [
+    "ENG-LONGCHAIN-TEST-BUDGET-001-task-v1.0.md",
+    "OWNER-authority-and-scope-LONGCHAIN-BUDGET-001-v1.0.md",
+    "AUD-de8f358-ENG-WORLD-ROUTE-ACCEPTANCE-001-R1-review-v1.0.md",
+    "BASELINE-AND-INPUTS.json",
+    "SHA256SUMS.txt"
+  ],
+  "commit_push": "ordinary same named branch only",
+  "main_merge_force": false
+}

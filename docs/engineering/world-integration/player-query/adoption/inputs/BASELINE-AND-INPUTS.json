@@ -1,0 +1,95 @@
+{
+  "task": "DOC-WORLD-QUERY-001",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "7a3acd3855aefdde68fdaed13ebe037f3e9bd6de",
+  "parent_sha": "de8f358d2d281eb4ff914d6ebc20f16986164701",
+  "start_tree": "17d43169891e71e5e5686ccff8271f98b49800c7",
+  "branch": "feature/world-route-acceptance-001",
+  "allowed_paths": [
+    "docs/engineering/world-integration/player-query/player-query-contract-v1.0.md",
+    "docs/engineering/world-integration/player-query/player-query-field-contract-v1.0.json",
+    "docs/engineering/world-integration/player-query/player-query-engineering-contract-v1.0.md",
+    "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+    "docs/engineering/world-integration/player-query/adoption/checks.json",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/world-integration/route-acceptance/completion.md",
+    "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+    "docs/engineering/world-integration/route-acceptance/query-contract-draft-v1.0.md",
+    "docs/engineering/world-integration/route-acceptance/next-engineering-contract-draft-v1.0.md",
+    "docs/engineering/world-integration/player-query/adoption/inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md",
+    "docs/engineering/world-integration/player-query/adoption/inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md",
+    "docs/engineering/world-integration/player-query/adoption/inputs/OWNER-authority-and-scope-DOC-WORLD-QUERY-001-v1.0.md",
+    "docs/engineering/world-integration/player-query/adoption/inputs/DOC-WORLD-QUERY-001-task-v1.0.md",
+    "docs/engineering/world-integration/player-query/adoption/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/world-integration/player-query/adoption/inputs/SHA256SUMS.txt",
+    "docs/engineering/world-integration/player-query/adoption/inputs/verify-doc-package.py",
+    "docs/engineering/world-integration/player-query/adoption/inputs/approved-documents/player-query-contract-v1.0.md",
+    "docs/engineering/world-integration/player-query/adoption/inputs/approved-documents/player-query-field-contract-v1.0.json",
+    "docs/engineering/world-integration/player-query/adoption/inputs/approved-documents/player-query-engineering-contract-v1.0.md"
+  ],
+  "append_only_paths": [
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/world-integration/route-acceptance/completion.md",
+    "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+    "docs/engineering/world-integration/route-acceptance/query-contract-draft-v1.0.md",
+    "docs/engineering/world-integration/route-acceptance/next-engineering-contract-draft-v1.0.md"
+  ],
+  "archive_prefix": "docs/engineering/world-integration/player-query/adoption/inputs",
+  "input_files": [
+    "AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md",
+    "MAINLINE-WORLD-QUERY-001-ratification-v1.0.md",
+    "OWNER-authority-and-scope-DOC-WORLD-QUERY-001-v1.0.md",
+    "DOC-WORLD-QUERY-001-task-v1.0.md",
+    "BASELINE-AND-INPUTS.json",
+    "SHA256SUMS.txt",
+    "verify-doc-package.py",
+    "approved-documents/player-query-contract-v1.0.md",
+    "approved-documents/player-query-field-contract-v1.0.json",
+    "approved-documents/player-query-engineering-contract-v1.0.md"
+  ],
+  "payloads": [
+    {
+      "source": "approved-documents/player-query-contract-v1.0.md",
+      "target": "docs/engineering/world-integration/player-query/player-query-contract-v1.0.md",
+      "sha256": "3d265ed41ba57a652b7295ce38f500d16fa8b073f96626cfca138be3e01f3623"
+    },
+    {
+      "source": "approved-documents/player-query-field-contract-v1.0.json",
+      "target": "docs/engineering/world-integration/player-query/player-query-field-contract-v1.0.json",
+      "sha256": "bb5863b5cbd7330d05b4c633128523194caf7c4f1d0841cc28fcbe29aac9436f"
+    },
+    {
+      "source": "approved-documents/player-query-engineering-contract-v1.0.md",
+      "target": "docs/engineering/world-integration/player-query/player-query-engineering-contract-v1.0.md",
+      "sha256": "f0e84315d28afb5357a64d1a7c43efb6ed43e8818765fbf157c1469a52909f5e"
+    }
+  ],
+  "source_candidates": [
+    {
+      "path": "docs/engineering/world-integration/route-acceptance/query-contract-draft-v1.0.md",
+      "git_blob": "296f2df1fad8db02527ac041a3242df9872a7f81"
+    },
+    {
+      "path": "docs/engineering/world-integration/route-acceptance/next-engineering-contract-draft-v1.0.md",
+      "git_blob": "710ef69d8f9868c57c23c2207ea4d1985fe3f5d9"
+    },
+    {
+      "path": "docs/engineering/world-integration/route-acceptance/query-field-matrix.json",
+      "git_blob": "334b669e1e616e62296702cc5f17949cf45540e2"
+    }
+  ],
+  "ci158": {
+    "run_id": 39448730938,
+    "job_id": 118717516392,
+    "conclusion": "success",
+    "mainline_scope": "run and necessary job steps; full logs not downloaded"
+  },
+  "test_budget_review": "PASS_F01_CLOSED_F02_PRESERVED",
+  "production_execution_authorized": false
+}

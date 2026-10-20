@@ -1,0 +1,684 @@
+{
+  "task": "DOC-WORLD-QUERY-001",
+  "date": "2026-10-21",
+  "stage": "pre-commit document verification; post-commit SHA/parent/tree/remote and any CI reported externally",
+  "start": {
+    "sha": "7a3acd3855aefdde68fdaed13ebe037f3e9bd6de",
+    "parent": "de8f358d2d281eb4ff914d6ebc20f16986164701",
+    "tree": "17d43169891e71e5e5686ccff8271f98b49800c7",
+    "branch": "feature/world-route-acceptance-001",
+    "status": "clean",
+    "ordinaryDiff": "empty",
+    "cachedDiff": "empty"
+  },
+  "priorReview": {
+    "evidence": "supplied exact-SHA mainline review original, not newly rerun native tests",
+    "sha": "7a3acd3855aefdde68fdaed13ebe037f3e9bd6de",
+    "F01": "CLOSED",
+    "F02": "PRESERVED_CLOSED",
+    "testFiles": 242,
+    "tests": 4318,
+    "numbersAreHistorical": true,
+    "authorNativeRerunByThisTask": false,
+    "mainlineFullCI158LogReadClaimed": false
+  },
+  "actual": {
+    "packageOnly": {
+      "exit": 0,
+      "count": 25,
+      "log": "package-only-verification.json"
+    },
+    "packageWithRepo": {
+      "exit": 0,
+      "count": 52,
+      "log": "repo-package-verification.json"
+    },
+    "architecture": {
+      "command": "npm run validate:architecture",
+      "exit": 0,
+      "DEC": 52,
+      "coreProductionFiles": 329,
+      "log": "architecture.log"
+    },
+    "documentAudit": {
+      "status": "PASS",
+      "startSha": "7a3acd3855aefdde68fdaed13ebe037f3e9bd6de",
+      "branch": "feature/world-route-acceptance-001",
+      "allowedPaths": 23,
+      "actualPaths": [
+        "docs/03-architecture.md",
+        "docs/08-rule-implementation-traceability.md",
+        "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+        "docs/engineering/world-integration/player-query/adoption/checks.json",
+        "docs/engineering/world-integration/player-query/adoption/inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md",
+        "docs/engineering/world-integration/player-query/adoption/inputs/BASELINE-AND-INPUTS.json",
+        "docs/engineering/world-integration/player-query/adoption/inputs/DOC-WORLD-QUERY-001-task-v1.0.md",
+        "docs/engineering/world-integration/player-query/adoption/inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md",
+        "docs/engineering/world-integration/player-query/adoption/inputs/OWNER-authority-and-scope-DOC-WORLD-QUERY-001-v1.0.md",
+        "docs/engineering/world-integration/player-query/adoption/inputs/SHA256SUMS.txt",
+        "docs/engineering/world-integration/player-query/adoption/inputs/approved-documents/player-query-contract-v1.0.md",
+        "docs/engineering/world-integration/player-query/adoption/inputs/approved-documents/player-query-engineering-contract-v1.0.md",
+        "docs/engineering/world-integration/player-query/adoption/inputs/approved-documents/player-query-field-contract-v1.0.json",
+        "docs/engineering/world-integration/player-query/adoption/inputs/verify-doc-package.py",
+        "docs/engineering/world-integration/player-query/player-query-contract-v1.0.md",
+        "docs/engineering/world-integration/player-query/player-query-engineering-contract-v1.0.md",
+        "docs/engineering/world-integration/player-query/player-query-field-contract-v1.0.json",
+        "docs/engineering/world-integration/route-acceptance/completion.md",
+        "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+        "docs/engineering/world-integration/route-acceptance/next-engineering-contract-draft-v1.0.md",
+        "docs/engineering/world-integration/route-acceptance/query-contract-draft-v1.0.md"
+      ],
+      "inputs": [
+        {
+          "file": "docs/engineering/world-integration/player-query/adoption/inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md",
+          "bytes": 5672,
+          "sha256": "f110fb830cd73a3c8e5c37217d065b62c25dbb733044ae286f2a5c7c893ccc00",
+          "rawGitBlob": "2ef42bd04eb02e09921f814c98c02eab45b2428c"
+        },
+        {
+          "file": "docs/engineering/world-integration/player-query/adoption/inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md",
+          "bytes": 2404,
+          "sha256": "be63fde450a1bba49059005599202e1104063855e0297d0590a0af59f3b685ac",
+          "rawGitBlob": "144a3b4fe57e84c45b3a15c3c634718cbea5004a"
+        },
+        {
+          "file": "docs/engineering/world-integration/player-query/adoption/inputs/OWNER-authority-and-scope-DOC-WORLD-QUERY-001-v1.0.md",
+          "bytes": 864,
+          "sha256": "b9bb1ad89dc240253e915b8aaa3719bb4408f0aa26caa42c492b6ab7bda13b8b",
+          "rawGitBlob": "b05046e788633ee38ab0c7f246088db75f1cb490"
+        },
+        {
+          "file": "docs/engineering/world-integration/player-query/adoption/inputs/DOC-WORLD-QUERY-001-task-v1.0.md",
+          "bytes": 8575,
+          "sha256": "4cf78dce8e2d33f3e3a4af5ab7345323bda3ff9c1bf816022b51d9f6afc3f15f",
+          "rawGitBlob": "71d3e29477c031ebfc6875c904b37fe9013e4b66"
+        },
+        {
+          "file": "docs/engineering/world-integration/player-query/adoption/inputs/BASELINE-AND-INPUTS.json",
+          "bytes": 5343,
+          "sha256": "19f8b2c7cd198dd574425d06d74a5985e4ff0c1bddc1f9014fa8dcae734d1aa3",
+          "rawGitBlob": "f25d92eb7925eae22e0b01090fb109c4f330d8ad"
+        },
+        {
+          "file": "docs/engineering/world-integration/player-query/adoption/inputs/SHA256SUMS.txt",
+          "bytes": 998,
+          "sha256": "7182252107684d957d276c02980225c960f29cea2c10cb2877bee77b8ae7b389",
+          "rawGitBlob": "4d5fbe417a21beeec82ee283654626ea6fa8abff"
+        },
+        {
+          "file": "docs/engineering/world-integration/player-query/adoption/inputs/verify-doc-package.py",
+          "bytes": 3419,
+          "sha256": "31b6dac1524b2739770933312df3e68785dfdb0284e3b89545740fd41de7f9cf",
+          "rawGitBlob": "3c6bc5dd0cf4df2587dad7978d2c7b3bea68d9df"
+        },
+        {
+          "file": "docs/engineering/world-integration/player-query/adoption/inputs/approved-documents/player-query-contract-v1.0.md",
+          "bytes": 8808,
+          "sha256": "3d265ed41ba57a652b7295ce38f500d16fa8b073f96626cfca138be3e01f3623",
+          "rawGitBlob": "ac00f8dde4932e710e3dd4b06cd15d3f82dfa0ca"
+        },
+        {
+          "file": "docs/engineering/world-integration/player-query/adoption/inputs/approved-documents/player-query-field-contract-v1.0.json",
+          "bytes": 10614,
+          "sha256": "bb5863b5cbd7330d05b4c633128523194caf7c4f1d0841cc28fcbe29aac9436f",
+          "rawGitBlob": "72a1e8ebb27f04f0c7a23b709148eff469d73d44"
+        },
+        {
+          "file": "docs/engineering/world-integration/player-query/adoption/inputs/approved-documents/player-query-engineering-contract-v1.0.md",
+          "bytes": 5095,
+          "sha256": "f0e84315d28afb5357a64d1a7c43efb6ed43e8818765fbf157c1469a52909f5e",
+          "rawGitBlob": "e0ba4059c25a13798937631366149815c0d3ca0e"
+        }
+      ],
+      "payloads": [
+        {
+          "source": "approved-documents/player-query-contract-v1.0.md",
+          "target": "docs/engineering/world-integration/player-query/player-query-contract-v1.0.md",
+          "sha256": "3d265ed41ba57a652b7295ce38f500d16fa8b073f96626cfca138be3e01f3623",
+          "bytes": 8808,
+          "rawGitBlob": "ac00f8dde4932e710e3dd4b06cd15d3f82dfa0ca",
+          "byteEqual": true
+        },
+        {
+          "source": "approved-documents/player-query-field-contract-v1.0.json",
+          "target": "docs/engineering/world-integration/player-query/player-query-field-contract-v1.0.json",
+          "sha256": "bb5863b5cbd7330d05b4c633128523194caf7c4f1d0841cc28fcbe29aac9436f",
+          "bytes": 10614,
+          "rawGitBlob": "72a1e8ebb27f04f0c7a23b709148eff469d73d44",
+          "byteEqual": true
+        },
+        {
+          "source": "approved-documents/player-query-engineering-contract-v1.0.md",
+          "target": "docs/engineering/world-integration/player-query/player-query-engineering-contract-v1.0.md",
+          "sha256": "f0e84315d28afb5357a64d1a7c43efb6ed43e8818765fbf157c1469a52909f5e",
+          "bytes": 5095,
+          "rawGitBlob": "e0ba4059c25a13798937631366149815c0d3ca0e",
+          "byteEqual": true
+        }
+      ],
+      "prefixes": [
+        {
+          "file": "docs/03-architecture.md",
+          "prefixBytes": 87958,
+          "prefixSha256": "41aeec12880efbea72aa8a4fb0455c3a50a8c572dee41581ca0f53fc36f36eb5",
+          "prefixGitBlob": "75658f6f9294b82bb9c969de6a3b976c1d35b26d",
+          "addedBytes": 2282,
+          "preserved": true
+        },
+        {
+          "file": "docs/08-rule-implementation-traceability.md",
+          "prefixBytes": 82150,
+          "prefixSha256": "f5a4f6cb7d86ecd790b8720d858ac49f91f86d78d87c5c36407908c77daaeb37",
+          "prefixGitBlob": "d8e72aa81b1f4b3803bd9bab6f672647e793d46e",
+          "addedBytes": 2227,
+          "preserved": true
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "prefixBytes": 42094,
+          "prefixSha256": "f789c3944c9427798f3f9f8528a45f4ee24a7f902bc4100b5cb86acde4e34ef2",
+          "prefixGitBlob": "bc556194694bdbd57af062591bbc386c6526c266",
+          "addedBytes": 2251,
+          "preserved": true
+        },
+        {
+          "file": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "prefixBytes": 41421,
+          "prefixSha256": "2cd498e6c0bb3c8c9609d2bea4b66cd41f592582958038df68ee64e78fb54299",
+          "prefixGitBlob": "ae9714af6377ea39eb75f17a6f44f1193d3669a5",
+          "addedBytes": 2338,
+          "preserved": true
+        },
+        {
+          "file": "docs/engineering/world-integration/route-acceptance/completion.md",
+          "prefixBytes": 20150,
+          "prefixSha256": "0d5fe02d82734e3c2aac074d23b98aacde2ea67dfbda0a5dfb2ee77676e7dbd7",
+          "prefixGitBlob": "aa5ce4b91bfa7490d41e78a854e7478a05a5ed18",
+          "addedBytes": 2091,
+          "preserved": true
+        },
+        {
+          "file": "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+          "prefixBytes": 2649,
+          "prefixSha256": "6609ba2d1672d061261b1ad385baa3ae97389aa2ec4d55c34ff65676ab14ea46",
+          "prefixGitBlob": "02328df6abdb35d6311a10ab411dd54a598dec2e",
+          "addedBytes": 2135,
+          "preserved": true
+        },
+        {
+          "file": "docs/engineering/world-integration/route-acceptance/query-contract-draft-v1.0.md",
+          "prefixBytes": 5299,
+          "prefixSha256": "e1452757120a63f362cc98be0df07f79dbbb27f16e1914622cc3c1163aa91e27",
+          "prefixGitBlob": "296f2df1fad8db02527ac041a3242df9872a7f81",
+          "addedBytes": 2169,
+          "preserved": true
+        },
+        {
+          "file": "docs/engineering/world-integration/route-acceptance/next-engineering-contract-draft-v1.0.md",
+          "prefixBytes": 4725,
+          "prefixSha256": "7220bada33c0c155aa96f7ba7cda5efcd2cc53d1c47053360eaced3e4d5d072d",
+          "prefixGitBlob": "710ef69d8f9868c57c23c2207ea4d1985fe3f5d9",
+          "addedBytes": 2176,
+          "preserved": true
+        }
+      ],
+      "protectedWorkingFiles": 1407,
+      "protectedRawBytesUnchanged": true,
+      "sourceCandidates": [
+        {
+          "path": "docs/engineering/world-integration/route-acceptance/query-contract-draft-v1.0.md",
+          "git_blob": "296f2df1fad8db02527ac041a3242df9872a7f81",
+          "matched": true
+        },
+        {
+          "path": "docs/engineering/world-integration/route-acceptance/next-engineering-contract-draft-v1.0.md",
+          "git_blob": "710ef69d8f9868c57c23c2207ea4d1985fe3f5d9",
+          "matched": true
+        },
+        {
+          "path": "docs/engineering/world-integration/route-acceptance/query-field-matrix.json",
+          "git_blob": "334b669e1e616e62296702cc5f17949cf45540e2",
+          "matched": true
+        }
+      ],
+      "fields": {
+        "count": 24,
+        "unique": 24,
+        "allOriginalKeysAndTiersEqual": true,
+        "baselineSupportCounts": {
+          "supported": 3,
+          "partial": 12,
+          "not-supported": 9
+        },
+        "domainPhases": [
+          "first-hub",
+          "active-world",
+          "living-hub",
+          "dead"
+        ],
+        "completePoints": [
+          "first-hub",
+          "stable-active",
+          "battle-decision",
+          "living-hub",
+          "dead"
+        ],
+        "newPlayerKnowledgeAuthorizations": 0,
+        "implementationPassClaims": 0
+      },
+      "utf8Files": 23,
+      "relativeLinksAndAnchors": [
+        {
+          "from": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "to": "inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "to": "inputs/OWNER-authority-and-scope-DOC-WORLD-QUERY-001-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "to": "inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "to": "../player-query-contract-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "to": "../player-query-field-contract-v1.0.json"
+        },
+        {
+          "from": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "to": "../player-query-engineering-contract-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "to": "../../../../03-architecture.md#doc-world-query-001"
+        },
+        {
+          "from": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "to": "../../../../08-rule-implementation-traceability.md#doc-world-query-001"
+        },
+        {
+          "from": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "to": "../../../../design-drafts/world-infected-001/01-world-overview.md#doc-world-query-001"
+        },
+        {
+          "from": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "to": "../../../../design-drafts/world-infected-001/10-decision-queue.md#doc-world-query-001"
+        },
+        {
+          "from": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "to": "../../route-acceptance/completion.md#doc-world-query-001"
+        },
+        {
+          "from": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "to": "../../route-acceptance/first-play-and-release-gates.md#doc-world-query-001"
+        },
+        {
+          "from": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "to": "../../route-acceptance/query-contract-draft-v1.0.md#doc-world-query-001"
+        },
+        {
+          "from": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "to": "../../route-acceptance/next-engineering-contract-draft-v1.0.md#doc-world-query-001"
+        },
+        {
+          "from": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "to": "checks.json"
+        },
+        {
+          "from": "docs/03-architecture.md",
+          "to": "engineering/world-integration/player-query/adoption/inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md"
+        },
+        {
+          "from": "docs/03-architecture.md",
+          "to": "engineering/world-integration/player-query/adoption/inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md"
+        },
+        {
+          "from": "docs/03-architecture.md",
+          "to": "engineering/world-integration/player-query/player-query-contract-v1.0.md"
+        },
+        {
+          "from": "docs/03-architecture.md",
+          "to": "engineering/world-integration/player-query/player-query-field-contract-v1.0.json"
+        },
+        {
+          "from": "docs/03-architecture.md",
+          "to": "engineering/world-integration/player-query/player-query-engineering-contract-v1.0.md"
+        },
+        {
+          "from": "docs/08-rule-implementation-traceability.md",
+          "to": "engineering/world-integration/player-query/adoption/inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md"
+        },
+        {
+          "from": "docs/08-rule-implementation-traceability.md",
+          "to": "engineering/world-integration/player-query/adoption/inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md"
+        },
+        {
+          "from": "docs/08-rule-implementation-traceability.md",
+          "to": "engineering/world-integration/player-query/player-query-contract-v1.0.md"
+        },
+        {
+          "from": "docs/08-rule-implementation-traceability.md",
+          "to": "engineering/world-integration/player-query/player-query-field-contract-v1.0.json"
+        },
+        {
+          "from": "docs/08-rule-implementation-traceability.md",
+          "to": "engineering/world-integration/player-query/player-query-engineering-contract-v1.0.md"
+        },
+        {
+          "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "to": "../../engineering/world-integration/player-query/adoption/inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md"
+        },
+        {
+          "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "to": "../../engineering/world-integration/player-query/adoption/inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md"
+        },
+        {
+          "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "to": "../../engineering/world-integration/player-query/player-query-contract-v1.0.md"
+        },
+        {
+          "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "to": "../../engineering/world-integration/player-query/player-query-field-contract-v1.0.json"
+        },
+        {
+          "from": "docs/design-drafts/world-infected-001/01-world-overview.md",
+          "to": "../../engineering/world-integration/player-query/player-query-engineering-contract-v1.0.md"
+        },
+        {
+          "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "to": "../../engineering/world-integration/player-query/adoption/inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md"
+        },
+        {
+          "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "to": "../../engineering/world-integration/player-query/adoption/inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md"
+        },
+        {
+          "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "to": "../../engineering/world-integration/player-query/player-query-contract-v1.0.md"
+        },
+        {
+          "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "to": "../../engineering/world-integration/player-query/player-query-field-contract-v1.0.json"
+        },
+        {
+          "from": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+          "to": "../../engineering/world-integration/player-query/player-query-engineering-contract-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/completion.md",
+          "to": "../player-query/adoption/inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/completion.md",
+          "to": "../player-query/adoption/inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/completion.md",
+          "to": "../player-query/player-query-contract-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/completion.md",
+          "to": "../player-query/player-query-field-contract-v1.0.json"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/completion.md",
+          "to": "../player-query/player-query-engineering-contract-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+          "to": "../player-query/adoption/inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+          "to": "../player-query/adoption/inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+          "to": "../player-query/player-query-contract-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+          "to": "../player-query/player-query-field-contract-v1.0.json"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+          "to": "../player-query/player-query-engineering-contract-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/query-contract-draft-v1.0.md",
+          "to": "../player-query/adoption/inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/query-contract-draft-v1.0.md",
+          "to": "../player-query/adoption/inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/query-contract-draft-v1.0.md",
+          "to": "../player-query/player-query-contract-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/query-contract-draft-v1.0.md",
+          "to": "../player-query/player-query-field-contract-v1.0.json"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/query-contract-draft-v1.0.md",
+          "to": "../player-query/player-query-engineering-contract-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/next-engineering-contract-draft-v1.0.md",
+          "to": "../player-query/adoption/inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/next-engineering-contract-draft-v1.0.md",
+          "to": "../player-query/adoption/inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/next-engineering-contract-draft-v1.0.md",
+          "to": "../player-query/player-query-contract-v1.0.md"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/next-engineering-contract-draft-v1.0.md",
+          "to": "../player-query/player-query-field-contract-v1.0.json"
+        },
+        {
+          "from": "docs/engineering/world-integration/route-acceptance/next-engineering-contract-draft-v1.0.md",
+          "to": "../player-query/player-query-engineering-contract-v1.0.md"
+        }
+      ],
+      "incrementDiffExit": 0,
+      "newFileWhitespaceChecks": [
+        {
+          "path": "docs/engineering/world-integration/player-query/adoption/DOC-WORLD-QUERY-001-completion.md",
+          "exit": 1,
+          "whitespaceDiagnostics": 0
+        },
+        {
+          "path": "docs/engineering/world-integration/player-query/adoption/checks.json",
+          "exit": 1,
+          "whitespaceDiagnostics": 0
+        },
+        {
+          "path": "docs/engineering/world-integration/player-query/adoption/inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md",
+          "exit": 1,
+          "whitespaceDiagnostics": 0
+        },
+        {
+          "path": "docs/engineering/world-integration/player-query/adoption/inputs/BASELINE-AND-INPUTS.json",
+          "exit": 1,
+          "whitespaceDiagnostics": 0
+        },
+        {
+          "path": "docs/engineering/world-integration/player-query/adoption/inputs/DOC-WORLD-QUERY-001-task-v1.0.md",
+          "exit": 1,
+          "whitespaceDiagnostics": 0
+        },
+        {
+          "path": "docs/engineering/world-integration/player-query/adoption/inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md",
+          "exit": 1,
+          "whitespaceDiagnostics": 0
+        },
+        {
+          "path": "docs/engineering/world-integration/player-query/adoption/inputs/OWNER-authority-and-scope-DOC-WORLD-QUERY-001-v1.0.md",
+          "exit": 1,
+          "whitespaceDiagnostics": 0
+        },
+        {
+          "path": "docs/engineering/world-integration/player-query/adoption/inputs/SHA256SUMS.txt",
+          "exit": 1,
+          "whitespaceDiagnostics": 0
+        },
+        {
+          "path": "docs/engineering/world-integration/player-query/adoption/inputs/approved-documents/player-query-contract-v1.0.md",
+          "exit": 1,
+          "whitespaceDiagnostics": 0
+        },
+        {
+          "path": "docs/engineering/world-integration/player-query/adoption/inputs/approved-documents/player-query-engineering-contract-v1.0.md",
+          "exit": 1,
+          "whitespaceDiagnostics": 0
+        },
+        {
+          "path": "docs/engineering/world-integration/player-query/adoption/inputs/approved-documents/player-query-field-contract-v1.0.json",
+          "exit": 1,
+          "whitespaceDiagnostics": 0
+        },
+        {
+          "path": "docs/engineering/world-integration/player-query/adoption/inputs/verify-doc-package.py",
+          "exit": 1,
+          "whitespaceDiagnostics": 0
+        },
+        {
+          "path": "docs/engineering/world-integration/player-query/player-query-contract-v1.0.md",
+          "exit": 1,
+          "whitespaceDiagnostics": 0
+        },
+        {
+          "path": "docs/engineering/world-integration/player-query/player-query-engineering-contract-v1.0.md",
+          "exit": 1,
+          "whitespaceDiagnostics": 0
+        },
+        {
+          "path": "docs/engineering/world-integration/player-query/player-query-field-contract-v1.0.json",
+          "exit": 1,
+          "whitespaceDiagnostics": 0
+        }
+      ],
+      "cumulative": {
+        "exit": 2,
+        "warnings": [
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:3: trailing whitespace.",
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:4: trailing whitespace.",
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:5: trailing whitespace.",
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:6: trailing whitespace.",
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:7: trailing whitespace.",
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:8: trailing whitespace.",
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:9: trailing whitespace."
+        ],
+        "newExceptions": 0
+      }
+    }
+  },
+  "semanticReview": {
+    "evidenceType": "current source and effective DEC/UIR static reread; no gameplay execution",
+    "conflicts": [],
+    "newRuleOrKnowledgeChoices": [],
+    "fourPhasesFivePoints": true,
+    "setupDoesNotReissueInitial": true,
+    "selectorsNotAuthority": true,
+    "noResolverOrProducerProbeAllowed": true,
+    "noEncodedIdentitySelectorsAllowed": true,
+    "unknownNotSafe": true,
+    "candidateOnlyLocallySuperseded": true,
+    "formalReferences": [
+      "DEC-013",
+      "DEC-025",
+      "DEC-026",
+      "DEC-045",
+      "DEC-049",
+      "DEC-050",
+      "DEC-051",
+      "DEC-052",
+      "UIR-010",
+      "UIR-011",
+      "UIR-012",
+      "UIR-015"
+    ],
+    "sourceReferences": [
+      {
+        "path": "src/core/residence-combat/queries.ts",
+        "facts": "current limited combat/terminal allow-lists, not complete safe ViewModel"
+      },
+      {
+        "path": "src/core/residence-location/knowledge.ts",
+        "facts": "known and last-observed projection; source catalogue boundary retained"
+      },
+      {
+        "path": "src/core/residence-location/identity.ts",
+        "facts": "sourceItemId includes execution seed; not a safe UI selector"
+      },
+      {
+        "path": "src/core/residence-supply/types.ts",
+        "facts": "four domain phases"
+      },
+      {
+        "path": "src/state/residence-session/combat-types.ts",
+        "facts": "full current diagnostic, not ordinary player VM"
+      },
+      {
+        "path": "src/state/residence-session/combat-session.ts",
+        "facts": "createFirst disallows existing current; dispatch owns commit; retrySave does not replay"
+      }
+    ]
+  },
+  "notRun": {
+    "testRun": "NOT RUN: docs-only, not required",
+    "npmCheck": "NOT RUN: docs-only, not required",
+    "typecheck": "NOT RUN",
+    "build": "NOT RUN",
+    "historicalModels": "NOT RUN",
+    "nativeRoutesAnd72Seeds": "NOT RUN",
+    "nativeQueryProbes": "NOT RUN",
+    "browserAndMultitab": "NOT RUN",
+    "ownerPlayability": "NOT RUN"
+  },
+  "testDelta": {
+    "added": 0,
+    "replaced": 0,
+    "deleted": 0,
+    "net": 0,
+    "currentNativeTestCount": "NOT RUN; 242/4318 retained only as prior evidence"
+  },
+  "tooling": {
+    "python": "existing bundled Python 3.12.14",
+    "oldDependencyAlias": "unavailable; exact tool response retained in conversation; working MCP variant then supplied existing runtime",
+    "installs": 0,
+    "verificationScriptEdited": false,
+    "reportWriterFailure": {
+      "code": "ENAMETOOLONG",
+      "errno": -4064,
+      "stage": "native apply_patch argv for checks.json exceeded Windows command-line limit; no child started",
+      "resolution": "same JSON written by bounded apply_patch chunks; verifier and all payload bytes unchanged",
+      "log": "tooling-failures.md"
+    },
+    "orchestrationFailure": "one functions call SyntaxError before nested tools ran; retried with corrected string quoting",
+    "directMultiFilePatchAttempt": "tool reported expected-line failure after updating the temporary audit script only; inspected actual files and used native apply_patch for the remaining two report edits; no payload/verifier change"
+  },
+  "git": {
+    "authorizedBranch": "feature/world-route-acceptance-001",
+    "expectedFiles": 23,
+    "modified": 8,
+    "new": 15,
+    "stageAndCommitBlobCheck": "performed separately after this record",
+    "remoteBefore": "21 heads observed; target at start SHA",
+    "push": "ordinary same branch only; actual result in post-commit receipt"
+  },
+  "evidenceDirectory": "C:/Users/zjl/AppData/Local/Temp/doc-world-query-a67b619e1f234a99be9961f49ebfd2c5",
+  "remainingInScope": [],
+  "stop": "Await mainline exact-SHA document review; no production query started"
+}

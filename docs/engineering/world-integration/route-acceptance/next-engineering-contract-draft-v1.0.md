@@ -50,3 +50,16 @@
 领域phase仍四种：first-hub、active-world、living-hub、dead。合法完整停点按恢复/查询职责分五类：首次中枢；active-world稳定点；active-world完整玩家战斗决策点；生还中枢；完整死亡。活战斗不新增第五领域phase，不能被“稳定四态”字样漏出候选验收。
 
 R1只修TEST执行预算/异常分类；本合同仍DRAFT/未授权，不实现opaque selector，不扩大玩家知识。真实item ID含seed、wound ID含execution的缺口和3/12/9支持分层保持。完整默认本机check的保护旧S时间门槛与准确新SHA CI各自记账，不据作者定向PASS宣布查询或首玩通过。
+
+<a id="doc-world-query-001"></a>
+## DOC-WORLD-QUERY-001 技术合同定稿附记（2026-10-21）
+
+依据[主线技术定稿](../player-query/adoption/inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md)与[预算任务准确 SHA 复审](../player-query/adoption/inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md)，7a3acd3855aefdde68fdaed13ebe037f3e9bd6de 上预算任务限定 12 路径审查 PASS，F01 已关闭，F02 保持关闭。原本机 exit1、CI156 失败、CI157／158 成功及各时点未确认记录按原身份保留，不倒改历史。
+
+原下一工程候选正文和 15 条候选路径保留为历史，不成为本轮或未来默认写许可；同范围未来工程责任由下列定稿工程契约局部替代，实际工程任务仍须另发准确 SHA、工程分支和精确路径。
+
+主线已技术定稿并在本批原字节安装的入口：[玩家安全查询合同 v1.0](../player-query/player-query-contract-v1.0.md)、[24 字段合同](../player-query/player-query-field-contract-v1.0.json)、[下一完整工程契约](../player-query/player-query-engineering-contract-v1.0.md)。本批仍待准确 SHA 文档实审；原 query／next-engineering 候选仅上述同范围局部被替代，原字段矩阵 JSON 保持。3 supported／12 partial／9 not-supported 是支持基线，不是 24 字段已经实现；实际新查询工程未开工。
+
+四领域 phase 为 first-hub、active-world、living-hub、dead；active-world 分稳定世界与完整玩家战斗决策点，合为五合法停点，no-current／blocked 是应用状态。Setup catalog 查询与真实初配发放分开，已有初配不得借查询重发或改选。opaque selector 只是受控引用，不是行动 authority；查询不调用 producer／resolver 试算，不签发行动能力，不从 seed、execution 或 origin 编码玩家选择器。缺正式公开依据的映射保持 unknown 并保留进入 UI 前责任，不推断新知识。
+
+未新增 DEC／UIR，未改玩法、参数或 P/R/S。UI、浏览器存储、多标签、玩家入口、O3 与 Owner 首玩／分段体验仍 OPEN／NOT RUN；本次不授权生产 query 或后继工程。

@@ -1,0 +1,9 @@
+f110fb830cd73a3c8e5c37217d065b62c25dbb733044ae286f2a5c7c893ccc00  AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md
+19f8b2c7cd198dd574425d06d74a5985e4ff0c1bddc1f9014fa8dcae734d1aa3  BASELINE-AND-INPUTS.json
+4cf78dce8e2d33f3e3a4af5ab7345323bda3ff9c1bf816022b51d9f6afc3f15f  DOC-WORLD-QUERY-001-task-v1.0.md
+be63fde450a1bba49059005599202e1104063855e0297d0590a0af59f3b685ac  MAINLINE-WORLD-QUERY-001-ratification-v1.0.md
+b9bb1ad89dc240253e915b8aaa3719bb4408f0aa26caa42c492b6ab7bda13b8b  OWNER-authority-and-scope-DOC-WORLD-QUERY-001-v1.0.md
+3d265ed41ba57a652b7295ce38f500d16fa8b073f96626cfca138be3e01f3623  approved-documents/player-query-contract-v1.0.md
+f0e84315d28afb5357a64d1a7c43efb6ed43e8818765fbf157c1469a52909f5e  approved-documents/player-query-engineering-contract-v1.0.md
+bb5863b5cbd7330d05b4c633128523194caf7c4f1d0841cc28fcbe29aac9436f  approved-documents/player-query-field-contract-v1.0.json
+31b6dac1524b2739770933312df3e68785dfdb0284e3b89545740fd41de7f9cf  verify-doc-package.py

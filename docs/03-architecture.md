@@ -760,3 +760,16 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 原2258e1b本地2worker PASS与CI156 11超时失败保留为各自历史。R1仅修TEST局部30s预算、cold独立前置及严格异常传播：私有实际终局信号/明确条件与程序Error分开；不改P/R/S、参数、数据或格式。四路线/共同八seed的72默认样本及85输出原生双跑保持，12新增异常见证PASS。
 
 本机默认全量check有2保护旧S 5000ms超时，R1未扩权改旧测试，不宣称全量默认门槛关闭；准确新SHA CI提交后另核对。详见[R1作者交付](engineering/world-integration/route-acceptance/completion.md#e03-a-r1)。四领域phase与五合法停点仅候选术语澄清，不接生产query/UI/browser、多标签或O3，不代表主线准确SHA已通过或Owner体验通过。
+
+<a id="doc-world-query-001"></a>
+## DOC-WORLD-QUERY-001 技术合同定稿附记（2026-10-21）
+
+依据[主线技术定稿](engineering/world-integration/player-query/adoption/inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md)与[预算任务准确 SHA 复审](engineering/world-integration/player-query/adoption/inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md)，7a3acd3855aefdde68fdaed13ebe037f3e9bd6de 上预算任务限定 12 路径审查 PASS，F01 已关闭，F02 保持关闭。原本机 exit1、CI156 失败、CI157／158 成功及各时点未确认记录按原身份保留，不倒改历史。
+
+本附记只落实只读投影、同源资格和最小受控选择的技术职责。唯一 current、身体、库存、来源、敌人、钱包与历史继续由既有 P/R/S 持有或校验，不创建第二玩法真相。
+
+主线已技术定稿并在本批原字节安装的入口：[玩家安全查询合同 v1.0](engineering/world-integration/player-query/player-query-contract-v1.0.md)、[24 字段合同](engineering/world-integration/player-query/player-query-field-contract-v1.0.json)、[下一完整工程契约](engineering/world-integration/player-query/player-query-engineering-contract-v1.0.md)。本批仍待准确 SHA 文档实审；原 query／next-engineering 候选仅上述同范围局部被替代，原字段矩阵 JSON 保持。3 supported／12 partial／9 not-supported 是支持基线，不是 24 字段已经实现；实际新查询工程未开工。
+
+四领域 phase 为 first-hub、active-world、living-hub、dead；active-world 分稳定世界与完整玩家战斗决策点，合为五合法停点，no-current／blocked 是应用状态。Setup catalog 查询与真实初配发放分开，已有初配不得借查询重发或改选。opaque selector 只是受控引用，不是行动 authority；查询不调用 producer／resolver 试算，不签发行动能力，不从 seed、execution 或 origin 编码玩家选择器。缺正式公开依据的映射保持 unknown 并保留进入 UI 前责任，不推断新知识。
+
+未新增 DEC／UIR，未改玩法、参数或 P/R/S。UI、浏览器存储、多标签、玩家入口、O3 与 Owner 首玩／分段体验仍 OPEN／NOT RUN；本次不授权生产 query 或后继工程。

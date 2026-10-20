@@ -1,0 +1,244 @@
+{
+  "status": "MAINLINE_RATIFIED_TECHNICAL_FIELD_CONTRACT_NOT_IMPLEMENTATION_PASS",
+  "version": "1.0",
+  "baseline_sha": "7a3acd3855aefdde68fdaed13ebe037f3e9bd6de",
+  "source_matrix_git_blob": "334b669e1e616e62296702cc5f17949cf45540e2",
+  "baseline_support_counts": {
+    "supported": 3,
+    "partial": 12,
+    "not-supported": 9
+  },
+  "domain_phases": [
+    "first-hub",
+    "active-world",
+    "living-hub",
+    "dead"
+  ],
+  "complete_points": [
+    "first-hub",
+    "stable-active",
+    "battle-decision",
+    "living-hub",
+    "dead"
+  ],
+  "fields": [
+    {
+      "field": "first.toolChoices",
+      "baseline_support": "partial",
+      "approved_boundary": "Setup公开工具catalog；已有初配只展示真实锁定选择",
+      "source_authority_reference": "DEC-052 D09",
+      "owner_requirement": "catalog + initial choice owner",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "first.specialtyChoices",
+      "baseline_support": "partial",
+      "approved_boundary": "Setup公开专长catalog；不新增改选或重新发物",
+      "source_authority_reference": "DEC-005 / DEC-052 D09",
+      "owner_requirement": "shared-initial / formal catalog",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "phase",
+      "baseline_support": "partial",
+      "approved_boundary": "四phase、五完整停点；no-current为应用状态",
+      "source_authority_reference": "DEC-049 / DEC-051",
+      "owner_requirement": "S canonical current",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "location",
+      "baseline_support": "partial",
+      "approved_boundary": "当前公开节点名；终局不伪造活动位置",
+      "source_authority_reference": "DEC-050 / DEC-052 D02",
+      "owner_requirement": "G2 position / CombatValue",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "taskDay",
+      "baseline_support": "partial",
+      "approved_boundary": "活动Day1—7或明确历史日；不生成Day8活动委托",
+      "source_authority_reference": "DEC-050",
+      "owner_requirement": "G1 clock / terminal summary",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "map.nodes",
+      "baseline_support": "supported",
+      "approved_boundary": "仅已知节点名与访问事实",
+      "source_authority_reference": "DEC-013 /045 /050; UIR-011",
+      "owner_requirement": "G2 canonical knowledge",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "map.routes",
+      "baseline_support": "partial",
+      "approved_boundary": "当前与last-observed分开；未知边不占位泄露",
+      "source_authority_reference": "DEC-045 /050; UIR-011",
+      "owner_requirement": "G2 knowledge + investigation witnesses",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "move.options",
+      "baseline_support": "not-supported",
+      "approved_boundary": "当前已知单边正式资格与费用；不自动走多边",
+      "source_authority_reference": "DEC-050 /052",
+      "owner_requirement": "formal movement/energy qualification owner",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "sources",
+      "baseline_support": "not-supported",
+      "approved_boundary": "当前可观察机会与一次领取事实；未揭示输出不可见",
+      "source_authority_reference": "DEC-013 /052 D03",
+      "owner_requirement": "E01 task source / productions",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "ground",
+      "baseline_support": "partial",
+      "approved_boundary": "当前本地已揭示真实物，名称数量及公开物理属性",
+      "source_authority_reference": "DEC-017 /050 /052",
+      "owner_requirement": "canonical local ground / ItemState",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "carried",
+      "baseline_support": "not-supported",
+      "approved_boundary": "真实背包、装备、快捷与必要公开资源；opaque item selector",
+      "source_authority_reference": "DEC-016 /017 /052",
+      "owner_requirement": "inventory / item-state / CombatValue",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "tasks.publicObjectives",
+      "baseline_support": "partial",
+      "approved_boundary": "目标、真实取得／安装／持有／交付分开；仅允许观察事实",
+      "source_authority_reference": "DEC-051 C01 /052 D02",
+      "owner_requirement": "task producers / terminal eligibility owner",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "terminal.eligibility",
+      "baseline_support": "supported",
+      "approved_boundary": "deliver／withdraw／deadline；false不揭示隐藏细节",
+      "source_authority_reference": "DEC-051",
+      "owner_requirement": "P/S terminal safe query",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "terminal.result",
+      "baseline_support": "not-supported",
+      "approved_boundary": "已提交真实奖罚和处置摘要；不返回完整receipt/origin",
+      "source_authority_reference": "DEC-051",
+      "owner_requirement": "committed terminal receipt owner",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "combat.intent",
+      "baseline_support": "supported",
+      "approved_boundary": "正式当前意图与相对危险；非未来序列／精确伤害概率",
+      "source_authority_reference": "DEC-025 /052; UIR-012",
+      "owner_requirement": "P/S combat safe query",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "combat.actions",
+      "baseline_support": "partial",
+      "approved_boundary": "当前正式可用命令及目标；opaque wound/item selector",
+      "source_authority_reference": "DEC-025 /037 /052",
+      "owner_requirement": "P combat qualification owner",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "combat.enemyStage",
+      "baseline_support": "not-supported",
+      "approved_boundary": "复用正式公开阶段owner；无敌HP或连续百分比",
+      "source_authority_reference": "DEC-025 /052; UIR-012",
+      "owner_requirement": "formal enemy public-stage owner",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "combat.relativeTimeline",
+      "baseline_support": "not-supported",
+      "approved_boundary": "正式可知相对顺序；无raw CTB、无resolver预测",
+      "source_authority_reference": "DEC-025; UIR-012",
+      "owner_requirement": "profiled safe metadata / projection",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "body.hp",
+      "baseline_support": "partial",
+      "approved_boundary": "玩家真实HP/max，不伪造恢复",
+      "source_authority_reference": "DEC-026 /050",
+      "owner_requirement": "canonical player condition / approved limits",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "body.bleedingWounds",
+      "baseline_support": "partial",
+      "approved_boundary": "已知伤势标签、流血与可选目标；无raw wound ID",
+      "source_authority_reference": "DEC-026 /052 D06; UIR-010",
+      "owner_requirement": "condition / CombatValue",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "body.energySatiety",
+      "baseline_support": "not-supported",
+      "approved_boundary": "当前E／饱食／已知日额与真实资源",
+      "source_authority_reference": "DEC-050 /052",
+      "owner_requirement": "G1 body / daily usage",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "body.infectionWarning",
+      "baseline_support": "not-supported",
+      "approved_boundary": "仅已批准当前公开阶段与机制；缺安全映射为unknown",
+      "source_authority_reference": "DEC-026 /050; UIR-010",
+      "owner_requirement": "new-world formal safe condition metadata",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "persistence.feedback",
+      "baseline_support": "partial",
+      "approved_boundary": "真实已保存／内存已提交但保存失败／读取受阻",
+      "source_authority_reference": "DEC-051 C09 / S contract",
+      "owner_requirement": "S persistence diagnostic safe mapping",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    },
+    {
+      "field": "staticHub.successors",
+      "baseline_support": "not-supported",
+      "approved_boundary": "当前无后继内容；不重开委托，不把无内容当死亡",
+      "source_authority_reference": "DEC-049 /051",
+      "owner_requirement": "mission lifecycle / declared content supply",
+      "implementation_status": "NOT_EVALUATED_BY_THIS_DOC_TASK",
+      "new_player_knowledge_authorized": false
+    }
+  ],
+  "unknown_policy": "缺正式安全映射时不推断新知识；记录阻塞字段和进入UI前责任，不能把unknown当safe。",
+  "scope_note": "这是主线技术合同；原candidate字段和支持分层保持为历史快照，未宣称已生产实现。"
+}

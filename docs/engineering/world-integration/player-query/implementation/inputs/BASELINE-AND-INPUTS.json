@@ -1,0 +1,206 @@
+{
+  "task": "ENG-WORLD-PLAYER-QUERY-001",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "8cddbdc3243561aaef5eb9a4eb6bd74dcbca11f3",
+  "parent_sha": "7a3acd3855aefdde68fdaed13ebe037f3e9bd6de",
+  "start_tree": "758c5cf11eb3ae15c543b50f30a7e4f5a703f38c",
+  "source_branch": "feature/world-route-acceptance-001",
+  "target_branch": "feature/world-player-query-001",
+  "author_test_history_only": {
+    "files": 242,
+    "tests": 4318,
+    "this_document_task_tests": "NOT RUN"
+  },
+  "ci159": {
+    "run_id": 39458623851,
+    "job_id": 118751927647,
+    "head_sha": "8cddbdc3243561aaef5eb9a4eb6bd74dcbca11f3",
+    "status": "completed",
+    "conclusion": "success",
+    "mainline_scope": "run + job/necessary steps; full logs/test count not re-downloaded"
+  },
+  "approved_contracts": [
+    {
+      "path": "docs/engineering/world-integration/player-query/player-query-contract-v1.0.md",
+      "sha256": "3d265ed41ba57a652b7295ce38f500d16fa8b073f96626cfca138be3e01f3623",
+      "git_blob": "ac00f8dde4932e710e3dd4b06cd15d3f82dfa0ca"
+    },
+    {
+      "path": "docs/engineering/world-integration/player-query/player-query-field-contract-v1.0.json",
+      "sha256": "bb5863b5cbd7330d05b4c633128523194caf7c4f1d0841cc28fcbe29aac9436f",
+      "git_blob": "72a1e8ebb27f04f0c7a23b709148eff469d73d44"
+    },
+    {
+      "path": "docs/engineering/world-integration/player-query/player-query-engineering-contract-v1.0.md",
+      "sha256": "f0e84315d28afb5357a64d1a7c43efb6ed43e8818765fbf157c1469a52909f5e",
+      "git_blob": "e0ba4059c25a13798937631366149815c0d3ca0e"
+    }
+  ],
+  "archive_input_files": [
+    "ENG-WORLD-PLAYER-QUERY-001-task-v1.0.md",
+    "OWNER-authority-and-scope-PLAYER-QUERY-001-v1.0.md",
+    "AUD-8cddbdc-DOC-WORLD-QUERY-001-review-v1.0.md",
+    "BASELINE-AND-INPUTS.json",
+    "SHA256SUMS.txt"
+  ],
+  "archive_prefix": "docs/engineering/world-integration/player-query/implementation/inputs",
+  "allowed_paths": [
+    "src/core/residence-location/knowledge.ts",
+    "src/core/residence-location/supply-knowledge.ts",
+    "src/core/residence-location/validation.ts",
+    "src/core/residence-location/movement.ts",
+    "src/core/residence-location/items.ts",
+    "src/core/residence-task/shared-actions.ts",
+    "src/core/residence-task/shared-sources.ts",
+    "src/core/residence-task/shared-transfer.ts",
+    "src/core/residence-task/plans.ts",
+    "src/core/residence-task/validation.ts",
+    "src/core/residence-supply/shared-medical.ts",
+    "src/core/residence-supply/shared-maintenance.ts",
+    "src/core/residence-supply/shared-inventory.ts",
+    "src/core/residence-supply/shared-validation.ts",
+    "src/core/residence-supply/cycle-adapter.ts",
+    "src/core/residence-terminal/supply-settlement-shared.ts",
+    "src/core/residence-combat/player-query-types.ts",
+    "src/core/residence-combat/player-query.ts",
+    "src/core/residence-combat/player-query.test.ts",
+    "src/core/residence-combat/player-query-privacy.test.ts",
+    "src/core/residence-location/player-knowledge.ts",
+    "src/core/residence-location/player-qualification.ts",
+    "src/core/residence-location/player-knowledge.test.ts",
+    "src/core/residence-location/player-qualification.test.ts",
+    "src/core/residence-task/player-query.ts",
+    "src/core/residence-task/player-query-types.ts",
+    "src/core/residence-task/qualification.ts",
+    "src/core/residence-task/player-query.test.ts",
+    "src/core/residence-task/qualification.test.ts",
+    "src/core/residence-supply/player-query.ts",
+    "src/core/residence-supply/player-query-types.ts",
+    "src/core/residence-supply/medical-qualification.ts",
+    "src/core/residence-supply/maintenance-qualification.ts",
+    "src/core/residence-supply/inventory-qualification.ts",
+    "src/core/residence-supply/player-query.test.ts",
+    "src/core/residence-supply/medical-qualification.test.ts",
+    "src/core/residence-supply/maintenance-qualification.test.ts",
+    "src/core/residence-supply/inventory-qualification.test.ts",
+    "src/core/residence-terminal/player-query.ts",
+    "src/core/residence-terminal/player-query.test.ts",
+    "src/state/residence-session/player-types.ts",
+    "src/state/residence-session/player-validation.ts",
+    "src/state/residence-session/player-context.ts",
+    "src/state/residence-session/player-selectors.ts",
+    "src/state/residence-session/player-queries.ts",
+    "src/state/residence-session/player-preview.ts",
+    "src/state/residence-session/player-commands.ts",
+    "src/state/residence-session/player-errors.ts",
+    "src/state/residence-session/player-facade.ts",
+    "src/state/residence-session/player-index.ts",
+    "src/state/residence-session/player-controlled.ts",
+    "src/state/residence-session/player-phases.test.ts",
+    "src/state/residence-session/player-setup.test.ts",
+    "src/state/residence-session/player-fields.test.ts",
+    "src/state/residence-session/player-selectors.test.ts",
+    "src/state/residence-session/player-stale.test.ts",
+    "src/state/residence-session/player-privacy.test.ts",
+    "src/state/residence-session/player-purity.test.ts",
+    "src/state/residence-session/player-preview.test.ts",
+    "src/state/residence-session/player-dispatch.test.ts",
+    "src/state/residence-session/player-persistence.test.ts",
+    "src/state/residence-session/player-compatibility.test.ts",
+    "src/state/residence-session/player-route.integration.test.ts",
+    "src/state/residence-session/player-test-fixtures.ts",
+    "src/state/residence-session/player-test-routes.ts",
+    "src/state/residence-session/player-test-observers.ts",
+    "src/content/infected-world-v0.1/player-query.ts",
+    "src/content/infected-world-v0.1/player-query.test.ts",
+    "docs/engineering/world-integration/player-query/implementation/completion.md",
+    "docs/engineering/world-integration/player-query/implementation/implementation-notes.md",
+    "docs/engineering/world-integration/player-query/implementation/contract-and-support.md",
+    "docs/engineering/world-integration/player-query/implementation/verification-results.json",
+    "docs/engineering/world-integration/player-query/implementation/field-support.json",
+    "docs/engineering/world-integration/player-query/implementation/inputs/ENG-WORLD-PLAYER-QUERY-001-task-v1.0.md",
+    "docs/engineering/world-integration/player-query/implementation/inputs/OWNER-authority-and-scope-PLAYER-QUERY-001-v1.0.md",
+    "docs/engineering/world-integration/player-query/implementation/inputs/AUD-8cddbdc-DOC-WORLD-QUERY-001-review-v1.0.md",
+    "docs/engineering/world-integration/player-query/implementation/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/world-integration/player-query/implementation/inputs/SHA256SUMS.txt",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "existing_narrow_qualification_paths": [
+    "src/core/residence-location/knowledge.ts",
+    "src/core/residence-location/supply-knowledge.ts",
+    "src/core/residence-location/validation.ts",
+    "src/core/residence-location/movement.ts",
+    "src/core/residence-location/items.ts",
+    "src/core/residence-task/shared-actions.ts",
+    "src/core/residence-task/shared-sources.ts",
+    "src/core/residence-task/shared-transfer.ts",
+    "src/core/residence-task/plans.ts",
+    "src/core/residence-task/validation.ts",
+    "src/core/residence-supply/shared-medical.ts",
+    "src/core/residence-supply/shared-maintenance.ts",
+    "src/core/residence-supply/shared-inventory.ts",
+    "src/core/residence-supply/shared-validation.ts",
+    "src/core/residence-supply/cycle-adapter.ts",
+    "src/core/residence-terminal/supply-settlement-shared.ts"
+  ],
+  "append_only_paths": [
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md"
+  ],
+  "source_observations": [
+    {
+      "path": "src/state/residence-session/combat-session.ts",
+      "git_blob": "b777a75b2b96dca316af77759ebe9ecd9a358173",
+      "note": "Existing unique owner; wrap it, do not duplicate current/commit/write."
+    },
+    {
+      "path": "src/core/residence-combat/queries.ts",
+      "git_blob": "dc63aae64f734c07e5a4838ae4f39f83f0f95703",
+      "note": "Current subset query / raw technical action targets."
+    },
+    {
+      "path": "src/core/combat/combat-selectors.ts",
+      "git_blob": "316042ba7a0ac12b52f188beb2ecd4e134055357",
+      "note": "Existing selectEnemyHealthPhase; read-only reuse, no new thresholds."
+    },
+    {
+      "path": "src/core/residence-location/supply-knowledge.ts",
+      "git_blob": "c734298dbc48ba72ca9fea46f93dda196bdc7abe",
+      "note": "Known edges plus witnesses."
+    },
+    {
+      "path": "src/core/residence-location/movement.ts",
+      "git_blob": "a978f2a37653dc962416a9856948ac7fdcd714ab"
+    },
+    {
+      "path": "src/core/residence-task/shared-actions.ts",
+      "git_blob": "a0588a86cb3e11c657587ad0de402079074d0f23"
+    },
+    {
+      "path": "src/core/residence-task/shared-sources.ts",
+      "git_blob": "2a2589a47b67fb1983be24e885458885c0e92857"
+    },
+    {
+      "path": "src/core/residence-supply/shared-medical.ts",
+      "git_blob": "03f0d083bee6434c6aecf688494b9aa9fe7c8806"
+    },
+    {
+      "path": "src/core/residence-supply/shared-maintenance.ts",
+      "git_blob": "f98e81469f9cf74d027f7d531210f030fcd72752"
+    },
+    {
+      "path": "src/core/residence-supply/shared-inventory.ts",
+      "git_blob": "f7f79575ddcf36c6b0f44f844cd425a37a669050"
+    }
+  ],
+  "no_next_phase_auto_authorized": true,
+  "protected_legacy_exports": "Use new player-index/player-controlled; no edits to old state/combat index/controlled or old exact-export tests.",
+  "test_budget": "Existing 30s budgets unchanged. Only newly created player-route.integration.test.ts full chains may have per-case 30000ms.",
+  "no_ui_browser_multitab_o3": true,
+  "new_dependency_authorized": false
+}

@@ -9,6 +9,7 @@ import { cycleContext, ensure } from './shared-validation'
 import { supplyBodyAction } from './cycle-adapter'
 import { partitionRanges } from './provenance'
 import type { SupplyDependencies } from './types'
+import { requireSupplySplit, requireSupplyMerge, requireSupplyQuickTarget } from './inventory-qualification'
 export const supplyPlacementSchema = z.strictObject({ x: countSchema, y: countSchema, rotated: z.boolean() })
 const base = { expectedRevision: countSchema }
 export const supplyInventorySchema = z.discriminatedUnion('kind', [
@@ -21,9 +22,7 @@ export const supplyInventorySchema = z.discriminatedUnion('kind', [
   z.strictObject({ ...base, kind: z.literal('drop'), instanceId: idSchema }),
 ])
 export function splitSupplyStack<V extends SupplyDomain>(value: V, instanceId: string, amount: number, deps: SupplyDependencies) {
-  const item = value.carried.backpack.items.find(i => i.instanceId === instanceId)
-  ensure(item && deps.catalog.physical.get(item.definitionId).stacking.kind === 'stackable' && amount < item.quantity &&
-    Number.isSafeInteger(amount) && amount > 0, 'No legal split', 'NOT_AVAILABLE')
+  const item = requireSupplySplit(value, instanceId, amount, deps)
   const childId = deriveStableSplitInstanceId({ scope: 'supply-v1:' + value.character.revision, sourceInstanceId: instanceId,
     sourceQuantityBeforeSplit: item.quantity, quantity: amount })
   ensure(!value.lineage.some(l => l.instanceId === childId), 'Split identity reused')
@@ -61,13 +60,7 @@ export function planSharedInventory<V extends SupplyDomain, P>(value: V, request
       split.item, { instanceId: split.item.instanceId, ...command.placement }, deps.catalog.physical) } }
   }
   if (command.kind === 'merge') {
-    const source = bp.items.find(i => i.instanceId === command.instanceId), target = bp.items.find(i => i.instanceId === command.targetId)
-    ensure(source && target && source.instanceId !== target.instanceId && source.definitionId === target.definitionId &&
-      command.quantity <= source.quantity, 'No compatible merge', 'NOT_AVAILABLE')
-    const definition = deps.catalog.physical.get(source.definitionId)
-    ensure(definition.stacking.kind === 'stackable' && target.quantity + command.quantity <= definition.stacking.maxQuantity, 'Stack capacity')
-    ensure(areItemStatesStackCompatible(value.itemStates.states.find(s => s.instanceId === source.instanceId)!,
-      value.itemStates.states.find(s => s.instanceId === target.instanceId)!), 'Incompatible resource')
+    const { source, target } = requireSupplyMerge(value, command.instanceId, command.targetId, command.quantity, deps)
     const allocation = value.allocations.find(a => a.instanceId === source.instanceId)!, parts = partitionRanges(allocation.ranges, command.quantity)
     const remaining = source.quantity - command.quantity
     next = { ...value, unitTransfers: [...value.unitTransfers, { from: source.instanceId, to: target.instanceId,
@@ -81,9 +74,7 @@ export function planSharedInventory<V extends SupplyDomain, P>(value: V, request
         [a.instanceId === target.instanceId ? { ...a, ranges: [...a.ranges, ...parts.taken] } : a]) }
   }
   if (command.kind === 'to-quick') {
-    ensure(command.slot < value.carried.quickSlots.slots.length && value.carried.quickSlots.slots[command.slot] === null, 'Target slot not empty')
-    const item = bp.items.find(i => i.instanceId === command.instanceId)
-    ensure(item && deps.catalog.containers.quickSlotCatalog.get(item.definitionId).kind === 'eligible', 'Not quick eligible')
+    const item = requireSupplyQuickTarget(value, command.instanceId, command.slot, deps)
     let moved = item
     if (item.quantity > 1) {
       const split = splitSupplyStack(value, item.instanceId, 1, deps); next = split.value; moved = split.item

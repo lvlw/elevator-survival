@@ -23,14 +23,26 @@ export function markSupplyProduction<V extends SupplyDomain>(v: V, id: string, m
     facts: v.site.facts.map(f => f.id === factId ? { ...f, value: true } : f) } }
 }
 export function spendEquippedSupplyTool<V extends SupplyDomain>(v: V, id: string | undefined, definitionId: string, costKey: string, deps: SupplyDependencies): V {
-  const tool = v.carried.equipment.utility
-  ensure(id && tool?.instanceId === id && tool.definitionId === definitionId, 'Explicit equipped tool required', 'NOT_AVAILABLE')
+  requireEquippedSupplyTool(v, id, definitionId)
   const state = v.itemStates.states.find(s => s.instanceId === id)!
   const result = consumeCommittedResource(state, numberValue(deps.configuration, costKey))
   return { ...v, itemStates: { states: v.itemStates.states.map(s => s.instanceId === id ? result.state : s) } }
 }
+export function requireEquippedSupplyTool(v: SupplyDomain, id: string | undefined, definitionId: string) {
+  const tool = v.carried.equipment.utility
+  ensure(id && tool?.instanceId === id && tool.definitionId === definitionId, 'Explicit equipped tool required', 'NOT_AVAILABLE')
+  return tool
+}
 export function consumeSupplyRecipe<V extends SupplyDomain>(v: V, inputs: readonly { instanceId: string; quantity: number }[], recipeKey: string | Readonly<Record<string, number>>,
   deps: SupplyDependencies, installed = false) {
+  assertSupplyRecipe(v, inputs, recipeKey, deps)
+  let next = v
+  for (const selected of inputs) next = consumeSupplyUnits(next, selected.instanceId, selected.quantity, deps, installed ? 'installed' : 'consumed')
+  return next
+}
+/** Checks real selected units/provenance only; never consumes or issues anything. */
+export function assertSupplyRecipe(v: SupplyDomain, inputs: readonly { instanceId: string; quantity: number }[],
+  recipeKey: string | Readonly<Record<string, number>>, deps: SupplyDependencies): void {
   ensure(new Set(inputs.map(i => i.instanceId)).size === inputs.length, 'Repeated consumption target')
   const recipe = typeof recipeKey === 'string' ? tableValue(deps.configuration, recipeKey) : recipeKey, actual = new Map<string, number>()
   for (const selected of inputs) {
@@ -46,9 +58,6 @@ export function consumeSupplyRecipe<V extends SupplyDomain>(v: V, inputs: readon
     }
   }
   ensure(Object.keys(recipe).every(a => actual.get(a) === recipe[a]) && actual.size === Object.keys(recipe).length, 'Incomplete exact recipe', 'NOT_AVAILABLE')
-  let next = v
-  for (const selected of inputs) next = consumeSupplyUnits(next, selected.instanceId, selected.quantity, deps, installed ? 'installed' : 'consumed')
-  return next
 }
 export function grantSupplyTask<V extends SupplyDomain>(v: V, id: string, alias: string, quantity: number,
   placement: { x: number; y: number; rotated: boolean }, drawIndex: number, deps: SupplyDependencies) {

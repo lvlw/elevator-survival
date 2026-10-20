@@ -333,3 +333,11 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 四领域 phase 为 first-hub、active-world、living-hub、dead；active-world 分稳定世界与完整玩家战斗决策点，合为五合法停点，no-current／blocked 是应用状态。Setup catalog 查询与真实初配发放分开，已有初配不得借查询重发或改选。opaque selector 只是受控引用，不是行动 authority；查询不调用 producer／resolver 试算，不签发行动能力，不从 seed、execution 或 origin 编码玩家选择器。缺正式公开依据的映射保持 unknown 并保留进入 UI 前责任，不推断新知识。
 
 未新增 DEC／UIR，未改玩法、参数或 P/R/S。UI、浏览器存储、多标签、玩家入口、O3 与 Owner 首玩／分段体验仍 OPEN／NOT RUN；本次不授权生产 query 或后继工程。
+
+## ENG-WORLD-PLAYER-QUERY-001 作者实现附记（2026-10-21）
+
+安全查询／选择接缝现为本批作者实现，等待准确 SHA 实审；原候选和历史未实现／失败记录保留原时点。24 键覆盖不等于所有公开语义已冻结：新世界感染公开阶段无批准映射，保持 unknown，进入 UI 前须由主线明确责任，不凭显示需要新增阈值。
+
+本批没有新增 DEC／UIR、玩法参数、委托、UI 或发布安排。后继工程不自动获准；Owner 首玩、分段突破、浏览器／多标签及 O3 门槛保持 OPEN／NOT RUN。
+
+实际接口、支持边界与证据见[本轮工程交付](../../engineering/world-integration/player-query/implementation/contract-and-support.md)。不自动进入 UI 或下一工程。

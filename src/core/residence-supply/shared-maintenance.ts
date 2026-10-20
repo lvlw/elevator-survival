@@ -10,6 +10,7 @@ import { numberValue, tableFieldValue } from './config'
 import { consumeSupplyRecipe } from '../residence-task/plans'
 import { materialInputsSchema } from '../residence-task/validation'
 import { supplyBodyAction, supplyEnergyQuery, supplyPaidCost } from './cycle-adapter'
+import { maintenancePool, requireMaintenanceAllocations, requireMaintenanceTarget, maintenanceRecipe } from './maintenance-qualification'
 export const supplyMaintenanceSchema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('mechanical'), expectedRevision: countSchema, inputs: materialInputsSchema,
     allocations: z.array(z.strictObject({ instanceId: idSchema, amount: positiveSchema })).min(1) }),
@@ -20,25 +21,20 @@ export function planSharedMaintenance<V extends SupplyDomain, P>(value: V, reque
   const c = parseResidence(supplyMaintenanceSchema, request)
   requireSupplyDomainAction(value, true)
   ensure(c.expectedRevision === value.character.revision, 'Stale maintenance revision', 'STALE_AUTHORITY')
-  const mechanical = c.kind === 'mechanical', pool = numberValue(deps.configuration, 'restore.' + (mechanical ? 'metal_pool' : c.kind === 'recharge' ? 'lamp' : c.kind))
+  const mechanical = c.kind === 'mechanical', pool = maintenancePool(c.kind, deps)
   const allocations = c.kind === 'mechanical' ? c.allocations : [{ instanceId: c.instanceId, amount: pool }]
-  ensure(new Set(allocations.map(a => a.instanceId)).size === allocations.length &&
-    allocations.reduce((n, a) => n + a.amount, 0) <= pool, 'Mechanical total pool exceeded or duplicate target')
+  requireMaintenanceAllocations(allocations, pool)
   let states = [...value.itemStates.states]
   const actual: { instanceId: string; requested: number; restored: number; unused: number }[] = []
   for (const a of allocations) {
-    const item = carriedItems(value.carried).find(i => i.instanceId === a.instanceId)
-    ensure(item && (mechanical ? ['weapon_metal_pipe', 'utility_crowbar'] :
-      c.kind === 'coat' ? ['armor_heavy_coat'] : c.kind === 'toolbox' ? ['utility_toolkit'] : ['utility_flashlight']).includes(item.definitionId), 'Wrong actual maintenance target', 'NOT_AVAILABLE')
+    const item = requireMaintenanceTarget(value, a.instanceId, c.kind)
     const state = states.find(s => s.instanceId === item.instanceId)!
     const restored = restoreItemResource(state, a.amount, deps.catalog.resources)
     ensure(restored.restored > 0, 'Resource already full', 'NOT_AVAILABLE')
     states = states.map(s => s.instanceId === state.instanceId ? restored.state : s)
     actual.push({ instanceId: item.instanceId, requested: a.amount, restored: restored.restored, unused: restored.unused })
   }
-  const recipe = tableFieldValue(deps.configuration, 'maintenance.inputs', mechanical ?
-    (allocations.some(a => value.carried.equipment.weapon?.instanceId === a.instanceId) ? 'pipe' : 'crow') :
-    c.kind === 'recharge' ? 'lamp' : c.kind)
+  const recipe = maintenanceRecipe(value, c.kind, allocations, deps)
   let next = consumeSupplyRecipe(value, c.inputs, recipe, deps)
   next = { ...next, itemStates: { states: states.filter(s => next.itemStates.states.some(n => n.instanceId === s.instanceId)) } }
   const cost = supplyPaidCost(value, numberValue(deps.configuration, c.kind === 'recharge' ? 'recharge' : 'maintenance.' + c.kind), deps)

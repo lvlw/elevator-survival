@@ -7,6 +7,7 @@ import { sameResidenceValue } from '../character-cycle/validation'
 import { LocationError, type LocationAuthority, type LocationDependencies, type LocationPlan, type ResidenceLocationSnapshot } from './types'
 import { edgePassable, readLocationContext, requireActionContext } from './validation'
 import { observeLocationArrival } from './knowledge'
+import { requireKnownResidenceEdge } from './player-qualification'
 
 // Issued-plan provenance and stale-base comparison only; no current-state/install owner.
 const bases = new WeakMap<LocationPlan, string>()
@@ -50,10 +51,8 @@ export function planResidenceBoundMove(input: unknown, request: unknown, authori
   const ctx = requireActionContext(input, request, authority, deps)
   const { command, snapshot, catalog } = ctx
   if (command.kind !== 'move') throw new LocationError('INVALID_INPUT', 'Move command required')
-  const edge = catalog.data.edges.find((e) => e.id === command.edgeId)
-  if (!edge || edge.from !== snapshot.site.nodeId || !(policy?.knownEdges(snapshot) ?? snapshot.site.knowledge.knownEdgeIds).includes(edge.id) || !edgePassable(snapshot, edge)) {
-    throw new LocationError('NOT_AVAILABLE', 'Not a known currently traversable outgoing edge')
-  }
+  const edge = requireKnownResidenceEdge(snapshot, catalog, command.edgeId,
+    policy?.knownEdges(snapshot) ?? snapshot.site.knowledge.knownEdgeIds, e => edgePassable(snapshot, e))
   const body = planResidenceAction(snapshot.character, { identity: snapshot.character.identity,
     expectedRevision: snapshot.character.revision, action: 'move', cost: policy?.cost(snapshot, edge) ?? edge.cost }, ctx.authority.cycle, deps.residence,
   (completion) => ({ completion, effects: edge.arrival }))

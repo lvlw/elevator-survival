@@ -773,3 +773,11 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 四领域 phase 为 first-hub、active-world、living-hub、dead；active-world 分稳定世界与完整玩家战斗决策点，合为五合法停点，no-current／blocked 是应用状态。Setup catalog 查询与真实初配发放分开，已有初配不得借查询重发或改选。opaque selector 只是受控引用，不是行动 authority；查询不调用 producer／resolver 试算，不签发行动能力，不从 seed、execution 或 origin 编码玩家选择器。缺正式公开依据的映射保持 unknown 并保留进入 UI 前责任，不推断新知识。
 
 未新增 DEC／UIR，未改玩法、参数或 P/R/S。UI、浏览器存储、多标签、玩家入口、O3 与 Owner 首玩／分段体验仍 OPEN／NOT RUN；本次不授权生产 query 或后继工程。
+
+## ENG-WORLD-PLAYER-QUERY-001 作者实现附记（2026-10-21）
+
+新增 headless 玩家 facade 受控包裹既有 v4 CombatSession；唯一 current、提交、预编码与 writer 不变。普通类型入口与受控创建入口分离，普通查询不返回 raw current／commit／命令／真实实例身份。对象身份 selector 仅在私有上下文绑定，canonical 推进或恢复使旧句柄失效；retrySave 不推进 current。查询／预览／解析不执行生产者或 resolver；显式 execute 委托原 S 一次。
+
+九份获准宿主仅抽取纯资格／费用／几何检查；旧 CTB、G1、S/domain、codec/policy/expected 和既有测试保留。四 phase、五完整停点与 no-current／blocked 分层，24 字段按白名单投影。感染公开阶段仍 unknown，不移植旧医院阈值；远端缺真实通行观察的调查边不伪装最新可通行。
+
+实际接口、支持边界与证据见[本轮工程交付](engineering/world-integration/player-query/implementation/contract-and-support.md)。不自动进入 UI 或下一工程。

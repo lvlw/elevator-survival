@@ -1,0 +1,208 @@
+{
+  "task": "ENG-WORLD-PLAYER-QUERY-001",
+  "ratified_contract_unchanged": true,
+  "covered_fields": 24,
+  "implemented_public_mappings": 23,
+  "explicit_unknown": 1,
+  "fields": [
+    {
+      "field": "first.toolChoices",
+      "status": "implemented",
+      "api": "player.setup / view.first.toolChoices",
+      "knowledge": "DEC-052 D09 catalogue; S current.choices",
+      "owner": "player-facade.setup",
+      "test": "src/state/residence-session/player-phases.test.ts"
+    },
+    {
+      "field": "first.specialtyChoices",
+      "status": "implemented",
+      "api": "player.setup / view.first.specialtyChoices",
+      "knowledge": "DEC-005/052 D09; S current.choices",
+      "owner": "player-facade.setup",
+      "test": "src/state/residence-session/player-phases.test.ts"
+    },
+    {
+      "field": "phase",
+      "status": "implemented",
+      "api": "view.phase / view.point / application view.status",
+      "knowledge": "DEC-049/051; four phases/five stops",
+      "owner": "projectPlayerView",
+      "test": "src/state/residence-session/player-phases.test.ts"
+    },
+    {
+      "field": "location",
+      "status": "implemented",
+      "api": "view.location",
+      "knowledge": "G2 actual site/catalog; terminal null",
+      "owner": "playerResidenceKnowledge / projectPlayerView",
+      "test": "src/state/residence-session/player-route.integration.test.ts"
+    },
+    {
+      "field": "taskDay",
+      "status": "implemented",
+      "api": "view.taskDay",
+      "knowledge": "G1 active clock or committed receipt",
+      "owner": "projectPlayerView",
+      "test": "src/state/residence-session/player-phases.test.ts"
+    },
+    {
+      "field": "map.nodes",
+      "status": "implemented",
+      "api": "view.map.nodes",
+      "knowledge": "canonical knowledge plus actual investigation witnesses",
+      "owner": "playerResidenceKnowledge",
+      "test": "src/state/residence-session/player-privacy.test.ts"
+    },
+    {
+      "field": "map.routes",
+      "status": "implemented",
+      "api": "view.map.routes",
+      "knowledge": "current versus last-observed; missing observation is unknown",
+      "owner": "knownSupplyEdges / edgePassable / playerResidenceKnowledge",
+      "test": "src/state/residence-session/player-privacy.test.ts"
+    },
+    {
+      "field": "move.options",
+      "status": "implemented",
+      "api": "view.move.options",
+      "knowledge": "known current single edge and formal energy query",
+      "owner": "requireKnownResidenceEdge / supplyPaidCost / supplyEnergyQuery",
+      "test": "src/state/residence-session/player-preview.test.ts"
+    },
+    {
+      "field": "sources",
+      "status": "implemented",
+      "api": "view.sources",
+      "knowledge": "E01 current local sources and actual productions; no hidden output",
+      "owner": "playerTaskOpportunities / readSupplySourceSelection",
+      "test": "src/state/residence-session/player-privacy.test.ts"
+    },
+    {
+      "field": "ground",
+      "status": "implemented",
+      "api": "view.ground",
+      "knowledge": "local revealed real items / ItemState; no origin ledger",
+      "owner": "playerSupplyFacts",
+      "test": "src/state/residence-session/player-dispatch.test.ts"
+    },
+    {
+      "field": "carried",
+      "status": "implemented",
+      "api": "view.carried / view.backpack",
+      "knowledge": "formal containers, getOccupiedCells, weight and load, ItemState",
+      "owner": "playerSupplyFacts",
+      "test": "src/state/residence-session/player-dispatch.test.ts"
+    },
+    {
+      "field": "tasks.publicObjectives",
+      "status": "implemented",
+      "api": "view.tasks.publicObjectives / view.tasks.sample / view.tasks.choices",
+      "knowledge": "observed/completed facts, current actual specified sample and committed delivery",
+      "owner": "playerTaskOpportunities / projectPlayerView",
+      "test": "src/state/residence-session/player-route.integration.test.ts"
+    },
+    {
+      "field": "terminal.eligibility",
+      "status": "implemented",
+      "api": "view.terminal.eligibility",
+      "knowledge": "formal deliver/withdraw/deadline qualification",
+      "owner": "sharedTerminalEligibility",
+      "test": "src/state/residence-session/player-phases.test.ts"
+    },
+    {
+      "field": "terminal.result",
+      "status": "implemented",
+      "api": "view.terminal.result",
+      "knowledge": "committed receipt and actual disposition summary only",
+      "owner": "playerTerminalFacts",
+      "test": "src/state/residence-session/player-dispatch.test.ts"
+    },
+    {
+      "field": "combat.intent",
+      "status": "implemented",
+      "api": "view.combat.intent",
+      "knowledge": "formal current public intent metadata",
+      "owner": "projectCombat / playerCombatFacts",
+      "test": "src/state/residence-session/player-phases.test.ts"
+    },
+    {
+      "field": "combat.actions",
+      "status": "implemented",
+      "api": "view.combat.actions",
+      "knowledge": "formal command selector; public resource payment / quick consumption / quota",
+      "owner": "getAvailableCombatPlayerCommandsFromValidatedSnapshot / previewCommittedResourceAction",
+      "test": "src/state/residence-session/player-phases.test.ts"
+    },
+    {
+      "field": "combat.enemyStage",
+      "status": "implemented",
+      "api": "view.combat.enemyStage",
+      "knowledge": "existing public phase owner, not new thresholds",
+      "owner": "selectEnemyHealthPhase",
+      "test": "src/state/residence-session/player-privacy.test.ts"
+    },
+    {
+      "field": "combat.relativeTimeline",
+      "status": "implemented",
+      "api": "view.combat.relativeTimeline / view.combat.energySettlement",
+      "knowledge": "current known order only, no simulated future / raw CTB",
+      "owner": "projectCombat / playerCombatFacts",
+      "test": "src/state/residence-session/player-phases.test.ts"
+    },
+    {
+      "field": "body.hp",
+      "status": "implemented",
+      "api": "view.body.hp",
+      "knowledge": "canonical condition and new-world approved limits",
+      "owner": "playerSupplyFacts",
+      "test": "src/state/residence-session/player-fields.test.ts"
+    },
+    {
+      "field": "body.bleedingWounds",
+      "status": "implemented",
+      "api": "view.body.bleeding / view.body.wounds / view.body.minorContusions",
+      "knowledge": "current public condition; wound ordinals with opaque selectors",
+      "owner": "playerSupplyFacts / projectPlayerView",
+      "test": "src/state/residence-session/player-dispatch.test.ts"
+    },
+    {
+      "field": "body.energySatiety",
+      "status": "implemented",
+      "api": "view.body.energy / view.body.satiety / view.body.quotas",
+      "knowledge": "actual G1 body / current known quotas, no cycle prediction",
+      "owner": "playerSupplyFacts",
+      "test": "src/state/residence-session/player-fields.test.ts"
+    },
+    {
+      "field": "body.infectionWarning",
+      "status": "explicit-unknown",
+      "api": "view.body.infectionWarning",
+      "knowledge": "no ratified new-world public-stage mapping; never use hospital thresholds",
+      "owner": "playerSupplyFacts",
+      "test": "src/state/residence-session/player-compatibility.test.ts",
+      "ui_gate": "Mainline must approve a safe new-world current-stage mapping before UI claims an infection stage. No threshold invented here."
+    },
+    {
+      "field": "persistence.feedback",
+      "status": "implemented",
+      "api": "view.persistence.feedback",
+      "knowledge": "actual unique S status; no storage IO from query",
+      "owner": "projectPlayerView",
+      "test": "src/state/residence-session/player-persistence.test.ts"
+    },
+    {
+      "field": "staticHub.successors",
+      "status": "implemented",
+      "api": "view.staticHub.successors",
+      "knowledge": "DEC-049/051 single real commission; no successor content",
+      "owner": "playerTerminalFacts",
+      "test": "src/state/residence-session/player-phases.test.ts"
+    }
+  ],
+  "additional_boundaries": [
+    "Disinfectant/suppressant preview qualification remains unknown independent of hidden pending/progress; explicit S execution still validates the real target.",
+    "Investigated remote edges without a stored traversal observation retain unknown passability. They are not advertised as currently traversable.",
+    "Combat relative order is current only. No future ghost, damage/death prediction or random answer is computed.",
+    "available in PlayerPreview means current command qualification, never a guarantee of survival."
+  ]
+}

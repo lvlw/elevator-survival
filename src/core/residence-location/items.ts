@@ -12,10 +12,7 @@ export function planResidenceItemTransfer(input: unknown, request: unknown, auth
   const nodeId = snapshot.site.nodeId
   const ground = snapshot.site.ground.find((g) => g.nodeId === nodeId)!
   const items = command.kind === 'pickup' ? ground.items : snapshot.carried.backpack.items
-  const item = items.find((i) => i.instanceId === command.instanceId)
-  if (!item || !catalog.data.items.find((i) => i.physical.id === item.definitionId)!.ordinary) {
-    throw new LocationError('NOT_AVAILABLE', 'No ordinary real instance at this source')
-  }
+  const item = requireOrdinaryTransferItem(items, command.instanceId, catalog)
   const backpack = command.kind === 'pickup'
     ? addItemToBackpack(snapshot.carried.backpack, item, { instanceId: item.instanceId, ...command.placement }, catalog.physical)
     : removeItemFromBackpack(snapshot.carried.backpack, item.instanceId, catalog.physical).snapshot
@@ -29,4 +26,10 @@ export function planResidenceItemTransfer(input: unknown, request: unknown, auth
     action: command.kind === 'pickup' ? 'revealed-pickup' : 'organize', cost: { kind: 'free', amount: 0 } }, ctx.authority.cycle,
   deps.residence, (completion) => ({ completion, effects: { healthLoss: 0, exposuresAdded: 0 } }))
   return finishLocationPlan(snapshot, proposed, body, ctx.authority, deps)
+}
+export function requireOrdinaryTransferItem(items: ResidenceLocationSnapshot['carried']['backpack']['items'], id: string, catalog: LocationDependencies['catalog']) {
+  const item = items.find(i => i.instanceId === id)
+  if (!item || !catalog.data.items.find(i => i.physical.id === item.definitionId)!.ordinary)
+    throw new LocationError('NOT_AVAILABLE', 'No ordinary real instance at this source')
+  return item
 }

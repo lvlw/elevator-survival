@@ -341,3 +341,9 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 本批没有新增 DEC／UIR、玩法参数、委托、UI 或发布安排。后继工程不自动获准；Owner 首玩、分段突破、浏览器／多标签及 O3 门槛保持 OPEN／NOT RUN。
 
 实际接口、支持边界与证据见[本轮工程交付](../../engineering/world-integration/player-query/implementation/contract-and-support.md)。不自动进入 UI 或下一工程。
+
+## WORLD-ENTRY-006 作者候选附记
+
+新增集中待审入口：[D1当前病程负担映射、D2独立DEV封闭首玩范围](entry-006/00-owner-review.md)。内部病程参数已批准不等于允许公开；旧入口／旧槽O3仍留公开发布前独立决定，未自动迁移或清档。
+
+普通刷新、同步checkpoint交接与跨标签拒绝的技术推荐已在候选内承担，不要求Owner逐函数选择；候选不是新DEC／UIR。原未决／PASS／失败的历史时态不改，Owner体验仍OPEN／NOT RUN。

@@ -1,0 +1,105 @@
+// TEST ONLY. External execution against unchanged native P/R/S; no browser.
+import { afterAll, afterEach, expect, it, vi } from 'vitest'
+import fs from 'node:fs'
+import { playerHarness, begin, ready, choose, send, counts, fromValue, playerItem, normalize } from '__REPO__/src/state/residence-session/player-test-fixtures'
+import { coldSaved, bodyBoundary, fixture } from '__REPO__/src/state/residence-session/combat-test-fixtures'
+import { wrapPlayerSession } from '__REPO__/src/state/residence-session/player-facade'
+import { infectedWorldPlayerLabels } from '__REPO__/src/content/infected-world-v0.1/player-query'
+import { observe, expectSaveOnly } from '__REPO__/src/state/residence-session/combat-test-observers'
+import { drawIntInclusive } from '__REPO__/src/core/random'
+import * as contexts from '__REPO__/src/state/residence-session/player-context'
+const facts: Record<string, unknown> = {}
+afterEach(() => vi.restoreAllMocks())
+afterAll(() => fs.writeFileSync(process.env.WORLD_ENTRY_FACTS!, JSON.stringify(facts, null, 2)))
+it('N01 Setup never issues stock or reads/writes storage', () => {
+  const h = playerHarness(), n = counts(h)
+  expect(h.player.query().status).toBe('unbootstrapped')
+  for (let i=0;i<3;i++) expect(h.player.setup().tools).toHaveLength(3)
+  expect(counts(h)).toEqual(n); expect(h.factory).not.toHaveBeenCalled()
+  facts.N01={initialProvider:0,...counts(h)}
+})
+it('N02 native callbacks blocked; explicit execution return ready', () => {
+  const h=playerHarness(); begin(h)
+  const action=choose(h.player,'move','大厅'), seen:string[]=[], n=counts(h), calls=h.dispatch.mock.calls.length
+  h.hooks.write=()=>{seen.push(h.player.query().status);expect(h.player.execute({action}).kind).toBe('rejected')}
+  const off=h.player.subscribe(v=>{seen.push(v.status);expect(h.player.retrySave().status).toBe('blocked')})
+  const result=h.player.execute({action});off()
+  expect(seen).toEqual(['blocked','blocked']);expect(result.kind).toBe('committed');expect(result.view.status).toBe('ready')
+  expect(h.dispatch).toHaveBeenCalledTimes(calls+1);expect(counts(h)).toEqual({...n,writes:n.writes+1,notices:n.notices+1})
+  facts.N02={callbacks:seen,returned:result.view.status,dispatch:1,write:1,notice:1,reentrantDispatch:0}
+})
+it('N03 random save failure keeps current; save-only retry preserves selection', () => {
+  const h=playerHarness();begin(h);send(h.player,'move','大厅')
+  const action=choose(h.player,'source','大厅搜索','dark'), o=observe(h)
+  o.clear();h.dispatch.mockClear()
+  for(let i=0;i<3;i++)expect(h.player.preview({action}).kind).toBe('available')
+  expect(Object.values(o.counts()).every(n=>n===0)).toBe(true)
+  h.faults.write=true;expect(h.player.execute({action}).kind).toBe('committed')
+  const committed=o.counts(), value=h.owner.getState().current, selector=ready(h.player).ground[0].selector
+  expect(ready(h.player).persistence.feedback).toBe('save-failed')
+  expect(committed.source).toBe(1);expect(committed.draw).toBe(1);expect(committed.write).toBe(1);expect(committed.batches).toBe(1)
+  h.faults.write=false;o.clear();h.dispatch.mockClear()
+  expect(h.player.retrySave().persistence.feedback).toBe('saved');expectSaveOnly(o.counts());expect(h.dispatch).not.toHaveBeenCalled()
+  expect(h.owner.getState().current).toBe(value);expect(ready(h.player).ground[0].selector).toBe(selector)
+  facts.N03={previewAllZero:true,committed,retry:o.counts(),sameCurrent:true,sameSelector:true}
+})
+it('N04 corrupt/read-error/existing-null never grants first stock', () => {
+  const anchor=playerHarness();begin(anchor)
+  const bad=playerHarness({text:'{broken'}), failed=playerHarness(), existing=playerHarness({startup:'existing',expected:anchor.saved()!.expected,dependencies:anchor.deps})
+  failed.faults.read=true
+  expect(bad.bootstrap().status).toBe('blocked');expect(failed.bootstrap().status).toBe('read-error');expect(existing.bootstrap().status).toBe('blocked')
+  for(const h of [bad,failed,existing]){expect(()=>h.createFirst()).toThrow();expect(h.factory).not.toHaveBeenCalled();expect(h.storage.write).not.toHaveBeenCalled()}
+  facts.N04={corrupt:'blocked',readFailure:'read-error',existingNull:'blocked',initialProvider:0,writes:0}
+})
+it('N05 new current and native cold recovery reject old selections', () => {
+  const h=playerHarness();begin(h);const old=choose(h.player,'move','大厅')
+  expect(h.player.execute({action:old}).kind).toBe('committed')
+  const n=counts(h);expect(h.player.execute({action:old}).kind).toBe('rejected');expect(counts(h)).toEqual(n)
+  const latest=choose(h.player,'move','电梯前室'), cold=coldSaved(h), restored=wrapPlayerSession(cold.owner,cold.policy,infectedWorldPlayerLabels)
+  const m=counts(cold);expect(restored.player.execute({action:latest}).kind).toBe('rejected');expect(counts(cold)).toEqual(m)
+  facts.N05={oldCurrent:'rejected',coldOldObject:'rejected',extraWrite:0,extraNotice:0}
+})
+it('N06 TEST legal bleeding condition yields one complete native death', () => {
+  const f=fixture({hp:1,bleeding:true}),h=fromValue(f.value,f.deps),n=counts(h)
+  send(h.player,'move','大厅');const q=ready(h.player)
+  expect(q.phase).toBe('dead');expect(q.body.hp.current).toBe(0);expect(q.terminal.result!.outcome).toBe('death');expect(q.actions).toEqual([])
+  expect(counts(h)).toEqual({...n,writes:n.writes+1,notices:n.notices+1})
+  facts.N06={fixture:'TEST HP1/bleeding, actual native move',phase:q.phase,hp:0,writes:1,notices:1}
+})
+it('N07 explicit H0 failure is living no-content, with no night', () => {
+  const h=playerHarness();begin(h);const cycle=h.owner.getState().current!.character.cycle,n=counts(h)
+  send(h.player,'terminal','失败止损返回');const q=ready(h.player),v=h.owner.getState().current!
+  expect(q.phase).toBe('living-hub');expect(q.staticHub.successors).toEqual({kind:'no-content',choices:[]});expect(q.actions).toEqual([])
+  expect(v.receipts.at(-1)!.steps).toEqual([]);expect(v.character.cycle).toBe(cycle)
+  expect(counts(h)).toEqual({...n,writes:n.writes+1,notices:n.notices+1})
+  facts.N07={phase:q.phase,successors:0,addedNight:false,steps:[],writes:1,notices:1}
+})
+it('N08 unknown medical preview permits different explicit native outcomes', () => {
+  const f=fixture({draw:(c,min,max)=>({...drawIntInclusive(c,min,max),value:min})})
+  let v=f.move(f.value,'H1').snapshot
+  v=f.move(v,'H2').snapshot;v=f.source(v,'H2-search',{method:'dark'}).snapshot
+  for(const [n,item] of v.site!.ground.find(g=>g.nodeId==='H2')!.items.entries())v=f.inventory(v,'pickup',{instanceId:item.instanceId,placement:{x:n,y:0,rotated:false}}).snapshot
+  const pair=[0,1].map(pendingInfectionExposures=>fromValue(bodyBoundary(v,f.deps,{condition:{...v.character.body.condition,pendingInfectionExposures}}),f.deps))
+  expect(normalize(ready(pair[0].player))).toEqual(normalize(ready(pair[1].player)))
+  const requests=pair.map(h=>({action:choose(h.player,'medical','使用药食'),item:playerItem(h.player,'消毒剂','backpack').selector}))
+  requests.forEach((r,n)=>expect(pair[n].player.preview(r)).toEqual({kind:'unknown',cost:0}))
+  const n=counts(pair[0]);expect(pair[0].player.execute(requests[0]).kind).toBe('rejected');expect(counts(pair[0])).toEqual(n)
+  expect(pair[1].player.execute(requests[1]).kind).toBe('committed')
+  facts.N08={fixture:'TEST real source/acquisition and legal pending0/1; injected minimum draw',preview:['unknown','unknown'],execution:['rejected','committed'],rejectedWrites:0}
+})
+it('N09 cold expected exists before candidate read and never reissues stock', () => {
+  const h=playerHarness();begin(h);send(h.player,'move','大厅')
+  const saved=h.saved()!,cold=playerHarness({dependencies:h.deps,text:saved.text,expected:saved.expected,startup:'existing'}),order:string[]=[]
+  cold.hooks.cold=()=>{order.push('independent-expected')};cold.hooks.read=()=>{order.push('candidate-read')}
+  expect(cold.bootstrap().status).toBe('ready');expect(order).toEqual(['independent-expected','candidate-read'])
+  expect(cold.owner.getState().current).toEqual(saved.value);expect(cold.factory).not.toHaveBeenCalled();expect(cold.storage.write).not.toHaveBeenCalled()
+  facts.N09={order,source:'TEST prior S checkpoint and independent initial arguments; not candidate extraction',writes:0,initialProvider:0}
+})
+it('N10 TEST projection fault does not rollback or save twice', () => {
+  const h=playerHarness();begin(h);const action=choose(h.player,'move','大厅'),n=counts(h),before=h.owner.getState().current,error=new Error('TEST projection fault')
+  vi.spyOn(contexts,'createPlayerContext').mockImplementationOnce(()=>{throw error})
+  expect(()=>h.player.execute({action})).toThrow(error);expect(h.owner.getState().current).not.toBe(before)
+  expect(h.player.query()).toMatchObject({status:'blocked',reason:'projection-unavailable'});expect(counts(h)).toEqual({...n,writes:n.writes+1,notices:n.notices+1})
+  h.synchronize();expect(ready(h.player).location!.name).toBe('大厅');expect(h.player.execute({action}).kind).toBe('rejected')
+  facts.N10={fault:'TEST presentation context only, native gameplay unchanged',latestMemory:true,extraSave:0,oldAction:'rejected'}
+})

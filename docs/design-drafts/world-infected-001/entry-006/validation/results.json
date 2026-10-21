@@ -1,0 +1,497 @@
+{
+  "task": "WORLD-ENTRY-006",
+  "kind": "native-headless-not-browser",
+  "head": "394f59d3c5df2a65ce87186e8988982d76784a71",
+  "runtime": "v24.9.0",
+  "exit": 0,
+  "error": null,
+  "tests": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "success": true,
+    "cases": [
+      {
+        "name": "N01 Setup never issues stock or reads/writes storage",
+        "status": "passed",
+        "duration_ms": 29.267100000000028,
+        "failureMessages": []
+      },
+      {
+        "name": "N02 native callbacks blocked; explicit execution return ready",
+        "status": "passed",
+        "duration_ms": 116.00649999999996,
+        "failureMessages": []
+      },
+      {
+        "name": "N03 random save failure keeps current; save-only retry preserves selection",
+        "status": "passed",
+        "duration_ms": 109.33519999999999,
+        "failureMessages": []
+      },
+      {
+        "name": "N04 corrupt/read-error/existing-null never grants first stock",
+        "status": "passed",
+        "duration_ms": 46.86730000000034,
+        "failureMessages": []
+      },
+      {
+        "name": "N05 new current and native cold recovery reject old selections",
+        "status": "passed",
+        "duration_ms": 59.409000000000106,
+        "failureMessages": []
+      },
+      {
+        "name": "N06 TEST legal bleeding condition yields one complete native death",
+        "status": "passed",
+        "duration_ms": 55.82330000000002,
+        "failureMessages": []
+      },
+      {
+        "name": "N07 explicit H0 failure is living no-content, with no night",
+        "status": "passed",
+        "duration_ms": 48.404799999999796,
+        "failureMessages": []
+      },
+      {
+        "name": "N08 unknown medical preview permits different explicit native outcomes",
+        "status": "passed",
+        "duration_ms": 122.69409999999971,
+        "failureMessages": []
+      },
+      {
+        "name": "N09 cold expected exists before candidate read and never reissues stock",
+        "status": "passed",
+        "duration_ms": 54.115800000000036,
+        "failureMessages": []
+      },
+      {
+        "name": "N10 TEST projection fault does not rollback or save twice",
+        "status": "passed",
+        "duration_ms": 52.24590000000035,
+        "failureMessages": []
+      }
+    ]
+  },
+  "facts": {
+    "N01": {
+      "initialProvider": 0,
+      "reads": 0,
+      "writes": 0,
+      "notices": 0,
+      "draws": 0
+    },
+    "N02": {
+      "callbacks": [
+        "blocked",
+        "blocked"
+      ],
+      "returned": "ready",
+      "dispatch": 1,
+      "write": 1,
+      "notice": 1,
+      "reentrantDispatch": 0
+    },
+    "N03": {
+      "previewAllZero": true,
+      "committed": {
+        "initial": 0,
+        "depart": 0,
+        "move": 0,
+        "rest": 0,
+        "task": 0,
+        "source": 1,
+        "transfer": 0,
+        "inventory": 0,
+        "medical": 0,
+        "maintenance": 0,
+        "terminal": 0,
+        "combat": 0,
+        "death": 0,
+        "authority": 1,
+        "issue": 1,
+        "verify": 1,
+        "ctb": 0,
+        "ctbPlan": 0,
+        "ctbReduce": 0,
+        "g1Action": 1,
+        "g1Cycle": 0,
+        "g2Move": 0,
+        "g2Rest": 0,
+        "activate": 0,
+        "terminate": 0,
+        "origin": 2,
+        "use": 0,
+        "recipe": 0,
+        "sharedMedical": 0,
+        "sharedMaintenance": 0,
+        "settle": 0,
+        "sharedTerminal": 0,
+        "aggregate": 2,
+        "encode": 1,
+        "decode": 0,
+        "draw": 1,
+        "materials": 0,
+        "coldExpected": 0,
+        "read": 0,
+        "write": 1,
+        "current": 1,
+        "batches": 1,
+        "listener1": 1,
+        "listener2": 1
+      },
+      "retry": {
+        "initial": 0,
+        "depart": 0,
+        "move": 0,
+        "rest": 0,
+        "task": 0,
+        "source": 0,
+        "transfer": 0,
+        "inventory": 0,
+        "medical": 0,
+        "maintenance": 0,
+        "terminal": 0,
+        "combat": 0,
+        "death": 0,
+        "authority": 0,
+        "issue": 0,
+        "verify": 0,
+        "ctb": 0,
+        "ctbPlan": 0,
+        "ctbReduce": 0,
+        "g1Action": 0,
+        "g1Cycle": 0,
+        "g2Move": 0,
+        "g2Rest": 0,
+        "activate": 0,
+        "terminate": 0,
+        "origin": 0,
+        "use": 0,
+        "recipe": 0,
+        "sharedMedical": 0,
+        "sharedMaintenance": 0,
+        "settle": 0,
+        "sharedTerminal": 0,
+        "aggregate": 2,
+        "encode": 1,
+        "decode": 0,
+        "draw": 0,
+        "materials": 0,
+        "coldExpected": 0,
+        "read": 0,
+        "write": 1,
+        "current": 0,
+        "batches": 0,
+        "listener1": 0,
+        "listener2": 0
+      },
+      "sameCurrent": true,
+      "sameSelector": true
+    },
+    "N04": {
+      "corrupt": "blocked",
+      "readFailure": "read-error",
+      "existingNull": "blocked",
+      "initialProvider": 0,
+      "writes": 0
+    },
+    "N05": {
+      "oldCurrent": "rejected",
+      "coldOldObject": "rejected",
+      "extraWrite": 0,
+      "extraNotice": 0
+    },
+    "N06": {
+      "fixture": "TEST HP1/bleeding, actual native move",
+      "phase": "dead",
+      "hp": 0,
+      "writes": 1,
+      "notices": 1
+    },
+    "N07": {
+      "phase": "living-hub",
+      "successors": 0,
+      "addedNight": false,
+      "steps": [],
+      "writes": 1,
+      "notices": 1
+    },
+    "N08": {
+      "fixture": "TEST real source/acquisition and legal pending0/1; injected minimum draw",
+      "preview": [
+        "unknown",
+        "unknown"
+      ],
+      "execution": [
+        "rejected",
+        "committed"
+      ],
+      "rejectedWrites": 0
+    },
+    "N09": {
+      "order": [
+        "independent-expected",
+        "candidate-read"
+      ],
+      "source": "TEST prior S checkpoint and independent initial arguments; not candidate extraction",
+      "writes": 0,
+      "initialProvider": 0
+    },
+    "N10": {
+      "fault": "TEST presentation context only, native gameplay unchanged",
+      "latestMemory": true,
+      "extraSave": 0,
+      "oldAction": "rejected"
+    }
+  },
+  "not_run": [
+    "browser IO",
+    "Web Locks/multitab",
+    "UI/DOM",
+    "Owner playability",
+    "full npm run check",
+    "historical 72 samples"
+  ],
+  "classification": "10 native capability probes PASS; not UI/browser/Owner acceptance",
+  "initial_attempt": {
+    "task": "WORLD-ENTRY-006",
+    "kind": "native-headless-not-browser",
+    "head": "394f59d3c5df2a65ce87186e8988982d76784a71",
+    "runtime": "v24.9.0",
+    "exit": 1,
+    "error": null,
+    "tests": {
+      "total": 10,
+      "passed": 7,
+      "failed": 3,
+      "success": false,
+      "cases": [
+        {
+          "name": "N01 Setup never issues stock or reads/writes storage",
+          "status": "passed",
+          "duration_ms": 27.24519999999984,
+          "failureMessages": []
+        },
+        {
+          "name": "N02 native callbacks blocked; explicit execution return ready",
+          "status": "passed",
+          "duration_ms": 137.2244999999998,
+          "failureMessages": []
+        },
+        {
+          "name": "N03 random save failure keeps current; save-only retry preserves selection",
+          "status": "passed",
+          "duration_ms": 105.10510000000022,
+          "failureMessages": []
+        },
+        {
+          "name": "N04 corrupt/read-error/existing-null never grants first stock",
+          "status": "failed",
+          "duration_ms": 18.065200000000004,
+          "failureMessages": [
+            "ResidenceSessionError: Invalid synchronous v4 composition\n    at invalid (E:/projects/elevator-survival/src/state/residence-session/combat-composition.ts:5:35)\n    at assertCombatSyncFunction (E:/projects/elevator-survival/src/state/residence-session/combat-composition.ts:14:122)\n    at readCombatComposition (E:/projects/elevator-survival/src/state/residence-session/combat-composition.ts:45:74)\n    at buildCombatSession (E:/projects/elevator-survival/src/state/residence-session/combat-session.ts:20:23)\n    at harness (E:/projects/elevator-survival/src/state/residence-session/combat-test-fixtures.ts:41:58)\n    at playerHarness (E:/projects/elevator-survival/src/state/residence-session/player-test-fixtures.ts:9:13)\n    at C:/Users/zjl/AppData/Local/Temp/world-entry-006-ef9a74c2e9254ebb954d71daddffa465/probe-run-01/native-entry-probes.test.ts:47:79\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20"
+          ]
+        },
+        {
+          "name": "N05 new current and native cold recovery reject old selections",
+          "status": "passed",
+          "duration_ms": 57.760499999999865,
+          "failureMessages": []
+        },
+        {
+          "name": "N06 TEST legal bleeding condition yields one complete native death",
+          "status": "failed",
+          "duration_ms": 0.633600000000115,
+          "failureMessages": [
+            "TypeError: (0 , __vite_ssr_import_2__.fixture) is not a function\n    at C:/Users/zjl/AppData/Local/Temp/world-entry-006-ef9a74c2e9254ebb954d71daddffa465/probe-run-01/native-entry-probes.test.ts:62:11\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2323:10)\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2305:20\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2272:10)\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2955:64"
+          ]
+        },
+        {
+          "name": "N07 explicit H0 failure is living no-content, with no night",
+          "status": "passed",
+          "duration_ms": 49.141200000000026,
+          "failureMessages": []
+        },
+        {
+          "name": "N08 unknown medical preview permits different explicit native outcomes",
+          "status": "failed",
+          "duration_ms": 0.7206999999998516,
+          "failureMessages": [
+            "TypeError: (0 , __vite_ssr_import_2__.fixture) is not a function\n    at C:/Users/zjl/AppData/Local/Temp/world-entry-006-ef9a74c2e9254ebb954d71daddffa465/probe-run-01/native-entry-probes.test.ts:77:11\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2323:10)\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2305:20\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2272:10)\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2955:64"
+          ]
+        },
+        {
+          "name": "N09 cold expected exists before candidate read and never reissues stock",
+          "status": "passed",
+          "duration_ms": 58.8440999999998,
+          "failureMessages": []
+        },
+        {
+          "name": "N10 TEST projection fault does not rollback or save twice",
+          "status": "passed",
+          "duration_ms": 61.01859999999988,
+          "failureMessages": []
+        }
+      ]
+    },
+    "facts": {
+      "N01": {
+        "initialProvider": 0,
+        "reads": 0,
+        "writes": 0,
+        "notices": 0,
+        "draws": 0
+      },
+      "N02": {
+        "callbacks": [
+          "blocked",
+          "blocked"
+        ],
+        "returned": "ready",
+        "dispatch": 1,
+        "write": 1,
+        "notice": 1,
+        "reentrantDispatch": 0
+      },
+      "N03": {
+        "previewAllZero": true,
+        "committed": {
+          "initial": 0,
+          "depart": 0,
+          "move": 0,
+          "rest": 0,
+          "task": 0,
+          "source": 1,
+          "transfer": 0,
+          "inventory": 0,
+          "medical": 0,
+          "maintenance": 0,
+          "terminal": 0,
+          "combat": 0,
+          "death": 0,
+          "authority": 1,
+          "issue": 1,
+          "verify": 1,
+          "ctb": 0,
+          "ctbPlan": 0,
+          "ctbReduce": 0,
+          "g1Action": 1,
+          "g1Cycle": 0,
+          "g2Move": 0,
+          "g2Rest": 0,
+          "activate": 0,
+          "terminate": 0,
+          "origin": 2,
+          "use": 0,
+          "recipe": 0,
+          "sharedMedical": 0,
+          "sharedMaintenance": 0,
+          "settle": 0,
+          "sharedTerminal": 0,
+          "aggregate": 2,
+          "encode": 1,
+          "decode": 0,
+          "draw": 1,
+          "materials": 0,
+          "coldExpected": 0,
+          "read": 0,
+          "write": 1,
+          "current": 1,
+          "batches": 1,
+          "listener1": 1,
+          "listener2": 1
+        },
+        "retry": {
+          "initial": 0,
+          "depart": 0,
+          "move": 0,
+          "rest": 0,
+          "task": 0,
+          "source": 0,
+          "transfer": 0,
+          "inventory": 0,
+          "medical": 0,
+          "maintenance": 0,
+          "terminal": 0,
+          "combat": 0,
+          "death": 0,
+          "authority": 0,
+          "issue": 0,
+          "verify": 0,
+          "ctb": 0,
+          "ctbPlan": 0,
+          "ctbReduce": 0,
+          "g1Action": 0,
+          "g1Cycle": 0,
+          "g2Move": 0,
+          "g2Rest": 0,
+          "activate": 0,
+          "terminate": 0,
+          "origin": 0,
+          "use": 0,
+          "recipe": 0,
+          "sharedMedical": 0,
+          "sharedMaintenance": 0,
+          "settle": 0,
+          "sharedTerminal": 0,
+          "aggregate": 2,
+          "encode": 1,
+          "decode": 0,
+          "draw": 0,
+          "materials": 0,
+          "coldExpected": 0,
+          "read": 0,
+          "write": 1,
+          "current": 0,
+          "batches": 0,
+          "listener1": 0,
+          "listener2": 0
+        },
+        "sameCurrent": true,
+        "sameSelector": true
+      },
+      "N05": {
+        "oldCurrent": "rejected",
+        "coldOldObject": "rejected",
+        "extraWrite": 0,
+        "extraNotice": 0
+      },
+      "N07": {
+        "phase": "living-hub",
+        "successors": 0,
+        "addedNight": false,
+        "steps": [],
+        "writes": 1,
+        "notices": 1
+      },
+      "N09": {
+        "order": [
+          "independent-expected",
+          "candidate-read"
+        ],
+        "source": "TEST prior S checkpoint and independent initial arguments; not candidate extraction",
+        "writes": 0,
+        "initialProvider": 0
+      },
+      "N10": {
+        "fault": "TEST presentation context only, native gameplay unchanged",
+        "latestMemory": true,
+        "extraSave": 0,
+        "oldAction": "rejected"
+      }
+    },
+    "not_run": [
+      "browser IO",
+      "Web Locks/multitab",
+      "UI/DOM",
+      "Owner playability",
+      "full npm run check",
+      "historical 72 samples"
+    ]
+  },
+  "initial_attempt_classification": "3 probe authoring errors (fixture import twice, missing controlled cold provider); not semantic detections; unchanged production",
+  "final_duration_seconds": 3.13,
+  "final_test_body_ms": 697,
+  "production_tests_added": 0
+}

@@ -1,0 +1,197 @@
+{
+  "head": "394f59d3c5df2a65ce87186e8988982d76784a71",
+  "tree": "0431a7f73abe7ce99c070887f6872489007175f0",
+  "scope": "Starting Git blobs. Fingerprints include source and unchanged TEST fixtures plus contextual docs; not a full-line audit claim for every historical paragraph.",
+  "entries": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 2024,
+      "sha256": "00c2cad61c99530c1343ca9faad9a32994d67e5ca4aeb991156bb9828e5c501e"
+    },
+    {
+      "path": "docs/01-game-design-v0.1.md",
+      "bytes": 37168,
+      "sha256": "7d95fe0c3f7de5ffaf248b5bf6eb38e9b3bac1a458c14cd8db08c4015f325c59"
+    },
+    {
+      "path": "docs/02-vertical-slice.md",
+      "bytes": 50902,
+      "sha256": "52d99df345ecf23fb2dc3a49aab6e2d3b0748c1f81cad55f3517888447ef4259"
+    },
+    {
+      "path": "docs/03-architecture.md",
+      "bytes": 91312,
+      "sha256": "2622a9520b313cc0e16a8838ed74e4271f5ebf3ab72c43a39b7f8aedb801952d"
+    },
+    {
+      "path": "docs/05-design-decisions.md",
+      "bytes": 275572,
+      "sha256": "a2e439c88b4e11e73c220e31484881b86d3074160d1e1f3fb6003179a9a229b0"
+    },
+    {
+      "path": "docs/09-ui-design-record.md",
+      "bytes": 44784,
+      "sha256": "46bb2d1cf99baa92149f0f5521d35e5bd6c2e1642e27cd86379bd82937e9973e"
+    },
+    {
+      "path": "docs/content/infected-residence-core-test-config-v0.1.json",
+      "bytes": 1417,
+      "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9"
+    },
+    {
+      "path": "docs/content/infected-world-entry-content-v0.1.json",
+      "bytes": 25804,
+      "sha256": "05dabf10796ee027ea31037641ae91b95fc9346b9b98f032f1b7c99dada88925"
+    },
+    {
+      "path": "docs/engineering/world-integration/player-query/player-query-contract-v1.0.md",
+      "bytes": 8808,
+      "sha256": "3d265ed41ba57a652b7295ce38f500d16fa8b073f96626cfca138be3e01f3623"
+    },
+    {
+      "path": "docs/engineering/world-integration/player-query/player-query-engineering-contract-v1.0.md",
+      "bytes": 5095,
+      "sha256": "f0e84315d28afb5357a64d1a7c43efb6ed43e8818765fbf157c1469a52909f5e"
+    },
+    {
+      "path": "docs/engineering/world-integration/player-query/player-query-field-contract-v1.0.json",
+      "bytes": 10614,
+      "sha256": "bb5863b5cbd7330d05b4c633128523194caf7c4f1d0841cc28fcbe29aac9436f"
+    },
+    {
+      "path": "src/app/application-entry.ts",
+      "bytes": 392,
+      "sha256": "a55fee4c5f7d2f908c465c70deda8e0c669ae8f891d6b21190761058d5d9310f"
+    },
+    {
+      "path": "src/app/production-bootstrap.ts",
+      "bytes": 2677,
+      "sha256": "2d62ba315e391975eded20f71865dc52fc3fdabadabe8f40c022fc5707a13b00"
+    },
+    {
+      "path": "src/app/production-composition.ts",
+      "bytes": 1968,
+      "sha256": "25ad5d7de72185194ca5423668af0d29c8947b8bb38d09e4e8fb61cca75c68e7"
+    },
+    {
+      "path": "src/app/run-identity-material.ts",
+      "bytes": 1880,
+      "sha256": "29f9555523bef948d83c30a5bcfe32f6fea53f487401744cb053468382072619"
+    },
+    {
+      "path": "src/content/infected-world-v0.1/player-query.ts",
+      "bytes": 2083,
+      "sha256": "1984eb8dd4c15e525bde416cf60dbe02eba33ce16f72b1c81d4de8b15a239c51"
+    },
+    {
+      "path": "src/core/random/index.ts",
+      "bytes": 301,
+      "sha256": "7ad262d738d8f5b6490282ba26fc92bbbe0d093fd31beb13db46ef662b29f549"
+    },
+    {
+      "path": "src/core/residence-combat/player-query.ts",
+      "bytes": 2428,
+      "sha256": "26f207f558ec5dbf37e8be5c208cf11cc2a31c0a274320bef6d3bbfdd9bb36a5"
+    },
+    {
+      "path": "src/core/residence-supply/player-query.ts",
+      "bytes": 12877,
+      "sha256": "2cab70e6d6a37145febae9f7b9d8801339a859d6d272098da18eb7016dcc104b"
+    },
+    {
+      "path": "src/state/residence-save/combat-codec.ts",
+      "bytes": 2319,
+      "sha256": "587654f89d125f926abeea883a4069ccfad445049bd61537c566963836155224"
+    },
+    {
+      "path": "src/state/residence-save/combat-expected.ts",
+      "bytes": 1002,
+      "sha256": "3038202011846ba4e56a37f1af99b1aaf42d424cd5fa18047c0b020b3fd6d048"
+    },
+    {
+      "path": "src/state/residence-save/combat-schema.ts",
+      "bytes": 2362,
+      "sha256": "9a4760971b925d000f4523f76a1cae1ba166d99b9481f22f75754ebf1175b418"
+    },
+    {
+      "path": "src/state/residence-save/combat-types.ts",
+      "bytes": 1223,
+      "sha256": "f5cca4f78a6c4ef8e1fa7edf0361a928308d15f65fac164e6917dd45fcfd1e66"
+    },
+    {
+      "path": "src/state/residence-session/combat-composition.ts",
+      "bytes": 3536,
+      "sha256": "9019918f1018da18407c638b4bfb6c23b14ed0cfda06c45dc1349c1390d20947"
+    },
+    {
+      "path": "src/state/residence-session/combat-expectation.ts",
+      "bytes": 4925,
+      "sha256": "dd7c19ecfc66693fe9afce5f5ade9dee34fe11553d8970e3b2de87d6f7a11f92"
+    },
+    {
+      "path": "src/state/residence-session/combat-persistence.ts",
+      "bytes": 1052,
+      "sha256": "b0b5401f39ef5f6620f2d83d842d9a3525a264f068436f50e52f8f986fc539b9"
+    },
+    {
+      "path": "src/state/residence-session/combat-session.ts",
+      "bytes": 6971,
+      "sha256": "29cf10e87021e9b3c1888fbe8af191ea0e84ad8a0e9af30ec372db3acfc8d39f"
+    },
+    {
+      "path": "src/state/residence-session/combat-test-fixtures.ts",
+      "bytes": 6379,
+      "sha256": "ac9223ed823857da1bd3ce2f922de5a4354be4462ae0d8d66d6fe5bbabdc84fd"
+    },
+    {
+      "path": "src/state/residence-session/combat-test-observers.ts",
+      "bytes": 4764,
+      "sha256": "7a54b8b8bdafdc7de85a1f8d3568c9a9372bc05ae9b395c2cebf3c417abfb0e6"
+    },
+    {
+      "path": "src/state/residence-session/domain.ts",
+      "bytes": 853,
+      "sha256": "684d0085ef7be50a2ea2290ec329827acf1fa8335e5c84ceaf5c9fb7ab1682d1"
+    },
+    {
+      "path": "src/state/residence-session/player-context.ts",
+      "bytes": 3355,
+      "sha256": "795dba4a4e2059e8d72cad71a9f6d8289d1d87ec5b8021c64e7325474c777abe"
+    },
+    {
+      "path": "src/state/residence-session/player-facade.ts",
+      "bytes": 4106,
+      "sha256": "7b1bda0105746026349de3c47df259cd95bcde15e0bbf1f94f840bea4ea5ac32"
+    },
+    {
+      "path": "src/state/residence-session/player-queries.ts",
+      "bytes": 7930,
+      "sha256": "60735faf7da48344f998bf2d0eacb01312839daa5e171f57ed911b641843b245"
+    },
+    {
+      "path": "src/state/residence-session/player-test-fixtures.ts",
+      "bytes": 3677,
+      "sha256": "8431b2c913f9f71e950d1241112cec6ef5fd8a1c9b10efdbe5a854141ad1d65c"
+    },
+    {
+      "path": "src/state/residence-session/player-types.ts",
+      "bytes": 4223,
+      "sha256": "79c363c5c628a53d17a295fdf9e5f835559a9b90dd44a132ff821cb39944ba5c"
+    },
+    {
+      "path": "src/state/run-save/run-save-storage.ts",
+      "bytes": 1356,
+      "sha256": "873c51a162eec3a3d54d2b489e1e468d930b14f01fffaa5692a59c2ed8b69a19"
+    },
+    {
+      "path": "src/ui/hospital-v0.1/hospital-presentation-assets.ts",
+      "bytes": 2431,
+      "sha256": "3b8a89e1509b31efb44e30c4af3b615ae4593a2261ca6ee00cdcd6921e7ebe33"
+    },
+    {
+      "path": "src/ui/presentation/presentation-assets.ts",
+      "bytes": 3609,
+      "sha256": "a3a1645a375161f86320ceb01eef4c8b1fd1c22d96218b85cd9684e882b79c0c"
+    }
+  ]
+}

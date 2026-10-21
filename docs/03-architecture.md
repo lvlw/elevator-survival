@@ -781,3 +781,9 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 九份获准宿主仅抽取纯资格／费用／几何检查；旧 CTB、G1、S/domain、codec/policy/expected 和既有测试保留。四 phase、五完整停点与 no-current／blocked 分层，24 字段按白名单投影。感染公开阶段仍 unknown，不移植旧医院阈值；远端缺真实通行观察的调查边不伪装最新可通行。
 
 实际接口、支持边界与证据见[本轮工程交付](engineering/world-integration/player-query/implementation/contract-and-support.md)。不自动进入 UI 或下一工程。
+
+## WORLD-ENTRY-006 作者候选附记
+
+394f59d 查询工程已获本包限定 headless 实审；本批只交首玩条件提示、ready 更新、浏览器启动／保存和旧入口选项的候选合同及仓库外原生探针。原生通知可 blocked，不能直接作为完整 React 状态源；冷 expected 须有候选外受控材料，domain 不等于跨标签锁。
+
+集中审阅及最近三批见[entry-006](design-drafts/world-infected-001/entry-006/00-owner-review.md)。新增感染公开映射／封闭入口范围仍 DRAFT；src、正式规则、查询合同和保存格式未改，UI／浏览器／Owner／O3 未验收。不倒改以上历史状态，不自动正式归档或开工。

@@ -1,0 +1,167 @@
+{
+  "task": "WORLD-ENTRY-006",
+  "status": "CANDIDATE_EVIDENCE_COMPLETE_LOCAL_CHECKED_PENDING_EXACT_SHA_REVIEW",
+  "start_sha": "394f59d3c5df2a65ce87186e8988982d76784a71",
+  "start_parent": "8cddbdc3243561aaef5eb9a4eb6bd74dcbca11f3",
+  "start_tree": "0431a7f73abe7ce99c070887f6872489007175f0",
+  "branch": "feature/design-world-entry-006",
+  "authority": "candidate contracts, external native probes, docs, ordinary new-branch commit/push only",
+  "runtime": {
+    "node": "v24.9.0",
+    "npm": "11.6.0",
+    "vitest": "4.1.10",
+    "probe_environment": "node; external configuration only"
+  },
+  "native_probes": {
+    "final": {
+      "files": 1,
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "duration_seconds": 3.13,
+      "test_body_ms": 697,
+      "exit": 0
+    },
+    "initial": {
+      "tests": 10,
+      "passed": 7,
+      "failed": 3,
+      "classification": "probe fixture/import errors; not semantic detections",
+      "exit": 1
+    }
+  },
+  "production_test_delta": {
+    "added": 0,
+    "replaced": 0,
+    "deleted": 0
+  },
+  "historical_test_baseline": {
+    "files": 252,
+    "tests": 4369,
+    "source": "input query implementation/review at 394f59d, NOT this task execution"
+  },
+  "architecture": {
+    "status": "PASS",
+    "DEC": 52,
+    "core_production_files": 341
+  },
+  "not_run": [
+    "full npm run check",
+    "full npm run test:run",
+    "typecheck",
+    "build",
+    "historical 72 samples",
+    "browser IO",
+    "Web Locks/multitab",
+    "UI/DOM",
+    "Owner playability"
+  ],
+  "inputs": {
+    "files": 5,
+    "provided_sha256_entries": 4,
+    "manifest_sha256": "2507f237266ec3008f7026bb2a6aeff04b8df27462f4688d56a3b57552536c6a",
+    "worktree": "PASS",
+    "staged_and_commit_blob": "checked during final Git delivery; no self-SHA amendment"
+  },
+  "scope": {
+    "allowed": 27,
+    "files": 27,
+    "modified_append_only": 5,
+    "new": 22,
+    "protected_objects": 1470,
+    "prefixes": 5,
+    "status": "PASS working audit; exact index/blob proof checked at Git delivery",
+    "actual_paths": [
+      "docs/03-architecture.md",
+      "docs/08-rule-implementation-traceability.md",
+      "docs/design-drafts/world-infected-001/01-world-overview.md",
+      "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "docs/design-drafts/world-infected-001/entry-006/00-owner-review.md",
+      "docs/design-drafts/world-infected-001/entry-006/01-baseline-and-open-gates.md",
+      "docs/design-drafts/world-infected-001/entry-006/02-public-condition-and-feedback-draft.md",
+      "docs/design-drafts/world-infected-001/entry-006/03-first-play-interface-flow.md",
+      "docs/design-drafts/world-infected-001/entry-006/04-browser-bootstrap-and-persistence.md",
+      "docs/design-drafts/world-infected-001/entry-006/05-entry-and-legacy-release-options.md",
+      "docs/design-drafts/world-infected-001/entry-006/06-integration-ownership-and-error-flow.md",
+      "docs/design-drafts/world-infected-001/entry-006/07-first-play-evidence-and-acceptance.md",
+      "docs/design-drafts/world-infected-001/entry-006/checks.json",
+      "docs/design-drafts/world-infected-001/entry-006/completion.md",
+      "docs/design-drafts/world-infected-001/entry-006/contracts/01-preplay-foundation-contract-draft.md",
+      "docs/design-drafts/world-infected-001/entry-006/contracts/02-browser-owner-contract-draft.md",
+      "docs/design-drafts/world-infected-001/entry-006/contracts/03-low-asset-ui-contract-draft.md",
+      "docs/design-drafts/world-infected-001/entry-006/inputs/AUD-394f59d-ENG-WORLD-PLAYER-QUERY-001-review-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-006/inputs/BASELINE-AND-INPUTS.json",
+      "docs/design-drafts/world-infected-001/entry-006/inputs/OWNER-authority-and-scope-WORLD-ENTRY-006-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-006/inputs/SHA256SUMS.txt",
+      "docs/design-drafts/world-infected-001/entry-006/inputs/WORLD-ENTRY-006-task-v1.0.md",
+      "docs/design-drafts/world-infected-001/entry-006/validation/native-entry-probes.test.ts.template",
+      "docs/design-drafts/world-infected-001/entry-006/validation/results.json",
+      "docs/design-drafts/world-infected-001/entry-006/validation/run-native-probes.mjs",
+      "docs/design-drafts/world-infected-001/entry-006/validation/source-manifest.json",
+      "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md"
+    ],
+    "relative_link_checks": 487,
+    "protected_byte_fingerprints": "PASS",
+    "original_append_prefixes": "PASS",
+    "UTF8": "PASS",
+    "new_untracked_whitespace": "PASS"
+  },
+  "W01": {
+    "expected_actual_exit": 2,
+    "original_files": 2,
+    "original_hard_breaks": 7,
+    "new_exception": false
+  },
+  "git": {
+    "planned_message": "docs(world): draft first playable entry contracts",
+    "target": "origin feature/design-world-entry-006 only",
+    "main_or_old_branch_push": false,
+    "merge": false,
+    "force": false,
+    "amend_for_own_sha": false
+  },
+  "owner_decisions": [
+    "D1 current infection burden public mapping (DRAFT)",
+    "D2 explicit DEV separate-namespace closed-play scope (DRAFT)"
+  ],
+  "O3": "OPEN; not decided",
+  "conflicts": [],
+  "stop": "Exact-SHA mainline real-file review; no automatic ratification or production",
+  "diff": {
+    "working": 0,
+    "cached": "checked during stage",
+    "start_to_final": "checked during commit delivery",
+    "cumulative_W01_actual_exit": 2,
+    "W01_hits": [
+      {
+        "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+        "line": 3
+      },
+      {
+        "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+        "line": 4
+      },
+      {
+        "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+        "line": 5
+      },
+      {
+        "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+        "line": 6
+      },
+      {
+        "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+        "line": 7
+      },
+      {
+        "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+        "line": 8
+      },
+      {
+        "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+        "line": 9
+      }
+    ]
+  },
+  "browser_claims": "NOT RUN; candidate timing and native capability are not browser proof"
+}

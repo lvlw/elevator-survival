@@ -34,3 +34,9 @@
 四领域 phase 为 first-hub、active-world、living-hub、dead；active-world 分稳定世界与完整玩家战斗决策点，合为五合法停点，no-current／blocked 是应用状态。Setup catalog 查询与真实初配发放分开，已有初配不得借查询重发或改选。opaque selector 只是受控引用，不是行动 authority；查询不调用 producer／resolver 试算，不签发行动能力，不从 seed、execution 或 origin 编码玩家选择器。缺正式公开依据的映射保持 unknown 并保留进入 UI 前责任，不推断新知识。
 
 未新增 DEC／UIR，未改玩法、参数或 P/R/S。UI、浏览器存储、多标签、玩家入口、O3 与 Owner 首玩／分段体验仍 OPEN／NOT RUN；本次不授权生产 query 或后继工程。
+
+## WORLD-ENTRY-006 作者候选附记
+
+394f59d headless查询／选择已有本包限定准确SHA实审PASS，不追改上述历史未开工状态。[首玩接入候选](../../../design-drafts/world-infected-001/entry-006/00-owner-review.md)明确通知blocked→返回ready、候选外冷材料、单writer及旧入口选项；真实原生接缝探针与尚未实现的浏览器时序分开记录。
+
+候选与证据交付不关闭低资产UI、浏览器保存／多标签、Owner自由首玩与分段对照、O3及发布维护Gate。不自动正式落文或进入生产，等待准确SHA实文件审查。

@@ -1,0 +1,25 @@
+// TEST-only external runner; never edits src/index/browser/global test settings.
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import cp from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+const here=path.dirname(fileURLToPath(import.meta.url)),args=process.argv.slice(2);
+const arg=k=>{const n=args.indexOf(k);return n<0?undefined:args[n+1]};
+const repo=path.resolve(arg('--repo')??process.cwd());
+const out=path.resolve(arg('--out')??fs.mkdtempSync(path.join(os.tmpdir(),'world-entry-native-')));
+const relative=path.relative(repo,out);
+if(relative===''||(!relative.startsWith('..')&&!path.isAbsolute(relative)))throw Error('Probe output must be outside repository');
+fs.mkdirSync(out,{recursive:true});
+const posix=p=>p.replaceAll('\\','/'),test=path.join(out,'native-entry-probes.test.ts'),factsFile=path.join(out,'facts.json'),report=path.join(out,'vitest.json');
+fs.writeFileSync(test,fs.readFileSync(path.join(here,'native-entry-probes.test.ts.template'),'utf8').replaceAll('__REPO__',posix(repo)));
+const config=path.join(out,'vitest.config.mjs');
+fs.writeFileSync(config,'export default '+JSON.stringify({root:out,resolve:{alias:{vitest:posix(path.join(repo,'node_modules/vitest/dist/index.js'))}},test:{environment:'node',include:[posix(test)],reporters:['default','json'],outputFile:{json:posix(report)}}})+';\n');
+const result=cp.spawnSync(process.execPath,[path.join(repo,'node_modules/vitest/vitest.mjs'),'run','--config',config],{cwd:repo,env:{...process.env,WORLD_ENTRY_FACTS:factsFile},encoding:'utf8',maxBuffer:16*1024*1024});
+fs.writeFileSync(path.join(out,'stdout.log'),result.stdout??'');fs.writeFileSync(path.join(out,'stderr.log'),result.stderr??'');
+process.stdout.write(result.stdout??'');process.stderr.write(result.stderr??'');
+const native=fs.existsSync(report)?JSON.parse(fs.readFileSync(report,'utf8')):null;
+const facts=fs.existsSync(factsFile)?JSON.parse(fs.readFileSync(factsFile,'utf8')):null;
+const output={task:'WORLD-ENTRY-006',kind:'native-headless-not-browser',head:cp.execFileSync('git',['rev-parse','HEAD'],{cwd:repo,encoding:'utf8'}).trim(),runtime:process.version,exit:result.status,error:result.error?String(result.error):null,tests:native?{total:native.numTotalTests,passed:native.numPassedTests,failed:native.numFailedTests,success:native.success,cases:native.testResults.flatMap(f=>f.assertionResults.map(a=>({name:a.fullName,status:a.status,duration_ms:a.duration,failureMessages:a.failureMessages})))}:null,facts,not_run:['browser IO','Web Locks/multitab','UI/DOM','Owner playability','full npm run check','historical 72 samples']};
+fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(output,null,2)+'\n');
+console.log('Native evidence directory: '+out);process.exitCode=result.status??1;

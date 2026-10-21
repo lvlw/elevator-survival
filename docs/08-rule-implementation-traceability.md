@@ -357,3 +357,9 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 玩家查询驱动真实 read-null → 初配 → 出发 → 搜索／搬运／CTB／任务 → 成功交付，以及退却后立即维修／休整／再入和显式止损。源码与测试结果属于作者交付，仍等待准确 SHA 主线查询／选择边界实审，不替代 Owner 分段突破试玩。
 
 实际接口、支持边界与证据见[本轮工程交付](engineering/world-integration/player-query/implementation/field-support.json)。不自动进入 UI 或下一工程。
+
+## WORLD-ENTRY-006 作者候选附记
+
+查询工程394f59d的限定实审PASS只覆盖headless查询／选择。本轮追踪增加的是[首玩接入候选与隔离证据](design-drafts/world-infected-001/entry-006/00-owner-review.md)：当前身体公开依据、真正缺失映射、原生blocked回调与ready返回、浏览器候选外expected与唯一writer责任。
+
+本批没有实现新公开病程映射、应用bridge、浏览器存储、UI或玩家入口；候选不能写成规则已批准或世界已可玩。Owner分段体验与O3保持OPEN，原历史记录保留。

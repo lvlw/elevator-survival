@@ -330,3 +330,9 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 感染公开阶段映射仍 unknown；UI、浏览器存储、多标签、O3、玩家入口及 Owner 实际试玩均未在本项执行。不以原生路线成功改写分段突破体验 OPEN／NOT RUN。
 
 实际接口、支持边界与证据见[本轮工程交付](../../engineering/world-integration/player-query/implementation/completion.md)。不自动进入 UI 或下一工程。
+
+## WORLD-ENTRY-006 作者候选附记
+
+[集中审阅页](entry-006/00-owner-review.md)承接394f59d限定实审，提供低资产首玩、当前提示、真实更新和浏览器启动／保存的候选。仍只有一份委托，不新增世界玩法或重选已批规则。
+
+感染公开分档和DEV独立入口范围待采纳；原生探针不等于浏览器／Owner首玩，分段突破继续OPEN／NOT RUN。最近三份工程合同均DRAFT，逐批准确SHA停审，不自动连跑。

@@ -39,3 +39,9 @@
 3. [低资产 UI 候选](contracts/03-low-asset-ui-contract-draft.md)：五停点、真实完整玩家链、浏览器恢复、Owner 首玩。不是一次不停审的大 Goal。
 
 当前只交付候选，不自动归档为正式条款、不执行上述工程。首玩、分段突破、九组合体验、O3 仍 OPEN / NOT RUN。
+
+## DOC-WORLD-ENTRY-006：Owner 审阅事项已局部采纳
+
+Owner 直接批准 D1/D2 及限定顺序，主线技术定稿不冒称 Owner 对每一实现细节逐字决定。原 DRAFT 推荐保留为历史；同范围后继正式合同见链接。本轮仅落文，等待本轮准确 SHA 实审，未开工生产。
+
+依据：[DEC-053](../../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../../../engineering/world-integration/preplay/batch-plan-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

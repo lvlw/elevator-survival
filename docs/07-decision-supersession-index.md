@@ -111,3 +111,9 @@ DEC-051局部补齐当前新委托的H0资格与明确意图、四终局、任�
 不整体废止任何旧DEC；五图数据不是运行时注册，旧参数候选／有限模型字段不并列成为正式规则源。
 
 当前依据：[唯一103键试用配置](content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](content/infected-world-entry-content-v0.1.json)、[E01-P首契约](engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](engineering/residence-foundation/world-content-batch-plan-v1.0.md)。
+
+## DOC-WORLD-ENTRY-006：DEC-053 局部覆盖定位
+
+本附记仅为索引，不另立规则。DEC-053 在新世界范围内明确当前病程粗档的公开权限与独立 DEV 首玩边界；原查询隐私、opaque 选择及旧医院规则继续有效，未整体废弃 DEC-049～052。
+
+依据：[DEC-053](05-design-decisions.md#dec-053)、[同范围后继正式合同](engineering/world-integration/preplay/public-condition-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

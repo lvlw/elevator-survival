@@ -1,0 +1,136 @@
+{
+  "kind": "exact-source-path-predicate-only",
+  "not_executed": [
+    "native game probes",
+    "full runner filesystem and child-process execution",
+    "Windows OS execution",
+    "symlink resolution",
+    "browser IO"
+  ],
+  "total": 12,
+  "matched": 10,
+  "mismatches": 2,
+  "unexpectedExceptions": 0,
+  "result": [
+    {
+      "platform": "posix",
+      "name": "repo root",
+      "repo": "/fixture/repo",
+      "out": "/fixture/repo",
+      "relative": "",
+      "shouldReject": true,
+      "actualRejected": true,
+      "matched": true
+    },
+    {
+      "platform": "posix",
+      "name": "normal child",
+      "repo": "/fixture/repo",
+      "out": "/fixture/repo/out",
+      "relative": "out",
+      "shouldReject": true,
+      "actualRejected": true,
+      "matched": true
+    },
+    {
+      "platform": "posix",
+      "name": "dot-dot-prefixed child",
+      "repo": "/fixture/repo",
+      "out": "/fixture/repo/..probe",
+      "relative": "..probe",
+      "shouldReject": true,
+      "actualRejected": false,
+      "matched": false
+    },
+    {
+      "platform": "posix",
+      "name": "parent",
+      "repo": "/fixture/repo",
+      "out": "/fixture",
+      "relative": "..",
+      "shouldReject": false,
+      "actualRejected": false,
+      "matched": true
+    },
+    {
+      "platform": "posix",
+      "name": "sibling",
+      "repo": "/fixture/repo",
+      "out": "/fixture/evidence",
+      "relative": "../evidence",
+      "shouldReject": false,
+      "actualRejected": false,
+      "matched": true
+    },
+    {
+      "platform": "posix",
+      "name": "same-prefix sibling",
+      "repo": "/fixture/repo",
+      "out": "/fixture/repo-evidence",
+      "relative": "../repo-evidence",
+      "shouldReject": false,
+      "actualRejected": false,
+      "matched": true
+    },
+    {
+      "platform": "win32",
+      "name": "repo root",
+      "repo": "C:\\fixture\\repo",
+      "out": "C:\\fixture\\repo",
+      "relative": "",
+      "shouldReject": true,
+      "actualRejected": true,
+      "matched": true
+    },
+    {
+      "platform": "win32",
+      "name": "normal child",
+      "repo": "C:\\fixture\\repo",
+      "out": "C:\\fixture\\repo\\out",
+      "relative": "out",
+      "shouldReject": true,
+      "actualRejected": true,
+      "matched": true
+    },
+    {
+      "platform": "win32",
+      "name": "dot-dot-prefixed child",
+      "repo": "C:\\fixture\\repo",
+      "out": "C:\\fixture\\repo\\..probe",
+      "relative": "..probe",
+      "shouldReject": true,
+      "actualRejected": false,
+      "matched": false
+    },
+    {
+      "platform": "win32",
+      "name": "parent",
+      "repo": "C:\\fixture\\repo",
+      "out": "C:\\fixture",
+      "relative": "..",
+      "shouldReject": false,
+      "actualRejected": false,
+      "matched": true
+    },
+    {
+      "platform": "win32",
+      "name": "sibling",
+      "repo": "C:\\fixture\\repo",
+      "out": "C:\\fixture\\evidence",
+      "relative": "..\\evidence",
+      "shouldReject": false,
+      "actualRejected": false,
+      "matched": true
+    },
+    {
+      "platform": "win32",
+      "name": "same-prefix sibling",
+      "repo": "C:\\fixture\\repo",
+      "out": "C:\\fixture\\repo-evidence",
+      "relative": "..\\repo-evidence",
+      "shouldReject": false,
+      "actualRejected": false,
+      "matched": true
+    }
+  ]
+}

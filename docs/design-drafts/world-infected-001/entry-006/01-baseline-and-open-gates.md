@@ -27,3 +27,9 @@
 | 体验／发布 | Owner 首玩、分段、O3 未关闭 | 真实玩家信息下试玩；公开前独立发布决定 |
 
 本轮无规则冲突。D1 新知识和 D2 兼容范围隔离为 DRAFT；不借设计稿修改正式知识或生产接口。
+
+## DOC-WORLD-ENTRY-006：基线与未关闭 Gate
+
+20b833ae 是本轮文档起点；原 probe 与准确 SHA 实审结论保留。批准门槛已关闭，但 foundation、browser owner、低资产 UI、真实启动／刷新／单 writer 和 Owner 体验仍未执行；本轮 T01 不代表这些能力已通过。
+
+依据：[DEC-053](../../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../../../engineering/world-integration/preplay/batch-plan-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

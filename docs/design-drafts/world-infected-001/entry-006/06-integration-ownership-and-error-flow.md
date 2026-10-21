@@ -44,3 +44,9 @@ N10 的 TEST 故障只替换展示 context 构造，生产者保持原生；一�
 Feed 只消费已经公开的执行前后安全事实及正式安全结果；不保留原状态、Effects、roll、风险百分比、身份或原 commit。相同隐藏状态配对不能因错误文本／选项／颜色／日志泄漏。只有实际明确执行后合法公开的结果才允许不同。未知医疗失败不能被 Preview 循环探测；明确拒绝和材料消费的观察不同，不作不可推知隐藏状态的绝对承诺。
 
 bootstrap、retryRead、retrySave、取消、Preview、查看、关闭结果均不生成已执行玩法 Feed。浏览器 reload 不复原历史日志，不用日志再驱动规则。
+
+## DOC-WORLD-ENTRY-006：集成责任后继定稿
+
+同范围后继基础合同区分 S 的唯一 current、browser owner 的持久化与 UI 的纯展示。原生通知内 query 可能 blocked，不能直接拿 subscribe 当完整 UI 状态源；保存失败保留最新内存，仅 retrySave，不重播动作或补发初配。当前只定合同，尚无生产接线。
+
+依据：[DEC-053](../../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../../../engineering/world-integration/preplay/foundation-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

@@ -54,3 +54,9 @@
 执行返回 ready 后先替换展示，再播放轻反馈／追加已提交公开差异。普通拒绝不记成功 Feed；保存错误独立。现有返回没有完整实际结果事件，不能从 raw commit／previous current 补洞；当前只消费可见 HP、物耗、任务等差异，补充事件须经基础工程安全投影。
 
 刷新只恢复正式保存停点，Feed 新会话从“已恢复当前状态”开始，不重建旧动作历史。全部对象草稿在新 current／恢复／phase 变化后失效；重开用新选择，不静默换目标续交。细节见[更新合同](06-integration-ownership-and-error-flow.md)。
+
+## DOC-WORLD-ENTRY-006：低资产流程后继合同
+
+同范围后继正式流程合同限定初配、五合法停点和最终状态刷新；已有初配不能借查询重发或改选。视图不取得 raw current／raw commit，blocked 与真实稳定状态须区分。当前无新 UI 或 DOM 实现，原 DRAFT 与历史记录保留。
+
+依据：[DEC-053](../../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../../../engineering/world-integration/preplay/low-asset-ui-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

@@ -1,16 +1,16 @@
 // TEST-only external runner; never edits src/index/browser/global test settings.
 import fs from 'node:fs';
 import path from 'node:path';
-import os from 'node:os';
 import cp from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { planProbeOutput, recheckOutputDirectory } from './output-path-guard.mjs';
 const here=path.dirname(fileURLToPath(import.meta.url)),args=process.argv.slice(2);
 const arg=k=>{const n=args.indexOf(k);return n<0?undefined:args[n+1]};
 const repo=path.resolve(arg('--repo')??process.cwd());
-const out=path.resolve(arg('--out')??fs.mkdtempSync(path.join(os.tmpdir(),'world-entry-native-')));
-const relative=path.relative(repo,out);
-if(relative===''||(!relative.startsWith('..')&&!path.isAbsolute(relative)))throw Error('Probe output must be outside repository');
+const outputPlan=planProbeOutput(repo,arg('--out'));
+const out=outputPlan.out;
 fs.mkdirSync(out,{recursive:true});
+recheckOutputDirectory(outputPlan);
 const posix=p=>p.replaceAll('\\','/'),test=path.join(out,'native-entry-probes.test.ts'),factsFile=path.join(out,'facts.json'),report=path.join(out,'vitest.json');
 fs.writeFileSync(test,fs.readFileSync(path.join(here,'native-entry-probes.test.ts.template'),'utf8').replaceAll('__REPO__',posix(repo)));
 const config=path.join(out,'vitest.config.mjs');

@@ -336,3 +336,9 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 [集中审阅页](entry-006/00-owner-review.md)承接394f59d限定实审，提供低资产首玩、当前提示、真实更新和浏览器启动／保存的候选。仍只有一份委托，不新增世界玩法或重选已批规则。
 
 感染公开分档和DEV独立入口范围待采纳；原生探针不等于浏览器／Owner首玩，分段突破继续OPEN／NOT RUN。最近三份工程合同均DRAFT，逐批准确SHA停审，不自动连跑。
+
+## DOC-WORLD-ENTRY-006：世界方向的已批准局部
+
+D1 当前病程四档与 D2 独立 DEV 封闭首玩已批准；不是重开世界设计或批准所有历史候选。最低档不表示未感染或安全，最高档不改变 HP0 死亡制。旧入口／旧槽不变；O3、迁移、清档和永久双产品仍未批准。
+
+依据：[DEC-053](../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../../engineering/world-integration/preplay/public-condition-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

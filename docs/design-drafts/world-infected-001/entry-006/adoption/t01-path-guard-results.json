@@ -1,0 +1,768 @@
+{
+  "task": "DOC-WORLD-ENTRY-006",
+  "start_sha": "20b833aeec4693e56afee075c9878425d3c58605",
+  "branch": "feature/design-world-entry-006",
+  "kind": "TEST-only-tool-evidence-not-production-tests",
+  "before": {
+    "exit": 1,
+    "source_blob_matches_start": true,
+    "source_sha256": "528861a1c8e82cf7b9d95ee8e1c2b1fe4252a60f09a71a8056253512beedfaf5",
+    "kind": "exact-source-path-predicate-only",
+    "not_executed": [
+      "native game probes",
+      "full runner filesystem and child-process execution",
+      "Windows OS execution",
+      "symlink resolution",
+      "browser IO"
+    ],
+    "total": 12,
+    "matched": 10,
+    "mismatches": 2,
+    "unexpectedExceptions": 0,
+    "result": [
+      {
+        "platform": "posix",
+        "name": "repo root",
+        "repo": "/fixture/repo",
+        "out": "/fixture/repo",
+        "relative": "",
+        "shouldReject": true,
+        "actualRejected": true,
+        "matched": true
+      },
+      {
+        "platform": "posix",
+        "name": "normal child",
+        "repo": "/fixture/repo",
+        "out": "/fixture/repo/out",
+        "relative": "out",
+        "shouldReject": true,
+        "actualRejected": true,
+        "matched": true
+      },
+      {
+        "platform": "posix",
+        "name": "dot-dot-prefixed child",
+        "repo": "/fixture/repo",
+        "out": "/fixture/repo/..probe",
+        "relative": "..probe",
+        "shouldReject": true,
+        "actualRejected": false,
+        "matched": false
+      },
+      {
+        "platform": "posix",
+        "name": "parent",
+        "repo": "/fixture/repo",
+        "out": "/fixture",
+        "relative": "..",
+        "shouldReject": false,
+        "actualRejected": false,
+        "matched": true
+      },
+      {
+        "platform": "posix",
+        "name": "sibling",
+        "repo": "/fixture/repo",
+        "out": "/fixture/evidence",
+        "relative": "../evidence",
+        "shouldReject": false,
+        "actualRejected": false,
+        "matched": true
+      },
+      {
+        "platform": "posix",
+        "name": "same-prefix sibling",
+        "repo": "/fixture/repo",
+        "out": "/fixture/repo-evidence",
+        "relative": "../repo-evidence",
+        "shouldReject": false,
+        "actualRejected": false,
+        "matched": true
+      },
+      {
+        "platform": "win32",
+        "name": "repo root",
+        "repo": "C:\\fixture\\repo",
+        "out": "C:\\fixture\\repo",
+        "relative": "",
+        "shouldReject": true,
+        "actualRejected": true,
+        "matched": true
+      },
+      {
+        "platform": "win32",
+        "name": "normal child",
+        "repo": "C:\\fixture\\repo",
+        "out": "C:\\fixture\\repo\\out",
+        "relative": "out",
+        "shouldReject": true,
+        "actualRejected": true,
+        "matched": true
+      },
+      {
+        "platform": "win32",
+        "name": "dot-dot-prefixed child",
+        "repo": "C:\\fixture\\repo",
+        "out": "C:\\fixture\\repo\\..probe",
+        "relative": "..probe",
+        "shouldReject": true,
+        "actualRejected": false,
+        "matched": false
+      },
+      {
+        "platform": "win32",
+        "name": "parent",
+        "repo": "C:\\fixture\\repo",
+        "out": "C:\\fixture",
+        "relative": "..",
+        "shouldReject": false,
+        "actualRejected": false,
+        "matched": true
+      },
+      {
+        "platform": "win32",
+        "name": "sibling",
+        "repo": "C:\\fixture\\repo",
+        "out": "C:\\fixture\\evidence",
+        "relative": "..\\evidence",
+        "shouldReject": false,
+        "actualRejected": false,
+        "matched": true
+      },
+      {
+        "platform": "win32",
+        "name": "same-prefix sibling",
+        "repo": "C:\\fixture\\repo",
+        "out": "C:\\fixture\\repo-evidence",
+        "relative": "..\\repo-evidence",
+        "shouldReject": false,
+        "actualRejected": false,
+        "matched": true
+      }
+    ]
+  },
+  "after": {
+    "exit": 0,
+    "task": "DOC-WORLD-ENTRY-006/T01",
+    "runtime": "v24.9.0",
+    "platform": "win32",
+    "fixture_root": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-native-8348f2ee5f07a3397b27503e",
+    "cases": [
+      {
+        "name": "posix/root",
+        "kind": "path-calculation-not-OS-proof",
+        "status": "PASS"
+      },
+      {
+        "name": "posix/child",
+        "kind": "path-calculation-not-OS-proof",
+        "status": "PASS"
+      },
+      {
+        "name": "posix/dotdot-prefixed-child",
+        "kind": "path-calculation-not-OS-proof",
+        "status": "PASS"
+      },
+      {
+        "name": "posix/parent",
+        "kind": "path-calculation-not-OS-proof",
+        "status": "PASS"
+      },
+      {
+        "name": "posix/sibling",
+        "kind": "path-calculation-not-OS-proof",
+        "status": "PASS"
+      },
+      {
+        "name": "posix/same-prefix-sibling",
+        "kind": "path-calculation-not-OS-proof",
+        "status": "PASS"
+      },
+      {
+        "name": "win32/root",
+        "kind": "path-calculation-not-OS-proof",
+        "status": "PASS"
+      },
+      {
+        "name": "win32/child",
+        "kind": "path-calculation-not-OS-proof",
+        "status": "PASS"
+      },
+      {
+        "name": "win32/dotdot-prefixed-child",
+        "kind": "path-calculation-not-OS-proof",
+        "status": "PASS"
+      },
+      {
+        "name": "win32/parent",
+        "kind": "path-calculation-not-OS-proof",
+        "status": "PASS"
+      },
+      {
+        "name": "win32/sibling",
+        "kind": "path-calculation-not-OS-proof",
+        "status": "PASS"
+      },
+      {
+        "name": "win32/same-prefix-sibling",
+        "kind": "path-calculation-not-OS-proof",
+        "status": "PASS"
+      },
+      {
+        "name": "filesystem/reject-root",
+        "kind": "native-filesystem",
+        "status": "PASS"
+      },
+      {
+        "name": "filesystem/reject-child",
+        "kind": "native-filesystem",
+        "status": "PASS"
+      },
+      {
+        "name": "filesystem/reject-dotdot-prefixed-child",
+        "kind": "native-filesystem",
+        "status": "PASS"
+      },
+      {
+        "name": "filesystem/allow-parent",
+        "kind": "native-filesystem",
+        "status": "PASS"
+      },
+      {
+        "name": "filesystem/allow-sibling",
+        "kind": "native-filesystem",
+        "status": "PASS"
+      },
+      {
+        "name": "filesystem/allow-same-prefix-sibling",
+        "kind": "native-filesystem",
+        "status": "PASS"
+      },
+      {
+        "name": "filesystem/allow-missing-leaf",
+        "kind": "native-filesystem",
+        "status": "PASS"
+      },
+      {
+        "name": "filesystem/allow-missing-multilevel",
+        "kind": "native-filesystem",
+        "status": "PASS"
+      },
+      {
+        "name": "filesystem/missing-repo-fails-closed",
+        "kind": "native-filesystem",
+        "status": "PASS"
+      },
+      {
+        "name": "filesystem/output-is-file",
+        "kind": "native-filesystem",
+        "status": "PASS"
+      },
+      {
+        "name": "filesystem/output-parent-is-file",
+        "kind": "native-filesystem",
+        "status": "PASS"
+      },
+      {
+        "name": "default/inside-repo-no-creation",
+        "kind": "native-filesystem",
+        "status": "PASS"
+      },
+      {
+        "name": "default/outside-no-creation-before-caller",
+        "kind": "native-filesystem",
+        "status": "PASS"
+      },
+      {
+        "name": "fault/lstat-permission-denied-fails-closed",
+        "kind": "injected-IO-not-OS-ACL-proof",
+        "status": "PASS"
+      },
+      {
+        "name": "fault/realpath-failure-fails-closed",
+        "kind": "injected-IO-not-OS-ACL-proof",
+        "status": "PASS"
+      },
+      {
+        "name": "link/repo-itself-is-alias",
+        "kind": "native-junction",
+        "status": "PASS"
+      },
+      {
+        "name": "link/external-alias-back-to-repo",
+        "kind": "native-junction",
+        "status": "PASS"
+      },
+      {
+        "name": "link/external-alias-to-external",
+        "kind": "native-junction",
+        "status": "PASS"
+      },
+      {
+        "name": "link/lexically-inside-to-external-conservative",
+        "kind": "native-junction",
+        "status": "PASS"
+      },
+      {
+        "name": "link/dangling-leaf-and-ancestor",
+        "kind": "native-junction",
+        "status": "PASS"
+      },
+      {
+        "name": "default/temp-alias-back-to-repo-no-creation",
+        "kind": "native-junction",
+        "status": "PASS"
+      },
+      {
+        "name": "link/post-create-recheck-detects-changed-target",
+        "kind": "native-junction",
+        "status": "PASS"
+      },
+      {
+        "name": "filesystem/post-create-multilevel-compatible",
+        "kind": "native-filesystem",
+        "status": "PASS"
+      }
+    ],
+    "total": 35,
+    "passed": 35,
+    "failed": 0,
+    "not_run": 0,
+    "limitations": [
+      "No hostile concurrent-link-replacement sandbox guarantee",
+      "Injected permission failures are not actual Windows ACL tests",
+      "Pure win32 path calculations are separate from native filesystem junction evidence"
+    ]
+  },
+  "negative_controls": [
+    {
+      "label": "old-prefix",
+      "exit": 1,
+      "task": "DOC-WORLD-ENTRY-006/T01",
+      "runtime": "v24.9.0",
+      "platform": "win32",
+      "fixture_root": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-native-51e3bfead49e646eb2fba6be",
+      "cases": [
+        {
+          "name": "posix/root",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "posix/child",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "posix/dotdot-prefixed-child",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "FAIL",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n",
+          "assertion": true
+        },
+        {
+          "name": "posix/parent",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "posix/sibling",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "posix/same-prefix-sibling",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "win32/root",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "win32/child",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "win32/dotdot-prefixed-child",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "FAIL",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n",
+          "assertion": true
+        },
+        {
+          "name": "win32/parent",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "win32/sibling",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "win32/same-prefix-sibling",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/reject-root",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/reject-child",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/reject-dotdot-prefixed-child",
+          "kind": "native-filesystem",
+          "status": "FAIL",
+          "error": "AssertionError [ERR_ASSERTION]: Missing expected exception.",
+          "assertion": true
+        },
+        {
+          "name": "filesystem/allow-parent",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/allow-sibling",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/allow-same-prefix-sibling",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/allow-missing-leaf",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/allow-missing-multilevel",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/missing-repo-fails-closed",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/output-is-file",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/output-parent-is-file",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "default/inside-repo-no-creation",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "default/outside-no-creation-before-caller",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "fault/lstat-permission-denied-fails-closed",
+          "kind": "injected-IO-not-OS-ACL-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "fault/realpath-failure-fails-closed",
+          "kind": "injected-IO-not-OS-ACL-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "link/repo-itself-is-alias",
+          "kind": "native-junction",
+          "status": "PASS"
+        },
+        {
+          "name": "link/external-alias-back-to-repo",
+          "kind": "native-junction",
+          "status": "PASS"
+        },
+        {
+          "name": "link/external-alias-to-external",
+          "kind": "native-junction",
+          "status": "PASS"
+        },
+        {
+          "name": "link/lexically-inside-to-external-conservative",
+          "kind": "native-junction",
+          "status": "PASS"
+        },
+        {
+          "name": "link/dangling-leaf-and-ancestor",
+          "kind": "native-junction",
+          "status": "PASS"
+        },
+        {
+          "name": "default/temp-alias-back-to-repo-no-creation",
+          "kind": "native-junction",
+          "status": "PASS"
+        },
+        {
+          "name": "link/post-create-recheck-detects-changed-target",
+          "kind": "native-junction",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/post-create-multilevel-compatible",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        }
+      ],
+      "total": 35,
+      "passed": 32,
+      "failed": 3,
+      "not_run": 0,
+      "limitations": [
+        "No hostile concurrent-link-replacement sandbox guarantee",
+        "Injected permission failures are not actual Windows ACL tests",
+        "Pure win32 path calculations are separate from native filesystem junction evidence"
+      ]
+    },
+    {
+      "label": "omit-real-containment",
+      "exit": 1,
+      "task": "DOC-WORLD-ENTRY-006/T01",
+      "runtime": "v24.9.0",
+      "platform": "win32",
+      "fixture_root": "C:\\Users\\zjl\\AppData\\Local\\Temp\\world-entry-native-9af5dacc9d5f8c3b9b25678d",
+      "cases": [
+        {
+          "name": "posix/root",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "posix/child",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "posix/dotdot-prefixed-child",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "posix/parent",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "posix/sibling",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "posix/same-prefix-sibling",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "win32/root",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "win32/child",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "win32/dotdot-prefixed-child",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "win32/parent",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "win32/sibling",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "win32/same-prefix-sibling",
+          "kind": "path-calculation-not-OS-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/reject-root",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/reject-child",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/reject-dotdot-prefixed-child",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/allow-parent",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/allow-sibling",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/allow-same-prefix-sibling",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/allow-missing-leaf",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/allow-missing-multilevel",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/missing-repo-fails-closed",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/output-is-file",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/output-parent-is-file",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "default/inside-repo-no-creation",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "default/outside-no-creation-before-caller",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        },
+        {
+          "name": "fault/lstat-permission-denied-fails-closed",
+          "kind": "injected-IO-not-OS-ACL-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "fault/realpath-failure-fails-closed",
+          "kind": "injected-IO-not-OS-ACL-proof",
+          "status": "PASS"
+        },
+        {
+          "name": "link/repo-itself-is-alias",
+          "kind": "native-junction",
+          "status": "FAIL",
+          "error": "AssertionError [ERR_ASSERTION]: Missing expected exception.",
+          "assertion": true
+        },
+        {
+          "name": "link/external-alias-back-to-repo",
+          "kind": "native-junction",
+          "status": "FAIL",
+          "error": "AssertionError [ERR_ASSERTION]: Missing expected exception.",
+          "assertion": true
+        },
+        {
+          "name": "link/external-alias-to-external",
+          "kind": "native-junction",
+          "status": "PASS"
+        },
+        {
+          "name": "link/lexically-inside-to-external-conservative",
+          "kind": "native-junction",
+          "status": "PASS"
+        },
+        {
+          "name": "link/dangling-leaf-and-ancestor",
+          "kind": "native-junction",
+          "status": "PASS"
+        },
+        {
+          "name": "default/temp-alias-back-to-repo-no-creation",
+          "kind": "native-junction",
+          "status": "FAIL",
+          "error": "AssertionError [ERR_ASSERTION]: Missing expected exception.",
+          "assertion": true
+        },
+        {
+          "name": "link/post-create-recheck-detects-changed-target",
+          "kind": "native-junction",
+          "status": "PASS"
+        },
+        {
+          "name": "filesystem/post-create-multilevel-compatible",
+          "kind": "native-filesystem",
+          "status": "PASS"
+        }
+      ],
+      "total": 35,
+      "passed": 32,
+      "failed": 3,
+      "not_run": 0,
+      "limitations": [
+        "No hostile concurrent-link-replacement sandbox guarantee",
+        "Injected permission failures are not actual Windows ACL tests",
+        "Pure win32 path calculations are separate from native filesystem junction evidence"
+      ]
+    }
+  ],
+  "compatibility": {
+    "unchanged_native_tail": true,
+    "syntax": [
+      {
+        "file": "run-native-probes.mjs",
+        "exit": 0
+      },
+      {
+        "file": "output-path-guard.mjs",
+        "exit": 0
+      },
+      {
+        "file": "check-output-path-guard.mjs",
+        "exit": 0
+      }
+    ],
+    "runner_invalid": {
+      "exit": 1,
+      "no_created_output": true
+    },
+    "game_suite": "NOT RUN"
+  },
+  "platform_limitations": [
+    "Actual win32 Windows junction tests ran; posix paths are calculation-only, not POSIX OS proof.",
+    "EACCES/EIO were injected IO exceptions, not actual Windows ACL denial tests.",
+    "No guarantee against hostile concurrent link replacement; no recursive cleanup.",
+    "No browser/multi-tab/Owner playability or gameplay suite executed."
+  ]
+}

@@ -363,3 +363,9 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 查询工程394f59d的限定实审PASS只覆盖headless查询／选择。本轮追踪增加的是[首玩接入候选与隔离证据](design-drafts/world-infected-001/entry-006/00-owner-review.md)：当前身体公开依据、真正缺失映射、原生blocked回调与ready返回、浏览器候选外expected与唯一writer责任。
 
 本批没有实现新公开病程映射、应用bridge、浏览器存储、UI或玩家入口；候选不能写成规则已批准或世界已可玩。Owner分段体验与O3保持OPEN，原历史记录保留。
+
+## DOC-WORLD-ENTRY-006：实现与文档批准分账
+
+D1/D2 已获 Owner 批准，主线已定稿后继三批技术责任；本轮只归档文档和 T01 工具，不实现粗档生产查询、controller、浏览器 owner 或 UI。394f59d 的 23 公开／1 unknown 是历史实现证据，不能改称 v1.1 已实现；后继各接缝待工程和准确 SHA 实审。
+
+依据：[DEC-053](05-design-decisions.md#dec-053)、[同范围后继正式合同](engineering/world-integration/preplay/batch-plan-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

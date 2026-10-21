@@ -303,3 +303,9 @@ Owner 认可草图的总体布局与交互方向，下一步以真实浏览器�
 医院一日 Player-Known Mini Map 只辅助展示已知空间关系，正式移动入口仅在当前房间 Travel Cluster。搜索正式提交后当前房间自动展开搜索结果；关闭后仍可按需再次查看。普通 revealed node item pickup 允许 UI Interaction 层基于最新 canonical Scene，以未旋转姿态按先行后列（y 再 x）的 row-major 顺序逐格通过正式 Preview 验证，并选择第一个合法位置执行同一正式 pickup command；数量有多种选择时玩家先明确数量。若未旋转位置均不合法，则回到手动位置／旋转选择。UI first-fit 不移动、整理、旋转现有物品，不自动旋转待拾取物，也不额外执行整理／拆分／合并命令；正式 pickup command 仍按 DEC-017 优先补充兼容未满堆叠后处理剩余数量。样本箱 Task Event 和其他明确要求放置取舍的特殊输出仍显式选择位置；已经存在于节点的实体不因此失去普通 pickup 路径。这是交互便利，不覆盖 Inventory Core 合法性规则。
 
 普通结果默认由舞台、HUD 与同一 session-local Activity Feed 反馈，详细报告按需查看；Hub／Room Feed 属于主舞台，战斗 Feed 是该 Feed 的过滤视图。相对战斗时间轴只展示正式玩家安全顺序，Hover／Focus 预估在固定占位内替换文字，不能撑动战斗操作栏。此处不新增玩法或音频设计。
+
+## DOC-WORLD-ENTRY-006：既有 UI 约定的范围索引
+
+这里只索引 DEC-053：新世界可显示当前病程粗档，入口限显式 DEV 独立命名空间。Stage-First、分级确认等现行 UIR 保持，本轮不新增 UIR、不注册入口；隐藏医疗目标 Preview 仍 unknown。
+
+依据：[DEC-053](05-design-decisions.md#dec-053)、[同范围后继正式合同](engineering/world-integration/preplay/public-condition-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

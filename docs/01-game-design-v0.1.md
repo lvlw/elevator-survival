@@ -1213,3 +1213,9 @@ DEC-046—048 仅为未来完整感染世界确认以下边界：每日仍只承
 当前C能力与新内容生产者未接线部分分开，完整世界仍未完成可玩验收。商城／中枢服务、未来改专长、第二委托和O3发布安排不因本次归档获批。
 
 当前依据：[唯一103键试用配置](content/infected-world-entry-test-config-v0.1.json)、[限定五图内容](content/infected-world-entry-content-v0.1.json)、[E01-P首契约](engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](engineering/residence-foundation/world-content-batch-plan-v1.0.md)。
+
+## DOC-WORLD-ENTRY-006：当前连续驻留范围的局部采纳
+
+Owner 已批准 D1 当前病程负担四档及 D2 独立 DEV 封闭首玩；不倒改旧医院一天一场景或终局规则。粗档沿用 infection_damage，不公开精确进度、潜藏暴露或未来答案；隐藏医疗目标 Preview 继续 unknown。
+
+依据：[DEC-053](05-design-decisions.md#dec-053)、[同范围后继正式合同](engineering/world-integration/preplay/public-condition-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

@@ -69,3 +69,9 @@ reservation 先写成功而 first checkpoint 失败：本页保留最新 first-h
 锁释放／页面终止／BFCache 恢复／跨同源 frame、锁申请竞争、第二标签重试必须真实测试。恢复页面先确认仍持锁；失锁即废弃可执行上下文和草稿，重新取得锁后只冷恢复最后成功 checkpoint，不安装失锁旧内存。租约心跳、时间戳和 storage event 只可作诊断，不代替锁。主标签关闭后的新页面自动取得锁不等于能把旧内存未保存状态带来。
 
 依据：[Web Locks 工作草案](https://www.w3.org/TR/web-locks/)的协作锁语义；[HTML Web storage](https://html.spec.whatwg.org/multipage/webstorage.html)不提供跨 agent-cluster 的 read/modify/write 锁保证。这里是技术推荐，不作浏览器覆盖或跨标签 PASS；私密模式、分区、存储淘汰、用户编辑、不合作脚本和系统崩溃仍有限制。
+
+## DOC-WORLD-ENTRY-006：浏览器启动后继合同
+
+主线已定稿候选外恢复材料、prepared handoff 和唯一持久化责任；不从刚读到的 candidate 自证 expected。进程内 domain 不等于跨标签互斥，孤立 reservation 必须 blocked，不自动清档或补发；本轮未实现 browser owner。
+
+依据：[DEC-053](../../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../../../engineering/world-integration/preplay/browser-owner-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

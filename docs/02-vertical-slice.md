@@ -644,3 +644,9 @@ DEC-046—048 已确认完整感染世界的部分设计方向：不以固定访
 本次完成文档采纳，下一切口为E01-P完整纯生产者；准确SHA实审后另发E01-R，再经实审另发E01-S。E02活战斗、E03完整路线／安全查询及Owner试玩仍有独立门槛，本轮不注册玩家入口或处理O3。
 
 当前依据：[E01-P首契约](engineering/residence-foundation/content-supply-core-contract-v1.0.md)、[来源恢复合同](engineering/residence-foundation/content-supply-restore-contract-v1.0.md)、[工程批次门槛](engineering/residence-foundation/world-content-batch-plan-v1.0.md)、[本次采纳总入口](design-drafts/world-infected-001/entry-004/00-owner-review.md#doc-world-entry-004)。
+
+## DOC-WORLD-ENTRY-006：阶段范围与首玩 Gate
+
+本次只落文已批准的 D1/D2，原医院冻结与历史验收不变。基础准备、浏览器 owner、低资产 UI 必须逐批下发和准确 SHA 实审；真实启动、保存、刷新与单 writer 通过后才能 Owner 首玩，不代表体验已验收。
+
+依据：[DEC-053](05-design-decisions.md#dec-053)、[同范围后继正式合同](engineering/world-integration/preplay/batch-plan-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

@@ -40,3 +40,9 @@
 394f59d headless查询／选择已有本包限定准确SHA实审PASS，不追改上述历史未开工状态。[首玩接入候选](../../../design-drafts/world-infected-001/entry-006/00-owner-review.md)明确通知blocked→返回ready、候选外冷材料、单writer及旧入口选项；真实原生接缝探针与尚未实现的浏览器时序分开记录。
 
 候选与证据交付不关闭低资产UI、浏览器保存／多标签、Owner自由首玩与分段对照、O3及发布维护Gate。不自动正式落文或进入生产，等待准确SHA实文件审查。
+
+## DOC-WORLD-ENTRY-006：封闭首玩准入仍未执行
+
+本轮关闭批准／文档归档事项，不关闭基础、browser owner、UI、Owner 分段体验、九组合体验或 O3 Gate。真实启动、保存、五合法停点刷新及单 writer 验收前不得首玩；失败保存后的刷新只恢复最后成功 checkpoint，不承诺最新内存必定落盘。
+
+依据：[DEC-053](../../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../preplay/browser-owner-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

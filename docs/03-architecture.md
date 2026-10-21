@@ -787,3 +787,9 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 394f59d 查询工程已获本包限定 headless 实审；本批只交首玩条件提示、ready 更新、浏览器启动／保存和旧入口选项的候选合同及仓库外原生探针。原生通知可 blocked，不能直接作为完整 React 状态源；冷 expected 须有候选外受控材料，domain 不等于跨标签锁。
 
 集中审阅及最近三批见[entry-006](design-drafts/world-infected-001/entry-006/00-owner-review.md)。新增感染公开映射／封闭入口范围仍 DRAFT；src、正式规则、查询合同和保存格式未改，UI／浏览器／Owner／O3 未验收。不倒改以上历史状态，不自动正式归档或开工。
+
+## DOC-WORLD-ENTRY-006：只读身体与唯一状态责任
+
+当前病程粗档只读派生，不建立第二身体或重播日结；current、持久化 checkpoint 与 Presentation 各有责任。通知回调期间 query 可能 blocked，prepared 交接和浏览器持久化仍是待实现接缝，不能把既有 S 实审当成浏览器 PASS。
+
+依据：[DEC-053](05-design-decisions.md#dec-053)、[同范围后继正式合同](engineering/world-integration/preplay/foundation-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

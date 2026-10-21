@@ -42,3 +42,9 @@
 ## 仍是工程而非新玩法选择的缺口
 
 现有 Preview 只给资格与 cost，没有完整命令死亡三态、实际暴露事件、全部治疗／维护效果或当前敌人美术 key。不得借 23 个 supported 就声明完整 Ghost／动态死亡保护／结果 Feed 已具备。基础准备候选须盘点可由既有公开事实和正式纯 owner 得出的 metadata；不能在 React 写损耗公式、调用 resolver 或借 unknown 冒充非必死。需要新增隐知识的子项仍停审。
+
+## DOC-WORLD-ENTRY-006：身体候选的局部定稿
+
+同范围后继公开合同已安装：只显示沿用 infection_damage 的当前四档，不显示精确进度、潜藏暴露和未来日结答案。最低档不代表无感染，最高档不等于死亡；隐藏医疗目标 Preview 仍 unknown。原候选及当时未执行记录不追改，生产查询未实现此增量。
+
+依据：[DEC-053](../../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../../../engineering/world-integration/preplay/public-condition-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

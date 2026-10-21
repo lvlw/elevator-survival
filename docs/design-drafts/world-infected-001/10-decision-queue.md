@@ -347,3 +347,9 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 新增集中待审入口：[D1当前病程负担映射、D2独立DEV封闭首玩范围](entry-006/00-owner-review.md)。内部病程参数已批准不等于允许公开；旧入口／旧槽O3仍留公开发布前独立决定，未自动迁移或清档。
 
 普通刷新、同步checkpoint交接与跨标签拒绝的技术推荐已在候选内承担，不要求Owner逐函数选择；候选不是新DEC／UIR。原未决／PASS／失败的历史时态不改，Owner体验仍OPEN／NOT RUN。
+
+## DOC-WORLD-ENTRY-006：决策队列增量
+
+D1/D2 已批准并在本轮正式落文，等待准确 SHA 文档实审；不是仍待 Owner 选择的候选。O3、公开发布、自动迁移／清档和新增委托继续 OPEN，工程实施与分段突破、九组合 Owner 体验均未验收。
+
+依据：[DEC-053](../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../../engineering/world-integration/preplay/batch-plan-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

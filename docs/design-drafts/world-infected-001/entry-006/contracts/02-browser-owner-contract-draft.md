@@ -26,3 +26,9 @@
 - 旧医院槽及入口逐字节不变，新旧格式拒绝正确；无自动clear／migration／Profile。
 
 执行定向、完整默认npm run check、真实隔离浏览器存储／多页验收，不能用headless端口代替。回传准确SHA、parent/tree、各故障链独立计数、候选外材料来源、实际平台边界和CI。保存／生命周期接缝准确SHA实审后停，主线再发UI工程；不自动连跑。
+
+## DOC-WORLD-ENTRY-006：浏览器候选的正式后继
+
+保留原 DRAFT 和历史结果；同范围后继合同明确候选外 expected、独立命名空间、单 writer、孤立 reservation 与保存失败边界。当前无浏览器保存、跨标签锁或入口实现，也未决定 O3。
+
+依据：[DEC-053](../../../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../../../../engineering/world-integration/preplay/browser-owner-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

@@ -26,3 +26,9 @@
 新React集成和原P/R/S保护、隐藏DOM、完整默认npm run check、build、diff／范围；浏览器实走至少一条真实正常玩家链和必要终局／故障、记录平台／console。复跑原路线和九组合时保留真实失败，不宣称所有组合所有seed获胜。
 
 交付准确SHA、增量、1dispatch/write/notice计数、浏览器证据和NOT RUN项，停主线实审。Owner先在公开信息下自由首玩，再定向审阅分段与资源负担。工程通过不能替代Owner体验；不得自行平衡调参、补新资产／委托、正式发布或进入下一任务。
+
+## DOC-WORLD-ENTRY-006：UI 候选的正式后继
+
+同范围后继低资产 UI 合同已定稿，继续消费安全视图与受控对象选择，不接 raw current、真实 ID 或生产者试算。仅 D1 当前粗档获得新增公开权限，隐藏医疗目标 Preview 仍 unknown；原 DRAFT 历史不改，当前 UI 尚未开工。
+
+依据：[DEC-053](../../../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../../../../engineering/world-integration/preplay/low-asset-ui-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

@@ -1,0 +1,579 @@
+{
+  "task": "DOC-WORLD-ENTRY-006",
+  "start_sha": "20b833aeec4693e56afee075c9878425d3c58605",
+  "start_parent": "394f59d3c5df2a65ce87186e8988982d76784a71",
+  "start_tree": "29271bdca786ba60fc9884ae12bc7fba844fa488",
+  "branch": "feature/design-world-entry-006",
+  "initial_status": "clean; ordinary/cached/untracked empty",
+  "package_root": "C:/Users/zjl/AppData/Local/Temp/doc-world-entry-006-c6dc673203654b46bba3dea10514d60a",
+  "authority": {
+    "human_direct_approval": "Prior human user message directly approved D1/D2 and the bounded order; current user authorized this task and branch commit/push.",
+    "input_attribution_caveat": "OWNER-approval payload contains the prior assistant acknowledgment, not a verbatim human message. Archived unchanged; do not use that receipt as independent human authority.",
+    "mainline": "Seven exact payloads are technical ratification inside approved scope, not Owner verbatim implementation choices."
+  },
+  "package_only": {
+    "status": "PASS",
+    "total": 94,
+    "exit": 0
+  },
+  "input_fingerprints": [
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/WORLD-ENTRY-006-ADOPTION-v1.0.md",
+      "bytes": 6892,
+      "sha256": "fca01b16a5341c67bd53c5141ac9e5d7785c5b2790dd99699daed8264c10b6e7",
+      "git_blob": "f66e64f0937d773f8a8449467435e95b14069775"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/OWNER-approval-WORLD-ENTRY-006-v1.0.md",
+      "bytes": 573,
+      "sha256": "c527927f098f04c58f4f8ef6dbff15eed41299b3a4a3180aef3e03902337210f",
+      "git_blob": "d446193ce90c8ea62f7d49b1eef2312250d1a808"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/AUD-20b833a-WORLD-ENTRY-006-review-v1.0.md",
+      "bytes": 9327,
+      "sha256": "c126780cd8e1d4aaae4623c0ab814c8cc7d2453a8b20a645601084c1812959b0",
+      "git_blob": "644178d9cff15aa2ec49e0b34669ee00b6450579"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/MAINLINE-WORLD-ENTRY-006-ratification-v1.0.md",
+      "bytes": 2985,
+      "sha256": "7cb898759cdd914a70e28d8e3e15228b2af220b2b5bcd4c9188d4183d2e92433",
+      "git_blob": "153cf9e9e5472ae53b33c8e7f3136a402e6f7ebd"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/OWNER-authority-and-scope-DOC-WORLD-ENTRY-006-v1.0.md",
+      "bytes": 1388,
+      "sha256": "713bba965bcb203ebe5f9e8245c85fd2c2118a45741aaf57aa98bdc0b2166f9b",
+      "git_blob": "5cc8049e6143301aa123f33cc9bdee7d98be69aa"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/DOC-WORLD-ENTRY-006-task-v1.0.md",
+      "bytes": 18314,
+      "sha256": "46310d9273c3c5c3fd3460d6b960926089e3963ad4aaeb91b5c4efb1e2f0df64",
+      "git_blob": "09ebcc25a26ec24005c04ac0e7f7c5e85d2f5860"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/BASELINE-AND-INPUTS.json",
+      "bytes": 15011,
+      "sha256": "1757154055a132c652074a16205e3262b5f44143722aa33f06bb2d3e10ae6096",
+      "git_blob": "ef3073ee6c966363cf7d33a0ede8e541ad5433aa"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/verify-doc-package.py",
+      "bytes": 9858,
+      "sha256": "c3e92066d220bec00f20d4fb5ca402104f3f5190ec6ec68d893a2625bb733213",
+      "git_blob": "42b07db06dd09085692d1686603160d424bcf98f"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/SHA256SUMS.txt",
+      "bytes": 1964,
+      "sha256": "67185b1667aa10d95f6613e343758ad17253642c27f572bb142736480fc7a57a",
+      "git_blob": "943dc60ee62add88b899ef6c9554b64bda9d5c3c"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/approved-documents/DEC-053-append-v1.0.md",
+      "bytes": 6575,
+      "sha256": "21c0efa8202dea01db2af9d2cb6ef9a21c02ae59dcd677489edc5ead60ede474",
+      "git_blob": "91b1b406286fcf944d74d4cc5196067d15eadc5b"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/approved-documents/public-condition-contract-v1.0.md",
+      "bytes": 3968,
+      "sha256": "886ebbd6abb3b21f01687bdb87949887af97f6376613484665dbe00ed1a029cb",
+      "git_blob": "6dda362de14f41af1fe4ca1091221953895d6b44"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/approved-documents/player-query-field-contract-v1.1.json",
+      "bytes": 11535,
+      "sha256": "2ac7feadcab19cb580886f8f327e454870172f18e47dbc109d0e6e450c845ae9",
+      "git_blob": "d4b50e78ca6c0503676d48cb70b9a523fb487b8f"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/approved-documents/foundation-contract-v1.0.md",
+      "bytes": 5803,
+      "sha256": "7ac41f797f834f421060fdc73ce45130694726b9d0a9af20cad114577c383ac5",
+      "git_blob": "79cbf82df96227d5a02a2cd8795008564128ef30"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/approved-documents/browser-owner-contract-v1.0.md",
+      "bytes": 6920,
+      "sha256": "12a5ae372bd1f90f553e9582b51f2d1d1dcaea1c84cea0a1842c969293a0ea5d",
+      "git_blob": "06fc10a59494ad4a1469f3d4b53ab66eaad9772c"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/approved-documents/low-asset-ui-contract-v1.0.md",
+      "bytes": 5853,
+      "sha256": "e8dd12940f789fcb65e8967db19bcd5cf5fa136ce1e8179325abac65137df33e",
+      "git_blob": "6524ee245c6b18597b1b7a94b1d5975db62526f0"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/approved-documents/batch-plan-v1.0.md",
+      "bytes": 3731,
+      "sha256": "65e234751e36d6b3ee910325658bb3df724eaed6d23e70c03c9c42ea421e2631",
+      "git_blob": "196690f504ff0800fd1ec88b8eb27eb2fa6f70f6"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/reference/t01/source/run-native-probes.mjs",
+      "bytes": 2802,
+      "sha256": "528861a1c8e82cf7b9d95ee8e1c2b1fe4252a60f09a71a8056253512beedfaf5",
+      "git_blob": "f535276d008debe94fd5bbc4e6295b627e18a280"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/reference/t01/evidence/check-runner-output-guard.mjs",
+      "bytes": 1797,
+      "sha256": "511d1789dd663166e588ca58beb41e7cf52268c5ddf6bd1dbe24a5d443ec34ca",
+      "git_blob": "ace8473b7bc553f253724d0cae8c4ebf006d031a"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/reference/t01/evidence/runner-guard-results.json",
+      "bytes": 3314,
+      "sha256": "64a0948c94fa3df414dca716f59b2446e0df723d7430bae5f6da88896515e8f9",
+      "git_blob": "8b55ff76e54e703bdfac3c52569ff193b168cf50"
+    }
+  ],
+  "payload_fingerprints": [
+    {
+      "source": "approved-documents/DEC-053-append-v1.0.md",
+      "target": "docs/05-design-decisions.md",
+      "mode": "append-exact",
+      "bytes": 6575,
+      "sha256": "21c0efa8202dea01db2af9d2cb6ef9a21c02ae59dcd677489edc5ead60ede474",
+      "git_blob": "91b1b406286fcf944d74d4cc5196067d15eadc5b",
+      "installed": {
+        "path": "docs/05-design-decisions.md",
+        "bytes": 282147,
+        "sha256": "68f35a56c754f55b1137314ba41cd7fbbeea88afdcb816690ff52a509c90d6ca",
+        "git_blob": "2fd80b12fb57285dd7d1bbe89e4ea51353710ff8"
+      }
+    },
+    {
+      "source": "approved-documents/public-condition-contract-v1.0.md",
+      "target": "docs/engineering/world-integration/preplay/public-condition-contract-v1.0.md",
+      "mode": "new-exact",
+      "bytes": 3968,
+      "sha256": "886ebbd6abb3b21f01687bdb87949887af97f6376613484665dbe00ed1a029cb",
+      "git_blob": "6dda362de14f41af1fe4ca1091221953895d6b44",
+      "installed": {
+        "path": "docs/engineering/world-integration/preplay/public-condition-contract-v1.0.md",
+        "bytes": 3968,
+        "sha256": "886ebbd6abb3b21f01687bdb87949887af97f6376613484665dbe00ed1a029cb",
+        "git_blob": "6dda362de14f41af1fe4ca1091221953895d6b44"
+      }
+    },
+    {
+      "source": "approved-documents/player-query-field-contract-v1.1.json",
+      "target": "docs/engineering/world-integration/player-query/player-query-field-contract-v1.1.json",
+      "mode": "new-exact",
+      "bytes": 11535,
+      "sha256": "2ac7feadcab19cb580886f8f327e454870172f18e47dbc109d0e6e450c845ae9",
+      "git_blob": "d4b50e78ca6c0503676d48cb70b9a523fb487b8f",
+      "installed": {
+        "path": "docs/engineering/world-integration/player-query/player-query-field-contract-v1.1.json",
+        "bytes": 11535,
+        "sha256": "2ac7feadcab19cb580886f8f327e454870172f18e47dbc109d0e6e450c845ae9",
+        "git_blob": "d4b50e78ca6c0503676d48cb70b9a523fb487b8f"
+      }
+    },
+    {
+      "source": "approved-documents/foundation-contract-v1.0.md",
+      "target": "docs/engineering/world-integration/preplay/foundation-contract-v1.0.md",
+      "mode": "new-exact",
+      "bytes": 5803,
+      "sha256": "7ac41f797f834f421060fdc73ce45130694726b9d0a9af20cad114577c383ac5",
+      "git_blob": "79cbf82df96227d5a02a2cd8795008564128ef30",
+      "installed": {
+        "path": "docs/engineering/world-integration/preplay/foundation-contract-v1.0.md",
+        "bytes": 5803,
+        "sha256": "7ac41f797f834f421060fdc73ce45130694726b9d0a9af20cad114577c383ac5",
+        "git_blob": "79cbf82df96227d5a02a2cd8795008564128ef30"
+      }
+    },
+    {
+      "source": "approved-documents/browser-owner-contract-v1.0.md",
+      "target": "docs/engineering/world-integration/preplay/browser-owner-contract-v1.0.md",
+      "mode": "new-exact",
+      "bytes": 6920,
+      "sha256": "12a5ae372bd1f90f553e9582b51f2d1d1dcaea1c84cea0a1842c969293a0ea5d",
+      "git_blob": "06fc10a59494ad4a1469f3d4b53ab66eaad9772c",
+      "installed": {
+        "path": "docs/engineering/world-integration/preplay/browser-owner-contract-v1.0.md",
+        "bytes": 6920,
+        "sha256": "12a5ae372bd1f90f553e9582b51f2d1d1dcaea1c84cea0a1842c969293a0ea5d",
+        "git_blob": "06fc10a59494ad4a1469f3d4b53ab66eaad9772c"
+      }
+    },
+    {
+      "source": "approved-documents/low-asset-ui-contract-v1.0.md",
+      "target": "docs/engineering/world-integration/preplay/low-asset-ui-contract-v1.0.md",
+      "mode": "new-exact",
+      "bytes": 5853,
+      "sha256": "e8dd12940f789fcb65e8967db19bcd5cf5fa136ce1e8179325abac65137df33e",
+      "git_blob": "6524ee245c6b18597b1b7a94b1d5975db62526f0",
+      "installed": {
+        "path": "docs/engineering/world-integration/preplay/low-asset-ui-contract-v1.0.md",
+        "bytes": 5853,
+        "sha256": "e8dd12940f789fcb65e8967db19bcd5cf5fa136ce1e8179325abac65137df33e",
+        "git_blob": "6524ee245c6b18597b1b7a94b1d5975db62526f0"
+      }
+    },
+    {
+      "source": "approved-documents/batch-plan-v1.0.md",
+      "target": "docs/engineering/world-integration/preplay/batch-plan-v1.0.md",
+      "mode": "new-exact",
+      "bytes": 3731,
+      "sha256": "65e234751e36d6b3ee910325658bb3df724eaed6d23e70c03c9c42ea421e2631",
+      "git_blob": "196690f504ff0800fd1ec88b8eb27eb2fa6f70f6",
+      "installed": {
+        "path": "docs/engineering/world-integration/preplay/batch-plan-v1.0.md",
+        "bytes": 3731,
+        "sha256": "65e234751e36d6b3ee910325658bb3df724eaed6d23e70c03c9c42ea421e2631",
+        "git_blob": "196690f504ff0800fd1ec88b8eb27eb2fa6f70f6"
+      }
+    }
+  ],
+  "prefix_documents": [
+    "docs/01-game-design-v0.1.md",
+    "docs/02-vertical-slice.md",
+    "docs/03-architecture.md",
+    "docs/07-decision-supersession-index.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/09-ui-design-record.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+    "docs/engineering/world-integration/player-query/player-query-contract-v1.0.md",
+    "docs/engineering/world-integration/player-query/player-query-engineering-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-006/00-owner-review.md",
+    "docs/design-drafts/world-infected-001/entry-006/01-baseline-and-open-gates.md",
+    "docs/design-drafts/world-infected-001/entry-006/02-public-condition-and-feedback-draft.md",
+    "docs/design-drafts/world-infected-001/entry-006/03-first-play-interface-flow.md",
+    "docs/design-drafts/world-infected-001/entry-006/04-browser-bootstrap-and-persistence.md",
+    "docs/design-drafts/world-infected-001/entry-006/05-entry-and-legacy-release-options.md",
+    "docs/design-drafts/world-infected-001/entry-006/06-integration-ownership-and-error-flow.md",
+    "docs/design-drafts/world-infected-001/entry-006/07-first-play-evidence-and-acceptance.md",
+    "docs/design-drafts/world-infected-001/entry-006/contracts/01-preplay-foundation-contract-draft.md",
+    "docs/design-drafts/world-infected-001/entry-006/contracts/02-browser-owner-contract-draft.md",
+    "docs/design-drafts/world-infected-001/entry-006/contracts/03-low-asset-ui-contract-draft.md",
+    "docs/design-drafts/world-infected-001/entry-006/completion.md"
+  ],
+  "changed_files": [
+    "docs/05-design-decisions.md",
+    "docs/engineering/world-integration/preplay/public-condition-contract-v1.0.md",
+    "docs/engineering/world-integration/player-query/player-query-field-contract-v1.1.json",
+    "docs/engineering/world-integration/preplay/foundation-contract-v1.0.md",
+    "docs/engineering/world-integration/preplay/browser-owner-contract-v1.0.md",
+    "docs/engineering/world-integration/preplay/low-asset-ui-contract-v1.0.md",
+    "docs/engineering/world-integration/preplay/batch-plan-v1.0.md",
+    "docs/01-game-design-v0.1.md",
+    "docs/02-vertical-slice.md",
+    "docs/03-architecture.md",
+    "docs/07-decision-supersession-index.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/09-ui-design-record.md",
+    "docs/design-drafts/world-infected-001/01-world-overview.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+    "docs/engineering/world-integration/player-query/player-query-contract-v1.0.md",
+    "docs/engineering/world-integration/player-query/player-query-engineering-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-006/00-owner-review.md",
+    "docs/design-drafts/world-infected-001/entry-006/01-baseline-and-open-gates.md",
+    "docs/design-drafts/world-infected-001/entry-006/02-public-condition-and-feedback-draft.md",
+    "docs/design-drafts/world-infected-001/entry-006/03-first-play-interface-flow.md",
+    "docs/design-drafts/world-infected-001/entry-006/04-browser-bootstrap-and-persistence.md",
+    "docs/design-drafts/world-infected-001/entry-006/05-entry-and-legacy-release-options.md",
+    "docs/design-drafts/world-infected-001/entry-006/06-integration-ownership-and-error-flow.md",
+    "docs/design-drafts/world-infected-001/entry-006/07-first-play-evidence-and-acceptance.md",
+    "docs/design-drafts/world-infected-001/entry-006/contracts/01-preplay-foundation-contract-draft.md",
+    "docs/design-drafts/world-infected-001/entry-006/contracts/02-browser-owner-contract-draft.md",
+    "docs/design-drafts/world-infected-001/entry-006/contracts/03-low-asset-ui-contract-draft.md",
+    "docs/design-drafts/world-infected-001/entry-006/completion.md",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/WORLD-ENTRY-006-ADOPTION-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/OWNER-approval-WORLD-ENTRY-006-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/AUD-20b833a-WORLD-ENTRY-006-review-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/MAINLINE-WORLD-ENTRY-006-ratification-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/OWNER-authority-and-scope-DOC-WORLD-ENTRY-006-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/DOC-WORLD-ENTRY-006-task-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/BASELINE-AND-INPUTS.json",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/verify-doc-package.py",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/SHA256SUMS.txt",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/approved-documents/DEC-053-append-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/approved-documents/public-condition-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/approved-documents/player-query-field-contract-v1.1.json",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/approved-documents/foundation-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/approved-documents/browser-owner-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/approved-documents/low-asset-ui-contract-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/approved-documents/batch-plan-v1.0.md",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/reference/t01/source/run-native-probes.mjs",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/reference/t01/evidence/check-runner-output-guard.mjs",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/reference/t01/evidence/runner-guard-results.json",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/DOC-WORLD-ENTRY-006-completion.md",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/checks.json",
+    "docs/design-drafts/world-infected-001/entry-006/adoption/t01-path-guard-results.json",
+    "docs/design-drafts/world-infected-001/entry-006/validation/run-native-probes.mjs",
+    "docs/design-drafts/world-infected-001/entry-006/validation/output-path-guard.mjs",
+    "docs/design-drafts/world-infected-001/entry-006/validation/check-output-path-guard.mjs"
+  ],
+  "tool_fingerprints": [
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/validation/run-native-probes.mjs",
+      "bytes": 2703,
+      "sha256": "199371de49539ca3d2206f3ce7f660aef1a94e49df9d68ae3bf595a8651b850c",
+      "git_blob": "097e0f13b2d7994e402122d7b3156486152c696f"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/validation/output-path-guard.mjs",
+      "bytes": 2769,
+      "sha256": "eb2ad4e1cc854637c44d506363797abcd7e12db69ea4f0e1f58e8e511a66460e",
+      "git_blob": "3f74e327a3fa40fd2388161da16356d2a202f1c6"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/validation/check-output-path-guard.mjs",
+      "bytes": 6688,
+      "sha256": "2abc8d096244e16785711e667eb607c326200666da18227b99aaa0357e7e9261",
+      "git_blob": "1a1598800c7c6e6e8fac918435a14d9422d402e0"
+    }
+  ],
+  "preliminary_repository_verifier": {
+    "exit": 1,
+    "reason": "Executed before the three author reports existed; missing completion report was reported; completed audit is recorded below, not treated as a semantic conflict."
+  },
+  "architecture": {
+    "command": "npm run validate:architecture",
+    "exit": 0,
+    "DEC": 53,
+    "core_production_files": 341
+  },
+  "T01": {
+    "before": {
+      "total": 12,
+      "matched": 10,
+      "mismatches": 2,
+      "unexpectedExceptions": 0,
+      "exit": 1
+    },
+    "after": {
+      "total": 35,
+      "passed": 35,
+      "failed": 0,
+      "not_run": 0,
+      "exit": 0
+    },
+    "negative_controls": [
+      {
+        "label": "old-prefix",
+        "exit": 1,
+        "failed": 3,
+        "assertions_only": true
+      },
+      {
+        "label": "omit-real-containment",
+        "exit": 1,
+        "failed": 3,
+        "assertions_only": true
+      }
+    ],
+    "runner_tail_unchanged": true
+  },
+  "final_audit": {
+    "stage": "working-tree audit before precise staging",
+    "package_repository": {
+      "status": "PASS",
+      "total": 222,
+      "exit": 0
+    },
+    "scope_files": 55,
+    "allowed": 55,
+    "modified": 25,
+    "new": 30,
+    "protected_files_unchanged": 1472,
+    "old_prefixes": 23,
+    "exact_payloads": 7,
+    "exact_inputs": 19,
+    "relative_links": 79,
+    "anchors": 26,
+    "UTF8": "PASS",
+    "new_diff_exit": 0,
+    "W01": {
+      "exit": 2,
+      "hits": [
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+          "line": 3
+        },
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+          "line": 4
+        },
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+          "line": 5
+        },
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+          "line": 6
+        },
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+          "line": 7
+        },
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+          "line": 8
+        },
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+          "line": 9
+        }
+      ]
+    },
+    "failures": []
+  },
+  "production_tests_added": 0,
+  "production_test_count": "NOT RUN this docs/tool task; historical 4369 is not a newly measured baseline",
+  "not_run": [
+    "npm run test:run",
+    "npm run check",
+    "npm run typecheck",
+    "npm run build",
+    "old 10 gameplay probes",
+    "72 historical seed samples",
+    "browser IO",
+    "Web Locks / multi-tab",
+    "Owner playability",
+    "actual OS ACL-denial experiment",
+    "POSIX OS execution"
+  ],
+  "scope": {
+    "src": false,
+    "old_tests": false,
+    "parameters": false,
+    "dependencies": false,
+    "CI": false,
+    "UI": false,
+    "new_UIR": false,
+    "new_DEC": "Only supplied DEC-053",
+    "next_production": false
+  },
+  "git_delivery": {
+    "commit": "Authorized after checks; final SHA/parent/tree and push receipts returned to Owner, without self-referential amendment",
+    "push": "origin HEAD:refs/heads/feature/design-world-entry-006 only",
+    "other_branches": "read-only before/after comparison",
+    "CI": "Query exact resulting SHA after push; do not substitute CI161"
+  },
+  "unfinished": [
+    "Exact-SHA mainline document/T01 review",
+    "Foundation production",
+    "Browser owner / real startup-save-refresh-single-writer acceptance",
+    "Low-asset UI",
+    "Owner playability review",
+    "O3 remains unapproved"
+  ],
+  "pre_stage_fingerprints_verified": true,
+  "staged_verification": {
+    "status": "PASS precise 55-path staging audit before final report metadata update; final index bytes rechecked before commit",
+    "files": 55,
+    "modified": 25,
+    "new": 30,
+    "inputs_match_package": 19,
+    "payloads_match_package": 7,
+    "staged_diff_check_exit": 0,
+    "new_diff_check_exit": 0,
+    "protected_unchanged": 1472,
+    "notes": "Final commit/push/remote/CI receipts returned after commit, not amended into their own commit."
+  },
+  "remote_before": [
+    {
+      "sha": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+      "ref": "refs/heads/feature/design-world-entry-002"
+    },
+    {
+      "sha": "6438f7a38939297225538cdd68af24201ed7d34f",
+      "ref": "refs/heads/feature/design-world-entry-003"
+    },
+    {
+      "sha": "ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc",
+      "ref": "refs/heads/feature/design-world-entry-004"
+    },
+    {
+      "sha": "4166fb25ab2898ca602043fbddacbb88d3444fdf",
+      "ref": "refs/heads/feature/design-world-entry-005"
+    },
+    {
+      "sha": "20b833aeec4693e56afee075c9878425d3c58605",
+      "ref": "refs/heads/feature/design-world-entry-006"
+    },
+    {
+      "sha": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+      "ref": "refs/heads/feature/design-world-infected-world-001"
+    },
+    {
+      "sha": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "ref": "refs/heads/feature/mission-lifecycle-core-001"
+    },
+    {
+      "sha": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c",
+      "ref": "refs/heads/feature/residence-actions-core-001"
+    },
+    {
+      "sha": "9ada1bd76c768b7bcff676b263e4533854064909",
+      "ref": "refs/heads/feature/residence-combat-core-001"
+    },
+    {
+      "sha": "29a018a2ad64f8d5cbe56257381568bf3527cd08",
+      "ref": "refs/heads/feature/residence-combat-restore-001"
+    },
+    {
+      "sha": "713dd376ddb60d20d9afaedaee4505e695f89d94",
+      "ref": "refs/heads/feature/residence-combat-session-001"
+    },
+    {
+      "sha": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+      "ref": "refs/heads/feature/residence-content-supply-core-001"
+    },
+    {
+      "sha": "84eb6dff5e9d3238c3e651525b6ed28412132549",
+      "ref": "refs/heads/feature/residence-content-supply-restore-001"
+    },
+    {
+      "sha": "9c3c8a8c97c374bd1def6217c691137f3df10096",
+      "ref": "refs/heads/feature/residence-content-supply-session-001"
+    },
+    {
+      "sha": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+      "ref": "refs/heads/feature/residence-energy-cycle-core-001"
+    },
+    {
+      "sha": "d7953bbf96dc842d2953e019f950275cd693bf09",
+      "ref": "refs/heads/feature/residence-location-core-001"
+    },
+    {
+      "sha": "60e9c30732c5e22cfe9ff58b9b381de64b945180",
+      "ref": "refs/heads/feature/residence-session-core-001"
+    },
+    {
+      "sha": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf",
+      "ref": "refs/heads/feature/residence-terminal-core-001"
+    },
+    {
+      "sha": "b9b1e0fee0e779669ca40e088ac9a867016bff82",
+      "ref": "refs/heads/feature/residence-terminal-restore-001"
+    },
+    {
+      "sha": "0921df3f219f368479d1bf3401d8fecddc0d5f71",
+      "ref": "refs/heads/feature/residence-terminal-session-001"
+    },
+    {
+      "sha": "394f59d3c5df2a65ce87186e8988982d76784a71",
+      "ref": "refs/heads/feature/world-player-query-001"
+    },
+    {
+      "sha": "8cddbdc3243561aaef5eb9a4eb6bd74dcbca11f3",
+      "ref": "refs/heads/feature/world-route-acceptance-001"
+    },
+    {
+      "sha": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+      "ref": "refs/heads/main"
+    }
+  ]
+}

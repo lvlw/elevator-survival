@@ -25,3 +25,9 @@ ready桥以显式返回为发布边界；原生通知只失效提示，getSnapsh
 5. 新定向＋完整默认 npm run check、diff／范围、普通feature commit/push，报告实际新增／替换／净增和NOT RUN。
 
 完成即准确 SHA 查询／应用更新接缝实审。不得自动开始浏览器 owner；不接真实存储、UI、O3。若知识未采纳则只交可批准子集，并保留感染提示Gate，不造空框架冒充完成。
+
+## DOC-WORLD-ENTRY-006：基础候选的正式后继
+
+保留本 DRAFT 原文及历史未执行状态；同范围后继正式基础合同已定稿，规定只读粗档、最终稳定刷新及最小 handoff。生产工程仍须另行下发和准确 SHA 实审，当前不实现 controller 或新 selector 权限。
+
+依据：[DEC-053](../../../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../../../../engineering/world-integration/preplay/foundation-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。

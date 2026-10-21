@@ -30,3 +30,9 @@ Git远端读取最初两次强制schannel握手失败，通过既有GitHub只读
 ## 余项与停止
 
 本轮无正式规则冲突，候选／证据交付不消除D1／D2待采纳、正式落文、生产精确路径授权及准确SHA实审。浏览器真实保存／多标签、Owner自由首玩／分段体验、O3、依赖／bundle发布维护继续独立Gate。没有新玩法、委托、商城、身体服务、美术／音频或发布页面。不自动正式归档、不进入下一工程，等待主线实文件审查。
+
+## DOC-WORLD-ENTRY-006：后续文档交付与原结果分账
+
+本历史完成报告不追改。本轮 DOC-WORLD-ENTRY-006 原字节落档七载荷、追加同步与 T01 路径工具修复另见 adoption 报告。Owner 批准、主线定稿、本轮待准确 SHA 实审与生产未开工分开记录；原 checks、probe 结果和模板不变。
+
+依据：[DEC-053](../../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../../../engineering/world-integration/preplay/batch-plan-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。 [本轮实际交付](adoption/DOC-WORLD-ENTRY-006-completion.md)。

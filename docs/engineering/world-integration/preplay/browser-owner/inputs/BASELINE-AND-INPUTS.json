@@ -1,0 +1,189 @@
+{
+  "task": "ENG-WORLD-BROWSER-OWNER-001",
+  "version": "1.0",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "bc60f24cc16625a25ad56b0b917da63b16f29f56",
+  "parent_sha": "cc147cd253f3e7e57e45de265610becb64a74821",
+  "tree_sha": "875f04ad8018f48df9b248fc19317d35e48798a0",
+  "branch": "feature/world-browser-owner-001",
+  "allowed_paths": [
+    "src/state/residence-session/combat-types.ts",
+    "src/state/residence-session/combat-composition.ts",
+    "src/state/residence-session/combat-persistence.ts",
+    "src/state/residence-session/combat-session.ts",
+    "src/app/infected-preplay/controller.ts",
+    "src/app/infected-preplay/types.ts",
+    "src/app/infected-browser/index.ts",
+    "src/app/infected-browser/types.ts",
+    "src/app/infected-browser/schema.ts",
+    "src/app/infected-browser/errors.ts",
+    "src/app/infected-browser/identity-materials.ts",
+    "src/app/infected-browser/initial-materials.ts",
+    "src/app/infected-browser/composition.ts",
+    "src/app/infected-browser/reservation.ts",
+    "src/app/infected-browser/checkpoint.ts",
+    "src/app/infected-browser/storage.ts",
+    "src/app/infected-browser/startup.ts",
+    "src/app/infected-browser/lease.ts",
+    "src/app/infected-browser/lifecycle.ts",
+    "src/app/infected-browser/owner.ts",
+    "src/app/infected-browser/snapshot.ts",
+    "src/app/infected-browser/identity-materials.test.ts",
+    "src/app/infected-browser/initial-materials.test.ts",
+    "src/app/infected-browser/schema.test.ts",
+    "src/app/infected-browser/storage.test.ts",
+    "src/app/infected-browser/startup.test.ts",
+    "src/app/infected-browser/reservation.test.ts",
+    "src/app/infected-browser/checkpoint.test.ts",
+    "src/app/infected-browser/lease.test.ts",
+    "src/app/infected-browser/lifecycle.test.ts",
+    "src/app/infected-browser/owner.test.ts",
+    "src/app/infected-browser/privacy.test.ts",
+    "src/app/infected-browser/faults.test.ts",
+    "src/app/infected-browser/purity.test.ts",
+    "src/app/infected-browser/continuation.integration.test.ts",
+    "src/app/infected-browser/longchain.integration.test.ts",
+    "src/app/infected-browser/test-fixtures.ts",
+    "src/app/infected-browser/test-observers.ts",
+    "src/state/residence-session/combat-prepared-persistence.test.ts",
+    "src/state/residence-session/combat-prepared-compatibility.test.ts",
+    "src/state/residence-session/combat-prepared-reentry.test.ts",
+    "src/app/infected-preplay/browser-lifecycle.test.ts",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+    "docs/engineering/world-integration/preplay/browser-owner/completion.md",
+    "docs/engineering/world-integration/preplay/browser-owner/implementation-notes.md",
+    "docs/engineering/world-integration/preplay/browser-owner/contract-and-support.md",
+    "docs/engineering/world-integration/preplay/browser-owner/verification-results.json",
+    "docs/engineering/world-integration/preplay/browser-owner/browser-results.json",
+    "docs/engineering/world-integration/preplay/browser-owner/validation/browser-harness.html",
+    "docs/engineering/world-integration/preplay/browser-owner/validation/browser-harness.ts",
+    "docs/engineering/world-integration/preplay/browser-owner/validation/browser-cases.ts",
+    "docs/engineering/world-integration/preplay/browser-owner/validation/browser-navigation-target.html",
+    "docs/engineering/world-integration/preplay/browser-owner/validation/run-browser-checks.mjs",
+    "docs/engineering/world-integration/preplay/browser-owner/validation/README.md",
+    "docs/engineering/world-integration/preplay/browser-owner/inputs/ENG-WORLD-BROWSER-OWNER-001-task-v1.0.md",
+    "docs/engineering/world-integration/preplay/browser-owner/inputs/OWNER-authority-and-scope-ENG-WORLD-BROWSER-OWNER-001-v1.0.md",
+    "docs/engineering/world-integration/preplay/browser-owner/inputs/AUD-bc60f24-ENG-WORLD-PREPLAY-FOUNDATION-001-R1-review-v1.0.md",
+    "docs/engineering/world-integration/preplay/browser-owner/inputs/BASELINE-AND-INPUTS.json",
+    "docs/engineering/world-integration/preplay/browser-owner/inputs/verify-task-package.py",
+    "docs/engineering/world-integration/preplay/browser-owner/inputs/SHA256SUMS.txt"
+  ],
+  "old_source_paths": [
+    "src/state/residence-session/combat-types.ts",
+    "src/state/residence-session/combat-composition.ts",
+    "src/state/residence-session/combat-persistence.ts",
+    "src/state/residence-session/combat-session.ts",
+    "src/app/infected-preplay/controller.ts",
+    "src/app/infected-preplay/types.ts"
+  ],
+  "append_only_documents": [
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md"
+  ],
+  "input_files": [
+    "ENG-WORLD-BROWSER-OWNER-001-task-v1.0.md",
+    "OWNER-authority-and-scope-ENG-WORLD-BROWSER-OWNER-001-v1.0.md",
+    "AUD-bc60f24-ENG-WORLD-PREPLAY-FOUNDATION-001-R1-review-v1.0.md",
+    "BASELINE-AND-INPUTS.json",
+    "verify-task-package.py",
+    "SHA256SUMS.txt"
+  ],
+  "archive_directory": "docs/engineering/world-integration/preplay/browser-owner/inputs",
+  "approved_contracts": [
+    {
+      "path": "docs/engineering/world-integration/preplay/browser-owner-contract-v1.0.md",
+      "git_blob": "06fc10a59494ad4a1469f3d4b53ab66eaad9772c"
+    },
+    {
+      "path": "docs/engineering/world-integration/preplay/batch-plan-v1.0.md",
+      "git_blob": "196690f504ff0800fd1ec88b8eb27eb2fa6f70f6"
+    },
+    {
+      "path": "docs/engineering/world-integration/preplay/foundation-contract-v1.0.md",
+      "git_blob": "79cbf82df96227d5a02a2cd8795008564128ef30"
+    }
+  ],
+  "entry_source_blobs": {
+    "AGENTS.md": "0055de32c18517d4d016b077e5fc287d9360317d",
+    "package.json": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+    "src/state/residence-session/combat-types.ts": "51d5e3cda8598559d01d6be70fccc11e6cc33cb7",
+    "src/state/residence-session/combat-session.ts": "b777a75b2b96dca316af77759ebe9ecd9a358173",
+    "src/state/residence-session/combat-composition.ts": "c57f2dbc120ba151e78da43eb696d5ac66073080",
+    "src/state/residence-session/combat-persistence.ts": "fcdf5ea8186f5f9b364800ed858e1dccf3d70dd5",
+    "src/state/residence-session/combat-expectation.ts": "0243542a45667911c8dc96712d0ad2a6080a3e09",
+    "src/state/residence-save/combat-policy.ts": "035e0529fdd68cc4eac8a028c35ad99e6592f0c2",
+    "src/app/infected-preplay/types.ts": "ec43143d33f028fd66b834bb0527cda40bb12952",
+    "src/core/residence-task/sample-protection.ts": "aa377b625729fe07cc22f5d947a91348c13656f8"
+  },
+  "permissions": {
+    "ordinary_commit": true,
+    "ordinary_push": "origin/feature/world-browser-owner-001",
+    "merge": false,
+    "push_main": false,
+    "force": false,
+    "auto_next_goal": false
+  },
+  "protect": [
+    "P gameplay",
+    "R v4 schema/codec/policy/expectation semantics",
+    "v1/v2/v3 sessions and domain",
+    "all pre-existing tests and fixtures",
+    "DEC/UIR/parameters/content definitions",
+    "default hospital entry and old slots",
+    "dependencies/CI/global test budgets"
+  ],
+  "baseline_tests_are_historical_only": {
+    "files": 270,
+    "tests": 4487,
+    "source": "R1 author; run a new default baseline"
+  },
+  "mainline_review": {
+    "decision": "PASS",
+    "finding_closed": "R-M01",
+    "scope": "exact source + targeted isolated verification; native baseline belongs to author/CI"
+  },
+  "whitespace_exception_policy": "Preserve exact existing W01 seven lines + W02 one EOF; new task diff must exit 0; full cumulative native exit 2 retained; no input-directory exemption.",
+  "whitespace_authority_paths": [
+    "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/RESUME-01-SCOPE.json",
+    "docs/engineering/world-integration/preplay/foundation/r1-inputs/BASELINE-AND-SCOPE.json"
+  ],
+  "browser_requirement": "Real same-origin secure-context browser IO / two tabs / refresh / actual lock; mock/headless evidence separated; unsupported or unobserved lifecycle cases NOT RUN, gate not closed.",
+  "prior_scope_exception_fields": {
+    "W01": {
+      "unchanged": true,
+      "cumulative_base": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+      "files": {
+        "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md": [
+          7,
+          8,
+          9
+        ]
+      },
+      "expected_warning_count": 7,
+      "diagnostic": "trailing whitespace.",
+      "verify_each_blob_equal_to_start": true
+    },
+    "W02": {
+      "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+      "line": 249,
+      "diagnostic": "new blank line at EOF.",
+      "bytes": 24083,
+      "sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+      "git_blob_sha1": "85a39b34c414952cfc30005b4f76b483bb019a42",
+      "expected_warning_count": 1,
+      "scope": "Only this exact archived original file, bytes and single EOF warning",
+      "precedence": "Overrides original task section 7 new-diff-exit-zero/no-eighth-warning requirement only for this W02; W01 unchanged; no other whitespace exception"
+    }
+  }
+}

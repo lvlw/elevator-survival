@@ -38,13 +38,19 @@ export function assertCombatData(input: unknown, code: 'INVALID_COMMAND' | 'INVA
 export function readCombatComposition(input: CombatSessionComposition) {
   shell(input, ['policy', 'storage', 'startup'], ['provideInitialMaterials', 'provideColdExpectation'])
   const { dependencies } = requireCombatResidencePolicy(input.policy)
-  shell(input.storage, ['read', 'write'])
-  assertCombatSyncFunction(input.storage.read); assertCombatSyncFunction(input.storage.write)
+  const prepared = Object.getOwnPropertyDescriptor(input.storage ?? {}, 'mode')?.value === 'prepared'
+  shell(input.storage, prepared ? ['mode', 'read', 'writePrepared'] : ['read', 'write'])
+  assertCombatSyncFunction(input.storage.read)
+  if (prepared && 'writePrepared' in input.storage) assertCombatSyncFunction(input.storage.writePrepared)
+  else if ('write' in input.storage) assertCombatSyncFunction(input.storage.write)
+  else invalid()
   if (input.startup !== 'first' && input.startup !== 'existing') invalid()
   if (input.startup === 'first' || 'provideInitialMaterials' in input) assertCombatSyncFunction(input.provideInitialMaterials)
   if (input.startup === 'existing' || 'provideColdExpectation' in input) assertCombatSyncFunction(input.provideColdExpectation)
   // Copy only the validated ports; caller-owned shells remain untouched.
   return Object.freeze({ policy: input.policy, dependencies, startup: input.startup,
-    read: input.storage.read.bind(input.storage), write: input.storage.write.bind(input.storage),
+    read: input.storage.read.bind(input.storage),
+    write: 'write' in input.storage ? input.storage.write.bind(input.storage) : null,
+    writePrepared: 'writePrepared' in input.storage ? input.storage.writePrepared.bind(input.storage) : null,
     initial: input.provideInitialMaterials?.bind(input), cold: input.provideColdExpectation?.bind(input) })
 }

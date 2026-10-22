@@ -31,14 +31,17 @@ export function buildCombatSession(domain: ResidenceDomain, input: CombatSession
     busy = true
     try { return fn() } finally { busy = false }
   }
-  function write(text: string): 'saved' | 'save-failed' {
-    try { return composition.write(text) === undefined ? 'saved' : 'save-failed' } catch { return 'save-failed' }
+  function write(prepared: ReturnType<typeof prepareCombatPersistence>): 'saved' | 'save-failed' {
+    try {
+      const result = composition.writePrepared ? composition.writePrepared(prepared.handoff) : composition.write!(prepared.text)
+      return result === undefined ? 'saved' : 'save-failed'
+    } catch { return 'save-failed' }
   }
   function commit(prepared: ReturnType<typeof prepareCombatPersistence>, maintenance: CombatMaintenanceResult | null): CombatSessionCommit {
     // No observable callback occurs between these assignments.
     current = prepared.value; expected = prepared.expected; status = 'ready'; diagnostic = null; mayCreate = false
     persistence = 'not-attempted'
-    persistence = write(prepared.text)
+    persistence = write(prepared)
     const notificationErrors: { code: 'LISTENER_FAILED' }[] = [], committed = view()
     for (const listener of [...listeners]) {
       try {
@@ -110,7 +113,7 @@ export function buildCombatSession(domain: ResidenceDomain, input: CombatSession
     retrySave: () => guard(() => {
       if (!current || !expected) return unavailable()
       const prepared = prepareCombatPersistence(current, expected, composition.policy)
-      persistence = write(prepared.text)
+      persistence = write(prepared)
       return view()
     }),
   })

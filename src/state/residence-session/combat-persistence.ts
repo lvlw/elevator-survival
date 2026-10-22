@@ -4,6 +4,7 @@ import { CombatResidenceSaveError } from '../residence-save/combat-types'
 import type { CombatResidencePolicy } from '../residence-save/combat-types'
 import { combatExpectationSchema } from '../residence-save/combat-schema'
 import { parseResidence } from '../../core/residence-config/validation'
+import { deepFreeze } from '../../core/config'
 import type { CombatSessionExpectation } from './combat-types'
 
 export function prepareCombatPersistence(input: unknown, expected: CombatSessionExpectation, policy: CombatResidencePolicy) {
@@ -11,5 +12,6 @@ export function prepareCombatPersistence(input: unknown, expected: CombatSession
   const value = validateCombatResidenceAggregate(input, checkedExpected, policy)
   const text = serializeCombatResidenceSave(value, checkedExpected, policy)
   if (typeof text !== 'string') throw new CombatResidenceSaveError('INVALID_STATE', 'Encoder did not return a complete v4 string')
-  return { value, text, expected }
+  return { value, text, expected: deepFreeze(checkedExpected),
+    handoff: deepFreeze({ text, expected: checkedExpected }) }
 }

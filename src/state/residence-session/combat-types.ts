@@ -6,10 +6,14 @@ import type { readCombatResidenceExpectation } from '../residence-save/combat-va
 import type { Persistence, ResidenceStorage, SessionStatus } from './types'
 
 export type CombatSessionExpectation = ReturnType<typeof readCombatResidenceExpectation>
+/** Controlled synchronous handoff after complete validation and encoding. Not a player DTO. */
+export type CombatPreparedWrite = Readonly<{ text: string; expected: CombatSessionExpectation }>
+export type CombatPreparedStorage = Readonly<{ mode: 'prepared'; read(): string | null;
+  writePrepared(prepared: CombatPreparedWrite): void }>
 
 /** Controlled headless composition. Cold facts pre-exist the candidate read. */
 export type CombatSessionComposition = Readonly<{
-  policy: CombatResidencePolicy; storage: ResidenceStorage; startup: 'first' | 'existing'
+  policy: CombatResidencePolicy; storage: ResidenceStorage | CombatPreparedStorage; startup: 'first' | 'existing'
   provideInitialMaterials?: () => unknown
   provideColdExpectation?: () => unknown
 }>

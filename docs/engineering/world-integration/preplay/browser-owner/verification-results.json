@@ -1,0 +1,544 @@
+{
+  "task": "ENG-WORLD-BROWSER-OWNER-001",
+  "start_sha": "bc60f24cc16625a25ad56b0b917da63b16f29f56",
+  "start_parent": "cc147cd253f3e7e57e45de265610becb64a74821",
+  "start_tree": "875f04ad8018f48df9b248fc19317d35e48798a0",
+  "branch": "feature/world-browser-owner-001",
+  "start_worktree": "CLEAN",
+  "start_index": "CLEAN",
+  "runtime": {
+    "node": "24.9.0",
+    "npm": "11.6.0",
+    "vitest": "4.1.10",
+    "platform": "Windows",
+    "browser": "Edg/155.0.4283.62",
+    "model_configuration": "Actual model/reasoning tier not independently inspectable; no claim of a named tier"
+  },
+  "baseline": {
+    "command": "npm run test:run",
+    "exit": 0,
+    "files": 270,
+    "tests": 4487,
+    "vitest_seconds": 264.8,
+    "source": "actual baseline-default.log, not historical author/CI"
+  },
+  "final": {
+    "command": "npm run check",
+    "exit": 0,
+    "duration_ms": 284994,
+    "files": 287,
+    "tests": 4554,
+    "vitest_seconds": 277.66,
+    "architecture": {
+      "DEC": 53,
+      "core_production_files": 346
+    },
+    "typecheck": "PASS",
+    "build": "PASS",
+    "workers": "default, no override",
+    "budget": "four new full-chain tests each explicitly 30000ms; old budgets unchanged"
+  },
+  "test_delta": {
+    "new_files": 17,
+    "added": 67,
+    "replaced": 0,
+    "deleted": 0,
+    "net": 67,
+    "old_75_and_43": "unchanged; included by full default suite; not added again"
+  },
+  "gates": {
+    "B01": {
+      "status": "PASS",
+      "evidence": "startup.test.ts + initial-materials.test.ts + real default crypto first-hub refresh",
+      "entropy": 1,
+      "S": 1,
+      "initialProvider": 1,
+      "reservationWrites": 1,
+      "checkpointWrites": 1
+    },
+    "B02": {
+      "status": "PASS",
+      "evidence": "three new combat-prepared-* test files; exact old/new native full-state + encoded-string equality; strict dual/async mode rejection before domain claim"
+    },
+    "B03": {
+      "status": "PASS",
+      "evidence": "five real-browser refresh stops, three actual enemy route A, three independent P profile continuation pairs, both-zero and enemy-alive death checkpoints",
+      "boundaryQualification": "low HP / bleeding are explicit complete-aggregate TEST boundaries; not read-null routes"
+    },
+    "B04": {
+      "status": "PASS",
+      "evidence": "checkpoint.test.ts + eleven browser corruption pairs preserve exact records; payload untouched by adapter expected extraction"
+    },
+    "B05": {
+      "status": "PASS",
+      "evidence": "native fault/current/pay counts and actual localStorage with injected TEST errors; source, battle, sample and terminal checkpoints; latest-memory retry and last-durable refresh",
+      "limitation": "Not actual OS quota/permissions/power-loss testing"
+    },
+    "B06": {
+      "status": "PASS",
+      "evidence": "purity/owner/lifecycle/continuation tests; existing-current read blocked even on projection fault; old context/draft/confirmation invalidated; no retry/cold gameplay replay"
+    },
+    "B07": {
+      "status": "PASS",
+      "evidence": "same origin, same default browser context/profile, two simultaneous tabs + same-origin iframe; no isolated-context substitute"
+    },
+    "B08": {
+      "status": "PASS_ON_TESTED_PLATFORM",
+      "evidence": "actual navigation, close, targetCrashed events and BFCache persisted=true; independent simulated native pagehide/pageshow tests",
+      "crashExplicitAttempts": [
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "ready"
+      ],
+      "actualBFCacheHit": true,
+      "limitation": "Lock release after renderer crash is delayed; no automatic queue or unsafe fallback"
+    },
+    "B09": {
+      "status": "PASS",
+      "evidence": "owner IO only exact new keys; actual old hospital key TEST sentinel unchanged; private metadata excluded from ordinary snapshot; unchanged App/main/default build"
+    },
+    "B10": {
+      "status": "PASS_LOCAL",
+      "evidence": "default 270/4487 baseline, 287/4554 final check, three mutated AssertionErrors and three restored passes, package/range/fingerprint/link/diff audits; final staged/commit/remote receipt generated after these records"
+    }
+  },
+  "prepared": {
+    "mode": "{mode:'prepared',read,writePrepared}",
+    "legacy": "{read,write} unchanged",
+    "handoff": "deep-frozen checked full expected + original encoded text, no raw current",
+    "order": "validate/encode -> current once -> writer once -> native notice once",
+    "invalid_write": "throw/non-undefined/thenable = failed save, no fallback",
+    "cold": "checkpoint.expected validated against independent reservation/static composition before opaque text passed to S; never derived from v4Text.state"
+  },
+  "storage": {
+    "namespace": "elevator-survival.infected-preplay.v1",
+    "slot": "primary",
+    "formatVersion": 1,
+    "reservation": "identity/execution/seed/generation, approved declaration + versions + explicit choices only",
+    "checkpoint": "full expected + original v4Text + slot/generation, one setItem",
+    "domainFormatVersion": 4,
+    "domainFormatUnchanged": true,
+    "read": "exact two keys only; whole pair within same lease; errors not null",
+    "initialFailure": "reservation failure zero provider; orphan refresh blocked; no fresh entropy retry within same partial-initialization owner",
+    "guarantee": "cooperating same-origin pages only; no offline anti-cheat or hardware durability promise"
+  },
+  "counters": {
+    "source": "executed native assertions in startup/purity/owner/continuation tests, separate from browser IO/Presentation logs",
+    "readonly": {
+      "S": 0,
+      "provider": 0,
+      "producer": 0,
+      "CTB": 0,
+      "G1": 0,
+      "G2": 0,
+      "draw": 0,
+      "consume": 0,
+      "dispatch": 0,
+      "current": 0,
+      "nativeNotice": 0,
+      "read": 0,
+      "write": 0
+    },
+    "sample": {
+      "dispatch": 1,
+      "task": 1,
+      "coatPayment": 1,
+      "protectedCautiousDraw": 0,
+      "current": 1,
+      "nativeNotice": 1,
+      "checkpointAttempt": 1
+    },
+    "retry": {
+      "aggregate": 2,
+      "encode": 1,
+      "checkpointAttempt": 1,
+      "read": 0,
+      "dispatch": 0,
+      "current": 0,
+      "nativeNotice": 0,
+      "producer": 0,
+      "draw": 0,
+      "payment": 0,
+      "feedReference": "same"
+    },
+    "cold": {
+      "S": 1,
+      "currentInstall": 1,
+      "decode": 1,
+      "entropy": 0,
+      "provider": 0,
+      "dispatch": 0,
+      "producer": 0,
+      "draw": 0,
+      "write": 0,
+      "nativeNotice": 0
+    },
+    "presentation": "busy/ready updates independently counted; never conflated with native notices"
+  },
+  "negative_controls": [
+    {
+      "id": "expected-self-proof",
+      "mode": "mutated",
+      "exit": 1,
+      "passed": 0,
+      "failed": 1,
+      "test": "cold cross-progress blocks and preserves exact bytes, no identity/initial/save",
+      "assertion": "AssertionError: expected 'ready' to be 'blocked' // Object.is equality\n    at C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/negative-final/negative-shadow/src/app/infected-browser/checkpoint.test.ts:17:41\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "id": "expected-self-proof",
+      "mode": "restored",
+      "exit": 0,
+      "passed": 1,
+      "failed": 0,
+      "test": "cold cross-progress blocks",
+      "assertion": null
+    },
+    {
+      "id": "second-writer",
+      "mode": "mutated",
+      "exit": 1,
+      "passed": 0,
+      "failed": 1,
+      "test": "cooperating headless owners share one full-session lock, loser zero IO/entropy; explicit reacquire is cold",
+      "assertion": "AssertionError: expected 'ready' to be 'occupied' // Object.is equality\n    at C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/negative-final/negative-shadow/src/app/infected-browser/lease.test.ts:6:42\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "id": "second-writer",
+      "mode": "restored",
+      "exit": 0,
+      "passed": 1,
+      "failed": 0,
+      "test": "cooperating headless owners share one full-session lock",
+      "assertion": null
+    },
+    {
+      "id": "retry-replay",
+      "mode": "mutated",
+      "exit": 1,
+      "passed": 0,
+      "failed": 1,
+      "test": "save failure / retry and cold recovery have independent zero replay counts",
+      "assertion": "AssertionError: expected { …(25) } to be { …(25) } // Object.is equality\n    at C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/negative-final/negative-shadow/src/app/infected-browser/purity.test.ts:18:47\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "id": "retry-replay",
+      "mode": "restored",
+      "exit": 0,
+      "passed": 1,
+      "failed": 0,
+      "test": "save failure / retry and cold recovery",
+      "assertion": null
+    }
+  ],
+  "failure_history": [
+    "Initial wrapper typo npm test:run exit1, not test execution; actual baseline rerun uses npm run test:run.",
+    "typecheck-1 generic deep-freeze return type; typecheck-3 only new test typing; corrected without old test changes.",
+    "longchain-2: real third-battle orderly death, 1 failed / 2 passed; browser-1 same native outcome. Retained. Legal route order changed to orderly -> porter -> technician with actual source/food/medical actions, no parameter or RNG result changes.",
+    "browser-2: 300ms renderer-crash lock-release assumption failed; actual diagnostic targetCrashed proved delayed release, explicit retry succeeds. No production timing/config changes. Diagnostic filter run is not the final full run.",
+    "Early external import audit found three unchanged historical hospital runtime cycles. Baseline comparison confirms zero new cycles; no unrelated refactor.",
+    "Default OpenSSL and system-TLS/direct, then proxy/OpenSSL remote reads failed; existing proxy + system TLS + HTTP/1.1 command-level read succeeded. No certificate-check disabling or persistent config edits."
+  ],
+  "browser_evidence": {
+    "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/browser-final-2",
+    "report_sha256": "0ccd6e31970e87507c7f02d1c2f7ff09a569c9b51610672d8136c12006c2333d",
+    "cases": 9,
+    "pass": 9,
+    "fail": 0,
+    "uncovered": [],
+    "screenshots": [
+      "first-hub.png",
+      "route-A-stage-0.png",
+      "route-A-stage-4.png",
+      "route-A-stage-5.png"
+    ],
+    "runtimeExceptions": 0,
+    "expectedCrashEvents": 2,
+    "raw_stderr": "preserved browser.log (Edge background/importer/task-manager/network diagnostics, separate from page exceptions)"
+  },
+  "tested_code": {
+    "manifest": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/tested-code.json",
+    "sha256": "fd0b2abccac44b3040ffeca820ff116b52787c9dc962e8d2a5f00fa10d687108",
+    "count": 930
+  },
+  "raw_logs": [
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/baseline-default.log",
+      "bytes": 285,
+      "sha256": "1862196f39e890be214c608cb4ee8a652e32e3796985a0f50028ae118f3827c8"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/baseline.log",
+      "bytes": 161,
+      "sha256": "b9809e4db3313c74106b7bf5a022128b80205bd9f28faa34aa5bcd8d0868d6e4"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/continuation-1.log",
+      "bytes": 324,
+      "sha256": "ed2416bfdbbe434c0fdfe396ab425e8664067060673c29ad04bcb7cb23e19892"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/final-check.log",
+      "bytes": 3350,
+      "sha256": "3086cc20753d19fea6fcc0570177d93c418d49f45abf234c079e7eab9428be92"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/longchain-1.log",
+      "bytes": 321,
+      "sha256": "6a3bdbc41424679e1452cbe20b4d0d0ee531fd19efdfa202d639becf7f2496b9"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/longchain-2.log",
+      "bytes": 1652,
+      "sha256": "6f763d063d185739645f97c3223aa39802531f5a51ae7e081cf8e9cf468df6aa"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/longchain-3.log",
+      "bytes": 321,
+      "sha256": "6decbd8e6414a0c44315e934b3eba93cc4c1b23d23421f020bb5c34fa762a06d"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/negative-expected-self-proof-mutated.log",
+      "bytes": 150,
+      "sha256": "6beaea42b3565ed315b63cc0301df22efc2cac12096c65e1bfed749f627fbe7a"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/negative-expected-self-proof-restored.log",
+      "bytes": 151,
+      "sha256": "b3fa7fe19966488e6f1eded17714ac3b05cb9eb5855848edf2e7a2bb251bacde"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/negative-retry-replay-mutated.log",
+      "bytes": 143,
+      "sha256": "cf7c425b49c07926b1b9fa4c9b3a069306604dd1e2a636fa4660cac74992ece8"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/negative-retry-replay-restored.log",
+      "bytes": 144,
+      "sha256": "c4048ea263f98f91c81e7cddb440afcbe7bbdf204a14e0ff6b3a02b499b4a09a"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/negative-second-writer-mutated.log",
+      "bytes": 144,
+      "sha256": "6000fd26997e64383812081eaf3cc09d45add34477492f991f7698b89367370d"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/negative-second-writer-restored.log",
+      "bytes": 145,
+      "sha256": "e40e48a8baa648585291594cf3800516650c1a8d5b468d2328d8e2a692a676ac"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/targeted-1.log",
+      "bytes": 499,
+      "sha256": "ebb20ee15c4439722be7842a6bcd338f9cb556d718d18c33c0a995eeed275c0d"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/targeted-2.log",
+      "bytes": 485,
+      "sha256": "715e213701c868268bc1f5d807c7aad3c3e599540f2ea7129254b72657bd844e"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/targeted-3.log",
+      "bytes": 490,
+      "sha256": "1fa09da65e897717fc8651115f1fc1ee1281cbd7f2a106915ba91828f111bc77"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/targeted-4.log",
+      "bytes": 490,
+      "sha256": "e306c1a685575d5e0210598b2d7018f7b5d8023bd6cb2c193a8940c82fc77c31"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/targeted-5.log",
+      "bytes": 490,
+      "sha256": "e1b1a4de34381c14ed7b62a22cee08621b8282a83fa375d45c4d2f58dcac0bb8"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/typecheck-1.log",
+      "bytes": 806,
+      "sha256": "33f7a8e9fedd6dc20fd5f54a235b1d695f7341a87a0b729a7cddc299bb94c854"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/typecheck-2.log",
+      "bytes": 62,
+      "sha256": "49c87b92194125e98cac1b5706fdfa16f93fb28d8943836ef75594e940aa6a6f"
+    },
+    {
+      "path": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/typecheck-3.log",
+      "bytes": 344,
+      "sha256": "e501395a1adb94548dc189524662685969cab6b2a0efda876a0fd2912b7e1d55"
+    }
+  ],
+  "log_test_summaries": [
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/baseline-default.log",
+      "files": "270 passed (270)",
+      "tests": "4487 passed (4487)"
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/baseline.log",
+      "files": null,
+      "tests": null
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/continuation-1.log",
+      "files": "1 passed (1)",
+      "tests": "5 passed (5)"
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/final-check.log",
+      "files": "287 passed (287)",
+      "tests": "4554 passed (4554)"
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/longchain-1.log",
+      "files": "1 passed (1)",
+      "tests": "2 passed (2)"
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/longchain-2.log",
+      "files": "1 failed (1)",
+      "tests": "1 ⎯⎯⎯⎯⎯⎯⎯"
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/longchain-3.log",
+      "files": "1 passed (1)",
+      "tests": "3 passed (3)"
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/negative-expected-self-proof-mutated.log",
+      "files": null,
+      "tests": null
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/negative-expected-self-proof-restored.log",
+      "files": null,
+      "tests": null
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/negative-retry-replay-mutated.log",
+      "files": null,
+      "tests": null
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/negative-retry-replay-restored.log",
+      "files": null,
+      "tests": null
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/negative-second-writer-mutated.log",
+      "files": null,
+      "tests": null
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/negative-second-writer-restored.log",
+      "files": null,
+      "tests": null
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/targeted-1.log",
+      "files": "4 passed (4)",
+      "tests": "13 passed (13)"
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/targeted-2.log",
+      "files": "8 passed (8)",
+      "tests": "36 passed (36)"
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/targeted-3.log",
+      "files": "14 passed (14)",
+      "tests": "56 passed (56)"
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/targeted-4.log",
+      "files": "16 passed (16)",
+      "tests": "64 passed (64)"
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/targeted-5.log",
+      "files": "17 passed (17)",
+      "tests": "66 passed (66)"
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/typecheck-1.log",
+      "files": null,
+      "tests": null
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/typecheck-2.log",
+      "files": null,
+      "tests": null
+    },
+    {
+      "file": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/typecheck-3.log",
+      "files": null,
+      "tests": null
+    }
+  ],
+  "protected": {
+    "old_tests_and_helpers": true,
+    "P_R_G1_G2_domain": true,
+    "controller_unchanged": true,
+    "DEC_UIR_contracts": true,
+    "config_content_versions_dependencies_CI": true
+  },
+  "whitespace": {
+    "new_increment_exit": 0,
+    "foundation_cumulative_exit": 2,
+    "foundation_warning_count": 1,
+    "oldest_cumulative_exit": 2,
+    "oldest_warning_count": 8,
+    "exceptions": {
+      "W01": {
+        "unchanged": true,
+        "cumulative_base": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+        "files": {
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md": [
+            7,
+            8,
+            9
+          ]
+        },
+        "expected_warning_count": 7,
+        "diagnostic": "trailing whitespace.",
+        "verify_each_blob_equal_to_start": true
+      },
+      "W02": {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+        "line": 249,
+        "diagnostic": "new blank line at EOF.",
+        "bytes": 24083,
+        "sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+        "git_blob_sha1": "85a39b34c414952cfc30005b4f76b483bb019a42",
+        "expected_warning_count": 1,
+        "scope": "Only this exact archived original file, bytes and single EOF warning",
+        "precedence": "Overrides original task section 7 new-diff-exit-zero/no-eighth-warning requirement only for this W02; W01 unchanged; no other whitespace exception"
+      }
+    },
+    "no_new_exception": true,
+    "raw": "C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/diff-working.json",
+    "staged_and_committed": "Performed after record generation with raw receipts outside repo; no amend for self-SHA"
+  },
+  "not_run": [
+    "Actual OS quota/permission exhaustion and device power failure",
+    "Other browsers/mobile/private-mode/storage partitions",
+    "Owner experience / low-asset UI / player entry / O3",
+    "npm audit rerun; historical mirror 404 remains UNCONFIRMED"
+  ],
+  "rule_conflicts": [],
+  "stop": "Await exact-SHA save/browser seam review. No UI engineering, main merge/push or next task.",
+  "git_final": "Normal commit/push and exact SHA CI are reported in final external receipt/reply after this precommit record; no self-referential amend."
+}

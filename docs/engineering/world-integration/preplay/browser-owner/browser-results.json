@@ -1,0 +1,701 @@
+{
+  "kind": "REAL_BROWSER_TEST_ONLY",
+  "browser": "Edg/155.0.4283.62",
+  "origin": "http://127.0.0.1:57068",
+  "profile": "C:\\Users\\zjl\\AppData\\Local\\Temp\\browser-owner-work-94d649668b8843f885d8dc007a2f17d2\\browser-final-2\\profile-qu8aoy",
+  "cases": [
+    {
+      "name": "B01 default crypto, setup zero entropy, reservation + checkpoint, real first refresh",
+      "result": "PASS",
+      "ms": 4640.636399999999,
+      "detail": {
+        "entropy": 1,
+        "presentation": 9,
+        "io": [
+          {
+            "op": "read",
+            "key": "elevator-survival.infected-preplay.v1.primary.reservation"
+          },
+          {
+            "op": "read",
+            "key": "elevator-survival.infected-preplay.v1.primary.checkpoint"
+          },
+          {
+            "op": "write",
+            "key": "elevator-survival.infected-preplay.v1.primary.reservation"
+          },
+          {
+            "op": "write",
+            "key": "elevator-survival.infected-preplay.v1.primary.checkpoint"
+          }
+        ],
+        "lifecycle": [
+          {
+            "kind": "pageshow",
+            "persisted": false
+          }
+        ],
+        "previousLifecycle": null
+      }
+    },
+    {
+      "name": "B07 real same-profile same-origin simultaneous tabs + iframe, loser zero initialization",
+      "result": "PASS",
+      "ms": 4121.07,
+      "detail": {
+        "outcomes": [
+          "occupied",
+          "setup"
+        ],
+        "frame": "occupied",
+        "partition": "same default browserContext/profile"
+      }
+    },
+    {
+      "name": "B03/A default seeded three-enemy / sample / install / success with real refreshes",
+      "result": "PASS",
+      "ms": 9548.4735,
+      "detail": {
+        "stages": [
+          {
+            "point": "battle-decision",
+            "hp": 12,
+            "phase": "active-world"
+          },
+          {
+            "point": "battle-decision",
+            "hp": 10,
+            "phase": "active-world"
+          },
+          {
+            "point": "battle-decision",
+            "hp": 7,
+            "phase": "active-world"
+          },
+          {
+            "point": "stable-active",
+            "hp": 2,
+            "phase": "active-world"
+          },
+          {
+            "point": "stable-active",
+            "hp": 2,
+            "phase": "active-world"
+          },
+          {
+            "point": "living-hub",
+            "hp": 2,
+            "phase": "living-hub"
+          }
+        ],
+        "final": {
+          "status": "ready",
+          "preplay": {
+            "status": "stable",
+            "view": {
+              "status": "ready",
+              "phase": "living-hub",
+              "point": "living-hub",
+              "first": {
+                "toolChoices": [
+                  "crow"
+                ],
+                "specialtyChoices": [
+                  "engineer"
+                ],
+                "locked": true
+              },
+              "location": null,
+              "taskDay": 4,
+              "map": {
+                "nodes": [],
+                "routes": []
+              },
+              "move": {
+                "options": []
+              },
+              "sources": [],
+              "ground": [],
+              "carried": [
+                {
+                  "selector": {
+                    "selection": "opaque"
+                  },
+                  "name": "压缩口粮",
+                  "quantity": 1,
+                  "container": "backpack",
+                  "slot": null,
+                  "width": 1,
+                  "height": 1,
+                  "unitWeight": 1,
+                  "canRotate": true,
+                  "ordinary": true,
+                  "stackable": true,
+                  "quickEligible": false,
+                  "resource": {
+                    "kind": "none"
+                  },
+                  "placement": {
+                    "x": 4,
+                    "y": 1,
+                    "rotated": false
+                  },
+                  "footprint": [
+                    {
+                      "x": 4,
+                      "y": 1
+                    }
+                  ]
+                },
+                {
+                  "selector": {
+                    "selection": "opaque"
+                  },
+                  "name": "压缩口粮",
+                  "quantity": 1,
+                  "container": "backpack",
+                  "slot": null,
+                  "width": 1,
+                  "height": 1,
+                  "unitWeight": 1,
+                  "canRotate": true,
+                  "ordinary": true,
+                  "stackable": true,
+                  "quickEligible": false,
+                  "resource": {
+                    "kind": "none"
+                  },
+                  "placement": {
+                    "x": 3,
+                    "y": 1,
+                    "rotated": false
+                  },
+                  "footprint": [
+                    {
+                      "x": 3,
+                      "y": 1
+                    }
+                  ]
+                },
+                {
+                  "selector": {
+                    "selection": "opaque"
+                  },
+                  "name": "金属管",
+                  "quantity": 1,
+                  "container": "weapon",
+                  "slot": null,
+                  "width": 1,
+                  "height": 3,
+                  "unitWeight": 3,
+                  "canRotate": true,
+                  "ordinary": true,
+                  "stackable": false,
+                  "quickEligible": false,
+                  "resource": {
+                    "kind": "durability",
+                    "current": 13,
+                    "maximum": 30
+                  },
+                  "placement": null,
+                  "footprint": []
+                },
+                {
+                  "selector": {
+                    "selection": "opaque"
+                  },
+                  "name": "厚实外套",
+                  "quantity": 1,
+                  "container": "armor",
+                  "slot": null,
+                  "width": 2,
+                  "height": 2,
+                  "unitWeight": 2,
+                  "canRotate": true,
+                  "ordinary": true,
+                  "stackable": false,
+                  "quickEligible": false,
+                  "resource": {
+                    "kind": "integrity",
+                    "current": 7,
+                    "maximum": 12
+                  },
+                  "placement": null,
+                  "footprint": []
+                },
+                {
+                  "selector": {
+                    "selection": "opaque"
+                  },
+                  "name": "撬棍",
+                  "quantity": 1,
+                  "container": "utility",
+                  "slot": null,
+                  "width": 1,
+                  "height": 3,
+                  "unitWeight": 3,
+                  "canRotate": true,
+                  "ordinary": true,
+                  "stackable": false,
+                  "quickEligible": false,
+                  "resource": {
+                    "kind": "durability",
+                    "current": 9,
+                    "maximum": 12
+                  },
+                  "placement": null,
+                  "footprint": []
+                }
+              ],
+              "backpack": {
+                "width": 6,
+                "height": 4,
+                "weight": 2,
+                "load": "normal"
+              },
+              "tasks": {
+                "publicObjectives": [
+                  {
+                    "label": "恢复供电",
+                    "state": "completed"
+                  },
+                  {
+                    "label": "急救转运",
+                    "state": "completed"
+                  }
+                ],
+                "sample": "delivered",
+                "choices": []
+              },
+              "terminal": {
+                "eligibility": {
+                  "deliver": false,
+                  "withdraw": false,
+                  "deadline": false
+                },
+                "result": {
+                  "outcome": "success",
+                  "reward": 120,
+                  "penalty": 0,
+                  "forfeited": 0,
+                  "balance": 120,
+                  "taskDay": 4,
+                  "items": [
+                    {
+                      "name": "密封病原样本箱",
+                      "quantity": 1,
+                      "disposition": "delivered"
+                    }
+                  ]
+                }
+              },
+              "combat": null,
+              "body": {
+                "hp": {
+                  "current": 2,
+                  "maximum": 12
+                },
+                "bleeding": false,
+                "minorContusions": 0,
+                "painkillerActive": false,
+                "wounds": [],
+                "energy": {
+                  "current": 29,
+                  "maximum": 100
+                },
+                "satiety": {
+                  "current": 6,
+                  "maximum": 6
+                },
+                "quotas": {
+                  "suppressant": 1,
+                  "disinfectant": 1,
+                  "pipe_signature": 1
+                },
+                "infectionWarning": {
+                  "kind": "known",
+                  "band": "below-loss",
+                  "label": "未达病程损耗档",
+                  "mechanism": "仅表示当前病程负担。最低档不代表未感染或未来安全；最高档不等于死亡。隐藏医疗目标及未来周期结果仍未知。"
+                }
+              },
+              "persistence": {
+                "feedback": "not-attempted"
+              },
+              "staticHub": {
+                "successors": {
+                  "kind": "no-content",
+                  "choices": []
+                }
+              },
+              "actions": []
+            },
+            "error": null,
+            "draft": null,
+            "feed": []
+          },
+          "setup": null,
+          "message": null
+        },
+        "counts": {
+          "entropy": 0,
+          "presentation": 5,
+          "io": [
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.reservation"
+            },
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.checkpoint"
+            }
+          ],
+          "lifecycle": [
+            {
+              "kind": "pageshow",
+              "persisted": false
+            }
+          ],
+          "previousLifecycle": "[{\"kind\":\"pageshow\",\"persisted\":false},{\"kind\":\"pagehide\",\"persisted\":false}]"
+        }
+      }
+    },
+    {
+      "name": "B05/B retreat immediate repair, medical, rest, failed checkpoint/retry and reentry cold",
+      "result": "PASS",
+      "ms": 3281.5106000000014,
+      "detail": {
+        "end": {
+          "point": "living-hub",
+          "hp": 12,
+          "phase": "living-hub"
+        },
+        "counts": {
+          "entropy": 0,
+          "presentation": 5,
+          "io": [
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.reservation"
+            },
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.checkpoint"
+            }
+          ],
+          "lifecycle": [
+            {
+              "kind": "pageshow",
+              "persisted": false
+            }
+          ],
+          "previousLifecycle": "[{\"kind\":\"pageshow\",\"persisted\":false},{\"kind\":\"pagehide\",\"persisted\":false}]"
+        }
+      }
+    },
+    {
+      "name": "B04 real IO rejects mismatched expected/text, corrupt versions and orphan pairs without edits",
+      "result": "PASS",
+      "ms": 7130.850200000001,
+      "detail": [
+        {
+          "kind": "json",
+          "status": "blocked"
+        },
+        {
+          "kind": "orphan-reservation",
+          "status": "blocked"
+        },
+        {
+          "kind": "orphan-checkpoint",
+          "status": "blocked"
+        },
+        {
+          "kind": "generation",
+          "status": "blocked"
+        },
+        {
+          "kind": "version",
+          "status": "blocked"
+        },
+        {
+          "kind": "initial-choice",
+          "status": "blocked"
+        },
+        {
+          "kind": "cross-progress",
+          "status": "blocked"
+        },
+        {
+          "kind": "missing-metadata",
+          "status": "blocked"
+        },
+        {
+          "kind": "wrong-v4",
+          "status": "blocked"
+        },
+        {
+          "kind": "battle",
+          "status": "blocked"
+        },
+        {
+          "kind": "closure",
+          "status": "blocked"
+        }
+      ]
+    },
+    {
+      "name": "B05 reservation and first checkpoint injected failures, orphan real refresh and read-error retry",
+      "result": "PASS",
+      "ms": 3107.3950000000004,
+      "detail": {
+        "reservationCounts": {
+          "entropy": 1,
+          "presentation": 5,
+          "io": [
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.reservation"
+            },
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.checkpoint"
+            },
+            {
+              "op": "write",
+              "key": "elevator-survival.infected-preplay.v1.primary.reservation"
+            }
+          ],
+          "lifecycle": [
+            {
+              "kind": "pageshow",
+              "persisted": false
+            }
+          ],
+          "previousLifecycle": null
+        },
+        "firstCounts": {
+          "entropy": 1,
+          "presentation": 9,
+          "io": [
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.reservation"
+            },
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.checkpoint"
+            },
+            {
+              "op": "write",
+              "key": "elevator-survival.infected-preplay.v1.primary.reservation"
+            },
+            {
+              "op": "write",
+              "key": "elevator-survival.infected-preplay.v1.primary.checkpoint"
+            }
+          ],
+          "lifecycle": [
+            {
+              "kind": "pageshow",
+              "persisted": false
+            }
+          ],
+          "previousLifecycle": "[{\"kind\":\"pageshow\",\"persisted\":false},{\"kind\":\"pagehide\",\"persisted\":false}]"
+        },
+        "readCounts": {
+          "entropy": 0,
+          "presentation": 5,
+          "io": [
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.reservation"
+            },
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.reservation"
+            },
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.checkpoint"
+            }
+          ],
+          "lifecycle": [
+            {
+              "kind": "pageshow",
+              "persisted": false
+            }
+          ],
+          "previousLifecycle": "[{\"kind\":\"pageshow\",\"persisted\":false},{\"kind\":\"pagehide\",\"persisted\":false}]"
+        },
+        "faultType": "real localStorage + TEST port exceptions, not actual quota exhaustion"
+      }
+    },
+    {
+      "name": "B03 three real P profile checkpoints continue equally across refresh",
+      "result": "PASS",
+      "ms": 6803.202400000002,
+      "detail": [
+        {
+          "enemy": "orderly",
+          "source": "actual P TEST checkpoint, not read-null route",
+          "equal": true
+        },
+        {
+          "enemy": "porter",
+          "source": "actual P TEST checkpoint, not read-null route",
+          "equal": true
+        },
+        {
+          "enemy": "technician",
+          "source": "actual P TEST checkpoint, not read-null route",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "name": "B03 both-zero / enemy-alive actual deaths refresh dead, retain exact archive and do not close again",
+      "result": "PASS",
+      "ms": 4539.1253,
+      "detail": [
+        {
+          "kind": "both-zero",
+          "pending": "none",
+          "source": "explicit low-HP/bleeding TEST boundary; real P death"
+        },
+        {
+          "kind": "alive-enemy",
+          "pending": "combat-required",
+          "source": "explicit low-HP/bleeding TEST boundary; real P death"
+        }
+      ]
+    },
+    {
+      "name": "B08 actual close/navigation/crash releases lease; BFCache observation separate",
+      "result": "PASS",
+      "ms": 7976.246399999996,
+      "detail": {
+        "navigation": "PASS",
+        "close": "PASS",
+        "ownTestRendererCrash": "PASS",
+        "actualBFCacheHit": true,
+        "lifecycle": {
+          "entropy": 1,
+          "presentation": 14,
+          "io": [
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.reservation"
+            },
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.checkpoint"
+            },
+            {
+              "op": "write",
+              "key": "elevator-survival.infected-preplay.v1.primary.reservation"
+            },
+            {
+              "op": "write",
+              "key": "elevator-survival.infected-preplay.v1.primary.checkpoint"
+            },
+            {
+              "op": "write",
+              "key": "elevator-survival.infected-preplay.v1.primary.checkpoint"
+            }
+          ],
+          "lifecycle": [
+            {
+              "kind": "pageshow",
+              "persisted": false
+            },
+            {
+              "kind": "pagehide",
+              "persisted": true
+            },
+            {
+              "kind": "pageshow",
+              "persisted": true
+            }
+          ],
+          "previousLifecycle": "[{\"kind\":\"pageshow\",\"persisted\":false},{\"kind\":\"pagehide\",\"persisted\":true}]"
+        },
+        "crashResponse": "pending",
+        "crashEvents": [
+          {
+            "method": "Inspector.targetCrashed",
+            "params": {},
+            "sessionId": "89DB5B346045B3378867CC6CF3AF9913"
+          },
+          {
+            "method": "Target.targetCrashed",
+            "params": {
+              "targetId": "7372108D38927EB5C046CFE930D48D58",
+              "status": "crashed",
+              "errorCode": -2147483645
+            }
+          }
+        ],
+        "attempts": [
+          "occupied",
+          "occupied",
+          "occupied",
+          "occupied",
+          "occupied",
+          "occupied",
+          "occupied",
+          "occupied",
+          "occupied",
+          "ready"
+        ]
+      }
+    }
+  ],
+  "console": [
+    {
+      "method": "Inspector.targetCrashed",
+      "params": {},
+      "sessionId": "89DB5B346045B3378867CC6CF3AF9913"
+    },
+    {
+      "method": "Target.targetCrashed",
+      "params": {
+        "targetId": "7372108D38927EB5C046CFE930D48D58",
+        "status": "crashed",
+        "errorCode": -2147483645
+      }
+    }
+  ],
+  "uncovered": [],
+  "crashDiagnostic": {
+    "crashResponse": "pending",
+    "crashEvents": [
+      {
+        "method": "Inspector.targetCrashed",
+        "params": {},
+        "sessionId": "89DB5B346045B3378867CC6CF3AF9913"
+      },
+      {
+        "method": "Target.targetCrashed",
+        "params": {
+          "targetId": "7372108D38927EB5C046CFE930D48D58",
+          "status": "crashed",
+          "errorCode": -2147483645
+        }
+      }
+    ],
+    "attempts": [
+      "occupied",
+      "occupied",
+      "occupied",
+      "occupied",
+      "occupied",
+      "occupied",
+      "occupied",
+      "occupied",
+      "occupied",
+      "ready"
+    ]
+  },
+  "finished_utc": "2026-10-22T14:58:59.449Z"
+}

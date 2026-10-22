@@ -56,3 +56,8 @@
 ## ENG-WORLD-PREPLAY-FOUNDATION-001-R1 作者增量
 
 2026-10-22。样本护具已知支付的headless metadata缺口按R1修复并作原生对照。浏览器／UI／真实保存／跨标签／Owner Gate不因此关闭；源码专项实审仍为后继前置，审计404仍UNCONFIRMED。详见[R1作者记录](../preplay/foundation/completion.md)；不是主线验收或Owner体验PASS。
+
+
+## ENG-WORLD-BROWSER-OWNER-001 作者实现附记
+
+显式且未注册玩家入口的 browser owner 已接入：四个 S 宿主补齐冻结 prepared expected/original-text 单写；独立 reservation/checkpoint 与全会话 Web Locks，冷 expected 不从 v4 payload 反推。唯一 S/current、旧 text 端口、格式、规则和旧医院入口／槽保持。真实 Edge 五停点、三敌、同源多页及生命周期已测；不是全平台或 Owner 体验通过。详见[本批交付](../preplay/browser-owner/completion.md)。等待准确 SHA 保存／浏览器接缝实审；未自动进入 UI 或决定 O3。

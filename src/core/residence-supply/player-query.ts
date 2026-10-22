@@ -16,6 +16,7 @@ import { numberValue } from '../residence-supply/config'
 import { playerResidenceKnowledge } from '../residence-location/player-knowledge'
 import { playerCombatFacts } from '../residence-combat/player-query'
 import { sharedTerminalEligibility } from '../residence-terminal/supply-settlement-shared'
+import { queryPublicInfectionCondition } from '../character-cycle/public-condition'
 import type { CombatDependencies, CombatValue } from '../residence-combat/types'
 
 import type { SupplyDomain } from './shared-types'
@@ -170,6 +171,5 @@ export function playerSupplyFacts(v: SupplyDomain, deps: SupplyDependencies) {
       wounds: c.openWounds.map((w, n) => ({ key: w.id, ordinal: n + 1, kind: w.kind, treatment: w.treatment })),
       energy: { current: v.character.body.energy, maximum: limits.energy }, satiety: { current: v.character.body.satiety, maximum: limits.satiety },
       quotas: { ...v.character.body.quotasRemaining },
-      infectionWarning: { kind: 'unknown' as const, reason: 'No approved new-world public infection-stage mapping',
-        mechanism: 'Exposure can worsen infection at a body-cycle checkpoint; disinfectant and suppressant have distinct formal targets.' } } })
+      infectionWarning: queryPublicInfectionCondition(v.character, deps.residence) } })
 }

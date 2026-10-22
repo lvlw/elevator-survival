@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import contract from '../../../docs/engineering/world-integration/player-query/player-query-field-contract-v1.0.json'
+import contract from '../../../docs/engineering/world-integration/player-query/player-query-field-contract-v1.1.json'
 import { begin, playerHarness, ready, normalize, counts } from './player-test-fixtures'
 import { createPlayerSession } from './player-controlled'
 import { infectedWorldPlayerLabels } from '../../content/infected-world-v0.1/player-query'
@@ -24,7 +24,8 @@ describe('Q01 Q02 Q04 Q06 all 24 fields and controlled boundary', () => {
     }
     expect(Object.keys(fields).sort()).toEqual(contract.fields.map(f => f.field).sort())
     expect(Object.keys(fields)).toHaveLength(24)
-    expect(v.body.infectionWarning.kind).toBe('unknown')
+    expect(v.body.infectionWarning.kind).toBe('known')
+    expect(v.body.infectionWarning.band).toBe('below-loss')
     expect(v.body.hp).toEqual({ current: 12, maximum: 12 })
     expect(v.location!.name).toBe('电梯前室'); expect(v.taskDay).toBe(1)
     expect(v.carried).toHaveLength(4)

@@ -12,6 +12,7 @@ import type { PlayerSession, PlayerLabels, PlayerPreview, PlayerExecution } from
 import { buildCombatSession } from './combat-session'
 import type { ResidenceDomain } from './types'
 import { assertCombatSyncFunction } from './combat-composition'
+import { createPlayerPreplay } from './player-preplay'
 
 /** Trusted composition only. The supplied existing S is the sole current/writer. */
 export function wrapPlayerSession(owner: CombatSession, policy: CombatResidencePolicy, labels: PlayerLabels) {
@@ -61,7 +62,8 @@ export function wrapPlayerSession(owner: CombatSession, policy: CombatResidenceP
     try { run() } finally { try { synchronize() } finally { busy = false } }
     return query()
   }
-  return Object.freeze({ player, synchronize,
+  const preplay = createPlayerPreplay(() => !busy && context?.value === owner.getState().current ? context : null, deps)
+  return Object.freeze({ player, preplay, synchronize,
     bootstrap: () => controlled(() => owner.bootstrap()), retryRead: () => controlled(() => owner.retryRead()),
     createFirst: () => controlled(() => owner.createFirst()) })
 }

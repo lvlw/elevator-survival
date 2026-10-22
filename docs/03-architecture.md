@@ -793,3 +793,9 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 当前病程粗档只读派生，不建立第二身体或重播日结；current、持久化 checkpoint 与 Presentation 各有责任。通知回调期间 query 可能 blocked，prepared 交接和浏览器持久化仍是待实现接缝，不能把既有 S 实审当成浏览器 PASS。
 
 依据：[DEC-053](05-design-decisions.md#dec-053)、[同范围后继正式合同](engineering/world-integration/preplay/foundation-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。
+
+## ENG-WORLD-PREPLAY-FOUNDATION-001 作者实现附记（2026-10-22）
+
+已实现获准 headless foundation：D1 从版本绑定 infection_damage 只读派生；安全 metadata 复用原纯规则，controller 只缓存安全 Presentation snapshot。原 S 的 current、预编码、提交、writer 和通知不变，执行返回后显式 ready，原生 blocked 回调不当最终状态。浏览器 handoff／UI 尚未接入。
+
+实际支持、未知项与验收见[基础作者记录](engineering/world-integration/preplay/foundation/contract-and-support.md)及[本轮完成报告](engineering/world-integration/preplay/foundation/completion.md)。历史正文按原时点保留，不改 DEC／UIR、参数、旧格式或旧医院入口。

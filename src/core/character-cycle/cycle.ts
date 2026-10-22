@@ -18,6 +18,16 @@ export function createCycleRequest(input: unknown): CycleRequest {
 type BodyResult = Readonly<{ body: ResidenceBody; steps: readonly BodyStep[]; deathCause: BodyStep['kind'] | null }>
 const primarySchema = z.strictObject({ healthLoss: countSchema, exposuresAdded: countSchema })
 
+/** Shared scalar checkpoint, not an action/cycle plan or hidden future projection. */
+export function queryActionBleedingHealth(health: number, bleeding: boolean, qualified: boolean, dependencies: ResidenceDependencies): number {
+  const current = parseResidence(countSchema, health)
+  const active = parseResidence(z.boolean(), bleeding), applies = parseResidence(z.boolean(), qualified)
+  const configuration = requireResidenceConfig(dependencies.configuration).config
+  if (current > configuration.limits.hp) throw new ResidenceError('INVALID_INPUT', 'Action checkpoint health exceeds maximum')
+  const damage = configuration.health.bleed_action
+  return active && applies ? Math.max(0, current - damage) : current
+}
+
 /** Narrow consequence composition; eligibility and completion provenance belong to
  * the energy entry/coordinator. This function never spends energy or revisions. */
 export function planActionBodyConsequences(
@@ -34,7 +44,7 @@ export function planActionBodyConsequences(
   let condition = { ...body.condition, currentHealth: after, pendingInfectionExposures: exposure }
   let deathCause: BodyStep['kind'] | null = after === 0 ? 'primary' : null
   if (after > 0 && qualified && condition.bleeding) {
-    const hp = Math.max(0, after - dependencies.configuration.config.health.bleed_action)
+    const hp = queryActionBleedingHealth(after, condition.bleeding, qualified, dependencies)
     steps.push({ kind: 'action-bleeding', healthBefore: after, healthAfter: hp, facts: { damage: after - hp } })
     condition = { ...condition, currentHealth: hp }
     if (hp === 0) deathCause = 'action-bleeding'

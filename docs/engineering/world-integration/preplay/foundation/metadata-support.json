@@ -1,0 +1,542 @@
+{
+  "task": "ENG-WORLD-PREPLAY-FOUNDATION-001",
+  "baseline": "ff2b79f332c5ea2bec493eb5e166dcee6ba667eb",
+  "authority": "DEC-053 + approved v1.1 / foundation contract; no new rule or value",
+  "fields": [
+    {
+      "field": "first.toolChoices",
+      "owner": "projectPlayerView / committed choices.tool",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "first.specialtyChoices",
+      "owner": "projectPlayerView / committed choices.specialty",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "phase",
+      "owner": "projectPlayerView / current phase",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "location",
+      "owner": "projectPlayerView / current site and bound catalog label",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "taskDay",
+      "owner": "projectPlayerView / active clock or retained receipt",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "map.nodes",
+      "owner": "playerResidenceKnowledge",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "map.routes",
+      "owner": "playerResidenceKnowledge",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "move.options",
+      "owner": "playerResidenceKnowledge / formal canStart and cost",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "sources",
+      "owner": "playerTaskOpportunities",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "ground",
+      "owner": "playerSupplyFacts / local ground",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "carried",
+      "owner": "playerSupplyFacts / carriedItems",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "tasks.publicObjectives",
+      "owner": "projectPlayerView / observed facts and declared task actions",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "terminal.eligibility",
+      "owner": "playerTerminalFacts",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "terminal.result",
+      "owner": "playerTerminalFacts / retained receipt",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "combat.intent",
+      "owner": "playerCombatFacts",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "combat.actions",
+      "owner": "playerCombatFacts",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "combat.enemyStage",
+      "owner": "playerCombatFacts / public enemy stage",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "combat.relativeTimeline",
+      "owner": "playerCombatFacts / relative timeline",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "body.hp",
+      "owner": "playerSupplyFacts / committed condition",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "body.bleedingWounds",
+      "owner": "playerSupplyFacts / public wound ordinal",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "body.energySatiety",
+      "owner": "playerSupplyFacts / committed energy, satiety and quota",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "body.infectionWarning",
+      "owner": "queryPublicInfectionCondition -> playerSupplyFacts -> projectPlayerView",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-condition.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": true
+    },
+    {
+      "field": "persistence.feedback",
+      "owner": "projectPlayerView / existing session persistence",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    },
+    {
+      "field": "staticHub.successors",
+      "owner": "playerTerminalFacts",
+      "actual_api": "player.query",
+      "tests": [
+        "src/state/residence-session/player-fields.test.ts",
+        "src/state/residence-session/player-privacy.test.ts"
+      ],
+      "status": "supported-current-public-fact",
+      "new_implementation": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "F01",
+      "label": "当前病程与五停点",
+      "owner": "queryPublicInfectionCondition / playerSupplyFacts",
+      "tests": "src/core/character-cycle/public-condition.test.ts; src/state/residence-session/player-condition.test.ts",
+      "status": "supported: bound infection_damage current band; no current/blocked has no fake body"
+    },
+    {
+      "id": "F02",
+      "label": "费用、物耗、机制",
+      "owner": "qualifyPlayerCommand / queryPlayerActionMetadata",
+      "tests": "src/core/residence-supply/player-metadata.test.ts; src/state/residence-session/player-safety.test.ts",
+      "status": "supported: public HP/E/satiety/quotas, tool payment, selected materials, task output geometry, actual capped heal, shared maintenance pool; hidden medical target unknown"
+    },
+    {
+      "id": "F03",
+      "label": "完整意图安全与保护",
+      "owner": "queryPlayerCommandDeath / createPlayerPreplay",
+      "tests": "src/core/residence-combat/player-safety.test.ts; src/state/residence-session/player-safety.test.ts; src/app/infected-preplay/confirmation.test.ts",
+      "status": "partial by proof: public own bleeding/current single response/nonfatal branch; unknown for hidden kill cancellation, later hidden response, future cycle and unobserved arrival"
+    },
+    {
+      "id": "F04",
+      "label": "稳定安全缓存",
+      "owner": "createPreplayController / preplaySnapshot",
+      "tests": "src/app/infected-preplay/controller.test.ts; src/app/infected-preplay/purity.test.ts",
+      "status": "supported: referentially stable reads; native blocked is not final ready"
+    },
+    {
+      "id": "F05",
+      "label": "显式启动与初配",
+      "owner": "existing S bootstrap/createFirst through controller",
+      "tests": "src/app/infected-preplay/initialization.test.ts",
+      "status": "supported: read-null then real first stock, repeat rejected, broken/read-error no regrant"
+    },
+    {
+      "id": "F06",
+      "label": "单飞与一次提交",
+      "owner": "controller run/execute -> player.execute -> original S",
+      "tests": "src/app/infected-preplay/controller.test.ts; src/app/infected-preplay/persistence.test.ts",
+      "status": "supported: one execute/dispatch/write/notice; native and presentation notices separate"
+    },
+    {
+      "id": "F07",
+      "label": "草稿与确认失效",
+      "owner": "PlayerContext.scope / draft and confirmation stores",
+      "tests": "src/app/infected-preplay/drafts.test.ts; src/app/infected-preplay/confirmation.test.ts",
+      "status": "supported: request/scoped identity; new current invalidates even equal public facts; retrySave preserves"
+    },
+    {
+      "id": "F08",
+      "label": "隐私、Feed、错误",
+      "owner": "publicActionFeed / publicPreplayError",
+      "tests": "src/app/infected-preplay/feed-privacy.test.ts; src/app/infected-preplay/errors.test.ts",
+      "status": "supported: safe differences only; program/AssertionError/code-shaped Error propagate; listener failures isolated and counted"
+    },
+    {
+      "id": "F09",
+      "label": "真实两链、恢复、故障",
+      "owner": "original P/R/S and controller",
+      "tests": "src/app/infected-preplay/longchain.integration.test.ts; src/app/infected-preplay/persistence.test.ts",
+      "status": "supported headless: success, retreat-repair-treatment-rest-reentry-failure, five cold points, enemy-alive/both-zero death, failed save/retry"
+    },
+    {
+      "id": "F10",
+      "label": "零作用、负控、默认全量",
+      "owner": "native observers + external shadow mutations",
+      "tests": "src/app/infected-preplay/purity.test.ts",
+      "status": "FUNCTIONAL PASS / DELIVERY BLOCKED: default check 267 files / 4444 tests, negative controls and protected bytes passed; immutable task input EOF blank line 249 fails staged/new diff check and exceeds W01"
+    }
+  ],
+  "unknown": [
+    {
+      "item": "disinfectant / suppressant target",
+      "reason": "Hidden target facts are not granted by D1; qualifier remains unknown, actual explicit S execution is authoritative"
+    },
+    {
+      "item": "rest/deadline complete outcome",
+      "reason": "Future hidden progress/exposure arithmetic is not current coarse knowledge; no cycle plan is queried"
+    },
+    {
+      "item": "attack with a scheduled enemy response",
+      "reason": "Hidden enemy HP may cancel response through a kill; no hidden HP is read to decide safety"
+    },
+    {
+      "item": "second or later response before completion",
+      "reason": "Only current public intent is evaluated with formal deterministic primary facts, not the hidden future intent cycle"
+    },
+    {
+      "item": "move after a surviving own checkpoint",
+      "reason": "No extra hidden arrival/encounter prediction; guaranteed own checkpoint death is still recognized"
+    },
+    {
+      "item": "dedicated exposure event / new enemy visual identity",
+      "reason": "No approved extra exposure DTO or asset knowledge is fabricated; generic presentation remains available"
+    }
+  ],
+  "command_families": [
+    {
+      "family": "move",
+      "public_basis": "formal edge and public body/load",
+      "owner": "resolvePlayerCommand / qualifyPlayerCommand / queryResidenceAction / queryPublicActionCheckpoint",
+      "actual_api": "preplay.inspect",
+      "status": "cost and own fatal checkpoint; surviving arrival unknown",
+      "tests": [
+        "src/state/residence-session/player-safety.test.ts"
+      ]
+    },
+    {
+      "family": "task/source",
+      "public_basis": "explicit method, tool and materials; declared task output only",
+      "owner": "qualifyPlayerCommand / queryPlayerActionMetadata / previewCommittedResourceAction",
+      "actual_api": "preplay.inspect",
+      "status": "public payment/output/own checkpoint; random loot not projected",
+      "tests": [
+        "src/core/residence-supply/player-metadata.test.ts"
+      ]
+    },
+    {
+      "family": "inventory/task-transfer",
+      "public_basis": "explicit item, placement, quantity or target",
+      "owner": "qualifyPlayerCommand / queryPlayerCommandDeath",
+      "actual_api": "preplay.inspect",
+      "status": "formal free transfer; task-drop static protection; no automatic placement",
+      "tests": [
+        "src/app/infected-preplay/drafts.test.ts"
+      ]
+    },
+    {
+      "family": "medical",
+      "public_basis": "explicit public item and wound/contusion target",
+      "owner": "requireSupplyClinicalTarget / supplyBandageRecovery / restoreHealth",
+      "actual_api": "preplay.inspect",
+      "status": "actual capped heal/consumption; hidden disinfect/suppress target unknown",
+      "tests": [
+        "src/state/residence-session/player-safety.test.ts"
+      ]
+    },
+    {
+      "family": "maintenance",
+      "public_basis": "selected materials and allocations, public resource",
+      "owner": "maintenancePool / restoreItemResource",
+      "actual_api": "preplay.inspect",
+      "status": "one shared pool and actual public restore; own paid checkpoint",
+      "tests": [
+        "src/core/residence-supply/player-metadata.test.ts"
+      ]
+    },
+    {
+      "family": "rest",
+      "public_basis": "formal eligibility and current public body",
+      "owner": "qualifyPlayerCommand / queryPlayerActionMetadata",
+      "actual_api": "preplay.inspect",
+      "status": "mechanism supported; future hidden cycle outcome unknown",
+      "tests": [
+        "src/state/residence-session/player-safety.test.ts"
+      ]
+    },
+    {
+      "family": "terminal",
+      "public_basis": "formal eligibility and normal H0 no-night contract",
+      "owner": "playerTerminalFacts / queryPlayerCommandDeath",
+      "actual_api": "preplay.inspect",
+      "status": "normal return nonfatal proof/static confirmation; deadline future unknown",
+      "tests": [
+        "src/app/infected-preplay/confirmation.test.ts"
+      ]
+    },
+    {
+      "family": "combat",
+      "public_basis": "public own body/current intent/formal primary/checkpoint/resource",
+      "owner": "queryPlayerCommandDeath / playerCombatFacts / formal combat primary owners",
+      "actual_api": "preplay.inspect",
+      "status": "own checkpoint and one current response; conditional escape survival; hidden kill/later intents unknown",
+      "tests": [
+        "src/core/residence-combat/player-safety.test.ts"
+      ]
+    },
+    {
+      "family": "depart",
+      "public_basis": "already locked initial choices",
+      "owner": "qualifyPlayerCommand / queryPlayerCommandDeath",
+      "actual_api": "preplay.inspect",
+      "status": "nonfatal initial departure, no regrant",
+      "tests": [
+        "src/app/infected-preplay/initialization.test.ts"
+      ]
+    }
+  ],
+  "alternative_proof": "Only for guaranteed requests: explicit legal combat/clinical/free transfer and normal-return candidates pass formal qualification. Finite placement probing yields a proof boolean, never a default/recommendation or executed organization.",
+  "imported_rule_owners": [
+    "queryResidenceAction",
+    "queryActionBleedingHealth",
+    "evaluateCombatPostPlayerActionBleeding",
+    "createCombatEnginePlayerPrimaryPlan",
+    "createCombatEngineEnemyPrimaryPlan",
+    "enemyActsBeforePlayerCompletion",
+    "previewCommittedResourceAction",
+    "restoreItemResource",
+    "restoreHealth",
+    "requireSupplyClinicalTarget",
+    "supplyBandageRecovery",
+    "maintenancePool"
+  ],
+  "forbidden_calls_in_query": [
+    "producer/resolver",
+    "planCharacterCycle",
+    "planActionBodyConsequences",
+    "risk draw",
+    "action authority or plan issuance",
+    "Storage",
+    "current installation"
+  ],
+  "gates": {
+    "browser": false,
+    "checkpoint_handoff": false,
+    "WebLocks": false,
+    "multi_tab": false,
+    "UI": false,
+    "Owner": false,
+    "O3": false
+  },
+  "resume_01": {
+    "task": "ENG-WORLD-PREPLAY-FOUNDATION-001-RESUME-01",
+    "authority": "mainline narrow continuation; no new gameplay or engineering acceptance",
+    "current_delivery_check": "PASS_WITH_APPROVED_W01_W02_ARCHIVE_EXCEPTIONS",
+    "history": "prior BLOCKED and F10 history retained; W02 alone resolves input/diff conflict",
+    "support_matrix_unchanged": true,
+    "source_and_tests_changed": 0,
+    "production_test_delta": {
+      "new": 0,
+      "replaced": 0,
+      "deleted": 0,
+      "net": 0
+    },
+    "prior_engineering_net_tests": 75,
+    "default_check": {
+      "command": "npm run check",
+      "role": "RESUME-01 actual default final validation; no source or test changes",
+      "exit": 0,
+      "files": 267,
+      "tests": 4444,
+      "duration_seconds": 246.07,
+      "start_at_local": "2026-10-22 07:58:50",
+      "worker_overrides": [],
+      "global_timeout_changed": false
+    },
+    "W01_warning_count": 7,
+    "W02": {
+      "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+      "line": 249,
+      "diagnostic": "new blank line at EOF.",
+      "bytes": 24083,
+      "sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+      "git_blob_sha1": "85a39b34c414952cfc30005b4f76b483bb019a42",
+      "expected_warning_count": 1,
+      "scope": "Only this exact archived original file, bytes and single EOF warning",
+      "precedence": "Overrides original task section 7 new-diff-exit-zero/no-eighth-warning requirement only for this W02; W01 unchanged; no other whitespace exception"
+    },
+    "NOT_RUN": [
+      "browser owner",
+      "UI",
+      "DOM",
+      "multi-tab",
+      "Owner play",
+      "O3"
+    ],
+    "npm_audit": "UNCONFIRMED: original one-time mirror 404; no rerun or dependency update",
+    "stop": "accurate SHA source/safety/application update review"
+  }
+}

@@ -16,11 +16,18 @@ describe('Q06 Q11 whole safe-view noninterference', () => {
     })
     expect(views[0]).toEqual(views[1])
   })
-  it.each([0, 9, 120])('hidden infection %i does not change actions, length, warnings or generic qualification', progress => {
-    const f = fixture(), hidden = bodyBoundary(f.value, f.deps, { infectionProgress: progress })
-    const a = fromValue(f.value, f.deps), b = fromValue(hidden, f.deps)
+  it.each([[0, 9], [60, 89], [120, 180]])('same public burden %i/%i does not change actions, length, warnings or generic qualification', (progress, other) => {
+    const f = fixture(), first = bodyBoundary(f.value, f.deps, { infectionProgress: progress }), hidden = bodyBoundary(f.value, f.deps, { infectionProgress: other })
+    const a = fromValue(first, f.deps), b = fromValue(hidden, f.deps)
     expect(normalize(ready(a.player))).toEqual(normalize(ready(b.player)))
-    expect(ready(b.player).body.infectionWarning.kind).toBe('unknown')
+    expect(ready(b.player).body.infectionWarning.kind).toBe('known')
+  })
+  it.each([[59, 60], [89, 90], [119, 120]])('DEC-053 permits only the approved current-band difference at %i/%i', (left, right) => {
+    const f = fixture(), a = fromValue(bodyBoundary(f.value, f.deps, { infectionProgress: left }), f.deps),
+      b = fromValue(bodyBoundary(f.value, f.deps, { infectionProgress: right }), f.deps)
+    const x = ready(a.player), y = ready(b.player)
+    expect(x.body.infectionWarning.band).not.toBe(y.body.infectionWarning.band)
+    expect(normalize({ ...x, body: { ...x.body, infectionWarning: y.body.infectionWarning } })).toEqual(normalize(y))
   })
   it('actual opposite default-RNG source outputs have identical whole pre-reveal views and previews', () => {
     const pair = ['E03-A-seed-01', 'E03-A-seed-03'].map(seed => {

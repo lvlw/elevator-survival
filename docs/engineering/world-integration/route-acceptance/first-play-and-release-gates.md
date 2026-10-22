@@ -46,3 +46,9 @@
 本轮关闭批准／文档归档事项，不关闭基础、browser owner、UI、Owner 分段体验、九组合体验或 O3 Gate。真实启动、保存、五合法停点刷新及单 writer 验收前不得首玩；失败保存后的刷新只恢复最后成功 checkpoint，不承诺最新内存必定落盘。
 
 依据：[DEC-053](../../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../preplay/browser-owner-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。
+
+## ENG-WORLD-PREPLAY-FOUNDATION-001 作者实现附记（2026-10-22）
+
+基础 headless 作者交付不等于首玩准入：真实启动、保存、刷新及跨标签独占仍须浏览器批实测，UI 与 Owner 体验另验。依赖维护只读审计因镜像 API 404 未取得最新结论，公开发布前维护 Gate 保留。
+
+实际支持、未知项与验收见[基础作者记录](../preplay/foundation/contract-and-support.md)及[本轮完成报告](../preplay/foundation/completion.md)。历史正文按原时点保留，不改 DEC／UIR、参数、旧格式或旧医院入口。

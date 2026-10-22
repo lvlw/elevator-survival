@@ -353,3 +353,9 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 D1/D2 已批准并在本轮正式落文，等待准确 SHA 文档实审；不是仍待 Owner 选择的候选。O3、公开发布、自动迁移／清档和新增委托继续 OPEN，工程实施与分段突破、九组合 Owner 体验均未验收。
 
 依据：[DEC-053](../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../../engineering/world-integration/preplay/batch-plan-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。
+
+## ENG-WORLD-PREPLAY-FOUNDATION-001 作者实现附记（2026-10-22）
+
+基础工程已有作者实现与原生证据，仍待本批准确 SHA 源码／安全／更新接缝实审；不关闭 browser owner、五停点真实刷新／单 writer、低资产 UI、Owner 分段及九组合体验 Gate。O3、清档／迁移仍 OPEN。
+
+实际支持、未知项与验收见[基础作者记录](../../engineering/world-integration/preplay/foundation/contract-and-support.md)及[本轮完成报告](../../engineering/world-integration/preplay/foundation/completion.md)。历史正文按原时点保留，不改 DEC／UIR、参数、旧格式或旧医院入口。

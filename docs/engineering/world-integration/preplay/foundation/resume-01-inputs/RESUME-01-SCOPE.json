@@ -1,0 +1,128 @@
+{
+  "task": "ENG-WORLD-PREPLAY-FOUNDATION-001-RESUME-01",
+  "version": "1.0",
+  "kind": "mainline narrow continuation authorization, not a new Owner verbatim approval or engineering acceptance",
+  "repository": "lvlw/elevator-survival",
+  "expected_head_before_commit": "ff2b79f332c5ea2bec493eb5e166dcee6ba667eb",
+  "branch": "feature/world-preplay-foundation-001",
+  "source_of_local_status": "Author report only; Codex must recheck local HEAD/index/worktree/processes",
+  "original_package_sha256": "f46072bdbfeda9fed2b4e3c8364658d851d594fd4b169f03e5005029036cb9db",
+  "original_archive_prefix": "docs/engineering/world-integration/preplay/foundation/inputs/",
+  "original_input_fingerprints": {
+    "ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md": {
+      "bytes": 24083,
+      "sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+      "git_blob_sha1": "85a39b34c414952cfc30005b4f76b483bb019a42"
+    },
+    "OWNER-authority-and-scope-PREPLAY-FOUNDATION-001-v1.0.md": {
+      "bytes": 1620,
+      "sha256": "095ede86e95ee98b91c1a1712298a0496040f608e8bb66921297b515105eeb36",
+      "git_blob_sha1": "038cca13fd89c48887554ceae3d77c02a0f7934d"
+    },
+    "AUD-ff2b79f-DOC-WORLD-ENTRY-006-review-v1.0.md": {
+      "bytes": 7666,
+      "sha256": "e7426d63a919822577b26d45134c0f08079b4d7a1668b4736445d9150f908e96",
+      "git_blob_sha1": "d6d9c5d4ae927b313f27b1c151ffc80047952dc1"
+    },
+    "MAINLINE-approval-provenance-clarification-v1.0.md": {
+      "bytes": 1700,
+      "sha256": "314d266292fa34e7e91d57c35e94566824e1e380357ef0d5977cbf8b60f6837e",
+      "git_blob_sha1": "6de33c346f8c205bc2bd3b841c1901df7166d223"
+    },
+    "BASELINE-AND-INPUTS.json": {
+      "bytes": 12580,
+      "sha256": "0e450a2065287f6f3b9462f1e8e1aad0ab752db74ebe63896825f1edb3841075",
+      "git_blob_sha1": "7ff2a5741eb83a86fc2858d9b630c9d12b6d4cd2"
+    },
+    "verify-task-package.py": {
+      "bytes": 2092,
+      "sha256": "ebabfd256c637c34f4c5bc439c05d753b6944513ca4af19b0d086baaa2141192",
+      "git_blob_sha1": "6c6c29cd1cdc8fdfd3c4b8dfea216ec767153440"
+    },
+    "SHA256SUMS.txt": {
+      "bytes": 645,
+      "sha256": "f0a7f847c522c1d8d7fbc487db729112767351912d9db356876ba766c7d854dc",
+      "git_blob_sha1": "ef68bd5151f408d44f24ff9e1849344b14662319"
+    }
+  },
+  "original_task_allowed_path_count": 67,
+  "original_task_manifest_path": "docs/engineering/world-integration/preplay/foundation/inputs/BASELINE-AND-INPUTS.json",
+  "continuation_edit_only_paths": [
+    "docs/engineering/world-integration/preplay/foundation/implementation-notes.md",
+    "docs/engineering/world-integration/preplay/foundation/contract-and-support.md",
+    "docs/engineering/world-integration/preplay/foundation/metadata-support.json",
+    "docs/engineering/world-integration/preplay/foundation/verification-results.json",
+    "docs/engineering/world-integration/preplay/foundation/completion.md",
+    "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-RESUME-01-v1.0.md",
+    "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/RESUME-01-SCOPE.json",
+    "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/evidence/original-archive-eof-verification.json",
+    "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/SHA256SUMS.txt"
+  ],
+  "new_paths": [
+    "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-RESUME-01-v1.0.md",
+    "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/RESUME-01-SCOPE.json",
+    "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/evidence/original-archive-eof-verification.json",
+    "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/SHA256SUMS.txt"
+  ],
+  "new_path_count": 4,
+  "max_cumulative_commit_allowed_paths": 71,
+  "scope_note": "Existing authorized uncommitted implementation is retained and may be staged/committed; this continuation only edits listed five records and archives four supplied files. No source/test changes for this whitespace blocker.",
+  "package_files": [
+    "ENG-WORLD-PREPLAY-FOUNDATION-001-RESUME-01-v1.0.md",
+    "RESUME-01-SCOPE.json",
+    "evidence/original-archive-eof-verification.json",
+    "SHA256SUMS.txt"
+  ],
+  "archive_prefix": "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/",
+  "W01": {
+    "unchanged": true,
+    "cumulative_base": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+    "files": {
+      "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md": [
+        7,
+        8,
+        9
+      ]
+    },
+    "expected_warning_count": 7,
+    "diagnostic": "trailing whitespace.",
+    "verify_each_blob_equal_to_start": true
+  },
+  "W02": {
+    "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+    "line": 249,
+    "diagnostic": "new blank line at EOF.",
+    "bytes": 24083,
+    "sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+    "git_blob_sha1": "85a39b34c414952cfc30005b4f76b483bb019a42",
+    "expected_warning_count": 1,
+    "scope": "Only this exact archived original file, bytes and single EOF warning",
+    "precedence": "Overrides original task section 7 new-diff-exit-zero/no-eighth-warning requirement only for this W02; W01 unchanged; no other whitespace exception"
+  },
+  "expected_raw_diff_checks": {
+    "unstaged": "exit 0 once only clean-format record updates remain; empty after staging",
+    "cached_before_commit": "exit 2; exactly W02",
+    "start_to_worktree_index_or_commit": "exit 2; exactly W02",
+    "W01_base_to_worktree_index_or_commit": "exit 2; exactly unchanged W01 seven + W02 one",
+    "working_and_cached_after_commit": "exit 0 with no output"
+  },
+  "git_permissions": {
+    "ordinary_commit": true,
+    "ordinary_push": true,
+    "push_target": "origin feature/world-preplay-foundation-001",
+    "main": false,
+    "old_branches": false,
+    "merge": false,
+    "force": false,
+    "amend": false,
+    "new_branch_or_worktree": false
+  },
+  "stop": "After ordinary commit/push, report full exact SHA/parent/tree and wait for mainline source/safety/controller review. No browser owner/UI/next engineering.",
+  "model_in_task": false
+}

@@ -47,3 +47,9 @@ D1 只公开当前粗档，不公开精确进度、潜藏暴露或未来答案�
 NOT RUN：test:run、完整 npm run check、typecheck、build、原 10 项游戏 probe、72 样本、浏览器／多标签／Owner 试玩、实际 ACL 和 POSIX OS 实验；新增生产测试 0，T01 工具不计入历史生产测试。CI 如自动触发，只报告准确新 SHA 实际状态。
 
 规则冲突：未发现批准玩法冲突；输入来源标注差异如上透明记录。未完成：主线准确 SHA 审查及后继三批工程／浏览器与 Owner 验收；O3 仍未决定。本任务结束即停止，不自动开工生产。
+
+## ENG-WORLD-PREPLAY-FOUNDATION-001：批准来源定位澄清
+
+依据[本轮主线来源澄清](../../../../engineering/world-integration/preplay/foundation/inputs/MAINLINE-approval-provenance-clarification-v1.0.md)：主线核对其 WebGPT 会话，Owner 以用户角色发出并明确采纳“收到，确认本条为 Owner 批准记录”完整文本。谁最先起草措辞与 Owner 是否采纳是两件事，不能仅凭句式撤销已明确批准。本作者此前“助手回执”判断保留为历史，不倒改该段、旧 checks、573 字节原件或哈希；该判断不影响 D1／D2 的有效批准。此处如实引用本包主线核对记录，不冒称本机独立访问了另一会话。
+
+澄清不新增批准、不扩大 D1/D2，也不自动授权后继浏览器或 UI。

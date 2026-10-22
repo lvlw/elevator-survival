@@ -1,0 +1,2333 @@
+{
+  "task": "ENG-WORLD-PREPLAY-FOUNDATION-001",
+  "record_kind": "author-execution-record-not-mainline-review",
+  "date": "2026-10-22",
+  "start": {
+    "sha": "ff2b79f332c5ea2bec493eb5e166dcee6ba667eb",
+    "parent": "20b833aeec4693e56afee075c9878425d3c58605",
+    "tree": "5c0b802aa15d053ebaaa24e1ca1fe9bf836e6101",
+    "branch": "feature/world-preplay-foundation-001",
+    "worktree": "clean",
+    "index": "empty",
+    "untracked": 0
+  },
+  "runtime": {
+    "node": "24.9.0",
+    "npm": "11.6.0",
+    "vitest": "4.1.10",
+    "worker_overrides": [],
+    "global_budget_changed": false
+  },
+  "package": {
+    "checks": 26,
+    "status": "PASS",
+    "files": 7,
+    "raw_archive": [
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+        "bytes": 24083,
+        "sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+        "blob": "85a39b34c414952cfc30005b4f76b483bb019a42"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/OWNER-authority-and-scope-PREPLAY-FOUNDATION-001-v1.0.md",
+        "bytes": 1620,
+        "sha256": "095ede86e95ee98b91c1a1712298a0496040f608e8bb66921297b515105eeb36",
+        "blob": "038cca13fd89c48887554ceae3d77c02a0f7934d"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/AUD-ff2b79f-DOC-WORLD-ENTRY-006-review-v1.0.md",
+        "bytes": 7666,
+        "sha256": "e7426d63a919822577b26d45134c0f08079b4d7a1668b4736445d9150f908e96",
+        "blob": "d6d9c5d4ae927b313f27b1c151ffc80047952dc1"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/MAINLINE-approval-provenance-clarification-v1.0.md",
+        "bytes": 1700,
+        "sha256": "314d266292fa34e7e91d57c35e94566824e1e380357ef0d5977cbf8b60f6837e",
+        "blob": "6de33c346f8c205bc2bd3b841c1901df7166d223"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/BASELINE-AND-INPUTS.json",
+        "bytes": 12580,
+        "sha256": "0e450a2065287f6f3b9462f1e8e1aad0ab752db74ebe63896825f1edb3841075",
+        "blob": "7ff2a5741eb83a86fc2858d9b630c9d12b6d4cd2"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/verify-task-package.py",
+        "bytes": 2092,
+        "sha256": "ebabfd256c637c34f4c5bc439c05d753b6944513ca4af19b0d086baaa2141192",
+        "blob": "6c6c29cd1cdc8fdfd3c4b8dfea216ec767153440"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/SHA256SUMS.txt",
+        "bytes": 645,
+        "sha256": "f0a7f847c522c1d8d7fbc487db729112767351912d9db356876ba766c7d854dc",
+        "blob": "ef68bd5151f408d44f24ff9e1849344b14662319"
+      }
+    ],
+    "clarification": "Owner adopted the full receipt as user text; drafting attribution is distinct from actual Owner approval. External conversation provenance is attributed to the supplied mainline report."
+  },
+  "checks": [
+    {
+      "command": "npm run test:run",
+      "role": "actual default baseline",
+      "exit": 0,
+      "files": 252,
+      "tests": 4369,
+      "duration_seconds": 280.41,
+      "evidence": "baseline-tests.log"
+    },
+    {
+      "command": "npm run test:run -- <new targeted tests>",
+      "role": "initial targeted",
+      "exit": 0,
+      "files": 11,
+      "tests": 55,
+      "evidence": "targeted-1.log"
+    },
+    {
+      "command": "npm run test:run -- <app and safety targets>",
+      "role": "second targeted",
+      "exit": 0,
+      "files": 14,
+      "tests": 67,
+      "evidence": "targeted-2.log"
+    },
+    {
+      "command": "npm run test:run -- <safety/longchain> --reporter=verbose",
+      "role": "native counters",
+      "exit": 0,
+      "files": 2,
+      "tests": 11,
+      "duration_seconds": 8.3,
+      "evidence": "safety-chain-3.log"
+    },
+    {
+      "command": "npm run check",
+      "role": "first default complete pass before self-review extra regression",
+      "exit": 0,
+      "files": 267,
+      "tests": 4443,
+      "duration_seconds": 325.83,
+      "evidence": "full-check.log"
+    },
+    {
+      "command": "npm run test:run -- src/state/residence-session/player-safety.test.ts -t 'legal free quick-to-backpack'",
+      "role": "self-review actual pre-fix proof gap",
+      "exit": 1,
+      "reason": "formal free alternative accepted but fatal request had no dynamic protection",
+      "evidence": "alternative-before.log"
+    },
+    {
+      "command": "same targeted self-review regression after pure proof candidate fix",
+      "role": "post-fix",
+      "exit": 0,
+      "selected_passed": 1,
+      "evidence": "alternative-after.log"
+    },
+    {
+      "command": "npm run check",
+      "role": "final default full check after last source/test edit",
+      "exit": 0,
+      "files": 267,
+      "tests": 4444,
+      "duration_seconds": 330.43,
+      "architecture": {
+        "status": "PASS",
+        "DEC": 53,
+        "core_production_files": 345
+      },
+      "typecheck": "PASS",
+      "build": "PASS",
+      "warning": "existing >500kB main chunk; 900.79kB output, no build/dependency change",
+      "evidence": "full-check-final.log"
+    },
+    {
+      "command": "verify-task-package.py --package-root <external package>",
+      "role": "original package re-verification",
+      "exit": 0,
+      "checks": 26
+    },
+    {
+      "command": "external audit-foundation.mjs",
+      "role": "all scope/byte/prefix/import/tested-code checks passed, but immutable input whitespace blocks delivery",
+      "exit": 1,
+      "evidence": "blocked-final-audit.log"
+    },
+    {
+      "command": "git diff --check (unstaged) / git diff <start> --check (all new)",
+      "role": "new differences",
+      "exit": 2,
+      "unstaged_exit": 0,
+      "reason": "input task line 249 new blank line at EOF"
+    },
+    {
+      "command": "git diff --cached --check",
+      "role": "actual index after all 55 precise paths staged",
+      "exit": 2,
+      "initial_empty_index": true,
+      "reason": "same immutable input EOF"
+    },
+    {
+      "command": "git diff 8c19ca0d28058cf743b41c8547cc2629c8eac767 --check",
+      "role": "historical W01",
+      "exit": 2,
+      "hits": [
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+          "line": 3
+        },
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+          "line": 4
+        },
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+          "line": 5
+        },
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+          "line": 6
+        },
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+          "line": 7
+        },
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+          "line": 8
+        },
+        {
+          "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+          "line": 9
+        }
+      ],
+      "additional_unapproved_warning": [
+        "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md:249: new blank line at EOF."
+      ],
+      "within_exact_W01": false
+    },
+    {
+      "command": "npm audit --json",
+      "role": "exactly one read-only maintenance attempt",
+      "exit": 1,
+      "status": "UNCONFIRMED",
+      "registry": "https://registry.npmmirror.com",
+      "reason": "security advisory API 404 NOT_IMPLEMENTED",
+      "audit_fix": false,
+      "evidence": "npm-audit.json"
+    }
+  ],
+  "tests": {
+    "start": {
+      "files": 252,
+      "tests": 4369
+    },
+    "final": {
+      "files": 267,
+      "tests": 4444
+    },
+    "new_files": 15,
+    "new_in_new_files": 72,
+    "new_in_allowed_old_privacy_test": 3,
+    "replaced": 3,
+    "deleted": 0,
+    "net": 75,
+    "allowed_old_changes": [
+      {
+        "file": "src/state/residence-session/player-privacy.test.ts",
+        "old_test": "hidden infection %i does not change actions, length, warnings or generic qualification",
+        "old_cases": [
+          0,
+          9,
+          120
+        ],
+        "replacement": "same public burden %i/%i does not change actions, length, warnings or generic qualification",
+        "new_pairs": [
+          [
+            0,
+            9
+          ],
+          [
+            60,
+            89
+          ],
+          [
+            120,
+            180
+          ]
+        ],
+        "positive_pairs": [
+          [
+            59,
+            60
+          ],
+          [
+            89,
+            90
+          ],
+          [
+            119,
+            120
+          ]
+        ],
+        "replaced": 3,
+        "new": 3,
+        "deleted": 0
+      },
+      {
+        "file": "src/state/residence-session/player-fields.test.ts",
+        "change": "v1.1 import; known D1 and below-loss assertion only; exact ordinary export and domain tests unchanged",
+        "before": 3,
+        "after": 3
+      }
+    ],
+    "old_E03": "four routes, nine choices / common eight seeds =72 native samples, F01/F02 and all old cases included in final default full suite; no old helpers or strategies changed"
+  },
+  "acceptance": {
+    "F01": "PASS: config-bound current D1, five points, same-band/full privacy and cross-band positive",
+    "F02": "PASS: pure public payment/material/clinical/maintenance metadata; hidden target unknown",
+    "F03": "PASS within documented proof support; complete-intent tri-state and actual qualified alternatives, no trial execution",
+    "F04": "PASS: stable reference, zero-effect read/cancel, blocked callback not final",
+    "F05": "PASS: real read-null/first/depart, corrupt/read-error no regrant, repeat guards",
+    "F06": "PASS: once-only execute/dispatch/write/native, reentry and death final-only",
+    "F07": "PASS: request/scope binding; new current invalidates even equal public values; retry preserves",
+    "F08": "PASS: full safe-view/metadata/confirm/feed/error privacy and observable programmer failures",
+    "F09": "PASS headless: two actual chains, five cold points, latest-memory save fault/retry, projection fault",
+    "F10": "PARTIAL / BLOCKED: full default suite, purity, controls, scope and protected bytes pass; new raw task EOF fails staged check and exceeds W01"
+  },
+  "chains": [
+    {
+      "kind": "success",
+      "origin": "real read-null / approved first stock / first departure",
+      "dispatch": 75,
+      "write_attempts": 76,
+      "native_notices": 76,
+      "presentation_notices": 155,
+      "presentation_explanation": "77 busy/stable pairs plus one deliberate insufficient-material rejection feedback",
+      "draws": 3,
+      "normal_H0_steps": [],
+      "evidence": "safety-chain-3.log"
+    },
+    {
+      "kind": "retreat-immediate-repair-treatment-rest-reentry-failure",
+      "origin": "real read-null / stock; materials genuinely obtained before first encounter",
+      "dispatch": 15,
+      "write_attempts": 16,
+      "native_notices": 16,
+      "draws": 5,
+      "evidence": "safety-chain-3.log"
+    }
+  ],
+  "independent_windows": {
+    "readonly": {
+      "producer": 0,
+      "CTB": 0,
+      "G1": 0,
+      "G2": 0,
+      "RNG": 0,
+      "authority": 0,
+      "origins": 0,
+      "consumption": 0,
+      "dispatch": 0,
+      "read": 0,
+      "write": 0,
+      "native_notice": 0,
+      "new_context": 0,
+      "windows": "snapshot/query/inspect/capture/resolve/draft-cancel/subscribe-unsubscribe/invalid execute/invalid confirmation"
+    },
+    "random_source_save_failure": {
+      "source": 1,
+      "draw": 1,
+      "dispatch": 1,
+      "current": 1,
+      "write_attempt": 1,
+      "native_notice": 1,
+      "committed_memory": "retained"
+    },
+    "retrySave": {
+      "validation": 2,
+      "encoding": 1,
+      "write": 1,
+      "gameplay": 0,
+      "draw": 0,
+      "native_notice": 0,
+      "scope": "same",
+      "draft": "same",
+      "feed": "same"
+    },
+    "death_each_of_enemy_alive_and_both_zero": {
+      "CTB": 1,
+      "death_consume": 1,
+      "settle": 1,
+      "current": 1,
+      "write_attempt": 1,
+      "native_notice": 1,
+      "intermediate_active_HP0": 0,
+      "pending": "combat-required for living enemy / none for killed enemy",
+      "retry": "save-only"
+    },
+    "cold_each_of_five_points": {
+      "read": 1,
+      "independent_expected_provider": 1,
+      "factory": 0,
+      "write": 0,
+      "draw": 0,
+      "native_notice": 0,
+      "feed_replay": 0,
+      "expected_source": "pre-existing controlled TEST startup material / actual producer record, fixed before candidate read"
+    }
+  },
+  "semantic_negative_controls": {
+    "kind": "external native source shadows, no production mutation",
+    "final_source_rerun": true,
+    "items": [
+      {
+        "name": "hidden-progress",
+        "mutant_exit": 1,
+        "assertion_names": [
+          "F08 full presentation, metadata, confirmation and Feed noninterference same-band hidden state remains equal without deleting actions, selectors, drafts or Feed"
+        ],
+        "restored_exit": 0,
+        "restored_passed": 1
+      },
+      {
+        "name": "refresh-stale-confirmation",
+        "mutant_exit": 1,
+        "assertion_names": [
+          "F03 F07 bound one-use protection still-legal static action ID cannot reuse old confirmation after an external formal free command"
+        ],
+        "restored_exit": 0,
+        "restored_passed": 1
+      },
+      {
+        "name": "blocked-callback-as-final",
+        "mutant_exit": 1,
+        "assertion_names": [
+          "F04 F06 explicit stable application update one execute gives one S dispatch/write/notice, busy then final complete ready; callback reentry rejected"
+        ],
+        "restored_exit": 0,
+        "restored_passed": 1
+      }
+    ],
+    "import_syntax_fixture_timeout_failures_counted": false,
+    "historical_controls": "NOT RE-RUN / not accumulated"
+  },
+  "failure_history": [
+    {
+      "evidence": "longchain-1.log",
+      "reason": "new TEST bridge asserted intentional missing-material rejection as commit",
+      "fix": "new bridge preserves business rejection; no old helper or gameplay edit"
+    },
+    {
+      "evidence": "metadata-branch.log",
+      "reason": "old TEST cold helper quietDraw masked newly injected conditional witness port",
+      "fix": "bind TEST session's injected draw before actual branch execution; no altered production"
+    },
+    {
+      "evidence": "alternative-before.log",
+      "reason": "real free quick-to-backpack alternative was omitted by initial proof candidates",
+      "fix": "pure finite legal candidate proof, no auto action/placement"
+    },
+    {
+      "reason": "external audit assumed legacy TypeScript compiler parse API",
+      "fix": "installed Rolldown TS/TSX AST parser; no installation or project change"
+    },
+    {
+      "reason": "external audit executed before two final records existed, five unresolved new completion links",
+      "fix": "create required records then rerun all link/byte/scope checks"
+    },
+    {
+      "evidence": "blocked-final-audit.log",
+      "reason": "pre-stage trailing-space scan missed EOF blank line in immutable untracked task; staging exposed real git check exit2",
+      "action": "audit strengthened; original bytes preserved; no exception assumed; commit/push stopped"
+    }
+  ],
+  "scope": {
+    "max": 67,
+    "actual": 55,
+    "modified": 13,
+    "new": 42,
+    "protected_original_files": 1508,
+    "all_protected_unchanged": true,
+    "prefixes": [
+      {
+        "path": "docs/03-architecture.md",
+        "original_bytes": 92611,
+        "original_sha256": "29e1cf38ce55133475ac5f4709749864a84856ff0d885d0d4544f14ae62f249b",
+        "preserved": true
+      },
+      {
+        "path": "docs/08-rule-implementation-traceability.md",
+        "original_bytes": 86478,
+        "original_sha256": "b773f511ad73a61ef05e582185277c76f271b38aec208553a38387ed502f4c69",
+        "preserved": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "original_bytes": 46231,
+        "original_sha256": "4ebf80a2418a87fd819be6cde2d7257a811393bf4931344170e035efd23c29d9",
+        "preserved": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "original_bytes": 45621,
+        "original_sha256": "73ed13f848b1aeef4225e96af7297790c5a743ae23d433f7126c2a8cc1b0d6f3",
+        "preserved": true
+      },
+      {
+        "path": "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+        "original_bytes": 6000,
+        "original_sha256": "9abcd09d8dd772c74ac929653df247e4c02e5f17fbb0c4c95f22b49d329e57e2",
+        "preserved": true
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-006/adoption/DOC-WORLD-ENTRY-006-completion.md",
+        "original_bytes": 6129,
+        "original_sha256": "5013b284860db52d8add01f90755722f991147c807d244a52bcbdac742969b50",
+        "preserved": true
+      }
+    ],
+    "G1_delta": "exact original after removing new scalar helper and reverting its one call",
+    "runtime_imports": {
+      "modules": 564,
+      "changed": 19,
+      "cycles": []
+    },
+    "relative_links": 20,
+    "anchors": 1,
+    "tested_code_fingerprints": 884,
+    "tested_code_unchanged": true,
+    "UTF8": "PASS",
+    "new_BOM": false,
+    "protected_objects": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "00c2cad61c99530c1343ca9faad9a32994d67e5ca4aeb991156bb9828e5c501e",
+        "baseline_blob": "0055de32c18517d4d016b077e5fc287d9360317d"
+      },
+      {
+        "path": "package.json",
+        "sha256": "f6b6752aebd3aa6161a0c802ef49ee1b2ddbbffeb19b76e2e4d581f2465e5346",
+        "baseline_blob": "e52c8b2716f8f44f4678066443516de5c738a3b8"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "d701893a8f89f88e33f1278129df58718d0341f2dd1caee232315bd1dddf5990",
+        "baseline_blob": "3b320a8a79a1815c0909d8846e5e6248d4fc187e"
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "sha256": "38d81b948cd19c3ba53d287c951f6f5348009efd3024aa03784934b197450b36",
+        "baseline_blob": "1b5e3565376486d79ddbf7901ce3ca058d99061c"
+      },
+      {
+        "path": "docs/05-design-decisions.md",
+        "sha256": "68f35a56c754f55b1137314ba41cd7fbbeea88afdcb816690ff52a509c90d6ca",
+        "baseline_blob": "2fd80b12fb57285dd7d1bbe89e4ea51353710ff8"
+      },
+      {
+        "path": "docs/09-ui-design-record.md",
+        "sha256": "a855bae34a845a4105cf25f546c3d178e6ca381c421eb94aa1a9d67194989e70",
+        "baseline_blob": "65e362a91e0f3d02b953f575471643b75e887856"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/capacity-materials.integration.test.ts",
+        "sha256": "bbc29f39dfc970230649102824a8e5642ea97e61d25cbf17298c88beabde1996",
+        "baseline_blob": "240790de48c261fb543f469384abb2d0f14966c5"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/cold-continuation.integration.test.ts",
+        "sha256": "e01030ef702caa219d5377295e9e5d6b37f4d7c4f2a4bb0f4f15594d0a5e59c6",
+        "baseline_blob": "9fb7c01fbc5afbffe280d1e8c3db9c6f07aa0fe8"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/e03-test-budget.ts",
+        "sha256": "71b285742eace181670291e7db57dc7136ae1128b9091da79cd7377d46516cdf",
+        "baseline_blob": "e9e06482cd85c24b965038c2794b26c033358c2a"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/e03-test-harness.ts",
+        "sha256": "8e64ed584b7b7efff1870e9a8b83ff743491897015bcbf7dcf5d855af3195b68",
+        "baseline_blob": "0a10537a10277acb8f5303e592cc2fc46d016240"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/e03-test-observers.ts",
+        "sha256": "dbd10def86d5201e4316db991320a3855b871344983d7f5053e24dee45343763",
+        "baseline_blob": "7e5a9fa6cc63fe99238602dd4dc431422f62c675"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/e03-test-policy.ts",
+        "sha256": "b9c69087b43551a2a872130c7207880d4ebae627dcef642cad03f0c634436863",
+        "baseline_blob": "3d5451df55b1132831e4d85a0d9592e6e09577d3"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/e03-test-report.ts",
+        "sha256": "d91ec16dd377737a753112794e60f9bf1ff18f9fe04843a1b706a12284bdbb7a",
+        "baseline_blob": "4807691f6ef0bc2cd96d807ce2bdb81ab08cd0fa"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/e03-test-routes.ts",
+        "sha256": "73f1fb7b24bd4c69210a5f8672d3504a8a7f562e19410b5abae9fe2e2a7a93b7",
+        "baseline_blob": "6f68849e0ffdc83ff658a1b3f30cb1f78b9d8278"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/e03-test-seeds.ts",
+        "sha256": "17f489fadee304b4056fc07c5b9c1388e01a00699e4fa1f17ae11bb293dc7081",
+        "baseline_blob": "33636506541768220b694fe4a12099ce86685a38"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/failure-branches.integration.test.ts",
+        "sha256": "0e81485e487fae3fe2741fb3b8a031b6edc241190964867586bb094bf77599b4",
+        "baseline_blob": "906b4d2c09577f6aaefc96fe560236a3c03abfc3"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/harness-contract.test.ts",
+        "sha256": "580d3c39907951ca48fd227e37695a7be5bc55ef9562fcf81f7e9d4f1232da00",
+        "baseline_blob": "0a19d421f29174c23239302f6a75639805c758b0"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/knowledge-boundary.test.ts",
+        "sha256": "fa78df6c51f61fe28537a0a7427f735b06ddac23a1b866d6e55a1f8f1f473694",
+        "baseline_blob": "9be543d824448883ab1e381df64961fbb5806e44"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/lifecycle-boundaries.integration.test.ts",
+        "sha256": "c9bd6042831a99802a71c894407c1640f3dcdd594b8e45d48ae5e1c9231cb0c6",
+        "baseline_blob": "74530781ac9126e7cbf23cfe2d8cae522d813ba0"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/nine-combinations.integration.test.ts",
+        "sha256": "cd0db1978b3bc3562d5e937c6dee8a08e5dcd15eb9bdd23b8799b0bd836007c9",
+        "baseline_blob": "9b553393a6aac18de037473abb0f4e338a3138c3"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/review-exception-regression.test.ts",
+        "sha256": "cf150c45328ac54f40af6fb74644b07945ee29a47b9aab171470c15c0f01ec6d",
+        "baseline_blob": "70b2598932389851b8def6bef782f5e2f7182439"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/route-hotel-benefit.integration.test.ts",
+        "sha256": "f620b30f8490aec3b1374892530c616d9d0f584ee151bcfdfe85deb43b2439e9",
+        "baseline_blob": "df826baa741cb561679d400aec9544996612d541"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/route-hotel-bypass.integration.test.ts",
+        "sha256": "ee232ca00c18da0ad08a7db24fdd32cec001cafee4daea410a2cf7c88bb91f9a",
+        "baseline_blob": "302449be9b2ceffd3bb9ed20b96ae6d856e3dacd"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/route-segmented.integration.test.ts",
+        "sha256": "fbe47ad23deb81854169c6ef8926e7c13cf9b1bb2053a1963f93f5501ab408ea",
+        "baseline_blob": "21122210ce619e1d26ff133d439072f28cbaa16b"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/route-toolbox.integration.test.ts",
+        "sha256": "cf6711351d2f69593d9d8b2b0cf24fd1393f811492b4eff998f0a0001983496b",
+        "baseline_blob": "65fcd562125266168a465b364cf1cfe689b43f7b"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/acceptance/seeded-outcomes.integration.test.ts",
+        "sha256": "98d344bbe447e32152278a1ba1ffccb6e812876b68d7f898e906f8ce4f85e478",
+        "baseline_blob": "1a6b31bdeb4106cfcd57b0c8ac34562671c3cfa1"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/catalog.test.ts",
+        "sha256": "957377a26e01d8af9f3e3aa4d64503eecbb5d10f2393a42648d7f36ea404ad24",
+        "baseline_blob": "8e69d4b7366c5a516c85994ceb932e3f2afa3e5c"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/catalog.ts",
+        "sha256": "f3ce87ec14d0409e995685159bedf59c47f446ec050441fa7570f609c5d88a98",
+        "baseline_blob": "b7dc598e7d94f3cbb36b4b3d8216c992e81228fd"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/combat-initial.ts",
+        "sha256": "2da32bf98d94e120a0f7c9126dd46be22b4762a75c56863b77cdeb74847e1773",
+        "baseline_blob": "f93fa11956c734cbdc7608747fe8b010b7ba39c1"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/combat-profile.test.ts",
+        "sha256": "809e6f95cb56711cf0a8ca8459b9e6b53694d784f47455466ff4f0d124c68066",
+        "baseline_blob": "3eafd23cb92b9ea341ac135431c3ca7a05f2c334"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/combat-profile.ts",
+        "sha256": "5c708a3dc9671e8fa998aabc4c11349739572f19ad922e217e8d1df4d629333d",
+        "baseline_blob": "b2a91f9d7d6876afa862a621763c56fdb1776aa5"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/config.test.ts",
+        "sha256": "31ea87941c79b378e63502869537ba4cbadbadb49e3279e00c70e82e71097965",
+        "baseline_blob": "6165dc5498999ad11ae0df706d5edf57d9cf2a67"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/config.ts",
+        "sha256": "0a430232564c517f43a3980d7098424f2985dd60a06b405941fe24939d90379c",
+        "baseline_blob": "bcefab46d5d59a9cad987a1928b46a607946b768"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/content.ts",
+        "sha256": "e84900d5e39b61a8e9615885677b691937502c6cef50a0aff677650d59e34624",
+        "baseline_blob": "17328e8cd910f34f2243fa941301dcb9de8f2fa5"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/enemies.ts",
+        "sha256": "fa63710f68e5551cf0ad2901b6c3542f1b43a46d059d46db87f14a9a0c4f4bf9",
+        "baseline_blob": "c1abce3ee6658153225198136a4c0b881d02e89e"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/identity.ts",
+        "sha256": "01570a6a760c79fb81417b4898a6d3a34ce26dc06830c33121cf21b3d596f57b",
+        "baseline_blob": "b37ce52cb24990ce6d1047b0fa1d95006a30133c"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/index.ts",
+        "sha256": "554444f2c51f282d3dfaece64985d69e001dec4c4e5d93ff73064d068ce72577",
+        "baseline_blob": "2cb807f53584a8508b81aca523eb0eeae6386614"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/initial.ts",
+        "sha256": "38ad20c87456ef305f81679d440070add2df00174c23310e1d06aec559dfcde3",
+        "baseline_blob": "d60e9823627651fee32c844d5f623324754748e1"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/items.ts",
+        "sha256": "071bab35764bad8244b64b64127a98732f860623efb7829cb583b87649eea381",
+        "baseline_blob": "7e4e2c7738306fda8b3b739c205bfcdf220ffcae"
+      },
+      {
+        "path": "src/content/infected-world-v0.1/player-query.ts",
+        "sha256": "1984eb8dd4c15e525bde416cf60dbe02eba33ce16f72b1c81d4de8b15a239c51",
+        "baseline_blob": "534c8f5c00e263bb8ac755abb4fa6075f4843610"
+      },
+      {
+        "path": "src/core/residence-config/index.ts",
+        "sha256": "c9a3ce7bd8d00d52c84250e0c6e7392016ed45b166a86bc6cbf500ecddce6a23",
+        "baseline_blob": "ac803f9b667e3523dbb4c35aeffc111375fb2070"
+      },
+      {
+        "path": "src/core/residence-config/residence-config.test.ts",
+        "sha256": "6f1e99dc05adac40d9ad9eddc70b57b38581e213724c3876a805e59475ef8c69",
+        "baseline_blob": "430184109a52763433df96b3decc383cd2dc92a1"
+      },
+      {
+        "path": "src/core/residence-config/types.ts",
+        "sha256": "69b7a00bd81a5c9126dc8cb620d5a2b13aba26f3fb070162867d6cf23be88c34",
+        "baseline_blob": "476cd65caccc964fdca7d091bec0699f4ef8449e"
+      },
+      {
+        "path": "src/core/residence-config/validation.ts",
+        "sha256": "02f2353b54e27ec64b5a8e04e4c32000e97f273983fe37c69da60cdc3eceb229",
+        "baseline_blob": "82cde102aac7ab7ce834be07226a265609c69f73"
+      },
+      {
+        "path": "src/state/residence-save/aggregate.test.ts",
+        "sha256": "03b312358f188e44852200975f59675b2ae058c0b9ffb2b21c6fefdfd9d88998",
+        "baseline_blob": "19ed8299ce66074b6ee8c31a74ebaf76983981ff"
+      },
+      {
+        "path": "src/state/residence-save/codec.ts",
+        "sha256": "4343e387a4b5e5ffd162d2372e3a0b70f2424af291ed5ebc4edf9b6ec8c2f2e1",
+        "baseline_blob": "fc91717d0833f0e62e1b153501b0cd37bf1815c2"
+      },
+      {
+        "path": "src/state/residence-save/combat-aggregate.test.ts",
+        "sha256": "0f042ad6d081c1745903bceae2ceed90847abf0866a1f9d8f2633f9a4a540b7d",
+        "baseline_blob": "066a140123daf6ebe7d0441b4598b15059ab7bf3"
+      },
+      {
+        "path": "src/state/residence-save/combat-body-history.ts",
+        "sha256": "17dbac843d4a92f28777840cf42d82594b3ce38a0c33a98ee653a1b95ae0c2e3",
+        "baseline_blob": "43ccddccd3b08a639f94983df3ccc928677891d1"
+      },
+      {
+        "path": "src/state/residence-save/combat-codec.ts",
+        "sha256": "587654f89d125f926abeea883a4069ccfad445049bd61537c566963836155224",
+        "baseline_blob": "c5b67f40ed247c8976b1ee2a96500313063035a9"
+      },
+      {
+        "path": "src/state/residence-save/combat-compatibility.test.ts",
+        "sha256": "3e9dee833fdff193353d2d90430cb82d69cfd248a91b2a6d4a4b631fb8a9c9d5",
+        "baseline_blob": "46dc81a0628bddb867e5100b7987482de780cbb8"
+      },
+      {
+        "path": "src/state/residence-save/combat-continuation.test.ts",
+        "sha256": "af4f43492439ac9cf6023ea9504af66d37723fe85ba0d79992ab9debf9cc6a82",
+        "baseline_blob": "96b74cdfd2d10ceada11685458219921b5b9347d"
+      },
+      {
+        "path": "src/state/residence-save/combat-controlled.ts",
+        "sha256": "570ef2a194fd43b839b2368e7e3dbe6643921368ae2dc01e4fcb6c699630e70f",
+        "baseline_blob": "2ee121cbb664f25cec0b87cc2ce65de7fce427f9"
+      },
+      {
+        "path": "src/state/residence-save/combat-expected.test.ts",
+        "sha256": "b19a07d6a925d264370676814667483c772e6ab4db769fbe5c8706ce2499abbd",
+        "baseline_blob": "bf546a975921695c7a3bee2aa604c499fdd6a154"
+      },
+      {
+        "path": "src/state/residence-save/combat-expected.ts",
+        "sha256": "3038202011846ba4e56a37f1af99b1aaf42d424cd5fa18047c0b020b3fd6d048",
+        "baseline_blob": "3888f6a0660d0584d7aea754b697d4954699fc9f"
+      },
+      {
+        "path": "src/state/residence-save/combat-history-sharing.test.ts",
+        "sha256": "712bd7516a8282629af07264690f294c396f3ff6a32794faade860f79be79bdd",
+        "baseline_blob": "e38a482dc52f53da57fd3671e0f56eacaca634e6"
+      },
+      {
+        "path": "src/state/residence-save/combat-history.test.ts",
+        "sha256": "af237307a434ce5779c740b50a4ccacc9851b47373d2063dfa4ef356d4bdeefb",
+        "baseline_blob": "47fdac6bef8cf40c89547f32d22f68d61317637a"
+      },
+      {
+        "path": "src/state/residence-save/combat-history.ts",
+        "sha256": "355935455ba3bfaf1872688e8fd4a1e8ac35b0b4aba5d4b11e9870a7cbefda97",
+        "baseline_blob": "dcd1a1753be90e917731c32f76957d2a929cf60e"
+      },
+      {
+        "path": "src/state/residence-save/combat-index.ts",
+        "sha256": "c77f0e98c4ad43caee97e4ceb38a55440447fa42f5062b24b4d09fa28fda2305",
+        "baseline_blob": "40981d5a439c3d8c8142fad97a534d1df42fb35a"
+      },
+      {
+        "path": "src/state/residence-save/combat-policy.ts",
+        "sha256": "3261b19aa23ddf8388062caa6f4bf8dc942729a9088ae9ec0dda49289b710e43",
+        "baseline_blob": "035e0529fdd68cc4eac8a028c35ad99e6592f0c2"
+      },
+      {
+        "path": "src/state/residence-save/combat-purity.test.ts",
+        "sha256": "31c823272de25903178268a9c79df5b9d9a73d5fcd6c4cb1fd2d5cd96d0fb13b",
+        "baseline_blob": "7733dcbe39e5f4512d7f79acaefef39affb734f2"
+      },
+      {
+        "path": "src/state/residence-save/combat-review-regression.test.ts",
+        "sha256": "9d4861130f7f63fe03bc9ed955c04b8292cc50b86ad99b2d389ef868607a59e5",
+        "baseline_blob": "c14f0a74608292920b38784501b3695ffb8a4362"
+      },
+      {
+        "path": "src/state/residence-save/combat-review-simultaneous-death.test.ts",
+        "sha256": "0cc43bcdda60622dfbddc77584dff73db8580d113b47597a741abbc50dd04ac1",
+        "baseline_blob": "732a7874da437b7a20b36af88307f1c70c0db6a5"
+      },
+      {
+        "path": "src/state/residence-save/combat-review-simultaneous-fixtures.ts",
+        "sha256": "02a54d5f531280ac6c8460a1061821d4e137fa7735ee91709c279f8e16783217",
+        "baseline_blob": "1aa9258f0466346a219556099f171fe91cd8c59f"
+      },
+      {
+        "path": "src/state/residence-save/combat-review-simultaneous-purity.test.ts",
+        "sha256": "6370a78a1c3931ab5db950830758755d3c6f90589c6f5ca8cd6d03ea813208fa",
+        "baseline_blob": "d17e05a1277c70d51835d8cf043dbbacb12fbe13"
+      },
+      {
+        "path": "src/state/residence-save/combat-roundtrip.test.ts",
+        "sha256": "0eef8cc8e1df9b449b142ba111d39299a1176e3b9a71a0d14fc196bea8e2b456",
+        "baseline_blob": "811f10a056f5626ed9dca66dbbcbfdc95461a16c"
+      },
+      {
+        "path": "src/state/residence-save/combat-schema.ts",
+        "sha256": "9a4760971b925d000f4523f76a1cae1ba166d99b9481f22f75754ebf1175b418",
+        "baseline_blob": "003dfe3a3a6e064ec5b5e84895eb00dd0095949a"
+      },
+      {
+        "path": "src/state/residence-save/combat-test-fixtures.ts",
+        "sha256": "a5c086288a7aea7c499270e55b23e4c6242de0ad54fa34fd40f50f42df654729",
+        "baseline_blob": "767a12e6835cb06e8a145c7df463208efe36e848"
+      },
+      {
+        "path": "src/state/residence-save/combat-types.ts",
+        "sha256": "f5cca4f78a6c4ef8e1fa7edf0361a928308d15f65fac164e6917dd45fcfd1e66",
+        "baseline_blob": "1b1b1dfd372ffb4cdbc7664b5239d493973dd2e7"
+      },
+      {
+        "path": "src/state/residence-save/combat-validation.ts",
+        "sha256": "7d1df691b9a4749b840ee478db85774b51dd5841cddb926020fc08f1b7735612",
+        "baseline_blob": "6a141e7fa38e86810f135418ffa2da686dde1115"
+      },
+      {
+        "path": "src/state/residence-save/index.ts",
+        "sha256": "c4007d76959e92892ef505ee8906f0443ed6c9b6ee04a8d0a1ca00dc13a21022",
+        "baseline_blob": "40105d44c92b3d208baf0b71eb526eb5d5550064"
+      },
+      {
+        "path": "src/state/residence-save/residence-save.test.ts",
+        "sha256": "67e849c71290da7689f2a198e63fd8f9e7fcabcc49d9ecf3ddb482b0c6837138",
+        "baseline_blob": "eb7d210c0a9910097c74de0f1bc5378d6557f959"
+      },
+      {
+        "path": "src/state/residence-save/shared-supply-history.ts",
+        "sha256": "2e3791c0fdf9a95cc5c13138dc88e97340bd2f0e6765945993bab87964ddf65a",
+        "baseline_blob": "f59373d293d18b751cec0070308fb59b4e52270b"
+      },
+      {
+        "path": "src/state/residence-save/supply-codec.test.ts",
+        "sha256": "5868dff3ee7a3be146ee134a95da8a5ee2257a579339d4793fc13f36e8593ede",
+        "baseline_blob": "d969805c597d6b7a83303207c66c2cec1b1d8ed0"
+      },
+      {
+        "path": "src/state/residence-save/supply-codec.ts",
+        "sha256": "81c8ded5850d15126bed1dd3e0214a9469d942da90978b1ebd87453f8db4f006",
+        "baseline_blob": "abe93a5cccaa1165429ed7b1f369b9e29075b019"
+      },
+      {
+        "path": "src/state/residence-save/supply-compatibility.test.ts",
+        "sha256": "3db4bac46c7c1539ba43716472d488a6286913794d0f4524c8db35e03c8e2c3b",
+        "baseline_blob": "8f922d23be31615a58b10b8db50f9e2f7180a174"
+      },
+      {
+        "path": "src/state/residence-save/supply-controlled.ts",
+        "sha256": "e5e65503081a2e5a15cd28b0978f4a388d757dc2026d9df7ffff391c032a81ae",
+        "baseline_blob": "64b6e7b9b85beb0b29d3e4236c0ecb97d58f7631"
+      },
+      {
+        "path": "src/state/residence-save/supply-expected.test.ts",
+        "sha256": "c69813893554a3429917dd8ccac1e22d38089a3b6f9418144cf31a2b6cc2b00b",
+        "baseline_blob": "01611d6e2300add333e36cd50af3d647cd80f4c3"
+      },
+      {
+        "path": "src/state/residence-save/supply-expected.ts",
+        "sha256": "09e75b90a8fcf6538fdefddefc7d216c55ccc3215c63777c8d867eace0846551",
+        "baseline_blob": "a3c6e2b4df5e8e5ae036d08d1361cf4a09c2461d"
+      },
+      {
+        "path": "src/state/residence-save/supply-history.test.ts",
+        "sha256": "53e2c9c3c30d85388a21ce91b86fcdbda349a6fb614cfeb00a60d94a6f224ff9",
+        "baseline_blob": "a86324146893c147e9d0fc30b142ca13c54b1233"
+      },
+      {
+        "path": "src/state/residence-save/supply-history.ts",
+        "sha256": "9d7b2134791619c78c70ab111a29f5989afe0da90f11056ad047932132b89e9b",
+        "baseline_blob": "d9a27c6af276c119f3429f6c861acc8e4065ae40"
+      },
+      {
+        "path": "src/state/residence-save/supply-index.ts",
+        "sha256": "6dcb628403d1b3ffef0df5bc2b432606417c89e210d05b9079b694500bf56c98",
+        "baseline_blob": "547b8df8c9fbaf0b31241098046def5caf9b9723"
+      },
+      {
+        "path": "src/state/residence-save/supply-policy.ts",
+        "sha256": "cf27342625ac0498f1d99274c5f11551b1b6aa0d3f201a0e053cec6c4516f581",
+        "baseline_blob": "8f3ffa060ad62c88ff79ab554264840020430b8c"
+      },
+      {
+        "path": "src/state/residence-save/supply-purity.test.ts",
+        "sha256": "4d8823f2536f7b6b469f0ffb857bc8104eca3b9ddb31c7bf65a8223f28757c70",
+        "baseline_blob": "b8ab0e76888ec6f64b30e8c7f66da93553187077"
+      },
+      {
+        "path": "src/state/residence-save/supply-review-regression.test.ts",
+        "sha256": "d9734c8b842838dd88b6924f7b48847377671ef1807b4e07cce758621d7ba22f",
+        "baseline_blob": "b4d10b9a30b0c68391a6833c66b878f7f960c475"
+      },
+      {
+        "path": "src/state/residence-save/supply-roundtrip.test.ts",
+        "sha256": "a8c69202641bac96b37ac8ce9f28089aaecfc605ce0521bf16610a3d13bbfbc0",
+        "baseline_blob": "e43ce5b0f86d713f74386a503fe648424224c554"
+      },
+      {
+        "path": "src/state/residence-save/supply-schema.ts",
+        "sha256": "370e4a8808f87ca65ec6f2b4f234b5b01a88a4f2c8d5bd3b9dd276b1d1ee0b4b",
+        "baseline_blob": "c3f374b7dd62874c6e0d2a58e0d41f213e257781"
+      },
+      {
+        "path": "src/state/residence-save/supply-test-fixtures.ts",
+        "sha256": "0328ab27dc49e39936b514ffb23dd97e120e17412f5c209aa27f8747d4c097fb",
+        "baseline_blob": "d0ba2aabed68c803281ed50f6a04861ecac95fb3"
+      },
+      {
+        "path": "src/state/residence-save/supply-types.ts",
+        "sha256": "6d187e2983ee227de422e01c9c62f9c254c440be3f2197819323d8bb7199dc2f",
+        "baseline_blob": "17a306f02ed736f68cfba4d4c71851ce1161a888"
+      },
+      {
+        "path": "src/state/residence-save/supply-validation.test.ts",
+        "sha256": "5e96f8a2e10769b6a4b74479d2b881e1caa0801ea2f8c2603e94310613573acd",
+        "baseline_blob": "1fedec036b1574392434f54ac5b012dafaefd3c5"
+      },
+      {
+        "path": "src/state/residence-save/supply-validation.ts",
+        "sha256": "cf2e8fa51d724103cd03709dc39db80beab9270c589afae2cc26f8ccdd0bdcce",
+        "baseline_blob": "206831b8f1067e7ea4bef2848eac0cbf5ad8b86a"
+      },
+      {
+        "path": "src/state/residence-save/terminal-aggregate.test.ts",
+        "sha256": "36c0ac27013b339e382922c2da4ad3649a341095e2878ee9a9025b966b3f3d8e",
+        "baseline_blob": "e56dedf2e9945dff2269d423fd95c68c32a4b2e3"
+      },
+      {
+        "path": "src/state/residence-save/terminal-codec.ts",
+        "sha256": "adc1001048a19f4a9d0a8e99e12d0074846c396c039f6aeef26ac46ffc577a66",
+        "baseline_blob": "f5cd3bc028cb489992b209631fefc8cd62ab27bf"
+      },
+      {
+        "path": "src/state/residence-save/terminal-compatibility.test.ts",
+        "sha256": "775159b34e0a6cfff62fc41653916d4dab4d4ff0b1108493186fc5698a61fc05",
+        "baseline_blob": "7b0893b238752a6c63db024097478445aa084987"
+      },
+      {
+        "path": "src/state/residence-save/terminal-controlled.ts",
+        "sha256": "4f66be93e588e9d282660776e3e5caa7ef3d5e1a835a69b4531ca4cb2074526e",
+        "baseline_blob": "596c7d81e650554a281a1b720dbe194379fb346c"
+      },
+      {
+        "path": "src/state/residence-save/terminal-expected.test.ts",
+        "sha256": "48eaeef222167fe488e482b0ab84dcd192306f667f7cc389cd46a30ee67457d2",
+        "baseline_blob": "24625a789934adf4e8600e666be85bca151e80a1"
+      },
+      {
+        "path": "src/state/residence-save/terminal-expected.ts",
+        "sha256": "be61f64c4fd45b3f9fb3a011ae7d2a149b443ac2e45569ee5602c92468a405eb",
+        "baseline_blob": "e13bcb937496f227adeaab6213fc021cdd899234"
+      },
+      {
+        "path": "src/state/residence-save/terminal-history.test.ts",
+        "sha256": "52db1feb1000fe75cf69e7a05d49d1bbf242110fd3254065c9abd3019ce55662",
+        "baseline_blob": "53fa89c2af02c2394b32c436da748b74b70d034d"
+      },
+      {
+        "path": "src/state/residence-save/terminal-history.ts",
+        "sha256": "b834586c91fe14b853e5783a28569d0e3f15ce2dc23c47551830b747aaaee263",
+        "baseline_blob": "62c6c2c46ec9f3f76c01751f456138449013ce68"
+      },
+      {
+        "path": "src/state/residence-save/terminal-index.ts",
+        "sha256": "e2e1bfe5f86c22287410f34fe0d3f480ae762425e51ab0ddb9f4019eece18333",
+        "baseline_blob": "ccd5216b525102fa59e03a9f6306043e3193d104"
+      },
+      {
+        "path": "src/state/residence-save/terminal-policy.ts",
+        "sha256": "49d179fb5aa63c5dfdd81e9db116d22e26ff0f8c8225540951aa285fb3d54655",
+        "baseline_blob": "788c109fe369348c9593183571f1897e2ef588de"
+      },
+      {
+        "path": "src/state/residence-save/terminal-purity.test.ts",
+        "sha256": "142603e5deeb8d6687be25bbeca1a994456e5e07af1ddc968e8be83b54b1e78b",
+        "baseline_blob": "707dfd58a68be77b9990d6a7cf08123c7a67b12a"
+      },
+      {
+        "path": "src/state/residence-save/terminal-save.test.ts",
+        "sha256": "aa16c2db5eb866c59a689ab338a3a84f9fd877af4948257734e4213d1b3ea29e",
+        "baseline_blob": "8e9ebbefc6621ba65c5a967d9d42159edaccb097"
+      },
+      {
+        "path": "src/state/residence-save/terminal-test-fixtures.ts",
+        "sha256": "61f5699984e6050359aa8c7415036c195daaa2b2ef25b723ac509d43f3ee9d75",
+        "baseline_blob": "963221ef5c3fbf7541f1e4ccc12ee756730d38bf"
+      },
+      {
+        "path": "src/state/residence-save/terminal-types.ts",
+        "sha256": "c33562ed152c8e6e59b4fd3f0ae50860c4ed52ab71f193d73f5cdb1c35d1728f",
+        "baseline_blob": "7e994560ec0ac9592083eb7afcbc34ac9d22cff7"
+      },
+      {
+        "path": "src/state/residence-save/terminal-validation.ts",
+        "sha256": "a8cbc0a62eb01f45b94159755b08e0798bd5961721430d3d905c232574916e2f",
+        "baseline_blob": "411bbcd534a29cb6cb175ca7701b925b403ef1d5"
+      },
+      {
+        "path": "src/state/residence-save/types.ts",
+        "sha256": "a88dbee53c173eb7127ebfa073bd781100a7f358c6a460143b613d3829026f94",
+        "baseline_blob": "24ad2c0d5e2b9f43fbae716188d4aa91b507f86e"
+      },
+      {
+        "path": "src/state/residence-save/validation.ts",
+        "sha256": "36256ce2ced0a06786c6e096628593025d360761a09ba000d7c41ad59c81390f",
+        "baseline_blob": "130e8bae56b46fba38b52e4b4cf763a7291b1f83"
+      },
+      {
+        "path": "src/state/residence-session/combat-session.ts",
+        "sha256": "29cf10e87021e9b3c1888fbe8af191ea0e84ad8a0e9af30ec372db3acfc8d39f",
+        "baseline_blob": "b777a75b2b96dca316af77759ebe9ecd9a358173"
+      },
+      {
+        "path": "src/state/residence-session/domain.ts",
+        "sha256": "684d0085ef7be50a2ea2290ec329827acf1fa8335e5c84ceaf5c9fb7ab1682d1",
+        "baseline_blob": "699ba6cc325b467e37e934ae50044c138e4a0ee6"
+      }
+    ],
+    "self_hash_policy": "verification-results.json excluded from embedded file_manifest to avoid self-hash recursion; its final bytes and hash are included in external staged/commit receipt",
+    "file_manifest": [
+      {
+        "path": "docs/03-architecture.md",
+        "status": "modified",
+        "bytes": 93351,
+        "sha256": "563f1767108c367703721ac3bd0675ef76e9b1f8b1f0d01760fe0cf3ff41175d",
+        "blob": "f8e9b9cc2f80944a376003c2fe9d1e4bc8af5851"
+      },
+      {
+        "path": "docs/08-rule-implementation-traceability.md",
+        "status": "modified",
+        "bytes": 87209,
+        "sha256": "3b8197f578bfe5ec9bef3b9a9e4da75c371feeb3c10d5af000de6578ddf1d5d7",
+        "blob": "6d9d42946148d6594ee1e4914033ccdb893304a7"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "status": "modified",
+        "bytes": 46933,
+        "sha256": "0d9057d1c03fbd79fa8feed5652a7a10070fd53b3a0b0635c6885ffbd107987e",
+        "blob": "05900c68f4d46d129f3168b201cc915a40b670f7"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "status": "modified",
+        "bytes": 46277,
+        "sha256": "d828393ca30b10076749b2de5df84ca3f321a82338b2f7c07f65b3033b71f109",
+        "blob": "577d8f222409707c35841a46c72d2d61dff63861"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-006/adoption/DOC-WORLD-ENTRY-006-completion.md",
+        "status": "modified",
+        "bytes": 6925,
+        "sha256": "36764614ed41ac76b6350d030bc6af8da0084dfc53ccc71128b34df774dd4ba5",
+        "blob": "f7c6f1982ef7b73248b143f4d00a191215218de5"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/completion.md",
+        "status": "new",
+        "bytes": 12705,
+        "sha256": "9df1bf618b79bd27fcc859c17427e145e87204b5dc79bde7cd742ced905f0a98",
+        "blob": "7fb1434caadcd3db59ab9234ec410b3ca4e5e5b1"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/contract-and-support.md",
+        "status": "new",
+        "bytes": 7897,
+        "sha256": "b07dc6dd5d30cc2f20502a83d1bf03c3cbfc01c488e2b1371d0855f108a04791",
+        "blob": "8897c3a8d11a94a9c07d913e21be56e05aa12af0"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/implementation-notes.md",
+        "status": "new",
+        "bytes": 6785,
+        "sha256": "089db7ec212a7e1969e90f94cbccb4aa563314ab40679658552212218fea7e1e",
+        "blob": "35f44089bd8b994c649ba10a446a04811b94dcb0"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/AUD-ff2b79f-DOC-WORLD-ENTRY-006-review-v1.0.md",
+        "status": "new",
+        "bytes": 7666,
+        "sha256": "e7426d63a919822577b26d45134c0f08079b4d7a1668b4736445d9150f908e96",
+        "blob": "d6d9c5d4ae927b313f27b1c151ffc80047952dc1"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/BASELINE-AND-INPUTS.json",
+        "status": "new",
+        "bytes": 12580,
+        "sha256": "0e450a2065287f6f3b9462f1e8e1aad0ab752db74ebe63896825f1edb3841075",
+        "blob": "7ff2a5741eb83a86fc2858d9b630c9d12b6d4cd2"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+        "status": "new",
+        "bytes": 24083,
+        "sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+        "blob": "85a39b34c414952cfc30005b4f76b483bb019a42"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/MAINLINE-approval-provenance-clarification-v1.0.md",
+        "status": "new",
+        "bytes": 1700,
+        "sha256": "314d266292fa34e7e91d57c35e94566824e1e380357ef0d5977cbf8b60f6837e",
+        "blob": "6de33c346f8c205bc2bd3b841c1901df7166d223"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/OWNER-authority-and-scope-PREPLAY-FOUNDATION-001-v1.0.md",
+        "status": "new",
+        "bytes": 1620,
+        "sha256": "095ede86e95ee98b91c1a1712298a0496040f608e8bb66921297b515105eeb36",
+        "blob": "038cca13fd89c48887554ceae3d77c02a0f7934d"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/SHA256SUMS.txt",
+        "status": "new",
+        "bytes": 645,
+        "sha256": "f0a7f847c522c1d8d7fbc487db729112767351912d9db356876ba766c7d854dc",
+        "blob": "ef68bd5151f408d44f24ff9e1849344b14662319"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/verify-task-package.py",
+        "status": "new",
+        "bytes": 2092,
+        "sha256": "ebabfd256c637c34f4c5bc439c05d753b6944513ca4af19b0d086baaa2141192",
+        "blob": "6c6c29cd1cdc8fdfd3c4b8dfea216ec767153440"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/metadata-support.json",
+        "status": "new",
+        "bytes": 18343,
+        "sha256": "5dd1e383d51a34a1227dbc30d07064565474e9422874a1b80430d5809226c219",
+        "blob": "d03613d54867506b831bc435b5eb1bdc107fb959"
+      },
+      {
+        "path": "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+        "status": "modified",
+        "bytes": 6590,
+        "sha256": "9d570ccd9e81edc2aae2f33d38e07498d2f1d27b462706803be0ff6b7ff58b1a",
+        "blob": "0a0e39497ccfa2432c498aafb0d49aff680bbfbb"
+      },
+      {
+        "path": "src/app/infected-preplay/confirmation.test.ts",
+        "status": "new",
+        "bytes": 3232,
+        "sha256": "1abd3735a8652b0dddcb65ea33ac91a3361753a1978a49a3fbdadc2fb4b2ec6c",
+        "blob": "3ea9dbab7abf32869f1a6f7ec720c2c1bf02accd"
+      },
+      {
+        "path": "src/app/infected-preplay/confirmation.ts",
+        "status": "new",
+        "bytes": 1219,
+        "sha256": "aa9bc764b7ccf0fce3deb85b48e8bbc3be9a743e4735c7af5567d5b346173006",
+        "blob": "fae02aadb8f7891ebaec7834798e99dc78959139"
+      },
+      {
+        "path": "src/app/infected-preplay/controller.test.ts",
+        "status": "new",
+        "bytes": 3198,
+        "sha256": "e6bb0006a97eb8ee720910fe945f458c475a924752a0048901142b8857ce1414",
+        "blob": "369ea0d259e669d113193026cfec60181c590876"
+      },
+      {
+        "path": "src/app/infected-preplay/controller.ts",
+        "status": "new",
+        "bytes": 6574,
+        "sha256": "6557772872fcff6f9735f16397342f4e58e6c7d6ce70452390c349ea14928e25",
+        "blob": "360d60c901d58824469dde88f80d37dc3c52c101"
+      },
+      {
+        "path": "src/app/infected-preplay/drafts.test.ts",
+        "status": "new",
+        "bytes": 3190,
+        "sha256": "757637744bc9f5eb35d5a3d3c3bea5159e16edcc4753a334bfbf10aff51e4682",
+        "blob": "9ab7bf3c95fb324f6585d7651dc85b8c81279400"
+      },
+      {
+        "path": "src/app/infected-preplay/drafts.ts",
+        "status": "new",
+        "bytes": 777,
+        "sha256": "90819d89fa9a30c4139bc1af3c985f351661e63e8322fe507bd4fa58b70112d1",
+        "blob": "ce0f3001997252b31b95e3ef94339fa3e9b962c9"
+      },
+      {
+        "path": "src/app/infected-preplay/errors.test.ts",
+        "status": "new",
+        "bytes": 3122,
+        "sha256": "efca028ffbb172666e46d64105ccdbdcbcd0b51a5c1b0065a2fc16433fa6a85c",
+        "blob": "787db051ed9b78db2b9845f600578385fe9b8617"
+      },
+      {
+        "path": "src/app/infected-preplay/errors.ts",
+        "status": "new",
+        "bytes": 531,
+        "sha256": "aa71d907b7dfa0cd299f6da529400a235c05f8d48dc775cb4138d2bd07f9ae87",
+        "blob": "25abe4d3b4f44dc0566c3080858045ec36155eeb"
+      },
+      {
+        "path": "src/app/infected-preplay/feed-privacy.test.ts",
+        "status": "new",
+        "bytes": 2738,
+        "sha256": "8fbff822703bcde7cab82f3a39425dca945de92045f205bc7069db8bc5a541ef",
+        "blob": "fd79744d1a6a4dc24a0a46f30ddbf2846e9023f1"
+      },
+      {
+        "path": "src/app/infected-preplay/feed.ts",
+        "status": "new",
+        "bytes": 1737,
+        "sha256": "0008b379ab5a37d2a32260c87df31105178683b9fbbdef8ad1f02c89ec5b665b",
+        "blob": "210a47fb48b0790b3ca6256da191875a398e820a"
+      },
+      {
+        "path": "src/app/infected-preplay/index.ts",
+        "status": "new",
+        "bytes": 219,
+        "sha256": "4b349c55ad958e3962b5eb2e985842842985d06f7bea807b46d2947b158a3708",
+        "blob": "07c15d969f0fa4d1a9d643a0b0c9eeea88675167"
+      },
+      {
+        "path": "src/app/infected-preplay/initialization.test.ts",
+        "status": "new",
+        "bytes": 1631,
+        "sha256": "daedae1bdfe06a5cc502daef501f2ce2d0bec46a2d2e33fc3b14f1178ab29f3e",
+        "blob": "b1ac7141532843e1c01798d51e74e08bb36ce476"
+      },
+      {
+        "path": "src/app/infected-preplay/longchain.integration.test.ts",
+        "status": "new",
+        "bytes": 3522,
+        "sha256": "b5e3fd2368a3e553ca447d047b7b1991ad7de84249a705c87e1de3514359bbcc",
+        "blob": "0481234ec5a93f4f98e56a25196faf917c79d6fa"
+      },
+      {
+        "path": "src/app/infected-preplay/persistence.test.ts",
+        "status": "new",
+        "bytes": 5947,
+        "sha256": "3867f7db02e1a90e55b5ac74835f991cb4542004cbeb2c4db94c8cbbb6cb98a0",
+        "blob": "12590616025554425f4a1c0741d4dce244fd3121"
+      },
+      {
+        "path": "src/app/infected-preplay/purity.test.ts",
+        "status": "new",
+        "bytes": 1714,
+        "sha256": "1e5fb58ceaf18c19a0a502fc058e03df912e098d8479b4df077db7b03b91e36b",
+        "blob": "a8f5cab9e9fb132b8f6de257bf9b9907a83ec79b"
+      },
+      {
+        "path": "src/app/infected-preplay/snapshot.ts",
+        "status": "new",
+        "bytes": 311,
+        "sha256": "503c5919cf29f333dbd839c1549c31d498d5297d5638a11e46cf718fccaa57de",
+        "blob": "ebfb5d7236cd3ac7bf8e509dbb41458beef3f0ba"
+      },
+      {
+        "path": "src/app/infected-preplay/test-fixtures.ts",
+        "status": "new",
+        "bytes": 2980,
+        "sha256": "fa02eae774aeaa326f6c90c014150fb7775a452d94951b9ec9cebd0190afd40e",
+        "blob": "587c9e5645914794a9a8effbe8201fdd71f43f44"
+      },
+      {
+        "path": "src/app/infected-preplay/types.ts",
+        "status": "new",
+        "bytes": 1792,
+        "sha256": "ef337b707fabf55842d71b8f4659a445d828397cb495436d3caafa160ff1fe82",
+        "blob": "ec43143d33f028fd66b834bb0527cda40bb12952"
+      },
+      {
+        "path": "src/core/character-cycle/cycle.ts",
+        "status": "modified",
+        "bytes": 10178,
+        "sha256": "3a60db4f1554e8f44049e8d83dd8b386714a77babde4a093ecf0380ab34ae6cc",
+        "blob": "d54cced0d2d405ee4e02e65d8ad7b4658847235c"
+      },
+      {
+        "path": "src/core/character-cycle/public-condition.test.ts",
+        "status": "new",
+        "bytes": 2523,
+        "sha256": "2342c7f5a33d83b0fa07549a8442f95abc70b5e219e06775ac312c570f249e27",
+        "blob": "63210a03b6ec1ea2b14cb4a5c58150ece9cf316c"
+      },
+      {
+        "path": "src/core/character-cycle/public-condition.ts",
+        "status": "new",
+        "bytes": 1797,
+        "sha256": "8d20867e361ea10c8a3c9123ee7cf94f411940bc100cb107ef3d398996f67e9d",
+        "blob": "6a1af0995d6d3d850259dd8c2d60088fa710ee49"
+      },
+      {
+        "path": "src/core/character-cycle/safety-facts.test.ts",
+        "status": "new",
+        "bytes": 1294,
+        "sha256": "4186fb84ef8b4ef2dfe5714da0da547766c8e36e7e996d8e947a1abf62c6abd5",
+        "blob": "9208deb7cba87ac4b5eae1ffc68e7b60acf6d570"
+      },
+      {
+        "path": "src/core/character-cycle/safety-facts.ts",
+        "status": "new",
+        "bytes": 1331,
+        "sha256": "f3ae2c0765ae390058f94e59e411c01f4ce94f0490ef8b9ca7c37165ca547457",
+        "blob": "f209efda03807e5738a3fdb0786ccbc92e91629b"
+      },
+      {
+        "path": "src/core/residence-combat/player-safety.test.ts",
+        "status": "new",
+        "bytes": 2459,
+        "sha256": "c46b5798f1d27d61c5c91ba062a3ad952061c15209b1651758283995944ab371",
+        "blob": "6340b0381b68d46ede922c5f0c5de4d9ef9b2d67"
+      },
+      {
+        "path": "src/core/residence-combat/player-safety.ts",
+        "status": "new",
+        "bytes": 5800,
+        "sha256": "61b8b5066831e90c65c4d430cf2cd214ff805aa861d0418f966eaf49b187260c",
+        "blob": "3d1a7feb3d69ba8de664c484287f9567eb73867f"
+      },
+      {
+        "path": "src/core/residence-supply/player-metadata.test.ts",
+        "status": "new",
+        "bytes": 3123,
+        "sha256": "c19ba122fffc46a08de26ac1486cb2bc8290feecb8581d29a6e7af8e572bc735",
+        "blob": "7af35273d0f4b8c2edfd1e358e989f71dd2a5c3f"
+      },
+      {
+        "path": "src/core/residence-supply/player-metadata.ts",
+        "status": "new",
+        "bytes": 8084,
+        "sha256": "5fa90d799c9cd1515d2ce952fdcfd4532d8814c3a100078e073fafca88f4be11",
+        "blob": "c856591a43ac31d59ac5cd41ed2d820a2f01c718"
+      },
+      {
+        "path": "src/core/residence-supply/player-query.ts",
+        "status": "modified",
+        "bytes": 12788,
+        "sha256": "299b20cf3206d7b8cb72105c6d85e6e80b9ff798c34bb51f8c8850f7630d5afd",
+        "blob": "f0b87c256e61c0b9792372e2cb0a85eac35e8f04"
+      },
+      {
+        "path": "src/state/residence-session/player-condition.test.ts",
+        "status": "new",
+        "bytes": 2578,
+        "sha256": "2ab0580cca68b5b7bf56ec1f4b8c4a0770e31f547faa0f5efabe0a09564c6cd1",
+        "blob": "4925c13191351c5841fea1a3f38137b4bc94e3ea"
+      },
+      {
+        "path": "src/state/residence-session/player-context.ts",
+        "status": "modified",
+        "bytes": 3415,
+        "sha256": "459e0cbe63d0530d6c089e2a3153948cf345f2ae6d59ae9312f36a02007b71ff",
+        "blob": "570551016b947819ade97646da0fd379d164f385"
+      },
+      {
+        "path": "src/state/residence-session/player-facade.ts",
+        "status": "modified",
+        "bytes": 4291,
+        "sha256": "862c79d34cb12cfc3598712aaa1313b7eb0075ff2a302dac0efe77aada39c0ab",
+        "blob": "2f03ef2d2cb5873be854a7b98b6396c6c899a02e"
+      },
+      {
+        "path": "src/state/residence-session/player-fields.test.ts",
+        "status": "modified",
+        "bytes": 3439,
+        "sha256": "559f45e91b5332315cff2b1991830b3aa4c332c06031b753cf8cf9b806ac0a5b",
+        "blob": "493c3c7ed6865e20e85918ef8bca943651d3f793"
+      },
+      {
+        "path": "src/state/residence-session/player-index.ts",
+        "status": "modified",
+        "bytes": 282,
+        "sha256": "747574a4a2b5a664748aabac0fede501d7d655600c5546157a5588a87323ff4e",
+        "blob": "5cc0bc92d71d7ac56e858b9442daa175e1dd3d71"
+      },
+      {
+        "path": "src/state/residence-session/player-preplay-types.ts",
+        "status": "new",
+        "bytes": 923,
+        "sha256": "d035214e4209e4fea2b5d4842487b16fe64ff2d12fc0a93efefcd41023a0b92b",
+        "blob": "71cf900023df7cf3e61c10eb955735726cbad9f0"
+      },
+      {
+        "path": "src/state/residence-session/player-preplay.ts",
+        "status": "new",
+        "bytes": 7248,
+        "sha256": "6207864a325db8e221d156d3e2f4cd202bde74030eb087e0e83344e8e479cb42",
+        "blob": "42d1329e504fd83c5a85386ebb34dca229ade106"
+      },
+      {
+        "path": "src/state/residence-session/player-privacy.test.ts",
+        "status": "modified",
+        "bytes": 6618,
+        "sha256": "cd65399808f643ae65245b67db98bd9d6722aff26a9964ef1549f6692f72d67e",
+        "blob": "a55501ceb197da900d8fdc17ae0c60a91d983f8c"
+      },
+      {
+        "path": "src/state/residence-session/player-safety.test.ts",
+        "status": "new",
+        "bytes": 9100,
+        "sha256": "e3885b9cfec4a5cd20f792636e86773f520b83ec4fb7bdcf98fe8097f5c3e0a1",
+        "blob": "cf46fc6e3725770dd45318dc4d6bb9d7ad6deaa7"
+      }
+    ],
+    "new_diff_check": "FAIL exit2 on raw task EOF only",
+    "cached_diff_check": "FAIL exit2 same",
+    "W01": "original seven unchanged, but current cumulative diff also includes one new EOF; not authorized"
+  },
+  "unknown": [
+    "hidden disinfectant/suppressant target",
+    "rest/deadline future hidden cycle",
+    "attack kill cancellation from hidden enemy HP",
+    "second or later hidden enemy response",
+    "arrival consequences after own surviving checkpoint",
+    "unapproved extra exposure event / new enemy visual identity"
+  ],
+  "not_run": [
+    "browser storage",
+    "checkpoint prepared handoff",
+    "Web Locks",
+    "multi-tab",
+    "React/DOM/StrictMode mount",
+    "DEV entry",
+    "Owner play",
+    "O3 decision",
+    "commit",
+    "push",
+    "new accurate SHA CI"
+  ],
+  "external_evidence": {
+    "directory": "C:/Users/zjl/AppData/Local/Temp/preplay-work-82efb881a6484c3e9b852f880f17e1dc",
+    "logs": [
+      {
+        "file": "alternative-after.log",
+        "bytes": 374,
+        "sha256": "b688dacc7b84f5f2c2321fdc5ac95ae25fb93b08c12bbeb5add5b5a7de421c77"
+      },
+      {
+        "file": "alternative-before.log",
+        "bytes": 1506,
+        "sha256": "e37ec6409e417fbfbe39a6f28dc9ac49069badd170009e309cdb124ccd30b1f2"
+      },
+      {
+        "file": "baseline-tests.log",
+        "bytes": 298,
+        "sha256": "419e85abae3231aaa7f5d6d980eb2743bf2db470d78a9be5e3d5fff52e5c6af4"
+      },
+      {
+        "file": "branch-fixed.log",
+        "bytes": 1405,
+        "sha256": "e69ec4b5d8ff5b19ee2436d1af23fde7f46ab50df64aeabd3bf3bf97e89174de"
+      },
+      {
+        "file": "full-check-final.log",
+        "bytes": 3418,
+        "sha256": "8462d450c40473832c011e855161e0e9108946c8b4b829c2ec9d56d78575ddc5"
+      },
+      {
+        "file": "full-check.log",
+        "bytes": 3418,
+        "sha256": "7806cf41ea3edbcea1edfaa9b714305041a90b0088c75e06fd64752708a4667c"
+      },
+      {
+        "file": "longchain-1.log",
+        "bytes": 1661,
+        "sha256": "550555948d634a7554fb8aca91427cdfba2b962d6b331d080ac3025e259d4464"
+      },
+      {
+        "file": "longchain-2.log",
+        "bytes": 386,
+        "sha256": "1e54c1aeedba48b22dc23fc285c2557089bd9ff8a74b116eb53d644fc6f5e22e"
+      },
+      {
+        "file": "metadata-branch.log",
+        "bytes": 6798,
+        "sha256": "275d932e89beaae9c9cdcc2c3c5ef43012aaad9e2bcc363f8c93f15d79d3de67"
+      },
+      {
+        "file": "negative-blocked-callback-as-final.log",
+        "bytes": 141,
+        "sha256": "a89908cb18e48029d7ec15ef30813dc1ca0654742f0e46f469b6aec1aadd93b6"
+      },
+      {
+        "file": "negative-controls.json",
+        "bytes": 4589,
+        "sha256": "3fe68022ed4a759e0c66d1f7cd04c1170613cd0b5645106dbf759672f870c4ca"
+      },
+      {
+        "file": "negative-hidden-progress.log",
+        "bytes": 131,
+        "sha256": "7c135bd6373ff36aef00c10f9c73e4f1e66bd278a27a73fa9b8ccbf292a2fcd6"
+      },
+      {
+        "file": "negative-refresh-stale-confirmation.log",
+        "bytes": 142,
+        "sha256": "7a6992e54e3678fe2a306a89b2d69b015c9eb0f6855d86b1ebbddd180cf8d826"
+      },
+      {
+        "file": "npm-audit.json",
+        "bytes": 1349,
+        "sha256": "5828c668c94c10bf70163d0887d5dbbf68988d576537d1335bd72e2f0ea0614d"
+      },
+      {
+        "file": "remote-before.txt",
+        "bytes": 1997,
+        "sha256": "6318249002beb14a756b56b90b5458200765a4296f6e107b9b0bcddea8269951"
+      },
+      {
+        "file": "restored-blocked-callback-as-final.log",
+        "bytes": 141,
+        "sha256": "a9ab9f78e7b0308708f61cb4eb2293745b7406f8fc70fc8747a825b422978888"
+      },
+      {
+        "file": "restored-hidden-progress.log",
+        "bytes": 131,
+        "sha256": "6f3cc168c435a02b27508957b355052e0bdc825f4f01591ed69a158f9854d1fc"
+      },
+      {
+        "file": "restored-refresh-stale-confirmation.log",
+        "bytes": 142,
+        "sha256": "948107a9e4a8cc8eb8347a7a6a00c699be10cad4e0adac719d2b66fdacdf4bcf"
+      },
+      {
+        "file": "safety-chain-3.log",
+        "bytes": 3393,
+        "sha256": "6dd57a938092f241d6bf85b5ca93c861f84e70407dbba129c511aca1ea970149"
+      },
+      {
+        "file": "start-files.json",
+        "bytes": 372282,
+        "sha256": "1a670bb4a541c593817be6627adcd75c92f017a8dd729603058b1f2d6da435ac"
+      },
+      {
+        "file": "targeted-1.log",
+        "bytes": 788,
+        "sha256": "e0e10c8fad56fd635d76c23a3a1408d8c2e033f98d529e97765849d50a9d9086"
+      },
+      {
+        "file": "targeted-2.log",
+        "bytes": 562,
+        "sha256": "bec5bd8ccaf5ca0f0309b98b6cdb1221fed14be0f255070561df4ee83f98b866"
+      },
+      {
+        "file": "tested-code.json",
+        "bytes": 105754,
+        "sha256": "933e0c6d82b821078179cecfc6ae0b288d4d0b02ab238da037ae45f7ea6a9b73"
+      },
+      {
+        "file": "blocked-final-audit.log",
+        "bytes": 2272,
+        "sha256": "24066dfa586aba4bdd0e6e33cc5b789a7364c1b741175a45c919e521aeeb1969"
+      }
+    ],
+    "meaning": "actual local execution artifacts; not substitutes for accurate-SHA mainline review"
+  },
+  "git": {
+    "stage": "55 exact task paths staged; after blocker, 5 author records updated in worktree only and not restaged",
+    "commit_message": "feat(app): add preplay condition and presentation foundation",
+    "push_target": "origin HEAD:refs/heads/feature/world-preplay-foundation-001",
+    "final_sha_parent_tree_remote_CI": "No new commit; current HEAD/parent/tree remain original baseline; remote not written",
+    "main_or_old_branch_push": false,
+    "merge": false,
+    "force": false,
+    "commit": "NOT RUN",
+    "push": "NOT RUN",
+    "CI": "NOT RUN: no new SHA"
+  },
+  "stop": "await mainline disposition of input/diff-check conflict; preserve staged task work and tested implementation, no next engineering",
+  "status": "BLOCKED_INPUT_PRESERVATION_VS_DIFF_CHECK_NO_COMMIT_NO_PUSH",
+  "blocker": {
+    "file": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+    "line": 249,
+    "error": "new blank line at EOF",
+    "sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+    "source_archive_and_checksum_match": true,
+    "raw_bytes_modified": false,
+    "whitespace_configuration_modified": false,
+    "W01_extended": false,
+    "needed": "mainline corrected and rehashed package or express permission for this exact immutable EOF exception"
+  },
+  "resume_01": {
+    "task": "ENG-WORLD-PREPLAY-FOUNDATION-001-RESUME-01",
+    "version": "1.0",
+    "status": "PRE_COMMIT_CHECKS_PASS_WITH_APPROVED_W01_W02_ARCHIVE_EXCEPTIONS_NOT_MAINLINE_REVIEW",
+    "authority": "supplied narrow mainline continuation; no new Owner verbatim approval",
+    "start_head": "ff2b79f332c5ea2bec493eb5e166dcee6ba667eb",
+    "branch": "feature/world-preplay-foundation-001",
+    "initial_state": {
+      "index": 55,
+      "unstaged_author_records": 5,
+      "prior_blocked_snapshot_match": true,
+      "prior_check_log_sha256": "8462d450c40473832c011e855161e0e9108946c8b4b829c2ec9d56d78575ddc5",
+      "old_commands_running": false,
+      "process_check": "initial CIM denied in sandbox; elevated filtered project check showed only current inspection shell"
+    },
+    "source_freeze": {
+      "working_tested_sha256_count": 884,
+      "unchanged": true,
+      "authored_source_index_raw_equal": true,
+      "untouched_source_index_baseline_blob_equal": true,
+      "existing_line_endings": "unchanged CRLF working tree vs LF Git blobs handled according to original attributes, no config/file change"
+    },
+    "actual_check": {
+      "command": "npm run check",
+      "role": "RESUME-01 actual default final validation; no source or test changes",
+      "exit": 0,
+      "files": 267,
+      "tests": 4444,
+      "duration_seconds": 246.07,
+      "start_at_local": "2026-10-22 07:58:50",
+      "worker_overrides": [],
+      "global_timeout_changed": false,
+      "log": {
+        "path": "full-check.log",
+        "bytes": 3417,
+        "sha256": "f79cb1d35c901439d9e99c8fda533dcf4947f1692beb7d633fa919e91c5542a8"
+      },
+      "architecture": {
+        "DEC": 53,
+        "core_production_files": 345
+      },
+      "typecheck": "PASS",
+      "build": "PASS",
+      "build_warning": "existing >500kB main chunk warning retained",
+      "test_budget_change": false
+    },
+    "tests": {
+      "original_baseline": {
+        "files": 252,
+        "tests": 4369
+      },
+      "prior_implementation_final": {
+        "files": 267,
+        "tests": 4444
+      },
+      "prior_net": 75,
+      "this_continuation": {
+        "new": 0,
+        "replaced": 0,
+        "deleted": 0,
+        "net": 0
+      },
+      "historical_negative_controls": "NOT RE-RUN; do not accumulate prior controls again"
+    },
+    "scope": {
+      "edit_only": [
+        "docs/engineering/world-integration/preplay/foundation/implementation-notes.md",
+        "docs/engineering/world-integration/preplay/foundation/contract-and-support.md",
+        "docs/engineering/world-integration/preplay/foundation/metadata-support.json",
+        "docs/engineering/world-integration/preplay/foundation/verification-results.json",
+        "docs/engineering/world-integration/preplay/foundation/completion.md",
+        "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-RESUME-01-v1.0.md",
+        "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/RESUME-01-SCOPE.json",
+        "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/evidence/original-archive-eof-verification.json",
+        "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/SHA256SUMS.txt"
+      ],
+      "max_cumulative": 71,
+      "actual_files": 59,
+      "modified": 13,
+      "new": 46,
+      "old_record_history_preserved": true,
+      "original_inputs": [
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+          "bytes": 24083,
+          "sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+          "git_blob_sha1": "85a39b34c414952cfc30005b4f76b483bb019a42"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/inputs/OWNER-authority-and-scope-PREPLAY-FOUNDATION-001-v1.0.md",
+          "bytes": 1620,
+          "sha256": "095ede86e95ee98b91c1a1712298a0496040f608e8bb66921297b515105eeb36",
+          "git_blob_sha1": "038cca13fd89c48887554ceae3d77c02a0f7934d"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/inputs/AUD-ff2b79f-DOC-WORLD-ENTRY-006-review-v1.0.md",
+          "bytes": 7666,
+          "sha256": "e7426d63a919822577b26d45134c0f08079b4d7a1668b4736445d9150f908e96",
+          "git_blob_sha1": "d6d9c5d4ae927b313f27b1c151ffc80047952dc1"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/inputs/MAINLINE-approval-provenance-clarification-v1.0.md",
+          "bytes": 1700,
+          "sha256": "314d266292fa34e7e91d57c35e94566824e1e380357ef0d5977cbf8b60f6837e",
+          "git_blob_sha1": "6de33c346f8c205bc2bd3b841c1901df7166d223"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/inputs/BASELINE-AND-INPUTS.json",
+          "bytes": 12580,
+          "sha256": "0e450a2065287f6f3b9462f1e8e1aad0ab752db74ebe63896825f1edb3841075",
+          "git_blob_sha1": "7ff2a5741eb83a86fc2858d9b630c9d12b6d4cd2"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/inputs/verify-task-package.py",
+          "bytes": 2092,
+          "sha256": "ebabfd256c637c34f4c5bc439c05d753b6944513ca4af19b0d086baaa2141192",
+          "git_blob_sha1": "6c6c29cd1cdc8fdfd3c4b8dfea216ec767153440"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/inputs/SHA256SUMS.txt",
+          "bytes": 645,
+          "sha256": "f0a7f847c522c1d8d7fbc487db729112767351912d9db356876ba766c7d854dc",
+          "git_blob_sha1": "ef68bd5151f408d44f24ff9e1849344b14662319"
+        }
+      ],
+      "resume_inputs": [
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-RESUME-01-v1.0.md",
+          "bytes": 10495,
+          "sha256": "ac8ad7633daa72e4e04189d659e6d75378441c53bfe420239fcdb741852371bc",
+          "blob": "6c8282acc34f86ef3e41cc2ab9d273dc89c4c346"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/RESUME-01-SCOPE.json",
+          "bytes": 6525,
+          "sha256": "e9387bbf8a1343376a97628c985ad11db27a788d5c5d8152abfb473c3c81954e",
+          "blob": "b203ebef2fb8d4ebac9dd4d23b540787387f511d"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/evidence/original-archive-eof-verification.json",
+          "bytes": 6443,
+          "sha256": "db30f839c2f0f160b928b94bc7c5103efbbc2a2f2b7f37989ee2c0b6c4d42656",
+          "blob": "f8f8f44c0796a00543dfb85e8be7851dc7cf7445"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/SHA256SUMS.txt",
+          "bytes": 318,
+          "sha256": "ac7280b976d63c9cec8a2e7e1172daad900d12b72ac391f182bd505e38b92568",
+          "blob": "a42b15fbd3b2e9c93115cd46819f28b0c6b96875"
+        }
+      ]
+    },
+    "whitespace": {
+      "classification": "PASS_WITH_APPROVED_W01_W02_ARCHIVE_EXCEPTIONS",
+      "raw_exit2_preserved": true,
+      "W01": {
+        "unchanged": true,
+        "cumulative_base": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+        "files": {
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md": [
+            7,
+            8,
+            9
+          ]
+        },
+        "expected_warning_count": 7,
+        "diagnostic": "trailing whitespace.",
+        "verify_each_blob_equal_to_start": true
+      },
+      "W02": {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+        "line": 249,
+        "diagnostic": "new blank line at EOF.",
+        "bytes": 24083,
+        "sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+        "git_blob_sha1": "85a39b34c414952cfc30005b4f76b483bb019a42",
+        "expected_warning_count": 1,
+        "scope": "Only this exact archived original file, bytes and single EOF warning",
+        "precedence": "Overrides original task section 7 new-diff-exit-zero/no-eighth-warning requirement only for this W02; W01 unchanged; no other whitespace exception"
+      },
+      "checks": [
+        {
+          "id": "unstaged",
+          "command": "git diff --check",
+          "exit": 0,
+          "stdout": "",
+          "stderr": "",
+          "warnings": [],
+          "unexpected": [],
+          "matched": true
+        },
+        {
+          "id": "cached",
+          "command": "git diff --cached --check",
+          "exit": 2,
+          "stdout": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md:249: new blank line at EOF.\n",
+          "stderr": "",
+          "warnings": [
+            {
+              "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+              "line": 249,
+              "message": "new blank line at EOF."
+            }
+          ],
+          "unexpected": [],
+          "matched": true
+        },
+        {
+          "id": "start_worktree",
+          "command": "git diff ff2b79f332c5ea2bec493eb5e166dcee6ba667eb --check",
+          "exit": 2,
+          "stdout": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md:249: new blank line at EOF.\n",
+          "stderr": "",
+          "warnings": [
+            {
+              "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+              "line": 249,
+              "message": "new blank line at EOF."
+            }
+          ],
+          "unexpected": [],
+          "matched": true
+        },
+        {
+          "id": "start_index",
+          "command": "git diff --cached ff2b79f332c5ea2bec493eb5e166dcee6ba667eb --check",
+          "exit": 2,
+          "stdout": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md:249: new blank line at EOF.\n",
+          "stderr": "",
+          "warnings": [
+            {
+              "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+              "line": 249,
+              "message": "new blank line at EOF."
+            }
+          ],
+          "unexpected": [],
+          "matched": true
+        },
+        {
+          "id": "cumulative_worktree",
+          "command": "git diff 8c19ca0d28058cf743b41c8547cc2629c8eac767 --check",
+          "exit": 2,
+          "stdout": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:3: trailing whitespace.\n+状态：**PASS / 可进入 E01-R**  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:4: trailing whitespace.\n+受审准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:5: trailing whitespace.\n+父 SHA：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:6: trailing whitespace.\n+Tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:7: trailing whitespace.\n+起始准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:8: trailing whitespace.\n+父基线：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:9: trailing whitespace.\n+起始 tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  \ndocs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md:249: new blank line at EOF.\n",
+          "stderr": "",
+          "warnings": [
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 3,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 4,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 5,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 6,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+              "line": 7,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+              "line": 8,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+              "line": 9,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+              "line": 249,
+              "message": "new blank line at EOF."
+            }
+          ],
+          "unexpected": [],
+          "matched": true
+        },
+        {
+          "id": "cumulative_index",
+          "command": "git diff --cached 8c19ca0d28058cf743b41c8547cc2629c8eac767 --check",
+          "exit": 2,
+          "stdout": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:3: trailing whitespace.\n+状态：**PASS / 可进入 E01-R**  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:4: trailing whitespace.\n+受审准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:5: trailing whitespace.\n+父 SHA：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:6: trailing whitespace.\n+Tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:7: trailing whitespace.\n+起始准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:8: trailing whitespace.\n+父基线：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:9: trailing whitespace.\n+起始 tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  \ndocs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md:249: new blank line at EOF.\n",
+          "stderr": "",
+          "warnings": [
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 3,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 4,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 5,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 6,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+              "line": 7,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+              "line": 8,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+              "line": 9,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+              "line": 249,
+              "message": "new blank line at EOF."
+            }
+          ],
+          "unexpected": [],
+          "matched": true
+        }
+      ],
+      "not_excluded_paths": true,
+      "configuration_changed": false,
+      "final_reaudit": "After this record update, exact nine paths staged again and same six commands rerun; final stdout/stderr/exit receipts kept externally"
+    },
+    "file_manifest_excluding_self": [
+      {
+        "path": "docs/03-architecture.md",
+        "bytes": 93351,
+        "sha256": "563f1767108c367703721ac3bd0675ef76e9b1f8b1f0d01760fe0cf3ff41175d",
+        "blob": "f8e9b9cc2f80944a376003c2fe9d1e4bc8af5851"
+      },
+      {
+        "path": "docs/08-rule-implementation-traceability.md",
+        "bytes": 87209,
+        "sha256": "3b8197f578bfe5ec9bef3b9a9e4da75c371feeb3c10d5af000de6578ddf1d5d7",
+        "blob": "6d9d42946148d6594ee1e4914033ccdb893304a7"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/01-world-overview.md",
+        "bytes": 46933,
+        "sha256": "0d9057d1c03fbd79fa8feed5652a7a10070fd53b3a0b0635c6885ffbd107987e",
+        "blob": "05900c68f4d46d129f3168b201cc915a40b670f7"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "bytes": 46277,
+        "sha256": "d828393ca30b10076749b2de5df84ca3f321a82338b2f7c07f65b3033b71f109",
+        "blob": "577d8f222409707c35841a46c72d2d61dff63861"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/entry-006/adoption/DOC-WORLD-ENTRY-006-completion.md",
+        "bytes": 6925,
+        "sha256": "36764614ed41ac76b6350d030bc6af8da0084dfc53ccc71128b34df774dd4ba5",
+        "blob": "f7c6f1982ef7b73248b143f4d00a191215218de5"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/completion.md",
+        "bytes": 16288,
+        "sha256": "1efd7d473c04b655e3114615e6ba536a8a724444291f14993c3005fc05fd0743",
+        "blob": "5e731ced951caf37b71cce935fdf0cca0358ad50"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/contract-and-support.md",
+        "bytes": 11480,
+        "sha256": "7b0f1545fb1b90e6e3ca192ac55f0fc7e6fca8c21491b408fecad125e70c6582",
+        "blob": "bfe99019b5f6dcab62dd55c1c9ae7d3450b598d8"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/implementation-notes.md",
+        "bytes": 10368,
+        "sha256": "3cbf19cd59483017ebfd942b6aea730cf79fb99180465aef9696931467f49c2d",
+        "blob": "2ae861b14fc4f486e6ae8a78aaafdd2ab3e09ae7"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/AUD-ff2b79f-DOC-WORLD-ENTRY-006-review-v1.0.md",
+        "bytes": 7666,
+        "sha256": "e7426d63a919822577b26d45134c0f08079b4d7a1668b4736445d9150f908e96",
+        "blob": "d6d9c5d4ae927b313f27b1c151ffc80047952dc1"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/BASELINE-AND-INPUTS.json",
+        "bytes": 12580,
+        "sha256": "0e450a2065287f6f3b9462f1e8e1aad0ab752db74ebe63896825f1edb3841075",
+        "blob": "7ff2a5741eb83a86fc2858d9b630c9d12b6d4cd2"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+        "bytes": 24083,
+        "sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+        "blob": "85a39b34c414952cfc30005b4f76b483bb019a42"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/MAINLINE-approval-provenance-clarification-v1.0.md",
+        "bytes": 1700,
+        "sha256": "314d266292fa34e7e91d57c35e94566824e1e380357ef0d5977cbf8b60f6837e",
+        "blob": "6de33c346f8c205bc2bd3b841c1901df7166d223"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/OWNER-authority-and-scope-PREPLAY-FOUNDATION-001-v1.0.md",
+        "bytes": 1620,
+        "sha256": "095ede86e95ee98b91c1a1712298a0496040f608e8bb66921297b515105eeb36",
+        "blob": "038cca13fd89c48887554ceae3d77c02a0f7934d"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/SHA256SUMS.txt",
+        "bytes": 645,
+        "sha256": "f0a7f847c522c1d8d7fbc487db729112767351912d9db356876ba766c7d854dc",
+        "blob": "ef68bd5151f408d44f24ff9e1849344b14662319"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/verify-task-package.py",
+        "bytes": 2092,
+        "sha256": "ebabfd256c637c34f4c5bc439c05d753b6944513ca4af19b0d086baaa2141192",
+        "blob": "6c6c29cd1cdc8fdfd3c4b8dfea216ec767153440"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/metadata-support.json",
+        "bytes": 20829,
+        "sha256": "1c4753501ea5c601636ee49bffd7d72e7b87d07cea57c8d20f378a7797e0c7ae",
+        "blob": "6b7cabd0c0525916479618e2e4539e1acceb69b0"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-RESUME-01-v1.0.md",
+        "bytes": 10495,
+        "sha256": "ac8ad7633daa72e4e04189d659e6d75378441c53bfe420239fcdb741852371bc",
+        "blob": "6c8282acc34f86ef3e41cc2ab9d273dc89c4c346"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/RESUME-01-SCOPE.json",
+        "bytes": 6525,
+        "sha256": "e9387bbf8a1343376a97628c985ad11db27a788d5c5d8152abfb473c3c81954e",
+        "blob": "b203ebef2fb8d4ebac9dd4d23b540787387f511d"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/SHA256SUMS.txt",
+        "bytes": 318,
+        "sha256": "ac7280b976d63c9cec8a2e7e1172daad900d12b72ac391f182bd505e38b92568",
+        "blob": "a42b15fbd3b2e9c93115cd46819f28b0c6b96875"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/resume-01-inputs/evidence/original-archive-eof-verification.json",
+        "bytes": 6443,
+        "sha256": "db30f839c2f0f160b928b94bc7c5103efbbc2a2f2b7f37989ee2c0b6c4d42656",
+        "blob": "f8f8f44c0796a00543dfb85e8be7851dc7cf7445"
+      },
+      {
+        "path": "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+        "bytes": 6590,
+        "sha256": "9d570ccd9e81edc2aae2f33d38e07498d2f1d27b462706803be0ff6b7ff58b1a",
+        "blob": "0a0e39497ccfa2432c498aafb0d49aff680bbfbb"
+      },
+      {
+        "path": "src/app/infected-preplay/confirmation.test.ts",
+        "bytes": 3232,
+        "sha256": "1abd3735a8652b0dddcb65ea33ac91a3361753a1978a49a3fbdadc2fb4b2ec6c",
+        "blob": "3ea9dbab7abf32869f1a6f7ec720c2c1bf02accd"
+      },
+      {
+        "path": "src/app/infected-preplay/confirmation.ts",
+        "bytes": 1219,
+        "sha256": "aa9bc764b7ccf0fce3deb85b48e8bbc3be9a743e4735c7af5567d5b346173006",
+        "blob": "fae02aadb8f7891ebaec7834798e99dc78959139"
+      },
+      {
+        "path": "src/app/infected-preplay/controller.test.ts",
+        "bytes": 3198,
+        "sha256": "e6bb0006a97eb8ee720910fe945f458c475a924752a0048901142b8857ce1414",
+        "blob": "369ea0d259e669d113193026cfec60181c590876"
+      },
+      {
+        "path": "src/app/infected-preplay/controller.ts",
+        "bytes": 6574,
+        "sha256": "6557772872fcff6f9735f16397342f4e58e6c7d6ce70452390c349ea14928e25",
+        "blob": "360d60c901d58824469dde88f80d37dc3c52c101"
+      },
+      {
+        "path": "src/app/infected-preplay/drafts.test.ts",
+        "bytes": 3190,
+        "sha256": "757637744bc9f5eb35d5a3d3c3bea5159e16edcc4753a334bfbf10aff51e4682",
+        "blob": "9ab7bf3c95fb324f6585d7651dc85b8c81279400"
+      },
+      {
+        "path": "src/app/infected-preplay/drafts.ts",
+        "bytes": 777,
+        "sha256": "90819d89fa9a30c4139bc1af3c985f351661e63e8322fe507bd4fa58b70112d1",
+        "blob": "ce0f3001997252b31b95e3ef94339fa3e9b962c9"
+      },
+      {
+        "path": "src/app/infected-preplay/errors.test.ts",
+        "bytes": 3122,
+        "sha256": "efca028ffbb172666e46d64105ccdbdcbcd0b51a5c1b0065a2fc16433fa6a85c",
+        "blob": "787db051ed9b78db2b9845f600578385fe9b8617"
+      },
+      {
+        "path": "src/app/infected-preplay/errors.ts",
+        "bytes": 531,
+        "sha256": "aa71d907b7dfa0cd299f6da529400a235c05f8d48dc775cb4138d2bd07f9ae87",
+        "blob": "25abe4d3b4f44dc0566c3080858045ec36155eeb"
+      },
+      {
+        "path": "src/app/infected-preplay/feed-privacy.test.ts",
+        "bytes": 2738,
+        "sha256": "8fbff822703bcde7cab82f3a39425dca945de92045f205bc7069db8bc5a541ef",
+        "blob": "fd79744d1a6a4dc24a0a46f30ddbf2846e9023f1"
+      },
+      {
+        "path": "src/app/infected-preplay/feed.ts",
+        "bytes": 1737,
+        "sha256": "0008b379ab5a37d2a32260c87df31105178683b9fbbdef8ad1f02c89ec5b665b",
+        "blob": "210a47fb48b0790b3ca6256da191875a398e820a"
+      },
+      {
+        "path": "src/app/infected-preplay/index.ts",
+        "bytes": 219,
+        "sha256": "4b349c55ad958e3962b5eb2e985842842985d06f7bea807b46d2947b158a3708",
+        "blob": "07c15d969f0fa4d1a9d643a0b0c9eeea88675167"
+      },
+      {
+        "path": "src/app/infected-preplay/initialization.test.ts",
+        "bytes": 1631,
+        "sha256": "daedae1bdfe06a5cc502daef501f2ce2d0bec46a2d2e33fc3b14f1178ab29f3e",
+        "blob": "b1ac7141532843e1c01798d51e74e08bb36ce476"
+      },
+      {
+        "path": "src/app/infected-preplay/longchain.integration.test.ts",
+        "bytes": 3522,
+        "sha256": "b5e3fd2368a3e553ca447d047b7b1991ad7de84249a705c87e1de3514359bbcc",
+        "blob": "0481234ec5a93f4f98e56a25196faf917c79d6fa"
+      },
+      {
+        "path": "src/app/infected-preplay/persistence.test.ts",
+        "bytes": 5947,
+        "sha256": "3867f7db02e1a90e55b5ac74835f991cb4542004cbeb2c4db94c8cbbb6cb98a0",
+        "blob": "12590616025554425f4a1c0741d4dce244fd3121"
+      },
+      {
+        "path": "src/app/infected-preplay/purity.test.ts",
+        "bytes": 1714,
+        "sha256": "1e5fb58ceaf18c19a0a502fc058e03df912e098d8479b4df077db7b03b91e36b",
+        "blob": "a8f5cab9e9fb132b8f6de257bf9b9907a83ec79b"
+      },
+      {
+        "path": "src/app/infected-preplay/snapshot.ts",
+        "bytes": 311,
+        "sha256": "503c5919cf29f333dbd839c1549c31d498d5297d5638a11e46cf718fccaa57de",
+        "blob": "ebfb5d7236cd3ac7bf8e509dbb41458beef3f0ba"
+      },
+      {
+        "path": "src/app/infected-preplay/test-fixtures.ts",
+        "bytes": 2980,
+        "sha256": "fa02eae774aeaa326f6c90c014150fb7775a452d94951b9ec9cebd0190afd40e",
+        "blob": "587c9e5645914794a9a8effbe8201fdd71f43f44"
+      },
+      {
+        "path": "src/app/infected-preplay/types.ts",
+        "bytes": 1792,
+        "sha256": "ef337b707fabf55842d71b8f4659a445d828397cb495436d3caafa160ff1fe82",
+        "blob": "ec43143d33f028fd66b834bb0527cda40bb12952"
+      },
+      {
+        "path": "src/core/character-cycle/cycle.ts",
+        "bytes": 10178,
+        "sha256": "3a60db4f1554e8f44049e8d83dd8b386714a77babde4a093ecf0380ab34ae6cc",
+        "blob": "d54cced0d2d405ee4e02e65d8ad7b4658847235c"
+      },
+      {
+        "path": "src/core/character-cycle/public-condition.test.ts",
+        "bytes": 2523,
+        "sha256": "2342c7f5a33d83b0fa07549a8442f95abc70b5e219e06775ac312c570f249e27",
+        "blob": "63210a03b6ec1ea2b14cb4a5c58150ece9cf316c"
+      },
+      {
+        "path": "src/core/character-cycle/public-condition.ts",
+        "bytes": 1797,
+        "sha256": "8d20867e361ea10c8a3c9123ee7cf94f411940bc100cb107ef3d398996f67e9d",
+        "blob": "6a1af0995d6d3d850259dd8c2d60088fa710ee49"
+      },
+      {
+        "path": "src/core/character-cycle/safety-facts.test.ts",
+        "bytes": 1294,
+        "sha256": "4186fb84ef8b4ef2dfe5714da0da547766c8e36e7e996d8e947a1abf62c6abd5",
+        "blob": "9208deb7cba87ac4b5eae1ffc68e7b60acf6d570"
+      },
+      {
+        "path": "src/core/character-cycle/safety-facts.ts",
+        "bytes": 1331,
+        "sha256": "f3ae2c0765ae390058f94e59e411c01f4ce94f0490ef8b9ca7c37165ca547457",
+        "blob": "f209efda03807e5738a3fdb0786ccbc92e91629b"
+      },
+      {
+        "path": "src/core/residence-combat/player-safety.test.ts",
+        "bytes": 2459,
+        "sha256": "c46b5798f1d27d61c5c91ba062a3ad952061c15209b1651758283995944ab371",
+        "blob": "6340b0381b68d46ede922c5f0c5de4d9ef9b2d67"
+      },
+      {
+        "path": "src/core/residence-combat/player-safety.ts",
+        "bytes": 5800,
+        "sha256": "61b8b5066831e90c65c4d430cf2cd214ff805aa861d0418f966eaf49b187260c",
+        "blob": "3d1a7feb3d69ba8de664c484287f9567eb73867f"
+      },
+      {
+        "path": "src/core/residence-supply/player-metadata.test.ts",
+        "bytes": 3123,
+        "sha256": "c19ba122fffc46a08de26ac1486cb2bc8290feecb8581d29a6e7af8e572bc735",
+        "blob": "7af35273d0f4b8c2edfd1e358e989f71dd2a5c3f"
+      },
+      {
+        "path": "src/core/residence-supply/player-metadata.ts",
+        "bytes": 8084,
+        "sha256": "5fa90d799c9cd1515d2ce952fdcfd4532d8814c3a100078e073fafca88f4be11",
+        "blob": "c856591a43ac31d59ac5cd41ed2d820a2f01c718"
+      },
+      {
+        "path": "src/core/residence-supply/player-query.ts",
+        "bytes": 12788,
+        "sha256": "299b20cf3206d7b8cb72105c6d85e6e80b9ff798c34bb51f8c8850f7630d5afd",
+        "blob": "f0b87c256e61c0b9792372e2cb0a85eac35e8f04"
+      },
+      {
+        "path": "src/state/residence-session/player-condition.test.ts",
+        "bytes": 2578,
+        "sha256": "2ab0580cca68b5b7bf56ec1f4b8c4a0770e31f547faa0f5efabe0a09564c6cd1",
+        "blob": "4925c13191351c5841fea1a3f38137b4bc94e3ea"
+      },
+      {
+        "path": "src/state/residence-session/player-context.ts",
+        "bytes": 3415,
+        "sha256": "459e0cbe63d0530d6c089e2a3153948cf345f2ae6d59ae9312f36a02007b71ff",
+        "blob": "570551016b947819ade97646da0fd379d164f385"
+      },
+      {
+        "path": "src/state/residence-session/player-facade.ts",
+        "bytes": 4291,
+        "sha256": "862c79d34cb12cfc3598712aaa1313b7eb0075ff2a302dac0efe77aada39c0ab",
+        "blob": "2f03ef2d2cb5873be854a7b98b6396c6c899a02e"
+      },
+      {
+        "path": "src/state/residence-session/player-fields.test.ts",
+        "bytes": 3439,
+        "sha256": "559f45e91b5332315cff2b1991830b3aa4c332c06031b753cf8cf9b806ac0a5b",
+        "blob": "493c3c7ed6865e20e85918ef8bca943651d3f793"
+      },
+      {
+        "path": "src/state/residence-session/player-index.ts",
+        "bytes": 282,
+        "sha256": "747574a4a2b5a664748aabac0fede501d7d655600c5546157a5588a87323ff4e",
+        "blob": "5cc0bc92d71d7ac56e858b9442daa175e1dd3d71"
+      },
+      {
+        "path": "src/state/residence-session/player-preplay-types.ts",
+        "bytes": 923,
+        "sha256": "d035214e4209e4fea2b5d4842487b16fe64ff2d12fc0a93efefcd41023a0b92b",
+        "blob": "71cf900023df7cf3e61c10eb955735726cbad9f0"
+      },
+      {
+        "path": "src/state/residence-session/player-preplay.ts",
+        "bytes": 7248,
+        "sha256": "6207864a325db8e221d156d3e2f4cd202bde74030eb087e0e83344e8e479cb42",
+        "blob": "42d1329e504fd83c5a85386ebb34dca229ade106"
+      },
+      {
+        "path": "src/state/residence-session/player-privacy.test.ts",
+        "bytes": 6618,
+        "sha256": "cd65399808f643ae65245b67db98bd9d6722aff26a9964ef1549f6692f72d67e",
+        "blob": "a55501ceb197da900d8fdc17ae0c60a91d983f8c"
+      },
+      {
+        "path": "src/state/residence-session/player-safety.test.ts",
+        "bytes": 9100,
+        "sha256": "e3885b9cfec4a5cd20f792636e86773f520b83ec4fb7bdcf98fe8097f5c3e0a1",
+        "blob": "cf46fc6e3725770dd45318dc4d6bb9d7ad6deaa7"
+      }
+    ],
+    "manifest_self_policy": "The external final staged/committed receipt includes this JSON itself, avoiding a recursive self-hash",
+    "prior_failure_history": "all pre-existing root objects retained unchanged; W02 does not rewrite the earlier blocked result",
+    "git": {
+      "message": "feat(app): add preplay condition and presentation foundation",
+      "target": "origin feature/world-preplay-foundation-001",
+      "new_SHA_parent_tree_remote_CI": "returned after ordinary commit and remote verification; no amend to insert self SHA",
+      "main_or_old_branch_push": false,
+      "merge": false,
+      "force": false
+    },
+    "npm_audit": "UNCONFIRMED original mirror 404; not repeated",
+    "not_run": [
+      "browser owner",
+      "prepared checkpoint",
+      "Web Locks",
+      "multi-tab",
+      "React/DOM",
+      "DEV entry",
+      "Owner play",
+      "O3"
+    ],
+    "stop": "await accurate SHA source/safety/application update review"
+  }
+}

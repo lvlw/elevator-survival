@@ -342,3 +342,9 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 D1 当前病程四档与 D2 独立 DEV 封闭首玩已批准；不是重开世界设计或批准所有历史候选。最低档不表示未感染或安全，最高档不改变 HP0 死亡制。旧入口／旧槽不变；O3、迁移、清档和永久双产品仍未批准。
 
 依据：[DEC-053](../../05-design-decisions.md#dec-053)、[同范围后继正式合同](../../engineering/world-integration/preplay/public-condition-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。
+
+## ENG-WORLD-PREPLAY-FOUNDATION-001 作者实现附记（2026-10-22）
+
+D1 当前粗档已在获准基础工程实际接通；同档隐私、HP0 制与正常返回无夜保持。本轮只有 headless 应用基础，未注册玩家入口；三专长／工具箱仍沿用真实已实现生产者，未重选规则或调参。浏览器与低资产 UI 按原独立门槛继续。
+
+实际支持、未知项与验收见[基础作者记录](../../engineering/world-integration/preplay/foundation/contract-and-support.md)及[本轮完成报告](../../engineering/world-integration/preplay/foundation/completion.md)。历史正文按原时点保留，不改 DEC／UIR、参数、旧格式或旧医院入口。

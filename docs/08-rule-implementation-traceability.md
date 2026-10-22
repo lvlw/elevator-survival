@@ -369,3 +369,9 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 D1/D2 已获 Owner 批准，主线已定稿后继三批技术责任；本轮只归档文档和 T01 工具，不实现粗档生产查询、controller、浏览器 owner 或 UI。394f59d 的 23 公开／1 unknown 是历史实现证据，不能改称 v1.1 已实现；后继各接缝待工程和准确 SHA 实审。
 
 依据：[DEC-053](05-design-decisions.md#dec-053)、[同范围后继正式合同](engineering/world-integration/preplay/batch-plan-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。
+
+## ENG-WORLD-PREPLAY-FOUNDATION-001 作者实现附记（2026-10-22）
+
+本轮新增当前病程粗档、完整明确请求的安全三态及适用保护、单 controller／稳定 snapshot、草稿确认与错误／Feed。支持与 unknown 逐项列入作者矩阵，不能以 available 代替安全；隐藏医疗及未来周期未知保持。作者自动证据不等于准确 SHA 实审或浏览器／Owner PASS。
+
+实际支持、未知项与验收见[基础作者记录](engineering/world-integration/preplay/foundation/contract-and-support.md)及[本轮完成报告](engineering/world-integration/preplay/foundation/completion.md)。历史正文按原时点保留，不改 DEC／UIR、参数、旧格式或旧医院入口。

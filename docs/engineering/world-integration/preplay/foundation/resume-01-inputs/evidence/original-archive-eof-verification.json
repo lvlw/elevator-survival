@@ -1,0 +1,188 @@
+{
+  "review": "PREPLAY-FOUNDATION-001 original archive whitespace conflict",
+  "original_zip_sha256": "f46072bdbfeda9fed2b4e3c8364658d851d594fd4b169f03e5005029036cb9db",
+  "source": "Uploaded original task ZIP, not author local working tree or staged implementation",
+  "checksum_entries": [
+    {
+      "file": "AUD-ff2b79f-DOC-WORLD-ENTRY-006-review-v1.0.md",
+      "expected_sha256": "e7426d63a919822577b26d45134c0f08079b4d7a1668b4736445d9150f908e96",
+      "actual_sha256": "e7426d63a919822577b26d45134c0f08079b4d7a1668b4736445d9150f908e96",
+      "pass": true
+    },
+    {
+      "file": "BASELINE-AND-INPUTS.json",
+      "expected_sha256": "0e450a2065287f6f3b9462f1e8e1aad0ab752db74ebe63896825f1edb3841075",
+      "actual_sha256": "0e450a2065287f6f3b9462f1e8e1aad0ab752db74ebe63896825f1edb3841075",
+      "pass": true
+    },
+    {
+      "file": "ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+      "expected_sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+      "actual_sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+      "pass": true
+    },
+    {
+      "file": "MAINLINE-approval-provenance-clarification-v1.0.md",
+      "expected_sha256": "314d266292fa34e7e91d57c35e94566824e1e380357ef0d5977cbf8b60f6837e",
+      "actual_sha256": "314d266292fa34e7e91d57c35e94566824e1e380357ef0d5977cbf8b60f6837e",
+      "pass": true
+    },
+    {
+      "file": "OWNER-authority-and-scope-PREPLAY-FOUNDATION-001-v1.0.md",
+      "expected_sha256": "095ede86e95ee98b91c1a1712298a0496040f608e8bb66921297b515105eeb36",
+      "actual_sha256": "095ede86e95ee98b91c1a1712298a0496040f608e8bb66921297b515105eeb36",
+      "pass": true
+    },
+    {
+      "file": "verify-task-package.py",
+      "expected_sha256": "ebabfd256c637c34f4c5bc439c05d753b6944513ca4af19b0d086baaa2141192",
+      "actual_sha256": "ebabfd256c637c34f4c5bc439c05d753b6944513ca4af19b0d086baaa2141192",
+      "pass": true
+    }
+  ],
+  "manifest_sha256": "f0a7f847c522c1d8d7fbc487db729112767351912d9db356876ba766c7d854dc",
+  "package_verifier": {
+    "exit": 0,
+    "result": {
+      "status": "PASS",
+      "kind": "package-only",
+      "checks": [
+        {
+          "name": "unique filenames",
+          "pass": true
+        },
+        {
+          "name": "safe package names",
+          "pass": true
+        },
+        {
+          "name": "exact package set",
+          "pass": true
+        },
+        {
+          "name": "known checksum path AUD-ff2b79f-DOC-WORLD-ENTRY-006-review-v1.0.md",
+          "pass": true
+        },
+        {
+          "name": "sha256 AUD-ff2b79f-DOC-WORLD-ENTRY-006-review-v1.0.md",
+          "pass": true
+        },
+        {
+          "name": "utf8 AUD-ff2b79f-DOC-WORLD-ENTRY-006-review-v1.0.md",
+          "pass": true
+        },
+        {
+          "name": "known checksum path BASELINE-AND-INPUTS.json",
+          "pass": true
+        },
+        {
+          "name": "sha256 BASELINE-AND-INPUTS.json",
+          "pass": true
+        },
+        {
+          "name": "utf8 BASELINE-AND-INPUTS.json",
+          "pass": true
+        },
+        {
+          "name": "known checksum path ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+          "pass": true
+        },
+        {
+          "name": "sha256 ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+          "pass": true
+        },
+        {
+          "name": "utf8 ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+          "pass": true
+        },
+        {
+          "name": "known checksum path MAINLINE-approval-provenance-clarification-v1.0.md",
+          "pass": true
+        },
+        {
+          "name": "sha256 MAINLINE-approval-provenance-clarification-v1.0.md",
+          "pass": true
+        },
+        {
+          "name": "utf8 MAINLINE-approval-provenance-clarification-v1.0.md",
+          "pass": true
+        },
+        {
+          "name": "known checksum path OWNER-authority-and-scope-PREPLAY-FOUNDATION-001-v1.0.md",
+          "pass": true
+        },
+        {
+          "name": "sha256 OWNER-authority-and-scope-PREPLAY-FOUNDATION-001-v1.0.md",
+          "pass": true
+        },
+        {
+          "name": "utf8 OWNER-authority-and-scope-PREPLAY-FOUNDATION-001-v1.0.md",
+          "pass": true
+        },
+        {
+          "name": "known checksum path verify-task-package.py",
+          "pass": true
+        },
+        {
+          "name": "sha256 verify-task-package.py",
+          "pass": true
+        },
+        {
+          "name": "utf8 verify-task-package.py",
+          "pass": true
+        },
+        {
+          "name": "manifest exact set",
+          "pass": true
+        },
+        {
+          "name": "exact unique whitelist",
+          "pass": true
+        },
+        {
+          "name": "safe repository paths",
+          "pass": true
+        },
+        {
+          "name": "archive inputs whitelisted",
+          "pass": true
+        },
+        {
+          "name": "exact baseline",
+          "pass": true
+        }
+      ],
+      "total": 26,
+      "repository_or_test_verified": false
+    }
+  },
+  "reproduction": {
+    "environment": "Linux-6.18.55-x86_64-with-glibc2.41",
+    "git_version": "git version 2.47.3",
+    "kind": "fresh isolated repository; all seven original input files staged as new files under exact archive paths; no project source",
+    "command": "git diff --cached --check",
+    "exit": 2,
+    "stdout": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md:249: new blank line at EOF.\n",
+    "stderr": "",
+    "diagnostics": [
+      "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md:249: new blank line at EOF."
+    ]
+  },
+  "exception_candidate": {
+    "id": "W02",
+    "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+    "line": 249,
+    "diagnostic": "new blank line at EOF.",
+    "bytes": 24083,
+    "sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+    "git_blob_sha1": "85a39b34c414952cfc30005b4f76b483bb019a42",
+    "tail_hex": "554d532e747874600a0a",
+    "line_count": 249
+  },
+  "limits": [
+    "No access to user local HEAD/index/worktree/patch",
+    "Implementation/source/testing not reviewed in this continuation",
+    "Original W01 historical seven warnings not rerun in isolated archive-only repo",
+    "This verification does not grant engineering PASS"
+  ]
+}

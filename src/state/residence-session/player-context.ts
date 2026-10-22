@@ -32,7 +32,7 @@ export function createPlayerContext(value: CombatValue, deps: CombatDependencies
   })
   actions.forEach(action => insert('action:' + actionKey(action), { purpose: 'action', action: Object.freeze({ ...action }) }))
   const get = (key: string) => { const h = byKey.get(key); if (!h) throw new PlayerSelectionError(); return h }
-  return Object.freeze({ value,
+  return Object.freeze({ value, scope: Object.freeze({ scope: 'player-context' as const }),
     item: (key: string) => get('item:' + key), wound: (key: string) => get('wound:' + key),
     action: (a: ActionReference) => get('action:' + actionKey(a)),
     resolve: (handle: PlayerHandle, purpose: Binding['purpose']) => {

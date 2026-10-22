@@ -538,5 +538,58 @@
     ],
     "npm_audit": "UNCONFIRMED: original one-time mirror 404; no rerun or dependency update",
     "stop": "accurate SHA source/safety/application update review"
+  },
+  "r1": {
+    "task": "ENG-WORLD-PREPLAY-FOUNDATION-001-R1",
+    "finding": "R-M01: original sample task charged conditional armor but resources omitted it; not an erroneous P charge",
+    "current_owner": "querySampleProtection -> shared-actions actual consume / player-metadata resource preview",
+    "actual_apis": [
+      "queryPlayerActionMetadata.resources",
+      "preplay.inspect.facts.resources",
+      "controller.preview.facts.resources"
+    ],
+    "public_fields": [
+      "name",
+      "kind",
+      "before",
+      "requested",
+      "consumed",
+      "after"
+    ],
+    "internal_only": [
+      "effectiveRiskPercent",
+      "armor instanceId"
+    ],
+    "same_condition": "versioned sample method; actual heavy coat, integrity >0, protection strictly lowers configured risk",
+    "last_resource": "1 protects this extraction then 0",
+    "broken_or_no_equipment": "no payment; not a hard sample prerequisite",
+    "native_pairs": 8,
+    "native_template": {
+      "before": {
+        "failed": 6,
+        "passed": 4
+      },
+      "after": {
+        "passed": 10
+      },
+      "adaptation": "only __REPO__ replacement"
+    },
+    "adjacent_review": [
+      "crow",
+      "toolbox",
+      "lit",
+      "card no payment",
+      "mechanical pool/materials",
+      "battery recharge",
+      "combat weapon"
+    ],
+    "tests": [
+      "src/core/residence-task/sample-protection.test.ts",
+      "src/core/residence-supply/player-metadata-payment-review.test.ts",
+      "src/state/residence-session/player-payment-review.test.ts"
+    ],
+    "old_support_history_retained": true,
+    "mainline_review": "pending accurate SHA",
+    "unknown": "original hidden medical/future cycle/hidden combat branches unchanged; no new public risk permission"
   }
 }

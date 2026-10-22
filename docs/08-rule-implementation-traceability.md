@@ -375,3 +375,7 @@ D1/D2 已获 Owner 批准，主线已定稿后继三批技术责任；本轮只�
 本轮新增当前病程粗档、完整明确请求的安全三态及适用保护、单 controller／稳定 snapshot、草稿确认与错误／Feed。支持与 unknown 逐项列入作者矩阵，不能以 available 代替安全；隐藏医疗及未来周期未知保持。作者自动证据不等于准确 SHA 实审或浏览器／Owner PASS。
 
 实际支持、未知项与验收见[基础作者记录](engineering/world-integration/preplay/foundation/contract-and-support.md)及[本轮完成报告](engineering/world-integration/preplay/foundation/completion.md)。历史正文按原时点保留，不改 DEC／UIR、参数、旧格式或旧医院入口。
+
+## ENG-WORLD-PREPLAY-FOUNDATION-001-R1 作者增量
+
+2026-10-22。R-M01原样本护具支付遗漏已由同源纯事实接线补齐，原生P支付／companion／controller预览成对回归；正常、末次、耗尽及未装备保持原规则。此前实现历史不追改为原先完整。详见[R1作者记录](engineering/world-integration/preplay/foundation/completion.md)；不是主线验收或Owner体验PASS。

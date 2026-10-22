@@ -9,6 +9,7 @@ import { maintenancePool } from './maintenance-qualification'
 import { playerCombatFacts } from '../residence-combat/player-query'
 import { projectCombat } from '../residence-combat/projection'
 import { createCombatEnginePlayerPrimaryPlan } from '../combat/combat-player-action-primary-plan'
+import { querySampleProtection } from '../residence-task/sample-protection'
 import type { CombatValue, CombatDependencies } from '../residence-combat/types'
 import type { PlayerCoreCommand } from '../residence-combat/player-query-types'
 
@@ -43,6 +44,10 @@ export function queryPlayerActionMetadata(v: CombatValue, command: PlayerCoreCom
     mechanisms.push(command.kind === 'source' ? '一次性来源；执行前不揭示未知产出。' : '任务操作使用真实材料和实例；取得不等于已交付。')
     if (command.kind === 'task') {
       const declaration = s.tasks.data.actions.find(a => a.id === command.command.actionId)!
+      if (declaration.id === 'sample' && c.method !== undefined) {
+        const payment = querySampleProtection(v, c.method, s).payment
+        if (payment) resource(payment.instanceId, payment.requested)
+      }
       if (declaration.grant) {
         const def = s.catalog.physical.get(s.tasks.data.items.find(i => i.alias === declaration.grant)!.id)
         output = { name: def.name, width: def.width, height: def.height, unitWeight: def.unitWeight,

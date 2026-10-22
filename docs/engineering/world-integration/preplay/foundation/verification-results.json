@@ -2329,5 +2329,831 @@
       "O3"
     ],
     "stop": "await accurate SHA source/safety/application update review"
+  },
+  "r1": {
+    "task": "ENG-WORLD-PREPLAY-FOUNDATION-001-R1",
+    "start_sha": "cc147cd253f3e7e57e45de265610becb64a74821",
+    "start_parent": "ff2b79f332c5ea2bec493eb5e166dcee6ba667eb",
+    "start_tree": "79ecbc3fea0d1f7e00277b64cc054ff00dd52532",
+    "branch": "feature/world-preplay-foundation-001",
+    "start": "clean index/worktree; only inspection process running",
+    "baseline": {
+      "command": "npm run test:run",
+      "exit": 0,
+      "files": 267,
+      "tests": 4444,
+      "duration_seconds": 260.07,
+      "node": "24.9.0",
+      "npm": "11.6.0",
+      "vitest": "4.1.10",
+      "worker_overrides": []
+    },
+    "package": {
+      "files": 14,
+      "status": "all supplied hashes / exact set / UTF8 and whitespace PASS",
+      "inputs": [
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-R1-task-v1.0.md",
+          "bytes": 10259,
+          "sha256": "ccbdcf90bbddf257db9b1ea153d28a4e09ab3a24155d9b1fe8910d0fc0f14f00",
+          "blob": "b03dade1464b8b02430e9328e48210a1729d70a6"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/OWNER-authority-and-scope-ENG-WORLD-PREPLAY-FOUNDATION-001-R1-v1.0.md",
+          "bytes": 1170,
+          "sha256": "18c435bf0565e7b1044120f4167ce585d9f970fc42da27a3b400ba933ddae368",
+          "blob": "4ebfc03dee21926c9324d1d9acdf0a78a9fed328"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/BASELINE-AND-SCOPE.json",
+          "bytes": 6014,
+          "sha256": "14506d55e5f5c3fee8be05bd97611b737aa63b2a9bd389f185f606cf38683a48",
+          "blob": "8757a3cc92eff34b8340028d3f84223955af2453"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/AUD-cc147cd-ENG-WORLD-PREPLAY-FOUNDATION-001-review-v1.0.md",
+          "bytes": 7191,
+          "sha256": "0c62b538da664384f766b1b811e71a2a402081247d23d2e98e6a375c3d768906",
+          "blob": "2699a3c751400f3b30f2fbf2e7aa8653463289c8"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/verify-package.py",
+          "bytes": 981,
+          "sha256": "9d390a85e5fe2e0634ba5166fc79154c9cff41f85d6a552ad051157bdad91542",
+          "blob": "b8c0c4297bc12d6da108ee4a8769869af037c3fb"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/source/player-metadata.ts",
+          "bytes": 8084,
+          "sha256": "5fa90d799c9cd1515d2ce952fdcfd4532d8814c3a100078e073fafca88f4be11",
+          "blob": "c856591a43ac31d59ac5cd41ed2d820a2f01c718"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/source/shared-actions.ts",
+          "bytes": 4158,
+          "sha256": "ba0c1fe5a9413bff4f53b9ef56590bb0dd1f003308fa82f7462cb5e29443c596",
+          "blob": "e5a0d548f2867ddaa06b6ca4395a534f94ddcb62"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/check-sample-payment.mjs",
+          "bytes": 7003,
+          "sha256": "27df121557315005dbfa464fa742a07fd1d0edc2c121af74dcb00b26d0ac4302",
+          "blob": "6d5802367f6cdcdfb7e0de0b57fd3e95e58cb362"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/sample-payment-results.json",
+          "bytes": 3262,
+          "sha256": "7909921aaf1d5c6eac900d1c82a1ed5b1d41e30c0b4a2540b87907460e1aeb40",
+          "blob": "32ca001c277b531c3e600e8f7233f4dba6880c50"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/source-integrity.json",
+          "bytes": 598,
+          "sha256": "8dc4f8fde40c2e553df69174468ad6995aab59960cffe95b58052ad6e561b3ee",
+          "blob": "d14aae6e14b1a6e5e9429d245080090182d745f0"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/input-integrity.json",
+          "bytes": 3239,
+          "sha256": "3ca7a11492ac4e3c7debef38b9fd8a867418a71a1e794219f2bf853c5e8cc969",
+          "blob": "d55b4d0762baee870a67305ef62e42e70fa8777d"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/ci163-summary.json",
+          "bytes": 575,
+          "sha256": "3221874c490a043657da88c3268fc5f3136ee247edbbd8c082f3c9af514f364f",
+          "blob": "676e825beb37bd507c0e357669b5b267335e8924"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/native-sample-payment-regression.test.ts.template",
+          "bytes": 5715,
+          "sha256": "77c74d48a035ac463d66cd0e72e1f4f57185e68d5045235b188b61d2e4740175",
+          "blob": "c0c93e2369c740414aa23fe42f4c91cd431bb2b8"
+        },
+        {
+          "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/SHA256SUMS.txt",
+          "bytes": 1349,
+          "sha256": "3b58c9376d5727197db11da170b8ee50ae08c8ccfafc5426aa1de60cab75a58c",
+          "blob": "8e3c0239b9065dcddc5be003899b11ecfe837762"
+        }
+      ]
+    },
+    "native_template": {
+      "kind": "full repository native P / facade / controller; only __REPO__ replacement",
+      "original_before": {
+        "exit": 1,
+        "failed": 6,
+        "passed": 4,
+        "total": 10,
+        "evidence": "native-original-before.log",
+        "failure_kind": "AssertionError payment mismatch only"
+      },
+      "minimal_adaptation": "NONE",
+      "after": {
+        "exit": 0,
+        "passed": 10,
+        "evidence": "native-original-after.log"
+      },
+      "mainline_isolated_8": "provided evidence only, not counted as native or new tests"
+    },
+    "compatibility": {
+      "native_golden_cases": 8,
+      "full_snapshots_equal": true,
+      "draw_arguments_order_equal": true,
+      "inputs": "two methods x normal11 / TEST1 / TEST0 / TEST unequipped real coat retained in backpack",
+      "before": "golden-before.json",
+      "after": "golden-after.log",
+      "source_delta": "exact unchanged text after reversing extracted sample branch and payment projection only",
+      "rules_parameters_draw_order_qualification": "UNCHANGED"
+    },
+    "new_tests": {
+      "files": 3,
+      "new": 43,
+      "replaced": 0,
+      "deleted": 0,
+      "net": 43,
+      "prior75": "preserved, not recounted as R1 new"
+    },
+    "checks": {
+      "targeted_4": {
+        "exit": 0,
+        "files": 3,
+        "tests": 42,
+        "note": "before adding the extra unfrozen-caller test"
+      },
+      "typecheck": {
+        "exit": 0,
+        "evidence": "typecheck-2.log"
+      },
+      "combined": {
+        "exit": 0,
+        "files": 40,
+        "tests": 307,
+        "duration_seconds": 209.19,
+        "includes": "original 15 foundation files / both controller chains / E03 / selected P R S"
+      },
+      "default_complete": {
+        "command": "npm run check",
+        "exit": 0,
+        "files": 270,
+        "tests": 4487,
+        "duration_seconds": 261.67,
+        "worker_overrides": [],
+        "architecture": {
+          "DEC": 53,
+          "core_production_files": 346
+        },
+        "typecheck": "PASS",
+        "build": "PASS"
+      },
+      "architecture": {
+        "DEC": 53,
+        "core_production_files": 346
+      },
+      "build": "PASS existing chunk warning retained"
+    },
+    "independent_counts": {
+      "query_windows": {
+        "producer": 0,
+        "CTB": 0,
+        "G1": 0,
+        "G2": 0,
+        "RNG": 0,
+        "authority": 0,
+        "origins": 0,
+        "consume": 0,
+        "dispatch": 0,
+        "read": 0,
+        "write": 0,
+        "native_notice": 0,
+        "new_context": 0
+      },
+      "each_extraction": {
+        "task": 1,
+        "G1_action": 1,
+        "G1_cycle": 0,
+        "CTB": 0,
+        "origin": 1,
+        "revision_increment": 1,
+        "dispatch": 1,
+        "current": 1,
+        "write_attempt": 1,
+        "native_notice": 1,
+        "armor_consume": "1 if applicable, else0",
+        "draws": "cautious protected0; direct1; unprotected cautious1"
+      },
+      "repeat_invalid_stale_cross": "0 gameplay / payment / IO",
+      "save_retry": {
+        "aggregate": 2,
+        "encode": 1,
+        "write": 1,
+        "payment": 0,
+        "gameplay": 0,
+        "draw": 0,
+        "native_notice": 0,
+        "current": "same committed reference",
+        "feed": "same reference"
+      }
+    },
+    "privacy": {
+      "same_public_band": "61/89, other public facts equal",
+      "hidden_pending": "0/2 paired",
+      "future_draw": "opposite injected ports, not default-seed experiment",
+      "metadata_equal": true,
+      "full_safe_view_equal": true,
+      "actual_exposure_delta": {
+        "direct": [
+          1,
+          0
+        ],
+        "protected_cautious": [
+          0,
+          0
+        ]
+      },
+      "risk_percent_in_public_metadata": false
+    },
+    "negative_controls": {
+      "kind": "external native source shadow; no production mutation",
+      "receipts": [
+        {
+          "name": "missing-sample-payment",
+          "source": "src/core/residence-supply/player-metadata.ts",
+          "original_sha256": "9af38747f5dbdd167ffcd361b6593ca58f72b4e4fefbbc720aac7ee58747f796",
+          "mutant_sha256": "9c35f934c053424414b0a4b2ca7f52d82910090b8b4ebda8fded06e910b3c7a4",
+          "mutant_exit": 1,
+          "failed": [
+            {
+              "name": "R-M01 native public payment parity and adjacent mapping cautious sample payment matches native result for normal",
+              "messages": [
+                "AssertionError: expected [] to deeply equal [ { name: '厚实外套', …(5) } ]\n    at C:/Users/zjl/AppData/Local/Temp/preplay-work-82efb881a6484c3e9b852f880f17e1dc/r1/negative-shadow/src/core/residence-supply/player-metadata-payment-review.test.ts:38:32\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2027:60\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2323:10)\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2305:20\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2272:10)"
+              ]
+            }
+          ],
+          "restored_exit": 0,
+          "restored_passed": 1
+        },
+        {
+          "name": "exhausted-armor-charged",
+          "source": "src/core/residence-task/sample-protection.ts",
+          "original_sha256": "568bd16570d22abb36f0e2bedbedaf2467e3737a68845e6bb226fb811c841df9",
+          "mutant_sha256": "99fb68b5b66629b3b0b94025d746fde260f075790cdda8a949cf576a1d95325f",
+          "mutant_exit": 1,
+          "failed": [
+            {
+              "name": "R-M01 native public payment parity and adjacent mapping cautious sample payment matches native result for 0",
+              "messages": [
+                "AssertionError: expected [Function] to not throw an error but 'Error: Qualified action lost its reso…' was thrown\n    at Proxy.<anonymous> (file:///E:/projects/elevator-survival/node_modules/@vitest/expect/dist/index.js:1552:16)\n    at Proxy.<anonymous> (file:///E:/projects/elevator-survival/node_modules/@vitest/expect/dist/index.js:1156:15)\n    at Proxy.methodWrapper (file:///E:/projects/elevator-survival/node_modules/chai/index.js:1700:25)\n    at C:/Users/zjl/AppData/Local/Temp/preplay-work-82efb881a6484c3e9b852f880f17e1dc/r1/negative-shadow/src/core/residence-supply/player-metadata-payment-review.test.ts:32:63\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2027:60\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///E:/projects/elevator-survival/node_modules/@vitest/runner/dist/chunk-artifact.js:2323:10)"
+              ]
+            }
+          ],
+          "restored_exit": 0,
+          "restored_passed": 1
+        }
+      ],
+      "historical_controls": "NOT RE-RUN"
+    },
+    "failure_history": [
+      {
+        "evidence": "targeted-1.log",
+        "kind": "two new adjacent fixture route TypeErrors, nonexistent H2-H3; not semantic detection"
+      },
+      {
+        "evidence": "typecheck-1.log",
+        "kind": "new test nested union narrowing only"
+      },
+      {
+        "evidence": "targeted-2.log",
+        "kind": "two new fixture source requests lacked explicit dark method; not semantic detection"
+      },
+      {
+        "evidence": "targeted-3.log",
+        "kind": "card incorrectly used ordinary pickup and battery label mismatch; corrected new tests to formal task transfer and bound catalog name"
+      }
+    ],
+    "scope": {
+      "allowed_max": 29,
+      "actual": 29,
+      "modified": 11,
+      "new": 18,
+      "protected_original_files": 1562,
+      "preserved_markdown_prefixes": 7,
+      "preserved_old_JSON_objects": true,
+      "tested_source_fingerprints": 888,
+      "imports": {
+        "cycles": []
+      },
+      "record_history": "original BLOCKED / RESUME-01 objects and text retained; new r1 only"
+    },
+    "whitespace": {
+      "raw_checks": [
+        {
+          "id": "unstaged",
+          "command": "git diff --check",
+          "exit": 0,
+          "stdout": "",
+          "stderr": "",
+          "warnings": [],
+          "unexpected": [],
+          "matched": true
+        },
+        {
+          "id": "cached",
+          "command": "git diff --cached --check",
+          "exit": 0,
+          "stdout": "",
+          "stderr": "",
+          "warnings": [],
+          "unexpected": [],
+          "matched": true
+        },
+        {
+          "id": "r1_worktree",
+          "command": "git diff cc147cd253f3e7e57e45de265610becb64a74821 --check",
+          "exit": 0,
+          "stdout": "",
+          "stderr": "",
+          "warnings": [],
+          "unexpected": [],
+          "matched": true
+        },
+        {
+          "id": "r1_index",
+          "command": "git diff --cached cc147cd253f3e7e57e45de265610becb64a74821 --check",
+          "exit": 0,
+          "stdout": "",
+          "stderr": "",
+          "warnings": [],
+          "unexpected": [],
+          "matched": true
+        },
+        {
+          "id": "foundation_worktree",
+          "command": "git diff ff2b79f332c5ea2bec493eb5e166dcee6ba667eb --check",
+          "exit": 2,
+          "stdout": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md:249: new blank line at EOF.\n",
+          "stderr": "",
+          "warnings": [
+            {
+              "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+              "line": 249,
+              "message": "new blank line at EOF."
+            }
+          ],
+          "unexpected": [],
+          "matched": true
+        },
+        {
+          "id": "foundation_index",
+          "command": "git diff --cached ff2b79f332c5ea2bec493eb5e166dcee6ba667eb --check",
+          "exit": 2,
+          "stdout": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md:249: new blank line at EOF.\n",
+          "stderr": "",
+          "warnings": [
+            {
+              "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+              "line": 249,
+              "message": "new blank line at EOF."
+            }
+          ],
+          "unexpected": [],
+          "matched": true
+        },
+        {
+          "id": "cumulative_worktree",
+          "command": "git diff 8c19ca0d28058cf743b41c8547cc2629c8eac767 --check",
+          "exit": 2,
+          "stdout": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:3: trailing whitespace.\n+状态：**PASS / 可进入 E01-R**  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:4: trailing whitespace.\n+受审准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:5: trailing whitespace.\n+父 SHA：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:6: trailing whitespace.\n+Tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:7: trailing whitespace.\n+起始准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:8: trailing whitespace.\n+父基线：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:9: trailing whitespace.\n+起始 tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  \ndocs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md:249: new blank line at EOF.\n",
+          "stderr": "",
+          "warnings": [
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 3,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 4,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 5,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 6,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+              "line": 7,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+              "line": 8,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+              "line": 9,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+              "line": 249,
+              "message": "new blank line at EOF."
+            }
+          ],
+          "unexpected": [],
+          "matched": true
+        },
+        {
+          "id": "cumulative_index",
+          "command": "git diff --cached 8c19ca0d28058cf743b41c8547cc2629c8eac767 --check",
+          "exit": 2,
+          "stdout": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:3: trailing whitespace.\n+状态：**PASS / 可进入 E01-R**  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:4: trailing whitespace.\n+受审准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:5: trailing whitespace.\n+父 SHA：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md:6: trailing whitespace.\n+Tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:7: trailing whitespace.\n+起始准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:8: trailing whitespace.\n+父基线：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  \ndocs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md:9: trailing whitespace.\n+起始 tree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  \ndocs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md:249: new blank line at EOF.\n",
+          "stderr": "",
+          "warnings": [
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 3,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 4,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 5,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+              "line": 6,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+              "line": 7,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+              "line": 8,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md",
+              "line": 9,
+              "message": "trailing whitespace."
+            },
+            {
+              "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+              "line": 249,
+              "message": "new blank line at EOF."
+            }
+          ],
+          "unexpected": [],
+          "matched": true
+        }
+      ],
+      "W01": {
+        "unchanged": true,
+        "cumulative_base": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+        "files": {
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md": [
+            7,
+            8,
+            9
+          ]
+        },
+        "expected_warning_count": 7,
+        "diagnostic": "trailing whitespace.",
+        "verify_each_blob_equal_to_start": true
+      },
+      "W02": {
+        "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+        "line": 249,
+        "diagnostic": "new blank line at EOF.",
+        "bytes": 24083,
+        "sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+        "git_blob_sha1": "85a39b34c414952cfc30005b4f76b483bb019a42",
+        "expected_warning_count": 1,
+        "scope": "Only this exact archived original file, bytes and single EOF warning",
+        "precedence": "Overrides original task section 7 new-diff-exit-zero/no-eighth-warning requirement only for this W02; W01 unchanged; no other whitespace exception"
+      },
+      "status": "PASS_R1_CLEAN_WITH_PRESERVED_W01_W02_HISTORY",
+      "note": "Final stage repeats complete checks; raw outputs retained, no new exception or directory exclusion"
+    },
+    "file_manifest_excluding_self": [
+      {
+        "path": "src/core/residence-supply/player-metadata.ts",
+        "bytes": 8374,
+        "sha256": "9af38747f5dbdd167ffcd361b6593ca58f72b4e4fefbbc720aac7ee58747f796",
+        "blob": "b1646df1816d788ece487018c50f8e4a6f5cbfef"
+      },
+      {
+        "path": "src/core/residence-task/shared-actions.ts",
+        "bytes": 3916,
+        "sha256": "3baccd376ff8e52df2da8a5c6426740776ececdb09d2df426c705cddd1ac08fd",
+        "blob": "3089eec30f0f9dbd57376a5e65eac3672d85c98a"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/implementation-notes.md",
+        "bytes": 17110,
+        "sha256": "6824d60ac3bb5d658fe9a3ef68f940f2d17530be0128448de8df3e6b24075223",
+        "blob": "ab5c18ad480392b2b8fc6adca6646d88c0281e33"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/contract-and-support.md",
+        "bytes": 18222,
+        "sha256": "4d65cd3459423f8bc2a9c52d67d3ce741c498a4540c9e07db51d6f8954b4d9d4",
+        "blob": "eda0d39cf782cef7f0ac508dba6aa9fe48921637"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/metadata-support.json",
+        "bytes": 22590,
+        "sha256": "7bcbbd26c31c92a6947b07fbe217d718f8ad76e7424b5a871807181cccb7d7e0",
+        "blob": "8c8e369ccf252d2572d1400b63c39c0c027987b6"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/completion.md",
+        "bytes": 23030,
+        "sha256": "110cdc7f824612521bf4aeb1201d0cba7abf6659c847a9e835eda48b57673e96",
+        "blob": "3975bb7c900f3ddff712e4280fe827d6c1a158c4"
+      },
+      {
+        "path": "docs/03-architecture.md",
+        "bytes": 93773,
+        "sha256": "b7cf044dd830e7174be5bd28467ebf51f0b0a886ca7f2e360c269e69b8842d26",
+        "blob": "953adaaa52bb8d2fe83f222e3ea9df05198edd20"
+      },
+      {
+        "path": "docs/08-rule-implementation-traceability.md",
+        "bytes": 87631,
+        "sha256": "35b066c4a630d4471e7c9ac12e64f6e623e32975390145b29cd779d91ea2240b",
+        "blob": "27d3ca89591c4dcf9db40a12d95fb10549c578e1"
+      },
+      {
+        "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+        "bytes": 46651,
+        "sha256": "09c46af824c34f6d195924df3bf73214aeca042fe8243bffe1a264b877c5c55f",
+        "blob": "126c0940bf41ce061663c4155ad6be52adab1700"
+      },
+      {
+        "path": "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+        "bytes": 6978,
+        "sha256": "f50a6eb939518204747837152b39abb20021b4ed7a895415c366987621a01ef3",
+        "blob": "4aa2c8540b1fb99600e74384411b2079b57a7a6f"
+      },
+      {
+        "path": "src/core/residence-task/sample-protection.ts",
+        "bytes": 1131,
+        "sha256": "568bd16570d22abb36f0e2bedbedaf2467e3737a68845e6bb226fb811c841df9",
+        "blob": "aa377b625729fe07cc22f5d947a91348c13656f8"
+      },
+      {
+        "path": "src/core/residence-task/sample-protection.test.ts",
+        "bytes": 2547,
+        "sha256": "14c1a93fd31221e6d5122f69e909c6636c0330c804f025c1dd371177b76ca6df",
+        "blob": "18db767d2665808435bf2a1256c9e201b8f13021"
+      },
+      {
+        "path": "src/core/residence-supply/player-metadata-payment-review.test.ts",
+        "bytes": 12321,
+        "sha256": "b4a671537ceda725a9ddcb43c13337d6954cfd6c76f708d1addad2be2d70c7cc",
+        "blob": "f0906870e6003bf4d053b2603fb06e9f3e46b837"
+      },
+      {
+        "path": "src/state/residence-session/player-payment-review.test.ts",
+        "bytes": 10835,
+        "sha256": "81e48185fc5215f2b15bbee02b0d7393047ad8ccce0d0cc70785286d4243fdf0",
+        "blob": "824b30ad5fa50f35e0c7509d5b0572605124f26e"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-R1-task-v1.0.md",
+        "bytes": 10259,
+        "sha256": "ccbdcf90bbddf257db9b1ea153d28a4e09ab3a24155d9b1fe8910d0fc0f14f00",
+        "blob": "b03dade1464b8b02430e9328e48210a1729d70a6"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/OWNER-authority-and-scope-ENG-WORLD-PREPLAY-FOUNDATION-001-R1-v1.0.md",
+        "bytes": 1170,
+        "sha256": "18c435bf0565e7b1044120f4167ce585d9f970fc42da27a3b400ba933ddae368",
+        "blob": "4ebfc03dee21926c9324d1d9acdf0a78a9fed328"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/BASELINE-AND-SCOPE.json",
+        "bytes": 6014,
+        "sha256": "14506d55e5f5c3fee8be05bd97611b737aa63b2a9bd389f185f606cf38683a48",
+        "blob": "8757a3cc92eff34b8340028d3f84223955af2453"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/AUD-cc147cd-ENG-WORLD-PREPLAY-FOUNDATION-001-review-v1.0.md",
+        "bytes": 7191,
+        "sha256": "0c62b538da664384f766b1b811e71a2a402081247d23d2e98e6a375c3d768906",
+        "blob": "2699a3c751400f3b30f2fbf2e7aa8653463289c8"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/verify-package.py",
+        "bytes": 981,
+        "sha256": "9d390a85e5fe2e0634ba5166fc79154c9cff41f85d6a552ad051157bdad91542",
+        "blob": "b8c0c4297bc12d6da108ee4a8769869af037c3fb"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/source/player-metadata.ts",
+        "bytes": 8084,
+        "sha256": "5fa90d799c9cd1515d2ce952fdcfd4532d8814c3a100078e073fafca88f4be11",
+        "blob": "c856591a43ac31d59ac5cd41ed2d820a2f01c718"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/source/shared-actions.ts",
+        "bytes": 4158,
+        "sha256": "ba0c1fe5a9413bff4f53b9ef56590bb0dd1f003308fa82f7462cb5e29443c596",
+        "blob": "e5a0d548f2867ddaa06b6ca4395a534f94ddcb62"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/check-sample-payment.mjs",
+        "bytes": 7003,
+        "sha256": "27df121557315005dbfa464fa742a07fd1d0edc2c121af74dcb00b26d0ac4302",
+        "blob": "6d5802367f6cdcdfb7e0de0b57fd3e95e58cb362"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/sample-payment-results.json",
+        "bytes": 3262,
+        "sha256": "7909921aaf1d5c6eac900d1c82a1ed5b1d41e30c0b4a2540b87907460e1aeb40",
+        "blob": "32ca001c277b531c3e600e8f7233f4dba6880c50"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/source-integrity.json",
+        "bytes": 598,
+        "sha256": "8dc4f8fde40c2e553df69174468ad6995aab59960cffe95b58052ad6e561b3ee",
+        "blob": "d14aae6e14b1a6e5e9429d245080090182d745f0"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/input-integrity.json",
+        "bytes": 3239,
+        "sha256": "3ca7a11492ac4e3c7debef38b9fd8a867418a71a1e794219f2bf853c5e8cc969",
+        "blob": "d55b4d0762baee870a67305ef62e42e70fa8777d"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/ci163-summary.json",
+        "bytes": 575,
+        "sha256": "3221874c490a043657da88c3268fc5f3136ee247edbbd8c082f3c9af514f364f",
+        "blob": "676e825beb37bd507c0e357669b5b267335e8924"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/native-sample-payment-regression.test.ts.template",
+        "bytes": 5715,
+        "sha256": "77c74d48a035ac463d66cd0e72e1f4f57185e68d5045235b188b61d2e4740175",
+        "blob": "c0c93e2369c740414aa23fe42f4c91cd431bb2b8"
+      },
+      {
+        "path": "docs/engineering/world-integration/preplay/foundation/r1-inputs/SHA256SUMS.txt",
+        "bytes": 1349,
+        "sha256": "3b58c9376d5727197db11da170b8ee50ae08c8ccfafc5426aa1de60cab75a58c",
+        "blob": "8e3c0239b9065dcddc5be003899b11ecfe837762"
+      }
+    ],
+    "self_hash": "external final receipt includes this JSON without recursive self-hash",
+    "external_evidence": {
+      "directory": "C:/Users/zjl/AppData/Local/Temp/preplay-work-82efb881a6484c3e9b852f880f17e1dc/r1",
+      "logs": [
+        {
+          "file": "baseline-tests.log",
+          "bytes": 298,
+          "sha256": "dc146b0b195abcb2933f111b4a78dd5146cb90af6540e1fc4083ef280d197631"
+        },
+        {
+          "file": "combined.log",
+          "bytes": 1313,
+          "sha256": "2d0206b0bc5b5cfc598dbcbf3459e36bb238d5f904980a6226c26f6c796eca31"
+        },
+        {
+          "file": "exhausted-armor-charged-mutant.log",
+          "bytes": 140,
+          "sha256": "7f8e05ceb37a076b775fa9811b84b440bc0b58e7199e3885838b3abb97507bdf"
+        },
+        {
+          "file": "exhausted-armor-charged-restored.log",
+          "bytes": 142,
+          "sha256": "8ad9a59ab47dd96b75347db0f67203ae0cc31eb1ca485588906e2402b9f5250f"
+        },
+        {
+          "file": "full-check.log",
+          "bytes": 3417,
+          "sha256": "4c0514b7c02acda83bcb2848b85c3e302ed9f40182647fe4b803d671081693d8"
+        },
+        {
+          "file": "golden-after.log",
+          "bytes": 582,
+          "sha256": "f6f435b1c545cfc57991bdf1a3f73d786e4adfa62845b34668133de3f91bc1dd"
+        },
+        {
+          "file": "golden-before.json",
+          "bytes": 390920,
+          "sha256": "d73d7dba346951ed0e565b2abcb654ccc6bedf44f54b07644f188aab81b62bab"
+        },
+        {
+          "file": "golden-before.log",
+          "bytes": 562,
+          "sha256": "556b61d35abf54484f11a51dd964478da1115f60ebd1007089e8876f853beb82"
+        },
+        {
+          "file": "missing-sample-payment-mutant.log",
+          "bytes": 139,
+          "sha256": "981691570ab3e5c5a276d774a3af0416ce21fb5f4885c719ad5e4f1d1bc76dd5"
+        },
+        {
+          "file": "missing-sample-payment-restored.log",
+          "bytes": 141,
+          "sha256": "d936d14ac804c8f494516277269b1de20bf3dbe261b0534aee3ee90afa8a91b6"
+        },
+        {
+          "file": "native-original-after.log",
+          "bytes": 1416,
+          "sha256": "816c587f7ce4862b5710cf573967033ee7c44d37072056c9669eccc213d3e225"
+        },
+        {
+          "file": "native-original-before.log",
+          "bytes": 4724,
+          "sha256": "6c6de4d7e22283e11fbb8b3b481ef725a6ba939d4e198c3ff96d8acce0bac98f"
+        },
+        {
+          "file": "negative-controls.json",
+          "bytes": 3635,
+          "sha256": "a4a4e1e2ddbc68139c8b1f9082c612ceb6d349c0f17dac36715ff1c993bc9140"
+        },
+        {
+          "file": "remote-before.txt",
+          "bytes": 2086,
+          "sha256": "4fb9a1430104b714bba78c239dd8a236a4ee404fb81ffc8c58e45eb87bd3c157"
+        },
+        {
+          "file": "targeted-1.log",
+          "bytes": 2653,
+          "sha256": "88d06ed23c1c426a47a399903aa5b09ab159ac4fe8ebcab9d2ab30964ae2aa51"
+        },
+        {
+          "file": "targeted-2.log",
+          "bytes": 2923,
+          "sha256": "a94568c9cd0bbd3ac1089940db45273c38bac3fe3dd67822af06393e3fd652f0"
+        },
+        {
+          "file": "targeted-3.log",
+          "bytes": 3069,
+          "sha256": "b44b247151df4f97f502c9165f2997faf52becf6ad459512c9fc2234de29722b"
+        },
+        {
+          "file": "targeted-4.log",
+          "bytes": 454,
+          "sha256": "ce014f477c32e7f5d17601e15dcaca000c95788b43c90c7b4af508c34adf699e"
+        },
+        {
+          "file": "tested-code.json",
+          "bytes": 106264,
+          "sha256": "9be737d99df4a724a523691edb4227cc8fa914bf87df3e5beba662862e8cb5bc"
+        },
+        {
+          "file": "typecheck-1.log",
+          "bytes": 984,
+          "sha256": "7ebc478a4a9560ee17ce9d1ccefb466e785b6ab3af1cf739769800a6e2cfc4e9"
+        },
+        {
+          "file": "typecheck-2.log",
+          "bytes": 66,
+          "sha256": "d11ffe4794d55f89e05ba5796a42d42f732fe83d33b280c19738709f15fa4117"
+        }
+      ]
+    },
+    "git": {
+      "message": "fix(query): disclose sample armor resource payment",
+      "target": "origin feature/world-preplay-foundation-001",
+      "actual_final_SHA_parent_tree_remote_CI": "provided after ordinary commit; no amend for own SHA",
+      "merge": false,
+      "force": false,
+      "main_or_other_push": false
+    },
+    "maintenance": "npm audit historical mirror404 remains UNCONFIRMED; no audit fix or dependency update",
+    "NOT_RUN": [
+      "browser owner",
+      "UI/DOM",
+      "actual browser storage",
+      "multi-tab",
+      "Owner play",
+      "O3"
+    ],
+    "stop": "wait accurate SHA R1 source review; no next engineering"
   }
 }

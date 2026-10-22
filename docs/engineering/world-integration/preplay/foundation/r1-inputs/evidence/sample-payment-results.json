@@ -1,0 +1,113 @@
+{
+  "task": "cc147cd sample-payment review",
+  "kind": "isolated-exact-source-not-native",
+  "runtime": "v22.16.0",
+  "total": 8,
+  "matches": 4,
+  "mismatches": 4,
+  "unexpected_exceptions": 0,
+  "cases": [
+    {
+      "id": "cautious/coat-12",
+      "method": "cautious",
+      "before": 12,
+      "after": 11,
+      "actual_source_resource_calls": 1,
+      "displayed_resources": [],
+      "query_gameplay_calls": 0,
+      "input_unchanged": true,
+      "match": false,
+      "message": "preview must disclose the committed source branch resource charge\n\n0 !== 1\n"
+    },
+    {
+      "id": "cautious/coat-1",
+      "method": "cautious",
+      "before": 1,
+      "after": 0,
+      "actual_source_resource_calls": 1,
+      "displayed_resources": [],
+      "query_gameplay_calls": 0,
+      "input_unchanged": true,
+      "match": false,
+      "message": "preview must disclose the committed source branch resource charge\n\n0 !== 1\n"
+    },
+    {
+      "id": "cautious/coat-0",
+      "method": "cautious",
+      "before": 0,
+      "after": 0,
+      "actual_source_resource_calls": 0,
+      "displayed_resources": [],
+      "query_gameplay_calls": 0,
+      "input_unchanged": true,
+      "match": true,
+      "message": null
+    },
+    {
+      "id": "cautious/coat-absent",
+      "method": "cautious",
+      "before": null,
+      "after": null,
+      "actual_source_resource_calls": 0,
+      "displayed_resources": [],
+      "query_gameplay_calls": 0,
+      "input_unchanged": true,
+      "match": true,
+      "message": null
+    },
+    {
+      "id": "direct/coat-12",
+      "method": "direct",
+      "before": 12,
+      "after": 11,
+      "actual_source_resource_calls": 1,
+      "displayed_resources": [],
+      "query_gameplay_calls": 0,
+      "input_unchanged": true,
+      "match": false,
+      "message": "preview must disclose the committed source branch resource charge\n\n0 !== 1\n"
+    },
+    {
+      "id": "direct/coat-1",
+      "method": "direct",
+      "before": 1,
+      "after": 0,
+      "actual_source_resource_calls": 1,
+      "displayed_resources": [],
+      "query_gameplay_calls": 0,
+      "input_unchanged": true,
+      "match": false,
+      "message": "preview must disclose the committed source branch resource charge\n\n0 !== 1\n"
+    },
+    {
+      "id": "direct/coat-0",
+      "method": "direct",
+      "before": 0,
+      "after": 0,
+      "actual_source_resource_calls": 0,
+      "displayed_resources": [],
+      "query_gameplay_calls": 0,
+      "input_unchanged": true,
+      "match": true,
+      "message": null
+    },
+    {
+      "id": "direct/coat-absent",
+      "method": "direct",
+      "before": null,
+      "after": null,
+      "actual_source_resource_calls": 0,
+      "displayed_resources": [],
+      "query_gameplay_calls": 0,
+      "input_unchanged": true,
+      "match": true,
+      "message": null
+    }
+  ],
+  "limitations": [
+    "External qualification/provenance/body/resource arithmetic/draw are explicit TEST adapters.",
+    "No actual CombatValue aggregation, native CTB route, facade, S, save, or browser run.",
+    "Current values 12/1/0 and absent coat are clipped TEST inputs, not proof of all native-route reachability.",
+    "Only exact original metadata and shared task branch bodies are executed."
+  ]
+}

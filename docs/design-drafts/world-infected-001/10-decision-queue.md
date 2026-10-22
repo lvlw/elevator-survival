@@ -359,3 +359,7 @@ D1/D2 已批准并在本轮正式落文，等待准确 SHA 文档实审；不是
 基础工程已有作者实现与原生证据，仍待本批准确 SHA 源码／安全／更新接缝实审；不关闭 browser owner、五停点真实刷新／单 writer、低资产 UI、Owner 分段及九组合体验 Gate。O3、清档／迁移仍 OPEN。
 
 实际支持、未知项与验收见[基础作者记录](../../engineering/world-integration/preplay/foundation/contract-and-support.md)及[本轮完成报告](../../engineering/world-integration/preplay/foundation/completion.md)。历史正文按原时点保留，不改 DEC／UIR、参数、旧格式或旧医院入口。
+
+## ENG-WORLD-PREPLAY-FOUNDATION-001-R1 作者增量
+
+2026-10-22。R-M01为已批支付解释修正，不新增Owner决策或玩法。作者修复及自动验证完成待准确SHA专项实审；没有开启浏览器owner／UI或改变O3。详见[R1作者记录](../../engineering/world-integration/preplay/foundation/completion.md)；不是主线验收或Owner体验PASS。

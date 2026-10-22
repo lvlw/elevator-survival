@@ -1,0 +1,18 @@
+[
+  {
+    "file": "player-metadata.ts",
+    "bytes": 8084,
+    "sha256": "5fa90d799c9cd1515d2ce952fdcfd4532d8814c3a100078e073fafca88f4be11",
+    "expected_git_blob": "c856591a43ac31d59ac5cd41ed2d820a2f01c718",
+    "actual_git_blob": "c856591a43ac31d59ac5cd41ed2d820a2f01c718",
+    "match": true
+  },
+  {
+    "file": "shared-actions.ts",
+    "bytes": 4158,
+    "sha256": "ba0c1fe5a9413bff4f53b9ef56590bb0dd1f003308fa82f7462cb5e29443c596",
+    "expected_git_blob": "e5a0d548f2867ddaa06b6ca4395a534f94ddcb62",
+    "actual_git_blob": "e5a0d548f2867ddaa06b6ca4395a534f94ddcb62",
+    "match": true
+  }
+]

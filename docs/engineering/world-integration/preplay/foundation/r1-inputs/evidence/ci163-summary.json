@@ -1,0 +1,22 @@
+{
+  "kind": "connector_observation_not_local_test_execution",
+  "run": 163,
+  "run_id": 39697808099,
+  "sha": "cc147cd253f3e7e57e45de265610becb64a74821",
+  "status": "completed",
+  "conclusion": "success",
+  "job_id": 119559364741,
+  "stages": {
+    "architecture": "success",
+    "typecheck": "success",
+    "test:run": "success",
+    "build": "success"
+  },
+  "full_job_log_downloaded_this_review": false,
+  "independently_recounted_test_total": false,
+  "author_reported_tests": {
+    "files": 267,
+    "tests": 4444
+  },
+  "not_claimed": "No local complete npm rerun."
+}

@@ -1,0 +1,85 @@
+// Mainline regression template; NOT RUN by WebGPT. Run before changing production.
+// Real initial/departure/entry/CTB victory/move producers. Explicit 1/0 resource
+// boundaries below are TEST-only, after a new movement revision, not player actions.
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { createCombatTestFactory } from '__REPO__/src/core/residence-combat/test-fixtures'
+import { createInfectedCombatDependencies } from '__REPO__/src/content/infected-world-v0.1/combat-initial'
+import { drawIntInclusive } from '__REPO__/src/core/random'
+import { readCombatValue } from '__REPO__/src/core/residence-combat/validation'
+import { queryPlayerActionMetadata } from '__REPO__/src/core/residence-supply/player-metadata'
+import { qualifyPlayerCommand } from '__REPO__/src/core/residence-supply/player-query'
+import { fromValue, ready, allActions, counts } from '__REPO__/src/state/residence-session/player-test-fixtures'
+import { createPreplayController } from '__REPO__/src/app/infected-preplay/controller'
+import type { PlayerCoreCommand } from '__REPO__/src/core/residence-combat/player-query-types'
+
+const { entered, win } = createCombatTestFactory(() => createInfectedCombatDependencies('combat-test-character'))
+const miss = (c: Parameters<typeof drawIntInclusive>[0], min: number, max: number) => ({ ...drawIntInclusive(c,min,max), value:max })
+afterEach(() => vi.restoreAllMocks())
+function sampleBoundary(remaining?: 0 | 1) {
+  const h = entered('orderly',{ draw:miss })
+  let v = h.move(win(h,h.value),'H5').snapshot
+  const armor = v.carried.equipment.armor!
+  expect(armor.definitionId).toBe('armor_heavy_coat')
+  expect(v.battle).toBeNull()
+  if (remaining !== undefined) {
+    v = readCombatValue({ ...v, itemStates:{ states:v.itemStates.states.map(s => s.instanceId === armor.instanceId
+      ? { ...s,resource:{ kind:'integrity',current:remaining } } : s) } },h.deps)
+  }
+  const before = v.itemStates.states.find(s=>s.instanceId===armor.instanceId)!.resource
+  if (before.kind !== 'integrity') throw new Error('TEST needs integrity')
+  if (remaining === undefined) expect(before.current).toBeGreaterThan(0)
+  return { h,v,armor,before:before.current }
+}
+function command(v: ReturnType<typeof sampleBoundary>['v'], method:'cautious'|'direct'): PlayerCoreCommand {
+  return { kind:'task', command:{kind:'task',actionId:'sample',method,expectedRevision:v.character.revision,
+    placement:{x:0,y:0,rotated:false}} }
+}
+for (const method of ['cautious','direct'] as const) {
+  for (const remaining of [undefined,1,0] as const) {
+    it(`sample ${method}: metadata matches real task armor payment, remaining=${remaining ?? 'real'}`,()=>{
+      const {h,v,armor,before}=sampleBoundary(remaining), c=command(v,method)
+      expect(qualifyPlayerCommand(v,c,h.deps).kind).toBe('available')
+      const input=JSON.stringify(v), metadata=queryPlayerActionMetadata(v,c,h.deps)
+      const after=h.task(v,'sample',{method,placement:{x:0,y:0,rotated:false}}).snapshot
+      const resource=after.itemStates.states.find(s=>s.instanceId===armor.instanceId)!.resource
+      if(resource.kind!=='integrity')throw new Error('TEST needs resulting integrity')
+      expect(JSON.stringify(v)).toBe(input)
+      const actualLoss=before-resource.current
+      const expected=actualLoss ? [{name:h.deps.supply.catalog.physical.get(armor.definitionId).name,
+        kind:'integrity',before,requested:1,consumed:actualLoss,after:resource.current}]:[]
+      expect(metadata.resources).toEqual(expected)
+      expect(after.carried.backpack.items.some(i=>i.definitionId==='quest_sealed_pathogen_case')).toBe(true)
+    })
+  }
+  it(`sample ${method}: safe companion and controller expose payment before one explicit task`,()=>{
+    const f=sampleBoundary(),h=fromValue(f.v,f.h.deps),app=createPreplayController(h)
+    const choices=allActions(ready(h.player)).filter(a=>a.family==='task'&&a.method===method)
+    expect(choices).toHaveLength(1)
+    const request={action:choices[0].selector,placement:{x:0,y:0,rotated:false}}
+    const before=counts(h),n=h.dispatch.mock.calls.length,raw=h.owner.getState().current
+    const metadata=app.preview(request)
+    expect(counts(h)).toEqual(before);expect(h.dispatch).toHaveBeenCalledTimes(n)
+    expect(h.owner.getState().current).toBe(raw)
+    expect(metadata.facts!.resources).toHaveLength(1)
+    expect(metadata.facts!.resources[0]).toMatchObject({kind:'integrity',before:f.before,consumed:1,after:f.before-1})
+    const result=app.execute(request)
+    if(result.kind==='confirmation-required') expect(app.confirm(result.confirmation!).kind).toBe('committed')
+    else expect(result.kind).toBe('committed')
+    expect(h.dispatch).toHaveBeenCalledTimes(n+1)
+    expect(h.storage.write).toHaveBeenCalledTimes(before.writes+1)
+    expect(h.listener).toHaveBeenCalledTimes(before.notices+1)
+  })
+  it(`sample ${method}: repeated readonly metadata keeps state, IO and hidden data unchanged`,()=>{
+    const f=sampleBoundary(),h=fromValue(f.v,f.h.deps),choices=allActions(ready(h.player)).filter(a=>a.family==='task'&&a.method===method)
+    expect(choices).toHaveLength(1)
+    const r={action:choices[0].selector,placement:{x:0,y:0,rotated:false}}
+    const before=counts(h),raw=h.owner.getState().current,disk=h.disk(),n=h.dispatch.mock.calls.length
+    for(let i=0;i<3;i++){
+      const m=h.preplay.inspect(r)
+      expect(m.qualification.kind).toBe('available')
+      expect(JSON.stringify(m)).not.toMatch(/instanceId|originId|runId|seed|riskPercent|sample\.risks|pendingInfectionExposures/)
+    }
+    expect(counts(h)).toEqual(before);expect(h.owner.getState().current).toBe(raw);expect(h.disk()).toBe(disk)
+    expect(h.dispatch).toHaveBeenCalledTimes(n)
+  })
+}

@@ -1,0 +1,121 @@
+{
+  "task": "ENG-WORLD-PREPLAY-FOUNDATION-001-R1",
+  "version": "1.0",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "cc147cd253f3e7e57e45de265610becb64a74821",
+  "parent_sha": "ff2b79f332c5ea2bec493eb5e166dcee6ba667eb",
+  "start_tree": "79ecbc3fea0d1f7e00277b64cc054ff00dd52532",
+  "branch": "feature/world-preplay-foundation-001",
+  "mode": "continue-existing-branch-no-new-worktree",
+  "review_status": "NEEDS_REVISION_R-M01",
+  "allowed_paths": [
+    "src/core/residence-supply/player-metadata.ts",
+    "src/core/residence-task/shared-actions.ts",
+    "docs/engineering/world-integration/preplay/foundation/implementation-notes.md",
+    "docs/engineering/world-integration/preplay/foundation/contract-and-support.md",
+    "docs/engineering/world-integration/preplay/foundation/metadata-support.json",
+    "docs/engineering/world-integration/preplay/foundation/verification-results.json",
+    "docs/engineering/world-integration/preplay/foundation/completion.md",
+    "docs/03-architecture.md",
+    "docs/08-rule-implementation-traceability.md",
+    "docs/design-drafts/world-infected-001/10-decision-queue.md",
+    "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+    "src/core/residence-task/sample-protection.ts",
+    "src/core/residence-task/sample-protection.test.ts",
+    "src/core/residence-supply/player-metadata-payment-review.test.ts",
+    "src/state/residence-session/player-payment-review.test.ts",
+    "docs/engineering/world-integration/preplay/foundation/r1-inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-R1-task-v1.0.md",
+    "docs/engineering/world-integration/preplay/foundation/r1-inputs/OWNER-authority-and-scope-ENG-WORLD-PREPLAY-FOUNDATION-001-R1-v1.0.md",
+    "docs/engineering/world-integration/preplay/foundation/r1-inputs/BASELINE-AND-SCOPE.json",
+    "docs/engineering/world-integration/preplay/foundation/r1-inputs/AUD-cc147cd-ENG-WORLD-PREPLAY-FOUNDATION-001-review-v1.0.md",
+    "docs/engineering/world-integration/preplay/foundation/r1-inputs/verify-package.py",
+    "docs/engineering/world-integration/preplay/foundation/r1-inputs/source/player-metadata.ts",
+    "docs/engineering/world-integration/preplay/foundation/r1-inputs/source/shared-actions.ts",
+    "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/check-sample-payment.mjs",
+    "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/sample-payment-results.json",
+    "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/source-integrity.json",
+    "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/input-integrity.json",
+    "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/ci163-summary.json",
+    "docs/engineering/world-integration/preplay/foundation/r1-inputs/evidence/native-sample-payment-regression.test.ts.template",
+    "docs/engineering/world-integration/preplay/foundation/r1-inputs/SHA256SUMS.txt"
+  ],
+  "allowed_path_count": 29,
+  "existing_source_seams": [
+    "src/core/residence-supply/player-metadata.ts",
+    "src/core/residence-task/shared-actions.ts"
+  ],
+  "new_source_and_tests": [
+    "src/core/residence-task/sample-protection.ts",
+    "src/core/residence-task/sample-protection.test.ts",
+    "src/core/residence-supply/player-metadata-payment-review.test.ts",
+    "src/state/residence-session/player-payment-review.test.ts"
+  ],
+  "package_files": [
+    "ENG-WORLD-PREPLAY-FOUNDATION-001-R1-task-v1.0.md",
+    "OWNER-authority-and-scope-ENG-WORLD-PREPLAY-FOUNDATION-001-R1-v1.0.md",
+    "BASELINE-AND-SCOPE.json",
+    "AUD-cc147cd-ENG-WORLD-PREPLAY-FOUNDATION-001-review-v1.0.md",
+    "verify-package.py",
+    "source/player-metadata.ts",
+    "source/shared-actions.ts",
+    "evidence/check-sample-payment.mjs",
+    "evidence/sample-payment-results.json",
+    "evidence/source-integrity.json",
+    "evidence/input-integrity.json",
+    "evidence/ci163-summary.json",
+    "evidence/native-sample-payment-regression.test.ts.template",
+    "SHA256SUMS.txt"
+  ],
+  "archive_prefix": "docs/engineering/world-integration/preplay/foundation/r1-inputs/",
+  "git_permissions": {
+    "ordinary_commit": true,
+    "ordinary_push": true,
+    "push_target": "origin feature/world-preplay-foundation-001",
+    "main": false,
+    "other_branches": false,
+    "force": false,
+    "merge": false,
+    "amend": false
+  },
+  "historical_baseline": {
+    "author_files": 267,
+    "author_tests": 4444,
+    "author_original_delta": 75,
+    "resume_delta": 0,
+    "requires_actual_baseline": true
+  },
+  "W01": {
+    "unchanged": true,
+    "cumulative_base": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+    "files": {
+      "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "docs/engineering/residence-foundation/content-supply-restore/inputs/ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-task-v1.0.md": [
+        7,
+        8,
+        9
+      ]
+    },
+    "expected_warning_count": 7,
+    "diagnostic": "trailing whitespace.",
+    "verify_each_blob_equal_to_start": true
+  },
+  "W02": {
+    "path": "docs/engineering/world-integration/preplay/foundation/inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+    "line": 249,
+    "diagnostic": "new blank line at EOF.",
+    "bytes": 24083,
+    "sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+    "git_blob_sha1": "85a39b34c414952cfc30005b4f76b483bb019a42",
+    "expected_warning_count": 1,
+    "scope": "Only this exact archived original file, bytes and single EOF warning",
+    "precedence": "Overrides original task section 7 new-diff-exit-zero/no-eighth-warning requirement only for this W02; W01 unchanged; no other whitespace exception"
+  },
+  "review_execution": "Two exact module bodies, explicit external adapters; not full native APIs; native template NOT RUN",
+  "model_in_task": false,
+  "stop": "exact-SHA mainline review; no browser owner/UI/next stage"
+}

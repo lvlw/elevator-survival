@@ -1,0 +1,86 @@
+[
+  {
+    "package": "ENG-WORLD-PREPLAY-FOUNDATION-001-Codex-Package-v1.0.zip",
+    "file_count": 7,
+    "computed_directory_tree": "ef89fcc4858d97ec190cdf17f3adfaf27c6003f8",
+    "remote_directory_tree": "ef89fcc4858d97ec190cdf17f3adfaf27c6003f8",
+    "match": true,
+    "files": [
+      {
+        "name": "ENG-WORLD-PREPLAY-FOUNDATION-001-task-v1.0.md",
+        "bytes": 24083,
+        "sha256": "c8b7fba85afd741b871b4022d9824744938e1f38cfee16bce36bf06dd26f5325",
+        "blob": "85a39b34c414952cfc30005b4f76b483bb019a42"
+      },
+      {
+        "name": "OWNER-authority-and-scope-PREPLAY-FOUNDATION-001-v1.0.md",
+        "bytes": 1620,
+        "sha256": "095ede86e95ee98b91c1a1712298a0496040f608e8bb66921297b515105eeb36",
+        "blob": "038cca13fd89c48887554ceae3d77c02a0f7934d"
+      },
+      {
+        "name": "AUD-ff2b79f-DOC-WORLD-ENTRY-006-review-v1.0.md",
+        "bytes": 7666,
+        "sha256": "e7426d63a919822577b26d45134c0f08079b4d7a1668b4736445d9150f908e96",
+        "blob": "d6d9c5d4ae927b313f27b1c151ffc80047952dc1"
+      },
+      {
+        "name": "MAINLINE-approval-provenance-clarification-v1.0.md",
+        "bytes": 1700,
+        "sha256": "314d266292fa34e7e91d57c35e94566824e1e380357ef0d5977cbf8b60f6837e",
+        "blob": "6de33c346f8c205bc2bd3b841c1901df7166d223"
+      },
+      {
+        "name": "BASELINE-AND-INPUTS.json",
+        "bytes": 12580,
+        "sha256": "0e450a2065287f6f3b9462f1e8e1aad0ab752db74ebe63896825f1edb3841075",
+        "blob": "7ff2a5741eb83a86fc2858d9b630c9d12b6d4cd2"
+      },
+      {
+        "name": "verify-task-package.py",
+        "bytes": 2092,
+        "sha256": "ebabfd256c637c34f4c5bc439c05d753b6944513ca4af19b0d086baaa2141192",
+        "blob": "6c6c29cd1cdc8fdfd3c4b8dfea216ec767153440"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 645,
+        "sha256": "f0a7f847c522c1d8d7fbc487db729112767351912d9db356876ba766c7d854dc",
+        "blob": "ef68bd5151f408d44f24ff9e1849344b14662319"
+      }
+    ]
+  },
+  {
+    "package": "ENG-WORLD-PREPLAY-FOUNDATION-001-RESUME-01-Codex-Package-v1.0.zip",
+    "file_count": 4,
+    "computed_directory_tree": "1f2dbe0b805856d856f003feff3a69ce23d7b06b",
+    "remote_directory_tree": "1f2dbe0b805856d856f003feff3a69ce23d7b06b",
+    "match": true,
+    "files": [
+      {
+        "name": "ENG-WORLD-PREPLAY-FOUNDATION-001-RESUME-01-v1.0.md",
+        "bytes": 10495,
+        "sha256": "ac8ad7633daa72e4e04189d659e6d75378441c53bfe420239fcdb741852371bc",
+        "blob": "6c8282acc34f86ef3e41cc2ab9d273dc89c4c346"
+      },
+      {
+        "name": "RESUME-01-SCOPE.json",
+        "bytes": 6525,
+        "sha256": "e9387bbf8a1343376a97628c985ad11db27a788d5c5d8152abfb473c3c81954e",
+        "blob": "b203ebef2fb8d4ebac9dd4d23b540787387f511d"
+      },
+      {
+        "name": "evidence/original-archive-eof-verification.json",
+        "bytes": 6443,
+        "sha256": "db30f839c2f0f160b928b94bc7c5103efbbc2a2f2b7f37989ee2c0b6c4d42656",
+        "blob": "f8f8f44c0796a00543dfb85e8be7851dc7cf7445"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 318,
+        "sha256": "ac7280b976d63c9cec8a2e7e1172daad900d12b72ac391f182bd505e38b92568",
+        "blob": "a42b15fbd3b2e9c93115cd46819f28b0c6b96875"
+      }
+    ]
+  }
+]

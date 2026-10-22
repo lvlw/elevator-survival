@@ -799,3 +799,7 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 已实现获准 headless foundation：D1 从版本绑定 infection_damage 只读派生；安全 metadata 复用原纯规则，controller 只缓存安全 Presentation snapshot。原 S 的 current、预编码、提交、writer 和通知不变，执行返回后显式 ready，原生 blocked 回调不当最终状态。浏览器 handoff／UI 尚未接入。
 
 实际支持、未知项与验收见[基础作者记录](engineering/world-integration/preplay/foundation/contract-and-support.md)及[本轮完成报告](engineering/world-integration/preplay/foundation/completion.md)。历史正文按原时点保留，不改 DEC／UIR、参数、旧格式或旧医院入口。
+
+## ENG-WORLD-PREPLAY-FOUNDATION-001-R1 作者增量
+
+2026-10-22。样本提取保护与护具支付条件窄抽为纯 querySampleProtection，原执行与安全metadata同源。metadata仅公开资源支付，不输出内部风险百分比／隐藏暴露；controller／S提交职责不变。详见[R1作者记录](engineering/world-integration/preplay/foundation/completion.md)；不是主线验收或Owner体验PASS。

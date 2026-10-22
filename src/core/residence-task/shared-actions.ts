@@ -2,13 +2,14 @@ import type { SupplyDomain, SupplyDomainContext } from '../residence-supply/shar
 import { requireSupplyDomainAction } from '../residence-supply/shared-validation'
 import { consumeCommittedResource } from '../item-state'
 import { ensure } from '../residence-supply/shared-validation'
-import { numberValue, vectorValue } from '../residence-supply/config'
+import { numberValue } from '../residence-supply/config'
 import { supplyBodyAction, supplyEnergyQuery, supplyPaidCost } from '../residence-supply/cycle-adapter'
 import { createTaskCommand } from './validation'
 import { assertTaskPrerequisites, taskFact, taskAlreadyProduced, markSupplyProduction, grantSupplyTask,
   spendEquippedSupplyTool, requireSupplyCard, consumeSupplyRecipe, materializeSupplySource } from './plans'
 import { drawSupplyInteger } from './random'
 import { requireTaskSelection, taskMethodCost } from './qualification'
+import { querySampleProtection } from './sample-protection'
 
 export function planSharedTaskAction<V extends SupplyDomain, P>(value: V, request: unknown, context: SupplyDomainContext<V, P>) {
   const deps = context.dependencies
@@ -27,14 +28,12 @@ export function planSharedTaskAction<V extends SupplyDomain, P>(value: V, reques
         requireSupplyCard(value, deps, c.toolInstanceId)
       }
     } else if (a.id === 'sample') {
-      const index = method === 'cautious' ? 0 : 1
-      risk = vectorValue(deps.configuration, 'sample.risks', 2)[index]
-      const coat = value.carried.equipment.armor, state = coat && value.itemStates.states.find(s => s.instanceId === coat.instanceId)
-      const protectedRisk = vectorValue(deps.configuration, 'sample.coat_risks', 2)[index]
-      if (coat?.definitionId === 'armor_heavy_coat' && state?.resource.kind === 'integrity' && state.resource.current > 0 && protectedRisk < risk) {
-        const worn = consumeCommittedResource(state, numberValue(deps.configuration, 'wear.tool'))
+      const protection = querySampleProtection(value, method, deps)
+      risk = protection.effectiveRiskPercent
+      if (protection.payment) {
+        const state = value.itemStates.states.find(s => s.instanceId === protection.payment!.instanceId)!
+        const worn = consumeCommittedResource(state, protection.payment.requested)
         next = { ...next, itemStates: { states: next.itemStates.states.map(s => s.instanceId === state.instanceId ? worn.state : s) } }
-        risk = protectedRisk
       }
     }
   }

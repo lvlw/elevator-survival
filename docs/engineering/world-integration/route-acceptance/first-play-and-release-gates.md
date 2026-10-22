@@ -52,3 +52,7 @@
 基础 headless 作者交付不等于首玩准入：真实启动、保存、刷新及跨标签独占仍须浏览器批实测，UI 与 Owner 体验另验。依赖维护只读审计因镜像 API 404 未取得最新结论，公开发布前维护 Gate 保留。
 
 实际支持、未知项与验收见[基础作者记录](../preplay/foundation/contract-and-support.md)及[本轮完成报告](../preplay/foundation/completion.md)。历史正文按原时点保留，不改 DEC／UIR、参数、旧格式或旧医院入口。
+
+## ENG-WORLD-PREPLAY-FOUNDATION-001-R1 作者增量
+
+2026-10-22。样本护具已知支付的headless metadata缺口按R1修复并作原生对照。浏览器／UI／真实保存／跨标签／Owner Gate不因此关闭；源码专项实审仍为后继前置，审计404仍UNCONFIRMED。详见[R1作者记录](../preplay/foundation/completion.md)；不是主线验收或Owner体验PASS。

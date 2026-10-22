@@ -131,3 +131,47 @@ W01 仍仅原两输入七处 trailing whitespace；本次 W02 仅原任务书第
 五份记录和四份补充文件按精确路径重新暂存；记录生成后再次暂存并重做全量范围、原件、字节及六条空白审计。只普通 commit／push 至 `origin feature/world-preplay-foundation-001`；具体最终 SHA／父 SHA／tree／远端／CI 由提交后回复及仓库外 receipt 提供，不为自身 SHA amend。此处记录的是已完成的提交前核验，不预称推送或 CI 已成功。
 
 保存原有安全 unknown、浏览器／DOM／跨标签／Owner NOT RUN 和 O3 未决定。npm audit 的镜像 404 仍为 UNCONFIRMED，本次未重跑审计或升级依赖。后继浏览器 owner、UI 等不开始，停止等待准确 SHA 的源码／安全／应用更新实审。
+
+## ENG-WORLD-PREPLAY-FOUNDATION-001-R1：R-M01 作者返修记录
+
+2026-10-22；起始 `cc147cd253f3e7e57e45de265610becb64a74821`，沿用 `feature/world-preplay-foundation-001`。本节追加在 BLOCKED→RESUME-01 历史之后，不改写原失败／原支持声明，不表示当前 WebGPT 主线准确 SHA 已实审通过。依据 [R1任务](r1-inputs/ENG-WORLD-PREPLAY-FOUNDATION-001-R1-task-v1.0.md)、[实审报告](r1-inputs/AUD-cc147cd-ENG-WORLD-PREPLAY-FOUNDATION-001-review-v1.0.md) 与 [精确29路径](r1-inputs/BASELINE-AND-SCOPE.json)。
+
+### 真实基线与修前／修后
+
+本机重新确认 HEAD／分支／工作区／索引干净，未见仍运行的原任务命令；两宿主与包内原源码的 SHA-256／Git blob 一致。默认 `npm run test:run` 实测 **267 files／4444 tests PASS，260.07s**，Node24.9.0／npm11.6.0／Vitest4.1.10，未覆盖 worker／全局timeout。
+
+改生产前原字节运行原生模板，仅将 __REPO__ 替换为实际绝对路径并使用仓库外配置：10项中 **6个支付 AssertionError、4 PASS**，无导入／类型／fixture适配。不是把主线8项隔离执行当成本机原生结论。修复后同一模板10项全部PASS。
+
+另外在改生产前保存8组原生P完整snapshot／draw调用：两方法×真实正常资源／合法TEST末次1／耗尽0／未装备。修后8组完整结果及draw参数逐项一致。真实正例从初配→出发→开门→真实入场和CTB胜利→H5取得；正常外套11→10，末次1→0。未装备TEST边界把同一真实外套移入背包并通过完整聚合，不删实例／ItemState／origin，不宣称已有玩家换装命令；本轮未创造其他未登记防具。
+
+### 唯一保护／支付依据
+
+新增纯内部 `querySampleProtection`（sample-protection.ts），唯一保留原方法索引、风险选择和“厚外套＋integrity正数＋确实降险”条件，支付额度仍读 wear.tool。原 shared-actions 消费该事实后依旧实际 consumeCommittedResource、来源／放置校验及原位置抽签；metadata只取 payment，再用原 previewCommittedResourceAction生成 name/kind/before/requested/consumed/after，不投影内部风险字段。没有试执行producer、签发或额外draw。
+
+两种提取：正常及末次耐久支付1，末次仍本次完整保护；耗尽0／未装备无支付且合法提取仍可执行。不强制穿外套，不改费用、风险或资格。风险为无的谨慎防护仍0 draw；直接仍1 draw；未保护谨慎仍1 draw。两个旧宿主去除本次窄抽取／投影增量后逐字等于起点；完整原生结果相等补充证明旧行为兼容。
+
+指定相邻支付映射实际核查／回归：crow与toolbox开门（正常／末次）、lit手电支付、真实门卡不耗耐久、机械维护单总池和真实材料、充电真实电池及封顶恢复、战斗武器支付。未声称这是整个系统所有费用的完整审计；没有发现该已读范围内需要越权修改的新宿主。
+
+### 查询与提交独立计数
+
+每一只读窗口在真实夹具建立后独立清零：core metadata／companion／controller preview／草稿取消，producer、CTB、G1/G2、随机、authority、来源／消费、dispatch／read／write／native notice及context创建均0；另断言资源consume为0。合法未冻结调用者经完整聚合校验后查询，不修改或冻结原对象。
+
+每次明确提取：1 task、1 G1 action、0 G1 cycle、0 CTB、1 origin／sample、1 revision、1 dispatch／current／write attempt／native notice；适用护具consume恰1，不适用为0。正常／末次谨慎draw0、直接draw1；耗尽／未装备的两法各1。重复已消费请求、非法重叠／越界、跨会话及陈旧选择均整笔拒绝，拒绝窗口0 gameplay／IO。
+
+两方法保存失败仍保已扣护具／真实样本及最新内存；retry只有aggregate2／encode1／write1，消费／动作／draw／原生通知均0，current与Feed同引用。隐私配对使用同公开病程档不同隐藏进度／pending及相反注入draw端口：完整安全视图／metadata相等；实际执行后直接暴露增量[1,0]、谨慎防护[0,0]。这是明确条件见证，不冒充新默认种子实验；没有输出risk百分比或隐藏暴露。
+
+### 新测试、失败修订及负控
+
+新增3份测试文件 **43项**；替换0、删除0、净增43，原75项及更早旧测试／helper逐字节保持。单纯外部模板／8组golden和主线隔离项不累计到生产测试增量。初次新相邻测试有不存在的H2-H3边、H3搜索漏显式method、门卡误用ordinary拾取和电池名称误写；新测试依真实内容／专用搬运修正，保留三轮失败记录。一次新测试TS联合类型收窄错误已在新测试内修复，不计语义检出。
+
+本轮两类仓库外原生负控：删除sample支付投影→资源对照AssertionError；去掉耗尽条件→合法耗尽请求的“不抛错／无支付”断言检出AssertionError。每类仅选定1项业务断言失败，还原后各1项PASS；非导入／fixture／类型／超时。历史负控NOT RE-RUN、不累加。
+
+组合回归 **40 files／307 tests PASS，209.19s**，包含原15文件基础测试、两条原controller长链、E03与选定P/R/S必要回归。最终默认 `npm run check` **270 files／4487 tests PASS，261.67s**；architecture53 DEC／346 core production files、typecheck、全部tests及build PASS。保留已有大chunk告警；未改依赖／CI／预算。
+
+### 范围、原件、空白与交付
+
+只使用29精确路径：2旧生产宿主、1新纯owner、3新测试、5作者记录、4共享文档末尾附记和14份原件。14输入原字节／摘要一致；旧正式合同、配置、D1、安全三态、controller、G1/G2、S/domain及v1—v4格式均只读。888项本轮被测源码／配置指纹保持，1562个非白名单原文件不变；7份Markdown历史前缀及旧JSON对象保留，无新增生产导入环。
+
+R1增量与普通／cached diff-check必须原始exit0；自ff2b79f累计仅W02，原始exit2；自8c19ca0累计仅W01七处＋W02一处，原始exit2。完整stdout／stderr／诊断及精确指纹在verification新增r1对象及仓库外receipt保留；不改原件、不扩例外、不排除inputs或改检查配置。最终记录再次逐路径暂存后重核。
+
+本记录在提交前形成；完整最终SHA／父／tree／push／准确SHA CI随提交后回复及外部receipt提供，不amend写入自身SHA。仅普通提交并推同名工程分支，停止等待主线专项实审。浏览器owner／UI／存储／多标签／Owner试玩NOT RUN，O3未决定；旧unknown保持。npm audit沿用此前镜像404的UNCONFIRMED，不重跑／升级依赖。

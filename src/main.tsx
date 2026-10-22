@@ -1,15 +1,6 @@
 import { StrictMode, type ReactNode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App'
 import { selectApplicationEntry } from './app/application-entry'
-import {
-  createProductionBrowserRunSaveStorage,
-  createProductionHospitalNewRunDependencies,
-  productionPresentationDependencies,
-} from './app/production-composition'
-import { bootstrapProductionRun } from './app/production-bootstrap'
-import { hospitalRunSaveRulesRegistry } from './state/run-save'
-import './styles.css'
 
 const rootElement = document.getElementById('root')
 
@@ -25,10 +16,17 @@ const entry = selectApplicationEntry({
 })
 
 if (entry === 'development-preview' && import.meta.env.DEV) {
+  void import('./styles.css')
   void import('./ui/dev-preview/development-ui-preview').then(({ default: Preview }) => {
     render(<Preview />)
   })
+} else if (entry === 'infected-world-playtest' && import.meta.env.DEV) {
+  void import('./ui/infected-world').then(({ InfectedWorldApp }) => render(<InfectedWorldApp />))
 } else {
+  const [{ default: App }, composition, { bootstrapProductionRun }, { hospitalRunSaveRulesRegistry }] = await Promise.all([
+    import('./App'), import('./app/production-composition'), import('./app/production-bootstrap'), import('./state/run-save'), import('./styles.css'),
+  ])
+  const { createProductionBrowserRunSaveStorage, createProductionHospitalNewRunDependencies, productionPresentationDependencies } = composition
   const storage = createProductionBrowserRunSaveStorage()
   const newRunDependencies = createProductionHospitalNewRunDependencies(storage)
   const initialBootstrapResult = bootstrapProductionRun({

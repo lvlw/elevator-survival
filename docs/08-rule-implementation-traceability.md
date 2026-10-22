@@ -384,3 +384,9 @@ D1/D2 已获 Owner 批准，主线已定稿后继三批技术责任；本轮只�
 ## ENG-WORLD-BROWSER-OWNER-001 作者实现附记
 
 显式且未注册玩家入口的 browser owner 已接入：四个 S 宿主补齐冻结 prepared expected/original-text 单写；独立 reservation/checkpoint 与全会话 Web Locks，冷 expected 不从 v4 payload 反推。唯一 S/current、旧 text 端口、格式、规则和旧医院入口／槽保持。真实 Edge 五停点、三敌、同源多页及生命周期已测；不是全平台或 Owner 体验通过。详见[本批交付](engineering/world-integration/preplay/browser-owner/completion.md)。等待准确 SHA 保存／浏览器接缝实审；未自动进入 UI 或决定 O3。
+
+## ENG-WORLD-LOW-ASSET-UI-001 作者实现附记
+
+独立 DEV 低资产界面已接线：明确初选、五停点、Stage-First 房间／战斗、只读已知地图、完整参数请求、真实 footprint／快捷栏、药食／维护／任务与终局、保存和失锁反馈。必要输入说明复用同源纯事实，隐藏医疗目标继续 unknown；普通整实例拾取的 first-fit 逐格调用正式 Preview，不扩展到任务物、交易或整理。
+
+验收映射、当前能力与未公开字段见[U01—U10 作者矩阵](engineering/world-integration/preplay/low-asset-ui/contract-and-support.md)，实际验证与局限见[完成记录](engineering/world-integration/preplay/low-asset-ui/completion.md)。旧 E03、旧测试与规则保留；本批作者证据不能替代准确 SHA 源码／浏览器／视觉实审或 Owner 体验。历史实现记录不追改，O3 未决定。

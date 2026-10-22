@@ -79,6 +79,7 @@ export function createPreplayController(ports: PreplayPorts): PreplayController 
     retrySave: () => run(() => ({ view: ports.player.retrySave(), committed: false })),
     synchronize: () => run(() => { ports.synchronize(); return { view: ports.player.query(), committed: false } }),
     preview: input => ports.preplay.inspect(input),
+    describeAction: action => ports.preplay.describeAction(action),
     beginDraft: input => {
       if (busy || notifying || snapshot.status !== 'stable') throw new Error('Draft is unavailable while presentation is blocked')
       const captured = ports.preplay.capture(input), token = drafts.create(captured.request, captured.scope)

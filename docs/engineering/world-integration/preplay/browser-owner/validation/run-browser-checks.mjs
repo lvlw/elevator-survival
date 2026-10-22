@@ -1,8 +1,12 @@
 // TEST ONLY. Node built-ins + installed Chromium; own temporary profile, no package installation.
 import fs from 'node:fs';import os from 'node:os';import path from 'node:path';import cp from 'node:child_process';import net from 'node:net';import assert from 'node:assert/strict';
-const repo=fs.realpathSync(process.cwd()),out=process.argv[2];
-if(!out||path.resolve(out)===repo||path.resolve(out).startsWith(repo+path.sep))throw Error('Output must be outside repo');
-fs.mkdirSync(out,{recursive:true});const profile=fs.mkdtempSync(path.join(out,'profile-'));
+import { planProbeOutput, recheckOutputDirectory } from '../../../../../design-drafts/world-infected-001/entry-006/validation/output-path-guard.mjs';
+if(!process.argv[2])throw Error('Output must be outside repo');
+const outputPlan=planProbeOutput(process.cwd(),process.argv[2]);
+const repo=outputPlan.realRepo,out=outputPlan.out;
+fs.mkdirSync(out,{recursive:true});
+recheckOutputDirectory(outputPlan);
+const profile=fs.mkdtempSync(path.join(out,'profile-'));
 const exe=process.env.BROWSER_OWNER_TEST_EXE??'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
 if(!fs.existsSync(exe))throw Error('Installed browser not found: '+exe);
 const pause=ms=>new Promise(r=>setTimeout(r,ms));

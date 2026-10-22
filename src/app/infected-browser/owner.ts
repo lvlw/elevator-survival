@@ -60,6 +60,7 @@ export function createInfectedBrowserOwner(options: BrowserOptions = {}): Browse
     c.controls = Object.freeze({
       getSnapshot: () => call(p => p.getSnapshot()), execute: input => call(p => p.execute(input)),
       confirm: token => call(p => p.confirm(token)), preview: input => call(p => p.preview(input)),
+      describeAction: action => call(p => p.describeAction(action)),
       beginDraft: input => call(p => p.beginDraft(input)), cancel: () => call(p => p.cancel()),
       executeDraft: token => call(p => p.executeDraft(token)), retrySave: () => call(p => p.retrySave()),
       synchronize: () => call(p => p.synchronize()),

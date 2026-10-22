@@ -6,6 +6,7 @@ import type { CombatDependencies } from '../../core/residence-combat/types'
 import { resolvePlayerCommand } from './player-commands'
 import { qualifyPlayerCommand } from './player-preview'
 import { readPlayerRequest } from './player-validation'
+import { describePlayerAction } from './player-inputs'
 import { isPlayerBusinessError, PlayerSelectionError } from './player-errors'
 import type { PlayerContext } from './player-context'
 import type { PlayerRequest } from './player-types'
@@ -101,5 +102,6 @@ export function createPlayerPreplay(currentContext: () => PlayerContext | null, 
         confirmation: { kind: 'none', reason: null }, hasProvenAlternative: false })
     }
   }
-  return Object.freeze({ scope: () => currentContext()?.scope ?? null, capture, inspect })
+  return Object.freeze({ scope: () => currentContext()?.scope ?? null,
+    describeAction: action => describePlayerAction(requireContext(), action, deps), capture, inspect })
 }

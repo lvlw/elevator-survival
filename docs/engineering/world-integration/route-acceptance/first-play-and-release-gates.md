@@ -61,3 +61,9 @@
 ## ENG-WORLD-BROWSER-OWNER-001 作者实现附记
 
 显式且未注册玩家入口的 browser owner 已接入：四个 S 宿主补齐冻结 prepared expected/original-text 单写；独立 reservation/checkpoint 与全会话 Web Locks，冷 expected 不从 v4 payload 反推。唯一 S/current、旧 text 端口、格式、规则和旧医院入口／槽保持。真实 Edge 五停点、三敌、同源多页及生命周期已测；不是全平台或 Owner 体验通过。详见[本批交付](../preplay/browser-owner/completion.md)。等待准确 SHA 保存／浏览器接缝实审；未自动进入 UI 或决定 O3。
+
+## ENG-WORLD-LOW-ASSET-UI-001 作者实现附记
+
+本批交付显式 DEV 低资产 UI，作者分别记录原生、真实 React DOM、真实 Edge 保存／刷新／同源竞争／生命周期与截图证据，见[完成记录](../preplay/low-asset-ui/completion.md)及[首玩指南](../preplay/low-asset-ui/owner-playtest-guide.md)。准确 SHA 源码／浏览器／视觉审查仍为前置，自动与截图检查不等于 Owner 体验通过；其他浏览器、真实 OS 配额／权限耗尽等未覆盖项须按报告保留 NOT RUN。
+
+旧医院入口和槽不变，无 Reset、清档或迁移。失败保存后刷新仅能恢复最后成功 checkpoint；全平台、Owner 分段／九组合体验、依赖维护审计与 O3 均未因此关闭。既有 npm audit 镜像 404 仍 UNCONFIRMED，不升级依赖或以测试通过代替安全结论。

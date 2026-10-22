@@ -309,3 +309,9 @@ Owner 认可草图的总体布局与交互方向，下一步以真实浏览器�
 这里只索引 DEC-053：新世界可显示当前病程粗档，入口限显式 DEV 独立命名空间。Stage-First、分级确认等现行 UIR 保持，本轮不新增 UIR、不注册入口；隐藏医疗目标 Preview 仍 unknown。
 
 依据：[DEC-053](05-design-decisions.md#dec-053)、[同范围后继正式合同](engineering/world-integration/preplay/public-condition-contract-v1.0.md)。本轮文档与 T01 交付仍待准确 SHA 实审；批准／定稿不等于生产或体验验收。
+
+## ENG-WORLD-LOW-ASSET-UI-001 作者实现索引（不新增 UIR）
+
+获准独立 DEV 首玩界面按既有 Stage-First、只读地图／Travel Cluster、L0—L3、显式参数与右键／键盘等价入口实现。六条最近 Feed、局部详情、真实物品 footprint、中性缺图占位、当前病程粗档及既有保护均委托安全接口；隐藏医疗目标仍 unknown。普通整实例拾取仅适用本批正式合同限定的未旋转 row-major Preview first-fit，不套用旧医院优先堆叠语义。
+
+详见[作者支持矩阵](engineering/world-integration/preplay/low-asset-ui/contract-and-support.md)与[视觉证据说明](engineering/world-integration/preplay/low-asset-ui/visual-review.md)。本附记只索引实现，不改变既有 UIR、玩家知识或玩法，不宣称最终美术、Owner 体验或 O3 通过。

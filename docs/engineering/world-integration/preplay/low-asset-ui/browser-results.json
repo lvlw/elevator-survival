@@ -1,0 +1,2652 @@
+{
+  "kind": "REAL_REACT_DOM_BROWSER_TEST_ONLY",
+  "browser": "Edg/155.0.4283.62",
+  "origin": "http://127.0.0.1:54377",
+  "cases": [
+    {
+      "name": "U01 actual DEV entry, old preview priority and default hospital isolation",
+      "result": "PASS",
+      "ms": 2352.242,
+      "detail": {
+        "setupRead": {
+          "rows": [
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.reservation"
+            },
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.checkpoint"
+            }
+          ],
+          "entropy": 0,
+          "sentinel": "LOW-ASSET-ENTRY-TEST-SENTINEL"
+        },
+        "created": {
+          "rows": [
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.reservation"
+            },
+            {
+              "op": "read",
+              "key": "elevator-survival.infected-preplay.v1.primary.checkpoint"
+            },
+            {
+              "op": "write",
+              "key": "elevator-survival.infected-preplay.v1.primary.reservation"
+            },
+            {
+              "op": "write",
+              "key": "elevator-survival.infected-preplay.v1.primary.checkpoint"
+            }
+          ],
+          "entropy": 4,
+          "sentinel": "LOW-ASSET-ENTRY-TEST-SENTINEL"
+        },
+        "preview": {
+          "rows": [],
+          "entropy": 0,
+          "sentinel": "LOW-ASSET-ENTRY-TEST-SENTINEL"
+        },
+        "hospital": {
+          "rows": [
+            {
+              "op": "read",
+              "key": "elevator-survival:active-run"
+            }
+          ],
+          "entropy": 0,
+          "sentinel": "LOW-ASSET-ENTRY-TEST-SENTINEL"
+        },
+        "productionFlagIgnored": "separate current-dist production-browser group below"
+      }
+    },
+    {
+      "name": "U02 explicit setup and StrictMode read-only controls",
+      "result": "PASS",
+      "ms": 2304.0769000000005,
+      "detail": {
+        "before": {
+          "owners": 2,
+          "publications": 4,
+          "entropy": 0,
+          "controlsCalls": {},
+          "io": [
+            {
+              "operation": "read",
+              "key": "reservation",
+              "success": true
+            },
+            {
+              "operation": "read",
+              "key": "checkpoint",
+              "success": true
+            }
+          ],
+          "lifecycle": [
+            {
+              "event": "pageshow",
+              "persisted": false
+            }
+          ],
+          "previousLifecycle": null,
+          "boundaryPreparation": {
+            "kind": null,
+            "writes": 0,
+            "source": "none"
+          }
+        },
+        "counts": {
+          "owners": 2,
+          "publications": 10,
+          "entropy": 1,
+          "controlsCalls": {
+            "confirmSetup": 1
+          },
+          "io": [
+            {
+              "operation": "read",
+              "key": "reservation",
+              "success": true
+            },
+            {
+              "operation": "read",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "reservation",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            }
+          ],
+          "lifecycle": [
+            {
+              "event": "pageshow",
+              "persisted": false
+            }
+          ],
+          "previousLifecycle": null,
+          "boundaryPreparation": {
+            "kind": null,
+            "writes": 0,
+            "source": "none"
+          }
+        }
+      }
+    },
+    {
+      "name": "U03-U06 A full React-control success route, battle and cold continuation",
+      "result": "PASS",
+      "ms": 8368.788799999998,
+      "detail": {
+        "stages": [
+          {
+            "route": "A",
+            "stage": 0,
+            "steps": [
+              {
+                "operation": "进入封锁区",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "电梯前室",
+                  "day": 1,
+                  "hp": 12,
+                  "energy": 100,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "大厅",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 1,
+                  "hp": 12,
+                  "energy": 98,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "大厅搜索",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 1,
+                  "hp": 12,
+                  "energy": 86,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "移动物品 金属零件",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 1,
+                  "hp": 12,
+                  "energy": 86,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "拾取 金属零件",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 1,
+                  "hp": 12,
+                  "energy": 86,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "隔离防火门",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 1,
+                  "hp": 12,
+                  "energy": 80,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "隔离走廊",
+                "state": {
+                  "phase": "active-world",
+                  "point": "battle-decision",
+                  "location": "隔离走廊",
+                  "day": 1,
+                  "hp": 12,
+                  "energy": 78,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              }
+            ],
+            "final": {
+              "phase": "active-world",
+              "point": "battle-decision",
+              "location": "隔离走廊",
+              "day": 1,
+              "hp": 12,
+              "energy": 78,
+              "sample": "not-acquired",
+              "persistence": "saved",
+              "outcome": null
+            }
+          },
+          {
+            "route": "A",
+            "stage": 1,
+            "steps": [
+              {
+                "operation": "蓄力打击",
+                "state": {
+                  "phase": "active-world",
+                  "point": "battle-decision",
+                  "location": "隔离走廊",
+                  "day": 1,
+                  "hp": 12,
+                  "energy": 78,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "金属管攻击",
+                "state": {
+                  "phase": "active-world",
+                  "point": "battle-decision",
+                  "location": "隔离走廊",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 78,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "金属管攻击",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "隔离走廊",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 66,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "大厅",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 64,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "后勤控制间",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "后勤控制间",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 62,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "岗亭",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "岗亭",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 54,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "登记室",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "登记室",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 52,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "开启物流柜",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "登记室",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 46,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "物流柜物资",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "登记室",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 38,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "移动物品 压缩口粮",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "登记室",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 38,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "拾取 压缩口粮",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "登记室",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 38,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "移动物品 绷带",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "登记室",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 38,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "拾取 绷带",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "登记室",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 38,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "原位休整",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "登记室",
+                  "day": 2,
+                  "hp": 10,
+                  "energy": 85,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "使用药食",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "登记室",
+                  "day": 2,
+                  "hp": 10,
+                  "energy": 85,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "装卸场",
+                "state": {
+                  "phase": "active-world",
+                  "point": "battle-decision",
+                  "location": "装卸场",
+                  "day": 2,
+                  "hp": 10,
+                  "energy": 83,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              }
+            ],
+            "final": {
+              "phase": "active-world",
+              "point": "battle-decision",
+              "location": "装卸场",
+              "day": 2,
+              "hp": 10,
+              "energy": 83,
+              "sample": "not-acquired",
+              "persistence": "saved",
+              "outcome": null
+            }
+          },
+          {
+            "route": "A",
+            "stage": 2,
+            "steps": [
+              {
+                "operation": "蓄力打击",
+                "state": {
+                  "phase": "active-world",
+                  "point": "battle-decision",
+                  "location": "装卸场",
+                  "day": 2,
+                  "hp": 10,
+                  "energy": 83,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "金属管攻击",
+                "state": {
+                  "phase": "active-world",
+                  "point": "battle-decision",
+                  "location": "装卸场",
+                  "day": 2,
+                  "hp": 10,
+                  "energy": 83,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "金属管攻击",
+                "state": {
+                  "phase": "active-world",
+                  "point": "battle-decision",
+                  "location": "装卸场",
+                  "day": 2,
+                  "hp": 5,
+                  "energy": 83,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "金属管攻击",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "装卸场",
+                  "day": 2,
+                  "hp": 5,
+                  "energy": 67,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "使用药食",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "装卸场",
+                  "day": 2,
+                  "hp": 6,
+                  "energy": 67,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "使用药食",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "装卸场",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 67,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "物流装卸区搜索",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "装卸场",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 59,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "移动物品 压缩口粮",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "装卸场",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 59,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "拾取 压缩口粮",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "装卸场",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 59,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "移动物品 压缩口粮",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "装卸场",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 59,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "拾取 压缩口粮",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "装卸场",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 59,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "核对转运记录",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "装卸场",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 53,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "修复转运组件",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "装卸场",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 43,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "取得转运组件",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "装卸场",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 33,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "登记室",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "登记室",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 31,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "岗亭",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "岗亭",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 29,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "入口",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "入口",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 21,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "档案室",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "档案室",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 19,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "比对通信记录",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "档案室",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 15,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "检修间",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "检修间",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 13,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "通信设备柜",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "检修间",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 7,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "移动物品 电子元件",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "检修间",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 7,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "拾取 电子元件",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "检修间",
+                  "day": 2,
+                  "hp": 7,
+                  "energy": 7,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "原位休整",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "检修间",
+                  "day": 3,
+                  "hp": 7,
+                  "energy": 100,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "使用药食",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "检修间",
+                  "day": 3,
+                  "hp": 7,
+                  "energy": 100,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "档案室",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "档案室",
+                  "day": 3,
+                  "hp": 7,
+                  "energy": 98,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "开启通信门",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "档案室",
+                  "day": 3,
+                  "hp": 7,
+                  "energy": 84,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "检修走廊",
+                "state": {
+                  "phase": "active-world",
+                  "point": "battle-decision",
+                  "location": "检修走廊",
+                  "day": 3,
+                  "hp": 7,
+                  "energy": 82,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              }
+            ],
+            "final": {
+              "phase": "active-world",
+              "point": "battle-decision",
+              "location": "检修走廊",
+              "day": 3,
+              "hp": 7,
+              "energy": 82,
+              "sample": "not-acquired",
+              "persistence": "saved",
+              "outcome": null
+            }
+          },
+          {
+            "route": "A",
+            "stage": 3,
+            "steps": [
+              {
+                "operation": "蓄力打击",
+                "state": {
+                  "phase": "active-world",
+                  "point": "battle-decision",
+                  "location": "检修走廊",
+                  "day": 3,
+                  "hp": 7,
+                  "energy": 82,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "金属管攻击",
+                "state": {
+                  "phase": "active-world",
+                  "point": "battle-decision",
+                  "location": "检修走廊",
+                  "day": 3,
+                  "hp": 6,
+                  "energy": 82,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "金属管攻击",
+                "state": {
+                  "phase": "active-world",
+                  "point": "battle-decision",
+                  "location": "检修走廊",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 82,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "金属管攻击",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "检修走廊",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 66,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "机房",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "机房",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 64,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "取得通信模块",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "机房",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 54,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "检修走廊",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "检修走廊",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 52,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "档案室",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "档案室",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 50,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "入口",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "入口",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 48,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "电梯前室",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "电梯前室",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 40,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "大厅",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 38,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "隔离走廊",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "隔离走廊",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 36,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "冷藏室",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "冷藏室",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 34,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              }
+            ],
+            "final": {
+              "phase": "active-world",
+              "point": "stable-active",
+              "location": "冷藏室",
+              "day": 3,
+              "hp": 2,
+              "energy": 34,
+              "sample": "not-acquired",
+              "persistence": "saved",
+              "outcome": null
+            }
+          },
+          {
+            "route": "A",
+            "stage": 4,
+            "steps": [
+              {
+                "operation": "提取样本",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "冷藏室",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 24,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              }
+            ],
+            "final": {
+              "phase": "active-world",
+              "point": "stable-active",
+              "location": "冷藏室",
+              "day": 3,
+              "hp": 2,
+              "energy": 24,
+              "sample": "carried",
+              "persistence": "saved",
+              "outcome": null
+            }
+          },
+          {
+            "route": "A",
+            "stage": 5,
+            "steps": [
+              {
+                "operation": "隔离走廊",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "隔离走廊",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 22,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "大厅",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 20,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "后勤控制间",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "后勤控制间",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 18,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "岗亭",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "岗亭",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 10,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "配线廊",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "配线廊",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 2,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "转运支路柜",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "转运支路柜",
+                  "day": 3,
+                  "hp": 2,
+                  "energy": 0,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "原位休整",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "转运支路柜",
+                  "day": 4,
+                  "hp": 2,
+                  "energy": 85,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "使用药食",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "转运支路柜",
+                  "day": 4,
+                  "hp": 2,
+                  "energy": 85,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "调查供电",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "转运支路柜",
+                  "day": 4,
+                  "hp": 2,
+                  "energy": 79,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "恢复供电",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "转运支路柜",
+                  "day": 4,
+                  "hp": 2,
+                  "energy": 67,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "配线廊",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "配线廊",
+                  "day": 4,
+                  "hp": 2,
+                  "energy": 65,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "岗亭",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "岗亭",
+                  "day": 4,
+                  "hp": 2,
+                  "energy": 57,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "后勤控制间",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "后勤控制间",
+                  "day": 4,
+                  "hp": 2,
+                  "energy": 49,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "转运平台",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "转运平台",
+                  "day": 4,
+                  "hp": 2,
+                  "energy": 47,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "安装转运装置",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "转运平台",
+                  "day": 4,
+                  "hp": 2,
+                  "energy": 35,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "后勤控制间",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "后勤控制间",
+                  "day": 4,
+                  "hp": 2,
+                  "energy": 33,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "大厅",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 4,
+                  "hp": 2,
+                  "energy": 31,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "电梯前室",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "电梯前室",
+                  "day": 4,
+                  "hp": 2,
+                  "energy": 29,
+                  "sample": "carried",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "交付返回",
+                "state": {
+                  "phase": "living-hub",
+                  "point": "living-hub",
+                  "location": null,
+                  "day": 4,
+                  "hp": 2,
+                  "energy": 29,
+                  "sample": "delivered",
+                  "persistence": "saved",
+                  "outcome": "success"
+                }
+              }
+            ],
+            "final": {
+              "phase": "living-hub",
+              "point": "living-hub",
+              "location": null,
+              "day": 4,
+              "hp": 2,
+              "energy": 29,
+              "sample": "delivered",
+              "persistence": "saved",
+              "outcome": "success"
+            }
+          }
+        ],
+        "readonlyChecks": [
+          {
+            "kind": "actual CDP Shift+F10/Escape key input and read-only known map",
+            "menu": {
+              "x": 1318,
+              "y": 459.359375,
+              "right": 1592,
+              "bottom": 682.515625,
+              "width": 1600,
+              "height": 900,
+              "focusInMenu": true,
+              "focusOutline": "solid",
+              "mapOpen": true,
+              "knownNodes": 22
+            },
+            "focusRestored": true,
+            "ioDelta": 0,
+            "executeDelta": 0
+          }
+        ],
+        "final": {
+          "eligibility": {
+            "deliver": false,
+            "withdraw": false,
+            "deadline": false
+          },
+          "result": {
+            "outcome": "success",
+            "reward": 120,
+            "penalty": 0,
+            "forfeited": 0,
+            "balance": 120,
+            "taskDay": 4,
+            "items": [
+              {
+                "name": "密封病原样本箱",
+                "quantity": 1,
+                "disposition": "delivered"
+              }
+            ]
+          }
+        },
+        "counts": {
+          "owners": 2,
+          "publications": 6,
+          "entropy": 0,
+          "controlsCalls": {},
+          "io": [
+            {
+              "operation": "read",
+              "key": "reservation",
+              "success": true
+            },
+            {
+              "operation": "read",
+              "key": "checkpoint",
+              "success": true
+            }
+          ],
+          "lifecycle": [
+            {
+              "event": "pageshow",
+              "persisted": false
+            }
+          ],
+          "previousLifecycle": "[{\"event\":\"pageshow\",\"persisted\":false},{\"event\":\"pagehide\",\"persisted\":false}]",
+          "boundaryPreparation": {
+            "kind": null,
+            "writes": 0,
+            "source": "none"
+          }
+        }
+      }
+    },
+    {
+      "name": "U07-U08 B DOM retreat, immediate repair, failed save, retry, refresh and same-origin competition",
+      "result": "PASS",
+      "ms": 2941.3735000000015,
+      "detail": {
+        "stages": [
+          {
+            "route": "B",
+            "stage": 0,
+            "steps": [
+              {
+                "operation": "进入封锁区",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "电梯前室",
+                  "day": 1,
+                  "hp": 12,
+                  "energy": 100,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "大厅",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 1,
+                  "hp": 12,
+                  "energy": 98,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "大厅搜索",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 1,
+                  "hp": 12,
+                  "energy": 86,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "移动物品 金属零件",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 1,
+                  "hp": 12,
+                  "energy": 86,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "拾取 金属零件",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 1,
+                  "hp": 12,
+                  "energy": 86,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "隔离防火门",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 1,
+                  "hp": 12,
+                  "energy": 80,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "隔离走廊",
+                "state": {
+                  "phase": "active-world",
+                  "point": "battle-decision",
+                  "location": "隔离走廊",
+                  "day": 1,
+                  "hp": 12,
+                  "energy": 78,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              }
+            ],
+            "final": {
+              "phase": "active-world",
+              "point": "battle-decision",
+              "location": "隔离走廊",
+              "day": 1,
+              "hp": 12,
+              "energy": 78,
+              "sample": "not-acquired",
+              "persistence": "saved",
+              "outcome": null
+            }
+          },
+          {
+            "route": "B",
+            "stage": 1,
+            "steps": [
+              {
+                "operation": "金属管攻击",
+                "state": {
+                  "phase": "active-world",
+                  "point": "battle-decision",
+                  "location": "隔离走廊",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 78,
+                  "sample": "not-acquired",
+                  "persistence": "save-failed",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "蓄力打击",
+                "state": {
+                  "phase": "active-world",
+                  "point": "battle-decision",
+                  "location": "隔离走廊",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 78,
+                  "sample": "not-acquired",
+                  "persistence": "save-failed",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "退却",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 62,
+                  "sample": "not-acquired",
+                  "persistence": "save-failed",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "机械维护",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 1,
+                  "hp": 10,
+                  "energy": 56,
+                  "sample": "not-acquired",
+                  "persistence": "save-failed",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "使用药食",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 1,
+                  "hp": 11,
+                  "energy": 56,
+                  "sample": "not-acquired",
+                  "persistence": "save-failed",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "原位休整",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 2,
+                  "hp": 11,
+                  "energy": 85,
+                  "sample": "not-acquired",
+                  "persistence": "save-failed",
+                  "outcome": null
+                }
+              }
+            ],
+            "final": {
+              "phase": "active-world",
+              "point": "stable-active",
+              "location": "大厅",
+              "day": 2,
+              "hp": 11,
+              "energy": 85,
+              "sample": "not-acquired",
+              "persistence": "save-failed",
+              "outcome": null
+            }
+          },
+          {
+            "route": "B",
+            "stage": 2,
+            "steps": [
+              {
+                "operation": "隔离走廊",
+                "state": {
+                  "phase": "active-world",
+                  "point": "battle-decision",
+                  "location": "隔离走廊",
+                  "day": 2,
+                  "hp": 11,
+                  "energy": 83,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "蓄力打击",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "隔离走廊",
+                  "day": 2,
+                  "hp": 11,
+                  "energy": 77,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "大厅",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "大厅",
+                  "day": 2,
+                  "hp": 11,
+                  "energy": 75,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "电梯前室",
+                "state": {
+                  "phase": "active-world",
+                  "point": "stable-active",
+                  "location": "电梯前室",
+                  "day": 2,
+                  "hp": 11,
+                  "energy": 73,
+                  "sample": "not-acquired",
+                  "persistence": "saved",
+                  "outcome": null
+                }
+              },
+              {
+                "operation": "失败止损返回",
+                "state": {
+                  "phase": "living-hub",
+                  "point": "living-hub",
+                  "location": null,
+                  "day": 2,
+                  "hp": 11,
+                  "energy": 73,
+                  "sample": "unavailable",
+                  "persistence": "saved",
+                  "outcome": "voluntary-failure"
+                }
+              }
+            ],
+            "final": {
+              "phase": "living-hub",
+              "point": "living-hub",
+              "location": null,
+              "day": 2,
+              "hp": 11,
+              "energy": 73,
+              "sample": "unavailable",
+              "persistence": "saved",
+              "outcome": "voluntary-failure"
+            }
+          }
+        ],
+        "before": {
+          "owners": 2,
+          "publications": 24,
+          "entropy": 1,
+          "controlsCalls": {
+            "confirmSetup": 1,
+            "describeAction": 7,
+            "preview": 12,
+            "execute": 7
+          },
+          "io": [
+            {
+              "operation": "read",
+              "key": "reservation",
+              "success": true
+            },
+            {
+              "operation": "read",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "reservation",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            }
+          ],
+          "lifecycle": [
+            {
+              "event": "pageshow",
+              "persisted": false
+            }
+          ],
+          "previousLifecycle": null,
+          "boundaryPreparation": {
+            "kind": null,
+            "writes": 0,
+            "source": "none"
+          }
+        },
+        "after": {
+          "owners": 2,
+          "publications": 36,
+          "entropy": 1,
+          "controlsCalls": {
+            "confirmSetup": 1,
+            "describeAction": 13,
+            "preview": 22,
+            "execute": 13
+          },
+          "io": [
+            {
+              "operation": "read",
+              "key": "reservation",
+              "success": true
+            },
+            {
+              "operation": "read",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "reservation",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": false
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": false
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": false
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": false
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": false
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": false
+            }
+          ],
+          "lifecycle": [
+            {
+              "event": "pageshow",
+              "persisted": false
+            }
+          ],
+          "previousLifecycle": null,
+          "boundaryPreparation": {
+            "kind": null,
+            "writes": 0,
+            "source": "none"
+          }
+        },
+        "retry": {
+          "owners": 2,
+          "publications": 38,
+          "entropy": 1,
+          "controlsCalls": {
+            "confirmSetup": 1,
+            "describeAction": 13,
+            "preview": 22,
+            "execute": 13,
+            "retrySave": 1
+          },
+          "io": [
+            {
+              "operation": "read",
+              "key": "reservation",
+              "success": true
+            },
+            {
+              "operation": "read",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "reservation",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": false
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": false
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": false
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": false
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": false
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": false
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            }
+          ],
+          "lifecycle": [
+            {
+              "event": "pageshow",
+              "persisted": false
+            }
+          ],
+          "previousLifecycle": null,
+          "boundaryPreparation": {
+            "kind": null,
+            "writes": 0,
+            "source": "none"
+          }
+        },
+        "blocked": {
+          "owners": 2,
+          "publications": 3,
+          "entropy": 0,
+          "controlsCalls": {},
+          "io": [],
+          "lifecycle": [
+            {
+              "event": "pageshow",
+              "persisted": false
+            }
+          ],
+          "previousLifecycle": null,
+          "boundaryPreparation": {
+            "kind": null,
+            "writes": 0,
+            "source": "none"
+          }
+        },
+        "final": {
+          "eligibility": {
+            "deliver": false,
+            "withdraw": false,
+            "deadline": false
+          },
+          "result": {
+            "outcome": "voluntary-failure",
+            "reward": 0,
+            "penalty": 0,
+            "forfeited": 0,
+            "balance": 0,
+            "taskDay": 2,
+            "items": []
+          }
+        }
+      }
+    },
+    {
+      "name": "U07-U08 actual pagehide, same-partition close and BFCache explicit reacquire",
+      "result": "PASS",
+      "ms": 1856.4231,
+      "detail": {
+        "before": {
+          "owners": 2,
+          "publications": 12,
+          "entropy": 1,
+          "controlsCalls": {
+            "confirmSetup": 1,
+            "describeAction": 2,
+            "preview": 2,
+            "execute": 2
+          },
+          "io": [
+            {
+              "operation": "read",
+              "key": "reservation",
+              "success": true
+            },
+            {
+              "operation": "read",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "reservation",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            }
+          ],
+          "lifecycle": [
+            {
+              "event": "pageshow",
+              "persisted": false
+            }
+          ],
+          "previousLifecycle": null,
+          "boundaryPreparation": {
+            "kind": null,
+            "writes": 0,
+            "source": "none"
+          }
+        },
+        "returnedStatus": "suspended",
+        "observations": {
+          "owners": 2,
+          "publications": 14,
+          "entropy": 1,
+          "controlsCalls": {
+            "confirmSetup": 1,
+            "describeAction": 2,
+            "preview": 2,
+            "execute": 2
+          },
+          "io": [
+            {
+              "operation": "read",
+              "key": "reservation",
+              "success": true
+            },
+            {
+              "operation": "read",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "reservation",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            },
+            {
+              "operation": "write",
+              "key": "checkpoint",
+              "success": true
+            }
+          ],
+          "lifecycle": [
+            {
+              "event": "pageshow",
+              "persisted": false
+            },
+            {
+              "event": "pagehide",
+              "persisted": true
+            },
+            {
+              "event": "pageshow",
+              "persisted": true
+            }
+          ],
+          "previousLifecycle": "[{\"event\":\"pageshow\",\"persisted\":false},{\"event\":\"pagehide\",\"persisted\":true}]",
+          "boundaryPreparation": {
+            "kind": null,
+            "writes": 0,
+            "source": "none"
+          }
+        },
+        "actualBFCacheHit": true,
+        "explicitReacquire": true
+      }
+    },
+    {
+      "name": "U06-U08 supplemental genuine P both-zero and enemy-alive death via React buttons, cold dead",
+      "result": "PASS",
+      "ms": 2246.300199999998,
+      "detail": [
+        {
+          "boundary": "both-zero",
+          "source": "explicit low-HP genuine P/strict-codec TEST preparation, not read-null route",
+          "committedCounts": {
+            "owners": 2,
+            "publications": 8,
+            "entropy": 0,
+            "controlsCalls": {
+              "describeAction": 1,
+              "preview": 1,
+              "execute": 1,
+              "confirm": 1
+            },
+            "io": [
+              {
+                "operation": "read",
+                "key": "reservation",
+                "success": true
+              },
+              {
+                "operation": "read",
+                "key": "checkpoint",
+                "success": true
+              },
+              {
+                "operation": "write",
+                "key": "checkpoint",
+                "success": true
+              }
+            ],
+            "lifecycle": [
+              {
+                "event": "pageshow",
+                "persisted": false
+              }
+            ],
+            "previousLifecycle": null,
+            "boundaryPreparation": {
+              "kind": "both-zero",
+              "writes": 2,
+              "source": "supplemental genuine P and strict codec, not read-null route"
+            }
+          },
+          "coldCounts": {
+            "owners": 2,
+            "publications": 6,
+            "entropy": 0,
+            "controlsCalls": {},
+            "io": [
+              {
+                "operation": "read",
+                "key": "reservation",
+                "success": true
+              },
+              {
+                "operation": "read",
+                "key": "checkpoint",
+                "success": true
+              }
+            ],
+            "lifecycle": [
+              {
+                "event": "pageshow",
+                "persisted": false
+              }
+            ],
+            "previousLifecycle": "[{\"event\":\"pageshow\",\"persisted\":false},{\"event\":\"pagehide\",\"persisted\":false}]",
+            "boundaryPreparation": {
+              "kind": "both-zero",
+              "writes": 0,
+              "source": "supplemental genuine P and strict codec, not read-null route"
+            }
+          }
+        },
+        {
+          "boundary": "alive-enemy",
+          "source": "explicit low-HP genuine P/strict-codec TEST preparation, not read-null route",
+          "committedCounts": {
+            "owners": 2,
+            "publications": 8,
+            "entropy": 0,
+            "controlsCalls": {
+              "describeAction": 1,
+              "preview": 1,
+              "execute": 1,
+              "confirm": 1
+            },
+            "io": [
+              {
+                "operation": "read",
+                "key": "reservation",
+                "success": true
+              },
+              {
+                "operation": "read",
+                "key": "checkpoint",
+                "success": true
+              },
+              {
+                "operation": "write",
+                "key": "checkpoint",
+                "success": true
+              }
+            ],
+            "lifecycle": [
+              {
+                "event": "pageshow",
+                "persisted": false
+              }
+            ],
+            "previousLifecycle": null,
+            "boundaryPreparation": {
+              "kind": "alive-enemy",
+              "writes": 2,
+              "source": "supplemental genuine P and strict codec, not read-null route"
+            }
+          },
+          "coldCounts": {
+            "owners": 2,
+            "publications": 6,
+            "entropy": 0,
+            "controlsCalls": {},
+            "io": [
+              {
+                "operation": "read",
+                "key": "reservation",
+                "success": true
+              },
+              {
+                "operation": "read",
+                "key": "checkpoint",
+                "success": true
+              }
+            ],
+            "lifecycle": [
+              {
+                "event": "pageshow",
+                "persisted": false
+              }
+            ],
+            "previousLifecycle": "[{\"event\":\"pageshow\",\"persisted\":false},{\"event\":\"pagehide\",\"persisted\":false}]",
+            "boundaryPreparation": {
+              "kind": "alive-enemy",
+              "writes": 0,
+              "source": "supplemental genuine P and strict codec, not read-null route"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "U01 actual fresh production dist ignores DEV infected flag and holds no new writer",
+      "result": "PASS",
+      "ms": 581.2894000000015,
+      "detail": {
+        "origin": "http://127.0.0.1:54824",
+        "source": "current dist served by own Vite preview, real Chromium document",
+        "evidence": {
+          "audit": {
+            "rows": [
+              {
+                "op": "read",
+                "key": "elevator-survival:active-run"
+              }
+            ],
+            "sentinel": "LOW-ASSET-PRODUCTION-TEST-SENTINEL"
+          },
+          "newUi": false,
+          "testHarness": false,
+          "heldLocks": [],
+          "body": "本局存档恢复\n\n存档内容损坏，无法严格恢复\n\n原存档仍然保留。你可以显式清除这份无法恢复的本局存档。\n\n清除无法恢复的存档"
+        }
+      }
+    }
+  ],
+  "console": [],
+  "screenshots": [
+    {
+      "filename": "01-setup-1600.png",
+      "viewport": {
+        "width": 1600,
+        "height": 900
+      },
+      "geometry": {
+        "width": 1600,
+        "height": 900,
+        "scrollWidth": 1600,
+        "scrollHeight": 900,
+        "focus": "\n    独立 DEV 封闭首玩电梯求生封锁区 · 出发准备明确选择一件实用工具和一项专长。创建后选择锁定，不会自动出发。实用工具撬棍可用于正式撬开方案；使用会",
+        "body": "独立 DEV 封闭首玩\n\n电梯求生\n封锁区 · 出发准备\n\n明确选择一件实用工具和一项专长。创建后选择锁定，不会自动出发。\n\n实用工具\n撬棍\n可用于正式撬开方案；使用会支付工具资源。\n手电筒\n可用于照明搜索方案；使用会支付照明资源。\n工具箱\n可用于正式工具箱方案；使用会支付工具资源。\n专长\n侦察\n提供已批准的调查与记录比对差异。\n工程\n提供已批准的修复方案差异。\n生存\n提供已批准的首绷恢复差异。\n确认创建\n\n只使用本入口的独立存档；不读取或更改医院存档。此处不提供重置或迁移。"
+      }
+    },
+    {
+      "filename": "02-setup-narrow.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 390,
+        "scrollHeight": 896,
+        "focus": "\n    独立 DEV 封闭首玩电梯求生封锁区 · 出发准备明确选择一件实用工具和一项专长。创建后选择锁定，不会自动出发。实用工具撬棍可用于正式撬开方案；使用会",
+        "body": "独立 DEV 封闭首玩\n\n电梯求生\n封锁区 · 出发准备\n\n明确选择一件实用工具和一项专长。创建后选择锁定，不会自动出发。\n\n实用工具\n撬棍\n可用于正式撬开方案；使用会支付工具资源。\n手电筒\n可用于照明搜索方案；使用会支付照明资源。\n工具箱\n可用于正式工具箱方案；使用会支付工具资源。\n专长\n侦察\n提供已批准的调查与记录比对差异。\n工程\n提供已批准的修复方案差异。\n生存\n提供已批准的首绷恢复差异。\n确认创建\n\n只使用本入口的独立存档；不读取或更改医院存档。此处不提供重置或迁移。"
+      }
+    },
+    {
+      "filename": "03-first-hub-1366.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "scrollWidth": 1366,
+        "scrollHeight": 768,
+        "focus": "\n    电梯求生DEV · 封闭首玩任务进度准备中准备出发生命12 / 12精力100 / 100饱食6 / 6未达病程损耗档仅表示当前病程负担。最低档不代表",
+        "body": "电梯求生\nDEV · 封闭首玩\n任务进度\n准备中\n准备出发\n生命\n12 / 12\n精力\n100 / 100\n饱食\n6 / 6\n未达病程损耗档\n当前进度已保存\n\n异常电梯中枢\n\n准备进入封锁区\n\n工具：撬棍 · 专长：工程 已锁定\n\n携带装备已就绪。出发后只按当前相邻方向探索；任务物需要真实携带并完成指定交付。\n\n进入封锁区\n任务目标\n行动记录\n当前会话\n尚无本会话行动；不会根据存档补造过去的记录。\n携带\n正常 · 重量 0\n快捷 1\n快捷 2\n空\n背包\n装备\n\n6×4 · 右键物品 / 菜单键查看操作"
+      }
+    },
+    {
+      "filename": "04-route-a-stage-0.png",
+      "viewport": {
+        "width": 1600,
+        "height": 900
+      },
+      "geometry": {
+        "width": 1600,
+        "height": 900,
+        "scrollWidth": 1600,
+        "scrollHeight": 900,
+        "focus": "\n    电梯求生DEV · 封闭首玩任务进度第 1 日战斗生命12 / 12精力78 / 100饱食6 / 6未达病程损耗档仅表示当前病程负担。最低档不代表未",
+        "body": "电梯求生\nDEV · 封闭首玩\n任务进度\n第 1 日\n战斗\n生命\n12 / 12\n精力\n78 / 100\n饱食\n6 / 6\n未达病程损耗档\n当前进度已保存\n\n医院\n\n隔离走廊 · 战斗\n当前由玩家决策\n玩家 → 玩家先于敌人\n仅为当前公开相对顺序，不预演未来结果\n当前对手\n完好\n公开意图\n\n普通攻击 · 常规速度\n\n直接损耗：中\n\n可能造成伤势\n对手\n完好\nVS\n玩家\n防御\n金属管攻击\n资源 30 → 29\n退却\n蓄力打击\n资源 30 → 27\n\n胜利或退却只结算一次精力。未证明必死不等于安全；具体保护由正式安全查询决定。\n\n任务目标\n行动记录\n当前会话\n›\n抵达电梯前室；已出发\n›\n精力 100 → 98；抵达大厅\n›\n精力 98 → 86\n›\n行动已完成，当前公开状态已更新。\n›\n行动已完成，当前公开状态已更新。\n›\n精力 86 → 80\n›\n精力 80 → 78；抵达隔离走廊\n携带\n正常 · 重量 1\n快捷 1\n快捷 2\n空\n背包\n装备\n\n6×4 · 右键物品 / 菜单键查看操作\n\n战斗中携带区只读；快捷用药请使用舞台行动。"
+      }
+    },
+    {
+      "filename": "04-route-a-stage-2.png",
+      "viewport": {
+        "width": 1600,
+        "height": 900
+      },
+      "geometry": {
+        "width": 1600,
+        "height": 900,
+        "scrollWidth": 1600,
+        "scrollHeight": 900,
+        "focus": "\n    电梯求生DEV · 封闭首玩任务进度第 3 日战斗生命7 / 12精力82 / 100饱食6 / 6未达病程损耗档仅表示当前病程负担。最低档不代表未感",
+        "body": "电梯求生\nDEV · 封闭首玩\n任务进度\n第 3 日\n战斗\n生命\n7 / 12\n精力\n82 / 100\n饱食\n6 / 6\n未达病程损耗档\n当前进度已保存\n\n通信\n\n检修走廊 · 战斗\n当前由玩家决策\n玩家 → 玩家先于敌人\n仅为当前公开相对顺序，不预演未来结果\n当前对手\n完好\n公开意图\n\n普通攻击 · 常规速度\n\n直接损耗：中\n\n可能造成伤势\n对手\n完好\nVS\n玩家\n防御\n金属管攻击\n资源 19 → 18\n退却\n蓄力打击\n资源 19 → 16\n\n胜利或退却只结算一次精力。未证明必死不等于安全；具体保护由正式安全查询决定。\n\n任务目标\n行动记录\n当前会话\n›\n行动已完成，当前公开状态已更新。\n›\n行动已完成，当前公开状态已更新。\n›\n生命 10 → 5\n›\n精力 83 → 67\n›\n生命 5 → 6\n›\n生命 6 → 7\n›\n精力 67 → 59\n›\n行动已完成，当前公开状态已更新。\n›\n行动已完成，当前公开状态已更新。\n›\n行动已完成，当前公开状态已更新。\n›\n行动已完成，当前公开状态已更新。\n›\n精力 59 → 53\n›\n精力 53 → 43\n›\n精力 43 → 33\n›\n精力 33 → 31；抵达登记室\n›\n精力 31 → 29；抵达岗亭\n›\n精力 29 → 21；抵达入口\n›\n精力 21 → 19；抵达档案室\n›\n精力 19 → 15\n›\n精力 15 → 13；抵达检修间\n›\n精力 13 → 7\n›\n行动已完成，当前公开状态已更新。\n›\n行动已完成，当前公开状态已更新。\n›\n精力 7 → 100；饱食 6 → 4\n›\n饱食 4 → 6\n›\n精力 100 → 98；抵达档案室\n›\n精力 98 → 84\n›\n精力 84 → 82；抵达检修走廊\n携带\n正常 · 重量 9\n快捷 1\n空\n快捷 2\n空\n背包\n装备\n\n6×4 · 右键物品 / 菜单键查看操作\n\n战斗中携带区只读；快捷用药请使用舞台行动。"
+      }
+    },
+    {
+      "filename": "04-route-a-stage-3.png",
+      "viewport": {
+        "width": 1600,
+        "height": 900
+      },
+      "geometry": {
+        "width": 1600,
+        "height": 900,
+        "scrollWidth": 1600,
+        "scrollHeight": 900,
+        "focus": "移动物品",
+        "body": "电梯求生\nDEV · 封闭首玩\n任务进度\n第 3 日\n探索\n生命\n2 / 12\n精力\n34 / 100\n饱食\n6 / 6\n未达病程损耗档\n当前进度已保存\n\n医院\n\n冷藏室\n已知地图 只读\n● 医院 / 电梯前室\n已到达\n● 医院 / 大厅\n已到达\n○ 医院 / 药房\n已知\n○ 医院 / 保安室\n已知\n● 医院 / 隔离走廊\n已到达\n◉ 医院 / 冷藏室\n当前\n○ 医院 / 值班休息室\n已知\n● 医院 / 后勤控制间\n已到达\n○ 医院 / 转运平台\n已知\n○ 酒店 / 酒店入口\n已知\n○ 供电所 / 配线廊\n已知\n● 物流 / 岗亭\n已到达\n● 物流 / 登记室\n已到达\n● 物流 / 装卸场\n已到达\n○ 物流 / 维修库\n已知\n● 通信 / 入口\n已到达\n● 通信 / 档案室\n已到达\n● 通信 / 检修走廊\n已到达\n● 通信 / 机房\n已到达\n● 通信 / 检修间\n已到达\n○ 通信 / 播控侧门\n已知\n○ 物流 / 周衡休息室\n已知\n医院 / 电梯前室 — 医院 / 大厅\n已知可通行 · 上次观察\n医院 / 大厅 — 医院 / 电梯前室\n已知可通行 · 上次观察\n医院 / 大厅 — 医院 / 药房\n已知可通行 · 上次观察\n医院 / 药房 — 医院 / 大厅\n已知可通行 · 上次观察\n医院 / 大厅 — 医院 / 保安室\n已知可通行 · 上次观察\n医院 / 保安室 — 医院 / 大厅\n已知可通行 · 上次观察\n医院 / 值班休息室 — 医院 / 后勤控制间\n已知可通行 · 上次观察\n医院 / 后勤控制间 — 医院 / 值班休息室\n已知可通行 · 上次观察\n医院 / 大厅 — 医院 / 后勤控制间\n已知可通行 · 上次观察\n医院 / 后勤控制间 — 医院 / 大厅\n已知可通行 · 上次观察\n医院 / 后勤控制间 — 医院 / 转运平台\n已知可通行 · 上次观察\n医院 / 转运平台 — 医院 / 后勤控制间\n已知可通行 · 上次观察\n物流 / 岗亭 — 物流 / 登记室\n已知可通行 · 上次观察\n物流 / 登记室 — 物流 / 岗亭\n已知可通行 · 上次观察\n物流 / 登记室 — 物流 / 装卸场\n已知可通行 · 上次观察\n物流 / 装卸场 — 物流 / 登记室\n已知可通行 · 上次观察\n物流 / 登记室 — 物流 / 维修库\n已知可通行 · 上次观察\n物流 / 维修库 — 物流 / 登记室\n已知可通行 · 上次观察\n物流 / 登记室 — 物流 / 周衡休息室\n已知可通行 · 上次观察\n物流 / 周衡休息室 — 物流 / 登记室\n已知可通行 · 上次观察\n通信 / 入口 — 通信 / 档案室\n已知可通行 · 上次观察\n通信 / 档案室 — 通信 / 入口\n已知可通行 · 上次观察\n通信 / 档案室 — 通信 / 检修间\n已知可通行 · 上次观察\n通信 / 检修间 — 通信 / 档案室\n已知可通行 · 上次观察\n通信 / 档案室 — 通信 / 播控侧门\n已知可通行 · 上次观察\n通信 / 播控侧门 — 通信 / 档案室\n已知可通行 · 上次观察\n通信 / 检修走廊 — 通信 / 机房\n已知可通行 · 上次观察\n通信 / 机房 — 通信 / 检修走廊\n已知可通行 · 上次观察\n医院 / 大厅 — 医院 / 隔离走廊\n已知可通行 · 上次观察\n医院 / 隔离走廊 — 医院 / 大厅\n已知可通行 · 上次观察\n医院 / 保安室 — 医院 / 隔离走廊\n已知受阻 · 上次观察\n医院 / 隔离走廊 — 医院 / 保安室\n已知受阻 · 上次观察\n医院 / 隔离走廊 — 医院 / 冷藏室\n已知可通行 · 上次观察\n医院 / 冷藏室 — 医院 / 隔离走廊\n已知可通行 · 当前观察\n通信 / 档案室 — 通信 / 检修走廊\n已知可通行 · 上次观察\n通信 / 检修走廊 — 通信 / 档案室\n已知可通行 · 上次观察\n通信 / 检修间 — 通信 / 机房\n已知受阻 · 上次观察\n通信 / 机房 — 通信 / 检修间\n已知受阻 · 上次观察\n医院 / 后勤控制间 — 物流 / 岗亭\n已知可通行 · 上次观察\n物流 / 岗亭 — 医院 / 后勤控制间\n已知可通行 · 上次观察\n物流 / 岗亭 — 通信 / 入口\n已知可通行 · 上次观察\n通信 / 入口 — 物流 / 岗亭\n已知可通行 · 上次观察\n通信 / 入口 — 医院 / 电梯前室\n已知可通行 · 上次观察\n医院 / 电梯前室 — 通信 / 入口\n已知可通行 · 上次观察\n医院 / 电梯前室 — 酒店 / 酒店入口\n已知可通行 · 上次观察\n酒店 / 酒店入口 — 医院 / 电梯前室\n已知可通行 · 上次观察\n供电所 / 配线廊 — 物流 / 岗亭\n已知可通行 · 上次观察\n物流 / 岗亭 — 供电所 / 配线廊\n已知可通行 · 上次观察\n现场任务\n提取样本 · 谨慎提取\n提取样本 · 直接提取\n现场物品\n收起结果\n\n当前没有已揭示的地面物品\n\n前往\n↗\n隔离走廊\n精力 2\n原位休整\n任务目标\n药食与维护\n行动记录\n当前会话\n›\n行动已完成，当前公开状态已更新。\n›\n生命 7 → 6\n›\n生命 6 → 2\n›\n精力 82 → 66\n›\n精力 66 → 64；抵达机房\n›\n精力 64 → 54\n›\n精力 54 → 52；抵达检修走廊\n›\n精力 52 → 50；抵达档案室\n›\n精力 50 → 48；抵达入口\n›\n精力 48 → 40；抵达电梯前室\n›\n精力 40 → 38；抵达大厅\n›\n精力 38 → 36；抵达隔离走廊\n›\n精力 36 → 34；抵达冷藏室\n携带\n正常 · 重量 11\n快捷 1\n空\n快捷 2\n空\n背包\n装备\n\n6×4 · 右键物品 / 菜单键查看操作\n\nmodule\n移动物品\n留置任务物\n使用药食\n关闭菜单"
+      }
+    },
+    {
+      "filename": "08-explicit-placement-1600.png",
+      "viewport": {
+        "width": 1600,
+        "height": 900
+      },
+      "geometry": {
+        "width": 1600,
+        "height": 900,
+        "scrollWidth": 1600,
+        "scrollHeight": 900,
+        "focus": "取消",
+        "body": "电梯求生\nDEV · 封闭首玩\n任务进度\n第 3 日\n探索\n生命\n2 / 12\n精力\n34 / 100\n饱食\n6 / 6\n未达病程损耗档\n尚未尝试保存\n\n医院\n\n冷藏室\n已知地图 只读\n现场任务\n提取样本 · 谨慎提取\n提取样本 · 直接提取\n现场物品\n收起结果\n\n当前没有已揭示的地面物品\n\n前往\n↗\n隔离走廊\n精力 2\n原位休整\n任务目标\n药食与维护\n行动记录\n当前会话\n尚无本会话行动；不会根据存档补造过去的记录。\n携带\n正常 · 重量 11\n快捷 1\n空\n快捷 2\n空\n背包\n装备\n\n6×4 · 右键物品 / 菜单键查看操作\n\n提取样本\n密封病原样本箱 · 2×2\n\n明确选择左上锚点；最终空间与负重由正式预览判断。\n\n▪\n▪\n▪\n·\n▪\n▪\n▪\n▪\n▪\n▪\n▪\n▪\n◆\n·\n·\n·\n·\n·\n·\n·\n·\n·\n·\n·\n旋转90°\n\n锚点 1,3 · 未旋转\n\n正式资格：可执行\n\n精力消耗：10\n\n未证明本命令必死；不代表没有风险。\n\n任务操作使用真实材料和实例；取得不等于已交付。\n\n厚实外套资源：8 → 7（支付1）\n\n取得：密封病原样本箱 ×1，2×2，单件重量4；取得不等于交付。\n\n取消\n执行行动"
+      }
+    },
+    {
+      "filename": "09-success-narrow.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "geometry": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 390,
+        "scrollHeight": 1374,
+        "focus": "\n    电梯求生DEV · 封闭首玩任务进度第 4 日返回中枢生命2 / 12精力29 / 100饱食6 / 6未达病程损耗档仅表示当前病程负担。最低档不代表",
+        "body": "电梯求生\nDEV · 封闭首玩\n任务进度\n第 4 日\n返回中枢\n生命\n2 / 12\n精力\n29 / 100\n饱食\n6 / 6\n未达病程损耗档\n尚未尝试保存\n\n静态中枢\n\n委托完成\n\n本次返回已经结算。当前没有后继内容，不会自动过夜、治疗或再次出发。\n\n奖励\n120\n扣罚\n0\n失去\n0\n余额\n120\n实物处置\n任务目标\n行动记录\n当前会话\n尚无本会话行动；不会根据存档补造过去的记录。\n携带\n正常 · 重量 2\n快捷 1\n空\n快捷 2\n空\n背包\n装备\n\n6×4 · 右键物品 / 菜单键查看操作"
+      }
+    },
+    {
+      "filename": "10-save-failure-1600.png",
+      "viewport": {
+        "width": 1600,
+        "height": 900
+      },
+      "geometry": {
+        "width": 1600,
+        "height": 900,
+        "scrollWidth": 1600,
+        "scrollHeight": 900,
+        "focus": "\n    电梯求生DEV · 封闭首玩任务进度第 2 日探索生命11 / 12精力85 / 100饱食4 / 6未达病程损耗档仅表示当前病程负担。最低档不代表未",
+        "body": "电梯求生\nDEV · 封闭首玩\n任务进度\n第 2 日\n探索\n生命\n11 / 12\n精力\n85 / 100\n饱食\n4 / 6\n未达病程损耗档\n操作已生效，尚未保存\n\n当前内存进度保留。刷新可能丢失尚未持久化的进度；重试只保存，不重复行动。\n\n重试保存\n\n医院\n\n大厅\n已知地图 只读\n大厅搜索\n已处理\n现场物品\n收起结果\n电子元件\n1×1 · 单位重量 1\n拾取\n前往\n↗\n电梯前室\n精力 2\n↗\n药房\n精力 2\n↗\n保安室\n精力 2\n↗\n后勤控制间\n精力 2\n↗\n隔离走廊\n精力 2\n原位休整\n任务目标\n药食与维护\n使用药食\n机械维护\n外套维护\n工具箱维护\n手电充能\n行动记录\n当前会话\n›\n抵达电梯前室；已出发\n›\n精力 100 → 98；抵达大厅\n›\n精力 98 → 86\n›\n行动已完成，当前公开状态已更新。\n›\n行动已完成，当前公开状态已更新。\n›\n精力 86 → 80\n›\n精力 80 → 78；抵达隔离走廊\n›\n生命 12 → 10\n›\n行动已完成，当前公开状态已更新。\n›\n精力 78 → 62；抵达大厅\n›\n精力 62 → 56\n›\n生命 10 → 11\n›\n精力 56 → 85；饱食 6 → 4\n携带\n正常 · 重量 0\n快捷 1\n空\n快捷 2\n空\n背包\n装备\n\n6×4 · 右键物品 / 菜单键查看操作"
+      }
+    },
+    {
+      "filename": "11-segmented-terminal-1366.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "scrollWidth": 1366,
+        "scrollHeight": 768,
+        "focus": "\n    电梯求生DEV · 封闭首玩任务进度第 2 日返回中枢生命11 / 12精力73 / 100饱食4 / 6未达病程损耗档仅表示当前病程负担。最低档不代",
+        "body": "电梯求生\nDEV · 封闭首玩\n任务进度\n第 2 日\n返回中枢\n生命\n11 / 12\n精力\n73 / 100\n饱食\n4 / 6\n未达病程损耗档\n当前进度已保存\n\n静态中枢\n\n已止损返回\n\n本次返回已经结算。当前没有后继内容，不会自动过夜、治疗或再次出发。\n\n奖励\n0\n扣罚\n0\n失去\n0\n余额\n0\n实物处置\n任务目标\n行动记录\n当前会话\n›\n精力 85 → 83；抵达隔离走廊\n›\n精力 83 → 77\n›\n精力 77 → 75；抵达大厅\n›\n精力 75 → 73；抵达电梯前室\n›\n委托已结束，返回静态中枢\n携带\n正常 · 重量 0\n快捷 1\n空\n快捷 2\n空\n背包\n装备\n\n6×4 · 右键物品 / 菜单键查看操作"
+      }
+    },
+    {
+      "filename": "12-protection-confirmation-1600.png",
+      "viewport": {
+        "width": 1600,
+        "height": 900
+      },
+      "geometry": {
+        "width": 1600,
+        "height": 900,
+        "scrollWidth": 1600,
+        "scrollHeight": 900,
+        "focus": "取消",
+        "body": "电梯求生\nDEV · 封闭首玩\n任务进度\n第 1 日\n探索\n生命\n12 / 12\n精力\n100 / 100\n饱食\n6 / 6\n未达病程损耗档\n当前进度已保存\n\n医院\n\n电梯前室\n已知地图 只读\n现场物品\n收起结果\n\n当前没有已揭示的地面物品\n\n前往\n↗\n大厅\n精力 2\n↗\n入口\n精力 8\n↗\n酒店入口\n精力 8\n原位休整\n失败止损返回\n任务目标\n药食与维护\n行动记录\n当前会话\n›\n抵达电梯前室；已出发\n携带\n正常 · 重量 0\n快捷 1\n快捷 2\n空\n背包\n装备\n\n6×4 · 右键物品 / 菜单键查看操作\n\n失败止损返回\n\n此操作不可撤销。请确认当前选择及后果。\n\n正式资格：可执行\n\n未证明本命令必死；不代表没有风险。\n\n正常返回不追加过夜；任务关闭后不能重接。\n\n取消\n确认执行"
+      }
+    },
+    {
+      "filename": "13-dead-1366.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "geometry": {
+        "width": 1366,
+        "height": 768,
+        "scrollWidth": 1366,
+        "scrollHeight": 768,
+        "focus": "\n    电梯求生DEV · 封闭首玩任务进度第 1 日死亡生命0 / 12精力90 / 100饱食6 / 6未达病程损耗档仅表示当前病程负担。最低档不代表未感",
+        "body": "电梯求生\nDEV · 封闭首玩\n任务进度\n第 1 日\n死亡\n生命\n0 / 12\n精力\n90 / 100\n饱食\n6 / 6\n未达病程损耗档\n流血\n当前进度已保存\n\n生命归零\n\n玩家死亡\n\n本次委托已终止；不会复活或重接本委托。\n\n奖励\n0\n扣罚\n0\n失去\n0\n余额\n0\n实物处置\n任务目标\n行动记录\n当前会话\n›\n生命 1 → 0；角色已死亡\n携带\n正常 · 重量 0\n快捷 1\n空\n快捷 2\n空\n背包\n装备\n\n6×4 · 右键物品 / 菜单键查看操作"
+      }
+    }
+  ],
+  "uncovered": [
+    "Other browsers, actual OS quota/permission exhaustion, device power-loss durability and Owner experience: NOT RUN"
+  ],
+  "limitations": [
+    "Own temporary profile only; no Owner storage or profile included in review material",
+    "Control-call and checkpoint IO counters are not represented as native S dispatch counters",
+    "Read/write exceptions are injected port faults, not OS quota or permission exhaustion",
+    "Automated screenshots and checks are not Owner playability acceptance"
+  ],
+  "testedFingerprint": {
+    "sourceFiles": 1011,
+    "before": "c91bb4a0ff7cc872ee8777cc26f3c49d6a7726725064b0529dc73c2b3c229f83",
+    "after": "c91bb4a0ff7cc872ee8777cc26f3c49d6a7726725064b0529dc73c2b3c229f83",
+    "unchanged": true
+  }
+}

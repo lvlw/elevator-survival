@@ -808,3 +808,9 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 ## ENG-WORLD-BROWSER-OWNER-001 作者实现附记
 
 显式且未注册玩家入口的 browser owner 已接入：四个 S 宿主补齐冻结 prepared expected/original-text 单写；独立 reservation/checkpoint 与全会话 Web Locks，冷 expected 不从 v4 payload 反推。唯一 S/current、旧 text 端口、格式、规则和旧医院入口／槽保持。真实 Edge 五停点、三敌、同源多页及生命周期已测；不是全平台或 Owner 体验通过。详见[本批交付](engineering/world-integration/preplay/browser-owner/completion.md)。等待准确 SHA 保存／浏览器接缝实审；未自动进入 UI 或决定 O3。
+
+## ENG-WORLD-LOW-ASSET-UI-001 作者实现附记
+
+显式 DEV `?dev-infected-world=1` 接入独立低资产 React 界面，入口选择先于医院 storage/bootstrap；非 DEV 忽略该参数，旧 preview 优先级、医院入口和旧槽不变。React 生命周期只持有一个 browser owner 的安全 snapshot，沿用原 controller／S／Web Locks／checkpoint；没有另建 current 或 writer。StrictMode、卸载、失锁与冷恢复各自停用旧上下文。
+
+本批仅窄补 `describeAction`：从既有配置及同源纯资格给当前 opaque action 提供必要参数说明，经 player／controller／owner 只读委托；正式 Preview、确认、安全三态、提交和保存语义不变。UI 不拥有配方、死亡、背包合法性、随机或终局真相。当前战斗 DTO 无安全敌人名称，三敌均使用中性占位，不凭地点猜测资产。支持／unknown、真实 DOM 长链、浏览器与视觉证据见[本批作者交付](engineering/world-integration/preplay/low-asset-ui/completion.md)。本附记不新增规则或 UIR，不代表准确 SHA 实审、Owner 体验或 O3 已通过。

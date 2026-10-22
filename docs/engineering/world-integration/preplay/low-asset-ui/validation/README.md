@@ -1,0 +1,24 @@
+# TEST-only real React and browser validation
+
+This directory is not imported by the player entry or public build. The HTML mounts the actual `InfectedWorldApp` under StrictMode with a TEST-only environment wrapper: real `localStorage`, real `navigator.locks`, and optional explicitly declared `E03-A-seed-01` identity materials. Seed selection does not override gameplay random draws. Never use an Owner browser profile or saved game.
+
+Run from repository root with an installed Chromium browser and an external output directory:
+
+```text
+node docs/engineering/world-integration/preplay/low-asset-ui/validation/run-browser-checks.mjs <absolute-external-output-directory>
+node docs/engineering/world-integration/preplay/low-asset-ui/validation/check-output-boundary.mjs <absolute-external-output-directory>
+```
+
+The runner uses Node built-ins, existing Vite and installed Edge. `LOW_ASSET_UI_TEST_EXE` may select another already installed Chromium executable. No dependency or browser download is performed. `LOW_ASSET_UI_CASE_FILTER` is diagnostic only; skipped groups are recorded NOT RUN. Output preflight and post-creation checks delegate to the reviewed T01 helper before logs, profiles or processes. The runner closes only the browser and Vite it created.
+
+The harness exposes a read-only safe snapshot, named IO/call counters, injected read/write faults, lifecycle suspension/disposal, a legacy-slot sentinel and DOM-route wrappers. It does not expose an owner execute/confirm/setup shortcut, raw saved text, a generic record installation API or reset. All A/B progress uses shared React DOM drivers: radio/button clicks, real input/select change events, context menus, explicit placement and confirmation controls. The wrapper never calls a producer, resolver or owner action to advance a route.
+
+The explicit TEST-only `boundary=both-zero` or `boundary=alive-enemy` query prepares the already existing genuine P/strict-v4 boundary fixture **only when both new-world records are absent**, in a separate isolated browser context. It cannot overwrite or clear an existing pair, and refresh does not reinstall it. The UI then performs the real death-producing combat action and cold-restores the actual dead checkpoint. These low-HP supplements are labeled separately and are not claimed as read-null A/B route evidence. No such parameter or preparation exists in the DEV player entry.
+
+The full run checks the actual DEV main entry, legacy preview priority and default-entry isolation separately from the injectable TEST page. It also starts its own Vite preview of the current `dist` and verifies in a real production document that the DEV flag does not activate this UI, access its keys or hold its writer lock. Build first; no old build is substituted. A starts at genuinely absent records and explicit setup, then continues the same durable first-hub through all six DOM-route stages to success. B has a fresh isolated browser context and performs real retreat, immediate repair, medicine, rest, re-entry and a lawful terminal outcome. Competing pages are in the same origin and **same browser context/storage partition**; separate contexts are used only to isolate independent route fixtures, never as proof of lock contention. No records are cleared or replaced.
+
+IO counts distinguish reservation and checkpoint attempts/successes. `controlsCalls` counts UI-to-controller calls, not native S dispatch, current installation, producer or native notification counts; those come from the independent native spy tests. Injected port failures are not actual OS quota/ACL exhaustion. Lifecycle events distinguish a real BFCache `persisted=true` hit from cold history navigation; missing actual platform coverage is NOT RUN, not inferred from headless tests.
+
+Screenshots are actual viewport captures, not composites. The known-map/menu capture includes actual CDP Shift+F10/Escape input, menu-edge bounds, keyboard focus and return-to-trigger assertions, with zero gameplay/IO deltas. The runner records before/after hashes of source, runtime assets, current build and TEST runtime files; a change during execution fails the run. Browser geometry, console output and route receipts accompany screenshots, but capture or bounding-box checks are not Owner experience acceptance. The review ZIP must include only selected PNGs, browser results, visual notes and hashes; do not include profile directories, saved records or browser binaries.
+
+T02 standalone checks use external stand-in repository fixtures. They separate native Windows junction evidence, pure path calculations and injected resolution faults. `T02_RUNNER_SOURCE` is reserved for an external-copy negative control of the old runner. Restoring the lexical preflight must fail the alias/dangling-link semantic assertions; normal checks must pass after removal. No hostile concurrent-link-replacement sandbox guarantee is made, and these checks do not add gameplay test cases.

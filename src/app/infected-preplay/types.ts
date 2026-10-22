@@ -1,5 +1,6 @@
 import type { PlayerView, PlayerRequest, PlayerExecution, PlayerSession } from '../../state/residence-session/player-types'
-import type { PlayerPreplay, PlayerIntentMetadata } from '../../state/residence-session/player-preplay-types'
+import type { PlayerPreplay, PlayerIntentMetadata, PlayerActionInputs } from '../../state/residence-session/player-preplay-types'
+import type { PlayerHandle } from '../../state/residence-session/player-types'
 
 export type PreplayPorts = Readonly<{ player: PlayerSession; preplay: PlayerPreplay;
   bootstrap(): PlayerView; createFirst(): PlayerView; retryRead(): PlayerView; synchronize(): void }>
@@ -16,6 +17,7 @@ export type PreplayController = Readonly<{
   getSnapshot(): PreplaySnapshot; subscribe(listener: () => void): () => void; listenerFailures(): number
   bootstrap(): PreplayResult; createFirst(): PreplayResult; retryRead(): PreplayResult; retrySave(): PreplayResult
   synchronize(): PreplayResult; preview(request: unknown): PlayerIntentMetadata
+  describeAction(action: PlayerHandle): PlayerActionInputs
   beginDraft(request: unknown): PreplayDraft; cancel(): void; executeDraft(draft: PreplayDraft): PreplayResult
   execute(request: unknown): PreplayResult; confirm(token: PreplayConfirmation): PreplayResult
 }>

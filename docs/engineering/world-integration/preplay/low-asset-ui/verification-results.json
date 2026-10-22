@@ -1,0 +1,125 @@
+{
+  "task": "ENG-WORLD-LOW-ASSET-UI-001",
+  "kind": "AUTHOR_VERIFICATION_NOT_OWNER_ACCEPTANCE",
+  "start": {
+    "sha": "0ac23bc3654d69c3d0a6289d5d9e97ce30c69164",
+    "branch": "feature/world-low-asset-ui-001",
+    "working_tree_clean": true,
+    "index_clean": true,
+    "package_files": 6,
+    "package_verifier_exit": 0,
+    "allowed_paths": 96
+  },
+  "tests": {
+    "baseline": { "command": "npm run test:run", "default_environment": true, "exit": 0, "files": 287, "tests": 4554, "seconds": 348.74, "log": "baseline-test.log" },
+    "targeted_before_system_fix": { "exit": 0, "files": 22, "tests": 93, "seconds": 19.50, "log": "targeted-final-1.log" },
+    "full_check_1": { "command": "npm run check", "exit": 0, "files": 309, "tests": 4647, "test_seconds": 307.61, "log": "full-check-1.log", "note": "Before subsequent SystemScreen review fix; preserved history, not final tested bytes." },
+    "system_screen": {
+      "before": { "exit": 1, "failed": 1, "filtered": 4, "semantic": "valid checkpoint outer metadata plus malformed v4 text rendered only synchronize instead of retryRead" },
+      "after": { "exit": 0, "tests": 7 },
+      "adjacent": { "exit": 0, "files": 3, "tests": 13 },
+      "new_tests": 3,
+      "evidence_directory": "C:/Users/zjl/AppData/Local/Temp/world-low-ui-system-review-0a69b971a35e440c94960a4e66e942da"
+    },
+    "final": { "command": "npm run check", "default_environment": true, "exit": 0, "files": 309, "tests": 4650, "test_seconds": 301.89, "log": "full-check-2.log" },
+    "added": 96,
+    "replaced": 0,
+    "deleted": 0,
+    "net": 96,
+    "new_test_files": 22,
+    "old_tests_and_helpers_unchanged": true,
+    "old_E03_four_routes_and_72_default_samples": "included in unchanged full default suite",
+    "new_local_30000ms_tests": [
+      "src/ui/infected-world/longchain.integration.test.tsx: A",
+      "src/ui/infected-world/longchain.integration.test.tsx: B",
+      "src/ui/infected-world/medical-maintenance.test.tsx: real retreat maintenance and bandage"
+    ],
+    "global_timeout_worker_or_config_changed": false
+  },
+  "checks": {
+    "architecture": { "exit": 0, "DEC": 53, "core_production_files": 347, "new_core_file": "pure player-inputs.ts only" },
+    "typecheck": { "exit": 0 },
+    "test_run": { "exit": 0 },
+    "build": { "exit": 0 },
+    "default_npm_run_check": { "exit": 0 },
+    "new_authored_links": { "missing": 0, "scope": "new author files and append-only increments; input originals remain external historical records" },
+    "new_production_UI_text_scan": { "matches": [], "scope": "Math.random/Date/UUID/storage/raw identity/hidden risk or progress/producer-resolver token scan, not a full security audit" }
+  },
+  "runtime_fingerprints": {
+    "native_tested_src_and_UI_validation": { "files": 972, "sha256": "7d24f76548789660d7f92c2dcfbc1284de4f940d07fb373a322de150af50f848" },
+    "real_browser_src_public_dist_TEST_runtime": { "files": 1011, "before": "c91bb4a0ff7cc872ee8777cc26f3c49d6a7726725064b0529dc73c2b3c229f83", "after": "c91bb4a0ff7cc872ee8777cc26f3c49d6a7726725064b0529dc73c2b3c229f83", "unchanged": true }
+  },
+  "browser": {
+    "historical_runs": [ { "directory": "browser-1", "passed": 5, "failed": 1, "cause": "new TEST button matching omitted child resource text" }, { "directory": "browser-2", "passed": 6, "failed": 0 } ],
+    "final_directory": "browser-3",
+    "exit": 0,
+    "browser": "Edg/155.0.4283.62",
+    "passed_groups": 7,
+    "failed_groups": 0,
+    "console_warnings_errors": 0,
+    "screenshots": 12,
+    "viewports": [ "1366x768", "1600x900", "390x844" ],
+    "real_storage_and_Web_Locks": true,
+    "same_origin_same_partition_competition": true,
+    "actual_BFCache_persisted_true": true,
+    "actual_fresh_dist_DEV_flag_ignored": true,
+    "native_UI_cold_retry_and_projection_cases": "7 faults tests, real native owner; not represented as additional browser groups",
+    "A": { "public_DOM_steps": 84, "outcome": "success", "task_day": 4, "hp": 2, "sample": "delivered", "reward": 120 },
+    "B": { "public_DOM_steps": 18, "outcome": "voluntary-failure", "task_day": 2, "hp": 11, "injected_checkpoint_failures": 6, "retry_extra_write": 1, "retry_extra_execute_or_confirm": 0 },
+    "supplemental_deaths": [ "both-zero", "alive-enemy" ],
+    "data": "browser-results.json",
+    "visual_review": "visual-review.md"
+  },
+  "independent_native_counts": {
+    "single_maintenance_combat_or_terminal": { "dispatch": 1, "current": 1, "native_notice": 1, "checkpoint_attempt": 1 },
+    "cancel_read_menu_map_edit": { "dispatch": 0, "current": 0, "native_notice": 0, "gameplay_write": 0 },
+    "save_failure": { "dispatch": 1, "current": 1, "native_notice": 1, "checkpoint_attempt": 1, "rollback": false },
+    "retry_save": { "dispatch": 0, "current": 0, "native_notice": 0, "draw": 0, "encode": 1, "checkpoint_attempt": 1 },
+    "normal_H0_return": { "cycle_entry_calls": 1, "steps": [], "extra_overnight": false },
+    "note": "Native spy assertions are distinct from browser UI control-call and IO receipts. First setup separately writes reservation then checkpoint."
+  },
+  "negative_controls": {
+    "external_shadow_only": true,
+    "classes": [ "hidden identity in DOM data-*", "pointer double-click duplicate action", "non-DEV entry isolation" ],
+    "semantic_AssertionErrors": 4,
+    "mutated_exits": [ 1, 1, 1 ],
+    "restored_exits": [ 0, 0, 0 ],
+    "repository_and_index_unchanged": true,
+    "source": "negative-controls/results.json"
+  },
+  "T02": {
+    "native_before": "actual Windows junction to stand-in repository incorrectly accepted; expected-refusal assertion exit1",
+    "after_tests": 24,
+    "after_exit": 0,
+    "old_preflight_negative_AssertionErrors": 3,
+    "negative_exit": 1,
+    "restored_tests": 24,
+    "restored_exit": 0,
+    "old_browser_suffix_bytes": 17023,
+    "old_browser_suffix_sha256": "b3fe376b69acc43ff30a399e5bb19ed1ed2e0434dc24e6d31a5e5d95b5f90f30",
+    "suffix_unchanged": true,
+    "not_claimed": "native POSIX execution, real OS ACL exhaustion, hostile concurrent link replacement resistance"
+  },
+  "protection": {
+    "tracked_objects_unchanged": 1627,
+    "outside_allowed_paths": [],
+    "append_only_prefixes_preserved": 5,
+    "archived_originals_byte_identical": 6,
+    "existing_P_R_S_domain_G1_G2_CTB_v4_unchanged": true,
+    "approved_rules_parameters_content_definitions_dependencies_CI_unchanged": true,
+    "DEC_or_UIR_added": false
+  },
+  "whitespace": {
+    "new_increment_raw_exit": 0,
+    "foundation_cumulative_raw_exit": 2,
+    "foundation_cumulative_only": "W02 exact original task line249 EOF blank",
+    "oldest_cumulative_raw_exit": 2,
+    "oldest_cumulative_only": "W01 seven original hard breaks plus W02 one EOF blank",
+    "new_exception": false
+  },
+  "evidence_root": "C:/Users/zjl/AppData/Local/Temp/world-low-ui-work-7640c8e31d10409fbad30a9ce96ed7ce",
+  "not_run": [ "Owner experience/free play/segmented and nine-combination experience", "other browsers", "actual OS quota or permission exhaustion", "power-loss durability", "final Art/UI/Audio quality" ],
+  "dependency_audit_404": "historical UNCONFIRMED; no upgrade or audit fix",
+  "git_CI": "Pre-commit author record. Exact final commit/parent/tree, staged/blob equality, push and actual CI are recorded in external final receipt and final response; no self-SHA amend.",
+  "stop": "Await mainline exact-SHA code/browser/visual review; no O3, merge, main push, force push or next engineering task."
+}

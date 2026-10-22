@@ -368,3 +368,7 @@ D1/D2 已批准并在本轮正式落文，等待准确 SHA 文档实审；不是
 ## ENG-WORLD-BROWSER-OWNER-001 作者实现附记
 
 显式且未注册玩家入口的 browser owner 已接入：四个 S 宿主补齐冻结 prepared expected/original-text 单写；独立 reservation/checkpoint 与全会话 Web Locks，冷 expected 不从 v4 payload 反推。唯一 S/current、旧 text 端口、格式、规则和旧医院入口／槽保持。真实 Edge 五停点、三敌、同源多页及生命周期已测；不是全平台或 Owner 体验通过。详见[本批交付](../../engineering/world-integration/preplay/browser-owner/completion.md)。等待准确 SHA 保存／浏览器接缝实审；未自动进入 UI 或决定 O3。
+
+## ENG-WORLD-LOW-ASSET-UI-001 作者实现附记
+
+D1/D2 范围内独立 DEV 低资产界面与作者验证已形成，见[本批交付](../../engineering/world-integration/preplay/low-asset-ui/completion.md)。当前停在准确 SHA 源码／浏览器／视觉实审，未自动关闭 Owner 自由首玩、分段突破／九组合体验或 O3。没有新增决策、正式发布、迁移／清档、永久双入口或第二委托。

@@ -1,0 +1,1 @@
+export { InfectedWorldApp } from './app'

@@ -11,3 +11,9 @@ The TEST page uses real localStorage and navigator.locks; quota/read/write fault
 Reports distinguish initial/continuing/cold IO, entropy and Presentation updates. Native S/producer/current/notice/pay counters come from separate source spies in new unit/combination tests, not inferred from DOM. Crashed renderer is proven by targetCrashed events; release can lag, so runner makes explicit non-queued acquire attempts and records each. Actual BFCache persisted=true vs simulated tests vs NOT RUN are separated. Screenshots are actual TEST-state captures, not low-asset UI acceptance.
 
 Final evidence: `C:/Users/zjl/AppData/Local/Temp/browser-owner-work-94d649668b8843f885d8dc007a2f17d2/browser-final-2`; 9 groups PASS, Edge Edg/155.0.4283.62, four PNGs, zero page Runtime.exceptionThrown, two expected crash protocol events. Browser-1 route death, browser-2 300ms crash assumption failure, diagnostic and intermediate runs remain outside repo. Full [author evidence](../verification-results.json).
+
+## T02 output boundary follow-up (ENG-WORLD-LOW-ASSET-UI-001)
+
+The output preflight now delegates to the reviewed [T01 filesystem guard](../../../../../design-drafts/world-infected-001/entry-006/validation/output-path-guard.mjs) before any directory, log, profile or process creation. Immediately after creating the output directory, the runner rechecks its real location before creating its private browser profile. Existing browser cases, assertions, result handling and historical nine-group evidence are unchanged.
+
+The [standalone boundary regression](../../low-asset-ui/validation/check-output-boundary.mjs) uses external fixtures only, including a native Windows junction back into a stand-in repository. It separates native filesystem evidence, pure path calculations and injected permission failures. Resolution failures fail closed; this is not an operating-system sandbox against hostile concurrent link replacement. T02 does not count as a new gameplay test.

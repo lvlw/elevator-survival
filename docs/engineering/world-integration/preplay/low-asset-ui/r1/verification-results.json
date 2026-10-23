@@ -1,0 +1,58 @@
+{
+  "task": "ENG-WORLD-LOW-ASSET-UI-001-R1",
+  "kind": "AUTHOR_EVIDENCE_NOT_MAINLINE_OR_OWNER_ACCEPTANCE",
+  "start": { "sha": "2e3d13a52ada1fdcd9848574e918b97db43cb0c2", "branch": "feature/world-low-asset-ui-001", "worktree_clean": true, "index_clean": true, "allowed_paths": 66 },
+  "inputs": { "files": 9, "hashes": 8, "verifier_exit": 0, "inner_zip_crc": "PASS", "byte_originals_preserved": true },
+  "tests": {
+    "baseline": { "command": "npm run test:run", "default": true, "exit": 0, "files": 309, "tests": 4650, "seconds": 307.71, "log": "baseline-test.log" },
+    "pre_fix_native": { "exit": 1, "files_failed": 4, "semantic_assertions": 12, "seconds": 8.51, "log": "pre-fix-native.log" },
+    "first_repair": { "exit": 1, "passed": 11, "failed": 1, "reason": "placement aria component/module", "log": "post-fix-first.log" },
+    "old_ui_first": { "exit": 1, "passed": 72, "failed": 1, "reason": "global dialog locator includes intentional nonmodal L0", "log": "ui-suite-first.log" },
+    "expanded_target": { "exit": 0, "files": 4, "tests": 20, "seconds": 10.41, "log": "expanded-first.log" },
+    "test_adaptations": ["Cloned selector TEST lacked required selection property: typecheck failed, corrected same-shape clone", "Paired one-choice source TEST incorrectly expected two medicines: fixture assertion failed, corrected separate genuine-P TEST predecessors; not semantic detection"],
+    "hidden_menu_fixed": { "exit": 0, "files": 1, "tests": 5, "seconds": 10.18, "log": "hidden-menu-fixed.log" },
+    "final": { "command": "npm run check", "default": true, "exit": 0, "files": 314, "tests": 4672, "test_seconds": 350.39, "log": "full-check-final.log" },
+    "new_files": 5, "added": 22, "replaced": 0, "deleted": 0, "net": 22,
+    "old_test_updates": ["accessibility modal locator plus nonmodal assertion", "route-test-fixtures public display locators only"],
+    "A_B_strategy_bodies_byte_equal": true,
+    "old_E03_four_routes_72_default_samples": "actual default full suite, unchanged source and helpers; not all seeds claimed successful",
+    "global_timeout_worker_CI_dependency_changes": false
+  },
+  "checks": {
+    "architecture": { "exit": 0, "DEC": 53, "core_production_files": 347 },
+    "typecheck": { "exit": 0 }, "test_run": { "exit": 0 }, "build": { "exit": 0 }, "default_check": { "exit": 0 },
+    "protected_objects": { "count": 1669, "changed": 0 }, "append_only_documents": 10,
+    "source_fingerprint": { "files": 980, "sha256": "02dcbb377a4b2504409f1cbb9de11c1cd737e78bbf29b621c4c33b774a625639" },
+    "browser_fingerprint": { "files": 1019, "before": "dae9c1f22775bf4ac3510acde91221ecea0e70077271609e800aa38a70102da7", "after": "dae9c1f22775bf4ac3510acde91221ecea0e70077271609e800aa38a70102da7" },
+    "new_diff_check": { "raw_exit": 0 },
+    "from_ff2b79f": { "raw_exit": 2, "only": "W02 original foundation task line249 EOF blank" },
+    "from_8c19ca0": { "raw_exit": 2, "only": "W01 seven original hard breaks plus W02 one EOF blank" },
+    "new_exception": false,
+    "audit_helper_adaptation": "External helper initially failed Node buffer encoding with string input; corrected Buffer input/null encoding. Initial link check found only not-yet-created R1 reports; final audit checks all links. No production change."
+  },
+  "independent_counts": {
+    "L0": { "dispatch": 0, "current": 0, "native_notice": 0, "read": 0, "write": 0, "draw": 0, "issue": 0, "consume": 0 },
+    "source_or_investigation_main_click": { "dispatch": 1, "current": 1, "native_notice": 1, "write": 1 },
+    "eligible_bandage_context": { "dispatch": 1, "current": 1, "native_notice": 1, "medical": 1, "write": 1 },
+    "same_current_retry": { "dispatch": 0, "current": 0, "native_notice": 0, "draw": 0, "encode": 1, "write": 1, "opaque_preserved": true },
+    "browser": "Control calls/publications/entropy/checkpoint IO are separate from native S Vitest counts."
+  },
+  "browser": {
+    "installed": "Edg/155.0.4283.62",
+    "first_attempt": "NOT COMPLETED: restricted GPU sandbox crash then CDP timeouts; exact failed own TEST runner stopped, no gameplay PASS",
+    "final": { "exit": 0, "groups_passed": 8, "groups_failed": 0, "page_console_warning_error": 0, "screenshots": 12, "all_images_actually_viewed": true },
+    "actual_BFCache_hit": true,
+    "A": { "DOM_steps": 84, "outcome": "success", "day": 4, "hp": 2, "sample": "delivered", "reward": 120 },
+    "B": { "DOM_steps": 18, "outcome": "voluntary-failure", "day": 2, "hp": 11, "failed_checkpoint_attempts": 6, "retry_write_delta": 1, "retry_execute_confirm_delta": 0 },
+    "new_evidence": "CDP Hover/Focus/Escape, L0 bounds, exact item menu, narrow parameters, stale details, restored copy",
+    "process_logs": "OS integration/sync noise retained separately from zero page console warnings/errors",
+    "source": "browser-results.json"
+  },
+  "negative_controls": { "location": "external shadow only", "classes": ["N1 missing L0", "N2 medical on all carried items"], "semantic_AssertionErrors": 2, "each_mutated_exit": 1, "each_restored_exit": 0, "repository_and_index_unchanged": true, "old_controls_T02": "NOT RE-RUN, protected implementations unchanged, not new tests" },
+  "unchanged": ["core", "state", "app", "P/R/S", "controller/browser owner", "locks/domain", "v4", "G1/G2", "rule values", "dependencies/CI", "old hospital entry/save", "approved contracts", "historical evidence"],
+  "maintenance": { "CI166_historical_summary": "2 moderate / 4 high, not closed", "local_audit_404": "UNCONFIRMED; NOT RE-RUN; no upgrade" },
+  "process_inventory": "Restricted Win32_Process initially denied. Later elevated exact TEST PID checks succeeded; no unrelated process stopped. Stop-Process helper error retained, exact Process.Kill completed.",
+  "git": "Same-branch ordinary commit/push authorized; final SHA/parent/tree/remote and exact-SHA CI recorded post-commit externally and in final response, not recursively amended here.",
+  "not_run": ["Owner experience", "O3/release", "other browsers", "actual OS quota/ACL exhaustion", "power-loss durability", "full accessibility certification", "new art/audio", "next stage"],
+  "stop": "Await exact-SHA source/browser/visual review; no Owner acceptance claimed."
+}

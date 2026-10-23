@@ -372,3 +372,7 @@ D1/D2 已批准并在本轮正式落文，等待准确 SHA 文档实审；不是
 ## ENG-WORLD-LOW-ASSET-UI-001 作者实现附记
 
 D1/D2 范围内独立 DEV 低资产界面与作者验证已形成，见[本批交付](../../engineering/world-integration/preplay/low-asset-ui/completion.md)。当前停在准确 SHA 源码／浏览器／视觉实审，未自动关闭 Owner 自由首玩、分段突破／九组合体验或 O3。没有新增决策、正式发布、迁移／清档、永久双入口或第二委托。
+
+### ENG-WORLD-LOW-ASSET-UI-001-R1 作者附记
+
+本轮仅补齐现行合同的行动说明、初选公开能力、任务物展示名、对象菜单与保存提示；未新增待批准玩法或玩家知识。修前／修后及剩余边界见[R1 映射](../../engineering/world-integration/preplay/low-asset-ui/r1/wording-and-test-map.md)。继续等待准确 SHA 源码／浏览器／视觉复审，Owner 自由体验、分段与九组合体验及 O3 保持原状态。

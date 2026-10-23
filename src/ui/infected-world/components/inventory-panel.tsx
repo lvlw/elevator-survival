@@ -2,27 +2,19 @@ import { useEffect, useState } from 'react'
 import type { PlayerAction, PlayerItem, PlayerReadyView } from '../../../state/residence-session/player-types'
 import { ContextMenu } from './context-menu'
 import { ItemTile } from './item-tile'
-import { loadName } from '../labels'
+import { loadName, publicItemName } from '../labels'
+import type { BrowserControls } from '../../../app/infected-browser/types'
+import { itemMenuActions } from '../menu-options'
 
 type Menu = { item: PlayerItem; x: number; y: number; trigger: HTMLButtonElement }
-const backpackActions = ['移动物品', '拆分', '合并', '放入快捷栏', '留置']
-export function InventoryPanel({ view, onAction }: { view: PlayerReadyView; onAction: (action: PlayerAction, item?: PlayerItem) => void }) {
+export function InventoryPanel({ view, onAction, describeAction }: { view: PlayerReadyView; onAction: (action: PlayerAction, item?: PlayerItem) => void;
+  describeAction: BrowserControls['describeAction'] }) {
   const [tab, setTab] = useState<'equipment' | 'backpack'>('backpack')
   const [menu, setMenu] = useState<Menu | null>(null)
   useEffect(() => { setMenu(null) }, [view])
   const closeMenu = () => { menu?.trigger.focus(); setMenu(null) }
   const showMenu = (item: PlayerItem, x: number, y: number, trigger: HTMLButtonElement) => setMenu({ item, x, y, trigger })
-  const menuActions = (item: PlayerItem) => view.actions.filter(action => {
-    if (item.container === 'quick') return (action.family === 'inventory' && action.label === '放入背包') || action.family === 'medical'
-    if (item.container !== 'backpack') return false
-    if (action.family === 'medical') return true
-    if (action.family === 'task-transfer') return !item.ordinary && action.label === '留置任务物'
-    if (action.family !== 'inventory' || !backpackActions.includes(action.label)) return false
-    if (action.label === '留置') return item.ordinary
-    if (action.label === '拆分' || action.label === '合并') return item.stackable
-    if (action.label === '放入快捷栏') return item.quickEligible
-    return true
-  })
+  const menuActions = (item: PlayerItem) => itemMenuActions(view, item, describeAction)
   return <aside className="iw-inventory" aria-label="装备与背包"><header><h2>携带</h2><span>{loadName(view.backpack.load)} · 重量 {view.backpack.weight}</span></header>
     <div className="iw-quick" aria-label="快捷栏">{[0, 1].map(slot => {
       const item = view.carried.find(item => item.container === 'quick' && item.slot === slot)
@@ -42,11 +34,11 @@ export function InventoryPanel({ view, onAction }: { view: PlayerReadyView; onAc
       </div>
     </section> : <section className="iw-equipment" role="tabpanel" aria-label="装备">{(['weapon', 'armor', 'utility'] as const).map((container, index) => {
       const item = view.carried.find(item => item.container === container)
-      return <div key={container}><strong>{['武器', '防具', '实用装备'][index]}</strong>{item ? <><ItemTile item={item} /><span>{item.name}</span></> : <span className="iw-empty-slot">未装备</span>}</div>
+      return <div key={container}><strong>{['武器', '防具', '实用装备'][index]}</strong>{item ? <><ItemTile item={item} /><span>{publicItemName(item.name)}</span></> : <span className="iw-empty-slot">未装备</span>}</div>
     })}</section>}
       {view.point === 'battle-decision' && <p className="iw-muted">战斗中携带区只读；快捷用药请使用舞台行动。</p>}
       {view.body.wounds.length > 0 && <details><summary>当前伤口</summary><ul>{view.body.wounds.map(wound => <li key={wound.ordinal}>伤口 {wound.ordinal} · {wound.kind === 'scratch' ? '抓伤' : wound.kind === 'bite' ? '咬伤' : '开放伤口'} · {wound.treatment === 'treated' ? '已处理' : '未处理'}</li>)}</ul></details>}
     </div>
-    {menu && <ContextMenu name={menu.item.name} actions={menuActions(menu.item)} x={menu.x} y={menu.y} onClose={closeMenu} onAction={action => { const item = menu.item; setMenu(null); onAction(action, item) }} />}
+    {menu && <ContextMenu name={publicItemName(menu.item.name)} actions={menuActions(menu.item)} x={menu.x} y={menu.y} onClose={closeMenu} onAction={action => { const item = menu.item; setMenu(null); onAction(action, item) }} />}
   </aside>
 }

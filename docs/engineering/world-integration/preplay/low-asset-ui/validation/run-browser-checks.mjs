@@ -100,6 +100,28 @@ async function refresh(tab) {
   await request('Page.reload', {}, tab.sessionId); await pause(150); await ready(tab);
   return api(tab, 'snapshot');
 }
+async function information(tab, label, mode, shot, viewport = { width: 1600, height: 900 }) {
+  await request('Emulation.setDeviceMetricsOverride', { ...viewport, deviceScaleFactor: 1, mobile: viewport.width < 600 }, tab.sessionId);
+  const before = await api(tab, 'counts');
+  const trigger = mode === 'hover' ? label : '查看' + label + '说明';
+  const box = await evaluate(tab, `(() => { const b=[...document.querySelectorAll('button')].find(b=>(b.getAttribute('aria-label')??b.textContent.trim())===${JSON.stringify(trigger)}); if(!b)throw Error('R01 information entry absent'); b.scrollIntoView({block:'center'}); ${mode === 'focus' ? 'b.focus();' : ''} const r=b.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2}; })()`);
+  if (mode === 'hover') await request('Input.dispatchMouseEvent', { type: 'mouseMoved', ...box }, tab.sessionId);
+  if (mode === 'click') await click(tab, trigger);
+  await ready(tab, "Boolean(document.querySelector('[aria-label=行动说明]'))");
+  const detail = await evaluate(tab, `(() => { const p=document.querySelector('[aria-label=行动说明]'),r=p.getBoundingClientRect();return {text:p.innerText,x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:innerWidth,height:innerHeight,modal:p.getAttribute('aria-modal'),focus:document.activeElement?.textContent}; })()`);
+  assert.ok(detail.text.includes(label)); assert.equal(detail.modal, 'false');
+  assert.ok(detail.x >= 0 && detail.y >= 0 && detail.right <= detail.width && detail.bottom <= detail.height);
+  if (shot) await screenshot(tab, shot, viewport);
+  if (mode === 'click') assert.equal(detail.focus, '关闭说明');
+  await request('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 }, tab.sessionId);
+  await request('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 }, tab.sessionId);
+  await ready(tab, "!document.querySelector('[aria-label=行动说明]')");
+  const after = await api(tab, 'counts');
+  for (const key of ['execute', 'confirm', 'retrySave', 'confirmSetup']) assert.equal(after.controlsCalls[key] ?? 0, before.controlsCalls[key] ?? 0);
+  assert.equal(after.io.length, before.io.length); assert.equal(after.entropy, before.entropy);
+  assert.equal(after.publications, before.publications);
+  return { mode, detail, before, after, nativeSCounters: 'separate native Vitest observer evidence; not inferred from browser control calls' };
+}
 async function readonlyMapAndKeyboardMenu(tab) {
   const before = await api(tab, 'counts');
   await evaluate(tab, `(() => { const summary=document.querySelector('.iw-map summary'); if(!summary)throw Error('Known-map summary absent'); summary.click(); const trigger=document.querySelector('[aria-label="背包格位"] button[aria-haspopup=menu]'); if(!trigger)throw Error('Actual backpack menu item absent'); trigger.focus(); })()`);
@@ -109,6 +131,8 @@ async function readonlyMapAndKeyboardMenu(tab) {
   const menu = await evaluate(tab, `(() => { const el=document.querySelector('[role=menu]'), box=el.getBoundingClientRect(), map=document.querySelector('.iw-map'); return {x:box.x,y:box.y,right:box.right,bottom:box.bottom,width:innerWidth,height:innerHeight,focusInMenu:el.contains(document.activeElement),focusOutline:getComputedStyle(document.activeElement).outlineStyle,mapOpen:map.open,knownNodes:document.querySelectorAll('[aria-label="已知地点"] li').length}; })()`);
   assert.equal(menu.focusInMenu, true); assert.equal(menu.mapOpen, true); assert.ok(menu.knownNodes > 0);
   assert.notEqual(menu.focusOutline, 'none');
+  assert.equal(await evaluate(tab, "document.querySelector('[role=menu]').textContent.includes('使用药食')"), false);
+  assert.equal(await evaluate(tab, "document.querySelector('[role=menu]').textContent.includes('通信模块')"), true);
   assert.ok(menu.x >= 0 && menu.y >= 0 && menu.right <= menu.width && menu.bottom <= menu.height);
   await screenshot(tab, '04-route-a-stage-3', { width: 1600, height: 900 });
   await request('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 }, tab.sessionId);
@@ -190,15 +214,16 @@ try {
     const tab = await tabAt(); assert.equal((await api(tab, 'snapshot')).status, 'setup');
     const before = await api(tab, 'counts'); assert.equal(before.entropy, 0); assert.equal(before.io.filter(row => row.operation === 'write').length, 0);
     await screenshot(tab, '01-setup-1600', { width: 1600, height: 900 });
-    await screenshot(tab, '02-setup-narrow', { width: 390, height: 844 });
     await request('Emulation.setDeviceMetricsOverride', { width: 1366, height: 768, deviceScaleFactor: 1, mobile: false }, tab.sessionId);
     await api(tab, 'sentinel', 'LOW-ASSET-TEST-OLD-HOSPITAL-UNCHANGED');
     await setup(tab); const counts = await api(tab, 'counts');
     assert.equal(counts.entropy, 1); assert.equal(counts.io.filter(row => row.operation === 'write' && row.key === 'reservation').length, 1);
     assert.equal(counts.io.filter(row => row.operation === 'write' && row.key === 'checkpoint').length, 1);
     assert.equal(counts.controlsCalls.confirmSetup, 1);
-    await screenshot(tab, '03-first-hub-1366', { width: 1366, height: 768 });
     assert.equal((await refresh(tab)).preplay.view.point, 'first-hub');
+    assert.equal(await evaluate(tab, "document.querySelector('[role=status]').textContent.includes('本页面尚未执行新的保存操作')"), true);
+    assert.equal((await api(tab, 'counts')).io.filter(row => row.operation === 'write').length, 0);
+    await screenshot(tab, '03-restored-hub-1366', { width: 1366, height: 768 });
     assert.equal((await api(tab, 'counts')).entropy, 0);
     assert.equal(await api(tab, 'sentinel'), 'LOW-ASSET-TEST-OLD-HOSPITAL-UNCHANGED');
     await request('Target.closeTarget', { targetId: tab.targetId }); return { before, counts };
@@ -216,6 +241,8 @@ try {
         await evaluate(tab, `(() => { const buttons=[...document.querySelectorAll('button')].filter(b=>b.textContent.trim().startsWith('提取样本')&&b.textContent.includes('谨慎')); if(buttons.length!==1)throw Error('Expected actual cautious extraction control'); buttons[0].click(); })()`);
         await ready(tab, "Boolean(document.querySelector('[aria-label=行动参数]'))");
         await evaluate(tab, `(() => { const anchor=document.querySelector('[aria-label="行动参数"] button[aria-label^="锚点 1,3"]'); if(!anchor)throw Error('Expected explicit sample anchor'); anchor.click(); })()`);
+        assert.ok((await evaluate(tab, "document.querySelector('[aria-label=行动参数] h2').textContent")).includes('谨慎提取'));
+        assert.match(await evaluate(tab, "document.querySelector('[aria-label=正式行动预览]').textContent"), /厚实外套资源：.*支付1/);
         await screenshot(tab, '08-explicit-placement-1600', { width: 1600, height: 900 });
         await click(tab, '取消');
         const afterDraft = await api(tab, 'counts');
@@ -225,7 +252,7 @@ try {
       }
       stages.push(await api(tab, 'routeA', stage));
       const state = await api(tab, 'snapshot');
-      if ([0, 2].includes(stage)) await screenshot(tab, `04-route-a-stage-${stage}`, { width: 1600, height: 900 });
+      if (stage === 0) readonlyChecks.push(await information(tab, '金属管攻击', 'focus', '04-battle-information-1366', { width: 1366, height: 768 }));
       if (stage === 3) readonlyChecks.push(await readonlyMapAndKeyboardMenu(tab));
       const point = state.preplay?.view?.point;
       if (['stable-active', 'battle-decision', 'living-hub', 'dead'].includes(point)) {
@@ -264,7 +291,6 @@ try {
     assert.equal((await api(a, 'snapshot')).status, 'suspended');
     await click(b, '重新取得独占'); await ready(b, "window.lowAssetTest.snapshot()?.status === 'ready'");
     stages.push(await api(b, 'routeB', 2));
-    await screenshot(b, '11-segmented-terminal-1366', { width: 1366, height: 768 });
     const final = await api(b, 'snapshot'); assert.ok(['living-hub', 'dead'].includes(final.preplay.view.point));
     await request('Target.disposeBrowserContext', { browserContextId });
     return { stages, before, after, retry, blocked, final: final.preplay.view.terminal };
@@ -276,7 +302,6 @@ try {
     await ready(a, "window.lowAssetTest.snapshot()?.preplay?.view?.point === 'stable-active'");
     await click(a, '失败止损返回');
     assert.equal(await evaluate(a, "Boolean(document.querySelector('[aria-label=保护确认]'))"), true);
-    await screenshot(a, '12-protection-confirmation-1600', { width: 1600, height: 900 });
     const before = await api(a, 'counts');
     await request('Page.navigate', { url: report.origin + '/docs/engineering/world-integration/preplay/browser-owner/validation/browser-navigation-target.html' }, a.sessionId);
     await pause(150);
@@ -322,6 +347,66 @@ try {
       await request('Target.disposeBrowserContext', { browserContextId });
     }
     return outcomes;
+  });
+
+  await record('R01-R04 real hover/focus details, item-bound menus and narrow-screen controls', async () => {
+    const { browserContextId } = await request('Target.createBrowserContext');
+    const tab = await tabAt(url, browserContextId); await setup(tab); await click(tab, '进入封锁区');
+    const move = async name => {
+      await evaluate(tab, `(() => { const b=[...document.querySelectorAll('.iw-travel .iw-action-entry > button:first-child')].find(b=>b.textContent.includes(${JSON.stringify(name)})); if(!b)throw Error('R1 move button absent');b.click(); })()`);
+      await ready(tab, `window.lowAssetTest.snapshot()?.preplay?.view?.location?.name === ${JSON.stringify(name)}`);
+    };
+    await move('大厅');
+    const hover = await information(tab, '大厅搜索 · 无照明搜索', 'hover', '14-source-l0-1600');
+    assert.ok(hover.detail.text.includes('精力消耗：12'));
+    const incomplete = await information(tab, '隔离防火门 · 使用撬棍', 'click', '15-incomplete-l0-narrow', { width: 390, height: 844 });
+    assert.ok(incomplete.detail.text.includes('本动作需要明确选择：实际物品'));
+    assert.equal(incomplete.after.controlsCalls.preview ?? 0, incomplete.before.controlsCalls.preview ?? 0);
+    const before = await api(tab, 'counts');
+    await click(tab, '大厅搜索 · 无照明搜索');
+    await ready(tab, 'window.lowAssetTest.snapshot().preplay.view.sources.some(s=>s.completed)');
+    const executed = await api(tab, 'counts');
+    assert.equal(executed.controlsCalls.execute, (before.controlsCalls.execute ?? 0) + 1);
+    assert.equal(executed.controlsCalls.confirm ?? 0, before.controlsCalls.confirm ?? 0);
+    assert.equal(executed.io.filter(r=>r.operation==='write').length, before.io.filter(r=>r.operation==='write').length + 1);
+    await click(tab, '拾取 金属零件');
+    const menuFor = async selector => {
+      const box = await evaluate(tab, `(() => { const b=document.querySelector(${JSON.stringify(selector)});if(!b)throw Error('R03 actual item absent');b.scrollIntoView({block:'center'});const r=b.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}; })()`);
+      await request('Input.dispatchMouseEvent', { type: 'mousePressed', button: 'right', buttons: 2, clickCount: 1, ...box }, tab.sessionId);
+      await request('Input.dispatchMouseEvent', { type: 'mouseReleased', button: 'right', buttons: 0, clickCount: 1, ...box }, tab.sessionId);
+      await ready(tab, "Boolean(document.querySelector('[role=menu]'))");
+    };
+    const menuBefore = await api(tab, 'counts');
+    await menuFor('[aria-label="背包格位"] button[aria-label^="金属零件"]');
+    assert.equal(await evaluate(tab, "document.querySelector('[role=menu]').textContent.includes('使用药食')"), false);
+    await screenshot(tab, '16-metal-menu-narrow', { width: 390, height: 844 });
+    await click(tab, '关闭菜单');
+    assert.equal((await api(tab, 'counts')).io.length, menuBefore.io.length);
+    await click(tab, '隔离防火门 · 使用撬棍');
+    await evaluate(tab, `(() => {const s=document.querySelector('select[aria-label=物品]');const o=[...s.options].find(o=>o.text.startsWith('撬棍 ×'));if(!o)throw Error('Explicit crow option absent');Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype,'value').set.call(s,o.value);s.dispatchEvent(new Event('change',{bubbles:true}));})()`);
+    await click(tab, '执行行动'); await move('隔离走廊');
+    for (let turn = 0; turn < 24; turn++) {
+      const view = (await api(tab, 'snapshot')).preplay.view; if (!view.combat) break;
+      const action = (view.body.bleeding ? view.combat.actions.find(a=>a.label.startsWith('使用快捷物品')) : null) ?? view.combat.actions.find(a=>a.label==='蓄力打击') ?? view.combat.actions.find(a=>a.label==='金属管攻击') ?? view.combat.actions.find(a=>a.label==='临时攻击');
+      assert.ok(action); await click(tab, action.label);
+      if (await evaluate(tab, "Boolean(document.querySelector('[aria-label=保护确认]'))")) await click(tab, '确认执行');
+    }
+    assert.equal((await api(tab, 'snapshot')).preplay.view.point, 'stable-active');
+    await menuFor('[aria-label="快捷栏"] button[aria-label^="绷带"]');
+    assert.equal(await evaluate(tab, "document.querySelector('[role=menu]').textContent.includes('使用药食')"), true);
+    await click(tab, '使用药食');
+    assert.ok((await evaluate(tab, "document.querySelector('[aria-label=行动参数] h2').textContent")).includes('绷带'));
+    const choice = await evaluate(tab, "document.querySelector('select[aria-label=物品]').selectedOptions[0].textContent");
+    assert.ok(choice.startsWith('绷带'));
+    await screenshot(tab, '17-medical-parameters-narrow', { width: 390, height: 844 });
+    const draft = await api(tab, 'counts'); await click(tab, '取消');
+    assert.equal((await api(tab, 'counts')).io.length, draft.io.length);
+    // Open a real detail, then change the canonical context through one ordinary DOM move.
+    await information(tab, '原位休整', 'focus');
+    await click(tab, '查看原位休整说明');
+    await move('大厅'); assert.equal(await evaluate(tab, "Boolean(document.querySelector('[aria-label=行动说明]'))"), false);
+    await request('Target.disposeBrowserContext', { browserContextId });
+    return { hover, incomplete, oneClick: { before, executed }, menuBefore, medical: { choice, draft }, staleDetailRemoved: true };
   });
 
   await record('U01 actual fresh production dist ignores DEV infected flag and holds no new writer', async () => {

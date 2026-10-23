@@ -390,3 +390,7 @@ D1/D2 已获 Owner 批准，主线已定稿后继三批技术责任；本轮只�
 独立 DEV 低资产界面已接线：明确初选、五停点、Stage-First 房间／战斗、只读已知地图、完整参数请求、真实 footprint／快捷栏、药食／维护／任务与终局、保存和失锁反馈。必要输入说明复用同源纯事实，隐藏医疗目标继续 unknown；普通整实例拾取的 first-fit 逐格调用正式 Preview，不扩展到任务物、交易或整理。
 
 验收映射、当前能力与未公开字段见[U01—U10 作者矩阵](engineering/world-integration/preplay/low-asset-ui/contract-and-support.md)，实际验证与局限见[完成记录](engineering/world-integration/preplay/low-asset-ui/completion.md)。旧 E03、旧测试与规则保留；本批作者证据不能替代准确 SHA 源码／浏览器／视觉实审或 Owner 体验。历史实现记录不追改，O3 未决定。
+
+### ENG-WORLD-LOW-ASSET-UI-001-R1 作者补修附记
+
+UI-01 完整行动 L0 只读说明、UI-02 已批准初选能力及公开物品文案、UI-03 同一安全候选的物品菜单、V01 会话级保存文案已接入展示层；正式规则、资格／支付、安全判断及保存语义不变。修前真实 DOM、修后计数、原 A/B 链、E03 四路线／72样本和浏览器证据分别记录于[R1 映射](engineering/world-integration/preplay/low-asset-ui/r1/wording-and-test-map.md)及[R1 核验](engineering/world-integration/preplay/low-asset-ui/r1/verification-results.json)。此追踪不批准体验、发布或后继工程。

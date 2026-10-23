@@ -67,3 +67,7 @@
 本批交付显式 DEV 低资产 UI，作者分别记录原生、真实 React DOM、真实 Edge 保存／刷新／同源竞争／生命周期与截图证据，见[完成记录](../preplay/low-asset-ui/completion.md)及[首玩指南](../preplay/low-asset-ui/owner-playtest-guide.md)。准确 SHA 源码／浏览器／视觉审查仍为前置，自动与截图检查不等于 Owner 体验通过；其他浏览器、真实 OS 配额／权限耗尽等未覆盖项须按报告保留 NOT RUN。
 
 旧医院入口和槽不变，无 Reset、清档或迁移。失败保存后刷新仅能恢复最后成功 checkpoint；全平台、Owner 分段／九组合体验、依赖维护审计与 O3 均未因此关闭。既有 npm audit 镜像 404 仍 UNCONFIRMED，不升级依赖或以测试通过代替安全结论。
+
+### ENG-WORLD-LOW-ASSET-UI-001-R1 作者附记
+
+展示层四项补修的真实 DOM／浏览器／视觉证据见[R1 核验](../preplay/low-asset-ui/r1/verification-results.json)与[R1 视觉记录](../preplay/low-asset-ui/r1/visual-review.md)。自动检查不替代准确 SHA 复审或 Owner 首玩；不改变入口／旧槽、单 writer、保存责任、未知目标、依赖维护或 O3。CI166 依赖摘要与本机 audit 404 分账，均不由此补修关闭。

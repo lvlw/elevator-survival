@@ -2,6 +2,9 @@ import type { PlayerAction } from '../../state/residence-session/player-types'
 import { infectedWorldUiCatalog } from '../../content/infected-world-v0.1/player-ui-catalog'
 
 const methods: Readonly<Record<string, string>> = infectedWorldUiCatalog.methods
+const itemNames: Readonly<Record<string, string>> = infectedWorldUiCatalog.itemNames
+/** Translate already-public labels only; never use display text to resolve an entity. */
+export function publicItemName(name: string): string { return itemNames[name] ?? name }
 export function actionName(action: PlayerAction): string {
   return action.label + (action.method ? ' · ' + (methods[action.method] ?? '指定方案') : '')
 }

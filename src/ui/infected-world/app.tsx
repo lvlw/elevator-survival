@@ -13,6 +13,8 @@ import { SetupPanel } from './components/setup-panel'
 import { SystemScreen } from './components/system-screen'
 import { ActionForm } from './components/action-form'
 import { ConfirmationLayer } from './components/confirmation-layer'
+import { ActionInformationProvider } from './components/action-information'
+import { actionName, publicItemName } from './labels'
 import './styles.css'
 
 type Draft = Readonly<{ action: PlayerAction; inputs: PlayerActionInputs; controls: BrowserControls; item?: PlayerItem }>
@@ -48,7 +50,9 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
       const metadata = controls.preview(request)
       const result = controls.execute(request)
       if (result.kind === 'confirmation-required' && result.confirmation) {
-        setDraft(null); setConfirmation({ token: result.confirmation, request, metadata, title: action.label, controls })
+        const item = [...view.carried, ...view.ground].find(i => i.selector === request.item)
+        setDraft(null); setConfirmation({ token: result.confirmation, request, metadata,
+          title: actionName(action) + (item ? ' · ' + publicItemName(item.name) : ''), controls })
       } else {
         setDraft(null); setConfirmation(null)
         setMessage(result.kind === 'rejected' ? '当前不能执行此选择；未自动更换对象或重试。' : null)
@@ -60,6 +64,9 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
     try {
     setMessage(null)
     const inputs = controls.describeAction(action.selector)
+    if (item && !inputs.items.some(candidate => candidate.selector === item.selector)) {
+      setDraft(null); setConfirmation(null); setMessage('所选物品不适用于此操作或已失效，请重新选择。'); return
+    }
     if (!inputs.fields.length) { execute({ action: action.selector }, action); return }
     if (inputs.convenience === 'ordinary-whole-pickup' && item?.ordinary && item.container === 'ground') {
       const placement = firstFit(view.backpack.width, view.backpack.height, { action: action.selector, item: item.selector }, controls.preview)
@@ -79,7 +86,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
     onSynchronize={() => guarded(() => { owner?.controls()?.synchronize() })} />
   return <div className="iw-app" onClickCapture={event => {
     if (event.detail > 1) { event.preventDefault(); event.stopPropagation() }
-  }}><GameShell view={view} feed={snapshot.preplay!.feed} onAction={choose}
+  }}><ActionInformationProvider view={view} controls={controls}><GameShell view={view} feed={snapshot.preplay!.feed} onAction={choose} describeAction={controls.describeAction}
     onRetrySave={() => guarded(() => { controls.retrySave() })}>
     {(message || snapshot.preplay?.error) && <div className="iw-feedback" role="alert">{message ?? snapshot.preplay?.error?.message}<button aria-label="关闭提示" onClick={() => setMessage(null)}>×</button></div>}
   </GameShell>
@@ -91,6 +98,6 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
         if (current !== confirmation.controls) { setConfirmation(null); setMessage('确认已失效，请重新选择。'); return }
         const result = current.confirm(confirmation.token)
         setConfirmation(null); setMessage(result.kind === 'rejected' ? '确认已失效或行动被拒绝，请重新选择。' : null)
-      })} />}
+      })} />}</ActionInformationProvider>
   </div>
 }

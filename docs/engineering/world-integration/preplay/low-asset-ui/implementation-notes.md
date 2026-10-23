@@ -49,3 +49,20 @@ React 通过 effect 生命周期创建一个 browser owner，稳定订阅桥仅�
 - 仓库外三类语义负控实际执行：隐藏 data-* 身份泄露、移除 pointer double-click 抑制、移除非 DEV guard，分别由隐私、重复休整计数／任务日、入口隔离 AssertionError 检出。三类共四个具体 AssertionError，逐类恢复后定向 PASS；仓库与 Git 索引不变。没有把导入、类型、fixture 或超时算语义检出。
 
 维护边界：没有修改 P/R/S、domain、G1/G2、v4、旧 CTB、参数、旧测试／helper 或依赖。唯一新增 core production 文件是纯输入说明；其余旧 src 的差异仅入口接线和只读委托。最终实际数字、指纹和 NOT RUN 以 verification-results 与 completion 为准。
+
+## R1 补修记录（起点 2e3d13a；源阶段记录不追改）
+
+| 发现 | 正式来源 | 最小修复 | 原生回归 |
+| --- | --- | --- | --- |
+| UI-01 无完整行动的独立 L0 | UIR-010／015、正式 UI 契约及当前 preview/describeAction | ActionInformationProvider + 锚定非模态详情；完整请求只读 preview，不齐只说明输入；L1 不加确认 | review-action-information、review-information-purity |
+| UI-02 初选文案空泛、component/module 人类界面英文 | DEC-052 D01/D08/D09、唯一配置与 taskMethodCost | 公开 catalog 数值引用；labels 中文 Presentation 映射，原 opaque 不变 | review-public-copy |
+| UI-03 材料／模块继承全局 medical 菜单 | 同源 describeAction.items | 当前 carried + 输入候选 exact opaque membership；不读隐藏医疗目标 | review-context-menu |
+| V01 恢复后 not-attempted 误导 | 原 persistence 会话枚举语义 | 中性“本页面尚未执行新的保存操作”；不改枚举、不 IO | review-persistence-copy |
+
+修前默认 309 files／4650 tests PASS；四个新文件十二项修前均为真实玩家断言失败，非导入／类型／fixture／超时。首次修后 11/12，剩余准确发现格位 aria 仍使用领域英文；通过给既有只读 PlacementPicker 传入映射名称的安全 DTO 副本补齐，不修改其几何规则或保护文件。随后原 UI 套件仅旧 accessibility 全局 dialog 定位因新增非模态 L0 失败，修为精确 modal 定位并加 L0 非模态断言，原焦点及零操作断言保留。
+
+新增隐藏医疗菜单测试初稿错误要求药房一次随机来源同时产出两种药，实际在 TEST fixture 缺物断言失败；修为分别用明确标注的真实 P/严格恢复 TEST 前态，保持同公开病程的隐藏值成对比较。期间克隆 opaque 的 TEST 类型漏写 selection，typecheck 实际失败后修正为同形克隆，不更改生产类型。失败日志独立保存，均不算语义检出。
+
+真实 Edge 第一次受限启动 GPU/沙箱崩溃，页面验收未完成；第二次同 TEST 工具经受控外层运行 8/8 PASS。十二张新图逐张查看，窄屏实际说明／右键菜单／医疗参数可达，无横向溢出。真实页面 warning/error 与浏览器进程自身日志分账，后者含系统集成／同步噪音，不抹去。
+
+两类仓库外负控为删除独立 L0 入口与恢复全物品 medical；各自实际 AssertionError、exit1，逐类还原 exit0。仓库源码与索引未被负控修改。原负控／T02 未全数重跑，不累加为新生产测试。最终默认检查、指纹、W01/W02、Git／CI 与审阅 ZIP 见 R1 结果及 completion 追加记录。

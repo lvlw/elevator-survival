@@ -1,11 +1,11 @@
 import type { CSSProperties } from 'react'
 import type { PlayerItem } from '../../../state/residence-session/player-types'
 import { itemImage, itemPlaceholder } from '../assets'
-import { resourceName } from '../labels'
+import { resourceName, publicItemName } from '../labels'
 
 export function ItemTile({ item, style, onMenu }: { item: PlayerItem; style?: CSSProperties;
   onMenu?: (item: PlayerItem, x: number, y: number, trigger: HTMLButtonElement) => void }) {
-  const description = `${item.name}${item.quantity > 1 ? ` ×${item.quantity}` : ''} · ${item.width}×${item.height} · 单位重量 ${item.unitWeight}` +
+  const description = `${publicItemName(item.name)}${item.quantity > 1 ? ` ×${item.quantity}` : ''} · ${item.width}×${item.height} · 单位重量 ${item.unitWeight}` +
     (item.resource.kind === 'none' ? '' : ` · ${resourceName(item.resource.kind)} ${item.resource.current}/${item.resource.maximum}`)
   return <button type="button" className="iw-item" style={style} aria-label={description} title={description}
     aria-haspopup={onMenu ? 'menu' : undefined} onContextMenu={event => {
@@ -17,6 +17,6 @@ export function ItemTile({ item, style, onMenu }: { item: PlayerItem; style?: CS
     }}>
     <img src={itemImage(item.name)} alt="" aria-hidden="true" onError={event => { if (event.currentTarget.src !== itemPlaceholder) event.currentTarget.src = itemPlaceholder }} />
     {item.quantity > 1 && <span className="iw-item-quantity">{item.quantity}</span>}
-    {item.resource.kind !== 'none' && <meter className="iw-item-resource" aria-label={`${item.name} ${resourceName(item.resource.kind)}`} min={0} max={item.resource.maximum} value={item.resource.current} />}
+    {item.resource.kind !== 'none' && <meter className="iw-item-resource" aria-label={`${publicItemName(item.name)} ${resourceName(item.resource.kind)}`} min={0} max={item.resource.maximum} value={item.resource.current} />}
   </button>
 }

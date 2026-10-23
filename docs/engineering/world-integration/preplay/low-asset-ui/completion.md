@@ -69,3 +69,27 @@ C:\Users\zjl\AppData\Local\Temp\world-low-ui-work-7640c8e31d10409fbad30a9ce96ed7
 Owner 自由首玩／分段与九组合体验、平衡、其他浏览器、真实 OS 配额／权限耗尽、断电持久性、最终 Art/UI/Audio 品质均 NOT RUN。依赖审计历史 404 仍 UNCONFIRMED，未升级依赖。准确 SHA 源码／保存接缝／浏览器／视觉实审待主线；O3、清档、迁移、永久双入口和第二委托未批准。
 
 本任务不开始后继工程、不合并、不推 main 或其他旧分支、不强推。
+
+## ENG-WORLD-LOW-ASSET-UI-001-R1 作者补修交付
+
+起点 `2e3d13a52ada1fdcd9848574e918b97db43cb0c2`，沿用 `feature/world-low-asset-ui-001`，工作区／索引最初干净。默认实测基线309 files／4650 tests，exit0，307.71s。输入包9份原件、8个SHA256及两内嵌ZIP的CRC通过；66路径最大许可，不扩大旧96集合。
+
+修前12项真实DOM AssertionError保留；UI-01完整行动独立L0、UI-02六条能力与任务件中文、UI-03安全opaque候选菜单、V01会话保存说明已补齐。文案来源、U01—U10对应与两份旧测试定位更新见[r1/wording-and-test-map.md](r1/wording-and-test-map.md)。未改规则、参数、core/state/app、P/R/S、controller/browser owner、锁／保存或入口；L1仍一次点击，隐藏医疗目标与未知后果不被改称安全。
+
+最终默认 `npm run check` exit0：architecture53 DEC／347 core production files，typecheck PASS，314 files／4672 tests（350.39s），build PASS。新增5测试文件／22项，替换0、删除0、净增22。原A/B真实DOM链、E03四路线／72默认样本实际回归；原策略／seed不变，不宣称全部样本通关。源码／测试与TEST运行工具980文件SHA256：`02dcbb377a4b2504409f1cbb9de11c1cd737e78bbf29b621c4c33b774a625639`，后续不改已测字节。
+
+L0打开／切换／Focus／关闭0 dispatch/current/native notice/read/write/draw/签发/消费；源搜索／无输入调查主点击1次各为1 dispatch/current/notice/write。合法快捷绷带上下文仍原opaque，1正式消费／写入，无refill；保存失败保最新内存，retry仅1 encode/write，0 dispatch/current/notice/draw。两类仓库外负控分别实际AssertionError exit1、逐类还原exit0，仓库源码和索引不变。
+
+真实Edge155最终8/8组PASS，页面console warning/error=0；第一次受限GPU崩溃／CDP超时独立保留，不冒充浏览器验收。12张本轮新截图均逐张查看：桌面、390px说明／菜单／医疗参数、恢复提示、失败保存、样本护具支付／2×2放置均可读。A仍84条DOM公开步骤、Day4/HP2/样本交付/奖励120；B18条、Day2/HP11/合法止损，6次注入写失败与仅保存重试分账。同源同分区竞争、真实BFCache命中／显式重获、五停点刷新、两类敌终态死亡和当前生产dist忽略DEV参数均保留通过。浏览器controls/publications/IO不冒充原生S计数。
+
+审阅ZIP（仓库外，42文件／12 PNG／41项payload清单）：
+
+```text
+C:\Users\zjl\AppData\Local\Temp\world-low-ui-r1-work-cacc0b1ef0924981b4c42020eee9af38\ENG-WORLD-LOW-ASSET-UI-001-R1-UI-REVIEW-ASSETS-v1.0.zip
+```
+
+大小3,865,123 bytes；SHA-256 `d0935de4bd653f2d6462c7534445c94469eb2899f066609415b29f899027b3da`。CRC及逐项bytes/SHA256全部通过；无profile／存档／浏览器二进制。逐图记录见[r1/visual-review.md](r1/visual-review.md)，实际计数见[r1/browser-results.json](r1/browser-results.json)，工程检查见[r1/verification-results.json](r1/verification-results.json)。
+
+1669保护对象零变化，十份旧文档只追加；R1普通／暂存／起点增量要求raw exit0。历史ff2b79f仅W02一处raw exit2，8c19ca0累计仅W01七处＋W02一处raw exit2，不改原件，不增加例外。原负控／T02未全数重跑，记NOT RE-RUN；首次外部审计工具编码错误及未建报告链接的失败保留，最终范围／前缀／原件／链接／暂存blob另核。
+
+本次按授权普通commit/push至原工程分支；准确完整SHA、parent/tree、远端全分支对比及CI在提交后外部收据／最终回复报告，不amend补写自身SHA。Owner体验、O3、真实OS配额/ACL／断电、其他浏览器、完整无障碍及最终美术NOT RUN。CI166依赖摘要2moderate/4high与本机audit404 UNCONFIRMED分别保留，未升级。停止等待准确SHA源码／浏览器／视觉复审，不自动进入下一阶段。

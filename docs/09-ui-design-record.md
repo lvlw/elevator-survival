@@ -315,3 +315,7 @@ Owner 认可草图的总体布局与交互方向，下一步以真实浏览器�
 获准独立 DEV 首玩界面按既有 Stage-First、只读地图／Travel Cluster、L0—L3、显式参数与右键／键盘等价入口实现。六条最近 Feed、局部详情、真实物品 footprint、中性缺图占位、当前病程粗档及既有保护均委托安全接口；隐藏医疗目标仍 unknown。普通整实例拾取仅适用本批正式合同限定的未旋转 row-major Preview first-fit，不套用旧医院优先堆叠语义。
 
 详见[作者支持矩阵](engineering/world-integration/preplay/low-asset-ui/contract-and-support.md)与[视觉证据说明](engineering/world-integration/preplay/low-asset-ui/visual-review.md)。本附记只索引实现，不改变既有 UIR、玩家知识或玩法，不宣称最终美术、Owner 体验或 O3 通过。
+
+### ENG-WORLD-LOW-ASSET-UI-001-R1 实现附记（非新 UIR）
+
+依既有 UIR-010／015 补齐普通完整行动的只读 L0，保留 L1 一次点击与原保护。必要参数、菜单的实体引用、未知医疗目标和当前粗病程边界均不变；独立详情可关闭并返回焦点。公开初选说明与任务物中文映射不成为第二份规则。十二张新视口截图与窄屏实际说明／菜单／参数核查见[R1 视觉记录](engineering/world-integration/preplay/low-asset-ui/r1/visual-review.md)。源阶段限制保留；本附记不新增 UIR，不视为 Owner 体验通过。

@@ -34,7 +34,8 @@ describe('infected-world keyboard and read-only access', () => {
       expect(document.querySelector('[role="dialog"]')?.getAttribute('aria-modal')).toBe('true')
       expect(document.activeElement?.textContent).toBe('取消')
       await h.flush(() => document.activeElement!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })))
-      expect(document.querySelector('[role="dialog"]')).toBeNull(); expect(document.activeElement).toBe(trigger)
+      expect(document.querySelector('[role="dialog"][aria-modal="true"]')).toBeNull(); expect(document.activeElement).toBe(trigger)
+      expect(document.querySelector('[aria-label="行动说明"]')?.getAttribute('aria-modal')).toBe('false')
       expect(h.setItem).not.toHaveBeenCalled()
       expect(observed.counts()).toMatchObject({ dispatch: 0, current: 0, notices: 0, draw: 0, medical: 0 })
     } finally { await h.unmount() }

@@ -814,3 +814,9 @@ Actual S01-S12, native three-enemy/task success chain, four failure chains, five
 显式 DEV `?dev-infected-world=1` 接入独立低资产 React 界面，入口选择先于医院 storage/bootstrap；非 DEV 忽略该参数，旧 preview 优先级、医院入口和旧槽不变。React 生命周期只持有一个 browser owner 的安全 snapshot，沿用原 controller／S／Web Locks／checkpoint；没有另建 current 或 writer。StrictMode、卸载、失锁与冷恢复各自停用旧上下文。
 
 本批仅窄补 `describeAction`：从既有配置及同源纯资格给当前 opaque action 提供必要参数说明，经 player／controller／owner 只读委托；正式 Preview、确认、安全三态、提交和保存语义不变。UI 不拥有配方、死亡、背包合法性、随机或终局真相。当前战斗 DTO 无安全敌人名称，三敌均使用中性占位，不凭地点猜测资产。支持／unknown、真实 DOM 长链、浏览器与视觉证据见[本批作者交付](engineering/world-integration/preplay/low-asset-ui/completion.md)。本附记不新增规则或 UIR，不代表准确 SHA 实审、Owner 体验或 O3 已通过。
+
+### ENG-WORLD-LOW-ASSET-UI-001-R1 展示边界补修
+
+行动按钮的 Hover／Focus／独立说明入口只读：完整无参数请求委托现有 `controls.preview`，必要输入未齐只读 `describeAction`，不试跑生产者。普通 L1 主按钮仍一次点击；已有保护与显式参数不变。说明层只持有当前 opaque 引用和锚点，不另存 metadata／current；上下文失效关闭，同 current 的保存重试不重绑。
+
+物品上下文菜单由安全输入候选的同一 opaque 引用筛选，不按名称或临床公式判断。`component/module` 的中文只在 Presentation catalog／labels 映射，领域物品、存档与身份不变。`not-attempted` 明确为本页面尚无新保存操作，不伪造已恢复／已保存。证据见[R1 文案与测试映射](engineering/world-integration/preplay/low-asset-ui/r1/wording-and-test-map.md)；旧源阶段记录保留，Owner／O3 未关闭。

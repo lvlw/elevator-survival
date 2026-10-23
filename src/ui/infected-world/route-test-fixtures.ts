@@ -1,7 +1,7 @@
 // TEST ONLY. Every action below is a real React control / DOM event, not an owner command.
 import type { PlayerReadyView } from '../../state/residence-session/player-types'
 import { currentActions } from './interaction'
-import { actionName } from './labels'
+import { actionName, publicItemName } from './labels'
 
 export type UiDriverOptions = { document: Document; getView(): PlayerReadyView;
   flush(action: () => void): Promise<void>; onStep?(label: string, view: PlayerReadyView): void }
@@ -42,7 +42,7 @@ export function createUiDriver(options: UiDriverOptions) {
     if (f.slot !== undefined) await select('快捷位', '快捷位'+(f.slot+1))
     if (f.target) await select('处理目标', f.target)
     if (f.wound !== undefined) await select('伤口', '伤口'+f.wound)
-    for (const name of f.materials ?? []) await input(name+'来源1用量', '1')
+    for (const name of f.materials ?? []) await input(publicItemName(name)+'来源1用量', '1')
     for (const [name, amount] of f.allocation ?? []) await input(name+'分配', String(amount))
     if (f.placement) await anchor(...f.placement)
   }
@@ -61,7 +61,8 @@ export function createUiDriver(options: UiDriverOptions) {
   }
   async function menu(name: string, label: string, f: Fields = {}, ordinal = 0) {
     await button('背包')
-    const list = [...doc.querySelectorAll<HTMLButtonElement>('[aria-label="背包格位"] .iw-item')].filter(b => b.getAttribute('aria-label')?.startsWith(name+' ' ) || b.getAttribute('aria-label')?.startsWith(name+' ·') || b.getAttribute('aria-label')?.startsWith(name+' ×'))
+    const display = publicItemName(name)
+    const list = [...doc.querySelectorAll<HTMLButtonElement>('[aria-label="背包格位"] .iw-item')].filter(b => b.getAttribute('aria-label')?.startsWith(display+' ' ) || b.getAttribute('aria-label')?.startsWith(display+' ·') || b.getAttribute('aria-label')?.startsWith(display+' ×'))
     const b = list[ordinal]; assert(b, 'backpack menu '+name+'/'+ordinal)
     await options.flush(() => b.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true, cancelable: true, clientX: 100, clientY: 100 })))
     await button(label); await fields(f); await button('执行行动'); await confirm(); options.onStep?.(label+' '+name, view())
@@ -69,7 +70,7 @@ export function createUiDriver(options: UiDriverOptions) {
   async function pick(name: string, x: number, y=0) {
     const priorAnchors = view().carried.filter(i => i.container === 'backpack').map(i => `${i.placement!.x},${i.placement!.y}`)
     const i = view().ground.find(i => i.name === name); assert(i, 'ground '+name)
-    await button((i.ordinary ? '拾取 ' : '拾取任务物 ')+name)
+    await button((i.ordinary ? '拾取 ' : '拾取任务物 ')+publicItemName(name))
     if (doc.querySelector('[aria-label="行动参数"]')) { await anchor(x,y); await button('执行行动'); await confirm() }
     if (i.ordinary) {
       const same = view().carried.filter(i => i.container === 'backpack' && i.name === name)

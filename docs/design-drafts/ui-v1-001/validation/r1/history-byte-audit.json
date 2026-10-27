@@ -1,0 +1,110 @@
+[
+  {
+    "archive": "00-owner-review.md",
+    "original": "00-owner-review.md",
+    "sha256": "5dc633ebaaa2aea055a1d2bd62ad124606281bb8817837727828b2b04d88439a",
+    "exact": true
+  },
+  {
+    "archive": "asset-manifest.json",
+    "original": "spec/asset-manifest.json",
+    "sha256": "407ef27f1838981ee85e13dd09d9d858f68f5304cfc67afb0201f6b35e28a5c2",
+    "exact": true
+  },
+  {
+    "archive": "audit-attempt-01.json",
+    "original": "validation/audit-attempt-01.json",
+    "sha256": "4769edd2f1bc0d96919a416b2d5610548597220e2034252b24b5b631b3a0a9ca",
+    "exact": true
+  },
+  {
+    "archive": "completion.md",
+    "original": "completion.md",
+    "sha256": "590b3720f0459ad2354f6201abf5e0769a18f1173d2e7d8e841a6be91f6edf18",
+    "exact": true
+  },
+  {
+    "archive": "delivery-packages.json",
+    "original": "spec/delivery-packages.json",
+    "sha256": "0e4dd7ac65d60a4ba724a9e2f61692e2001bfe2077d9297591bef6962a32e0ea",
+    "exact": true
+  },
+  {
+    "archive": "design-qa.md",
+    "original": "validation/design-qa.md",
+    "sha256": "54e52831a6cee1848f0e270de3e4595ab8cee1982f22775320524dc339e91133",
+    "exact": true
+  },
+  {
+    "archive": "final-check-results.json",
+    "original": "validation/final-check-results.json",
+    "sha256": "4624b7ff37248b6601aac591972c517fcd65cd2a9502c8fcfa0953f38215161d",
+    "exact": true
+  },
+  {
+    "archive": "html-link-results.json",
+    "original": "validation/html-link-results.json",
+    "sha256": "bbc43efcc936bfceed40b43063aa6cd0e723a3b072c44b3cc5a376c7af2eee77",
+    "exact": true
+  },
+  {
+    "archive": "input-verification.json",
+    "original": "validation/input-verification.json",
+    "sha256": "30ca88f8418544fb20b4dfbccde7a404eed94fc4aa011f74b912e7c2578b538e",
+    "exact": true
+  },
+  {
+    "archive": "interaction-results.json",
+    "original": "validation/interaction-results.json",
+    "sha256": "d70d611c6cee753d6d501c1d4bbd215ad3c8613d0b77854ba633c5d19155053d",
+    "exact": true
+  },
+  {
+    "archive": "link-results.json",
+    "original": "validation/link-results.json",
+    "sha256": "2fd66f5ce3661cb1e7bca3173f46af5fe81821fad3532d0efa5cdb174f64d533",
+    "exact": true
+  },
+  {
+    "archive": "node-crop-manifest.json",
+    "original": "spec/node-crop-manifest.json",
+    "sha256": "65fabf3e40850fb483ea7bb9226d42cbea66816fdf636a66c7c69e616b576a0a",
+    "exact": true
+  },
+  {
+    "archive": "precommit-diff-checks.json",
+    "original": "validation/precommit-diff-checks.json",
+    "sha256": "71bfacdbc5d96d509accbbd6b699f62d76d41d82eb487e0fe7227a2f6bcd83eb",
+    "exact": true
+  },
+  {
+    "archive": "responsive-browser-runs.json",
+    "original": "validation/responsive-browser-runs.json",
+    "sha256": "251df93fa8a93d7a333fdb5eb8dda399e3a73ae0e798c0228101719cc98e7c4c",
+    "exact": true
+  },
+  {
+    "archive": "responsive-results.json",
+    "original": "validation/responsive-results.json",
+    "sha256": "69bfbe6e7b4cfe813c08778aec5ec76875fa1e207b9dda750dae93f79eaa5769",
+    "exact": true
+  },
+  {
+    "archive": "screen-manifest.json",
+    "original": "spec/screen-manifest.json",
+    "sha256": "fd75a1974b88cac51938f1e8472dfefff064cd4575b726dfbfecf1c2bdb488d9",
+    "exact": true
+  },
+  {
+    "archive": "size-change-log.md",
+    "original": "size-change-log.md",
+    "sha256": "0ed257df5faf374047087f98f7d5f5248f27485925ad91f0dbf034bf3d1368c3",
+    "exact": true
+  },
+  {
+    "archive": "staged-input-audit.json",
+    "original": "validation/staged-input-audit.json",
+    "sha256": "5a6666ae1004d74c85c69b66dd4d15f3feabdee5b3aab60e72c99515763985e1",
+    "exact": true
+  }
+]

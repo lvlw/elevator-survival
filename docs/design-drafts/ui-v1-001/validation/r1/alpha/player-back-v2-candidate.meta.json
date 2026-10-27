@@ -1,0 +1,158 @@
+{
+  "assetId": "player-back-v2-candidate",
+  "task": "WORLD-UI-DESIGN-001-R1",
+  "status": "PARTIAL_ALPHA_IMPROVEMENT_NOT_FINAL_ART",
+  "file": "player-back-v2-candidate.png",
+  "source": {
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "input": "E:/projects/elevator-survival/docs/design-drafts/ui-v1-001/editable/assets/player-back-v1.png",
+    "generatedPath": "C:/Users/zjl/.codex/generated_images/01a17de9-b478-7952-bc11-eae31a956d86/exec-6225cbd4-32f8-4ec6-a83e-0934a79c42f4.png",
+    "prompt": "Use case: background-extraction / identity-preserve\nAsset type: player rear-view transparent sprite, edge cleanup revision only, for the grounded survival game 电梯求生.\nInput image 1 is the exact edit target. Preserve this ordinary adult man's identity, short dark hair, three-quarter REAR view facing screen right, worn dark charcoal coat, trousers, boots, stance, camera perspective, proportions, fabric texture, lighting and color, right-hand straight hollow metal pipe angled down to the right, and empty left hand. Do not redesign or change clothing, pose or equipment. Keep the whole head, both hands, both boots and complete pipe including its tip visible.\nPrimary edit: clean the transparent cutout professionally. Remove ALL disconnected faint alpha specks and edge residue from the empty background, remove fringe/halo contamination around the silhouette, use fully transparent empty space and solid opaque interior body pixels with only a narrow natural antialiased silhouette edge. No checkerboard pixels or baked checkerboard, no black/white/grey background, no floor, ground shadow, particles, fog, glow, UI or text. True transparent alpha PNG.\nRequested native output canvas 1536 x 1920, portrait 4:5, original composition and scale preserved proportionally. Keep a clean safe transparent margin around the entire character and pipe; do not trim to silhouette. Preserve the original staggered boot contact perspective; approximate foot-contact midpoint normalized (0.447,0.932) and torso upper-back hit location (0.446,0.357). Retain the same silhouette and anatomy, not a fresh character interpretation. This is not an upscale-by-interpolation request: render the clean native sprite at the requested resolution if supported, without adding canvas content or new objects.\n",
+    "copiedWithoutPixelModification": true,
+    "interpolatedUpscale": false,
+    "fallbackApiUsed": false,
+    "generationCalls": 1
+  },
+  "dimensions": {
+    "requested": [
+      1536,
+      1920
+    ],
+    "actual": [
+      1122,
+      1402
+    ],
+    "targetMet": false
+  },
+  "alpha": {
+    "size": [
+      1122,
+      1402
+    ],
+    "mode": "RGBA",
+    "bytes": 1113588,
+    "sha256": "2e67e775c465bdbb5ddf298967c2624b9d5aff31c4932922e48da935a8584791",
+    "transparent": 1122735,
+    "opaque": 1727,
+    "partial": 448582,
+    "nonzeroBBox": [
+      27,
+      46,
+      1048,
+      1348
+    ],
+    "alpha16BBox": [
+      173,
+      48,
+      1045,
+      1342
+    ],
+    "alpha128BBox": [
+      174,
+      50,
+      1044,
+      1341
+    ],
+    "outer8pxNonzero": 0,
+    "interiorBackAlpha": 253,
+    "topAlphaValues": [
+      [
+        0,
+        1122735
+      ],
+      [
+        253,
+        372149
+      ],
+      [
+        252,
+        26984
+      ],
+      [
+        251,
+        7056
+      ],
+      [
+        1,
+        6601
+      ]
+    ],
+    "lowerHalfAlpha128SupportSamples": [
+      [
+        218.0,
+        1285
+      ],
+      [
+        635.21875,
+        1340
+      ]
+    ],
+    "nonzeroConnectedComponents": 83,
+    "largestComponentPixels": 450177,
+    "pixelsOutsideLargestComponent": 132,
+    "componentMethod": "Read-only 8-neighbour connected components over alpha>0; no pixel editing"
+  },
+  "comparisonToInput": {
+    "alpha128SilhouetteIoU": 0.9776568870561794
+  },
+  "registrationAnchors": {
+    "footSupportCenter": {
+      "pixels": [
+        500.609375,
+        1308.5
+      ],
+      "normalized": [
+        0.44617591354723707,
+        0.9333095577746077
+      ],
+      "method": "Original visual anchor (501,1307) plus average displacement of alpha>=128 left/right lower support samples. Approximate, not anatomical exact."
+    },
+    "torsoHit": {
+      "pixels": [
+        500,
+        500
+      ],
+      "normalized": [
+        0.44563279857397503,
+        0.3566333808844508
+      ],
+      "method": "Same upper-back anatomical reference inspected visually."
+    }
+  },
+  "suggestedRegisteredCanvas": {
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.25,
+    "translate": [
+      142.23828125,
+      130.7750000000001
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.49950408935546875,
+      0.39363281250000004
+    ],
+    "doesNotChangeSourcePixelClaim": true
+  },
+  "visualInspection": {
+    "sameRearViewPose": true,
+    "sameCoatTrousersBootsPipe": true,
+    "completeFigureAndPipe": true,
+    "opaqueBackgroundOrCheckerboard": false,
+    "zeroSilhouetteDrift": false,
+    "notes": "Matching silhouette but fine folds/hair changed by image edit. Foot register can compensate approximate 1.5 source px vertical shift; no claim of pixel-identical no-drift replacement."
+  },
+  "remainingGaps": [
+    "Actual native resolution remains1122x1402, below requested1536x1920.",
+    "Faint alpha residue remains away from outer8px; most body alpha remains253 rather than255.",
+    "Raw sprite is not pixel-identical: mask IoU≈0.97766; root must inspect registered result before adoption.",
+    "No browser/stage or multi-viewport validation performed by asset agent."
+  ],
+  "sha256": "2e67e775c465bdbb5ddf298967c2624b9d5aff31c4932922e48da935a8584791"
+}

@@ -31,7 +31,7 @@
       "y": 88,
       "w": 208,
       "h": 620,
-      "scrollH": 702,
+      "scrollH": 700,
       "clientH": 618
     },
     {
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "path": "../editable/assets/player-back-v1.png",
+      "path": "../editable/assets/player-back-v2.png",
       "native": [
         1122,
         1402

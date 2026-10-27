@@ -1,0 +1,92 @@
+[
+  {
+    "path": "inputs/README-先读我.md",
+    "sha256": "94f538e34b2279164216a2e72fbba718c7ec7d681f9ab0fba401b0aff605737c",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/SHA256SUMS.txt",
+    "sha256": "742e871911e3faa5c4a60c856d4d38272ece10f569beec1a937fd4ae720f4fac",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/SOURCE-BOUNDARIES.md",
+    "sha256": "f902a39dc49c882cc1a2920479f7a4d41dbc31740d03f2a3102471a65dee1d39",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/verify-dimensions.py",
+    "sha256": "2d1a611775c26feb909961351b97040a1c84bd3723d2fa63e104397aa7eafd25",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/verify-task-package.py",
+    "sha256": "7f683e0abfaeefad5e540760ec6f36b4c3d1f8dbac506b2c64db2c742ae35fb2",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/任务书阅读版.html",
+    "sha256": "a0a99d8dfee52ed8d2bd2fda824db5b83d1c28f247ec9daa0eaaeb28d9f8822f",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/发给设计会话.txt",
+    "sha256": "79c0b7120bef4fe2ad17892ab1d8ac7f5d54af6e9c098ddcbbe23cb34423e5d8",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/尺寸耦合合同-v1.0.json",
+    "sha256": "f2bf681c253750d2320bd2441dac1da237484ed316266f88448b8d6db023c3d1",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/尺寸预算算术检查.json",
+    "sha256": "793c26984c92cb4534ed80c83e87d8b521b3e2d7f3b9d742c0c425df20b55b2e",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/核验说明.json",
+    "sha256": "ba4a9dfbaed476b9b5865ec62d46b4109d03f4458783a5bdaf3dc3598eb6835d",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/第一版正式UI设计任务书-v1.0.md",
+    "sha256": "6eccb6495aa3998dfe4ad0f7f8b8b0b8076a6e942c7db9b7e7ad623a5dcdad81",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/references/01-shell.png",
+    "sha256": "c9e7ede7653444ac1715600846189136a63d4337866bf02e379e9661bd57680b",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/references/02-setup.png",
+    "sha256": "e928d914e488325f145921c0e6462cfff33d39b984c18e3b0752c6cbd6d01cc3",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/references/03-map.png",
+    "sha256": "211f6c29593512f268a04263901e44ea986a58cc18c2cdfcc71d82a0abd6af70",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/references/04-node.png",
+    "sha256": "d72995a622bde64f3d909f0a46aae1d2d3692053e373b41cc6c952dd42a54ae0",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/references/05-combat.png",
+    "sha256": "f986d83ef06412637a8ca051836a24a10b0429ae3ae77ebb5827c97f619308a8",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/references/06-terminal.png",
+    "sha256": "f18e1da8c70308390cdb992697df0ebe3900a8f73b26dbfd8b416008ad02da83",
+    "stagedEqualsWorktree": true
+  },
+  {
+    "path": "inputs/references/manifest.json",
+    "sha256": "2a2bf63b422bd28261520bebe1028344c1d16fe6d9396a48a127871eb4fa56a0",
+    "stagedEqualsWorktree": true
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "label": "01-confirmed-lamp-engineer",
+    "dpr": 1,
+    "text": "电梯求生\n任务日 — / 7\n生命\n12 / 12\n精力\n100 / 100\n饱食\n6 / 6\n未达病程损耗档\n身体\n帮助\n当前委托\n\n封锁区\n\n未完成的转运\n\n恢复本地供电与转运，携指定样本返回电梯前室。\n\n本地供电 · 未完成\n\n转运设施 · 未完成\n\n指定样本 · 尚未取得\n\n查看委托\n已知地点 只读\n出发后记录实际到达与观察。\n展开已知区域\n手电筒 / 工程\n中枢 · 出发准备\n正式结束后不能重接本委托。\n初次中枢 · 初配已锁定\n放大\n\n出发前最后检查\n\n准备进入封锁区\n工具\n手电筒\n专长\n工程\n任务期限\n7个任务日\n完整成功\n积分 +120\n只有当前这一份真实委托。正式成功或失败返回后，不能重接。\n查看与整备不自动推进身体周期\n明确出发\n携带区\n整理\n背包\n装备\n金属管\n30/30\n厚实外套\n12/12\n手电筒\n8/8\n快捷位\n绷带 ×1\n快捷位 1\n空槽\n快捷位 2\n初配：金属管、外套、所选工具、快捷绷带1。\n已保存\n当前地点可自由查看；查看详情不消耗精力。\n查看反馈\n连续操作 · P02-first-hub",
+    "title": "初次中枢 · 配装已锁定 · 电梯求生 UI设计",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "ax": "Browser tab: 1, Title: \"初次中枢 · 配装已锁定 · 电梯求生 UI设计\", URL: \"http://127.0.0.1:8766/prototype/index.html?screen=P01-unselected&r1=03\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 1 AXWebArea 初次中枢 · 配装已锁定 · 电梯求生 UI设计, URL: 127.0.0.1:8766/prototype/index.html?screen=P01-unselected&r1=03",
+    "screenshot": "after/01-confirmed-lamp-engineer.png"
+  },
+  {
+    "label": "02-initial-help",
+    "dpr": 1,
+    "text": "电梯求生\n任务日 — / 7\n生命\n12 / 12\n精力\n100 / 100\n饱食\n6 / 6\n未达病程损耗档\n身体\n帮助\n当前委托\n\n封锁区\n\n未完成的转运\n\n恢复本地供电与转运，携指定样本返回电梯前室。\n\n本地供电 · 未完成\n\n转运设施 · 未完成\n\n指定样本 · 尚未取得\n\n查看委托\n已知地点 只读\n出发后记录实际到达与观察。\n展开已知区域\n手电筒 / 工程\n中枢 · 出发准备\n正式结束后不能重接本委托。\n操作与机制说明\n放大\n收起\n操作\n身体与药食\n快捷位\n先看清，再作决定\n\n查看任务、地图、物品与放大面板不消耗行动。地图只读，移动从场景方向区逐边执行。\n\n需要参数时明确选择\n\n方法、材料、目标实例和格位由你选择。条件变化后旧选择失效，系统不会无声替换成第一项。\n\n键盘操作\n\nTab移动焦点，Enter或空格激活。Escape关闭可收起的信息层；战斗不能用Escape结束。物品支持右键与Shift+F10菜单。\n\n返回\n携带区\n整理\n背包\n装备\n金属管\n30/30\n厚实外套\n12/12\n手电筒\n8/8\n快捷位\n绷带 ×1\n快捷位 1\n空槽\n快捷位 2\n初配：金属管、外套、所选工具、快捷绷带1。\n已保存\n当前地点可自由查看；查看详情不消耗精力。\n查看反馈\n连续操作 · P25-controls",
+    "title": "操作说明 · 查看与执行 · 电梯求生 UI设计",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "ax": "Browser tab: 1, Title: \"操作说明 · 查看与执行 · 电梯求生 UI设计\", URL: \"http://127.0.0.1:8766/prototype/index.html?screen=P01-unselected&r1=03\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 1 AXWebArea 操作说明 · 查看与执行 · 电梯求生 UI设计, URL: 127.0.0.1:8766/prototype/index.html?screen=P01-unselected&r1=03",
+    "screenshot": "after/02-initial-help.png"
+  },
+  {
+    "label": "03-depart-h0",
+    "dpr": 1,
+    "text": "电梯求生\n任务日 1 / 7\n生命\n12 / 12\n精力\n100 / 100\n饱食\n6 / 6\n低病程负担\n身体\n帮助\n当前委托\n\n封锁区\n\n未完成的转运\n\n恢复本地供电与转运，携指定样本返回电梯前室。\n\n本地供电 · 未完成\n\n转运设施 · 未完成\n\n指定样本 · 尚未取得\n\n查看委托\n已知地点 只读\n前室\n大厅\n药房\n保安\n隔离\n展开已知区域\n手电筒 / 工程\n医院 / 电梯前室\n正式结束后不能重接本委托。\n\n医院 / 当前地点\n\n电梯前室\n稳定地点\n\n冷光掠过旧墙。先确认眼前的条件，再决定下一步。\n\n查看返回条件\n休整说明\n已知地图\n相邻地点\n酒店 / 入口 · 8精力\n携带区\n整理\n背包\n装备\n金属管\n30/30\n厚实外套\n12/12\n手电筒\n8/8\n快捷位\n绷带 ×1\n快捷位 1\n空槽\n快捷位 2\n点击物品查看；右键或 Shift+F10 打开操作。\n已保存\n当前地点可自由查看；查看详情不消耗精力。\n查看反馈\n连续操作 · P03-first-arrival",
+    "title": "医院 · 首次抵达电梯前室 · 电梯求生 UI设计",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "ax": "Browser tab: 1, Title: \"医院 · 首次抵达电梯前室 · 电梯求生 UI设计\", URL: \"http://127.0.0.1:8766/prototype/index.html?screen=P01-unselected&r1=03\".\n1 AXWebArea 医院 · 首次抵达电梯前室 · 电梯求生 UI设计, URL: 127.0.0.1:8766/prototype/index.html?screen=P01-unselected&r1=03\n\t2 container app\n\t\t130 container\n\t\t\t131 text 电梯求生\n\t\t\t132 container\n\t\t\t\t133 text 任务日 1  / 7\n\t\t\t134 text 生命\n\t\t\t135 text 12 / 12\n\t\t\t136 text 精力\n\t\t\t137 text 100 / 100\n\t\t\t138 text 饱食\n\t\t\t139 text 6 / 6\n\t\t\t140 text 低病程负担\n\t\t\t141 button 身体\n\t\t\t142 button 帮助\n\t\t\t143 text 当前委托\n\t\t\t144 text 封锁区\n\t\t\t145 heading 未完成的转运, Value: 2\n\t\t\t\t146 text 未完成的转运\n\t\t\t147 text 恢复本地供电与转运，携指定样本返回电梯前室。\n\t\t\t148 text 本地供电  · 未完成 转运设施  · 未完成 指定样本  · 尚未取得\n\t\t\t149 button 查看委托\n\t\t\t150 container\n\t\t\t\t151 text 已知地点  只读\n\t\t\t152 container 只读已知医院拓扑\n\t\t\t153 button 展开已知区域\n\t\t\t154 container\n\t\t\t\t155 text 手电筒 / 工程\n\t\t\t\t156 text 医院 / 电梯前室\n\t\t\t\t157 text 正式结束后不能重接本委托。\n\t\t\t158 container 中央内容区\n\t\t\t\t159 image 医院电梯前室场景\n\t\t\t\t160 container\n\t\t\t\t\t161 text 医院 / 当前地点\n\t\t\t\t\t162 heading 电梯前室, Value: 1\n\t\t\t\t\t\t163 text 电梯前室\n\t\t\t\t\t164 text 稳定地点\n\t\t\t\t165 container\n\t\t\t\t\t166 text 冷光掠过旧墙。先确认眼前的条件，再决定下一步。\n\t\t\t\t\t167 button 查看返回条件\n\t\t\t\t\t168 button 休整说明\n\t\t\t\t\t169 button 已知地图\n\t\t\t\t\t170 text 相邻地点\n\t\t\t\t\t171 button 酒店 / 入口 · 8精力\n\t\t\t172 text 携带区\n\t\t\t173 button 整理\n\t\t\t174 button 背包\n\t\t\t175 button 装备\n\t\t\t176 button 金属管 金属管 30/30\n\t\t\t\t177 image 金属管\n\t\t\t\t178 text 金属管\n\t\t\t\t179 text 30/30\n\t\t\t180 button 厚实外套 厚实外套 12/12\n\t\t\t\t181 image 厚实外套\n\t\t\t\t182 text 厚实外套\n\t\t\t\t183 text 12/12\n\t\t\t184 button 手电筒 手电筒 8/8\n\t\t\t\t185 image 手电筒\n\t\t\t\t186 text 手电筒\n\t\t\t\t187 text 8/8\n\t\t\t188 text 快捷位\n\t\t\t189 button 绷带 绷带 ×1 快捷位 1\n\t\t\t\t190 image 绷带\n\t\t\t\t191 text 绷带 ×1\n\t\t\t\t192 text 快捷位 1\n\t\t\t193 button 空槽 快捷位 2\n\t\t\t\t194 text 空槽\n\t\t\t\t195 text 快捷位 2\n\t\t\t196 text 点击物品查看；右键或 Shift+F10 打开操作。\n\t\t\t197 text 已保存\n\t\t\t198 text 当前地点可自由查看；查看详情不消耗精力。\n\t\t\t199 button 查看反馈\n\t\t\t200 text 连续操作 · P03-first-arrival\n\t\t201 container\n\t\t\t202 button 设计状态索引\n\t\t\t203 button 导出可编辑SVG\n\t\t\t204 button 导出PNG图稿\n\t\t\t205 button 本地导出当前\n\t\t\t206 button 本地导出全部\n\t110 container\n\t\t111 image logo\n\t\t112 image 1688\n\t\t113 text 官方采购助手 ·\n\t\t114 image close\n\t115 container plasmo-overlay-0\n\t\t116 container\n\t\t\t117 text 1688找货源\n\t\t\t118 image\n\t\t\t119 AXWebArea about:blank\n\t\t\t120 text ❯\n\t\t121 container\n\t\t\t122 image\n\t\t\t123 AXWebArea about:blank\n\t\t124 container\n\t\t\t125 image\n\t\t\t126 AXWebArea about:blank\n\t\t127 container\n\t\t\t128 image\n\t\t\t129 AXWebArea about:blank\n\nThe focused UI element is 1 AXWebArea 医院 · 首次抵达电梯前室 · 电梯求生 UI设计, URL: 127.0.0.1:8766/prototype/index.html?screen=P01-unselected&r1=03",
+    "screenshot": "after/03-depart-h0.png"
+  },
+  {
+    "label": "04-arrival-map",
+    "dpr": 1,
+    "text": "电梯求生\n任务日 1 / 7\n生命\n12 / 12\n精力\n100 / 100\n饱食\n6 / 6\n低病程负担\n身体\n帮助\n当前委托\n\n封锁区\n\n未完成的转运\n\n恢复本地供电与转运，携指定样本返回电梯前室。\n\n本地供电 · 未完成\n\n转运设施 · 未完成\n\n指定样本 · 尚未取得\n\n查看委托\n已知地点 只读\n前室\n大厅\n药房\n保安\n隔离\n展开已知区域\n手电筒 / 工程\n医院 / 电梯前室\n正式结束后不能重接本委托。\n已知区域 · 只读\n放大\n收起\n\n医院 / 已获知识\n\n当前：电梯前室\n电梯前室\n大厅\n药房\n保安室\n隔离走廊\n当前地点\n空心节点：已知地点\n虚线：已知受阻\n只显示已经到达或观察到的节点与连接。点击地图不会移动；实际移动在场景方向区执行。\n远端信息不会自动更新\n返回场景\n携带区\n整理\n背包\n装备\n金属管\n30/30\n厚实外套\n12/12\n手电筒\n8/8\n快捷位\n绷带 ×1\n快捷位 1\n空槽\n快捷位 2\n点击物品查看；右键或 Shift+F10 打开操作。\n已保存\n当前地点可自由查看；查看详情不消耗精力。\n查看反馈\n连续操作 · P09-normal",
+    "title": "已知区域 · 详情 · 电梯求生 UI设计",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "ax": "Browser tab: 1, Title: \"已知区域 · 详情 · 电梯求生 UI设计\", URL: \"http://127.0.0.1:8766/prototype/index.html?screen=P01-unselected&r1=03\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 162-172, 177-188, 190-196, 201-206\n~1 AXWebArea 已知区域 · 详情 · 电梯求生 UI设计, URL: 127.0.0.1:8766/prototype/index.html?screen=P01-unselected&r1=03\n~\t\t\t\t160 container 已知区域 · 只读\n~\t\t\t\t\t161 container\n+\t\t\t\t\t\t162 heading 已知区域 · 只读, Value: 2\n+\t\t\t\t\t\t\t163 text 已知区域 · 只读\n+\t\t\t\t\t\t164 button 放大\n+\t\t\t\t\t\t165 button 收起\n+\t\t\t\t\t166 container\n+\t\t\t\t\t\t167 text 医院 / 已获知识 当前：电梯前室\n+\t\t\t\t\t\t168 container 只读已知医院拓扑\n+\t\t\t\t\t\t169 text 当前地点 空心节点：已知地点 虚线：已知受阻 只显示已经到达或观察到的节点与连接。点击地图不会移动；实际移动在场景方向区执行。\n+\t\t\t\t\t170 container\n+\t\t\t\t\t\t171 text 远端信息不会自动更新\n+\t\t\t\t\t\t172 button 返回场景\n~\t\t\t173 text 携带区\n~\t\t\t174 button 整理\n~\t\t\t175 button 背包\n~\t\t\t176 button 装备\n+\t\t\t177 button 金属管 金属管 30/30\n+\t\t\t\t178 image 金属管\n+\t\t\t\t179 text 金属管\n+\t\t\t\t180 text 30/30\n+\t\t\t181 button 厚实外套 厚实外套 12/12\n+\t\t\t\t182 image 厚实外套\n+\t\t\t\t183 text 厚实外套\n+\t\t\t\t184 text 12/12\n+\t\t\t185 button 手电筒 手电筒 8/8\n+\t\t\t\t186 image 手电筒\n+\t\t\t\t187 text 手电筒\n+\t\t\t\t188 text 8/8\n~\t\t\t189 text 快捷位\n+\t\t\t190 button 绷带 绷带 ×1 快捷位 1\n+\t\t\t\t191 image 绷带\n+\t\t\t\t192 text 绷带 ×1\n+\t\t\t\t193 text 快捷位 1\n+\t\t\t194 button 空槽 快捷位 2\n+\t\t\t\t195 text 空槽\n+\t\t\t\t196 text 快捷位 2\n~\t\t\t197 text 点击物品查看；右键或 Shift+F10 打开操作。\n~\t\t\t198 text 已保存\n~\t\t\t199 text 当前地点可自由查看；查看详情不消耗精力。\n~\t\t\t200 button 查看反馈\n+\t\t\t201 text 连续操作 · P09-normal\n+\t\t202 container\n+\t\t\t203 button 设计状态索引\n+\t\t\t204 button 导出可编辑SVG\n+\t\t\t205 button 导出PNG图稿\n+\t\t\t206 button 本地导出当前\n+\t\t\t207 button 本地导出全部\nThe focused UI element is 1 AXWebArea 已知区域 · 详情 · 电梯求生 UI设计, URL: 127.0.0.1:8766/prototype/index.html?screen=P01-unselected&r1=03",
+    "screenshot": "after/04-arrival-map.png"
+  }
+]

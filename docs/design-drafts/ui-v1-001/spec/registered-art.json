@@ -288,28 +288,28 @@
     ],
     "scale": 1.25,
     "translate": [
-      -142.9375,
+      -145.6312499999999,
       144.5250000000001
     ],
     "sourceFoot": [
-      728.75,
+      730.905,
       1297.5
     ],
     "sourceHit": [
-      605.88,
-      588.84
+      535,
+      830
     ],
     "footNormalized": [
       0.5,
       0.92
     ],
     "hitNormalized": [
-      0.40000813802083335,
-      0.4586328125000001
+      0.3405721028645834,
+      0.6156380208333334
     ],
-    "registrationMethod": "Legacy alpha>=128 lower left/right support sample midpoint; visual QA required",
+    "registrationMethod": "Explicit asset-author registration anchor",
     "imageCss": {
-      "left": -9.305826822916666,
+      "left": -9.481201171874995,
       "top": 7.527343750000004,
       "width": 91.30859375
     },
@@ -725,6 +725,52 @@
     "imageCss": {
       "left": 9.228515625,
       "top": 6.908854166666671,
+      "width": 91.30859375
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "player-back-v2.png": {
+    "file": "player-back-v2.png",
+    "source": [
+      1122,
+      1402
+    ],
+    "sourceSha256": "2e67e775c465bdbb5ddf298967c2624b9d5aff31c4932922e48da935a8584791",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.25,
+    "translate": [
+      142.23828125,
+      130.7750000000001
+    ],
+    "sourceFoot": [
+      500.609375,
+      1308.5
+    ],
+    "sourceHit": [
+      500,
+      500
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.49950408935546875,
+      0.39363281250000004
+    ],
+    "registrationMethod": "Explicit asset-author registration anchor",
+    "imageCss": {
+      "left": 9.260304768880209,
+      "top": 6.811197916666671,
       "width": 91.30859375
     },
     "motionEnvelopeCss": {

@@ -38,3 +38,8 @@ const STAGES=['完好','受伤','重伤','濒危','失去能力'];
 add('P06',[['door-result','消防门 · 通路已处理',{outcome:'通路已打开',node:'H1'}],['power-result','转运支路 · 已恢复供电',{outcome:'当地供电已恢复',node:'P1'}],['records-result','记录 · 比对已完成',{outcome:'记录比对已完成',node:'C1'}],['component-result','组件 · 已真实取件',{outcome:'转运组件已进入明确格位',node:'L2'}],['sample-result','样本 · 已实际携带',{outcome:'指定样本已进入背包',node:'H5'}],['install-result','平台 · 安装已完成',{outcome:'转运设施已安装',node:'H8'}]],'node');
 
 add('P10',[['detail-sample','样本详情 · 只读',{item:'sample'}],['detail-pipe','金属管详情 · 只读',{item:'pipe'}]],'item-detail','H5');
+
+// R1 additional explicit source cases; these are independent authored examples.
+add('P03',[['first-arrival','首次抵达 · 初选延续',{node:'H0',tool:'lamp',specialty:'engineer',initial:true}]],'explore');
+for(const method of ['cautious','direct'])for(const coatCase of ['last','broken','unequipped'])add('P06',[[`sample-${method}-${coatCase}`,`采样支付 · ${method==='cautious'?'谨慎':'直接'} / ${coatCase==='last'?'完整度1':coatCase==='broken'?'完整度0':'未装备'}`,{node:'H5',method,coatCase}]],'node');
+add('P17',[['retreat-porter','装卸工退却 · 登记室',{node:'L1',enemy:'porter'}],['retreat-technician','技术员退却 · 档案室',{node:'C1',enemy:'technician'}]],'result');

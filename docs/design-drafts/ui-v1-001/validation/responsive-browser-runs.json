@@ -1,254 +1,567 @@
 [
   {
-    "feedback": "本地当前图稿已导出",
+    "w": 1600,
+    "h": 900,
+    "sid": "P03-hospital",
+    "dpr": 1,
+    "missing": [],
+    "title": "医院 · 大厅 · 电梯求生 UI设计",
+    "viewport": [
+      1600,
+      900
+    ]
+  },
+  {
+    "w": 1600,
+    "h": 900,
+    "sid": "P09-normal",
+    "dpr": 1,
+    "missing": [],
+    "title": "已知区域 · 详情 · 电梯求生 UI设计",
+    "viewport": [
+      1600,
+      900
+    ]
+  },
+  {
+    "w": 1600,
+    "h": 900,
+    "sid": "P10-inventory",
+    "dpr": 1,
+    "missing": [],
+    "title": "携带区 · 真实占格 · 电梯求生 UI设计",
+    "viewport": [
+      1600,
+      900
+    ]
+  },
+  {
+    "w": 1600,
+    "h": 900,
+    "sid": "P12-bandage",
+    "dpr": 1,
+    "missing": [],
+    "title": "绷带 · 选择一处伤口 · 电梯求生 UI设计",
+    "viewport": [
+      1600,
+      900
+    ]
+  },
+  {
+    "w": 1600,
+    "h": 900,
+    "sid": "P15-orderly",
+    "dpr": 1,
+    "missing": [],
+    "title": "隔离走廊 · 感染护工 · 电梯求生 UI设计",
+    "viewport": [
+      1600,
+      900
+    ]
+  },
+  {
+    "w": 1600,
+    "h": 900,
+    "sid": "P16-max",
+    "dpr": 1,
+    "missing": [],
+    "title": "战斗 · 中央放大 · 电梯求生 UI设计",
+    "viewport": [
+      1600,
+      900
+    ]
+  },
+  {
+    "w": 1600,
+    "h": 900,
+    "sid": "P23-failed",
+    "dpr": 1,
+    "missing": [],
+    "title": "已生效 · 未保存 · 电梯求生 UI设计",
+    "viewport": [
+      1600,
+      900
+    ]
+  },
+  {
+    "w": 1600,
+    "h": 900,
+    "sid": "P24-corrupt",
+    "dpr": 1,
+    "missing": [],
+    "title": "记录无法校验 · 电梯求生 UI设计",
+    "viewport": [
+      1600,
+      900
+    ]
+  },
+  {
+    "w": 1366,
+    "h": 768,
+    "sid": "P03-hospital",
+    "dpr": 1,
+    "missing": [],
+    "title": "医院 · 大厅 · 电梯求生 UI设计",
+    "viewport": [
+      1366,
+      768
+    ]
+  },
+  {
+    "w": 1366,
+    "h": 768,
+    "sid": "P09-normal",
+    "dpr": 1,
+    "missing": [],
+    "title": "已知区域 · 详情 · 电梯求生 UI设计",
+    "viewport": [
+      1366,
+      768
+    ]
+  },
+  {
+    "w": 1366,
+    "h": 768,
+    "sid": "P10-inventory",
+    "dpr": 1,
+    "missing": [],
+    "title": "携带区 · 真实占格 · 电梯求生 UI设计",
+    "viewport": [
+      1366,
+      768
+    ]
+  },
+  {
+    "w": 1366,
+    "h": 768,
+    "sid": "P12-bandage",
+    "dpr": 1,
+    "missing": [],
+    "title": "绷带 · 选择一处伤口 · 电梯求生 UI设计",
+    "viewport": [
+      1366,
+      768
+    ]
+  },
+  {
+    "w": 1366,
+    "h": 768,
+    "sid": "P15-orderly",
+    "dpr": 1,
+    "missing": [],
+    "title": "隔离走廊 · 感染护工 · 电梯求生 UI设计",
+    "viewport": [
+      1366,
+      768
+    ]
+  },
+  {
+    "w": 1366,
+    "h": 768,
+    "sid": "P16-max",
+    "dpr": 1,
+    "missing": [],
+    "title": "战斗 · 中央放大 · 电梯求生 UI设计",
+    "viewport": [
+      1366,
+      768
+    ]
+  },
+  {
+    "w": 1366,
+    "h": 768,
+    "sid": "P23-failed",
+    "dpr": 1,
+    "missing": [],
+    "title": "已生效 · 未保存 · 电梯求生 UI设计",
+    "viewport": [
+      1366,
+      768
+    ]
+  },
+  {
+    "w": 1366,
+    "h": 768,
+    "sid": "P24-corrupt",
+    "dpr": 1,
+    "missing": [],
+    "title": "记录无法校验 · 电梯求生 UI设计",
+    "viewport": [
+      1366,
+      768
+    ]
+  },
+  {
+    "w": 1280,
     "h": 720,
-    "screen": "DESIGN SAMPLE · P03-hospital",
-    "w": 1280
+    "sid": "P03-hospital",
+    "dpr": 1,
+    "missing": [],
+    "title": "医院 · 大厅 · 电梯求生 UI设计",
+    "viewport": [
+      1280,
+      720
+    ]
   },
   {
-    "feedback": "本地当前图稿已导出",
+    "w": 1280,
     "h": 720,
-    "screen": "DESIGN SAMPLE · P11-task-pickup",
-    "w": 1280
+    "sid": "P11-task-pickup",
+    "dpr": 1,
+    "missing": [],
+    "title": "取回样本 · 明确2×2格位 · 电梯求生 UI设计",
+    "viewport": [
+      1280,
+      720
+    ]
   },
   {
-    "feedback": "本地当前图稿已导出",
+    "w": 1280,
     "h": 720,
-    "screen": "DESIGN SAMPLE · P15-orderly",
-    "w": 1280
+    "sid": "P15-orderly",
+    "dpr": 1,
+    "missing": [],
+    "title": "隔离走廊 · 感染护工 · 电梯求生 UI设计",
+    "viewport": [
+      1280,
+      720
+    ]
   },
   {
-    "feedback": "本地当前图稿已导出",
+    "w": 1280,
     "h": 720,
-    "screen": "DESIGN SAMPLE · P22-certain-death",
-    "w": 1280
+    "sid": "P22-certain-death",
+    "dpr": 1,
+    "missing": [],
+    "title": "当前操作必死 · 有其他合法选择 · 电梯求生 UI设计",
+    "viewport": [
+      1280,
+      720
+    ]
   },
   {
-    "feedback": "本地当前图稿已导出",
-    "h": 768,
-    "screen": "DESIGN SAMPLE · P03-hospital",
-    "w": 1366
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 768,
-    "screen": "DESIGN SAMPLE · P09-normal",
-    "w": 1366
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 768,
-    "screen": "DESIGN SAMPLE · P10-inventory",
-    "w": 1366
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 768,
-    "screen": "DESIGN SAMPLE · P12-bandage",
-    "w": 1366
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 768,
-    "screen": "DESIGN SAMPLE · P15-orderly",
-    "w": 1366
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 768,
-    "screen": "DESIGN SAMPLE · P16-max",
-    "w": 1366
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 768,
-    "screen": "DESIGN SAMPLE · P23-failed",
-    "w": 1366
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 768,
-    "screen": "DESIGN SAMPLE · P24-corrupt",
-    "w": 1366
-  },
-  {
-    "feedback": "本地当前图稿已导出",
+    "w": 1440,
     "h": 900,
-    "screen": "DESIGN SAMPLE · P03-hospital",
-    "w": 1600
+    "sid": "P03-hospital",
+    "dpr": 1,
+    "missing": [],
+    "title": "医院 · 大厅 · 电梯求生 UI设计",
+    "viewport": [
+      1440,
+      900
+    ]
   },
   {
-    "feedback": "本地当前图稿已导出",
+    "w": 1440,
     "h": 900,
-    "screen": "DESIGN SAMPLE · P09-normal",
-    "w": 1600
+    "sid": "P15-orderly",
+    "dpr": 1,
+    "missing": [],
+    "title": "隔离走廊 · 感染护工 · 电梯求生 UI设计",
+    "viewport": [
+      1440,
+      900
+    ]
   },
   {
-    "feedback": "本地当前图稿已导出",
-    "h": 900,
-    "screen": "DESIGN SAMPLE · P10-inventory",
-    "w": 1600
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 900,
-    "screen": "DESIGN SAMPLE · P12-bandage",
-    "w": 1600
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 900,
-    "screen": "DESIGN SAMPLE · P15-orderly",
-    "w": 1600
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 900,
-    "screen": "DESIGN SAMPLE · P16-max",
-    "w": 1600
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 900,
-    "screen": "DESIGN SAMPLE · P23-failed",
-    "w": 1600
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 900,
-    "screen": "DESIGN SAMPLE · P24-corrupt",
-    "w": 1600
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 900,
-    "screen": "DESIGN SAMPLE · P03-hospital",
-    "w": 1440
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 900,
-    "screen": "DESIGN SAMPLE · P15-orderly",
-    "w": 1440
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 844,
-    "screen": "DESIGN SAMPLE · P03-hospital",
-    "w": 390
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 844,
-    "screen": "DESIGN SAMPLE · P09-normal",
-    "w": 390
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 844,
-    "screen": "DESIGN SAMPLE · P12-bandage",
-    "w": 390
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 844,
-    "screen": "DESIGN SAMPLE · P15-orderly",
-    "w": 390
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 844,
-    "screen": "DESIGN SAMPLE · P23-failed",
-    "w": 390
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 768,
-    "screen": "DESIGN SAMPLE · P03-hospital",
-    "w": 1024
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 768,
-    "screen": "DESIGN SAMPLE · P09-normal",
-    "w": 1024
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 768,
-    "screen": "DESIGN SAMPLE · P12-bandage",
-    "w": 1024
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 768,
-    "screen": "DESIGN SAMPLE · P15-orderly",
-    "w": 1024
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 768,
-    "screen": "DESIGN SAMPLE · P23-failed",
-    "w": 1024
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 650,
-    "screen": "DESIGN SAMPLE · P03-hospital",
-    "w": 1366
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 650,
-    "screen": "DESIGN SAMPLE · P09-normal",
-    "w": 1366
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 650,
-    "screen": "DESIGN SAMPLE · P12-bandage",
-    "w": 1366
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 650,
-    "screen": "DESIGN SAMPLE · P15-orderly",
-    "w": 1366
-  },
-  {
-    "feedback": "本地当前图稿已导出",
-    "h": 650,
-    "screen": "DESIGN SAMPLE · P23-failed",
-    "w": 1366
-  },
-  {
-    "feedback": "本地当前图稿已导出",
+    "w": 2560,
     "h": 1440,
-    "screen": "DESIGN SAMPLE · P03-hospital",
-    "w": 2560
+    "sid": "P03-hospital",
+    "dpr": 1,
+    "missing": [],
+    "title": "医院 · 大厅 · 电梯求生 UI设计",
+    "viewport": [
+      2560,
+      1440
+    ]
   },
   {
-    "feedback": "本地当前图稿已导出",
+    "w": 2560,
     "h": 1440,
-    "screen": "DESIGN SAMPLE · P09-normal",
-    "w": 2560
+    "sid": "P09-normal",
+    "dpr": 1,
+    "missing": [],
+    "title": "已知区域 · 详情 · 电梯求生 UI设计",
+    "viewport": [
+      2560,
+      1440
+    ]
   },
   {
-    "feedback": "本地当前图稿已导出",
+    "w": 2560,
     "h": 1440,
-    "screen": "DESIGN SAMPLE · P12-bandage",
-    "w": 2560
+    "sid": "P12-bandage",
+    "dpr": 1,
+    "missing": [],
+    "title": "绷带 · 选择一处伤口 · 电梯求生 UI设计",
+    "viewport": [
+      2560,
+      1440
+    ]
   },
   {
-    "feedback": "本地当前图稿已导出",
+    "w": 2560,
     "h": 1440,
-    "screen": "DESIGN SAMPLE · P15-orderly",
-    "w": 2560
+    "sid": "P15-orderly",
+    "dpr": 1,
+    "missing": [],
+    "title": "隔离走廊 · 感染护工 · 电梯求生 UI设计",
+    "viewport": [
+      2560,
+      1440
+    ]
   },
   {
-    "feedback": "本地当前图稿已导出",
+    "w": 2560,
     "h": 1440,
-    "screen": "DESIGN SAMPLE · P23-failed",
-    "w": 2560
+    "sid": "P23-failed",
+    "dpr": 1,
+    "missing": [],
+    "title": "已生效 · 未保存 · 电梯求生 UI设计",
+    "viewport": [
+      2560,
+      1440
+    ]
+  },
+  {
+    "w": 2560,
+    "h": 1080,
+    "sid": "P03-hospital",
+    "dpr": 1,
+    "missing": [],
+    "title": "医院 · 大厅 · 电梯求生 UI设计",
+    "viewport": [
+      2560,
+      1080
+    ]
+  },
+  {
+    "w": 2560,
+    "h": 1080,
+    "sid": "P09-normal",
+    "dpr": 1,
+    "missing": [],
+    "title": "已知区域 · 详情 · 电梯求生 UI设计",
+    "viewport": [
+      2560,
+      1080
+    ]
+  },
+  {
+    "w": 2560,
+    "h": 1080,
+    "sid": "P12-bandage",
+    "dpr": 1,
+    "missing": [],
+    "title": "绷带 · 选择一处伤口 · 电梯求生 UI设计",
+    "viewport": [
+      2560,
+      1080
+    ],
+    "note": "Export completion observed after initial wait timeout; not a semantic failure."
+  },
+  {
+    "w": 2560,
+    "h": 1080,
+    "sid": "P15-orderly",
+    "dpr": 1,
+    "missing": [],
+    "title": "隔离走廊 · 感染护工 · 电梯求生 UI设计",
+    "viewport": [
+      2560,
+      1080
+    ]
+  },
+  {
+    "w": 2560,
+    "h": 1080,
+    "sid": "P23-failed",
+    "dpr": 1,
+    "missing": [],
+    "title": "已生效 · 未保存 · 电梯求生 UI设计",
+    "viewport": [
+      2560,
+      1080
+    ]
+  },
+  {
+    "w": 1366,
+    "h": 650,
+    "sid": "P03-hospital",
+    "dpr": 1,
+    "missing": [],
+    "title": "医院 · 大厅 · 电梯求生 UI设计",
+    "viewport": [
+      1366,
+      650
+    ]
+  },
+  {
+    "w": 1366,
+    "h": 650,
+    "sid": "P09-normal",
+    "dpr": 1,
+    "missing": [],
+    "title": "已知区域 · 详情 · 电梯求生 UI设计",
+    "viewport": [
+      1366,
+      650
+    ]
+  },
+  {
+    "w": 1366,
+    "h": 650,
+    "sid": "P12-bandage",
+    "dpr": 1,
+    "missing": [],
+    "title": "绷带 · 选择一处伤口 · 电梯求生 UI设计",
+    "viewport": [
+      1366,
+      650
+    ]
+  },
+  {
+    "w": 1366,
+    "h": 650,
+    "sid": "P15-orderly",
+    "dpr": 1,
+    "missing": [],
+    "title": "隔离走廊 · 感染护工 · 电梯求生 UI设计",
+    "viewport": [
+      1366,
+      650
+    ]
+  },
+  {
+    "w": 1366,
+    "h": 650,
+    "sid": "P23-failed",
+    "dpr": 1,
+    "missing": [],
+    "title": "已生效 · 未保存 · 电梯求生 UI设计",
+    "viewport": [
+      1366,
+      650
+    ]
+  },
+  {
+    "w": 1024,
+    "h": 768,
+    "sid": "P03-hospital",
+    "dpr": 1,
+    "missing": [],
+    "title": "医院 · 大厅 · 电梯求生 UI设计",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "w": 1024,
+    "h": 768,
+    "sid": "P09-normal",
+    "dpr": 1,
+    "missing": [],
+    "title": "已知区域 · 详情 · 电梯求生 UI设计",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "w": 1024,
+    "h": 768,
+    "sid": "P12-bandage",
+    "dpr": 1,
+    "missing": [],
+    "title": "绷带 · 选择一处伤口 · 电梯求生 UI设计",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "w": 1024,
+    "h": 768,
+    "sid": "P15-orderly",
+    "dpr": 1,
+    "missing": [],
+    "title": "隔离走廊 · 感染护工 · 电梯求生 UI设计",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "w": 1024,
+    "h": 768,
+    "sid": "P23-failed",
+    "dpr": 1,
+    "missing": [],
+    "title": "已生效 · 未保存 · 电梯求生 UI设计",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "w": 390,
+    "h": 844,
+    "sid": "P03-hospital",
+    "dpr": 1,
+    "missing": [],
+    "title": "医院 · 大厅 · 电梯求生 UI设计",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "w": 390,
+    "h": 844,
+    "sid": "P09-normal",
+    "dpr": 1,
+    "missing": [],
+    "title": "已知区域 · 详情 · 电梯求生 UI设计",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "w": 390,
+    "h": 844,
+    "sid": "P12-bandage",
+    "dpr": 1,
+    "missing": [],
+    "title": "绷带 · 选择一处伤口 · 电梯求生 UI设计",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "w": 390,
+    "h": 844,
+    "sid": "P15-orderly",
+    "dpr": 1,
+    "missing": [],
+    "title": "隔离走廊 · 感染护工 · 电梯求生 UI设计",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "w": 390,
+    "h": 844,
+    "sid": "P23-failed",
+    "dpr": 1,
+    "missing": [],
+    "title": "已生效 · 未保存 · 电梯求生 UI设计",
+    "viewport": [
+      390,
+      844
+    ]
   }
 ]

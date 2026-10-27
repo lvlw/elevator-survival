@@ -1,0 +1,59 @@
+{
+  "stage": "worktree and staged; final recheck after recording performed before commit",
+  "checks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-critical-v1.svg', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-disabled-v1.svg', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-heavy_wounded-v1.svg', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-pristine-v1.svg', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-wounded-v1.svg', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-critical-v1.svg', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-heavy_wounded-v1.svg', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-pristine-v1.svg', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-wounded-v1.svg', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_critical_v02.svg', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_disabled_v02.svg', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_heavy_wounded_v02.svg', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_pristine_v02.svg', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_wounded_v02.svg', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/editable/registered/player-back-v1.svg', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/spec/node-crop-manifest.json', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/validation/final-check-results.json', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/validation/input-verification.json', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/validation/link-results.json', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/validation/responsive-results.json', CRLF will be replaced by LF the next time Git touches it\n"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "stage": "after final component regression",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "stage": "after final component regression",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

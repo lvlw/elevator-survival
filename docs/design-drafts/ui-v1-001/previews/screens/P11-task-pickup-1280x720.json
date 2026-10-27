@@ -31,7 +31,7 @@
       "y": 80,
       "w": 192,
       "h": 584,
-      "scrollH": 708,
+      "scrollH": 707,
       "clientH": 582
     },
     {
@@ -46,7 +46,7 @@
     {
       "selector": ".inventory",
       "x": 303.203125,
-      "y": 242.734375,
+      "y": 214.1875,
       "w": 242,
       "h": 160,
       "scrollH": 160,
@@ -82,17 +82,6 @@
       "display": [
         768,
         584
-      ]
-    },
-    {
-      "path": "../editable/assets/objective_pathogen_case_v02.png",
-      "native": [
-        1024,
-        1024
-      ],
-      "display": [
-        316.578125,
-        316.578125
       ]
     },
     {

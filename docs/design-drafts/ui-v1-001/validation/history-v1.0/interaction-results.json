@@ -1,0 +1,171 @@
+{
+  "kind": "DESIGN_UI_OBSERVATIONS_NOT_GAME_TESTS",
+  "records": [
+    {
+      "case": "2x2-edge",
+      "text": "2×2 · 第6列，第4行 · 越界或占用",
+      "enabled": true
+    },
+    {
+      "case": "2x2-valid",
+      "text": "2×2 · 第3列，第2行 · 有效位置",
+      "enabled": true
+    },
+    {
+      "case": "2x2-edge-final",
+      "text": "2×2 · 第6列，第4行 · 越界或占用",
+      "enabled": false
+    },
+    {
+      "case": "2x2-valid-final",
+      "text": "2×2 · 第3列，第2行 · 有效位置",
+      "enabled": true
+    },
+    {
+      "case": "corner-menu-keyboard",
+      "corner": "左上",
+      "inside": true,
+      "rect": [
+        8,
+        8,
+        180,
+        203.5625
+      ],
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "case": "corner-menu-keyboard",
+      "corner": "右上",
+      "inside": true,
+      "rect": [
+        1092,
+        8,
+        180,
+        203.5625
+      ],
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "case": "corner-menu-keyboard",
+      "corner": "左下",
+      "inside": true,
+      "rect": [
+        8,
+        508.4375,
+        180,
+        203.5625
+      ],
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "case": "corner-menu-keyboard",
+      "corner": "右下",
+      "inside": true,
+      "rect": [
+        1092,
+        508.4375,
+        180,
+        203.5625
+      ],
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "case": "map-max-readonly",
+      "center": 768,
+      "mapButtons": 0,
+      "panel": 768
+    },
+    {
+      "case": "focus-return",
+      "focus": "展开已知区域",
+      "panel": false
+    },
+    {
+      "case": "focus-return-final",
+      "focus": "展开已知区域",
+      "panel": false
+    },
+    {
+      "case": "maintenance-over-pool",
+      "text": "两目标分配必须明确且合计不超过15。"
+    },
+    {
+      "case": "maintenance-explicit-valid",
+      "text": "维护分配设计示范；没有写入装备资源。"
+    },
+    {
+      "case": "focus-return-final-origin",
+      "focus": "展开已知区域",
+      "panel": false
+    },
+    {
+      "animation": "none",
+      "case": "battle-pause-before",
+      "stage": "完好"
+    },
+    {
+      "animation": "none",
+      "case": "battle-pause-after-max",
+      "stage": "完好"
+    },
+    {
+      "case": "focus-return-cache-refreshed",
+      "focus": "已知地图",
+      "panel": false
+    },
+    {
+      "animation": "none",
+      "case": "battle-motion-completed",
+      "fx": "0",
+      "stage": "受伤"
+    },
+    {
+      "animation": "none",
+      "case": "battle-reduced",
+      "stage": "重伤"
+    },
+    {
+      "case": "retreat",
+      "title": "合法退却 · 回到入场前大厅 · 电梯求生 UI设计"
+    },
+    {
+      "case": "save-retry",
+      "text": "只保存重试示范：没有重放动作、发物或扣款。"
+    },
+    {
+      "case": "compact-inventory-drawer",
+      "display": "flex",
+      "grid": 260,
+      "view": 390
+    },
+    {
+      "case": "compact-goal-drawer",
+      "display": "flex",
+      "scrollable": true
+    },
+    {
+      "case": "compact-medical-parameters-reachable",
+      "feedback": "一次用药设计示范，不执行治疗或扣物。"
+    }
+  ],
+  "zoom": {
+    "attempted": [
+      "IAB ctrl+plus/equal unchanged at DPR1",
+      "Chrome native app approval timed out"
+    ],
+    "result": "NOT_VERIFIED",
+    "notEquivalent": "CSS resizing does not substitute for actual 125/150 browser zoom"
+  }
+}

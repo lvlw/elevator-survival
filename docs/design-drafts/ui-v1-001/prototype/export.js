@@ -11,6 +11,7 @@ async function exportDesign(format='png',local=false){
    css=css.replace(st.borderImageSource,`url("${data}")`);
   }
   copies[i].setAttribute('style',css);
+  if(originals[i].tagName.toLowerCase()==='image'&&originals[i].getAttribute('href'))copies[i].setAttribute('href',await exportData(originals[i].getAttribute('href')));
   if(originals[i] instanceof HTMLImageElement&&originals[i].complete&&originals[i].naturalWidth){
    const url=await exportData(originals[i].src);copies[i].setAttribute('src',url);
   }
@@ -26,7 +27,7 @@ async function exportDesign(format='png',local=false){
  canvas.getContext('2d').drawImage(picture,0,0);const blob=await new Promise((resolve,reject)=>{try{canvas.toBlob(b=>b?resolve(b):reject(new Error('No PNG')), 'image/png');}catch(e){reject(e);}});
  await deliver(blob,outName+'.png',local);
  if(local){
-  for(let i=0;i<originals.length;i++){if(originals[i] instanceof HTMLImageElement)copies[i].setAttribute('src','../assets/'+originals[i].src.split('/').pop());if(getComputedStyle(originals[i]).borderImageSource.startsWith('url('))copies[i].style.borderImageSource='url(../assets/panel-nine-slice-v1.png)';}
+  for(let i=0;i<originals.length;i++){if(originals[i] instanceof HTMLImageElement)copies[i].setAttribute('src','../assets/'+originals[i].src.split('/').pop());if(originals[i].tagName.toLowerCase()==='image'&&originals[i].getAttribute('href'))copies[i].setAttribute('href','../assets/'+originals[i].getAttribute('href').split('/').pop());if(getComputedStyle(originals[i]).borderImageSource.startsWith('url('))copies[i].style.borderImageSource='url(../assets/panel-nine-slice-v1.png)';}
   const linked=svg.replace(markup,new XMLSerializer().serializeToString(clone));
   await deliver(new Blob([linked],{type:'image/svg+xml'}),outName+'.svg',true);
   const geometry={screen:active.id,viewport:[innerWidth,innerHeight],pixelRatio:devicePixelRatio,kind:'ACTUAL_DOM_EXPORT_NOT_PRODUCTION',rects:['.shell','.center','.sidebar.left','.sidebar.right','.inventory','.panel','.arena','.footer'].map(sel=>{const e=document.querySelector(sel);if(!e)return null;const r=e.getBoundingClientRect();return {selector:sel,x:r.x,y:r.y,w:r.width,h:r.height,scrollH:e.scrollHeight,clientH:e.clientHeight};}),assets:Array.from(root.querySelectorAll('img')).map(i=>({path:i.getAttribute('src'),native:[i.naturalWidth,i.naturalHeight],display:[i.getBoundingClientRect().width,i.getBoundingClientRect().height]})),font:getComputedStyle(root).fontFamily,missing:Array.from(root.querySelectorAll('img')).filter(i=>!i.naturalWidth).map(i=>i.getAttribute('src'))};

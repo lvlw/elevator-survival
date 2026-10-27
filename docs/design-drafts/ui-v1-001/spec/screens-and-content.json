@@ -849,6 +849,86 @@
       "kind": "item-detail",
       "node": "H5",
       "item": "pipe"
+    },
+    {
+      "id": "P03-first-arrival",
+      "family": "P03",
+      "title": "首次抵达 · 初选延续",
+      "kind": "explore",
+      "node": "H0",
+      "tool": "lamp",
+      "specialty": "engineer",
+      "initial": true
+    },
+    {
+      "id": "P06-sample-cautious-last",
+      "family": "P06",
+      "title": "采样支付 · 谨慎 / 完整度1",
+      "kind": "node",
+      "node": "H5",
+      "method": "cautious",
+      "coatCase": "last"
+    },
+    {
+      "id": "P06-sample-cautious-broken",
+      "family": "P06",
+      "title": "采样支付 · 谨慎 / 完整度0",
+      "kind": "node",
+      "node": "H5",
+      "method": "cautious",
+      "coatCase": "broken"
+    },
+    {
+      "id": "P06-sample-cautious-unequipped",
+      "family": "P06",
+      "title": "采样支付 · 谨慎 / 未装备",
+      "kind": "node",
+      "node": "H5",
+      "method": "cautious",
+      "coatCase": "unequipped"
+    },
+    {
+      "id": "P06-sample-direct-last",
+      "family": "P06",
+      "title": "采样支付 · 直接 / 完整度1",
+      "kind": "node",
+      "node": "H5",
+      "method": "direct",
+      "coatCase": "last"
+    },
+    {
+      "id": "P06-sample-direct-broken",
+      "family": "P06",
+      "title": "采样支付 · 直接 / 完整度0",
+      "kind": "node",
+      "node": "H5",
+      "method": "direct",
+      "coatCase": "broken"
+    },
+    {
+      "id": "P06-sample-direct-unequipped",
+      "family": "P06",
+      "title": "采样支付 · 直接 / 未装备",
+      "kind": "node",
+      "node": "H5",
+      "method": "direct",
+      "coatCase": "unequipped"
+    },
+    {
+      "id": "P17-retreat-porter",
+      "family": "P17",
+      "title": "装卸工退却 · 登记室",
+      "kind": "result",
+      "node": "L1",
+      "enemy": "porter"
+    },
+    {
+      "id": "P17-retreat-technician",
+      "family": "P17",
+      "title": "技术员退却 · 档案室",
+      "kind": "result",
+      "node": "C1",
+      "enemy": "technician"
     }
   ],
   "nodes": {

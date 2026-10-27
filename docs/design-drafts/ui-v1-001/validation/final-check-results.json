@@ -1,6 +1,6 @@
 {
   "kind": "DESIGN_FILE_AND_GEOMETRY_AUDIT_NOT_PRODUCTION_TESTS",
-  "baseline": "6bb43c8861b7c3dd21499211fdb0e646e48bba20",
+  "baseline": "d7d395ea7c061e26f9244fcfd296c764785af16a",
   "checks": [
     {
       "name": "25 named page families",
@@ -1143,6 +1143,96 @@
       "detail": null
     },
     {
+      "name": "screen P03-first-arrival",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P03-first-arrival",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-sample-cautious-last",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-sample-cautious-last",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-sample-cautious-broken",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-sample-cautious-broken",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-sample-cautious-unequipped",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-sample-cautious-unequipped",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-sample-direct-last",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-sample-direct-last",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-sample-direct-broken",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-sample-direct-broken",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-sample-direct-unequipped",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-sample-direct-unequipped",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P17-retreat-porter",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P17-retreat-porter",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P17-retreat-technician",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P17-retreat-technician",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "image decode bg-c1-v1.png",
       "pass": true,
       "detail": null
@@ -1538,6 +1628,11 @@
       "detail": null
     },
     {
+      "name": "image decode player-back-v2.png",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "protected AGENTS.md",
       "pass": true,
       "detail": null
@@ -1768,6 +1863,31 @@
       "detail": null
     },
     {
+      "name": "responsive export P03-hospital-2560x1080",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P09-normal-2560x1080",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P12-bandage-2560x1080",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P15-orderly-2560x1080",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P23-failed-2560x1080",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "responsive export P03-hospital-1366x650",
       "pass": true,
       "detail": null
@@ -1903,6 +2023,11 @@
       "detail": []
     },
     {
+      "name": "loaded assets P03-first-arrival-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
       "name": "loaded assets P03-hospital-1024x768",
       "pass": true,
       "detail": []
@@ -1934,6 +2059,11 @@
     },
     {
       "name": "loaded assets P03-hospital-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P03-hospital-2560x1080",
       "pass": true,
       "detail": []
     },
@@ -2053,7 +2183,37 @@
       "detail": []
     },
     {
+      "name": "loaded assets P06-sample-cautious-broken-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-sample-cautious-last-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-sample-cautious-unequipped-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
       "name": "loaded assets P06-sample-direct-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-sample-direct-broken-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-sample-direct-last-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-sample-direct-unequipped-1920x1080",
       "pass": true,
       "detail": []
     },
@@ -2133,6 +2293,11 @@
       "detail": []
     },
     {
+      "name": "loaded assets P09-normal-2560x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
       "name": "loaded assets P09-normal-2560x1440",
       "pass": true,
       "detail": []
@@ -2179,6 +2344,11 @@
     },
     {
       "name": "loaded assets P10-inventory-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P10-inventory-2552x908",
       "pass": true,
       "detail": []
     },
@@ -2249,6 +2419,11 @@
     },
     {
       "name": "loaded assets P12-bandage-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-bandage-2560x1080",
       "pass": true,
       "detail": []
     },
@@ -2378,6 +2553,11 @@
       "detail": []
     },
     {
+      "name": "loaded assets P15-orderly-2560x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
       "name": "loaded assets P15-orderly-2560x1440",
       "pass": true,
       "detail": []
@@ -2473,6 +2653,16 @@
       "detail": []
     },
     {
+      "name": "loaded assets P17-retreat-porter-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P17-retreat-technician-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
       "name": "loaded assets P17-victory-1920x1080",
       "pass": true,
       "detail": []
@@ -2554,6 +2744,11 @@
     },
     {
       "name": "loaded assets P23-failed-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P23-failed-2560x1080",
       "pass": true,
       "detail": []
     },
@@ -2758,7 +2953,17 @@
       "detail": null
     },
     {
+      "name": "UTF8 prototype/flow-context.js",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 prototype/index.html",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 prototype/nine-slice.js",
       "pass": true,
       "detail": null
     },
@@ -2779,6 +2984,11 @@
     },
     {
       "name": "UTF8 prototype/ui.js",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 reviews/OWNER-modal-size-followup.md",
       "pass": true,
       "detail": null
     },
@@ -3143,6 +3353,11 @@
       "detail": null
     },
     {
+      "name": "UTF8 editable/assets/player-back-v2.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 editable/registered/enemy-porter-critical-v1.svg",
       "pass": true,
       "detail": null
@@ -3223,6 +3438,11 @@
       "detail": null
     },
     {
+      "name": "UTF8 editable/registered/player-back-v2.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 editable/screens/P01-crow-engineer-1920x1080.svg",
       "pass": true,
       "detail": null
@@ -3283,6 +3503,11 @@
       "detail": null
     },
     {
+      "name": "UTF8 editable/screens/P03-first-arrival-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 editable/screens/P03-hospital-1024x768.svg",
       "pass": true,
       "detail": null
@@ -3314,6 +3539,11 @@
     },
     {
       "name": "UTF8 editable/screens/P03-hospital-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-hospital-2560x1080.svg",
       "pass": true,
       "detail": null
     },
@@ -3428,7 +3658,37 @@
       "detail": null
     },
     {
+      "name": "UTF8 editable/screens/P06-sample-cautious-broken-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-sample-cautious-last-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-sample-cautious-unequipped-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 editable/screens/P06-sample-direct-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-sample-direct-broken-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-sample-direct-last-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-sample-direct-unequipped-1920x1080.svg",
       "pass": true,
       "detail": null
     },
@@ -3508,6 +3768,11 @@
       "detail": null
     },
     {
+      "name": "UTF8 editable/screens/P09-normal-2560x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 editable/screens/P09-normal-2560x1440.svg",
       "pass": true,
       "detail": null
@@ -3549,6 +3814,11 @@
     },
     {
       "name": "UTF8 editable/screens/P10-inventory-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P10-inventory-2552x908.svg",
       "pass": true,
       "detail": null
     },
@@ -3619,6 +3889,11 @@
     },
     {
       "name": "UTF8 editable/screens/P12-bandage-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-bandage-2560x1080.svg",
       "pass": true,
       "detail": null
     },
@@ -3743,6 +4018,11 @@
       "detail": null
     },
     {
+      "name": "UTF8 editable/screens/P15-orderly-2560x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 editable/screens/P15-orderly-2560x1440.svg",
       "pass": true,
       "detail": null
@@ -3833,6 +4113,16 @@
       "detail": null
     },
     {
+      "name": "UTF8 editable/screens/P17-retreat-porter-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P17-retreat-technician-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 editable/screens/P17-victory-1920x1080.svg",
       "pass": true,
       "detail": null
@@ -3914,6 +4204,11 @@
     },
     {
       "name": "UTF8 editable/screens/P23-failed-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P23-failed-2560x1080.svg",
       "pass": true,
       "detail": null
     },
@@ -4063,6 +4358,11 @@
       "detail": null
     },
     {
+      "name": "UTF8 previews/screens/P03-first-arrival-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 previews/screens/P03-hospital-1024x768.json",
       "pass": true,
       "detail": null
@@ -4094,6 +4394,11 @@
     },
     {
       "name": "UTF8 previews/screens/P03-hospital-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-hospital-2560x1080.json",
       "pass": true,
       "detail": null
     },
@@ -4208,7 +4513,37 @@
       "detail": null
     },
     {
+      "name": "UTF8 previews/screens/P06-sample-cautious-broken-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-sample-cautious-last-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-sample-cautious-unequipped-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 previews/screens/P06-sample-direct-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-sample-direct-broken-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-sample-direct-last-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-sample-direct-unequipped-1920x1080.json",
       "pass": true,
       "detail": null
     },
@@ -4288,6 +4623,11 @@
       "detail": null
     },
     {
+      "name": "UTF8 previews/screens/P09-normal-2560x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 previews/screens/P09-normal-2560x1440.json",
       "pass": true,
       "detail": null
@@ -4329,6 +4669,11 @@
     },
     {
       "name": "UTF8 previews/screens/P10-inventory-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P10-inventory-2552x908.json",
       "pass": true,
       "detail": null
     },
@@ -4399,6 +4744,11 @@
     },
     {
       "name": "UTF8 previews/screens/P12-bandage-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-bandage-2560x1080.json",
       "pass": true,
       "detail": null
     },
@@ -4523,6 +4873,11 @@
       "detail": null
     },
     {
+      "name": "UTF8 previews/screens/P15-orderly-2560x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 previews/screens/P15-orderly-2560x1440.json",
       "pass": true,
       "detail": null
@@ -4613,6 +4968,16 @@
       "detail": null
     },
     {
+      "name": "UTF8 previews/screens/P17-retreat-porter-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P17-retreat-technician-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 previews/screens/P17-victory-1920x1080.json",
       "pass": true,
       "detail": null
@@ -4698,6 +5063,11 @@
       "detail": null
     },
     {
+      "name": "UTF8 previews/screens/P23-failed-2560x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 previews/screens/P23-failed-2560x1440.json",
       "pass": true,
       "detail": null
@@ -4778,12 +5148,212 @@
       "detail": null
     },
     {
-      "name": "link 00-owner-review.md previews/index.html",
+      "name": "UTF8 validation/history-v1.0/00-owner-review.md",
       "pass": true,
       "detail": null
     },
     {
-      "name": "link 00-owner-review.md prototype/index.html",
+      "name": "UTF8 validation/history-v1.0/asset-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/audit-attempt-01.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/completion.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/delivery-packages.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/design-qa.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/final-check-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/html-link-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/input-verification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/interaction-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/link-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/node-crop-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/precommit-diff-checks.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/responsive-browser-runs.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/responsive-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/screen-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/size-change-log.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/staged-input-audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/after-browser.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/audit-attempt-02.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/audit-r1.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/audit-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/before-browser.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/diff-checks.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/edge-browser.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/final-run-log.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/history-byte-audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/html-link-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/input-verification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/make-inspection-sheets.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/nine-slice-comparison.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/responsive-browser.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/review-notes.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/staged-audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/zoom-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/alpha/alpha-analysis.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/alpha/generation-prompt.txt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/alpha/player-back-v2-candidate.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/contact-sheets/index.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/hd/bg-h0-r1-native-attempt.measurement.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/hd/bg-h0-r1-native-attempt.prompt.txt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 00-owner-review.md previews/index.html",
       "pass": true,
       "detail": null
     },
@@ -4798,37 +5368,27 @@
       "detail": null
     },
     {
-      "name": "link 00-owner-review.md previews/native-shell-1920.jpg",
+      "name": "link 00-owner-review.md validation/r1/review-notes.md",
       "pass": true,
       "detail": null
     },
     {
-      "name": "link 00-owner-review.md previews/native-battle-1920.jpg",
-      "pass": true,
-      "detail": null
-    },
-    {
-      "name": "link 00-owner-review.md 03-dimension-contract.md",
-      "pass": true,
-      "detail": null
-    },
-    {
-      "name": "link 00-owner-review.md validation/design-qa.md",
-      "pass": true,
-      "detail": null
-    },
-    {
-      "name": "link 00-owner-review.md validation/final-check-results.json",
-      "pass": true,
-      "detail": null
-    },
-    {
-      "name": "link 00-owner-review.md 06-implementation-handoff-draft.md",
+      "name": "link 00-owner-review.md validation/r1/edge/03-depart-h0.jpg",
       "pass": true,
       "detail": null
     },
     {
       "name": "link 00-owner-review.md spec/delivery-packages.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 00-owner-review.md reviews/OWNER-modal-size-followup.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 00-owner-review.md 06-implementation-handoff-draft.md",
       "pass": true,
       "detail": null
     },
@@ -6008,6 +6568,96 @@
       "detail": null
     },
     {
+      "name": "link 02-page-state-matrix.md previews/screens/P03-first-arrival-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P03-first-arrival",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-sample-cautious-last-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-sample-cautious-last",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-sample-cautious-broken-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-sample-cautious-broken",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-sample-cautious-unequipped-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-sample-cautious-unequipped",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-sample-direct-last-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-sample-direct-last",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-sample-direct-broken-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-sample-direct-broken",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-sample-direct-unequipped-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-sample-direct-unequipped",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P17-retreat-porter-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P17-retreat-porter",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P17-retreat-technician-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P17-retreat-technician",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "link 02-page-state-matrix.md validation/responsive-results.json",
       "pass": true,
       "detail": null
@@ -6028,7 +6678,12 @@
       "detail": null
     },
     {
-      "name": "link 03-dimension-contract.md validation/design-qa.md",
+      "name": "link 03-dimension-contract.md validation/r1/review-notes.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 03-dimension-contract.md reviews/OWNER-modal-size-followup.md",
       "pass": true,
       "detail": null
     },
@@ -6043,7 +6698,7 @@
       "detail": null
     },
     {
-      "name": "link 04-interaction-and-motion.md validation/interaction-results.json",
+      "name": "link 04-interaction-and-motion.md validation/r1/edge-browser.json",
       "pass": true,
       "detail": null
     },
@@ -6063,12 +6718,22 @@
       "detail": null
     },
     {
+      "name": "link 05-asset-coverage.md validation/r1/review-notes.md",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "link completion.md validation/final-check-results.json",
       "pass": true,
       "detail": null
     },
     {
-      "name": "link completion.md validation/design-qa.md",
+      "name": "link completion.md validation/r1/audit-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link completion.md validation/r1/review-notes.md",
       "pass": true,
       "detail": null
     },
@@ -6078,32 +6743,72 @@
       "detail": null
     },
     {
-      "name": "link completion.md 00-owner-review.md",
+      "name": "link size-change-log.md reviews/OWNER-modal-size-followup.md",
       "pass": true,
       "detail": null
     },
     {
-      "name": "link design-qa.md ../previews/comparison-shell.jpg",
+      "name": "link design-qa.md history-v1.0/design-qa.md",
       "pass": true,
       "detail": null
     },
     {
-      "name": "link design-qa.md ../previews/comparison-combat.jpg",
+      "name": "link design-qa.md r1/review-notes.md",
       "pass": true,
       "detail": null
     },
     {
-      "name": "link design-qa.md interaction-results.json",
+      "name": "link design-qa.md final-check-results.json",
       "pass": true,
       "detail": null
     },
     {
-      "name": "link design-qa.md responsive-results.json",
+      "name": "link design-qa.md r1/audit-results.json",
       "pass": true,
       "detail": null
     },
     {
-      "name": "link design-qa.md responsive-browser-runs.json",
+      "name": "link review-notes.md before-browser.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md edge-browser.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md contact-sheets/index.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md alpha/alpha-analysis.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md hd/bg-h0-r1-native-attempt.measurement.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md zoom-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md nine-slice-comparison.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md nine-slice-corner-comparison.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md audit-attempt-02.json",
       "pass": true,
       "detail": null
     },
@@ -6118,12 +6823,12 @@
       "detail": null
     }
   ],
-  "passed": 1223,
+  "passed": 1364,
   "failed": 0,
   "limitations": [
     "This script does not prove visual quality or interaction.",
-    "Background DPR2 insufficient. Actual 125/150 browser zoom NOT VERIFIED.",
-    "DOM export has border-image differences from native browser rendering."
+    "Background DPR2 and residual alpha gates remain open.",
+    "Browser evidence and zoom status are independently recorded under validation/r1; audit counts do not prove completion."
   ],
   "productionTests": "NOT RUN"
 }

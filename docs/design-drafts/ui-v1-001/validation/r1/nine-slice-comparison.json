@@ -1,0 +1,104 @@
+{
+  "authority": "Native browser render at matching state and viewport",
+  "native": "validation/r1/edge/22-nine-slice-shell.jpg",
+  "export": "previews/screens/P10-inventory-2552x908.png",
+  "sameSize": [
+    1920,
+    908
+  ],
+  "regions": [
+    {
+      "box": [
+        24,
+        24,
+        48,
+        48
+      ],
+      "meanAbsoluteRgbError": [
+        6.631944444444445,
+        5.505208333333333,
+        7.128472222222222
+      ],
+      "nativeStdDev": [
+        38.07756469575913,
+        38.63355128125887,
+        40.00563096336572
+      ],
+      "exportStdDev": [
+        39.88701249068547,
+        38.34846454962758,
+        37.962882491304725
+      ]
+    },
+    {
+      "box": [
+        1872,
+        24,
+        1896,
+        48
+      ],
+      "meanAbsoluteRgbError": [
+        6.576388888888889,
+        5.715277777777778,
+        6.949652777777778
+      ],
+      "nativeStdDev": [
+        36.34338161151046,
+        36.240605822980754,
+        36.561817255153336
+      ],
+      "exportStdDev": [
+        37.737682811654665,
+        35.67428212847379,
+        34.22944558275207
+      ]
+    },
+    {
+      "box": [
+        24,
+        112,
+        48,
+        136
+      ],
+      "meanAbsoluteRgbError": [
+        6.746527777777778,
+        5.640625,
+        7.220486111111111
+      ],
+      "nativeStdDev": [
+        38.35189626405207,
+        38.61246437976207,
+        39.93378715787964
+      ],
+      "exportStdDev": [
+        39.822216403294696,
+        38.291489048612256,
+        37.91589077445611
+      ]
+    },
+    {
+      "box": [
+        1872,
+        112,
+        1896,
+        136
+      ],
+      "meanAbsoluteRgbError": [
+        27.18402777777778,
+        27.875,
+        30.20486111111111
+      ],
+      "nativeStdDev": [
+        36.602667630341024,
+        36.19569483422323,
+        36.42918924424555
+      ],
+      "exportStdDev": [
+        39.419253887408,
+        38.89600036508949,
+        38.56863780390242
+      ]
+    }
+  ],
+  "interpretation": "Shared nine SVG viewboxes preserve raster corners in PNG. JPEG compression/text rasterization prevents byte/pixel identity. Diagnostic corner enlargement is not artwork."
+}

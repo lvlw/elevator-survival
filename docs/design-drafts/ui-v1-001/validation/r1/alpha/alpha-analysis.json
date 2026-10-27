@@ -1,0 +1,144 @@
+{
+  "input": {
+    "size": [
+      1122,
+      1402
+    ],
+    "mode": "RGBA",
+    "bytes": 1047768,
+    "sha256": "73bd1abbe0a1db3a8c6e22558e6ecb62336bc86f749a5d56b6ab6456ed4adff8",
+    "transparent": 1123273,
+    "opaque": 1019,
+    "partial": 448752,
+    "nonzeroBBox": [
+      0,
+      19,
+      1086,
+      1402
+    ],
+    "alpha16BBox": [
+      176,
+      50,
+      1043,
+      1341
+    ],
+    "alpha128BBox": [
+      176,
+      55,
+      1042,
+      1340
+    ],
+    "outer8pxNonzero": 17,
+    "interiorBackAlpha": 253,
+    "topAlphaValues": [
+      [
+        0,
+        1123273
+      ],
+      [
+        253,
+        238392
+      ],
+      [
+        252,
+        136594
+      ],
+      [
+        251,
+        18673
+      ],
+      [
+        1,
+        10351
+      ]
+    ],
+    "lowerHalfAlpha128SupportSamples": [
+      [
+        220.0,
+        1283
+      ],
+      [
+        634.0,
+        1339
+      ]
+    ],
+    "nonzeroConnectedComponents": 402,
+    "largestComponentPixels": 448649,
+    "pixelsOutsideLargestComponent": 1122,
+    "componentMethod": "Read-only 8-neighbour connected components over alpha>0; no pixel editing"
+  },
+  "candidate": {
+    "size": [
+      1122,
+      1402
+    ],
+    "mode": "RGBA",
+    "bytes": 1113588,
+    "sha256": "2e67e775c465bdbb5ddf298967c2624b9d5aff31c4932922e48da935a8584791",
+    "transparent": 1122735,
+    "opaque": 1727,
+    "partial": 448582,
+    "nonzeroBBox": [
+      27,
+      46,
+      1048,
+      1348
+    ],
+    "alpha16BBox": [
+      173,
+      48,
+      1045,
+      1342
+    ],
+    "alpha128BBox": [
+      174,
+      50,
+      1044,
+      1341
+    ],
+    "outer8pxNonzero": 0,
+    "interiorBackAlpha": 253,
+    "topAlphaValues": [
+      [
+        0,
+        1122735
+      ],
+      [
+        253,
+        372149
+      ],
+      [
+        252,
+        26984
+      ],
+      [
+        251,
+        7056
+      ],
+      [
+        1,
+        6601
+      ]
+    ],
+    "lowerHalfAlpha128SupportSamples": [
+      [
+        218.0,
+        1285
+      ],
+      [
+        635.21875,
+        1340
+      ]
+    ],
+    "nonzeroConnectedComponents": 83,
+    "largestComponentPixels": 450177,
+    "pixelsOutsideLargestComponent": 132,
+    "componentMethod": "Read-only 8-neighbour connected components over alpha>0; no pixel editing"
+  },
+  "comparison": {
+    "alpha128SilhouetteIoU": 0.9776568870561794
+  },
+  "pixelResampling": false,
+  "onlyOneImagegenCall": true,
+  "native1536x1920Met": false
+}

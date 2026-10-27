@@ -1,28 +1,19 @@
-# 第一版UI：实际审阅入口
+# 第一版UI R1：实际审阅入口
 
-[打开全部113幅主稿](previews/index.html) · [点击／战斗动效原型](prototype/index.html) · [63件独立素材](previews/asset-gallery.html) · [页面状态表](02-page-state-matrix.md)
+[122幅主稿与原型](previews/index.html) · [64件独立素材](previews/asset-gallery.html) · [25族状态表](02-page-state-matrix.md) · [修前/修后与实际QA](validation/r1/review-notes.md)
 
-![真实浏览器主界面](previews/native-shell-1920.jpg)
+![Edge实际初选后出发](validation/r1/edge/03-depart-h0.jpg)
 
-![真实浏览器战斗](previews/native-battle-1920.jpg)
+本轮修复独立样例与连续操作混用、查看重置异常/死亡上下文、对象菜单错绑、三敌退却地点、采样支付遗漏和防御演出含义。122张主稿及47张补充视口重新导出，另有九宫格同状态对照。沿用外围常驻＋中央可放大方向；没有生产实现或玩法变更。
 
-本轮沿用外围常驻＋中央可放大方向，实际制作25个页面族、113个1920×1080状态、42幅补充视口图、可编辑HTML/CSS/JS母版与逐页SVG。24节点、19种当前实物、三敌五阶段、玩家与两NPC、关键节点及独立命中FX均有图像绑定。所有画面都是设计样例，不是生产运行截图或规则模拟。
+**状态：REVIEW CANDIDATE / INCOMPLETE_ART，不标COMPLETE。** 大舞台原生2×仍不足；透明边缘只部分改善。file协议实开仍NOT VERIFIED。九宫格整体缺框已修复，但导出滚动条覆盖、抗锯齿及JPEG压缩与原生截图仍不同；以浏览器实际渲染为唯一权威。
 
-**交付状态：可审阅的设计候选；完整验收仍为 blocked / INCOMPLETE_ART。** 大背景原生约1672×941，未达到大舞台2×要求；真实125%／150%浏览器缩放未核验；组件PNG导出的九宫格边框与原生浏览器存在渲染差异。没有用插值放大、CSS缩放或历史测试冒充通过。
+实际100%/125%/150%缩放已经在Owner的2560×1080屏幕上验证。CSS视口分别2552×908、2042×726、1701×605，DPR分别1/1.25/1.5；已恢复100%。它们与47个模拟视口导出分别留证。
 
-## 推荐的审阅顺序
+推荐先看重点包中的初选到出发、五图地图、三敌退却、样本菜单/移动、八种支付、战斗动作和缩放/九宫格截图；再看完整图稿、可编辑母版及独立素材。重点包不能替代两完整ZIP。精确名称、大小、摘要见[交付清单](spec/delivery-packages.json)。
 
-1. P01工具与专长、P03五图、P04跨区：判断中央场景和外围信息密度。
-2. P06任务节点、P08样本四态、P10／P11真实格位：判断明确参数是否清楚。
-3. P15三敌、P16放大／五阶段／命中／减少动态：看实际动效原型，不以静图代替。
-4. P18—P24四终局、静态中枢、保存／锁／坏档：确认没有重接、复活或假默认记录。
-5. [尺寸与裁切](03-dimension-contract.md)、[QA](validation/design-qa.md)、[实际文件检查](validation/final-check-results.json)。
+可编辑母版为HTML/CSS/JS与逐页SVG；不伪称Figma原生文件。原型只表达设计上下文，不读写profile、存档、真实CTB或生产来源。历史QA保存在validation/history-v1.0，旧结论不计作本轮通过。
 
-## 本次需要联合审阅的少量事项
+新增Owner建议已记录：[缩小常规弹窗](reviews/OWNER-modal-size-followup.md)。本轮不改已导出尺寸；600×360是后续参考，不能机械套用全部内容层。
 
-- 版式、独立人物／NPC外观、五图共同质感和战斗站位是否接受为后续美术方向；不重开玩法。
-- 高清背景仍须补足；当前图可评构图，不能冻结为满足DPR2的生产原稿。
-- 更细CTB演出与敌人展示键缺安全读取接缝。这里只给[接口交接草稿](06-implementation-handoff-draft.md)，不读取私有敌人数据、不修改Schema。
-- SVG含foreignObject与独立相对图像，HTML/CSS是主要可编辑母版；没有Figma原生文件。包内相对依赖齐备；file协议实开被工具安全策略拦截，未核验。作者PNG再导出需启动本目录的loopback导出服务。
-
-两个ZIP的确切名称、大小、摘要见[交付清单](spec/delivery-packages.json)。它们是实际文件，不是云端发布。停止在主线与Owner联合审阅，不进入生产实现、保存、O3或音频。
+待联合审阅：修复语义、实际视觉/素材质量，以及后续公开CTB演出与敌人展示键的[交接草案](06-implementation-handoff-draft.md)。无新增玩法采纳请求。等待准确SHA实文件联合复审，不进入生产工程、O3或音频。

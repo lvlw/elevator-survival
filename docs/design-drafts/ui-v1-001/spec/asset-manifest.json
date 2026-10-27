@@ -18,7 +18,7 @@
     "fit": "cover",
     "source": "editable/assets/bg-c1-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -62,7 +62,7 @@
     "fit": "cover",
     "source": "editable/assets/bg-c3-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -107,7 +107,7 @@
     "fit": "cover",
     "source": "editable/assets/bg-communication-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -151,7 +151,7 @@
     "fit": "cover",
     "source": "editable/assets/bg-h0-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -195,7 +195,7 @@
     "fit": "cover",
     "source": "editable/assets/bg-h2-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -239,7 +239,7 @@
     "fit": "cover",
     "source": "editable/assets/bg-h5-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -283,7 +283,7 @@
     "fit": "cover",
     "source": "editable/assets/bg-h6-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -327,7 +327,7 @@
     "fit": "cover",
     "source": "editable/assets/bg-h8-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -372,7 +372,7 @@
     "fit": "cover",
     "source": "editable/assets/bg-hospital-control-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -417,7 +417,7 @@
     "fit": "cover",
     "source": "editable/assets/bg-hotel-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -461,7 +461,7 @@
     "fit": "cover",
     "source": "editable/assets/bg-l0-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -506,7 +506,7 @@
     "fit": "cover",
     "source": "editable/assets/bg-logistics-office-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -550,7 +550,7 @@
     "fit": "cover",
     "source": "editable/assets/bg-logistics-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -596,7 +596,7 @@
     "fit": "cover",
     "source": "editable/assets/bg-power-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -641,7 +641,7 @@
     "fit": "cover",
     "source": "editable/assets/bg-workshop-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -683,7 +683,7 @@
     "fit": "cover",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -727,7 +727,7 @@
     "fit": "cover",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -771,7 +771,7 @@
     "fit": "cover",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -813,7 +813,7 @@
     "fit": "contain",
     "source": "editable/assets/closeup-component-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -841,7 +841,7 @@
     "fit": "contain",
     "source": "editable/assets/closeup-install-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -869,7 +869,7 @@
     "fit": "contain",
     "source": "editable/assets/closeup-power-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -897,7 +897,7 @@
     "fit": "contain",
     "source": "editable/assets/closeup-records-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -930,7 +930,7 @@
     "fit": "contain",
     "source": "editable/assets/enemy-porter-critical-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -972,7 +972,7 @@
     "fit": "contain",
     "source": "editable/assets/enemy-porter-disabled-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1014,7 +1014,7 @@
     "fit": "contain",
     "source": "editable/assets/enemy-porter-heavy_wounded-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1056,7 +1056,7 @@
     "fit": "contain",
     "source": "editable/assets/enemy-porter-pristine-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1098,7 +1098,7 @@
     "fit": "contain",
     "source": "editable/assets/enemy-porter-wounded-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1140,7 +1140,7 @@
     "fit": "contain",
     "source": "editable/assets/enemy-technician-critical-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1182,7 +1182,7 @@
     "fit": "contain",
     "source": "editable/assets/enemy-technician-disabled-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1224,7 +1224,7 @@
     "fit": "contain",
     "source": "editable/assets/enemy-technician-heavy_wounded-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1266,7 +1266,7 @@
     "fit": "contain",
     "source": "editable/assets/enemy-technician-pristine-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1308,7 +1308,7 @@
     "fit": "contain",
     "source": "editable/assets/enemy-technician-wounded-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1350,7 +1350,7 @@
     "fit": "contain",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1392,7 +1392,7 @@
     "fit": "contain",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1434,7 +1434,7 @@
     "fit": "contain",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1476,7 +1476,7 @@
     "fit": "contain",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1518,7 +1518,7 @@
     "fit": "contain",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1555,7 +1555,7 @@
     "fit": "contain",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1588,7 +1588,7 @@
     "fit": "contain",
     "source": "editable/assets/fx-hit-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1623,7 +1623,7 @@
     "fit": "contain",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1672,7 +1672,7 @@
     "fit": "contain",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1721,7 +1721,7 @@
     "fit": "contain",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1770,7 +1770,7 @@
     "fit": "contain",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1819,7 +1819,7 @@
     "fit": "contain",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1868,7 +1868,7 @@
     "fit": "contain",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1917,7 +1917,7 @@
     "fit": "contain",
     "source": "editable/assets/item-battery-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -1966,7 +1966,7 @@
     "fit": "contain",
     "source": "editable/assets/item-cloth-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2015,7 +2015,7 @@
     "fit": "contain",
     "source": "editable/assets/item-component-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2064,7 +2064,7 @@
     "fit": "contain",
     "source": "editable/assets/item-crowbar-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2113,7 +2113,7 @@
     "fit": "contain",
     "source": "editable/assets/item-disinfectant-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2162,7 +2162,7 @@
     "fit": "contain",
     "source": "editable/assets/item-electronic-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2211,7 +2211,7 @@
     "fit": "contain",
     "source": "editable/assets/item-firstaid-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2260,7 +2260,7 @@
     "fit": "contain",
     "source": "editable/assets/item-metal-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2309,7 +2309,7 @@
     "fit": "contain",
     "source": "editable/assets/item-module-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2358,7 +2358,7 @@
     "fit": "contain",
     "source": "editable/assets/item-painkiller-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2407,7 +2407,7 @@
     "fit": "contain",
     "source": "editable/assets/item-ration-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2456,7 +2456,7 @@
     "fit": "contain",
     "source": "editable/assets/item-suppressant-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2505,7 +2505,7 @@
     "fit": "contain",
     "source": "editable/assets/item-toolbox-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2552,7 +2552,7 @@
     "fit": "contain",
     "source": "editable/assets/npc-lin-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2594,7 +2594,7 @@
     "fit": "contain",
     "source": "editable/assets/npc-zhou-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2636,7 +2636,7 @@
     "fit": "contain",
     "source": "baseline project asset; byte identity checked against Git",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2664,7 +2664,7 @@
     "fit": "contain",
     "source": "editable/assets/panel-nine-slice-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,
@@ -2706,7 +2706,49 @@
     "fit": "contain",
     "source": "editable/assets/player-back-v1.meta.json",
     "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
-    "version": "v1 design candidate; original v01/v02 names retained",
+    "version": "v1.1 UI candidate; original source version retained",
+    "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
+    "exports": {
+      "originalPixels": true,
+      "resampled": false,
+      "targetDpr": 2
+    },
+    "safeZone": "Background focal/crop per binding; raster alpha untouched; item wrappers contain within slot",
+    "anchor": "spec/registered-art.json",
+    "nineSlice": null,
+    "cssSlots": {
+      "arenaHeight": [
+        328,
+        452,
+        560
+      ],
+      "canvasAspect": "4:5",
+      "transform": "Non-destructive registered canvas; do not trim per phase"
+    }
+  },
+  {
+    "id": "player-back-v2",
+    "file": "editable/assets/player-back-v2.png",
+    "bytes": 1113588,
+    "sha256": "2e67e775c465bdbb5ddf298967c2624b9d5aff31c4932922e48da935a8584791",
+    "sourcePixels": [
+      1122,
+      1402
+    ],
+    "alpha": true,
+    "alphaBBox": [
+      27,
+      46,
+      1048,
+      1348
+    ],
+    "category": "character",
+    "formalNodes": [],
+    "formalItems": [],
+    "fit": "contain",
+    "source": "editable/assets/player-back-v2.meta.json",
+    "license": "Project baseline or built-in image generation. No third-party/font license expansion asserted.",
+    "version": "v1.1 UI candidate; v2 partial alpha improvement",
     "publicCondition": "Only when the corresponding public current content is known; never reveals hidden future content",
     "exports": {
       "originalPixels": true,

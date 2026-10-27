@@ -1,0 +1,45 @@
+{
+  "physicalScreenOwnerReported": [
+    2560,
+    1080
+  ],
+  "rows": [
+    {
+      "zoomPercent": 100,
+      "cssViewport": [
+        2552,
+        908
+      ],
+      "dpr": 1,
+      "evidence": "edge/32-zoom100-restored.jpg",
+      "method": "Owner changed Edge browser zoom; agent read actual DOM/DPR and clicked controls; viewport override reset",
+      "status": "OBSERVED"
+    },
+    {
+      "zoomPercent": 125,
+      "cssViewport": [
+        2042,
+        726
+      ],
+      "dpr": 1.25,
+      "evidence": "edge/24-zoom125-organize-reachable.jpg",
+      "method": "Owner changed Edge browser zoom; agent read actual DOM/DPR and clicked controls; viewport override reset",
+      "status": "OBSERVED"
+    },
+    {
+      "zoomPercent": 150,
+      "cssViewport": [
+        1701,
+        605
+      ],
+      "dpr": 1.5,
+      "evidence": "edge/30-zoom150-retreat-reachable.jpg",
+      "method": "Owner changed Edge browser zoom; agent read actual DOM/DPR and clicked controls; viewport override reset",
+      "status": "OBSERVED"
+    }
+  ],
+  "restored100": true,
+  "limitations": [
+    "This covers the recorded controls and browser configuration, not every browser/device."
+  ]
+}

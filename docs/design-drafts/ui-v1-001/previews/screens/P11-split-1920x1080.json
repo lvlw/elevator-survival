@@ -46,7 +46,7 @@
     {
       "selector": ".inventory",
       "x": 501.546875,
-      "y": 313.078125,
+      "y": 292.1875,
       "w": 326,
       "h": 216,
       "scrollH": 216,
@@ -93,17 +93,6 @@
       "display": [
         41,
         41
-      ]
-    },
-    {
-      "path": "../editable/assets/icon_bandage_v02.png",
-      "native": [
-        512,
-        512
-      ],
-      "display": [
-        256,
-        256
       ]
     },
     {

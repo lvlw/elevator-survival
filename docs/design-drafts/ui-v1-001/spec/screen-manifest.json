@@ -12,7 +12,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P01-unselected-1920x1080.png",
     "editable": "editable/screens/P01-unselected-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "max",
     "interaction": "prototype/index.html?screen=P01-unselected",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -20,7 +20,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "36cefdabdf6bd1aaf92cd27b2c7bef7a8e58bc8fd16e7929bb2d64e57639782b"
+    "sha256": "eb50d3e6caab0704f56a6683f3e72b19b4789ea4032b927b60586da086dd4040"
   },
   {
     "id": "P01-crow-scout",
@@ -37,7 +37,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P01-crow-scout-1920x1080.png",
     "editable": "editable/screens/P01-crow-scout-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "max",
     "interaction": "prototype/index.html?screen=P01-crow-scout",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -45,7 +45,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "f2fad845cc8bf37da995f8bbdf2b21346839c64d027dafdeb68e53d940e7e39c"
+    "sha256": "7aada017afa90842c2c7e10f5a7b8827e19c247c23d5c010f63f2198c20009c5"
   },
   {
     "id": "P01-crow-engineer",
@@ -62,7 +62,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P01-crow-engineer-1920x1080.png",
     "editable": "editable/screens/P01-crow-engineer-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "max",
     "interaction": "prototype/index.html?screen=P01-crow-engineer",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -70,7 +70,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "79796910d7f8c29fc428dbcd6f91a78fbe475c0b35635623cb31b0d2c535b136"
+    "sha256": "97cce128ccdece34efb57b6aafd542d27effce8bbb444e0a81aec695527cccbf"
   },
   {
     "id": "P01-crow-survival",
@@ -87,7 +87,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P01-crow-survival-1920x1080.png",
     "editable": "editable/screens/P01-crow-survival-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "max",
     "interaction": "prototype/index.html?screen=P01-crow-survival",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -95,7 +95,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "bce44edcc2c620d92da94aaba00b41e2d226f08c3f395adca99442fd75bfb5f5"
+    "sha256": "9e92c248fb534a7fb054d41a36eac5a90e0cb49101383d076ea67416e24d0916"
   },
   {
     "id": "P01-lamp-scout",
@@ -112,7 +112,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P01-lamp-scout-1920x1080.png",
     "editable": "editable/screens/P01-lamp-scout-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "max",
     "interaction": "prototype/index.html?screen=P01-lamp-scout",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -120,7 +120,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "340c0a36116ce0e2ea786e2c2d18a22fefa6ccee795a6f8f4b8419c50de3d5b7"
+    "sha256": "9fe2612a1adbe15517de08fdcf8b90c70e1ee4c461c600c970322ab5a390ba86"
   },
   {
     "id": "P01-lamp-engineer",
@@ -137,7 +137,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P01-lamp-engineer-1920x1080.png",
     "editable": "editable/screens/P01-lamp-engineer-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "max",
     "interaction": "prototype/index.html?screen=P01-lamp-engineer",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -145,7 +145,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "0161cad4b08d13650e5c814833149c6018e35350450dd673bf3d46eb3e886980"
+    "sha256": "63ac6fa105e84aa87f575ee8c9972f71945b5e5c17b107de1dc74ecea7b4181d"
   },
   {
     "id": "P01-lamp-survival",
@@ -162,7 +162,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P01-lamp-survival-1920x1080.png",
     "editable": "editable/screens/P01-lamp-survival-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "max",
     "interaction": "prototype/index.html?screen=P01-lamp-survival",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -170,7 +170,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "fafedb7d9774b154055736314506cacdb86169ba86bbfe78f2786c12218b2ef6"
+    "sha256": "fdb866de5dfd70fd40956a70c5399e2dbdb93a2ab92888a545243938efac6df9"
   },
   {
     "id": "P01-toolbox-scout",
@@ -187,7 +187,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P01-toolbox-scout-1920x1080.png",
     "editable": "editable/screens/P01-toolbox-scout-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "max",
     "interaction": "prototype/index.html?screen=P01-toolbox-scout",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -195,7 +195,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "f00567479b253ae341edde95ab2e55826e622937588ff2c2a13300134b3442fd"
+    "sha256": "bac54588c9a3d7d3250e6707cc1a792f2fcc4c2b1984b7d93bee3d6ff8f3d446"
   },
   {
     "id": "P01-toolbox-engineer",
@@ -212,7 +212,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P01-toolbox-engineer-1920x1080.png",
     "editable": "editable/screens/P01-toolbox-engineer-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "max",
     "interaction": "prototype/index.html?screen=P01-toolbox-engineer",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -220,7 +220,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "da78e406d96444ce54e1b685b1f36f9cd6491fbf79c2dc84b7c8e20323d0deb8"
+    "sha256": "34c77503139c206f717f6e3b1dc76c770f6364f261a5cfeea77a44bcdac6a2aa"
   },
   {
     "id": "P01-toolbox-survival",
@@ -237,7 +237,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P01-toolbox-survival-1920x1080.png",
     "editable": "editable/screens/P01-toolbox-survival-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "max",
     "interaction": "prototype/index.html?screen=P01-toolbox-survival",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -245,7 +245,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "5638fc28af1f62251ea21a193cbb2904614b97cf8bdc645ede56bf80a92ce7a8"
+    "sha256": "6a903cc8f3005425f8ef98b2e49380547c9fff9d3e060e8e7514556c049d97b4"
   },
   {
     "id": "P02-first-hub",
@@ -260,7 +260,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P02-first-hub-1920x1080.png",
     "editable": "editable/screens/P02-first-hub-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P02-first-hub",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -268,7 +268,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "46e36338bae34c90a3cb7d6171c136bc2ddfc57ceea7f0fbec9e0e47dabe0de8"
+    "sha256": "dcdfa9f727cad90b57944fb5e05d7f1babeda6a9b501b2bdad26e6d3e220f62e"
   },
   {
     "id": "P03-hospital",
@@ -283,7 +283,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P03-hospital-1920x1080.png",
     "editable": "editable/screens/P03-hospital-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P03-hospital",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -291,7 +291,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "798b146b60ea185114ef583694818d874830c10870bfb9b59416fe35c60d3fff"
+    "sha256": "e854d6a2a3956270d461b24967836c1d8fe0c91ab4049fec3fee729be19aa2e9"
   },
   {
     "id": "P03-hotel",
@@ -306,7 +306,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P03-hotel-1920x1080.png",
     "editable": "editable/screens/P03-hotel-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P03-hotel",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -314,7 +314,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "bede34a9f751712d16a58034aeee3fad438643e7e4c9782cda9edb8b3136536b"
+    "sha256": "93170f2167ddb910ffef22798ac2ab9ed7a8c3503ab90b6ec70dd63dfa9886ae"
   },
   {
     "id": "P03-power",
@@ -329,7 +329,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P03-power-1920x1080.png",
     "editable": "editable/screens/P03-power-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P03-power",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -337,7 +337,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "692c2dfbc14b469d93c39bcf465a047e3cd3173cf8432e35d7d8145092559346"
+    "sha256": "3ddf63722386db85b32488c90ee2cd7b32f939612e339efdb9dae2f51b1fcc6a"
   },
   {
     "id": "P03-logistics",
@@ -352,7 +352,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P03-logistics-1920x1080.png",
     "editable": "editable/screens/P03-logistics-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P03-logistics",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -360,7 +360,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "8b5101cb909d86fe93490c0afac3331066228807e4ac5fcd75ce67ab9c900a11"
+    "sha256": "79a7d57b2868e56d8676a5136678c0117ae423f7875f044be96b830f4e97580c"
   },
   {
     "id": "P03-communication",
@@ -375,7 +375,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P03-communication-1920x1080.png",
     "editable": "editable/screens/P03-communication-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P03-communication",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -383,7 +383,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "d2e5a5a2b55e09e97d748bd51d6bfb888a590157c396a838b826f983ae7bf46e"
+    "sha256": "7d377bd858eb10b279a9fac15e98fd3ee6f7125ba346f62cbd658cb7d75633b3"
   },
   {
     "id": "P04-before",
@@ -398,7 +398,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P04-before-1920x1080.png",
     "editable": "editable/screens/P04-before-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P04-before",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -406,7 +406,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "516fe5b69c4323f0551dbc5d7be0643b403246fa8acfd9763b4d5ba8e481cb6a"
+    "sha256": "c3b102b8f4f2932deb45807b74e06406bfcbeb7cb0b4312d902aa550713fa843"
   },
   {
     "id": "P04-after",
@@ -421,7 +421,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P04-after-1920x1080.png",
     "editable": "editable/screens/P04-after-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P04-after",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -429,7 +429,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "32a65ecd7b112a87b762c4c1210f2a41e117c29217537d77792770452e48f65e"
+    "sha256": "6815fd7bad346889a7529184923647c9d1251c234e68e3e8ac9ac90ad5719851"
   },
   {
     "id": "P05-unsearched",
@@ -444,7 +444,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P05-unsearched-1920x1080.png",
     "editable": "editable/screens/P05-unsearched-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P05-unsearched",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -452,7 +452,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "3843a32406a6a24f2313600941a4f0f2831e78e06090852e46f3f4faf79009c1"
+    "sha256": "0eb0244b4e1a50d1da4e5dd4863d2bc2b05d5e32e1c761593ddf1d60c559164c"
   },
   {
     "id": "P05-revealed",
@@ -467,7 +467,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P05-revealed-1920x1080.png",
     "editable": "editable/screens/P05-revealed-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P05-revealed",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -475,7 +475,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "bc19620bdf62b0f7cf8c4d6c0b163da60b9335ffa8ff763c3dc956971f075cec"
+    "sha256": "c522b63ce5301143246573d502c840dd9148f2e49f2de58a0ee8ae1b9d561304"
   },
   {
     "id": "P05-empty",
@@ -490,7 +490,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P05-empty-1920x1080.png",
     "editable": "editable/screens/P05-empty-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P05-empty",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -498,7 +498,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "74318e83a348ca9d1205286d58c479b9ded9a2aca7f9942d3a00019aac63afa7"
+    "sha256": "d3666065c3a09c5aa1d2d132a75f1a13d58ba727bc9ebae9850324d0d13e83b6"
   },
   {
     "id": "P05-reopen",
@@ -513,7 +513,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P05-reopen-1920x1080.png",
     "editable": "editable/screens/P05-reopen-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P05-reopen",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -521,7 +521,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "53410adc0df0735f325b6cd262d3c54de9473a060ad1fac03ffeafdc7e375dbc"
+    "sha256": "9e953b62621bdba8a471e1443939dbd5714be5abc4e3b5f0a1f022515b21e248"
   },
   {
     "id": "P06-door",
@@ -537,7 +537,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P06-door-1920x1080.png",
     "editable": "editable/screens/P06-door-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P06-door",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -545,7 +545,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "e2064b1398c436f40746e5e6af222f8a9ab84cf41b7e15a2452744a494b8815d"
+    "sha256": "030ae10512225b0a2106b7c0e902f13b537c77fe15c971948e1fea930e7857e1"
   },
   {
     "id": "P06-power",
@@ -560,7 +560,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P06-power-1920x1080.png",
     "editable": "editable/screens/P06-power-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P06-power",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -568,7 +568,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "af2440cc379c11f0758855e3fe467e8767c36e7006d1c4d154112d7be66df9a9"
+    "sha256": "ba34070813d01ce3768c412cd65568c611e7b312fc452742cfe6058a808e465f"
   },
   {
     "id": "P06-records",
@@ -583,7 +583,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P06-records-1920x1080.png",
     "editable": "editable/screens/P06-records-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P06-records",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -591,7 +591,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "0ba9899f7d1fc79dcaaf91f8f7c0bac9551a61a6447f08ea468071a52c1a882f"
+    "sha256": "b8041aa2a22a0fc47010e11f9f3a503949ff218b94208aa27572334aa401df76"
   },
   {
     "id": "P06-component",
@@ -606,7 +606,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P06-component-1920x1080.png",
     "editable": "editable/screens/P06-component-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P06-component",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -614,7 +614,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "d50339f94e9ca86b95c6b1dabb2f8e4a13fba12d442581102801a08358a288d2"
+    "sha256": "4e351497b39c929cf60f64be3c290eb1b1c8fc782b932c447ff0b82b5184a621"
   },
   {
     "id": "P06-sample-cautious",
@@ -630,7 +630,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P06-sample-cautious-1920x1080.png",
     "editable": "editable/screens/P06-sample-cautious-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P06-sample-cautious",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -638,7 +638,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "06d4cbac6b467d1fab879aa5a5d22f963c8061f33fc2e833743cd186f8e239d3"
+    "sha256": "9023fcbab66a1ff4e6f1bad8a7296f4a4881bfd2cec1b22ba6c6aca808c9a488"
   },
   {
     "id": "P06-sample-direct",
@@ -654,7 +654,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P06-sample-direct-1920x1080.png",
     "editable": "editable/screens/P06-sample-direct-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P06-sample-direct",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -662,7 +662,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "9a192360c894afb6a1ac46d2e53f2ed20c9317b0decb3c3d2c76b8128cb23372"
+    "sha256": "d5a37a54fd743b355c4a7327762e10daa8675070dc9ec025d21e44fd05e5a9d4"
   },
   {
     "id": "P06-install",
@@ -677,7 +677,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P06-install-1920x1080.png",
     "editable": "editable/screens/P06-install-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P06-install",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -685,7 +685,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "57987b545e6e65c0876ee9d8ef2859a72094512cfc02f1c53233b666f1b37be7"
+    "sha256": "60393308e06dd44324fccab08c08ccdc0b5541307ffeb05aff0cd30a671d220a"
   },
   {
     "id": "P07-lin",
@@ -701,7 +701,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P07-lin-1920x1080.png",
     "editable": "editable/screens/P07-lin-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P07-lin",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -709,7 +709,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "3723fda9c0ac387c051cab349c78918ebd8720ef11d1c5fa25224d9c6268204c"
+    "sha256": "6e32c8fff66948a76801eea6df28eec2fcd514e9a386037e6f4ac362972b51f6"
   },
   {
     "id": "P07-zhou",
@@ -725,7 +725,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P07-zhou-1920x1080.png",
     "editable": "editable/screens/P07-zhou-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P07-zhou",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -733,7 +733,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "c1aaf1cc3d4ff02f6fd9f88415df5fd8ab717000d66e4f08742f514d21d93b25"
+    "sha256": "48bd9bb4289e1211b9eb63a4430663a5e09943a94a9eab41d2534f0076b7f30b"
   },
   {
     "id": "P08-acquired",
@@ -748,7 +748,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P08-acquired-1920x1080.png",
     "editable": "editable/screens/P08-acquired-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P08-acquired",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -756,7 +756,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "a630bb10c9624d2ff2429a5dcbb59d6340fbb4d2566e0fc9a69c8ce0c621b56f"
+    "sha256": "0200e88afb7e2e5a4c6aa367d6098180c6b7ce433161adc6dae5e071cf1a462f"
   },
   {
     "id": "P08-carried",
@@ -771,7 +771,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P08-carried-1920x1080.png",
     "editable": "editable/screens/P08-carried-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P08-carried",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -779,7 +779,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "f6dc66114cecd51be2b0aa19ada6ba3cf2261cad391b43852b581b5134b2764c"
+    "sha256": "4c09446ed684090e7f9823dc508f8dc92d7b2a25a11a3dd83fcb5209ff50416b"
   },
   {
     "id": "P08-ground",
@@ -794,7 +794,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P08-ground-1920x1080.png",
     "editable": "editable/screens/P08-ground-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P08-ground",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -802,7 +802,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "df07fc125876ccff5fa1501940b33f51341d1b55688dd6b618a19477efde1c8d"
+    "sha256": "546ceb832b4416255a3ab2a741f5a6f8ea4027eea97a1cddfa8e5299e474e406"
   },
   {
     "id": "P08-delivered",
@@ -817,7 +817,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P08-delivered-1920x1080.png",
     "editable": "editable/screens/P08-delivered-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P08-delivered",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -825,7 +825,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "9df2293224a784a402bee04f87a029e6ec5f7cbff56854e3e38e98c2ffe03e68"
+    "sha256": "018a0838675c772a250e48e096e5f27716416d56290d095e9c6b4bd33d164e87"
   },
   {
     "id": "P09-normal",
@@ -840,7 +840,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P09-normal-1920x1080.png",
     "editable": "editable/screens/P09-normal-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P09-normal",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -848,7 +848,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "293a02560d96ee541cc0d42a682d9d2e7818826f43a8872bd2c79de3d4b0dee7"
+    "sha256": "b68508599e439672a9078aecf98ed74b058c3e3c14a3eb0b7daf2ad19b73fed0"
   },
   {
     "id": "P09-max",
@@ -864,7 +864,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P09-max-1920x1080.png",
     "editable": "editable/screens/P09-max-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "max",
     "interaction": "prototype/index.html?screen=P09-max",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -872,7 +872,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "1ce403e5974a450dfe1219ceefe0361034483110ec96fa455a623c3136d2f657"
+    "sha256": "c529612dcd2b83c7c5c2bbd04d2314c952f6c473c20615ad5283364d728e0f26"
   },
   {
     "id": "P09-last-observed",
@@ -887,7 +887,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P09-last-observed-1920x1080.png",
     "editable": "editable/screens/P09-last-observed-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P09-last-observed",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -895,7 +895,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "e62f11c837d036007467f70edc82bba23289b8e4284d8a47b8417754587a78e2"
+    "sha256": "cd2489df9bf205429e02f780c0e67c28743b9a3a682228066e602a9ae1747fce"
   },
   {
     "id": "P09-blocked",
@@ -910,7 +910,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P09-blocked-1920x1080.png",
     "editable": "editable/screens/P09-blocked-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P09-blocked",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -918,7 +918,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "acf8e3eeb79dc44e75a59c595359a5a3d05c3764e495d74b247a336ab4ace4eb"
+    "sha256": "7670b39b451695197a0147d7c67f14259177f81c6239c2a98f335ba7e1ae3055"
   },
   {
     "id": "P09-unknown-passability",
@@ -933,7 +933,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P09-unknown-passability-1920x1080.png",
     "editable": "editable/screens/P09-unknown-passability-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P09-unknown-passability",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -941,7 +941,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "158dc9a9abfc96a5e67f1518f7a5d31977a3a357b62da5bea006d5970621539a"
+    "sha256": "2e307a1d6504954f1bf09116ed3edea877367492e9e59b662d65deee1eaddfb5"
   },
   {
     "id": "P10-inventory",
@@ -956,7 +956,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P10-inventory-1920x1080.png",
     "editable": "editable/screens/P10-inventory-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P10-inventory",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -964,7 +964,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "0661292b60e8e308b197447cc3a09c66508823f0861a60d8ca85d57ff27a8440"
+    "sha256": "20859a3449e38126a7361d9b7051f507445a4058367614a792e958bd8c39eb43"
   },
   {
     "id": "P10-equipment",
@@ -979,7 +979,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P10-equipment-1920x1080.png",
     "editable": "editable/screens/P10-equipment-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P10-equipment",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -987,7 +987,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "ecddfc9b07cc75adaa1357eb8ac98d4c2ebba4c21c09435eb6161d94a79c79c3"
+    "sha256": "7e26729c4f442f39b5add7b90d552afd23958b2e225cf17ea1b1ee887b1791d2"
   },
   {
     "id": "P10-rotated",
@@ -1003,7 +1003,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P10-rotated-1920x1080.png",
     "editable": "editable/screens/P10-rotated-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P10-rotated",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1011,7 +1011,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "3b264cf929f254b6a802e357d67cd4c24c6842bb3a7441ccb30f34b4622ca31c"
+    "sha256": "afa5abcb2f5f117c0f940d0c9afef3ad1838a8cd2bf9c7e814a3c190adfbbbdf"
   },
   {
     "id": "P11-move",
@@ -1026,7 +1026,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P11-move-1920x1080.png",
     "editable": "editable/screens/P11-move-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P11-move",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1034,7 +1034,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "713129bb7bfacd1d493097a15456d772dc4624388a0a7eb97f8d8d7b5afcbc5c"
+    "sha256": "5dd092bbf1e15e4314cad342b648a6150f0f6ecbf612d6fbc5f3b8d238aed0a4"
   },
   {
     "id": "P11-split",
@@ -1049,7 +1049,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P11-split-1920x1080.png",
     "editable": "editable/screens/P11-split-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P11-split",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1057,7 +1057,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "6e7a8a6fe8f07e5cab330f33fc7ca440887b34b945bf38b19bb0c6fa66cd235e"
+    "sha256": "abf21bdf95251c9e37fc72eed94b3a9fb6b97c2806ebacdb4be156727f03c837"
   },
   {
     "id": "P11-merge",
@@ -1072,7 +1072,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P11-merge-1920x1080.png",
     "editable": "editable/screens/P11-merge-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P11-merge",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1080,7 +1080,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "ab4a900fb856f4eb8766ffddd865075ba379814a34742cbf6ddbff4dbe66f9db"
+    "sha256": "35f81a7322b9454628be575985100fc032b267a584ea084bfa4dbb5d25757d13"
   },
   {
     "id": "P11-quick",
@@ -1095,7 +1095,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P11-quick-1920x1080.png",
     "editable": "editable/screens/P11-quick-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P11-quick",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1103,7 +1103,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "7b186afcc934bc560c4dd21784556e6224e82008e3f0b2d0d8df61acc2845171"
+    "sha256": "81974627453c169526294f701e5eed7aeae67dca863702f75e179d8558535f45"
   },
   {
     "id": "P11-task-pickup",
@@ -1118,7 +1118,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P11-task-pickup-1920x1080.png",
     "editable": "editable/screens/P11-task-pickup-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P11-task-pickup",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1126,7 +1126,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "314b22371459f31c656dcb64ddf8917b785f5c5ddb4c9230497b44ac587c7fac"
+    "sha256": "65990d28a595b165c5207770b75f93a3740c727712fb4a4e4c044afe38d2e71d"
   },
   {
     "id": "P11-drop",
@@ -1141,7 +1141,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P11-drop-1920x1080.png",
     "editable": "editable/screens/P11-drop-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P11-drop",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1149,7 +1149,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "a65c723a4c088b8884d3e7d72f850771c0de2f5610dbc94c3e40d3a05aee2bd9"
+    "sha256": "bf9e9adf204ff81437a6a529ebe7a72006871a38cc4ce8e2f81b6ad6a0b41430"
   },
   {
     "id": "P11-no-space",
@@ -1164,7 +1164,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P11-no-space-1920x1080.png",
     "editable": "editable/screens/P11-no-space-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P11-no-space",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1172,7 +1172,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "47adb2afecd20e1ba0ac2c6aab3aa62c56f1260cb83dffef0b550d56ab10e8b4"
+    "sha256": "ac5754c0b43125bb6a5844dd371c63ef5c665c33e0c909204e0115db038a5bed"
   },
   {
     "id": "P12-bandage",
@@ -1188,7 +1188,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P12-bandage-1920x1080.png",
     "editable": "editable/screens/P12-bandage-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P12-bandage",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1196,7 +1196,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "060d69e1e3b5862c052acceb0190d909eb8103e65433dab37e0904227aa41a26"
+    "sha256": "05bc6774523e68c8efd81578790a1994c425ff9d4d3ee6425ba98ec5f1a5edd3"
   },
   {
     "id": "P12-firstaid",
@@ -1212,7 +1212,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P12-firstaid-1920x1080.png",
     "editable": "editable/screens/P12-firstaid-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P12-firstaid",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1220,7 +1220,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "8dc92b700aa0c59ce0e6ddcb9049ada4f7f678223e2f626edbef133418bf70c7"
+    "sha256": "3b29f8a29568cf66bd4c0623863b02ccd7ebd630eec38ad38ce977a329988f8c"
   },
   {
     "id": "P12-ration",
@@ -1236,7 +1236,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P12-ration-1920x1080.png",
     "editable": "editable/screens/P12-ration-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P12-ration",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1244,7 +1244,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "0ca400e106593920490248f1f290ffa8fcfb3b51e102be3c40f298658ec706e4"
+    "sha256": "a145b6d86e57770a21be94fd33919f9f32b1007f522a5751735e85272f1a4aa1"
   },
   {
     "id": "P12-painkiller",
@@ -1260,7 +1260,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P12-painkiller-1920x1080.png",
     "editable": "editable/screens/P12-painkiller-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P12-painkiller",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1268,7 +1268,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "6179e688cd2444031a4143cc4910320c445be58b18b6b06df8d514a8afc8343d"
+    "sha256": "d1dffc8dcaf6cb94f579b04cbda730572d20b66fcac996aab5ae23d738d27583"
   },
   {
     "id": "P12-disinfectant",
@@ -1285,7 +1285,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P12-disinfectant-1920x1080.png",
     "editable": "editable/screens/P12-disinfectant-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P12-disinfectant",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1293,7 +1293,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "573bbd9975aae77bfc53aaf7885ebd7b42acb1fbbce057ff1c4925a32ebf0408"
+    "sha256": "b694013243edaa0a11057c53f23d17f4f3e7ff9888cc0b6d2fe8ad75e25d3c10"
   },
   {
     "id": "P12-suppressant",
@@ -1310,7 +1310,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P12-suppressant-1920x1080.png",
     "editable": "editable/screens/P12-suppressant-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P12-suppressant",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1318,7 +1318,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "a332f842dd10776025175fc8704002785bdaa7b1128a1695a24cadf45115fb36"
+    "sha256": "516f0bd421f4be279364614cc7c8a4f5fd2790532daae18c397c5466f386aa29"
   },
   {
     "id": "P12-invalid",
@@ -1335,7 +1335,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P12-invalid-1920x1080.png",
     "editable": "editable/screens/P12-invalid-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P12-invalid",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1343,7 +1343,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "17f9c5c7cad6c7ce5ab56bf0612dac66fb974f60bb88c068a0a64707e14a3f23"
+    "sha256": "692c9c28066f94a707d4e456e0342c61c75e73fd11e2d73c9232f935c0be193d"
   },
   {
     "id": "P12-battle",
@@ -1360,7 +1360,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P12-battle-1920x1080.png",
     "editable": "editable/screens/P12-battle-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P12-battle",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1368,7 +1368,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "f55833ee24b223ff1df7a1c4692f7cced072cd5f7d8e3f0fc2f222e528b16ebf"
+    "sha256": "fdad358c14d400c58025441088f61b867e65e3c1644da7f741cf189aaef7dadd"
   },
   {
     "id": "P13-mechanical",
@@ -1384,7 +1384,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P13-mechanical-1920x1080.png",
     "editable": "editable/screens/P13-mechanical-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P13-mechanical",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1392,7 +1392,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "3a706e33adeec9eb1773db98dc47aab95401f19a623a1e68e0f56a46bbde497a"
+    "sha256": "b1a63fd3c7ee260e3cff8ff62a523b98c678f7841cf8ff8e6987281e2d4f354d"
   },
   {
     "id": "P13-coat",
@@ -1407,7 +1407,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P13-coat-1920x1080.png",
     "editable": "editable/screens/P13-coat-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P13-coat",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1415,7 +1415,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "215ba30968fa20e057b17c0ba946e6ce8a35b214346a066125f1b7734083373f"
+    "sha256": "08f1569ca4e765eee9c460b654ad840c7cf126aff860754bfd18420186bc4fef"
   },
   {
     "id": "P13-toolbox",
@@ -1430,7 +1430,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P13-toolbox-1920x1080.png",
     "editable": "editable/screens/P13-toolbox-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P13-toolbox",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1438,7 +1438,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "f2700786e3d82813c6cd92ad236881fd2f15fa3124b1380c8763f3826a88c825"
+    "sha256": "02efae9341cfe16d6d3d83168e94fb415fb67320b787ba3f5146c488460289de"
   },
   {
     "id": "P13-charge",
@@ -1454,7 +1454,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P13-charge-1920x1080.png",
     "editable": "editable/screens/P13-charge-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P13-charge",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1462,7 +1462,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "bd27acac170ffc309cbb801871834d7529f70902e21beb37bab1f71ac2182bed"
+    "sha256": "13770fe2985c55003c57cd69ea32ea1ff748c82c4096aae51b59d0e7f407be2b"
   },
   {
     "id": "P14-A",
@@ -1477,7 +1477,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P14-A-1920x1080.png",
     "editable": "editable/screens/P14-A-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P14-A",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1485,7 +1485,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "49faf2b4ec313325b5dd3816b83a530ae309eb6d93f77fd5deb45302891c138d"
+    "sha256": "7325cf4f7acf79b5f29eb2626d28582939b4b6e6a15afd2b46c06d3fbb4d033d"
   },
   {
     "id": "P14-C",
@@ -1500,7 +1500,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P14-C-1920x1080.png",
     "editable": "editable/screens/P14-C-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P14-C",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1508,7 +1508,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "d51eed1ba195a216fd69be5f1aaba28b889f017022f9bd937de0d0a5e828337a"
+    "sha256": "55cbe720b0dbc85de0883e809ee198eefaaf6fbb381383978d93ff65415704a0"
   },
   {
     "id": "P14-consequences",
@@ -1523,7 +1523,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P14-consequences-1920x1080.png",
     "editable": "editable/screens/P14-consequences-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P14-consequences",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1531,7 +1531,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "4d9ab0e3e41177a9eeaf545be6da1062c7959048206e2ba4d478680d8d782af0"
+    "sha256": "29e29b483dec69bf5b83fcfa0c5e25f0425ec467a8dd3c836b77d751fe02bf6d"
   },
   {
     "id": "P14-death",
@@ -1546,7 +1546,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P14-death-1920x1080.png",
     "editable": "editable/screens/P14-death-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P14-death",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1554,7 +1554,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "0286340c09d22d134f3c09f56fd27fba6332e450a32e64bf1637e48c1080c2f2"
+    "sha256": "ec26b45c11a7cf2d0c7be5d5ea4916e402eda776da789704733ab51bbb101d24"
   },
   {
     "id": "P15-orderly",
@@ -1570,7 +1570,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P15-orderly-1920x1080.png",
     "editable": "editable/screens/P15-orderly-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P15-orderly",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1578,7 +1578,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "b21fd8f5014fa60715f0159f5af24fded9934c806a7e567345076e3b36ce1efb"
+    "sha256": "c3b52611275bd45112cf188eb940e7110587db084d7859b26f9c84832e0b119f"
   },
   {
     "id": "P15-porter",
@@ -1594,7 +1594,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P15-porter-1920x1080.png",
     "editable": "editable/screens/P15-porter-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P15-porter",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1602,7 +1602,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "cd1cb83ff0ef41b959b8ce2205f71d87d539063a234c16d3e1f51b62a21aaa82"
+    "sha256": "5c9b60eca11dbdb209bd5b80993c3d183bb210075e151c33b161dbdb7bbba450"
   },
   {
     "id": "P15-technician",
@@ -1618,7 +1618,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P15-technician-1920x1080.png",
     "editable": "editable/screens/P15-technician-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P15-technician",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1626,7 +1626,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "9523697f57624b9585bedf5f16dc7d53e8eb1559b12fe0fec486437070c34677"
+    "sha256": "038ed6e8ed5aeaa1384e9bff00e0b53bc986cc40dc83f54cfee20ebdddef09ec"
   },
   {
     "id": "P16-max",
@@ -1642,7 +1642,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P16-max-1920x1080.png",
     "editable": "editable/screens/P16-max-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "max",
     "interaction": "prototype/index.html?screen=P16-max",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1650,7 +1650,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "392e64992018be4f40034d89ed2236f8177590a4e0e6810baacdcf595f1d7209"
+    "sha256": "17eb1de4db85db77d9e41a34ebeb350c89852264d0fa93251ab4c86fef458130"
   },
   {
     "id": "P16-phases",
@@ -1666,7 +1666,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P16-phases-1920x1080.png",
     "editable": "editable/screens/P16-phases-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P16-phases",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1674,7 +1674,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "4f0603608c8de924a47cd1303be305f53985dbec64aa1d5278aa43a2ba601e7d"
+    "sha256": "4ab542b2c3c95b3a59de0797a286dd9d4efd1eff53c67d858432cd5ea61e6772"
   },
   {
     "id": "P16-porter-phases",
@@ -1691,7 +1691,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P16-porter-phases-1920x1080.png",
     "editable": "editable/screens/P16-porter-phases-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P16-porter-phases",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1699,7 +1699,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "7a28604b6d03cb02c0c901bed19cf15f1961dc5e5dc525c8b6eafadc82268c91"
+    "sha256": "03ad43becb6cb8534520b0f73a84dba2a7cbcf880d6f6dedb74a436eae89d4e5"
   },
   {
     "id": "P16-technician-phases",
@@ -1716,7 +1716,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P16-technician-phases-1920x1080.png",
     "editable": "editable/screens/P16-technician-phases-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P16-technician-phases",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1724,7 +1724,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "69bc1b9eacc989ec4b46b161f5e41fdadc3c27e0fad683818fef9e6a7f503a3a"
+    "sha256": "822575d013a785311fcc2efc7256d75ddaae5b4696503e7001f955d3786def75"
   },
   {
     "id": "P16-submitted",
@@ -1739,7 +1739,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P16-submitted-1920x1080.png",
     "editable": "editable/screens/P16-submitted-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P16-submitted",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1747,7 +1747,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "5d37abe3dda013b6e86017eca7b62bcc84c4bee9c60d616bbb83c37ed1b230fe"
+    "sha256": "8fdede143ab7298815846ac324b4124feb769335874e07f509c426e147ffdc96"
   },
   {
     "id": "P16-enemy-response",
@@ -1762,7 +1762,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P16-enemy-response-1920x1080.png",
     "editable": "editable/screens/P16-enemy-response-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P16-enemy-response",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1770,7 +1770,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "3436983c1da97c29ee31b1561c83386fe3f930ccffa67089aeb56ac0c914515b"
+    "sha256": "2e60b3ee4521310dfeb1daa158db3aed78d0eed7227587a6e004e904d723007e"
   },
   {
     "id": "P16-hit",
@@ -1786,7 +1786,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P16-hit-1920x1080.png",
     "editable": "editable/screens/P16-hit-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P16-hit",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1794,7 +1794,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "c57050c5db80f175808fdc97e97c7c83b4c0f3ad5f5659b0c160451703bc1277"
+    "sha256": "c70e69a02063e8e373faeae04c5e862be035caf0a44c9fd7f631642aa00221b6"
   },
   {
     "id": "P16-stage-change",
@@ -1810,7 +1810,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P16-stage-change-1920x1080.png",
     "editable": "editable/screens/P16-stage-change-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P16-stage-change",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1818,7 +1818,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "7dc691c18189601dcfca68a51a2d709c659aac96449bced80775c8427f57526d"
+    "sha256": "b4549beb2a3283823928770801400443dccae8be4ee1f1e102ce6348fd319122"
   },
   {
     "id": "P16-decision",
@@ -1833,7 +1833,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P16-decision-1920x1080.png",
     "editable": "editable/screens/P16-decision-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P16-decision",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1841,7 +1841,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "ae337158c7d91898763db3ad6b8b985b92bacf898a4778a5fec6f20a47c187ad"
+    "sha256": "67343c58ceb4ad30d39d6e8d5c3575791ac8b0619e9fea25885fcaefcd875a36"
   },
   {
     "id": "P16-retreat",
@@ -1856,7 +1856,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P16-retreat-1920x1080.png",
     "editable": "editable/screens/P16-retreat-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P16-retreat",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1864,7 +1864,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "10cb8563f2b98f8b5ebe840473fe5abeb058b221005fbe0b8e1b204b03be57d5"
+    "sha256": "53c677648db82e10205596c9030e05dbe8b55ac28cca81023b2236870b26bc7a"
   },
   {
     "id": "P16-reduced",
@@ -1880,7 +1880,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P16-reduced-1920x1080.png",
     "editable": "editable/screens/P16-reduced-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P16-reduced",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1888,7 +1888,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "c2de0a176a6879e2af8d07c04e2334e472e5e3b53f77429d1f546ae5865f5854"
+    "sha256": "eb22657062d522293a1f1e693bb5b91659ab5e2622313b5ff278c1ea16929603"
   },
   {
     "id": "P17-victory",
@@ -1903,7 +1903,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P17-victory-1920x1080.png",
     "editable": "editable/screens/P17-victory-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P17-victory",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1911,7 +1911,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "331fa9d79515d1082b9d69b943ead3090557cab25d1ab680be8199e18c828a0d"
+    "sha256": "620e126870d1eb817e0a841f8ee16716c35f0c5711f7cc64c49a572b8f9728d6"
   },
   {
     "id": "P17-retreat",
@@ -1926,7 +1926,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P17-retreat-1920x1080.png",
     "editable": "editable/screens/P17-retreat-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P17-retreat",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1934,7 +1934,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "7cd2030511011031cf3bc978ab2c7be8c879c0f18049b48dff52bb772263df7e"
+    "sha256": "aad159130ff9c4dfb92a1da404ec7a4cc3035dfc178fdac6459311c46d41051f"
   },
   {
     "id": "P18-success",
@@ -1949,7 +1949,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P18-success-1920x1080.png",
     "editable": "editable/screens/P18-success-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P18-success",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1957,7 +1957,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "432e293aa60f31ff3afa086846a514f84c9243dc7d86e8bf1e18147c39bf60ac"
+    "sha256": "561981d2ec06d37d72b867c40126119e15e8d5a33dfaea4f5399857d80c65c27"
   },
   {
     "id": "P19-voluntary",
@@ -1972,7 +1972,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P19-voluntary-1920x1080.png",
     "editable": "editable/screens/P19-voluntary-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P19-voluntary",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -1980,7 +1980,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "3d8b0c9182bdfdec700c59d5ea4934107bf3275b528ca88c662195d4cd50d4fe"
+    "sha256": "fece677402cb7a41e08708d9be3729ce8b51d535567075ac09bec04b35d74e01"
   },
   {
     "id": "P20-deadline",
@@ -1995,7 +1995,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P20-deadline-1920x1080.png",
     "editable": "editable/screens/P20-deadline-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P20-deadline",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2003,7 +2003,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "3d05829c7d48451f6ac326c63a91848d89e24fc4dfff61ca59891e2e891ef6cd"
+    "sha256": "17c02cf1ca6cba4ee4b5001c3fbcd9759188b70aef717a834e8488182c2a62ca"
   },
   {
     "id": "P21-enemy-alive",
@@ -2018,7 +2018,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P21-enemy-alive-1920x1080.png",
     "editable": "editable/screens/P21-enemy-alive-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P21-enemy-alive",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2026,7 +2026,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "e6f22302eb9606a84b62c8a3496c1f941d7537b826042ac2c32e6b1ef6b74601"
+    "sha256": "dfc553e58a6126128f08323182be94df4451df2def4856ea56c6d5e0b9ab966e"
   },
   {
     "id": "P21-both-zero",
@@ -2041,7 +2041,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P21-both-zero-1920x1080.png",
     "editable": "editable/screens/P21-both-zero-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P21-both-zero",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2049,7 +2049,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "723cbae0a78ffb9fe5ab0971023ea25829c55abf417bf8056bf1d525e05f98e9"
+    "sha256": "6fc3095b90a4487c2220edf917d801b8d167129e0dce3019d0f695ecb9556452"
   },
   {
     "id": "P22-return",
@@ -2064,7 +2064,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P22-return-1920x1080.png",
     "editable": "editable/screens/P22-return-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P22-return",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2072,7 +2072,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "a4526158431fb934753897756f8367ebca0e3a0860233b29b344fe7037f0ff5d"
+    "sha256": "4f9ba77fd1ddae2a25a8597e58989ca0d9e69d38f1febd440f5c304e623d4856"
   },
   {
     "id": "P22-critical-drop",
@@ -2087,7 +2087,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P22-critical-drop-1920x1080.png",
     "editable": "editable/screens/P22-critical-drop-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P22-critical-drop",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2095,7 +2095,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "349560ad87b17cc379fe5bbed08d6a92b1b62a1e8caf11da9962e11567a940bc"
+    "sha256": "ba730643cfb9b0d1425c99185c8538f745de6a31010ff8622237be9400f1c522"
   },
   {
     "id": "P22-certain-death",
@@ -2110,7 +2110,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P22-certain-death-1920x1080.png",
     "editable": "editable/screens/P22-certain-death-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P22-certain-death",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2118,7 +2118,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "693f913a806286dae649b3da9babf75f7b3abdc8621df19013e3305047991866"
+    "sha256": "6ef39e1b30b7fd9f1824de4187665a4d969421872ec95b4c5862193f3680c805"
   },
   {
     "id": "P22-cancelled",
@@ -2133,7 +2133,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P22-cancelled-1920x1080.png",
     "editable": "editable/screens/P22-cancelled-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P22-cancelled",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2141,7 +2141,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "86ad848f3a05de7e47c83940a6be680551dcff70405387e11ed242d24cd7b6cc"
+    "sha256": "2ebacd33793e87ce883520bffd29d38c6da74f5be8f00c18c80936ebce6bc330"
   },
   {
     "id": "P22-stale",
@@ -2156,7 +2156,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P22-stale-1920x1080.png",
     "editable": "editable/screens/P22-stale-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P22-stale",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2164,7 +2164,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "32fbf2f308fee3538b9b5d08af75268703d8b89bfbdff00ae5e4194d0aae8dd3"
+    "sha256": "d5a3017d9edfe55b9b92bebd1e878d2db166a289945b7368186be0ef174e824c"
   },
   {
     "id": "P23-saved",
@@ -2179,7 +2179,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P23-saved-1920x1080.png",
     "editable": "editable/screens/P23-saved-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P23-saved",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2187,7 +2187,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "b58e03ab68730355726e082f2a204ef6b8b22c7e762cf4c5a416bf990968df3d"
+    "sha256": "1f53a9d2aac5a287f8c7c16756e8ed1a87b6894f39345933530b73bf02740c4e"
   },
   {
     "id": "P23-not-attempted",
@@ -2202,7 +2202,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P23-not-attempted-1920x1080.png",
     "editable": "editable/screens/P23-not-attempted-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P23-not-attempted",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2210,7 +2210,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "a3adeb5dcb5ea6f1b0b75ebc9b254a46d56faaf94041746609801dfcb74f2200"
+    "sha256": "2d106b48323f6fd9e9c2e6384e705fd8e8192537de7349acbd1f183f3bc7ee06"
   },
   {
     "id": "P23-failed",
@@ -2225,7 +2225,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P23-failed-1920x1080.png",
     "editable": "editable/screens/P23-failed-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P23-failed",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2233,7 +2233,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "be8328b8024272e4c907c933958493b0334800566ccd62bdeeb6bde513330677"
+    "sha256": "9420c84c04d41182009870857cf2bb9da5dbbf5d4b2856dcecca914ffeac86c1"
   },
   {
     "id": "P23-retry",
@@ -2248,7 +2248,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P23-retry-1920x1080.png",
     "editable": "editable/screens/P23-retry-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P23-retry",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2256,7 +2256,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "60529838a24657cd62478ef584050c57f63776eca498dcc6b949e1c04b3e6c39"
+    "sha256": "906593caa0d55fbb2ff7c37696e984f17fa336c642bf40e812c5db70a69bb5e5"
   },
   {
     "id": "P24-request",
@@ -2271,7 +2271,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P24-request-1920x1080.png",
     "editable": "editable/screens/P24-request-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P24-request",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2279,7 +2279,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "0a1cf7242bcb109f81c48be55b4b43d824bfbe3205e0ea50371719a95bbba693"
+    "sha256": "d1621792d893931681baef34df5ee7248a605a5724e8d3b29085b39d93564bdb"
   },
   {
     "id": "P24-occupied",
@@ -2294,7 +2294,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P24-occupied-1920x1080.png",
     "editable": "editable/screens/P24-occupied-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P24-occupied",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2302,7 +2302,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "5cdb6c5924b07675b94fddf68ee281fb163263ce1e6cd5532957c857e61c90ce"
+    "sha256": "cdae7a2630141684d5e1f0538e6d09be767dd029c0717bf1292e84dd673d80cd"
   },
   {
     "id": "P24-lost",
@@ -2317,7 +2317,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P24-lost-1920x1080.png",
     "editable": "editable/screens/P24-lost-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P24-lost",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2325,7 +2325,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "387ab039511eba6eca31dec6d0003e5f9b1b6cb9a327d2565750db7a738303dc"
+    "sha256": "c099914c235f4797eb9b2246b1e9df6ea50164f5c45615d93323b47289d602c8"
   },
   {
     "id": "P24-corrupt",
@@ -2340,7 +2340,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P24-corrupt-1920x1080.png",
     "editable": "editable/screens/P24-corrupt-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P24-corrupt",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2348,7 +2348,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "180039e6d111a560071d488aa7d058d6554a8f7d82e6c0870e0eb68e720c25b4"
+    "sha256": "e6e6e7a3939a1e64b8d76bbd74611be197cef908062a1a4cbf4e8e2c36b78592"
   },
   {
     "id": "P24-read-error",
@@ -2363,7 +2363,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P24-read-error-1920x1080.png",
     "editable": "editable/screens/P24-read-error-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P24-read-error",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2371,7 +2371,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "5d2b9a03482ef102123d40b4479f96e157f4eb985f7e208692be671f99ec4056"
+    "sha256": "3026cc39a19b087278e65213a87aa272a3c725cd6b7ab0150cbc7a4e8ae6bcbb"
   },
   {
     "id": "P24-projection",
@@ -2386,7 +2386,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P24-projection-1920x1080.png",
     "editable": "editable/screens/P24-projection-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P24-projection",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2394,7 +2394,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "ba449be2c8cc945aca9d118c9dc1fe9f4577f2fffcd48feddb5d1a76f3a64ad9"
+    "sha256": "215ad743ff84406702fb723279c539ddbecce9836c13b454f036db97fcbf1641"
   },
   {
     "id": "P25-controls",
@@ -2409,7 +2409,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P25-controls-1920x1080.png",
     "editable": "editable/screens/P25-controls-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P25-controls",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2417,7 +2417,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "bdc5ee307082840d426c15b80c107e2aaef2ff9890af0ef6055ca6f8e002569d"
+    "sha256": "7ccd14fa7e7276f47588e435eda48c03f35699433b017d71a5c34bae11d118a9"
   },
   {
     "id": "P25-health",
@@ -2432,7 +2432,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P25-health-1920x1080.png",
     "editable": "editable/screens/P25-health-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P25-health",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2440,7 +2440,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "b78f25fd235d1760e69c80965ed996738edfce988f8709b603b09ba5b6d258a6"
+    "sha256": "c034dc279da07e4a23793f51ffd6e1d191e7946d96b9913a9876e5ce39ff351d"
   },
   {
     "id": "P25-quick",
@@ -2455,7 +2455,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P25-quick-1920x1080.png",
     "editable": "editable/screens/P25-quick-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P25-quick",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2463,7 +2463,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "c130258a85536545c446923585ebd5fcc9a6c2d7dbbef37d5927f10d6c1b5831"
+    "sha256": "6ce8d462019808be92d9d43cda29592cfc9e0a769456f68e0368b021d5aabe08"
   },
   {
     "id": "P06-door-result",
@@ -2479,7 +2479,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P06-door-result-1920x1080.png",
     "editable": "editable/screens/P06-door-result-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P06-door-result",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2487,7 +2487,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "3a85d81928dc3c5f01ce9c81d9adfe99eb8f53d737ebcd5108ab9478b9695429"
+    "sha256": "f695ef1647b504818eef0645b4dc612e13afb5fe579f6329dc18a86ef600bef1"
   },
   {
     "id": "P06-power-result",
@@ -2503,7 +2503,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P06-power-result-1920x1080.png",
     "editable": "editable/screens/P06-power-result-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P06-power-result",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2511,7 +2511,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "e9cb44e2254794c6f456f43a306dc1c6633b9c69d6ba8393469f4df7f2918080"
+    "sha256": "fe8fe73a236835cc6e56b695f71331200a808413d08bd60b5160af7a98d75f1f"
   },
   {
     "id": "P06-records-result",
@@ -2527,7 +2527,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P06-records-result-1920x1080.png",
     "editable": "editable/screens/P06-records-result-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P06-records-result",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2535,7 +2535,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "34383589495110d8e8e034b4fac5078fff3f32bdb479dce69c10bded923289fd"
+    "sha256": "fd4238d2bb0cad348decf295de22235971b65e9577a0718696165a6e50bb97b1"
   },
   {
     "id": "P06-component-result",
@@ -2551,7 +2551,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P06-component-result-1920x1080.png",
     "editable": "editable/screens/P06-component-result-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P06-component-result",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2559,7 +2559,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "c436f7ec18fd884f239b484e5b3c08018a7afda1247817cc60300cd306888f65"
+    "sha256": "1ea89425b4fb139400491f465ae83e917a24fef77b272337d2547c86914c6377"
   },
   {
     "id": "P06-sample-result",
@@ -2575,7 +2575,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P06-sample-result-1920x1080.png",
     "editable": "editable/screens/P06-sample-result-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P06-sample-result",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2583,7 +2583,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "392255d8ca85fb47ade38adc538bfc1dddfeb7685078555d3aadbf7041a3c437"
+    "sha256": "66757fde6ecd6fa7a08b2f7cf658bff2cc101eb32dd9ea88798a215bb3a9bb41"
   },
   {
     "id": "P06-install-result",
@@ -2599,7 +2599,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P06-install-result-1920x1080.png",
     "editable": "editable/screens/P06-install-result-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P06-install-result",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2607,7 +2607,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "8514f59fbccc8b2a6ae4eb6ae19bb0d5b97f96febdb93b377b5616731a8bf4a7"
+    "sha256": "1c49f8b335b9389ddf12308d2e857e3f78c1e22660dc2e89676a213cdbf7c8b0"
   },
   {
     "id": "P10-detail-sample",
@@ -2623,7 +2623,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P10-detail-sample-1920x1080.png",
     "editable": "editable/screens/P10-detail-sample-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P10-detail-sample",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2631,7 +2631,7 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "e7c9dba7b4f0af3375fe922aa1fb30de1ab820d1e3558678bf8955cba888a5cd"
+    "sha256": "a738a1032c78abba52fff63d90c6f36c89b7c602b1d0e153b74cb3352d6132da"
   },
   {
     "id": "P10-detail-pipe",
@@ -2647,7 +2647,7 @@
     "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
     "preview": "previews/screens/P10-detail-pipe-1920x1080.png",
     "editable": "editable/screens/P10-detail-pipe-1920x1080.svg",
-    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
     "normalOrMax": "normal",
     "interaction": "prototype/index.html?screen=P10-detail-pipe",
     "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
@@ -2655,6 +2655,230 @@
       "No gameplay, persistence, real CTB, or correctness simulation",
       "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
     ],
-    "sha256": "f02d19d96ae2e949410939f770df3a82d96bc305d69c3eecb59847f007f8a79c"
+    "sha256": "ff83e568d2a2611ffcda2f0df724985e5f1d6367c287d3b032b756a363a174d7"
+  },
+  {
+    "id": "P03-first-arrival",
+    "family": "P03",
+    "title": "首次抵达 · 初选延续",
+    "kind": "explore",
+    "node": "H0",
+    "tool": "lamp",
+    "specialty": "engineer",
+    "initial": true,
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P03-first-arrival-1920x1080.png",
+    "editable": "editable/screens/P03-first-arrival-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P03-first-arrival",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "e8396fe59b403478e63fc5f5479712b319cb2426c11f9b9b5e84f7645ddab6ad"
+  },
+  {
+    "id": "P06-sample-cautious-last",
+    "family": "P06",
+    "title": "采样支付 · 谨慎 / 完整度1",
+    "kind": "node",
+    "node": "H5",
+    "method": "cautious",
+    "coatCase": "last",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-sample-cautious-last-1920x1080.png",
+    "editable": "editable/screens/P06-sample-cautious-last-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-sample-cautious-last",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "7bdabd00e04c5c88033d4f24d671a91738d83b64049d87a9f3a5cc5f015ce9f8"
+  },
+  {
+    "id": "P06-sample-cautious-broken",
+    "family": "P06",
+    "title": "采样支付 · 谨慎 / 完整度0",
+    "kind": "node",
+    "node": "H5",
+    "method": "cautious",
+    "coatCase": "broken",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-sample-cautious-broken-1920x1080.png",
+    "editable": "editable/screens/P06-sample-cautious-broken-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-sample-cautious-broken",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "69e20975b3878090272df44de98e3dd0ea7e8ec6ab33e2ef3126f6be86bd6180"
+  },
+  {
+    "id": "P06-sample-cautious-unequipped",
+    "family": "P06",
+    "title": "采样支付 · 谨慎 / 未装备",
+    "kind": "node",
+    "node": "H5",
+    "method": "cautious",
+    "coatCase": "unequipped",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-sample-cautious-unequipped-1920x1080.png",
+    "editable": "editable/screens/P06-sample-cautious-unequipped-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-sample-cautious-unequipped",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "65768ee35e55c2051c07e2d0031388c7fd80dec7442491b82919cfb9a31f7ef4"
+  },
+  {
+    "id": "P06-sample-direct-last",
+    "family": "P06",
+    "title": "采样支付 · 直接 / 完整度1",
+    "kind": "node",
+    "node": "H5",
+    "method": "direct",
+    "coatCase": "last",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-sample-direct-last-1920x1080.png",
+    "editable": "editable/screens/P06-sample-direct-last-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-sample-direct-last",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "857cfdb8d1ddd889a1304397659a3a453e0df0a16b234f5f3759779f4bdfe0e8"
+  },
+  {
+    "id": "P06-sample-direct-broken",
+    "family": "P06",
+    "title": "采样支付 · 直接 / 完整度0",
+    "kind": "node",
+    "node": "H5",
+    "method": "direct",
+    "coatCase": "broken",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-sample-direct-broken-1920x1080.png",
+    "editable": "editable/screens/P06-sample-direct-broken-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-sample-direct-broken",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "2ad81ef5ca0d3f9c4808c0bcee8bfc32533eb76707017d374580229a6a313cec"
+  },
+  {
+    "id": "P06-sample-direct-unequipped",
+    "family": "P06",
+    "title": "采样支付 · 直接 / 未装备",
+    "kind": "node",
+    "node": "H5",
+    "method": "direct",
+    "coatCase": "unequipped",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-sample-direct-unequipped-1920x1080.png",
+    "editable": "editable/screens/P06-sample-direct-unequipped-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-sample-direct-unequipped",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "a13c85d626e705e6881b99a6614b45e71e3c6175e5cab418e842654c8a926e35"
+  },
+  {
+    "id": "P17-retreat-porter",
+    "family": "P17",
+    "title": "装卸工退却 · 登记室",
+    "kind": "result",
+    "node": "L1",
+    "enemy": "porter",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P17-retreat-porter-1920x1080.png",
+    "editable": "editable/screens/P17-retreat-porter-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P17-retreat-porter",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "dafcdb9df33a94561f1a45449f62e16ce8286d1ac534d9fa5a3fb39144c604d4"
+  },
+  {
+    "id": "P17-retreat-technician",
+    "family": "P17",
+    "title": "技术员退却 · 档案室",
+    "kind": "result",
+    "node": "C1",
+    "enemy": "technician",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P17-retreat-technician-1920x1080.png",
+    "editable": "editable/screens/P17-retreat-technician-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + flow-context.js + ui.js + ui.css + nine-slice.js",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P17-retreat-technician",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "ba7ae97d21abe6f43323406a8f2206e5bcf3f6edc736c61e6153a2ab66168674"
   }
 ]

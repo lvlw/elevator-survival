@@ -1,0 +1,2660 @@
+[
+  {
+    "id": "P01-unselected",
+    "family": "P01",
+    "title": "出发前 · 独立选择",
+    "kind": "setup",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P01-unselected-1920x1080.png",
+    "editable": "editable/screens/P01-unselected-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "max",
+    "interaction": "prototype/index.html?screen=P01-unselected",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "36cefdabdf6bd1aaf92cd27b2c7bef7a8e58bc8fd16e7929bb2d64e57639782b"
+  },
+  {
+    "id": "P01-crow-scout",
+    "family": "P01",
+    "title": "出发前 · 配装就绪",
+    "kind": "setup",
+    "node": "H0",
+    "tool": "crow",
+    "specialty": "scout",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P01-crow-scout-1920x1080.png",
+    "editable": "editable/screens/P01-crow-scout-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "max",
+    "interaction": "prototype/index.html?screen=P01-crow-scout",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "f2fad845cc8bf37da995f8bbdf2b21346839c64d027dafdeb68e53d940e7e39c"
+  },
+  {
+    "id": "P01-crow-engineer",
+    "family": "P01",
+    "title": "出发前 · 配装就绪",
+    "kind": "setup",
+    "node": "H0",
+    "tool": "crow",
+    "specialty": "engineer",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P01-crow-engineer-1920x1080.png",
+    "editable": "editable/screens/P01-crow-engineer-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "max",
+    "interaction": "prototype/index.html?screen=P01-crow-engineer",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "79796910d7f8c29fc428dbcd6f91a78fbe475c0b35635623cb31b0d2c535b136"
+  },
+  {
+    "id": "P01-crow-survival",
+    "family": "P01",
+    "title": "出发前 · 配装就绪",
+    "kind": "setup",
+    "node": "H0",
+    "tool": "crow",
+    "specialty": "survival",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P01-crow-survival-1920x1080.png",
+    "editable": "editable/screens/P01-crow-survival-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "max",
+    "interaction": "prototype/index.html?screen=P01-crow-survival",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "bce44edcc2c620d92da94aaba00b41e2d226f08c3f395adca99442fd75bfb5f5"
+  },
+  {
+    "id": "P01-lamp-scout",
+    "family": "P01",
+    "title": "出发前 · 配装就绪",
+    "kind": "setup",
+    "node": "H0",
+    "tool": "lamp",
+    "specialty": "scout",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P01-lamp-scout-1920x1080.png",
+    "editable": "editable/screens/P01-lamp-scout-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "max",
+    "interaction": "prototype/index.html?screen=P01-lamp-scout",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "340c0a36116ce0e2ea786e2c2d18a22fefa6ccee795a6f8f4b8419c50de3d5b7"
+  },
+  {
+    "id": "P01-lamp-engineer",
+    "family": "P01",
+    "title": "出发前 · 配装就绪",
+    "kind": "setup",
+    "node": "H0",
+    "tool": "lamp",
+    "specialty": "engineer",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P01-lamp-engineer-1920x1080.png",
+    "editable": "editable/screens/P01-lamp-engineer-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "max",
+    "interaction": "prototype/index.html?screen=P01-lamp-engineer",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "0161cad4b08d13650e5c814833149c6018e35350450dd673bf3d46eb3e886980"
+  },
+  {
+    "id": "P01-lamp-survival",
+    "family": "P01",
+    "title": "出发前 · 配装就绪",
+    "kind": "setup",
+    "node": "H0",
+    "tool": "lamp",
+    "specialty": "survival",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P01-lamp-survival-1920x1080.png",
+    "editable": "editable/screens/P01-lamp-survival-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "max",
+    "interaction": "prototype/index.html?screen=P01-lamp-survival",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "fafedb7d9774b154055736314506cacdb86169ba86bbfe78f2786c12218b2ef6"
+  },
+  {
+    "id": "P01-toolbox-scout",
+    "family": "P01",
+    "title": "出发前 · 配装就绪",
+    "kind": "setup",
+    "node": "H0",
+    "tool": "toolbox",
+    "specialty": "scout",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P01-toolbox-scout-1920x1080.png",
+    "editable": "editable/screens/P01-toolbox-scout-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "max",
+    "interaction": "prototype/index.html?screen=P01-toolbox-scout",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "f00567479b253ae341edde95ab2e55826e622937588ff2c2a13300134b3442fd"
+  },
+  {
+    "id": "P01-toolbox-engineer",
+    "family": "P01",
+    "title": "出发前 · 配装就绪",
+    "kind": "setup",
+    "node": "H0",
+    "tool": "toolbox",
+    "specialty": "engineer",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P01-toolbox-engineer-1920x1080.png",
+    "editable": "editable/screens/P01-toolbox-engineer-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "max",
+    "interaction": "prototype/index.html?screen=P01-toolbox-engineer",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "da78e406d96444ce54e1b685b1f36f9cd6491fbf79c2dc84b7c8e20323d0deb8"
+  },
+  {
+    "id": "P01-toolbox-survival",
+    "family": "P01",
+    "title": "出发前 · 配装就绪",
+    "kind": "setup",
+    "node": "H0",
+    "tool": "toolbox",
+    "specialty": "survival",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P01-toolbox-survival-1920x1080.png",
+    "editable": "editable/screens/P01-toolbox-survival-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "max",
+    "interaction": "prototype/index.html?screen=P01-toolbox-survival",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "5638fc28af1f62251ea21a193cbb2904614b97cf8bdc645ede56bf80a92ce7a8"
+  },
+  {
+    "id": "P02-first-hub",
+    "family": "P02",
+    "title": "初次中枢 · 配装已锁定",
+    "kind": "hub",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P02-first-hub-1920x1080.png",
+    "editable": "editable/screens/P02-first-hub-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P02-first-hub",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "46e36338bae34c90a3cb7d6171c136bc2ddfc57ceea7f0fbec9e0e47dabe0de8"
+  },
+  {
+    "id": "P03-hospital",
+    "family": "P03",
+    "title": "医院 · 大厅",
+    "kind": "explore",
+    "node": "H1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P03-hospital-1920x1080.png",
+    "editable": "editable/screens/P03-hospital-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P03-hospital",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "798b146b60ea185114ef583694818d874830c10870bfb9b59416fe35c60d3fff"
+  },
+  {
+    "id": "P03-hotel",
+    "family": "P03",
+    "title": "酒店 · 入口",
+    "kind": "explore",
+    "node": "T0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P03-hotel-1920x1080.png",
+    "editable": "editable/screens/P03-hotel-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P03-hotel",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "bede34a9f751712d16a58034aeee3fad438643e7e4c9782cda9edb8b3136536b"
+  },
+  {
+    "id": "P03-power",
+    "family": "P03",
+    "title": "供电所 · 配线廊",
+    "kind": "explore",
+    "node": "P0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P03-power-1920x1080.png",
+    "editable": "editable/screens/P03-power-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P03-power",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "692c2dfbc14b469d93c39bcf465a047e3cd3173cf8432e35d7d8145092559346"
+  },
+  {
+    "id": "P03-logistics",
+    "family": "P03",
+    "title": "物流 · 岗亭",
+    "kind": "explore",
+    "node": "L0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P03-logistics-1920x1080.png",
+    "editable": "editable/screens/P03-logistics-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P03-logistics",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "8b5101cb909d86fe93490c0afac3331066228807e4ac5fcd75ce67ab9c900a11"
+  },
+  {
+    "id": "P03-communication",
+    "family": "P03",
+    "title": "通信 · 入口",
+    "kind": "explore",
+    "node": "C0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P03-communication-1920x1080.png",
+    "editable": "editable/screens/P03-communication-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P03-communication",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "d2e5a5a2b55e09e97d748bd51d6bfb888a590157c396a838b826f983ae7bf46e"
+  },
+  {
+    "id": "P04-before",
+    "family": "P04",
+    "title": "跨区前 · 医院电梯前室",
+    "kind": "explore",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P04-before-1920x1080.png",
+    "editable": "editable/screens/P04-before-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P04-before",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "516fe5b69c4323f0551dbc5d7be0643b403246fa8acfd9763b4d5ba8e481cb6a"
+  },
+  {
+    "id": "P04-after",
+    "family": "P04",
+    "title": "已到达 · 酒店入口",
+    "kind": "explore",
+    "node": "T0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P04-after-1920x1080.png",
+    "editable": "editable/screens/P04-after-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P04-after",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "32a65ecd7b112a87b762c4c1210f2a41e117c29217537d77792770452e48f65e"
+  },
+  {
+    "id": "P05-unsearched",
+    "family": "P05",
+    "title": "大厅搜索 · 尚未搜索",
+    "kind": "search",
+    "node": "H1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P05-unsearched-1920x1080.png",
+    "editable": "editable/screens/P05-unsearched-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P05-unsearched",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "3843a32406a6a24f2313600941a4f0f2831e78e06090852e46f3f4faf79009c1"
+  },
+  {
+    "id": "P05-revealed",
+    "family": "P05",
+    "title": "大厅搜索 · 已揭示",
+    "kind": "search",
+    "node": "H1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P05-revealed-1920x1080.png",
+    "editable": "editable/screens/P05-revealed-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P05-revealed",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "bc19620bdf62b0f7cf8c4d6c0b163da60b9335ffa8ff763c3dc956971f075cec"
+  },
+  {
+    "id": "P05-empty",
+    "family": "P05",
+    "title": "物资来源 · 已取空",
+    "kind": "search",
+    "node": "H1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P05-empty-1920x1080.png",
+    "editable": "editable/screens/P05-empty-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P05-empty",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "74318e83a348ca9d1205286d58c479b9ded9a2aca7f9942d3a00019aac63afa7"
+  },
+  {
+    "id": "P05-reopen",
+    "family": "P05",
+    "title": "重新查看 · 保留已知结果",
+    "kind": "search",
+    "node": "H1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P05-reopen-1920x1080.png",
+    "editable": "editable/screens/P05-reopen-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P05-reopen",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "53410adc0df0735f325b6cd262d3c54de9473a060ad1fac03ffeafdc7e375dbc"
+  },
+  {
+    "id": "P06-door",
+    "family": "P06",
+    "title": "消防门 · 处理方案",
+    "kind": "node",
+    "node": "H1",
+    "art": "event_isolation_fire_door_v02.png",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-door-1920x1080.png",
+    "editable": "editable/screens/P06-door-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-door",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "e2064b1398c436f40746e5e6af222f8a9ab84cf41b7e15a2452744a494b8815d"
+  },
+  {
+    "id": "P06-power",
+    "family": "P06",
+    "title": "转运支路 · 供电恢复",
+    "kind": "node",
+    "node": "P1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-power-1920x1080.png",
+    "editable": "editable/screens/P06-power-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-power",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "af2440cc379c11f0758855e3fe467e8767c36e7006d1c4d154112d7be66df9a9"
+  },
+  {
+    "id": "P06-records",
+    "family": "P06",
+    "title": "档案 · 记录核对",
+    "kind": "node",
+    "node": "C1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-records-1920x1080.png",
+    "editable": "editable/screens/P06-records-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-records",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "0ba9899f7d1fc79dcaaf91f8f7c0bac9551a61a6447f08ea468071a52c1a882f"
+  },
+  {
+    "id": "P06-component",
+    "family": "P06",
+    "title": "装卸场 · 解除固定与取件",
+    "kind": "node",
+    "node": "L2",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-component-1920x1080.png",
+    "editable": "editable/screens/P06-component-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-component",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "d50339f94e9ca86b95c6b1dabb2f8e4a13fba12d442581102801a08358a288d2"
+  },
+  {
+    "id": "P06-sample-cautious",
+    "family": "P06",
+    "title": "冷藏室 · 谨慎提样",
+    "kind": "node",
+    "node": "H5",
+    "method": "cautious",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-sample-cautious-1920x1080.png",
+    "editable": "editable/screens/P06-sample-cautious-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-sample-cautious",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "06d4cbac6b467d1fab879aa5a5d22f963c8061f33fc2e833743cd186f8e239d3"
+  },
+  {
+    "id": "P06-sample-direct",
+    "family": "P06",
+    "title": "冷藏室 · 直接提样",
+    "kind": "node",
+    "node": "H5",
+    "method": "direct",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-sample-direct-1920x1080.png",
+    "editable": "editable/screens/P06-sample-direct-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-sample-direct",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "9a192360c894afb6a1ac46d2e53f2ed20c9317b0decb3c3d2c76b8128cb23372"
+  },
+  {
+    "id": "P06-install",
+    "family": "P06",
+    "title": "转运平台 · 真实安装",
+    "kind": "node",
+    "node": "H8",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-install-1920x1080.png",
+    "editable": "editable/screens/P06-install-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-install",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "57987b545e6e65c0876ee9d8ef2859a72094512cfc02f1c53233b666f1b37be7"
+  },
+  {
+    "id": "P07-lin",
+    "family": "P07",
+    "title": "林岑 · 已有现场交换",
+    "kind": "npc",
+    "node": "T1",
+    "person": "lin",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P07-lin-1920x1080.png",
+    "editable": "editable/screens/P07-lin-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P07-lin",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "3723fda9c0ac387c051cab349c78918ebd8720ef11d1c5fa25224d9c6268204c"
+  },
+  {
+    "id": "P07-zhou",
+    "family": "P07",
+    "title": "周衡 · 作业方法",
+    "kind": "npc",
+    "node": "L5",
+    "person": "zhou",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P07-zhou-1920x1080.png",
+    "editable": "editable/screens/P07-zhou-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P07-zhou",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "c1aaf1cc3d4ff02f6fd9f88415df5fd8ab717000d66e4f08742f514d21d93b25"
+  },
+  {
+    "id": "P08-acquired",
+    "family": "P08",
+    "title": "指定样本 · 已取得",
+    "kind": "mission",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P08-acquired-1920x1080.png",
+    "editable": "editable/screens/P08-acquired-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P08-acquired",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "a630bb10c9624d2ff2429a5dcbb59d6340fbb4d2566e0fc9a69c8ce0c621b56f"
+  },
+  {
+    "id": "P08-carried",
+    "family": "P08",
+    "title": "指定样本 · 正在携带",
+    "kind": "mission",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P08-carried-1920x1080.png",
+    "editable": "editable/screens/P08-carried-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P08-carried",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "f6dc66114cecd51be2b0aa19ada6ba3cf2261cad391b43852b581b5134b2764c"
+  },
+  {
+    "id": "P08-ground",
+    "family": "P08",
+    "title": "指定样本 · 留在原地",
+    "kind": "mission",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P08-ground-1920x1080.png",
+    "editable": "editable/screens/P08-ground-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P08-ground",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "df07fc125876ccff5fa1501940b33f51341d1b55688dd6b618a19477efde1c8d"
+  },
+  {
+    "id": "P08-delivered",
+    "family": "P08",
+    "title": "指定样本 · 已交付",
+    "kind": "mission",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P08-delivered-1920x1080.png",
+    "editable": "editable/screens/P08-delivered-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P08-delivered",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "9df2293224a784a402bee04f87a029e6ec5f7cbff56854e3e38e98c2ffe03e68"
+  },
+  {
+    "id": "P09-normal",
+    "family": "P09",
+    "title": "已知区域 · 详情",
+    "kind": "map",
+    "node": "H1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P09-normal-1920x1080.png",
+    "editable": "editable/screens/P09-normal-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P09-normal",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "293a02560d96ee541cc0d42a682d9d2e7818826f43a8872bd2c79de3d4b0dee7"
+  },
+  {
+    "id": "P09-max",
+    "family": "P09",
+    "title": "已知区域 · 放大",
+    "kind": "map",
+    "node": "H1",
+    "max": true,
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P09-max-1920x1080.png",
+    "editable": "editable/screens/P09-max-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "max",
+    "interaction": "prototype/index.html?screen=P09-max",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "1ce403e5974a450dfe1219ceefe0361034483110ec96fa455a623c3136d2f657"
+  },
+  {
+    "id": "P09-last-observed",
+    "family": "P09",
+    "title": "远端地点 · 上次观察",
+    "kind": "map",
+    "node": "H1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P09-last-observed-1920x1080.png",
+    "editable": "editable/screens/P09-last-observed-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P09-last-observed",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "e62f11c837d036007467f70edc82bba23289b8e4284d8a47b8417754587a78e2"
+  },
+  {
+    "id": "P09-blocked",
+    "family": "P09",
+    "title": "相邻道路 · 已知受阻",
+    "kind": "map",
+    "node": "H1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P09-blocked-1920x1080.png",
+    "editable": "editable/screens/P09-blocked-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P09-blocked",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "acf8e3eeb79dc44e75a59c595359a5a3d05c3764e495d74b247a336ab4ace4eb"
+  },
+  {
+    "id": "P09-unknown-passability",
+    "family": "P09",
+    "title": "已知相邻地点 · 通行尚不确定",
+    "kind": "map",
+    "node": "H1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P09-unknown-passability-1920x1080.png",
+    "editable": "editable/screens/P09-unknown-passability-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P09-unknown-passability",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "158dc9a9abfc96a5e67f1518f7a5d31977a3a357b62da5bea006d5970621539a"
+  },
+  {
+    "id": "P10-inventory",
+    "family": "P10",
+    "title": "携带区 · 真实占格",
+    "kind": "inventory",
+    "node": "H3",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P10-inventory-1920x1080.png",
+    "editable": "editable/screens/P10-inventory-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P10-inventory",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "0661292b60e8e308b197447cc3a09c66508823f0861a60d8ca85d57ff27a8440"
+  },
+  {
+    "id": "P10-equipment",
+    "family": "P10",
+    "title": "装备 · 实际剩余资源",
+    "kind": "inventory",
+    "node": "H3",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P10-equipment-1920x1080.png",
+    "editable": "editable/screens/P10-equipment-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P10-equipment",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "ecddfc9b07cc75adaa1357eb8ac98d4c2ebba4c21c09435eb6161d94a79c79c3"
+  },
+  {
+    "id": "P10-rotated",
+    "family": "P10",
+    "title": "旋转物件 · 3×1轮廓",
+    "kind": "inventory",
+    "node": "H3",
+    "rotated": true,
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P10-rotated-1920x1080.png",
+    "editable": "editable/screens/P10-rotated-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P10-rotated",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "3b264cf929f254b6a802e357d67cd4c24c6842bb3a7441ccb30f34b4622ca31c"
+  },
+  {
+    "id": "P11-move",
+    "family": "P11",
+    "title": "移动 · 明确目标位置",
+    "kind": "organize",
+    "node": "H5",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P11-move-1920x1080.png",
+    "editable": "editable/screens/P11-move-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P11-move",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "713129bb7bfacd1d493097a15456d772dc4624388a0a7eb97f8d8d7b5afcbc5c"
+  },
+  {
+    "id": "P11-split",
+    "family": "P11",
+    "title": "拆分 · 明确数量",
+    "kind": "organize",
+    "node": "H5",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P11-split-1920x1080.png",
+    "editable": "editable/screens/P11-split-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P11-split",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "6e7a8a6fe8f07e5cab330f33fc7ca440887b34b945bf38b19bb0c6fa66cd235e"
+  },
+  {
+    "id": "P11-merge",
+    "family": "P11",
+    "title": "合并 · 明确目标实例",
+    "kind": "organize",
+    "node": "H5",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P11-merge-1920x1080.png",
+    "editable": "editable/screens/P11-merge-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P11-merge",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "ab4a900fb856f4eb8766ffddd865075ba379814a34742cbf6ddbff4dbe66f9db"
+  },
+  {
+    "id": "P11-quick",
+    "family": "P11",
+    "title": "快捷迁移 · 明确槽位",
+    "kind": "organize",
+    "node": "H5",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P11-quick-1920x1080.png",
+    "editable": "editable/screens/P11-quick-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P11-quick",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "7b186afcc934bc560c4dd21784556e6224e82008e3f0b2d0d8df61acc2845171"
+  },
+  {
+    "id": "P11-task-pickup",
+    "family": "P11",
+    "title": "取回样本 · 明确2×2格位",
+    "kind": "organize",
+    "node": "H5",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P11-task-pickup-1920x1080.png",
+    "editable": "editable/screens/P11-task-pickup-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P11-task-pickup",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "314b22371459f31c656dcb64ddf8917b785f5c5ddb4c9230497b44ac587c7fac"
+  },
+  {
+    "id": "P11-drop",
+    "family": "P11",
+    "title": "留置任务物 · 当前地点",
+    "kind": "organize",
+    "node": "H5",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P11-drop-1920x1080.png",
+    "editable": "editable/screens/P11-drop-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P11-drop",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "a65c723a4c088b8884d3e7d72f850771c0de2f5610dbc94c3e40d3a05aee2bd9"
+  },
+  {
+    "id": "P11-no-space",
+    "family": "P11",
+    "title": "没有合法位置 · 不领取不扣物",
+    "kind": "organize",
+    "node": "H5",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P11-no-space-1920x1080.png",
+    "editable": "editable/screens/P11-no-space-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P11-no-space",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "47adb2afecd20e1ba0ac2c6aab3aa62c56f1260cb83dffef0b550d56ab10e8b4"
+  },
+  {
+    "id": "P12-bandage",
+    "family": "P12",
+    "title": "绷带 · 选择一处伤口",
+    "kind": "medical",
+    "node": "H6",
+    "item": "bandage",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P12-bandage-1920x1080.png",
+    "editable": "editable/screens/P12-bandage-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P12-bandage",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "060d69e1e3b5862c052acceb0190d909eb8103e65433dab37e0904227aa41a26"
+  },
+  {
+    "id": "P12-firstaid",
+    "family": "P12",
+    "title": "急救包 · 选择处理目标",
+    "kind": "medical",
+    "node": "H6",
+    "item": "firstaid",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P12-firstaid-1920x1080.png",
+    "editable": "editable/screens/P12-firstaid-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P12-firstaid",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "8dc92b700aa0c59ce0e6ddcb9049ada4f7f678223e2f626edbef133418bf70c7"
+  },
+  {
+    "id": "P12-ration",
+    "family": "P12",
+    "title": "口粮 · 饱食未满",
+    "kind": "medical",
+    "node": "H6",
+    "item": "ration",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P12-ration-1920x1080.png",
+    "editable": "editable/screens/P12-ration-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P12-ration",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "0ca400e106593920490248f1f290ffa8fcfb3b51e102be3c40f298658ec706e4"
+  },
+  {
+    "id": "P12-painkiller",
+    "family": "P12",
+    "title": "止痛药 · 当前挫伤",
+    "kind": "medical",
+    "node": "H6",
+    "item": "painkiller",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P12-painkiller-1920x1080.png",
+    "editable": "editable/screens/P12-painkiller-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P12-painkiller",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "6179e688cd2444031a4143cc4910320c445be58b18b6b06df8d514a8afc8343d"
+  },
+  {
+    "id": "P12-disinfectant",
+    "family": "P12",
+    "title": "消毒剂 · 隐藏目标尚不能判断",
+    "kind": "medical",
+    "node": "H6",
+    "item": "disinfectant",
+    "unknown": true,
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P12-disinfectant-1920x1080.png",
+    "editable": "editable/screens/P12-disinfectant-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P12-disinfectant",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "573bbd9975aae77bfc53aaf7885ebd7b42acb1fbbce057ff1c4925a32ebf0408"
+  },
+  {
+    "id": "P12-suppressant",
+    "family": "P12",
+    "title": "感染抑制剂 · 隐藏目标尚不能判断",
+    "kind": "medical",
+    "node": "H6",
+    "item": "suppressant",
+    "unknown": true,
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P12-suppressant-1920x1080.png",
+    "editable": "editable/screens/P12-suppressant-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P12-suppressant",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "a332f842dd10776025175fc8704002785bdaa7b1128a1695a24cadf45115fb36"
+  },
+  {
+    "id": "P12-invalid",
+    "family": "P12",
+    "title": "药食无效 · 当前无合格目标",
+    "kind": "medical",
+    "node": "H6",
+    "item": "bandage",
+    "invalid": true,
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P12-invalid-1920x1080.png",
+    "editable": "editable/screens/P12-invalid-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P12-invalid",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "17f9c5c7cad6c7ce5ab56bf0612dac66fb974f60bb88c068a0a64707e14a3f23"
+  },
+  {
+    "id": "P12-battle",
+    "family": "P12",
+    "title": "战斗快捷药物 · 限绷带与镇痛",
+    "kind": "medical",
+    "node": "H4",
+    "item": "bandage",
+    "battle": true,
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P12-battle-1920x1080.png",
+    "editable": "editable/screens/P12-battle-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P12-battle",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "f55833ee24b223ff1df7a1c4692f7cced072cd5f7d8e3f0fc2f222e528b16ebf"
+  },
+  {
+    "id": "P13-mechanical",
+    "family": "P13",
+    "title": "机械维护 · 一次总池15",
+    "kind": "maintenance",
+    "node": "H6",
+    "tool": "crow",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P13-mechanical-1920x1080.png",
+    "editable": "editable/screens/P13-mechanical-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P13-mechanical",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "3a706e33adeec9eb1773db98dc47aab95401f19a623a1e68e0f56a46bbde497a"
+  },
+  {
+    "id": "P13-coat",
+    "family": "P13",
+    "title": "护具维护 · 真实织物",
+    "kind": "maintenance",
+    "node": "H6",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P13-coat-1920x1080.png",
+    "editable": "editable/screens/P13-coat-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P13-coat",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "215ba30968fa20e057b17c0ba946e6ce8a35b214346a066125f1b7734083373f"
+  },
+  {
+    "id": "P13-toolbox",
+    "family": "P13",
+    "title": "工具箱维护 · 金属与电子",
+    "kind": "maintenance",
+    "node": "H6",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P13-toolbox-1920x1080.png",
+    "editable": "editable/screens/P13-toolbox-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P13-toolbox",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "f2700786e3d82813c6cd92ad236881fd2f15fa3124b1380c8763f3826a88c825"
+  },
+  {
+    "id": "P13-charge",
+    "family": "P13",
+    "title": "手电充电 · 兼容电池",
+    "kind": "maintenance",
+    "node": "H6",
+    "tool": "lamp",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P13-charge-1920x1080.png",
+    "editable": "editable/screens/P13-charge-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P13-charge",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "bd27acac170ffc309cbb801871834d7529f70902e21beb37bab1f71ac2182bed"
+  },
+  {
+    "id": "P14-A",
+    "family": "P14",
+    "title": "休整 · A类地点",
+    "kind": "rest",
+    "node": "H6",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P14-A-1920x1080.png",
+    "editable": "editable/screens/P14-A-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P14-A",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "49faf2b4ec313325b5dd3816b83a530ae309eb6d93f77fd5deb45302891c138d"
+  },
+  {
+    "id": "P14-C",
+    "family": "P14",
+    "title": "休整 · C类地点",
+    "kind": "rest",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P14-C-1920x1080.png",
+    "editable": "editable/screens/P14-C-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P14-C",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "d51eed1ba195a216fd69be5f1aaba28b889f017022f9bd937de0d0a5e828337a"
+  },
+  {
+    "id": "P14-consequences",
+    "family": "P14",
+    "title": "日级后果 · 生还后推进",
+    "kind": "rest",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P14-consequences-1920x1080.png",
+    "editable": "editable/screens/P14-consequences-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P14-consequences",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "4d9ab0e3e41177a9eeaf545be6da1062c7959048206e2ba4d478680d8d782af0"
+  },
+  {
+    "id": "P14-death",
+    "family": "P14",
+    "title": "日级后果 · HP0短路",
+    "kind": "rest",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P14-death-1920x1080.png",
+    "editable": "editable/screens/P14-death-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P14-death",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "0286340c09d22d134f3c09f56fd27fba6332e450a32e64bf1637e48c1080c2f2"
+  },
+  {
+    "id": "P15-orderly",
+    "family": "P15",
+    "title": "隔离走廊 · 感染护工",
+    "kind": "battle",
+    "node": "H4",
+    "enemy": "orderly",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P15-orderly-1920x1080.png",
+    "editable": "editable/screens/P15-orderly-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P15-orderly",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "b21fd8f5014fa60715f0159f5af24fded9934c806a7e567345076e3b36ce1efb"
+  },
+  {
+    "id": "P15-porter",
+    "family": "P15",
+    "title": "装卸场 · 感染装卸工",
+    "kind": "battle",
+    "node": "L2",
+    "enemy": "porter",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P15-porter-1920x1080.png",
+    "editable": "editable/screens/P15-porter-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P15-porter",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "cd1cb83ff0ef41b959b8ce2205f71d87d539063a234c16d3e1f51b62a21aaa82"
+  },
+  {
+    "id": "P15-technician",
+    "family": "P15",
+    "title": "检修走廊 · 感染技术员",
+    "kind": "battle",
+    "node": "C2",
+    "enemy": "technician",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P15-technician-1920x1080.png",
+    "editable": "editable/screens/P15-technician-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P15-technician",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "9523697f57624b9585bedf5f16dc7d53e8eb1559b12fe0fec486437070c34677"
+  },
+  {
+    "id": "P16-max",
+    "family": "P16",
+    "title": "战斗 · 中央放大",
+    "kind": "battle",
+    "node": "H4",
+    "max": true,
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P16-max-1920x1080.png",
+    "editable": "editable/screens/P16-max-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "max",
+    "interaction": "prototype/index.html?screen=P16-max",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "392e64992018be4f40034d89ed2236f8177590a4e0e6810baacdcf595f1d7209"
+  },
+  {
+    "id": "P16-phases",
+    "family": "P16",
+    "title": "感染护工 · 五公开阶段",
+    "kind": "battle",
+    "node": "H4",
+    "phases": true,
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P16-phases-1920x1080.png",
+    "editable": "editable/screens/P16-phases-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P16-phases",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "4f0603608c8de924a47cd1303be305f53985dbec64aa1d5278aa43a2ba601e7d"
+  },
+  {
+    "id": "P16-porter-phases",
+    "family": "P16",
+    "title": "感染装卸工 · 五公开阶段",
+    "kind": "battle",
+    "node": "L2",
+    "phases": true,
+    "enemy": "porter",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P16-porter-phases-1920x1080.png",
+    "editable": "editable/screens/P16-porter-phases-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P16-porter-phases",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "7a28604b6d03cb02c0c901bed19cf15f1961dc5e5dc525c8b6eafadc82268c91"
+  },
+  {
+    "id": "P16-technician-phases",
+    "family": "P16",
+    "title": "感染技术员 · 五公开阶段",
+    "kind": "battle",
+    "node": "C2",
+    "phases": true,
+    "enemy": "technician",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P16-technician-phases-1920x1080.png",
+    "editable": "editable/screens/P16-technician-phases-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P16-technician-phases",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "69bc1b9eacc989ec4b46b161f5e41fdadc3c27e0fad683818fef9e6a7f503a3a"
+  },
+  {
+    "id": "P16-submitted",
+    "family": "P16",
+    "title": "玩家行动 · 已提交示范",
+    "kind": "battle",
+    "node": "H4",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P16-submitted-1920x1080.png",
+    "editable": "editable/screens/P16-submitted-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P16-submitted",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "5d37abe3dda013b6e86017eca7b62bcc84c4bee9c60d616bbb83c37ed1b230fe"
+  },
+  {
+    "id": "P16-enemy-response",
+    "family": "P16",
+    "title": "敌人响应 · 已结事件示范",
+    "kind": "battle",
+    "node": "H4",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P16-enemy-response-1920x1080.png",
+    "editable": "editable/screens/P16-enemy-response-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P16-enemy-response",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "3436983c1da97c29ee31b1561c83386fe3f930ccffa67089aeb56ac0c914515b"
+  },
+  {
+    "id": "P16-hit",
+    "family": "P16",
+    "title": "命中瞬间 · 独立FX",
+    "kind": "battle",
+    "node": "H4",
+    "hit": true,
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P16-hit-1920x1080.png",
+    "editable": "editable/screens/P16-hit-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P16-hit",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "c57050c5db80f175808fdc97e97c7c83b4c0f3ad5f5659b0c160451703bc1277"
+  },
+  {
+    "id": "P16-stage-change",
+    "family": "P16",
+    "title": "阶段切换 · 受伤",
+    "kind": "battle",
+    "node": "H4",
+    "stage": 1,
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P16-stage-change-1920x1080.png",
+    "editable": "editable/screens/P16-stage-change-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P16-stage-change",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "7dc691c18189601dcfca68a51a2d709c659aac96449bced80775c8427f57526d"
+  },
+  {
+    "id": "P16-decision",
+    "family": "P16",
+    "title": "玩家决策 · 稳定暂停",
+    "kind": "battle",
+    "node": "H4",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P16-decision-1920x1080.png",
+    "editable": "editable/screens/P16-decision-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P16-decision",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "ae337158c7d91898763db3ad6b8b985b92bacf898a4778a5fec6f20a47c187ad"
+  },
+  {
+    "id": "P16-retreat",
+    "family": "P16",
+    "title": "合法退却 · 已提交示范",
+    "kind": "battle",
+    "node": "H4",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P16-retreat-1920x1080.png",
+    "editable": "editable/screens/P16-retreat-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P16-retreat",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "10cb8563f2b98f8b5ebe840473fe5abeb058b221005fbe0b8e1b204b03be57d5"
+  },
+  {
+    "id": "P16-reduced",
+    "family": "P16",
+    "title": "减少动态 · 静态等价",
+    "kind": "battle",
+    "node": "H4",
+    "reduced": true,
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P16-reduced-1920x1080.png",
+    "editable": "editable/screens/P16-reduced-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P16-reduced",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "c2de0a176a6879e2af8d07c04e2334e472e5e3b53f77429d1f546ae5865f5854"
+  },
+  {
+    "id": "P17-victory",
+    "family": "P17",
+    "title": "战斗胜利 · 回到隔离走廊",
+    "kind": "result",
+    "node": "H4",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P17-victory-1920x1080.png",
+    "editable": "editable/screens/P17-victory-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P17-victory",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "331fa9d79515d1082b9d69b943ead3090557cab25d1ab680be8199e18c828a0d"
+  },
+  {
+    "id": "P17-retreat",
+    "family": "P17",
+    "title": "合法退却 · 回到入场前大厅",
+    "kind": "result",
+    "node": "H1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P17-retreat-1920x1080.png",
+    "editable": "editable/screens/P17-retreat-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P17-retreat",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "7cd2030511011031cf3bc978ab2c7be8c879c0f18049b48dff52bb772263df7e"
+  },
+  {
+    "id": "P18-success",
+    "family": "P18",
+    "title": "委托成功 · 静态中枢",
+    "kind": "terminal",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P18-success-1920x1080.png",
+    "editable": "editable/screens/P18-success-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P18-success",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "432e293aa60f31ff3afa086846a514f84c9243dc7d86e8bf1e18147c39bf60ac"
+  },
+  {
+    "id": "P19-voluntary",
+    "family": "P19",
+    "title": "主动失败生还 · 静态中枢",
+    "kind": "terminal",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P19-voluntary-1920x1080.png",
+    "editable": "editable/screens/P19-voluntary-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P19-voluntary",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "3d8b0c9182bdfdec700c59d5ea4934107bf3275b528ca88c662195d4cd50d4fe"
+  },
+  {
+    "id": "P20-deadline",
+    "family": "P20",
+    "title": "期限失败生还 · 静态中枢",
+    "kind": "terminal",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P20-deadline-1920x1080.png",
+    "editable": "editable/screens/P20-deadline-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P20-deadline",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "3d05829c7d48451f6ac326c63a91848d89e24fc4dfff61ca59891e2e891ef6cd"
+  },
+  {
+    "id": "P21-enemy-alive",
+    "family": "P21",
+    "title": "实际死亡 · 敌人仍存活",
+    "kind": "terminal",
+    "node": "H4",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P21-enemy-alive-1920x1080.png",
+    "editable": "editable/screens/P21-enemy-alive-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P21-enemy-alive",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "e6f22302eb9606a84b62c8a3496c1f941d7537b826042ac2c32e6b1ef6b74601"
+  },
+  {
+    "id": "P21-both-zero",
+    "family": "P21",
+    "title": "实际死亡 · 双方失去能力",
+    "kind": "terminal",
+    "node": "H4",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P21-both-zero-1920x1080.png",
+    "editable": "editable/screens/P21-both-zero-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P21-both-zero",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "723cbae0a78ffb9fe5ab0971023ea25829c55abf417bf8056bf1d525e05f98e9"
+  },
+  {
+    "id": "P22-return",
+    "family": "P22",
+    "title": "正式返回 · 关闭本委托",
+    "kind": "confirm",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P22-return-1920x1080.png",
+    "editable": "editable/screens/P22-return-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P22-return",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "a4526158431fb934753897756f8367ebca0e3a0860233b29b344fe7037f0ff5d"
+  },
+  {
+    "id": "P22-critical-drop",
+    "family": "P22",
+    "title": "留置指定样本 · 关键物",
+    "kind": "confirm",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P22-critical-drop-1920x1080.png",
+    "editable": "editable/screens/P22-critical-drop-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P22-critical-drop",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "349560ad87b17cc379fe5bbed08d6a92b1b62a1e8caf11da9962e11567a940bc"
+  },
+  {
+    "id": "P22-certain-death",
+    "family": "P22",
+    "title": "当前操作必死 · 有其他合法选择",
+    "kind": "confirm",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P22-certain-death-1920x1080.png",
+    "editable": "editable/screens/P22-certain-death-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P22-certain-death",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "693f913a806286dae649b3da9babf75f7b3abdc8621df19013e3305047991866"
+  },
+  {
+    "id": "P22-cancelled",
+    "family": "P22",
+    "title": "已取消 · 回到原上下文",
+    "kind": "confirm",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P22-cancelled-1920x1080.png",
+    "editable": "editable/screens/P22-cancelled-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P22-cancelled",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "86ad848f3a05de7e47c83940a6be680551dcff70405387e11ed242d24cd7b6cc"
+  },
+  {
+    "id": "P22-stale",
+    "family": "P22",
+    "title": "条件已变化 · 重新选择",
+    "kind": "confirm",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P22-stale-1920x1080.png",
+    "editable": "editable/screens/P22-stale-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P22-stale",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "32fbf2f308fee3538b9b5d08af75268703d8b89bfbdff00ae5e4194d0aae8dd3"
+  },
+  {
+    "id": "P23-saved",
+    "family": "P23",
+    "title": "已保存",
+    "kind": "save",
+    "node": "H1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P23-saved-1920x1080.png",
+    "editable": "editable/screens/P23-saved-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P23-saved",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "b58e03ab68730355726e082f2a204ef6b8b22c7e762cf4c5a416bf990968df3d"
+  },
+  {
+    "id": "P23-not-attempted",
+    "family": "P23",
+    "title": "当前页面尚无新写入",
+    "kind": "save",
+    "node": "H1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P23-not-attempted-1920x1080.png",
+    "editable": "editable/screens/P23-not-attempted-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P23-not-attempted",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "a3adeb5dcb5ea6f1b0b75ebc9b254a46d56faaf94041746609801dfcb74f2200"
+  },
+  {
+    "id": "P23-failed",
+    "family": "P23",
+    "title": "已生效 · 未保存",
+    "kind": "save",
+    "node": "H1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P23-failed-1920x1080.png",
+    "editable": "editable/screens/P23-failed-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P23-failed",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "be8328b8024272e4c907c933958493b0334800566ccd62bdeeb6bde513330677"
+  },
+  {
+    "id": "P23-retry",
+    "family": "P23",
+    "title": "只重试保存 · 不重放玩法",
+    "kind": "save",
+    "node": "H1",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P23-retry-1920x1080.png",
+    "editable": "editable/screens/P23-retry-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P23-retry",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "60529838a24657cd62478ef584050c57f63776eca498dcc6b949e1c04b3e6c39"
+  },
+  {
+    "id": "P24-request",
+    "family": "P24",
+    "title": "正在取得本页使用权",
+    "kind": "error",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P24-request-1920x1080.png",
+    "editable": "editable/screens/P24-request-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P24-request",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "0a1cf7242bcb109f81c48be55b4b43d824bfbe3205e0ea50371719a95bbba693"
+  },
+  {
+    "id": "P24-occupied",
+    "family": "P24",
+    "title": "已由另一页面使用",
+    "kind": "error",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P24-occupied-1920x1080.png",
+    "editable": "editable/screens/P24-occupied-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P24-occupied",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "5cdb6c5924b07675b94fddf68ee281fb163263ce1e6cd5532957c857e61c90ce"
+  },
+  {
+    "id": "P24-lost",
+    "family": "P24",
+    "title": "本页已失去使用权",
+    "kind": "error",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P24-lost-1920x1080.png",
+    "editable": "editable/screens/P24-lost-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P24-lost",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "387ab039511eba6eca31dec6d0003e5f9b1b6cb9a327d2565750db7a738303dc"
+  },
+  {
+    "id": "P24-corrupt",
+    "family": "P24",
+    "title": "记录无法校验",
+    "kind": "error",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P24-corrupt-1920x1080.png",
+    "editable": "editable/screens/P24-corrupt-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P24-corrupt",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "180039e6d111a560071d488aa7d058d6554a8f7d82e6c0870e0eb68e720c25b4"
+  },
+  {
+    "id": "P24-read-error",
+    "family": "P24",
+    "title": "读取失败",
+    "kind": "error",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P24-read-error-1920x1080.png",
+    "editable": "editable/screens/P24-read-error-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P24-read-error",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "5d2b9a03482ef102123d40b4479f96e157f4eb985f7e208692be671f99ec4056"
+  },
+  {
+    "id": "P24-projection",
+    "family": "P24",
+    "title": "展示暂不可用",
+    "kind": "error",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P24-projection-1920x1080.png",
+    "editable": "editable/screens/P24-projection-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P24-projection",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "ba449be2c8cc945aca9d118c9dc1fe9f4577f2fffcd48feddb5d1a76f3a64ad9"
+  },
+  {
+    "id": "P25-controls",
+    "family": "P25",
+    "title": "操作说明 · 查看与执行",
+    "kind": "help",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P25-controls-1920x1080.png",
+    "editable": "editable/screens/P25-controls-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P25-controls",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "bdc5ee307082840d426c15b80c107e2aaef2ff9890af0ef6055ca6f8e002569d"
+  },
+  {
+    "id": "P25-health",
+    "family": "P25",
+    "title": "身体与药食 · 可知边界",
+    "kind": "help",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P25-health-1920x1080.png",
+    "editable": "editable/screens/P25-health-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P25-health",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "b78f25fd235d1760e69c80965ed996738edfce988f8709b603b09ba5b6d258a6"
+  },
+  {
+    "id": "P25-quick",
+    "family": "P25",
+    "title": "快捷位 · 两个真实槽",
+    "kind": "help",
+    "node": "H0",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P25-quick-1920x1080.png",
+    "editable": "editable/screens/P25-quick-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P25-quick",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "c130258a85536545c446923585ebd5fcc9a6c2d7dbbef37d5927f10d6c1b5831"
+  },
+  {
+    "id": "P06-door-result",
+    "family": "P06",
+    "title": "消防门 · 通路已处理",
+    "kind": "node",
+    "node": "H1",
+    "outcome": "通路已打开",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-door-result-1920x1080.png",
+    "editable": "editable/screens/P06-door-result-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-door-result",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "3a85d81928dc3c5f01ce9c81d9adfe99eb8f53d737ebcd5108ab9478b9695429"
+  },
+  {
+    "id": "P06-power-result",
+    "family": "P06",
+    "title": "转运支路 · 已恢复供电",
+    "kind": "node",
+    "node": "P1",
+    "outcome": "当地供电已恢复",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-power-result-1920x1080.png",
+    "editable": "editable/screens/P06-power-result-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-power-result",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "e9cb44e2254794c6f456f43a306dc1c6633b9c69d6ba8393469f4df7f2918080"
+  },
+  {
+    "id": "P06-records-result",
+    "family": "P06",
+    "title": "记录 · 比对已完成",
+    "kind": "node",
+    "node": "C1",
+    "outcome": "记录比对已完成",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-records-result-1920x1080.png",
+    "editable": "editable/screens/P06-records-result-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-records-result",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "34383589495110d8e8e034b4fac5078fff3f32bdb479dce69c10bded923289fd"
+  },
+  {
+    "id": "P06-component-result",
+    "family": "P06",
+    "title": "组件 · 已真实取件",
+    "kind": "node",
+    "node": "L2",
+    "outcome": "转运组件已进入明确格位",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-component-result-1920x1080.png",
+    "editable": "editable/screens/P06-component-result-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-component-result",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "c436f7ec18fd884f239b484e5b3c08018a7afda1247817cc60300cd306888f65"
+  },
+  {
+    "id": "P06-sample-result",
+    "family": "P06",
+    "title": "样本 · 已实际携带",
+    "kind": "node",
+    "node": "H5",
+    "outcome": "指定样本已进入背包",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-sample-result-1920x1080.png",
+    "editable": "editable/screens/P06-sample-result-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-sample-result",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "392255d8ca85fb47ade38adc538bfc1dddfeb7685078555d3aadbf7041a3c437"
+  },
+  {
+    "id": "P06-install-result",
+    "family": "P06",
+    "title": "平台 · 安装已完成",
+    "kind": "node",
+    "node": "H8",
+    "outcome": "转运设施已安装",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P06-install-result-1920x1080.png",
+    "editable": "editable/screens/P06-install-result-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P06-install-result",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "8514f59fbccc8b2a6ae4eb6ae19bb0d5b97f96febdb93b377b5616731a8bf4a7"
+  },
+  {
+    "id": "P10-detail-sample",
+    "family": "P10",
+    "title": "样本详情 · 只读",
+    "kind": "item-detail",
+    "node": "H5",
+    "item": "sample",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P10-detail-sample-1920x1080.png",
+    "editable": "editable/screens/P10-detail-sample-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P10-detail-sample",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "e7c9dba7b4f0af3375fe922aa1fb30de1ab820d1e3558678bf8955cba888a5cd"
+  },
+  {
+    "id": "P10-detail-pipe",
+    "family": "P10",
+    "title": "金属管详情 · 只读",
+    "kind": "item-detail",
+    "node": "H5",
+    "item": "pipe",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "provenance": "HAND_AUTHORED_DESIGN_SAMPLE from approved semantics; not a production snapshot or test fixture",
+    "preview": "previews/screens/P10-detail-pipe-1920x1080.png",
+    "editable": "editable/screens/P10-detail-pipe-1920x1080.svg",
+    "master": "prototype/index.html + screens.js + ui.js + ui.css",
+    "normalOrMax": "normal",
+    "interaction": "prototype/index.html?screen=P10-detail-pipe",
+    "assetVersions": "spec/asset-manifest.json; per-export actual image list in geometry records",
+    "limits": [
+      "No gameplay, persistence, real CTB, or correctness simulation",
+      "Resolution limitations in node-crop-manifest; browser DOM export, not production screenshot"
+    ],
+    "sha256": "f02d19d96ae2e949410939f770df3a82d96bc305d69c3eecb59847f007f8a79c"
+  }
+]

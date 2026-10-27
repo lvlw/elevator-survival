@@ -1,6 +1,6 @@
 # 页面与状态矩阵
 
-25个页面族、113个独立1920母版。均为作者编排的公开状态设计样例，不能串成真实存档轨迹。来源与变体字段见[逐图清单](spec/screen-manifest.json)。
+25个页面族、122个独立1920母版。均为作者编排的公开状态设计样例，不能串成真实存档轨迹。来源与变体字段见[逐图清单](spec/screen-manifest.json)。
 
 | ID | 状态 | 实际图稿与点击入口 |
 | --- | --- | --- |
@@ -117,5 +117,14 @@
 | P06-install-result | 平台 · 安装已完成 | [PNG](previews/screens/P06-install-result-1920x1080.png) / [原型](prototype/index.html?screen=P06-install-result) |
 | P10-detail-sample | 样本详情 · 只读 | [PNG](previews/screens/P10-detail-sample-1920x1080.png) / [原型](prototype/index.html?screen=P10-detail-sample) |
 | P10-detail-pipe | 金属管详情 · 只读 | [PNG](previews/screens/P10-detail-pipe-1920x1080.png) / [原型](prototype/index.html?screen=P10-detail-pipe) |
+| P03-first-arrival | 首次抵达 · 初选延续 | [PNG](previews/screens/P03-first-arrival-1920x1080.png) / [原型](prototype/index.html?screen=P03-first-arrival) |
+| P06-sample-cautious-last | 采样支付 · 谨慎 / 完整度1 | [PNG](previews/screens/P06-sample-cautious-last-1920x1080.png) / [原型](prototype/index.html?screen=P06-sample-cautious-last) |
+| P06-sample-cautious-broken | 采样支付 · 谨慎 / 完整度0 | [PNG](previews/screens/P06-sample-cautious-broken-1920x1080.png) / [原型](prototype/index.html?screen=P06-sample-cautious-broken) |
+| P06-sample-cautious-unequipped | 采样支付 · 谨慎 / 未装备 | [PNG](previews/screens/P06-sample-cautious-unequipped-1920x1080.png) / [原型](prototype/index.html?screen=P06-sample-cautious-unequipped) |
+| P06-sample-direct-last | 采样支付 · 直接 / 完整度1 | [PNG](previews/screens/P06-sample-direct-last-1920x1080.png) / [原型](prototype/index.html?screen=P06-sample-direct-last) |
+| P06-sample-direct-broken | 采样支付 · 直接 / 完整度0 | [PNG](previews/screens/P06-sample-direct-broken-1920x1080.png) / [原型](prototype/index.html?screen=P06-sample-direct-broken) |
+| P06-sample-direct-unequipped | 采样支付 · 直接 / 未装备 | [PNG](previews/screens/P06-sample-direct-unequipped-1920x1080.png) / [原型](prototype/index.html?screen=P06-sample-direct-unequipped) |
+| P17-retreat-porter | 装卸工退却 · 登记室 | [PNG](previews/screens/P17-retreat-porter-1920x1080.png) / [原型](prototype/index.html?screen=P17-retreat-porter) |
+| P17-retreat-technician | 技术员退却 · 档案室 | [PNG](previews/screens/P17-retreat-technician-1920x1080.png) / [原型](prototype/index.html?screen=P17-retreat-technician) |
 
 多视口实测另见[几何记录](validation/responsive-results.json)。SVG导出与HTML组件母版共同提供编辑能力；不是只有底图上的热点。

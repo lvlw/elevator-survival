@@ -6,11 +6,6 @@
   },
   {
     "from": "00-owner-review.md",
-    "target": "prototype/index.html",
-    "exists": true
-  },
-  {
-    "from": "00-owner-review.md",
     "target": "previews/asset-gallery.html",
     "exists": true
   },
@@ -21,37 +16,27 @@
   },
   {
     "from": "00-owner-review.md",
-    "target": "previews/native-shell-1920.jpg",
+    "target": "validation/r1/review-notes.md",
     "exists": true
   },
   {
     "from": "00-owner-review.md",
-    "target": "previews/native-battle-1920.jpg",
-    "exists": true
-  },
-  {
-    "from": "00-owner-review.md",
-    "target": "03-dimension-contract.md",
-    "exists": true
-  },
-  {
-    "from": "00-owner-review.md",
-    "target": "validation/design-qa.md",
-    "exists": true
-  },
-  {
-    "from": "00-owner-review.md",
-    "target": "validation/final-check-results.json",
-    "exists": true
-  },
-  {
-    "from": "00-owner-review.md",
-    "target": "06-implementation-handoff-draft.md",
+    "target": "validation/r1/edge/03-depart-h0.jpg",
     "exists": true
   },
   {
     "from": "00-owner-review.md",
     "target": "spec/delivery-packages.json",
+    "exists": true
+  },
+  {
+    "from": "00-owner-review.md",
+    "target": "reviews/OWNER-modal-size-followup.md",
+    "exists": true
+  },
+  {
+    "from": "00-owner-review.md",
+    "target": "06-implementation-handoff-draft.md",
     "exists": true
   },
   {
@@ -1231,6 +1216,96 @@
   },
   {
     "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P03-first-arrival-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P03-first-arrival",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-sample-cautious-last-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-sample-cautious-last",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-sample-cautious-broken-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-sample-cautious-broken",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-sample-cautious-unequipped-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-sample-cautious-unequipped",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-sample-direct-last-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-sample-direct-last",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-sample-direct-broken-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-sample-direct-broken",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-sample-direct-unequipped-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-sample-direct-unequipped",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P17-retreat-porter-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P17-retreat-porter",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P17-retreat-technician-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P17-retreat-technician",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
     "target": "validation/responsive-results.json",
     "exists": true
   },
@@ -1251,7 +1326,12 @@
   },
   {
     "from": "03-dimension-contract.md",
-    "target": "validation/design-qa.md",
+    "target": "validation/r1/review-notes.md",
+    "exists": true
+  },
+  {
+    "from": "03-dimension-contract.md",
+    "target": "reviews/OWNER-modal-size-followup.md",
     "exists": true
   },
   {
@@ -1266,7 +1346,7 @@
   },
   {
     "from": "04-interaction-and-motion.md",
-    "target": "validation/interaction-results.json",
+    "target": "validation/r1/edge-browser.json",
     "exists": true
   },
   {
@@ -1285,13 +1365,23 @@
     "exists": true
   },
   {
+    "from": "05-asset-coverage.md",
+    "target": "validation/r1/review-notes.md",
+    "exists": true
+  },
+  {
     "from": "completion.md",
     "target": "validation/final-check-results.json",
     "exists": true
   },
   {
     "from": "completion.md",
-    "target": "validation/design-qa.md",
+    "target": "validation/r1/audit-results.json",
+    "exists": true
+  },
+  {
+    "from": "completion.md",
+    "target": "validation/r1/review-notes.md",
     "exists": true
   },
   {
@@ -1300,33 +1390,73 @@
     "exists": true
   },
   {
-    "from": "completion.md",
-    "target": "00-owner-review.md",
+    "from": "size-change-log.md",
+    "target": "reviews/OWNER-modal-size-followup.md",
     "exists": true
   },
   {
     "from": "validation/design-qa.md",
-    "target": "../previews/comparison-shell.jpg",
+    "target": "history-v1.0/design-qa.md",
     "exists": true
   },
   {
     "from": "validation/design-qa.md",
-    "target": "../previews/comparison-combat.jpg",
+    "target": "r1/review-notes.md",
     "exists": true
   },
   {
     "from": "validation/design-qa.md",
-    "target": "interaction-results.json",
+    "target": "final-check-results.json",
     "exists": true
   },
   {
     "from": "validation/design-qa.md",
-    "target": "responsive-results.json",
+    "target": "r1/audit-results.json",
     "exists": true
   },
   {
-    "from": "validation/design-qa.md",
-    "target": "responsive-browser-runs.json",
+    "from": "validation/r1/review-notes.md",
+    "target": "before-browser.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "edge-browser.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "contact-sheets/index.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "alpha/alpha-analysis.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "hd/bg-h0-r1-native-attempt.measurement.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "zoom-results.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "nine-slice-comparison.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "nine-slice-corner-comparison.png",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "audit-attempt-02.json",
     "exists": true
   }
 ]

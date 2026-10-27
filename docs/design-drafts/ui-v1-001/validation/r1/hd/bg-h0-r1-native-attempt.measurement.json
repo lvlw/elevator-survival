@@ -1,0 +1,35 @@
+{
+  "file": "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-DESIGN-001-R1-work\\hd\\bg-h0-r1-native-attempt.png",
+  "sourceGeneratedFile": "C:\\Users\\zjl\\.codex\\generated_images\\01a17de9-6842-7a31-9825-ec6870d443f8\\exec-5b58ca42-b054-43f7-a260-d4082787ccfe.png",
+  "bytes": 2912962,
+  "sha256": "88e146dc6d8ae7eb4971a7b6327f1d87c6abaa44c9e0f77c367f0e4998d31895",
+  "actualPixels": [
+    1672,
+    940
+  ],
+  "requestedPixels": [
+    3840,
+    2160
+  ],
+  "slotCss": [
+    1200,
+    888
+  ],
+  "targetDpr": 2,
+  "coverScale": 0.9446808510638298,
+  "visibleSourcePixels": [
+    1270.2702702702702,
+    940.0
+  ],
+  "requiredVisiblePixels": [
+    2400,
+    1776
+  ],
+  "effectiveNativePixelsPerCss": 1.0585585585585586,
+  "dpr2Pass": false,
+  "resampled": false,
+  "pixelRewrite": false,
+  "status": "NATIVE_RESOLUTION_GATE_UNMET",
+  "tool": "built-in image_gen",
+  "attemptCount": 1
+}

@@ -5,7 +5,7 @@ import hashlib, json, re, subprocess, sys
 
 ROOT=Path(__file__).resolve().parents[1]
 REPO=ROOT.parents[2]
-BASE='6bb43c8861b7c3dd21499211fdb0e646e48bba20'
+BASE='d7d395ea7c061e26f9244fcfd296c764785af16a'
 checks=[]
 def check(name,ok,detail=None): checks.append({'name':name,'pass':bool(ok),'detail':detail})
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -36,7 +36,7 @@ for w,h in [(1600,900),(1366,768)]:
     required.extend((s,w,h) for s in ['P03-hospital','P09-normal','P10-inventory','P12-bandage','P15-orderly','P16-max','P23-failed','P24-corrupt'])
 required.extend((s,1280,720) for s in ['P03-hospital','P11-task-pickup','P15-orderly','P22-certain-death'])
 required.extend((s,1440,900) for s in ['P03-hospital','P15-orderly'])
-for w,h in [(2560,1440),(1366,650),(1024,768),(390,844)]:
+for w,h in [(2560,1440),(2560,1080),(1366,650),(1024,768),(390,844)]:
     required.extend((s,w,h) for s in ['P03-hospital','P09-normal','P12-bandage','P15-orderly','P23-failed'])
 for s,w,h in required:
     p=ROOT/f'previews/screens/{s}-{w}x{h}.json'
@@ -55,7 +55,7 @@ for p in textfiles:
     check('UTF8 '+p.relative_to(ROOT).as_posix(),ok)
 links=[]
 for p in ROOT.rglob('*.md'):
-    if 'inputs' in p.relative_to(ROOT).parts:continue
+    if any(x in p.relative_to(ROOT).parts for x in ['inputs','history-v1.0']):continue
     for target in re.findall(r'\]\(([^)]+)\)',p.read_text('utf-8')):
         if re.match(r'^(https?:|data:|#|[A-Z]:)',target):continue
         file=target.split('#')[0].split('?')[0]
@@ -67,9 +67,9 @@ untracked=subprocess.check_output(['git','ls-files','--others','--exclude-standa
 outside=[p for p in changed+untracked if p and not p.startswith('docs/design-drafts/ui-v1-001/')]
 check('scope only ui-v1-001',not outside,outside)
 check('no file over 100 MiB',all(p.stat().st_size<100*1024**2 for p in ROOT.rglob('*') if p.is_file()))
-result={'kind':'DESIGN_FILE_AND_GEOMETRY_AUDIT_NOT_PRODUCTION_TESTS','baseline':BASE,'checks':checks,'passed':sum(x['pass'] for x in checks),'failed':sum(not x['pass'] for x in checks),'limitations':['This script does not prove visual quality or interaction.','Background DPR2 insufficient. Actual 125/150 browser zoom NOT VERIFIED.','DOM export has border-image differences from native browser rendering.'],'productionTests':'NOT RUN'}
+result={'kind':'DESIGN_FILE_AND_GEOMETRY_AUDIT_NOT_PRODUCTION_TESTS','baseline':BASE,'checks':checks,'passed':sum(x['pass'] for x in checks),'failed':sum(not x['pass'] for x in checks),'limitations':['This script does not prove visual quality or interaction.','Background DPR2 and residual alpha gates remain open.','Browser evidence and zoom status are independently recorded under validation/r1; audit counts do not prove completion.'],'productionTests':'NOT RUN'}
 (ROOT/'validation/final-check-results.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n','utf-8')
-(ROOT/'validation/responsive-results.json').write_text(json.dumps({'kind':'ACTUAL_BROWSER_DOM_MEASUREMENTS','desktopProfiles':geometry[:5],'otherProfiles':geometry[5:],'requiredAdditionalExports':len(required),'zoom':'NOT_VERIFIED'},ensure_ascii=False,indent=2)+'\n','utf-8')
+(ROOT/'validation/responsive-results.json').write_text(json.dumps({'kind':'ACTUAL_BROWSER_DOM_MEASUREMENTS','desktopProfiles':geometry[:5],'otherProfiles':geometry[5:],'requiredAdditionalExports':len(required),'zoom':'See r1/zoom-results.json; independently observed, not inferred from dimensions'},ensure_ascii=False,indent=2)+'\n','utf-8')
 (ROOT/'validation/link-results.json').write_text(json.dumps(links,ensure_ascii=False,indent=2)+'\n','utf-8')
 print(json.dumps({'passed':result['passed'],'failed':result['failed'],'failedChecks':[x for x in checks if not x['pass']]},ensure_ascii=False))
 sys.exit(1 if result['failed'] else 0)

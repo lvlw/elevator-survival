@@ -1,0 +1,14 @@
+[
+  {
+    "script": "validation/verify-delivery.py",
+    "exitCode": 0,
+    "stdout": "{\"passed\": 1364, \"failed\": 0, \"failedChecks\": []}\n",
+    "stderr": "warning: in the working copy of 'docs/design-drafts/ui-v1-001/02-page-state-matrix.md', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/spec/asset-manifest.json', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/spec/node-crop-manifest.json', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/spec/screen-manifest.json', CRLF will be replaced by LF the next time Git touches it\n"
+  },
+  {
+    "script": "validation/r1/audit-r1.py",
+    "exitCode": 0,
+    "stdout": "{\"passed\": 816, \"failed\": 0, \"failedChecks\": []}\n",
+    "stderr": "warning: in the working copy of 'docs/design-drafts/ui-v1-001/02-page-state-matrix.md', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/spec/asset-manifest.json', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/spec/node-crop-manifest.json', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/spec/screen-manifest.json', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/validation/final-check-results.json', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/validation/link-results.json', CRLF will be replaced by LF the next time Git touches it\nwarning: in the working copy of 'docs/design-drafts/ui-v1-001/validation/responsive-results.json', CRLF will be replaced by LF the next time Git touches it\n"
+  }
+]

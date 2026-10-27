@@ -1,0 +1,317 @@
+[
+  {
+    "sheet": "validation/r1/contact-sheets/01.jpg",
+    "files": [
+      "previews/screens/P01-crow-engineer-1920x1080.png",
+      "previews/screens/P01-crow-scout-1920x1080.png",
+      "previews/screens/P01-crow-survival-1920x1080.png",
+      "previews/screens/P01-lamp-engineer-1920x1080.png",
+      "previews/screens/P01-lamp-scout-1920x1080.png",
+      "previews/screens/P01-lamp-survival-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/02.jpg",
+    "files": [
+      "previews/screens/P01-toolbox-engineer-1920x1080.png",
+      "previews/screens/P01-toolbox-scout-1920x1080.png",
+      "previews/screens/P01-toolbox-survival-1920x1080.png",
+      "previews/screens/P01-unselected-1920x1080.png",
+      "previews/screens/P02-first-hub-1920x1080.png",
+      "previews/screens/P03-communication-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/03.jpg",
+    "files": [
+      "previews/screens/P03-first-arrival-1920x1080.png",
+      "previews/screens/P03-hospital-1024x768.png",
+      "previews/screens/P03-hospital-1280x720.png",
+      "previews/screens/P03-hospital-1366x650.png",
+      "previews/screens/P03-hospital-1366x768.png",
+      "previews/screens/P03-hospital-1440x900.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/04.jpg",
+    "files": [
+      "previews/screens/P03-hospital-1600x900.png",
+      "previews/screens/P03-hospital-1920x1080.png",
+      "previews/screens/P03-hospital-2560x1080.png",
+      "previews/screens/P03-hospital-2560x1440.png",
+      "previews/screens/P03-hospital-390x844.png",
+      "previews/screens/P03-hotel-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/05.jpg",
+    "files": [
+      "previews/screens/P03-logistics-1920x1080.png",
+      "previews/screens/P03-power-1920x1080.png",
+      "previews/screens/P04-after-1920x1080.png",
+      "previews/screens/P04-before-1920x1080.png",
+      "previews/screens/P05-empty-1920x1080.png",
+      "previews/screens/P05-reopen-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/06.jpg",
+    "files": [
+      "previews/screens/P05-revealed-1920x1080.png",
+      "previews/screens/P05-unsearched-1920x1080.png",
+      "previews/screens/P06-component-1920x1080.png",
+      "previews/screens/P06-component-result-1920x1080.png",
+      "previews/screens/P06-door-1920x1080.png",
+      "previews/screens/P06-door-result-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/07.jpg",
+    "files": [
+      "previews/screens/P06-install-1920x1080.png",
+      "previews/screens/P06-install-result-1920x1080.png",
+      "previews/screens/P06-power-1920x1080.png",
+      "previews/screens/P06-power-result-1920x1080.png",
+      "previews/screens/P06-records-1920x1080.png",
+      "previews/screens/P06-records-result-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/08.jpg",
+    "files": [
+      "previews/screens/P06-sample-cautious-1920x1080.png",
+      "previews/screens/P06-sample-cautious-broken-1920x1080.png",
+      "previews/screens/P06-sample-cautious-last-1920x1080.png",
+      "previews/screens/P06-sample-cautious-unequipped-1920x1080.png",
+      "previews/screens/P06-sample-direct-1920x1080.png",
+      "previews/screens/P06-sample-direct-broken-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/09.jpg",
+    "files": [
+      "previews/screens/P06-sample-direct-last-1920x1080.png",
+      "previews/screens/P06-sample-direct-unequipped-1920x1080.png",
+      "previews/screens/P06-sample-result-1920x1080.png",
+      "previews/screens/P07-lin-1920x1080.png",
+      "previews/screens/P07-zhou-1920x1080.png",
+      "previews/screens/P08-acquired-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/10.jpg",
+    "files": [
+      "previews/screens/P08-carried-1920x1080.png",
+      "previews/screens/P08-delivered-1920x1080.png",
+      "previews/screens/P08-ground-1920x1080.png",
+      "previews/screens/P09-blocked-1920x1080.png",
+      "previews/screens/P09-last-observed-1920x1080.png",
+      "previews/screens/P09-max-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/11.jpg",
+    "files": [
+      "previews/screens/P09-normal-1024x768.png",
+      "previews/screens/P09-normal-1366x650.png",
+      "previews/screens/P09-normal-1366x768.png",
+      "previews/screens/P09-normal-1600x900.png",
+      "previews/screens/P09-normal-1920x1080.png",
+      "previews/screens/P09-normal-2560x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/12.jpg",
+    "files": [
+      "previews/screens/P09-normal-2560x1440.png",
+      "previews/screens/P09-normal-390x844.png",
+      "previews/screens/P09-unknown-passability-1920x1080.png",
+      "previews/screens/P10-detail-pipe-1920x1080.png",
+      "previews/screens/P10-detail-sample-1920x1080.png",
+      "previews/screens/P10-equipment-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/13.jpg",
+    "files": [
+      "previews/screens/P10-inventory-1366x768.png",
+      "previews/screens/P10-inventory-1600x900.png",
+      "previews/screens/P10-inventory-1920x1080.png",
+      "previews/screens/P10-inventory-2552x908.png",
+      "previews/screens/P10-rotated-1920x1080.png",
+      "previews/screens/P11-drop-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/14.jpg",
+    "files": [
+      "previews/screens/P11-merge-1920x1080.png",
+      "previews/screens/P11-move-1920x1080.png",
+      "previews/screens/P11-no-space-1920x1080.png",
+      "previews/screens/P11-quick-1920x1080.png",
+      "previews/screens/P11-split-1920x1080.png",
+      "previews/screens/P11-task-pickup-1280x720.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/15.jpg",
+    "files": [
+      "previews/screens/P11-task-pickup-1920x1080.png",
+      "previews/screens/P12-bandage-1024x768.png",
+      "previews/screens/P12-bandage-1366x650.png",
+      "previews/screens/P12-bandage-1366x768.png",
+      "previews/screens/P12-bandage-1600x900.png",
+      "previews/screens/P12-bandage-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/16.jpg",
+    "files": [
+      "previews/screens/P12-bandage-2560x1080.png",
+      "previews/screens/P12-bandage-2560x1440.png",
+      "previews/screens/P12-bandage-390x844.png",
+      "previews/screens/P12-battle-1920x1080.png",
+      "previews/screens/P12-disinfectant-1920x1080.png",
+      "previews/screens/P12-firstaid-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/17.jpg",
+    "files": [
+      "previews/screens/P12-invalid-1920x1080.png",
+      "previews/screens/P12-painkiller-1920x1080.png",
+      "previews/screens/P12-ration-1920x1080.png",
+      "previews/screens/P12-suppressant-1920x1080.png",
+      "previews/screens/P13-charge-1920x1080.png",
+      "previews/screens/P13-coat-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/18.jpg",
+    "files": [
+      "previews/screens/P13-mechanical-1920x1080.png",
+      "previews/screens/P13-toolbox-1920x1080.png",
+      "previews/screens/P14-A-1920x1080.png",
+      "previews/screens/P14-C-1920x1080.png",
+      "previews/screens/P14-consequences-1920x1080.png",
+      "previews/screens/P14-death-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/19.jpg",
+    "files": [
+      "previews/screens/P15-orderly-1024x768.png",
+      "previews/screens/P15-orderly-1280x720.png",
+      "previews/screens/P15-orderly-1366x650.png",
+      "previews/screens/P15-orderly-1366x768.png",
+      "previews/screens/P15-orderly-1440x900.png",
+      "previews/screens/P15-orderly-1600x900.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/20.jpg",
+    "files": [
+      "previews/screens/P15-orderly-1920x1080.png",
+      "previews/screens/P15-orderly-2560x1080.png",
+      "previews/screens/P15-orderly-2560x1440.png",
+      "previews/screens/P15-orderly-390x844.png",
+      "previews/screens/P15-porter-1920x1080.png",
+      "previews/screens/P15-technician-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/21.jpg",
+    "files": [
+      "previews/screens/P16-decision-1920x1080.png",
+      "previews/screens/P16-enemy-response-1920x1080.png",
+      "previews/screens/P16-hit-1920x1080.png",
+      "previews/screens/P16-max-1366x768.png",
+      "previews/screens/P16-max-1600x900.png",
+      "previews/screens/P16-max-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/22.jpg",
+    "files": [
+      "previews/screens/P16-phases-1920x1080.png",
+      "previews/screens/P16-porter-phases-1920x1080.png",
+      "previews/screens/P16-reduced-1920x1080.png",
+      "previews/screens/P16-retreat-1920x1080.png",
+      "previews/screens/P16-stage-change-1920x1080.png",
+      "previews/screens/P16-submitted-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/23.jpg",
+    "files": [
+      "previews/screens/P16-technician-phases-1920x1080.png",
+      "previews/screens/P17-retreat-1920x1080.png",
+      "previews/screens/P17-retreat-porter-1920x1080.png",
+      "previews/screens/P17-retreat-technician-1920x1080.png",
+      "previews/screens/P17-victory-1920x1080.png",
+      "previews/screens/P18-success-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/24.jpg",
+    "files": [
+      "previews/screens/P19-voluntary-1920x1080.png",
+      "previews/screens/P20-deadline-1920x1080.png",
+      "previews/screens/P21-both-zero-1920x1080.png",
+      "previews/screens/P21-enemy-alive-1920x1080.png",
+      "previews/screens/P22-cancelled-1920x1080.png",
+      "previews/screens/P22-certain-death-1280x720.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/25.jpg",
+    "files": [
+      "previews/screens/P22-certain-death-1920x1080.png",
+      "previews/screens/P22-critical-drop-1920x1080.png",
+      "previews/screens/P22-return-1920x1080.png",
+      "previews/screens/P22-stale-1920x1080.png",
+      "previews/screens/P23-failed-1024x768.png",
+      "previews/screens/P23-failed-1366x650.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/26.jpg",
+    "files": [
+      "previews/screens/P23-failed-1366x768.png",
+      "previews/screens/P23-failed-1600x900.png",
+      "previews/screens/P23-failed-1920x1080.png",
+      "previews/screens/P23-failed-2560x1080.png",
+      "previews/screens/P23-failed-2560x1440.png",
+      "previews/screens/P23-failed-390x844.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/27.jpg",
+    "files": [
+      "previews/screens/P23-not-attempted-1920x1080.png",
+      "previews/screens/P23-retry-1920x1080.png",
+      "previews/screens/P23-saved-1920x1080.png",
+      "previews/screens/P24-corrupt-1366x768.png",
+      "previews/screens/P24-corrupt-1600x900.png",
+      "previews/screens/P24-corrupt-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/28.jpg",
+    "files": [
+      "previews/screens/P24-lost-1920x1080.png",
+      "previews/screens/P24-occupied-1920x1080.png",
+      "previews/screens/P24-projection-1920x1080.png",
+      "previews/screens/P24-read-error-1920x1080.png",
+      "previews/screens/P24-request-1920x1080.png",
+      "previews/screens/P25-controls-1920x1080.png"
+    ]
+  },
+  {
+    "sheet": "validation/r1/contact-sheets/29.jpg",
+    "files": [
+      "previews/screens/P25-health-1920x1080.png",
+      "previews/screens/P25-quick-1920x1080.png"
+    ]
+  }
+]

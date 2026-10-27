@@ -1,0 +1,129 @@
+{
+  "assetId": "npc-zhou-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "npc-zhou-v1.png",
+  "status": "REVIEW_CANDIDATE_WITH_GAPS",
+  "productionBound": false,
+  "contentMapping": {
+    "area": "物流",
+    "node": "L5 周衡休息室",
+    "character": "周衡",
+    "role": "ordinary middle-aged survivor, interaction-panel portrait",
+    "appearanceIsPresentationCandidate": true,
+    "appearanceNote": "Middle-aged male appearance, hair, face and civilian workwear are presentation only; no new canonical profession, power or biography."
+  },
+  "source": {
+    "tool": "built-in image_gen.imagegen",
+    "mode": "generate",
+    "generatedPath": "C:/Users/zjl/.codex/generated_images/01a17971-2cce-73a0-bfa2-2ed8008284c4/exec-b052429c-7c6e-42b2-820a-a7a323248eb5.png",
+    "copiedWithoutPixelModification": true,
+    "interpolatedUpscale": false,
+    "fallbackApiUsed": false,
+    "generationCount": 1,
+    "prompt": "Use case: stylized-concept\nAsset type: ONE standalone transparent full-body NPC illustration for the Chinese grounded survival strategy game 《电梯求生》.\nPrimary request: Zhou Heng (周衡), an ordinary middle-aged survivor in the logistics rest room. This is only a visual appearance candidate, not a new profession, power, relationship or biography. A middle-aged man with short slightly greying dark hair, natural weathered face and faint stubble, tired but clear eyes. Faded old slate-blue / grey-blue work shirt-jacket over a plain muted dark undershirt, ordinary charcoal-brown trousers, plain dark worn shoes. Practical civilian work clothing, no uniform insignia or markings. Average solid build, not a bulky infected porter and not a gaunt infected technician.\nPose and expression: a complete full-body three-quarter standing portrait, turned very slightly toward screen left and calmly looking toward an interlocutor near camera. Both feet stably planted, modest relaxed stance, shoulders a little tired but upright. BOTH HANDS EMPTY and fully visible, one loosely at the side and one resting naturally near the hip without gripping an object. A reserved, alert, steady human survivor; not aggressive, frightened, infected or in a combat stance.\nDistinct silhouette: short practical shirt-jacket rather than Lin Cen's long brown-grey coat; older male face, no tied hair, no medical outfit, no reflective safety vest, no deep-teal one-piece coveralls, no tool belt. No weapon, pipe, firearm, handheld item, paperwork, nameplate, insignia, badge, backpack, armour or strange device. No injuries, blood, unhealthy veins, lesions, glowing eyes or supernatural effects.\nStyle: cold dark realistic cinematic game artwork, grounded painted photorealism, careful visible cloth texture, realistic folds, hair, skin, hands and shoes, restrained saturation. Same material clarity as the inspected 05-combat reference and previous standalone characters, but obviously a living ordinary survivor. Cool soft overall illumination with a faint neutral warm side light on the face to maintain readability, no strong glow.\nComposition: request native 1536 × 1920 pixels, portrait 4:5 PNG, full entire head, both hands, legs and shoes visible. Clear generous transparent margins above the hair and below both shoes. Head near normalized y=0.08, feet near y=0.92; approximate foot-ground midpoint (0.50,0.92). Figure occupies about 84% of image height, centred body with no clipped extremities. Preserve the full untrimmed transparent canvas.\nBackground: TRUE transparent alpha. No room, furniture, chair, floor, cast shadow blob, haze, particles, vignette, checkerboard, solid backdrop, border or frame.\nText: none. No writing, UI, labels, logo, watermark or nameplate. Deliver exactly ONE full-body Zhou Heng character sprite."
+  },
+  "references": [
+    {
+      "path": "../../inputs/references/05-combat.png",
+      "role": "realistic material quality and cold overall art direction only"
+    },
+    {
+      "path": "../../../world-infected-001/03-location-design.md",
+      "role": "L5 location and limited NPC role; no new dialogue, job or reward"
+    }
+  ],
+  "dimensions": {
+    "requestedWidth": 1536,
+    "requestedHeight": 1920,
+    "actualWidth": 1122,
+    "actualHeight": 1402,
+    "actualAspectRatio": 0.8002853067047075,
+    "targetAspectRatio": 0.8,
+    "exactTargetMet": false
+  },
+  "alpha": {
+    "present": true,
+    "pixelFormat": "Format32bppArgb",
+    "transparentPixelCount": 1244181,
+    "fullyOpaquePixelCount": 623,
+    "partiallyTransparentPixelCount": 328240,
+    "mostCommonSubjectAlpha": 253,
+    "boundsConvention": "[left,top,right,bottom], inclusive pixels",
+    "nonzeroBounds": [
+      0,
+      0,
+      1107,
+      1365
+    ],
+    "subjectBoundsAtAlpha16": [
+      363,
+      29,
+      766,
+      1358
+    ],
+    "subjectBoundsAtAlpha128": [
+      364,
+      32,
+      765,
+      1357
+    ],
+    "note": "Real generated alpha retained. Low-alpha residue reaches top and left canvas edges, while visible subject remains inset. Body mostly alpha 252-253. No edge trimming, cleanup, interpolation or flattening."
+  },
+  "display": {
+    "fit": "contain",
+    "autoTrim": false,
+    "canvasMustRemainFixed": true,
+    "intendedUse": "layered NPC interaction panel"
+  },
+  "anchors": {
+    "coordinateSystem": "normalized to entire untrimmed actual source canvas",
+    "requestedFootGround": [
+      0.5,
+      0.92
+    ],
+    "footContactMidpointVisualEstimate": {
+      "pixels": [
+        599,
+        1315
+      ],
+      "normalized": [
+        0.533868092691622,
+        0.9379457917261056
+      ],
+      "precision": "manual visual estimate, staggered shoes viewed in perspective"
+    },
+    "portraitFocusCandidate": {
+      "pixels": [
+        523,
+        150
+      ],
+      "normalized": [
+        0.4661319073083779,
+        0.10699001426533523
+      ],
+      "precision": "manual face-centre estimate"
+    },
+    "footTargetMet": false,
+    "notes": "Use actual draft foot anchor for panel placement; no gameplay hit target implied for NPC."
+  },
+  "checks": {
+    "visualInspection": true,
+    "fullHeadHandsShoesVisible": true,
+    "greyBlueOldWorkShirtAndOrdinaryTrousers": true,
+    "tiredButStableUprightPose": true,
+    "emptyHands": true,
+    "noWeaponNameplateProfessionOrAbility": true,
+    "distinctFromLinAndInfectedEnemies": true,
+    "noUiOrBakedBackground": true,
+    "codeTestsRun": false,
+    "whyNoCodeTests": "Independent PNG and metadata only; no application or rules changed."
+  },
+  "gaps": [
+    "SOURCE_RESOLUTION_BELOW_TARGET: native 1122x1402, not 1536x1920; generated once, no interpolation.",
+    "FOOT_ANCHOR_APPROXIMATE: estimated contact midpoint (0.534,0.938), target (0.50,0.92).",
+    "SAFE_MARGIN_SMALLER_THAN_PROMPT: visible silhouette spans y≈0.021–0.969, complete but less than requested 8% vertical margin.",
+    "ALPHA_RESIDUE: very low-alpha remnants beyond visible subject and body alpha mostly 252-253.",
+    "Owner appearance acceptance, panel-fit and multi-viewport validation not performed."
+  ],
+  "sha256": "125AC063BF756AB3A11A448E8B29611DC66B22B814C3148CF82B632C313D3531"
+}

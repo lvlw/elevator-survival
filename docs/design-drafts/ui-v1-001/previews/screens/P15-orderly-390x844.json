@@ -1,0 +1,219 @@
+{
+  "screen": "P15-orderly",
+  "viewport": [
+    390,
+    844
+  ],
+  "pixelRatio": 1,
+  "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+  "rects": [
+    {
+      "selector": ".shell",
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "scrollH": 844,
+      "clientH": 844
+    },
+    {
+      "selector": ".center",
+      "x": 8,
+      "y": 116,
+      "w": 374,
+      "h": 666,
+      "scrollH": 666,
+      "clientH": 666
+    },
+    {
+      "selector": ".sidebar.left",
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "scrollH": 0,
+      "clientH": 0
+    },
+    {
+      "selector": ".sidebar.right",
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "scrollH": 0,
+      "clientH": 0
+    },
+    {
+      "selector": ".inventory",
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "scrollH": 0,
+      "clientH": 0
+    },
+    {
+      "selector": ".panel",
+      "x": 8,
+      "y": 116,
+      "w": 374,
+      "h": 666,
+      "scrollH": 666,
+      "clientH": 666
+    },
+    {
+      "selector": ".arena",
+      "x": 16,
+      "y": 250,
+      "w": 358,
+      "h": 318,
+      "scrollH": 316,
+      "clientH": 316
+    },
+    {
+      "selector": ".footer",
+      "x": 8,
+      "y": 790,
+      "w": 374,
+      "h": 46,
+      "scrollH": 44,
+      "clientH": 44
+    }
+  ],
+  "assets": [
+    {
+      "path": "../editable/assets/bg_isolation_corridor_v01.png",
+      "native": [
+        1672,
+        941
+      ],
+      "display": [
+        374,
+        666
+      ]
+    },
+    {
+      "path": "../editable/assets/bg_isolation_corridor_v01.png",
+      "native": [
+        1672,
+        941
+      ],
+      "display": [
+        356,
+        316
+      ]
+    },
+    {
+      "path": "../editable/assets/player-back-v1.png",
+      "native": [
+        1122,
+        1402
+      ],
+      "display": [
+        191.5625,
+        239.359375
+      ]
+    },
+    {
+      "path": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+      "native": [
+        1024,
+        1280
+      ],
+      "display": [
+        188.828125,
+        236.03125
+      ]
+    },
+    {
+      "path": "../editable/assets/fx-hit-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        90.21875,
+        90.21875
+      ]
+    },
+    {
+      "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "../editable/assets/item-firstaid-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "../editable/assets/item-ration-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "../editable/assets/item-metal-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "../editable/assets/item-battery-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "../editable/assets/icon_isolation_access_card_v02.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "../editable/assets/icon_bandage_v02.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        0,
+        0
+      ]
+    }
+  ],
+  "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+  "missing": []
+}

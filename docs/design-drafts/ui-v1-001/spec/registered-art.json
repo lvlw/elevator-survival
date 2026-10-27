@@ -1,0 +1,738 @@
+{
+  "enemy-porter-critical-v1.png": {
+    "file": "enemy-porter-critical-v1.png",
+    "source": [
+      1122,
+      1402
+    ],
+    "sourceSha256": "a32adbeb63b7db6d5127adc78f10d11a3458067997f04fe066bfe33955f0fbb6",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.25,
+    "translate": [
+      -18.75624999999991,
+      127.65000000000009
+    ],
+    "sourceFoot": [
+      629.405,
+      1311
+    ],
+    "sourceHit": [
+      564,
+      510
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.4467732747395834,
+      0.39851562500000004
+    ],
+    "registrationMethod": "Explicit asset-author registration anchor",
+    "imageCss": {
+      "left": -1.2211100260416607,
+      "top": 6.648437500000004,
+      "width": 91.30859375
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "enemy-porter-disabled-v1.png": {
+    "file": "enemy-porter-disabled-v1.png",
+    "source": [
+      1122,
+      1402
+    ],
+    "sourceSha256": "48de5d321c28d5b88d37b9c241a09e2fef1a84638c4361f8e3e87d5c75ea6930",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.25,
+    "translate": [
+      40.26875000000007,
+      192.0250000000001
+    ],
+    "sourceFoot": [
+      582.185,
+      1259.5
+    ],
+    "sourceHit": [
+      535,
+      860
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.46160074869791673,
+      0.6599088541666667
+    ],
+    "registrationMethod": "Explicit asset-author registration anchor",
+    "imageCss": {
+      "left": 2.621663411458338,
+      "top": 10.001302083333337,
+      "width": 91.30859375
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "enemy-porter-heavy_wounded-v1.png": {
+    "file": "enemy-porter-heavy_wounded-v1.png",
+    "source": [
+      1121,
+      1403
+    ],
+    "sourceSha256": "545b25cb12385f00f77362854d849602517de3e51fb300138677497213e09325",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.25,
+    "translate": [
+      -30.181249999999977,
+      156.4000000000001
+    ],
+    "sourceFoot": [
+      638.545,
+      1288
+    ],
+    "sourceHit": [
+      560,
+      540
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.43607991536458335,
+      0.43302083333333335
+    ],
+    "registrationMethod": "Explicit asset-author registration anchor",
+    "imageCss": {
+      "left": -1.964925130208332,
+      "top": 8.145833333333337,
+      "width": 91.22721354166667
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "enemy-porter-pristine-v1.png": {
+    "file": "enemy-porter-pristine-v1.png",
+    "source": [
+      1122,
+      1402
+    ],
+    "sourceSha256": "c62b70c69c0e6977ef1e7239d68f15f74951a8cdf9b17c363d3610f23438a1a4",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.25,
+    "translate": [
+      35.09999999999991,
+      163.9000000000001
+    ],
+    "sourceFoot": [
+      586.32,
+      1282
+    ],
+    "sourceHit": [
+      561,
+      561
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.4793945312499999,
+      0.45059895833333335
+    ],
+    "registrationMethod": "Explicit asset-author registration anchor",
+    "imageCss": {
+      "left": 2.2851562499999942,
+      "top": 8.536458333333337,
+      "width": 91.30859375
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "enemy-porter-wounded-v1.png": {
+    "file": "enemy-porter-wounded-v1.png",
+    "source": [
+      1122,
+      1402
+    ],
+    "sourceSha256": "48a370f9fc2dc43cc676de35b5359dc03a68e810a84a28b7880ad45855a5fe8e",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.25,
+    "translate": [
+      31.550000000000068,
+      160.7750000000001
+    ],
+    "sourceFoot": [
+      589.16,
+      1284.5
+    ],
+    "sourceHit": [
+      560,
+      555
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.47626953125000004,
+      0.4450651041666667
+    ],
+    "registrationMethod": "Explicit asset-author registration anchor",
+    "imageCss": {
+      "left": 2.054036458333338,
+      "top": 8.373697916666671,
+      "width": 91.30859375
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "enemy-technician-critical-v1.png": {
+    "file": "enemy-technician-critical-v1.png",
+    "source": [
+      1122,
+      1402
+    ],
+    "sourceSha256": "86b7a8af0ae94f37d8bb618ebf253cd63b97441f95d2d941e8566e6366852922",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.25,
+    "translate": [
+      -6.9874999999999545,
+      135.1500000000001
+    ],
+    "sourceFoot": [
+      619.99,
+      1305
+    ],
+    "sourceHit": [
+      520,
+      410
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.4186279296875,
+      0.33731770833333335
+    ],
+    "registrationMethod": "Explicit asset-author registration anchor",
+    "imageCss": {
+      "left": -0.4549153645833304,
+      "top": 7.039062500000004,
+      "width": 91.30859375
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "enemy-technician-disabled-v1.png": {
+    "file": "enemy-technician-disabled-v1.png",
+    "source": [
+      1122,
+      1402
+    ],
+    "sourceSha256": "fa70feefa7164fcab84edcf846d47d80d4f88f50895228d5826cb91799bb0dec",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.25,
+    "translate": [
+      -142.9375,
+      144.5250000000001
+    ],
+    "sourceFoot": [
+      728.75,
+      1297.5
+    ],
+    "sourceHit": [
+      605.88,
+      588.84
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.40000813802083335,
+      0.4586328125000001
+    ],
+    "registrationMethod": "Legacy alpha>=128 lower left/right support sample midpoint; visual QA required",
+    "imageCss": {
+      "left": -9.305826822916666,
+      "top": 7.527343750000004,
+      "width": 91.30859375
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "enemy-technician-heavy_wounded-v1.png": {
+    "file": "enemy-technician-heavy_wounded-v1.png",
+    "source": [
+      1122,
+      1402
+    ],
+    "sourceSha256": "f415a3384d1c5e21b1840877eccfeeecf7711b6c7ff1d3a7046c06ea527a158f",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.25,
+    "translate": [
+      -50.85000000000002,
+      135.1500000000001
+    ],
+    "sourceFoot": [
+      655.08,
+      1305
+    ],
+    "sourceHit": [
+      520,
+      365
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.39007161458333334,
+      0.30802083333333335
+    ],
+    "registrationMethod": "Explicit asset-author registration anchor",
+    "imageCss": {
+      "left": -3.3105468750000013,
+      "top": 7.039062500000004,
+      "width": 91.30859375
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "enemy-technician-pristine-v1.png": {
+    "file": "enemy-technician-pristine-v1.png",
+    "source": [
+      1122,
+      1402
+    ],
+    "sourceSha256": "240077aef5b5adb7efe1d4632894e5a7018a94dc3f18cd894f998a8e1c243444",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.25,
+    "translate": [
+      32.41874999999993,
+      137.6500000000001
+    ],
+    "sourceFoot": [
+      588.465,
+      1303
+    ],
+    "sourceHit": [
+      530,
+      410
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.45242106119791664,
+      0.3386197916666667
+    ],
+    "registrationMethod": "Explicit asset-author registration anchor",
+    "imageCss": {
+      "left": 2.1105957031249956,
+      "top": 7.169270833333338,
+      "width": 91.30859375
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "enemy-technician-wounded-v1.png": {
+    "file": "enemy-technician-wounded-v1.png",
+    "source": [
+      1122,
+      1402
+    ],
+    "sourceSha256": "d5f2e525282e2c65a51ad6a2eb07b507099d342122d9b3788b5413e02b282269",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.25,
+    "translate": [
+      29.781250000000114,
+      137.0250000000001
+    ],
+    "sourceFoot": [
+      590.5749999999999,
+      1303.5
+    ],
+    "sourceHit": [
+      524,
+      401
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.4458211263020834,
+      0.33243489583333335
+    ],
+    "registrationMethod": "Explicit asset-author registration anchor",
+    "imageCss": {
+      "left": 1.938883463541674,
+      "top": 7.136718750000004,
+      "width": 91.30859375
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "enemy_infected_orderly_critical_v02.png": {
+    "file": "enemy_infected_orderly_critical_v02.png",
+    "source": [
+      1024,
+      1280
+    ],
+    "sourceSha256": "1005537773f9aab7a8e5d84911e349bbe5a8a0025a14c13a7baa1ca4c33ebe00",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.35,
+    "translate": [
+      39.33749999999998,
+      187.57500000000005
+    ],
+    "sourceFoot": [
+      539.75,
+      1169.5
+    ],
+    "sourceHit": [
+      552.96,
+      537.6
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.5116103515625,
+      0.4756953125000001
+    ],
+    "registrationMethod": "Legacy alpha>=128 lower left/right support sample midpoint; visual QA required",
+    "imageCss": {
+      "left": 2.5610351562499987,
+      "top": 9.769531250000002,
+      "width": 90.0
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "enemy_infected_orderly_disabled_v02.png": {
+    "file": "enemy_infected_orderly_disabled_v02.png",
+    "source": [
+      1024,
+      1280
+    ],
+    "sourceSha256": "4112dadacfc3c89da9b3cc7576fe3772a58a026cb74b21eb3fe451649f2f41e1",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.35,
+    "translate": [
+      148.01249999999993,
+      219.9749999999999
+    ],
+    "sourceFoot": [
+      459.25,
+      1145.5
+    ],
+    "sourceHit": [
+      552.96,
+      537.6
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.5823623046875,
+      0.4925703125
+    ],
+    "registrationMethod": "Legacy alpha>=128 lower left/right support sample midpoint; visual QA required",
+    "imageCss": {
+      "left": 9.636230468749995,
+      "top": 11.457031249999996,
+      "width": 90.0
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "enemy_infected_orderly_heavy_wounded_v02.png": {
+    "file": "enemy_infected_orderly_heavy_wounded_v02.png",
+    "source": [
+      1024,
+      1280
+    ],
+    "sourceSha256": "9d9dcce02310fea3fdf9c04ffb0db00edd8697771c19a1f119b0fdd9457e8d58",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.35,
+    "translate": [
+      61.612499999999955,
+      166.6500000000001
+    ],
+    "sourceFoot": [
+      523.25,
+      1185.0
+    ],
+    "sourceHit": [
+      552.96,
+      537.6
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.5261123046875,
+      0.4647968750000001
+    ],
+    "registrationMethod": "Legacy alpha>=128 lower left/right support sample midpoint; visual QA required",
+    "imageCss": {
+      "left": 4.011230468749997,
+      "top": 8.679687500000004,
+      "width": 90.0
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "enemy_infected_orderly_pristine_v02.png": {
+    "file": "enemy_infected_orderly_pristine_v02.png",
+    "source": [
+      1024,
+      1280
+    ],
+    "sourceSha256": "9fd480efca6c4dc8e02198cd25175e385de8f80efa64cbb11fce6372d2b76907",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.35,
+    "translate": [
+      -0.8250000000000455,
+      176.7750000000001
+    ],
+    "sourceFoot": [
+      569.5,
+      1177.5
+    ],
+    "sourceHit": [
+      552.96,
+      537.6
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.48546289062500003,
+      0.4700703125000001
+    ],
+    "registrationMethod": "Legacy alpha>=128 lower left/right support sample midpoint; visual QA required",
+    "imageCss": {
+      "left": -0.05371093750000296,
+      "top": 9.207031250000004,
+      "width": 90.0
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "enemy_infected_orderly_wounded_v02.png": {
+    "file": "enemy_infected_orderly_wounded_v02.png",
+    "source": [
+      1024,
+      1280
+    ],
+    "sourceSha256": "c00c5126bfc6967f0a34af94a2ccd32d6874bae3899d9e02ae189af8f662ed5b",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.35,
+    "translate": [
+      120.0,
+      124.79999999999995
+    ],
+    "sourceFoot": [
+      480.0,
+      1216.0
+    ],
+    "sourceHit": [
+      552.96,
+      537.6
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.5641250000000001,
+      0.443
+    ],
+    "registrationMethod": "Legacy alpha>=128 lower left/right support sample midpoint; visual QA required",
+    "imageCss": {
+      "left": 7.8125,
+      "top": 6.499999999999998,
+      "width": 90.0
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  },
+  "player-back-v1.png": {
+    "file": "player-back-v1.png",
+    "source": [
+      1122,
+      1402
+    ],
+    "sourceSha256": "73bd1abbe0a1db3a8c6e22558e6ecb62336bc86f749a5d56b6ab6456ed4adff8",
+    "canvas": [
+      1536,
+      1920
+    ],
+    "scale": 1.25,
+    "translate": [
+      141.75,
+      132.6500000000001
+    ],
+    "sourceFoot": [
+      501,
+      1307
+    ],
+    "sourceHit": [
+      500,
+      500
+    ],
+    "footNormalized": [
+      0.5,
+      0.92
+    ],
+    "hitNormalized": [
+      0.4991861979166667,
+      0.39460937500000004
+    ],
+    "registrationMethod": "Explicit player-author visual anchor",
+    "imageCss": {
+      "left": 9.228515625,
+      "top": 6.908854166666671,
+      "width": 91.30859375
+    },
+    "motionEnvelopeCss": {
+      "x": 9,
+      "y": -3,
+      "rotationDegrees": 2
+    },
+    "pixelRewrite": false,
+    "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+  }
+}

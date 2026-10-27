@@ -1,0 +1,192 @@
+{
+  "assetId": "enemy-porter-wounded-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "enemy-porter-wounded-v1.png",
+  "status": "REVIEW_CANDIDATE_WITH_GAPS",
+  "productionBound": false,
+  "contentMapping": {
+    "area": "物流",
+    "node": "L2 装卸场",
+    "enemy": "感染装卸工 / 感染搬运工",
+    "stage": "wounded / 受伤"
+  },
+  "source": {
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "editTarget": "enemy-porter-pristine-v1.png",
+    "editTargetSha256": "C62B70C69C0E6977EF1E7239D68F15F74951A8CDF9B17C363D3610F23438A1A4",
+    "generatedPath": "C:/Users/zjl/.codex/generated_images/01a17971-2cce-73a0-bfa2-2ed8008284c4/exec-0b8d4920-60f8-440b-9079-3a0f80f75ff7.png",
+    "copiedWithoutPixelModification": true,
+    "interpolatedUpscale": false,
+    "programmaticCropping": false,
+    "fallbackApiUsed": false,
+    "generationCount": 1,
+    "prompt": "Use case: identity-preserve / precise-object-edit.\nEdit target: the supplied transparent full-body infected porter PNG. This is the SAME character's WOUNDED public combat stage, one step after pristine. Deliver one independent character sprite.\nLOCKED INVARIANTS: preserve this exact man's face, dark hair, broad thickset build, grey workwear, faded yellow-olive reflective safety vest with silver stripes, work gloves, trousers and boots. Preserve the SAME full 1122 × 1402 pixel canvas, real transparent alpha background, overall body scale, three-quarter screen-left orientation, framing, lighting, clothing colours and complete silhouette. Keep BOTH BOOTS and their sole-contact coordinates exactly where they are in the input. In the input the visual foot midpoint is around pixel (604,1280), normalized (0.538,0.913); preserve that actual source anchor rather than re-centering or making a new crop. Visible original silhouette approximately spans x322–813 and y113–1303. Keep head and body close to the original placement. Do NOT auto-trim, resize, recenter or zoom.\nRequested changes ONLY: show a non-graphic injured / wounded state through a few new torn and scuffed areas in the vest and grey sleeve cloth, a rumpled shoulder seam, small additional abrasion on the trouser knee, and a modest defensive tilt of the upper torso with one forearm drawn slightly inward as if guarding sore ribs. Preserve overall scale, boot positions and stable stance. Face has a restrained pained tense expression, still visibly the same man. Damage should be readable but mild relative to heavy-wounded/critical stages. No blood, open wounds, exposed tissue, dismemberment or gore. No bandage or newly acquired gear.\nBOTH HANDS remain EMPTY in work gloves. No weapon, handheld tool, gun, new item, new job or new supernatural effect. No light flashes, damage numbers or special power.\nBackground: keep TRUE transparent alpha everywhere outside the character, no floor, shadow plane, scenery, particles, smoke, checkerboard, black/white backdrop, UI, text, labels, watermark or frame.\nOutput: one wounded-stage PNG on the original UNTRIMMED 1122 × 1402 canvas, not a before/after or contact sheet."
+  },
+  "dimensions": {
+    "requestedWidth": 1122,
+    "requestedHeight": 1402,
+    "actualWidth": 1122,
+    "actualHeight": 1402,
+    "sameCanvasAsPristine": true,
+    "exactRequestedCanvasMet": true,
+    "originalHighResolutionTarget": [
+      1536,
+      1920
+    ],
+    "originalHighResolutionTargetMet": false
+  },
+  "alpha": {
+    "present": true,
+    "pixelFormat": "Format32bppArgb",
+    "transparentPixelCount": 1216272,
+    "fullyOpaquePixelCount": 592,
+    "partiallyTransparentPixelCount": 356180,
+    "mostCommonSubjectAlpha": 253,
+    "boundsConvention": "[left,top,right,bottom], inclusive pixels",
+    "nonzeroBounds": [
+      0,
+      53,
+      1081,
+      1327
+    ],
+    "subjectBoundsAtAlpha16": [
+      363,
+      116,
+      820,
+      1305
+    ],
+    "subjectBoundsAtAlpha128": [
+      364,
+      119,
+      819,
+      1304
+    ],
+    "note": "True generated alpha preserved. Low-alpha residue extends outside visible silhouette. Main body alpha mostly 253. No cleanup, crop or flattening."
+  },
+  "display": {
+    "fit": "contain",
+    "autoTrim": false,
+    "canvasMustRemainFixed": true,
+    "variantGroup": "enemy-porter-five-public-stages",
+    "stageOrder": 2
+  },
+  "anchors": {
+    "coordinateSystem": "normalized to entire untrimmed actual source canvas",
+    "inheritedPristineVisualFootAnchor": {
+      "pixels": [
+        604,
+        1280
+      ],
+      "normalized": [
+        0.5383244206773619,
+        0.912981455064194
+      ]
+    },
+    "woundedFootContactVisualEstimate": {
+      "pixels": [
+        607,
+        1283
+      ],
+      "normalized": [
+        0.5409982174688057,
+        0.9151212553495007
+      ],
+      "precision": "manual estimate plus foot-edge comparisons; not a pixel-perfect anatomical anchor"
+    },
+    "torsoHitCandidate": {
+      "pixels": [
+        560,
+        555
+      ],
+      "normalized": [
+        0.49910873440285203,
+        0.3958630527817404
+      ],
+      "precision": "manual guarded-torso estimate"
+    },
+    "footAlignmentPixelExact": false,
+    "footEdgeComparison": {
+      "method": "For screen-left x300..599 and screen-right x600..849, scan y1401 down to1100 for lowest alpha>=128; average x of alpha>=128 pixels in the bottom four rows. This measures raster sole edges, not gameplay anatomy.",
+      "pristine": {
+        "left": {
+          "lowestY": 1262,
+          "bottomFourRowsMeanX": 434.61
+        },
+        "right": {
+          "lowestY": 1302,
+          "bottomFourRowsMeanX": 738.03
+        }
+      },
+      "wounded": {
+        "left": {
+          "lowestY": 1265,
+          "bottomFourRowsMeanX": 434.48
+        },
+        "right": {
+          "lowestY": 1304,
+          "bottomFourRowsMeanX": 743.84
+        }
+      },
+      "delta": {
+        "left": {
+          "lowestY": 3,
+          "bottomFourRowsMeanX": -0.13
+        },
+        "right": {
+          "lowestY": 2,
+          "bottomFourRowsMeanX": 5.81
+        }
+      }
+    },
+    "notes": "Same source canvas and visually near-aligned feet achieved. Small sole-edge drift remains. Do not silently auto-trim or independently rescale individual phases."
+  },
+  "checks": {
+    "visualInspection": true,
+    "sameCharacterFaceHairBodyAndClothes": true,
+    "emptyGlovedHands": true,
+    "nonGraphicTornClothesAndDefensiveLean": true,
+    "fullHeadHandsBootsVisible": true,
+    "minorFacialRednessObserved": true,
+    "noOpenWoundsOrGore": true,
+    "noNewWeaponsGearOrProfession": true,
+    "alphaAndCanvasMeasured": true,
+    "footEdgesComparedToPristine": true,
+    "codeTestsRun": false,
+    "whyNoCodeTests": "Independent PNG and metadata; no code or gameplay changes."
+  },
+  "gaps": [
+    "SMALL_FOOT_EDGE_DRIFT: original canvas retained, but measured sole edges move vertically 2–3px; right sole bottom-row centre moves horizontally +5.81px. Not pixel-perfect.",
+    "ORIGINAL_RESOLUTION_DEBT: shared 1122x1402 canvas still below original 1536x1920 high-resolution goal; no interpolation.",
+    "ALPHA_RESIDUE: low-alpha pixels outside silhouette and main body alpha mostly 253.",
+    "FIVE_STAGE_SERIES_INCOMPLETE: this assignment adds wounded only; heavy-wounded, critical and disabled not delivered here.",
+    "Owner stage acceptance and actual-stage phase-switch visual validation not performed."
+  ],
+  "sha256": "48A370F9FC2DC43CC676DE35B5359DC03A68E810A84A28B7880AD45855A5FE8E",
+  "registrationAnchors": {
+    "coordinateSystem": "Untrimmed original PNG pixels; normalized coordinates divide by actual source width and height",
+    "footSupportCenter": {
+      "pixels": [
+        589.16,
+        1284.5
+      ],
+      "normalized": [
+        0.5250980392156862,
+        0.916191155492154
+      ],
+      "method": "Midpoint of the two measured sole contact samples: each sample uses lowest alpha>=128 row and mean x in its bottom four rows. This is a reproducible presentation-registration anchor, not exact anatomy."
+    },
+    "torsoHit": {
+      "pixels": [
+        560,
+        555
+      ],
+      "normalized": [
+        0.49910873440285203,
+        0.3958630527817404
+      ],
+      "method": "Visually selected torso point for presentation FX; not a gameplay target or body-part mechanic."
+    },
+    "usage": "Preferred explicit placement anchors for a non-destructive editable wrapper. Retain PNG unchanged. Wrapper registration is not proof of natural source alignment."
+  }
+}

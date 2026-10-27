@@ -1,0 +1,84 @@
+{
+  "asset_id": "item-toolbox-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "工具箱",
+  "file": "item-toolbox-v1.png",
+  "status": "VISUAL_CANDIDATE_WITH_EXPORT_NOTES",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen",
+    "fallback_cli_or_api": false,
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-a98f62e8-75fb-4c91-abb3-ec5e26c3e7fd.png",
+    "references_inspected": [
+      "docs/design-drafts/ui-v1-001/inputs/references/01-shell.png",
+      "src/assets/presentation/v0.1/visual/icon_metal_pipe_v01.png"
+    ],
+    "generation_prompt": "Use case: product-mockup\nAsset type: one standalone realistic inventory item asset for the single-player survival game 《电梯求生》, master art for item details, later downscaled to an icon.\nPrimary request: exactly one old industrial handheld toolbox, closed, robust rectangular dark cyan-black painted steel body with an upright practical carry handle, worn aged brass front latches and small scuffed steel edges. It is a realistic professional mechanical/electrical repair toolbox, with believable restrained age and wear, no fantasy or military ornament.\nScene/backdrop: genuine transparent background with preserved alpha; no floor, backdrop, cast shadow plane, gradient or checkerboard baked into the pixels.\nStyle/medium: detailed photorealistic game item render, tactile dark metal and restrained corrosion matching a gritty cold industrial survival UI. Clear silhouette and readable facets at small icon sizes; cool highlight from upper left, faint warm metallic latch accents. Do not crush the body into black.\nComposition/framing: square 1024×1024 canvas. Center the entire single object in three-quarter perspective showing front, one side and lid. Keep the complete handle and every corner visible. Entire silhouette must stay within x=128..896 and y=128..896; at least 12.5 percent empty transparent safety margin on ALL four sides, balanced optical center. Target 75% maximum overall width and height.\nColor palette: cold dark teal/charcoal steel, neutral gunmetal scratches, dull old brass clasps.\nConstraints: only one closed toolbox, no loose tools or supplies outside it; no objects protruding from it; no HUD, frames, inventory slots, numerals, labels, writing, logo, symbols, watermark or surrounding debris. No rendered text anywhere. Preserve realistic proportions and construction. This is a new isolated item image, not a UI screenshot or collage.",
+    "framing_edit_prompt": "Edit this isolated toolbox image. Preserve the EXACT same single closed dark teal-black industrial toolbox, brass latches, upright handle, three-quarter viewpoint, material, lighting, scratches, proportions, silhouette, and transparency.\nChange ONLY framing: make the whole toolbox distinctly SMALLER within the square canvas, centered horizontally and vertically. The entire object including handle and every corner must fit inside the central 70% by 70% area; give AT LEAST 15% completely transparent blank margin on left, right, top and bottom. No pixel of the subject may extend outside the central square. This clear transparent padding is essential for inventory UI.\nTarget output is square 1024×1024. Preserve actual alpha transparency everywhere outside the isolated subject and through the handle. No shadow on a floor, no background, no text, no HUD, no numbers, no frame, no extra objects. Do not crop the object and do not enlarge it to fill the canvas.",
+    "calls": 2
+  },
+  "image": {
+    "requested_size": [
+      1024,
+      1024
+    ],
+    "actual_size": [
+      1254,
+      1254
+    ],
+    "format": "PNG",
+    "pixel_format": "32-bit RGBA",
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "fully_transparent_pixels": 1211253,
+    "sha256": "524a504a87cb9ebd29e10c469615eeb220f936143fdc1b0bbefc3459c8d36257"
+  },
+  "composition": {
+    "object": "one closed industrial handheld toolbox",
+    "view": "centered three-quarter perspective",
+    "full_silhouette_visible": true,
+    "safety_target_percent_each_side": 12.5,
+    "visible_bounds_alpha_gt_8": [
+      224,
+      350,
+      1049,
+      961
+    ],
+    "visible_margin_percent": {
+      "left": 17.86,
+      "top": 27.91,
+      "right": 16.27,
+      "bottom": 23.29
+    },
+    "all_nonzero_alpha_bounds": [
+      0,
+      99,
+      1233,
+      1229
+    ],
+    "strict_safety_region_pixels": {
+      "min_x": 157,
+      "min_y": 157,
+      "max_x_inclusive": 1096,
+      "max_y_inclusive": 1096
+    },
+    "nonzero_alpha_pixels_outside_strict_safety": 62,
+    "max_alpha_outside_strict_safety": 1,
+    "strict_all_alpha_zero_margin_pass": false,
+    "visible_silhouette_safety_pass": true
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "cold_dark_realistic_style": true,
+    "dark_teal_steel_body": true,
+    "aged_brass_latches": true,
+    "complete_handle_and_corners": true,
+    "no_text_numbers_hud_extra_supplies": true,
+    "notes": [
+      "Silhouette has comfortable visible transparent padding and reads as a single toolbox.",
+      "Generator returned 1254x1254 rather than requested 1024x1024. Raw generated source is preserved; 1024 detail and 512 icon exports remain for the parent delivery pass.",
+      "62 barely visible stray alpha=1 pixels exist outside the 12.5% safety region; visible alpha>8 silhouette passes the safety margin. Strict zero-alpha border cleanup has not been performed.",
+      "No browser, code integration or game tests were run; this task only produces the one raster asset."
+    ]
+  }
+}

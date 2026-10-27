@@ -1,0 +1,165 @@
+{
+  "assetId": "enemy-technician-disabled-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "enemy-technician-disabled-v1.png",
+  "status": "REVIEW_CANDIDATE_ALIGNMENT_REQUIRED",
+  "productionBound": false,
+  "contentMapping": {
+    "area": "通信",
+    "node": "C2 检修走廊",
+    "enemy": "感染技术员 / 感染检修员",
+    "stage": "disabled / 失去能力",
+    "canAct": false,
+    "stageMeaning": "Incapacitated, no longer active in combat. Image does not introduce death, loot or new gameplay outcomes."
+  },
+  "source": {
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "editTarget": "enemy-technician-pristine-v1.png",
+    "editTargetSha256": "240077AEF5B5ADB7EFE1D4632894E5A7018A94DC3F18CD894F998A8E1C243444",
+    "generatedPath": "C:/Users/zjl/.codex/generated_images/01a17971-2cce-73a0-bfa2-2ed8008284c4/exec-6a7e79ba-51ea-4863-b6cb-cef8b5d9ce6f.png",
+    "copiedWithoutPixelModification": true,
+    "interpolatedUpscale": false,
+    "programmaticCropping": false,
+    "fallbackApiUsed": false,
+    "generationCount": 1,
+    "prompt": "Use case: identity-preserve / precise-object-edit.\nEdit the supplied pristine infected communications technician PNG into the SAME man's DISABLED / 失去能力 public stage. Exactly ONE isolated full-body sprite. This enemy is incapacitated and cannot act, not a crouched fighter.\nPreserve identity: same gaunt face, thinning short dark hair, narrow shoulders, slender wiry arms and long limbs, same dark petrol-teal work coveralls, same closed utility-belt pouches and scuffed dark boots. Both bare hands EMPTY. Same natural anatomy, face identity and cool realistic cinematic painted material quality. No body enlargement, shrinkage, changed build or new equipment.\nPose: collapsed down onto his bent knees and one hip near the ground, torso slumped forward and screen-left, head drooped with face partly visible and eyes closed or heavily lowered. One empty hand lies slack at ground level, the other arm hangs limply over a bent leg. Read as unable to continue acting, not alert or preparing to attack. Bent knees/hip visibly bear his weight. Keep whole head, hands, folded legs and visible boots inside canvas with natural occlusion only; no amputations or disappearing body parts. His head and limb scale should remain like the standing source; lower silhouette height is due to folded posture, not resizing.\nClothing damage: extensively frayed and torn coverall shoulder, sleeve and knee cloth, grime and abrasion. Tears reveal intact skin only. No blood, bleeding, open wounds, exposed tissue, gore, bandages or severed parts. Keep belt design unchanged. No weapon, gun, handheld tool, dropped loot, new objects, grave, tombstone, death icon or disappearance effect.\nCanvas and ground: preserve requested original full1122 × 1402 portrait canvas and genuine transparent alpha, no auto-trim, crop, zoom or recentering. Let collapsed body leave much more transparent space above. Put ground support centre close to standing-stage reference pixel(588,1303); principal knee/hip/hand contacts should sit near y1280–1345, not float in the middle. Same body scale and shared scene ground; NOT a new close-up.\nLighting: same cold realistic soft lighting as pristine source.\nBackground: TRUE transparent alpha only, no painted floor, ground plane, cast shadow, room, particles, haze, checkerboard, solid backdrop, border, UI, label, text, number or watermark.\nDeliver exactly one non-graphic disabled technician PNG, no longer capable of acting."
+  },
+  "dimensions": {
+    "requestedWidth": 1122,
+    "requestedHeight": 1402,
+    "actualWidth": 1122,
+    "actualHeight": 1402,
+    "sameCanvasAsPristine": true,
+    "exactRequestedCanvasMet": true,
+    "originalHighResolutionTarget": [
+      1536,
+      1920
+    ],
+    "originalHighResolutionTargetMet": false
+  },
+  "alpha": {
+    "present": true,
+    "pixelFormat": "Format32bppArgb",
+    "transparentPixelCount": 1169440,
+    "fullyOpaquePixelCount": 605,
+    "partiallyTransparentPixelCount": 402999,
+    "mostCommonSubjectAlpha": 253,
+    "boundsConvention": "[left,top,right,bottom], inclusive pixels",
+    "nonzeroBounds": [
+      0,
+      28,
+      1049,
+      1401
+    ],
+    "subjectBoundsAtAlpha16": [
+      228,
+      525,
+      1041,
+      1302
+    ],
+    "subjectBoundsAtAlpha128": [
+      229,
+      529,
+      1040,
+      1301
+    ],
+    "note": "Real generated alpha preserved. Low-alpha residue reaches left/bottom edges. No crop, cleanup, interpolation or flattening."
+  },
+  "display": {
+    "fit": "contain",
+    "autoTrim": false,
+    "canvasMustRemainFixed": true,
+    "variantGroup": "enemy-technician-five-public-stages",
+    "stageOrder": 5,
+    "activeActionPose": false,
+    "dropInPhaseSwapReady": false,
+    "pose": "grounded collapsed half-kneel, head drooping and eyes lowered"
+  },
+  "registrationAnchors": {
+    "coordinateSystem": "Untrimmed original PNG pixels; normalized by actual source dimensions",
+    "groundSupportCenter": {
+      "pixels": [
+        730.905,
+        1297.5
+      ],
+      "normalized": [
+        0.6514304812834224,
+        0.9254636233951498
+      ],
+      "method": "Midpoint of folded-knee and planted-boot contact samples: knee x400..699 and boot x850..1099, lowest alpha>=128 row and mean x in bottom four rows. Presentation ground registration only, not anatomical centre of mass."
+    },
+    "footSupportCenter": {
+      "pixels": [
+        730.905,
+        1297.5
+      ],
+      "normalized": [
+        0.6514304812834224,
+        0.9254636233951498
+      ],
+      "method": "Midpoint of folded-knee and planted-boot contact samples: knee x400..699 and boot x850..1099, lowest alpha>=128 row and mean x in bottom four rows. Presentation ground registration only, not anatomical centre of mass.",
+      "compatibilityNote": "Common-wrapper alias; actual pose support is knee plus boot rather than two standing feet."
+    },
+    "torsoHit": {
+      "pixels": [
+        535,
+        830
+      ],
+      "normalized": [
+        0.4768270944741533,
+        0.5920114122681883
+      ],
+      "method": "Visually selected lowered torso point for presentation placement only. Does not permit hitting or scheduling incapacitated enemy."
+    },
+    "usage": "Register groundSupportCenter to shared scene ground in a non-destructive wrapper. Preserve PNG and do not claim naturally aligned source."
+  },
+  "groundContactMeasurement": {
+    "samples": [
+      {
+        "Region": "folded_knee",
+        "LowestYAtAlpha128": 1294,
+        "BottomFourRowsMeanX": 486.27
+      },
+      {
+        "Region": "planted_boot",
+        "LowestYAtAlpha128": 1301,
+        "BottomFourRowsMeanX": 975.54
+      }
+    ],
+    "standingPristineRegistrationSupport": [
+      588.465,
+      1303
+    ],
+    "disabledRegistrationSupport": [
+      730.905,
+      1297.5
+    ],
+    "supportDeltaFromPristine": [
+      142.44,
+      -5.5
+    ],
+    "pixelExact": false
+  },
+  "checks": {
+    "visualInspection": true,
+    "sameGauntFaceHairAndCostume": true,
+    "slenderBodyRetained": true,
+    "incapacitatedGroundedPose": true,
+    "emptyHands": true,
+    "completeVisibleSilhouette": true,
+    "nonGraphicClothingDamage": true,
+    "noBloodGoreWeaponsDropsOrNewProps": true,
+    "alphaCanvasAndGroundContactsMeasured": true,
+    "codeTestsRun": false,
+    "whyNoCodeTests": "Independent raster and metadata only; no application or gameplay modifications."
+  },
+  "gaps": [
+    "GROUND_ALIGNMENT_REQUIRED: source support(730.905,1297.5) vs pristine(588.465,1303), delta(+142.44,-5.5)px.",
+    "POSE_SCALE_REVIEW: same slender identity remains, but exact folded-versus-standing anatomical scale not certified.",
+    "SOURCE_RESOLUTION_BELOW_ORIGINAL_TARGET:1122x1402 below1536x1920, no interpolation.",
+    "ALPHA_RESIDUE: low-alpha remnants outside silhouette and body mostly253.",
+    "All five technician raster phases now exist; shared-wrapper alignment, Owner acceptance and actual-stage switching remain separate validation."
+  ],
+  "sha256": "FA70FEEFA7164FCAB84EDCF846D47D80D4F88F50895228D5826CB91799BB0DEC"
+}

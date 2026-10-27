@@ -1,0 +1,68 @@
+[
+  {
+    "file": "references/01-shell.png",
+    "original_name": "末世医院保安亭生存界面.png",
+    "bytes": 2477590,
+    "sha256": "c9e7ede7653444ac1715600846189136a63d4337866bf02e379e9661bd57680b",
+    "pixels": [
+      1672,
+      941
+    ],
+    "use": "VISUAL_DIRECTION_ONLY_NOT_RULES_OR_PRODUCTION_ASSETS"
+  },
+  {
+    "file": "references/02-setup.png",
+    "original_name": "电梯求生_市立医院启程.png",
+    "bytes": 2589150,
+    "sha256": "e928d914e488325f145921c0e6462cfff33d39b984c18e3b0752c6cbd6d01cc3",
+    "pixels": [
+      1672,
+      941
+    ],
+    "use": "VISUAL_DIRECTION_ONLY_NOT_RULES_OR_PRODUCTION_ASSETS"
+  },
+  {
+    "file": "references/03-map.png",
+    "original_name": "末日医院区域地图界面.png",
+    "bytes": 2499129,
+    "sha256": "211f6c29593512f268a04263901e44ea986a58cc18c2cdfcc71d82a0abd6af70",
+    "pixels": [
+      1672,
+      941
+    ],
+    "use": "VISUAL_DIRECTION_ONLY_NOT_RULES_OR_PRODUCTION_ASSETS"
+  },
+  {
+    "file": "references/04-node.png",
+    "original_name": "医院样本提取室生存界面.png",
+    "bytes": 2487993,
+    "sha256": "d72995a622bde64f3d909f0a46aae1d2d3692053e373b41cc6c952dd42a54ae0",
+    "pixels": [
+      1672,
+      941
+    ],
+    "use": "VISUAL_DIRECTION_ONLY_NOT_RULES_OR_PRODUCTION_ASSETS"
+  },
+  {
+    "file": "references/05-combat.png",
+    "original_name": "医院走廊感染护士战斗界面.png",
+    "bytes": 2167498,
+    "sha256": "f986d83ef06412637a8ca051836a24a10b0429ae3ae77ebb5827c97f619308a8",
+    "pixels": [
+      1672,
+      941
+    ],
+    "use": "VISUAL_DIRECTION_ONLY_NOT_RULES_OR_PRODUCTION_ASSETS"
+  },
+  {
+    "file": "references/06-terminal.png",
+    "original_name": "雨夜医院任务完成界面.png",
+    "bytes": 2485368,
+    "sha256": "f18e1da8c70308390cdb992697df0ebe3900a8f73b26dbfd8b416008ad02da83",
+    "pixels": [
+      1672,
+      941
+    ],
+    "use": "VISUAL_DIRECTION_ONLY_NOT_RULES_OR_PRODUCTION_ASSETS"
+  }
+]

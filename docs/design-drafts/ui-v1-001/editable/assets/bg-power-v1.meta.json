@@ -1,0 +1,71 @@
+{
+  "assetId": "bg-power-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "bg-power-v1.png",
+  "node": "P0",
+  "displayName": "供电所配线廊",
+  "purpose": "AI生成呈现候选，非玩法",
+  "licenseOrUsage": "AI生成呈现候选，非玩法；不代表最终美术冻结或 Owner 验收。",
+  "generator": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen.imagegen",
+    "calls": 1,
+    "prompt": "Use case: stylized-concept. Asset type: isolated environment background plate for a bounded central room stage in a survival strategy game. Generate exactly one new native 3840 x 2160 PNG, 16:9, without enlarging a smaller image. Scene P0: a long industrial cable distribution corridor inside an aging electric utility substation. Dense banks of thick neatly routed black insulated cables on overhead metal ladder trays and wall-mounted cable racks, weathered grey-green enclosed electrical cabinets lining both sides, concrete utility walls with heavy conduits and metal mounting brackets. This is clearly power infrastructure, not a hospital hallway: no hospital tiles, handrails, medical furniture, hotel fittings, elevator doors. A wide empty central walkway leads to a dark plain service doorway in the distant background. Cabinets remain fully closed with plain handles and unlit blank instrument windows; no exposed electric arc, no active status screens, no colored control indicator pattern. Construction and cabling physically plausible, practical industrial scale. Cinematic photorealistic game illustration, dense crisp texture in cable insulation, oxidized metal, grey-green powder-coat paint, dusty concrete and metal floor grates, sparse scuffing and moisture without flooding. Lighting: restrained cold cyan overhead utility illumination, a few faint amber maintenance wall lamps along the side; these are local environment lamps, not an indication that any power-restoration objective is completed. Deep teal-black shadows but readable architecture, quiet tense abandoned mood. Camera at eye height, 28 mm wide architectural perspective with central stable vanishing point at x=50%, y=42%, perfectly level framing. Central 60% of image remains recognizable and unobstructed; empty center foreground floor available for a separate action overlay, main cabinets and trays fit safely inside composition, no critical object touching edges. No human, enemy, NPC, silhouette, body, blood or gore. No HUD, UI, panels, icons, text, letters, words, numbers, labels, signs, hazard lettering, posters, logos or watermark. No loose tools, repair components, batteries, collectibles, supplies, loot or rewards. No triumphant powered-up appearance, success symbol or new gameplay gate. This is presentation-only background art; no gameplay state, movement graph, reward or recovered supply is asserted. Deliver one clean native 3840x2160 full-bleed PNG.",
+    "sourcePath": "C:\\Users\\zjl\\.codex\\generated_images\\01a17970-d333-7b52-86f0-1095a5716707\\exec-77e91b30-0c7d-4c3c-af0c-214b7bb94803.png"
+  },
+  "contentEvidence": {
+    "source": "src/content/infected-world-v0.1/content.ts",
+    "P0": {
+      "name": "配线廊",
+      "rest": "C",
+      "enemy": null
+    },
+    "P1": {
+      "name": "转运支路柜",
+      "powerAction": "power requires power-survey, cost restore.power"
+    },
+    "boundary": "P0 图片中冷青照明与琥珀灯仅为环境光，不表示 P1 power 正式目标已完成，不提供新部件、门禁、路线或任务结果。"
+  },
+  "requested": {
+    "width": 3840,
+    "height": 2160,
+    "aspectRatio": "16:9",
+    "nativeResolution": true
+  },
+  "actual": {
+    "width": 1672,
+    "height": 941,
+    "aspectRatio": 1.7768331562167907,
+    "format": "PNG",
+    "bytes": 2920431,
+    "sha256": "BC2E137F2F1877911F0C2611F7D05C1A0F1383BDF19FD76E6779EC1919096FF9"
+  },
+  "transformations": [],
+  "originalBytesUnchanged": true,
+  "resolutionStatus": "NOT_MET: built-in tool returned 1672×941 despite native 3840×2160 prompt. One generation only; original bytes copied without resizing, interpolation or upscaling.",
+  "visualInspection": {
+    "status": "PASS_FOR_CANDIDATE",
+    "notes": [
+      "长条工业电缆廊、金属梯架、灰绿封闭柜体明确，工业管线密度区别医院。",
+      "中央对称透视焦点与下方走道连续留空，适合独立动作面板或角色叠加。",
+      "无角色、HUD、文字、部件特写或可辨识奖励；仪表窗未显示任务状态。",
+      "冷青顶灯与小型琥珀检修灯只作为静态环境表现。"
+    ]
+  },
+  "cropGuidance": {
+    "preferred": "16:9 bounded P0 stage; object-position 50% 50%.",
+    "supported": "4:3 and square center crops retain vanishing point, center walkway and inner cabinets. Central 60% width safe for identifying room.",
+    "foregroundSafeZoneNormalized": {
+      "x": 0.3,
+      "y": 0.62,
+      "width": 0.4,
+      "height": 0.33
+    },
+    "wideCrop": "Wider cinematic crop at 50% 50% retains cabinet ranks and walkway; topmost ladder trays may be cropped.",
+    "avoid": "Do not infer power objective completion from illumination. End door is architecture only, not a new route or gate. Do not use as hospital corridor."
+  },
+  "unresolved": [
+    "Native 3840×2160 source requirement not met; remains lower-resolution candidate.",
+    "No final art freeze or Owner visual acceptance implied."
+  ]
+}

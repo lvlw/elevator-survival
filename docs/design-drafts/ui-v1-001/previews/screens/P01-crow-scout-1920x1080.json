@@ -1,0 +1,159 @@
+{
+  "screen": "P01-crow-scout",
+  "viewport": [
+    1920,
+    1080
+  ],
+  "pixelRatio": 1,
+  "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+  "rects": [
+    {
+      "selector": ".shell",
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "scrollH": 1080,
+      "clientH": 1080
+    },
+    {
+      "selector": ".center",
+      "x": 320,
+      "y": 112,
+      "w": 1200,
+      "h": 888,
+      "scrollH": 888,
+      "clientH": 888
+    },
+    {
+      "selector": ".sidebar.left",
+      "x": 24,
+      "y": 112,
+      "w": 280,
+      "h": 888,
+      "scrollH": 886,
+      "clientH": 886
+    },
+    {
+      "selector": ".sidebar.right",
+      "x": 1536,
+      "y": 112,
+      "w": 360,
+      "h": 888,
+      "scrollH": 886,
+      "clientH": 886
+    },
+    null,
+    {
+      "selector": ".panel",
+      "x": 320,
+      "y": 112,
+      "w": 1200,
+      "h": 888,
+      "scrollH": 886,
+      "clientH": 886
+    },
+    null,
+    {
+      "selector": ".footer",
+      "x": 24,
+      "y": 1016,
+      "w": 1872,
+      "h": 40,
+      "scrollH": 38,
+      "clientH": 38
+    }
+  ],
+  "assets": [
+    {
+      "path": "../editable/assets/bg_elevator_hub_v01.png",
+      "native": [
+        1672,
+        941
+      ],
+      "display": [
+        1200,
+        888
+      ]
+    },
+    {
+      "path": "../editable/assets/item-crowbar-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        340.328125,
+        160
+      ]
+    },
+    {
+      "path": "../editable/assets/icon_flashlight_v01.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        340.328125,
+        160
+      ]
+    },
+    {
+      "path": "../editable/assets/item-toolbox-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        340.34375,
+        160
+      ]
+    },
+    {
+      "path": "../editable/assets/icon_metal_pipe_v01.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        54,
+        54
+      ]
+    },
+    {
+      "path": "../editable/assets/icon_heavy_coat_v01.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        54,
+        54
+      ]
+    },
+    {
+      "path": "../editable/assets/item-crowbar-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        54,
+        54
+      ]
+    },
+    {
+      "path": "../editable/assets/icon_bandage_v02.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        42,
+        42
+      ]
+    }
+  ],
+  "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+  "missing": []
+}

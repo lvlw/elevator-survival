@@ -1,0 +1,58 @@
+[
+  {
+    "path": "AGENTS.md",
+    "sha256": "00c2cad61c99530c1343ca9faad9a32994d67e5ca4aeb991156bb9828e5c501e"
+  },
+  {
+    "path": "docs/01-game-design-v0.1.md",
+    "sha256": "20c947930a1a7fca7b97f581b9813213fda3c45cfbea724d5af4a4788b18410b"
+  },
+  {
+    "path": "docs/02-vertical-slice.md",
+    "sha256": "bd1482a0a04f0b74b935c06bb3d64a963ed410daf36940be3b78d3ab2d61b6fd"
+  },
+  {
+    "path": "docs/03-architecture.md",
+    "sha256": "586c9960468a4733e2145d8a179ccf75ca9a75a17f24669e89367ab35aa0a9fa"
+  },
+  {
+    "path": "docs/05-design-decisions.md",
+    "sha256": "68f35a56c754f55b1137314ba41cd7fbbeea88afdcb816690ff52a509c90d6ca"
+  },
+  {
+    "path": "docs/09-ui-design-record.md",
+    "sha256": "ef487405761d553bf59da280f7b93563207f77af6173e96ddc1cccf26e1e033d"
+  },
+  {
+    "path": "docs/10-visual-asset-slot-audit.md",
+    "sha256": "5a7e4ecd8e328eb71e633a4ad9d769fb9f43db30dbecaf9c390dcbc06fc4bd5f"
+  },
+  {
+    "path": "docs/12-early-visual-direction-brainstorm-v0.1.md",
+    "sha256": "d8be45f54455a34c94390a807ebb679db16f0b1966ae22b5e19224b04f99d9e0"
+  },
+  {
+    "path": "src/content/infected-world-v0.1/content.ts",
+    "sha256": "e84900d5e39b61a8e9615885677b691937502c6cef50a0aff677650d59e34624"
+  },
+  {
+    "path": "src/content/infected-world-v0.1/config.ts",
+    "sha256": "0a430232564c517f43a3980d7098424f2985dd60a06b405941fe24939d90379c"
+  },
+  {
+    "path": "src/content/infected-world-v0.1/items.ts",
+    "sha256": "071bab35764bad8244b64b64127a98732f860623efb7829cb583b87649eea381"
+  },
+  {
+    "path": "src/core/residence-combat/player-query.ts",
+    "sha256": "26f207f558ec5dbf37e8be5c208cf11cc2a31c0a274320bef6d3bbfdd9bb36a5"
+  },
+  {
+    "path": "docs/engineering/world-integration/preplay/low-asset-ui-contract-v1.0.md",
+    "sha256": "e8dd12940f789fcb65e8967db19bcd5cf5fa136ce1e8179325abac65137df33e"
+  },
+  {
+    "path": "docs/engineering/world-integration/player-query/player-query-contract-v1.0.md",
+    "sha256": "e42cc12c18cec9efbdf276ae1fb47547eeaff5a5292f397a2580e53eaddfda49"
+  }
+]

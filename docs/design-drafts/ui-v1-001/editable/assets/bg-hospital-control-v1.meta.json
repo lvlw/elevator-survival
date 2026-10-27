@@ -1,0 +1,103 @@
+{
+  "assetId": "bg-hospital-control-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "bg-hospital-control-v1.png",
+  "nodes": [
+    "H3",
+    "H7"
+  ],
+  "displayName": "医院监控／后勤控制工作间共用底板",
+  "purpose": "AI生成呈现候选，非玩法",
+  "licenseOrUsage": "AI生成呈现候选，非玩法；不代表最终美术冻结或 Owner 验收。",
+  "generator": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen.imagegen",
+    "calls": 1,
+    "prompt": "Use case: stylized-concept. Asset type: one clean environment background plate for two alternate bounded room-stage crops in a survival strategy game. Generate exactly one new native 3840 x 2160 PNG, 16:9, no upscaling from smaller source. Scene: a deserted low-light hospital surveillance and facilities workroom. One coherent practical room, no split screen or collage. LEFT ZONE x=15%-43%: an old battered steel security duty desk against the back wall, two obsolete chunky CRT surveillance monitors, both switched off with dark reflective glass and no image or display content, one empty worn office chair tucked into the desk; the desktop is bare aside from the monitor bodies. RIGHT ZONE x=60%-85%: a compact bank of grey-green facilities control cabinets, fully closed; modest unlit blank display windows and unlabeled physical knobs, realistic plain industrial panels, no readable markings, no visible schematic. The cabinets must look like hospital building maintenance equipment rather than a sci-fi command center. The center is a calm strip of worn plain wall with conduit above, with empty low-contrast floor in front. Hospital materials: dirty desaturated teal painted lower walls, aged off-white plaster upper walls, cracked concrete/terrazzo floor, chipped metal, dusty vents, modest cable conduits. Dense restrained tactile detail, believable medium-size utility workroom. Cinematic photorealistic survival-game environmental illustration, cold blue-grey and teal-black shadow palette with one dim warm tungsten workroom wall fixture, soft weak cool fluorescent ambient light; readable dark midtones, no hazy blur. Composition: stable eye-level 28 mm wide nearly frontal view, no dutch angle, clear center safe focal area, left desk silhouette and right cabinets each entirely visible with breathing room so left-weighted crop supports H3 security room and right-weighted crop supports H7 logistics control room. Empty center foreground available for independently implemented action UI. No person, NPC, enemy, silhouette, reflection of a person, corpse, gore. No HUD, UI, interface framing, graphic panels, map, labels, letters, numbers, words, readable text, hospital name, logo or watermark. No camera feeds, floor plans, route diagram, active status data, completion indicator or lit control buttons. No visible keycard, keys, papers, tools, batteries, medical supplies, bags, weapon, collectible, reward or loose component. These monitors/cabinets are visual set dressing only, not new gameplay actions or loot. The shared plate is an art reuse candidate and must not imply the canonical H3 and H7 nodes are the same room or directly adjacent. Deliver one independent full-bleed native 3840x2160 PNG.",
+    "sourcePath": "C:\\Users\\zjl\\.codex\\generated_images\\01a17970-d333-7b52-86f0-1095a5716707\\exec-f1db7a91-95e6-4b09-9609-fae15d29c43c.png"
+  },
+  "contentEvidence": {
+    "source": "src/content/infected-world-v0.1/content.ts",
+    "H3": {
+      "name": "保安室",
+      "rest": "C",
+      "enemy": null,
+      "source": "H3-search: search.dark, ground-once"
+    },
+    "H7": {
+      "name": "后勤控制间",
+      "rest": "C",
+      "enemy": null,
+      "action": "workorder: investigate, fact=workorder, grant=null"
+    },
+    "boundary": "同一视觉底板可用不同焦点支持不同节点；不证明 H3 和 H7 是同一房间、直接相邻或共用操作。监视器/柜体不是额外可点击行为；不得据画面赋予门卡、物资、监控情报或工单事实。"
+  },
+  "requested": {
+    "width": 3840,
+    "height": 2160,
+    "aspectRatio": "16:9",
+    "nativeResolution": true
+  },
+  "actual": {
+    "width": 1672,
+    "height": 941,
+    "aspectRatio": 1.7768331562167907,
+    "format": "PNG",
+    "bytes": 2449512,
+    "sha256": "D6B8570F80ECE0F648E20506934857A40F67FBD9F3C30102521E8115CCEC6229"
+  },
+  "transformations": [],
+  "originalBytesUnchanged": true,
+  "resolutionStatus": "NOT_MET: built-in tool returned 1672×941 despite native 3840×2160 prompt. One generation only; original bytes copied without resizing, interpolation or upscaling.",
+  "visualInspection": {
+    "status": "PASS_FOR_CANDIDATE",
+    "notes": [
+      "左侧双 CRT 黑屏监视器、旧钢桌和空椅适合 H3；右侧灰绿无文字闭合控制柜适合 H7。",
+      "中央墙面和下方地面稳定留空，医院青灰墙面与磨损金属材质一致。",
+      "无人员、HUD、可读文字、可见门卡或物资，屏幕无监控内容或地图。",
+      "所有柜体按钮、窗口与监视器保持未亮状态；不显示任务完成。"
+    ]
+  },
+  "cropGuidance": {
+    "fullPlate": "16:9 center 50% 50% can show full composition, but will also show both role-specific prop groups.",
+    "H3": {
+      "preferredFocalPercent": {
+        "x": 23,
+        "y": 48
+      },
+      "cropSourceRegionNormalized": {
+        "x": 0.03,
+        "y": 0.12,
+        "width": 0.55,
+        "height": 0.8
+      },
+      "description": "Left-biased view keeps desk/monitors and central clear area; avoid relying on full right cabinet group for H3 identity."
+    },
+    "H7": {
+      "preferredFocalPercent": {
+        "x": 80,
+        "y": 48
+      },
+      "cropSourceRegionNormalized": {
+        "x": 0.43,
+        "y": 0.1,
+        "width": 0.55,
+        "height": 0.8
+      },
+      "description": "Right-biased view keeps cabinets and central clear area; crop out left monitors where practical."
+    },
+    "focalNote": "Focal position alone does not crop at same aspect ratio. Use an actual bounded cover crop/zoom only where needed and report reduced source pixels; no new cropped output file was created.",
+    "foregroundSafeZoneNormalized": {
+      "x": 0.25,
+      "y": 0.71,
+      "width": 0.5,
+      "height": 0.24
+    },
+    "avoid": "Do not invent monitoring, door unlock, control activation, supplies, or merged nodes from the visual composition."
+  },
+  "unresolved": [
+    "Native 3840×2160 source requirement not met; remains lower-resolution candidate.",
+    "H3/H7 shared asset needs actual focal crop review in each bounded stage to prevent mixed node identity.",
+    "No final art freeze or Owner visual acceptance implied."
+  ]
+}

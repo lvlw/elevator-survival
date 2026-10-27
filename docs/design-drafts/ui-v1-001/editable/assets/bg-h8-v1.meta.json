@@ -1,0 +1,87 @@
+{
+  "assetId": "bg-h8-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "bg-h8-v1.png",
+  "node": "H8",
+  "displayName": "医院后勤转运平台",
+  "purpose": "AI生成呈现候选，非玩法",
+  "licenseOrUsage": "AI生成呈现候选，非玩法；不代表最终美术冻结或 Owner 验收。",
+  "generator": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen.imagegen",
+    "calls": 1,
+    "prompt": "Use case: stylized-concept. Asset type: independent environmental background plate for the bounded H8 hospital transfer-platform stage and possible installation-point close view. Generate exactly one new native 3840 x 2160 PNG, 16:9, without upscaling a smaller source. Scene H8: a sealed indoor hospital service transfer bay, built for orderly movement of gurneys but completely empty. A broad level smooth floor transfer lane runs from the clear center foreground to a modest empty recessed low-profile loading/lifting platform at the back-center, with flush metal guide tracks along the sides and institutional protective wall bumper rails. Rear-left a tall closed insulated industrial service door, rear-right a plain closed metal control-interface box mounted on a short pedestal or wall, no open socket internals, no labels and no glowing lights. There is no fitted portable module, no loose component, no repair tool. The room must read as a hospital back-of-house transfer bay through pale worn teal wall cladding, cleanly organized institutional architecture, scuff-resistant lower wall panels, medical-facility-scale door and smooth floor, NOT an outdoor freight dock or big warehouse. Dense tactile cinematic photorealistic game environmental illustration: worn stainless edges, oxidized steel bolts, chipped muted teal paint, dusty vents, heavy concrete and modest overhead service pipes. Low cold cyan-white utility light, restrained dim neutral ambience, teal-black shadows and readable dark midtones; a small warm utility lamp is acceptable but no celebratory success lighting. Stable eye-level wide 28 mm architecture view, no dutch angle, clear near-frontal platform alignment. Center 60% width retains all essential platform identity; leave open center foreground x=25%-75%, y=60%-95% without important object so action panels or independent module assets can overlay it. No characters, patient, medical staff, NPC, enemy, silhouette, body, stretcher with person, blood, gore or rescue scene. No actual gurney required; floor and rails alone imply transfer use. No displayed installed module, success marker, rescue result, reward, supplies, sample case, loot, free component or vehicle. No HUD, UI, interface border, icon, text, labels, words, letters, numbers, hospital name, safety signage, hazard symbols, route arrows, logo or watermark. Control-interface box remains closed blank and not animated, no new gameplay operation implied. This environmental plate does not indicate installation completed, power restored or transfer succeeded. Deliver one full-bleed clean native 3840x2160 PNG.",
+    "sourcePath": "C:\\Users\\zjl\\.codex\\generated_images\\01a17970-d333-7b52-86f0-1095a5716707\\exec-aff8d220-4697-4946-8b0c-720f6e4663fd.png"
+  },
+  "contentEvidence": {
+    "source": "src/content/infected-world-v0.1/content.ts",
+    "H8": {
+      "name": "转运平台",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "H7-H8"
+      ]
+    },
+    "installAction": {
+      "id": "install",
+      "cost": "install",
+      "requires": [
+        "power"
+      ],
+      "fact": "transfer",
+      "consume": "install.inputs",
+      "grant": null
+    },
+    "boundary": "背景无患者、已安装模块或救援结果。安装事实只能由既有正式 install 产生；空轨道、升降平台、接口箱不新增动作，也不代表 power 或 transfer 已完成。"
+  },
+  "requested": {
+    "width": 3840,
+    "height": 2160,
+    "aspectRatio": "16:9",
+    "nativeResolution": true
+  },
+  "actual": {
+    "width": 1672,
+    "height": 941,
+    "aspectRatio": 1.7768331562167907,
+    "format": "PNG",
+    "bytes": 2471845,
+    "sha256": "41ECD5B907BB5220F00DEC4FB7E29B1B33535D2FC5C5930AEDF155D7EB26E546"
+  },
+  "transformations": [],
+  "originalBytesUnchanged": true,
+  "resolutionStatus": "NOT_MET: built-in tool returned 1672×941 despite native 3840×2160 prompt. One generation only; original bytes copied without resizing, interpolation or upscaling.",
+  "visualInspection": {
+    "status": "PASS_FOR_CANDIDATE",
+    "notes": [
+      "封闭医院后勤空间、青灰防撞墙面、平整推床通道、空低升降平台及侧轨道清楚。",
+      "右侧控制接口箱关闭、无标记和状态灯；不显示安装模块。",
+      "无患者、角色、救援结果、文字、HUD、奖励或物资。",
+      "中央前景大面积空地，可承载正式安装界面或独立资产。"
+    ]
+  },
+  "cropGuidance": {
+    "preferred": "16:9 bounded H8 stage; object-position 50% 50%.",
+    "supported": "4:3 center crop preserves platform and most doorway/interface-box context. Square center crop keeps platform but removes interface box.",
+    "installationPointCropSourceRegionNormalized": {
+      "x": 0.57,
+      "y": 0.19,
+      "width": 0.29,
+      "height": 0.43
+    },
+    "installationPointNote": "Right interface-box region is only ~485×405 source pixels; use as optional atmospheric detail with no claim of high-resolution new source. Keep module as a separate asset if actual state requires it.",
+    "foregroundSafeZoneNormalized": {
+      "x": 0.25,
+      "y": 0.62,
+      "width": 0.5,
+      "height": 0.33
+    },
+    "avoid": "Do not render this empty plate as successful rescue or installed transfer result. Floor rails are visual infrastructure, not tactical movement or new navigation."
+  },
+  "unresolved": [
+    "Native 3840×2160 source requirement not met; remains lower-resolution candidate.",
+    "Any interface-box close crop uses substantially fewer original pixels.",
+    "No final art freeze or Owner visual acceptance implied."
+  ]
+}

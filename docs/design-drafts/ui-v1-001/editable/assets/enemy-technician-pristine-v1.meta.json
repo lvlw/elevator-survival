@@ -1,0 +1,167 @@
+{
+  "assetId": "enemy-technician-pristine-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "enemy-technician-pristine-v1.png",
+  "status": "REVIEW_CANDIDATE_WITH_GAPS",
+  "productionBound": false,
+  "contentMapping": {
+    "area": "通信",
+    "node": "C2 检修走廊",
+    "enemy": "感染技术员 / 感染检修员",
+    "stage": "pristine / 完好",
+    "appearanceIsPresentationCandidate": true
+  },
+  "source": {
+    "tool": "built-in image_gen.imagegen",
+    "mode": "generate",
+    "generatedPath": "C:/Users/zjl/.codex/generated_images/01a17971-2cce-73a0-bfa2-2ed8008284c4/exec-5bd4a02c-662e-48c6-9f64-e533aa5eb05e.png",
+    "copiedWithoutPixelModification": true,
+    "interpolatedUpscale": false,
+    "fallbackApiUsed": false,
+    "generationCount": 1,
+    "prompt": "Use case: stylized-concept\nAsset type: ONE standalone transparent full-body enemy character sprite for the Chinese grounded survival strategy game 《电梯求生》.\nPrimary request: the infected communications technician from C2 maintenance corridor, pristine / intact combat stage. A thin, wiry, gaunt adult male technician with a visibly stooped back and narrow shoulders, lean long limbs, short thinning dark hair, pale sickly ashen skin and subtly unhealthy facial veins. Distinct identity and silhouette from a thickset freight porter and from a female hospital orderly. Old faded dark petrol-teal / deep blue-green work coveralls, one-piece practical maintenance uniform, grime and wear, intact clothing, scuffed dark work boots. A plain worn utility tool belt around the waist with closed small pouches and compact indistinct secured maintenance supplies, no protruding large tool or weapon.\nHands and posture: BOTH HANDS EMPTY, fingers visible and anatomically coherent. No gun, no pipe, no handheld tool, no weapon, no shield. Three-quarter front view turned toward SCREEN LEFT, looking toward the player off screen left. Tense slightly hunched idle stance, natural weight on two feet, arms loosely ready. Ordinary human infection, no monstrous spikes, tentacles, supernatural anatomy or glowing eyes. No special power effects.\nStage: pristine / intact initial encounter. Old dirt, fatigue and ordinary wear only; no new cuts, bleeding, missing parts, exposed tissue, bandages or visible combat damage.\nStyle / medium: cold dark realistic cinematic game character artwork, detailed believable fabric, skin and metal, grounded painterly photorealism. Match the material clarity and restrained cold colour direction of the inspected 05-combat concept and existing orderly sprite without copying the nurse/medical uniform, face, hairstyle or UI. Not cartoon, anime or exaggerated superhero anatomy.\nComposition: request native 1536 × 1920 pixels, portrait 4:5 PNG. Complete full body including all head, hands and boots, generous transparent canvas margins. Head top near normalized y=0.08, lowest soles around y=0.92, foot-contact midpoint near (0.50,0.92), upper torso impact anchor near (0.50,0.40). Full figure occupies approximately 84% of canvas height. Keep body centred with enough horizontal room, preserve fixed full canvas, DO NOT auto-trim transparent edges or crop extremities. This is the base for future stage variants with the same canvas, scale and anchor.\nLighting: cool soft front-left light and slight cool rim separation, clearly readable outfit folds, face and hands, subdued saturation, no dramatic coloured light or warm glow.\nBackground: TRUE transparent alpha PNG. Empty space fully transparent. No floor, no shadow plane, no smoky haze, no environmental scenery, no checkerboard, no black or white backdrop, no border.\nText: none. No HUD, labels, numbers, logos or watermark. Deliver exactly one standalone full-body pristine technician character."
+  },
+  "references": [
+    {
+      "path": "../../inputs/references/05-combat.png",
+      "role": "cold dark realistic material direction only; nurse identity and UI excluded"
+    },
+    {
+      "path": "../../../../../src/assets/presentation/v0.1/visual/enemy_infected_orderly_pristine_v02.png",
+      "role": "rendering detail and full-body transparent format only"
+    }
+  ],
+  "dimensions": {
+    "requestedWidth": 1536,
+    "requestedHeight": 1920,
+    "actualWidth": 1122,
+    "actualHeight": 1402,
+    "actualAspectRatio": 0.8002853067047075,
+    "targetAspectRatio": 0.8,
+    "exactTargetMet": false
+  },
+  "alpha": {
+    "present": true,
+    "pixelFormat": "Format32bppArgb",
+    "transparentPixelCount": 1210813,
+    "fullyOpaquePixelCount": 919,
+    "partiallyTransparentPixelCount": 361312,
+    "interiorSampleAlpha": 253,
+    "mostCommonSubjectAlpha": 253,
+    "boundsConvention": "[left,top,right,bottom], inclusive pixels",
+    "nonzeroBounds": [
+      0,
+      26,
+      1107,
+      1387
+    ],
+    "subjectBoundsAtAlpha16": [
+      317,
+      48,
+      820,
+      1346
+    ],
+    "subjectBoundsAtAlpha128": [
+      318,
+      52,
+      819,
+      1346
+    ],
+    "note": "True generated alpha preserved. Very low-alpha residue outside silhouette reaches left edge. Subject alpha mostly 252-253. No pixel cleanup or flattening performed."
+  },
+  "display": {
+    "fit": "contain",
+    "autoTrim": false,
+    "canvasMustRemainFixed": true,
+    "variantGroup": "enemy-technician-five-public-stages",
+    "completedStages": [
+      "pristine",
+      "wounded",
+      "heavy_wounded",
+      "critical",
+      "disabled"
+    ],
+    "pendingStages": [],
+    "stageInventoryMeaning": "All five PNG and metadata files exist. File presence is not natural alignment, wrapper QA, final art or Owner acceptance."
+  },
+  "anchors": {
+    "coordinateSystem": "normalized to entire untrimmed actual source canvas",
+    "requestedFootGround": [
+      0.5,
+      0.92
+    ],
+    "requestedTorsoHit": [
+      0.5,
+      0.4
+    ],
+    "footContactMidpointVisualEstimate": {
+      "pixels": [
+        608,
+        1304
+      ],
+      "normalized": [
+        0.5418894830659536,
+        0.9300998573466477
+      ],
+      "precision": "manual visual estimate; staggered boots viewed in perspective"
+    },
+    "torsoHitCandidate": {
+      "pixels": [
+        530,
+        410
+      ],
+      "normalized": [
+        0.47237076648841353,
+        0.29243937232524964
+      ],
+      "precision": "author-selected upper torso point adjusted for stooped posture, alpha checked 253"
+    },
+    "footTargetMet": false,
+    "notes": "Actual upper torso is above requested hit anchor due to hunched posture. Use declared candidate for prototype hit FX; no exact five-stage alignment claimed. Do not auto-trim."
+  },
+  "checks": {
+    "visualInspection": true,
+    "fullHeadHandsBootsVisible": true,
+    "gauntStoopedDistinctSilhouette": true,
+    "deepTealCoverallsAndToolBelt": true,
+    "emptyHands": true,
+    "noGunOrNewHandheldWeapon": true,
+    "noUiOrBakedBackground": true,
+    "codeTestsRun": false,
+    "whyNoCodeTests": "Independent PNG and metadata only; no application or core rules changed."
+  },
+  "gaps": [
+    "SOURCE_RESOLUTION_BELOW_TARGET: native 1122x1402, not 1536x1920. Generated once and not interpolated.",
+    "FOOT_ANCHOR_APPROXIMATE: estimated midpoint (0.542,0.930), target (0.50,0.92).",
+    "ALPHA_RESIDUE: low-alpha remnants beyond visible silhouette and body alpha mostly 252-253.",
+    "Owner art acceptance, multi-viewport stage validation and source pixel-budget review not performed.",
+    "FIVE_STAGE_REGISTRATION_NOT_VALIDATED: all five source PNG and metadata files now exist; shared-canvas wrapper, phase alignment and Owner acceptance remain separate checks."
+  ],
+  "sha256": "240077AEF5B5ADB7EFE1D4632894E5A7018A94DC3F18CD894F998A8E1C243444",
+  "registrationAnchors": {
+    "coordinateSystem": "Untrimmed original PNG pixels; normalized by actual1122x1402 source canvas",
+    "footSupportCenter": {
+      "pixels": [
+        588.465,
+        1303
+      ],
+      "normalized": [
+        0.5244786096256685,
+        0.9293865905848787
+      ],
+      "method": "Midpoint of measured sole contacts: alpha>=128 lowest rows1260/1346; bottom-four-row mean x423.94/752.99. Presentation registration only."
+    },
+    "torsoHit": {
+      "pixels": [
+        530,
+        410
+      ],
+      "normalized": [
+        0.47237076648841353,
+        0.29243937232524964
+      ],
+      "method": "Visually selected upper-torso point. Presentation FX only."
+    },
+    "usage": "Preferred explicit source anchors for non-destructive shared-canvas wrapper. Do not alter PNG or claim natural perfect alignment."
+  }
+}

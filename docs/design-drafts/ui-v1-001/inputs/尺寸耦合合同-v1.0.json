@@ -1,0 +1,522 @@
+{
+  "contract": "WORLD-UI-DESIGN-001 / SIZE-COUPLING v1.0",
+  "status": "PROPOSED_DESIGN_STARTING_BUDGET_NOT_EXISTING_RUNTIME_MEASUREMENTS",
+  "baseline": "6bb43c8861b7c3dd21499211fdb0e646e48bba20",
+  "units": "CSS px unless explicitly source pixels",
+  "shell_max_css": [
+    1920,
+    1080
+  ],
+  "desktop_minimum_css": [
+    1280,
+    720
+  ],
+  "formulas": {
+    "center_width": "viewport_width - 2*margin - 2*gutter - left_width - right_width",
+    "body_height": "viewport_height - 2*margin - hud_height - feedback_height - 2*gutter",
+    "grid_cell": "floor((right_width - 2*sidebar_padding - 2*border - (columns-1)*gap) / columns)",
+    "item_box_width": "item_width_cells*cell + (item_width_cells-1)*gap",
+    "item_box_height": "item_height_cells*cell + (item_height_cells-1)*gap",
+    "cover_scale": "max(slot_width/source_width,slot_height/source_height)",
+    "visible_source": "[slot_width/cover_scale,slot_height/cover_scale]",
+    "required_source": "ceil(max_display_css * target_DPR) after intended crop/contain transform"
+  },
+  "profiles": [
+    {
+      "id": "desktop-master",
+      "viewport_css": [
+        1920,
+        1080
+      ],
+      "margin": 24,
+      "gutter": 16,
+      "left_width": 280,
+      "right_width": 360,
+      "hud_height": 72,
+      "feedback_height": 40,
+      "center_width": 1200,
+      "body_height": 888,
+      "sidebar_padding": 16,
+      "border": 1,
+      "grid": {
+        "columns": 6,
+        "rows": 4,
+        "gap": 4,
+        "cell": 51,
+        "width": 326,
+        "height": 216,
+        "available_width": 326,
+        "unused_width": 0
+      },
+      "stage_panel": {
+        "inset": 16,
+        "normal": [
+          1080,
+          780
+        ],
+        "maximized": [
+          1200,
+          888
+        ],
+        "default": "normal"
+      },
+      "battle_budget": {
+        "panel": [
+          1080,
+          780
+        ],
+        "padding": 16,
+        "title": 48,
+        "timeline": 64,
+        "actions": 96,
+        "feed": 40,
+        "vertical_gap": 12,
+        "arena_height": 452
+      },
+      "background_crop": {
+        "source": [
+          3840,
+          2160
+        ],
+        "visible_source": [
+          2918.9189,
+          2160.0
+        ],
+        "crop_each_side_x": 0.119932,
+        "crop_each_side_y": 0.0
+      }
+    },
+    {
+      "id": "desktop-1600",
+      "viewport_css": [
+        1600,
+        900
+      ],
+      "margin": 20,
+      "gutter": 16,
+      "left_width": 240,
+      "right_width": 320,
+      "hud_height": 64,
+      "feedback_height": 36,
+      "center_width": 968,
+      "body_height": 728,
+      "sidebar_padding": 16,
+      "border": 1,
+      "grid": {
+        "columns": 6,
+        "rows": 4,
+        "gap": 4,
+        "cell": 44,
+        "width": 284,
+        "height": 188,
+        "available_width": 286,
+        "unused_width": 2
+      },
+      "stage_panel": {
+        "inset": 16,
+        "normal": [
+          936,
+          696
+        ],
+        "maximized": [
+          968,
+          728
+        ],
+        "default": "normal"
+      },
+      "battle_budget": {
+        "panel": [
+          936,
+          696
+        ],
+        "padding": 16,
+        "title": 44,
+        "timeline": 56,
+        "actions": 88,
+        "feed": 32,
+        "vertical_gap": 8,
+        "arena_height": 412
+      },
+      "background_crop": {
+        "source": [
+          3840,
+          2160
+        ],
+        "visible_source": [
+          2872.0879,
+          2160.0
+        ],
+        "crop_each_side_x": 0.12603,
+        "crop_each_side_y": 0.0
+      }
+    },
+    {
+      "id": "desktop-1440",
+      "viewport_css": [
+        1440,
+        900
+      ],
+      "margin": 16,
+      "gutter": 12,
+      "left_width": 224,
+      "right_width": 304,
+      "hud_height": 64,
+      "feedback_height": 36,
+      "center_width": 856,
+      "body_height": 744,
+      "sidebar_padding": 12,
+      "border": 1,
+      "grid": {
+        "columns": 6,
+        "rows": 4,
+        "gap": 4,
+        "cell": 43,
+        "width": 278,
+        "height": 184,
+        "available_width": 278,
+        "unused_width": 0
+      },
+      "stage_panel": {
+        "inset": 12,
+        "normal": [
+          832,
+          720
+        ],
+        "maximized": [
+          856,
+          744
+        ],
+        "default": "normal"
+      },
+      "battle_budget": {
+        "panel": [
+          832,
+          720
+        ],
+        "padding": 12,
+        "title": 44,
+        "timeline": 56,
+        "actions": 88,
+        "feed": 32,
+        "vertical_gap": 8,
+        "arena_height": 444
+      },
+      "background_crop": {
+        "source": [
+          3840,
+          2160
+        ],
+        "visible_source": [
+          2485.1613,
+          2160.0
+        ],
+        "crop_each_side_x": 0.176411,
+        "crop_each_side_y": 0.0
+      }
+    },
+    {
+      "id": "desktop-1366",
+      "viewport_css": [
+        1366,
+        768
+      ],
+      "margin": 16,
+      "gutter": 12,
+      "left_width": 208,
+      "right_width": 288,
+      "hud_height": 60,
+      "feedback_height": 32,
+      "center_width": 814,
+      "body_height": 620,
+      "sidebar_padding": 12,
+      "border": 1,
+      "grid": {
+        "columns": 6,
+        "rows": 4,
+        "gap": 4,
+        "cell": 40,
+        "width": 260,
+        "height": 172,
+        "available_width": 262,
+        "unused_width": 2
+      },
+      "stage_panel": {
+        "inset": 12,
+        "normal": [
+          790,
+          596
+        ],
+        "maximized": [
+          814,
+          620
+        ],
+        "default": "maximized"
+      },
+      "battle_budget": {
+        "panel": [
+          814,
+          620
+        ],
+        "padding": 12,
+        "title": 40,
+        "timeline": 48,
+        "actions": 80,
+        "feed": 32,
+        "vertical_gap": 8,
+        "arena_height": 364
+      },
+      "background_crop": {
+        "source": [
+          3840,
+          2160
+        ],
+        "visible_source": [
+          2835.871,
+          2160.0
+        ],
+        "crop_each_side_x": 0.130746,
+        "crop_each_side_y": 0.0
+      }
+    },
+    {
+      "id": "desktop-minimum",
+      "viewport_css": [
+        1280,
+        720
+      ],
+      "margin": 12,
+      "gutter": 12,
+      "left_width": 192,
+      "right_width": 272,
+      "hud_height": 56,
+      "feedback_height": 32,
+      "center_width": 768,
+      "body_height": 584,
+      "sidebar_padding": 12,
+      "border": 1,
+      "grid": {
+        "columns": 6,
+        "rows": 4,
+        "gap": 4,
+        "cell": 37,
+        "width": 242,
+        "height": 160,
+        "available_width": 246,
+        "unused_width": 4
+      },
+      "stage_panel": {
+        "inset": 12,
+        "normal": [
+          744,
+          560
+        ],
+        "maximized": [
+          768,
+          584
+        ],
+        "default": "maximized"
+      },
+      "battle_budget": {
+        "panel": [
+          768,
+          584
+        ],
+        "padding": 12,
+        "title": 40,
+        "timeline": 48,
+        "actions": 80,
+        "feed": 32,
+        "vertical_gap": 8,
+        "arena_height": 328
+      },
+      "background_crop": {
+        "source": [
+          3840,
+          2160
+        ],
+        "visible_source": [
+          2840.5479,
+          2160.0
+        ],
+        "crop_each_side_x": 0.130137,
+        "crop_each_side_y": 0.0
+      }
+    }
+  ],
+  "stress_views": [
+    {
+      "viewport_css": [
+        2560,
+        1440
+      ],
+      "mode": "centered unscaled shell 1920x1080; decorative outer field only"
+    },
+    {
+      "viewport_css": [
+        1366,
+        650
+      ],
+      "mode": "height fallback: local panel scroll, sticky actions, no page scaling"
+    },
+    {
+      "viewport_css": [
+        1024,
+        768
+      ],
+      "mode": "compact layout; one peripheral drawer at a time; no overlap or hidden required controls"
+    },
+    {
+      "viewport_css": [
+        390,
+        844
+      ],
+      "mode": "readable stacked fallback; no claim of mobile-first product"
+    },
+    {
+      "desktop_zoom": [
+        1.25,
+        1.5
+      ],
+      "mode": "record actual CSS viewport and recompute layout; do not shrink font to compensate"
+    }
+  ],
+  "source_assets": [
+    {
+      "kind": "scene-background",
+      "source_pixels": [
+        3840,
+        2160
+      ],
+      "aspect": "16:9",
+      "alpha": false,
+      "fit": "cover with focal/crop proof",
+      "art_safe_zone_normalized": [
+        0.2,
+        0.15,
+        0.8,
+        0.75
+      ]
+    },
+    {
+      "kind": "battle-background",
+      "source_pixels": [
+        3840,
+        2160
+      ],
+      "aspect": "16:9",
+      "alpha": false,
+      "fit": "cover; matched perspective; no baked enemy"
+    },
+    {
+      "kind": "event-closeup",
+      "source_pixels": [
+        2048,
+        1280
+      ],
+      "aspect": "8:5",
+      "alpha": false,
+      "fit": "bounded 8:5 or documented crop"
+    },
+    {
+      "kind": "enemy-phase",
+      "source_pixels": [
+        1536,
+        1920
+      ],
+      "aspect": "4:5",
+      "alpha": true,
+      "fit": "contain",
+      "foot_anchor_normalized": [
+        0.5,
+        0.92
+      ],
+      "shared_canvas_for_all_phases": true
+    },
+    {
+      "kind": "npc-player-body",
+      "source_pixels": [
+        1536,
+        1920
+      ],
+      "aspect": "4:5",
+      "alpha": true,
+      "fit": "contain"
+    },
+    {
+      "kind": "item-icon",
+      "source_pixels": [
+        512,
+        512
+      ],
+      "aspect": "1:1",
+      "alpha": true,
+      "fit": "contain",
+      "transparent_margin_each_side": 0.125
+    },
+    {
+      "kind": "item-detail-portrait",
+      "source_pixels": [
+        1024,
+        1024
+      ],
+      "aspect": "1:1",
+      "alpha": true,
+      "fit": "contain"
+    },
+    {
+      "kind": "timeline-token",
+      "source_pixels": [
+        128,
+        128
+      ],
+      "aspect": "1:1",
+      "alpha": true,
+      "max_display_css": [
+        48,
+        48
+      ]
+    },
+    {
+      "kind": "hit-overlay",
+      "source_pixels": [
+        768,
+        768
+      ],
+      "aspect": "1:1",
+      "alpha": true,
+      "fit": "actor-relative overlay"
+    },
+    {
+      "kind": "panel-nine-slice",
+      "source_pixels": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "source_slice_insets": [
+        48,
+        48,
+        48,
+        48
+      ],
+      "export_scale": 2,
+      "css_corner": 24
+    },
+    {
+      "kind": "semantic-icon-map-lines",
+      "format": "SVG",
+      "raster_fallback_pixels": [
+        128,
+        128
+      ],
+      "fit": "vector; no embedded gameplay data"
+    }
+  ],
+  "not_verified": [
+    "actual browser reflow",
+    "final art crop",
+    "Owner readability",
+    "real CTB animation",
+    "production implementation"
+  ]
+}

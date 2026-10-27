@@ -1,0 +1,72 @@
+{
+  "assetId": "bg-logistics-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "bg-logistics-v1.png",
+  "primaryNode": "L2",
+  "secondaryUse": "L0外围背景底板候选；不替代岗亭节点语义",
+  "displayName": "物流装卸场",
+  "purpose": "AI生成呈现候选，非玩法",
+  "licenseOrUsage": "AI生成呈现候选，非玩法；不代表最终美术冻结或 Owner 验收。",
+  "generator": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen.imagegen",
+    "calls": 1,
+    "prompt": "Use case: stylized-concept. Asset type: clean environment background plate, no characters, for a bounded game stage. Create exactly one new native 3840 x 2160 PNG, 16:9, with no enlargement from a smaller image. Primary subject: L2 logistics loading yard in an abandoned infected-city freight depot. Expansive covered exterior industrial loading area with a tall warehouse canopy overhead, sturdy weathered steel trusses, one broad closed corrugated roll-up door on the back-left wall, a wide empty raised concrete loading platform, and a few scattered closed plain unmarked wooden shipping crates at the far perimeter. Crates must be fully closed opaque boxes, with no visible contents and no labels; small neutral set dressing, never a hero loot chest. No large central crate. Camera from the empty yard looking beneath the canopy towards warehouse frontage, wide architectural 28 mm at human eye level, stable level perspective, realistic scale. Most of the lower center and the middle 60% of image width must remain open clear floor and platform so a later battle or action UI can be composited; no essential objects cut at image edges, peripheral boxes may be cropped. Show the broad rolling-shutter silhouette and warehouse roof structure within the central 60% safe region. Dense tactile realistic detail in steel seams, oxidized metal, worn concrete, structural bolts, old drainage channels, subtle damp ground reflections; detailed cinematic game illustration with sober desaturated blue steel and teal-black shadows, low warm tungsten industrial lamps under the canopy, weak cold overcast ambient light. Readable dark midtones, no cartoon, no fantasy, no heavy blur, no dramatic tilt. The yard should be recognizable as a logistics loading facility and distinct from a hospital. Absolutely no characters, humans, zombies, bodies, shadows resembling people, enemy, forklift driver or vehicle. No text, lettering, numbers, signage, labels, brand, hospital references, HUD, UI, interface frame, icon, watermark. No exposed mechanical component, extraction part close-up, obtainable material, open crate, medical supplies, glowing loot, quest item or reward. No dedicated interaction station or success indicator. The image is an unpopulated visual background, not an assertion that canonical L2 has no enemy; no guaranteed search reward or new gameplay route is implied. Deliver one full-bleed native 3840x2160 PNG background.",
+    "sourcePath": "C:\\Users\\zjl\\.codex\\generated_images\\01a17970-d333-7b52-86f0-1095a5716707\\exec-59171985-49ac-4bc0-b190-95222beb02df.png"
+  },
+  "contentEvidence": {
+    "source": "src/content/infected-world-v0.1/content.ts",
+    "L2": {
+      "name": "装卸场",
+      "enemy": "porter"
+    },
+    "L0": {
+      "name": "岗亭",
+      "enemy": null
+    },
+    "boundary": "无敌人图层仅表示空背景 plate，不代表 L2 canonical 无敌。L2-search 与 verify 要求 enemy-porter-cleared；fix 要求 verified；component 要求 fixed 和 enemy-porter-cleared。不画可现成领取的组件、不保证搜索奖励。"
+  },
+  "requested": {
+    "width": 3840,
+    "height": 2160,
+    "aspectRatio": "16:9",
+    "nativeResolution": true
+  },
+  "actual": {
+    "width": 1672,
+    "height": 941,
+    "aspectRatio": 1.7768331562167907,
+    "format": "PNG",
+    "bytes": 3010164,
+    "sha256": "F9A02D394E722402C8102B31AE48A4FD6A6B601DAB540C1BDAAB7C0318BAFCF5"
+  },
+  "transformations": [],
+  "originalBytesUnchanged": true,
+  "resolutionStatus": "NOT_MET: built-in tool returned 1672×941 despite native 3840×2160 prompt. One generation only, original bytes copied without resizing, interpolation or upscaling.",
+  "visualInspection": {
+    "status": "PASS_FOR_CANDIDATE_WITH_NOTES",
+    "notes": [
+      "宽阔物流大棚、后方大型卷帘门和装卸平台清楚；冷钢色结构与暖钨灯同系列。",
+      "中央下方为空旷地面，适合后续独立叠加角色、敌人或操作面板。",
+      "画面无敌人、角色、HUD、可读文字或组件特写；封闭无标记木箱无法辨认内容。",
+      "少量木箱出现在后方平台中段，前景平台与中央操作区仍空；墙面有微小不可读贴片，不属于 UI 或正式地点标签。"
+    ]
+  },
+  "cropGuidance": {
+    "preferred": "16:9 bounded room/battle stage, object-position 50% 50%.",
+    "supported": "4:3 center crop retains roll-up door, platform, trusses and center ground; edge crates may be cropped. Central 60% width retains logistics identity.",
+    "foregroundSafeZoneNormalized": {
+      "x": 0.2,
+      "y": 0.6,
+      "width": 0.6,
+      "height": 0.35
+    },
+    "wideCrop": "Cinematic crop use object-position 50% 45%; the canopy top can be cropped while keeping the main door and platform.",
+    "avoid": "Do not treat empty plate as gameplay clearance. Do not infer pickup rewards from boxes. L0 reuse only as peripheral scene atmosphere, not as proof of direct visibility or route."
+  },
+  "unresolved": [
+    "Native 3840×2160 source requirement not met; remains lower-resolution candidate.",
+    "Platform contains some midground sealed crates, as visible set dressing.",
+    "No final art freeze or Owner visual acceptance implied."
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "assetId": "bg-hotel-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "bg-hotel-v1.png",
+  "primaryNode": "T0",
+  "secondaryUse": "T1 林岑安置点可局部复用右侧休息角作为呈现背景，不代表 NPC 或规则",
+  "displayName": "酒店入口",
+  "purpose": "AI生成呈现候选，非玩法",
+  "licenseOrUsage": "AI生成呈现候选，非玩法；不代表最终美术冻结或 Owner 验收。",
+  "generator": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen.imagegen",
+    "calls": 1,
+    "prompt": "Use case: stylized-concept. Asset type: environment background plate for bounded central room stage in a survival strategy game. Generate exactly one new native 3840 x 2160 PNG, 16:9, do not upscale a smaller source. Subject: T0 abandoned small hotel entrance lobby in an infected quarantined city. The viewer stands inside a modest budget hotel lobby looking toward fully closed metal-framed glass double entry doors at rear center-left, with dim cold street light beyond the glass and no visible people. A deserted compact wooden reception counter with completely bare countertop sits at left; dark aged warm-brown wood wall panels behind it, peeling muted wallpaper above. At center-right a coherent small waiting corner contains one old faded olive-grey cloth sofa against brown wood paneling, empty, no cushions arranged like a body; a simple low empty side table may be beside it. Keep this sofa nook fully visible inside the right-middle x=55%-82% so a later bounded crop can serve as a nonmedical shelter resting-corner background. The room is clearly a small hotel lobby, not a hospital, not a luxurious mansion, no medical tiles or elevator hero. Materials are scratched wood veneer, stained fabric, dusty dark glass, worn floor tiles with subtle damp patches, aging plaster and brass/stained steel hardware. Cinematic photorealistic game-environment illustration with dense tactile realistic surface detail, subdued old wood warmth balanced by teal-black shadows; one low warm tungsten wall lamp at the sofa nook plus weak cool blue daylight through the closed entry glass. Readable dark midtones, sober abandoned atmosphere, no extreme fog or blur. Composition: eye-level wide 28 mm view, stable nearly frontal architecture, no dutch angle; center foreground clear low-detail floor, major architecture remains within central 60%, useful breathing room for independently rendered action UI. No characters, NPC, enemy, humans, silhouettes, reflected people, bodies, blood or gore. No HUD, UI, interface border, icons, letters, text, numbers, signs, hotel name, logo, watermark, posters, keys, key board, paperwork, readable clock or directional arrows. No food, water, medicine, supplies, bags, loot, glowing objects or identifiable reward. No reception computer/terminal, no safe, no automatic healing device. Sofa is ordinary environmental furniture; no automatic recovery or free supplies implied. Deliver one clean full-bleed native 3840x2160 PNG background.",
+    "sourcePath": "C:\\Users\\zjl\\.codex\\generated_images\\01a17970-d333-7b52-86f0-1095a5716707\\exec-69fef2a3-d426-499f-884e-3a13913d6c70.png"
+  },
+  "contentEvidence": {
+    "source": "src/content/infected-world-v0.1/content.ts",
+    "T0": {
+      "name": "酒店入口",
+      "rest": "C",
+      "enemy": null
+    },
+    "T1": {
+      "name": "林岑安置点",
+      "rest": "A",
+      "enemy": null,
+      "exchange": "T1-exchange: atomic-exchange, inputs=exchange.inputs"
+    },
+    "boundary": "普通沙发为环境家具，不能代表自动医疗、免费恢复或供给。T1 兑换仍为既有正式有输入交换，不由本图新增或免除。"
+  },
+  "requested": {
+    "width": 3840,
+    "height": 2160,
+    "aspectRatio": "16:9",
+    "nativeResolution": true
+  },
+  "actual": {
+    "width": 1672,
+    "height": 941,
+    "aspectRatio": 1.7768331562167907,
+    "format": "PNG",
+    "bytes": 2740767,
+    "sha256": "9783CB9DE7377450F8ACDEDAC51E5545B204281AC78AE881A6B6575692FFD277"
+  },
+  "transformations": [],
+  "originalBytesUnchanged": true,
+  "resolutionStatus": "NOT_MET: built-in tool returned 1672×941 despite native 3840×2160 prompt. One generation only; original bytes copied without resizing, interpolation or upscaling.",
+  "visualInspection": {
+    "status": "PASS_FOR_CANDIDATE",
+    "notes": [
+      "左侧废弃前台、后方关闭玻璃门、右侧旧布沙发休息角清楚；木色墙板与冷暗医院场景明显区分。",
+      "无 NPC、角色、HUD、文字或可辨认奖励；前台及小桌空。",
+      "右侧普通枯盆栽是环境陈设，不是可采集物。",
+      "中央下方地面留空，方便独立 UI 或舞台叠加。"
+    ]
+  },
+  "cropGuidance": {
+    "preferred": "16:9 bounded T0 stage; object-position 50% 50%.",
+    "supported": "4:3 center crop retains closed glass entrance plus some counter and sofa; narrow center crop reduces the resting nook.",
+    "T1RestNookSourceRegionNormalized": {
+      "x": 0.59,
+      "y": 0.2,
+      "width": 0.35,
+      "height": 0.56
+    },
+    "T1RestNookNote": "For T1 atmosphere, crop right nook and preserve sofa/wall lamp; region is ~585×527 source pixels, not a new high-resolution scene.",
+    "foregroundSafeZoneNormalized": {
+      "x": 0.28,
+      "y": 0.66,
+      "width": 0.4,
+      "height": 0.29
+    },
+    "avoid": "Do not imply a medical station, free supply, new NPC interaction, or that this empty sofa renders canonical rest costs unnecessary. Closed glass door is art, not added gameplay lock."
+  },
+  "unresolved": [
+    "Native 3840×2160 source requirement not met; remains lower-resolution candidate.",
+    "T1 nook crop has lower source pixel dimensions and needs independent framing review.",
+    "No final art freeze or Owner visual acceptance implied."
+  ]
+}

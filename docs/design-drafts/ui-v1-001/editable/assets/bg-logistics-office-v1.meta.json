@@ -1,0 +1,107 @@
+{
+  "assetId": "bg-logistics-office-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "bg-logistics-office-v1.png",
+  "nodes": [
+    "L1",
+    "L5"
+  ],
+  "displayName": "物流登记／休息室共用底板",
+  "purpose": "AI生成呈现候选，非玩法",
+  "licenseOrUsage": "AI生成呈现候选，非玩法；不代表最终美术冻结或 Owner 验收。",
+  "generator": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen.imagegen",
+    "calls": 1,
+    "prompt": "Use case: stylized-concept. Asset type: one coherent environment background plate with two focal crop uses for a survival strategy game, not a split-screen. Generate exactly one new native 3840 x 2160 PNG, 16:9, without enlarging a smaller image. Subject: a deserted small logistics depot registration and worker rest cabin, utilitarian brown-grey shed interior clearly different from a hospital. Rough aged brown plywood panels, grey corrugated metal upper walls, exposed steel joists, dusty concrete floor, worn economical industrial furnishings. LEFT ZONE x=12%-43%: old wooden registration desk with completely bare top, a plain narrow closed metal filing cabinet with drawers and no labels, one simple empty chair tucked under the desk. No paper, binder, receipt, map, keys or object on desk. RIGHT ZONE x=60%-84%: a plain old chair and a narrow simple worker resting cot against the wall with a thin drab brown-grey mattress, no hospital rail, no medical mechanisms, no equipment. A modest dark window can sit above it, showing no specific location. The center must remain simple bare wall and clear low-contrast floor so the frame can support an independently rendered action overlay. Cinematic photorealistic game environment illustration, dense tactile surface details in scratched plywood, oxidized metal, dusty joints, aged fabric and scuffed concrete; natural plausible scale. Restrained cool blue-grey ambient light with one dim amber industrial wall lamp, warm grey-brown atmosphere, abandoned and quiet but readable. Stable eye-level 28 mm wide near-frontal composition, no dutch angle or heavy blur. Left desk/cabinet and right resting nook each entirely visible with room around silhouettes, support left-biased L1 and right-biased L5 crops, full composition remains coherent. No people, NPC, enemy, human silhouette, reflection, body, blood or gore. No HUD, UI, interface frame, icons, labels, words, letters, numbers, signs, receipts, charts, clocks, logo or watermark. No visible supplies, loot, bag, food, drink, tool, medical equipment, trade merchandise, reward or free pickup. No shop counter display, cash register or vending machine. All file cabinet drawers closed. Furniture is environment only: do not imply automatic rest recovery, free materials, an extra shop or new gameplay command. Visual reuse must not imply that L1 registration room and L5 worker rest room are merged into one canonical node or adjacent. Deliver one clean full-bleed native 3840x2160 PNG.",
+    "sourcePath": "C:\\Users\\zjl\\.codex\\generated_images\\01a17970-d333-7b52-86f0-1095a5716707\\exec-a4e292f7-65cd-44a4-b049-e84ec8331948.png"
+  },
+  "contentEvidence": {
+    "source": "src/content/infected-world-v0.1/content.ts",
+    "L1": {
+      "name": "登记室",
+      "rest": "C",
+      "enemy": null,
+      "actions": [
+        "l1-open: door.manual -> l1-open",
+        "L1-cabinet: search.fixed / ground-once requires l1-open",
+        "old-bill: survey -> old-bill"
+      ]
+    },
+    "L5": {
+      "name": "周衡休息室",
+      "rest": "A",
+      "enemy": null,
+      "action": "method: investigate -> method, grant=null"
+    },
+    "boundary": "仅视觉共用，不合并 L1 与 L5；正式邻接 L1-L5 由 canonical content/query 提供，不能从一张图推出新路线、无成本移动或共用操作。无新商店、交易、免费物资或自动休整。"
+  },
+  "requested": {
+    "width": 3840,
+    "height": 2160,
+    "aspectRatio": "16:9",
+    "nativeResolution": true
+  },
+  "actual": {
+    "width": 1672,
+    "height": 941,
+    "aspectRatio": 1.7768331562167907,
+    "format": "PNG",
+    "bytes": 2881346,
+    "sha256": "6DD13B70AD7A2237CDF2121065286A1B1704960B4867E8D1B72B8D0D96E4A2CA"
+  },
+  "transformations": [],
+  "originalBytesUnchanged": true,
+  "resolutionStatus": "NOT_MET: built-in tool returned 1672×941 despite native 3840×2160 prompt. One generation only; original bytes copied without resizing, interpolation or upscaling.",
+  "visualInspection": {
+    "status": "PASS_FOR_CANDIDATE_WITH_CROP_LIMITATION",
+    "notes": [
+      "棕灰胶合板与波纹金属工棚材质明显区别医院；左侧空旧登记桌、无字闭合文件柜，右侧普通旧椅与窄榻。",
+      "中央墙面与下方地面留空；无人物、HUD、可读文字或可领取物资。",
+      "文件柜的标签框为空，无文档信息；家具不新增商店。",
+      "右侧榻尾在原图右边缘已部分截断，是构图限制；右侧取景可突出榻与椅，但不能声称整榻完整入画。"
+    ]
+  },
+  "cropGuidance": {
+    "fullPlate": "16:9 center 50% 50%; source already clips part of far-right cot end.",
+    "L1": {
+      "preferredFocalPercent": {
+        "x": 16,
+        "y": 51
+      },
+      "cropSourceRegionNormalized": {
+        "x": 0,
+        "y": 0.18,
+        "width": 0.58,
+        "height": 0.78
+      },
+      "description": "Left-biased crop keeps desk/cabinet and clear middle wall; empty desk remains visible."
+    },
+    "L5": {
+      "preferredFocalPercent": {
+        "x": 88,
+        "y": 56
+      },
+      "cropSourceRegionNormalized": {
+        "x": 0.5,
+        "y": 0.2,
+        "width": 0.5,
+        "height": 0.78
+      },
+      "description": "Right-biased crop keeps chair and visible part of cot; preserve original right edge, avoid additional right cropping."
+    },
+    "focalNote": "Same-aspect object-position alone does not crop. Use bounded cover/zoom if required, with reduced original source pixels and actual stage review.",
+    "foregroundSafeZoneNormalized": {
+      "x": 0.25,
+      "y": 0.72,
+      "width": 0.5,
+      "height": 0.23
+    },
+    "avoid": "Do not claim room merge, a shop or automatic recovery; do not interpret cabinet appearance as already-open or reward-granted state."
+  },
+  "unresolved": [
+    "Native 3840×2160 source requirement not met; remains lower-resolution candidate.",
+    "Right cot tail is partially outside source frame; L5 variant needs bounded crop review and cannot show a fully complete cot.",
+    "No final art freeze or Owner visual acceptance implied."
+  ]
+}

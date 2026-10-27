@@ -1,0 +1,75 @@
+{
+  "asset_id": "item-crowbar-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "撬棍",
+  "file": "item-crowbar-v1.png",
+  "status": "VISUAL_CANDIDATE_REQUIRES_PADDING_EXPORT",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen",
+    "fallback_cli_or_api": false,
+    "calls": 1,
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-a1aa8441-4a73-4133-b565-cf851f39cdf9.png",
+    "generation_prompt": "Use case: product-mockup\nAsset type: one standalone photorealistic inventory item / item detail master for the industrial survival game 《电梯求生》.\nPrimary request: exactly one realistic old steel crowbar. A sturdy long forged steel bar, shallow curved gooseneck at one end with a clearly split nail-pulling claw, a slightly flattened chisel pry tip at the other. Practical believable construction, continuous single tool, no decorative attachments.\nScene/backdrop: genuinely transparent alpha background, no floor or backdrop, no cast shadow plane and no checkerboard.\nStyle/medium: detailed realistic game object render matching a cold dark industrial metal toolbox: dark blue gunmetal steel, restrained aged metallic edge wear, very subtle muted brass-warm highlights among the cold highlights, fine shallow scratches, small corrosion marks. Clear silhouette, strong readable form at icon size. Cold soft key light from upper left.\nComposition/framing: square 1024x1024 or 1254x1254 image. Entire crowbar diagonally from lower-left to upper-right, centered in the canvas. Full curved claw and opposite pry tip both clearly visible. Keep ALL visible object pixels inside the central 68 percent square; AT LEAST 16 percent completely transparent empty padding on all four sides. Do not enlarge to fill canvas and never crop either end. Realistic perspective with a slight three-quarter view showing shaft and claw thickness.\nConstraints: only ONE crowbar. No hands, human, other tools, materials, rope, text, label, numerals, logo, HUD, frame, icon border, watermark or extra objects. No glowing effects, futuristic components or fantasy ornament. Preserve true alpha transparency around the object.",
+    "style_reference": "item-toolbox-v1 cold dark industrial metal rendering"
+  },
+  "image": {
+    "requested_sizes": [
+      [
+        1024,
+        1024
+      ],
+      [
+        1254,
+        1254
+      ]
+    ],
+    "actual_size": [
+      1254,
+      1254
+    ],
+    "format": "PNG",
+    "pixel_format": "32-bit RGBA",
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "fully_transparent_pixels": 1437331,
+    "sha256": "703df7fbaa51836e26e43d2be4445bb58b5fe32fcd1b845a0a4b44b8f54fcdaa"
+  },
+  "composition": {
+    "object": "one steel crowbar",
+    "view": "lower-left to upper-right diagonal",
+    "full_silhouette_visible": true,
+    "safety_target_percent_each_side": 15,
+    "visible_bounds_alpha_gt_8": [
+      83,
+      144,
+      1212,
+      1164
+    ],
+    "visible_margin_percent": {
+      "left": 6.62,
+      "top": 11.48,
+      "right": 3.27,
+      "bottom": 7.1
+    },
+    "all_nonzero_alpha_bounds": [
+      81,
+      21,
+      1214,
+      1221
+    ],
+    "visible_silhouette_safety_pass": false
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "cold_dark_realistic_style": true,
+    "complete_claw_and_pry_tip": true,
+    "no_text_numbers_hud_hands_extra_objects": true,
+    "notes": [
+      "Recognizable continuous steel crowbar with clear split claw, full diagonal silhouette, fine edge scratches and restrained warm corrosion highlights.",
+      "Generated source is 1254x1254 with genuine alpha. Safety padding request was not met: minimum visible margin is 3.27 percent at right.",
+      "Per assignment, generated once and did not regenerate for framing or size. Parent export pass needs to scale the whole object down onto the required square transparent canvas with at least 15 percent padding, and inspect stray faint alpha pixels.",
+      "No browser, code integration or game tests were run; this task only produces one raster asset."
+    ]
+  }
+}

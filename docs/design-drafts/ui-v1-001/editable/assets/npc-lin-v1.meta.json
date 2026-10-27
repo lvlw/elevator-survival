@@ -1,0 +1,130 @@
+{
+  "assetId": "npc-lin-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "npc-lin-v1.png",
+  "status": "REVIEW_CANDIDATE_WITH_GAPS",
+  "productionBound": false,
+  "contentMapping": {
+    "area": "酒店",
+    "node": "T1 林岑安置点",
+    "character": "林岑",
+    "role": "ordinary adult survivor, interaction-panel portrait",
+    "appearanceIsPresentationCandidate": true,
+    "appearanceNote": "Adult female appearance, tied dark hair and civilian coat are this art candidate only; not new canonical biography, profession, power or relationship."
+  },
+  "source": {
+    "tool": "built-in image_gen.imagegen",
+    "mode": "generate",
+    "generatedPath": "C:/Users/zjl/.codex/generated_images/01a17971-2cce-73a0-bfa2-2ed8008284c4/exec-60d6ebb9-7661-4ba5-9604-5640ebe40220.png",
+    "copiedWithoutPixelModification": true,
+    "interpolatedUpscale": false,
+    "fallbackApiUsed": false,
+    "generationCount": 1,
+    "prompt": "Use case: stylized-concept\nAsset type: ONE independent transparent full-body NPC illustration for a dialogue / interaction panel in the Chinese grounded survival game 《电梯求生》.\nPrimary request: Lin Cen (林岑), an ordinary adult survivor at the hotel shelter. Appearance is a visual-design candidate only, not a new profession, power or backstory. A tired but alert adult woman with a plainly practical appearance, dark hair loosely tied low with a few loose strands, a restrained thoughtful expression and awake clear eyes. Plain worn brown-grey civilian coat over an unmarked charcoal shirt, practical dark slate trousers, simple worn lace-up walking shoes. Natural normal adult build; no heroic combat physique, no glamorized posing. Clothing is used and dusty but intact.\nPose: complete full-body standing portrait, three-quarter front view, facing very slightly toward screen right and meeting an interlocutor near the camera. Calm, grounded, weight resting naturally on two feet; one hand loosely near the coat front and the other relaxed, both EMPTY. Hands fully visible. Exhaustion conveyed in shoulders and expression, not combat stance. Human and clearly not an infected enemy; no abnormal eyes, veins, lesions, wounds or aggression.\nIdentity boundaries: no medical uniform, no white coat, no reflective vest, no maintenance coveralls, no tool belt, no military gear, no gun or other weapon, no name badge, insignia, supernatural effects or glow. No backpack, equipment, food, medicine, exchange goods or props implying a new interaction. Clearly distinguish this ordinary civilian silhouette from the player's thick dark back-view jacket and the three infected enemies.\nStyle: cold dark realistic cinematic game character art, detailed and believable woven fabric, skin, hair and shoes, restrained painted photorealism matching the inspected 05-combat material quality. A gentle warm side-light softly illuminates one cheek and the brown-grey coat edge, against cool subdued overall illumination. Warm light is subtle and physical, not magical or bright.\nComposition and framing: requested native 1536 × 1920 pixels, 4:5 portrait PNG. Entire head, both hands, entire legs and shoes visible with generous clean transparent margins. Character top near 8% canvas height, soles near 92%, roughly centred foot-ground anchor at (0.50,0.92). The figure occupies approximately 84% of height and a restrained central width. Do not crop or auto-trim transparent edges. Full body is suitable for a layered interaction panel.\nBackground: TRUE transparent alpha PNG, all empty space transparent. No hotel room, chair, floor, cast shadow, vignette, fog, particles, baked checkerboard, coloured backdrop or border.\nText: none. No writing, logo, label, nameplate, UI or watermark. Deliver exactly one independent full-body NPC sprite, nothing else."
+  },
+  "references": [
+    {
+      "path": "../../inputs/references/05-combat.png",
+      "role": "realistic material quality and cold overall art direction only; warm physical side-light added per assignment"
+    },
+    {
+      "path": "../../../world-infected-001/03-location-design.md",
+      "role": "T1 location and limited NPC role only; no new dialogue, reward or profession"
+    }
+  ],
+  "dimensions": {
+    "requestedWidth": 1536,
+    "requestedHeight": 1920,
+    "actualWidth": 1122,
+    "actualHeight": 1402,
+    "actualAspectRatio": 0.8002853067047075,
+    "targetAspectRatio": 0.8,
+    "exactTargetMet": false
+  },
+  "alpha": {
+    "present": true,
+    "pixelFormat": "Format32bppArgb",
+    "transparentPixelCount": 1224975,
+    "fullyOpaquePixelCount": 634,
+    "partiallyTransparentPixelCount": 347435,
+    "interiorSampleAlpha": 253,
+    "mostCommonSubjectAlpha": 253,
+    "boundsConvention": "[left,top,right,bottom], inclusive pixels",
+    "nonzeroBounds": [
+      33,
+      25,
+      1102,
+      1377
+    ],
+    "subjectBoundsAtAlpha16": [
+      348,
+      40,
+      766,
+      1358
+    ],
+    "subjectBoundsAtAlpha128": [
+      349,
+      45,
+      765,
+      1357
+    ],
+    "note": "Real generated alpha retained. Low-alpha residue extends beyond visible silhouette; body mostly alpha 252-253. No edge trimming, cleanup, upscaling or flattening."
+  },
+  "display": {
+    "fit": "contain",
+    "autoTrim": false,
+    "canvasMustRemainFixed": true,
+    "intendedUse": "layered NPC interaction panel"
+  },
+  "anchors": {
+    "coordinateSystem": "normalized to entire untrimmed actual source canvas",
+    "requestedFootGround": [
+      0.5,
+      0.92
+    ],
+    "footContactMidpointVisualEstimate": {
+      "pixels": [
+        534,
+        1335
+      ],
+      "normalized": [
+        0.47593582887700536,
+        0.9522111269614836
+      ],
+      "precision": "manual visual estimate, staggered shoe contacts"
+    },
+    "portraitFocusCandidate": {
+      "pixels": [
+        575,
+        170
+      ],
+      "normalized": [
+        0.5124777183600713,
+        0.12125534950071326
+      ],
+      "precision": "manual face-centre estimate"
+    },
+    "footTargetMet": false,
+    "notes": "Keep complete source canvas; interaction panel placement can use actual foot anchor. No gameplay hit target implied for this NPC."
+  },
+  "checks": {
+    "visualInspection": true,
+    "fullHeadHandsShoesVisible": true,
+    "brownGreyCivilianCoat": true,
+    "tiredButAwakeExpression": true,
+    "emptyHands": true,
+    "subtleWarmSideLightCoolOverall": true,
+    "noWeaponBadgeNewProfessionOrPower": true,
+    "noUiOrBakedBackground": true,
+    "codeTestsRun": false,
+    "whyNoCodeTests": "Independent PNG and metadata only; no application or rules changed."
+  },
+  "gaps": [
+    "SOURCE_RESOLUTION_BELOW_TARGET: native 1122x1402, not 1536x1920; generated once, no interpolation.",
+    "FOOT_ANCHOR_APPROXIMATE: estimated contact midpoint (0.476,0.952), target (0.50,0.92).",
+    "SAFE_MARGIN_SMALLER_THAN_PROMPT: visible silhouette spans y≈0.029–0.969, complete but less than requested 8% vertical margin.",
+    "ALPHA_RESIDUE: very low-alpha remnants outside visible figure; body alpha mostly 252-253.",
+    "Owner appearance acceptance, panel-fit and multi-viewport validation not performed."
+  ],
+  "sha256": "3FD086563D232BB2099419CBCBD75CB229057C709ABD8B81D4B7466EC7F8A41F"
+}

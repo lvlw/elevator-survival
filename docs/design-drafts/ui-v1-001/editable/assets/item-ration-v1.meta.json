@@ -1,0 +1,78 @@
+{
+  "asset_id": "item-ration-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "压缩口粮",
+  "file": "item-ration-v1.png",
+  "status": "VISUAL_CANDIDATE_WITH_ALPHA_CLEANUP_NOTES",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen",
+    "fallback_cli_or_api": false,
+    "calls": 1,
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-1466b5e5-1ede-485c-8d36-309589829ea9.png",
+    "generation_prompt": "Use case: product-mockup\nAsset type: one standalone survival-game inventory item and detail master.\nPrimary request: exactly ONE sealed square packet of compressed food ration, a compact thick square compressed ration enclosed in a worn gray-brown moisture-resistant wrapper. The wrapper is closed and intact, with believable crimped or folded sealed edges, subtle wrinkles and abrasion, plain unprinted surface. The packet shape reads clearly as a compact utilitarian ration rather than a cardboard box.\nScene/backdrop: genuine fully transparent alpha background; no floor, backdrop, plane shadow, checkerboard or gradient.\nStyle/medium: photorealistic high-detail game item render in a cold dark industrial survival visual style, matching gritty worn tools. Readable silhouette and folds at small inventory size; muted gray-brown waxed/foil laminate packaging, slight cold gray highlights and restrained warm tan wear, no colorful plastic branding. Soft cool light from upper left, surfaces legible without crushed blacks.\nComposition/framing: square 1024x1024 or 1254x1254 canvas. Show the single complete sealed square packet in slight three-quarter perspective, centered. Make the object SMALL: its ENTIRE silhouette fits within the central 65 percent by 65 percent square, leaving at least 17.5 percent completely empty transparent margin on every side. Do not fill the canvas or crop any edge.\nConstraints: one sealed packet only, no loose ration crumbs, opened food, extra packets, water bottles, utensils, hands, cord, HUD, border or surrounding materials. No text, branding, logos, markings, symbols, labels, stamps, barcodes, numerals or recognizable writing anywhere. Only the isolated ration package."
+  },
+  "image": {
+    "requested_sizes": [
+      [
+        1024,
+        1024
+      ],
+      [
+        1254,
+        1254
+      ]
+    ],
+    "actual_size": [
+      1254,
+      1254
+    ],
+    "format": "PNG",
+    "pixel_format": "32-bit RGBA",
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "fully_transparent_pixels": 1206640,
+    "sha256": "2f5004380bac698530908ab74a3db99309e46685333d222a33631c9abdc7a7dd"
+  },
+  "composition": {
+    "object": "one closed moisture-resistant compressed ration packet",
+    "view": "centered slight three-quarter",
+    "full_silhouette_visible": true,
+    "target_maximum_subject_width_percent": 65,
+    "actual_visible_subject_width_percent": 65.71,
+    "safety_target_percent_each_side": 17.5,
+    "visible_bounds_alpha_gt_8": [
+      214,
+      318,
+      1037,
+      925
+    ],
+    "visible_margin_percent": {
+      "left": 17.07,
+      "top": 25.36,
+      "right": 17.22,
+      "bottom": 26.16
+    },
+    "all_nonzero_alpha_bounds": [
+      0,
+      0,
+      1253,
+      1253
+    ],
+    "visible_silhouette_15_percent_safety_pass": true,
+    "strict_zero_alpha_border_pass": false
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "gray_brown_sealed_wrapper": true,
+    "one_packet_only": true,
+    "no_text_numbers_hud_extra_supplies": true,
+    "notes": [
+      "Single plain square sealed ration packet with readable wrapper folds and cool muted brown-gray material. No loose food or water.",
+      "Visible silhouette width is 65.71 percent, close to the requested approximate 65 percent; minimum visible margin is 17.07 percent.",
+      "27457 stray nonzero-alpha pixels outside the 15 percent safety region have alpha=1. There are 492 red-dominant edge pixels with maximum alpha=6. Parent export should clean extremely low-alpha contamination before PNG/icon use.",
+      "Raw source preserved at actual 1254x1254 resolution. Single generation only, no raster edits or second generation.",
+      "No browser, code integration or game tests were run."
+    ]
+  }
+}

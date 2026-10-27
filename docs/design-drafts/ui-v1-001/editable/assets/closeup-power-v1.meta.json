@@ -1,0 +1,33 @@
+{
+  "assetId": "closeup-power-v1",
+  "prompt": "ONE game environment close-up asset: a worn industrial transfer-power branch cabinet, front three-quarter view, insulated heavy cables, mechanical knife switch enclosed behind safely opened service door, blank unlettered indicator plates, weathered dark grey steel with restrained brass hardware. Cold blue-green semi-realistic survival game painting, one amber service lamp. Broad 8:5 composition, native highest resolution requested 2048x1280. Central cabinet clear and fully within central70%; edge environment unimportant. No UI, captions, text, numbers, human, character, loot, reward, route-map or electrical spark. Light state is purely ambience; do not depict magic successful power restoration. Standalone editable game background plate, not an interface screenshot.",
+  "tool": "built-in image_gen",
+  "file": "closeup-power-v1.png",
+  "actualPixels": [
+    2006,
+    784
+  ],
+  "requestedPixels": [
+    2048,
+    1280
+  ],
+  "fit": "cover in bounded 8:5 detail slot",
+  "focal": [
+    0.5,
+    0.5
+  ],
+  "safeZone": [
+    0.25,
+    0.1,
+    0.5,
+    0.8
+  ],
+  "mapping": [
+    "P1 transfer branch cabinet"
+  ],
+  "alpha": false,
+  "sha256": "85f962f3f9f526a6a7ffc0265af98a3f3731db989d124d7f539122541e9f7eac",
+  "status": "DESIGN_PRESENTATION_CANDIDATE",
+  "visualReview": "Actual image inspected; no HUD/text/character/reward; side environment may crop",
+  "pixelModification": false
+}

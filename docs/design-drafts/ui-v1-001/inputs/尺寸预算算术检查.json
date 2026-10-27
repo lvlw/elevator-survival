@@ -1,0 +1,505 @@
+{
+  "kind": "DESIGN_BUDGET_ARITHMETIC_ONLY",
+  "pass": true,
+  "checks": 95,
+  "failed": [],
+  "results": [
+    {
+      "name": "explicit proposed-budget status",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "five desktop profiles",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "unique viewport presets",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master horizontal sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master vertical sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master central minimum",
+      "pass": true,
+      "detail": [
+        1200,
+        888
+      ]
+    },
+    {
+      "name": "desktop-master true grid",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master cell formula",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master grid extents",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master grid fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master multi-cell item fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master bounded normal panel",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master center-only maximum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master small-frame mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master battle chosen panel",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master battle vertical sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master battle min arena",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master crop derivation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master crop within source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master central 60% width safe at centered cover",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-master source supports DPR2 after cover",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 horizontal sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 vertical sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 central minimum",
+      "pass": true,
+      "detail": [
+        968,
+        728
+      ]
+    },
+    {
+      "name": "desktop-1600 true grid",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 cell formula",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 grid extents",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 grid fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 multi-cell item fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 bounded normal panel",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 center-only maximum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 small-frame mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 battle chosen panel",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 battle vertical sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 battle min arena",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 crop derivation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 crop within source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 central 60% width safe at centered cover",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1600 source supports DPR2 after cover",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 horizontal sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 vertical sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 central minimum",
+      "pass": true,
+      "detail": [
+        856,
+        744
+      ]
+    },
+    {
+      "name": "desktop-1440 true grid",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 cell formula",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 grid extents",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 grid fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 multi-cell item fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 bounded normal panel",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 center-only maximum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 small-frame mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 battle chosen panel",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 battle vertical sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 battle min arena",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 crop derivation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 crop within source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 central 60% width safe at centered cover",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1440 source supports DPR2 after cover",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 horizontal sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 vertical sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 central minimum",
+      "pass": true,
+      "detail": [
+        814,
+        620
+      ]
+    },
+    {
+      "name": "desktop-1366 true grid",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 cell formula",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 grid extents",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 grid fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 multi-cell item fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 bounded normal panel",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 center-only maximum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 small-frame mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 battle chosen panel",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 battle vertical sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 battle min arena",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 crop derivation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 crop within source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 central 60% width safe at centered cover",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-1366 source supports DPR2 after cover",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum horizontal sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum vertical sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum central minimum",
+      "pass": true,
+      "detail": [
+        768,
+        584
+      ]
+    },
+    {
+      "name": "desktop-minimum true grid",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum cell formula",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum grid extents",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum grid fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum multi-cell item fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum bounded normal panel",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum center-only maximum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum small-frame mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum battle chosen panel",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum battle vertical sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum battle min arena",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum crop derivation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum crop within source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum central 60% width safe at centered cover",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop-minimum source supports DPR2 after cover",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "timeline-token 2x pixel budget",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "nine-slice corner conversion",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "not_run": [
+    "browser rendering",
+    "final art",
+    "actual responsive readability",
+    "game rules",
+    "Owner experience"
+  ]
+}

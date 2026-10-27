@@ -1,0 +1,59 @@
+{
+  "assetId": "bg-h0-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "bg-h0-v1.png",
+  "node": "H0",
+  "displayName": "医院电梯前室",
+  "purpose": "AI生成呈现候选，非玩法",
+  "licenseOrUsage": "AI生成呈现候选，非玩法；不代表最终美术冻结或 Owner 验收。",
+  "generator": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen.imagegen",
+    "prompt": "Use case: stylized-concept. Asset type: full-bleed environment background plate for the bounded central room stage of a Chinese single-player survival strategy game. Generate exactly one new landscape image at native 3840 x 2160 pixels, 16:9. Do not upscale a smaller image. Primary request: H0, a derelict hospital elevator anteroom in an infected, shut-down hospital. The camera is physically inside the hospital looking into its anteroom, NOT inside an elevator cabin and NOT a central base or operations hub. Show a single pair of tall closed worn teal-black metal elevator doors at the left-middle, a modest unlit call-button fixture without symbols or readable numbers, battered pale desaturated teal wall cladding and rough grey concrete, institutional wall handrail, worn terrazzo/concrete floor. A recessed dim passage mouth is permitted at far right as generic architecture, no directional sign or landmark. Photorealistic cinematic game-environment illustration matching an industrial survival-game aesthetic: dense tactile surface details, chipped paint, oxidized steel, recessed joints, scuffed thresholds, a little moisture sheen, old exposed conduits overhead. Detailed but physically plausible, no fantasy machinery. Lighting: extremely controlled warm tungsten fixture above left elevator area plus weak cyan-white ambient spill from the right, dark teal/blue-black shadows, subtle atmospheric depth, readable midtones rather than pure black. Composition: eye-level wide 28 mm architectural view, stable nearly frontal architecture, no dutch angle, no depth-of-field blur; elevator stays within x=23%-43%, y=22%-72%; the central 60% width retains a complete and recognizable room even after side cropping. Clear center foreground floor with no objects or characters; detail concentrated around perimeter, door surrounds and upper edges. Image is only an environment with NO interface, NO HUD, NO panel frames, NO icon, NO text at all, NO lettering, NO numbers, NO hospital name, NO labels, NO watermark. NO humans, zombies, bodies, silhouettes, weapons, blood, medical supplies, containers, loot, rewards, boxes, pickup objects, workstation, bed, couch or furniture that suggests gameplay interactions. This is a visual presentation candidate only, with no implication of new gameplay routes, rewards or hub facilities. Preserve sober realistic scale and attractive high-detail texture. Output one clean native 3840x2160 PNG background image.",
+    "sourcePath": "C:\\Users\\zjl\\.codex\\generated_images\\01a17970-d333-7b52-86f0-1095a5716707\\exec-062ca4b3-915b-4b57-9b9f-24b284498b1a.png",
+    "reference": {
+      "path": "../../inputs/references/01-shell.png",
+      "role": "inspected visual style reference; not composited; no image input passed to generator"
+    }
+  },
+  "requested": {
+    "width": 3840,
+    "height": 2160,
+    "aspectRatio": "16:9",
+    "nativeResolution": true
+  },
+  "actual": {
+    "width": 1672,
+    "height": 941,
+    "aspectRatio": 1.7768331562167907,
+    "format": "PNG",
+    "bytes": 2709631,
+    "sha256": "6F1ABCB7B2F3368F0951B26FFE4F9812C1164488D498D45E114C4B5A2817ADB1"
+  },
+  "transformations": [],
+  "resolutionStatus": "NOT_MET: built-in tool returned 1672×941 despite native 3840×2160 prompt. Original bytes copied without resizing, interpolation or upscaling.",
+  "visualInspection": {
+    "status": "PASS_FOR_CANDIDATE",
+    "notes": [
+      "闭合电梯门位于画面左中，暖灯与青白侧光、青黑金属和磨损建筑表面成立。",
+      "无角色、无 HUD、无文字、无医院名、无可拾取物资奖励。",
+      "画面为医院前室，非真正电梯中枢；右侧开口仅为建筑表现，不定义路线。",
+      "中央地面留空，供有界舞台覆盖真实 UI；医院身份需配合真实节点标题，图片本身不命名。"
+    ]
+  },
+  "cropGuidance": {
+    "preferred": "16:9 bounded room stage; object-position 50% 50%; source is within 0.05% of 16:9.",
+    "supported": "4:3 center crop keeps elevator and most room. Central x=20%-80% still retains the elevator identity. Wider cinematic crops should use object-position 50% 35% so upper lamp and door header survive.",
+    "avoid": "Do not use as global hospital backdrop or hub. Avoid narrow portrait / square center crop because it cuts the left elevator edge. Do not present rendered/upscaled dimensions as true source resolution.",
+    "safeSourceRegionNormalized": {
+      "x": 0.2,
+      "y": 0.15,
+      "width": 0.6,
+      "height": 0.75
+    }
+  },
+  "unresolved": [
+    "Native 3840×2160 source requirement not met; this asset remains a lower-resolution candidate.",
+    "No final art freeze or Owner visual acceptance implied."
+  ]
+}

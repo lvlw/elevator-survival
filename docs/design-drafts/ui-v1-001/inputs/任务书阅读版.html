@@ -1,0 +1,729 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>第一版正式 UI 设计任务书</title><style>*{box-sizing:border-box}body{margin:0;background:#edf0f3;color:#202b34;font-family:system-ui,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;line-height:1.75}main{max-width:1180px;margin:36px auto;background:#fff;padding:44px 52px;box-shadow:0 8px 36px #17243113;border-top:7px solid #304d60}h1{font-size:32px;line-height:1.3}h2{font-size:24px;margin-top:46px;border-bottom:1px solid #d9e1e7;padding-bottom:10px;color:#253e50}h3{font-size:19px;margin-top:28px}p,li{font-size:16px}table{border-collapse:collapse;width:100%;font-size:14px;margin:20px 0;display:block;overflow-x:auto}th,td{border:1px solid #d9e1e7;padding:10px 12px;vertical-align:top;text-align:left}th{background:#edf3f7;color:#243b4e}tr:nth-child(even){background:#fafbfc}code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;overflow-wrap:anywhere}pre{white-space:pre-wrap;background:#f3f5f7;border-left:4px solid #7893a7;padding:18px;overflow-x:auto}.note{padding:12px 16px;background:#f2f6f8;color:#526273;font-size:14px}@media(max-width:800px){main{padding:24px 18px;margin:0}h1{font-size:25px}}@media print{body{background:#fff}main{margin:0;padding:0;box-shadow:none}h2,h3{break-after:avoid}table{display:table;font-size:10px}td,th{padding:6px}pre{font-size:11px}}</style></head><body><main><div class="note">设计任务与尺寸起始预算 · 非生产开工书 · 本页不是界面设计成品</div><h1>《电梯求生》第一版正式 UI 设计任务书</h1>
+<p><strong>任务编号：WORLD-UI-DESIGN-001 · 版本：v1.0 · 日期：2026-10-27</strong></p>
+<h2>0. 一句话目标与执行边界</h2>
+<p>把 Owner 已认可的“外围常驻任务／轻量地图／携带区，中间场景与可放大交互层”的视觉方向，做成<strong>覆盖当前全部真实内容的可编辑界面母版、独立美术资产、完整效果图、交互／动效原型及尺寸耦合交付包</strong>。不以文字策划、提示词、单张拼贴或贴了几张背景的旧按钮台代替设计交付。</p>
+<p>“第一版正式 UI”指目标设计品质和第一套可交付视觉系统，<strong>不代表已批准公开发布、O3、生产改造或游戏体验通过</strong>。本任务只在设计范围内执行；当前 gameplay、query、controller、browser owner、保存及正式接口均只读。</p>
+<h3>0.1 基准、分支与权限</h3>
+<ul>
+<li>正式仓库：<code>lvlw/elevator-survival</code>。</li>
+<li>起始完整 SHA：<code>6bb43c8861b7c3dd21499211fdb0e646e48bba20</code>。</li>
+<li>起始 tree：<code>92f1389d36c667e235c5de638aa780d1af0d1c9f</code>。</li>
+<li>起点工程分支：<code>feature/world-low-asset-ui-001</code>；本次已读取远端，仍指向该 SHA。</li>
+<li><strong>新建设计分支：<code>feature/design-ui-v1-001</code></strong>。若同名分支已存在，先核对其事实，不覆盖、不强推、不擅自重置。</li>
+<li>仅允许写入新目录：<code>docs/design-drafts/ui-v1-001/</code>，以及仓库外、明确标记的本任务设计工作目录。详细允许结构见 §12。</li>
+<li>按 Owner 既有任务下发权限，允许该设计任务普通 commit／push 到自己的设计分支；不推 main，不合并，不强推，不推旧工程分支。</li>
+<li>不修改 <code>src/</code>、<code>public/</code>、旧测试、旧文档正文、DEC／UIR、正式合同、参数、依赖、CI或保存格式。不得自行编号新 DEC／UIR。</li>
+<li>开工实查 HEAD、branch、status、diff、AGENTS及实际工具。已有无关改动保留；不 reset／clean／stash 或删除用户工作。</li>
+<li>不要求 Owner 逐项定像素、找素材或协调文件。本范围内技术选择、设计自查及修订由执行者完成；新玩法、新知识披露或发布兼容承诺另列待审，不混入图稿。</li>
+</ul>
+<h3>0.2 本轮应一次做完的四个工作包</h3>
+<table>
+<thead>
+<tr>
+<th>工作包</th>
+<th>必须得到的实际产物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1：规则与尺寸底板</td>
+<td>真实页面／动作／资产清单，概念图纠偏清单，尺寸 token、布局方程及母版；不要重新发起风格三选一</td>
+</tr>
+<tr>
+<td>W2：全界面与资产试制</td>
+<td>§4 全部页面族的高保真图、必要状态变体、当前内容全部对应的首版美术；没有计划性占位</td>
+</tr>
+<tr>
+<td>W3：交互和战斗演出</td>
+<td>可点击的设计原型；中央层正常／放大；只读地图；真实格位示范；CTB 表现故事板、受击和阶段切图原型</td>
+</tr>
+<tr>
+<td>W4：尺寸与交付验收</td>
+<td>多视口实测、全部资产映射、裁切／锚点验证、逐图自查、设计包／预览页／摘要、普通提交和停审</td>
+</tr>
+</tbody>
+</table>
+<p>执行者使用实际可用的设计工具。首选可编辑组件／约束母版；不能只把整屏 PNG 放进设计工具便称“分层”。如没有可用的 Figma 等写入能力，采用<strong>分层 SVG／等价可编辑源 + 独立素材 + 仓库外 HTML 交互原型</strong>完成同等交付，明确工具与局限。不能伪称已创建 Figma 文件、完成浏览器验证或交付不存在的链接；不能只交提示词代替美术。</p>
+<h2>1. 批准依据、来源和概念图的地位</h2>
+<h3>1.1 Owner 已明确的本次方向</h3>
+<ol>
+<li>地点内决策数量有限，普通操作不增加冗余二次确认；敏感操作保留适用保护。</li>
+<li>常驻小地图轻量，节点连线表达位置；详细区域图按需打开，不把复杂导航页常驻。</li>
+<li>桌面网页有足够空间，主内容居中；外围保留任务、必要状态、真实携带与快捷物，不把全部内容做成手机式稀疏大卡片。</li>
+<li>当前内容所需背景、物品、敌人、人物／NPC、关键节点特写均需有实际图像；不再以缺图占位交付设计终稿。</li>
+<li>中央交互层可放大占满<strong>主要内容区</strong>；探索、事件、任务、地图、战斗共用空间组织，但不强制全部动作打开弹窗。</li>
+<li>战斗须考虑公开战损阶段、时间轴表达、受击叠图和短暂晃动／后仰；优先可替换的分层资产。</li>
+<li>音频本轮暂停，不生产、不接入，不沿用旧切片声音作为默认通过方案。</li>
+<li>Owner 已认可附件的整体质感和外围／中部布局；本任务沿用该方向深化，不重开风格选择。</li>
+</ol>
+<h3>1.2 来源权威</h3>
+<p>后续已确认 DEC &gt; 较早已确认 DEC &gt; Vertical Slice &gt; GDD &gt; Content。涉及表现读取当前有效 <code>docs/09-ui-design-record.md</code>。本轮直接 Owner 呈现要求约束设计方向，但不改写玩法和玩家知识。</p>
+<p>执行前必读准确提交的：<code>AGENTS.md</code>、<code>docs/05-design-decisions.md</code>（定点关注 DEC-049—053 及相关战斗／知识条款）、<code>docs/02-vertical-slice.md</code>、<code>docs/01-game-design-v0.1.md</code>、<code>docs/03-architecture.md</code>、<code>docs/09-ui-design-record.md</code>、<code>docs/10-visual-asset-slot-audit.md</code>、<code>docs/12-early-visual-direction-brainstorm-v0.1.md</code>，以及当前 preplay／player-query 正式合同、内容配置和安全 DTO。</p>
+<p><code>docs/10-visual-asset-slot-audit.md</code> 的旧尺寸是医院切片历史实测，<strong>不是新三栏布局的尺寸</strong>；其区分 CSS 显示尺寸／源图分辨率、裁切和安全区的原则继续适用。旧“缺图可占位”是上一工程许可，不是本次最终设计放行条件。图片请求失败时必要的无障碍文字／错误兜底仍应设计，不等于允许计划性缺图。</p>
+<p>本包 <code>SOURCE-BOUNDARIES.md</code> 列出本次已核对来源与开工仍须读取的来源。Project 上传副本与 Git 指定提交不自动同步。</p>
+<h3>1.3 六张参考图：只采纳布局与美术方向</h3>
+<p><code>references/</code> 的六图是视觉参考，不是当前真实运行截图、批准内容表或可直接切割的完整游戏资产。图中文字、数值、节点、装备及按钮必须按正式来源重做。每张实际只有 1672×941，不能放大后冒充 4K 素材原稿。</p>
+<p>必须剔除或纠正下列概念图内容：</p>
+<table>
+<thead>
+<tr>
+<th>概念图中出现的内容</th>
+<th>正式设计的处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>医疗专精、手枪、望远镜、额外初始药物、百分比能力加成</td>
+<td>只使用侦察／工程／生存与撬棍／手电筒／工具箱；真实初配依正式配置，不制造新能力／武器</td>
+</tr>
+<tr>
+<td>时分秒、天气、昼夜条件</td>
+<td>当前无对应正式机制与安全数据，不做系统性 HUD；美术气氛不等于天气／昼夜玩法</td>
+</tr>
+<tr>
+<td>护士、保安怪、居民区、ICU、虚构医院名／楼层</td>
+<td>不替代实际三敌及24节点。医院保安室与物流岗亭分开；正式地图名为医院／酒店／供电所／物流／通信</td>
+</tr>
+<tr>
+<td>敌人精确 HP 条、等级、抗性百分比、未来多轮队列</td>
+<td>仅用正式公开阶段、当前意图和获准的时间关系；未知字段不画假数据</td>
+</tr>
+<tr>
+<td>搜索前的“可能获得”物品货架、爆率、隐藏房间轮廓</td>
+<td>未揭示物资不得预告；已声明固定结果与未知搜索分开</td>
+</tr>
+<tr>
+<td>休整自动回血、随手整理获得材料、样本由战斗掉落</td>
+<td>不成立。每个结果依真实动作／来源／周期，不新增玩法</td>
+</tr>
+<tr>
+<td>背包固定一格一个图标、关键物栏像额外容量</td>
+<td>真实6×4 footprint；任务件占用真实容器。关键物栏只读摘要，不新增容器或重复实物</td>
+</tr>
+<tr>
+<td>声望／经验、额外成功物资、继续探索、重开／复活</td>
+<td>当前成功奖励是积分120；没有第二真实委托。按四终局／静态中枢显示，不生成未批准按钮</td>
+</tr>
+<tr>
+<td>地图路线规划、推荐路线、多步自动移动</td>
+<td>小地图／详情地图继续只读；正式单边移动在场景方向区，不生成第二移动入口</td>
+</tr>
+<tr>
+<td>战斗“关闭”按钮即结束遭遇、随意逃跑</td>
+<td>收起／放大只改变展示；合法退却是正式行动，不能跳过已触发战斗</td>
+</tr>
+</tbody>
+</table>
+<h2>2. 一屏信息架构</h2>
+<h3>2.1 五块区域，只有一个玩法主入口</h3>
+<ul>
+<li><strong>顶部 HUD</strong>：任务日、生命、精力、饱食、当前公开病程／必要异常；不画虚构时钟。保存状态可在顶部或底部单一位置持续显示，避免两处不一致。</li>
+<li><strong>左侧常驻</strong>：本委托一句话总目标、成果状态、当前区域／地点、简化已知拓扑。详细目标与地图在中央按需展开。</li>
+<li><strong>中央内容区</strong>：真实当前场景美术、区域与地点标题、少量主要行动、实际单边方向；容纳探索结果、关键节点、人物交流、参数、地图详情及战斗。</li>
+<li><strong>右侧常驻</strong>：装备／背包切换、真实6×4格位、两个快捷位。物品详情可展开到中央；不能为“丰满”复制两套身体条、背包或任务件库存。</li>
+<li><strong>底部窄反馈条</strong>：最近实际公开反馈与保存异常入口；完整记录按需局部展开，不占据半屏开发日志。</li>
+</ul>
+<p>密度来自必要且稳定的信息，不来自多画按钮。场景没有来源／NPC时，不用假入口填空。</p>
+<h3>2.2 中央面板不等于强制确认框</h3>
+<p>正常态保留外围；“放大”只占满中央内容区，不使用浏览器全屏、不遮盖整个三栏外壳。地图详情、节点特写、NPC、战斗共用框架，但各自内容结构和关闭资格不同。</p>
+<p>仅允许一个主要中央层；次级对象详情尽量在其内部切页或侧区显示，不叠五层弹窗。敏感确认可以临时置顶，完成／取消后返回原上下文。打开、关闭、缩放、切页、看地图和看详情均为纯展示。</p>
+<h2>3. 交互原则与知情选择</h2>
+<ul>
+<li>L0：短信息尽量就近常驻；复杂说明主动展开。<strong>不再让每个主按钮一经 Hover／Focus 就打开大面板</strong>。键盘能读取相同信息，但焦点移动不能触发玩法或连环展开。</li>
+<li>L1：完整普通意图一次执行。地图、任务、背包、信息层的“查看”不得计行动。</li>
+<li>L2：仅补真实必要参数。工具、方法、数量、来源材料、目标、格位、旋转、总池分配不得自动替玩家选择；完整请求显示正式预览。</li>
+<li>L3：沿用当前有效合同的敏感操作与动态保护。<strong>不得擅自把稀缺物资、进入战斗、所有跨区移动、所有任务物放置一概加确认</strong>。新增保护要求列 Draft，不能混入本次默认交互。</li>
+<li>当前已知代价靠简短文字／图标说明；“可执行”“未证明必死”“unknown”不得混称“安全”。</li>
+<li>普通已揭示整实例拾取仅使用现有获准便利，不扩展到任务取得／交易／安装，不自动重排或合并。</li>
+<li>地图只读；节点连线与位置稳定，区域分组清晰。仅绘制玩家实际已知的节点／边，不先画全图灰色问号。</li>
+<li>跨图前明确“目的区域／地点”，跨图后标题、地图标记、背景及短到达反馈同步。不用新增确认模仿空间感。</li>
+<li>新 current／阶段变化／恢复／失锁后旧草稿失效；单纯保存重试不换对象。无声替换成第一件物品禁止。</li>
+</ul>
+<h2>4. 必须覆盖的页面与状态矩阵</h2>
+<p>下列 <strong>25个页面族均须出图</strong>，不是25套独立壳。常驻外壳、资产及组件必须复用；变体可以在同一设计页组织，但每个实际验收状态需有独立可打开的画面，不只用一句“同上”。每个主稿按1920×1080设计；五图、三敌及关键变体见表。</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>页面族</th>
+<th>最少表现内容／状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01</td>
+<td>初选</td>
+<td>三工具×三专长的独立选择；本委托目标；未选择／选择就绪；无额外发物、默认推荐数值加成</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>首次中枢</td>
+<td>真正电梯中枢、锁定初配、明确出发；不把医院电梯前室当真正中枢</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>稳定探索主界面</td>
+<td>医院／酒店／供电所／物流／通信各一张；相同壳、可辨区域美术与地点；非下拉列表式地图</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>跨区域到达</td>
+<td>一对真实相邻跨图的提交前／到达后画面；区域名显著变化，不加虚构多步导航</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>搜索与物资结果</td>
+<td>未搜索／已揭示／空结果／关闭再打开；不预告随机掉落、不重复抽取</td>
+</tr>
+<tr>
+<td>P06</td>
+<td>关键节点特写</td>
+<td>防火门、供电、记录核对、组件作业、谨慎／直接提样、真实安装；各自实际参数与结果</td>
+</tr>
+<tr>
+<td>P07</td>
+<td>NPC／可选现场互动</td>
+<td>林岑安置点与周衡休息室对应人物画面／已实现互动；不创造商店、支线、对话树或奖励</td>
+</tr>
+<tr>
+<td>P08</td>
+<td>委托详情</td>
+<td>样本取得／携带／留置／交付，设施作业与安装分开；总目标不强改为固定线性路线</td>
+</tr>
+<tr>
+<td>P09</td>
+<td>详细已知地图</td>
+<td>中央正常／放大；只读节点连线、当前／上次观察、已知受阻／未知通行；不执行移动</td>
+</tr>
+<tr>
+<td>P10</td>
+<td>装备与背包</td>
+<td>常驻真6×4 footprint与两个快捷位；1×1、1×2、2×2及可旋转物的实际轮廓；详情不改容器</td>
+</tr>
+<tr>
+<td>P11</td>
+<td>搬运与整理参数</td>
+<td>显式移动、拆分、合并、快捷迁移、任务拾取／留置、目标位置和无合法位置反馈</td>
+</tr>
+<tr>
+<td>P12</td>
+<td>六类药食</td>
+<td>实际药品／伤口／处理目标；合法、无效及隐藏目标unknown；战斗与战外入口分开</td>
+</tr>
+<tr>
+<td>P13</td>
+<td>维护与充电</td>
+<td>机械总池分配、护具／工具箱维护、充电；实际材料选择，不把维修等同免费满修</td>
+</tr>
+<tr>
+<td>P14</td>
+<td>休整与跨日</td>
+<td>A／C合法休整、日级后果表达、死亡短路；不画休整自动回血／止血／修装备</td>
+</tr>
+<tr>
+<td>P15</td>
+<td>战斗正常面板</td>
+<td>三敌对应场景各一张，玩家／敌主体、公开阶段、当前意图、时间轴、行动和两快捷位</td>
+</tr>
+<tr>
+<td>P16</td>
+<td>战斗放大与动效</td>
+<td>中央全尺寸、五阶段切图联系表、受击瞬间、决策停点、退却过程；不泄漏精确敌HP</td>
+</tr>
+<tr>
+<td>P17</td>
+<td>战斗结果／退却接续</td>
+<td>真胜利回现场／合法退却落点；不自动奖任务样本，不把战斗结果等于委托结束</td>
+</tr>
+<tr>
+<td>P18</td>
+<td>委托成功</td>
+<td>正式完成摘要、积分120、交付／安装历史与真实携出；静态中枢无后继按钮</td>
+</tr>
+<tr>
+<td>P19</td>
+<td>主动失败生还</td>
+<td>正式止损与真实扣款、携出物状态；不等同角色死亡</td>
+</tr>
+<tr>
+<td>P20</td>
+<td>截止失败生还</td>
+<td>先结当期后果仍存活才召回；无Day8、无额外补夜</td>
+</tr>
+<tr>
+<td>P21</td>
+<td>实际死亡</td>
+<td>HP0；敌仍活／双方归零表现相容；不复活、不重接、不提供未批准New Run</td>
+</tr>
+<tr>
+<td>P22</td>
+<td>敏感确认</td>
+<td>当前适用终局／关键留置／必死保护等；取消／失效／重新选择，不套所有行动</td>
+</tr>
+<tr>
+<td>P23</td>
+<td>保存反馈</td>
+<td>已保存、当前页面尚无新写入、已生效未保存、只保存重试；失败不回滚的视觉解释</td>
+</tr>
+<tr>
+<td>P24</td>
+<td>启动与异常</td>
+<td>锁申请、被另一页占用、失锁、坏档、读取错误、展示不可用；坏档不当空档、不清档发物</td>
+</tr>
+<tr>
+<td>P25</td>
+<td>只读机制／控制说明</td>
+<td>操作说明、身体／药食与快捷机制、帮助入口；无音频设置、难度切换等未批准功能</td>
+</tr>
+</tbody>
+</table>
+<p>五图背景、三敌及两NPC的完整资产覆盖，不等于初始界面能看见所有内容。多视口补图要求见 §6／§11。</p>
+<h2>5. 尺寸耦合总合同：先定义容器，再做素材</h2>
+<p><strong>本节与 <code>尺寸耦合合同-v1.0.json</code> 是本次建议起始预算，不是声称现有网页测量值。</strong> 设计者可在本任务内用真实版面验证后改进数值，但必须成组更新 token、表格、原型和资产裁切证明；不能只修改一张画布。改变三栏常驻／中央放大／只读地图等方向则须列待审。</p>
+<h3>5.1 坐标与分辨率口径</h3>
+<ol>
+<li>Viewport 指浏览器网页内容的 CSS 宽高，不是显示器分辨率，也不包含浏览器工具栏。</li>
+<li>设计母版采用 <strong>1920×1080 CSS px</strong>，主要适配1600×900、1440×900、1366×768、1280×720。</li>
+<li>源图像素与显示像素分列，目标位图至少支撑所需显示尺寸的2×；不是把整个网页用 <code>transform: scale()</code> 缩小。</li>
+<li>2560×1440等大窗口默认居中放置最大1920×1080逻辑外壳，外缘用不承载信息的延展底色／纹理。不能因4K屏让正文任意放大或小地图变巨型。</li>
+<li>100%、125%、150%浏览器缩放需记录<strong>实际CSS视口</strong>后测试；缩放不能靠反向缩字体抵消。</li>
+</ol>
+<h3>5.2 主布局方程</h3>
+<p>记：视口 <code>W×H</code>，外边距 <code>M</code>，栏间距／纵向主间距 <code>G</code>，左栏 <code>L</code>，右栏 <code>R</code>，HUD高 <code>T</code>，底反馈高 <code>F</code>。</p>
+<pre><code class="language-text">中央内容宽 C = W − 2M − 2G − L − R
+三栏内容高 B = H − 2M − T − F − 2G
+
+横向：M + L + G + C + G + R + M = W
+纵向：M + T + G + B + G + F + M = H
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>CSS视口</th>
+<th>M／G</th>
+<th style="text-align:right">左栏L</th>
+<th style="text-align:right">中央C</th>
+<th style="text-align:right">右栏R</th>
+<th style="text-align:right">HUD T</th>
+<th style="text-align:right">三栏高B</th>
+<th style="text-align:right">反馈F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1920×1080</td>
+<td>24／16</td>
+<td style="text-align:right">280</td>
+<td style="text-align:right"><strong>1200</strong></td>
+<td style="text-align:right">360</td>
+<td style="text-align:right">72</td>
+<td style="text-align:right"><strong>888</strong></td>
+<td style="text-align:right">40</td>
+</tr>
+<tr>
+<td>1600×900</td>
+<td>20／16</td>
+<td style="text-align:right">240</td>
+<td style="text-align:right"><strong>968</strong></td>
+<td style="text-align:right">320</td>
+<td style="text-align:right">64</td>
+<td style="text-align:right"><strong>728</strong></td>
+<td style="text-align:right">36</td>
+</tr>
+<tr>
+<td>1440×900</td>
+<td>16／12</td>
+<td style="text-align:right">224</td>
+<td style="text-align:right"><strong>856</strong></td>
+<td style="text-align:right">304</td>
+<td style="text-align:right">64</td>
+<td style="text-align:right"><strong>744</strong></td>
+<td style="text-align:right">36</td>
+</tr>
+<tr>
+<td>1366×768</td>
+<td>16／12</td>
+<td style="text-align:right">208</td>
+<td style="text-align:right"><strong>814</strong></td>
+<td style="text-align:right">288</td>
+<td style="text-align:right">60</td>
+<td style="text-align:right"><strong>620</strong></td>
+<td style="text-align:right">32</td>
+</tr>
+<tr>
+<td>1280×720</td>
+<td>12／12</td>
+<td style="text-align:right">192</td>
+<td style="text-align:right"><strong>768</strong></td>
+<td style="text-align:right">272</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right"><strong>584</strong></td>
+<td style="text-align:right">32</td>
+</tr>
+</tbody>
+</table>
+<p>这些是明确的设计档位。断点建议：1280、1360、1440、1600、1920；档位间中央吃剩余空间，边栏使用对应档位token。中间宽高不可各自随意写百分比，造成总宽超出。</p>
+<p>桌面≥1280且高≥720时，两侧保持常驻。低于这个范围才切紧凑排版：保留当前区域／目标摘要，外围信息以可切换抽屉出现；任何必要操作仍能到达。窄屏是降级验证，不把桌面正式稿设计成移动端。</p>
+<h3>5.3 背包格位—右栏—图标的联动</h3>
+<p>右栏边框 <code>b=1</code>，内边距 <code>p</code>：1920／1600档为16，其余桌面档为12；格间距 <code>g=4</code>。令右栏内容宽 <code>Rin=R−2p−2b</code>：</p>
+<pre><code class="language-text">单格边长 c = floor((Rin − 5g) / 6)
+背包像素宽 = 6c + 5g
+背包像素高 = 4c + 3g
+占 a×d 格的物品外框 = [a*c + (a−1)*g] × [d*c + (d−1)*g]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>视口宽</th>
+<th style="text-align:right">单格c</th>
+<th>6×4背包总尺寸</th>
+<th>2×2物品外框</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1920</td>
+<td style="text-align:right">51</td>
+<td>326×216</td>
+<td>106×106</td>
+</tr>
+<tr>
+<td>1600</td>
+<td style="text-align:right">44</td>
+<td>284×188</td>
+<td>92×92</td>
+</tr>
+<tr>
+<td>1440</td>
+<td style="text-align:right">43</td>
+<td>278×184</td>
+<td>90×90</td>
+</tr>
+<tr>
+<td>1366</td>
+<td style="text-align:right">40</td>
+<td>260×172</td>
+<td>84×84</td>
+</tr>
+<tr>
+<td>1280</td>
+<td style="text-align:right">37</td>
+<td>242×160</td>
+<td>78×78</td>
+</tr>
+</tbody>
+</table>
+<p>舍入后余量居中或归入边内距，不能偷偷多一列。<strong>格位是容器几何，不是“图标512px就占一格”</strong>。1×2／2×2物品跨格尺寸必须可见；旋转改变占格，不拉扁图像。数量、资源条、选中／非法放置态在组件层叠加，不烘焙进物品图。</p>
+<p>两快捷位各有固定容器与独立数量／资源显示；它们不额外复制背包中的同一实例。关键任务件摘要不扩容。</p>
+<h3>5.4 中央正常／放大尺寸</h3>
+<p>内缩 <code>I=16</code>（≥1600）或12（≤1440）：</p>
+<pre><code class="language-text">正常大面板 Wn = min(1080, C−2I)
+正常大面板 Hn = min(780, B−2I)
+放大面板 Wm×Hm = C×B
+</code></pre>
+<p>当 <code>C&lt;840</code> 或 <code>B&lt;700</code>，战斗和复杂参数默认直接使用中央最大态，不把可用空间二次压窄。放大仅改变可视窗口；不能重新创建角色、重新结算、重新加载场景或触发保存。</p>
+<p>普通短详情采用内容自适应的320—440宽起始预算，并受 <code>C−24</code> 上限约束；不是所有说明都用1080宽。正文正常14—16 CSS px，主要按钮文字≥14，辅助说明不低于12；尺寸不足先改布局／分组，再局部滚动，不缩字伪装一屏。</p>
+<h3>5.5 战斗面板内部再分账</h3>
+<p>战斗的背景／角色竞技区、标题、时间轴、行动条、结果摘要必须相互留空间。不得把背景先铺满再把时间轴压在敌人脚上。</p>
+<table>
+<thead>
+<tr>
+<th>视口</th>
+<th>默认战斗外框</th>
+<th>标题／时间轴／行动／摘要高度</th>
+<th>内距／区间距</th>
+<th style="text-align:right">剩余竞技区高</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1920×1080</td>
+<td>1080×780</td>
+<td>48／64／96／40</td>
+<td>16／12</td>
+<td style="text-align:right"><strong>452</strong></td>
+</tr>
+<tr>
+<td>1600×900</td>
+<td>936×696</td>
+<td>44／56／88／32</td>
+<td>16／8</td>
+<td style="text-align:right"><strong>412</strong></td>
+</tr>
+<tr>
+<td>1440×900</td>
+<td>832×720</td>
+<td>44／56／88／32</td>
+<td>12／8</td>
+<td style="text-align:right"><strong>444</strong></td>
+</tr>
+<tr>
+<td>1366×768</td>
+<td>814×620</td>
+<td>40／48／80／32</td>
+<td>12／8</td>
+<td style="text-align:right"><strong>364</strong></td>
+</tr>
+<tr>
+<td>1280×720</td>
+<td>768×584</td>
+<td>40／48／80／32</td>
+<td>12／8</td>
+<td style="text-align:right"><strong>328</strong></td>
+</tr>
+</tbody>
+</table>
+<p>计算：竞技区高 = 外框高 − 2×内距 − 四个固定区高度之和 − 4×区间距。短记录区只显示实际公开最近结果，长日志按需切页；不能为塞日志牺牲时间轴和行动。</p>
+<p>放大后重新计算竞技区，角色用统一舞台归一化坐标和 contain 变换，时间轴／按钮文字不跟角色一起做位图缩放。</p>
+<h2>6. 高度、遮挡与响应式验收</h2>
+<ul>
+<li>三栏共用同一上下边界，顶部HUD和底反馈不随中央局部滚动移动。左右栏内容过长在栏内滚动，关键状态／快捷位及主行动保持可达。</li>
+<li>主场景背景只能覆盖有界舞台，不能拿一张16:9图 cover 数千像素长页面。叠加文字使用稳定的对比层，不靠背景本身永远够暗。</li>
+<li>至少验证所有25页族在1920×1080；P03/P09/P10/P12/P15/P16/P23/P24在1600×900、1366×768；核心三栏、背包2×2放置、战斗、敏感确认在1280×720。</li>
+<li>补1440×900完整主探索与战斗，避免只测16:9时遗漏中央画幅过窄。</li>
+<li>压力视口：2560×1440、1366×650、1024×768、390×844；至少探索、地图详情、药食参数、战斗和保存异常可到达。1366×650可局部滚动，不保证完整无滚动，但不能裁掉提交／取消／退却。</li>
+<li>窄屏长文字和中文两行标题均需实际打开。面板／菜单在四角、焦点回收、最大态切换、浏览器缩放要实测，不以画板几何断言代替实际阅读。</li>
+<li>常驻已知地图只能被中央层之外的正确区域容纳；中央面板不把地图或背包遮住，敏感系统保护除外。</li>
+</ul>
+<h2>7. 全量当前内容资产，不再以占位交付</h2>
+<h3>7.1 覆盖清单</h3>
+<p>准确内容基线有五图、24节点。每个节点必须绑定适用的真实首版美术；允许同建筑有共同底板与合理构图变体，但不能所有房间共用一张不匹配背景，也不要求为了凑数量画24套完全无关建筑。</p>
+<table>
+<thead>
+<tr>
+<th>地区</th>
+<th>必须覆盖的正式节点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>医院</td>
+<td>H0电梯前室、H1大厅、H2药房、H3保安室、H4隔离走廊、H5冷藏室、H6值班休息室、H7后勤控制间、H8转运平台</td>
+</tr>
+<tr>
+<td>酒店</td>
+<td>T0酒店入口、T1林岑安置点</td>
+</tr>
+<tr>
+<td>供电所</td>
+<td>P0配线廊、P1转运支路柜</td>
+</tr>
+<tr>
+<td>物流</td>
+<td>L0岗亭、L1登记室、L2装卸场、L3维修库、L5周衡休息室</td>
+</tr>
+<tr>
+<td>通信</td>
+<td>C0入口、C1档案室、C2检修走廊、C3机房、C4检修间、C5播控侧门</td>
+</tr>
+</tbody>
+</table>
+<p>另含真正电梯中枢、初选／终局画面。任务件、普通物品、装备及药食的图标集合须从准确内容catalog逐项列出，无遗漏；不得拿参考图中的水、枪弹或其他虚构物品补数。</p>
+<p>三敌按真实声明分别对应医院H4、物流L2、通信C2；各做五个<strong>正式公开生命阶段</strong>。两名现有NPC与玩家表现需有独立资产；人物造型是呈现候选，不赋予新职业、关系、能力或任务。关键节点特写至少覆盖门禁／防火门、供电支路、记录比对、组件、样本／真实容器、安装点、两NPC当前可用互动。</p>
+<p>正式视觉包与最终页面不得留灰框、问号替身、相同通用人形或错误敌人复用。尚缺任一必须资产则如实记 <code>INCOMPLETE_ART</code>，不能标整包COMPLETE。已存在且风格合适的资产可复用，逐件登记；“有图片”不等于绑定正确。</p>
+<h3>7.2 源图生产建议与耦合</h3>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>建议源尺寸／格式</th>
+<th>显示与裁切要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>场景／中枢／战斗背景</td>
+<td>3840×2160，16:9，无损源＋WebP导出</td>
+<td>有界舞台cover；逐视口裁切验证；敌人与HUD不得烘焙在背景</td>
+</tr>
+<tr>
+<td>关键节点／NPC互动场景特写</td>
+<td>2048×1280，8:5</td>
+<td>使用独立8:5槽或给出裁切证明；不能从整屏UI截取</td>
+</tr>
+<tr>
+<td>敌人五阶段、NPC与玩家背身</td>
+<td>1536×1920，4:5透明源</td>
+<td>contain；现有1024×1280原稿仅在实测像素预算足够时复用，不插值冒充新高清</td>
+</tr>
+<tr>
+<td>物品图标</td>
+<td>512×512透明，四边约12.5%安全边距</td>
+<td>同一源跨背包／装备／快捷／菜单；不按每个容器重复画</td>
+</tr>
+<tr>
+<td>物品详情／头像</td>
+<td>1024×1024透明或明确底板</td>
+<td>与icon同一设计；不单独换物品外形</td>
+</tr>
+<tr>
+<td>时间轴头像token</td>
+<td>128×128透明</td>
+<td>最大显示48 CSS px起步；独立边框／指针，不把状态烘焙</td>
+</tr>
+<tr>
+<td>命中叠图</td>
+<td>768×768透明独立帧／序列</td>
+<td>锚定受击主体；不越过HUD，不带固定伤害数字</td>
+</tr>
+<tr>
+<td>状态／地图／操作小图标</td>
+<td>SVG为主，必要时128位图</td>
+<td>小尺寸识别、固定stroke语义、带文字／可访问名；不是缺图占位</td>
+</tr>
+<tr>
+<td>面板与按钮纹理</td>
+<td>分层源；示例512×512九宫格</td>
+<td>2×导出时source切边48对应CSS角24；角不拉伸，只拉中心／边</td>
+</tr>
+</tbody>
+</table>
+<p>这些不是所有素材一律4K。纹理、alpha、可复用细件分开生产；选定版本需有版本号／哈希／许可或来源记录。不能分发环境字体文件。</p>
+<h3>7.3 必须提交裁切和分辨率计算</h3>
+<pre><code class="language-text">cover缩放 s = max(槽宽 / 源宽, 槽高 / 源高)
+可见源区域 = 槽宽/s × 槽高/s
+居中时每侧横向损失 = (1 − 可见源宽/源宽) / 2
+所需源像素 = 目标CSS显示像素 × 目标DPR，并结合实际缩放／裁切逐轴核对
+</code></pre>
+<p>示例：3840×2160图用于1440×900档的856×744中央舞台，居中cover只保留约64.7%的源宽，左右各裁约17.6%。因此，重要人物／操作物不能画在靠边10%处。</p>
+<p>暂定关键构图区域为源图中央60%宽、15%—75%高；这只是起点。还必须叠加标题区、行动区、正常／放大面板遮挡蒙版验证。仅“主体在中央”不能替代逐槽裁切。非中心焦点需写 <code>focalX/focalY</code>；同一资产的不同用途各自记录。</p>
+<p>每件资产登记：ID、对应正式内容、用途、源尺寸、CSS最小／基准／最大槽、fit、crop、alpha、focal、safe zone、anchor、变体组、9-slice参数、导出倍率、文件名与来源。ID仅为设计资产，不是新玩法／存档身份。</p>
+<h2>8. 战斗视觉与动效：可欣赏贴图，不改变CTB</h2>
+<h3>8.1 推荐分层</h3>
+<p>即使遭遇固定，也把 <code>场景底板 → 地面／投影 → 玩家／敌人透明主体 → 受击FX → 公开状态／时间轴 → 行动条</code> 分开。</p>
+<p>固定遭遇映射可以严格；背景可有针对该敌人的站位构图，但不要把敌人画死在背景里，否则无法换战损、受击、后仰或未来高清替换。三敌不能共用一张不符合地点的背景。</p>
+<p>五阶段共用canvas、比例、脚底锚点，建议归一化脚锚 <code>(0.50,0.92)</code>；动作／受击变体也保持该基准。设计元数据同时提供躯干命中锚、轮廓包围盒与允许位移包络。切图不能靠重新自动裁透明边缘导致角色跳动。</p>
+<h3>8.2 时间轴的演出边界</h3>
+<p>Owner希望“速度快的标记移动快，抵达临界点触发操作”的视觉效果。本轮必须出时间轴动效样稿，但<strong>不能自行把现有CTB改成持续实时战斗</strong>。</p>
+<ul>
+<li>已知安全接口目前只提供当前玩家决策点及相对先后关系，并不直接提供完整未来队列和可任意显示的精确CTB。</li>
+<li>表现只能由正式允许的当前／已提交事件驱动；不能在UI根据系统时间、猜测速度或敌人私有数据跑第二套时间轴。</li>
+<li>到玩家决策停点应稳定停住等待选择；用户读说明、看贴图、放大面板不推动敌人攻击。</li>
+<li>结算已完成后，可以按真实公开结果依次播放标记移动、命中、阶段切图；动画回调不是伤害或保存的唯一入口。刷新、跳过／减少动画不得重放结算。</li>
+<li>更精细的连续标记位置／速度若缺安全字段，交付所需字段、可披露性、事件顺序与暂停语义的<strong>接口缺口候选</strong>。原型里的模拟位置清楚标记为动效示范，不假称当前安全接口已支持，也不默认公开精确距离。</li>
+<li>当前安全战斗DTO也缺少完整敌人名称／素材映射。三敌原画可以按正式内容制作；生产不能只凭地点猜敌、读取内部身份来绑图。将最小公开呈现键列为后续只读接口候选，由主线审定，不在此任务改schema或暴露内部ID。</li>
+<li>不显示精确敌人生命或百分比血条；五阶段图、当前公开意图与相对顺序足够。命中数值仅在现有安全事实允许时显示，否则用命中视觉反馈。</li>
+</ul>
+<h3>8.3 演出状态须出图／原型</h3>
+<p>普通／放大、等待选择、玩家行动已提交、敌人响应、命中瞬间、战损切换、合法退却、胜利回场景、敌仍活死亡、双方归零死亡。受击短时位移与淡入可用约120—250ms作为<strong>表现候选参数</strong>，不是游戏CTB单位。</p>
+<p>受击建议独立FX＋小幅X/Y位移／旋转后归位，不做整屏猛烈抖动。提供减少动态／静态等价设计，不依赖音频。缩放期间身体锚点、FX命中点与时间轴指示必须重新映射，不能错位。</p>
+<h2>9. 原型、效果图和资产三者不能混交</h2>
+<ul>
+<li><strong>效果图</strong>：单页全尺寸PNG，显示完整界面和实际中文内容。不得只交一个八宫格拼贴。</li>
+<li><strong>可编辑设计源</strong>：文字、背景、角色、状态、地图、按钮、面板与组件状态分层；支持改文字和改尺寸，不是一张底图上覆盖热点。</li>
+<li><strong>独立素材</strong>：无HUD／文字／按钮烘焙的可替换素材。背景、NPC、敌人、物品、FX分别导出；整图裁切只能作参考，不算生产资产。</li>
+<li><strong>交互原型</strong>：能实际点击打开／关闭／放大中央层、查看小地图详情、选择方法／材料／格位、显示相应状态。它是设计仿真，不接真实S、不写Owner存储、不声称验证规则或保存。</li>
+<li><strong>动效原型</strong>：展示时间轴与受击／战损切换、暂停及减少动态；标注数据是当前公开样例还是需要未来安全接缝。</li>
+</ul>
+<p>代码形式的设计原型只能位于本任务设计目录或仓库外，且与当前应用入口、Storage和生产依赖隔离。不为做原型改package.json或装新仓库依赖。无真实工具访问时明确失败点；不要用“待设计稿”“提示词已写”冒充完成。</p>
+<h2>10. 尺寸变更必须沿依赖链传播</h2>
+<p>每次调整下列任何一项，都要复查对应后代，并在 <code>size-change-log.md</code> 留记录：</p>
+<pre><code class="language-text">Viewport / 字体缩放
+  → 外壳边距、HUD、边栏、中央宽高
+  → 背包单格与多格物品 / 中央正常与放大面板
+  → 图像槽比例、角色显示框、文本换行、行动区
+  → 背景crop与safe zone / 敌人anchor与hit FX / 9-slice
+  → 导出倍率、源分辨率 / 截图与交互可达验收
+</code></pre>
+<p>禁止：只增加右栏宽却不减少中央宽；只换更高角色图却不检查脚点；把2×图误写成2倍CSS组件；放大面板却直接放大正文；细节图尺寸与物品icon复制多套互不对应。</p>
+<h2>11. 验收门槛 V01—V12</h2>
+<table>
+<thead>
+<tr>
+<th>门槛</th>
+<th>通过条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V01 规则隔离</td>
+<td>完成概念图纠偏、来源分层；正式规则与src未改；无新地图／装备／能力／后继任务</td>
+</tr>
+<tr>
+<td>V02 全页面</td>
+<td>§4全部页面族与指定变体实际有图、有可编辑源，有screen ID；没有只交目录／提示词</td>
+</tr>
+<tr>
+<td>V03 三栏算账</td>
+<td>五桌面档方程闭合；实测布局与记录相符；1920母版不直接比例缩放成小屏</td>
+</tr>
+<tr>
+<td>V04 真实格位</td>
+<td>6×4、两快捷位、1×2／2×2／旋转、数字／资源条互不遮挡；右栏与格位共同调整</td>
+</tr>
+<tr>
+<td>V05 中央层</td>
+<td>正常／最大态边界正确，必要控件可达；关闭不产生玩法；战斗不靠X退出</td>
+</tr>
+<tr>
+<td>V06 完整美术</td>
+<td>当前24节点、全部实物、三敌五阶段、玩家／两NPC、关键特写有正确映射；无计划性占位</td>
+</tr>
+<tr>
+<td>V07 战斗表现</td>
+<td>分层角色／背景、阶段一致锚点、受击FX、时间轴可演示且不泄漏未批准信息；缺安全字段明示</td>
+</tr>
+<tr>
+<td>V08 地图认知</td>
+<td>小图轻量常驻、详情中央展开；地图只读、只画已知拓扑；跨区辨识不靠额外确认</td>
+</tr>
+<tr>
+<td>V09 目标／终局</td>
+<td>一句总目标持续可见；样本与设施成果分开；四终局、静态中枢与无后继完整</td>
+</tr>
+<tr>
+<td>V10 交互负担</td>
+<td>普通完整意图不加通用确认；说明可访问但不满屏自动弹；必要参数、取消和敏感确认清楚</td>
+</tr>
+<tr>
+<td>V11 适配／异常</td>
+<td>规定视口、中文长文、125/150%缩放、四角菜单、保存／锁／坏档与unknown完整；每项实看</td>
+</tr>
+<tr>
+<td>V12 可交接</td>
+<td>原文件可编辑、素材清单／尺寸／摘要一致、预览包可打开；Git范围正确，执行与未执行分开</td>
+</tr>
+</tbody>
+</table>
+<p>几何检查脚本通过只证明算术；不能替代实际设计、正确文字、读图、交互或生产验证。所有图应由作者逐张打开检查，不能用“脚本渲染成功”代替视觉自查。</p>
+<h2>12. 修改范围与交付文件</h2>
+<h3>12.1 允许的设计目录结构</h3>
+<p>仅在 <code>docs/design-drafts/ui-v1-001/</code> 下新建：</p>
+<pre><code class="language-text">00-owner-review.md                 # 先放实际效果图索引与主要取舍，不先堆报告
+01-source-and-concept-corrections.md
+02-page-state-matrix.md
+03-dimension-contract.md
+04-interaction-and-motion.md
+05-asset-coverage.md
+06-implementation-handoff-draft.md
+completion.md
+size-change-log.md
+inputs/                           # 本任务包原件，原字节保留
+spec/                             # tokens、尺寸JSON、screen/asset/source manifests
+editable/                         # 可编辑SVG/组件导出或外部母版索引
+prototype/                        # 隔离设计原型，不接生产或Owner存档
+previews/                         # 受控预览图、联系表；逐件入manifest
+validation/                       # 几何／包／源边界检查脚本与真实结果
+</code></pre>
+<p>这些是新目录内的限定用途许可，不授权触碰既有路径。二进制大源文件、4K全量素材和设计工具原生文件可仓库外交付ZIP；仓库提交其确切文件名、大小、SHA-256与内部manifest，避免无意义重复提交巨图。作者必须确保Owner实际拿到完整源文件，不只留下不可访问本地链接。不要把浏览器profile、存档、账号token或字体文件放进包。</p>
+<h3>12.2 最终两个交付包</h3>
+<ol>
+<li><code>WORLD-UI-DESIGN-001-OWNER-REVIEW-v1.0.zip</code>：可离线打开的<code>index.html</code>、全部主稿与变体、可点击原型、关键动效演示、逐图说明、尺寸摘要与检查结果。</li>
+<li><code>WORLD-UI-DESIGN-001-SOURCE-ASSETS-v1.0.zip</code>：可编辑母版／导出源、全部独立图像、asset manifest、尺寸／anchor／crop／9-slice与来源许可说明。若有外部设计文件，给真实链接及可离线备份，不依赖单一未授权云链接。</li>
+</ol>
+<p>每个screen：ID、viewport、state provenance、所用asset版本、正常／放大状态、对应交互、已知限制。每个asset：正式对象对应、源图尺寸、slot族、变体、公开条件、摘要、来源。</p>
+<p>原型只模拟设计；工程接线、浏览器持久化、旧档兼容、CTB新接口和正式发布均留给后续精确任务。</p>
+<h3>12.3 检查与完成报告</h3>
+<ul>
+<li>开工与结束：<code>git status --short</code>、普通／cached diff；最终<code>git diff --check &lt;起始SHA&gt; HEAD</code>必须新增差异干净。</li>
+<li>实际 <code>AGENTS.md</code> 和规则来源读取；源配置／正式文档保护审计。</li>
+<li>本包：<code>python verify-task-package.py</code>；尺寸：<code>python verify-dimensions.py 尺寸耦合合同-v1.0.json</code>。</li>
+<li>作者最终尺寸、图稿、asset manifest和原型另做实际检查并归档结果；不能拿本包起始预算检查当最终成果验证。</li>
+<li>本任务无生产变更：生产完整test/typecheck/build不要求默认重跑；未执行则NOT RUN。不得累计历史4672测试为本轮新增验证。</li>
+<li>保留历史W01／W02；本任务新差异不得产生新例外，也不修改旧原件或检查配置。</li>
+<li>完成报告包含准确起点／最终SHA、tree、分支、实际工具、变更路径、25页族及资产覆盖、尺寸偏差、真实图稿与原型检查、缺口、NOT RUN、两个ZIP确切路径／大小／SHA-256、push及停止点。</li>
+</ul>
+<h2>13. 停止点</h2>
+<p>完成后停止，等待主线对<strong>准确SHA＋实际全部图稿／素材／原型</strong>联合评审，以及Owner对视觉与操作感受的选择。不能只凭COMPLETE、脚本或截图数宣布正式UI通过。</p>
+<p>本任务没有授权生产UI实现、修改玩法／保存、安全查询新知识、公开发布、O3、音频、清档、迁移、第二委托或自动下一阶段。小范围像素／文案／素材自查在本任务内一次完成；新机制和重大方向冲突才集中报审，不把常规设计工作推给Owner逐项决策。</p>
+</main></body></html>

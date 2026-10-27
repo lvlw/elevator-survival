@@ -1,0 +1,22 @@
+{
+  "assetId": "panel-nine-slice-v1",
+  "source": "built-in image_gen",
+  "file": "panel-nine-slice-v1.png",
+  "sourcePixels": [
+    1254,
+    1254
+  ],
+  "sourceSlice": [
+    48,
+    48,
+    48,
+    48
+  ],
+  "cssCorner": 24,
+  "exportScale": 2,
+  "usage": "9-slice frame, center may stretch; corners not stretched",
+  "visualReview": "Actual square frame inspected. No text or gameplay imagery.",
+  "sha256": "7f8a892f51159446c8d681c5811838ecf2dc177db7ca2dec6cda1b72d2eeb28e",
+  "modifiedPixels": false,
+  "status": "DESIGN_PRESENTATION_CANDIDATE"
+}

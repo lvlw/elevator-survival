@@ -1,0 +1,66 @@
+{
+  "asset_id": "item-component-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "转运组件",
+  "file": "item-component-v1.png",
+  "status": "VISUAL_CANDIDATE_REQUIRES_PADDING_EXPORT",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen",
+    "fallback_cli_or_api": false,
+    "calls": 1,
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-8a477964-c090-4e51-b978-a1eea4a839ee.png",
+    "generation_prompt": "Use case: product-mockup\nAsset type: one standalone mission-specific transport component inventory icon and detail master for a cold industrial survival game, physically substantial square form suited to a 2-by-2 inventory footprint.\nPrimary request: exactly ONE heavy old industrial mechanical control component. A compact thick square block-shaped gunmetal steel housing with believable bolted corner plates, a slightly stepped mechanical faceplate, two short stout fixed coupling ports on one side and one small integrated mechanical connector on the front. Practical dense mechanical construction, worn edges, recessed screws, restrained dirt and corrosion. It is a single complete removable industrial transport-system component, visually distinct from loose metal parts and from a bare circuit board. All connectors are attached and very short.\nScene/backdrop: genuine transparent alpha background, no floor, backdrop, shadow plane, checkerboard or environment.\nStyle/medium: photorealistic detailed game object render, cold dark industrial survival visual style. Dark gray and slate-blue steel, aged brushed silver contact edges, tiny muted brass connector details, realistic fine scratches and restrained oxidation. Solid high-readable block silhouette at small inventory size. Soft cool upper-left lighting with clear faces and restrained highlights.\nComposition/framing: square 1024x1024 or 1254x1254 canvas. Center the complete square component in a three-quarter perspective showing top, front and one connector side. Entire object, including every short port, within central 65 percent square; at least 17.5 percent genuinely empty transparent margin on every edge. Preserve a squat thick near-square overall silhouette and full corners. No close crop.\nConstraints: one closed mechanical component only. No loose parts, wires, long cables, screens, circuit boards outside the housing, batteries, tools, hands, crate or other objects. No text, digits, letters, serial plates, labels, brands, warning icons, glowing indicators, energy effects, magical abilities, futuristic holograms, HUD, border or watermark. Do not bake inventory cells or task markers into art."
+  },
+  "image": {
+    "actual_size": [
+      1254,
+      1254
+    ],
+    "format": "PNG",
+    "pixel_format": "32-bit RGBA",
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "fully_transparent_pixels": 894611,
+    "sha256": "5285b0d2156f5b644e7ee39460430e71b720a177e6c0aefd8dd893fdb06e57e9"
+  },
+  "composition": {
+    "object": "one substantial square industrial mechanical transport control component",
+    "inventory_footprint": "2x2; footprint is metadata only and no grid is baked into the image",
+    "view": "three-quarter showing top, front and connector side",
+    "full_silhouette_visible": true,
+    "target_maximum_subject_extent_percent": 65,
+    "actual_visible_subject_width_percent": 84.05,
+    "visible_bounds_alpha_gt_8": [
+      96,
+      194,
+      1149,
+      1090
+    ],
+    "visible_margin_percent": {
+      "left": 7.66,
+      "top": 15.47,
+      "right": 8.29,
+      "bottom": 13
+    },
+    "all_nonzero_alpha_bounds": [
+      0,
+      51,
+      1157,
+      1253
+    ],
+    "visible_silhouette_safety_pass": false
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "square_heavy_metal_housing_and_short_couplings": true,
+    "distinct_from_loose_metal_and_bare_circuit_board": true,
+    "no_text_numbers_hud_glow_extra_objects": true,
+    "notes": [
+      "One heavy old metal-cased mechanical transport component with short coupling ports, bolted corners and a small fixed connector. No screen or new ability effects are represented.",
+      "Visible subject width is 84.05 percent and smallest margin is 7.66 percent. Parent export pass should scale the complete component down to the central 65 percent and clean faint alpha residuals.",
+      "Component form is a presentation candidate only; it does not establish additional capabilities or alter the mission item's formal behavior.",
+      "Raw generated 1254x1254 PNG preserved. Single generation only. No browser, code integration or game tests were run."
+    ]
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "screen": "P12-bandage",
+  "viewport": [
+    2560,
+    1440
+  ],
+  "pixelRatio": 1,
+  "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+  "rects": [
+    {
+      "selector": ".shell",
+      "x": 320,
+      "y": 180,
+      "w": 1920,
+      "h": 1080,
+      "scrollH": 1080,
+      "clientH": 1080
+    },
+    {
+      "selector": ".center",
+      "x": 640,
+      "y": 292,
+      "w": 1200,
+      "h": 888,
+      "scrollH": 888,
+      "clientH": 888
+    },
+    {
+      "selector": ".sidebar.left",
+      "x": 344,
+      "y": 292,
+      "w": 280,
+      "h": 888,
+      "scrollH": 886,
+      "clientH": 886
+    },
+    {
+      "selector": ".sidebar.right",
+      "x": 1856,
+      "y": 292,
+      "w": 360,
+      "h": 888,
+      "scrollH": 886,
+      "clientH": 886
+    },
+    {
+      "selector": ".inventory",
+      "x": 1873,
+      "y": 487.96875,
+      "w": 326,
+      "h": 216,
+      "scrollH": 216,
+      "clientH": 216
+    },
+    {
+      "selector": ".panel",
+      "x": 700,
+      "y": 346,
+      "w": 1080,
+      "h": 780,
+      "scrollH": 778,
+      "clientH": 778
+    },
+    null,
+    {
+      "selector": ".footer",
+      "x": 344,
+      "y": 1196,
+      "w": 1872,
+      "h": 40,
+      "scrollH": 38,
+      "clientH": 38
+    }
+  ],
+  "assets": [
+    {
+      "path": "../editable/assets/bg-h6-v1.png",
+      "native": [
+        1672,
+        941
+      ],
+      "display": [
+        1200,
+        888
+      ]
+    },
+    {
+      "path": "../editable/assets/icon_bandage_v02.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "../editable/assets/icon_bandage_v02.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        41,
+        41
+      ]
+    },
+    {
+      "path": "../editable/assets/icon_bandage_v02.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        42,
+        42
+      ]
+    }
+  ],
+  "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+  "missing": []
+}

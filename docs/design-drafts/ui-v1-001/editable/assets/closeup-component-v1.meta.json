@@ -1,0 +1,67 @@
+{
+  "asset_id": "closeup-component-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "物流装卸场转运组件固定作业近景",
+  "file": "closeup-component-v1.png",
+  "status": "VISUAL_CANDIDATE_WITH_NATIVE_RESOLUTION_NOTES",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen reference compositing/edit",
+    "fallback_cli_or_api": false,
+    "calls": 1,
+    "reference_inspected_first": true,
+    "reference_file": "item-component-v1.png",
+    "reference_sha256": "5285b0d2156f5b644e7ee39460430e71b720a177e6c0aefd8dd893fdb06e57e9",
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-8529df25-d4f0-459b-96c3-3a8d2dae643a.png",
+    "generation_prompt": "Use case: compositing\nAsset type: independent 8:5 narrative interaction close-up for 《电梯求生》, logistics loading-yard fixed-component work inspection.\nInput image 1: exact component design reference and compositing subject. Preserve this component's identity: thick square dark gunmetal block, silver bolted reinforced corner pillars, stepped top faceplate with circular mechanical center fitting, two short wide coupling ports stacked on its left side, one round fixed front connector, aged steel and muted brass details. Keep the same proportions and construction, no new shape or extra functions.\nPrimary request: place this exact square component into an old industrial mechanical fixing cradle in a logistics loading yard. The component is STILL secured on its support frame. Show the surrounding old steel mounting base, substantial corner clamps and bolt-held retention brackets visibly holding it in place. This image illustrates viewing the mechanical release work BEFORE removal: it has not been picked up, lifted away or dismantled. All needed visual emphasis is on the fixed mount and component; do not show a person performing an action.\nScene/backdrop: a bounded realistic industrial close-up scene with a solid background, NOT transparent. Worn cold steel loading equipment and a small amount of out-of-focus warehouse structure behind it, dusty dim logistics loading bay, restrained industrial realism.\nStyle/medium: photorealistic cold dark industrial survival scene. Cool gray-blue and gunmetal palette, muted brown corrosion and subtle brass highlights matching the referenced object. Raking cool upper-left light reveals the clamps and bolts; slight warm background practical-light accents but no special effects. Crisp component and clamp mechanics, background secondary and softly out of focus.\nComposition/framing: LANDSCAPE 8:5 frame, desired 2048x1280. Close three-quarter camera angle showing top and front of the exact component and the retaining brackets around its lower corners. Place component centered and occupy roughly middle 55 percent width; its full silhouette and the critical mount hardware remain visible with contextual room around them. Do not crop away the securing clamps. Clearly read as a grounded fixed machine part, not a floating product shot.\nConstraints: no hands, human, enemy, weapon, loose wrench, screwdriver or other new pickable tool. No text, signage, digits, labels, HUD, buttons, pointers, arrows, border, watermark, task marker or selection glow. No raised removed component, open empty cradle, completed pickup or unlocked result state. No display screens or new mechanical powers. Only the exact existing component and the ordinary fixed supporting hardware."
+  },
+  "image": {
+    "requested_size": [
+      2048,
+      1280
+    ],
+    "requested_aspect_ratio": "8:5",
+    "actual_size": [
+      1586,
+      992
+    ],
+    "actual_aspect_ratio": 1.5987903225806452,
+    "format": "PNG",
+    "pixel_format": "24-bit RGB",
+    "transparent_background": false,
+    "sha256": "49e898ba86c21bb9cfe49106cb4fa9e0a67f8f264ae50b5d4da3f6ac501721fa",
+    "native_exact_8_5_export_option": [
+      1584,
+      990
+    ],
+    "native_exact_8_5_export_note": "A centered 1584x990 crop removes only 2 source pixels per axis overall. No crop or resampling has been performed in this asset task."
+  },
+  "scene_contract": {
+    "location": "logistics loading yard",
+    "state": "component still held in old fixing cradle",
+    "inspection_only": true,
+    "release_completed": false,
+    "pickup_completed": false,
+    "new_pickable_tools": false,
+    "new_gameplay_capability": false
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "component_design_consistent_with_reference": true,
+    "component_identity_features": [
+      "thick square dark gunmetal housing",
+      "reinforced bolted silver corner pillars",
+      "stepped top plate and circular central fitting",
+      "two stacked short coupling ports on left side",
+      "one round fixed front connector"
+    ],
+    "mount_and_clamps_visible": true,
+    "no_hands_hud_readable_labels_new_tools": true,
+    "notes": [
+      "Original component's recognizable geometry and material palette are retained within an old mechanical fixing cradle. Visible bolt clamps and brackets retain the object; the image does not show a removal or pickup.",
+      "Foreground fixture and component are crisp with secondary warehouse context. No people, loose pickable tools, textual HUD or ability effects are included.",
+      "Generated original is 1586x992, near 8:5 and lower than requested 2048x1280. Preserve true native resolution; do not describe an upscale as additional native detail.",
+      "No browser, code integration or game tests were run."
+    ]
+  }
+}

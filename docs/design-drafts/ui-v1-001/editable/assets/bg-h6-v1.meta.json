@@ -1,0 +1,71 @@
+{
+  "assetId": "bg-h6-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "bg-h6-v1.png",
+  "node": "H6",
+  "displayName": "医院值班休息室",
+  "purpose": "AI生成呈现候选，非玩法",
+  "licenseOrUsage": "AI生成呈现候选，非玩法；不代表最终美术冻结或 Owner 验收。",
+  "generator": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen.imagegen",
+    "calls": 1,
+    "prompt": "Use case: stylized-concept. Asset type: one clean environment background plate for bounded central hospital room stage in a survival strategy game. Generate exactly one new native 3840 x 2160 PNG, 16:9, without enlarging a smaller image. Subject H6: a small worn hospital staff on-call rest room, deserted. A narrow basic staff sleeping cot with a plain thin faded grey-green mattress rests against the back-left wall; simple bed legs, no medical mechanisms, no patient rails, no wheels, no IV stand. A single old empty wooden or steel chair is near the back-right wall. A small plain open cup-storage cabinet or cupboard on the right wall is visibly entirely empty, all shelves bare, no cups. No separate important props. Institutional desaturated teal-grey painted lower walls and worn off-white plaster above, cracked tired floor, subtle peeling paint, scuffed edges and age marks. One dim warm wall lamp above the cot provides a small amber pool; weak cold cyan-grey ambient light balances it, dark quiet blue-grey corners with readable midtones. Photorealistic cinematic game environment illustration, detailed realistic material texture, sober abandoned survivor atmosphere, clearly a staff rest room rather than a patient ward or luxurious bedroom. Camera eye-height, 28 mm wide stable near-frontal perspective, no dutch angle, no heavy depth-of-field blur; central 60% width contains the recognizable room layout, clean open central foreground floor with no props suitable for separate game action panel. Furniture should be small and held against walls, no major object at crop edges. No people, NPC, enemy, body, silhouette, human reflection, blood or gore. No HUD, UI, interface borders, icon, text, letters, words, numbers, labels, signage, hospital name, logos, watermarks, charts or medical diagram. No medical equipment, healing apparatus, first-aid supplies, medicines, bags, food, drinks, cups, bottles, tools, pickups, loot or rewards. Resting furniture is environmental set dressing only and must not imply automatic healing, free energy recovery or awarded supplies. Deliver one clean full-bleed native 3840x2160 PNG background.",
+    "sourcePath": "C:\\Users\\zjl\\.codex\\generated_images\\01a17970-d333-7b52-86f0-1095a5716707\\exec-67a924cd-303a-4afb-a766-5d9056fe05c5.png"
+  },
+  "contentEvidence": {
+    "source": "src/content/infected-world-v0.1/content.ts",
+    "H6": {
+      "name": "值班休息室",
+      "rest": "A",
+      "enemy": null,
+      "surfaceEdges": [
+        "H3-H6",
+        "H6-H7"
+      ]
+    },
+    "boundary": "普通值班窄床、椅与空柜仅为环境表现；休整继续按正式 A 类规则，不表示自动治疗、免费精力恢复、医疗设备或补给奖励。"
+  },
+  "requested": {
+    "width": 3840,
+    "height": 2160,
+    "aspectRatio": "16:9",
+    "nativeResolution": true
+  },
+  "actual": {
+    "width": 1672,
+    "height": 941,
+    "aspectRatio": 1.7768331562167907,
+    "format": "PNG",
+    "bytes": 2479195,
+    "sha256": "BABB4A48798992463C4121C4900607A51FC021B83776EACF8F5BBB24153257EE"
+  },
+  "transformations": [],
+  "originalBytesUnchanged": true,
+  "resolutionStatus": "NOT_MET: built-in tool returned 1672×941 despite native 3840×2160 prompt. One generation only; original bytes copied without resizing, interpolation or upscaling.",
+  "visualInspection": {
+    "status": "PASS_FOR_CANDIDATE_WITH_NOTE",
+    "notes": [
+      "左中墙边普通窄床、右后旧椅与右侧空柜清楚，冷暗青灰与单盏暖壁灯成立。",
+      "床无医疗机构、轮子、输液架或设备；仅普通枕头和薄床垫。",
+      "无人物、HUD、可读文字、治疗设备或可领取物资；中央下方地面宽阔空。",
+      "杯柜生成成较高的通用开放搁柜，全部空架；这是轻微造型偏差，不含杯或奖励。"
+    ]
+  },
+  "cropGuidance": {
+    "preferred": "16:9 bounded H6 stage; object-position 50% 50%.",
+    "supported": "4:3 center crop preserves bed, chair and central floor while partially cropping right empty cabinet; room identity remains. For bed-focused narrow view use 40% 50%.",
+    "foregroundSafeZoneNormalized": {
+      "x": 0.25,
+      "y": 0.65,
+      "width": 0.5,
+      "height": 0.3
+    },
+    "avoid": "Do not use the image as automatic rest/medical trigger. Empty shelves do not change source availability, and window/door geometry does not define new routes."
+  },
+  "unresolved": [
+    "Native 3840×2160 source requirement not met; remains lower-resolution candidate.",
+    "Requested small cup cupboard appears as a taller generic empty shelving cabinet.",
+    "No final art freeze or Owner visual acceptance implied."
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "assetId": "enemy-porter-heavy_wounded-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "enemy-porter-heavy_wounded-v1.png",
+  "status": "REVIEW_CANDIDATE_ALIGNMENT_REQUIRED",
+  "productionBound": false,
+  "contentMapping": {
+    "area": "物流",
+    "node": "L2 装卸场",
+    "enemy": "感染装卸工 / 感染搬运工",
+    "stage": "heavy_wounded / 重伤"
+  },
+  "source": {
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "editTarget": "enemy-porter-pristine-v1.png",
+    "editTargetSha256": "C62B70C69C0E6977EF1E7239D68F15F74951A8CDF9B17C363D3610F23438A1A4",
+    "generatedPath": "C:/Users/zjl/.codex/generated_images/01a17971-2cce-73a0-bfa2-2ed8008284c4/exec-6d8b82bd-41c4-45a2-8042-6c688f68fd92.png",
+    "copiedWithoutPixelModification": true,
+    "interpolatedUpscale": false,
+    "programmaticCropping": false,
+    "fallbackApiUsed": false,
+    "generationCount": 1,
+    "prompt": "Use case: identity-preserve / precise-object-edit.\nEdit the supplied pristine infected porter transparent PNG into the SAME man's HEAVY WOUNDED / 重伤 public combat-stage sprite. Only one isolated full-body sprite.\nPreserve identity and scale absolutely: same face and short messy dark hair, same broad thickset heavy body, thick arms, shoulder width and natural limb lengths. DO NOT make him thinner, smaller, shorter through scaling, or a different person. Same faded yellow-olive reflective vest, grey work shirt and work trousers, same gloves and scuffed boots, same cold realistic materials and lighting. Keep three-quarter screen-left orientation. BOTH HANDS remain EMPTY.\nCanvas lock: retain EXACT 1122 × 1402 full canvas and true transparent background. No cropping, trimming, recentering, zooming or overall scaling. Feet must be planted at the EXACT input locations. The screen-left sole's bottom is near y1262 and the screen-right sole near y1302; preserve the input boot shapes and their entire placement. The input visual foot midpoint is approximately pixel (604,1280). Keep all complete extremities inside the frame.\nChange only visible heavy injury presentation, NON-GRAPHIC: noticeably weaken his stance by leaning the upper torso farther toward screen-left and downward at the waist, with one shoulder drooping and one empty gloved forearm pressed protectively against his ribs while the other hand hangs heavily. The torso remains broad and heavy; any lower head height comes from bent posture, NEVER image shrinkage. Face remains recognizable, looks strained and pained, no sinister new mutation. More substantial ripped and frayed patches on vest, a torn shoulder and sleeve seam, torn trouser knee, scuffed dirt and disordered clothing. This is clearly worse than mild wounded, yet still STANDING and able to act; do not kneel, collapse or lie down.\nNo gore, no exposed wound tissue, no bleeding, no missing limb, no bandages, no fresh equipment, no weapon, no tools, no supernatural effect. Torn cloth may reveal ordinary intact skin only. No new occupation or ability.\nOutside figure: real transparent alpha only. No floor, cast shadow blob, scenery, particles, mist, checkerboard, solid background, UI, words, number, watermark or frame.\nOutput exactly ONE heavy-wounded porter PNG on the original untrimmed 1122 × 1402 canvas."
+  },
+  "dimensions": {
+    "requestedWidth": 1122,
+    "requestedHeight": 1402,
+    "actualWidth": 1121,
+    "actualHeight": 1403,
+    "sameCanvasAsPristine": false,
+    "exactRequestedCanvasMet": false,
+    "canvasDeltaPixels": [
+      -1,
+      1
+    ],
+    "originalHighResolutionTarget": [
+      1536,
+      1920
+    ],
+    "originalHighResolutionTargetMet": false
+  },
+  "alpha": {
+    "present": true,
+    "pixelFormat": "Format32bppArgb",
+    "transparentPixelCount": 1160268,
+    "fullyOpaquePixelCount": 921,
+    "partiallyTransparentPixelCount": 411574,
+    "mostCommonSubjectAlpha": 253,
+    "boundsConvention": "[left,top,right,bottom], inclusive pixels",
+    "nonzeroBounds": [
+      0,
+      19,
+      1082,
+      1378
+    ],
+    "subjectBoundsAtAlpha16": [
+      317,
+      129,
+      888,
+      1309
+    ],
+    "subjectBoundsAtAlpha128": [
+      321,
+      130,
+      887,
+      1308
+    ],
+    "note": "Generated real alpha retained. Low-alpha residue reaches left edge. No cleanup, crop or flattening."
+  },
+  "display": {
+    "fit": "contain",
+    "autoTrim": false,
+    "canvasMustRemainFixed": true,
+    "variantGroup": "enemy-porter-five-public-stages",
+    "stageOrder": 3,
+    "dropInPhaseSwapReady": false
+  },
+  "anchors": {
+    "coordinateSystem": "normalized to each actual untrimmed source canvas",
+    "inheritedPristineVisualFootAnchor": {
+      "pixels": [
+        604,
+        1280
+      ],
+      "normalized": [
+        0.5383244206773619,
+        0.912981455064194
+      ]
+    },
+    "heavyWoundedFootContactVisualEstimate": {
+      "pixels": [
+        656,
+        1286
+      ],
+      "normalized": [
+        0.5851917930419268,
+        0.9166072701354241
+      ],
+      "precision": "manual midpoint estimate; feet shifted right relative to pristine"
+    },
+    "torsoHitCandidate": {
+      "pixels": [
+        560,
+        540
+      ],
+      "normalized": [
+        0.49955396966993754,
+        0.3848895224518888
+      ],
+      "precision": "manual leaned-torso estimate"
+    },
+    "footAlignmentPixelExact": false,
+    "footEdgeComparison": {
+      "method": "For screen-left x250..599 and screen-right x600..999, scan y1401 down to1100 for lowest alpha>=128; mean x in bottom four rows. Measures raster sole edges, not gameplay anatomy. Pixel-space comparison is shown despite the one-pixel canvas mismatch.",
+      "measurements": [
+        {
+          "File": "enemy-porter-pristine-v1.png",
+          "Feet": [
+            {
+              "Foot": "left",
+              "LowestYAtAlpha128": 1262,
+              "BottomFourRowsMeanX": 434.61
+            },
+            {
+              "Foot": "right",
+              "LowestYAtAlpha128": 1302,
+              "BottomFourRowsMeanX": 738.03
+            }
+          ]
+        },
+        {
+          "File": "enemy-porter-heavy_wounded-v1.png",
+          "Feet": [
+            {
+              "Foot": "left",
+              "LowestYAtAlpha128": 1268,
+              "BottomFourRowsMeanX": 465.48
+            },
+            {
+              "Foot": "right",
+              "LowestYAtAlpha128": 1308,
+              "BottomFourRowsMeanX": 811.61
+            }
+          ]
+        }
+      ],
+      "delta": {
+        "left": {
+          "lowestY": 6,
+          "bottomFourRowsMeanX": 30.87
+        },
+        "right": {
+          "lowestY": 6,
+          "bottomFourRowsMeanX": 73.58
+        }
+      }
+    },
+    "notes": "Significant horizontal sole drift. A single translation cannot align both boots because their relative separation changed. Canvas and phase alignment need a later authorized repair; do not crop or independently fit each silhouette to hide this."
+  },
+  "checks": {
+    "visualInspection": true,
+    "sameCharacterFaceHairClothes": true,
+    "broadHeavyBodyRetained": true,
+    "weakSideLeanAndNonGraphicClothDamage": true,
+    "emptyGlovedHands": true,
+    "fullHeadHandsBootsVisible": true,
+    "noOpenWoundsOrGore": true,
+    "noNewWeaponsGearOrProfession": true,
+    "alphaAndCanvasMeasured": true,
+    "footEdgesComparedToPristine": true,
+    "codeTestsRun": false,
+    "whyNoCodeTests": "Raster and metadata only; no application or core rules changed."
+  },
+  "gaps": [
+    "CANVAS_MISMATCH: actual1121x1403 vs requested1122x1402. Preserved output untouched.",
+    "FOOT_ALIGNMENT_FAILED: alpha128 sole left shifts(+30.87,+6)px and right(+73.58,+6)px relative to pristine. Not a seamless phase swap.",
+    "SOURCE_RESOLUTION_BELOW_ORIGINAL_TARGET: actual source below1536x1920; no interpolation.",
+    "ALPHA_RESIDUE: low-alpha remnants beyond visible silhouette and body alpha mostly253.",
+    "Remaining public stages, Owner stage review and actual-stage switching validation not completed by this asset."
+  ],
+  "sha256": "545B25CB12385F00F77362854D849602517DE3E51FB300138677497213E09325",
+  "registrationAnchors": {
+    "coordinateSystem": "Untrimmed original PNG pixels; normalized coordinates divide by actual source width and height",
+    "footSupportCenter": {
+      "pixels": [
+        638.545,
+        1288
+      ],
+      "normalized": [
+        0.5696208742194468,
+        0.9180327868852459
+      ],
+      "method": "Midpoint of the two measured sole contact samples: each sample uses lowest alpha>=128 row and mean x in its bottom four rows. This is a reproducible presentation-registration anchor, not exact anatomy."
+    },
+    "torsoHit": {
+      "pixels": [
+        560,
+        540
+      ],
+      "normalized": [
+        0.49955396966993754,
+        0.3848895224518888
+      ],
+      "method": "Visually selected torso point for presentation FX; not a gameplay target or body-part mechanic."
+    },
+    "usage": "Preferred explicit placement anchors for a non-destructive editable wrapper. Retain PNG unchanged. Wrapper registration is not proof of natural source alignment."
+  }
+}

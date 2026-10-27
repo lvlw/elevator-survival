@@ -1,0 +1,67 @@
+{
+  "asset_id": "item-painkiller-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "止痛药",
+  "file": "item-painkiller-v1.png",
+  "status": "VISUAL_CANDIDATE_WITH_ALPHA_CLEANUP_NOTES",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen",
+    "fallback_cli_or_api": false,
+    "calls": 1,
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-38853500-6d16-4ef4-8882-662853909233.png",
+    "generation_prompt": "Use case: product-mockup\nAsset type: one standalone survival-game inventory item / detail master.\nPrimary request: ONE sealed blister pack of painkiller tablets, a single small rectangular aluminum-plastic medication blister card with six round ivory-white tablets individually sealed beneath clear shallow plastic domes in a regular two-column, three-row arrangement. All tablets remain sealed inside the SAME connected blister card. Slightly worn dark silver-white foil backing and a plain muted pale amber blank band across the narrow top margin. No printing on the foil, band, or tablets.\nScene/backdrop: genuinely transparent alpha background. No floor, backdrop, shadow plane, checkerboard or gradient.\nStyle/medium: photorealistic detailed game item render for a cold dark industrial medical survival world. Realistic restrained scuffs on aluminum and faint creases at sealed edges, clear plastic reflections, ivory pills. Cold silver-gray lighting, pale amber accent only, crisp readable single silhouette. Soft upper-left cool key light.\nComposition/framing: square 1024x1024 or 1254x1254. Center the single complete rectangular blister card in a mild diagonal three-quarter view with shallow visible depth. Object entirely within the central 65 percent square: at least 17.5 percent empty transparent padding on all four edges. Small item within a generous canvas, no crop.\nConstraints: NO bottle. One connected sealed blister package only. No loose tablets or detached pills, no outer carton, no extra blister packs, no scattered props, hands, tools or medical tray. No letters, words, logos, symbols, numbers, dose markings, pill imprints, barcode, HUD, watermark, frame or decoration. Preserve actual alpha transparency."
+  },
+  "image": {
+    "actual_size": [
+      1254,
+      1254
+    ],
+    "format": "PNG",
+    "pixel_format": "32-bit RGBA",
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "fully_transparent_pixels": 1253946,
+    "sha256": "9c809aa0e8495deda723c7f2a0c5e4edc342fa8c5f0e8c329e8e6c43accd757e"
+  },
+  "composition": {
+    "object": "one connected sealed aluminum-plastic painkiller blister card",
+    "view": "centered slight diagonal three-quarter",
+    "full_silhouette_visible": true,
+    "target_maximum_subject_extent_percent": 65,
+    "actual_visible_subject_height_percent": 64.27,
+    "safety_target_percent_each_side": 17.5,
+    "visible_bounds_alpha_gt_8": [
+      326,
+      228,
+      956,
+      1033
+    ],
+    "visible_margin_percent": {
+      "left": 26,
+      "top": 18.18,
+      "right": 23.68,
+      "bottom": 17.54
+    },
+    "all_nonzero_alpha_bounds": [
+      25,
+      21,
+      1233,
+      1229
+    ],
+    "visible_silhouette_17_5_percent_safety_pass": true,
+    "strict_zero_alpha_border_pass": false
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "one_blister_card_only": true,
+    "blank_pale_amber_band": true,
+    "no_text_numbers_hud_loose_pills_extra_supplies": true,
+    "notes": [
+      "Single connected blister card containing sealed ivory tablets, worn silver foil and a blank pale amber top band. Deliberately visually distinct from the disinfectant bottle.",
+      "Visible subject height is 64.27 percent and minimum visible margin 17.54 percent, satisfying approximate central 65 percent framing.",
+      "180 stray alpha=1 pixels lie outside the 15 percent margin; parent final export should clear extremely low-alpha contamination and recheck the slight colored fringe visible around the top edge.",
+      "Raw generated 1254x1254 PNG preserved. Single generation only. No browser, code integration or game tests were run."
+    ]
+  }
+}

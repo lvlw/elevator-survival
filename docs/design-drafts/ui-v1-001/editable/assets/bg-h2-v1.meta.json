@@ -1,0 +1,71 @@
+{
+  "assetId": "bg-h2-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "bg-h2-v1.png",
+  "node": "H2",
+  "displayName": "医院药房",
+  "purpose": "AI生成呈现候选，非玩法",
+  "licenseOrUsage": "AI生成呈现候选，非玩法；不代表最终美术冻结或 Owner 验收。",
+  "generator": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen.imagegen",
+    "calls": 1,
+    "prompt": "Use case: stylized-concept. Asset type: environment background plate for the bounded central room stage of a single-player survival strategy game. Create one new image at native 3840 x 2160 pixels, exactly 16:9, without enlarging a smaller image. Scene: H2, an abandoned low-light hospital pharmacy. Distinguish it strongly from an elevator anteroom: no elevator doors. View from the customer side into a compact institutional pharmacy, old enclosed opaque teal-black metal medication cabinets across the upper rear wall, all cabinet doors shut, small ordinary recessed key locks as physical set dressing only, worn low counter along rear left, bare countertop, one completely empty utilitarian metal push trolley at far right. Cabinets must be opaque or frosted so no contents are visible. Quiet architecture and empty furnishings only. Materials: worn desaturated teal steel, chipped paint, scarred stainless trim, dirty off-white ceramic wall tiles, cracked concrete/terrazzo floor, dark corner joints, old overhead conduits. Realistic cinematic game-environment illustration, dense tactile detail with plausible construction, sober survival horror mood without gore. Palette and light: teal-black shadows, faded hospital green-grey, a subdued warm tungsten service light high rear left and a weak cool cyan-white overhead fluorescent glow; readable cool midtones with restrained warm reflections. Composition: eye level, wide 28 mm architectural view, stable nearly frontal perspective, no dutch angle, no depth-of-field blur. Major cabinet and counter silhouettes stay in upper two thirds and perimeter. The central lower portion x=25%-75%, y=55%-95% must be calm open floor with low contrast and no important object, leaving clean room for an independently implemented foreground action panel. Keep recognizable pharmacy identity inside central 60% width, with cabinets visible above overlay. Foreground has no loose items. Important: no person, enemy, zombie, silhouette, corpse; no HUD, interface, panel border, buttons, icons, labels, letters, words, numbers, hospital name, logo, watermark, signage or medical cross. No visible medication, packets, bottles, syringes, pills, bandages, first-aid kits, loot, highlighted objects, search indicators, guaranteed rewards or pickup objects. No computer, terminal or implied extra interactable machinery. Hardware locks are only decoration and must not imply a new gate or key requirement. This is an AI-generated presentation candidate, not a gameplay rule or guaranteed resource. Deliver one clean native 3840x2160 PNG background plate.",
+    "sourcePath": "C:\\Users\\zjl\\.codex\\generated_images\\01a17970-d333-7b52-86f0-1095a5716707\\exec-959f6c8f-2d77-4471-a2d9-8487e17e8d7a.png"
+  },
+  "contentEvidence": {
+    "source": "src/content/infected-world-v0.1/content.ts",
+    "node": {
+      "id": "H2",
+      "name": "药房",
+      "enemy": null
+    },
+    "sources": [
+      "H2-search: ground-once, search.dark, requires=[]",
+      "H2-random: paired-H2-search-choice, grants=null, disinfect/painkiller/firstaid/suppressant；不是保证消毒剂"
+    ],
+    "boundary": "不画出可搜物或隐藏收益为确定赠送；关闭柜门与锁具仅为建筑装饰，不定义新的钥匙或破障需求。"
+  },
+  "requested": {
+    "width": 3840,
+    "height": 2160,
+    "aspectRatio": "16:9",
+    "nativeResolution": true
+  },
+  "actual": {
+    "width": 1672,
+    "height": 941,
+    "aspectRatio": 1.7768331562167907,
+    "format": "PNG",
+    "bytes": 2455503,
+    "sha256": "D2788109CA0D3A2ADCBDD1E59ED0A952F2242B63DEAEC3ABB6C8B3FC9FBC6746"
+  },
+  "transformations": [],
+  "originalBytesUnchanged": true,
+  "resolutionStatus": "NOT_MET: built-in tool returned 1672×941 despite native 3840×2160 prompt. One generation only; original bytes copied without resizing, interpolation, upscaling or follow-up image editing.",
+  "visualInspection": {
+    "status": "PASS_FOR_CANDIDATE",
+    "notes": [
+      "封闭不透明药柜位于后墙上部；低柜台与右侧空推车均清楚。",
+      "冷青暗部、左侧暖灯与顶端弱青白光；质感与 H0 同系列，构图和主体明确区别。",
+      "无角色、无 HUD、无文字、无医院名；无可见药品、奖励、隐藏收益或可拾取物。",
+      "下方中央为空地，可覆盖独立操作面板；药房身份由实际 H2 标题确认，未在图上添加标签。"
+    ]
+  },
+  "cropGuidance": {
+    "preferred": "16:9 bounded room stage, object-position 50% 50%; preserve upper cabinet wall and lower center foreground.",
+    "supported": "4:3 center crop retains cabinet/counter; central 60% width retains room identity. Empty trolley at far right may be cropped at narrower ratios without losing identity.",
+    "foregroundPanelSafeZoneNormalized": {
+      "x": 0.25,
+      "y": 0.65,
+      "width": 0.5,
+      "height": 0.3
+    },
+    "wideCrop": "Wider cinematic crop should use object-position 50% 40%; keep cabinet silhouette in upper region.",
+    "avoid": "Do not use for H0 or global hospital backdrop. Do not display physical cabinet locks as a new gameplay gate; do not present rendered/upscaled dimensions as true source resolution."
+  },
+  "unresolved": [
+    "Native 3840×2160 source requirement not met; remains lower-resolution candidate.",
+    "No final art freeze or Owner visual acceptance implied."
+  ]
+}

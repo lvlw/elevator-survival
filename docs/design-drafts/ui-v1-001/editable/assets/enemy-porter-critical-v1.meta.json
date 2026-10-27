@@ -1,0 +1,170 @@
+{
+  "assetId": "enemy-porter-critical-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "enemy-porter-critical-v1.png",
+  "status": "REVIEW_CANDIDATE_ALIGNMENT_REQUIRED",
+  "productionBound": false,
+  "contentMapping": {
+    "area": "物流",
+    "node": "L2 装卸场",
+    "enemy": "感染装卸工 / 感染搬运工",
+    "stage": "critical / 濒危"
+  },
+  "source": {
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "editTarget": "enemy-porter-pristine-v1.png",
+    "editTargetSha256": "C62B70C69C0E6977EF1E7239D68F15F74951A8CDF9B17C363D3610F23438A1A4",
+    "generatedPath": "C:/Users/zjl/.codex/generated_images/01a17971-2cce-73a0-bfa2-2ed8008284c4/exec-c7422515-cab1-4d33-8181-bfca073b8c2c.png",
+    "copiedWithoutPixelModification": true,
+    "interpolatedUpscale": false,
+    "programmaticCropping": false,
+    "fallbackApiUsed": false,
+    "generationCount": 1,
+    "prompt": "Use case: identity-preserve / precise-object-edit.\nEdit the supplied pristine transparent PNG of the infected freight porter into this SAME man's CRITICAL / 濒危 combat stage. Exactly one isolated character sprite.\nLOCKED identity: same recognizable male face, same short messy black hair, same broad shoulders and thick heavy body and thick limbs, same original grey workwear, yellow-olive worn reflective vest with silver tape, work gloves and work boots. Preserve the same cold realistic painted material rendering and illumination. Keep empty gloved hands, three-quarter screen-left facing. No new objects or abilities. Do not make him thinner, smaller or change his height through scaling.\nLOCKED source canvas: retain 1122 × 1402 full portrait transparent canvas, no auto-trim, crop, recenter or overall resizing. Preserve BOTH boots in the original source positions as closely as possible: screen-left sole bottom y1262, right sole bottom y1302, foot support centre approximately (586,1282). The boots remain on the ground close to these baseline locations. Do not move feet wider apart.\nCRITICAL stage pose: extremely exhausted and barely steady, but still standing on BOTH FEET and still capable of acting. Bend the upper body visibly farther forward and toward screen-left than a mild injury, with head lowered and shoulders sagging, both knees only modestly flexed. Keep full thickset body volume; lowered head comes from posture, never shrunk anatomy. One EMPTY gloved hand braces across sore abdomen / ribs, the other EMPTY hand hangs weakly low at the side. His recognizable face shows drained concentration and a strained half-open gaze. No kneeling, crawling, sitting, falling or lying down.\nClothing damage: extensive non-graphic fraying, large tears in the old vest and a shoulder sleeve, ripped cloth at knees and trouser leg, dulled reflective stripes, dirt and abrasion. More damaged and more depleted than heavy wounded, but body is intact. Fabric tears reveal only intact normal skin. No blood, bleeding, open wounds, exposed tissue, gore, severed parts or bandages. Do not introduce new equipment, tools, weapon, gun, backpack or effects.\nFraming: complete head, hands and both boots entirely visible; preserve generous original transparent margins and the untrimmed canvas.\nBackground: TRUE transparent alpha, no floor, ground plane, shadows, mist, particles, checkerboard, solid backdrop, scenery, UI, text, numbers, labels, frame or watermark.\nDeliver one CRITICAL-stage porter PNG."
+  },
+  "dimensions": {
+    "requestedWidth": 1122,
+    "requestedHeight": 1402,
+    "actualWidth": 1122,
+    "actualHeight": 1402,
+    "sameCanvasAsPristine": true,
+    "exactRequestedCanvasMet": true,
+    "originalHighResolutionTarget": [
+      1536,
+      1920
+    ],
+    "originalHighResolutionTargetMet": false
+  },
+  "alpha": {
+    "present": true,
+    "pixelFormat": "Format32bppArgb",
+    "transparentPixelCount": 1098058,
+    "fullyOpaquePixelCount": 674,
+    "partiallyTransparentPixelCount": 474312,
+    "mostCommonSubjectAlpha": 253,
+    "boundsConvention": "[left,top,right,bottom], inclusive pixels",
+    "nonzeroBounds": [
+      0,
+      63,
+      1045,
+      1369
+    ],
+    "subjectBoundsAtAlpha16": [
+      296,
+      118,
+      896,
+      1334
+    ],
+    "subjectBoundsAtAlpha128": [
+      300,
+      121,
+      895,
+      1333
+    ],
+    "note": "True generated alpha retained. Low-alpha residue beyond visible silhouette. No crop, cleanup, interpolation or flattening."
+  },
+  "display": {
+    "fit": "contain",
+    "autoTrim": false,
+    "canvasMustRemainFixed": true,
+    "variantGroup": "enemy-porter-five-public-stages",
+    "stageOrder": 4,
+    "dropInPhaseSwapReady": false
+  },
+  "registrationAnchors": {
+    "coordinateSystem": "Untrimmed original PNG pixels; normalized coordinates divide by actual source width and height",
+    "footSupportCenter": {
+      "pixels": [
+        629.405,
+        1311
+      ],
+      "normalized": [
+        0.5609670231729055,
+        0.9350927246790299
+      ],
+      "method": "Midpoint of measured sole contact samples: lowest alpha>=128 row and mean x in bottom four rows for each foot. Reproducible presentation-registration anchor, not exact anatomy."
+    },
+    "torsoHit": {
+      "pixels": [
+        564,
+        510
+      ],
+      "normalized": [
+        0.5026737967914439,
+        0.3637660485021398
+      ],
+      "method": "Visually selected leaned torso point for presentation FX; not gameplay anatomy."
+    },
+    "usage": "Use for non-destructive editable wrapper placement. Preserve source PNG unchanged; wrapper registration does not make original feet pixel-aligned."
+  },
+  "footEdgeComparison": {
+    "method": "Screen-left x250..599 and screen-right x600..999; scan y1401..1100 at alpha>=128, then average x of bottom four rows.",
+    "measurements": [
+      {
+        "File": "enemy-porter-pristine-v1.png",
+        "Feet": [
+          {
+            "Foot": "left",
+            "LowestYAtAlpha128": 1262,
+            "BottomFourRowsMeanX": 434.61
+          },
+          {
+            "Foot": "right",
+            "LowestYAtAlpha128": 1302,
+            "BottomFourRowsMeanX": 738.03
+          }
+        ]
+      },
+      {
+        "File": "enemy-porter-critical-v1.png",
+        "Feet": [
+          {
+            "Foot": "left",
+            "LowestYAtAlpha128": 1289,
+            "BottomFourRowsMeanX": 449.77
+          },
+          {
+            "Foot": "right",
+            "LowestYAtAlpha128": 1333,
+            "BottomFourRowsMeanX": 809.04
+          }
+        ]
+      }
+    ],
+    "deltaFromPristine": {
+      "left": {
+        "lowestY": 27,
+        "bottomFourRowsMeanX": 15.16
+      },
+      "right": {
+        "lowestY": 31,
+        "bottomFourRowsMeanX": 71.01
+      }
+    },
+    "pixelExact": false,
+    "notes": "Both ground position and relative boot separation changed. A single translation aligns declared support centre but cannot reproduce both pristine sole outlines."
+  },
+  "checks": {
+    "visualInspection": true,
+    "sameRecognizableFaceHairAndCostume": true,
+    "thicksetBodyRetained": true,
+    "extremelyWeakButStillStanding": true,
+    "emptyGlovedHands": true,
+    "fullHeadHandsBootsVisible": true,
+    "nonGraphicClothingDamage": true,
+    "noBloodOpenWoundsOrGore": true,
+    "noNewPropsWeaponsOrPowers": true,
+    "alphaCanvasAndFootMeasurements": true,
+    "codeTestsRun": false,
+    "whyNoCodeTests": "Independent raster and metadata only; no gameplay or application changed."
+  },
+  "gaps": [
+    "FOOT_ALIGNMENT_REQUIRED: same1122x1402 canvas, but left sole moves(+15.16,+27)px and right(+71.01,+31)px versus pristine.",
+    "POSE_AND_SCALE_REVIEW: thickset identity remains; exact matching silhouette/scale across stages is not certified.",
+    "SOURCE_RESOLUTION_BELOW_ORIGINAL_TARGET: source remains below1536x1920; no interpolation.",
+    "ALPHA_RESIDUE: low-alpha remnants outside silhouette and body alpha mostly253.",
+    "Owner review and runtime phase-switch/FX alignment validation not performed."
+  ],
+  "sha256": "A32ADBEB63B7DB6D5127ADC78F10D11A3458067997F04FE066BFE33955F0FBB6"
+}

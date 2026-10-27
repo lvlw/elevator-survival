@@ -1,0 +1,66 @@
+{
+  "asset_id": "item-metal-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "金属零件",
+  "file": "item-metal-v1.png",
+  "status": "VISUAL_CANDIDATE_REQUIRES_PADDING_EXPORT",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen",
+    "fallback_cli_or_api": false,
+    "calls": 1,
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-48c30f6c-2aa4-4db1-9c62-7eb6171d5052.png",
+    "generation_prompt": "Use case: product-mockup\nAsset type: one grouped material inventory icon / item detail master for an industrial survival game.\nPrimary request: a compact cluster of realistic salvageable metal parts, treated as ONE inventory material asset: three thick worn steel washers, two clearly recognizable hexagonal steel nuts and one short thin rectangular bent steel joining plate with two plain round holes. Objects lightly overlap in one cohesive tidy group, not a wide scatter. They are substantial usable parts, not tiny dust or debris. Keep washers, hex nuts and plate clearly recognizable.\nScene/backdrop: genuine transparent alpha background, no floor, backdrop, table, shadow plane, gradient or checkerboard.\nStyle/medium: photorealistic detailed game object rendering, cold dark industrial survival aesthetic matching aged steel tools. Dark slate-gray steel with restrained cold blue highlights, muted warm rust only in recesses, realistic shallow scuffs and wear. Good separation of major shapes and clear readable silhouette at small icon size. Soft upper-left light with restrained bright edge highlights.\nComposition/framing: square 1024x1024 or 1254x1254 canvas. Group centered in a shallow three-quarter top view, compact approximately square composition. Entire group must fit within central 65 percent square with at least 17.5 percent genuinely empty transparent padding on all four sides. Keep group small within generous canvas, complete visible parts, no cropped edge.\nConstraints: ONLY the requested compact group of steel washers, hex nuts and joining plate. No tools, cables, coins, screws, boxes, labels, cloth, loose fragments or unrelated objects. No text, numerals, letters, engravings, recognizable stamps, markings, logos, extra icons, HUD, border, watermark or fantasy glow."
+  },
+  "image": {
+    "actual_size": [
+      1254,
+      1254
+    ],
+    "format": "PNG",
+    "pixel_format": "32-bit RGBA",
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "fully_transparent_pixels": 1143261,
+    "sha256": "fe9ae706518d17157bb25a6cdbb4c9545139b2cc0a5bbec9983b82c3f7367f76"
+  },
+  "composition": {
+    "object": "one grouped inventory material consisting of three washers, two hex nuts and one bent steel joining plate",
+    "view": "shallow three-quarter top view",
+    "full_silhouette_visible": true,
+    "target_maximum_subject_extent_percent": 65,
+    "actual_visible_subject_width_percent": 73.13,
+    "visible_bounds_alpha_gt_8": [
+      174,
+      292,
+      1090,
+      1013
+    ],
+    "visible_margin_percent": {
+      "left": 13.88,
+      "top": 23.29,
+      "right": 13,
+      "bottom": 19.14
+    },
+    "all_nonzero_alpha_bounds": [
+      49,
+      23,
+      1252,
+      1229
+    ],
+    "visible_silhouette_12_5_percent_safety_pass": true,
+    "visible_silhouette_17_5_percent_safety_pass": false
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "cold_dark_realistic_steel": true,
+    "recognizable_washers_nuts_plate": true,
+    "no_text_numbers_hud_extra_objects": true,
+    "notes": [
+      "Compact readable group of old steel components with clear washer holes, hex nuts and joining plate, treated as one material inventory icon.",
+      "Visible group width is 73.13 percent and minimum margin 13.00 percent. It passes the original 12.5 percent asset margin but is larger than this assignment's central 65 percent target.",
+      "Parent export pass should reduce the group to central 65 percent and clear faint stray alpha pixels. Raw generated 1254x1254 PNG preserved.",
+      "Single generation only. No browser, code integration or game tests were run."
+    ]
+  }
+}

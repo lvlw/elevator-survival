@@ -1,0 +1,83 @@
+{
+  "assetId": "bg-c3-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "bg-c3-v1.png",
+  "node": "C3",
+  "displayName": "通信机房",
+  "purpose": "AI生成呈现候选，非玩法",
+  "licenseOrUsage": "AI生成呈现候选，非玩法；不代表最终美术冻结或 Owner 验收。",
+  "generator": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen.imagegen",
+    "calls": 1,
+    "prompt": "Use case: stylized-concept. Asset type: standalone atmosphere-only environment background plate for bounded C3 communications equipment-room stage in a survival strategy game. Generate exactly one new native 3840 x 2160 PNG, 16:9, without upscaling or enlargement from a smaller source. Subject: C3 an old communications equipment room, clearly different from a filing/archive room. Tall dark steel telecom equipment racks line the left and right sides, perforated rack doors and dense blank equipment faceplates, carefully routed bundled signal cables overhead on slim cable trays, old utility conduits and rough grey concrete walls. No file cabinets, folders, desks, office papers or archive furniture. A wide empty central walkable floor aisle extends into the room; keep at least central 40% width of foreground clear for separate player/enemy character placement and central 60% visually stable. Dark steel-cyan and teal-grey palette, low desaturated cold utility illumination, a few very faint warm amber pin-sized rack indicators with no discernible code, pattern, status meaning or readable labels. These lights are static ambience and imply no broadcasting, power objective or module state. Cinematic photorealistic survival-game environment illustration, detailed believable cable insulation, scratched metal, dust in perforations, oxidized rack screws, worn concrete and restrained floor reflection, practical non-futuristic scale. Stable eye-level wide 28 mm perspective with central vanishing point, near symmetric but naturally imperfect composition, no dutch angle, no heavy blur or obstructing fog. Main rack silhouettes and cable routes fit inside frame with breathing room; central foreground x=25%-75%, y=55%-95% remains clear low-contrast floor for composited characters and independent game controls. No people, NPC, enemy, character, silhouette, body, blood, gore or human reflection. No HUD, UI, interface border, icon, readable text, letters, numbers, labels, screen content, logo, watermark, map, route schematic, network diagram or task chart. No exposed portable module, component, loot, batteries, tools, reward, medical supplies or pickup objects. No glowing hero module or completed-extraction visual. Racks and cables are environmental atmosphere only, not new interactions, navigational routes, success facts or automatic knowledge. Deliver one clean full-bleed native 3840x2160 PNG background.",
+    "promptSha256": "DA69BF15DD5BC6498D371418EAE8DE40E23683E9B5F20AAF193021ADA3C54E4F",
+    "promptHashEncoding": "UTF-8, no trailing newline",
+    "sourcePath": "C:\\Users\\zjl\\.codex\\generated_images\\01a17970-d333-7b52-86f0-1095a5716707\\exec-3f26ceee-65ef-4e54-931f-1557e1ff61e7.png",
+    "sourceSha256": "65842580C024FD69D905C0361E120F35AD16F3AEF6BDD74BB617567FA56A8811"
+  },
+  "contentEvidence": {
+    "source": "src/content/infected-world-v0.1/content.ts",
+    "C3": {
+      "name": "机房",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "C2-C3",
+        "C4-C3"
+      ]
+    },
+    "moduleAction": {
+      "id": "module",
+      "cost": "extract.part",
+      "requires": [
+        "matched"
+      ],
+      "grant": "module",
+      "outputQuantity": "unit"
+    },
+    "boundary": "本图只提供机房氛围，未画可领取模块；机架和微弱指示灯不代表 matched、module 取得、广播或供电状态，不新增路线、操作或自动情报。"
+  },
+  "requested": {
+    "width": 3840,
+    "height": 2160,
+    "aspectRatio": "16:9",
+    "nativeResolution": true
+  },
+  "actual": {
+    "width": 1672,
+    "height": 941,
+    "aspectRatio": 1.7768331562167907,
+    "format": "PNG",
+    "bytes": 2653246,
+    "sha256": "65842580C024FD69D905C0361E120F35AD16F3AEF6BDD74BB617567FA56A8811"
+  },
+  "transformations": [],
+  "originalBytesUnchanged": true,
+  "resolutionStatus": "NOT_MET: built-in tool returned 1672×941 despite native 3840×2160 prompt. One generation only; original bytes copied without resizing, interpolation or upscaling.",
+  "visualInspection": {
+    "status": "PASS_FOR_CANDIDATE",
+    "notes": [
+      "两侧钢青通信机架、顶端密集信号线缆与中央可通行地面清楚，明显区别 C1 档案柜和记录桌。",
+      "中央前景保持宽阔角色空间，焦点稳定。",
+      "无角色、可读设备文本、数字、地图或 HUD；少量暖色小指示灯仅为无含义的静态氛围。",
+      "无独立可提取模块特写、奖励或可拾取物资。"
+    ]
+  },
+  "cropGuidance": {
+    "preferred": "16:9 bounded C3 stage, object-position 50% 50%.",
+    "supported": "4:3 center crop keeps both inner rack ranks and full center aisle. Square center crop retains room identity and character placement floor with reduced side equipment.",
+    "characterSafeZoneNormalized": {
+      "x": 0.3,
+      "y": 0.52,
+      "width": 0.4,
+      "height": 0.43
+    },
+    "wideCrop": "For wide cinematic crop use 50% 56% to retain empty ground under composited character feet; some overhead cables may be clipped.",
+    "avoid": "Do not bake characters or module result into this background. Indicator lamps must not be interpreted as objective status or an extra device UI; background doorway adds no navigation route."
+  },
+  "unresolved": [
+    "Native 3840×2160 source requirement not met; remains lower-resolution candidate.",
+    "No final art freeze or Owner visual acceptance implied."
+  ]
+}

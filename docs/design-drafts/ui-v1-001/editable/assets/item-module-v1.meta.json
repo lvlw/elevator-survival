@@ -1,0 +1,66 @@
+{
+  "asset_id": "item-module-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "通信模块",
+  "file": "item-module-v1.png",
+  "status": "VISUAL_CANDIDATE_REQUIRES_PADDING_EXPORT",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen",
+    "fallback_cli_or_api": false,
+    "calls": 1,
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-5c68766a-5893-468d-ad25-bda2309b9686.png",
+    "generation_prompt": "Use case: product-mockup\nAsset type: one standalone mission-specific communication module inventory icon and detail master for a cold industrial survival game, physically narrow and elongated for a 1-by-2 inventory footprint.\nPrimary request: exactly ONE narrow elongated plug-in electronic communication module, a sturdy dark-gray metal cartridge with a rectangular body about twice as tall as wide. Enclosed worn industrial metal casing, a few shallow inset seams and protective ribs, restrained recessed screws. One end contains a short protected recessed connector bay with orderly fixed metallic connector pins enclosed within the protective lip; no loose wires or external antenna. Compact utilitarian removable equipment part, clearly distinct from a square mechanical transport component and from an exposed bare circuit board.\nScene/backdrop: genuine transparent alpha background, no floor, backdrop, shadow plane, checkerboard, gradient or surrounding environment.\nStyle/medium: photorealistic detailed game object render in a cold dark industrial survival aesthetic. Charcoal-gray and cool slate metal shell, subtle silver edge wear, muted aged brass or gold connector contacts, realistic fine scratches and light dust. Clear elongated silhouette and broad readable form at small inventory size. Soft cool key light from upper left.\nComposition/framing: square 1024x1024 or 1254x1254 canvas. Entire elongated cartridge centered in a mild diagonal three-quarter view, showing front, one side and protected connector end. All corners and connector pins must fit inside the central 65 percent square with at least 17.5 percent genuinely empty transparent padding on all sides. Preserve narrow long physical form; no close crop.\nConstraints: one complete CLOSED module only. No detached circuit board, extra ports floating separately, loose cables, antenna, phone, screen, keyboard, hands, tools or surrounding objects. No text, letters, numerals, labels, serial plate, logo, barcode, glowing LEDs, illuminated screen, energy effect, new ability symbol, HUD, border or watermark. Inventory cells are not drawn in the image."
+  },
+  "image": {
+    "actual_size": [
+      1254,
+      1254
+    ],
+    "format": "PNG",
+    "pixel_format": "32-bit RGBA",
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "fully_transparent_pixels": 1209173,
+    "sha256": "9d7b916d8c2b748a37372df27131ae7659593dfc09e5efb7566e3d575f575d23"
+  },
+  "composition": {
+    "object": "one elongated enclosed metal communication plug-in module with protected recessed connector pins",
+    "inventory_footprint": "1x2; no footprint grid is baked into artwork",
+    "view": "upright slight three-quarter",
+    "full_silhouette_visible": true,
+    "target_maximum_subject_extent_percent": 65,
+    "actual_visible_subject_height_percent": 83.09,
+    "visible_bounds_alpha_gt_8": [
+      439,
+      99,
+      819,
+      1140
+    ],
+    "visible_margin_percent": {
+      "left": 35.01,
+      "top": 7.89,
+      "right": 34.61,
+      "bottom": 9.01
+    },
+    "all_nonzero_alpha_bounds": [
+      0,
+      21,
+      1233,
+      1253
+    ],
+    "visible_silhouette_safety_pass": false
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "elongated_dark_metal_case_protected_connector_pins": true,
+    "distinct_from_square_transport_component_and_bare_pcb": true,
+    "no_text_numbers_hud_glowing_screen_new_ability": true,
+    "notes": [
+      "Narrow long closed cartridge with robust gray metal shell, protective ribs and fixed gold-toned pins inside a recessed connector bay. No antenna, exterior cables, screen or bare circuit board.",
+      "Visible height is 83.09 percent and minimum margin 7.89 percent. Parent export pass should scale the full module down to central 65 percent and clean faint alpha residuals.",
+      "The form is a presentation candidate only and does not define extra module functions.",
+      "Raw generated 1254x1254 PNG preserved. Single generation only. No browser, code integration or game tests were run."
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "status": "AUTHOR_FINAL_DESIGN_TOKENS_NOT_PRODUCTION_CONFIG",
+  "profiles": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "margin": 24,
+      "gap": 16,
+      "left": 280,
+      "center": 1200,
+      "right": 360,
+      "hud": 72,
+      "body": 888,
+      "footer": 40,
+      "cell": 51
+    },
+    {
+      "width": 1600,
+      "height": 900,
+      "margin": 20,
+      "gap": 16,
+      "left": 240,
+      "center": 968,
+      "right": 320,
+      "hud": 64,
+      "body": 728,
+      "footer": 36,
+      "cell": 44
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "margin": 16,
+      "gap": 12,
+      "left": 224,
+      "center": 856,
+      "right": 304,
+      "hud": 64,
+      "body": 744,
+      "footer": 36,
+      "cell": 43
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "margin": 16,
+      "gap": 12,
+      "left": 208,
+      "center": 814,
+      "right": 288,
+      "hud": 60,
+      "body": 620,
+      "footer": 32,
+      "cell": 40
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "margin": 12,
+      "gap": 12,
+      "left": 192,
+      "center": 768,
+      "right": 272,
+      "hud": 56,
+      "body": 584,
+      "footer": 32,
+      "cell": 37
+    }
+  ],
+  "backpack": [
+    6,
+    4
+  ],
+  "gridGap": 4,
+  "quickSlots": 2,
+  "maxShell": [
+    1920,
+    1080
+  ],
+  "compactWhen": "width<1280 OR height<720",
+  "sourceDprTarget": 2,
+  "exportPngDpr": 1,
+  "sourceDprActual": "Per-asset native pixels; backgrounds insufficient",
+  "bodyFontCss": 16,
+  "fontStack": [
+    "Microsoft YaHei",
+    "PingFang SC",
+    "sans-serif"
+  ],
+  "nineSlice": {
+    "sourceInset": 48,
+    "cssCorner": 24
+  },
+  "motionCandidate": {
+    "hitMs": 200,
+    "sequenceMs": 700,
+    "offsetCss": [
+      9,
+      -3
+    ],
+    "rotationDeg": 2
+  }
+}

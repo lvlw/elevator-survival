@@ -1,0 +1,76 @@
+{
+  "assetId": "bg-c1-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "bg-c1-v1.png",
+  "node": "C1",
+  "displayName": "通信档案室",
+  "purpose": "AI生成呈现候选，非玩法",
+  "licenseOrUsage": "AI生成呈现候选，非玩法；不代表最终美术冻结或 Owner 验收。",
+  "generator": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen.imagegen",
+    "calls": 1,
+    "prompt": "Use case: stylized-concept. Asset type: standalone bounded-room environment background for a survival strategy game. Generate exactly one new native 3840 x 2160 PNG, 16:9, without upscaling a smaller image. Scene C1, a neglected communications-station archive room. Narrow old grey-blue metal filing cabinets line the rear and side walls, closed drawers with empty label holders; one short open shelving section contains a few closed plain dark grey unmarked folders, no readable text and no open pages. A modest empty records desk stands in the center midground, tabletop completely bare, no paper or object on top; there is generous clear foreground floor below the desk for independently rendered interface panels. No chair or object that resembles a person. Low ceiling, aged thin conduits, dusty vents, plain worn concrete walls with faded muted blue-grey paint, scarred steel cabinet edges. Cinematic photorealistic game environment illustration, dense fine material texture, low-saturation cold teal-grey palette, subdued soft fluorescent ambient light and dark readable midtones, quiet abandoned administrative room distinct from a power corridor, hospital or warehouse. Stable eye-level wide 28 mm architectural composition, nearly frontal, no dutch angle, no heavy depth-of-field blur. Keep desk silhouette and representative narrow cabinets inside central 60% width, avoid important objects on edge, forefloor unobstructed. Absolutely no person, NPC, enemy, silhouette, body or gore. No HUD, UI, interface frame, icons, readable writing, labels, words, letters, numbers, signs, logos, watermark, printed chart or diagram. No hidden route map, floorplan, mission map, schematic, computer display, safe combination or visible intelligence text. No rewards, pickup supplies, tools, bags, keycard, batteries or mechanical components. The closed unmarked folders are environmental set dressing only, not automatically obtained intelligence or a guaranteed collectible. Closed cabinet art introduces no extra gameplay lock. Deliver one clean full-bleed native 3840x2160 PNG.",
+    "sourcePath": "C:\\Users\\zjl\\.codex\\generated_images\\01a17970-d333-7b52-86f0-1095a5716707\\exec-f7c9f5b9-1a4f-4ee1-9601-0d7b1a150eff.png"
+  },
+  "contentEvidence": {
+    "source": "src/content/infected-world-v0.1/content.ts",
+    "C1": {
+      "name": "档案室",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "C0-C1",
+        "C1-C4",
+        "C1-C5",
+        "C1-C2"
+      ]
+    },
+    "actions": [
+      "c-gate: door.manual -> c-gate",
+      "match: verify.full -> matched, grant=null"
+    ],
+    "boundary": "档案柜和无字文件夹为环境陈设，不自动获得情报、matched 事实或新路线；未绘制隐藏路线图或任务地图。柜门外观也不新增正式规则外的锁。"
+  },
+  "requested": {
+    "width": 3840,
+    "height": 2160,
+    "aspectRatio": "16:9",
+    "nativeResolution": true
+  },
+  "actual": {
+    "width": 1672,
+    "height": 941,
+    "aspectRatio": 1.7768331562167907,
+    "format": "PNG",
+    "bytes": 2389817,
+    "sha256": "F06397979D2C7861FFAB6A010D4C1FAF9A36EF321B90FE61201E403B2BA02BCE"
+  },
+  "transformations": [],
+  "originalBytesUnchanged": true,
+  "resolutionStatus": "NOT_MET: built-in tool returned 1672×941 despite native 3840×2160 prompt. One generation only; original bytes copied without resizing, interpolation or upscaling.",
+  "visualInspection": {
+    "status": "PASS_FOR_CANDIDATE",
+    "notes": [
+      "旧窄金属档案柜围绕中央空记录桌，后方少量闭合文件夹表面无可读内容。",
+      "冷暗低饱和青灰空间成立；下方前景留空便于独立 UI。",
+      "无人物、HUD、可读文本、隐藏地图、奖励或情报内容；文件柜标签框为空白。"
+    ]
+  },
+  "cropGuidance": {
+    "preferred": "16:9 bounded C1 stage; object-position 50% 50%.",
+    "supported": "4:3 center crop retains full desk and rear files/cabinets. Square center crop retains desk core and archive identity while clipping its outer edges.",
+    "foregroundSafeZoneNormalized": {
+      "x": 0.25,
+      "y": 0.73,
+      "width": 0.5,
+      "height": 0.23
+    },
+    "wideCrop": "Wider cinematic crop use 50% 52% to preserve desk and foreground; topmost lights may be clipped.",
+    "avoid": "Do not read the decorative folders as obtained intelligence or expose navigation based on shelf/cabinet arrangement. The empty desk remains non-interactive art outside existing commands."
+  },
+  "unresolved": [
+    "Native 3840×2160 source requirement not met; remains lower-resolution candidate.",
+    "No final art freeze or Owner visual acceptance implied."
+  ]
+}

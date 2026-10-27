@@ -1,0 +1,166 @@
+{
+  "assetId": "enemy-porter-pristine-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "contentMapping": {
+    "area": "物流",
+    "node": "L2 装卸场",
+    "enemy": "感染装卸工 / 感染搬运工",
+    "stage": "pristine / 完好"
+  },
+  "file": "enemy-porter-pristine-v1.png",
+  "status": "REVIEW_CANDIDATE_WITH_GAPS",
+  "productionBound": false,
+  "source": {
+    "tool": "built-in image_gen.imagegen",
+    "mode": "generate followed by targeted edit",
+    "originalGeneratedPath": "C:/Users/zjl/.codex/generated_images/01a17971-2cce-73a0-bfa2-2ed8008284c4/exec-830f4a97-ea38-4f0b-b539-5f151942a281.png",
+    "selectedGeneratedPath": "C:/Users/zjl/.codex/generated_images/01a17971-2cce-73a0-bfa2-2ed8008284c4/exec-2336f811-f305-4b7c-ae18-7cf9f2b68d5e.png",
+    "copiedWithoutPixelModification": true,
+    "interpolatedUpscale": false,
+    "fallbackApiUsed": false,
+    "initialPrompt": "Use case: stylized-concept\nAsset type: one production-quality transparent PNG character sprite for the Chinese single-player survival game 《电梯求生》. This is a NEW character, a logistics loading-yard infected porter, pristine / intact combat stage. No interface, scenery, labels, contact sheet or multiple figures.\nPrimary request: a broad, thickset adult male manual freight loader infected by an ordinary human infection. He has broad shoulders and a heavy sturdy body, short dark dishevelled hair, a tired ashen face, subtle pallor and unhealthy veins. He is wearing a dirty ash-grey long-sleeved utility work uniform with practical trousers, an old faded dull yellow-olive safety vest with weathered silver reflective stripes, heavy work gloves and scuffed work boots. Both hands EMPTY. No helmet, no mask, no backpack, no tools, no weapon. No new supernatural abilities, spikes, tentacles, mutations or glowing eyes. Ordinary human anatomy.\nStyle / medium: cold dark realistic cinematic game character art, carefully painted photoreal material detail, believable weight, restrained saturation, worn canvas cloth and grime. Match the realistic, sharply detailed, grounded rendering quality of the inspected game reference, but do NOT imitate its nurse or medical orderly costume, figure, face or hairstyle.\nPose and orientation: full body including head, both complete gloves and both complete boots. Standing, three-quarter view turned toward SCREEN LEFT and facing the player just off screen left. A tense, slightly hunched, heavy stance with arms hanging ready, readable silhouette, anatomically coherent hands in gloves. This is the UNINJURED initial stage: old grime and wear are fine; no fresh cuts, fresh blood, open wounds, dangling limbs, bandages or battle damage.\nComposition / canvas: native 1536 by 1920 pixels, portrait 4:5 canvas. Keep transparent margins around every extremity. Do not crop or auto-trim the canvas. Build the entire figure around a fixed canvas foot-ground anchor at pixel (768,1766), normalized (0.50,0.92), with the midpoint between sole contact points at this anchor. The centre of the upper chest / impact anchor should be approximately pixel (768,768), normalized (0.50,0.40). Head top near y=0.08 and soles near y=0.92; body centred with enough left/right room for subsequent damage-stage variants. Sole contact points share one ground line. Use the exact same scale and fixed canvas alignment as a stage-series base.\nLighting: cold soft front-left key light with faint cool edge separation; readable face, workwear, hands and boots. No bright warm glow, no dramatic cast-shadow shape.\nBackground: TRUE transparent alpha, all empty space transparent, no baked checkerboard, no white / black / coloured backdrop, no floor, no shadow plane, no mist or floating debris. Edge antialiasing should preserve transparency cleanly.\nText: none. No watermark, no logo, no UI, no numbers, no badge text. Deliver only ONE standalone pristine character on a transparent canvas.",
+    "selectedRevisionPrompt": "Use case: precise-object-edit. Edit the supplied single character PNG. Preserve this exact male infected porter identity, face, broad thickset body, grey workwear, weathered yellow-olive reflective vest, empty gloved hands, boots, cold realistic material rendering, pristine state, and three-quarter orientation toward SCREEN LEFT. No nurse costume, weapons, text, UI or scenery.\nChange ONLY the canvas composition and native output resolution. Render a new native 1536 × 1920 PNG with TRUE transparent alpha and a portrait 4:5 canvas. The previous image is overfilled; the new canvas must clearly have empty transparent space ABOVE the head and BELOW both boots. Character's TOP should be at y=0.08 of canvas, LOWEST SOLE at y=0.92, no nontransparent pixels near the bottom 7% or top 6%. Put the visual midpoint of the two foot contacts at x=0.50, y=0.92 of canvas. Keep full complete head, hands, boots, entire silhouette. Chest impact centre approximately x=0.50, y=0.40. Recompose the character at the same natural body proportions with slightly staggered feet; both soles visually rest close to a common ground level. The full figure should occupy only 84% of canvas height, not 98%. Do not auto-crop or trim transparent margins. Preserve clean real transparent pixels all around. No floor, ground plane, checkerboard, cast shadow, border or additional objects. Deliver exactly one PNG character."
+  },
+  "references": [
+    {
+      "path": "../../inputs/references/05-combat.png",
+      "role": "cold dark realistic rendering and material direction only; nurse design excluded"
+    },
+    {
+      "path": "../../../../../src/assets/presentation/v0.1/visual/enemy_infected_orderly_pristine_v02.png",
+      "role": "rendering detail and transparent full-body format only; identity and medical clothing not copied"
+    }
+  ],
+  "dimensions": {
+    "requestedWidth": 1536,
+    "requestedHeight": 1920,
+    "actualWidth": 1122,
+    "actualHeight": 1402,
+    "actualAspectRatio": 0.8002853067047075,
+    "targetAspectRatio": 0.8,
+    "exactTargetMet": false
+  },
+  "alpha": {
+    "present": true,
+    "pixelFormat": "Format32bppArgb",
+    "transparentPixelCount": 1193497,
+    "fullyOpaquePixelCount": 827,
+    "partiallyTransparentPixelCount": 378720,
+    "interiorSampleAlpha": 253,
+    "mostCommonSubjectAlpha": 253,
+    "boundsConvention": "[left, top, right, bottom], inclusive pixels",
+    "nonzeroBounds": [
+      41,
+      86,
+      1067,
+      1351
+    ],
+    "subjectBoundsAtAlpha16": [
+      322,
+      113,
+      813,
+      1303
+    ],
+    "subjectBoundsAtAlpha128": [
+      323,
+      118,
+      812,
+      1302
+    ],
+    "note": "Real alpha is preserved. Most subject pixels have alpha 253; low-alpha residue expands the alpha>0 bounds beyond the visually apparent silhouette. Not cleaned or flattened."
+  },
+  "display": {
+    "fit": "contain",
+    "autoTrim": false,
+    "canvasMustRemainFixed": true,
+    "variantGroup": "enemy-porter-five-public-stages",
+    "completedStages": [
+      "pristine",
+      "wounded",
+      "heavy_wounded",
+      "critical",
+      "disabled"
+    ],
+    "pendingStages": [],
+    "stageInventoryMeaning": "All five PNG and metadata files exist. File presence is not natural alignment, wrapper QA, final art or Owner acceptance."
+  },
+  "anchors": {
+    "coordinateSystem": "normalized to entire untrimmed actual source canvas",
+    "requestedFootGround": [
+      0.5,
+      0.92
+    ],
+    "requestedChestHit": [
+      0.5,
+      0.4
+    ],
+    "footContactMidpointVisualEstimate": {
+      "pixels": [
+        604,
+        1280
+      ],
+      "normalized": [
+        0.5383244206773619,
+        0.912981455064194
+      ],
+      "precision": "manual visual estimate; boot soles stagger in image perspective"
+    },
+    "usableTorsoHitCandidate": {
+      "pixels": [
+        561,
+        561
+      ],
+      "normalized": [
+        0.5,
+        0.40014265335235377
+      ],
+      "precision": "author-selected torso point, alpha checked 253; not automatically inferred anatomy"
+    },
+    "footTargetMet": false,
+    "notes": "Do not declare a matched five-stage anchor set yet. Use actual anchor metadata for placement or align through a later authorized image edit. No automatic transparent-edge crop."
+  },
+  "checks": {
+    "visualInspection": true,
+    "fullHeadHandsBootsVisible": true,
+    "greyWorkwearReflectiveVestGloves": true,
+    "emptyHands": true,
+    "noMedicalCostume": true,
+    "noUiTextOrBackground": true,
+    "codeTestsRun": false,
+    "whyNoCodeTests": "Raster and metadata only; no application or rules changed."
+  },
+  "gaps": [
+    "SOURCE_RESOLUTION_BELOW_TARGET: native 1122x1402 after both calls; not 1536x1920.",
+    "FOOT_ANCHOR_APPROXIMATE: source foot-contact midpoint is roughly (0.538,0.913); requested (0.50,0.92) was not exactly achieved.",
+    "ALPHA_RESIDUE: very low-alpha pixels outside visible silhouette; body alpha predominantly 253 rather than 255.",
+    "Owner art acceptance and in-stage pixel-budget/lighting validation not performed.",
+    "FIVE_STAGE_REGISTRATION_NOT_VALIDATED: all five source PNG and metadata files now exist; shared-canvas wrapper, phase alignment and Owner acceptance remain separate checks."
+  ],
+  "sha256": "C62B70C69C0E6977EF1E7239D68F15F74951A8CDF9B17C363D3610F23438A1A4",
+  "registrationAnchors": {
+    "coordinateSystem": "Untrimmed original PNG pixels; normalized coordinates divide by actual source width and height",
+    "footSupportCenter": {
+      "pixels": [
+        586.32,
+        1282
+      ],
+      "normalized": [
+        0.5225668449197861,
+        0.9144079885877318
+      ],
+      "method": "Midpoint of the two measured sole contact samples: each sample uses lowest alpha>=128 row and mean x in its bottom four rows. This is a reproducible presentation-registration anchor, not exact anatomy."
+    },
+    "torsoHit": {
+      "pixels": [
+        561,
+        561
+      ],
+      "normalized": [
+        0.5,
+        0.40014265335235377
+      ],
+      "method": "Visually selected torso point for presentation FX; not a gameplay target or body-part mechanic."
+    },
+    "usage": "Preferred explicit placement anchors for a non-destructive editable wrapper. Retain PNG unchanged. Wrapper registration is not proof of natural source alignment."
+  }
+}

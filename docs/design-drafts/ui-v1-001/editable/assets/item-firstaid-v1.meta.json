@@ -1,0 +1,68 @@
+{
+  "asset_id": "item-firstaid-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "急救包",
+  "file": "item-firstaid-v1.png",
+  "status": "VISUAL_CANDIDATE_REQUIRES_PADDING_EXPORT",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen",
+    "fallback_cli_or_api": false,
+    "calls": 1,
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-2f9e66b7-cd2c-4bfa-9d7e-9dbc7c1f4010.png",
+    "generation_prompt": "Use case: product-mockup\nAsset type: one standalone inventory icon / detail master for a cold industrial survival game; item is vertically elongated to communicate a 1-by-2 inventory footprint but source canvas is square.\nPrimary request: exactly ONE closed vertically elongated first-aid pouch, a practical deep charcoal-gray heavy cloth medical bag. Tall narrow rectangular body about twice as tall as wide, believable shallow depth, rounded corners, a simple zipper closure, restrained stitched seams, a small fabric carry loop on top. One muted dull dark-red cross-shaped fabric patch centered on the front; the patch has no text. Worn woven canvas with subtle scuffs and frayed edges, intact and usable.\nScene/backdrop: genuine transparent alpha background, no floor, backdrop, shadow plane or checkerboard.\nStyle/medium: detailed photorealistic game object render in a cold dark industrial medical survival style. Deep gray fabric with cool slate highlights, subdued brown-gray wear, dull dark-red cross. Readable large silhouette and patch at inventory scale. Soft cool upper-left light, visible material structure without crushed blacks.\nComposition/framing: square 1024x1024 or 1254x1254 canvas. Pouch upright, a subtle three-quarter view revealing one side. Entire pouch including top loop and corners remains inside the central 65 percent square. At least 17.5 percent genuinely empty transparent margin on ALL sides. Preserve clearly vertical 1:2-like physical proportions; no close crop.\nConstraints: only ONE sealed first-aid pouch. No loose bandages, bottles, scissors, tablets, hands, people, straps trailing off canvas, extra bags or surrounding objects. No words, letters, numerals, badges with text, branding, barcode, HUD, border or watermark. Only the simple muted cross patch is allowed. No glow or fantasy elements."
+  },
+  "image": {
+    "actual_size": [
+      1254,
+      1254
+    ],
+    "format": "PNG",
+    "pixel_format": "32-bit RGBA",
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "fully_transparent_pixels": 1193254,
+    "sha256": "4e5872b6358cceaa34650f8b01df937542fdb683a8c8cf81157fdee3eb087e4e"
+  },
+  "composition": {
+    "object": "one tall closed gray cloth first-aid pouch with muted red cross patch",
+    "inventory_footprint": "1x2, footprint determined by catalog and not baked as grid",
+    "view": "upright slight three-quarter",
+    "full_silhouette_visible": true,
+    "target_maximum_subject_extent_percent": 65,
+    "actual_visible_subject_height_percent": 81.98,
+    "safety_target_percent_each_side": 17.5,
+    "visible_bounds_alpha_gt_8": [
+      426,
+      104,
+      849,
+      1131
+    ],
+    "visible_margin_percent": {
+      "left": 33.97,
+      "top": 8.29,
+      "right": 32.22,
+      "bottom": 9.73
+    },
+    "all_nonzero_alpha_bounds": [
+      0,
+      20,
+      1233,
+      1253
+    ],
+    "visible_silhouette_safety_pass": false
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "tall_dark_gray_fabric_pouch": true,
+    "muted_dark_red_cross": true,
+    "one_pouch_only": true,
+    "no_text_numbers_hud_loose_medical_supplies": true,
+    "notes": [
+      "Clearly elongated single medical pouch in heavy gray fabric, with zipper, small top loop and muted red cross patch; complete silhouette and readable texture.",
+      "Generated framing exceeds the requested central 65 percent area. Visible subject height is 81.98 percent and smallest margin is 8.29 percent at top.",
+      "Per assignment, generated once with no second generation. Parent export pass should scale the complete object down onto the square transparent canvas and clean faint stray alpha pixels.",
+      "Raw generated 1254x1254 PNG preserved. No browser, code integration or game tests were run."
+    ]
+  }
+}

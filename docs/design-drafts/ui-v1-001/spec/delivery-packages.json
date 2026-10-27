@@ -1,0 +1,37 @@
+{
+  "status": "REVIEW_CANDIDATE / QA_BLOCKED / INCOMPLETE_ART",
+  "packages": [
+    {
+      "kind": "OWNER-REVIEW",
+      "path": "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-DESIGN-001-delivery\\WORLD-UI-DESIGN-001-OWNER-REVIEW-v1.0.zip",
+      "filename": "WORLD-UI-DESIGN-001-OWNER-REVIEW-v1.0.zip",
+      "bytes": 341901752,
+      "sha256": "823acb89953b662703c35622409bb7f1c1b707171a29822c4780b168e8fa5325",
+      "payloadFiles": 660,
+      "verification": "EXACT_BYTES_AND_ZIP_CRC_PASS",
+      "generatedEntries": [
+        "index.html",
+        "MANIFEST.json",
+        "SHA256SUMS.txt",
+        "spec/delivery-packages.json"
+      ],
+      "sourcePolicy": "Other entries are exact design-directory bytes at packaging; SOURCE-ASSETS omits preview rasters, available in OWNER-REVIEW."
+    },
+    {
+      "kind": "SOURCE-ASSETS",
+      "path": "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-DESIGN-001-delivery\\WORLD-UI-DESIGN-001-SOURCE-ASSETS-v1.0.zip",
+      "filename": "WORLD-UI-DESIGN-001-SOURCE-ASSETS-v1.0.zip",
+      "bytes": 113290870,
+      "sha256": "194d14ad54e677cef840169880bd4261cf7312de813f4f522f57c6aef1c5480d",
+      "payloadFiles": 342,
+      "verification": "EXACT_BYTES_AND_ZIP_CRC_PASS",
+      "generatedEntries": [
+        "index.html",
+        "MANIFEST.json",
+        "SHA256SUMS.txt",
+        "spec/delivery-packages.json"
+      ],
+      "sourcePolicy": "Other entries are exact design-directory bytes at packaging; SOURCE-ASSETS omits preview rasters, available in OWNER-REVIEW."
+    }
+  ]
+}

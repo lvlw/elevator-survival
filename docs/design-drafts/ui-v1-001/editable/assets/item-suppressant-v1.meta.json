@@ -1,0 +1,66 @@
+{
+  "asset_id": "item-suppressant-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "感染抑制剂",
+  "file": "item-suppressant-v1.png",
+  "status": "VISUAL_CANDIDATE_REQUIRES_PADDING_EXPORT",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen",
+    "fallback_cli_or_api": false,
+    "calls": 1,
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-690962da-e804-441a-91bc-0b0400ac7167.png",
+    "generation_prompt": "Use case: product-mockup\nAsset type: standalone infection-suppressant inventory icon and item detail master for a cold industrial survival game.\nPrimary request: exactly ONE sealed small medical bottle of infection suppressant. Opaque off-white to light-gray rigid pharmaceutical bottle, short cylindrical body with modest shoulders, an intact sealed gray screw cap with a subtle tamper-evident ring. One plain muted blue-green teal label band around the middle. Label is completely blank, no lettering or symbols. Slightly worn but intact practical medical packaging with fine grime at creases and light scratches. Visually distinct from amber glass disinfectant and from a blister pack.\nScene/backdrop: genuine transparent alpha background, no floor, backdrop, shadow plane, checkerboard, gradient or glow.\nStyle/medium: photorealistic detailed game object render in cold dark industrial medical survival aesthetic. Chalk white-gray bottle, cool gray cap, subdued desaturated teal label band, restrained worn surface detail. Soft cool key light from upper left, strong legible contour and clean readable material at small inventory size.\nComposition/framing: square 1024x1024 or 1254x1254 canvas. Center the entire upright bottle in a slight three-quarter view. Full cap, base and body inside the central 65 percent by 65 percent square, leaving at least 17.5 percent transparent empty padding on each side. Keep the whole item small within generous canvas, no cropping.\nConstraints: ONLY one closed bottle. No syringe, needles, pills, blister package, extra bottles, bandages, gloves, hands, tray or additional objects. No text, letters, numbers, logos, dosage marks, barcodes, warning symbols, red cross, HUD, frame, watermark, treatment glow, medical magic or futuristic elements. Real alpha transparency."
+  },
+  "image": {
+    "actual_size": [
+      1254,
+      1254
+    ],
+    "format": "PNG",
+    "pixel_format": "32-bit RGBA",
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "fully_transparent_pixels": 1221968,
+    "sha256": "cd5907c8918c18d8683123924adb1c6051210a0a15b7b1d0ab1c3b94e09a02cd"
+  },
+  "composition": {
+    "object": "one sealed white-gray medical bottle with plain teal label band",
+    "view": "upright slight three-quarter",
+    "full_silhouette_visible": true,
+    "target_maximum_subject_extent_percent": 65,
+    "actual_visible_subject_height_percent": 68.98,
+    "visible_bounds_alpha_gt_8": [
+      401,
+      203,
+      851,
+      1067
+    ],
+    "visible_margin_percent": {
+      "left": 31.98,
+      "top": 16.19,
+      "right": 32.06,
+      "bottom": 14.83
+    },
+    "all_nonzero_alpha_bounds": [
+      33,
+      9,
+      1217,
+      1253
+    ],
+    "visible_silhouette_12_5_percent_safety_pass": true,
+    "visible_silhouette_17_5_percent_safety_pass": false
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "sealed_white_gray_bottle_blank_teal_band": true,
+    "visually_distinct_from_amber_disinfectant_and_painkiller_blister": true,
+    "no_text_numbers_hud_syringe_extra_items_treatment_glow": true,
+    "notes": [
+      "One sealed opaque white-gray medication bottle with gray cap, intact sealing ring and plain muted teal label band.",
+      "Visible subject height is 68.98 percent and minimum visible margin 14.83 percent. Parent export pass should reduce to central 65 percent and clean faint alpha residuals.",
+      "The nonzero-alpha bounds reach the canvas edge due to low-opacity artifacts. Do not treat all pixels outside 15 percent margin as stray, since the true bottle base extends to y=1067.",
+      "Raw generated 1254x1254 PNG preserved. Single generation only. No browser, code integration or game tests were run."
+    ]
+  }
+}

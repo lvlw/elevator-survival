@@ -1,0 +1,167 @@
+{
+  "screen": "P23-failed",
+  "viewport": [
+    1024,
+    768
+  ],
+  "pixelRatio": 1,
+  "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+  "rects": [
+    {
+      "selector": ".shell",
+      "x": 0,
+      "y": 0,
+      "w": 1024,
+      "h": 768,
+      "scrollH": 768,
+      "clientH": 768
+    },
+    {
+      "selector": ".center",
+      "x": 12,
+      "y": 84,
+      "w": 1000,
+      "h": 626,
+      "scrollH": 626,
+      "clientH": 626
+    },
+    {
+      "selector": ".sidebar.left",
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "scrollH": 0,
+      "clientH": 0
+    },
+    {
+      "selector": ".sidebar.right",
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "scrollH": 0,
+      "clientH": 0
+    },
+    {
+      "selector": ".inventory",
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "scrollH": 0,
+      "clientH": 0
+    },
+    {
+      "selector": ".panel",
+      "x": 20,
+      "y": 92,
+      "w": 984,
+      "h": 610,
+      "scrollH": 608,
+      "clientH": 608
+    },
+    null,
+    {
+      "selector": ".footer",
+      "x": 12,
+      "y": 720,
+      "w": 1000,
+      "h": 36,
+      "scrollH": 34,
+      "clientH": 34
+    }
+  ],
+  "assets": [
+    {
+      "path": "../editable/assets/bg_emergency_hall_v01.png",
+      "native": [
+        1672,
+        941
+      ],
+      "display": [
+        1000,
+        626
+      ]
+    },
+    {
+      "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "../editable/assets/item-firstaid-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "../editable/assets/item-ration-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "../editable/assets/item-metal-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "../editable/assets/item-battery-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "../editable/assets/icon_isolation_access_card_v02.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "../editable/assets/icon_bandage_v02.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        0,
+        0
+      ]
+    }
+  ],
+  "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+  "missing": []
+}

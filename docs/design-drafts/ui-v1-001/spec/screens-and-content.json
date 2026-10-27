@@ -1,0 +1,1106 @@
+{
+  "screens": [
+    {
+      "id": "P01-unselected",
+      "family": "P01",
+      "title": "出发前 · 独立选择",
+      "kind": "setup",
+      "node": "H0"
+    },
+    {
+      "id": "P01-crow-scout",
+      "family": "P01",
+      "title": "出发前 · 配装就绪",
+      "kind": "setup",
+      "node": "H0",
+      "tool": "crow",
+      "specialty": "scout"
+    },
+    {
+      "id": "P01-crow-engineer",
+      "family": "P01",
+      "title": "出发前 · 配装就绪",
+      "kind": "setup",
+      "node": "H0",
+      "tool": "crow",
+      "specialty": "engineer"
+    },
+    {
+      "id": "P01-crow-survival",
+      "family": "P01",
+      "title": "出发前 · 配装就绪",
+      "kind": "setup",
+      "node": "H0",
+      "tool": "crow",
+      "specialty": "survival"
+    },
+    {
+      "id": "P01-lamp-scout",
+      "family": "P01",
+      "title": "出发前 · 配装就绪",
+      "kind": "setup",
+      "node": "H0",
+      "tool": "lamp",
+      "specialty": "scout"
+    },
+    {
+      "id": "P01-lamp-engineer",
+      "family": "P01",
+      "title": "出发前 · 配装就绪",
+      "kind": "setup",
+      "node": "H0",
+      "tool": "lamp",
+      "specialty": "engineer"
+    },
+    {
+      "id": "P01-lamp-survival",
+      "family": "P01",
+      "title": "出发前 · 配装就绪",
+      "kind": "setup",
+      "node": "H0",
+      "tool": "lamp",
+      "specialty": "survival"
+    },
+    {
+      "id": "P01-toolbox-scout",
+      "family": "P01",
+      "title": "出发前 · 配装就绪",
+      "kind": "setup",
+      "node": "H0",
+      "tool": "toolbox",
+      "specialty": "scout"
+    },
+    {
+      "id": "P01-toolbox-engineer",
+      "family": "P01",
+      "title": "出发前 · 配装就绪",
+      "kind": "setup",
+      "node": "H0",
+      "tool": "toolbox",
+      "specialty": "engineer"
+    },
+    {
+      "id": "P01-toolbox-survival",
+      "family": "P01",
+      "title": "出发前 · 配装就绪",
+      "kind": "setup",
+      "node": "H0",
+      "tool": "toolbox",
+      "specialty": "survival"
+    },
+    {
+      "id": "P02-first-hub",
+      "family": "P02",
+      "title": "初次中枢 · 配装已锁定",
+      "kind": "hub",
+      "node": "H0"
+    },
+    {
+      "id": "P03-hospital",
+      "family": "P03",
+      "title": "医院 · 大厅",
+      "kind": "explore",
+      "node": "H1"
+    },
+    {
+      "id": "P03-hotel",
+      "family": "P03",
+      "title": "酒店 · 入口",
+      "kind": "explore",
+      "node": "T0"
+    },
+    {
+      "id": "P03-power",
+      "family": "P03",
+      "title": "供电所 · 配线廊",
+      "kind": "explore",
+      "node": "P0"
+    },
+    {
+      "id": "P03-logistics",
+      "family": "P03",
+      "title": "物流 · 岗亭",
+      "kind": "explore",
+      "node": "L0"
+    },
+    {
+      "id": "P03-communication",
+      "family": "P03",
+      "title": "通信 · 入口",
+      "kind": "explore",
+      "node": "C0"
+    },
+    {
+      "id": "P04-before",
+      "family": "P04",
+      "title": "跨区前 · 医院电梯前室",
+      "kind": "explore",
+      "node": "H0"
+    },
+    {
+      "id": "P04-after",
+      "family": "P04",
+      "title": "已到达 · 酒店入口",
+      "kind": "explore",
+      "node": "T0"
+    },
+    {
+      "id": "P05-unsearched",
+      "family": "P05",
+      "title": "大厅搜索 · 尚未搜索",
+      "kind": "search",
+      "node": "H1"
+    },
+    {
+      "id": "P05-revealed",
+      "family": "P05",
+      "title": "大厅搜索 · 已揭示",
+      "kind": "search",
+      "node": "H1"
+    },
+    {
+      "id": "P05-empty",
+      "family": "P05",
+      "title": "物资来源 · 已取空",
+      "kind": "search",
+      "node": "H1"
+    },
+    {
+      "id": "P05-reopen",
+      "family": "P05",
+      "title": "重新查看 · 保留已知结果",
+      "kind": "search",
+      "node": "H1"
+    },
+    {
+      "id": "P06-door",
+      "family": "P06",
+      "title": "消防门 · 处理方案",
+      "kind": "node",
+      "node": "H1",
+      "art": "event_isolation_fire_door_v02.png"
+    },
+    {
+      "id": "P06-power",
+      "family": "P06",
+      "title": "转运支路 · 供电恢复",
+      "kind": "node",
+      "node": "P1"
+    },
+    {
+      "id": "P06-records",
+      "family": "P06",
+      "title": "档案 · 记录核对",
+      "kind": "node",
+      "node": "C1"
+    },
+    {
+      "id": "P06-component",
+      "family": "P06",
+      "title": "装卸场 · 解除固定与取件",
+      "kind": "node",
+      "node": "L2"
+    },
+    {
+      "id": "P06-sample-cautious",
+      "family": "P06",
+      "title": "冷藏室 · 谨慎提样",
+      "kind": "node",
+      "node": "H5",
+      "method": "cautious"
+    },
+    {
+      "id": "P06-sample-direct",
+      "family": "P06",
+      "title": "冷藏室 · 直接提样",
+      "kind": "node",
+      "node": "H5",
+      "method": "direct"
+    },
+    {
+      "id": "P06-install",
+      "family": "P06",
+      "title": "转运平台 · 真实安装",
+      "kind": "node",
+      "node": "H8"
+    },
+    {
+      "id": "P07-lin",
+      "family": "P07",
+      "title": "林岑 · 已有现场交换",
+      "kind": "npc",
+      "node": "T1",
+      "person": "lin"
+    },
+    {
+      "id": "P07-zhou",
+      "family": "P07",
+      "title": "周衡 · 作业方法",
+      "kind": "npc",
+      "node": "L5",
+      "person": "zhou"
+    },
+    {
+      "id": "P08-acquired",
+      "family": "P08",
+      "title": "指定样本 · 已取得",
+      "kind": "mission",
+      "node": "H0"
+    },
+    {
+      "id": "P08-carried",
+      "family": "P08",
+      "title": "指定样本 · 正在携带",
+      "kind": "mission",
+      "node": "H0"
+    },
+    {
+      "id": "P08-ground",
+      "family": "P08",
+      "title": "指定样本 · 留在原地",
+      "kind": "mission",
+      "node": "H0"
+    },
+    {
+      "id": "P08-delivered",
+      "family": "P08",
+      "title": "指定样本 · 已交付",
+      "kind": "mission",
+      "node": "H0"
+    },
+    {
+      "id": "P09-normal",
+      "family": "P09",
+      "title": "已知区域 · 详情",
+      "kind": "map",
+      "node": "H1"
+    },
+    {
+      "id": "P09-max",
+      "family": "P09",
+      "title": "已知区域 · 放大",
+      "kind": "map",
+      "node": "H1",
+      "max": true
+    },
+    {
+      "id": "P09-last-observed",
+      "family": "P09",
+      "title": "远端地点 · 上次观察",
+      "kind": "map",
+      "node": "H1"
+    },
+    {
+      "id": "P09-blocked",
+      "family": "P09",
+      "title": "相邻道路 · 已知受阻",
+      "kind": "map",
+      "node": "H1"
+    },
+    {
+      "id": "P09-unknown-passability",
+      "family": "P09",
+      "title": "已知相邻地点 · 通行尚不确定",
+      "kind": "map",
+      "node": "H1"
+    },
+    {
+      "id": "P10-inventory",
+      "family": "P10",
+      "title": "携带区 · 真实占格",
+      "kind": "inventory",
+      "node": "H3"
+    },
+    {
+      "id": "P10-equipment",
+      "family": "P10",
+      "title": "装备 · 实际剩余资源",
+      "kind": "inventory",
+      "node": "H3"
+    },
+    {
+      "id": "P10-rotated",
+      "family": "P10",
+      "title": "旋转物件 · 3×1轮廓",
+      "kind": "inventory",
+      "node": "H3",
+      "rotated": true
+    },
+    {
+      "id": "P11-move",
+      "family": "P11",
+      "title": "移动 · 明确目标位置",
+      "kind": "organize",
+      "node": "H5"
+    },
+    {
+      "id": "P11-split",
+      "family": "P11",
+      "title": "拆分 · 明确数量",
+      "kind": "organize",
+      "node": "H5"
+    },
+    {
+      "id": "P11-merge",
+      "family": "P11",
+      "title": "合并 · 明确目标实例",
+      "kind": "organize",
+      "node": "H5"
+    },
+    {
+      "id": "P11-quick",
+      "family": "P11",
+      "title": "快捷迁移 · 明确槽位",
+      "kind": "organize",
+      "node": "H5"
+    },
+    {
+      "id": "P11-task-pickup",
+      "family": "P11",
+      "title": "取回样本 · 明确2×2格位",
+      "kind": "organize",
+      "node": "H5"
+    },
+    {
+      "id": "P11-drop",
+      "family": "P11",
+      "title": "留置任务物 · 当前地点",
+      "kind": "organize",
+      "node": "H5"
+    },
+    {
+      "id": "P11-no-space",
+      "family": "P11",
+      "title": "没有合法位置 · 不领取不扣物",
+      "kind": "organize",
+      "node": "H5"
+    },
+    {
+      "id": "P12-bandage",
+      "family": "P12",
+      "title": "绷带 · 选择一处伤口",
+      "kind": "medical",
+      "node": "H6",
+      "item": "bandage"
+    },
+    {
+      "id": "P12-firstaid",
+      "family": "P12",
+      "title": "急救包 · 选择处理目标",
+      "kind": "medical",
+      "node": "H6",
+      "item": "firstaid"
+    },
+    {
+      "id": "P12-ration",
+      "family": "P12",
+      "title": "口粮 · 饱食未满",
+      "kind": "medical",
+      "node": "H6",
+      "item": "ration"
+    },
+    {
+      "id": "P12-painkiller",
+      "family": "P12",
+      "title": "止痛药 · 当前挫伤",
+      "kind": "medical",
+      "node": "H6",
+      "item": "painkiller"
+    },
+    {
+      "id": "P12-disinfectant",
+      "family": "P12",
+      "title": "消毒剂 · 隐藏目标尚不能判断",
+      "kind": "medical",
+      "node": "H6",
+      "item": "disinfectant",
+      "unknown": true
+    },
+    {
+      "id": "P12-suppressant",
+      "family": "P12",
+      "title": "感染抑制剂 · 隐藏目标尚不能判断",
+      "kind": "medical",
+      "node": "H6",
+      "item": "suppressant",
+      "unknown": true
+    },
+    {
+      "id": "P12-invalid",
+      "family": "P12",
+      "title": "药食无效 · 当前无合格目标",
+      "kind": "medical",
+      "node": "H6",
+      "item": "bandage",
+      "invalid": true
+    },
+    {
+      "id": "P12-battle",
+      "family": "P12",
+      "title": "战斗快捷药物 · 限绷带与镇痛",
+      "kind": "medical",
+      "node": "H4",
+      "item": "bandage",
+      "battle": true
+    },
+    {
+      "id": "P13-mechanical",
+      "family": "P13",
+      "title": "机械维护 · 一次总池15",
+      "kind": "maintenance",
+      "node": "H6",
+      "tool": "crow"
+    },
+    {
+      "id": "P13-coat",
+      "family": "P13",
+      "title": "护具维护 · 真实织物",
+      "kind": "maintenance",
+      "node": "H6"
+    },
+    {
+      "id": "P13-toolbox",
+      "family": "P13",
+      "title": "工具箱维护 · 金属与电子",
+      "kind": "maintenance",
+      "node": "H6"
+    },
+    {
+      "id": "P13-charge",
+      "family": "P13",
+      "title": "手电充电 · 兼容电池",
+      "kind": "maintenance",
+      "node": "H6",
+      "tool": "lamp"
+    },
+    {
+      "id": "P14-A",
+      "family": "P14",
+      "title": "休整 · A类地点",
+      "kind": "rest",
+      "node": "H6"
+    },
+    {
+      "id": "P14-C",
+      "family": "P14",
+      "title": "休整 · C类地点",
+      "kind": "rest",
+      "node": "H0"
+    },
+    {
+      "id": "P14-consequences",
+      "family": "P14",
+      "title": "日级后果 · 生还后推进",
+      "kind": "rest",
+      "node": "H0"
+    },
+    {
+      "id": "P14-death",
+      "family": "P14",
+      "title": "日级后果 · HP0短路",
+      "kind": "rest",
+      "node": "H0"
+    },
+    {
+      "id": "P15-orderly",
+      "family": "P15",
+      "title": "隔离走廊 · 感染护工",
+      "kind": "battle",
+      "node": "H4",
+      "enemy": "orderly"
+    },
+    {
+      "id": "P15-porter",
+      "family": "P15",
+      "title": "装卸场 · 感染装卸工",
+      "kind": "battle",
+      "node": "L2",
+      "enemy": "porter"
+    },
+    {
+      "id": "P15-technician",
+      "family": "P15",
+      "title": "检修走廊 · 感染技术员",
+      "kind": "battle",
+      "node": "C2",
+      "enemy": "technician"
+    },
+    {
+      "id": "P16-max",
+      "family": "P16",
+      "title": "战斗 · 中央放大",
+      "kind": "battle",
+      "node": "H4",
+      "max": true
+    },
+    {
+      "id": "P16-phases",
+      "family": "P16",
+      "title": "感染护工 · 五公开阶段",
+      "kind": "battle",
+      "node": "H4",
+      "phases": true
+    },
+    {
+      "id": "P16-porter-phases",
+      "family": "P16",
+      "title": "感染装卸工 · 五公开阶段",
+      "kind": "battle",
+      "node": "L2",
+      "phases": true,
+      "enemy": "porter"
+    },
+    {
+      "id": "P16-technician-phases",
+      "family": "P16",
+      "title": "感染技术员 · 五公开阶段",
+      "kind": "battle",
+      "node": "C2",
+      "phases": true,
+      "enemy": "technician"
+    },
+    {
+      "id": "P16-submitted",
+      "family": "P16",
+      "title": "玩家行动 · 已提交示范",
+      "kind": "battle",
+      "node": "H4"
+    },
+    {
+      "id": "P16-enemy-response",
+      "family": "P16",
+      "title": "敌人响应 · 已结事件示范",
+      "kind": "battle",
+      "node": "H4"
+    },
+    {
+      "id": "P16-hit",
+      "family": "P16",
+      "title": "命中瞬间 · 独立FX",
+      "kind": "battle",
+      "node": "H4",
+      "hit": true
+    },
+    {
+      "id": "P16-stage-change",
+      "family": "P16",
+      "title": "阶段切换 · 受伤",
+      "kind": "battle",
+      "node": "H4",
+      "stage": 1
+    },
+    {
+      "id": "P16-decision",
+      "family": "P16",
+      "title": "玩家决策 · 稳定暂停",
+      "kind": "battle",
+      "node": "H4"
+    },
+    {
+      "id": "P16-retreat",
+      "family": "P16",
+      "title": "合法退却 · 已提交示范",
+      "kind": "battle",
+      "node": "H4"
+    },
+    {
+      "id": "P16-reduced",
+      "family": "P16",
+      "title": "减少动态 · 静态等价",
+      "kind": "battle",
+      "node": "H4",
+      "reduced": true
+    },
+    {
+      "id": "P17-victory",
+      "family": "P17",
+      "title": "战斗胜利 · 回到隔离走廊",
+      "kind": "result",
+      "node": "H4"
+    },
+    {
+      "id": "P17-retreat",
+      "family": "P17",
+      "title": "合法退却 · 回到入场前大厅",
+      "kind": "result",
+      "node": "H1"
+    },
+    {
+      "id": "P18-success",
+      "family": "P18",
+      "title": "委托成功 · 静态中枢",
+      "kind": "terminal",
+      "node": "H0"
+    },
+    {
+      "id": "P19-voluntary",
+      "family": "P19",
+      "title": "主动失败生还 · 静态中枢",
+      "kind": "terminal",
+      "node": "H0"
+    },
+    {
+      "id": "P20-deadline",
+      "family": "P20",
+      "title": "期限失败生还 · 静态中枢",
+      "kind": "terminal",
+      "node": "H0"
+    },
+    {
+      "id": "P21-enemy-alive",
+      "family": "P21",
+      "title": "实际死亡 · 敌人仍存活",
+      "kind": "terminal",
+      "node": "H4"
+    },
+    {
+      "id": "P21-both-zero",
+      "family": "P21",
+      "title": "实际死亡 · 双方失去能力",
+      "kind": "terminal",
+      "node": "H4"
+    },
+    {
+      "id": "P22-return",
+      "family": "P22",
+      "title": "正式返回 · 关闭本委托",
+      "kind": "confirm",
+      "node": "H0"
+    },
+    {
+      "id": "P22-critical-drop",
+      "family": "P22",
+      "title": "留置指定样本 · 关键物",
+      "kind": "confirm",
+      "node": "H0"
+    },
+    {
+      "id": "P22-certain-death",
+      "family": "P22",
+      "title": "当前操作必死 · 有其他合法选择",
+      "kind": "confirm",
+      "node": "H0"
+    },
+    {
+      "id": "P22-cancelled",
+      "family": "P22",
+      "title": "已取消 · 回到原上下文",
+      "kind": "confirm",
+      "node": "H0"
+    },
+    {
+      "id": "P22-stale",
+      "family": "P22",
+      "title": "条件已变化 · 重新选择",
+      "kind": "confirm",
+      "node": "H0"
+    },
+    {
+      "id": "P23-saved",
+      "family": "P23",
+      "title": "已保存",
+      "kind": "save",
+      "node": "H1"
+    },
+    {
+      "id": "P23-not-attempted",
+      "family": "P23",
+      "title": "当前页面尚无新写入",
+      "kind": "save",
+      "node": "H1"
+    },
+    {
+      "id": "P23-failed",
+      "family": "P23",
+      "title": "已生效 · 未保存",
+      "kind": "save",
+      "node": "H1"
+    },
+    {
+      "id": "P23-retry",
+      "family": "P23",
+      "title": "只重试保存 · 不重放玩法",
+      "kind": "save",
+      "node": "H1"
+    },
+    {
+      "id": "P24-request",
+      "family": "P24",
+      "title": "正在取得本页使用权",
+      "kind": "error",
+      "node": "H0"
+    },
+    {
+      "id": "P24-occupied",
+      "family": "P24",
+      "title": "已由另一页面使用",
+      "kind": "error",
+      "node": "H0"
+    },
+    {
+      "id": "P24-lost",
+      "family": "P24",
+      "title": "本页已失去使用权",
+      "kind": "error",
+      "node": "H0"
+    },
+    {
+      "id": "P24-corrupt",
+      "family": "P24",
+      "title": "记录无法校验",
+      "kind": "error",
+      "node": "H0"
+    },
+    {
+      "id": "P24-read-error",
+      "family": "P24",
+      "title": "读取失败",
+      "kind": "error",
+      "node": "H0"
+    },
+    {
+      "id": "P24-projection",
+      "family": "P24",
+      "title": "展示暂不可用",
+      "kind": "error",
+      "node": "H0"
+    },
+    {
+      "id": "P25-controls",
+      "family": "P25",
+      "title": "操作说明 · 查看与执行",
+      "kind": "help",
+      "node": "H0"
+    },
+    {
+      "id": "P25-health",
+      "family": "P25",
+      "title": "身体与药食 · 可知边界",
+      "kind": "help",
+      "node": "H0"
+    },
+    {
+      "id": "P25-quick",
+      "family": "P25",
+      "title": "快捷位 · 两个真实槽",
+      "kind": "help",
+      "node": "H0"
+    },
+    {
+      "id": "P06-door-result",
+      "family": "P06",
+      "title": "消防门 · 通路已处理",
+      "kind": "node",
+      "node": "H1",
+      "outcome": "通路已打开"
+    },
+    {
+      "id": "P06-power-result",
+      "family": "P06",
+      "title": "转运支路 · 已恢复供电",
+      "kind": "node",
+      "node": "P1",
+      "outcome": "当地供电已恢复"
+    },
+    {
+      "id": "P06-records-result",
+      "family": "P06",
+      "title": "记录 · 比对已完成",
+      "kind": "node",
+      "node": "C1",
+      "outcome": "记录比对已完成"
+    },
+    {
+      "id": "P06-component-result",
+      "family": "P06",
+      "title": "组件 · 已真实取件",
+      "kind": "node",
+      "node": "L2",
+      "outcome": "转运组件已进入明确格位"
+    },
+    {
+      "id": "P06-sample-result",
+      "family": "P06",
+      "title": "样本 · 已实际携带",
+      "kind": "node",
+      "node": "H5",
+      "outcome": "指定样本已进入背包"
+    },
+    {
+      "id": "P06-install-result",
+      "family": "P06",
+      "title": "平台 · 安装已完成",
+      "kind": "node",
+      "node": "H8",
+      "outcome": "转运设施已安装"
+    },
+    {
+      "id": "P10-detail-sample",
+      "family": "P10",
+      "title": "样本详情 · 只读",
+      "kind": "item-detail",
+      "node": "H5",
+      "item": "sample"
+    },
+    {
+      "id": "P10-detail-pipe",
+      "family": "P10",
+      "title": "金属管详情 · 只读",
+      "kind": "item-detail",
+      "node": "H5",
+      "item": "pipe"
+    }
+  ],
+  "nodes": {
+    "H0": [
+      "医院",
+      "电梯前室",
+      "bg-h0-v1.png"
+    ],
+    "H1": [
+      "医院",
+      "大厅",
+      "bg_emergency_hall_v01.png"
+    ],
+    "H2": [
+      "医院",
+      "药房",
+      "bg-h2-v1.png"
+    ],
+    "H3": [
+      "医院",
+      "保安室",
+      "bg-hospital-control-v1.png"
+    ],
+    "H4": [
+      "医院",
+      "隔离走廊",
+      "bg_isolation_corridor_v01.png"
+    ],
+    "H5": [
+      "医院",
+      "冷藏室",
+      "bg-h5-v1.png"
+    ],
+    "H6": [
+      "医院",
+      "值班休息室",
+      "bg-h6-v1.png"
+    ],
+    "H7": [
+      "医院",
+      "后勤控制间",
+      "bg-hospital-control-v1.png"
+    ],
+    "H8": [
+      "医院",
+      "转运平台",
+      "bg-h8-v1.png"
+    ],
+    "T0": [
+      "酒店",
+      "酒店入口",
+      "bg-hotel-v1.png"
+    ],
+    "T1": [
+      "酒店",
+      "林岑安置点",
+      "bg-hotel-v1.png"
+    ],
+    "P0": [
+      "供电所",
+      "配线廊",
+      "bg-power-v1.png"
+    ],
+    "P1": [
+      "供电所",
+      "转运支路柜",
+      "bg-power-v1.png"
+    ],
+    "L0": [
+      "物流",
+      "岗亭",
+      "bg-l0-v1.png"
+    ],
+    "L1": [
+      "物流",
+      "登记室",
+      "bg-logistics-office-v1.png"
+    ],
+    "L2": [
+      "物流",
+      "装卸场",
+      "bg-logistics-v1.png"
+    ],
+    "L3": [
+      "物流",
+      "维修库",
+      "bg-workshop-v1.png"
+    ],
+    "L5": [
+      "物流",
+      "周衡休息室",
+      "bg-logistics-office-v1.png"
+    ],
+    "C0": [
+      "通信",
+      "入口",
+      "bg-communication-v1.png"
+    ],
+    "C1": [
+      "通信",
+      "档案室",
+      "bg-c1-v1.png"
+    ],
+    "C2": [
+      "通信",
+      "检修走廊",
+      "bg-power-v1.png"
+    ],
+    "C3": [
+      "通信",
+      "机房",
+      "bg-c3-v1.png"
+    ],
+    "C4": [
+      "通信",
+      "检修间",
+      "bg-workshop-v1.png"
+    ],
+    "C5": [
+      "通信",
+      "播控侧门",
+      "bg-communication-v1.png"
+    ]
+  },
+  "items": {
+    "pipe": [
+      "金属管",
+      "icon_metal_pipe_v01.png",
+      1,
+      3
+    ],
+    "coat": [
+      "厚实外套",
+      "icon_heavy_coat_v01.png",
+      2,
+      2
+    ],
+    "crow": [
+      "撬棍",
+      "item-crowbar-v1.png",
+      1,
+      3
+    ],
+    "lamp": [
+      "手电筒",
+      "icon_flashlight_v01.png",
+      1,
+      2
+    ],
+    "toolbox": [
+      "工具箱",
+      "item-toolbox-v1.png",
+      2,
+      2
+    ],
+    "bandage": [
+      "绷带",
+      "icon_bandage_v02.png",
+      1,
+      1
+    ],
+    "ration": [
+      "压缩口粮",
+      "item-ration-v1.png",
+      1,
+      1
+    ],
+    "disinfectant": [
+      "消毒剂",
+      "item-disinfectant-v1.png",
+      1,
+      1
+    ],
+    "suppressant": [
+      "感染抑制剂",
+      "item-suppressant-v1.png",
+      1,
+      1
+    ],
+    "painkiller": [
+      "止痛药",
+      "item-painkiller-v1.png",
+      1,
+      1
+    ],
+    "firstaid": [
+      "急救包",
+      "item-firstaid-v1.png",
+      1,
+      2
+    ],
+    "metal": [
+      "金属零件",
+      "item-metal-v1.png",
+      1,
+      1
+    ],
+    "electronic": [
+      "电子元件",
+      "item-electronic-v1.png",
+      1,
+      1
+    ],
+    "cloth": [
+      "织物材料",
+      "item-cloth-v1.png",
+      1,
+      1
+    ],
+    "battery": [
+      "通用电池",
+      "item-battery-v1.png",
+      1,
+      1
+    ],
+    "card": [
+      "隔离区门禁卡",
+      "icon_isolation_access_card_v02.png",
+      1,
+      1
+    ],
+    "sample": [
+      "密封病原样本箱",
+      "icon_sealed_pathogen_case_v02.png",
+      2,
+      2
+    ],
+    "component": [
+      "转运组件",
+      "item-component-v1.png",
+      2,
+      2
+    ],
+    "module": [
+      "通信模块",
+      "item-module-v1.png",
+      1,
+      2
+    ]
+  },
+  "specialties": {
+    "scout": [
+      "侦察",
+      "记录核对更省精力；不揭示隐藏知识。"
+    ],
+    "engineer": [
+      "工程",
+      "装卸场手工作业采用10精力；不与方法优惠叠加。"
+    ],
+    "survival": [
+      "生存",
+      "本委托首次合格绷带恢复2生命；休整不刷新。"
+    ]
+  }
+}

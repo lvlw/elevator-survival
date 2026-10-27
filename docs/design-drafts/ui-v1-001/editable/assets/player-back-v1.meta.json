@@ -1,0 +1,129 @@
+{
+  "assetId": "player-back-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "player-back-v1.png",
+  "status": "REVIEW_CANDIDATE_WITH_GAPS",
+  "productionBound": false,
+  "contentMapping": {
+    "role": "ordinary adult survivor / player presentation",
+    "view": "three-quarter rear, facing screen right",
+    "equipment": "single real metal pipe in right hand; left hand empty",
+    "appearanceIsPresentationCandidate": true
+  },
+  "source": {
+    "tool": "built-in image_gen.imagegen",
+    "mode": "generate",
+    "generatedPath": "C:/Users/zjl/.codex/generated_images/01a17971-2cce-73a0-bfa2-2ed8008284c4/exec-20d480dc-d12c-45f9-87cd-ca0d8a632358.png",
+    "copiedWithoutPixelModification": true,
+    "interpolatedUpscale": false,
+    "fallbackApiUsed": false,
+    "prompt": "Use case: stylized-concept\nAsset type: a single independent transparent full-body player character sprite for the Chinese grounded strategy survival game 《电梯求生》. This is a NEW raster asset for a separate player-back layer.\nPrimary request: an ordinary adult human survivor shown from BEHIND in a three-quarter rear view, body and head facing toward SCREEN RIGHT, preparing to confront an enemy to the right. Worn, heavy dark charcoal-grey coat or thick work jacket with realistic seams, scuffs, dirt and creases, plain practical dark trousers, sturdy weathered boots. Short messy dark hair, no helmet or mask. Broadly relatable ordinary adult build, not a superhero or military commando. The back, shoulders and rear side of the head are the main view; do not turn the face toward the viewer.\nEquipment: the RIGHT hand carries exactly ONE plain real metal pipe, a simple straight dull steel tube with a visibly hollow round end, no ornament, no spikes, no blades, no electric arc or glow, no attachments. Right hand and pipe clearly visible in the silhouette, with the pipe angled downward and forward toward the right, not raised above the shoulder. Left hand empty. No gun, no ammunition, no glowing device, no electronics, no backpack, no extra equipment.\nStyle / medium: cold dark realistic cinematic game character art with grounded photoreal painted texture, carefully rendered fabric, metal, hands and boots. Match the material seriousness and clear full-body transparency of the inspected existing infected-orderly image and the cold realism of the 05-combat reference, without copying its nurse character or any UI.\nComposition / framing: native requested source 1536 × 1920 pixels, portrait 4:5. Full complete body, entire pipe including both ends, all hands and boots inside canvas. Keep transparent margins on all sides; do NOT crop or auto-trim. Head near y=0.08 and lowest soles near y=0.92. Foot contact midpoint approximately at normalized (0.50,0.92); chest/back upper torso impact anchor approximately (0.50,0.40). A stable slight ready stance, believable weight; no huge lunge. Figure occupies about 84% canvas height, with clear 8% top and bottom transparent margin, and enough right margin for the whole downward metal pipe. The rear three-quarter pose faces right.\nLighting / palette: muted slate-grey and charcoal with faint cool edge light and soft cold top-left key light. Readable silhouette and coat folds against dark game scenes. Restrained colour, no fresh injury, no blood or gore.\nBackground: TRUE transparent alpha PNG. Every empty-space pixel transparent. No scenery, floor, ground plane, cast-shadow blob, fog, particles, baked checkerboard, solid background or border.\nText: none. No UI, numbers, labels, logos, watermark. Exactly one full-body player sprite."
+  },
+  "references": [
+    {
+      "path": "../../inputs/references/05-combat.png",
+      "role": "cold dark realistic material direction only; UI and nurse identity excluded"
+    },
+    {
+      "path": "../../../../../src/assets/presentation/v0.1/visual/enemy_infected_orderly_pristine_v02.png",
+      "role": "rendering detail and transparent full-body format only"
+    }
+  ],
+  "dimensions": {
+    "requestedWidth": 1536,
+    "requestedHeight": 1920,
+    "actualWidth": 1122,
+    "actualHeight": 1402,
+    "actualAspectRatio": 0.8002853067047075,
+    "targetAspectRatio": 0.8,
+    "exactTargetMet": false
+  },
+  "alpha": {
+    "present": true,
+    "pixelFormat": "Format32bppArgb",
+    "transparentPixelCount": 1123273,
+    "fullyOpaquePixelCount": 1019,
+    "partiallyTransparentPixelCount": 448752,
+    "interiorSampleAlpha": 253,
+    "mostCommonSubjectAlpha": 253,
+    "boundsConvention": "[left,top,right,bottom], inclusive pixels",
+    "nonzeroBounds": [
+      0,
+      19,
+      1085,
+      1401
+    ],
+    "subjectBoundsAtAlpha16": [
+      176,
+      50,
+      1042,
+      1340
+    ],
+    "subjectBoundsAtAlpha128": [
+      176,
+      55,
+      1041,
+      1339
+    ],
+    "note": "Real generated alpha preserved. Low-alpha residue reaches canvas left and bottom edges; visibly meaningful subject remains inset. Most body pixels alpha 252-253. No pixel cleanup performed."
+  },
+  "display": {
+    "fit": "contain",
+    "autoTrim": false,
+    "canvasMustRemainFixed": true
+  },
+  "anchors": {
+    "coordinateSystem": "normalized to entire untrimmed actual source canvas",
+    "requestedFootGround": [
+      0.5,
+      0.92
+    ],
+    "requestedTorsoHit": [
+      0.5,
+      0.4
+    ],
+    "footContactMidpointVisualEstimate": {
+      "pixels": [
+        501,
+        1307
+      ],
+      "normalized": [
+        0.446524064171123,
+        0.9322396576319544
+      ],
+      "precision": "manual visual estimate, staggered soles viewed in perspective"
+    },
+    "backHitCandidate": {
+      "pixels": [
+        500,
+        500
+      ],
+      "normalized": [
+        0.44563279857397503,
+        0.3566333808844508
+      ],
+      "precision": "author-selected upper-back point; alpha checked 253"
+    },
+    "footTargetMet": false,
+    "notes": "Use estimated actual foot anchor for draft placement; requested anchor is not claimed exact. Pipe widens silhouette to screen right. Do not auto-trim transparent edges."
+  },
+  "checks": {
+    "visualInspection": true,
+    "completeHeadHandsBootsPipe": true,
+    "threeQuarterRearFacingRight": true,
+    "rightHandMetalPipeOnly": true,
+    "leftHandEmpty": true,
+    "noGunGlowBackpackOrNewEquipment": true,
+    "noUiOrBakedBackground": true,
+    "codeTestsRun": false,
+    "whyNoCodeTests": "Raster and metadata only; no application or rules changed."
+  },
+  "gaps": [
+    "SOURCE_RESOLUTION_BELOW_TARGET: native 1122x1402, not 1536x1920. No repeated size generation or interpolation used.",
+    "FOOT_ANCHOR_APPROXIMATE: estimated actual midpoint (0.447,0.932), requested (0.50,0.92).",
+    "ALPHA_RESIDUE: low-alpha pixels reach edges; subject alpha mostly 252-253 rather than fully opaque.",
+    "SAFE_MARGIN_SMALLER_THAN_REQUESTED: visible head near 3.6% and lowest sole near 95.6% rather than requested 8%/92%. Complete body remains visible.",
+    "Owner art acceptance and multi-viewport stage validation not performed."
+  ],
+  "sha256": "73BD1ABBE0A1DB3A8C6E22558E6ECB62336BC86F749A5D56B6AB6456ED4ADFF8"
+}

@@ -1,0 +1,80 @@
+{
+  "assetId": "bg-h5-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "bg-h5-v1.png",
+  "node": "H5",
+  "displayName": "医院冷藏室",
+  "purpose": "AI生成呈现候选，非玩法",
+  "licenseOrUsage": "AI生成呈现候选，非玩法；不代表最终美术冻结或 Owner 验收。",
+  "generator": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen.imagegen",
+    "calls": 1,
+    "prompt": "Use case: stylized-concept. Asset type: independent environment background plate for a bounded hospital room stage and a separate sample-extraction interface. Generate exactly one new native 3840 x 2160 PNG, 16:9, with no upscaling from a smaller image. Scene: H5 cold storage room in an abandoned hospital. Thick heavy insulated metal door with chunky gasket and plain latch on the rear-left wall; closed upright cold-storage cabinets with brushed stainless or desaturated teal-grey steel fronts along the rear-right wall; a small standalone empty stainless worktable near the right-middle wall, clearly separate from the cabinets, with nothing on its top or shelf. Modest clinical storage room, not an operating theater and not a morgue: no body drawers, medical beds or body bags. Large cold room with stable empty center and unobstructed central foreground floor. Dense realistic aged hospital materials: scuffed insulated panels, worn seams, condensation at metal edges, slight frost only around cabinet seals, dusty concrete and restrained moisture sheen, old ceiling conduit. Cold cyan-white fluorescent ceiling light, a little dim neutral ambient reflection, dark teal-blue shadows; no warm heroic spotlight and no reward glow. Cinematic photorealistic game environment illustration, crisp believable textures, sober tense clinical mood, readable midtones with no obscuring fog. Camera eye-level 28 mm wide architectural view, level near-frontal framing; door, cabinet group and empty worktable sit inside central 60% width or close to it and retain silhouette after moderate side cropping. Central x=25%-75% y=60%-95% is empty low-contrast floor for independently rendered gameplay interface. No person, NPC, enemy, corpse, silhouette, blood, gore or human reflection. No sample box, specimen, vials, jars, bottle, medicines, papers, tools, syringe, loot, inventory objects, exposed reward or visible cold-storage contents. No HUD, UI, interface border, icon, lettering, text, numbers, label, hazard symbol, hospital name, logo, watermark, diagram or display data. All storage cabinet doors closed and opaque. The empty table is visual set dressing, no new workstation action implied. The true sample case will be composited as a separate existing asset only when the real UI state requires it; do not draw it here. This background implies no sample obtained, extraction completed, hazard resolved or new gameplay route. Deliver one clean full-bleed native 3840x2160 PNG background.",
+    "sourcePath": "C:\\Users\\zjl\\.codex\\generated_images\\01a17970-d333-7b52-86f0-1095a5716707\\exec-b29b35bf-b992-4420-b548-762270ae4c32.png"
+  },
+  "contentEvidence": {
+    "source": "src/content/infected-world-v0.1/content.ts",
+    "H5": {
+      "name": "冷藏室",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "H4-H5"
+      ]
+    },
+    "sampleAction": {
+      "id": "sample",
+      "cost": "extract.sample.cautious",
+      "requires": [
+        "enemy-orderly-cleared"
+      ],
+      "grant": "sample",
+      "outputQuantity": "unit"
+    },
+    "boundary": "背景不画样本箱、样本、已取得物或奖励，不代表提取完成。样本箱继续由独立已有 asset 按实际 UI 状态呈现；工作台不新增操作、柜门不新增门禁。"
+  },
+  "requested": {
+    "width": 3840,
+    "height": 2160,
+    "aspectRatio": "16:9",
+    "nativeResolution": true
+  },
+  "actual": {
+    "width": 1672,
+    "height": 941,
+    "aspectRatio": 1.7768331562167907,
+    "format": "PNG",
+    "bytes": 2899585,
+    "sha256": "376076B7FA43FD756DDEA94B2B2C3013A18BD16F45E8ACDC87E7D290177F502D"
+  },
+  "transformations": [],
+  "originalBytesUnchanged": true,
+  "resolutionStatus": "NOT_MET: built-in tool returned 1672×941 despite native 3840×2160 prompt. One generation only; original bytes copied without resizing, interpolation or upscaling.",
+  "visualInspection": {
+    "status": "PASS_FOR_CANDIDATE",
+    "notes": [
+      "左中厚保温门、后方封闭冷藏柜与右侧独立空操作台清楚。",
+      "冷青荧光照明与金属凝结质感成立，中央下方大片空地可承载提取界面。",
+      "无人物、HUD、可读文字、样本箱、奖励或可见柜内物资。",
+      "左边缘额外空金属架为环境陈设，允许裁掉；不定义搜索产出。"
+    ]
+  },
+  "cropGuidance": {
+    "preferred": "16:9 bounded H5 stage; object-position 50% 50% retains insulated door, cabinets and independent worktable.",
+    "supported": "4:3 center crop retains door and cabinet identity but crops most of right worktable. If worktable presence matters, use right-biased 65% 50% crop and accept partial door loss.",
+    "foregroundSafeZoneNormalized": {
+      "x": 0.25,
+      "y": 0.61,
+      "width": 0.5,
+      "height": 0.34
+    },
+    "sampleInterface": "Use clean lower central floor as overlay background; actual sample case is a separate existing asset and must never be flattened into this plate as an obtained reward.",
+    "avoid": "Do not treat cabinet/door state as task completion or new gate. Keep background strictly scoped to H5 and its actual extraction UI."
+  },
+  "unresolved": [
+    "Native 3840×2160 source requirement not met; remains lower-resolution candidate.",
+    "Right worktable lies near edge and is not retained fully by center 4:3 crop; prefer full 16:9 when table is required.",
+    "No final art freeze or Owner visual acceptance implied."
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "assetId": "bg-communication-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "bg-communication-v1.png",
+  "node": "C0",
+  "displayName": "通信站入口",
+  "purpose": "AI生成呈现候选，非玩法",
+  "licenseOrUsage": "AI生成呈现候选，非玩法；不代表最终美术冻结或 Owner 验收。",
+  "generator": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen.imagegen",
+    "calls": 1,
+    "prompt": "Use case: stylized-concept. Asset type: bounded room-stage environment background plate for a single-player survival strategy game. Generate exactly one new native 3840 x 2160 PNG, 16:9, without upscaling a smaller source. Scene: C0 entrance of an old urban communications station. Small austere concrete entrance porch and vestibule, thick weathered poured-concrete portal, a narrow single metal service door standing open inward at the middle, a shallow dim passage beyond it leading visually to only a few distant closed grey communications equipment racks. The equipment remains secondary and not individually readable. Distinctive entrance architecture with one large dust-filter metal louver grille beside the door, old shallow rectangular cable trunking and narrow conduit along the wall, heavy utilitarian concrete lintel, dark rubber door seal, simple metal threshold. This is a compact communications-station entrance, not a long power-distribution cable tunnel, not a hospital, not a logistics loading platform. No dense wall of big electrical cabinets, no warehouse shutter, no elevator, no medical handrails. Subtle believable old utility infrastructure, dark grey-blue and desaturated teal metal with rough cold concrete, a small dim warm tungsten porch lamp, faint cool cyan light from deeper interior. Cinematic photorealistic game-environment illustration with tactile fine detail in worn concrete, chipped metal paint, rusty fasteners, fine dust on louvers, scuffed floor and old cable trays. Stable eye-level 28 mm architectural composition, nearly frontal with shallow depth, no dutch angle. Door, portal and identifiable louver shapes fit within central 60% width so the scene remains legible when side cropped; central foreground free of props and usable for an independently implemented action overlay. Readable moody midtones, no overly black silhouettes. Absolutely no people, NPC, enemy, human shadows, bodies or gore. No text, labels, letters, numbers, signs, screen content, logo, watermark, HUD, UI, interface panel, icons or map. No fictional mission map or route chart. No glowing quest item, loose electronics, components, supplies, reward objects or visible inventory. Distant rack lights should be off or indistinct; architecture and ambient lighting imply no task completion, active broadcast or gameplay route beyond canonical navigation. Deliver one clean full-bleed native 3840x2160 PNG.",
+    "sourcePath": "C:\\Users\\zjl\\.codex\\generated_images\\01a17970-d333-7b52-86f0-1095a5716707\\exec-f1677225-aa08-40a9-8356-dbb8ab62fe5d.png"
+  },
+  "contentEvidence": {
+    "source": "src/content/infected-world-v0.1/content.ts",
+    "C0": {
+      "name": "入口",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "C0-C1",
+        "L0-C0",
+        "C0-H0"
+      ]
+    },
+    "boundary": "入口门廊、窄门和远处机柜仅为呈现，不据此添加新路线、地图、跳转到机柜的行动或任务状态。未绘制任何虚构任务地图。"
+  },
+  "requested": {
+    "width": 3840,
+    "height": 2160,
+    "aspectRatio": "16:9",
+    "nativeResolution": true
+  },
+  "actual": {
+    "width": 1672,
+    "height": 941,
+    "aspectRatio": 1.7768331562167907,
+    "format": "PNG",
+    "bytes": 3033547,
+    "sha256": "2BBCF3E39673A9E3BC80A0632632EC62EB2CED2E7A782947C36C614907611829"
+  },
+  "transformations": [],
+  "originalBytesUnchanged": true,
+  "resolutionStatus": "NOT_MET: built-in tool returned 1672×941 despite native 3840×2160 prompt. One generation only; original bytes copied without resizing, interpolation or upscaling.",
+  "visualInspection": {
+    "status": "PASS_FOR_CANDIDATE",
+    "notes": [
+      "粗混凝土门廊、单扇窄门、左侧防尘百叶和右侧旧线槽清楚，远处闭合通信机柜为次级背景。",
+      "构图与医院、物流大棚、长条配电廊区别明确。",
+      "无人物、HUD、可读文本、奖励或虚构任务地图；未显示任务完成或广播状态。",
+      "中心入口和下方空地形成稳定焦点；两端少量植被是环境装饰。"
+    ]
+  },
+  "cropGuidance": {
+    "preferred": "16:9 bounded C0 stage; object-position 50% 50%.",
+    "supported": "4:3 center crop retains doorway, louver and main cable trunking. Square center crop preserves doorway/racks but partially loses louver; use only for small navigation thumbnail.",
+    "foregroundSafeZoneNormalized": {
+      "x": 0.26,
+      "y": 0.79,
+      "width": 0.48,
+      "height": 0.18
+    },
+    "wideCrop": "For wide cinematic crop use object-position 50% 48%; preserve entrance threshold and overhead lamp.",
+    "avoid": "Door opening is architecture, not a new shortcut or task route. Distant rack visibility conveys no unlock, broadcast, supply or mission truth. Do not replace C0 navigation query with illustrated geometry."
+  },
+  "unresolved": [
+    "Native 3840×2160 source requirement not met; remains lower-resolution candidate.",
+    "No final art freeze or Owner visual acceptance implied."
+  ]
+}

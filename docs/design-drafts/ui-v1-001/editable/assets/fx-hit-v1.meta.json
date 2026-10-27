@@ -1,0 +1,83 @@
+{
+  "asset_id": "fx-hit-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "已结命中叠图",
+  "file": "fx-hit-v1.png",
+  "status": "VISUAL_CANDIDATE_WITH_ALPHA_CLEANUP_NOTES",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen",
+    "fallback_cli_or_api": false,
+    "calls": 1,
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-1159afc6-c500-433d-a926-de34ea085702.png",
+    "generation_prompt": "Use case: stylized-concept\nAsset type: ONE standalone single-frame transparent hit-impact overlay sprite for a realistic cold industrial survival game. Presentation-only visual feedback after a committed hit; it represents no fixed damage value.\nPrimary request: a compact central physical impact burst consisting of a small puff of charcoal-gray dust, a few very fine tiny metallic sparks, and two or three short white-gold impact streaks close to the center. Realistic restrained metal-hit feeling, crisp tiny glints with softly dissipating dust. This is a subtle local effect, not an explosion. Center concentrated and fading outward cleanly into true transparency.\nScene/backdrop: genuinely transparent alpha background, completely isolated VFX with no surface, floor, wall, environment, gradient rectangle, checkerboard or black background baked in. Dust and edge wisps use semitransparent alpha.\nStyle/medium: photorealistic realistic game VFX single frame, cold dark gray dust with sparse muted warm metallic sparks and a tiny pale white-gold flash. Restrained brightness and scale; visible on dark industrial game scenes without a huge glow. No cartoon starburst or anime speed lines.\nComposition/framing: square source, ideally 768x768 but accept a square higher-resolution original. Keep the entire effect inside the central 65 percent of the canvas. Small compact burst centered; all sparks and dust wisps fully contained, fading to empty transparent padding well before every edge. No giant radial streaks.\nConstraints: no blood, gore, wound, character, human, body part, weapon, target object, equipment, text, digits, symbols, damage numbers, HUD, frame, watermark or scene. No blast fireball, flames, massive smoke, shockwave ring or explosive debris. ONE isolated single-frame overlay only."
+  },
+  "image": {
+    "suggested_export_size": [
+      768,
+      768
+    ],
+    "actual_size": [
+      1254,
+      1254
+    ],
+    "format": "PNG",
+    "pixel_format": "32-bit RGBA",
+    "alpha_min": 0,
+    "alpha_max": 254,
+    "fully_transparent_pixels": 1298610,
+    "semi_transparent_pixels": 273906,
+    "sha256": "bb2cea64914bb1748186408cf84bf6d18d4608eb45afb40983548241c8e0b852"
+  },
+  "composition": {
+    "object": "single compact dust, metallic spark and white-gold short-streak impact overlay",
+    "frame_count": 1,
+    "target_maximum_subject_extent_percent": 65,
+    "actual_visible_extent_percent": [
+      50.48,
+      52.71
+    ],
+    "visible_bounds_alpha_gt_8": [
+      350,
+      302,
+      982,
+      962
+    ],
+    "visible_margin_percent": {
+      "left": 27.91,
+      "top": 24.08,
+      "right": 21.61,
+      "bottom": 23.21
+    },
+    "all_nonzero_alpha_bounds": [
+      0,
+      24,
+      1239,
+      1205
+    ],
+    "visible_silhouette_17_5_percent_safety_pass": true,
+    "approximate_visual_flash_anchor_normalized": [
+      0.516,
+      0.518
+    ],
+    "anchor_note": "Estimated from visual inspection, not an engine coordinate contract."
+  },
+  "presentation_contract": {
+    "purpose": "Visual overlay only after canonical committed hit",
+    "fixed_damage_value": null,
+    "gameplay_effects": false,
+    "no_animation_driven_resolution": true
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "transparent_dust_falloff": true,
+    "no_blood_gore_body_weapon_text_numbers_background": true,
+    "notes": [
+      "Compact central gray dust puff with short pale gold-white impact streaks and scattered fine metallic glints; no character, weapon, target object or damage digits.",
+      "Visible effect extent is 50.48 by 52.71 percent of canvas. Semi-transparent alpha is intentional and must be preserved for dust falloff.",
+      "202 stray alpha=1 pixels lie outside the 15 percent margin. Parent final export should clean isolated low-alpha contamination while preserving the intended semi-transparent dust; do not flatten the effect onto black.",
+      "Preview shows slight colored low-opacity fringe around some dust edges; check compositing on actual dark stage during integration.",
+      "Raw generated 1254x1254 PNG preserved; suggested 768 export remains a separate delivery step. Single generation only. No browser, code integration or game tests were run."
+    ]
+  }
+}

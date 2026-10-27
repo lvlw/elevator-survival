@@ -1,0 +1,62 @@
+{
+  "asset_id": "closeup-install-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "医院转运平台空接入座安装近景",
+  "file": "closeup-install-v1.png",
+  "status": "VISUAL_CANDIDATE_WITH_NATIVE_RESOLUTION_NOTES",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen reference edit",
+    "fallback_cli_or_api": false,
+    "calls": 1,
+    "reference_inspected_first": true,
+    "reference_file": "bg-h8-v1.png",
+    "reference_sha256": "41ecd5b907bb5220f00dec4fb7e29b1b33535d2fc5c5930aedf155d7eb26e546",
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-2726d6a1-a13f-4c68-be16-e0998f03564b.png",
+    "generation_prompt": "Use case: precise-object-edit\nAsset type: independent 8:5 close-up interaction scene of the hospital transfer-platform installation station in 《电梯求生》.\nInput image 1: exact environment reference. Preserve its industrial hospital identity: worn desaturated teal-blue painted wall panels, gray lower wall protection, exposed steel conduit, the plain gray wall-mounted control interface cabinet on the right, cold fluorescent illumination and muted warm practical wall light. This is the SAME transfer platform location.\nPrimary request: reframe into a detailed close-up of the installation station at the right-hand control interface cabinet from the reference. Its metal door is now open only for inspection, revealing EXACTLY TWO EMPTY fixed receiving mounts inside: one squat square mechanical receiving seat and one narrow elongated plug-in receiving socket, with ordinary permanently attached conduit and short fixed internal wiring leading into their backs. BOTH receiving places are visibly EMPTY: no transport component or communication module has been inserted. The open door is unmarked plain old gray steel. The empty mounts and their existing fixed wires are the focus.\nState: pre-installation inspection only. The component and module are absent. No successful installation, no powered activation, no transfer underway, no rewards or patient movement.\nScene/backdrop: solid realistic industrial hospital close-up, NOT transparent. Same worn teal-gray wall and conduit as reference. Include a subtle out-of-focus edge of the transfer-platform rail or floor in the peripheral background to connect the station to the room; do not fill the frame with new equipment.\nStyle/medium: photorealistic cold dark industrial hospital render. Aged steel, muted teal paint, gray protective wall strips, restrained dust and shallow corrosion. Cool fluorescent top/left lighting reveals the empty brackets and socket contacts without luminous indicators. Mild existing warm ambient light only; no success lights or special effects.\nComposition/framing: LANDSCAPE 8:5, desired 2048x1280. Close three-quarter camera angle near the original right-hand cabinet. Entire cabinet opening, BOTH empty receiving mounts, hinges and attached wiring clearly visible. Center the functional opening, leave contextual room around the door and wall; no clipped mounts.\nConstraints: no hands, people, patients, body, gurney with person, loose tools, inventory items lying nearby, installed square component, installed narrow module, glowing indicator, active display, text, letters, digits, labels, instructions, HUD, arrows, icons, frame, border, watermark or reward. Two empty mechanical/electronic receiving mounts only, not two UI boxes."
+  },
+  "image": {
+    "requested_size": [
+      2048,
+      1280
+    ],
+    "requested_aspect_ratio": "8:5",
+    "actual_size": [
+      1586,
+      992
+    ],
+    "actual_aspect_ratio": 1.5987903225806452,
+    "format": "PNG",
+    "pixel_format": "24-bit RGB",
+    "transparent_background": false,
+    "sha256": "023281b94f11fef611b52c4fd8fd1edf7b42bef4ff88742479b2d5298f87b52f",
+    "native_exact_8_5_export_option": [
+      1584,
+      990
+    ],
+    "native_exact_8_5_export_note": "A centered 1584x990 crop removes only 2 source pixels per axis overall. No crop or resampling has been performed in this asset task."
+  },
+  "scene_contract": {
+    "location": "H8 hospital transfer platform",
+    "state": "pre-installation inspection; opened interface cabinet and exactly two empty receiving mounts",
+    "installed_component": false,
+    "installed_module": false,
+    "success_indicator": false,
+    "patient_transfer": false,
+    "reward": false,
+    "new_gameplay_capability": false
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "environment_materials_match_bg_h8": true,
+    "two_empty_seats_and_fixed_wiring_visible": true,
+    "no_hands_hud_readable_text_extra_items": true,
+    "notes": [
+      "Same worn teal-gray hospital wall, exposed conduit, gray protective strips and transfer-platform edge as the H8 reference; camera moves closer to the original interface cabinet.",
+      "Cabinet door is open only to reveal one empty square receiving seat and one empty elongated connector socket. Both have fixed wiring and no inserted module or component.",
+      "Gold contact pins in the empty elongated socket are metallic contacts, not illuminated success indicators. No installed result, patient movement or reward is represented.",
+      "Generated native source is 1586x992, near 8:5 and lower than requested 2048x1280; preserve the actual native resolution and do not claim extra detail from upscaling.",
+      "No browser, code integration or game tests were run."
+    ]
+  }
+}

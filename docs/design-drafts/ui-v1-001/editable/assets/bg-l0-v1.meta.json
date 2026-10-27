@@ -1,0 +1,76 @@
+{
+  "assetId": "bg-l0-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "bg-l0-v1.png",
+  "node": "L0",
+  "displayName": "物流岗亭",
+  "purpose": "AI生成呈现候选，非玩法；L0专用岗亭背景",
+  "licenseOrUsage": "AI生成呈现候选，非玩法；不代表最终美术冻结或 Owner 验收。",
+  "generator": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen.imagegen",
+    "calls": 1,
+    "prompt": "Use case: stylized-concept. Asset type: one dedicated L0 logistics gatehouse environment background plate for a bounded game room stage. Generate exactly one new native 3840 x 2160 PNG, 16:9, without enlarging a smaller source. Primary scene: the INTERIOR of a small single-story logistics depot gatehouse, unmistakably a guard booth, not a loading yard. Camera is inside the narrow enclosed duty space looking toward a large old rectangular glass observation window and a compact built-in registration counter directly underneath it. Window frames, booth interior ceiling, both side walls and the counter must define a clear small gatehouse shell occupying the central 60% of the composition. The counter is entirely bare, no paperwork or objects, its wood or steel surface worn and scratched, no lettering. Old dusty glass with subtle fine scratches remains transparent enough to show a distant logistics perimeter fence and a small portion of an out-of-focus loading canopy beyond the fence, all outdoors well behind the window; the distant yard must be secondary, no giant foreground warehouse shutter. Small utilitarian enclosed booth scale, institutional concrete plinth, weathered dark grey-blue painted steel window frames, rough off-white plaster above muted teal-grey lower panels, scuffed concrete floor, one narrow unmarked doorframe at an interior side. No glass breaking that prevents recognizing the window. Photorealistic cinematic game-environment illustration, cold dark realistic materials, faint cold overcast ambient light through window, one subdued warm utility lamp on an inside wall, readable shadow midtones, dense credible texture and natural scale. Stable eye-level 28 mm wide architectural composition, no dutch angle, no dramatic blur in the booth itself. Keep the window, broad mullions, compact counter and surrounding interior structure central and recognizable after moderate side crop. Leave low center foreground floor clear for an independently rendered action panel; avoid huge foreground objects. Absolutely no people, NPC, enemy, human silhouette, human reflection, body, blood, gore. No text, labels, words, letters, numbers, signs, logo, watermark, HUD, UI, interface frame, icon, map, diagram or screen. No desk computer, phone, radio, camera monitor, clock, keys, keycard, tools, documents, cups, bottles, supplies, loose objects, loot, rewards or collectible material. No shop or improvised reward station. Exterior fence and distant loading yard are atmospheric context only, not a new route map or direct movement action. This dedicated image represents the logistics guard booth L0 only and must not be mistaken for the L2 loading bay. Deliver one clean full-bleed native 3840x2160 PNG.",
+    "promptSha256": "D711C755B7271CDCC650886B5DA67180AFA1DCCEAD5A6B76C5F60359CAFBAF3F",
+    "promptHashEncoding": "UTF-8, no trailing newline",
+    "sourcePath": "C:\\Users\\zjl\\.codex\\generated_images\\01a17970-d333-7b52-86f0-1095a5716707\\exec-0ff6aec8-d913-44d4-8bea-bb43ee9f0a41.png",
+    "sourceSha256": "7E153CFF593B3FF27F23F442B27B154C7381C89B8849A0438195C1F6498E71B3"
+  },
+  "contentEvidence": {
+    "source": "src/content/infected-world-v0.1/content.ts",
+    "L0": {
+      "name": "岗亭",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "L0-L1",
+        "H7-L0",
+        "L0-C0",
+        "P0-L0"
+      ]
+    },
+    "boundary": "L0 专用岗亭图。窗外物流围栏与远处装卸区仅为氛围，不新增 L0-L2 直达或地图信息。空登记台无额外物资、奖励、操作或自动情报。"
+  },
+  "requested": {
+    "width": 3840,
+    "height": 2160,
+    "aspectRatio": "16:9",
+    "nativeResolution": true
+  },
+  "actual": {
+    "width": 1672,
+    "height": 941,
+    "aspectRatio": 1.7768331562167907,
+    "format": "PNG",
+    "bytes": 2452288,
+    "sha256": "7E153CFF593B3FF27F23F442B27B154C7381C89B8849A0438195C1F6498E71B3"
+  },
+  "transformations": [],
+  "originalBytesUnchanged": true,
+  "resolutionStatus": "NOT_MET: built-in tool returned 1672×941 despite native 3840×2160 prompt. One generation only; original bytes copied without resizing, interpolation or upscaling.",
+  "visualInspection": {
+    "status": "PASS_FOR_CANDIDATE",
+    "notes": [
+      "单层窄值守空间明确：中央旧观察窗与完整窗框、空登记台、左右墙面、顶板和侧门形成岗亭内部结构。",
+      "窗外围栏与远处装卸棚为次要环境，不再以装卸平台作为 L0 主体。",
+      "无人物、可读文字、HUD、地图或额外物品奖励。",
+      "冷暗青灰现实材质与单盏暖灯一致；前景地面空。"
+    ]
+  },
+  "cropGuidance": {
+    "preferred": "16:9 bounded L0 stage, object-position 50% 50%, retains whole booth shell and window-counter relationship.",
+    "supported": "4:3 center crop retains central window, counter and interior side walls. Square crop still retains window plus counter, but loses more side-wall/door evidence; keep at least window frame and counter rather than cropping into exterior yard alone.",
+    "foregroundSafeZoneNormalized": {
+      "x": 0.26,
+      "y": 0.81,
+      "width": 0.48,
+      "height": 0.16
+    },
+    "avoid": "Do not crop only the external loading area: that would remove L0 guard-booth identity. Never interpret the view through the window as a new L0-L2 move or knowledge route."
+  },
+  "unresolved": [
+    "Native 3840×2160 source requirement not met; remains lower-resolution candidate.",
+    "This asset delivery does not itself update application bindings; only the requested PNG and metadata were written.",
+    "No final art freeze or Owner visual acceptance implied."
+  ]
+}

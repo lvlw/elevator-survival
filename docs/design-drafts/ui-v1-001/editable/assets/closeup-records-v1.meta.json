@@ -1,0 +1,28 @@
+{
+  "assetId": "closeup-records-v1",
+  "prompt": "Create one independent 8:5 environmental close-up art asset for a cold dark semi-realistic survival game: a communication archive desk viewed three-quarter top-down, two old physical record binders open to blank, faded ruled pages, a worn metal index tray, dim desk light. No legible text, letters, numbers, codes or map. No HUD, character, reward, electronic display, magical symbols. Composition central record comparison area in middle60%, all surroundings crop-safe, realistic worn paper and dark blue-grey metal. Intended for explicit record-matching interaction only, not hidden information or new items. Request native 2048x1280, opaque PNG. One coherent art plate, no UI.",
+  "tool": "built-in image_gen",
+  "file": "closeup-records-v1.png",
+  "actualPixels": [
+    1586,
+    992
+  ],
+  "requestedPixels": [
+    2048,
+    1280
+  ],
+  "fit": "cover in bounded 8:5 detail slot",
+  "focal": [
+    0.5,
+    0.5
+  ],
+  "mapping": [
+    "C1 record comparison",
+    "L2 record verification"
+  ],
+  "alpha": false,
+  "sha256": "d84a8a1f278358b9d1fd054622753da1c38268a3770ac695a2ac6b01df9c797a",
+  "status": "DESIGN_PRESENTATION_CANDIDATE",
+  "visualReview": "Actual image inspected; ruled blank pages imply no undisclosed content",
+  "pixelModification": false
+}

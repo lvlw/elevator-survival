@@ -1,0 +1,65 @@
+{
+  "asset_id": "item-cloth-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "织物材料",
+  "file": "item-cloth-v1.png",
+  "status": "VISUAL_CANDIDATE_REQUIRES_PADDING_EXPORT",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen",
+    "fallback_cli_or_api": false,
+    "calls": 1,
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-b5ebecc5-c19a-4b47-a60a-ed9286110131.png",
+    "generation_prompt": "Use case: product-mockup\nAsset type: one standalone cloth-material inventory icon and detail master for a cold industrial survival game.\nPrimary request: ONE compact folded stack of old gray-brown coarse cloth, a single fabric bundle folded into several visible soft layers. Practical heavy woven cloth, weathered taupe-gray surface, modest creases and uneven fold edges, a few natural short frayed fibers at the cut edge. Clearly recognizable fabric, intact usable material, no stains suggesting blood.\nScene/backdrop: genuine transparent alpha background, no floor, backdrop, shadow plane, checkerboard, gradient or surrounding environment.\nStyle/medium: photorealistic detailed game object rendering in cold dark industrial survival style, subdued gray-brown and cool neutral highlights. Tactile coarse woven fibers, believable soft folds, subtle dust and wear, clear silhouette readable at small inventory scale. Soft cool upper-left lighting and restrained warm brown texture accents.\nComposition/framing: square 1024x1024 or 1254x1254 canvas. Center a complete compact folded fabric bundle in a shallow three-quarter view with layered folded edge visible. Entire bundle including all short frayed fibers within central 65 percent square; leave at least 17.5 percent empty transparent padding on all four sides. Do not enlarge to fill canvas or crop fabric.\nConstraints: only ONE folded cloth material bundle. No sewing box, needle, thread spool, scissors, tools, labels, straps, rope, buttons, extra loose cloth pieces, hand or character. No text, words, numerals, logos, symbols, HUD, frame, watermark or colored lighting effects. No blood, gore or bright decorative patterns."
+  },
+  "image": {
+    "actual_size": [
+      1254,
+      1254
+    ],
+    "format": "PNG",
+    "pixel_format": "32-bit RGBA",
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "fully_transparent_pixels": 1120961,
+    "sha256": "5d02f8f101deb5ba8e59f472f6e151645a0926953463b71efdfe84226c106e93"
+  },
+  "composition": {
+    "object": "one folded stack of old gray-brown coarse cloth with natural frayed fibers",
+    "view": "shallow three-quarter",
+    "full_silhouette_visible": true,
+    "target_maximum_subject_extent_percent": 65,
+    "actual_visible_subject_width_percent": 81.02,
+    "visible_bounds_alpha_gt_8": [
+      139,
+      329,
+      1154,
+      1035
+    ],
+    "visible_margin_percent": {
+      "left": 11.08,
+      "top": 26.24,
+      "right": 7.89,
+      "bottom": 17.38
+    },
+    "all_nonzero_alpha_bounds": [
+      0,
+      17,
+      1223,
+      1253
+    ],
+    "visible_silhouette_safety_pass": false
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "gray_brown_coarse_cloth_and_folded_layers": true,
+    "one_bundle_only": true,
+    "no_text_numbers_hud_sewing_box_extra_tools": true,
+    "notes": [
+      "Single compact folded cloth bundle with readable layers, coarse weave and naturally frayed edges; no tools or separate props.",
+      "Visible subject width is 81.02 percent and smallest margin is 7.89 percent. Parent export pass should scale down to the central 65 percent and retain the natural frayed fibers.",
+      "Faint alpha artifacts extend to canvas edges, and slight colored fringe is visible in the raw preview. Cleanup should preserve real cloth fibers and anti-aliasing.",
+      "Raw generated 1254x1254 PNG preserved. Single generation only. No browser, code integration or game tests were run."
+    ]
+  }
+}

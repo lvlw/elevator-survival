@@ -1,0 +1,172 @@
+{
+  "assetId": "enemy-technician-heavy_wounded-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "enemy-technician-heavy_wounded-v1.png",
+  "status": "REVIEW_CANDIDATE_ALIGNMENT_REQUIRED",
+  "productionBound": false,
+  "contentMapping": {
+    "area": "通信",
+    "node": "C2 检修走廊",
+    "enemy": "感染技术员 / 感染检修员",
+    "stage": "heavy_wounded / 重伤"
+  },
+  "source": {
+    "tool": "built-in image_gen.imagegen",
+    "mode": "edit",
+    "editTarget": "enemy-technician-pristine-v1.png",
+    "editTargetSha256": "240077AEF5B5ADB7EFE1D4632894E5A7018A94DC3F18CD894F998A8E1C243444",
+    "generatedPath": "C:/Users/zjl/.codex/generated_images/01a17971-2cce-73a0-bfa2-2ed8008284c4/exec-7b7646cc-c791-418a-8a36-b2c228fddd6a.png",
+    "copiedWithoutPixelModification": true,
+    "interpolatedUpscale": false,
+    "programmaticCropping": false,
+    "fallbackApiUsed": false,
+    "generationCount": 1,
+    "prompt": "Use case: identity-preserve / precise-object-edit.\nEdit the supplied pristine infected communications technician PNG into the SAME man's HEAVY WOUNDED / 重伤 public stage. One independent transparent full-body sprite.\nLocked identity and materials: same gaunt adult male face, thinning short dark hair, narrow shoulders and slim wiry long limbs, same stooped posture foundation. Same faded dark petrol-teal one-piece work coveralls, same closed utility-belt pouches, same bare empty hands and scuffed dark boots. Same three-quarter screen-left orientation, cold realistic cinematic game art, coherent anatomy and source illumination. No body shrinking, widening or replacement.\nRequested stage change: noticeably weaker than mild wounded. Upper torso bends forward and sideways at the waist, one shoulder droops, one empty hand draws across to protect the upper ribs / opposite shoulder while the other arm hangs heavily. Face shows visible strained exhaustion but remains recognizable. Both legs still hold weight and BOTH FEET remain on ground; no kneeling or collapsed pose. Lower head height must come from posture, not scaling.\nClothing: clear non-graphic torn and frayed shoulder/sleeve areas, more ripped knee cloth and grime, rumpled coveralls. Keep the exact same costume design and belt. Any cloth opening shows only intact skin. No blood, bleeding, open wounds, gore, severed parts, bandage, new tools or objects. BOTH HANDS EMPTY. No weapon, gun, handheld tool, glow or new power.\nCanvas: requested SAME1122 × 1402 full transparent canvas as input, no auto-trim, crop, recenter or zoom. Keep original anatomical proportions and boot positions as close as possible: left sole lowest around y1260, right y1346, declared standing support centre(588.465,1303). Do not spread feet wider. All complete extremities inside canvas. Maintain original blank transparent margins.\nBackground: genuine transparent alpha only; no floor, cast shadow, particles, mist, scenery, checkerboard, solid background, frame, UI, text, labels, numbers or watermark.\nOutput exactly one heavy-wounded technician PNG."
+  },
+  "dimensions": {
+    "requestedWidth": 1122,
+    "requestedHeight": 1402,
+    "actualWidth": 1122,
+    "actualHeight": 1402,
+    "sameCanvasAsPristine": true,
+    "exactRequestedCanvasMet": true,
+    "originalHighResolutionTarget": [
+      1536,
+      1920
+    ],
+    "originalHighResolutionTargetMet": false
+  },
+  "alpha": {
+    "present": true,
+    "pixelFormat": "Format32bppArgb",
+    "transparentPixelCount": 1203111,
+    "fullyOpaquePixelCount": 839,
+    "partiallyTransparentPixelCount": 369094,
+    "mostCommonSubjectAlpha": 253,
+    "boundsConvention": "[left,top,right,bottom], inclusive pixels",
+    "nonzeroBounds": [
+      73,
+      21,
+      1103,
+      1401
+    ],
+    "subjectBoundsAtAlpha16": [
+      298,
+      66,
+      888,
+      1349
+    ],
+    "subjectBoundsAtAlpha128": [
+      305,
+      69,
+      887,
+      1348
+    ],
+    "note": "True generated alpha retained. Low-alpha residue reaches bottom edge. No cleanup, cropping, resizing or flattening."
+  },
+  "display": {
+    "fit": "contain",
+    "autoTrim": false,
+    "canvasMustRemainFixed": true,
+    "variantGroup": "enemy-technician-five-public-stages",
+    "stageOrder": 3,
+    "dropInPhaseSwapReady": false
+  },
+  "registrationAnchors": {
+    "coordinateSystem": "Untrimmed original PNG pixels; normalized by actual source dimensions",
+    "footSupportCenter": {
+      "pixels": [
+        655.08,
+        1305
+      ],
+      "normalized": [
+        0.5838502673796792,
+        0.9308131241084165
+      ],
+      "method": "Midpoint of alpha>=128 sole contact samples: lowest y and bottom-four-row mean x of each boot. Presentation registration only."
+    },
+    "torsoHit": {
+      "pixels": [
+        520,
+        365
+      ],
+      "normalized": [
+        0.46345811051693403,
+        0.2603423680456491
+      ],
+      "method": "Visually selected chest/upper torso point; FX only, not gameplay anatomy."
+    },
+    "usage": "Use non-destructive shared-canvas wrapper. Preserve original PNG and do not claim natural source alignment."
+  },
+  "footEdgeComparison": {
+    "method": "Screen-left x250..599 and screen-right x600..999; y1401..1100 alpha>=128; mean x in bottom four rows.",
+    "measurements": [
+      {
+        "File": "enemy-technician-pristine-v1.png",
+        "Feet": [
+          {
+            "Foot": "left",
+            "LowestYAtAlpha128": 1260,
+            "BottomFourRowsMeanX": 423.94
+          },
+          {
+            "Foot": "right",
+            "LowestYAtAlpha128": 1346,
+            "BottomFourRowsMeanX": 752.99
+          }
+        ]
+      },
+      {
+        "File": "enemy-technician-heavy_wounded-v1.png",
+        "Feet": [
+          {
+            "Foot": "left",
+            "LowestYAtAlpha128": 1262,
+            "BottomFourRowsMeanX": 485.39
+          },
+          {
+            "Foot": "right",
+            "LowestYAtAlpha128": 1348,
+            "BottomFourRowsMeanX": 824.77
+          }
+        ]
+      }
+    ],
+    "deltaFromPristine": {
+      "left": {
+        "lowestY": 2,
+        "bottomFourRowsMeanX": 61.45
+      },
+      "right": {
+        "lowestY": 2,
+        "bottomFourRowsMeanX": 71.78
+      }
+    },
+    "supportDeltaFromPristine": [
+      66.615,
+      2
+    ],
+    "pixelExact": false
+  },
+  "checks": {
+    "visualInspection": true,
+    "sameGauntFaceHairCostume": true,
+    "slimBodyNotScaledToDifferentBuild": true,
+    "weakBentPostureShoulderProtection": true,
+    "bothFeetStillStanding": true,
+    "emptyHands": true,
+    "nonGraphicClothDamage": true,
+    "noNewWeaponsToolsBloodGore": true,
+    "alphaCanvasAndFootMeasurements": true,
+    "codeTestsRun": false,
+    "whyNoCodeTests": "Raster and metadata only; no code or rules changed."
+  },
+  "gaps": [
+    "FOOT_ALIGNMENT_REQUIRED: both boots shifted right: left(+61.45,+2)px, right(+71.78,+2)px versus pristine.",
+    "POSE_SCALE_REVIEW: slim identity retained but exact silhouette scale consistency not certified.",
+    "SOURCE_RESOLUTION_BELOW_ORIGINAL_TARGET: native1122x1402 below1536x1920; no interpolation.",
+    "ALPHA_RESIDUE: low-alpha remnants outside figure, body mostly253.",
+    "Owner review, remaining technician phases and actual-stage phase switching validation not completed by this asset."
+  ],
+  "sha256": "F415A3384D1C5E21B1840877ECCFEEECF7711B6C7FF1D3A7046C06EA527A158F"
+}

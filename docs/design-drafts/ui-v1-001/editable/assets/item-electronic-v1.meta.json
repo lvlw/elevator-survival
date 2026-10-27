@@ -1,0 +1,66 @@
+{
+  "asset_id": "item-electronic-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "电子元件",
+  "file": "item-electronic-v1.png",
+  "status": "VISUAL_CANDIDATE_WITH_ALPHA_CLEANUP_NOTES",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen",
+    "fallback_cli_or_api": false,
+    "calls": 1,
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-976c90da-7401-4ac0-a7df-839782d845cd.png",
+    "generation_prompt": "Use case: product-mockup\nAsset type: one standalone generic electronic-parts inventory icon and detail master for an industrial survival game.\nPrimary request: exactly ONE small salvaged old circuit board, a simple bare rectangular dusty slate-blue-gray PCB with a few fixed black cylindrical capacitors and one small plain dark integrated circuit soldered onto it. Include visible copper solder contacts, restrained silver solder points and a short row of edge contacts as part of the same board. The components are attached to the board, not loose. Modest simple construction with readable broad forms, not a dense motherboard.\nScene/backdrop: genuinely transparent alpha background. No floor, table, backdrop, shadow plane, gradient or checkerboard.\nStyle/medium: photorealistic detailed game item render, cold dark gray-blue industrial survival material. Dusty weathered board, dulled exposed metal contacts, minor edge wear and fine scratches, intact recognizable electronic parts. Soft cool upper-left lighting with restrained metallic highlights; high clarity at inventory icon size.\nComposition/framing: square 1024x1024 or 1254x1254 canvas. Center the entire small rectangular board in slight diagonal three-quarter top view showing attached capacitor height. Make it deliberately SMALL: all board corners and components inside the central 65 percent square. At least 17.5 percent empty transparent padding on every side, no close crop.\nConstraints: ONLY one salvaged component board. Not a complete device, not an activation module, not a control panel, not a battery, not a radio. No enclosure, screen, keyboard, antenna, loose wires, dangling cables, tools, extra boards or surrounding pieces. No printed text, component codes, numerals, logos, labels, barcode, symbols, LED glow, HUD, border or watermark. No futuristic or fantasy elements."
+  },
+  "image": {
+    "actual_size": [
+      1254,
+      1254
+    ],
+    "format": "PNG",
+    "pixel_format": "32-bit RGBA",
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "fully_transparent_pixels": 1358972,
+    "sha256": "d3074bed30e9580329a641c5107815e107c271d8c77e88f15a9a3a3ad4a24f65"
+  },
+  "composition": {
+    "object": "one small detached circuit board with fixed capacitors",
+    "view": "slight diagonal three-quarter top view",
+    "full_silhouette_visible": true,
+    "target_maximum_subject_extent_percent": 65,
+    "actual_visible_subject_width_percent": 58.29,
+    "visible_bounds_alpha_gt_8": [
+      263,
+      373,
+      993,
+      905
+    ],
+    "visible_margin_percent": {
+      "left": 20.97,
+      "top": 29.74,
+      "right": 20.73,
+      "bottom": 27.75
+    },
+    "all_nonzero_alpha_bounds": [
+      105,
+      53,
+      1231,
+      1165
+    ],
+    "visible_silhouette_17_5_percent_safety_pass": true,
+    "strict_zero_alpha_border_pass": false
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "cold_gray_blue_board_with_fixed_components": true,
+    "one_board_only": true,
+    "no_text_numbers_hud_screen_complete_device": true,
+    "notes": [
+      "Small detached old circuit board with fixed cylindrical capacitors, one plain integrated circuit and exposed contacts. No enclosure or luminous interface; visually generic salvage electronic material.",
+      "Visible subject width is 58.29 percent and minimum visible margin 20.73 percent; central 65 percent framing is satisfied.",
+      "37 stray alpha=1 pixels lie outside the 15 percent margin; parent final export should clear extremely low-alpha contamination.",
+      "Raw generated 1254x1254 PNG preserved. Single generation only. No browser, code integration or game tests were run."
+    ]
+  }
+}

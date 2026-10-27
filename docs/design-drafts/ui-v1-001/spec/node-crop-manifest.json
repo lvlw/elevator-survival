@@ -1,0 +1,5498 @@
+[
+  {
+    "node": "H0",
+    "region": "医院",
+    "name": "电梯前室",
+    "asset": "bg-h0-v1.png",
+    "focal": [
+      0.5,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          200.18918918918916,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          210.3901098901099,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          294.67204301075276,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          218.2790322580645,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          217.2602739726027,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "H1",
+    "region": "医院",
+    "name": "大厅",
+    "asset": "bg_emergency_hall_v01.png",
+    "focal": [
+      0.5,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          200.18918918918916,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          210.3901098901099,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          294.67204301075276,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          218.2790322580645,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          217.2602739726027,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "H2",
+    "region": "医院",
+    "name": "药房",
+    "asset": "bg-h2-v1.png",
+    "focal": [
+      0.5,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          200.18918918918916,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          210.3901098901099,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          294.67204301075276,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          218.2790322580645,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          217.2602739726027,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "H3",
+    "region": "医院",
+    "name": "保安室",
+    "asset": "bg-hospital-control-v1.png",
+    "focal": [
+      0.23,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          92.08702702702702,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          96.77945054945056,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          135.54913978494628,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          100.40835483870967,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          99.93972602739724,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "H4",
+    "region": "医院",
+    "name": "隔离走廊",
+    "asset": "bg_isolation_corridor_v01.png",
+    "focal": [
+      0.5,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          200.18918918918916,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          210.3901098901099,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          294.67204301075276,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          218.2790322580645,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          217.2602739726027,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "H5",
+    "region": "医院",
+    "name": "冷藏室",
+    "asset": "bg-h5-v1.png",
+    "focal": [
+      0.5,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          200.18918918918916,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          210.3901098901099,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          294.67204301075276,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          218.2790322580645,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          217.2602739726027,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "H6",
+    "region": "医院",
+    "name": "值班休息室",
+    "asset": "bg-h6-v1.png",
+    "focal": [
+      0.5,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          200.18918918918916,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          210.3901098901099,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          294.67204301075276,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          218.2790322580645,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          217.2602739726027,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "H7",
+    "region": "医院",
+    "name": "后勤控制间",
+    "asset": "bg-hospital-control-v1.png",
+    "focal": [
+      0.8,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          320.3027027027027,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          336.62417582417584,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          471.47526881720444,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          349.24645161290323,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          347.61643835616434,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "H8",
+    "region": "医院",
+    "name": "转运平台",
+    "asset": "bg-h8-v1.png",
+    "focal": [
+      0.5,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          200.18918918918916,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          210.3901098901099,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          294.67204301075276,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          218.2790322580645,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          217.2602739726027,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "T0",
+    "region": "酒店",
+    "name": "酒店入口",
+    "asset": "bg-hotel-v1.png",
+    "focal": [
+      0.5,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          200.18918918918916,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          210.3901098901099,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          294.67204301075276,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          218.2790322580645,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          217.2602739726027,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "T1",
+    "region": "酒店",
+    "name": "林岑安置点",
+    "asset": "bg-hotel-v1.png",
+    "focal": [
+      0.88,
+      0.45
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          352.3329729729729,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          370.2865934065934,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          518.6227956989248,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          384.17109677419353,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          382.3780821917808,
+          -5.1159076974727215e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "P0",
+    "region": "供电所",
+    "name": "配线廊",
+    "asset": "bg-power-v1.png",
+    "focal": [
+      0.5,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          200.18918918918916,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          210.3901098901099,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          294.67204301075276,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          218.2790322580645,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          217.2602739726027,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "P1",
+    "region": "供电所",
+    "name": "转运支路柜",
+    "asset": "bg-power-v1.png",
+    "focal": [
+      0.66,
+      0.45
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          264.2497297297297,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          277.7149450549451,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          388.96709677419364,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          288.12832258064515,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          286.7835616438356,
+          -5.1159076974727215e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "L0",
+    "region": "物流",
+    "name": "岗亭",
+    "asset": "bg-l0-v1.png",
+    "focal": [
+      0.5,
+      0.5
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          200.18918918918916,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          210.3901098901099,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          294.67204301075276,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          218.2790322580645,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          217.2602739726027,
+          -5.684341886080802e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "L1",
+    "region": "物流",
+    "name": "登记室",
+    "asset": "bg-logistics-office-v1.png",
+    "focal": [
+      0.16,
+      0.45
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          64.06054054054053,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          67.32483516483516,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          94.29505376344089,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          69.84929032258064,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          69.52328767123286,
+          -5.1159076974727215e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "L2",
+    "region": "物流",
+    "name": "装卸场",
+    "asset": "bg-logistics-v1.png",
+    "focal": [
+      0.5,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          200.18918918918916,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          210.3901098901099,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          294.67204301075276,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          218.2790322580645,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          217.2602739726027,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "L3",
+    "region": "物流",
+    "name": "维修库",
+    "asset": "bg-workshop-v1.png",
+    "focal": [
+      0.5,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9446808510638298,
+        "visibleSource": [
+          1270.2702702702702,
+          940.0
+        ],
+        "sourceOffset": [
+          200.8648648648649,
+          0.0
+        ],
+        "lossFraction": [
+          0.24026897711108242,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0585585585585586,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.774468085106383,
+        "visibleSource": [
+          1249.89010989011,
+          940.0
+        ],
+        "sourceOffset": [
+          211.05494505494505,
+          0.0
+        ],
+        "lossFraction": [
+          0.2524580682475419,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2912087912087913,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7914893617021277,
+        "visibleSource": [
+          1081.505376344086,
+          940.0
+        ],
+        "sourceOffset": [
+          295.247311827957,
+          0.0
+        ],
+        "lossFraction": [
+          0.35316664094253225,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2634408602150538,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6595744680851063,
+        "visibleSource": [
+          1234.1290322580646,
+          940.0000000000001
+        ],
+        "sourceOffset": [
+          218.9354838709677,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.26188455008488953,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.5161290322580647,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.6212765957446809,
+        "visibleSource": [
+          1236.1643835616437,
+          940.0
+        ],
+        "sourceOffset": [
+          217.91780821917814,
+          0.0
+        ],
+        "lossFraction": [
+          0.26066723471193554,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.6095890410958904,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "L5",
+    "region": "物流",
+    "name": "周衡休息室",
+    "asset": "bg-logistics-office-v1.png",
+    "focal": [
+      0.88,
+      0.45
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          352.3329729729729,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          370.2865934065934,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          518.6227956989248,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          384.17109677419353,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          382.3780821917808,
+          -5.1159076974727215e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "C0",
+    "region": "通信",
+    "name": "入口",
+    "asset": "bg-communication-v1.png",
+    "focal": [
+      0.5,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          200.18918918918916,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          210.3901098901099,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          294.67204301075276,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          218.2790322580645,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          217.2602739726027,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "C1",
+    "region": "通信",
+    "name": "档案室",
+    "asset": "bg-c1-v1.png",
+    "focal": [
+      0.5,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          200.18918918918916,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          210.3901098901099,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          294.67204301075276,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          218.2790322580645,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          217.2602739726027,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "C2",
+    "region": "通信",
+    "name": "检修走廊",
+    "asset": "bg-power-v1.png",
+    "focal": [
+      0.5,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          200.18918918918916,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          210.3901098901099,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          294.67204301075276,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          218.2790322580645,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          217.2602739726027,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "C3",
+    "region": "通信",
+    "name": "机房",
+    "asset": "bg-c3-v1.png",
+    "focal": [
+      0.5,
+      0.42
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          200.18918918918916,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          210.3901098901099,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          294.67204301075276,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          218.2790322580645,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          217.2602739726027,
+          -4.774847184307873e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "C4",
+    "region": "通信",
+    "name": "检修间",
+    "asset": "bg-workshop-v1.png",
+    "focal": [
+      0.77,
+      0.45
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9446808510638298,
+        "visibleSource": [
+          1270.2702702702702,
+          940.0
+        ],
+        "sourceOffset": [
+          309.3318918918919,
+          0.0
+        ],
+        "lossFraction": [
+          0.24026897711108242,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0585585585585586,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.774468085106383,
+        "visibleSource": [
+          1249.89010989011,
+          940.0
+        ],
+        "sourceOffset": [
+          325.0246153846154,
+          0.0
+        ],
+        "lossFraction": [
+          0.2524580682475419,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2912087912087913,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7914893617021277,
+        "visibleSource": [
+          1081.505376344086,
+          940.0
+        ],
+        "sourceOffset": [
+          454.68086021505377,
+          0.0
+        ],
+        "lossFraction": [
+          0.35316664094253225,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2634408602150538,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6595744680851063,
+        "visibleSource": [
+          1234.1290322580646,
+          940.0000000000001
+        ],
+        "sourceOffset": [
+          337.16064516129023,
+          -5.1159076974727215e-14
+        ],
+        "lossFraction": [
+          0.26188455008488953,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.5161290322580647,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.6212765957446809,
+        "visibleSource": [
+          1236.1643835616437,
+          940.0
+        ],
+        "sourceOffset": [
+          335.59342465753434,
+          0.0
+        ],
+        "lossFraction": [
+          0.26066723471193554,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.6095890410958904,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  },
+  {
+    "node": "C5",
+    "region": "通信",
+    "name": "播控侧门",
+    "asset": "bg-communication-v1.png",
+    "focal": [
+      0.85,
+      0.45
+    ],
+    "fit": "cover",
+    "crops": [
+      {
+        "viewport": [
+          1920,
+          1080
+        ],
+        "cssSlot": [
+          1200,
+          888
+        ],
+        "coverScale": 0.9436769394261424,
+        "visibleSource": [
+          1271.6216216216217,
+          941.0
+        ],
+        "sourceOffset": [
+          340.32162162162155,
+          0.0
+        ],
+        "lossFraction": [
+          0.2394607526186473,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.0596846846846848,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            1152,
+            90
+          ],
+          "actions": [
+            24,
+            663,
+            1152,
+            201
+          ],
+          "normalPanel": [
+            1080,
+            780
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1600,
+          900
+        ],
+        "cssSlot": [
+          968,
+          728
+        ],
+        "coverScale": 0.7736450584484591,
+        "visibleSource": [
+          1251.2197802197802,
+          941.0
+        ],
+        "sourceOffset": [
+          357.6631868131868,
+          0.0
+        ],
+        "lossFraction": [
+          0.2516628108733372,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.2925824175824177,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            920,
+            90
+          ],
+          "actions": [
+            24,
+            503,
+            920,
+            201
+          ],
+          "normalPanel": [
+            936,
+            696
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1440,
+          900
+        ],
+        "cssSlot": [
+          856,
+          744
+        ],
+        "coverScale": 0.7906482465462275,
+        "visibleSource": [
+          1082.6559139784945,
+          941.0
+        ],
+        "sourceOffset": [
+          500.9424731182797,
+          0.0
+        ],
+        "lossFraction": [
+          0.35247852034779037,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.264784946236559,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            808,
+            90
+          ],
+          "actions": [
+            24,
+            519,
+            808,
+            201
+          ],
+          "normalPanel": [
+            824,
+            712
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1366,
+          768
+        ],
+        "cssSlot": [
+          814,
+          620
+        ],
+        "coverScale": 0.6588735387885228,
+        "visibleSource": [
+          1235.441935483871,
+          941.0
+        ],
+        "sourceOffset": [
+          371.0743548387096,
+          0.0
+        ],
+        "lossFraction": [
+          0.26109932088285226,
+          0.0
+        ],
+        "effectiveSourcePixelsPerCss": 1.517741935483871,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            766,
+            90
+          ],
+          "actions": [
+            24,
+            395,
+            766,
+            201
+          ],
+          "normalPanel": [
+            782,
+            588
+          ]
+        }
+      },
+      {
+        "viewport": [
+          1280,
+          720
+        ],
+        "cssSlot": [
+          768,
+          584
+        ],
+        "coverScale": 0.620616365568544,
+        "visibleSource": [
+          1237.4794520547946,
+          941.0000000000001
+        ],
+        "sourceOffset": [
+          369.34246575342456,
+          -5.1159076974727215e-14
+        ],
+        "lossFraction": [
+          0.2598807104935439,
+          -2.220446049250313e-16
+        ],
+        "effectiveSourcePixelsPerCss": 1.6113013698630139,
+        "dpr2Pass": false,
+        "overlayMasksCss": {
+          "title": [
+            24,
+            24,
+            720,
+            90
+          ],
+          "actions": [
+            24,
+            359,
+            720,
+            201
+          ],
+          "normalPanel": [
+            736,
+            552
+          ]
+        }
+      }
+    ],
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+  }
+]

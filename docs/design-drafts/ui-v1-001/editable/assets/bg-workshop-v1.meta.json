@@ -1,0 +1,117 @@
+{
+  "assetId": "bg-workshop-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "file": "bg-workshop-v1.png",
+  "nodes": [
+    "L3",
+    "C4"
+  ],
+  "displayName": "维修库／检修间共用底板",
+  "purpose": "AI生成呈现候选，非玩法",
+  "licenseOrUsage": "AI生成呈现候选，非玩法；不代表最终美术冻结或 Owner 验收。",
+  "generator": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen.imagegen",
+    "calls": 1,
+    "prompt": "Use case: stylized-concept. Asset type: one environmental background plate with alternative focal framing for the bounded L3 repair storeroom and C4 maintenance room stages in a survival strategy game. Generate exactly one new native 3840 x 2160 PNG, 16:9, no enlargement from a smaller image. One coherent deserted small industrial maintenance workshop, utilitarian and old. LEFT ZONE x=15%-43%: a fixed heavy workbench bolted to the wall and floor, completely bare scratched steel top, one warm small articulated work lamp attached to the rear edge, and an empty dark perforated backboard without tools. RIGHT ZONE x=60%-84%: a simple empty metal maintenance rack and a compact tall closed grey-green storage cabinet, shelves visibly bare, cabinet front plain with no label and no visible contents. No loose objects anywhere. Restrained industrial grey-blue/teal walls with rough concrete lower sections, scratched steel framing, aged conduit, small vent and scuffed concrete floor. Cinematic photorealistic game illustration, dense tactile detail in oxidized steel, chipped paint, scratches and dust; believable practical scale, not a high-tech laboratory, not a hospital ward. Cold blue-grey ambient utility light plus the single low warm bench lamp, deep teal-black corners with readable midtones, no heavy haze. Level eye-height 28 mm wide near-frontal composition. Workbench and rack/cabinet each fully visible with breathing room away from frame edges; central 60% retains a recognizable workshop and lower center is clean open low-contrast floor for an independent game action overlay. Design for a left-weighted L3 crop and right-weighted C4 crop, but no collage or dividing border. No human, NPC, enemy, silhouette, body, reflection of person, gore. No HUD, UI, graphic panel, interface border, icons, text, labels, letters, words, numbers, signage, printed charts, manual, diagram, logo or watermark. No loose tools, metal components, electronics, batteries, repair kits, wires to collect, consumables, reward, loot or accessible supply. No active terminal, glowing unlock indicator or control data. Furniture is only environmental set dressing; no free repair, new crafting or pickup action implied. Reusing this image must not merge L3 and C4, imply they are the same physical room, or create a cross-map shortcut. Deliver one full-bleed clean native 3840x2160 PNG.",
+    "sourcePath": "C:\\Users\\zjl\\.codex\\generated_images\\01a17970-d333-7b52-86f0-1095a5716707\\exec-bd07d589-e7d9-4815-87d5-2327eb19f549.png"
+  },
+  "contentEvidence": {
+    "source": "src/content/infected-world-v0.1/content.ts",
+    "L3": {
+      "name": "维修库",
+      "rest": "C",
+      "enemy": null,
+      "surfaceEdges": [
+        "L1-L3"
+      ],
+      "source": "L3-rack: search.fixed / ground-once requires l3-open"
+    },
+    "C4": {
+      "name": "检修间",
+      "rest": "A",
+      "enemy": null,
+      "surfaceEdges": [
+        "C1-C4",
+        "C4-C3"
+      ],
+      "sources": [
+        "C4-cabinet: door.manual / ground-once",
+        "C4-food: search.fixed / ground-once"
+      ],
+      "actions": [
+        "bypass-survey: survey -> bypass-survey",
+        "bypass: door.manual requires bypass-survey"
+      ]
+    },
+    "boundary": "L3 和 C4 仅共用视觉底板，不是同一房间，不新增跨图捷径、制作维修功能或免费物资。空架子不表示正式来源已耗尽，关闭柜体不新增既有契约外的门禁。"
+  },
+  "requested": {
+    "width": 3840,
+    "height": 2160,
+    "aspectRatio": "16:9",
+    "nativeResolution": true
+  },
+  "actual": {
+    "width": 1672,
+    "height": 940,
+    "aspectRatio": 1.778723404255319,
+    "format": "PNG",
+    "bytes": 2646572,
+    "sha256": "FEC1421C73F4CBA01AA68B663F3B97AD264C9FB411F372CA947AE85834DAA3B1"
+  },
+  "transformations": [],
+  "originalBytesUnchanged": true,
+  "resolutionStatus": "NOT_MET: built-in tool returned 1672×940 despite native 3840×2160 prompt. One generation only; original bytes copied without resizing, interpolation or upscaling.",
+  "visualInspection": {
+    "status": "PASS_FOR_CANDIDATE",
+    "notes": [
+      "左侧固定钢工作台与暖台灯完整、右侧空维修架和灰绿封闭柜完整，冷暗青灰工业材质成立。",
+      "工作台、挂板和架子均空，无金属电子物资或工具。",
+      "无人物、文字、HUD、可辨奖励或任务状态指示。",
+      "中央墙面和下方地面稳定留空，左右焦点适于独立舞台裁切。"
+    ]
+  },
+  "cropGuidance": {
+    "fullPlate": "16:9 center 50% 50% preserves workbench/rack/cabinet; actual source is 1672×940, approximately 16:9.",
+    "L3": {
+      "preferredFocalPercent": {
+        "x": 24,
+        "y": 49
+      },
+      "cropSourceRegionNormalized": {
+        "x": 0.02,
+        "y": 0.12,
+        "width": 0.61,
+        "height": 0.8
+      },
+      "description": "Left-biased workbench-focused variant with empty center floor."
+    },
+    "C4": {
+      "preferredFocalPercent": {
+        "x": 77,
+        "y": 49
+      },
+      "cropSourceRegionNormalized": {
+        "x": 0.4,
+        "y": 0.1,
+        "width": 0.58,
+        "height": 0.82
+      },
+      "description": "Right-biased rack/cabinet-focused variant; keep full cabinet and rack silhouettes."
+    },
+    "focalNote": "Same-aspect object-position alone does not create a crop. If using cover/zoom, review actual bounded stage and acknowledge reduced original source pixels.",
+    "foregroundSafeZoneNormalized": {
+      "x": 0.25,
+      "y": 0.69,
+      "width": 0.5,
+      "height": 0.26
+    },
+    "avoid": "No room merge, cross-map shortcut, free repair, craft bench or pickup reward may be inferred from the art."
+  },
+  "unresolved": [
+    "Native 3840×2160 source requirement not met; remains lower-resolution candidate.",
+    "Actual height differs from earlier plates: 940 px, not 941 px.",
+    "No final art freeze or Owner visual acceptance implied."
+  ]
+}

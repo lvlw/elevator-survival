@@ -1,0 +1,65 @@
+{
+  "asset_id": "item-battery-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "通用电池",
+  "file": "item-battery-v1.png",
+  "status": "VISUAL_CANDIDATE_REQUIRES_PADDING_EXPORT",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen",
+    "fallback_cli_or_api": false,
+    "calls": 1,
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-e2bd2fb8-4b52-4a3b-bdf7-7590d9c73bed.png",
+    "generation_prompt": "Use case: product-mockup\nAsset type: one standalone inventory icon and item detail master for a cold industrial survival game.\nPrimary request: exactly ONE stout short cylindrical industrial general-purpose battery cell, roughly twice as long as its diameter, practical heavy-duty construction. Plain charcoal-black and dark-gray body wrap with slight wear, exposed metallic silver end rims, a clearly raised small positive metal terminal at the nearer end, opposite metal base visible by perspective. No print, no brand, no decorative markings. It must read immediately as a battery, not a canister or flashlight.\nScene/backdrop: genuine fully transparent alpha background. No floor, backdrop, shadow plane, checkerboard, gradient or reflections on a ground surface.\nStyle/medium: detailed photorealistic game object render with a cold dark industrial survival aesthetic. Cool blue-gray edge highlights, realistic worn matte charcoal wrapper, shallow scratches on steel terminal rims, restrained warm metal glints. Legible silhouette at small icon scale. Soft cool key light from upper left, material visibly solid and cleanly readable.\nComposition/framing: square 1024x1024 or 1254x1254 canvas. One complete battery in diagonal three-quarter view lower-left to upper-right, centered, with the upper/right terminal facing the viewer slightly. Entire battery fits inside the central 65 percent square; keep at least 17.5 percent genuinely empty transparent padding on EVERY edge. Small isolated item within generous canvas, no close crop.\nConstraints: only ONE battery cell. No second cell, pack, charger, cable, holder, hands, other equipment or loose parts. No words, letters, digits, plus/minus symbols, voltage numbers, scale marks, logos, labels, barcodes, HUD, frame, watermark or glow. Preserve actual alpha transparency around every edge."
+  },
+  "image": {
+    "actual_size": [
+      1254,
+      1254
+    ],
+    "format": "PNG",
+    "pixel_format": "32-bit RGBA",
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "fully_transparent_pixels": 1221781,
+    "sha256": "fa9dd9c134b0e99a9723ec8db4fbb00fbd4e1794583b599a6e17d40421fea1e4"
+  },
+  "composition": {
+    "object": "one short stout cylindrical industrial battery cell",
+    "view": "lower-left to upper-right diagonal three-quarter",
+    "full_silhouette_visible": true,
+    "target_maximum_subject_extent_percent": 65,
+    "actual_visible_subject_width_percent": 70.18,
+    "visible_bounds_alpha_gt_8": [
+      197,
+      280,
+      1076,
+      1005
+    ],
+    "visible_margin_percent": {
+      "left": 15.71,
+      "top": 22.33,
+      "right": 14.11,
+      "bottom": 19.78
+    },
+    "all_nonzero_alpha_bounds": [
+      0,
+      99,
+      1143,
+      1189
+    ],
+    "visible_silhouette_12_5_percent_safety_pass": true,
+    "visible_silhouette_17_5_percent_safety_pass": false
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "cold_dark_matte_body_and_metal_terminal": true,
+    "one_battery_only": true,
+    "no_text_numbers_hud_charger_extra_objects": true,
+    "notes": [
+      "Single recognizable stout battery cell with worn black-gray wrap, metal end rims and raised terminal; complete independent silhouette.",
+      "Visible subject width is 70.18 percent and minimum visible safety margin is 14.11 percent. Parent export pass should scale the battery down to approximately central 65 percent and clean faint alpha residuals.",
+      "Raw generated 1254x1254 PNG preserved. Single generation only. No browser, code integration or game tests were run."
+    ]
+  }
+}

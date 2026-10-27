@@ -1,0 +1,35 @@
+{
+  "kind": "TASK_INPUT_CHECKS_NOT_DESIGN_OR_PRODUCTION_ACCEPTANCE",
+  "arithmetic": {
+    "passed": 95,
+    "failed": 0
+  },
+  "arithmetic_checker_controls": [
+    {
+      "mutation": "central width accounting",
+      "detected": true,
+      "failed_checks": [
+        "desktop-master horizontal sum",
+        "desktop-master center-only maximum",
+        "desktop-master crop derivation"
+      ]
+    },
+    {
+      "mutation": "inventory cell accounting",
+      "detected": true,
+      "failed_checks": [
+        "desktop-master cell formula",
+        "desktop-master grid extents"
+      ]
+    }
+  ],
+  "reference_images": 6,
+  "not_run": [
+    "final design execution",
+    "browser layout rendering",
+    "Figma creation",
+    "asset production",
+    "gameplay tests",
+    "Owner design acceptance"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "asset_id": "item-disinfectant-v1",
+  "task": "WORLD-UI-DESIGN-001",
+  "display_name": "消毒剂",
+  "file": "item-disinfectant-v1.png",
+  "status": "VISUAL_CANDIDATE_WITH_ALPHA_CLEANUP_NOTES",
+  "created_date": "2026-10-27",
+  "source": {
+    "method": "built-in image_gen",
+    "fallback_cli_or_api": false,
+    "calls": 1,
+    "generated_original": "C:/Users/zjl/.codex/generated_images/01a17971-6a6d-7e11-8368-16287425c478/exec-e0d0a648-1d7b-48cd-92e6-8abd6c2d7cae.png",
+    "generation_prompt": "Use case: product-mockup\nAsset type: standalone inventory icon and detail master for a cold industrial survival game.\nPrimary request: exactly ONE small realistic brown amber glass bottle of disinfectant, closed with a plain dark worn screw cap. Compact medical utility bottle with a slightly shouldered cylindrical body and a worn gray-white paper label around the front. The label is COMPLETELY BLANK with no printing, letters, symbols, numbers or logo. Real glass thickness, subtle amber translucency and muted realistic reflections. Signs of age on cap and label, clean intact bottle.\nScene/backdrop: genuine transparent alpha background. No backdrop, floor, pedestal, shadow plane, checkerboard or gradient.\nStyle/medium: photorealistic detailed game object in a cold dark industrial medical visual style. Restrained amber brown glass, cool charcoal cap, off-white gray label, cold edge highlights; realistic restrained wear and tactile paper fibers. Readable contour at small icon size; soft cool lighting from upper left, legible object.\nComposition/framing: square 1024x1024 or 1254x1254 canvas, centered bottle upright with a slight three-quarter perspective. Entire bottle including cap and base fits within the central 65 percent by 65 percent square. Leave at least 17.5 percent empty transparent padding on every side. Keep object small within the canvas and fully visible; no close crop.\nConstraints: only one bottle, fully sealed. No droppers outside the bottle, no cotton, bandage, medical tray, gloves, hands, extra bottles, pills or loose props. No text, barcode, warning symbols, logo, digits, labels with writing, HUD, border or watermark. No liquid puddle or ground shadow."
+  },
+  "image": {
+    "actual_size": [
+      1254,
+      1254
+    ],
+    "format": "PNG",
+    "pixel_format": "32-bit RGBA",
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "fully_transparent_pixels": 1298160,
+    "sha256": "893d07081471db86908a450afab954cde41245f522cab79cbe47aac62dc443a6"
+  },
+  "composition": {
+    "object": "one sealed brown glass disinfectant bottle",
+    "view": "upright slight three-quarter",
+    "full_silhouette_visible": true,
+    "target_maximum_subject_extent_percent": 65,
+    "actual_visible_subject_height_percent": 63.16,
+    "safety_target_percent_each_side": 17.5,
+    "visible_bounds_alpha_gt_8": [
+      432,
+      244,
+      821,
+      1035
+    ],
+    "visible_margin_percent": {
+      "left": 34.45,
+      "top": 19.46,
+      "right": 34.45,
+      "bottom": 17.38
+    },
+    "all_nonzero_alpha_bounds": [
+      0,
+      68,
+      1209,
+      1220
+    ],
+    "visible_silhouette_15_percent_safety_pass": true,
+    "strict_zero_alpha_border_pass": false
+  },
+  "visual_review": {
+    "inspected_saved_file": true,
+    "amber_glass_and_worn_blank_gray_white_label": true,
+    "one_bottle_only": true,
+    "no_text_numbers_hud_extra_supplies": true,
+    "notes": [
+      "Single realistic brown amber glass disinfectant bottle with dark screw cap and fully blank worn gray-white label.",
+      "Visible subject height 63.16 percent fits the approximate central 65 percent target. Minimum visible safety margin is 17.38 percent.",
+      "299 stray pixels outside the 15 percent safety margin have alpha=1; parent final export should clear low-alpha contamination.",
+      "Raw generated 1254x1254 PNG preserved. Single generation only. No browser, code integration or game tests were run."
+    ]
+  }
+}

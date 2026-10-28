@@ -1,0 +1,615 @@
+{
+  "batchStarted": "2026-10-28T13:00:00.200Z",
+  "records": [
+    {
+      "id": "P01-unselected",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P01-crow-scout",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P01-crow-engineer",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P01-crow-survival",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P01-lamp-scout",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P01-lamp-engineer",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P01-lamp-survival",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P01-toolbox-scout",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P01-toolbox-engineer",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P01-toolbox-survival",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P02-first-hub",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P03-hospital",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P03-hotel",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P03-power",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P03-logistics",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P03-communication",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P04-before",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P04-after",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P05-unsearched",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P05-revealed",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P05-empty",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P05-reopen",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-door",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-power",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-records",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-component",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-sample-cautious",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-sample-direct",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-install",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P07-lin",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P07-zhou",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P08-acquired",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P08-carried",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P08-ground",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P08-delivered",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P09-normal",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P09-max",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P09-last-observed",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P09-blocked",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P09-unknown-passability",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P10-inventory",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P10-equipment",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P10-rotated",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P11-move",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P11-split",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P11-merge",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P11-quick",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P11-task-pickup",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P11-drop",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P11-no-space",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P12-bandage",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P12-firstaid",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P12-ration",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P12-painkiller",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P12-disinfectant",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P12-suppressant",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P12-invalid",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P12-battle",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P13-mechanical",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P13-coat",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P13-toolbox",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P13-charge",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P14-A",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P14-C",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P14-consequences",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P14-death",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P15-orderly",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P15-porter",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P15-technician",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P16-max",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P16-phases",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P16-porter-phases",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P16-technician-phases",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P16-submitted",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P16-enemy-response",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P16-hit",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P16-stage-change",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P16-decision",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P16-retreat",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P16-reduced",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P17-victory",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P17-retreat",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P18-success",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P19-voluntary",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P20-deadline",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P21-enemy-alive",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P21-both-zero",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P22-return",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P22-critical-drop",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P22-certain-death",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P22-cancelled",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P22-stale",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P23-saved",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P23-not-attempted",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P23-failed",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P23-retry",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P24-request",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P24-occupied",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P24-lost",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P24-corrupt",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P24-read-error",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P24-projection",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P25-controls",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P25-health",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P25-quick",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-door-result",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-power-result",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-records-result",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-component-result",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-sample-result",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-install-result",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P10-detail-sample",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P10-detail-pipe",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P03-first-arrival",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-sample-cautious-last",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-sample-cautious-broken",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-sample-cautious-unequipped",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-sample-direct-last",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-sample-direct-broken",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P06-sample-direct-unequipped",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P17-retreat-porter",
+      "fresh": true,
+      "version": "v1.2-r2"
+    },
+    {
+      "id": "P17-retreat-technician",
+      "fresh": true,
+      "version": "v1.2-r2"
+    }
+  ]
+}

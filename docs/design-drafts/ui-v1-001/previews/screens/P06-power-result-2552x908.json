@@ -1,0 +1,147 @@
+{
+  "screen": "P06-power-result",
+  "version": "v1.2-r2",
+  "viewport": [
+    2552,
+    908
+  ],
+  "pixelRatio": 1,
+  "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+  "authority": "Native browser render; PNG geometry requires independent raster readback",
+  "rects": [
+    {
+      "selector": ".shell",
+      "x": 316,
+      "y": 0,
+      "w": 1920,
+      "h": 908,
+      "scrollH": 908,
+      "clientH": 908
+    },
+    {
+      "selector": ".hud",
+      "x": 340,
+      "y": 24,
+      "w": 1872,
+      "h": 72,
+      "scrollH": 70,
+      "clientH": 70
+    },
+    {
+      "selector": ".center",
+      "x": 636,
+      "y": 112,
+      "w": 1200,
+      "h": 716,
+      "scrollH": 716,
+      "clientH": 716
+    },
+    {
+      "selector": ".sidebar.left",
+      "x": 340,
+      "y": 112,
+      "w": 280,
+      "h": 716,
+      "scrollH": 773,
+      "clientH": 714
+    },
+    {
+      "selector": ".sidebar.right",
+      "x": 1852,
+      "y": 112,
+      "w": 360,
+      "h": 716,
+      "scrollH": 738,
+      "clientH": 714
+    },
+    {
+      "selector": ".inventory",
+      "x": 1869,
+      "y": 307.96875,
+      "w": 326,
+      "h": 216,
+      "scrollH": 216,
+      "clientH": 216
+    },
+    {
+      "selector": ".panel",
+      "x": 916,
+      "y": 285.5,
+      "w": 640,
+      "h": 369,
+      "scrollH": 367,
+      "clientH": 367
+    },
+    {
+      "selector": ".panel-body",
+      "x": 917,
+      "y": 336.5,
+      "w": 638,
+      "h": 244.40625,
+      "scrollH": 244,
+      "clientH": 244
+    },
+    null,
+    {
+      "selector": ".right .inventory",
+      "x": 1869,
+      "y": 307.96875,
+      "w": 326,
+      "h": 216,
+      "scrollH": 216,
+      "clientH": 216
+    },
+    {
+      "selector": ".panel-footer",
+      "x": 917,
+      "y": 580.90625,
+      "w": 638,
+      "h": 72.59375,
+      "scrollH": 72,
+      "clientH": 72
+    },
+    null,
+    null,
+    null,
+    null,
+    {
+      "selector": ".footer",
+      "x": 340,
+      "y": 844,
+      "w": 1872,
+      "h": 40,
+      "scrollH": 38,
+      "clientH": 38
+    }
+  ],
+  "assets": [
+    {
+      "path": "../editable/assets/bg-power-v1.png",
+      "native": [
+        1672,
+        941
+      ],
+      "display": [
+        1200,
+        716
+      ],
+      "fit": "cover",
+      "position": "66% 45%"
+    },
+    {
+      "path": "../editable/assets/icon_bandage_v02.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        42,
+        42
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
+    }
+  ],
+  "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+  "missing": []
+}

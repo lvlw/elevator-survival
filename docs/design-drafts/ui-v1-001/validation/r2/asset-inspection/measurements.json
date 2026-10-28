@@ -1,0 +1,2677 @@
+[
+  {
+    "id": "bg-c1-v1",
+    "path": "editable/assets/bg-c1-v1.png",
+    "sha256": "f06397979d2c7861ffab6a010d4c1faf9a36ef321b90fe61201e403b2ba02bce",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-01.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg-c3-v1",
+    "path": "editable/assets/bg-c3-v1.png",
+    "sha256": "65842580c024fd69d905c0361e120f35ad16f3aef6bdd74bb617567fa56a8811",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-01.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg-communication-v1",
+    "path": "editable/assets/bg-communication-v1.png",
+    "sha256": "2bbcf3e39673a9e3bc80a0632632ec62eb2ced2e7a782947c36c614907611829",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-01.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg-h0-v1",
+    "path": "editable/assets/bg-h0-v1.png",
+    "sha256": "6f1abcb7b2f3368f0951b26ffe4f9812c1164488d498d45e114c4b5a2817adb1",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-01.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg-h2-v1",
+    "path": "editable/assets/bg-h2-v1.png",
+    "sha256": "d2788109ca0d3a2adcbdd1e59ed0a952f2242b63deaec3abb6c8b3fc9fbc6746",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-02.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg-h5-v1",
+    "path": "editable/assets/bg-h5-v1.png",
+    "sha256": "376076b7fa43fd756ddea94b2b2c3013a18bd16f45e8acdc87e7d290177f502d",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-02.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg-h6-v1",
+    "path": "editable/assets/bg-h6-v1.png",
+    "sha256": "babb4a48798992463c4121c4900607a51fc021b83776eacf8f5bbb24153257ee",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-02.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg-h8-v1",
+    "path": "editable/assets/bg-h8-v1.png",
+    "sha256": "41ecd5b907bb5220f00dec4fb7e29b1b33535d2fc5c5930aedf155d7eb26e546",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-02.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg-hospital-control-v1",
+    "path": "editable/assets/bg-hospital-control-v1.png",
+    "sha256": "d6b8570f80ece0f648e20506934857a40f67fbd9f3c30102521e8115ccec6229",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-03.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg-hotel-v1",
+    "path": "editable/assets/bg-hotel-v1.png",
+    "sha256": "9783cb9de7377450f8acdedac51e5545b204281ac78ae881a6b6575692ffd277",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-03.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg-l0-v1",
+    "path": "editable/assets/bg-l0-v1.png",
+    "sha256": "7e153cff593b3ff27f23f442b27b154c7381c89b8849a0438195c1f6498e71b3",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-03.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg-logistics-office-v1",
+    "path": "editable/assets/bg-logistics-office-v1.png",
+    "sha256": "6dd13b70ad7a2237cdf2121065286a1b1704960b4867e8d1b72b8d0d96e4a2ca",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-03.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg-logistics-v1",
+    "path": "editable/assets/bg-logistics-v1.png",
+    "sha256": "f9a02d394e722402c8102b31ae48a4fd6a6b601dab540c1bdaab7c0318bafcf5",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-04.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg-power-v1",
+    "path": "editable/assets/bg-power-v1.png",
+    "sha256": "bc2e137f2f1877911f0c2611f7d05c1a0f1383bdf19fd76e6779ec1919096ff9",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-04.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg-workshop-v1",
+    "path": "editable/assets/bg-workshop-v1.png",
+    "sha256": "fec1421c73f4cba01aa68b663f3b97ad264c9fb411f372ca947ae85834daa3b1",
+    "native": [
+      1672,
+      940
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0585585585585586,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41536,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      940
+    ],
+    "registration": null,
+    "board": "board-04.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg_elevator_hub_v01",
+    "path": "editable/assets/bg_elevator_hub_v01.png",
+    "sha256": "5c8fe78f4bd67454137b1a1c783abe23beba8fcefc6520a3abf67855fa142d74",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-04.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg_emergency_hall_v01",
+    "path": "editable/assets/bg_emergency_hall_v01.png",
+    "sha256": "55395363f8a91518feb6668299288542a21233895703382e28d8eea6c9653527",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-05.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "bg_isolation_corridor_v01",
+    "path": "editable/assets/bg_isolation_corridor_v01.png",
+    "sha256": "ccee3cb40f131116adae3835c984b73002949eb094e2537f3b28a621393b41c3",
+    "native": [
+      1672,
+      941
+    ],
+    "maxCssSlot": [
+      1200,
+      888
+    ],
+    "fit": "cover",
+    "effectiveDpr": 1.0596846846846846,
+    "native2xArithmetic": false,
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 41552,
+    "alphaBBox": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "registration": null,
+    "board": "board-05.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "不透明场景构图与材质已看；无透明清稿要求。最大舞台原生2×仍不足。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "closeup-component-v1",
+    "path": "editable/assets/closeup-component-v1.png",
+    "sha256": "49e898ba86c21bb9cfe49106cb4fa9e0a67f8f264ae50b5d4da3f6ac501721fa",
+    "native": [
+      1586,
+      992
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 40992,
+    "alphaBBox": [
+      0,
+      0,
+      1586,
+      992
+    ],
+    "registration": null,
+    "board": "board-05.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "closeup-install-v1",
+    "path": "editable/assets/closeup-install-v1.png",
+    "sha256": "023281b94f11fef611b52c4fd8fd1edf7b42bef4ff88742479b2d5298f87b52f",
+    "native": [
+      1586,
+      992
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 40992,
+    "alphaBBox": [
+      0,
+      0,
+      1586,
+      992
+    ],
+    "registration": null,
+    "board": "board-05.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "closeup-power-v1",
+    "path": "editable/assets/closeup-power-v1.png",
+    "sha256": "85f962f3f9f526a6a7ffc0265af98a3f3731db989d124d7f539122541e9f7eac",
+    "native": [
+      2006,
+      784
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 44384,
+    "alphaBBox": [
+      0,
+      0,
+      2006,
+      784
+    ],
+    "registration": null,
+    "board": "board-06.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "closeup-records-v1",
+    "path": "editable/assets/closeup-records-v1.png",
+    "sha256": "d84a8a1f278358b9d1fd054622753da1c38268a3770ac695a2ac6b01df9c797a",
+    "native": [
+      1586,
+      992
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 40992,
+    "alphaBBox": [
+      0,
+      0,
+      1586,
+      992
+    ],
+    "registration": null,
+    "board": "board-06.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "enemy-porter-critical-v1",
+    "path": "editable/assets/enemy-porter-critical-v1.png",
+    "sha256": "a32adbeb63b7db6d5127adc78f10d11a3458067997f04fe066bfe33955f0fbb6",
+    "native": [
+      1122,
+      1402
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572370,
+    "alpha1Pixels": 10220,
+    "outer8Nonzero": 4,
+    "alphaBBox": [
+      0,
+      63,
+      1046,
+      1370
+    ],
+    "registration": {
+      "file": "enemy-porter-critical-v1.png",
+      "source": [
+        1122,
+        1402
+      ],
+      "sourceSha256": "a32adbeb63b7db6d5127adc78f10d11a3458067997f04fe066bfe33955f0fbb6",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.25,
+      "translate": [
+        -18.75624999999991,
+        127.65000000000009
+      ],
+      "sourceFoot": [
+        629.405,
+        1311
+      ],
+      "sourceHit": [
+        564,
+        510
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.4467732747395834,
+        0.39851562500000004
+      ],
+      "registrationMethod": "Explicit asset-author registration anchor",
+      "imageCss": {
+        "left": -1.2211100260416607,
+        "top": 6.648437500000004,
+        "width": 91.30859375
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-06.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "enemy-porter-disabled-v1",
+    "path": "editable/assets/enemy-porter-disabled-v1.png",
+    "sha256": "48de5d321c28d5b88d37b9c241a09e2fef1a84638c4361f8e3e87d5c75ea6930",
+    "native": [
+      1122,
+      1402
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572678,
+    "alpha1Pixels": 7435,
+    "outer8Nonzero": 63,
+    "alphaBBox": [
+      27,
+      21,
+      1108,
+      1402
+    ],
+    "registration": {
+      "file": "enemy-porter-disabled-v1.png",
+      "source": [
+        1122,
+        1402
+      ],
+      "sourceSha256": "48de5d321c28d5b88d37b9c241a09e2fef1a84638c4361f8e3e87d5c75ea6930",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.25,
+      "translate": [
+        40.26875000000007,
+        192.0250000000001
+      ],
+      "sourceFoot": [
+        582.185,
+        1259.5
+      ],
+      "sourceHit": [
+        535,
+        860
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.46160074869791673,
+        0.6599088541666667
+      ],
+      "registrationMethod": "Explicit asset-author registration anchor",
+      "imageCss": {
+        "left": 2.621663411458338,
+        "top": 10.001302083333337,
+        "width": 91.30859375
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-06.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "enemy-porter-heavy_wounded-v1",
+    "path": "editable/assets/enemy-porter-heavy_wounded-v1.png",
+    "sha256": "545b25cb12385f00f77362854d849602517de3e51fb300138677497213e09325",
+    "native": [
+      1121,
+      1403
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1571842,
+    "alpha1Pixels": 8383,
+    "outer8Nonzero": 2,
+    "alphaBBox": [
+      0,
+      19,
+      1083,
+      1379
+    ],
+    "registration": {
+      "file": "enemy-porter-heavy_wounded-v1.png",
+      "source": [
+        1121,
+        1403
+      ],
+      "sourceSha256": "545b25cb12385f00f77362854d849602517de3e51fb300138677497213e09325",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.25,
+      "translate": [
+        -30.181249999999977,
+        156.4000000000001
+      ],
+      "sourceFoot": [
+        638.545,
+        1288
+      ],
+      "sourceHit": [
+        560,
+        540
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.43607991536458335,
+        0.43302083333333335
+      ],
+      "registrationMethod": "Explicit asset-author registration anchor",
+      "imageCss": {
+        "left": -1.964925130208332,
+        "top": 8.145833333333337,
+        "width": 91.22721354166667
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-07.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "enemy-porter-pristine-v1",
+    "path": "editable/assets/enemy-porter-pristine-v1.png",
+    "sha256": "c62b70c69c0e6977ef1e7239d68f15f74951a8cdf9b17c363d3610f23438a1a4",
+    "native": [
+      1122,
+      1402
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572217,
+    "alpha1Pixels": 7404,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      41,
+      86,
+      1068,
+      1352
+    ],
+    "registration": {
+      "file": "enemy-porter-pristine-v1.png",
+      "source": [
+        1122,
+        1402
+      ],
+      "sourceSha256": "c62b70c69c0e6977ef1e7239d68f15f74951a8cdf9b17c363d3610f23438a1a4",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.25,
+      "translate": [
+        35.09999999999991,
+        163.9000000000001
+      ],
+      "sourceFoot": [
+        586.32,
+        1282
+      ],
+      "sourceHit": [
+        561,
+        561
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.4793945312499999,
+        0.45059895833333335
+      ],
+      "registrationMethod": "Explicit asset-author registration anchor",
+      "imageCss": {
+        "left": 2.2851562499999942,
+        "top": 8.536458333333337,
+        "width": 91.30859375
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-07.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "enemy-porter-wounded-v1",
+    "path": "editable/assets/enemy-porter-wounded-v1.png",
+    "sha256": "48a370f9fc2dc43cc676de35b5359dc03a68e810a84a28b7880ad45855a5fe8e",
+    "native": [
+      1122,
+      1402
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572452,
+    "alpha1Pixels": 5939,
+    "outer8Nonzero": 12,
+    "alphaBBox": [
+      0,
+      53,
+      1082,
+      1328
+    ],
+    "registration": {
+      "file": "enemy-porter-wounded-v1.png",
+      "source": [
+        1122,
+        1402
+      ],
+      "sourceSha256": "48a370f9fc2dc43cc676de35b5359dc03a68e810a84a28b7880ad45855a5fe8e",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.25,
+      "translate": [
+        31.550000000000068,
+        160.7750000000001
+      ],
+      "sourceFoot": [
+        589.16,
+        1284.5
+      ],
+      "sourceHit": [
+        560,
+        555
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.47626953125000004,
+        0.4450651041666667
+      ],
+      "registrationMethod": "Explicit asset-author registration anchor",
+      "imageCss": {
+        "left": 2.054036458333338,
+        "top": 8.373697916666671,
+        "width": 91.30859375
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-07.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "enemy-technician-critical-v1",
+    "path": "editable/assets/enemy-technician-critical-v1.png",
+    "sha256": "86b7a8af0ae94f37d8bb618ebf253cd63b97441f95d2d941e8566e6366852922",
+    "native": [
+      1122,
+      1402
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572234,
+    "alpha1Pixels": 9687,
+    "outer8Nonzero": 2,
+    "alphaBBox": [
+      0,
+      44,
+      1058,
+      1386
+    ],
+    "registration": {
+      "file": "enemy-technician-critical-v1.png",
+      "source": [
+        1122,
+        1402
+      ],
+      "sourceSha256": "86b7a8af0ae94f37d8bb618ebf253cd63b97441f95d2d941e8566e6366852922",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.25,
+      "translate": [
+        -6.9874999999999545,
+        135.1500000000001
+      ],
+      "sourceFoot": [
+        619.99,
+        1305
+      ],
+      "sourceHit": [
+        520,
+        410
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.4186279296875,
+        0.33731770833333335
+      ],
+      "registrationMethod": "Explicit asset-author registration anchor",
+      "imageCss": {
+        "left": -0.4549153645833304,
+        "top": 7.039062500000004,
+        "width": 91.30859375
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-07.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "enemy-technician-disabled-v1",
+    "path": "editable/assets/enemy-technician-disabled-v1.png",
+    "sha256": "fa70feefa7164fcab84edcf846d47d80d4f88f50895228d5826cb91799bb0dec",
+    "native": [
+      1122,
+      1402
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572439,
+    "alpha1Pixels": 8155,
+    "outer8Nonzero": 12,
+    "alphaBBox": [
+      0,
+      28,
+      1050,
+      1402
+    ],
+    "registration": {
+      "file": "enemy-technician-disabled-v1.png",
+      "source": [
+        1122,
+        1402
+      ],
+      "sourceSha256": "fa70feefa7164fcab84edcf846d47d80d4f88f50895228d5826cb91799bb0dec",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.25,
+      "translate": [
+        -145.6312499999999,
+        144.5250000000001
+      ],
+      "sourceFoot": [
+        730.905,
+        1297.5
+      ],
+      "sourceHit": [
+        535,
+        830
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.3405721028645834,
+        0.6156380208333334
+      ],
+      "registrationMethod": "Explicit asset-author registration anchor",
+      "imageCss": {
+        "left": -9.481201171874995,
+        "top": 7.527343750000004,
+        "width": 91.30859375
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-08.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "enemy-technician-heavy_wounded-v1",
+    "path": "editable/assets/enemy-technician-heavy_wounded-v1.png",
+    "sha256": "f415a3384d1c5e21b1840877eccfeeecf7711b6c7ff1d3a7046c06ea527a158f",
+    "native": [
+      1122,
+      1402
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572205,
+    "alpha1Pixels": 8569,
+    "outer8Nonzero": 18,
+    "alphaBBox": [
+      73,
+      21,
+      1104,
+      1402
+    ],
+    "registration": {
+      "file": "enemy-technician-heavy_wounded-v1.png",
+      "source": [
+        1122,
+        1402
+      ],
+      "sourceSha256": "f415a3384d1c5e21b1840877eccfeeecf7711b6c7ff1d3a7046c06ea527a158f",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.25,
+      "translate": [
+        -50.85000000000002,
+        135.1500000000001
+      ],
+      "sourceFoot": [
+        655.08,
+        1305
+      ],
+      "sourceHit": [
+        520,
+        365
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.39007161458333334,
+        0.30802083333333335
+      ],
+      "registrationMethod": "Explicit asset-author registration anchor",
+      "imageCss": {
+        "left": -3.3105468750000013,
+        "top": 7.039062500000004,
+        "width": 91.30859375
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-08.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "enemy-technician-pristine-v1",
+    "path": "editable/assets/enemy-technician-pristine-v1.png",
+    "sha256": "240077aef5b5adb7efe1d4632894e5a7018a94dc3f18cd894f998a8e1c243444",
+    "native": [
+      1122,
+      1402
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572125,
+    "alpha1Pixels": 9581,
+    "outer8Nonzero": 14,
+    "alphaBBox": [
+      0,
+      26,
+      1108,
+      1388
+    ],
+    "registration": {
+      "file": "enemy-technician-pristine-v1.png",
+      "source": [
+        1122,
+        1402
+      ],
+      "sourceSha256": "240077aef5b5adb7efe1d4632894e5a7018a94dc3f18cd894f998a8e1c243444",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.25,
+      "translate": [
+        32.41874999999993,
+        137.6500000000001
+      ],
+      "sourceFoot": [
+        588.465,
+        1303
+      ],
+      "sourceHit": [
+        530,
+        410
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.45242106119791664,
+        0.3386197916666667
+      ],
+      "registrationMethod": "Explicit asset-author registration anchor",
+      "imageCss": {
+        "left": 2.1105957031249956,
+        "top": 7.169270833333338,
+        "width": 91.30859375
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-08.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "enemy-technician-wounded-v1",
+    "path": "editable/assets/enemy-technician-wounded-v1.png",
+    "sha256": "d5f2e525282e2c65a51ad6a2eb07b507099d342122d9b3788b5413e02b282269",
+    "native": [
+      1122,
+      1402
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572285,
+    "alpha1Pixels": 7270,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      87,
+      44,
+      1046,
+      1356
+    ],
+    "registration": {
+      "file": "enemy-technician-wounded-v1.png",
+      "source": [
+        1122,
+        1402
+      ],
+      "sourceSha256": "d5f2e525282e2c65a51ad6a2eb07b507099d342122d9b3788b5413e02b282269",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.25,
+      "translate": [
+        29.781250000000114,
+        137.0250000000001
+      ],
+      "sourceFoot": [
+        590.5749999999999,
+        1303.5
+      ],
+      "sourceHit": [
+        524,
+        401
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.4458211263020834,
+        0.33243489583333335
+      ],
+      "registrationMethod": "Explicit asset-author registration anchor",
+      "imageCss": {
+        "left": 1.938883463541674,
+        "top": 7.136718750000004,
+        "width": 91.30859375
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-08.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "enemy_infected_orderly_critical_v02",
+    "path": "editable/assets/enemy_infected_orderly_critical_v02.png",
+    "sha256": "1005537773f9aab7a8e5d84911e349bbe5a8a0025a14c13a7baa1ca4c33ebe00",
+    "native": [
+      1024,
+      1280
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1310286,
+    "alpha1Pixels": 9599,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      119,
+      185,
+      905,
+      1232
+    ],
+    "registration": {
+      "file": "enemy_infected_orderly_critical_v02.png",
+      "source": [
+        1024,
+        1280
+      ],
+      "sourceSha256": "1005537773f9aab7a8e5d84911e349bbe5a8a0025a14c13a7baa1ca4c33ebe00",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.35,
+      "translate": [
+        39.33749999999998,
+        187.57500000000005
+      ],
+      "sourceFoot": [
+        539.75,
+        1169.5
+      ],
+      "sourceHit": [
+        552.96,
+        537.6
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.5116103515625,
+        0.4756953125000001
+      ],
+      "registrationMethod": "Legacy alpha>=128 lower left/right support sample midpoint; visual QA required",
+      "imageCss": {
+        "left": 2.5610351562499987,
+        "top": 9.769531250000002,
+        "width": 90.0
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-09.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "enemy_infected_orderly_disabled_v02",
+    "path": "editable/assets/enemy_infected_orderly_disabled_v02.png",
+    "sha256": "4112dadacfc3c89da9b3cc7576fe3772a58a026cb74b21eb3fe451649f2f41e1",
+    "native": [
+      1024,
+      1280
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1309923,
+    "alpha1Pixels": 8397,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      115,
+      180,
+      909,
+      1232
+    ],
+    "registration": {
+      "file": "enemy_infected_orderly_disabled_v02.png",
+      "source": [
+        1024,
+        1280
+      ],
+      "sourceSha256": "4112dadacfc3c89da9b3cc7576fe3772a58a026cb74b21eb3fe451649f2f41e1",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.35,
+      "translate": [
+        148.01249999999993,
+        219.9749999999999
+      ],
+      "sourceFoot": [
+        459.25,
+        1145.5
+      ],
+      "sourceHit": [
+        552.96,
+        537.6
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.5823623046875,
+        0.4925703125
+      ],
+      "registrationMethod": "Legacy alpha>=128 lower left/right support sample midpoint; visual QA required",
+      "imageCss": {
+        "left": 9.636230468749995,
+        "top": 11.457031249999996,
+        "width": 90.0
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-09.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "enemy_infected_orderly_heavy_wounded_v02",
+    "path": "editable/assets/enemy_infected_orderly_heavy_wounded_v02.png",
+    "sha256": "9d9dcce02310fea3fdf9c04ffb0db00edd8697771c19a1f119b0fdd9457e8d58",
+    "native": [
+      1024,
+      1280
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1309468,
+    "alpha1Pixels": 8335,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      115,
+      207,
+      909,
+      1232
+    ],
+    "registration": {
+      "file": "enemy_infected_orderly_heavy_wounded_v02.png",
+      "source": [
+        1024,
+        1280
+      ],
+      "sourceSha256": "9d9dcce02310fea3fdf9c04ffb0db00edd8697771c19a1f119b0fdd9457e8d58",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.35,
+      "translate": [
+        61.612499999999955,
+        166.6500000000001
+      ],
+      "sourceFoot": [
+        523.25,
+        1185.0
+      ],
+      "sourceHit": [
+        552.96,
+        537.6
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.5261123046875,
+        0.4647968750000001
+      ],
+      "registrationMethod": "Legacy alpha>=128 lower left/right support sample midpoint; visual QA required",
+      "imageCss": {
+        "left": 4.011230468749997,
+        "top": 8.679687500000004,
+        "width": 90.0
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-09.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "enemy_infected_orderly_pristine_v02",
+    "path": "editable/assets/enemy_infected_orderly_pristine_v02.png",
+    "sha256": "9fd480efca6c4dc8e02198cd25175e385de8f80efa64cbb11fce6372d2b76907",
+    "native": [
+      1024,
+      1280
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1309304,
+    "alpha1Pixels": 6106,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      143,
+      112,
+      880,
+      1232
+    ],
+    "registration": {
+      "file": "enemy_infected_orderly_pristine_v02.png",
+      "source": [
+        1024,
+        1280
+      ],
+      "sourceSha256": "9fd480efca6c4dc8e02198cd25175e385de8f80efa64cbb11fce6372d2b76907",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.35,
+      "translate": [
+        -0.8250000000000455,
+        176.7750000000001
+      ],
+      "sourceFoot": [
+        569.5,
+        1177.5
+      ],
+      "sourceHit": [
+        552.96,
+        537.6
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.48546289062500003,
+        0.4700703125000001
+      ],
+      "registrationMethod": "Legacy alpha>=128 lower left/right support sample midpoint; visual QA required",
+      "imageCss": {
+        "left": -0.05371093750000296,
+        "top": 9.207031250000004,
+        "width": 90.0
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-09.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "enemy_infected_orderly_wounded_v02",
+    "path": "editable/assets/enemy_infected_orderly_wounded_v02.png",
+    "sha256": "c00c5126bfc6967f0a34af94a2ccd32d6874bae3899d9e02ae189af8f662ed5b",
+    "native": [
+      1024,
+      1280
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1308948,
+    "alpha1Pixels": 6158,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      143,
+      185,
+      880,
+      1232
+    ],
+    "registration": {
+      "file": "enemy_infected_orderly_wounded_v02.png",
+      "source": [
+        1024,
+        1280
+      ],
+      "sourceSha256": "c00c5126bfc6967f0a34af94a2ccd32d6874bae3899d9e02ae189af8f662ed5b",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.35,
+      "translate": [
+        120.0,
+        124.79999999999995
+      ],
+      "sourceFoot": [
+        480.0,
+        1216.0
+      ],
+      "sourceHit": [
+        552.96,
+        537.6
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.5641250000000001,
+        0.443
+      ],
+      "registrationMethod": "Legacy alpha>=128 lower left/right support sample midpoint; visual QA required",
+      "imageCss": {
+        "left": 7.8125,
+        "top": 6.499999999999998,
+        "width": 90.0
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-10.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "event_isolation_fire_door_v02",
+    "path": "editable/assets/event_isolation_fire_door_v02.png",
+    "sha256": "37073ff3cd1d7769b96c617a3c83cb5c9815b4101fde6c4a4b49140800d9708d",
+    "native": [
+      1280,
+      800
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 33024,
+    "alphaBBox": [
+      0,
+      0,
+      1280,
+      800
+    ],
+    "registration": null,
+    "board": "board-10.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "fx-hit-v1",
+    "path": "editable/assets/fx-hit-v1.png",
+    "sha256": "bb2cea64914bb1748186408cf84bf6d18d4608eb45afb40983548241c8e0b852",
+    "native": [
+      1254,
+      1254
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572516,
+    "alpha1Pixels": 53757,
+    "outer8Nonzero": 4,
+    "alphaBBox": [
+      0,
+      24,
+      1240,
+      1206
+    ],
+    "registration": null,
+    "board": "board-10.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "火花与烟尘为预期半透明效果；不能用阈值清除全部外沿粒子。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "icon_bandage_v02",
+    "path": "editable/assets/icon_bandage_v02.png",
+    "sha256": "573199ffec28fc6c7fb8a5a75eda8264c920dbc0a1e4b09a95a222c57cfa8c6c",
+    "native": [
+      512,
+      512
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 261514,
+    "alpha1Pixels": 637,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      64,
+      81,
+      448,
+      439
+    ],
+    "registration": null,
+    "board": "board-10.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "icon_flashlight_v01",
+    "path": "editable/assets/icon_flashlight_v01.png",
+    "sha256": "1edf5992c296c9011e547a3cdbae762613c1f2db3db74fe9ab9801cf90d9260c",
+    "native": [
+      512,
+      512
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 261529,
+    "alpha1Pixels": 306,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      73,
+      69,
+      448,
+      432
+    ],
+    "registration": null,
+    "board": "board-11.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "icon_heavy_coat_v01",
+    "path": "editable/assets/icon_heavy_coat_v01.png",
+    "sha256": "da3da5f6977dc4c35b0ebbef82196123595b60276407f15caf10671b8a480792",
+    "native": [
+      512,
+      512
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 261141,
+    "alpha1Pixels": 577,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      76,
+      71,
+      448,
+      441
+    ],
+    "registration": null,
+    "board": "board-11.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "icon_isolation_access_card_v02",
+    "path": "editable/assets/icon_isolation_access_card_v02.png",
+    "sha256": "45f1e05a50817807c6ae32069b72b42b71dc7e9c613117392e50845d0a46868b",
+    "native": [
+      512,
+      512
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 261325,
+    "alpha1Pixels": 399,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      79,
+      89,
+      406,
+      439
+    ],
+    "registration": null,
+    "board": "board-11.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "icon_metal_pipe_v01",
+    "path": "editable/assets/icon_metal_pipe_v01.png",
+    "sha256": "3c1533215fb7f847dadefbccf4590aec4014692ba12fa71e57c624d1f32652a7",
+    "native": [
+      512,
+      512
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 261521,
+    "alpha1Pixels": 274,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      80,
+      75,
+      442,
+      439
+    ],
+    "registration": null,
+    "board": "board-11.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "icon_sealed_pathogen_case_v02",
+    "path": "editable/assets/icon_sealed_pathogen_case_v02.png",
+    "sha256": "03ac0fcf92c1bb22a58e7d2c288a4d84b92507c24673b4d00139eef717df1104",
+    "native": [
+      512,
+      512
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 180017,
+    "alpha1Pixels": 405,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      64,
+      101,
+      448,
+      410
+    ],
+    "registration": null,
+    "board": "board-12.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "item-battery-v1",
+    "path": "editable/assets/item-battery-v1.png",
+    "sha256": "fa9dd9c134b0e99a9723ec8db4fbb00fbd4e1794583b599a6e17d40421fea1e4",
+    "native": [
+      1254,
+      1254
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572035,
+    "alpha1Pixels": 3057,
+    "outer8Nonzero": 6,
+    "alphaBBox": [
+      0,
+      99,
+      1144,
+      1190
+    ],
+    "registration": null,
+    "board": "board-12.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "item-cloth-v1",
+    "path": "editable/assets/item-cloth-v1.png",
+    "sha256": "5d02f8f101deb5ba8e59f472f6e151645a0926953463b71efdfe84226c106e93",
+    "native": [
+      1254,
+      1254
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572103,
+    "alpha1Pixels": 5559,
+    "outer8Nonzero": 21,
+    "alphaBBox": [
+      0,
+      17,
+      1224,
+      1254
+    ],
+    "registration": null,
+    "board": "board-12.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "item-component-v1",
+    "path": "editable/assets/item-component-v1.png",
+    "sha256": "5285b0d2156f5b644e7ee39460430e71b720a177e6c0aefd8dd893fdb06e57e9",
+    "native": [
+      1254,
+      1254
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1571944,
+    "alpha1Pixels": 4826,
+    "outer8Nonzero": 44,
+    "alphaBBox": [
+      0,
+      51,
+      1158,
+      1254
+    ],
+    "registration": null,
+    "board": "board-12.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "item-crowbar-v1",
+    "path": "editable/assets/item-crowbar-v1.png",
+    "sha256": "703df7fbaa51836e26e43d2be4445bb58b5fe32fcd1b845a0a4b44b8f54fcdaa",
+    "native": [
+      1254,
+      1254
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1571744,
+    "alpha1Pixels": 4181,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      81,
+      21,
+      1215,
+      1222
+    ],
+    "registration": null,
+    "board": "board-13.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "item-disinfectant-v1",
+    "path": "editable/assets/item-disinfectant-v1.png",
+    "sha256": "893d07081471db86908a450afab954cde41245f522cab79cbe47aac62dc443a6",
+    "native": [
+      1254,
+      1254
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572156,
+    "alpha1Pixels": 2884,
+    "outer8Nonzero": 4,
+    "alphaBBox": [
+      0,
+      68,
+      1210,
+      1221
+    ],
+    "registration": null,
+    "board": "board-13.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "item-electronic-v1",
+    "path": "editable/assets/item-electronic-v1.png",
+    "sha256": "d3074bed30e9580329a641c5107815e107c271d8c77e88f15a9a3a3ad4a24f65",
+    "native": [
+      1254,
+      1254
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572151,
+    "alpha1Pixels": 2522,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      105,
+      53,
+      1232,
+      1166
+    ],
+    "registration": null,
+    "board": "board-13.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "item-firstaid-v1",
+    "path": "editable/assets/item-firstaid-v1.png",
+    "sha256": "4e5872b6358cceaa34650f8b01df937542fdb683a8c8cf81157fdee3eb087e4e",
+    "native": [
+      1254,
+      1254
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572293,
+    "alpha1Pixels": 6098,
+    "outer8Nonzero": 19,
+    "alphaBBox": [
+      0,
+      20,
+      1234,
+      1254
+    ],
+    "registration": null,
+    "board": "board-13.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "item-metal-v1",
+    "path": "editable/assets/item-metal-v1.png",
+    "sha256": "fe9ae706518d17157bb25a6cdbb4c9545139b2cc0a5bbec9983b82c3f7367f76",
+    "native": [
+      1254,
+      1254
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1571430,
+    "alpha1Pixels": 6522,
+    "outer8Nonzero": 10,
+    "alphaBBox": [
+      49,
+      23,
+      1253,
+      1230
+    ],
+    "registration": null,
+    "board": "board-14.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "item-module-v1",
+    "path": "editable/assets/item-module-v1.png",
+    "sha256": "9d7b916d8c2b748a37372df27131ae7659593dfc09e5efb7566e3d575f575d23",
+    "native": [
+      1254,
+      1254
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572342,
+    "alpha1Pixels": 6333,
+    "outer8Nonzero": 52,
+    "alphaBBox": [
+      0,
+      21,
+      1234,
+      1254
+    ],
+    "registration": null,
+    "board": "board-14.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "item-painkiller-v1",
+    "path": "editable/assets/item-painkiller-v1.png",
+    "sha256": "9c809aa0e8495deda723c7f2a0c5e4edc342fa8c5f0e8c329e8e6c43accd757e",
+    "native": [
+      1254,
+      1254
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572291,
+    "alpha1Pixels": 5658,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      25,
+      21,
+      1234,
+      1230
+    ],
+    "registration": null,
+    "board": "board-14.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "item-ration-v1",
+    "path": "editable/assets/item-ration-v1.png",
+    "sha256": "2f5004380bac698530908ab74a3db99309e46685333d222a33631c9abdc7a7dd",
+    "native": [
+      1254,
+      1254
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572340,
+    "alpha1Pixels": 38372,
+    "outer8Nonzero": 1254,
+    "alphaBBox": [
+      0,
+      0,
+      1254,
+      1254
+    ],
+    "registration": null,
+    "board": "board-14.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "item-suppressant-v1",
+    "path": "editable/assets/item-suppressant-v1.png",
+    "sha256": "cd5907c8918c18d8683123924adb1c6051210a0a15b7b1d0ab1c3b94e09a02cd",
+    "native": [
+      1254,
+      1254
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572431,
+    "alpha1Pixels": 3255,
+    "outer8Nonzero": 2,
+    "alphaBBox": [
+      33,
+      9,
+      1218,
+      1254
+    ],
+    "registration": null,
+    "board": "board-15.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "item-toolbox-v1",
+    "path": "editable/assets/item-toolbox-v1.png",
+    "sha256": "524a504a87cb9ebd29e10c469615eeb220f936143fdc1b0bbefc3459c8d36257",
+    "native": [
+      1254,
+      1254
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1571910,
+    "alpha1Pixels": 3689,
+    "outer8Nonzero": 1,
+    "alphaBBox": [
+      0,
+      99,
+      1234,
+      1230
+    ],
+    "registration": null,
+    "board": "board-15.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "npc-lin-v1",
+    "path": "editable/assets/npc-lin-v1.png",
+    "sha256": "3fd086563d232bb2099419cbcbd75cb229057c709abd8b81d4b7466ec7f8a41f",
+    "native": [
+      1122,
+      1402
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572410,
+    "alpha1Pixels": 8856,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      33,
+      25,
+      1103,
+      1378
+    ],
+    "registration": null,
+    "board": "board-15.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "npc-zhou-v1",
+    "path": "editable/assets/npc-zhou-v1.png",
+    "sha256": "125ac063bf756ab3a11a448e8b29611dc66b22b814c3148cf82b632c313d3531",
+    "native": [
+      1122,
+      1402
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572421,
+    "alpha1Pixels": 5384,
+    "outer8Nonzero": 6,
+    "alphaBBox": [
+      0,
+      0,
+      1108,
+      1366
+    ],
+    "registration": null,
+    "board": "board-15.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "objective_pathogen_case_v02",
+    "path": "editable/assets/objective_pathogen_case_v02.png",
+    "sha256": "0fd539ab383f9ab233ca105fd9491296368069270f63d1aa050f457b13a4a64a",
+    "native": [
+      1024,
+      1024
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 612058,
+    "alpha1Pixels": 2013,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      72,
+      158,
+      952,
+      866
+    ],
+    "registration": null,
+    "board": "board-16.jpg",
+    "row": 1,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "主体、材质及轮廓在黑白、棋盘、H4四背景可辨；无整块底色。保留半透明细节，不据alpha计数自动删除。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "panel-nine-slice-v1",
+    "path": "editable/assets/panel-nine-slice-v1.png",
+    "sha256": "7f8a892f51159446c8d681c5811838ecf2dc177db7ca2dec6cda1b72d2eeb28e",
+    "native": [
+      1254,
+      1254
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 0,
+    "alpha1Pixels": 0,
+    "outer8Nonzero": 39872,
+    "alphaBBox": [
+      0,
+      0,
+      1254,
+      1254
+    ],
+    "registration": null,
+    "board": "board-16.jpg",
+    "row": 2,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "金属角、框边与中心材质连续；按48源像素→24CSS角切片，需同状态像素几何另验。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "player-back-v1",
+    "path": "editable/assets/player-back-v1.png",
+    "sha256": "73bd1abbe0a1db3a8c6e22558e6ecb62336bc86f749a5d56b6ab6456ed4adff8",
+    "native": [
+      1122,
+      1402
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1572025,
+    "alpha1Pixels": 10351,
+    "outer8Nonzero": 17,
+    "alphaBBox": [
+      0,
+      19,
+      1086,
+      1402
+    ],
+    "registration": {
+      "file": "player-back-v1.png",
+      "source": [
+        1122,
+        1402
+      ],
+      "sourceSha256": "73bd1abbe0a1db3a8c6e22558e6ecb62336bc86f749a5d56b6ab6456ed4adff8",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.25,
+      "translate": [
+        141.75,
+        132.6500000000001
+      ],
+      "sourceFoot": [
+        501,
+        1307
+      ],
+      "sourceHit": [
+        500,
+        500
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.4991861979166667,
+        0.39460937500000004
+      ],
+      "registrationMethod": "Explicit player-author visual anchor",
+      "imageCss": {
+        "left": 9.228515625,
+        "top": 6.908854166666671,
+        "width": 91.30859375
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-16.jpg",
+    "row": 3,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "背影主体与轮廓可辨；发丝/袖边与零散低alpha残留仍保留未完成。v3未改善，不采用。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  },
+  {
+    "id": "player-back-v2",
+    "path": "editable/assets/player-back-v2.png",
+    "sha256": "2e67e775c465bdbb5ddf298967c2624b9d5aff31c4932922e48da935a8584791",
+    "native": [
+      1122,
+      1402
+    ],
+    "maxCssSlot": null,
+    "fit": "contain",
+    "effectiveDpr": null,
+    "native2xArithmetic": "AWAIT_CURRENT_SLOT_MEASUREMENT",
+    "alphaNonOpaque": 1571317,
+    "alpha1Pixels": 6601,
+    "outer8Nonzero": 0,
+    "alphaBBox": [
+      27,
+      46,
+      1048,
+      1348
+    ],
+    "registration": {
+      "file": "player-back-v2.png",
+      "source": [
+        1122,
+        1402
+      ],
+      "sourceSha256": "2e67e775c465bdbb5ddf298967c2624b9d5aff31c4932922e48da935a8584791",
+      "canvas": [
+        1536,
+        1920
+      ],
+      "scale": 1.25,
+      "translate": [
+        142.23828125,
+        130.7750000000001
+      ],
+      "sourceFoot": [
+        500.609375,
+        1308.5
+      ],
+      "sourceHit": [
+        500,
+        500
+      ],
+      "footNormalized": [
+        0.5,
+        0.92
+      ],
+      "hitNormalized": [
+        0.49950408935546875,
+        0.39363281250000004
+      ],
+      "registrationMethod": "Explicit asset-author registration anchor",
+      "imageCss": {
+        "left": 9.260304768880209,
+        "top": 6.811197916666671,
+        "width": 91.30859375
+      },
+      "motionEnvelopeCss": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "pixelRewrite": false,
+      "note": "Shared canvas and support center aligned; natural limb positions may differ between poses."
+    },
+    "board": "board-16.jpg",
+    "row": 4,
+    "visualVerdict": "REVIEWED_FOUR_MATTES_AT_DISPLAY_SCALE_NOT_FINAL_ALPHA_CERTIFICATION",
+    "limits": "Alpha counts are diagnostics, not automatic defect thresholds. Opaque background perimeter is expected.",
+    "authorObservation": "背影主体与轮廓可辨；发丝/袖边与零散低alpha残留仍保留未完成。v3未改善，不采用。",
+    "unchangedAsset": "No raster replacement adopted in R2; original source SHA retained."
+  }
+]

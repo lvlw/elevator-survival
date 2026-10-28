@@ -41,7 +41,7 @@ function closeView(){
  active={...active,kind:'explore',node:context.node};sceneOnly=true;chosen={};render();
 }
 function currentObject(origin){
- const ref=origin?.dataset.objectRef;if(ref){const found=context.items.find(i=>i.ref===ref);if(found)return {...found};}
+ const ref=origin?.dataset.objectRef;if(ref){const found=context.items.find(i=>i.ref===ref);return found?{...found}:null;}
  const key=origin?.dataset.objectKey||origin?.dataset.act?.split(':')[1];if(!ITEMS[key])return null;
  if(origin?.dataset.container==='quick')return {key,ref:context.sampleId+'-quick-1',container:'quick',quantity:1,w:ITEMS[key][2],h:ITEMS[key][3]};
  if(origin?.dataset.container==='equipment')return {key,ref:context.sampleId+'-equipment-'+key,container:'equipment',quantity:1,w:ITEMS[key][2],h:ITEMS[key][3]};

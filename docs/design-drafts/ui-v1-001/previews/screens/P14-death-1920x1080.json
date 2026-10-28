@@ -1,11 +1,13 @@
 {
   "screen": "P14-death",
+  "version": "v1.2-r2",
   "viewport": [
     1920,
     1080
   ],
   "pixelRatio": 1,
   "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+  "authority": "Native browser render; PNG geometry requires independent raster readback",
   "rects": [
     {
       "selector": ".shell",
@@ -15,6 +17,15 @@
       "h": 1080,
       "scrollH": 1080,
       "clientH": 1080
+    },
+    {
+      "selector": ".hud",
+      "x": 24,
+      "y": 24,
+      "w": 1872,
+      "h": 72,
+      "scrollH": 70,
+      "clientH": 70
     },
     {
       "selector": ".center",
@@ -54,13 +65,44 @@
     },
     {
       "selector": ".panel",
-      "x": 380,
-      "y": 166,
-      "w": 1080,
-      "h": 780,
-      "scrollH": 778,
-      "clientH": 778
+      "x": 520,
+      "y": 319.8203125,
+      "w": 800,
+      "h": 472.359375,
+      "scrollH": 470,
+      "clientH": 470
     },
+    {
+      "selector": ".panel-body",
+      "x": 521,
+      "y": 370.8203125,
+      "w": 798,
+      "h": 347.765625,
+      "scrollH": 348,
+      "clientH": 348
+    },
+    null,
+    {
+      "selector": ".right .inventory",
+      "x": 1553,
+      "y": 307.96875,
+      "w": 326,
+      "h": 216,
+      "scrollH": 216,
+      "clientH": 216
+    },
+    {
+      "selector": ".panel-footer",
+      "x": 521,
+      "y": 718.5859375,
+      "w": 798,
+      "h": 72.59375,
+      "scrollH": 72,
+      "clientH": 72
+    },
+    null,
+    null,
+    null,
     null,
     {
       "selector": ".footer",
@@ -82,7 +124,9 @@
       "display": [
         1200,
         888
-      ]
+      ],
+      "fit": "cover",
+      "position": "50% 42%"
     }
   ],
   "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",

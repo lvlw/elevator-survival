@@ -1,0 +1,25 @@
+{
+  "notSemanticFindings": [
+    {
+      "operation": "read-only evaluate computedStyleMap",
+      "error": "TypeError: e.computedStyleMap is not a function",
+      "interpretation": "Read-only tool DOM wrapper lacks this method; actual authoring export supports Typed OM as verified by SVG styles and PNG."
+    },
+    {
+      "operation": "early screenshot after navigation while window background/minimized",
+      "error": "Timed out after 5000ms waiting for CDP command Page.captureScreenshot",
+      "interpretation": "Capture failed; no screenshot claimed for that attempt. Stable subsequent captures retained separately."
+    },
+    {
+      "operation": "authoring export waitFor feedback",
+      "error": "Runtime.evaluate/locator wait timed out; later actual AX showed 本地当前图稿已导出",
+      "interpretation": "Tool wait timeout, not semantic rejection or failed export."
+    },
+    {
+      "operation": "asset-audit first run",
+      "exit": 1,
+      "error": "KeyError: cssSlots",
+      "interpretation": "Missing metadata for eight assets; revised audit reports unknown slot instead of assuming pass."
+    }
+  ]
+}

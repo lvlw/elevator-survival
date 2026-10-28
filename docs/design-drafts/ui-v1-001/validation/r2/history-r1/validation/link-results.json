@@ -1,0 +1,1462 @@
+[
+  {
+    "from": "00-owner-review.md",
+    "target": "previews/index.html",
+    "exists": true
+  },
+  {
+    "from": "00-owner-review.md",
+    "target": "previews/asset-gallery.html",
+    "exists": true
+  },
+  {
+    "from": "00-owner-review.md",
+    "target": "02-page-state-matrix.md",
+    "exists": true
+  },
+  {
+    "from": "00-owner-review.md",
+    "target": "validation/r1/review-notes.md",
+    "exists": true
+  },
+  {
+    "from": "00-owner-review.md",
+    "target": "validation/r1/edge/03-depart-h0.jpg",
+    "exists": true
+  },
+  {
+    "from": "00-owner-review.md",
+    "target": "spec/delivery-packages.json",
+    "exists": true
+  },
+  {
+    "from": "00-owner-review.md",
+    "target": "reviews/OWNER-modal-size-followup.md",
+    "exists": true
+  },
+  {
+    "from": "00-owner-review.md",
+    "target": "06-implementation-handoff-draft.md",
+    "exists": true
+  },
+  {
+    "from": "01-source-and-concept-corrections.md",
+    "target": "inputs/README-先读我.md",
+    "exists": true
+  },
+  {
+    "from": "01-source-and-concept-corrections.md",
+    "target": "../../05-design-decisions.md",
+    "exists": true
+  },
+  {
+    "from": "01-source-and-concept-corrections.md",
+    "target": "../../02-vertical-slice.md",
+    "exists": true
+  },
+  {
+    "from": "01-source-and-concept-corrections.md",
+    "target": "../../01-game-design-v0.1.md",
+    "exists": true
+  },
+  {
+    "from": "01-source-and-concept-corrections.md",
+    "target": "../../03-architecture.md",
+    "exists": true
+  },
+  {
+    "from": "01-source-and-concept-corrections.md",
+    "target": "../../09-ui-design-record.md",
+    "exists": true
+  },
+  {
+    "from": "01-source-and-concept-corrections.md",
+    "target": "../../engineering/world-integration/preplay/low-asset-ui-contract-v1.0.md",
+    "exists": true
+  },
+  {
+    "from": "01-source-and-concept-corrections.md",
+    "target": "spec/protected-sources.json",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "spec/screen-manifest.json",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P01-unselected-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P01-unselected",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P01-crow-scout-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P01-crow-scout",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P01-crow-engineer-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P01-crow-engineer",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P01-crow-survival-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P01-crow-survival",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P01-lamp-scout-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P01-lamp-scout",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P01-lamp-engineer-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P01-lamp-engineer",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P01-lamp-survival-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P01-lamp-survival",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P01-toolbox-scout-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P01-toolbox-scout",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P01-toolbox-engineer-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P01-toolbox-engineer",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P01-toolbox-survival-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P01-toolbox-survival",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P02-first-hub-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P02-first-hub",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P03-hospital-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P03-hospital",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P03-hotel-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P03-hotel",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P03-power-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P03-power",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P03-logistics-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P03-logistics",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P03-communication-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P03-communication",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P04-before-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P04-before",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P04-after-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P04-after",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P05-unsearched-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P05-unsearched",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P05-revealed-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P05-revealed",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P05-empty-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P05-empty",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P05-reopen-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P05-reopen",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-door-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-door",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-power-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-power",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-records-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-records",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-component-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-component",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-sample-cautious-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-sample-cautious",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-sample-direct-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-sample-direct",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-install-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-install",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P07-lin-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P07-lin",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P07-zhou-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P07-zhou",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P08-acquired-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P08-acquired",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P08-carried-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P08-carried",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P08-ground-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P08-ground",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P08-delivered-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P08-delivered",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P09-normal-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P09-normal",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P09-max-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P09-max",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P09-last-observed-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P09-last-observed",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P09-blocked-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P09-blocked",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P09-unknown-passability-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P09-unknown-passability",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P10-inventory-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P10-inventory",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P10-equipment-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P10-equipment",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P10-rotated-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P10-rotated",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P11-move-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P11-move",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P11-split-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P11-split",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P11-merge-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P11-merge",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P11-quick-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P11-quick",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P11-task-pickup-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P11-task-pickup",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P11-drop-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P11-drop",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P11-no-space-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P11-no-space",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P12-bandage-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P12-bandage",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P12-firstaid-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P12-firstaid",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P12-ration-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P12-ration",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P12-painkiller-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P12-painkiller",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P12-disinfectant-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P12-disinfectant",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P12-suppressant-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P12-suppressant",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P12-invalid-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P12-invalid",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P12-battle-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P12-battle",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P13-mechanical-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P13-mechanical",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P13-coat-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P13-coat",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P13-toolbox-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P13-toolbox",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P13-charge-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P13-charge",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P14-A-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P14-A",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P14-C-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P14-C",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P14-consequences-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P14-consequences",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P14-death-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P14-death",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P15-orderly-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P15-orderly",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P15-porter-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P15-porter",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P15-technician-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P15-technician",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P16-max-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P16-max",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P16-phases-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P16-phases",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P16-porter-phases-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P16-porter-phases",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P16-technician-phases-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P16-technician-phases",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P16-submitted-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P16-submitted",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P16-enemy-response-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P16-enemy-response",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P16-hit-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P16-hit",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P16-stage-change-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P16-stage-change",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P16-decision-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P16-decision",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P16-retreat-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P16-retreat",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P16-reduced-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P16-reduced",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P17-victory-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P17-victory",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P17-retreat-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P17-retreat",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P18-success-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P18-success",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P19-voluntary-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P19-voluntary",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P20-deadline-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P20-deadline",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P21-enemy-alive-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P21-enemy-alive",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P21-both-zero-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P21-both-zero",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P22-return-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P22-return",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P22-critical-drop-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P22-critical-drop",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P22-certain-death-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P22-certain-death",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P22-cancelled-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P22-cancelled",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P22-stale-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P22-stale",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P23-saved-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P23-saved",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P23-not-attempted-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P23-not-attempted",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P23-failed-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P23-failed",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P23-retry-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P23-retry",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P24-request-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P24-request",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P24-occupied-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P24-occupied",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P24-lost-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P24-lost",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P24-corrupt-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P24-corrupt",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P24-read-error-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P24-read-error",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P24-projection-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P24-projection",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P25-controls-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P25-controls",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P25-health-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P25-health",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P25-quick-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P25-quick",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-door-result-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-door-result",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-power-result-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-power-result",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-records-result-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-records-result",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-component-result-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-component-result",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-sample-result-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-sample-result",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-install-result-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-install-result",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P10-detail-sample-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P10-detail-sample",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P10-detail-pipe-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P10-detail-pipe",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P03-first-arrival-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P03-first-arrival",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-sample-cautious-last-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-sample-cautious-last",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-sample-cautious-broken-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-sample-cautious-broken",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-sample-cautious-unequipped-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-sample-cautious-unequipped",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-sample-direct-last-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-sample-direct-last",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-sample-direct-broken-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-sample-direct-broken",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P06-sample-direct-unequipped-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P06-sample-direct-unequipped",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P17-retreat-porter-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P17-retreat-porter",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "previews/screens/P17-retreat-technician-1920x1080.png",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "prototype/index.html?screen=P17-retreat-technician",
+    "exists": true
+  },
+  {
+    "from": "02-page-state-matrix.md",
+    "target": "validation/responsive-results.json",
+    "exists": true
+  },
+  {
+    "from": "03-dimension-contract.md",
+    "target": "validation/responsive-results.json",
+    "exists": true
+  },
+  {
+    "from": "03-dimension-contract.md",
+    "target": "spec/registered-art.json",
+    "exists": true
+  },
+  {
+    "from": "03-dimension-contract.md",
+    "target": "spec/node-crop-manifest.json",
+    "exists": true
+  },
+  {
+    "from": "03-dimension-contract.md",
+    "target": "validation/r1/review-notes.md",
+    "exists": true
+  },
+  {
+    "from": "03-dimension-contract.md",
+    "target": "reviews/OWNER-modal-size-followup.md",
+    "exists": true
+  },
+  {
+    "from": "04-interaction-and-motion.md",
+    "target": "prototype/index.html",
+    "exists": true
+  },
+  {
+    "from": "04-interaction-and-motion.md",
+    "target": "06-implementation-handoff-draft.md",
+    "exists": true
+  },
+  {
+    "from": "04-interaction-and-motion.md",
+    "target": "validation/r1/edge-browser.json",
+    "exists": true
+  },
+  {
+    "from": "05-asset-coverage.md",
+    "target": "previews/asset-gallery.html",
+    "exists": true
+  },
+  {
+    "from": "05-asset-coverage.md",
+    "target": "spec/asset-manifest.json",
+    "exists": true
+  },
+  {
+    "from": "05-asset-coverage.md",
+    "target": "spec/node-crop-manifest.json",
+    "exists": true
+  },
+  {
+    "from": "05-asset-coverage.md",
+    "target": "validation/r1/review-notes.md",
+    "exists": true
+  },
+  {
+    "from": "completion.md",
+    "target": "validation/final-check-results.json",
+    "exists": true
+  },
+  {
+    "from": "completion.md",
+    "target": "validation/r1/audit-results.json",
+    "exists": true
+  },
+  {
+    "from": "completion.md",
+    "target": "validation/r1/review-notes.md",
+    "exists": true
+  },
+  {
+    "from": "completion.md",
+    "target": "spec/delivery-packages.json",
+    "exists": true
+  },
+  {
+    "from": "size-change-log.md",
+    "target": "reviews/OWNER-modal-size-followup.md",
+    "exists": true
+  },
+  {
+    "from": "validation/design-qa.md",
+    "target": "history-v1.0/design-qa.md",
+    "exists": true
+  },
+  {
+    "from": "validation/design-qa.md",
+    "target": "r1/review-notes.md",
+    "exists": true
+  },
+  {
+    "from": "validation/design-qa.md",
+    "target": "final-check-results.json",
+    "exists": true
+  },
+  {
+    "from": "validation/design-qa.md",
+    "target": "r1/audit-results.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "before-browser.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "edge-browser.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "contact-sheets/index.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "alpha/alpha-analysis.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "hd/bg-h0-r1-native-attempt.measurement.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "zoom-results.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "nine-slice-comparison.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "nine-slice-corner-comparison.png",
+    "exists": true
+  },
+  {
+    "from": "validation/r1/review-notes.md",
+    "target": "audit-attempt-02.json",
+    "exists": true
+  }
+]

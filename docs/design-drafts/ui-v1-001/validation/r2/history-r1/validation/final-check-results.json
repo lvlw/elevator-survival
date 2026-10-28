@@ -1,0 +1,6834 @@
+{
+  "kind": "DESIGN_FILE_AND_GEOMETRY_AUDIT_NOT_PRODUCTION_TESTS",
+  "baseline": "d7d395ea7c061e26f9244fcfd296c764785af16a",
+  "checks": [
+    {
+      "name": "25 named page families",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "24 nodes / 19 item definitions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P01-unselected",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P01-unselected",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P01-crow-scout",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P01-crow-scout",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P01-crow-engineer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P01-crow-engineer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P01-crow-survival",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P01-crow-survival",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P01-lamp-scout",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P01-lamp-scout",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P01-lamp-engineer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P01-lamp-engineer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P01-lamp-survival",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P01-lamp-survival",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P01-toolbox-scout",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P01-toolbox-scout",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P01-toolbox-engineer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P01-toolbox-engineer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P01-toolbox-survival",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P01-toolbox-survival",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P02-first-hub",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P02-first-hub",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P03-hospital",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P03-hospital",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P03-hotel",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P03-hotel",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P03-power",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P03-power",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P03-logistics",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P03-logistics",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P03-communication",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P03-communication",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P04-before",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P04-before",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P04-after",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P04-after",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P05-unsearched",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P05-unsearched",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P05-revealed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P05-revealed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P05-empty",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P05-empty",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P05-reopen",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P05-reopen",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-door",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-door",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-power",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-power",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-records",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-records",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-component",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-component",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-sample-cautious",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-sample-cautious",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-sample-direct",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-sample-direct",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-install",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-install",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P07-lin",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P07-lin",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P07-zhou",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P07-zhou",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P08-acquired",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P08-acquired",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P08-carried",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P08-carried",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P08-ground",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P08-ground",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P08-delivered",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P08-delivered",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P09-normal",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P09-normal",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P09-max",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P09-max",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P09-last-observed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P09-last-observed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P09-blocked",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P09-blocked",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P09-unknown-passability",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P09-unknown-passability",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P10-inventory",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P10-inventory",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P10-equipment",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P10-equipment",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P10-rotated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P10-rotated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P11-move",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P11-move",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P11-split",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P11-split",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P11-merge",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P11-merge",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P11-quick",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P11-quick",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P11-task-pickup",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P11-task-pickup",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P11-drop",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P11-drop",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P11-no-space",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P11-no-space",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P12-bandage",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P12-bandage",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P12-firstaid",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P12-firstaid",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P12-ration",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P12-ration",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P12-painkiller",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P12-painkiller",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P12-disinfectant",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P12-disinfectant",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P12-suppressant",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P12-suppressant",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P12-invalid",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P12-invalid",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P12-battle",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P12-battle",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P13-mechanical",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P13-mechanical",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P13-coat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P13-coat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P13-toolbox",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P13-toolbox",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P13-charge",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P13-charge",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P14-A",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P14-A",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P14-C",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P14-C",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P14-consequences",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P14-consequences",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P14-death",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P14-death",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P15-orderly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P15-orderly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P15-porter",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P15-porter",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P15-technician",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P15-technician",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P16-max",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P16-max",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P16-phases",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P16-phases",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P16-porter-phases",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P16-porter-phases",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P16-technician-phases",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P16-technician-phases",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P16-submitted",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P16-submitted",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P16-enemy-response",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P16-enemy-response",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P16-hit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P16-hit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P16-stage-change",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P16-stage-change",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P16-decision",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P16-decision",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P16-retreat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P16-retreat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P16-reduced",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P16-reduced",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P17-victory",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P17-victory",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P17-retreat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P17-retreat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P18-success",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P18-success",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P19-voluntary",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P19-voluntary",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P20-deadline",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P20-deadline",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P21-enemy-alive",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P21-enemy-alive",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P21-both-zero",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P21-both-zero",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P22-return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P22-return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P22-critical-drop",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P22-critical-drop",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P22-certain-death",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P22-certain-death",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P22-cancelled",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P22-cancelled",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P22-stale",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P22-stale",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P23-saved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P23-saved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P23-not-attempted",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P23-not-attempted",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P23-failed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P23-failed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P23-retry",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P23-retry",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P24-request",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P24-request",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P24-occupied",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P24-occupied",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P24-lost",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P24-lost",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P24-corrupt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P24-corrupt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P24-read-error",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P24-read-error",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P24-projection",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P24-projection",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P25-controls",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P25-controls",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P25-health",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P25-health",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P25-quick",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P25-quick",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-door-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-door-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-power-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-power-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-records-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-records-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-component-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-component-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-sample-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-sample-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-install-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-install-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P10-detail-sample",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P10-detail-sample",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P10-detail-pipe",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P10-detail-pipe",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P03-first-arrival",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P03-first-arrival",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-sample-cautious-last",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-sample-cautious-last",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-sample-cautious-broken",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-sample-cautious-broken",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-sample-cautious-unequipped",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-sample-cautious-unequipped",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-sample-direct-last",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-sample-direct-last",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-sample-direct-broken",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-sample-direct-broken",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P06-sample-direct-unequipped",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P06-sample-direct-unequipped",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P17-retreat-porter",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P17-retreat-porter",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "screen P17-retreat-technician",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "editable P17-retreat-technician",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg-c1-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg-c3-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg-communication-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg-h0-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg-h2-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg-h5-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg-h6-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg-h8-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg-hospital-control-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg-hotel-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg-l0-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg-logistics-office-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg-logistics-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg-power-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg-workshop-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode bg_elevator_hub_v01.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes bg_elevator_hub_v01.png",
+      "pass": true,
+      "detail": "5c8fe78f4bd67454137b1a1c783abe23beba8fcefc6520a3abf67855fa142d74"
+    },
+    {
+      "name": "image decode bg_emergency_hall_v01.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes bg_emergency_hall_v01.png",
+      "pass": true,
+      "detail": "55395363f8a91518feb6668299288542a21233895703382e28d8eea6c9653527"
+    },
+    {
+      "name": "image decode bg_isolation_corridor_v01.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes bg_isolation_corridor_v01.png",
+      "pass": true,
+      "detail": "ccee3cb40f131116adae3835c984b73002949eb094e2537f3b28a621393b41c3"
+    },
+    {
+      "name": "image decode closeup-component-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode closeup-install-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode closeup-power-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode closeup-records-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode enemy-porter-critical-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode enemy-porter-disabled-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode enemy-porter-heavy_wounded-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode enemy-porter-pristine-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode enemy-porter-wounded-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode enemy-technician-critical-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode enemy-technician-disabled-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode enemy-technician-heavy_wounded-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode enemy-technician-pristine-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode enemy-technician-wounded-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode enemy_infected_orderly_critical_v02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes enemy_infected_orderly_critical_v02.png",
+      "pass": true,
+      "detail": "1005537773f9aab7a8e5d84911e349bbe5a8a0025a14c13a7baa1ca4c33ebe00"
+    },
+    {
+      "name": "image decode enemy_infected_orderly_disabled_v02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes enemy_infected_orderly_disabled_v02.png",
+      "pass": true,
+      "detail": "4112dadacfc3c89da9b3cc7576fe3772a58a026cb74b21eb3fe451649f2f41e1"
+    },
+    {
+      "name": "image decode enemy_infected_orderly_heavy_wounded_v02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes enemy_infected_orderly_heavy_wounded_v02.png",
+      "pass": true,
+      "detail": "9d9dcce02310fea3fdf9c04ffb0db00edd8697771c19a1f119b0fdd9457e8d58"
+    },
+    {
+      "name": "image decode enemy_infected_orderly_pristine_v02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes enemy_infected_orderly_pristine_v02.png",
+      "pass": true,
+      "detail": "9fd480efca6c4dc8e02198cd25175e385de8f80efa64cbb11fce6372d2b76907"
+    },
+    {
+      "name": "image decode enemy_infected_orderly_wounded_v02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes enemy_infected_orderly_wounded_v02.png",
+      "pass": true,
+      "detail": "c00c5126bfc6967f0a34af94a2ccd32d6874bae3899d9e02ae189af8f662ed5b"
+    },
+    {
+      "name": "image decode event_isolation_fire_door_v02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes event_isolation_fire_door_v02.png",
+      "pass": true,
+      "detail": "37073ff3cd1d7769b96c617a3c83cb5c9815b4101fde6c4a4b49140800d9708d"
+    },
+    {
+      "name": "image decode fx-hit-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode icon_bandage_v02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes icon_bandage_v02.png",
+      "pass": true,
+      "detail": "573199ffec28fc6c7fb8a5a75eda8264c920dbc0a1e4b09a95a222c57cfa8c6c"
+    },
+    {
+      "name": "image decode icon_flashlight_v01.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes icon_flashlight_v01.png",
+      "pass": true,
+      "detail": "1edf5992c296c9011e547a3cdbae762613c1f2db3db74fe9ab9801cf90d9260c"
+    },
+    {
+      "name": "image decode icon_heavy_coat_v01.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes icon_heavy_coat_v01.png",
+      "pass": true,
+      "detail": "da3da5f6977dc4c35b0ebbef82196123595b60276407f15caf10671b8a480792"
+    },
+    {
+      "name": "image decode icon_isolation_access_card_v02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes icon_isolation_access_card_v02.png",
+      "pass": true,
+      "detail": "45f1e05a50817807c6ae32069b72b42b71dc7e9c613117392e50845d0a46868b"
+    },
+    {
+      "name": "image decode icon_metal_pipe_v01.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes icon_metal_pipe_v01.png",
+      "pass": true,
+      "detail": "3c1533215fb7f847dadefbccf4590aec4014692ba12fa71e57c624d1f32652a7"
+    },
+    {
+      "name": "image decode icon_sealed_pathogen_case_v02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes icon_sealed_pathogen_case_v02.png",
+      "pass": true,
+      "detail": "03ac0fcf92c1bb22a58e7d2c288a4d84b92507c24673b4d00139eef717df1104"
+    },
+    {
+      "name": "image decode item-battery-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode item-cloth-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode item-component-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode item-crowbar-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode item-disinfectant-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode item-electronic-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode item-firstaid-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode item-metal-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode item-module-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode item-painkiller-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode item-ration-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode item-suppressant-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode item-toolbox-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode npc-lin-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode npc-zhou-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode objective_pathogen_case_v02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline asset bytes objective_pathogen_case_v02.png",
+      "pass": true,
+      "detail": "0fd539ab383f9ab233ca105fd9491296368069270f63d1aa050f457b13a4a64a"
+    },
+    {
+      "name": "image decode panel-nine-slice-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode player-back-v1.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "image decode player-back-v2.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protected AGENTS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protected docs/01-game-design-v0.1.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protected docs/02-vertical-slice.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protected docs/03-architecture.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protected docs/05-design-decisions.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protected docs/09-ui-design-record.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protected docs/10-visual-asset-slot-audit.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protected docs/12-early-visual-direction-brainstorm-v0.1.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protected src/content/infected-world-v0.1/content.ts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protected src/content/infected-world-v0.1/config.ts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protected src/content/infected-world-v0.1/items.ts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protected src/core/residence-combat/player-query.ts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protected docs/engineering/world-integration/preplay/low-asset-ui-contract-v1.0.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protected docs/engineering/world-integration/player-query/player-query-contract-v1.0.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop geometry 1920x1080",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop geometry 1600x900",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop geometry 1440x900",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop geometry 1366x768",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "desktop geometry 1280x720",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P03-hospital-1600x900",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P09-normal-1600x900",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P10-inventory-1600x900",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P12-bandage-1600x900",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P15-orderly-1600x900",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P16-max-1600x900",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P23-failed-1600x900",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P24-corrupt-1600x900",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P03-hospital-1366x768",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P09-normal-1366x768",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P10-inventory-1366x768",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P12-bandage-1366x768",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P15-orderly-1366x768",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P16-max-1366x768",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P23-failed-1366x768",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P24-corrupt-1366x768",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P03-hospital-1280x720",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P11-task-pickup-1280x720",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P15-orderly-1280x720",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P22-certain-death-1280x720",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P03-hospital-1440x900",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P15-orderly-1440x900",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P03-hospital-2560x1440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P09-normal-2560x1440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P12-bandage-2560x1440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P15-orderly-2560x1440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P23-failed-2560x1440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P03-hospital-2560x1080",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P09-normal-2560x1080",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P12-bandage-2560x1080",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P15-orderly-2560x1080",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P23-failed-2560x1080",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P03-hospital-1366x650",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P09-normal-1366x650",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P12-bandage-1366x650",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P15-orderly-1366x650",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P23-failed-1366x650",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P03-hospital-1024x768",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P09-normal-1024x768",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P12-bandage-1024x768",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P15-orderly-1024x768",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P23-failed-1024x768",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P03-hospital-390x844",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P09-normal-390x844",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P12-bandage-390x844",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P15-orderly-390x844",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "responsive export P23-failed-390x844",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "loaded assets P01-crow-engineer-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P01-crow-scout-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P01-crow-survival-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P01-lamp-engineer-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P01-lamp-scout-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P01-lamp-survival-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P01-toolbox-engineer-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P01-toolbox-scout-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P01-toolbox-survival-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P01-unselected-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P02-first-hub-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P03-communication-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P03-first-arrival-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P03-hospital-1024x768",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P03-hospital-1280x720",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P03-hospital-1366x650",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P03-hospital-1366x768",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P03-hospital-1440x900",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P03-hospital-1600x900",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P03-hospital-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P03-hospital-2560x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P03-hospital-2560x1440",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "large shell P03-hospital-2560x1440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "loaded assets P03-hospital-390x844",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P03-hotel-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P03-logistics-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P03-power-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P04-after-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P04-before-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P05-empty-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P05-reopen-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P05-revealed-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P05-unsearched-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-component-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-component-result-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-door-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-door-result-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-install-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-install-result-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-power-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-power-result-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-records-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-records-result-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-sample-cautious-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-sample-cautious-broken-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-sample-cautious-last-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-sample-cautious-unequipped-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-sample-direct-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-sample-direct-broken-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-sample-direct-last-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-sample-direct-unequipped-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-sample-result-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P07-lin-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P07-zhou-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P08-acquired-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P08-carried-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P08-delivered-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P08-ground-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P09-blocked-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P09-last-observed-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P09-max-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P09-normal-1024x768",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P09-normal-1366x650",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P09-normal-1366x768",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P09-normal-1600x900",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P09-normal-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P09-normal-2560x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P09-normal-2560x1440",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "large shell P09-normal-2560x1440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "loaded assets P09-normal-390x844",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P09-unknown-passability-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P10-detail-pipe-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P10-detail-sample-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P10-equipment-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P10-inventory-1366x768",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P10-inventory-1600x900",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P10-inventory-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P10-inventory-2552x908",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P10-rotated-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P11-drop-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P11-merge-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P11-move-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P11-no-space-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P11-quick-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P11-split-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P11-task-pickup-1280x720",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P11-task-pickup-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-bandage-1024x768",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-bandage-1366x650",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-bandage-1366x768",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-bandage-1600x900",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-bandage-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-bandage-2560x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-bandage-2560x1440",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "large shell P12-bandage-2560x1440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "loaded assets P12-bandage-390x844",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-battle-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-disinfectant-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-firstaid-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-invalid-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-painkiller-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-ration-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-suppressant-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P13-charge-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P13-coat-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P13-mechanical-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P13-toolbox-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P14-A-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P14-C-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P14-consequences-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P14-death-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P15-orderly-1024x768",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P15-orderly-1280x720",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P15-orderly-1366x650",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P15-orderly-1366x768",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P15-orderly-1440x900",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P15-orderly-1600x900",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P15-orderly-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P15-orderly-2560x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P15-orderly-2560x1440",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "large shell P15-orderly-2560x1440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "loaded assets P15-orderly-390x844",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P15-porter-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P15-technician-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P16-decision-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P16-enemy-response-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P16-hit-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P16-max-1366x768",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P16-max-1600x900",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P16-max-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P16-phases-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P16-porter-phases-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P16-reduced-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P16-retreat-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P16-stage-change-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P16-submitted-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P16-technician-phases-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P17-retreat-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P17-retreat-porter-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P17-retreat-technician-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P17-victory-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P18-success-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P19-voluntary-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P20-deadline-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P21-both-zero-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P21-enemy-alive-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P22-cancelled-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P22-certain-death-1280x720",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P22-certain-death-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P22-critical-drop-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P22-return-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P22-stale-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P23-failed-1024x768",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P23-failed-1366x650",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P23-failed-1366x768",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P23-failed-1600x900",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P23-failed-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P23-failed-2560x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P23-failed-2560x1440",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "large shell P23-failed-2560x1440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "loaded assets P23-failed-390x844",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P23-not-attempted-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P23-retry-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P23-saved-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P24-corrupt-1366x768",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P24-corrupt-1600x900",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P24-corrupt-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P24-lost-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P24-occupied-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P24-projection-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P24-read-error-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P24-request-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P25-controls-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P25-health-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P25-quick-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "UTF8 00-owner-review.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 01-source-and-concept-corrections.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 02-page-state-matrix.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 03-dimension-contract.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 04-interaction-and-motion.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 05-asset-coverage.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 06-implementation-handoff-draft.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 completion.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 size-change-log.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 inputs/README-先读我.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 inputs/SHA256SUMS.txt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 inputs/SOURCE-BOUNDARIES.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 inputs/verify-dimensions.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 inputs/verify-task-package.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 inputs/任务书阅读版.html",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 inputs/发给设计会话.txt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 inputs/尺寸耦合合同-v1.0.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 inputs/尺寸预算算术检查.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 inputs/核验说明.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 inputs/第一版正式UI设计任务书-v1.0.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/asset-gallery.html",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/index.html",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 prototype/export.js",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 prototype/flow-context.js",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 prototype/index.html",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 prototype/nine-slice.js",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 prototype/registered-art.js",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 prototype/screens.js",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 prototype/ui.css",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 prototype/ui.js",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 reviews/OWNER-modal-size-followup.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 spec/asset-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 spec/content-readonly.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 spec/delivery-packages.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 spec/dimension-contract.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 spec/node-crop-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 spec/protected-sources.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 spec/registered-art.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 spec/screen-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 spec/screens-and-content.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/audit-attempt-01.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/build-review.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/design-qa.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/final-check-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/html-link-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/input-verification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/interaction-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/link-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/package-delivery.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/precommit-diff-checks.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/register-art.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/responsive-browser-runs.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/responsive-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/serve-design.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/staged-input-audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/verify-delivery.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/bg-c1-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/bg-c3-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/bg-communication-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/bg-h0-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/bg-h2-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/bg-h5-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/bg-h6-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/bg-h8-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/bg-hospital-control-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/bg-hotel-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/bg-l0-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/bg-logistics-office-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/bg-logistics-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/bg-power-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/bg-workshop-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/closeup-component-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/closeup-install-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/closeup-power-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/closeup-records-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/enemy-porter-critical-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/enemy-porter-disabled-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/enemy-porter-heavy_wounded-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/enemy-porter-pristine-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/enemy-porter-wounded-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/enemy-technician-critical-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/enemy-technician-disabled-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/enemy-technician-heavy_wounded-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/enemy-technician-pristine-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/enemy-technician-wounded-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/fx-hit-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/item-battery-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/item-cloth-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/item-component-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/item-crowbar-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/item-disinfectant-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/item-electronic-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/item-firstaid-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/item-metal-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/item-module-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/item-painkiller-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/item-ration-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/item-suppressant-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/item-toolbox-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/npc-lin-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/npc-zhou-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/panel-nine-slice-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/player-back-v1.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/assets/player-back-v2.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/enemy-porter-critical-v1.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/enemy-porter-disabled-v1.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/enemy-porter-heavy_wounded-v1.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/enemy-porter-pristine-v1.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/enemy-porter-wounded-v1.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/enemy-technician-critical-v1.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/enemy-technician-disabled-v1.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/enemy-technician-heavy_wounded-v1.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/enemy-technician-pristine-v1.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/enemy-technician-wounded-v1.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/enemy_infected_orderly_critical_v02.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/enemy_infected_orderly_disabled_v02.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/enemy_infected_orderly_heavy_wounded_v02.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/enemy_infected_orderly_pristine_v02.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/enemy_infected_orderly_wounded_v02.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/player-back-v1.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/registered/player-back-v2.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P01-crow-engineer-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P01-crow-scout-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P01-crow-survival-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P01-lamp-engineer-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P01-lamp-scout-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P01-lamp-survival-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P01-toolbox-engineer-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P01-toolbox-scout-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P01-toolbox-survival-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P01-unselected-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P02-first-hub-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-communication-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-first-arrival-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-hospital-1024x768.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-hospital-1280x720.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-hospital-1366x650.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-hospital-1366x768.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-hospital-1440x900.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-hospital-1600x900.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-hospital-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-hospital-2560x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-hospital-2560x1440.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-hospital-390x844.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-hotel-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-logistics-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P03-power-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P04-after-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P04-before-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P05-empty-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P05-reopen-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P05-revealed-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P05-unsearched-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-component-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-component-result-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-door-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-door-result-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-install-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-install-result-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-power-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-power-result-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-records-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-records-result-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-sample-cautious-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-sample-cautious-broken-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-sample-cautious-last-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-sample-cautious-unequipped-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-sample-direct-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-sample-direct-broken-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-sample-direct-last-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-sample-direct-unequipped-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-sample-result-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P07-lin-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P07-zhou-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P08-acquired-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P08-carried-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P08-delivered-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P08-ground-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P09-blocked-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P09-last-observed-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P09-max-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P09-normal-1024x768.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P09-normal-1366x650.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P09-normal-1366x768.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P09-normal-1600x900.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P09-normal-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P09-normal-2560x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P09-normal-2560x1440.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P09-normal-390x844.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P09-unknown-passability-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P10-detail-pipe-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P10-detail-sample-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P10-equipment-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P10-inventory-1366x768.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P10-inventory-1600x900.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P10-inventory-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P10-inventory-2552x908.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P10-rotated-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P11-drop-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P11-merge-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P11-move-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P11-no-space-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P11-quick-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P11-split-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P11-task-pickup-1280x720.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P11-task-pickup-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-bandage-1024x768.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-bandage-1366x650.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-bandage-1366x768.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-bandage-1600x900.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-bandage-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-bandage-2560x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-bandage-2560x1440.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-bandage-390x844.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-battle-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-disinfectant-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-firstaid-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-invalid-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-painkiller-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-ration-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-suppressant-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P13-charge-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P13-coat-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P13-mechanical-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P13-toolbox-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P14-A-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P14-C-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P14-consequences-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P14-death-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P15-orderly-1024x768.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P15-orderly-1280x720.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P15-orderly-1366x650.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P15-orderly-1366x768.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P15-orderly-1440x900.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P15-orderly-1600x900.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P15-orderly-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P15-orderly-2560x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P15-orderly-2560x1440.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P15-orderly-390x844.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P15-porter-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P15-technician-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P16-decision-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P16-enemy-response-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P16-hit-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P16-max-1366x768.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P16-max-1600x900.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P16-max-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P16-phases-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P16-porter-phases-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P16-reduced-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P16-retreat-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P16-stage-change-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P16-submitted-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P16-technician-phases-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P17-retreat-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P17-retreat-porter-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P17-retreat-technician-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P17-victory-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P18-success-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P19-voluntary-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P20-deadline-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P21-both-zero-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P21-enemy-alive-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P22-cancelled-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P22-certain-death-1280x720.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P22-certain-death-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P22-critical-drop-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P22-return-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P22-stale-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P23-failed-1024x768.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P23-failed-1366x650.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P23-failed-1366x768.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P23-failed-1600x900.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P23-failed-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P23-failed-2560x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P23-failed-2560x1440.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P23-failed-390x844.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P23-not-attempted-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P23-retry-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P23-saved-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P24-corrupt-1366x768.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P24-corrupt-1600x900.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P24-corrupt-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P24-lost-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P24-occupied-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P24-projection-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P24-read-error-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P24-request-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P25-controls-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P25-health-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P25-quick-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 inputs/references/manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P01-crow-engineer-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P01-crow-scout-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P01-crow-survival-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P01-lamp-engineer-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P01-lamp-scout-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P01-lamp-survival-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P01-toolbox-engineer-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P01-toolbox-scout-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P01-toolbox-survival-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P01-unselected-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P02-first-hub-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-communication-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-first-arrival-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-hospital-1024x768.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-hospital-1280x720.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-hospital-1366x650.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-hospital-1366x768.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-hospital-1440x900.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-hospital-1600x900.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-hospital-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-hospital-2560x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-hospital-2560x1440.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-hospital-390x844.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-hotel-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-logistics-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P03-power-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P04-after-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P04-before-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P05-empty-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P05-reopen-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P05-revealed-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P05-unsearched-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-component-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-component-result-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-door-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-door-result-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-install-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-install-result-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-power-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-power-result-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-records-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-records-result-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-sample-cautious-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-sample-cautious-broken-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-sample-cautious-last-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-sample-cautious-unequipped-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-sample-direct-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-sample-direct-broken-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-sample-direct-last-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-sample-direct-unequipped-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-sample-result-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P07-lin-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P07-zhou-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P08-acquired-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P08-carried-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P08-delivered-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P08-ground-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P09-blocked-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P09-last-observed-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P09-max-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P09-normal-1024x768.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P09-normal-1366x650.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P09-normal-1366x768.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P09-normal-1600x900.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P09-normal-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P09-normal-2560x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P09-normal-2560x1440.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P09-normal-390x844.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P09-unknown-passability-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P10-detail-pipe-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P10-detail-sample-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P10-equipment-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P10-inventory-1366x768.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P10-inventory-1600x900.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P10-inventory-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P10-inventory-2552x908.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P10-rotated-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P11-drop-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P11-merge-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P11-move-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P11-no-space-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P11-quick-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P11-split-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P11-task-pickup-1280x720.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P11-task-pickup-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-bandage-1024x768.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-bandage-1366x650.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-bandage-1366x768.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-bandage-1600x900.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-bandage-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-bandage-2560x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-bandage-2560x1440.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-bandage-390x844.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-battle-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-disinfectant-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-firstaid-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-invalid-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-painkiller-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-ration-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-suppressant-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P13-charge-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P13-coat-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P13-mechanical-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P13-toolbox-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P14-A-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P14-C-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P14-consequences-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P14-death-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P15-orderly-1024x768.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P15-orderly-1280x720.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P15-orderly-1366x650.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P15-orderly-1366x768.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P15-orderly-1440x900.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P15-orderly-1600x900.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P15-orderly-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P15-orderly-2560x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P15-orderly-2560x1440.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P15-orderly-390x844.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P15-porter-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P15-technician-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P16-decision-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P16-enemy-response-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P16-hit-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P16-max-1366x768.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P16-max-1600x900.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P16-max-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P16-phases-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P16-porter-phases-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P16-reduced-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P16-retreat-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P16-stage-change-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P16-submitted-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P16-technician-phases-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P17-retreat-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P17-retreat-porter-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P17-retreat-technician-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P17-victory-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P18-success-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P19-voluntary-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P20-deadline-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P21-both-zero-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P21-enemy-alive-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P22-cancelled-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P22-certain-death-1280x720.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P22-certain-death-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P22-critical-drop-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P22-return-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P22-stale-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P23-failed-1024x768.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P23-failed-1366x650.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P23-failed-1366x768.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P23-failed-1600x900.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P23-failed-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P23-failed-2560x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P23-failed-2560x1440.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P23-failed-390x844.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P23-not-attempted-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P23-retry-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P23-saved-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P24-corrupt-1366x768.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P24-corrupt-1600x900.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P24-corrupt-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P24-lost-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P24-occupied-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P24-projection-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P24-read-error-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P24-request-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P25-controls-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P25-health-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P25-quick-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/00-owner-review.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/asset-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/audit-attempt-01.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/completion.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/delivery-packages.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/design-qa.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/final-check-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/html-link-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/input-verification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/interaction-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/link-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/node-crop-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/precommit-diff-checks.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/responsive-browser-runs.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/responsive-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/screen-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/size-change-log.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/history-v1.0/staged-input-audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/after-browser.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/audit-attempt-02.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/audit-r1.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/audit-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/before-browser.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/diff-checks.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/edge-browser.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/final-run-log.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/history-byte-audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/html-link-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/input-verification.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/make-inspection-sheets.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/nine-slice-comparison.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/responsive-browser.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/review-notes.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/staged-audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/zoom-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/alpha/alpha-analysis.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/alpha/generation-prompt.txt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/alpha/player-back-v2-candidate.meta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/contact-sheets/index.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/hd/bg-h0-r1-native-attempt.measurement.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r1/hd/bg-h0-r1-native-attempt.prompt.txt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 00-owner-review.md previews/index.html",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 00-owner-review.md previews/asset-gallery.html",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 00-owner-review.md 02-page-state-matrix.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 00-owner-review.md validation/r1/review-notes.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 00-owner-review.md validation/r1/edge/03-depart-h0.jpg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 00-owner-review.md spec/delivery-packages.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 00-owner-review.md reviews/OWNER-modal-size-followup.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 00-owner-review.md 06-implementation-handoff-draft.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 01-source-and-concept-corrections.md inputs/README-先读我.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 01-source-and-concept-corrections.md ../../05-design-decisions.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 01-source-and-concept-corrections.md ../../02-vertical-slice.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 01-source-and-concept-corrections.md ../../01-game-design-v0.1.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 01-source-and-concept-corrections.md ../../03-architecture.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 01-source-and-concept-corrections.md ../../09-ui-design-record.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 01-source-and-concept-corrections.md ../../engineering/world-integration/preplay/low-asset-ui-contract-v1.0.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 01-source-and-concept-corrections.md spec/protected-sources.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md spec/screen-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P01-unselected-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P01-unselected",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P01-crow-scout-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P01-crow-scout",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P01-crow-engineer-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P01-crow-engineer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P01-crow-survival-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P01-crow-survival",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P01-lamp-scout-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P01-lamp-scout",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P01-lamp-engineer-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P01-lamp-engineer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P01-lamp-survival-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P01-lamp-survival",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P01-toolbox-scout-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P01-toolbox-scout",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P01-toolbox-engineer-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P01-toolbox-engineer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P01-toolbox-survival-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P01-toolbox-survival",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P02-first-hub-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P02-first-hub",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P03-hospital-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P03-hospital",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P03-hotel-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P03-hotel",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P03-power-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P03-power",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P03-logistics-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P03-logistics",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P03-communication-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P03-communication",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P04-before-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P04-before",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P04-after-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P04-after",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P05-unsearched-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P05-unsearched",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P05-revealed-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P05-revealed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P05-empty-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P05-empty",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P05-reopen-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P05-reopen",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-door-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-door",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-power-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-power",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-records-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-records",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-component-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-component",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-sample-cautious-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-sample-cautious",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-sample-direct-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-sample-direct",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-install-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-install",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P07-lin-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P07-lin",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P07-zhou-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P07-zhou",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P08-acquired-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P08-acquired",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P08-carried-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P08-carried",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P08-ground-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P08-ground",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P08-delivered-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P08-delivered",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P09-normal-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P09-normal",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P09-max-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P09-max",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P09-last-observed-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P09-last-observed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P09-blocked-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P09-blocked",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P09-unknown-passability-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P09-unknown-passability",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P10-inventory-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P10-inventory",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P10-equipment-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P10-equipment",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P10-rotated-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P10-rotated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P11-move-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P11-move",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P11-split-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P11-split",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P11-merge-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P11-merge",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P11-quick-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P11-quick",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P11-task-pickup-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P11-task-pickup",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P11-drop-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P11-drop",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P11-no-space-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P11-no-space",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P12-bandage-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P12-bandage",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P12-firstaid-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P12-firstaid",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P12-ration-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P12-ration",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P12-painkiller-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P12-painkiller",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P12-disinfectant-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P12-disinfectant",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P12-suppressant-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P12-suppressant",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P12-invalid-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P12-invalid",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P12-battle-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P12-battle",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P13-mechanical-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P13-mechanical",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P13-coat-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P13-coat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P13-toolbox-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P13-toolbox",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P13-charge-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P13-charge",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P14-A-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P14-A",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P14-C-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P14-C",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P14-consequences-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P14-consequences",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P14-death-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P14-death",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P15-orderly-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P15-orderly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P15-porter-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P15-porter",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P15-technician-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P15-technician",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P16-max-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P16-max",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P16-phases-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P16-phases",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P16-porter-phases-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P16-porter-phases",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P16-technician-phases-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P16-technician-phases",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P16-submitted-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P16-submitted",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P16-enemy-response-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P16-enemy-response",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P16-hit-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P16-hit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P16-stage-change-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P16-stage-change",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P16-decision-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P16-decision",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P16-retreat-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P16-retreat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P16-reduced-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P16-reduced",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P17-victory-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P17-victory",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P17-retreat-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P17-retreat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P18-success-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P18-success",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P19-voluntary-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P19-voluntary",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P20-deadline-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P20-deadline",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P21-enemy-alive-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P21-enemy-alive",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P21-both-zero-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P21-both-zero",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P22-return-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P22-return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P22-critical-drop-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P22-critical-drop",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P22-certain-death-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P22-certain-death",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P22-cancelled-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P22-cancelled",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P22-stale-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P22-stale",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P23-saved-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P23-saved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P23-not-attempted-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P23-not-attempted",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P23-failed-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P23-failed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P23-retry-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P23-retry",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P24-request-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P24-request",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P24-occupied-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P24-occupied",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P24-lost-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P24-lost",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P24-corrupt-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P24-corrupt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P24-read-error-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P24-read-error",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P24-projection-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P24-projection",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P25-controls-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P25-controls",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P25-health-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P25-health",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P25-quick-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P25-quick",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-door-result-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-door-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-power-result-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-power-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-records-result-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-records-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-component-result-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-component-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-sample-result-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-sample-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-install-result-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-install-result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P10-detail-sample-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P10-detail-sample",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P10-detail-pipe-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P10-detail-pipe",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P03-first-arrival-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P03-first-arrival",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-sample-cautious-last-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-sample-cautious-last",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-sample-cautious-broken-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-sample-cautious-broken",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-sample-cautious-unequipped-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-sample-cautious-unequipped",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-sample-direct-last-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-sample-direct-last",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-sample-direct-broken-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-sample-direct-broken",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P06-sample-direct-unequipped-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P06-sample-direct-unequipped",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P17-retreat-porter-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P17-retreat-porter",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md previews/screens/P17-retreat-technician-1920x1080.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md prototype/index.html?screen=P17-retreat-technician",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 02-page-state-matrix.md validation/responsive-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 03-dimension-contract.md validation/responsive-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 03-dimension-contract.md spec/registered-art.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 03-dimension-contract.md spec/node-crop-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 03-dimension-contract.md validation/r1/review-notes.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 03-dimension-contract.md reviews/OWNER-modal-size-followup.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 04-interaction-and-motion.md prototype/index.html",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 04-interaction-and-motion.md 06-implementation-handoff-draft.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 04-interaction-and-motion.md validation/r1/edge-browser.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 05-asset-coverage.md previews/asset-gallery.html",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 05-asset-coverage.md spec/asset-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 05-asset-coverage.md spec/node-crop-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 05-asset-coverage.md validation/r1/review-notes.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link completion.md validation/final-check-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link completion.md validation/r1/audit-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link completion.md validation/r1/review-notes.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link completion.md spec/delivery-packages.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link size-change-log.md reviews/OWNER-modal-size-followup.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link design-qa.md history-v1.0/design-qa.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link design-qa.md r1/review-notes.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link design-qa.md final-check-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link design-qa.md r1/audit-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md before-browser.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md edge-browser.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md contact-sheets/index.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md alpha/alpha-analysis.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md hd/bg-h0-r1-native-attempt.measurement.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md zoom-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md nine-slice-comparison.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md nine-slice-corner-comparison.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md audit-attempt-02.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "scope only ui-v1-001",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "no file over 100 MiB",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "passed": 1364,
+  "failed": 0,
+  "limitations": [
+    "This script does not prove visual quality or interaction.",
+    "Background DPR2 and residual alpha gates remain open.",
+    "Browser evidence and zoom status are independently recorded under validation/r1; audit counts do not prove completion."
+  ],
+  "productionTests": "NOT RUN"
+}

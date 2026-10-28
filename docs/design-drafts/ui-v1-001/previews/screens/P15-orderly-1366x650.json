@@ -1,11 +1,13 @@
 {
   "screen": "P15-orderly",
+  "version": "v1.2-r2",
   "viewport": [
     1366,
     650
   ],
   "pixelRatio": 1,
   "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+  "authority": "Native browser render; PNG geometry requires independent raster readback",
   "rects": [
     {
       "selector": ".shell",
@@ -15,6 +17,15 @@
       "h": 650,
       "scrollH": 650,
       "clientH": 650
+    },
+    {
+      "selector": ".hud",
+      "x": 12,
+      "y": 12,
+      "w": 1342,
+      "h": 62,
+      "scrollH": 60,
+      "clientH": 60
     },
     {
       "selector": ".center",
@@ -61,14 +72,53 @@
       "scrollH": 508,
       "clientH": 508
     },
+    null,
+    null,
+    {
+      "selector": ".right .inventory",
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "scrollH": 0,
+      "clientH": 0
+    },
+    null,
+    {
+      "selector": ".battle-actions",
+      "x": 22,
+      "y": 478,
+      "w": 1322,
+      "h": 66,
+      "scrollH": 66,
+      "clientH": 66
+    },
     {
       "selector": ".arena",
-      "x": 24,
-      "y": 200,
-      "w": 1318,
-      "h": 252,
-      "scrollH": 250,
-      "clientH": 250
+      "x": 22,
+      "y": 190,
+      "w": 1322,
+      "h": 282,
+      "scrollH": 280,
+      "clientH": 280
+    },
+    {
+      "selector": ".actor.player",
+      "x": 62.59375,
+      "y": 199.40625,
+      "w": 212.796875,
+      "h": 266,
+      "scrollH": 266,
+      "clientH": 266
+    },
+    {
+      "selector": ".actor.enemy",
+      "x": 1064.203125,
+      "y": 199.40625,
+      "w": 212.796875,
+      "h": 266,
+      "scrollH": 266,
+      "clientH": 266
     },
     {
       "selector": ".footer",
@@ -90,7 +140,9 @@
       "display": [
         1342,
         508
-      ]
+      ],
+      "fit": "cover",
+      "position": "50% 42%"
     },
     {
       "path": "../editable/assets/bg_isolation_corridor_v01.png",
@@ -99,9 +151,11 @@
         941
       ],
       "display": [
-        1316,
-        250
-      ]
+        1320,
+        280
+      ],
+      "fit": "cover",
+      "position": "50% 45%"
     },
     {
       "path": "../editable/assets/player-back-v2.png",
@@ -110,9 +164,11 @@
         1402
       ],
       "display": [
-        173.484375,
-        216.765625
-      ]
+        194.296875,
+        242.78125
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
@@ -121,9 +177,11 @@
         1280
       ],
       "display": [
-        171,
-        213.75
-      ]
+        191.515625,
+        239.390625
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/fx-hit-v1.png",
@@ -132,9 +190,11 @@
         1254
       ],
       "display": [
-        81.6875,
-        81.6875
-      ]
+        91.5,
+        91.5
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
@@ -145,7 +205,9 @@
       "display": [
         0,
         0
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-firstaid-v1.png",
@@ -156,7 +218,9 @@
       "display": [
         0,
         0
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-ration-v1.png",
@@ -167,7 +231,9 @@
       "display": [
         0,
         0
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-metal-v1.png",
@@ -178,7 +244,9 @@
       "display": [
         0,
         0
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-battery-v1.png",
@@ -189,7 +257,9 @@
       "display": [
         0,
         0
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_isolation_access_card_v02.png",
@@ -200,7 +270,9 @@
       "display": [
         0,
         0
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_bandage_v02.png",
@@ -211,7 +283,9 @@
       "display": [
         0,
         0
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     }
   ],
   "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",

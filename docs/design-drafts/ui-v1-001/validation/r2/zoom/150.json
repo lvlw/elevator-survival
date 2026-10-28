@@ -1,0 +1,792 @@
+{
+  "declared": "150% user confirmed",
+  "control": "real browser zoom, no viewport override",
+  "battle": {
+    "dpr": 1.5,
+    "images": [
+      {
+        "h": 941,
+        "src": "../editable/assets/bg_isolation_corridor_v01.png",
+        "w": 1672
+      },
+      {
+        "h": 941,
+        "src": "../editable/assets/bg_isolation_corridor_v01.png",
+        "w": 1672
+      },
+      {
+        "h": 1402,
+        "src": "../editable/assets/player-back-v2.png",
+        "w": 1122
+      },
+      {
+        "h": 1280,
+        "src": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+        "w": 1024
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/fx-hit-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+        "w": 512
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-firstaid-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-ration-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-metal-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-battery-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_isolation_access_card_v02.png",
+        "w": 512
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_bandage_v02.png",
+        "w": 512
+      }
+    ],
+    "rects": [
+      {
+        "clientH": 605,
+        "h": 605.3333740234375,
+        "scrollH": 605,
+        "selector": "shell  ",
+        "w": 1701.3333740234375,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "clientH": 61,
+        "h": 62,
+        "scrollH": 61,
+        "selector": "hud metal",
+        "w": 1677.3333740234375,
+        "x": 12,
+        "y": 12
+      },
+      {
+        "clientH": 463,
+        "h": 463.3333435058594,
+        "scrollH": 463,
+        "selector": "center",
+        "w": 1677.3333740234375,
+        "x": 12,
+        "y": 84
+      },
+      {
+        "clientH": 463,
+        "h": 463.3333435058594,
+        "scrollH": 463,
+        "selector": "panel battle ",
+        "w": 1677.3333740234375,
+        "x": 12,
+        "y": 84
+      },
+      {
+        "clientH": 236,
+        "h": 237.33334350585935,
+        "scrollH": 236,
+        "selector": "arena",
+        "w": 1657.3333740234375,
+        "x": 22,
+        "y": 190
+      },
+      {
+        "clientH": 224,
+        "h": 224.1979217529297,
+        "scrollH": 224,
+        "selector": "actor player",
+        "w": 179.3541717529297,
+        "x": 72.34375,
+        "y": 197.75
+      },
+      {
+        "clientH": 224,
+        "h": 224.1979217529297,
+        "scrollH": 224,
+        "selector": "actor enemy",
+        "w": 179.3541717529297,
+        "x": 1416.5208740234375,
+        "y": 197.75
+      },
+      {
+        "clientH": 66,
+        "h": 66,
+        "scrollH": 66,
+        "selector": "battle-actions",
+        "w": 1657.3333740234375,
+        "x": 22,
+        "y": 433.3333435058594
+      },
+      {
+        "clientH": 0,
+        "h": 0,
+        "scrollH": 0,
+        "selector": "sidebar right metal ",
+        "w": 0,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "clientH": 0,
+        "h": 0,
+        "scrollH": 0,
+        "selector": "inventory ",
+        "w": 0,
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "text": "电梯求生\n任务日 3 / 7\n目标\n携带\n生命\n8 / 12\n精力\n38 / 100\n饱食\n4 / 6\n身体\n医院 · 隔离走廊\n战斗进行中 · 查看不推进CTB\n放大\n减少动态\n相对行动顺序\n敌\n你\n等待你的选择\n你 · 生命8/12\n感染护工 · 完好\n当前意图：普通攻击\n速度正常 · 中等直接伤害\n普通攻击\n金属管耐久 −1\n标志行动\n真实额度与耐久\n防御\n姿态示范 · 不伤敌\n快捷绷带\n槽1 · ×1\n合法退却\n返回入场前节点\n精力在胜利或退却后按本场经过一次结算。\n通用受击FX\n演出示范 · 不计算伤害\n已保存\n防御动作示范；不造成敌人受击、不更换敌人战损。\n查看反馈\n独立样例 · P15-orderly\n设计状态索引导出可编辑SVG导出PNG图稿本地导出当前本地导出全部",
+    "viewport": [
+      1701,
+      605
+    ]
+  },
+  "defend": {
+    "dpr": 1.5,
+    "images": [
+      {
+        "h": 941,
+        "src": "../editable/assets/bg_isolation_corridor_v01.png",
+        "w": 1672
+      },
+      {
+        "h": 941,
+        "src": "../editable/assets/bg_isolation_corridor_v01.png",
+        "w": 1672
+      },
+      {
+        "h": 1402,
+        "src": "../editable/assets/player-back-v2.png",
+        "w": 1122
+      },
+      {
+        "h": 1280,
+        "src": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+        "w": 1024
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/fx-hit-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+        "w": 512
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-firstaid-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-ration-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-metal-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-battery-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_isolation_access_card_v02.png",
+        "w": 512
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_bandage_v02.png",
+        "w": 512
+      }
+    ],
+    "rects": [
+      {
+        "clientH": 605,
+        "h": 605.3333740234375,
+        "scrollH": 605,
+        "selector": "shell  ",
+        "w": 1701.3333740234375,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "clientH": 61,
+        "h": 62,
+        "scrollH": 61,
+        "selector": "hud metal",
+        "w": 1677.3333740234375,
+        "x": 12,
+        "y": 12
+      },
+      {
+        "clientH": 463,
+        "h": 463.3333435058594,
+        "scrollH": 463,
+        "selector": "center",
+        "w": 1677.3333740234375,
+        "x": 12,
+        "y": 84
+      },
+      {
+        "clientH": 463,
+        "h": 463.3333435058594,
+        "scrollH": 463,
+        "selector": "panel battle ",
+        "w": 1677.3333740234375,
+        "x": 12,
+        "y": 84
+      },
+      {
+        "clientH": 236,
+        "h": 237.33334350585935,
+        "scrollH": 236,
+        "selector": "arena defending",
+        "w": 1657.3333740234375,
+        "x": 22,
+        "y": 190
+      },
+      {
+        "clientH": 224,
+        "h": 224.1979217529297,
+        "scrollH": 224,
+        "selector": "actor player",
+        "w": 179.3541717529297,
+        "x": 72.34375,
+        "y": 197.75
+      },
+      {
+        "clientH": 224,
+        "h": 224.1979217529297,
+        "scrollH": 224,
+        "selector": "actor enemy",
+        "w": 179.3541717529297,
+        "x": 1416.5208740234375,
+        "y": 197.75
+      },
+      {
+        "clientH": 66,
+        "h": 66,
+        "scrollH": 66,
+        "selector": "battle-actions",
+        "w": 1657.3333740234375,
+        "x": 22,
+        "y": 433.3333435058594
+      },
+      {
+        "clientH": 0,
+        "h": 0,
+        "scrollH": 0,
+        "selector": "sidebar right metal ",
+        "w": 0,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "clientH": 0,
+        "h": 0,
+        "scrollH": 0,
+        "selector": "inventory ",
+        "w": 0,
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "text": "电梯求生\n任务日 3 / 7\n目标\n携带\n生命\n8 / 12\n精力\n38 / 100\n饱食\n4 / 6\n身体\n医院 · 隔离走廊\n战斗进行中 · 查看不推进CTB\n放大\n减少动态\n相对行动顺序\n敌\n你\n防御姿态 · 无敌人受击\n你 · 生命8/12\n感染护工 · 完好\n当前意图：普通攻击\n速度正常 · 中等直接伤害\n普通攻击\n金属管耐久 −1\n标志行动\n真实额度与耐久\n防御\n姿态示范 · 不伤敌\n快捷绷带\n槽1 · ×1\n合法退却\n返回入场前节点\n精力在胜利或退却后按本场经过一次结算。\n通用受击FX\n演出示范 · 不计算伤害\n已保存\n防御动作示范；不造成敌人受击、不更换敌人战损。\n查看反馈\n独立样例 · P15-orderly\n设计状态索引导出可编辑SVG导出PNG图稿本地导出当前本地导出全部",
+    "viewport": [
+      1701,
+      605
+    ]
+  },
+  "max": {
+    "dpr": 1.5,
+    "images": [
+      {
+        "h": 941,
+        "src": "../editable/assets/bg_isolation_corridor_v01.png",
+        "w": 1672
+      },
+      {
+        "h": 941,
+        "src": "../editable/assets/bg_isolation_corridor_v01.png",
+        "w": 1672
+      },
+      {
+        "h": 1402,
+        "src": "../editable/assets/player-back-v2.png",
+        "w": 1122
+      },
+      {
+        "h": 1280,
+        "src": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+        "w": 1024
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/fx-hit-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+        "w": 512
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-firstaid-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-ration-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-metal-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-battery-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_isolation_access_card_v02.png",
+        "w": 512
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_bandage_v02.png",
+        "w": 512
+      }
+    ],
+    "rects": [
+      {
+        "clientH": 605,
+        "h": 605.3333740234375,
+        "scrollH": 605,
+        "selector": "shell  ",
+        "w": 1701.3333740234375,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "clientH": 61,
+        "h": 62,
+        "scrollH": 61,
+        "selector": "hud metal",
+        "w": 1677.3333740234375,
+        "x": 12,
+        "y": 12
+      },
+      {
+        "clientH": 463,
+        "h": 463.3333435058594,
+        "scrollH": 463,
+        "selector": "center",
+        "w": 1677.3333740234375,
+        "x": 12,
+        "y": 84
+      },
+      {
+        "clientH": 463,
+        "h": 463.3333435058594,
+        "scrollH": 463,
+        "selector": "panel battle max",
+        "w": 1677.3333740234375,
+        "x": 12,
+        "y": 84
+      },
+      {
+        "clientH": 236,
+        "h": 237.33334350585935,
+        "scrollH": 236,
+        "selector": "arena ",
+        "w": 1657.3333740234375,
+        "x": 22,
+        "y": 190
+      },
+      {
+        "clientH": 224,
+        "h": 224.1979217529297,
+        "scrollH": 224,
+        "selector": "actor player",
+        "w": 179.3541717529297,
+        "x": 72.34375,
+        "y": 197.75
+      },
+      {
+        "clientH": 224,
+        "h": 224.1979217529297,
+        "scrollH": 224,
+        "selector": "actor enemy",
+        "w": 179.3541717529297,
+        "x": 1416.5208740234375,
+        "y": 197.75
+      },
+      {
+        "clientH": 66,
+        "h": 66,
+        "scrollH": 66,
+        "selector": "battle-actions",
+        "w": 1657.3333740234375,
+        "x": 22,
+        "y": 433.3333435058594
+      },
+      {
+        "clientH": 0,
+        "h": 0,
+        "scrollH": 0,
+        "selector": "sidebar right metal ",
+        "w": 0,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "clientH": 0,
+        "h": 0,
+        "scrollH": 0,
+        "selector": "inventory ",
+        "w": 0,
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "text": "电梯求生\n任务日 3 / 7\n目标\n携带\n生命\n8 / 12\n精力\n38 / 100\n饱食\n4 / 6\n身体\n医院 · 隔离走廊\n战斗进行中 · 查看不推进CTB\n还原\n减少动态\n相对行动顺序\n敌\n你\n等待你的选择\n你 · 生命8/12\n感染护工 · 完好\n当前意图：普通攻击\n速度正常 · 中等直接伤害\n普通攻击\n金属管耐久 −1\n标志行动\n真实额度与耐久\n防御\n姿态示范 · 不伤敌\n快捷绷带\n槽1 · ×1\n合法退却\n返回入场前节点\n精力在胜利或退却后按本场经过一次结算。\n通用受击FX\n演出示范 · 不计算伤害\n已保存\n防御动作示范；不造成敌人受击、不更换敌人战损。\n查看反馈\n独立样例 · P15-orderly\n设计状态索引导出可编辑SVG导出PNG图稿本地导出当前本地导出全部",
+    "viewport": [
+      1701,
+      605
+    ]
+  },
+  "sample": {
+    "dpr": 1.5,
+    "images": [
+      {
+        "h": 941,
+        "src": "../editable/assets/bg-h5-v1.png",
+        "w": 1672
+      },
+      {
+        "h": 1024,
+        "src": "../editable/assets/objective_pathogen_case_v02.png",
+        "w": 1024
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_bandage_v02.png",
+        "w": 512
+      }
+    ],
+    "rects": [
+      {
+        "clientH": 605,
+        "h": 605.3333740234375,
+        "scrollH": 605,
+        "selector": "shell  ",
+        "w": 1701.3333740234375,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "clientH": 61,
+        "h": 62,
+        "scrollH": 61,
+        "selector": "hud metal",
+        "w": 1677.3333740234375,
+        "x": 12,
+        "y": 12
+      },
+      {
+        "clientH": 463,
+        "h": 463.3333435058594,
+        "scrollH": 463,
+        "selector": "center",
+        "w": 1677.3333740234375,
+        "x": 12,
+        "y": 84
+      },
+      {
+        "clientH": 430,
+        "h": 431.3333435058594,
+        "scrollH": 430,
+        "selector": "panel tier-parameters kind-node ",
+        "w": 880,
+        "x": 410.6666870117187,
+        "y": 100
+      },
+      {
+        "clientH": 308,
+        "h": 308.40625,
+        "scrollH": 471,
+        "selector": "panel-body",
+        "w": 878.6666870117188,
+        "x": 411.3333435058594,
+        "y": 150.6666717529297
+      },
+      {
+        "clientH": 71,
+        "h": 71.59375,
+        "scrollH": 71,
+        "selector": "panel-footer",
+        "w": 878.6666870117188,
+        "x": 411.3333435058594,
+        "y": 459.0729370117187
+      },
+      {
+        "clientH": 0,
+        "h": 0,
+        "scrollH": 0,
+        "selector": "sidebar right metal ",
+        "w": 0,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "clientH": 0,
+        "h": 0,
+        "scrollH": 0,
+        "selector": "inventory ",
+        "w": 0,
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "text": "电梯求生\n任务日 3 / 7\n目标\n携带\n生命\n8 / 12\n精力\n38 / 100\n饱食\n4 / 6\n身体\n冷藏室 · 谨慎提样\n放大\n收起\n已知支付 · 谨慎方案\n基础精力\n10\n护具\n厚实外套\n完整度\n12/12 → 11/12（请求1，实际1）\n样本放置\n明确2×2格位 · 原实例一次取得\n\n护具不参与不自动禁止合法提样。暴露结果未知；不展示概率或隐藏答案。\n\n医院 / 冷藏室\n\n谨慎提取指定样本\n明确操作方案\n请选择\n谨慎提取 · 基础10精力\n直接提取 · 基础6精力\n目标位置\n请选择\n背包第1列第1行 · 2×2\n背包第4列第2行 · 2×2\n需要当前合法来源、真实防护状态和明确2×2格位。\n\n当前已知成本见方案；完整意图一次执行。低精力不能代替其他条件。\n\n请明确所需参数\n执行所选操作\n已保存\n当前地点可自由查看；查看详情不消耗精力。\n查看反馈\n独立样例 · P06-sample-cautious\n设计状态索引导出可编辑SVG导出PNG图稿本地导出当前本地导出全部",
+    "viewport": [
+      1701,
+      605
+    ]
+  },
+  "sampleSelected": {
+    "dpr": 1.5,
+    "images": [
+      {
+        "h": 941,
+        "src": "../editable/assets/bg-h5-v1.png",
+        "w": 1672
+      },
+      {
+        "h": 1024,
+        "src": "../editable/assets/objective_pathogen_case_v02.png",
+        "w": 1024
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_bandage_v02.png",
+        "w": 512
+      }
+    ],
+    "rects": [
+      {
+        "clientH": 605,
+        "h": 605.3333740234375,
+        "scrollH": 605,
+        "selector": "shell  ",
+        "w": 1701.3333740234375,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "clientH": 61,
+        "h": 62,
+        "scrollH": 61,
+        "selector": "hud metal",
+        "w": 1677.3333740234375,
+        "x": 12,
+        "y": 12
+      },
+      {
+        "clientH": 463,
+        "h": 463.3333435058594,
+        "scrollH": 463,
+        "selector": "center",
+        "w": 1677.3333740234375,
+        "x": 12,
+        "y": 84
+      },
+      {
+        "clientH": 430,
+        "h": 431.3333435058594,
+        "scrollH": 430,
+        "selector": "panel tier-parameters kind-node ",
+        "w": 880,
+        "x": 410.6666870117187,
+        "y": 100
+      },
+      {
+        "clientH": 308,
+        "h": 308.40625,
+        "scrollH": 471,
+        "selector": "panel-body",
+        "w": 878.6666870117188,
+        "x": 411.3333435058594,
+        "y": 150.6666717529297
+      },
+      {
+        "clientH": 71,
+        "h": 71.59375,
+        "scrollH": 71,
+        "selector": "panel-footer",
+        "w": 878.6666870117188,
+        "x": 411.3333435058594,
+        "y": 459.0729370117187
+      },
+      {
+        "clientH": 0,
+        "h": 0,
+        "scrollH": 0,
+        "selector": "sidebar right metal ",
+        "w": 0,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "clientH": 0,
+        "h": 0,
+        "scrollH": 0,
+        "selector": "inventory ",
+        "w": 0,
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "text": "电梯求生\n任务日 3 / 7\n目标\n携带\n生命\n8 / 12\n精力\n38 / 100\n饱食\n4 / 6\n身体\n冷藏室 · 谨慎提样\n放大\n收起\n已知支付 · 直接方案\n基础精力\n6\n护具\n厚实外套\n完整度\n12/12 → 11/12（请求1，实际1）\n样本放置\n明确2×2格位 · 原实例一次取得\n\n护具不参与不自动禁止合法提样。暴露结果未知；不展示概率或隐藏答案。\n\n医院 / 冷藏室\n\n谨慎提取指定样本\n明确操作方案\n请选择\n谨慎提取 · 基础10精力\n直接提取 · 基础6精力\n目标位置\n请选择\n背包第1列第1行 · 2×2\n背包第4列第2行 · 2×2\n需要当前合法来源、真实防护状态和明确2×2格位。\n\n当前已知成本见方案；完整意图一次执行。低精力不能代替其他条件。\n\n请明确所需参数\n执行所选操作\n已保存\n当前地点可自由查看；查看详情不消耗精力。\n查看反馈\n独立样例 · P06-sample-cautious\n设计状态索引导出可编辑SVG导出PNG图稿本地导出当前本地导出全部",
+    "viewport": [
+      1701,
+      605
+    ]
+  },
+  "scroll": {
+    "dpr": 1.5,
+    "images": [
+      {
+        "h": 941,
+        "src": "../editable/assets/bg-h5-v1.png",
+        "w": 1672
+      },
+      {
+        "h": 1024,
+        "src": "../editable/assets/objective_pathogen_case_v02.png",
+        "w": 1024
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_bandage_v02.png",
+        "w": 512
+      }
+    ],
+    "rects": [
+      {
+        "clientH": 605,
+        "h": 605.3333740234375,
+        "scrollH": 605,
+        "selector": "shell  ",
+        "w": 1701.3333740234375,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "clientH": 61,
+        "h": 62,
+        "scrollH": 61,
+        "selector": "hud metal",
+        "w": 1677.3333740234375,
+        "x": 12,
+        "y": 12
+      },
+      {
+        "clientH": 463,
+        "h": 463.3333435058594,
+        "scrollH": 463,
+        "selector": "center",
+        "w": 1677.3333740234375,
+        "x": 12,
+        "y": 84
+      },
+      {
+        "clientH": 430,
+        "h": 431.3333435058594,
+        "scrollH": 430,
+        "selector": "panel tier-parameters kind-node ",
+        "w": 880,
+        "x": 410.6666870117187,
+        "y": 100
+      },
+      {
+        "clientH": 308,
+        "h": 308.40625,
+        "scrollH": 471,
+        "selector": "panel-body",
+        "w": 878.6666870117188,
+        "x": 411.3333435058594,
+        "y": 150.6666717529297
+      },
+      {
+        "clientH": 71,
+        "h": 71.59375,
+        "scrollH": 71,
+        "selector": "panel-footer",
+        "w": 878.6666870117188,
+        "x": 411.3333435058594,
+        "y": 459.0729370117187
+      },
+      {
+        "clientH": 0,
+        "h": 0,
+        "scrollH": 0,
+        "selector": "sidebar right metal ",
+        "w": 0,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "clientH": 0,
+        "h": 0,
+        "scrollH": 0,
+        "selector": "inventory ",
+        "w": 0,
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "text": "电梯求生\n任务日 3 / 7\n目标\n携带\n生命\n8 / 12\n精力\n38 / 100\n饱食\n4 / 6\n身体\n冷藏室 · 谨慎提样\n放大\n收起\n已知支付 · 直接方案\n基础精力\n6\n护具\n厚实外套\n完整度\n12/12 → 11/12（请求1，实际1）\n样本放置\n明确2×2格位 · 原实例一次取得\n\n护具不参与不自动禁止合法提样。暴露结果未知；不展示概率或隐藏答案。\n\n医院 / 冷藏室\n\n谨慎提取指定样本\n明确操作方案\n请选择\n谨慎提取 · 基础10精力\n直接提取 · 基础6精力\n目标位置\n请选择\n背包第1列第1行 · 2×2\n背包第4列第2行 · 2×2\n需要当前合法来源、真实防护状态和明确2×2格位。\n\n当前已知成本见方案；完整意图一次执行。低精力不能代替其他条件。\n\n请明确所需参数\n执行所选操作\n已保存\n当前地点可自由查看；查看详情不消耗精力。\n查看反馈\n独立样例 · P06-sample-cautious\n设计状态索引导出可编辑SVG导出PNG图稿本地导出当前本地导出全部",
+    "viewport": [
+      1701,
+      605
+    ]
+  },
+  "scrollPosition": {
+    "client": 308,
+    "full": 471,
+    "top": 162
+  }
+}

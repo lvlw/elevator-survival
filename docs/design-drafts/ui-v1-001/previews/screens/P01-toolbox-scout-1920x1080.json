@@ -1,11 +1,13 @@
 {
   "screen": "P01-toolbox-scout",
+  "version": "v1.2-r2",
   "viewport": [
     1920,
     1080
   ],
   "pixelRatio": 1,
   "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+  "authority": "Native browser render; PNG geometry requires independent raster readback",
   "rects": [
     {
       "selector": ".shell",
@@ -15,6 +17,15 @@
       "h": 1080,
       "scrollH": 1080,
       "clientH": 1080
+    },
+    {
+      "selector": ".hud",
+      "x": 24,
+      "y": 24,
+      "w": 1872,
+      "h": 72,
+      "scrollH": 70,
+      "clientH": 70
     },
     {
       "selector": ".center",
@@ -53,6 +64,29 @@
       "scrollH": 886,
       "clientH": 886
     },
+    {
+      "selector": ".panel-body",
+      "x": 321,
+      "y": 163,
+      "w": 1198,
+      "h": 763.40625,
+      "scrollH": 763,
+      "clientH": 763
+    },
+    null,
+    null,
+    {
+      "selector": ".panel-footer",
+      "x": 321,
+      "y": 926.40625,
+      "w": 1198,
+      "h": 72.59375,
+      "scrollH": 72,
+      "clientH": 72
+    },
+    null,
+    null,
+    null,
     null,
     {
       "selector": ".footer",
@@ -74,7 +108,9 @@
       "display": [
         1200,
         888
-      ]
+      ],
+      "fit": "cover",
+      "position": "50% 42%"
     },
     {
       "path": "../editable/assets/item-crowbar-v1.png",
@@ -83,9 +119,11 @@
         1254
       ],
       "display": [
-        340.328125,
+        343,
         160
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_flashlight_v01.png",
@@ -94,9 +132,11 @@
         512
       ],
       "display": [
-        340.328125,
+        343,
         160
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-toolbox-v1.png",
@@ -105,9 +145,11 @@
         1254
       ],
       "display": [
-        340.34375,
+        343,
         160
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_metal_pipe_v01.png",
@@ -118,7 +160,9 @@
       "display": [
         54,
         54
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_heavy_coat_v01.png",
@@ -129,7 +173,9 @@
       "display": [
         54,
         54
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-toolbox-v1.png",
@@ -140,7 +186,9 @@
       "display": [
         54,
         54
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_bandage_v02.png",
@@ -151,7 +199,9 @@
       "display": [
         42,
         42
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     }
   ],
   "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",

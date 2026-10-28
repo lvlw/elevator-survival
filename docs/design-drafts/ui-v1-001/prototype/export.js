@@ -2,6 +2,8 @@ const exportAssetCache=new Map();
 async function exportData(url){if(!exportAssetCache.has(url)){exportAssetCache.set(url,(async()=>{const response=await fetch(url);if(!response.ok)throw new Error('asset '+response.status);const blob=await response.blob();return new Promise(resolve=>{const f=new FileReader();f.onload=()=>resolve(f.result);f.readAsDataURL(blob);});})());}return exportAssetCache.get(url);}
 /* Authoring-only export. It serializes this editable DOM; never game state/storage. */
 async function exportDesign(format='png',local=false){
+ await document.fonts.ready;
+ await Promise.all(Array.from(document.querySelectorAll('.shell img')).map(i=>i.decode()));
  const root=document.querySelector('.shell'), box=root.getBoundingClientRect();
  const clone=root.cloneNode(true);const originals=[root,...root.querySelectorAll('*')],copies=[clone,...clone.querySelectorAll('*')];
  for(let i=0;i<originals.length;i++){
@@ -11,6 +13,16 @@ async function exportDesign(format='png',local=false){
    css=css.replace(st.borderImageSource,`url("${data}")`);
   }
   copies[i].setAttribute('style',css);
+  // getComputedStyle resolves grid-item auto margins to 0px. Preserve the
+  // computed keyword (Typed OM), otherwise the exported bag shifts left.
+  const typed=originals[i].computedStyleMap?.();
+  for(const axis of ['inline','block']){
+   copies[i].style.removeProperty('margin-'+axis+'-start');
+   copies[i].style.removeProperty('margin-'+axis+'-end');
+  }
+  for(const side of ['top','right','bottom','left']){
+   if(typed?.get('margin-'+side)?.toString()==='auto')copies[i].style.setProperty('margin-'+side,'auto');
+  }
   if(originals[i].tagName.toLowerCase()==='image'&&originals[i].getAttribute('href'))copies[i].setAttribute('href',await exportData(originals[i].getAttribute('href')));
   if(originals[i] instanceof HTMLImageElement&&originals[i].complete&&originals[i].naturalWidth){
    const url=await exportData(originals[i].src);copies[i].setAttribute('src',url);
@@ -30,7 +42,7 @@ async function exportDesign(format='png',local=false){
   for(let i=0;i<originals.length;i++){if(originals[i] instanceof HTMLImageElement)copies[i].setAttribute('src','../assets/'+originals[i].src.split('/').pop());if(originals[i].tagName.toLowerCase()==='image'&&originals[i].getAttribute('href'))copies[i].setAttribute('href','../assets/'+originals[i].getAttribute('href').split('/').pop());if(getComputedStyle(originals[i]).borderImageSource.startsWith('url('))copies[i].style.borderImageSource='url(../assets/panel-nine-slice-v1.png)';}
   const linked=svg.replace(markup,new XMLSerializer().serializeToString(clone));
   await deliver(new Blob([linked],{type:'image/svg+xml'}),outName+'.svg',true);
-  const geometry={screen:active.id,viewport:[innerWidth,innerHeight],pixelRatio:devicePixelRatio,kind:'ACTUAL_DOM_EXPORT_NOT_PRODUCTION',rects:['.shell','.center','.sidebar.left','.sidebar.right','.inventory','.panel','.arena','.footer'].map(sel=>{const e=document.querySelector(sel);if(!e)return null;const r=e.getBoundingClientRect();return {selector:sel,x:r.x,y:r.y,w:r.width,h:r.height,scrollH:e.scrollHeight,clientH:e.clientHeight};}),assets:Array.from(root.querySelectorAll('img')).map(i=>({path:i.getAttribute('src'),native:[i.naturalWidth,i.naturalHeight],display:[i.getBoundingClientRect().width,i.getBoundingClientRect().height]})),font:getComputedStyle(root).fontFamily,missing:Array.from(root.querySelectorAll('img')).filter(i=>!i.naturalWidth).map(i=>i.getAttribute('src'))};
+  const geometry={screen:active.id,version:'v1.2-r2',viewport:[innerWidth,innerHeight],pixelRatio:devicePixelRatio,kind:'ACTUAL_DOM_EXPORT_NOT_PRODUCTION',authority:'Native browser render; PNG geometry requires independent raster readback',rects:['.shell','.hud','.center','.sidebar.left','.sidebar.right','.inventory','.panel','.panel-body','.panel .inventory','.right .inventory','.panel-footer','.battle-actions','.arena','.actor.player','.actor.enemy','.footer'].map(sel=>{const e=document.querySelector(sel);if(!e)return null;const r=e.getBoundingClientRect();return {selector:sel,x:r.x,y:r.y,w:r.width,h:r.height,scrollH:e.scrollHeight,clientH:e.clientHeight};}),assets:Array.from(root.querySelectorAll('img')).map(i=>({path:i.getAttribute('src'),native:[i.naturalWidth,i.naturalHeight],display:[i.getBoundingClientRect().width,i.getBoundingClientRect().height],fit:getComputedStyle(i).objectFit,position:getComputedStyle(i).objectPosition})),font:getComputedStyle(root).fontFamily,missing:Array.from(root.querySelectorAll('img')).filter(i=>!i.naturalWidth).map(i=>i.getAttribute('src'))};
   await deliver(new Blob([JSON.stringify(geometry,null,2)+'\n'],{type:'application/json'}),outName+'.json',true);
  }
 }
@@ -40,3 +52,5 @@ document.addEventListener('click',e=>{if(e.target.dataset.export)exportDesign(e.
 document.addEventListener('click',async e=>{if(!e.target.dataset.batch)return;e.target.disabled=true;const family=e.target.dataset.batch;const screens=family==='all'?SCREENS:SCREENS.filter(s=>s.family===family);let completed=0;for(const s of screens){navigate(s.id);await Promise.all(Array.from(document.querySelectorAll('.shell img')).map(i=>i.decode().catch(()=>{})));await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));try{await exportDesign('png',true);completed++;}catch(err){toast('导出中止：'+s.id+' '+err.message);return;}}toast('本地设计导出完成：'+completed+'幅');});
 
 document.addEventListener('click',e=>{if(e.target.dataset.localExport)exportDesign('png',true).then(()=>toast('本地当前图稿已导出')).catch(err=>toast('导出失败：'+err.message));});
+
+if(new URLSearchParams(location.search).get('offline')==='1'){document.querySelectorAll('[data-batch],[data-local-export]').forEach(b=>{b.disabled=true;b.title='离线只读审阅：不向服务器写入图稿';});}

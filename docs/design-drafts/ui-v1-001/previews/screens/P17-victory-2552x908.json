@@ -1,0 +1,225 @@
+{
+  "screen": "P17-victory",
+  "version": "v1.2-r2",
+  "viewport": [
+    2552,
+    908
+  ],
+  "pixelRatio": 1,
+  "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+  "authority": "Native browser render; PNG geometry requires independent raster readback",
+  "rects": [
+    {
+      "selector": ".shell",
+      "x": 316,
+      "y": 0,
+      "w": 1920,
+      "h": 908,
+      "scrollH": 908,
+      "clientH": 908
+    },
+    {
+      "selector": ".hud",
+      "x": 340,
+      "y": 24,
+      "w": 1872,
+      "h": 72,
+      "scrollH": 70,
+      "clientH": 70
+    },
+    {
+      "selector": ".center",
+      "x": 636,
+      "y": 112,
+      "w": 1200,
+      "h": 716,
+      "scrollH": 716,
+      "clientH": 716
+    },
+    {
+      "selector": ".sidebar.left",
+      "x": 340,
+      "y": 112,
+      "w": 280,
+      "h": 716,
+      "scrollH": 773,
+      "clientH": 714
+    },
+    {
+      "selector": ".sidebar.right",
+      "x": 1852,
+      "y": 112,
+      "w": 360,
+      "h": 716,
+      "scrollH": 738,
+      "clientH": 714
+    },
+    {
+      "selector": ".inventory",
+      "x": 1869,
+      "y": 307.96875,
+      "w": 326,
+      "h": 216,
+      "scrollH": 216,
+      "clientH": 216
+    },
+    {
+      "selector": ".panel",
+      "x": 836,
+      "y": 194.0078125,
+      "w": 800,
+      "h": 551.984375,
+      "scrollH": 550,
+      "clientH": 550
+    },
+    {
+      "selector": ".panel-body",
+      "x": 837,
+      "y": 245.0078125,
+      "w": 798,
+      "h": 427.390625,
+      "scrollH": 427,
+      "clientH": 427
+    },
+    null,
+    {
+      "selector": ".right .inventory",
+      "x": 1869,
+      "y": 307.96875,
+      "w": 326,
+      "h": 216,
+      "scrollH": 216,
+      "clientH": 216
+    },
+    {
+      "selector": ".panel-footer",
+      "x": 837,
+      "y": 672.3984375,
+      "w": 798,
+      "h": 72.59375,
+      "scrollH": 72,
+      "clientH": 72
+    },
+    null,
+    null,
+    null,
+    null,
+    {
+      "selector": ".footer",
+      "x": 340,
+      "y": 844,
+      "w": 1872,
+      "h": 40,
+      "scrollH": 38,
+      "clientH": 38
+    }
+  ],
+  "assets": [
+    {
+      "path": "../editable/assets/bg_isolation_corridor_v01.png",
+      "native": [
+        1672,
+        941
+      ],
+      "display": [
+        1200,
+        716
+      ],
+      "fit": "cover",
+      "position": "50% 42%"
+    },
+    {
+      "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        96,
+        96
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
+    },
+    {
+      "path": "../editable/assets/item-firstaid-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        41,
+        96
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
+    },
+    {
+      "path": "../editable/assets/item-ration-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        41,
+        41
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
+    },
+    {
+      "path": "../editable/assets/item-metal-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        41,
+        41
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
+    },
+    {
+      "path": "../editable/assets/item-battery-v1.png",
+      "native": [
+        1254,
+        1254
+      ],
+      "display": [
+        41,
+        41
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
+    },
+    {
+      "path": "../editable/assets/icon_isolation_access_card_v02.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        41,
+        41
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
+    },
+    {
+      "path": "../editable/assets/icon_bandage_v02.png",
+      "native": [
+        512,
+        512
+      ],
+      "display": [
+        42,
+        42
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
+    }
+  ],
+  "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+  "missing": []
+}

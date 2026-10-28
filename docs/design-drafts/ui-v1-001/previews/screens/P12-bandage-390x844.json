@@ -1,11 +1,13 @@
 {
   "screen": "P12-bandage",
+  "version": "v1.2-r2",
   "viewport": [
     390,
     844
   ],
   "pixelRatio": 1,
   "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+  "authority": "Native browser render; PNG geometry requires independent raster readback",
   "rects": [
     {
       "selector": ".shell",
@@ -15,6 +17,15 @@
       "h": 844,
       "scrollH": 844,
       "clientH": 844
+    },
+    {
+      "selector": ".hud",
+      "x": 8,
+      "y": 8,
+      "w": 374,
+      "h": 100,
+      "scrollH": 98,
+      "clientH": 98
     },
     {
       "selector": ".center",
@@ -61,6 +72,37 @@
       "scrollH": 666,
       "clientH": 666
     },
+    {
+      "selector": ".panel-body",
+      "x": 8,
+      "y": 172,
+      "w": 374,
+      "h": 541.40625,
+      "scrollH": 713,
+      "clientH": 541
+    },
+    null,
+    {
+      "selector": ".right .inventory",
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "scrollH": 0,
+      "clientH": 0
+    },
+    {
+      "selector": ".panel-footer",
+      "x": 8,
+      "y": 713.40625,
+      "w": 374,
+      "h": 68.59375,
+      "scrollH": 68,
+      "clientH": 68
+    },
+    null,
+    null,
+    null,
     null,
     {
       "selector": ".footer",
@@ -82,7 +124,9 @@
       "display": [
         374,
         666
-      ]
+      ],
+      "fit": "cover",
+      "position": "50% 42%"
     },
     {
       "path": "../editable/assets/icon_bandage_v02.png",
@@ -92,8 +136,10 @@
       ],
       "display": [
         256,
-        256
-      ]
+        170
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_bandage_v02.png",
@@ -104,7 +150,9 @@
       "display": [
         0,
         0
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_bandage_v02.png",
@@ -115,7 +163,9 @@
       "display": [
         0,
         0
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     }
   ],
   "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",

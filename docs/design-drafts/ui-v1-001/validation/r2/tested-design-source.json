@@ -1,0 +1,24 @@
+{
+  "kind": "WORKING_DESIGN_SOURCE_HASHES_FOR_COMMIT_BLOB_CHECK",
+  "files": {
+    "prototype/export.js": "316848f262ae2970e6891bb1228a40641e04381edd824778a736cea51bae98a0",
+    "prototype/flow-context.js": "e65af9a754fe74138fef5ebef939d09265f21cda7e6d0098c911b2b96d727946",
+    "prototype/index.html": "1479d4bd5b29e6b08cb47d87879e10b9cd804e6481c66ea00f36cd3915711aa5",
+    "prototype/nine-slice.js": "8d5400d0d6fca92875695c28e087c1d140ab97cc8091bdd90ea83942493e69f9",
+    "prototype/registered-art.js": "59672c5d589f645c3cdc47c2f71ea8cf2254c3b573e3376de27047d19463fd4b",
+    "prototype/screens.js": "23ba18607a121ba861664f22c5961f9bc2775923723084340e14c6ebd9dbafac",
+    "prototype/ui.css": "17296d15abc560e892e2862c9e3c8a8ccd86953f77330b2a607eb42e27c53ff5",
+    "prototype/ui.js": "701b6594ed7dbdf3760577257513559d4823d629d71810137f0f2345690bfaa1"
+  },
+  "gitCanonicalBlobs": {
+    "prototype/export.js": "bb3ede7efe8b7fde62fb9fa07ee34ef4170bdd6d",
+    "prototype/flow-context.js": "73b6997e1f630de9b89460026df9a214e299d9a1",
+    "prototype/index.html": "d6442f5f1253507110bdb9b9de08cb8eee0d6d15",
+    "prototype/nine-slice.js": "af8c7086bfe4c53aa85136e706a6764f1cdea61e",
+    "prototype/registered-art.js": "0b80e8fc36c59291df24dfd921e790b5e273d629",
+    "prototype/screens.js": "b139982f11ed9459b106ca1ebd977c771a2e39d3",
+    "prototype/ui.css": "c880b0ded608a70b5107cb7b4773845e3f6fc570",
+    "prototype/ui.js": "1c4aec6ee38aefa0364278ac35dbee4add8968c9"
+  },
+  "lineEndingPolicy": "Raw working bytes and Git clean-filter blob recorded separately; no configuration changes."
+}

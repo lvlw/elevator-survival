@@ -1,11 +1,13 @@
 {
   "screen": "P06-power-result",
+  "version": "v1.2-r2",
   "viewport": [
     1920,
     1080
   ],
   "pixelRatio": 1,
   "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+  "authority": "Native browser render; PNG geometry requires independent raster readback",
   "rects": [
     {
       "selector": ".shell",
@@ -15,6 +17,15 @@
       "h": 1080,
       "scrollH": 1080,
       "clientH": 1080
+    },
+    {
+      "selector": ".hud",
+      "x": 24,
+      "y": 24,
+      "w": 1872,
+      "h": 72,
+      "scrollH": 70,
+      "clientH": 70
     },
     {
       "selector": ".center",
@@ -54,13 +65,44 @@
     },
     {
       "selector": ".panel",
-      "x": 380,
-      "y": 166,
-      "w": 1080,
-      "h": 780,
-      "scrollH": 778,
-      "clientH": 778
+      "x": 600,
+      "y": 371.5,
+      "w": 640,
+      "h": 369,
+      "scrollH": 367,
+      "clientH": 367
     },
+    {
+      "selector": ".panel-body",
+      "x": 601,
+      "y": 422.5,
+      "w": 638,
+      "h": 244.40625,
+      "scrollH": 244,
+      "clientH": 244
+    },
+    null,
+    {
+      "selector": ".right .inventory",
+      "x": 1553,
+      "y": 307.96875,
+      "w": 326,
+      "h": 216,
+      "scrollH": 216,
+      "clientH": 216
+    },
+    {
+      "selector": ".panel-footer",
+      "x": 601,
+      "y": 666.90625,
+      "w": 638,
+      "h": 72.59375,
+      "scrollH": 72,
+      "clientH": 72
+    },
+    null,
+    null,
+    null,
     null,
     {
       "selector": ".footer",
@@ -82,7 +124,9 @@
       "display": [
         1200,
         888
-      ]
+      ],
+      "fit": "cover",
+      "position": "66% 45%"
     },
     {
       "path": "../editable/assets/icon_bandage_v02.png",
@@ -93,7 +137,9 @@
       "display": [
         42,
         42
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     }
   ],
   "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",

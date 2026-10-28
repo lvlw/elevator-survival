@@ -1,0 +1,46 @@
+{
+  "task": "WORLD-UI-DESIGN-001-R2",
+  "start": "0e0c5cf50bce038f1e915529fe83c3278c30ab95",
+  "clean_start_observed_before_writes": true,
+  "checks_after_archival": {
+    "head": {
+      "exit": 0,
+      "stdout": "0e0c5cf50bce038f1e915529fe83c3278c30ab95\n",
+      "stderr": ""
+    },
+    "parent": {
+      "exit": 0,
+      "stdout": "d7d395ea7c061e26f9244fcfd296c764785af16a\n",
+      "stderr": ""
+    },
+    "tree": {
+      "exit": 0,
+      "stdout": "22d17c8a311f40e54e8a260b706d5f9fcbbec9c3\n",
+      "stderr": ""
+    },
+    "branch": {
+      "exit": 0,
+      "stdout": "feature/design-ui-v1-001\n",
+      "stderr": ""
+    },
+    "status": {
+      "exit": 0,
+      "stdout": "?? docs/design-drafts/ui-v1-001/reviews/r2-inputs/\n",
+      "stderr": ""
+    },
+    "diff": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "cached": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "production_test": "NOT RUN",
+  "typecheck": "NOT RUN",
+  "build": "NOT RUN",
+  "new_production_tests": 0
+}

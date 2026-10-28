@@ -38,3 +38,22 @@
 
 /* R1: decorative frame must not create sidebar scroll ranges. */
 .sidebar{overflow-x:hidden}.nine-frame{overflow:hidden}
+
+/* R2: content budgets, not one fixed dialog size. Fonts and real grid cells stay legible. */
+.panel:not(.battle){height:auto;max-height:calc(100% - 2 * var(--i));width:min(var(--panel-w,1000px),calc(100% - 2 * var(--i)))}
+.panel.tier-brief{--panel-w:640px}.panel.tier-detail{--panel-w:680px}.panel.tier-parameters{--panel-w:880px}.panel.tier-summary{--panel-w:800px}.panel.tier-complex{--panel-w:1000px}
+.panel.kind-map{height:min(660px,calc(100% - 2 * var(--i)));--panel-w:1040px}.panel.kind-setup{height:min(780px,calc(100% - 2 * var(--i)))}
+.panel:not(.battle) .panel-title{height:50px}.panel:not(.battle) .panel-body{padding:20px}.panel:not(.battle) .panel-footer{padding:12px 20px}
+.tier-detail .split,.tier-parameters .split,.kind-hub .split,.kind-mission .split{grid-template-columns:minmax(160px,.7fr) minmax(260px,1.3fr);gap:20px}
+.tier-detail .artwell{min-height:160px;max-height:240px}.tier-detail .artwell img{max-height:210px}.tier-detail h1{font-size:25px;letter-spacing:1px}.tier-detail .stack{gap:12px}.tier-detail .fact{padding:9px 0}
+.tier-parameters .artwell:not(.scene){min-height:200px;max-height:400px}.tier-parameters .artwell img{max-height:380px}.tier-parameters h1{font-size:27px;letter-spacing:1px}.tier-parameters .stack{gap:12px}.tier-parameters .fact{padding:9px 0}
+.tier-brief .errorbox{margin:4px auto;gap:16px}.tier-brief h1{font-size:27px;letter-spacing:1px}.tier-brief .body-copy p:last-child{margin-bottom:0}
+.kind-result .result-mark{width:48px;height:48px;margin:4px auto 20px}.kind-result h1{font-size:28px}.kind-result .terminal .facts{margin:18px 0}.kind-terminal .result-mark{width:48px;height:48px;margin:12px auto 22px}.kind-terminal h1{font-size:29px}.kind-terminal .balance{font-size:40px;margin:12px 0}.kind-terminal .terminal .facts{margin:18px 0}
+.panel.max:not(.battle){width:100%;height:100%;max-height:100%}
+@media(max-width:620px){.panel:not(.battle){width:100%;max-height:100%}.panel:not(.battle) .panel-title{height:56px}.panel:not(.battle) .panel-body{padding:14px}.panel:not(.battle) .panel-footer{padding:10px 14px}.tier-detail .artwell{max-height:150px;min-height:120px}.tier-detail .artwell img{max-height:140px}.tier-parameters .artwell:not(.scene){max-height:180px;min-height:120px}.tier-parameters .artwell img{max-height:170px}}
+@media(max-height:719px) and (min-width:621px){.battle{--bh:40px;--bt:44px;--ba:66px;--bf:32px;--bp:10px;--bg:6px}.battle-actions{justify-content:center}.battle-actions button{min-height:42px}.battle .arena{min-height:130px}.battle-feed{font-size:12px}.battle .actor-caption{top:8px}.battle .intent{bottom:8px}}
+
+.tier-parameters .sample-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.sample-layout .artwell:not(.scene){min-height:120px;height:144px}.sample-layout .artwell img{max-height:128px}.sample-payment .fact{gap:12px}.sample-payment .muted{display:block;margin-top:10px}
+@media(min-width:621px){.battle .intent{right:auto;left:50%;transform:translateX(-50%);bottom:8px;max-width:44%}}
+@media(max-height:799px) and (min-width:621px){.battle .actor-caption{top:6px}}
+@media(max-width:620px){.battle .intent{left:8px;right:8px;top:38px;bottom:auto;max-width:none;padding:4px 6px;font-size:13px;line-height:18px}.battle .intent br{display:none}.battle .intent .muted{margin-left:8px;font-size:12px}}

@@ -1,0 +1,133 @@
+{
+  "kind": "ISOLATED_UNMODIFIED_SOURCE_WITH_FAKE_DOM_AND_DETERMINISTIC_TIMERS_NOT_BROWSER_OR_GAMEPLAY",
+  "mutation": "none",
+  "total": 30,
+  "passed": 28,
+  "failed": 2,
+  "results": [
+    {
+      "id": "C01 lamp/engineer stays through confirm-help-return-depart",
+      "result": "PASS"
+    },
+    {
+      "id": "C02 crow/survival stays across two cross-region steps",
+      "result": "PASS"
+    },
+    {
+      "id": "C-map-hospital",
+      "result": "PASS"
+    },
+    {
+      "id": "C-map-hotel",
+      "result": "PASS"
+    },
+    {
+      "id": "C-map-power",
+      "result": "PASS"
+    },
+    {
+      "id": "C-map-logistics",
+      "result": "PASS"
+    },
+    {
+      "id": "C-map-communication",
+      "result": "PASS"
+    },
+    {
+      "id": "C-view-P21-enemy-alive",
+      "result": "PASS"
+    },
+    {
+      "id": "C-view-P24-corrupt",
+      "result": "PASS"
+    },
+    {
+      "id": "C-view-P18-success",
+      "result": "PASS"
+    },
+    {
+      "id": "C-retreat-orderly",
+      "result": "PASS"
+    },
+    {
+      "id": "C-retreat-porter",
+      "result": "PASS"
+    },
+    {
+      "id": "C-retreat-technician",
+      "result": "PASS"
+    },
+    {
+      "id": "C-object-sample no split/consume menu",
+      "result": "PASS"
+    },
+    {
+      "id": "C-object-sample keeps 2x2 and original ref",
+      "result": "PASS"
+    },
+    {
+      "id": "C-object-ration remains ration on use",
+      "result": "PASS"
+    },
+    {
+      "id": "C-sample-cautious-normal",
+      "result": "PASS"
+    },
+    {
+      "id": "C-sample-cautious-last",
+      "result": "PASS"
+    },
+    {
+      "id": "C-sample-cautious-broken",
+      "result": "PASS"
+    },
+    {
+      "id": "C-sample-cautious-unequipped",
+      "result": "PASS"
+    },
+    {
+      "id": "C-sample-direct-normal",
+      "result": "PASS"
+    },
+    {
+      "id": "C-sample-direct-last",
+      "result": "PASS"
+    },
+    {
+      "id": "C-sample-direct-broken",
+      "result": "PASS"
+    },
+    {
+      "id": "C-sample-direct-unequipped",
+      "result": "PASS"
+    },
+    {
+      "id": "C-defense no enemy hit or phase increase",
+      "result": "PASS"
+    },
+    {
+      "id": "C-generic fx does not change enemy phase",
+      "result": "PASS"
+    },
+    {
+      "id": "C-attack changes authored phase once",
+      "result": "PASS"
+    },
+    {
+      "id": "C-stale animation does not mutate a new sample",
+      "result": "PASS"
+    },
+    {
+      "id": "R2-stale-object-ref never falls back to same-name item",
+      "result": "FAIL",
+      "name": "AssertionError",
+      "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ {\n+   container: 'backpack',\n+   h: 2,\n+   key: 'sample',\n+   quantity: 1,\n+   ref: 'P10-inventory-bag-0',\n+   w: 2,\n+   x: 0,\n+   y: 0\n+ }\n- null\n"
+    },
+    {
+      "id": "R2-maximize-terminal preserves context and toggles presentation",
+      "result": "FAIL",
+      "name": "AssertionError",
+      "error": "The expression evaluated to a falsy value:\n\n  assert(x.run('content()').includes('kind-terminal max'))\n"
+    }
+  ]
+}

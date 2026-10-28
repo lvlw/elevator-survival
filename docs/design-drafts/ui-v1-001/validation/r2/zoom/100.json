@@ -1,0 +1,839 @@
+{
+  "declared": "100%",
+  "control": "user browser zoom; no viewport override",
+  "normal": {
+    "dpr": 1,
+    "images": [
+      {
+        "h": 941,
+        "src": "../editable/assets/bg-hospital-control-v1.png",
+        "w": 1672
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+        "w": 512
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-firstaid-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-ration-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-metal-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-battery-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_isolation_access_card_v02.png",
+        "w": 512
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_bandage_v02.png",
+        "w": 512
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_metal_pipe_v01.png",
+        "w": 512
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_heavy_coat_v01.png",
+        "w": 512
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-toolbox-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+        "w": 512
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-firstaid-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-ration-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-metal-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-battery-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_isolation_access_card_v02.png",
+        "w": 512
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_bandage_v02.png",
+        "w": 512
+      }
+    ],
+    "rects": [
+      {
+        "clientH": 908,
+        "h": 908,
+        "scrollH": 908,
+        "selector": "shell  ",
+        "w": 1920,
+        "x": 316,
+        "y": 0
+      },
+      {
+        "clientH": 70,
+        "h": 72,
+        "scrollH": 70,
+        "selector": "hud metal",
+        "w": 1872,
+        "x": 340,
+        "y": 24
+      },
+      {
+        "clientH": 716,
+        "h": 716,
+        "scrollH": 716,
+        "selector": "center",
+        "w": 1200,
+        "x": 636,
+        "y": 112
+      },
+      {
+        "clientH": 549,
+        "h": 550.59375,
+        "scrollH": 549,
+        "selector": "panel tier-complex kind-inventory ",
+        "w": 1000,
+        "x": 736,
+        "y": 194.703125
+      },
+      {
+        "clientH": 499,
+        "h": 498.59375,
+        "scrollH": 499,
+        "selector": "panel-body",
+        "w": 998,
+        "x": 737,
+        "y": 245.703125
+      },
+      {
+        "clientH": 216,
+        "h": 216,
+        "scrollH": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 834.6875,
+        "y": 311.65625
+      },
+      {
+        "clientH": 714,
+        "h": 716,
+        "scrollH": 738,
+        "selector": "sidebar right metal ",
+        "w": 360,
+        "x": 1852,
+        "y": 112
+      },
+      {
+        "clientH": 216,
+        "h": 216,
+        "scrollH": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 1869,
+        "y": 307.96875
+      }
+    ],
+    "text": "电梯求生\n任务日 3 / 7\n生命\n8 / 12\n精力\n38 / 100\n饱食\n4 / 6\n低病程负担\n身体\n帮助\n当前委托\n\n封锁区\n\n未完成的转运\n\n恢复本地供电与转运，携指定样本返回电梯前室。\n\n本地供电 · 未完成\n\n转运设施 · 未完成\n\n指定样本 · 实际背包内\n\n查看委托\n已知地点 只读\n前室\n大厅\n药房\n保安\n隔离\n展开已知区域\n工具箱 / 工程\n医院 / 保安室\n正式结束后不能重接本委托。\n装备与背包\n放大\n收起\n实际6 × 4格位\n1\n1\n2\n2\n1\n1\n绷带 ×1\n快捷位 1\n空槽\n快捷位 2\n\n2×2样本、1×2急救包与1×1普通物共同占位。\n\n查看旋转占格\n金属管\n30/30\n厚实外套\n12/12\n工具箱\n6/6\n整理\n明确实例与目标格位\n快捷\n独立迁移，不复制实物\n旋转\n只改占格，不拉扁图像\n打开搬运参数\n携带区\n整理\n背包\n装备\n背包 6 × 4\n11 / 28\n1\n1\n2\n2\n1\n1\n仅背包计负重；装备与快捷分开。\n任务件占用真实格位。2×2样本不是额外的关键物栏。\n快捷位\n绷带 ×1\n快捷位 1\n空槽\n快捷位 2\n点击物品查看；右键或 Shift+F10 打开操作。\n已保存\n当前地点可自由查看；查看详情不消耗精力。\n查看反馈\n独立样例 · P10-inventory\n设计状态索引导出可编辑SVG导出PNG图稿本地导出当前本地导出全部",
+    "viewport": [
+      2552,
+      908
+    ]
+  },
+  "max": {
+    "dpr": 1,
+    "images": [
+      {
+        "h": 941,
+        "src": "../editable/assets/bg-hospital-control-v1.png",
+        "w": 1672
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+        "w": 512
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-firstaid-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-ration-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-metal-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-battery-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_isolation_access_card_v02.png",
+        "w": 512
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_bandage_v02.png",
+        "w": 512
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_metal_pipe_v01.png",
+        "w": 512
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_heavy_coat_v01.png",
+        "w": 512
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-toolbox-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+        "w": 512
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-firstaid-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-ration-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-metal-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-battery-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_isolation_access_card_v02.png",
+        "w": 512
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_bandage_v02.png",
+        "w": 512
+      }
+    ],
+    "rects": [
+      {
+        "clientH": 908,
+        "h": 908,
+        "scrollH": 908,
+        "selector": "shell  ",
+        "w": 1920,
+        "x": 316,
+        "y": 0
+      },
+      {
+        "clientH": 70,
+        "h": 72,
+        "scrollH": 70,
+        "selector": "hud metal",
+        "w": 1872,
+        "x": 340,
+        "y": 24
+      },
+      {
+        "clientH": 716,
+        "h": 716,
+        "scrollH": 716,
+        "selector": "center",
+        "w": 1200,
+        "x": 636,
+        "y": 112
+      },
+      {
+        "clientH": 714,
+        "h": 716,
+        "scrollH": 714,
+        "selector": "panel tier-complex kind-inventory max",
+        "w": 1200,
+        "x": 636,
+        "y": 112
+      },
+      {
+        "clientH": 664,
+        "h": 664,
+        "scrollH": 664,
+        "selector": "panel-body",
+        "w": 1198,
+        "x": 637,
+        "y": 163
+      },
+      {
+        "clientH": 216,
+        "h": 216,
+        "scrollH": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 787.0625,
+        "y": 228.953125
+      },
+      {
+        "clientH": 714,
+        "h": 716,
+        "scrollH": 738,
+        "selector": "sidebar right metal ",
+        "w": 360,
+        "x": 1852,
+        "y": 112
+      },
+      {
+        "clientH": 216,
+        "h": 216,
+        "scrollH": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 1869,
+        "y": 307.96875
+      }
+    ],
+    "text": "电梯求生\n任务日 3 / 7\n生命\n8 / 12\n精力\n38 / 100\n饱食\n4 / 6\n低病程负担\n身体\n帮助\n当前委托\n\n封锁区\n\n未完成的转运\n\n恢复本地供电与转运，携指定样本返回电梯前室。\n\n本地供电 · 未完成\n\n转运设施 · 未完成\n\n指定样本 · 实际背包内\n\n查看委托\n已知地点 只读\n前室\n大厅\n药房\n保安\n隔离\n展开已知区域\n工具箱 / 工程\n医院 / 保安室\n正式结束后不能重接本委托。\n装备与背包\n还原\n收起\n实际6 × 4格位\n1\n1\n2\n2\n1\n1\n绷带 ×1\n快捷位 1\n空槽\n快捷位 2\n\n2×2样本、1×2急救包与1×1普通物共同占位。\n\n查看旋转占格\n金属管\n30/30\n厚实外套\n12/12\n工具箱\n6/6\n整理\n明确实例与目标格位\n快捷\n独立迁移，不复制实物\n旋转\n只改占格，不拉扁图像\n打开搬运参数\n携带区\n整理\n背包\n装备\n背包 6 × 4\n11 / 28\n1\n1\n2\n2\n1\n1\n仅背包计负重；装备与快捷分开。\n任务件占用真实格位。2×2样本不是额外的关键物栏。\n快捷位\n绷带 ×1\n快捷位 1\n空槽\n快捷位 2\n点击物品查看；右键或 Shift+F10 打开操作。\n已保存\n当前地点可自由查看；查看详情不消耗精力。\n查看反馈\n独立样例 · P10-inventory\n设计状态索引导出可编辑SVG导出PNG图稿本地导出当前本地导出全部",
+    "viewport": [
+      2552,
+      908
+    ]
+  },
+  "transfer": {
+    "dpr": 1,
+    "images": [
+      {
+        "h": 941,
+        "src": "../editable/assets/bg-hospital-control-v1.png",
+        "w": 1672
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+        "w": 512
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-firstaid-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-ration-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-metal-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-battery-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_isolation_access_card_v02.png",
+        "w": 512
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+        "w": 512
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-firstaid-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-ration-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-metal-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-battery-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_isolation_access_card_v02.png",
+        "w": 512
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_bandage_v02.png",
+        "w": 512
+      }
+    ],
+    "rects": [
+      {
+        "clientH": 908,
+        "h": 908,
+        "scrollH": 908,
+        "selector": "shell  ",
+        "w": 1920,
+        "x": 316,
+        "y": 0
+      },
+      {
+        "clientH": 70,
+        "h": 72,
+        "scrollH": 70,
+        "selector": "hud metal",
+        "w": 1872,
+        "x": 340,
+        "y": 24
+      },
+      {
+        "clientH": 716,
+        "h": 716,
+        "scrollH": 716,
+        "selector": "center",
+        "w": 1200,
+        "x": 636,
+        "y": 112
+      },
+      {
+        "clientH": 541,
+        "h": 542.5625,
+        "scrollH": 541,
+        "selector": "panel tier-complex kind-organize ",
+        "w": 1000,
+        "x": 736,
+        "y": 198.71875
+      },
+      {
+        "clientH": 418,
+        "h": 417.96875,
+        "scrollH": 418,
+        "selector": "panel-body",
+        "w": 998,
+        "x": 737,
+        "y": 249.71875
+      },
+      {
+        "clientH": 216,
+        "h": 216,
+        "scrollH": 216,
+        "selector": "inventory selection-grid",
+        "w": 326,
+        "x": 834.6875,
+        "y": 312.90625
+      },
+      {
+        "clientH": 72,
+        "h": 72.59375,
+        "scrollH": 72,
+        "selector": "panel-footer",
+        "w": 998,
+        "x": 737,
+        "y": 667.6875
+      },
+      {
+        "clientH": 714,
+        "h": 716,
+        "scrollH": 738,
+        "selector": "sidebar right metal ",
+        "w": 360,
+        "x": 1852,
+        "y": 112
+      },
+      {
+        "clientH": 216,
+        "h": 216,
+        "scrollH": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 1869,
+        "y": 307.96875
+      }
+    ],
+    "text": "电梯求生\n任务日 3 / 7\n生命\n8 / 12\n精力\n38 / 100\n饱食\n4 / 6\n低病程负担\n身体\n帮助\n当前委托\n\n封锁区\n\n未完成的转运\n\n恢复本地供电与转运，携指定样本返回电梯前室。\n\n本地供电 · 未完成\n\n转运设施 · 未完成\n\n指定样本 · 实际背包内\n\n查看委托\n已知地点 只读\n前室\n大厅\n药房\n保安\n隔离\n展开已知区域\n工具箱 / 工程\n医院 / 保安室\n正式结束后不能重接本委托。\n移动 · 明确目标位置\n放大\n收起\n目标容器 · 实际占格\n1\n1\n2\n2\n1\n1\n旋转占格\n尚未选择目标格位\n明确格位，不自动整理其他物品；移动时不把原实例当作新物品。\n先选择当前上下文中的实际对象。\n明确原实例\n请选择\n密封病原样本箱 · 1单位 · 第1列第1行\n急救包 · 1单位 · 第3列第1行\n压缩口粮 · 2单位 · 第4列第1行\n金属零件 · 2单位 · 第5列第1行\n通用电池 · 1单位 · 第6列第1行\n隔离区门禁卡 · 1单位 · 第4列第2行\n\n只编排显式参数，不运行库存规则或修改真实实物。\n\n等待选择对象\n提交本次整理\n携带区\n整理\n背包\n装备\n背包 6 × 4\n11 / 28\n1\n1\n2\n2\n1\n1\n仅背包计负重；装备与快捷分开。\n任务件占用真实格位。2×2样本不是额外的关键物栏。\n快捷位\n绷带 ×1\n快捷位 1\n空槽\n快捷位 2\n点击物品查看；右键或 Shift+F10 打开操作。\n已保存\n当前地点可自由查看；查看详情不消耗精力。\n查看反馈\n独立样例 · P11-move\n设计状态索引导出可编辑SVG导出PNG图稿本地导出当前本地导出全部",
+    "viewport": [
+      2552,
+      908
+    ]
+  },
+  "battle": {
+    "dpr": 1,
+    "images": [
+      {
+        "h": 941,
+        "src": "../editable/assets/bg_isolation_corridor_v01.png",
+        "w": 1672
+      },
+      {
+        "h": 941,
+        "src": "../editable/assets/bg_isolation_corridor_v01.png",
+        "w": 1672
+      },
+      {
+        "h": 1402,
+        "src": "../editable/assets/player-back-v2.png",
+        "w": 1122
+      },
+      {
+        "h": 1280,
+        "src": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+        "w": 1024
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/fx-hit-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+        "w": 512
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-firstaid-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-ration-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-metal-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-battery-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_isolation_access_card_v02.png",
+        "w": 512
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_bandage_v02.png",
+        "w": 512
+      }
+    ],
+    "rects": [
+      {
+        "clientH": 908,
+        "h": 908,
+        "scrollH": 908,
+        "selector": "shell  ",
+        "w": 1920,
+        "x": 316,
+        "y": 0
+      },
+      {
+        "clientH": 70,
+        "h": 72,
+        "scrollH": 70,
+        "selector": "hud metal",
+        "w": 1872,
+        "x": 340,
+        "y": 24
+      },
+      {
+        "clientH": 716,
+        "h": 716,
+        "scrollH": 716,
+        "selector": "center",
+        "w": 1200,
+        "x": 636,
+        "y": 112
+      },
+      {
+        "clientH": 684,
+        "h": 684,
+        "scrollH": 684,
+        "selector": "panel battle ",
+        "w": 1080,
+        "x": 696,
+        "y": 128
+      },
+      {
+        "clientH": 354,
+        "h": 356,
+        "scrollH": 354,
+        "selector": "arena ",
+        "w": 1048,
+        "x": 712,
+        "y": 280
+      },
+      {
+        "clientH": 336,
+        "h": 336.296875,
+        "scrollH": 336,
+        "selector": "actor player",
+        "w": 269.03125,
+        "x": 744.375,
+        "y": 291.625
+      },
+      {
+        "clientH": 336,
+        "h": 336.296875,
+        "scrollH": 336,
+        "selector": "actor enemy",
+        "w": 269.03125,
+        "x": 1437.671875,
+        "y": 291.625
+      },
+      {
+        "clientH": 96,
+        "h": 96,
+        "scrollH": 96,
+        "selector": "battle-actions",
+        "w": 1048,
+        "x": 712,
+        "y": 648
+      },
+      {
+        "clientH": 714,
+        "h": 716,
+        "scrollH": 738,
+        "selector": "sidebar right metal ",
+        "w": 360,
+        "x": 1852,
+        "y": 112
+      },
+      {
+        "clientH": 216,
+        "h": 216,
+        "scrollH": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 1869,
+        "y": 307.96875
+      }
+    ],
+    "text": "电梯求生\n任务日 3 / 7\n生命\n8 / 12\n精力\n38 / 100\n饱食\n4 / 6\n低病程负担\n身体\n帮助\n当前委托\n\n封锁区\n\n未完成的转运\n\n恢复本地供电与转运，携指定样本返回电梯前室。\n\n本地供电 · 未完成\n\n转运设施 · 未完成\n\n指定样本 · 实际背包内\n\n查看委托\n已知地点 只读\n前室\n大厅\n药房\n保安\n隔离\n展开已知区域\n工具箱 / 工程\n医院 / 隔离走廊\n正式结束后不能重接本委托。\n医院 · 隔离走廊\n战斗进行中 · 查看不推进CTB\n放大\n减少动态\n相对行动顺序\n敌\n你\n等待你的选择\n你 · 生命8/12\n感染护工 · 完好\n当前意图：普通攻击\n速度正常 · 中等直接伤害\n普通攻击\n金属管耐久 −1\n标志行动\n真实额度与耐久\n防御\n姿态示范 · 不伤敌\n快捷绷带\n槽1 · ×1\n合法退却\n返回入场前节点\n精力在胜利或退却后按本场经过一次结算。\n通用受击FX\n演出示范 · 不计算伤害\n携带区\n整理\n背包\n装备\n背包 6 × 4\n11 / 28\n1\n1\n2\n2\n1\n1\n仅背包计负重；装备与快捷分开。\n任务件占用真实格位。2×2样本不是额外的关键物栏。\n快捷位\n绷带 ×1\n快捷位 1\n空槽\n快捷位 2\n点击物品查看；右键或 Shift+F10 打开操作。\n已保存\n当前地点可自由查看；查看详情不消耗精力。\n查看反馈\n独立样例 · P15-orderly\n设计状态索引导出可编辑SVG导出PNG图稿本地导出当前本地导出全部",
+    "viewport": [
+      2552,
+      908
+    ]
+  },
+  "defend": {
+    "dpr": 1,
+    "images": [
+      {
+        "h": 941,
+        "src": "../editable/assets/bg_isolation_corridor_v01.png",
+        "w": 1672
+      },
+      {
+        "h": 941,
+        "src": "../editable/assets/bg_isolation_corridor_v01.png",
+        "w": 1672
+      },
+      {
+        "h": 1402,
+        "src": "../editable/assets/player-back-v2.png",
+        "w": 1122
+      },
+      {
+        "h": 1280,
+        "src": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+        "w": 1024
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/fx-hit-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+        "w": 512
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-firstaid-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-ration-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-metal-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 1254,
+        "src": "../editable/assets/item-battery-v1.png",
+        "w": 1254
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_isolation_access_card_v02.png",
+        "w": 512
+      },
+      {
+        "h": 512,
+        "src": "../editable/assets/icon_bandage_v02.png",
+        "w": 512
+      }
+    ],
+    "rects": [
+      {
+        "clientH": 908,
+        "h": 908,
+        "scrollH": 908,
+        "selector": "shell  ",
+        "w": 1920,
+        "x": 316,
+        "y": 0
+      },
+      {
+        "clientH": 70,
+        "h": 72,
+        "scrollH": 70,
+        "selector": "hud metal",
+        "w": 1872,
+        "x": 340,
+        "y": 24
+      },
+      {
+        "clientH": 716,
+        "h": 716,
+        "scrollH": 716,
+        "selector": "center",
+        "w": 1200,
+        "x": 636,
+        "y": 112
+      },
+      {
+        "clientH": 684,
+        "h": 684,
+        "scrollH": 684,
+        "selector": "panel battle ",
+        "w": 1080,
+        "x": 696,
+        "y": 128
+      },
+      {
+        "clientH": 354,
+        "h": 356,
+        "scrollH": 354,
+        "selector": "arena defending",
+        "w": 1048,
+        "x": 712,
+        "y": 280
+      },
+      {
+        "clientH": 336,
+        "h": 336.296875,
+        "scrollH": 336,
+        "selector": "actor player",
+        "w": 269.03125,
+        "x": 744.375,
+        "y": 291.625
+      },
+      {
+        "clientH": 336,
+        "h": 336.296875,
+        "scrollH": 336,
+        "selector": "actor enemy",
+        "w": 269.03125,
+        "x": 1437.671875,
+        "y": 291.625
+      },
+      {
+        "clientH": 96,
+        "h": 96,
+        "scrollH": 96,
+        "selector": "battle-actions",
+        "w": 1048,
+        "x": 712,
+        "y": 648
+      },
+      {
+        "clientH": 714,
+        "h": 716,
+        "scrollH": 738,
+        "selector": "sidebar right metal ",
+        "w": 360,
+        "x": 1852,
+        "y": 112
+      },
+      {
+        "clientH": 216,
+        "h": 216,
+        "scrollH": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 1869,
+        "y": 307.96875
+      }
+    ],
+    "text": "电梯求生\n任务日 3 / 7\n生命\n8 / 12\n精力\n38 / 100\n饱食\n4 / 6\n低病程负担\n身体\n帮助\n当前委托\n\n封锁区\n\n未完成的转运\n\n恢复本地供电与转运，携指定样本返回电梯前室。\n\n本地供电 · 未完成\n\n转运设施 · 未完成\n\n指定样本 · 实际背包内\n\n查看委托\n已知地点 只读\n前室\n大厅\n药房\n保安\n隔离\n展开已知区域\n工具箱 / 工程\n医院 / 隔离走廊\n正式结束后不能重接本委托。\n医院 · 隔离走廊\n战斗进行中 · 查看不推进CTB\n放大\n减少动态\n相对行动顺序\n敌\n你\n防御姿态 · 无敌人受击\n你 · 生命8/12\n感染护工 · 完好\n当前意图：普通攻击\n速度正常 · 中等直接伤害\n普通攻击\n金属管耐久 −1\n标志行动\n真实额度与耐久\n防御\n姿态示范 · 不伤敌\n快捷绷带\n槽1 · ×1\n合法退却\n返回入场前节点\n精力在胜利或退却后按本场经过一次结算。\n通用受击FX\n演出示范 · 不计算伤害\n携带区\n整理\n背包\n装备\n背包 6 × 4\n11 / 28\n1\n1\n2\n2\n1\n1\n仅背包计负重；装备与快捷分开。\n任务件占用真实格位。2×2样本不是额外的关键物栏。\n快捷位\n绷带 ×1\n快捷位 1\n空槽\n快捷位 2\n点击物品查看；右键或 Shift+F10 打开操作。\n已保存\n防御动作示范；不造成敌人受击、不更换敌人战损。\n查看反馈\n独立样例 · P15-orderly\n设计状态索引导出可编辑SVG导出PNG图稿本地导出当前本地导出全部",
+    "viewport": [
+      2552,
+      908
+    ]
+  }
+}

@@ -1,0 +1,5556 @@
+{
+  "kind": "ACTUAL_BROWSER_DOM_MEASUREMENTS",
+  "desktopProfiles": [
+    {
+      "screen": "P15-orderly",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 1080,
+          "scrollH": 1080,
+          "clientH": 1080
+        },
+        {
+          "selector": ".center",
+          "x": 320,
+          "y": 112,
+          "w": 1200,
+          "h": 888,
+          "scrollH": 888,
+          "clientH": 888
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 24,
+          "y": 112,
+          "w": 280,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 1536,
+          "y": 112,
+          "w": 360,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".inventory",
+          "x": 1553,
+          "y": 307.96875,
+          "w": 326,
+          "h": 216,
+          "scrollH": 216,
+          "clientH": 216
+        },
+        {
+          "selector": ".panel",
+          "x": 380,
+          "y": 166,
+          "w": 1080,
+          "h": 780,
+          "scrollH": 780,
+          "clientH": 780
+        },
+        {
+          "selector": ".arena",
+          "x": 396,
+          "y": 318,
+          "w": 1048,
+          "h": 452,
+          "scrollH": 450,
+          "clientH": 450
+        },
+        {
+          "selector": ".footer",
+          "x": 24,
+          "y": 1016,
+          "w": 1872,
+          "h": 40,
+          "scrollH": 38,
+          "clientH": 38
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1200,
+            888
+          ]
+        },
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1046,
+            450
+          ]
+        },
+        {
+          "path": "../editable/assets/player-back-v2.png",
+          "native": [
+            1122,
+            1402
+          ],
+          "display": [
+            312.265625,
+            390.1875
+          ]
+        },
+        {
+          "path": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+          "native": [
+            1024,
+            1280
+          ],
+          "display": [
+            307.796875,
+            384.734375
+          ]
+        },
+        {
+          "path": "../editable/assets/fx-hit-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            147.046875,
+            147.046875
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            96,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P15-orderly",
+      "viewport": [
+        1600,
+        900
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 1600,
+          "h": 900,
+          "scrollH": 900,
+          "clientH": 900
+        },
+        {
+          "selector": ".center",
+          "x": 276,
+          "y": 100,
+          "w": 968,
+          "h": 728,
+          "scrollH": 728,
+          "clientH": 728
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 20,
+          "y": 100,
+          "w": 240,
+          "h": 728,
+          "scrollH": 741,
+          "clientH": 726
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 1260,
+          "y": 100,
+          "w": 320,
+          "h": 728,
+          "scrollH": 726,
+          "clientH": 726
+        },
+        {
+          "selector": ".inventory",
+          "x": 1278,
+          "y": 283.96875,
+          "w": 284,
+          "h": 188,
+          "scrollH": 188,
+          "clientH": 188
+        },
+        {
+          "selector": ".panel",
+          "x": 292,
+          "y": 116,
+          "w": 936,
+          "h": 696,
+          "scrollH": 696,
+          "clientH": 696
+        },
+        {
+          "selector": ".arena",
+          "x": 308,
+          "y": 248,
+          "w": 904,
+          "h": 412,
+          "scrollH": 410,
+          "clientH": 410
+        },
+        {
+          "selector": ".footer",
+          "x": 20,
+          "y": 844,
+          "w": 1560,
+          "h": 36,
+          "scrollH": 34,
+          "clientH": 34
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            968,
+            728
+          ]
+        },
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            902,
+            410
+          ]
+        },
+        {
+          "path": "../editable/assets/player-back-v2.png",
+          "native": [
+            1122,
+            1402
+          ],
+          "display": [
+            284.5,
+            355.484375
+          ]
+        },
+        {
+          "path": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+          "native": [
+            1024,
+            1280
+          ],
+          "display": [
+            280.421875,
+            350.515625
+          ]
+        },
+        {
+          "path": "../editable/assets/fx-hit-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            133.984375,
+            133.984375
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            82,
+            82
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            34,
+            82
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            34,
+            34
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            34,
+            34
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            34,
+            34
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            34,
+            34
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P15-orderly",
+      "viewport": [
+        1440,
+        900
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 1440,
+          "h": 900,
+          "scrollH": 900,
+          "clientH": 900
+        },
+        {
+          "selector": ".center",
+          "x": 252,
+          "y": 92,
+          "w": 856,
+          "h": 744,
+          "scrollH": 744,
+          "clientH": 744
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 16,
+          "y": 92,
+          "w": 224,
+          "h": 744,
+          "scrollH": 742,
+          "clientH": 742
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 1120,
+          "y": 92,
+          "w": 304,
+          "h": 744,
+          "scrollH": 742,
+          "clientH": 742
+        },
+        {
+          "selector": ".inventory",
+          "x": 1133,
+          "y": 271.96875,
+          "w": 278,
+          "h": 184,
+          "scrollH": 184,
+          "clientH": 184
+        },
+        {
+          "selector": ".panel",
+          "x": 264,
+          "y": 104,
+          "w": 832,
+          "h": 720,
+          "scrollH": 720,
+          "clientH": 720
+        },
+        {
+          "selector": ".arena",
+          "x": 276,
+          "y": 232,
+          "w": 808,
+          "h": 444,
+          "scrollH": 442,
+          "clientH": 442
+        },
+        {
+          "selector": ".footer",
+          "x": 16,
+          "y": 848,
+          "w": 1408,
+          "h": 36,
+          "scrollH": 34,
+          "clientH": 34
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            856,
+            744
+          ]
+        },
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            806,
+            442
+          ]
+        },
+        {
+          "path": "../editable/assets/player-back-v2.png",
+          "native": [
+            1122,
+            1402
+          ],
+          "display": [
+            306.703125,
+            383.234375
+          ]
+        },
+        {
+          "path": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+          "native": [
+            1024,
+            1280
+          ],
+          "display": [
+            302.3125,
+            377.890625
+          ]
+        },
+        {
+          "path": "../editable/assets/fx-hit-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            144.4375,
+            144.4375
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            80,
+            80
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            33,
+            80
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            33,
+            33
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            33,
+            33
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            33,
+            33
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            33,
+            33
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P15-orderly",
+      "viewport": [
+        1366,
+        768
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 768,
+          "scrollH": 768,
+          "clientH": 768
+        },
+        {
+          "selector": ".center",
+          "x": 236,
+          "y": 88,
+          "w": 814,
+          "h": 620,
+          "scrollH": 620,
+          "clientH": 620
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 16,
+          "y": 88,
+          "w": 208,
+          "h": 620,
+          "scrollH": 700,
+          "clientH": 618
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 1062,
+          "y": 88,
+          "w": 288,
+          "h": 620,
+          "scrollH": 691,
+          "clientH": 618
+        },
+        {
+          "selector": ".inventory",
+          "x": 1075,
+          "y": 261.96875,
+          "w": 260,
+          "h": 172,
+          "scrollH": 172,
+          "clientH": 172
+        },
+        {
+          "selector": ".panel",
+          "x": 236,
+          "y": 88,
+          "w": 814,
+          "h": 620,
+          "scrollH": 620,
+          "clientH": 620
+        },
+        {
+          "selector": ".arena",
+          "x": 248,
+          "y": 204,
+          "w": 790,
+          "h": 364,
+          "scrollH": 362,
+          "clientH": 362
+        },
+        {
+          "selector": ".footer",
+          "x": 16,
+          "y": 720,
+          "w": 1334,
+          "h": 32,
+          "scrollH": 30,
+          "clientH": 30
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            814,
+            620
+          ]
+        },
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            788,
+            362
+          ]
+        },
+        {
+          "path": "../editable/assets/player-back-v2.png",
+          "native": [
+            1122,
+            1402
+          ],
+          "display": [
+            251.1875,
+            313.859375
+          ]
+        },
+        {
+          "path": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+          "native": [
+            1024,
+            1280
+          ],
+          "display": [
+            247.59375,
+            309.484375
+          ]
+        },
+        {
+          "path": "../editable/assets/fx-hit-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            118.296875,
+            118.296875
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            74,
+            74
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            30,
+            74
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            30,
+            30
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            30,
+            30
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            30,
+            30
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            30,
+            30
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P15-orderly",
+      "viewport": [
+        1280,
+        720
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 720,
+          "scrollH": 720,
+          "clientH": 720
+        },
+        {
+          "selector": ".center",
+          "x": 216,
+          "y": 80,
+          "w": 768,
+          "h": 584,
+          "scrollH": 584,
+          "clientH": 584
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 12,
+          "y": 80,
+          "w": 192,
+          "h": 584,
+          "scrollH": 707,
+          "clientH": 582
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 996,
+          "y": 80,
+          "w": 272,
+          "h": 584,
+          "scrollH": 659,
+          "clientH": 582
+        },
+        {
+          "selector": ".inventory",
+          "x": 1009,
+          "y": 247.96875,
+          "w": 242,
+          "h": 160,
+          "scrollH": 160,
+          "clientH": 160
+        },
+        {
+          "selector": ".panel",
+          "x": 216,
+          "y": 80,
+          "w": 768,
+          "h": 584,
+          "scrollH": 584,
+          "clientH": 584
+        },
+        {
+          "selector": ".arena",
+          "x": 228,
+          "y": 196,
+          "w": 744,
+          "h": 328,
+          "scrollH": 326,
+          "clientH": 326
+        },
+        {
+          "selector": ".footer",
+          "x": 12,
+          "y": 676,
+          "w": 1256,
+          "h": 32,
+          "scrollH": 30,
+          "clientH": 30
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            768,
+            584
+          ]
+        },
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            742,
+            326
+          ]
+        },
+        {
+          "path": "../editable/assets/player-back-v2.png",
+          "native": [
+            1122,
+            1402
+          ],
+          "display": [
+            226.203125,
+            282.640625
+          ]
+        },
+        {
+          "path": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+          "native": [
+            1024,
+            1280
+          ],
+          "display": [
+            222.96875,
+            278.703125
+          ]
+        },
+        {
+          "path": "../editable/assets/fx-hit-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            106.53125,
+            106.53125
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            68,
+            68
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            27,
+            68
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            27,
+            27
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            27,
+            27
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            27,
+            27
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            27,
+            27
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            34,
+            34
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    }
+  ],
+  "otherProfiles": [
+    {
+      "screen": "P03-hospital",
+      "viewport": [
+        1024,
+        768
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 1024,
+          "h": 768,
+          "scrollH": 768,
+          "clientH": 768
+        },
+        {
+          "selector": ".center",
+          "x": 12,
+          "y": 84,
+          "w": 1000,
+          "h": 626,
+          "scrollH": 626,
+          "clientH": 626
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".inventory",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        null,
+        null,
+        {
+          "selector": ".footer",
+          "x": 12,
+          "y": 720,
+          "w": 1000,
+          "h": 36,
+          "scrollH": 34,
+          "clientH": 34
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_emergency_hall_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1000,
+            626
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P03-hospital",
+      "viewport": [
+        1366,
+        650
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 650,
+          "scrollH": 650,
+          "clientH": 650
+        },
+        {
+          "selector": ".center",
+          "x": 12,
+          "y": 84,
+          "w": 1342,
+          "h": 508,
+          "scrollH": 508,
+          "clientH": 508
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".inventory",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        null,
+        null,
+        {
+          "selector": ".footer",
+          "x": 12,
+          "y": 602,
+          "w": 1342,
+          "h": 36,
+          "scrollH": 34,
+          "clientH": 34
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_emergency_hall_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1342,
+            508
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P03-hospital",
+      "viewport": [
+        2560,
+        1080
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 320,
+          "y": 0,
+          "w": 1920,
+          "h": 1080,
+          "scrollH": 1080,
+          "clientH": 1080
+        },
+        {
+          "selector": ".center",
+          "x": 640,
+          "y": 112,
+          "w": 1200,
+          "h": 888,
+          "scrollH": 888,
+          "clientH": 888
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 344,
+          "y": 112,
+          "w": 280,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 1856,
+          "y": 112,
+          "w": 360,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".inventory",
+          "x": 1873,
+          "y": 307.96875,
+          "w": 326,
+          "h": 216,
+          "scrollH": 216,
+          "clientH": 216
+        },
+        null,
+        null,
+        {
+          "selector": ".footer",
+          "x": 344,
+          "y": 1016,
+          "w": 1872,
+          "h": 40,
+          "scrollH": 38,
+          "clientH": 38
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_emergency_hall_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1200,
+            888
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            96,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P03-hospital",
+      "viewport": [
+        2560,
+        1440
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 320,
+          "y": 180,
+          "w": 1920,
+          "h": 1080,
+          "scrollH": 1080,
+          "clientH": 1080
+        },
+        {
+          "selector": ".center",
+          "x": 640,
+          "y": 292,
+          "w": 1200,
+          "h": 888,
+          "scrollH": 888,
+          "clientH": 888
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 344,
+          "y": 292,
+          "w": 280,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 1856,
+          "y": 292,
+          "w": 360,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".inventory",
+          "x": 1873,
+          "y": 487.96875,
+          "w": 326,
+          "h": 216,
+          "scrollH": 216,
+          "clientH": 216
+        },
+        null,
+        null,
+        {
+          "selector": ".footer",
+          "x": 344,
+          "y": 1196,
+          "w": 1872,
+          "h": 40,
+          "scrollH": 38,
+          "clientH": 38
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_emergency_hall_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1200,
+            888
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            96,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P03-hospital",
+      "viewport": [
+        390,
+        844
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844,
+          "scrollH": 844,
+          "clientH": 844
+        },
+        {
+          "selector": ".center",
+          "x": 8,
+          "y": 116,
+          "w": 374,
+          "h": 666,
+          "scrollH": 666,
+          "clientH": 666
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".inventory",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        null,
+        null,
+        {
+          "selector": ".footer",
+          "x": 8,
+          "y": 790,
+          "w": 374,
+          "h": 46,
+          "scrollH": 44,
+          "clientH": 44
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_emergency_hall_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            374,
+            666
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P09-normal",
+      "viewport": [
+        1024,
+        768
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 1024,
+          "h": 768,
+          "scrollH": 768,
+          "clientH": 768
+        },
+        {
+          "selector": ".center",
+          "x": 12,
+          "y": 84,
+          "w": 1000,
+          "h": 626,
+          "scrollH": 626,
+          "clientH": 626
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".inventory",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".panel",
+          "x": 20,
+          "y": 92,
+          "w": 984,
+          "h": 610,
+          "scrollH": 608,
+          "clientH": 608
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 12,
+          "y": 720,
+          "w": 1000,
+          "h": 36,
+          "scrollH": 34,
+          "clientH": 34
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_emergency_hall_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1000,
+            626
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P09-normal",
+      "viewport": [
+        1366,
+        650
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 650,
+          "scrollH": 650,
+          "clientH": 650
+        },
+        {
+          "selector": ".center",
+          "x": 12,
+          "y": 84,
+          "w": 1342,
+          "h": 508,
+          "scrollH": 508,
+          "clientH": 508
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".inventory",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".panel",
+          "x": 20,
+          "y": 92,
+          "w": 1326,
+          "h": 492,
+          "scrollH": 490,
+          "clientH": 490
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 12,
+          "y": 602,
+          "w": 1342,
+          "h": 36,
+          "scrollH": 34,
+          "clientH": 34
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_emergency_hall_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1342,
+            508
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P09-normal",
+      "viewport": [
+        2560,
+        1080
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 320,
+          "y": 0,
+          "w": 1920,
+          "h": 1080,
+          "scrollH": 1080,
+          "clientH": 1080
+        },
+        {
+          "selector": ".center",
+          "x": 640,
+          "y": 112,
+          "w": 1200,
+          "h": 888,
+          "scrollH": 888,
+          "clientH": 888
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 344,
+          "y": 112,
+          "w": 280,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 1856,
+          "y": 112,
+          "w": 360,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".inventory",
+          "x": 1873,
+          "y": 307.96875,
+          "w": 326,
+          "h": 216,
+          "scrollH": 216,
+          "clientH": 216
+        },
+        {
+          "selector": ".panel",
+          "x": 700,
+          "y": 166,
+          "w": 1080,
+          "h": 780,
+          "scrollH": 778,
+          "clientH": 778
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 344,
+          "y": 1016,
+          "w": 1872,
+          "h": 40,
+          "scrollH": 38,
+          "clientH": 38
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_emergency_hall_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1200,
+            888
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            96,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P09-normal",
+      "viewport": [
+        2560,
+        1440
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 320,
+          "y": 180,
+          "w": 1920,
+          "h": 1080,
+          "scrollH": 1080,
+          "clientH": 1080
+        },
+        {
+          "selector": ".center",
+          "x": 640,
+          "y": 292,
+          "w": 1200,
+          "h": 888,
+          "scrollH": 888,
+          "clientH": 888
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 344,
+          "y": 292,
+          "w": 280,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 1856,
+          "y": 292,
+          "w": 360,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".inventory",
+          "x": 1873,
+          "y": 487.96875,
+          "w": 326,
+          "h": 216,
+          "scrollH": 216,
+          "clientH": 216
+        },
+        {
+          "selector": ".panel",
+          "x": 700,
+          "y": 346,
+          "w": 1080,
+          "h": 780,
+          "scrollH": 778,
+          "clientH": 778
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 344,
+          "y": 1196,
+          "w": 1872,
+          "h": 40,
+          "scrollH": 38,
+          "clientH": 38
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_emergency_hall_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1200,
+            888
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            96,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P09-normal",
+      "viewport": [
+        390,
+        844
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844,
+          "scrollH": 844,
+          "clientH": 844
+        },
+        {
+          "selector": ".center",
+          "x": 8,
+          "y": 116,
+          "w": 374,
+          "h": 666,
+          "scrollH": 666,
+          "clientH": 666
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".inventory",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".panel",
+          "x": 8,
+          "y": 116,
+          "w": 374,
+          "h": 666,
+          "scrollH": 666,
+          "clientH": 666
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 8,
+          "y": 790,
+          "w": 374,
+          "h": 46,
+          "scrollH": 44,
+          "clientH": 44
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_emergency_hall_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            374,
+            666
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P10-inventory",
+      "viewport": [
+        2552,
+        908
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 316,
+          "y": 0,
+          "w": 1920,
+          "h": 908,
+          "scrollH": 908,
+          "clientH": 908
+        },
+        {
+          "selector": ".center",
+          "x": 636,
+          "y": 112,
+          "w": 1200,
+          "h": 716,
+          "scrollH": 716,
+          "clientH": 716
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 340,
+          "y": 112,
+          "w": 280,
+          "h": 716,
+          "scrollH": 773,
+          "clientH": 714
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 1852,
+          "y": 112,
+          "w": 360,
+          "h": 716,
+          "scrollH": 738,
+          "clientH": 714
+        },
+        {
+          "selector": ".inventory",
+          "x": 817.546875,
+          "y": 256.953125,
+          "w": 326,
+          "h": 216,
+          "scrollH": 216,
+          "clientH": 216
+        },
+        {
+          "selector": ".panel",
+          "x": 696,
+          "y": 128,
+          "w": 1080,
+          "h": 684,
+          "scrollH": 682,
+          "clientH": 682
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 340,
+          "y": 844,
+          "w": 1872,
+          "h": 40,
+          "scrollH": 38,
+          "clientH": 38
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg-hospital-control-v1.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1200,
+            716
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            96,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_metal_pipe_v01.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            54,
+            54
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_heavy_coat_v01.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            54,
+            54
+          ]
+        },
+        {
+          "path": "../editable/assets/item-toolbox-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            54,
+            54
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            96,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P12-bandage",
+      "viewport": [
+        1024,
+        768
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 1024,
+          "h": 768,
+          "scrollH": 768,
+          "clientH": 768
+        },
+        {
+          "selector": ".center",
+          "x": 12,
+          "y": 84,
+          "w": 1000,
+          "h": 626,
+          "scrollH": 626,
+          "clientH": 626
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".inventory",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".panel",
+          "x": 20,
+          "y": 92,
+          "w": 984,
+          "h": 610,
+          "scrollH": 608,
+          "clientH": 608
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 12,
+          "y": 720,
+          "w": 1000,
+          "h": 36,
+          "scrollH": 34,
+          "clientH": 34
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg-h6-v1.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1000,
+            626
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            256,
+            256
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P12-bandage",
+      "viewport": [
+        1366,
+        650
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 650,
+          "scrollH": 650,
+          "clientH": 650
+        },
+        {
+          "selector": ".center",
+          "x": 12,
+          "y": 84,
+          "w": 1342,
+          "h": 508,
+          "scrollH": 508,
+          "clientH": 508
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".inventory",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".panel",
+          "x": 20,
+          "y": 92,
+          "w": 1326,
+          "h": 492,
+          "scrollH": 490,
+          "clientH": 490
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 12,
+          "y": 602,
+          "w": 1342,
+          "h": 36,
+          "scrollH": 34,
+          "clientH": 34
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg-h6-v1.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1342,
+            508
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            256,
+            256
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P12-bandage",
+      "viewport": [
+        2560,
+        1080
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 320,
+          "y": 0,
+          "w": 1920,
+          "h": 1080,
+          "scrollH": 1080,
+          "clientH": 1080
+        },
+        {
+          "selector": ".center",
+          "x": 640,
+          "y": 112,
+          "w": 1200,
+          "h": 888,
+          "scrollH": 888,
+          "clientH": 888
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 344,
+          "y": 112,
+          "w": 280,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 1856,
+          "y": 112,
+          "w": 360,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".inventory",
+          "x": 1873,
+          "y": 307.96875,
+          "w": 326,
+          "h": 216,
+          "scrollH": 216,
+          "clientH": 216
+        },
+        {
+          "selector": ".panel",
+          "x": 700,
+          "y": 166,
+          "w": 1080,
+          "h": 780,
+          "scrollH": 778,
+          "clientH": 778
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 344,
+          "y": 1016,
+          "w": 1872,
+          "h": 40,
+          "scrollH": 38,
+          "clientH": 38
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg-h6-v1.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1200,
+            888
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            256,
+            256
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P12-bandage",
+      "viewport": [
+        2560,
+        1440
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 320,
+          "y": 180,
+          "w": 1920,
+          "h": 1080,
+          "scrollH": 1080,
+          "clientH": 1080
+        },
+        {
+          "selector": ".center",
+          "x": 640,
+          "y": 292,
+          "w": 1200,
+          "h": 888,
+          "scrollH": 888,
+          "clientH": 888
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 344,
+          "y": 292,
+          "w": 280,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 1856,
+          "y": 292,
+          "w": 360,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".inventory",
+          "x": 1873,
+          "y": 487.96875,
+          "w": 326,
+          "h": 216,
+          "scrollH": 216,
+          "clientH": 216
+        },
+        {
+          "selector": ".panel",
+          "x": 700,
+          "y": 346,
+          "w": 1080,
+          "h": 780,
+          "scrollH": 778,
+          "clientH": 778
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 344,
+          "y": 1196,
+          "w": 1872,
+          "h": 40,
+          "scrollH": 38,
+          "clientH": 38
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg-h6-v1.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1200,
+            888
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            256,
+            256
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P12-bandage",
+      "viewport": [
+        390,
+        844
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844,
+          "scrollH": 844,
+          "clientH": 844
+        },
+        {
+          "selector": ".center",
+          "x": 8,
+          "y": 116,
+          "w": 374,
+          "h": 666,
+          "scrollH": 666,
+          "clientH": 666
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".inventory",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".panel",
+          "x": 8,
+          "y": 116,
+          "w": 374,
+          "h": 666,
+          "scrollH": 666,
+          "clientH": 666
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 8,
+          "y": 790,
+          "w": 374,
+          "h": 46,
+          "scrollH": 44,
+          "clientH": 44
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg-h6-v1.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            374,
+            666
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            256,
+            256
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P15-orderly",
+      "viewport": [
+        1024,
+        768
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 1024,
+          "h": 768,
+          "scrollH": 768,
+          "clientH": 768
+        },
+        {
+          "selector": ".center",
+          "x": 12,
+          "y": 84,
+          "w": 1000,
+          "h": 626,
+          "scrollH": 626,
+          "clientH": 626
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".inventory",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".panel",
+          "x": 12,
+          "y": 84,
+          "w": 1000,
+          "h": 626,
+          "scrollH": 626,
+          "clientH": 626
+        },
+        {
+          "selector": ".arena",
+          "x": 24,
+          "y": 200,
+          "w": 976,
+          "h": 370,
+          "scrollH": 368,
+          "clientH": 368
+        },
+        {
+          "selector": ".footer",
+          "x": 12,
+          "y": 720,
+          "w": 1000,
+          "h": 36,
+          "scrollH": 34,
+          "clientH": 34
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1000,
+            626
+          ]
+        },
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            974,
+            368
+          ]
+        },
+        {
+          "path": "../editable/assets/player-back-v2.png",
+          "native": [
+            1122,
+            1402
+          ],
+          "display": [
+            255.359375,
+            319.078125
+          ]
+        },
+        {
+          "path": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+          "native": [
+            1024,
+            1280
+          ],
+          "display": [
+            251.703125,
+            314.625
+          ]
+        },
+        {
+          "path": "../editable/assets/fx-hit-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            120.25,
+            120.25
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P15-orderly",
+      "viewport": [
+        1366,
+        650
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 650,
+          "scrollH": 650,
+          "clientH": 650
+        },
+        {
+          "selector": ".center",
+          "x": 12,
+          "y": 84,
+          "w": 1342,
+          "h": 508,
+          "scrollH": 508,
+          "clientH": 508
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".inventory",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".panel",
+          "x": 12,
+          "y": 84,
+          "w": 1342,
+          "h": 508,
+          "scrollH": 508,
+          "clientH": 508
+        },
+        {
+          "selector": ".arena",
+          "x": 24,
+          "y": 200,
+          "w": 1318,
+          "h": 252,
+          "scrollH": 250,
+          "clientH": 250
+        },
+        {
+          "selector": ".footer",
+          "x": 12,
+          "y": 602,
+          "w": 1342,
+          "h": 36,
+          "scrollH": 34,
+          "clientH": 34
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1342,
+            508
+          ]
+        },
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1316,
+            250
+          ]
+        },
+        {
+          "path": "../editable/assets/player-back-v2.png",
+          "native": [
+            1122,
+            1402
+          ],
+          "display": [
+            173.484375,
+            216.765625
+          ]
+        },
+        {
+          "path": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+          "native": [
+            1024,
+            1280
+          ],
+          "display": [
+            171,
+            213.75
+          ]
+        },
+        {
+          "path": "../editable/assets/fx-hit-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            81.6875,
+            81.6875
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P15-orderly",
+      "viewport": [
+        2560,
+        1080
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 320,
+          "y": 0,
+          "w": 1920,
+          "h": 1080,
+          "scrollH": 1080,
+          "clientH": 1080
+        },
+        {
+          "selector": ".center",
+          "x": 640,
+          "y": 112,
+          "w": 1200,
+          "h": 888,
+          "scrollH": 888,
+          "clientH": 888
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 344,
+          "y": 112,
+          "w": 280,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 1856,
+          "y": 112,
+          "w": 360,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".inventory",
+          "x": 1873,
+          "y": 307.96875,
+          "w": 326,
+          "h": 216,
+          "scrollH": 216,
+          "clientH": 216
+        },
+        {
+          "selector": ".panel",
+          "x": 700,
+          "y": 166,
+          "w": 1080,
+          "h": 780,
+          "scrollH": 780,
+          "clientH": 780
+        },
+        {
+          "selector": ".arena",
+          "x": 716,
+          "y": 318,
+          "w": 1048,
+          "h": 452,
+          "scrollH": 450,
+          "clientH": 450
+        },
+        {
+          "selector": ".footer",
+          "x": 344,
+          "y": 1016,
+          "w": 1872,
+          "h": 40,
+          "scrollH": 38,
+          "clientH": 38
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1200,
+            888
+          ]
+        },
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1046,
+            450
+          ]
+        },
+        {
+          "path": "../editable/assets/player-back-v2.png",
+          "native": [
+            1122,
+            1402
+          ],
+          "display": [
+            312.265625,
+            390.1875
+          ]
+        },
+        {
+          "path": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+          "native": [
+            1024,
+            1280
+          ],
+          "display": [
+            307.796875,
+            384.734375
+          ]
+        },
+        {
+          "path": "../editable/assets/fx-hit-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            147.046875,
+            147.046875
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            96,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P15-orderly",
+      "viewport": [
+        2560,
+        1440
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 320,
+          "y": 180,
+          "w": 1920,
+          "h": 1080,
+          "scrollH": 1080,
+          "clientH": 1080
+        },
+        {
+          "selector": ".center",
+          "x": 640,
+          "y": 292,
+          "w": 1200,
+          "h": 888,
+          "scrollH": 888,
+          "clientH": 888
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 344,
+          "y": 292,
+          "w": 280,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 1856,
+          "y": 292,
+          "w": 360,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".inventory",
+          "x": 1873,
+          "y": 487.96875,
+          "w": 326,
+          "h": 216,
+          "scrollH": 216,
+          "clientH": 216
+        },
+        {
+          "selector": ".panel",
+          "x": 700,
+          "y": 346,
+          "w": 1080,
+          "h": 780,
+          "scrollH": 780,
+          "clientH": 780
+        },
+        {
+          "selector": ".arena",
+          "x": 716,
+          "y": 498,
+          "w": 1048,
+          "h": 452,
+          "scrollH": 450,
+          "clientH": 450
+        },
+        {
+          "selector": ".footer",
+          "x": 344,
+          "y": 1196,
+          "w": 1872,
+          "h": 40,
+          "scrollH": 38,
+          "clientH": 38
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1200,
+            888
+          ]
+        },
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1046,
+            450
+          ]
+        },
+        {
+          "path": "../editable/assets/player-back-v2.png",
+          "native": [
+            1122,
+            1402
+          ],
+          "display": [
+            312.265625,
+            390.1875
+          ]
+        },
+        {
+          "path": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+          "native": [
+            1024,
+            1280
+          ],
+          "display": [
+            307.796875,
+            384.734375
+          ]
+        },
+        {
+          "path": "../editable/assets/fx-hit-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            147.046875,
+            147.046875
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            96,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P15-orderly",
+      "viewport": [
+        390,
+        844
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844,
+          "scrollH": 844,
+          "clientH": 844
+        },
+        {
+          "selector": ".center",
+          "x": 8,
+          "y": 116,
+          "w": 374,
+          "h": 666,
+          "scrollH": 666,
+          "clientH": 666
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".inventory",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".panel",
+          "x": 8,
+          "y": 116,
+          "w": 374,
+          "h": 666,
+          "scrollH": 666,
+          "clientH": 666
+        },
+        {
+          "selector": ".arena",
+          "x": 16,
+          "y": 250,
+          "w": 358,
+          "h": 318,
+          "scrollH": 316,
+          "clientH": 316
+        },
+        {
+          "selector": ".footer",
+          "x": 8,
+          "y": 790,
+          "w": 374,
+          "h": 46,
+          "scrollH": 44,
+          "clientH": 44
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            374,
+            666
+          ]
+        },
+        {
+          "path": "../editable/assets/bg_isolation_corridor_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            356,
+            316
+          ]
+        },
+        {
+          "path": "../editable/assets/player-back-v2.png",
+          "native": [
+            1122,
+            1402
+          ],
+          "display": [
+            191.5625,
+            239.359375
+          ]
+        },
+        {
+          "path": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
+          "native": [
+            1024,
+            1280
+          ],
+          "display": [
+            188.828125,
+            236.03125
+          ]
+        },
+        {
+          "path": "../editable/assets/fx-hit-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            90.21875,
+            90.21875
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P23-failed",
+      "viewport": [
+        1024,
+        768
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 1024,
+          "h": 768,
+          "scrollH": 768,
+          "clientH": 768
+        },
+        {
+          "selector": ".center",
+          "x": 12,
+          "y": 84,
+          "w": 1000,
+          "h": 626,
+          "scrollH": 626,
+          "clientH": 626
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".inventory",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".panel",
+          "x": 20,
+          "y": 92,
+          "w": 984,
+          "h": 610,
+          "scrollH": 608,
+          "clientH": 608
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 12,
+          "y": 720,
+          "w": 1000,
+          "h": 36,
+          "scrollH": 34,
+          "clientH": 34
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_emergency_hall_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1000,
+            626
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P23-failed",
+      "viewport": [
+        1366,
+        650
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 650,
+          "scrollH": 650,
+          "clientH": 650
+        },
+        {
+          "selector": ".center",
+          "x": 12,
+          "y": 84,
+          "w": 1342,
+          "h": 508,
+          "scrollH": 508,
+          "clientH": 508
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".inventory",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".panel",
+          "x": 20,
+          "y": 92,
+          "w": 1326,
+          "h": 492,
+          "scrollH": 490,
+          "clientH": 490
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 12,
+          "y": 602,
+          "w": 1342,
+          "h": 36,
+          "scrollH": 34,
+          "clientH": 34
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_emergency_hall_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1342,
+            508
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P23-failed",
+      "viewport": [
+        2560,
+        1080
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 320,
+          "y": 0,
+          "w": 1920,
+          "h": 1080,
+          "scrollH": 1080,
+          "clientH": 1080
+        },
+        {
+          "selector": ".center",
+          "x": 640,
+          "y": 112,
+          "w": 1200,
+          "h": 888,
+          "scrollH": 888,
+          "clientH": 888
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 344,
+          "y": 112,
+          "w": 280,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 1856,
+          "y": 112,
+          "w": 360,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".inventory",
+          "x": 1873,
+          "y": 307.96875,
+          "w": 326,
+          "h": 216,
+          "scrollH": 216,
+          "clientH": 216
+        },
+        {
+          "selector": ".panel",
+          "x": 700,
+          "y": 166,
+          "w": 1080,
+          "h": 780,
+          "scrollH": 778,
+          "clientH": 778
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 344,
+          "y": 1016,
+          "w": 1872,
+          "h": 40,
+          "scrollH": 38,
+          "clientH": 38
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_emergency_hall_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1200,
+            888
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            96,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P23-failed",
+      "viewport": [
+        2560,
+        1440
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 320,
+          "y": 180,
+          "w": 1920,
+          "h": 1080,
+          "scrollH": 1080,
+          "clientH": 1080
+        },
+        {
+          "selector": ".center",
+          "x": 640,
+          "y": 292,
+          "w": 1200,
+          "h": 888,
+          "scrollH": 888,
+          "clientH": 888
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 344,
+          "y": 292,
+          "w": 280,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 1856,
+          "y": 292,
+          "w": 360,
+          "h": 888,
+          "scrollH": 886,
+          "clientH": 886
+        },
+        {
+          "selector": ".inventory",
+          "x": 1873,
+          "y": 487.96875,
+          "w": 326,
+          "h": 216,
+          "scrollH": 216,
+          "clientH": 216
+        },
+        {
+          "selector": ".panel",
+          "x": 700,
+          "y": 346,
+          "w": 1080,
+          "h": 780,
+          "scrollH": 778,
+          "clientH": 778
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 344,
+          "y": 1196,
+          "w": 1872,
+          "h": 40,
+          "scrollH": 38,
+          "clientH": 38
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_emergency_hall_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            1200,
+            888
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            96,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            96
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            41,
+            41
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            42,
+            42
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    },
+    {
+      "screen": "P23-failed",
+      "viewport": [
+        390,
+        844
+      ],
+      "pixelRatio": 1,
+      "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+      "rects": [
+        {
+          "selector": ".shell",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844,
+          "scrollH": 844,
+          "clientH": 844
+        },
+        {
+          "selector": ".center",
+          "x": 8,
+          "y": 116,
+          "w": 374,
+          "h": 666,
+          "scrollH": 666,
+          "clientH": 666
+        },
+        {
+          "selector": ".sidebar.left",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".sidebar.right",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".inventory",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "scrollH": 0,
+          "clientH": 0
+        },
+        {
+          "selector": ".panel",
+          "x": 8,
+          "y": 116,
+          "w": 374,
+          "h": 666,
+          "scrollH": 666,
+          "clientH": 666
+        },
+        null,
+        {
+          "selector": ".footer",
+          "x": 8,
+          "y": 790,
+          "w": 374,
+          "h": 46,
+          "scrollH": 44,
+          "clientH": 44
+        }
+      ],
+      "assets": [
+        {
+          "path": "../editable/assets/bg_emergency_hall_v01.png",
+          "native": [
+            1672,
+            941
+          ],
+          "display": [
+            374,
+            666
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-firstaid-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-ration-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-metal-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/item-battery-v1.png",
+          "native": [
+            1254,
+            1254
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_isolation_access_card_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "../editable/assets/icon_bandage_v02.png",
+          "native": [
+            512,
+            512
+          ],
+          "display": [
+            0,
+            0
+          ]
+        }
+      ],
+      "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+      "missing": []
+    }
+  ],
+  "requiredAdditionalExports": 47,
+  "zoom": "See r1/zoom-results.json; independently observed, not inferred from dimensions"
+}

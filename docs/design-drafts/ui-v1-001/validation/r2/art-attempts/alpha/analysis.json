@@ -1,0 +1,148 @@
+{
+  "kind": "ASSET_ALPHA_ANALYSIS_AND_REVIEW_COMPOSITES_NOT_IMAGE_REPAIR",
+  "sources": [
+    {
+      "version": "v2",
+      "path": "player-back-v2-original.png",
+      "bytes": 1113588,
+      "sha256": "2e67e775c465bdbb5ddf298967c2624b9d5aff31c4932922e48da935a8584791",
+      "pixels": [
+        1122,
+        1402
+      ],
+      "alpha_bbox_by_min_value": {
+        "1": [
+          27,
+          46,
+          1048,
+          1348
+        ],
+        "16": [
+          173,
+          48,
+          1045,
+          1342
+        ],
+        "128": [
+          174,
+          50,
+          1044,
+          1341
+        ],
+        "250": [
+          175,
+          53,
+          1043,
+          1340
+        ]
+      },
+      "alpha_1_pixels": 6601,
+      "alpha_nonzero_in_outer8": 0,
+      "alpha_nonzero_more_than5px_from_alpha128": 1073,
+      "feet_diagnostic_not_authored_anchor": [
+        {
+          "xRange": [
+            120,
+            450
+          ],
+          "lowest_y": 1285,
+          "last6rows_mean_x": 215.92370572207085
+        },
+        {
+          "xRange": [
+            450,
+            900
+          ],
+          "lowest_y": 1340,
+          "last6rows_mean_x": 633.8629550321199
+        }
+      ]
+    },
+    {
+      "version": "v3",
+      "path": "player-back-v3-candidate.png",
+      "bytes": 1091107,
+      "sha256": "091258bd03253a7abe8d07fdea834261cde677ec2e9c0fdc1b055ae010ed82c2",
+      "pixels": [
+        1122,
+        1402
+      ],
+      "alpha_bbox_by_min_value": {
+        "1": [
+          0,
+          45,
+          1076,
+          1350
+        ],
+        "16": [
+          173,
+          47,
+          1045,
+          1343
+        ],
+        "128": [
+          173,
+          49,
+          1045,
+          1342
+        ],
+        "250": [
+          175,
+          53,
+          1043,
+          1341
+        ]
+      },
+      "alpha_1_pixels": 7171,
+      "alpha_nonzero_in_outer8": 3,
+      "alpha_nonzero_more_than5px_from_alpha128": 1040,
+      "feet_diagnostic_not_authored_anchor": [
+        {
+          "xRange": [
+            120,
+            450
+          ],
+          "lowest_y": 1285,
+          "last6rows_mean_x": 217.88732394366195
+        },
+        {
+          "xRange": [
+            450,
+            900
+          ],
+          "lowest_y": 1341,
+          "last6rows_mean_x": 640.4425427872861
+        }
+      ]
+    }
+  ],
+  "method": "All asset bytes copied unchanged. 5px near-core uses an 11x11 maximum filter only for diagnostic counts; never changes source pixels. Composite/crop outputs are explicitly review evidence, not asset exports.",
+  "generated_from": "C:/Users/zjl/.codex/generated_images/01a1825c-a845-71c2-94d5-781c189d25c9/exec-d5f6dd24-6352-4203-98aa-e570ed697d9a.png",
+  "tool": "built-in image_gen, transparent_background=true",
+  "generation_count": 1,
+  "opaque_silhouette_iou_at_alpha128": 0.97975761321111,
+  "decision": "NOT_ADOPTED_ALPHA_GATE_OPEN",
+  "visual_review": {
+    "backgrounds": [
+      "black",
+      "white",
+      "checker",
+      "actual H4 corridor"
+    ],
+    "native_1to1_crops": [
+      "hair",
+      "left coat",
+      "right hand and pipe",
+      "boots"
+    ],
+    "observations": [
+      "Original framing and broad pose retained; no meaningful foot repositioning visible.",
+      "Candidate subtly repaints fabric/skin texture despite alpha-only request.",
+      "Hair contour remains soft on white; a narrow bright rim remains along the left coat on black.",
+      "Low alpha speckles remain; the candidate adds three nonzero pixels to the outer eight-pixel border.",
+      "No source raster was algorithmically cleaned, cropped, resized, thresholded or padded."
+    ],
+    "registration": "No production or design registration was changed. Existing common canvas remains authoritative. The diagnostic feet rows are not replacement author anchors.",
+    "recommendation": "Keep v2 as current source. Retain this v3 solely as rejected capability evidence; do not call alpha cleanup complete."
+  }
+}

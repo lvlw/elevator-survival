@@ -1,0 +1,10 @@
+{
+  "name": "view-P24-corrupt",
+  "url": "http://127.0.0.1:8766/prototype/index.html?screen=P24-corrupt&r2=07",
+  "dom": "- main:\n  - generic: 电梯求生\n  - generic: 任务日 — / 7\n  - generic: 生命\n  - generic: — / 12\n  - generic: 精力\n  - generic: — / 100\n  - generic: 饱食\n  - generic: — / 6\n  - generic: 身体状态未就绪\n  - button \"身体\"\n  - button \"帮助\"\n  - region \"中央内容区\":\n    - img \"医院电梯前室场景\"\n    - region \"操作与机制说明\":\n      - heading \"操作与机制说明\" [level=2]\n      - button \"放大\"\n      - button \"收起\"\n      - generic \"可滚动内容\":\n        - button \"操作\"\n        - button \"身体与药食\"\n        - button \"快捷位\"\n        - heading \"先看清，再作决定\" [level=2]\n        - paragraph: 查看任务、地图、物品与放大面板不消耗行动。地图只读，移动从场景方向区逐边执行。\n        - heading \"需要参数时明确选择\" [level=3]\n        - paragraph: 方法、材料、目标实例和格位由你选择。条件变化后旧选择失效，系统不会无声替换成第一项。\n        - heading \"键盘操作\" [level=3]\n        - paragraph: Tab移动焦点，Enter或空格激活。Escape关闭可收起的信息层；战斗不能用Escape结束。物品支持右键与Shift+F10菜单。\n      - button \"返回\"\n  - complementary:\n    - generic: 快捷位\n    - generic: 当前快捷物品不可用。\n    - generic: 等待可靠记录；物品操作不可用。\n  - generic: 当前记录未就绪\n  - generic: 当前记录未就绪；没有可执行的玩法。\n  - button \"查看反馈\"\n  - generic: 独立样例 · P25-controls\n  - button \"设计状态索引\"\n  - button \"导出可编辑SVG\"\n  - button \"导出PNG图稿\"\n  - button \"本地导出当前\"\n  - button \"本地导出全部\"",
+  "viewport": {
+    "dpr": 1,
+    "h": 908,
+    "w": 2552
+  }
+}

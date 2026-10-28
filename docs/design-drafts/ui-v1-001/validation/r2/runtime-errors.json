@@ -1,0 +1,66 @@
+{
+  "notSemanticFindings": [
+    {
+      "operation": "read-only evaluate computedStyleMap",
+      "error": "TypeError: e.computedStyleMap is not a function",
+      "interpretation": "Read-only tool DOM wrapper lacks this method; actual authoring export supports Typed OM as verified by SVG styles and PNG."
+    },
+    {
+      "operation": "early screenshot after navigation while window background/minimized",
+      "error": "Timed out after 5000ms waiting for CDP command Page.captureScreenshot",
+      "interpretation": "Capture failed; no screenshot claimed for that attempt. Stable subsequent captures retained separately."
+    },
+    {
+      "operation": "authoring export waitFor feedback",
+      "error": "Runtime.evaluate/locator wait timed out; later actual AX showed 本地当前图稿已导出",
+      "interpretation": "Tool wait timeout, not semantic rejection or failed export."
+    },
+    {
+      "operation": "asset-audit first run",
+      "exit": 1,
+      "error": "KeyError: cssSlots",
+      "interpretation": "Missing metadata for eight assets; revised audit reports unknown slot instead of assuming pass."
+    },
+    {
+      "operation": "native Edge window URL guard in preceding turn",
+      "result": "COMPUTER_USE_STOPPED_FOR_TURN",
+      "action": "Stopped that turn. Later continuation used documented webpage interface only; no bypass."
+    },
+    {
+      "operation": "browser reconnect IDs/old helper closure",
+      "result": "Browser not available / debugger not attached",
+      "action": "Read inventory and documented troubleshooting, then created fresh Edge validation tab."
+    },
+    {
+      "operation": "16 responsive export orchestration",
+      "result": "60 second tool timeout and kernel reset",
+      "action": "All 16 output triplets completed; independently checked actual files. Remaining groups ran in smaller batches."
+    },
+    {
+      "operation": "select by label",
+      "result": "no_matches",
+      "action": "Read actual select data-field then used documented locator. Not a semantic rejection."
+    },
+    {
+      "operation": "immediate scroll read",
+      "result": "scrollTop 0 before animation completed",
+      "action": "Later DOM and screenshot showed scrollTop162; retained final evidence."
+    },
+    {
+      "operation": "image display detail low",
+      "result": "unsupported; image omitted",
+      "action": "Did not count omitted images as reviewed; reopened with supported image detail."
+    },
+    {
+      "operation": "final P15 reset-viewport export wait",
+      "result": "Transient DOM height 919 followed by settled actual 908; waiting for 919 filename timed out",
+      "action": "Actual UI reported export complete at 2552x908. Recorded settled DOM and replaced native comparison screenshot at 908; no 919 export claimed."
+    },
+    {
+      "operation": "first final integrity audit",
+      "exit": 1,
+      "result": "41 checks passed; 1 failed because nine unmodified .meta.json CRLF checkouts were compared raw to LF Git blobs",
+      "verification": "Each of the nine is CRLF-only and has the identical canonical Git blob. Corrected text-metadata audit to use canonical blobs; original inputs and all raster bytes still require exact bytes. Failure preserved at before/final-audit-metadata-line-ending-failure.json."
+    }
+  ]
+}

@@ -1,11 +1,13 @@
 {
   "screen": "P15-orderly",
+  "version": "v1.2-r2",
   "viewport": [
     1440,
     900
   ],
   "pixelRatio": 1,
   "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+  "authority": "Native browser render; PNG geometry requires independent raster readback",
   "rects": [
     {
       "selector": ".shell",
@@ -15,6 +17,15 @@
       "h": 900,
       "scrollH": 900,
       "clientH": 900
+    },
+    {
+      "selector": ".hud",
+      "x": 16,
+      "y": 16,
+      "w": 1408,
+      "h": 64,
+      "scrollH": 62,
+      "clientH": 62
     },
     {
       "selector": ".center",
@@ -61,6 +72,27 @@
       "scrollH": 720,
       "clientH": 720
     },
+    null,
+    null,
+    {
+      "selector": ".right .inventory",
+      "x": 1133,
+      "y": 271.96875,
+      "w": 278,
+      "h": 184,
+      "scrollH": 184,
+      "clientH": 184
+    },
+    null,
+    {
+      "selector": ".battle-actions",
+      "x": 276,
+      "y": 684,
+      "w": 808,
+      "h": 88,
+      "scrollH": 88,
+      "clientH": 88
+    },
     {
       "selector": ".arena",
       "x": 276,
@@ -69,6 +101,24 @@
       "h": 444,
       "scrollH": 442,
       "clientH": 442
+    },
+    {
+      "selector": ".actor.player",
+      "x": 301.171875,
+      "y": 246.28125,
+      "w": 335.90625,
+      "h": 419.890625,
+      "scrollH": 420,
+      "clientH": 420
+    },
+    {
+      "selector": ".actor.enemy",
+      "x": 706.796875,
+      "y": 246.28125,
+      "w": 335.90625,
+      "h": 419.890625,
+      "scrollH": 420,
+      "clientH": 420
     },
     {
       "selector": ".footer",
@@ -90,7 +140,9 @@
       "display": [
         856,
         744
-      ]
+      ],
+      "fit": "cover",
+      "position": "50% 42%"
     },
     {
       "path": "../editable/assets/bg_isolation_corridor_v01.png",
@@ -101,7 +153,9 @@
       "display": [
         806,
         442
-      ]
+      ],
+      "fit": "cover",
+      "position": "50% 45%"
     },
     {
       "path": "../editable/assets/player-back-v2.png",
@@ -112,7 +166,9 @@
       "display": [
         306.703125,
         383.234375
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/enemy_infected_orderly_pristine_v02.png",
@@ -123,7 +179,9 @@
       "display": [
         302.3125,
         377.890625
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/fx-hit-v1.png",
@@ -134,7 +192,9 @@
       "display": [
         144.4375,
         144.4375
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
@@ -145,7 +205,9 @@
       "display": [
         80,
         80
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-firstaid-v1.png",
@@ -156,7 +218,9 @@
       "display": [
         33,
         80
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-ration-v1.png",
@@ -167,7 +231,9 @@
       "display": [
         33,
         33
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-metal-v1.png",
@@ -178,7 +244,9 @@
       "display": [
         33,
         33
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-battery-v1.png",
@@ -189,7 +257,9 @@
       "display": [
         33,
         33
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_isolation_access_card_v02.png",
@@ -200,7 +270,9 @@
       "display": [
         33,
         33
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_bandage_v02.png",
@@ -211,7 +283,9 @@
       "display": [
         42,
         42
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     }
   ],
   "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",

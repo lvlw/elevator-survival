@@ -1,6 +1,6 @@
 {
   "kind": "DESIGN_FILE_AND_GEOMETRY_AUDIT_NOT_PRODUCTION_TESTS",
-  "baseline": "d7d395ea7c061e26f9244fcfd296c764785af16a",
+  "baseline": "0e0c5cf50bce038f1e915529fe83c3278c30ab95",
   "checks": [
     {
       "name": "25 named page families",
@@ -2168,6 +2168,11 @@
       "detail": []
     },
     {
+      "name": "loaded assets P06-power-result-2552x908",
+      "pass": true,
+      "detail": []
+    },
+    {
       "name": "loaded assets P06-records-1920x1080",
       "pass": true,
       "detail": []
@@ -2179,6 +2184,11 @@
     },
     {
       "name": "loaded assets P06-sample-cautious-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P06-sample-cautious-2552x908",
       "pass": true,
       "detail": []
     },
@@ -2224,6 +2234,11 @@
     },
     {
       "name": "loaded assets P07-lin-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P07-lin-2552x908",
       "pass": true,
       "detail": []
     },
@@ -2328,6 +2343,11 @@
       "detail": []
     },
     {
+      "name": "loaded assets P10-detail-sample-2552x908",
+      "pass": true,
+      "detail": []
+    },
+    {
       "name": "loaded assets P10-equipment-1920x1080",
       "pass": true,
       "detail": []
@@ -2419,6 +2439,11 @@
     },
     {
       "name": "loaded assets P12-bandage-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P12-bandage-2552x908",
       "pass": true,
       "detail": []
     },
@@ -2553,6 +2578,11 @@
       "detail": []
     },
     {
+      "name": "loaded assets P15-orderly-2552x908",
+      "pass": true,
+      "detail": []
+    },
+    {
       "name": "loaded assets P15-orderly-2560x1080",
       "pass": true,
       "detail": []
@@ -2664,6 +2694,11 @@
     },
     {
       "name": "loaded assets P17-victory-1920x1080",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "loaded assets P17-victory-2552x908",
       "pass": true,
       "detail": []
     },
@@ -2874,6 +2909,16 @@
     },
     {
       "name": "UTF8 completion.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 offline-index.html",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 offline-preview.py",
       "pass": true,
       "detail": null
     },
@@ -3643,6 +3688,11 @@
       "detail": null
     },
     {
+      "name": "UTF8 editable/screens/P06-power-result-2552x908.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 editable/screens/P06-records-1920x1080.svg",
       "pass": true,
       "detail": null
@@ -3654,6 +3704,11 @@
     },
     {
       "name": "UTF8 editable/screens/P06-sample-cautious-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P06-sample-cautious-2552x908.svg",
       "pass": true,
       "detail": null
     },
@@ -3699,6 +3754,11 @@
     },
     {
       "name": "UTF8 editable/screens/P07-lin-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P07-lin-2552x908.svg",
       "pass": true,
       "detail": null
     },
@@ -3798,6 +3858,11 @@
       "detail": null
     },
     {
+      "name": "UTF8 editable/screens/P10-detail-sample-2552x908.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 editable/screens/P10-equipment-1920x1080.svg",
       "pass": true,
       "detail": null
@@ -3889,6 +3954,11 @@
     },
     {
       "name": "UTF8 editable/screens/P12-bandage-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P12-bandage-2552x908.svg",
       "pass": true,
       "detail": null
     },
@@ -4018,6 +4088,11 @@
       "detail": null
     },
     {
+      "name": "UTF8 editable/screens/P15-orderly-2552x908.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 editable/screens/P15-orderly-2560x1080.svg",
       "pass": true,
       "detail": null
@@ -4124,6 +4199,11 @@
     },
     {
       "name": "UTF8 editable/screens/P17-victory-1920x1080.svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 editable/screens/P17-victory-2552x908.svg",
       "pass": true,
       "detail": null
     },
@@ -4498,6 +4578,11 @@
       "detail": null
     },
     {
+      "name": "UTF8 previews/screens/P06-power-result-2552x908.json",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 previews/screens/P06-records-1920x1080.json",
       "pass": true,
       "detail": null
@@ -4509,6 +4594,11 @@
     },
     {
       "name": "UTF8 previews/screens/P06-sample-cautious-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P06-sample-cautious-2552x908.json",
       "pass": true,
       "detail": null
     },
@@ -4554,6 +4644,11 @@
     },
     {
       "name": "UTF8 previews/screens/P07-lin-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P07-lin-2552x908.json",
       "pass": true,
       "detail": null
     },
@@ -4653,6 +4748,11 @@
       "detail": null
     },
     {
+      "name": "UTF8 previews/screens/P10-detail-sample-2552x908.json",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 previews/screens/P10-equipment-1920x1080.json",
       "pass": true,
       "detail": null
@@ -4744,6 +4844,11 @@
     },
     {
       "name": "UTF8 previews/screens/P12-bandage-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P12-bandage-2552x908.json",
       "pass": true,
       "detail": null
     },
@@ -4873,6 +4978,11 @@
       "detail": null
     },
     {
+      "name": "UTF8 previews/screens/P15-orderly-2552x908.json",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 previews/screens/P15-orderly-2560x1080.json",
       "pass": true,
       "detail": null
@@ -4979,6 +5089,11 @@
     },
     {
       "name": "UTF8 previews/screens/P17-victory-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 previews/screens/P17-victory-2552x908.json",
       "pass": true,
       "detail": null
     },
@@ -5144,6 +5259,41 @@
     },
     {
       "name": "UTF8 previews/screens/P25-quick-1920x1080.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 reviews/r2-inputs/AUD-0e0c5cf-WORLD-UI-DESIGN-001-R1-package-review-v1.0.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 reviews/r2-inputs/BASELINE-AND-SCOPE.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 reviews/r2-inputs/MAINLINE-AUTHORITY-AND-CLARIFICATIONS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 reviews/r2-inputs/SEND-TO-CODEX.txt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 reviews/r2-inputs/SHA256SUMS.txt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 reviews/r2-inputs/verify-task-package.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 reviews/r2-inputs/WORLD-UI-DESIGN-001-R2-task-v1.0.md",
       "pass": true,
       "detail": null
     },
@@ -5323,6 +5473,166 @@
       "detail": null
     },
     {
+      "name": "UTF8 validation/r2/asset-audit.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/baseline.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/export-inventory.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/export-root-receipt.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/final-audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/final-audit.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/final-visual-delta.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/geometry-check.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/geometry-readback.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/isolated-after.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/isolated-after.receipt.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/isolated-before.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/isolated-before.receipt.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/negative-choice.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/negative-reset-choice.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/negative-reset-choice.receipt.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/negative-sample-split.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/negative-sample-split.receipt.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/negative-split.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/new-regressions-after.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/new-regressions-after.receipt.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/new-regressions-before.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/new-regressions-before.receipt.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/protected-git-objects.txt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/review-notes.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/runtime-errors.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/semantic-final.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/source-regression.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/sync-current.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/tested-design-source.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/visual-review.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/w0-sync.json",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "UTF8 validation/r1/alpha/alpha-analysis.json",
       "pass": true,
       "detail": null
@@ -5353,7 +5663,377 @@
       "detail": null
     },
     {
+      "name": "UTF8 validation/r2/after/remaining-representatives.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/after/representatives.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/asset-inspection/measurements.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/before/export.js",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/before/final-audit-metadata-line-ending-failure.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/before/P10-2552-live.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/before/P10-inventory-2552x908.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/before/P10-live.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/before/pre-final-export-hashes.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/before/representatives.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/before/runtime-errors.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/before/ui.css",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/01-selected-confirmed.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/02-depart-h0.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/47-offline-v12-gallery.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/battle-attack.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/battle-defense.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/battle-generic-fx.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/map-P03-communication.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/map-P03-hospital.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/map-P03-hotel.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/map-P03-logistics.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/map-P03-power.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/offline-gallery.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/offline-index.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/offline-motion.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/offline-switch.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/P06-sample-cautious-broken.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/P06-sample-cautious-last.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/P06-sample-cautious-unequipped.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/P06-sample-cautious.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/P06-sample-direct-broken.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/P06-sample-direct-last.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/P06-sample-direct-unequipped.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/P06-sample-direct.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/retreat-orderly-submitted.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/retreat-orderly.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/retreat-porter-submitted.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/retreat-porter.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/retreat-technician-submitted.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/retreat-technician.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/sample-menu.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/sample-move.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/view-P18-success.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/view-P21-enemy-alive.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/browser/view-P24-corrupt.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/00-owner-review.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/03-dimension-contract.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/04-interaction-and-motion.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/05-asset-coverage.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/completion.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/size-change-log.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/zoom/100.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/zoom/125-before-intent-fix.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/zoom/125.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/zoom/150.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/art-attempts/alpha/analysis.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/art-attempts/alpha/prompt.txt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/art-attempts/alpha/README.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/art-attempts/alpha/SHA256SUMS.txt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/art-attempts/hd/bg-h0-r2-native-4x3.measurement.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/art-attempts/hd/bg-h0-r2-native-4x3.prompt.txt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/previews/index.html",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/spec/asset-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/spec/delivery-packages.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/spec/dimension-contract.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/spec/node-crop-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/spec/screen-manifest.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/validation/design-qa.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/validation/final-check-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/validation/link-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/validation/responsive-results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "UTF8 validation/r2/history-r1/validation/verify-delivery.py",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "link 00-owner-review.md previews/index.html",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 00-owner-review.md offline-index.html",
       "pass": true,
       "detail": null
     },
@@ -5363,32 +6043,17 @@
       "detail": null
     },
     {
-      "name": "link 00-owner-review.md 02-page-state-matrix.md",
+      "name": "link 00-owner-review.md validation/r2/review-notes.md",
       "pass": true,
       "detail": null
     },
     {
-      "name": "link 00-owner-review.md validation/r1/review-notes.md",
-      "pass": true,
-      "detail": null
-    },
-    {
-      "name": "link 00-owner-review.md validation/r1/edge/03-depart-h0.jpg",
+      "name": "link 00-owner-review.md validation/r2/browser/02-depart-h0.jpg",
       "pass": true,
       "detail": null
     },
     {
       "name": "link 00-owner-review.md spec/delivery-packages.json",
-      "pass": true,
-      "detail": null
-    },
-    {
-      "name": "link 00-owner-review.md reviews/OWNER-modal-size-followup.md",
-      "pass": true,
-      "detail": null
-    },
-    {
-      "name": "link 00-owner-review.md 06-implementation-handoff-draft.md",
       "pass": true,
       "detail": null
     },
@@ -6688,6 +7353,11 @@
       "detail": null
     },
     {
+      "name": "link 03-dimension-contract.md validation/r2/review-notes.md",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "link 04-interaction-and-motion.md prototype/index.html",
       "pass": true,
       "detail": null
@@ -6699,6 +7369,16 @@
     },
     {
       "name": "link 04-interaction-and-motion.md validation/r1/edge-browser.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 04-interaction-and-motion.md offline-preview.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link 04-interaction-and-motion.md offline-index.html",
       "pass": true,
       "detail": null
     },
@@ -6723,17 +7403,22 @@
       "detail": null
     },
     {
-      "name": "link completion.md validation/final-check-results.json",
+      "name": "link 05-asset-coverage.md validation/r2/asset-inspection/measurements.json",
       "pass": true,
       "detail": null
     },
     {
-      "name": "link completion.md validation/r1/audit-results.json",
+      "name": "link completion.md validation/r2/review-notes.md",
       "pass": true,
       "detail": null
     },
     {
-      "name": "link completion.md validation/r1/review-notes.md",
+      "name": "link completion.md validation/r2/final-audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link completion.md validation/r2/export-inventory.json",
       "pass": true,
       "detail": null
     },
@@ -6748,22 +7433,17 @@
       "detail": null
     },
     {
-      "name": "link design-qa.md history-v1.0/design-qa.md",
+      "name": "link design-qa.md r2/review-notes.md",
       "pass": true,
       "detail": null
     },
     {
-      "name": "link design-qa.md r1/review-notes.md",
+      "name": "link design-qa.md r2/final-audit.json",
       "pass": true,
       "detail": null
     },
     {
-      "name": "link design-qa.md final-check-results.json",
-      "pass": true,
-      "detail": null
-    },
-    {
-      "name": "link design-qa.md r1/audit-results.json",
+      "name": "link design-qa.md r2/geometry-readback.json",
       "pass": true,
       "detail": null
     },
@@ -6813,6 +7493,46 @@
       "detail": null
     },
     {
+      "name": "link review-notes.md w0-sync.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md geometry-readback.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md geometry-check.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md ../../offline-index.html",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md runtime-errors.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md asset-inspection/measurements.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md visual-review.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "link review-notes.md final-audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "scope only ui-v1-001",
       "pass": true,
       "detail": []
@@ -6823,12 +7543,12 @@
       "detail": null
     }
   ],
-  "passed": 1364,
+  "passed": 1508,
   "failed": 0,
   "limitations": [
     "This script does not prove visual quality or interaction.",
     "Background DPR2 and residual alpha gates remain open.",
-    "Browser evidence and zoom status are independently recorded under validation/r1; audit counts do not prove completion."
+    "Browser evidence and zoom status are independently recorded under validation/r2; audit counts do not prove completion."
   ],
   "productionTests": "NOT RUN"
 }

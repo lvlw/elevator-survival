@@ -99,5 +99,18 @@
       -3
     ],
     "rotationDeg": 2
-  }
+  },
+  "version": "v1.2-r2",
+  "ordinaryPanelTiers": {
+    "brief": 640,
+    "detail": 680,
+    "summary": 800,
+    "parameters": 880,
+    "complex": 1000,
+    "map": 1040,
+    "battle": 1080
+  },
+  "panelHeight": "Content-driven capped by available center; battle keeps explicit row budget; maximum fills center. 600x360 is not a universal rule.",
+  "realZoomEvidence": "validation/r2/zoom/100.json, 125.json, 150.json",
+  "pngGeometryEvidence": "validation/r2/geometry-readback.json"
 }

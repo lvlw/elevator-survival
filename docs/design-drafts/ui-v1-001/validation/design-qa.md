@@ -1,7 +1,5 @@
-# 当前R1设计QA入口
+# 当前设计 QA：R2 / v1.2
 
-本页属于R1；原v1.0的QA结论原字节保存在[历史QA](history-v1.0/design-qa.md)，不能累计为当前通过。
+当前证据以[R2审阅记录](r2/review-notes.md)、[最终命令审计](r2/final-audit.json)、[像素回读](r2/geometry-readback.json)为准。R1、v1.0和修前记录均保留各自提交/时点身份，不能累计为本轮新通过。
 
-当前实际结果、修前/修后、素材/尺寸、真实缩放、离线与未完成项见[R1自查](r1/review-notes.md)。机器审计分别见[文件几何](final-check-results.json)与[R1原件/证据/链接](r1/audit-results.json)。
-
-整体状态仍为 **INCOMPLETE_ART**。生产test/typecheck/build均NOT RUN，新增生产测试0。
+实际浏览器缩放、模拟视口、PNG位置、物品参数、source像素与四底边缘审查分别记录。生产test/typecheck/build NOT RUN，新增生产测试0。INCOMPLETE_ART持续，检查数不能宣布COMPLETE。

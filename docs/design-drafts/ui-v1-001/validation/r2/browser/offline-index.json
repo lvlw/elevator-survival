@@ -1,0 +1,10 @@
+{
+  "name": "offline-index",
+  "url": "http://127.0.0.1:8767/offline-index.html",
+  "dom": "- heading \"电梯求生 · UI v1.2 设计候选\" [level=1]\n- paragraph: 这是离线设计审阅，不连接游戏、账号或存档。高清背景与透明清稿仍有未完成项，不能据此进入生产实现。\n- list:\n  - link \"25 个页面族与完整图稿索引\":\n    - /url: previews/index.html\n  - link \"打开可操作原型：初选到出发\":\n    - /url: prototype/index.html?screen=P01-unselected&offline=1\n  - link \"战斗演出示范\":\n    - /url: prototype/index.html?screen=P15-orderly&offline=1\n  - link \"当前审阅说明（Markdown）\":\n    - /url: 00-owner-review.md\n- paragraph:\n  - text: 在已安装 Python 的电脑中，于本目录运行\n  - code: python offline-preview.py\n  - text: （Windows 也可用\n  - code: py -3 offline-preview.py\n  - text: ）。然后访问本页地址。停止服务：在该终端按 Ctrl+C。\n- paragraph:\n  - text: 服务只读，仅监听 127.0.0.1。无需下载依赖或访问外网。端口占用时可加\n  - code: \"--port 8768\"\n  - text: 。直接 file:// 打开的验证状态另记，不把本地 HTTP 写成 file 验证。",
+  "viewport": {
+    "dpr": 1,
+    "h": 908,
+    "w": 2552
+  }
+}

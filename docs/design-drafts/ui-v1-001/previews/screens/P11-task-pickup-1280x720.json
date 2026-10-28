@@ -1,11 +1,13 @@
 {
   "screen": "P11-task-pickup",
+  "version": "v1.2-r2",
   "viewport": [
     1280,
     720
   ],
   "pixelRatio": 1,
   "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+  "authority": "Native browser render; PNG geometry requires independent raster readback",
   "rects": [
     {
       "selector": ".shell",
@@ -15,6 +17,15 @@
       "h": 720,
       "scrollH": 720,
       "clientH": 720
+    },
+    {
+      "selector": ".hud",
+      "x": 12,
+      "y": 12,
+      "w": 1256,
+      "h": 56,
+      "scrollH": 54,
+      "clientH": 54
     },
     {
       "selector": ".center",
@@ -46,7 +57,7 @@
     {
       "selector": ".inventory",
       "x": 303.203125,
-      "y": 214.1875,
+      "y": 231.7109375,
       "w": 242,
       "h": 160,
       "scrollH": 160,
@@ -55,12 +66,51 @@
     {
       "selector": ".panel",
       "x": 228,
-      "y": 92,
+      "y": 117.5234375,
       "w": 744,
-      "h": 560,
-      "scrollH": 558,
-      "clientH": 558
+      "h": 508.953125,
+      "scrollH": 507,
+      "clientH": 507
     },
+    {
+      "selector": ".panel-body",
+      "x": 229,
+      "y": 168.5234375,
+      "w": 742,
+      "h": 384.359375,
+      "scrollH": 384,
+      "clientH": 384
+    },
+    {
+      "selector": ".panel .inventory",
+      "x": 303.203125,
+      "y": 231.7109375,
+      "w": 242,
+      "h": 160,
+      "scrollH": 160,
+      "clientH": 160
+    },
+    {
+      "selector": ".right .inventory",
+      "x": 1009,
+      "y": 247.96875,
+      "w": 242,
+      "h": 160,
+      "scrollH": 160,
+      "clientH": 160
+    },
+    {
+      "selector": ".panel-footer",
+      "x": 229,
+      "y": 552.8828125,
+      "w": 742,
+      "h": 72.59375,
+      "scrollH": 72,
+      "clientH": 72
+    },
+    null,
+    null,
+    null,
     null,
     {
       "selector": ".footer",
@@ -82,7 +132,9 @@
       "display": [
         768,
         584
-      ]
+      ],
+      "fit": "cover",
+      "position": "50% 42%"
     },
     {
       "path": "../editable/assets/icon_bandage_v02.png",
@@ -93,7 +145,9 @@
       "display": [
         34,
         34
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     }
   ],
   "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",

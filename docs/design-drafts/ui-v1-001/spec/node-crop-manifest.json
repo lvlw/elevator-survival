@@ -47,10 +47,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -90,10 +87,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -133,10 +127,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -176,10 +167,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -219,14 +207,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "H1",
@@ -276,10 +262,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -319,10 +302,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -362,10 +342,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -405,10 +382,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -448,14 +422,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "H2",
@@ -505,10 +477,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -548,10 +517,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -591,10 +557,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -634,10 +597,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -677,14 +637,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "H3",
@@ -734,10 +692,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -777,10 +732,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -820,10 +772,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -863,10 +812,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -906,14 +852,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "H4",
@@ -963,10 +907,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1006,10 +947,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1049,10 +987,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1092,10 +1027,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1135,14 +1067,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "H5",
@@ -1192,10 +1122,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1235,10 +1162,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1278,10 +1202,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1321,10 +1242,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1364,14 +1282,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "H6",
@@ -1421,10 +1337,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1464,10 +1377,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1507,10 +1417,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1550,10 +1457,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1593,14 +1497,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "H7",
@@ -1650,10 +1552,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1693,10 +1592,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1736,10 +1632,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1779,10 +1672,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1822,14 +1712,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "H8",
@@ -1879,10 +1767,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1922,10 +1807,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -1965,10 +1847,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2008,10 +1887,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2051,14 +1927,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "T0",
@@ -2108,10 +1982,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2151,10 +2022,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2194,10 +2062,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2237,10 +2102,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2280,14 +2142,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "T1",
@@ -2337,10 +2197,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2380,10 +2237,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2423,10 +2277,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2466,10 +2317,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2509,14 +2357,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "P0",
@@ -2566,10 +2412,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2609,10 +2452,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2652,10 +2492,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2695,10 +2532,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2738,14 +2572,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "P1",
@@ -2795,10 +2627,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2838,10 +2667,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2881,10 +2707,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2924,10 +2747,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -2967,14 +2787,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "L0",
@@ -3024,10 +2842,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3067,10 +2882,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3110,10 +2922,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3153,10 +2962,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3196,14 +3002,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "L1",
@@ -3253,10 +3057,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3296,10 +3097,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3339,10 +3137,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3382,10 +3177,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3425,14 +3217,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "L2",
@@ -3482,10 +3272,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3525,10 +3312,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3568,10 +3352,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3611,10 +3392,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3654,14 +3432,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "L3",
@@ -3711,10 +3487,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3754,10 +3527,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3797,10 +3567,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3840,10 +3607,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3883,14 +3647,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "L5",
@@ -3940,10 +3702,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -3983,10 +3742,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4026,10 +3782,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4069,10 +3822,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4112,14 +3862,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "C0",
@@ -4169,10 +3917,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4212,10 +3957,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4255,10 +3997,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4298,10 +4037,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4341,14 +4077,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "C1",
@@ -4398,10 +4132,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4441,10 +4172,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4484,10 +4212,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4527,10 +4252,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4570,14 +4292,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "C2",
@@ -4627,10 +4347,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4670,10 +4387,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4713,10 +4427,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4756,10 +4467,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4799,14 +4507,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "C3",
@@ -4856,10 +4562,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4899,10 +4602,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4942,10 +4642,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -4985,10 +4682,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -5028,14 +4722,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "C4",
@@ -5085,10 +4777,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -5128,10 +4817,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -5171,10 +4857,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -5214,10 +4897,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -5257,14 +4937,12 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   },
   {
     "node": "C5",
@@ -5314,10 +4992,7 @@
             1152,
             201
           ],
-          "normalPanel": [
-            1080,
-            780
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -5357,10 +5032,7 @@
             920,
             201
           ],
-          "normalPanel": [
-            936,
-            696
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -5400,10 +5072,7 @@
             808,
             201
           ],
-          "normalPanel": [
-            824,
-            712
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -5443,10 +5112,7 @@
             766,
             201
           ],
-          "normalPanel": [
-            782,
-            588
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       },
       {
@@ -5486,13 +5152,11 @@
             720,
             201
           ],
-          "normalPanel": [
-            736,
-            552
-          ]
+          "normalPanel": "Content tier and actual export geometry; no universal 1080x780 mask"
         }
       }
     ],
-    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge"
+    "meaning": "Art mapping only; neither gameplay ID nor navigation knowledge",
+    "r2Note": "Source pixels, focal and cover calculations unchanged. Ordinary overlay varies by content; see dimension-contract and per-export rects."
   }
 ]

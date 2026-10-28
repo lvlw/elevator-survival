@@ -1,0 +1,49 @@
+{
+  "task": "WORLD-UI-DESIGN-001-R2",
+  "version": "1.0",
+  "repository": "lvlw/elevator-survival",
+  "baseline": {
+    "sha": "0e0c5cf50bce038f1e915529fe83c3278c30ab95",
+    "parent": "d7d395ea7c061e26f9244fcfd296c764785af16a",
+    "tree": "22d17c8a311f40e54e8a260b706d5f9fcbbec9c3",
+    "identity_status": "AUTHOR_REPORTED_LOCAL; MAINLINE_REMOTE_PENDING"
+  },
+  "branch": "feature/design-ui-v1-001",
+  "remote_observation": {
+    "branch_sha": "d7d395ea7c061e26f9244fcfd296c764785af16a",
+    "new_commit_query": "404"
+  },
+  "allowed_write_prefix": [
+    "docs/design-drafts/ui-v1-001/"
+  ],
+  "read_only_subpaths": [
+    "inputs/",
+    "all archived original inputs/history; current indices may be updated with preserved history"
+  ],
+  "production_write": false,
+  "merge": false,
+  "force_push": false,
+  "push_main": false,
+  "ordinary_same_branch_commit_push": true,
+  "W0": {
+    "first": "verify local objects and ordinary push original commit, then confirm actual remote",
+    "if_two_network_failures": "stop before R2 edits; report actual error; optional small raw Git evidence"
+  },
+  "priority": [
+    "F05-export-layout",
+    "content-sized-panels",
+    "native_DPR2_and_alpha",
+    "real_zoom_and_offline_handoff"
+  ],
+  "offline_clarification": "No external network required; explicit permitted read-only loopback HTTP using existing Python/Node can satisfy design offline delivery. Does not certify file://.",
+  "screens_before": 122,
+  "additional_exports_before": 48,
+  "declared_assets_before": 64,
+  "stop": "mainline/Owner joint design review; no production implementation",
+  "reference_packages": {
+    "source_sha256": "ea5d7ae342c41f03b31ad93bfaf73de52fbb9090ec95c3ee5c692b6827bcf944",
+    "focus_sha256": "08ceb5b735d76248838768819be44a9ac757e4c9b5dff22c149e747bbaeb92f2",
+    "merged_owner_original_members": 863
+  },
+  "integrity_note": "Nine packaged CRLF text files normalize to the author LF precommit audit. This does not replace final commit association."
+}

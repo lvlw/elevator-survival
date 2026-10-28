@@ -1,53 +1,151 @@
 {
-  "status": "R1_REVIEW_CANDIDATE / INCOMPLETE_ART",
-  "packages": [
+  "task": "WORLD-UI-DESIGN-001-R2",
+  "baseline": "0e0c5cf50bce038f1e915529fe83c3278c30ab95",
+  "status": "REVIEW CANDIDATE / INCOMPLETE_ART",
+  "maxPartBytes": 262144000,
+  "logicalPackages": [
     {
       "kind": "OWNER-REVIEW",
-      "path": "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-DESIGN-001-R1-delivery\\WORLD-UI-DESIGN-001-OWNER-REVIEW-v1.1.zip",
-      "filename": "WORLD-UI-DESIGN-001-OWNER-REVIEW-v1.1.zip",
-      "bytes": 601431864,
-      "sha256": "ba9bf39a0f385644224df7929c3ce3cad0b10d62fd247306818a02b10e1fa198",
-      "payloadFiles": 863,
-      "verification": "EXACT_BYTES_AND_ZIP_CRC_PASS",
+      "fileCount": 718,
+      "parts": 3,
+      "duplicatePaths": 0,
+      "sourceFiles": 713,
       "generatedEntries": [
+        "README-DELIVERY.md",
+        "spec/delivery-packages.json",
         "index.html",
         "MANIFEST.json",
-        "SHA256SUMS.txt",
-        "spec/delivery-packages.json"
+        "SHA256SUMS.txt"
       ],
-      "sourcePolicy": "Other entries are exact design-directory bytes at packaging; SOURCE-ASSETS omits previews available in OWNER-REVIEW; FOCUS-REVIEW contains selected actual evidence and cannot replace either full package."
+      "completeLocalViewer": true
     },
     {
       "kind": "SOURCE-ASSETS",
-      "path": "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-DESIGN-001-R1-delivery\\WORLD-UI-DESIGN-001-SOURCE-ASSETS-v1.1.zip",
-      "filename": "WORLD-UI-DESIGN-001-SOURCE-ASSETS-v1.1.zip",
-      "bytes": 145443136,
-      "sha256": "ea5d7ae342c41f03b31ad93bfaf73de52fbb9090ec95c3ee5c692b6827bcf944",
-      "payloadFiles": 515,
-      "verification": "EXACT_BYTES_AND_ZIP_CRC_PASS",
+      "fileCount": 895,
+      "parts": 4,
+      "duplicatePaths": 0,
+      "sourceFiles": 890,
       "generatedEntries": [
+        "README-DELIVERY.md",
+        "spec/delivery-packages.json",
         "index.html",
         "MANIFEST.json",
-        "SHA256SUMS.txt",
-        "spec/delivery-packages.json"
+        "SHA256SUMS.txt"
       ],
-      "sourcePolicy": "Other entries are exact design-directory bytes at packaging; SOURCE-ASSETS omits previews available in OWNER-REVIEW; FOCUS-REVIEW contains selected actual evidence and cannot replace either full package."
+      "completeLocalViewer": true
     },
     {
       "kind": "FOCUS-REVIEW",
-      "path": "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-DESIGN-001-R1-delivery\\WORLD-UI-DESIGN-001-FOCUS-REVIEW-v1.1.zip",
-      "filename": "WORLD-UI-DESIGN-001-FOCUS-REVIEW-v1.1.zip",
-      "bytes": 18448221,
-      "sha256": "08ceb5b735d76248838768819be44a9ac757e4c9b5dff22c149e747bbaeb92f2",
-      "payloadFiles": 86,
-      "verification": "EXACT_BYTES_AND_ZIP_CRC_PASS",
+      "fileCount": 218,
+      "parts": 1,
+      "duplicatePaths": 0,
+      "sourceFiles": 213,
       "generatedEntries": [
+        "README-DELIVERY.md",
+        "spec/delivery-packages.json",
         "index.html",
         "MANIFEST.json",
-        "SHA256SUMS.txt",
-        "spec/delivery-packages.json"
+        "SHA256SUMS.txt"
       ],
-      "sourcePolicy": "Other entries are exact design-directory bytes at packaging; SOURCE-ASSETS omits previews available in OWNER-REVIEW; FOCUS-REVIEW contains selected actual evidence and cannot replace either full package."
+      "completeLocalViewer": false
     }
+  ],
+  "packages": [
+    {
+      "kind": "OWNER-REVIEW",
+      "filename": "WORLD-UI-DESIGN-001-OWNER-REVIEW-v1.2.part01-of-03.zip",
+      "path": "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-DESIGN-001-R2-delivery\\WORLD-UI-DESIGN-001-OWNER-REVIEW-v1.2.part01-of-03.zip",
+      "bytes": 247279903,
+      "sha256": "a4d759e1fcec7cc6782ed5d15de0bf2f272862063c50f76ba2113a8b94cda76c",
+      "part": 1,
+      "parts": 3,
+      "entries": 261,
+      "verification": "EXACT_BYTES_UNION_AND_ZIP_CRC_PASS"
+    },
+    {
+      "kind": "OWNER-REVIEW",
+      "filename": "WORLD-UI-DESIGN-001-OWNER-REVIEW-v1.2.part02-of-03.zip",
+      "path": "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-DESIGN-001-R2-delivery\\WORLD-UI-DESIGN-001-OWNER-REVIEW-v1.2.part02-of-03.zip",
+      "bytes": 248757766,
+      "sha256": "c8d0e42bb1927ada9833e8c450ecc361c84c0ae14e92bc56da772340a3aef268",
+      "part": 2,
+      "parts": 3,
+      "entries": 190,
+      "verification": "EXACT_BYTES_UNION_AND_ZIP_CRC_PASS"
+    },
+    {
+      "kind": "OWNER-REVIEW",
+      "filename": "WORLD-UI-DESIGN-001-OWNER-REVIEW-v1.2.part03-of-03.zip",
+      "path": "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-DESIGN-001-R2-delivery\\WORLD-UI-DESIGN-001-OWNER-REVIEW-v1.2.part03-of-03.zip",
+      "bytes": 116001323,
+      "sha256": "9a07ad17b3549d3a70329f88c3d028f6501ec596cc434438c0e373c48c415e49",
+      "part": 3,
+      "parts": 3,
+      "entries": 267,
+      "verification": "EXACT_BYTES_UNION_AND_ZIP_CRC_PASS"
+    },
+    {
+      "kind": "SOURCE-ASSETS",
+      "filename": "WORLD-UI-DESIGN-001-SOURCE-ASSETS-v1.2.part01-of-04.zip",
+      "path": "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-DESIGN-001-R2-delivery\\WORLD-UI-DESIGN-001-SOURCE-ASSETS-v1.2.part01-of-04.zip",
+      "bytes": 95063087,
+      "sha256": "f6971abda118da5d6681487dbcaef6452c2a2122a58fc85c2dda6e1835d4a4b0",
+      "part": 1,
+      "parts": 4,
+      "entries": 221,
+      "verification": "EXACT_BYTES_UNION_AND_ZIP_CRC_PASS"
+    },
+    {
+      "kind": "SOURCE-ASSETS",
+      "filename": "WORLD-UI-DESIGN-001-SOURCE-ASSETS-v1.2.part02-of-04.zip",
+      "path": "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-DESIGN-001-R2-delivery\\WORLD-UI-DESIGN-001-SOURCE-ASSETS-v1.2.part02-of-04.zip",
+      "bytes": 54552598,
+      "sha256": "8cb3a258d5dea1e5b158f3fd7915eaee49d178b833bfc2d8a6ca3a405ea467be",
+      "part": 2,
+      "parts": 4,
+      "entries": 145,
+      "verification": "EXACT_BYTES_UNION_AND_ZIP_CRC_PASS"
+    },
+    {
+      "kind": "SOURCE-ASSETS",
+      "filename": "WORLD-UI-DESIGN-001-SOURCE-ASSETS-v1.2.part03-of-04.zip",
+      "path": "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-DESIGN-001-R2-delivery\\WORLD-UI-DESIGN-001-SOURCE-ASSETS-v1.2.part03-of-04.zip",
+      "bytes": 250577836,
+      "sha256": "2ad0e9551a3c6b1089ee2f2d97ca6e4e8465daa03e93b4598f592dd52d762316",
+      "part": 3,
+      "parts": 4,
+      "entries": 190,
+      "verification": "EXACT_BYTES_UNION_AND_ZIP_CRC_PASS"
+    },
+    {
+      "kind": "SOURCE-ASSETS",
+      "filename": "WORLD-UI-DESIGN-001-SOURCE-ASSETS-v1.2.part04-of-04.zip",
+      "path": "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-DESIGN-001-R2-delivery\\WORLD-UI-DESIGN-001-SOURCE-ASSETS-v1.2.part04-of-04.zip",
+      "bytes": 218104574,
+      "sha256": "0e8d5b86b12be0c613099552d087b42fb97f7366cc01209c08bb736a4eaff72e",
+      "part": 4,
+      "parts": 4,
+      "entries": 339,
+      "verification": "EXACT_BYTES_UNION_AND_ZIP_CRC_PASS"
+    },
+    {
+      "kind": "FOCUS-REVIEW",
+      "filename": "WORLD-UI-DESIGN-001-FOCUS-REVIEW-v1.2.zip",
+      "path": "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-DESIGN-001-R2-delivery\\WORLD-UI-DESIGN-001-FOCUS-REVIEW-v1.2.zip",
+      "bytes": 65179244,
+      "sha256": "cbe58065ec509bffca24cad1f2463666bbb08289db5047d2a89cd1595c72e92d",
+      "part": 1,
+      "parts": 1,
+      "entries": 218,
+      "verification": "EXACT_BYTES_UNION_AND_ZIP_CRC_PASS"
+    }
+  ],
+  "unifiedFileList": "UNIFIED-FILE-LIST.json",
+  "sourcePolicy": "Repository payloads are exact working bytes. Only explicitly generated distribution metadata differs. All ordinary parts together preserve original paths, bytes and image quality. Extract different logical packages separately.",
+  "gates": [
+    "18 backgrounds native 2x incomplete",
+    "Final alpha cleanup incomplete",
+    "Physical WAN disconnect and file protocol not verified",
+    "Await joint review; no production authorization"
   ]
 }

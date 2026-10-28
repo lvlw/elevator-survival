@@ -1,0 +1,906 @@
+{
+  "kind": "AUTHOR_ACTUAL_IMAGE_INSPECTION_NOT_AUTOMATIC_PASS",
+  "rootStates": 122,
+  "additionalViewportImages": 55,
+  "individuallyViewed": 177,
+  "afterLastExportChangedAndReopened": 67,
+  "unchangedAfterLastExport": 110,
+  "method": "Each PNG opened with the image-view tool. All 177 inspected; all 67 changed by final export reopened individually. No contact sheet counted as individual inspection.",
+  "findings": [
+    "Final battle intent placement clears actor feet at desktop and 390x844.",
+    "Small height long content uses panel-local scrolling; actual keyboard and controls separately recorded.",
+    "Background native 2x and final alpha remain incomplete."
+  ],
+  "limits": [
+    "Visual inspection does not mean every image was interactively clicked.",
+    "Real 125/150 zoom evidence precedes last desktop/mobile intent adjustment; their low-height declarations did not change.",
+    "No production gameplay or comprehensive mobile certification."
+  ],
+  "files": [
+    {
+      "path": "previews/screens/P01-crow-engineer-1920x1080.png",
+      "sha256": "8fd165bd9a555a7cdc15679422b50655cd252e8fbb4dc07d7352edd718166e3e",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P01-crow-scout-1920x1080.png",
+      "sha256": "6bf3ba786e2f08fdda2e62110184fd93621017abc4bc7fa859160b424804c5de",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P01-crow-survival-1920x1080.png",
+      "sha256": "28b1f06fd7d89dc93f0dfd263c11c2b6ac27895a08eb926c303ee7e80903f2e5",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P01-lamp-engineer-1920x1080.png",
+      "sha256": "6193006bd0465c62c320e243d59e79fe6693e7ae16fc01761f3079687fe43919",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P01-lamp-scout-1920x1080.png",
+      "sha256": "738d794ae911ae7cbf2afe4714635d613844cc3e06f78cef1c8361f0f6378bc1",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P01-lamp-survival-1920x1080.png",
+      "sha256": "ec29e1c6e343b0eab554bbc2d24f249ea7b0808fd2ab98628a0d6696da1d6180",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P01-toolbox-engineer-1920x1080.png",
+      "sha256": "aa9e9ed28253184058fe435627cbf456d041415d4b5a3b8792d4104af78cc1d8",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P01-toolbox-scout-1920x1080.png",
+      "sha256": "da9c309f05c896dbbfc8e37941408d2381817eb90169d163b480cd3cfe90c993",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P01-toolbox-survival-1920x1080.png",
+      "sha256": "4b41b951c39be1f689dc10b47fe7acd2695f226487ce01d256365fe92205559b",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P01-unselected-1920x1080.png",
+      "sha256": "b6f05ce5ec139ce0ba64a5f4f457fe743238dbf7a5403ccbdd02d025078e1aa8",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P02-first-hub-1920x1080.png",
+      "sha256": "b4d85f8bc63d4a8a1b238c026a70625c90d985134ada8bd57d41d1901436e1a5",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P03-communication-1920x1080.png",
+      "sha256": "7d377bd858eb10b279a9fac15e98fd3ee6f7125ba346f62cbd658cb7d75633b3",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P03-first-arrival-1920x1080.png",
+      "sha256": "e8396fe59b403478e63fc5f5479712b319cb2426c11f9b9b5e84f7645ddab6ad",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P03-hospital-1024x768.png",
+      "sha256": "8aadf134bf2f6d7568fc27f71e9d578d0d261afdf295a7d955115be91d36310d",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P03-hospital-1280x720.png",
+      "sha256": "6a73fa95a1761557a5b957b33693b977ae86b0b5469505cfb73f5cb67a205f96",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P03-hospital-1366x650.png",
+      "sha256": "0b3f91aee7e4d633ce99641d4fc9e1da0e3afd37fdf61eb02bc09ea2912c4d94",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P03-hospital-1366x768.png",
+      "sha256": "e499b22c7781591c85f35f0156bab79093f4cee09582e4eefb4ad4fe8ac3f68e",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P03-hospital-1440x900.png",
+      "sha256": "997bcef7b9a94b3fc0493580221ef1994ebbab8b1eabecc7b00350cbfa5f8c1a",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P03-hospital-1600x900.png",
+      "sha256": "4bc76a68f7669e64d3499042ccea26cfc60e13631eba7a292080066661a6ea41",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P03-hospital-1920x1080.png",
+      "sha256": "e854d6a2a3956270d461b24967836c1d8fe0c91ab4049fec3fee729be19aa2e9",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P03-hospital-2560x1080.png",
+      "sha256": "8bab535e6bb29cc02cfbb3352a5c1e4eca0dec79f0835888244137a90f55081f",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P03-hospital-2560x1440.png",
+      "sha256": "8bab535e6bb29cc02cfbb3352a5c1e4eca0dec79f0835888244137a90f55081f",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P03-hospital-390x844.png",
+      "sha256": "28ea84b9bb8915c4c71e2a31f75533e10e02fe14a4bb8ef83c05ff9d08ccfc22",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P03-hotel-1920x1080.png",
+      "sha256": "93170f2167ddb910ffef22798ac2ab9ed7a8c3503ab90b6ec70dd63dfa9886ae",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P03-logistics-1920x1080.png",
+      "sha256": "79a7d57b2868e56d8676a5136678c0117ae423f7875f044be96b830f4e97580c",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P03-power-1920x1080.png",
+      "sha256": "3ddf63722386db85b32488c90ee2cd7b32f939612e339efdb9dae2f51b1fcc6a",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P04-after-1920x1080.png",
+      "sha256": "6815fd7bad346889a7529184923647c9d1251c234e68e3e8ac9ac90ad5719851",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P04-before-1920x1080.png",
+      "sha256": "c3b102b8f4f2932deb45807b74e06406bfcbeb7cb0b4312d902aa550713fa843",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P05-empty-1920x1080.png",
+      "sha256": "750983d5550e70b130cb5d309ec852f8fbadd12012ca5ea0b649412c6914947d",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P05-reopen-1920x1080.png",
+      "sha256": "03b2b7b6be05b3e86219286e36705968fcc5e4f65d1050712fc0f62662428eb7",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P05-revealed-1920x1080.png",
+      "sha256": "ddbc841c9d87e390b4f6cdce5cb63ff2a8b58b5270a716490a044e7b3fbb57db",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P05-unsearched-1920x1080.png",
+      "sha256": "1b4747a7d8d1801a6eb0093ac6ed78a18e74715a10b27388c114e48d51061b52",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P06-component-1920x1080.png",
+      "sha256": "e04a72f12a54f11989cff8c266a28ced2b400c6a6f298155f50bbe733d204157",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P06-component-result-1920x1080.png",
+      "sha256": "976152d34c40aea1e3b53b2646826d10439927345454c5ab0a0da8da685a5c6a",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P06-door-1920x1080.png",
+      "sha256": "340ad57102cbf19d11f8df2ba9086019aed11cfd610b0a56daa7a3d116b8c1b1",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P06-door-result-1920x1080.png",
+      "sha256": "2a9b6fb02d35c951abd935bf3cb974443f6beb59b143cb58fc44eed2f56fb7a8",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P06-install-1920x1080.png",
+      "sha256": "d450af6c46a4440a8f59345af43577bde83231977df2877eb432bad4572ec15e",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P06-install-result-1920x1080.png",
+      "sha256": "a309049ff149cbb0152e4fa6ca56edcb11172a2b5350282103d8316e1b6804d1",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P06-power-1920x1080.png",
+      "sha256": "f38ebb352063a88f921387d6e884a327ac9508f8aca12826ffc2728a3f0d8454",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P06-power-result-1920x1080.png",
+      "sha256": "90ab3e12aa250fec0b7ac4da77ddc28361611408690c08f415d3762e53cb9138",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P06-power-result-2552x908.png",
+      "sha256": "f119e7d58c1599cef5dba7fcbd1ce6cbae0ddb4da02e6206f288dd5c53ef7551",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P06-records-1920x1080.png",
+      "sha256": "56a3ebea1d31ff5743ab166359f8027907d5fffa21773d8f1abab1a253184821",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P06-records-result-1920x1080.png",
+      "sha256": "76173008ea3e11a73085d775f61e1a59b618edb67c19ea22fb4c3739795041fb",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P06-sample-cautious-1920x1080.png",
+      "sha256": "54ee0f6be6e0a4667ada258eb124a9256d0401a9a9f0a4bc6fd90e0becd51e2f",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P06-sample-cautious-2552x908.png",
+      "sha256": "a52f9ca0c72e44c31767ae171b62dfd2b67fea9eb686057391e4101356f158dc",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P06-sample-cautious-broken-1920x1080.png",
+      "sha256": "528dca01c554dc79cf494d8a8476ff913d43c927a2175a34ebb823c170271555",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P06-sample-cautious-last-1920x1080.png",
+      "sha256": "db210ca70fd4c6d469390cc8b6282d72b8ef3f8041b854689b76e3166ec85826",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P06-sample-cautious-unequipped-1920x1080.png",
+      "sha256": "00bb0c1c8378cdcae28b7f9c62f24852ece56fab70121c56a3a51d6fb750690e",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P06-sample-direct-1920x1080.png",
+      "sha256": "a75765139e3081c2c83cd5c96bf7519f3a317712ec1e5f7f36bd7eaee02311da",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P06-sample-direct-broken-1920x1080.png",
+      "sha256": "ed95a20fa51885c86a2dfec136cc0091d07f2431f79cbc7d8cc3264c05f46973",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P06-sample-direct-last-1920x1080.png",
+      "sha256": "8824d2833e09f58ad2c8a903268e8fa130d6de42e7052e1409005f56b0e4125a",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P06-sample-direct-unequipped-1920x1080.png",
+      "sha256": "d8b06b0128be47afd4c5a6fe67635f45e58b72fc7f8c4895b4334964367057d9",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P06-sample-result-1920x1080.png",
+      "sha256": "c2f9cc210226da68b1be0bd7fbe44bf3f7c6ebe867b60a403c933b88665543a8",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P07-lin-1920x1080.png",
+      "sha256": "3c856d4f7db8e1ddae3984d34db3fc25d9360f27c2d235c5d0ee9a8ed3604f2b",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P07-lin-2552x908.png",
+      "sha256": "9350aaf237687824af8dc5fb8a20aac7c91b5d5e4aa6fc8bb1dbedf67706bfa6",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P07-zhou-1920x1080.png",
+      "sha256": "fdad19a0340c7d360a7aef5ea0f4027d4c9a3d6f70203f17f8581e792277bfb4",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P08-acquired-1920x1080.png",
+      "sha256": "8d5f2afa365b4eef58fd6864da1b8ef5c2831360cf520c5057474de95f24b411",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P08-carried-1920x1080.png",
+      "sha256": "6a00c805e8a23a69410ed08376e5a1ba1500012e310209f3da5b3e3c72349d52",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P08-delivered-1920x1080.png",
+      "sha256": "a8bcec178b3d416b27592a2cdfed04113b73fbd436c3ad1d9523ed5040ac1d5e",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P08-ground-1920x1080.png",
+      "sha256": "58aa381dad29350661fa93f50fb9049aef1be2a394c4b7f4f524d5438fd1daa6",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P09-blocked-1920x1080.png",
+      "sha256": "61b21ae9953a1e04459d6c00968af5de1f20df142048676c981e867a89f9c6fb",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P09-last-observed-1920x1080.png",
+      "sha256": "986c5d52e23792c3f3e0dab33b6d2c7edd1150df792e3d8ef121cb5e4248c998",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P09-max-1920x1080.png",
+      "sha256": "205be398a660f1241b918bf3969828f36c3dd5593aedf668328323b523f9442c",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P09-normal-1024x768.png",
+      "sha256": "c0afde4553741a7826a4410f813a8f6577bcb3bd4117ec4fe33a05ffa2dc76e1",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P09-normal-1366x650.png",
+      "sha256": "a23510d3dc31b4af1925362dc775de3e45259a3f819c7c98ea8e4e14168f95d9",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P09-normal-1366x768.png",
+      "sha256": "e66f39d778bc9d57c8c2080c261e35ccf0713f3388784b749825d626a15b8645",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P09-normal-1600x900.png",
+      "sha256": "a7f874be6eaa4b4f477e9be8fd12f8984af9204356f68f8c177f0ee8d2a27315",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P09-normal-1920x1080.png",
+      "sha256": "32bb7e148701aad0a39c4c0a5a65dcea03eb251eb76509460d507992edabdc77",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P09-normal-2560x1080.png",
+      "sha256": "6f8daf9b63f681fb81af6291d47bc458df87060ba8a8d54c8ebb680978f19aac",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P09-normal-2560x1440.png",
+      "sha256": "6f8daf9b63f681fb81af6291d47bc458df87060ba8a8d54c8ebb680978f19aac",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P09-normal-390x844.png",
+      "sha256": "25889513bb0637c696c60a666448dbb130540b3218d6a55ee08db90cc58ca2a8",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P09-unknown-passability-1920x1080.png",
+      "sha256": "fd438a5244b9783b918de970f63b18597924a944c773c85a244ca9769afc1546",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P10-detail-pipe-1920x1080.png",
+      "sha256": "7bf7400432515c6dbbabee833254a27c72d43b4d0fafc8d7e24920d0b596d001",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P10-detail-sample-1920x1080.png",
+      "sha256": "f80a3281ad08520e5417d9d09b85cd7865f1e74596891601afafa9995d14b447",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P10-detail-sample-2552x908.png",
+      "sha256": "b42967e8f15eb473155ec0b468c452a5f83bf662d7adc5dd8dbb037cd649a863",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P10-equipment-1920x1080.png",
+      "sha256": "68c37c6be166cd544e2acb3bdddb495c4202e16497f1dff7f5899af4c1b3e623",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P10-inventory-1366x768.png",
+      "sha256": "8bd896750e25df258eeb2ace2a7d0adf73342f6c9c5efa8043bc91252365ddb6",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P10-inventory-1600x900.png",
+      "sha256": "3780f3142e8b4fc4afb07f82daaa8bd989db46d263d76d81bc6d534e3259ce19",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P10-inventory-1920x1080.png",
+      "sha256": "89b670bac4fd2247ad13ce8244e70c2fe04b15109601bb0e4be30397c8b5a0ac",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P10-inventory-2552x908.png",
+      "sha256": "f211d23b9a0b18beff1f01e3128677da8fd6f4e92e144568229aac2c7ed5513b",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P10-rotated-1920x1080.png",
+      "sha256": "e64d6fc696be2975a81837a8b0df2567b2fe6da696261d661f01015970c614dc",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P11-drop-1920x1080.png",
+      "sha256": "a7df26514bb679d638105b8a8de1e3bcbeb1f1a5988758f0c195952b94663639",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P11-merge-1920x1080.png",
+      "sha256": "7baaee82b9dd40738254a541d0fede559864f8692148b90598474e33109fdf92",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P11-move-1920x1080.png",
+      "sha256": "66c4c2186c10bcbfd69830ce57090aad167c1a782c3456631ab07ab7bed7ff39",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P11-no-space-1920x1080.png",
+      "sha256": "037e3cebb0fd96facdf1c195bd7759a689b4b49fb72462865ab1c8c680e41c75",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P11-quick-1920x1080.png",
+      "sha256": "4f9752985e53c5a07cb25578b612353a2c681c847aa98fbb276f7a71bc5775c1",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P11-split-1920x1080.png",
+      "sha256": "31455bf143ede76c2ba60984d538de56b26e8f7f756d2a577c74c0247ffb7640",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P11-task-pickup-1280x720.png",
+      "sha256": "0ba77076b4b9d130c262c9b480373ac85e945b7f474b574d906d741158924585",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P11-task-pickup-1920x1080.png",
+      "sha256": "bd8ac7b9d765fb9fcc7fbdbb9e69d477a65de2d9f1770c828b477c2c1d2aee59",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P12-bandage-1024x768.png",
+      "sha256": "55bd8fda0163b9c17d3bdd3364bb25884b8578836c988830fe0716eb94d59871",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P12-bandage-1366x650.png",
+      "sha256": "36c7ab19cb822ec79cddaed58631dd2c6d06a4d39b02e18f94247c3ea2d235a9",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P12-bandage-1366x768.png",
+      "sha256": "0d99bf2725fe4656c2d5908ebd75569d70a521d5396a4552eba10e94672f54e2",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P12-bandage-1600x900.png",
+      "sha256": "68393e4339f178e1da53a470805923346c6955ad1f3cb67f60f5a6a667fd9c6b",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P12-bandage-1920x1080.png",
+      "sha256": "ed5808a2f8992bf3297231fd04c6646530b6f05f63650c9c2aa4d64bcf44f842",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P12-bandage-2552x908.png",
+      "sha256": "4ca183057d40505e436133979c85a5a81ff9e1bdfbe7f5c41e63f3f54ce578e7",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P12-bandage-2560x1080.png",
+      "sha256": "59cb58c96fe01b3ab69a53859ff2c66935ad4122bc1f14d2183eb8564155ebc5",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P12-bandage-2560x1440.png",
+      "sha256": "59cb58c96fe01b3ab69a53859ff2c66935ad4122bc1f14d2183eb8564155ebc5",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P12-bandage-390x844.png",
+      "sha256": "54b3ad66af40b266897e42fc12f6d5421f1f9783ab77dd609b5311f52c839ec4",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P12-battle-1920x1080.png",
+      "sha256": "77ab252b1e869fb1063d1283dd324b633b2f47959f711cc3c75eb10e1b594042",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P12-disinfectant-1920x1080.png",
+      "sha256": "d2f6ad3eb2cb5c6bc940dc4e9e9833a46c05d6b0e0afe0690223eab0b77bb6a9",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P12-firstaid-1920x1080.png",
+      "sha256": "ff9ac4b06dd40fa806a10e4caaa41633ae9344e43445db1199c3a896c4abfd44",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P12-invalid-1920x1080.png",
+      "sha256": "5478f336889b66743be76b57872002831c254e6d0f98c28fc84e91d700ccaf6d",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P12-painkiller-1920x1080.png",
+      "sha256": "d44f14b4950d3e9f9701b96b0a02f6be62b4a3c5628a9832236568699d678644",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P12-ration-1920x1080.png",
+      "sha256": "d4ba7d439990a15556499463d4d4812cde994fd43c23580f62f6d4aef86e3ff9",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P12-suppressant-1920x1080.png",
+      "sha256": "2ad5f328d89c9817966551cec19841f01c4a55afe9ec7ab728dede33430475ef",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P13-charge-1920x1080.png",
+      "sha256": "d6b025d223f8bac6b7b28ff3c7b8ca2057ac30559f97b37b80dd97212720e6ba",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P13-coat-1920x1080.png",
+      "sha256": "42c3b385e28f315a1394314404eaec9eeb2170a856e78175c6f8889e497d1954",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P13-mechanical-1920x1080.png",
+      "sha256": "0952dd7c7e7542e5027657603e0097e00b51f075f2d173a380c2e4e047967fd8",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P13-toolbox-1920x1080.png",
+      "sha256": "12132d2ebd08fa7e5defb248644d4133a7090a9b162970d8b428d2e2bc266a52",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P14-A-1920x1080.png",
+      "sha256": "5106c218200419eb9cc4027515966aae6ddf31f38e3d5aa8e0cd710f5e37c6aa",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P14-C-1920x1080.png",
+      "sha256": "8ecf2a7e0d65af22f13d6ac2507aa00c7334bf31db7df5a6ba49fa9aaadb54af",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P14-consequences-1920x1080.png",
+      "sha256": "e1c5b3a9efb4f532f6ff2eaa2159f9e5d64b54aeb2461e3f29b9d09f4a68f305",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P14-death-1920x1080.png",
+      "sha256": "8ef23b2496a3f16e7200a86e515148e06f426de150e5585a6785776c893f69ff",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P15-orderly-1024x768.png",
+      "sha256": "8a2d30988297802a6cd677ec377d7312f45a1705b31f29edc2ff33578611b10f",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P15-orderly-1280x720.png",
+      "sha256": "1f44db07250ab98a6aa9edd32d932922e551b50f4d0d203d35a7fc12562f9619",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P15-orderly-1366x650.png",
+      "sha256": "ec1a49357ec8c8d9166cb932ea0fa9e73a3548e85d41b5214447fca6e58c2240",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P15-orderly-1366x768.png",
+      "sha256": "e1701978a682b07454ee0fb311b8dec20d8f81e0236f532044e597154e5abd6d",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P15-orderly-1440x900.png",
+      "sha256": "4ca31bb8b012c3f7b9c1266fda6964df8e1d636f1e837135beb291a73ecbca93",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P15-orderly-1600x900.png",
+      "sha256": "11bb9e87d0442a18fdfd608cb377c493e87c57b63a534d305bc82d7a47578da4",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P15-orderly-1920x1080.png",
+      "sha256": "8c451b22bd7acf209091a8047ecc05100702013096b5e01ccea7d020e19c496a",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P15-orderly-2552x908.png",
+      "sha256": "ba20424c606934cc9c5832cd06996ad17d4883a8c8e02101a6d1cf73fb9b4c0c",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P15-orderly-2560x1080.png",
+      "sha256": "bbac3fb9140c9b814fc8e9cd79b59ece855977ed19457093526981dd19abe763",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P15-orderly-2560x1440.png",
+      "sha256": "bbac3fb9140c9b814fc8e9cd79b59ece855977ed19457093526981dd19abe763",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P15-orderly-390x844.png",
+      "sha256": "426bb9f03c2377e1e7764bc340851ebe234fa5d075d1d1c3af75948114bee89b",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P15-porter-1920x1080.png",
+      "sha256": "31cdec229100a7ea5b661dfbee9f6c0c67a017822e5be210b8aa952954a87e53",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P15-technician-1920x1080.png",
+      "sha256": "0c84cedb07c99d11dbe9f601726c6b0a89e1d353410c3ec90999ca37104e4f3c",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P16-decision-1920x1080.png",
+      "sha256": "7a4dc68ca3870b57ec32832724b2a2ee4c31afe5a02571819535f0aef47ca26c",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P16-enemy-response-1920x1080.png",
+      "sha256": "fefc9e8e91cfcb8fe08378fce8717300c859141ec5e97cfe364f39fd3f79ddaf",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P16-hit-1920x1080.png",
+      "sha256": "964ff9725e0392707c4ce38ec73ece07b290d5711c7049211fe88bf311c4ba6c",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P16-max-1366x768.png",
+      "sha256": "eae0e3b1b57aa7b98fda697021d54c55da970ecb977916ae3eaef9a4e75fedae",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P16-max-1600x900.png",
+      "sha256": "7f85edac86f58852d4c24f9020c2e73bd81e630744cda67d817cbd226d412b8a",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P16-max-1920x1080.png",
+      "sha256": "94d30f5a261bfd1b2b31b638e548baa68323065e5c5c48e27f04a40fb5759738",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P16-phases-1920x1080.png",
+      "sha256": "5f3ce68bda5e20df38c4d972a56a2dbb4c26f82cf27fcdf25fad4bdd78cf10ac",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P16-porter-phases-1920x1080.png",
+      "sha256": "d3be496488f9c6a09d6d5d895b34811e12802f7848bbb453cfe1e57b3173cd72",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P16-reduced-1920x1080.png",
+      "sha256": "1b8ae19e0908f2f0e43e49d4f424cabce6e1d834221e1ace05fe0697157b78f0",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P16-retreat-1920x1080.png",
+      "sha256": "e3d4c6768959ba1a2e749e81851219b781e4049b719171be25c8fb8d6018011e",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P16-stage-change-1920x1080.png",
+      "sha256": "66426398786d1b91ecd6323adedf08bf4ced33f9a28841665667bac96f11c4c6",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P16-submitted-1920x1080.png",
+      "sha256": "55e71dbc71a532262d345cec75205657996a5e85749808620b79b536f7dbff4e",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P16-technician-phases-1920x1080.png",
+      "sha256": "d23d97051233701b4c35c6889ad0c87d95887a1df81c13eeaf313c1c96fb1018",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P17-retreat-1920x1080.png",
+      "sha256": "aaef529fd3e11a3bb38f24018a48a572c12918dc8460491b28ecdeeaa221c59a",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P17-retreat-porter-1920x1080.png",
+      "sha256": "b18022be09b957a6e958ecdf6945fc7e60e3acd0a7cc4ce791318f273e38bbdb",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P17-retreat-technician-1920x1080.png",
+      "sha256": "76f2e474d0ffd95abef9d95d0617dbce862fc8e5806dc658af0241c6ce045b0c",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P17-victory-1920x1080.png",
+      "sha256": "e35f4e6070d25b3593bd7e5b414e54a8d88525b2ff1ab1cf47373eaa5c033b40",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P17-victory-2552x908.png",
+      "sha256": "b520a684f6f47b9fbd66cc70e1307a60f7b2d25204acb781f4114cca63256176",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P18-success-1920x1080.png",
+      "sha256": "819a70b42e024a2f0283a55221f7deafe7fc043bae1a15bb3c86a1676600cc6a",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P19-voluntary-1920x1080.png",
+      "sha256": "41a60863faafbd3695b284a81bc23da49e6a56a2db0fce44194ef29739b6af46",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P20-deadline-1920x1080.png",
+      "sha256": "4c3739c846c85f88812859e633b976734299abb2a7285b04a5866a46919eedeb",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P21-both-zero-1920x1080.png",
+      "sha256": "fd6eac25c54feb4b8e183d2d40668d56008801bde464f38574376af0fddfbde5",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P21-enemy-alive-1920x1080.png",
+      "sha256": "44b56083a39a6fd61196b6baf87ce683ce65fc71aba633c8888fc7eae83be8e5",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P22-cancelled-1920x1080.png",
+      "sha256": "529c357e33a8a143f87a79b39d76526dda2752a9b94ad1d66a0f142cfd7c199d",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P22-certain-death-1280x720.png",
+      "sha256": "9b71af1c55d72e71ef372efa9d8d4685c0cf29b1414f1dc8dc0c3fcc42dbe76c",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P22-certain-death-1920x1080.png",
+      "sha256": "4b8e17ab94499b5121dacab3468958953234a22180c9566beb395e84ec17e140",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P22-critical-drop-1920x1080.png",
+      "sha256": "77cd9ba4cf0c7c8f775a6b8433baa1a963f71cf30f2241f4c80fb6e1fd56d503",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P22-return-1920x1080.png",
+      "sha256": "59b0374bece216b8e77555d47400d53a43ea8439c76d873b267d6b411b91d249",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P22-stale-1920x1080.png",
+      "sha256": "5fec5baca322fb39ded5f5cfbaa446f11ce48dc764adeede4b37214625bf4343",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P23-failed-1024x768.png",
+      "sha256": "70c5720e98cd9e2bbe0d5a483bffcd52728baa91fdb5403ae0a78d042ff77498",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P23-failed-1366x650.png",
+      "sha256": "780a91aac286e9dfbc0d59942377c8d1807a8b2d4d9119a5d9230f2f4162423b",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P23-failed-1366x768.png",
+      "sha256": "55e2aeec4e0e1944e7d2fe76b9279b3179ab27a5776ee2d13ad121b74f4cc2c0",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P23-failed-1600x900.png",
+      "sha256": "ca7aa0e0167794a4307506642503c028d76e9a5a6fac52f3f4575e60ed88f3fd",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P23-failed-1920x1080.png",
+      "sha256": "b896aafbe2ae13caf8de770bd69c4bd5ea6e168a34448a3a1c4a176c8a582699",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P23-failed-2560x1080.png",
+      "sha256": "d22dac529a1bd2fe8ebe4376a956e492cd28344bd7a6a2b9d42035220a778070",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P23-failed-2560x1440.png",
+      "sha256": "d22dac529a1bd2fe8ebe4376a956e492cd28344bd7a6a2b9d42035220a778070",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P23-failed-390x844.png",
+      "sha256": "538531dd9e0de1151634d9143fd6da7148323382b592e77127bceec0d83347ae",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P23-not-attempted-1920x1080.png",
+      "sha256": "adcff257874a27e4aa1dfd37767daf004ebf46a95dc654e84fec17cc8ecaeb5c",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P23-retry-1920x1080.png",
+      "sha256": "bf3e784db6cf48da7c68205aeb26131ccd5112ce07deb6ed3722c2561c03f7e8",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P23-saved-1920x1080.png",
+      "sha256": "ea57191301d6ee723537eef729a239923c9ec76595250f83649281eb785ae255",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P24-corrupt-1366x768.png",
+      "sha256": "857f0867282689ffff2119afce1725da7c6c7a8b3e8b72e62137799e0ed5c6bf",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P24-corrupt-1600x900.png",
+      "sha256": "642432b121f7f5eb6c411a117a2a0d526c2775cfe70f86aafc6196ab1ace43cf",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P24-corrupt-1920x1080.png",
+      "sha256": "a479279fe5214c5a588de19b62991a9a67c8062ac96ce2d7f5ca2ca368572c7c",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P24-lost-1920x1080.png",
+      "sha256": "857facfef5c7f46aaf89a1a4c49f93ce0231b0e97b301434e98f05f3b8f21e11",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P24-occupied-1920x1080.png",
+      "sha256": "e6c4a68c47740faf73e2ada8dc9934ab935c4cf6881b62602f4e1b94d35040d6",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P24-projection-1920x1080.png",
+      "sha256": "fc3e315e725213e0b57478fbbd205eeb89482b0453e1d7c0e037ab81d00dac1e",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P24-read-error-1920x1080.png",
+      "sha256": "532c5ee664fe3a490ff8252e01249c13fb58287aff5d2c0fb76c61ab5a017246",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P24-request-1920x1080.png",
+      "sha256": "fee722bd89450ca8424047de0e2a04cf0be2932e82dc343d80517351273eaceb",
+      "inspection": "INDIVIDUALLY_OPENED_AND_FINAL_SHA_UNCHANGED"
+    },
+    {
+      "path": "previews/screens/P25-controls-1920x1080.png",
+      "sha256": "ab3ac5dafb7e991119386652f823f15f4b39a0fc1be4a11d3eae7993fa2d40ba",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P25-health-1920x1080.png",
+      "sha256": "46b35ea65c0f1022187b2dcc940822547b3ae772f678c89ad6007bfd9d3195bc",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    },
+    {
+      "path": "previews/screens/P25-quick-1920x1080.png",
+      "sha256": "deaa06cb81f29ee612f1f9c0b38985442683f0917ad0266592e894ac74754c71",
+      "inspection": "INDIVIDUALLY_OPENED_AFTER_FINAL_EXPORT"
+    }
+  ]
+}

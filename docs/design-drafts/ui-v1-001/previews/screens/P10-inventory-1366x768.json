@@ -1,11 +1,13 @@
 {
   "screen": "P10-inventory",
+  "version": "v1.2-r2",
   "viewport": [
     1366,
     768
   ],
   "pixelRatio": 1,
   "kind": "ACTUAL_DOM_EXPORT_NOT_PRODUCTION",
+  "authority": "Native browser render; PNG geometry requires independent raster readback",
   "rects": [
     {
       "selector": ".shell",
@@ -15,6 +17,15 @@
       "h": 768,
       "scrollH": 768,
       "clientH": 768
+    },
+    {
+      "selector": ".hud",
+      "x": 16,
+      "y": 16,
+      "w": 1334,
+      "h": 60,
+      "scrollH": 58,
+      "clientH": 58
     },
     {
       "selector": ".center",
@@ -46,7 +57,7 @@
     {
       "selector": ".inventory",
       "x": 326.25,
-      "y": 224.140625,
+      "y": 262.84375,
       "w": 260,
       "h": 172,
       "scrollH": 172,
@@ -55,12 +66,43 @@
     {
       "selector": ".panel",
       "x": 248,
-      "y": 100,
+      "y": 146.703125,
       "w": 790,
-      "h": 596,
-      "scrollH": 594,
-      "clientH": 594
+      "h": 502.59375,
+      "scrollH": 501,
+      "clientH": 501
     },
+    {
+      "selector": ".panel-body",
+      "x": 249,
+      "y": 197.703125,
+      "w": 788,
+      "h": 450.59375,
+      "scrollH": 451,
+      "clientH": 451
+    },
+    {
+      "selector": ".panel .inventory",
+      "x": 326.25,
+      "y": 262.84375,
+      "w": 260,
+      "h": 172,
+      "scrollH": 172,
+      "clientH": 172
+    },
+    {
+      "selector": ".right .inventory",
+      "x": 1075,
+      "y": 261.96875,
+      "w": 260,
+      "h": 172,
+      "scrollH": 172,
+      "clientH": 172
+    },
+    null,
+    null,
+    null,
+    null,
     null,
     {
       "selector": ".footer",
@@ -82,7 +124,9 @@
       "display": [
         814,
         620
-      ]
+      ],
+      "fit": "cover",
+      "position": "23% 42%"
     },
     {
       "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
@@ -93,7 +137,9 @@
       "display": [
         74,
         74
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-firstaid-v1.png",
@@ -104,7 +150,9 @@
       "display": [
         30,
         74
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-ration-v1.png",
@@ -115,7 +163,9 @@
       "display": [
         30,
         30
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-metal-v1.png",
@@ -126,7 +176,9 @@
       "display": [
         30,
         30
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-battery-v1.png",
@@ -137,7 +189,9 @@
       "display": [
         30,
         30
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_isolation_access_card_v02.png",
@@ -148,7 +202,9 @@
       "display": [
         30,
         30
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_bandage_v02.png",
@@ -159,7 +215,9 @@
       "display": [
         42,
         42
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_metal_pipe_v01.png",
@@ -170,7 +228,9 @@
       "display": [
         42,
         42
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_heavy_coat_v01.png",
@@ -181,7 +241,9 @@
       "display": [
         42,
         42
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-toolbox-v1.png",
@@ -192,7 +254,9 @@
       "display": [
         42,
         42
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_sealed_pathogen_case_v02.png",
@@ -203,7 +267,9 @@
       "display": [
         74,
         74
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-firstaid-v1.png",
@@ -214,7 +280,9 @@
       "display": [
         30,
         74
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-ration-v1.png",
@@ -225,7 +293,9 @@
       "display": [
         30,
         30
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-metal-v1.png",
@@ -236,7 +306,9 @@
       "display": [
         30,
         30
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/item-battery-v1.png",
@@ -247,7 +319,9 @@
       "display": [
         30,
         30
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_isolation_access_card_v02.png",
@@ -258,7 +332,9 @@
       "display": [
         30,
         30
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     },
     {
       "path": "../editable/assets/icon_bandage_v02.png",
@@ -269,7 +345,9 @@
       "display": [
         42,
         42
-      ]
+      ],
+      "fit": "contain",
+      "position": "50% 50%"
     }
   ],
   "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",

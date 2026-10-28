@@ -1,0 +1,10 @@
+{
+  "name": "offline-switch",
+  "url": "http://127.0.0.1:8767/prototype/index.html?screen=P15-orderly&offline=1",
+  "dom": "- main",
+  "viewport": {
+    "dpr": 1,
+    "h": 908,
+    "w": 2552
+  }
+}

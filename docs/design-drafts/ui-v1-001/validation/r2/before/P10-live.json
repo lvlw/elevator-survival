@@ -1,0 +1,174 @@
+{
+  "dpr": 1,
+  "images": [
+    {
+      "h": 941,
+      "src": "../editable/assets/bg-hospital-control-v1.png",
+      "w": 1672
+    },
+    {
+      "h": 512,
+      "src": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+      "w": 512
+    },
+    {
+      "h": 1254,
+      "src": "../editable/assets/item-firstaid-v1.png",
+      "w": 1254
+    },
+    {
+      "h": 1254,
+      "src": "../editable/assets/item-ration-v1.png",
+      "w": 1254
+    },
+    {
+      "h": 1254,
+      "src": "../editable/assets/item-metal-v1.png",
+      "w": 1254
+    },
+    {
+      "h": 1254,
+      "src": "../editable/assets/item-battery-v1.png",
+      "w": 1254
+    },
+    {
+      "h": 512,
+      "src": "../editable/assets/icon_isolation_access_card_v02.png",
+      "w": 512
+    },
+    {
+      "h": 512,
+      "src": "../editable/assets/icon_bandage_v02.png",
+      "w": 512
+    },
+    {
+      "h": 512,
+      "src": "../editable/assets/icon_metal_pipe_v01.png",
+      "w": 512
+    },
+    {
+      "h": 512,
+      "src": "../editable/assets/icon_heavy_coat_v01.png",
+      "w": 512
+    },
+    {
+      "h": 1254,
+      "src": "../editable/assets/item-toolbox-v1.png",
+      "w": 1254
+    },
+    {
+      "h": 512,
+      "src": "../editable/assets/icon_sealed_pathogen_case_v02.png",
+      "w": 512
+    },
+    {
+      "h": 1254,
+      "src": "../editable/assets/item-firstaid-v1.png",
+      "w": 1254
+    },
+    {
+      "h": 1254,
+      "src": "../editable/assets/item-ration-v1.png",
+      "w": 1254
+    },
+    {
+      "h": 1254,
+      "src": "../editable/assets/item-metal-v1.png",
+      "w": 1254
+    },
+    {
+      "h": 1254,
+      "src": "../editable/assets/item-battery-v1.png",
+      "w": 1254
+    },
+    {
+      "h": 512,
+      "src": "../editable/assets/icon_isolation_access_card_v02.png",
+      "w": 512
+    },
+    {
+      "h": 512,
+      "src": "../editable/assets/icon_bandage_v02.png",
+      "w": 512
+    }
+  ],
+  "rects": [
+    {
+      "clientH": 881,
+      "h": 881,
+      "scrollH": 881,
+      "selector": "shell  ",
+      "w": 1241,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "clientH": 60,
+      "h": 62,
+      "scrollH": 60,
+      "selector": "hud metal",
+      "w": 1217,
+      "x": 12,
+      "y": 12
+    },
+    {
+      "clientH": 739,
+      "h": 739,
+      "scrollH": 739,
+      "selector": "center",
+      "w": 1217,
+      "x": 12,
+      "y": 84
+    },
+    {
+      "clientH": 721,
+      "h": 723,
+      "scrollH": 721,
+      "selector": "panel ",
+      "w": 1201,
+      "x": 20,
+      "y": 92
+    },
+    {
+      "clientH": 663,
+      "h": 663,
+      "scrollH": 663,
+      "selector": "panel-body",
+      "w": 1199,
+      "x": 21,
+      "y": 151
+    },
+    {
+      "clientH": 172,
+      "h": 172,
+      "scrollH": 172,
+      "selector": "inventory ",
+      "w": 260,
+      "x": 192.5,
+      "y": 217.34375
+    },
+    {
+      "clientH": 0,
+      "h": 0,
+      "scrollH": 0,
+      "selector": "sidebar right metal ",
+      "w": 0,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "clientH": 0,
+      "h": 0,
+      "scrollH": 0,
+      "selector": "inventory ",
+      "w": 0,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "text": "电梯求生\n任务日 3 / 7\n目标\n携带\n生命\n8 / 12\n精力\n38 / 100\n饱食\n4 / 6\n身体\n装备与背包\n放大\n收起\n实际6 × 4格位\n1\n1\n2\n2\n1\n1\n绷带 ×1\n快捷位 1\n空槽\n快捷位 2\n\n2×2样本、1×2急救包与1×1普通物共同占位。\n\n查看旋转占格\n金属管\n30/30\n厚实外套\n12/12\n工具箱\n6/6\n整理\n明确实例与目标格位\n快捷\n独立迁移，不复制实物\n旋转\n只改占格，不拉扁图像\n打开搬运参数\n已保存\n当前地点可自由查看；查看详情不消耗精力。\n查看反馈\n设计状态索引导出可编辑SVG导出PNG图稿本地导出当前本地导出全部",
+  "viewport": [
+    1241,
+    881
+  ]
+}

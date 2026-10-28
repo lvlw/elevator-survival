@@ -6,37 +6,27 @@
   },
   {
     "from": "00-owner-review.md",
+    "target": "offline-index.html",
+    "exists": true
+  },
+  {
+    "from": "00-owner-review.md",
     "target": "previews/asset-gallery.html",
     "exists": true
   },
   {
     "from": "00-owner-review.md",
-    "target": "02-page-state-matrix.md",
+    "target": "validation/r2/review-notes.md",
     "exists": true
   },
   {
     "from": "00-owner-review.md",
-    "target": "validation/r1/review-notes.md",
-    "exists": true
-  },
-  {
-    "from": "00-owner-review.md",
-    "target": "validation/r1/edge/03-depart-h0.jpg",
+    "target": "validation/r2/browser/02-depart-h0.jpg",
     "exists": true
   },
   {
     "from": "00-owner-review.md",
     "target": "spec/delivery-packages.json",
-    "exists": true
-  },
-  {
-    "from": "00-owner-review.md",
-    "target": "reviews/OWNER-modal-size-followup.md",
-    "exists": true
-  },
-  {
-    "from": "00-owner-review.md",
-    "target": "06-implementation-handoff-draft.md",
     "exists": true
   },
   {
@@ -1335,6 +1325,11 @@
     "exists": true
   },
   {
+    "from": "03-dimension-contract.md",
+    "target": "validation/r2/review-notes.md",
+    "exists": true
+  },
+  {
     "from": "04-interaction-and-motion.md",
     "target": "prototype/index.html",
     "exists": true
@@ -1347,6 +1342,16 @@
   {
     "from": "04-interaction-and-motion.md",
     "target": "validation/r1/edge-browser.json",
+    "exists": true
+  },
+  {
+    "from": "04-interaction-and-motion.md",
+    "target": "offline-preview.py",
+    "exists": true
+  },
+  {
+    "from": "04-interaction-and-motion.md",
+    "target": "offline-index.html",
     "exists": true
   },
   {
@@ -1370,18 +1375,23 @@
     "exists": true
   },
   {
-    "from": "completion.md",
-    "target": "validation/final-check-results.json",
+    "from": "05-asset-coverage.md",
+    "target": "validation/r2/asset-inspection/measurements.json",
     "exists": true
   },
   {
     "from": "completion.md",
-    "target": "validation/r1/audit-results.json",
+    "target": "validation/r2/review-notes.md",
     "exists": true
   },
   {
     "from": "completion.md",
-    "target": "validation/r1/review-notes.md",
+    "target": "validation/r2/final-audit.json",
+    "exists": true
+  },
+  {
+    "from": "completion.md",
+    "target": "validation/r2/export-inventory.json",
     "exists": true
   },
   {
@@ -1396,22 +1406,17 @@
   },
   {
     "from": "validation/design-qa.md",
-    "target": "history-v1.0/design-qa.md",
+    "target": "r2/review-notes.md",
     "exists": true
   },
   {
     "from": "validation/design-qa.md",
-    "target": "r1/review-notes.md",
+    "target": "r2/final-audit.json",
     "exists": true
   },
   {
     "from": "validation/design-qa.md",
-    "target": "final-check-results.json",
-    "exists": true
-  },
-  {
-    "from": "validation/design-qa.md",
-    "target": "r1/audit-results.json",
+    "target": "r2/geometry-readback.json",
     "exists": true
   },
   {
@@ -1457,6 +1462,46 @@
   {
     "from": "validation/r1/review-notes.md",
     "target": "audit-attempt-02.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r2/review-notes.md",
+    "target": "w0-sync.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r2/review-notes.md",
+    "target": "geometry-readback.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r2/review-notes.md",
+    "target": "geometry-check.py",
+    "exists": true
+  },
+  {
+    "from": "validation/r2/review-notes.md",
+    "target": "../../offline-index.html",
+    "exists": true
+  },
+  {
+    "from": "validation/r2/review-notes.md",
+    "target": "runtime-errors.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r2/review-notes.md",
+    "target": "asset-inspection/measurements.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r2/review-notes.md",
+    "target": "visual-review.json",
+    "exists": true
+  },
+  {
+    "from": "validation/r2/review-notes.md",
+    "target": "final-audit.json",
     "exists": true
   }
 ]

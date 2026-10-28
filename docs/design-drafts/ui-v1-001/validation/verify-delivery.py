@@ -5,7 +5,7 @@ import hashlib, json, re, subprocess, sys
 
 ROOT=Path(__file__).resolve().parents[1]
 REPO=ROOT.parents[2]
-BASE='d7d395ea7c061e26f9244fcfd296c764785af16a'
+BASE='0e0c5cf50bce038f1e915529fe83c3278c30ab95'
 checks=[]
 def check(name,ok,detail=None): checks.append({'name':name,'pass':bool(ok),'detail':detail})
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -55,7 +55,7 @@ for p in textfiles:
     check('UTF8 '+p.relative_to(ROOT).as_posix(),ok)
 links=[]
 for p in ROOT.rglob('*.md'):
-    if any(x in p.relative_to(ROOT).parts for x in ['inputs','history-v1.0']):continue
+    if any(x in p.relative_to(ROOT).parts for x in ['inputs','history-v1.0','history-r1','r2-inputs']):continue
     for target in re.findall(r'\]\(([^)]+)\)',p.read_text('utf-8')):
         if re.match(r'^(https?:|data:|#|[A-Z]:)',target):continue
         file=target.split('#')[0].split('?')[0]
@@ -67,9 +67,9 @@ untracked=subprocess.check_output(['git','ls-files','--others','--exclude-standa
 outside=[p for p in changed+untracked if p and not p.startswith('docs/design-drafts/ui-v1-001/')]
 check('scope only ui-v1-001',not outside,outside)
 check('no file over 100 MiB',all(p.stat().st_size<100*1024**2 for p in ROOT.rglob('*') if p.is_file()))
-result={'kind':'DESIGN_FILE_AND_GEOMETRY_AUDIT_NOT_PRODUCTION_TESTS','baseline':BASE,'checks':checks,'passed':sum(x['pass'] for x in checks),'failed':sum(not x['pass'] for x in checks),'limitations':['This script does not prove visual quality or interaction.','Background DPR2 and residual alpha gates remain open.','Browser evidence and zoom status are independently recorded under validation/r1; audit counts do not prove completion.'],'productionTests':'NOT RUN'}
+result={'kind':'DESIGN_FILE_AND_GEOMETRY_AUDIT_NOT_PRODUCTION_TESTS','baseline':BASE,'checks':checks,'passed':sum(x['pass'] for x in checks),'failed':sum(not x['pass'] for x in checks),'limitations':['This script does not prove visual quality or interaction.','Background DPR2 and residual alpha gates remain open.','Browser evidence and zoom status are independently recorded under validation/r2; audit counts do not prove completion.'],'productionTests':'NOT RUN'}
 (ROOT/'validation/final-check-results.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n','utf-8')
-(ROOT/'validation/responsive-results.json').write_text(json.dumps({'kind':'ACTUAL_BROWSER_DOM_MEASUREMENTS','desktopProfiles':geometry[:5],'otherProfiles':geometry[5:],'requiredAdditionalExports':len(required),'zoom':'See r1/zoom-results.json; independently observed, not inferred from dimensions'},ensure_ascii=False,indent=2)+'\n','utf-8')
+(ROOT/'validation/responsive-results.json').write_text(json.dumps({'kind':'ACTUAL_BROWSER_DOM_MEASUREMENTS','desktopProfiles':geometry[:5],'otherProfiles':geometry[5:],'requiredAdditionalExports':len(required),'zoom':'See r2/zoom/100.json, 125.json and 150.json; user operated real browser zoom, no CSS zoom'},ensure_ascii=False,indent=2)+'\n','utf-8')
 (ROOT/'validation/link-results.json').write_text(json.dumps(links,ensure_ascii=False,indent=2)+'\n','utf-8')
 print(json.dumps({'passed':result['passed'],'failed':result['failed'],'failedChecks':[x for x in checks if not x['pass']]},ensure_ascii=False))
 sys.exit(1 if result['failed'] else 0)

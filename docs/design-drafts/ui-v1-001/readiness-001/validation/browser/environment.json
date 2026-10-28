@@ -1,0 +1,13 @@
+{
+  "browser": "Codex IAB",
+  "dpr": 1,
+  "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+  "viewport": [
+    1533,
+    892
+  ],
+  "viewportOverride": "reset",
+  "userAgent": "NOT AVAILABLE through read-only DOM scope; read attempt TypeError recorded, not validation success",
+  "realZoom125and150": "NOT RUN",
+  "cleanProfileNetworkBlock": "NOT VERIFIED"
+}

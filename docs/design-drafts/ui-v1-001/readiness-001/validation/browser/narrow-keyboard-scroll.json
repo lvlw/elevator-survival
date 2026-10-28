@@ -1,0 +1,30 @@
+{
+  "bodyWidth": 390,
+  "dpr": 1,
+  "execute": [
+    {
+      "enabled": true,
+      "rect": {
+        "h": 47.59375,
+        "w": 132,
+        "x": 236,
+        "y": 724.40625
+      }
+    }
+  ],
+  "focus": {
+    "label": "可滚动内容",
+    "tag": "DIV"
+  },
+  "panelScroll": 0,
+  "viewport": [
+    390,
+    844
+  ],
+  "finalEndKey": {
+    "focus": "可滚动内容",
+    "full": 827,
+    "height": 541,
+    "scroll": 286
+  }
+}

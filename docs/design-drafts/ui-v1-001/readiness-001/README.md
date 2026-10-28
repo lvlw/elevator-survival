@@ -18,9 +18,11 @@
 python -B docs/design-drafts/ui-v1-001/readiness-001/tools/theme_check.py
 node docs/design-drafts/ui-v1-001/readiness-001/tools/presentation-check.cjs
 python -B docs/design-drafts/ui-v1-001/readiness-001/tools/delivery.py test
-python -B docs/design-drafts/ui-v1-001/readiness-001/tools/delivery.py build --out ABSOLUTE_EXTERNAL_DIRECTORY --target FULL_SHA
+python -B docs/design-drafts/ui-v1-001/readiness-001/tools/delivery.py build --out ABSOLUTE_EXTERNAL_DIRECTORY --target FULL_SHA --art ABSOLUTE_METHOD_ORIGINALS_DIRECTORY
 python -B docs/design-drafts/ui-v1-001/readiness-001/tools/delivery.py verify --out ABSOLUTE_EXTERNAL_DIRECTORY
 python -B docs/design-drafts/ui-v1-001/readiness-001/tools/serve.py --root ABSOLUTE_REVIEW_SITE --port 8768
 ```
+
+统一入口为 `tools/readiness.py validate`、`test`、`build-review`、`verify-artifact`。后两者分别接受上面的 `--out --target --art`、`--out` 参数。`--art` 内须有候选包 `method-proofs/` 中两份原件，摘要必须匹配已提交方法回执；不可用旧R2图代替。使用新的仓库外输出目录，避免把其他任务文件混入制品。
 
 发布判断不由检查数量替代。生产 test/typecheck/build 起始与最终均 NOT RUN；新增生产测试0。没有服务器登录、部署、旧Wiki修改、O3决定、音频或关机操作。

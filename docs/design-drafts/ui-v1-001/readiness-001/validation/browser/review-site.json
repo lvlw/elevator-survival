@@ -1,0 +1,150 @@
+{
+  "sourceCommit": "4d081704f8e4aa4e670ad6b473bca8647316c088",
+  "notes": [
+    "Download tool delayed approximately 16728 seconds; downloaded hash matched.",
+    "Index link click did not navigate; direct observed href worked.",
+    "First theme observation was premature, followed by explicit enabled-selector wait and final asset check.",
+    "Local HTTP only; not file/offline or independent clean-profile network-blocking proof."
+  ],
+  "results": [
+    {
+      "step": "index",
+      "url": "http://127.0.0.1:8769/readiness-001/review/index.html",
+      "snapshot": "- heading \"电梯求生 · 视觉准备审阅\" [level=1]\n- paragraph: 设计模拟，不读写玩家记录。DELIVERED_WITH_FINDINGS / INCOMPLETE_ART。此站仅本地GET；未部署服务器。\n- heading \"实际原型\" [level=2]\n- paragraph:\n  - link \"玩家文案\":\n    - /url: ../../prototype/index.html?screen=P10-inventory&view=player\n  - text: /\n  - link \"作者审阅与TEST整组切换\":\n    - /url: ../../prototype/index.html?screen=P10-inventory&view=review\n- paragraph: 同一份状态与页面；作者索引切换独立样例会重置演示，模式和主题切换不重置当前操作。作者写图脚本不加载。\n- heading \"素材与对照\" [level=2]\n- paragraph:\n  - link \"分类资源画廊及原件下载\":\n    - /url: gallery.html\n  - text: /\n  - link \"本轮真实换图前后\":\n    - /url: compare.html\n  - text: /\n  - link \"规格与替换指南\":\n    - /url: ../theme/GUIDE.md\n- paragraph:\n  - link \"截图实际CSS视口、DPR与槽\":\n    - /url: ../validation/browser/observations.json\n  - text: /\n  - link \"美术方法原始测量\":\n    - /url: ../validation/art-methods.json\n- heading \"交付边界\" [level=2]\n- paragraph:\n  - link \"本轮完整记录\":\n    - /url: ../completion.md\n  - text: /\n  - link \"A：公开呈现键\":\n    - /url: ../contracts/A-public-visual-key.md\n  - text: /\n  - link \"B：已提交演出\":\n    - /url: ../contracts/B-committed-motion.md\n  - text: /\n  - link \"C：分阶段UI\":\n    - /url: ../contracts/C-staged-ui.md\n- paragraph: 以上工程均为候选；高清及透明方法失败保留，不能以校验数量宣称最终美术验收。"
+    },
+    {
+      "step": "gallery",
+      "url": "http://127.0.0.1:8769/readiness-001/review/gallery.html",
+      "indexLinkClick": "No navigation observed; opened the observed href directly",
+      "observed": {
+        "figures": 64,
+        "loaded": 35
+      }
+    },
+    {
+      "step": "single-asset-download",
+      "path": "C:\\Users\\zjl\\Downloads\\icon_bandage_v02.png",
+      "bytes": 209817,
+      "sha256": "573199ffec28fc6c7fb8a5a75eda8264c920dbc0a1e4b09a95a222c57cfa8c6c",
+      "expected": "573199ffec28fc6c7fb8a5a75eda8264c920dbc0a1e4b09a95a222c57cfa8c6c"
+    },
+    {
+      "step": "compare",
+      "url": "http://127.0.0.1:8769/readiness-001/review/compare.html",
+      "images": [
+        {
+          "alt": "基线绷带",
+          "loaded": true,
+          "natural": [
+            1920,
+            1080
+          ]
+        },
+        {
+          "alt": "TEST绷带",
+          "loaded": true,
+          "natural": [
+            1920,
+            1080
+          ]
+        },
+        {
+          "alt": "基线装卸工",
+          "loaded": true,
+          "natural": [
+            1920,
+            1080
+          ]
+        },
+        {
+          "alt": "TEST装卸工",
+          "loaded": true,
+          "natural": [
+            1920,
+            1080
+          ]
+        },
+        {
+          "alt": "基线边框",
+          "loaded": true,
+          "natural": [
+            1920,
+            1080
+          ]
+        },
+        {
+          "alt": "TEST九宫格",
+          "loaded": true,
+          "natural": [
+            1920,
+            1080
+          ]
+        },
+        {
+          "alt": "",
+          "loaded": true,
+          "natural": [
+            24,
+            24
+          ]
+        },
+        {
+          "alt": "",
+          "loaded": true,
+          "natural": [
+            24,
+            24
+          ]
+        },
+        {
+          "alt": "",
+          "loaded": true,
+          "natural": [
+            28,
+            11
+          ]
+        },
+        {
+          "alt": "",
+          "loaded": true,
+          "natural": [
+            10,
+            10
+          ]
+        },
+        {
+          "alt": "",
+          "loaded": true,
+          "natural": [
+            200,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "step": "prototype-theme",
+      "url": "http://127.0.0.1:8769/prototype/index.html?screen=P15-porter&view=review",
+      "images": []
+    },
+    {
+      "step": "reload",
+      "url": "http://127.0.0.1:8769/prototype/index.html?screen=P15-porter&view=review",
+      "page": {
+        "brokenImages": [],
+        "theme": "baseline",
+        "title": "装卸场 · 感染装卸工 · 电梯求生 UI设计"
+      }
+    },
+    {
+      "step": "prototype-theme-completed",
+      "observed": {
+        "assets": [
+          "http://127.0.0.1:8769/readiness-001/theme/test-assets/enemy-porter-pristine-cyan-test.svg"
+        ],
+        "rejection": [],
+        "selection": "porter"
+      }
+    }
+  ]
+}

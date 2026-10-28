@@ -1,0 +1,255 @@
+{
+  "kind": "READINESS_SCOPE_BYTES_LINKS_DECODE",
+  "checks": [
+    {
+      "name": "scope",
+      "pass": true,
+      "detail": [
+        "docs/design-drafts/ui-v1-001/00-owner-review.md",
+        "docs/design-drafts/ui-v1-001/06-implementation-handoff-draft.md",
+        "docs/design-drafts/ui-v1-001/prototype/index.html",
+        "docs/design-drafts/ui-v1-001/prototype/ui.js",
+        "docs/design-drafts/ui-v1-001/readiness-001/README.md",
+        "docs/design-drafts/ui-v1-001/readiness-001/art-methods.md",
+        "docs/design-drafts/ui-v1-001/readiness-001/completion.md",
+        "docs/design-drafts/ui-v1-001/readiness-001/contracts/A-public-visual-key.md",
+        "docs/design-drafts/ui-v1-001/readiness-001/contracts/B-committed-motion.md",
+        "docs/design-drafts/ui-v1-001/readiness-001/contracts/C-staged-ui.md",
+        "docs/design-drafts/ui-v1-001/readiness-001/copy-table.md",
+        "docs/design-drafts/ui-v1-001/readiness-001/deployment-preflight.md",
+        "docs/design-drafts/ui-v1-001/readiness-001/inputs/ACCEPTANCE-MATRIX.md",
+        "docs/design-drafts/ui-v1-001/readiness-001/inputs/BASELINE-AND-SCOPE.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/inputs/README-FIRST.md",
+        "docs/design-drafts/ui-v1-001/readiness-001/inputs/REVIEW-STATUS-AND-BOUNDARIES.md",
+        "docs/design-drafts/ui-v1-001/readiness-001/inputs/SEND-TO-CODEX.txt",
+        "docs/design-drafts/ui-v1-001/readiness-001/inputs/SHA256SUMS.txt",
+        "docs/design-drafts/ui-v1-001/readiness-001/inputs/SOURCE-REFERENCES.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/inputs/WORLD-UI-VISUAL-READINESS-001-task-v1.0.md",
+        "docs/design-drafts/ui-v1-001/readiness-001/inputs/verify-input-package.py",
+        "docs/design-drafts/ui-v1-001/readiness-001/inputs/任务书阅读版.html",
+        "docs/design-drafts/ui-v1-001/readiness-001/mode.css",
+        "docs/design-drafts/ui-v1-001/readiness-001/presentation.js",
+        "docs/design-drafts/ui-v1-001/readiness-001/review/alpha-four-mattes.jpg",
+        "docs/design-drafts/ui-v1-001/readiness-001/review/alpha-roi-native.jpg",
+        "docs/design-drafts/ui-v1-001/readiness-001/review/compare.html",
+        "docs/design-drafts/ui-v1-001/readiness-001/review/gallery.html",
+        "docs/design-drafts/ui-v1-001/readiness-001/review/gallery.js",
+        "docs/design-drafts/ui-v1-001/readiness-001/review/index.html",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme-lab.js",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme/GUIDE.md",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme/bandage-test.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme/catalog.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme/category-templates.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme/coverage.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme/frame-test.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme/porter-test.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme/test-assets/enemy-porter-critical-cyan-test.svg",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme/test-assets/enemy-porter-disabled-cyan-test.svg",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme/test-assets/enemy-porter-heavy-wounded-cyan-test.svg",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme/test-assets/enemy-porter-pristine-cyan-test.svg",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme/test-assets/enemy-porter-wounded-cyan-test.svg",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme/test-assets/panel-nine-slice-cyan-test.svg",
+        "docs/design-drafts/ui-v1-001/readiness-001/theme/theme-schema.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/tools/art_audit.py",
+        "docs/design-drafts/ui-v1-001/readiness-001/tools/catalog.py",
+        "docs/design-drafts/ui-v1-001/readiness-001/tools/delivery.py",
+        "docs/design-drafts/ui-v1-001/readiness-001/tools/presentation-check.cjs",
+        "docs/design-drafts/ui-v1-001/readiness-001/tools/readiness.py",
+        "docs/design-drafts/ui-v1-001/readiness-001/tools/serve.py",
+        "docs/design-drafts/ui-v1-001/readiness-001/tools/theme_check.py",
+        "docs/design-drafts/ui-v1-001/readiness-001/tools/validate.py",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/art-methods.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/baseline.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/before/01-player-inventory-capture-blur.jpg",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/before/08-player-sampling-heading-before.jpg",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/01-player-inventory.jpg",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/02-review-inventory.jpg",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/03-bandage-test.jpg",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/04-porter-baseline.jpg",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/05-porter-test.jpg",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/06-frame-test.jpg",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/07-player-depart.jpg",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/08-player-sampling.jpg",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/copy-audit.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/environment.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/flows-before-selection-repaint.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/flows.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/narrow-keyboard-scroll.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/observations.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/reduced-motion.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/review-site.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/sampling.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/save-retry.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/variant-copy-after.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/browser/variant-copy-before.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/checkpoint-1.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/final-checks-before-package-fix.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/final-checks.json",
+        "docs/design-drafts/ui-v1-001/readiness-001/validation/final-scope.json"
+      ]
+    },
+    {
+      "name": "old-branch",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new-branch",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "append-only:00-owner-review.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "append-only:06-implementation-handoff-draft.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "input-original-digests",
+      "pass": true,
+      "detail": [
+        {
+          "path": "ACCEPTANCE-MATRIX.md",
+          "pass": true
+        },
+        {
+          "path": "BASELINE-AND-SCOPE.json",
+          "pass": true
+        },
+        {
+          "path": "README-FIRST.md",
+          "pass": true
+        },
+        {
+          "path": "REVIEW-STATUS-AND-BOUNDARIES.md",
+          "pass": true
+        },
+        {
+          "path": "SEND-TO-CODEX.txt",
+          "pass": true
+        },
+        {
+          "path": "SOURCE-REFERENCES.json",
+          "pass": true
+        },
+        {
+          "path": "WORLD-UI-VISUAL-READINESS-001-task-v1.0.md",
+          "pass": true
+        },
+        {
+          "path": "verify-input-package.py",
+          "pass": true
+        },
+        {
+          "path": "任务书阅读版.html",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "new-tracked-size",
+      "pass": true,
+      "detail": {
+        "bytes": 16756491,
+        "max": 3749045
+      }
+    },
+    {
+      "name": "utf8",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "new-relative-links",
+      "pass": true,
+      "detail": [
+        {
+          "source": "docs/design-drafts/ui-v1-001/readiness-001/README.md",
+          "target": "copy-table.md",
+          "pass": true
+        },
+        {
+          "source": "docs/design-drafts/ui-v1-001/readiness-001/README.md",
+          "target": "theme/GUIDE.md",
+          "pass": true
+        },
+        {
+          "source": "docs/design-drafts/ui-v1-001/readiness-001/README.md",
+          "target": "theme/catalog.json",
+          "pass": true
+        },
+        {
+          "source": "docs/design-drafts/ui-v1-001/readiness-001/README.md",
+          "target": "theme/coverage.json",
+          "pass": true
+        },
+        {
+          "source": "docs/design-drafts/ui-v1-001/readiness-001/README.md",
+          "target": "art-methods.md",
+          "pass": true
+        },
+        {
+          "source": "docs/design-drafts/ui-v1-001/readiness-001/README.md",
+          "target": "review/index.html",
+          "pass": true
+        },
+        {
+          "source": "docs/design-drafts/ui-v1-001/readiness-001/README.md",
+          "target": "deployment-preflight.md",
+          "pass": true
+        },
+        {
+          "source": "docs/design-drafts/ui-v1-001/readiness-001/README.md",
+          "target": "contracts/A-public-visual-key.md",
+          "pass": true
+        },
+        {
+          "source": "docs/design-drafts/ui-v1-001/readiness-001/README.md",
+          "target": "contracts/B-committed-motion.md",
+          "pass": true
+        },
+        {
+          "source": "docs/design-drafts/ui-v1-001/readiness-001/README.md",
+          "target": "contracts/C-staged-ui.md",
+          "pass": true
+        },
+        {
+          "source": "docs/design-drafts/ui-v1-001/readiness-001/art-methods.md",
+          "target": "validation/art-methods.json",
+          "pass": true
+        },
+        {
+          "source": "docs/design-drafts/ui-v1-001/readiness-001/art-methods.md",
+          "target": "review/alpha-four-mattes.jpg",
+          "pass": true
+        },
+        {
+          "source": "docs/design-drafts/ui-v1-001/readiness-001/art-methods.md",
+          "target": "review/alpha-roi-native.jpg",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "all-64-baseline-decodes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "three-test-groups",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old-source-and-geometry-unmodified",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "pass": true
+}

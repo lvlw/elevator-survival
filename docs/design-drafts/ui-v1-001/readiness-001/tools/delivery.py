@@ -1,5 +1,5 @@
 """Explicit delta and read-only site builder. Reads Git blobs, never copies a checkout wholesale."""
-import argparse, copy, hashlib, json, subprocess, sys, zipfile, re, tempfile
+import argparse, copy, hashlib, json, subprocess, sys, zipfile, re, tempfile, platform
 from urllib.parse import urlsplit,unquote
 from pathlib import Path
 import theme_check
@@ -11,7 +11,10 @@ def git(*args):
     if p.returncode:raise RuntimeError({'args':args,'exit':p.returncode,'stderr':p.stderr.decode('utf-8','replace')})
     return p.stdout
 def sha(b):return hashlib.sha256(b).hexdigest()
-def write(p,b):p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b)
+_output_root=None
+def write(p,b):
+    if _output_root is not None:theme_check.path_check(_output_root,p.relative_to(_output_root).as_posix())
+    p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b)
 def save(p,obj):write(p,(json.dumps(obj,ensure_ascii=False,indent=2)+'\n').encode())
 def valid_name(name):
     theme_check.path_check(Path.cwd(),name)
@@ -40,7 +43,9 @@ def changed(target):
     parts=git('diff','--no-renames','--name-status','-z',BASE,target).decode().strip('\0').split('\0')
     return [parts[i]+'\t'+parts[i+1] for i in range(0,len(parts),2)] if parts!=[''] else []
 def build(out,target,art):
+    global _output_root
     out=out.resolve();theme_check.need(not out.is_relative_to(R.resolve()),'OUTPUT_INSIDE_REPOSITORY')
+    _output_root=out
     info=git('show','-s','--format=%H%n%P%n%T',target).decode().strip().splitlines();target=info[0]
     tree=get_files(target);diff=changed(target)
     for line in diff:
@@ -52,7 +57,8 @@ def build(out,target,art):
     runtime=[PREFIX+'prototype/'+f for f in ['index.html','ui.js','ui.css','screens.js','flow-context.js','registered-art.js','nine-slice.js']]
     runtime += [PREFIX+x['path'] for x in catalogue['resources']]
     runtime += [PREFIX+x['path'] for x in catalogue['vectors'] if x['path'].endswith('.svg')]
-    runtime += [p for p in tree if p.startswith(PREFIX+'readiness-001/') and (p.endswith(('.js','.css')) or '/theme/' in p or '/review/' in p or '/validation/browser/' in p or p.endswith('.md') and '/inputs/' not in p or '/tools/' in p)]
+    runtime += [PREFIX+'readiness-001/validation/art-methods.json']
+    runtime += [p for p in tree if p.startswith(PREFIX+'readiness-001/') and ((p.endswith(('.js','.css')) and '/tools/' not in p) or '/theme/' in p or '/review/' in p or '/validation/browser/' in p or p.endswith('.md') and '/inputs/' not in p or p.endswith('/tools/serve.py'))]
     runtime=sorted(set(runtime));reuse=[]
     for p in runtime:
         data=blob(target,p);rel=p[len(PREFIX):];valid_name(rel);write(site/rel,data)
@@ -77,6 +83,9 @@ def build(out,target,art):
     if receipt.exists():write(main/'receipts.json',receipt.read_bytes())
     identity={'task':'WORLD-UI-VISUAL-READINESS-001','sourceCommit':target,'baseSHA':BASE,'parent':info[1],'tree':info[2],'branch':'feature/design-ui-readiness-001','changes':diff,'baselineReuse':reuse,'mainlineSelfContained':False,'mainlineDependency':'R2 exact base plus CANDIDATE-ASSETS; full local REVIEW-SITE supplied separately','reviewSiteSelfContained':True,'siteRequired':[p[len(PREFIX):] for p in runtime],'status':'DELIVERED_WITH_FINDINGS / INCOMPLETE_ART','renderIdentity':'Native IAB screenshots; system font; JPEG full CSS viewport, no shell export. See browser observations for CSS dimensions/DPR; extension overlay disclosed.','productionTests':'NOT RUN; added 0'}
     report=blob(target,PREFIX+'readiness-001/completion.md').decode()
+    from PIL import __version__ as pillow_version
+    identity['buildEnvironment']={'python':platform.python_version(),'platform':platform.platform(),'pillow':pillow_version,'font':'Microsoft YaHei, PingFang SC, sans-serif (browser computed CSS)','browser':'Codex IAB; user agent not exposed in read-only DOM scope'}
+    identity['baselineCommit']=BASE
     report+='\n\n最终完整SHA：`'+target+'`\n\n父SHA：`'+info[1]+'`\n\nTree：`'+info[2]+'`\n\n最终Git与推送回执见本包 receipts.json。\n'
     write(main/'FINAL-REPORT.md',report.encode());save(main/'DELIVERY-INDEX.json',identity)
     save(site/'SITE-MANIFEST.json',{'sourceCommit':target,'baseSHA':BASE,'tree':info[2],'selfContained':True,'required':identity['siteRequired'],'files':site_entries})
@@ -84,7 +93,7 @@ def build(out,target,art):
     write(site/'START-REVIEW.txt',b'python readiness-001/tools/serve.py --root . --port 8768\nhttp://127.0.0.1:8768/readiness-001/review/index.html\nGET only. Local HTTP is not file/offline proof.\n')
     manifests={}
     for kind,folder in [('MAINLINE-REVIEW',main),('CANDIDATE-ASSETS',assets)]:
-        rows=[{'path':p.relative_to(folder).as_posix(),'bytes':p.stat().st_size,'sha256':sha(p.read_bytes())} for p in sorted(folder.rglob('*')) if p.is_file() and p.name not in ['ARTIFACT-MANIFEST.json','SHA256SUMS.txt']]
+        rows=[{'path':p.relative_to(folder).as_posix(),'bytes':p.stat().st_size,'sha256':sha(p.read_bytes())} for p in sorted(folder.rglob('*')) if p.is_file() and p.relative_to(folder).as_posix() not in ['ARTIFACT-MANIFEST.json','SHA256SUMS.txt']]
         closure(rows,[],False);core={'sourceCommit':target,'baseSHA':BASE,'tree':info[2],'kind':kind,'files':rows};artifactId=sha(json.dumps(core,sort_keys=True,separators=(',',':')).encode());core['artifactId']=artifactId
         save(folder/'ARTIFACT-MANIFEST.json',core);write(folder/'SHA256SUMS.txt',''.join(x['sha256']+'  '+x['path']+'\n' for x in rows).encode())
         zp=out/(kind+'.zip')
@@ -95,11 +104,13 @@ def build(out,target,art):
         manifests[kind]={'path':str(zp),'bytes':zp.stat().st_size,'sha256':sha(zp.read_bytes()),'artifactId':artifactId}
     direct=out/'DIRECT-REVIEW';direct.mkdir(exist_ok=True)
     chosen=['01-player-inventory','03-bandage-test','04-porter-baseline','05-porter-test','06-frame-test','07-player-depart','08-player-sampling']
+    observations=json.loads((main/'readiness-001/validation/browser/observations.json').read_text('utf-8'))
     lines=['# 直接审阅备用图','',f'准确SHA：{target}','原生IAB完整视口JPEG；像素和CSS视口分别见observations，未用文件名猜尺寸。直接上传图片和本MD，无需ZIP。','']
     for i,name in enumerate(chosen,1):
         p=main/f'readiness-001/validation/browser/{name}.jpg';theme_check.need(p.exists(),'DIRECT_IMAGE_MISSING');data=p.read_bytes();dest=direct/f'{i:02d}-{name}.jpg';write(dest,data)
         from PIL import Image
-        im=Image.open(p);lines.append(f'- {dest.name}：{len(data)} bytes；SHA256 {sha(data)}；实际像素 {im.width}×{im.height}；原路径 readiness-001/validation/browser/{p.name}。')
+        im=Image.open(p);observed=next(x for x in reversed(observations) if x['name']==name)
+        lines.append(f'- {dest.name}：{len(data)} bytes；SHA256 {sha(data)}；实际像素 {im.width}×{im.height}；CSS/DPR实测 {json.dumps(observed.get("viewport"),ensure_ascii=False)} / {observed.get("dpr")}；原路径 readiness-001/validation/browser/{p.name}。')
     write(direct/'DIRECT-REVIEW-INDEX.md',('\n'.join(lines)+'\n').encode());save(out/'PACKAGE-INDEX.json',manifests)
     print(json.dumps(manifests,ensure_ascii=False));return manifests
 _base=None
@@ -119,7 +130,7 @@ def verify(out):
             claimed=m.pop('artifactId');theme_check.need(sha(json.dumps(m,sort_keys=True,separators=(',',':')).encode())==claimed,'ARTIFACT_ID')
             results.append({'package':name,'files':len(seen),'pass':True})
     m=json.loads((out/'REVIEW-SITE/SITE-MANIFEST.json').read_text('utf-8'));closure(m['files'],m['required'],m['selfContained'])
-    for e in m['files']:theme_check.need(sha((out/'REVIEW-SITE'/e['path']).read_bytes())==e['sha256'],'SITE_HASH')
+    for e in m['files']:theme_check.need(sha(theme_check.path_check(out/'REVIEW-SITE',e['path']).read_bytes())==e['sha256'],'SITE_HASH')
     site_references(out/'REVIEW-SITE')
     print(json.dumps({'packages':results,'siteFiles':len(m['files']),'pass':True}));return True
 def tests():

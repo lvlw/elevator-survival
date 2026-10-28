@@ -1,0 +1,105 @@
+{
+  "task": "WORLD-UI-VISUAL-READINESS-001",
+  "baseline": "956da8065030ccea15256e49bd927a4e6a71942f",
+  "cleanBeforeArchival": true,
+  "inputVerification": {
+    "checked": 9,
+    "exitCode": 0
+  },
+  "inputExecutionError": [
+    {
+      "exitCode": 1,
+      "reason": "First verifier invocation mistyped 8f04 as 8e04 in external directory; file not found. Corrected invocation passed; no semantic finding."
+    }
+  ],
+  "receipts": [
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "stdout": "956da8065030ccea15256e49bd927a4e6a71942f\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD^"
+      ],
+      "exitCode": 0,
+      "stdout": "0e0c5cf50bce038f1e915529fe83c3278c30ab95\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "exitCode": 0,
+      "stdout": "30cc11ad81dc27e5194a972a9537c0b4a3713788\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "exitCode": 0,
+      "stdout": "feature/design-ui-readiness-001\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "refs/heads/feature/design-ui-v1-001"
+      ],
+      "exitCode": 0,
+      "stdout": "956da8065030ccea15256e49bd927a4e6a71942f\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "docs/design-drafts/ui-v1-001/validation/r2/semantic-check.cjs",
+        "docs/design-drafts/ui-v1-001",
+        "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-VISUAL-READINESS-001-work\\baseline-semantic.json",
+        "none"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"kind\":\"ISOLATED_UNMODIFIED_SOURCE_WITH_FAKE_DOM_AND_DETERMINISTIC_TIMERS_NOT_BROWSER_OR_GAMEPLAY\",\"mutation\":\"none\",\"total\":30,\"passed\":30,\"failed\":0,\"results\":[{\"id\":\"C01 lamp/engineer stays through confirm-help-return-depart\",\"result\":\"PASS\"},{\"id\":\"C02 crow/survival stays across two cross-region steps\",\"result\":\"PASS\"},{\"id\":\"C-map-hospital\",\"result\":\"PASS\"},{\"id\":\"C-map-hotel\",\"result\":\"PASS\"},{\"id\":\"C-map-power\",\"result\":\"PASS\"},{\"id\":\"C-map-logistics\",\"result\":\"PASS\"},{\"id\":\"C-map-communication\",\"result\":\"PASS\"},{\"id\":\"C-view-P21-enemy-alive\",\"result\":\"PASS\"},{\"id\":\"C-view-P24-corrupt\",\"result\":\"PASS\"},{\"id\":\"C-view-P18-success\",\"result\":\"PASS\"},{\"id\":\"C-retreat-orderly\",\"result\":\"PASS\"},{\"id\":\"C-retreat-porter\",\"result\":\"PASS\"},{\"id\":\"C-retreat-technician\",\"result\":\"PASS\"},{\"id\":\"C-object-sample no split/consume menu\",\"result\":\"PASS\"},{\"id\":\"C-object-sample keeps 2x2 and original ref\",\"result\":\"PASS\"},{\"id\":\"C-object-ration remains ration on use\",\"result\":\"PASS\"},{\"id\":\"C-sample-cautious-normal\",\"result\":\"PASS\"},{\"id\":\"C-sample-cautious-last\",\"result\":\"PASS\"},{\"id\":\"C-sample-cautious-broken\",\"result\":\"PASS\"},{\"id\":\"C-sample-cautious-unequipped\",\"result\":\"PASS\"},{\"id\":\"C-sample-direct-normal\",\"result\":\"PASS\"},{\"id\":\"C-sample-direct-last\",\"result\":\"PASS\"},{\"id\":\"C-sample-direct-broken\",\"result\":\"PASS\"},{\"id\":\"C-sample-direct-unequipped\",\"result\":\"PASS\"},{\"id\":\"C-defense no enemy hit or phase increase\",\"result\":\"PASS\"},{\"id\":\"C-generic fx does not change enemy phase\",\"result\":\"PASS\"},{\"id\":\"C-attack changes authored phase once\",\"result\":\"PASS\"},{\"id\":\"C-stale animation does not mutate a new sample\",\"result\":\"PASS\"},{\"id\":\"R2-stale-object-ref never falls back to same-name item\",\"result\":\"PASS\"},{\"id\":\"R2-maximize-terminal preserves context and toggles presentation\",\"result\":\"PASS\"}]}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "npm.cmd",
+        "run",
+        "validate:architecture"
+      ],
+      "exitCode": 0,
+      "stdout": "\n> elevator-survival@0.0.0 validate:architecture\n> node scripts/validate-architecture.mjs\n\nArchitecture validation passed: 53 DEC entries and 347 core production files checked.\n",
+      "stderr": ""
+    }
+  ],
+  "productionTests": "NOT RUN",
+  "typecheck": "NOT RUN",
+  "build": "NOT RUN",
+  "newProductionTests": 0,
+  "modelRequest": "GPT-6 Astra / 极高",
+  "actualRuntimeConfiguration": "NOT_INDEPENDENTLY_VERIFIED"
+}

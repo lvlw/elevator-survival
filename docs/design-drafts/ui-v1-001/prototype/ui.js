@@ -121,19 +121,19 @@ function confirmPanel(){const v=variant();return panel(v==='stale'?'原选择已
 function errorPanel(){const v=variant(),texts={request:['正在取得使用权','等待本页成为唯一使用页。不会另建角色或默认补发物品。'],occupied:['另一页面正在使用','请在正在使用的页面继续；本页当前不能执行玩法。'],lost:['本页已失去使用权','旧参数已失效。不要继续提交或把旧画面当最新状态。'],corrupt:['记录无法校验','这不是空记录。保留原记录，不清档、不发初始物品。'],'read-error':['暂时无法读取','不会用默认状态替代真实记录。可以只重试读取。'],projection:['展示暂不可用','没有可靠的当前画面，停止提供玩法按钮；不因此判定角色死亡。']}[v];return panel('启动与异常',`<div class="errorbox"><p class="eyebrow">页面状态</p><h1>${texts[0]}</h1><p>${texts[1]}</p>${note('恢复、锁与保存由后续正式接线负责。本设计原型不读写任何玩家记录。')}</div>`,`<small>原记录保留；没有重置入口</small>${btn(v==='read-error'?'只重试读取':'查看说明','help:controls','gold')}`);}
 function helpPanel(){const v=variant();return panel('操作与机制说明',`<div class="subnav">${btn('操作','help:controls','small')}${btn('身体与药食','help:health','small')}${btn('快捷位','help:quick','small')}</div><div class="body-copy">${v==='health'?'<h2>公开病程不是精确预测</h2><p>当前病程粗档只描述现在的公开负担。低档不代表没有隐藏暴露，也不能据此断言药品一定有效或下一次结算安全。</p><h3>合法稳定点的自救</h3><p>仍须有真实物品与合格目标。HP0不能用药复活。中枢查看不会自动治疗、进食或推进病情。</p>':v==='quick'?'<h2>两个真实快捷位</h2><p>迁移会改变真实实例所在容器，不会复制背包里的物品。空槽不会自动补药。</p><p>战中只允许真实快捷槽的绷带和镇痛；能装入快捷槽不等于能在战斗中使用。</p>':'<h2>先看清，再作决定</h2><p>查看任务、地图、物品与放大面板不消耗行动。地图只读，移动从场景方向区逐边执行。</p><h3>需要参数时明确选择</h3><p>方法、材料、目标实例和格位由你选择。条件变化后旧选择失效，系统不会无声替换成第一项。</p><h3>键盘操作</h3><p>Tab移动焦点，Enter或空格激活。Escape关闭可收起的信息层；战斗不能用Escape结束。物品支持右键与Shift+F10菜单。</p>'}</div>`,`${btn('返回','close')}`);}
 
-function render(){document.title=`${active.title} · 电梯求生 UI设计`;$('#app').innerHTML=shell();mountNineSlice();if(qs.get('qa')==='corners'){const test=document.createElement('aside');test.setAttribute('aria-label','设计测试：四角菜单');test.innerHTML=['左上','右上','左下','右下'].map((n,i)=>`<button class="item" data-act="item:bandage" aria-label="${n}测试物品" style="position:fixed;z-index:45;width:48px;height:48px;${i%2?'right:0;left:auto':'left:0'};${i<2?'top:0':'bottom:0;top:auto'}">${n}</button>`).join('');document.body.append(test);}wire();}
+function render(){document.title=`${active.title} · 电梯求生 UI设计`;$('#app').innerHTML=typeof Readiness==='undefined'?shell():Readiness.html(shell());mountNineSlice();if(typeof Readiness!=='undefined')Readiness.mount(render,()=>JSON.stringify({context,active,tool,specialty,selectedObject,chosen,stage,expanded,carryTab,viewStack}));if(qs.get('qa')==='corners'&&(typeof Readiness==='undefined'||Readiness.getMode()==='review')){const test=document.createElement('aside');test.setAttribute('aria-label','设计测试：四角菜单');test.innerHTML=['左上','右上','左下','右下'].map((n,i)=>`<button class="item" data-act="item:bandage" aria-label="${n}测试物品" style="position:fixed;z-index:45;width:48px;height:48px;${i%2?'right:0;left:auto':'left:0'};${i<2?'top:0':'bottom:0;top:auto'}">${n}</button>`).join('');document.body.append(test);}wire();}
 function navigate(id){selectSample(id);}
 
 function openKind(origin,kind,id){const next=SCREENS.find(s=>s.kind===kind&&(id?s.id===id:true));openView(origin,next);}
 
-function toast(text){feedback=text;const f=$('.feedback');if(f)f.textContent=text;}
+function toast(text){feedback=text;const f=$('.feedback');if(f)f.textContent=typeof Readiness==='undefined'?text:Readiness.text(text);}
 function parameters(){document.querySelectorAll('[data-needs]').forEach(b=>{const keys=b.dataset.needs.split(',');b.disabled=!keys.every(k=>chosen[k]!==undefined&&chosen[k]!=='')||!!active.invalid||active.id==='P11-no-space';});}
 function wire(){
  document.querySelectorAll('[data-act]').forEach(b=>b.addEventListener('click',()=>act(b.dataset.act,b)));
  document.querySelectorAll('[data-field]').forEach(e=>e.addEventListener('input',()=>{
   chosen[e.dataset.field]=e.value;
   if(e.dataset.field==='object'){selectedObject=[...context.items,...context.groundItems].find(i=>i.ref===e.value)||null;chosen.instance=selectedObject?.ref;chosen.cell=undefined;render();parameters();}
-  else if(e.dataset.field==='method'&&active.id.startsWith('P06-sample-')){document.querySelector('.sample-payment')?.remove();const target=document.querySelector('.sample-payment-slot');target?.insertAdjacentHTML('beforeend',samplePayment());}
+  else if(e.dataset.field==='method'&&active.id.startsWith('P06-sample-')){document.querySelector('.sample-payment')?.remove();const target=document.querySelector('.sample-payment-slot');target?.insertAdjacentHTML('beforeend',typeof Readiness==='undefined'?samplePayment():Readiness.html(samplePayment()));}
   parameters();
  }));
  document.querySelectorAll('.item,.equip').forEach(b=>{b.addEventListener('contextmenu',e=>{e.preventDefault();menu(e.clientX,e.clientY,b);});b.addEventListener('keydown',e=>{if(e.shiftKey&&e.key==='F10'){e.preventDefault();const r=b.getBoundingClientRect();menu(r.left,r.top,b);}});});
@@ -144,7 +144,7 @@ function menu(x,y,origin){
  const canEdit=!context.dead&&!context.error&&!context.closed&&context.domain==='stable';
  const el=document.createElement('div');el.className='context';el.setAttribute('role','menu');
  el.innerHTML=`<small>${escape(ITEMS[object.key][0])} · ${object.quantity}单位</small>`+btn('查看详情','item:'+object.key)+(canEdit?btn('明确移动','organize:move')+btn('留在当前地点','organize:drop')+(STACKABLE.has(object.key)&&object.quantity>1?btn('拆分','organize:split'):''):'')+(MEDICINES.has(object.key)&&!context.dead&&!context.error&&!context.closed?btn('使用此物品','use-selected'):'')+btn('关闭菜单','menu-close');
- document.body.append(el);const r=el.getBoundingClientRect();el.style.left=Math.max(8,Math.min(x,innerWidth-r.width-8))+'px';el.style.top=Math.max(8,Math.min(y,innerHeight-r.height-8))+'px';
+ if(typeof Readiness!=='undefined')el.innerHTML=Readiness.html(el.innerHTML);document.body.append(el);const r=el.getBoundingClientRect();el.style.left=Math.max(8,Math.min(x,innerWidth-r.width-8))+'px';el.style.top=Math.max(8,Math.min(y,innerHeight-r.height-8))+'px';
  el.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.act==='menu-close'){act('menu-close');return;}el.remove();if(b.dataset.act.startsWith('organize:'))startOrganize(b.dataset.act.split(':')[1],origin,object);else if(b.dataset.act==='use-selected')showSelectedMedicine(origin,object);else openView(origin,{...active,kind:'item-detail',id:'P10-detail-'+object.key,item:object.key},object);}));el.querySelector('button').focus();
 }
 

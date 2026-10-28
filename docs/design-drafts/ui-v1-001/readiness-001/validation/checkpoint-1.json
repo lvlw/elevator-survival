@@ -1,0 +1,86 @@
+{
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\ui-v1-001\\readiness-001\\tools\\validate.py"
+      ],
+      "exit": 0,
+      "stdout": "{\"pass\": true, \"checks\": [{\"name\": \"scope\", \"pass\": true}, {\"name\": \"old-branch\", \"pass\": true}, {\"name\": \"new-branch\", \"pass\": true}, {\"name\": \"append-only:00-owner-review.md\", \"pass\": true}, {\"name\": \"append-only:06-implementation-handoff-draft.md\", \"pass\": true}, {\"name\": \"input-original-digests\", \"pass\": true}, {\"name\": \"new-tracked-size\", \"pass\": true}, {\"name\": \"utf8\", \"pass\": true}, {\"name\": \"new-relative-links\", \"pass\": true}, {\"name\": \"all-64-baseline-decodes\", \"pass\": true}, {\"name\": \"three-test-groups\", \"pass\": true}, {\"name\": \"old-source-and-geometry-unmodified\", \"pass\": true}]}\r\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\ui-v1-001\\readiness-001\\tools\\theme_check.py"
+      ],
+      "exit": 0,
+      "stdout": "{\r\n  \"kind\": \"DESIGN_RESOURCE_CHECK_NOT_ART_APPROVAL\",\r\n  \"cases\": [\r\n    {\r\n      \"case\": \"bandage\",\r\n      \"result\": {\r\n        \"status\": \"VALID_TEST_ONLY\",\r\n        \"themeId\": \"bandage-cyan-test\",\r\n        \"group\": \"bandage\",\r\n        \"members\": 1\r\n      }\r\n    },\r\n    {\r\n      \"case\": \"porter\",\r\n      \"result\": {\r\n        \"status\": \"VALID_TEST_ONLY\",\r\n        \"themeId\": \"porter-cyan-test\",\r\n        \"group\": \"porter\",\r\n        \"members\": 5\r\n      }\r\n    },\r\n    {\r\n      \"case\": \"frame\",\r\n      \"result\": {\r\n        \"status\": \"VALID_TEST_ONLY\",\r\n        \"themeId\": \"frame-cyan-test\",\r\n        \"group\": \"frame\",\r\n        \"members\": 1\r\n      }\r\n    },\r\n    {\r\n      \"case\": \"missing\",\r\n      \"pass\": true,\r\n      \"reason\": \"MISSING_FILE\"\r\n    },\r\n    {\r\n      \"case\": \"hash\",\r\n      \"pass\": true,\r\n      \"reason\": \"HASH\"\r\n    },\r\n    {\r\n      \"case\": \"dimension\",\r\n      \"pass\": true,\r\n      \"reason\": \"GEOMETRY_pixels\"\r\n    },\r\n    {\r\n      \"case\": \"alpha\",\r\n      \"pass\": true,\r\n      \"reason\": \"GEOMETRY_alpha\"\r\n    },\r\n    {\r\n      \"case\": \"anchor\",\r\n      \"pass\": true,\r\n      \"reason\": \"GEOMETRY_foot\"\r\n    },\r\n    {\r\n      \"case\": \"duplicate\",\r\n      \"pass\": true,\r\n      \"reason\": \"DUPLICATE_KEY\"\r\n    },\r\n    {\r\n      \"case\": \"schema\",\r\n      \"pass\": true,\r\n      \"reason\": \"SCHEMA_VERSION\"\r\n    },\r\n    {\r\n      \"case\": \"traversal\",\r\n      \"pass\": true,\r\n      \"reason\": \"PATH\"\r\n    },\r\n    {\r\n      \"case\": \"external\",\r\n      \"pass\": true,\r\n      \"reason\": \"PATH\"\r\n    },\r\n    {\r\n      \"case\": \"partial\",\r\n      \"pass\": true,\r\n      \"reason\": \"INCOMPLETE_GROUP\"\r\n    },\r\n    {\r\n      \"case\": \"gameplay\",\r\n      \"pass\": true,\r\n      \"reason\": \"TOP_FIELDS\"\r\n    },\r\n    {\r\n      \"case\": \"promotion\",\r\n      \"pass\": true,\r\n      \"reason\": \"NOT_PRODUCTION_READY\"\r\n    },\r\n    {\r\n      \"case\": \"nine-slice\",\r\n      \"pass\": true,\r\n      \"reason\": \"GEOMETRY_nineSlice\"\r\n    }\r\n  ],\r\n  \"pass\": true\r\n}\r\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\zjl\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\ui-v1-001\\readiness-001\\tools\\delivery.py",
+        "test"
+      ],
+      "exit": 0,
+      "stdout": "{\r\n  \"kind\": \"DESIGN_PACKAGING_AND_RESOURCE_TESTS\",\r\n  \"results\": [\r\n    {\r\n      \"case\": \"theme-suite\",\r\n      \"pass\": true\r\n    },\r\n    {\r\n      \"case\": \"svg-script\",\r\n      \"pass\": true,\r\n      \"reason\": \"SVG_TAG\"\r\n    },\r\n    {\r\n      \"case\": \"svg-event\",\r\n      \"pass\": true,\r\n      \"reason\": \"SVG_ATTRIBUTE\"\r\n    },\r\n    {\r\n      \"case\": \"svg-external\",\r\n      \"pass\": true,\r\n      \"reason\": \"SVG_EXTERNAL\"\r\n    },\r\n    {\r\n      \"case\": \"svg-css\",\r\n      \"pass\": true,\r\n      \"reason\": \"SVG_ATTRIBUTE\"\r\n    },\r\n    {\r\n      \"case\": \"svg-font\",\r\n      \"pass\": true,\r\n      \"reason\": \"SVG_TAG\"\r\n    },\r\n    {\r\n      \"case\": \"svg-content-size\",\r\n      \"pass\": true,\r\n      \"reason\": \"SVG_CONTENT_GEOMETRY\"\r\n    },\r\n    {\r\n      \"case\": \"semantic-control-accept-partial-group\",\r\n      \"pass\": true,\r\n      \"mutant\": \"accepted partial 4/5; expected detector fails\"\r\n    },\r\n    {\r\n      \"case\": \"unsafe-path:\",\r\n      \"pass\": true\r\n    },\r\n    {\r\n      \"case\": \"unsafe-path:../x\",\r\n      \"pass\": true\r\n    },\r\n    {\r\n      \"case\": \"unsafe-path:/abs\",\r\n      \"pass\": true\r\n    },\r\n    {\r\n      \"case\": \"unsafe-path:C:/abs\",\r\n      \"pass\": true\r\n    },\r\n    {\r\n      \"case\": \"unsafe-path:https://x/y\",\r\n      \"pass\": true\r\n    },\r\n    {\r\n      \"case\": \"unsafe-path:a//b\",\r\n      \"pass\": true\r\n    },\r\n    {\r\n      \"case\": \"unsafe-path:a/./b\",\r\n      \"pass\": true\r\n    },\r\n    {\r\n      \"case\": \"duplicate\",\r\n      \"pass\": true\r\n    },\r\n    {\r\n      \"case\": \"semantic-control-missing-dependency-labelled-self-contained\",\r\n      \"pass\": true,\r\n      \"mutant\": \"accepted with weakened self-contained check; required-set mismatch detected\"\r\n    }\r\n  ],\r\n  \"pass\": true\r\n}\r\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "E:\\projects\\elevator-survival\\docs\\design-drafts\\ui-v1-001\\readiness-001\\tools\\presentation-check.cjs"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"positive\": {\n    \"mutation\": \"none\",\n    \"kind\": \"NODE_ISOLATED_DESIGN_ADAPTER\",\n    \"total\": 8,\n    \"failed\": 0,\n    \"results\": [\n      {\n        \"id\": \"player-copy\",\n        \"pass\": true\n      },\n      {\n        \"id\": \"save-failed-not-rollback\",\n        \"pass\": true\n      },\n      {\n        \"id\": \"public-payment-preserved\",\n        \"pass\": true\n      },\n      {\n        \"id\": \"unknown-preserved\",\n        \"pass\": true\n      },\n      {\n        \"id\": \"export-script-not-installed\",\n        \"pass\": true\n      },\n      {\n        \"id\": \"valid-theme-context\",\n        \"pass\": true\n      },\n      {\n        \"id\": \"reject-atomic\",\n        \"pass\": true\n      },\n      {\n        \"id\": \"context-drift-detected\",\n        \"pass\": true\n      }\n    ]\n  },\n  \"negativeControls\": [\n    {\n      \"mutation\": \"context-drift\",\n      \"kind\": \"NODE_ISOLATED_DESIGN_ADAPTER\",\n      \"total\": 8,\n      \"failed\": 1,\n      \"results\": [\n        {\n          \"id\": \"player-copy\",\n          \"pass\": true\n        },\n        {\n          \"id\": \"save-failed-not-rollback\",\n          \"pass\": true\n        },\n        {\n          \"id\": \"public-payment-preserved\",\n          \"pass\": true\n        },\n        {\n          \"id\": \"unknown-preserved\",\n          \"pass\": true\n        },\n        {\n          \"id\": \"export-script-not-installed\",\n          \"pass\": true\n        },\n        {\n          \"id\": \"valid-theme-context\",\n          \"pass\": true\n        },\n        {\n          \"id\": \"reject-atomic\",\n          \"pass\": true\n        },\n        {\n          \"id\": \"context-drift-detected\",\n          \"pass\": false,\n          \"reason\": \"The expression evaluated to a falsy value:\\n\\n  assert(caught)\\n\"\n        }\n      ]\n    },\n    {\n      \"mutation\": \"author-copy\",\n      \"kind\": \"NODE_ISOLATED_DESIGN_ADAPTER\",\n      \"total\": 8,\n      \"failed\": 1,\n      \"results\": [\n        {\n          \"id\": \"player-copy\",\n          \"pass\": false,\n          \"reason\": \"Expected values to be strictly equal:\\n+ actual - expected\\n\\n+ '这是结果版式示例，不是生产规则运行记录。'\\n- ''\\n\"\n        },\n        {\n          \"id\": \"save-failed-not-rollback\",\n          \"pass\": true\n        },\n        {\n          \"id\": \"public-payment-preserved\",\n          \"pass\": true\n        },\n        {\n          \"id\": \"unknown-preserved\",\n          \"pass\": true\n        },\n        {\n          \"id\": \"export-script-not-installed\",\n          \"pass\": true\n        },\n        {\n          \"id\": \"valid-theme-context\",\n          \"pass\": true\n        },\n        {\n          \"id\": \"reject-atomic\",\n          \"pass\": true\n        },\n        {\n          \"id\": \"context-drift-detected\",\n          \"pass\": true\n        }\n      ]\n    }\n  ],\n  \"pass\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "docs/design-drafts/ui-v1-001/validation/r2/semantic-check.cjs",
+        "docs/design-drafts/ui-v1-001",
+        "C:\\Users\\zjl\\.codex\\visualizations\\2026\\10\\01\\01a0f88d-c24f-7c02-8f04-2e5ff07ae003\\WORLD-UI-VISUAL-READINESS-001-work\\r2-checkpoint.json",
+        "none"
+      ],
+      "exit": 0,
+      "stdout": "{\"kind\":\"ISOLATED_UNMODIFIED_SOURCE_WITH_FAKE_DOM_AND_DETERMINISTIC_TIMERS_NOT_BROWSER_OR_GAMEPLAY\",\"mutation\":\"none\",\"total\":30,\"passed\":30,\"failed\":0,\"results\":[{\"id\":\"C01 lamp/engineer stays through confirm-help-return-depart\",\"result\":\"PASS\"},{\"id\":\"C02 crow/survival stays across two cross-region steps\",\"result\":\"PASS\"},{\"id\":\"C-map-hospital\",\"result\":\"PASS\"},{\"id\":\"C-map-hotel\",\"result\":\"PASS\"},{\"id\":\"C-map-power\",\"result\":\"PASS\"},{\"id\":\"C-map-logistics\",\"result\":\"PASS\"},{\"id\":\"C-map-communication\",\"result\":\"PASS\"},{\"id\":\"C-view-P21-enemy-alive\",\"result\":\"PASS\"},{\"id\":\"C-view-P24-corrupt\",\"result\":\"PASS\"},{\"id\":\"C-view-P18-success\",\"result\":\"PASS\"},{\"id\":\"C-retreat-orderly\",\"result\":\"PASS\"},{\"id\":\"C-retreat-porter\",\"result\":\"PASS\"},{\"id\":\"C-retreat-technician\",\"result\":\"PASS\"},{\"id\":\"C-object-sample no split/consume menu\",\"result\":\"PASS\"},{\"id\":\"C-object-sample keeps 2x2 and original ref\",\"result\":\"PASS\"},{\"id\":\"C-object-ration remains ration on use\",\"result\":\"PASS\"},{\"id\":\"C-sample-cautious-normal\",\"result\":\"PASS\"},{\"id\":\"C-sample-cautious-last\",\"result\":\"PASS\"},{\"id\":\"C-sample-cautious-broken\",\"result\":\"PASS\"},{\"id\":\"C-sample-cautious-unequipped\",\"result\":\"PASS\"},{\"id\":\"C-sample-direct-normal\",\"result\":\"PASS\"},{\"id\":\"C-sample-direct-last\",\"result\":\"PASS\"},{\"id\":\"C-sample-direct-broken\",\"result\":\"PASS\"},{\"id\":\"C-sample-direct-unequipped\",\"result\":\"PASS\"},{\"id\":\"C-defense no enemy hit or phase increase\",\"result\":\"PASS\"},{\"id\":\"C-generic fx does not change enemy phase\",\"result\":\"PASS\"},{\"id\":\"C-attack changes authored phase once\",\"result\":\"PASS\"},{\"id\":\"C-stale animation does not mutate a new sample\",\"result\":\"PASS\"},{\"id\":\"R2-stale-object-ref never falls back to same-name item\",\"result\":\"PASS\"},{\"id\":\"R2-maximize-terminal preserves context and toggles presentation\",\"result\":\"PASS\"}]}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "cmd.exe",
+        "/d",
+        "/c",
+        "npm.cmd",
+        "run",
+        "validate:architecture"
+      ],
+      "exit": 0,
+      "stdout": "\n> elevator-survival@0.0.0 validate:architecture\n> node scripts/validate-architecture.mjs\n\nArchitecture validation passed: 53 DEC entries and 347 core production files checked.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "productionTests": "NOT RUN"
+}

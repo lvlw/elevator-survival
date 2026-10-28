@@ -1,0 +1,1421 @@
+[
+  {
+    "name": "01-player-inventory",
+    "kind": "IAB_NATIVE_BROWSER_FULL_VIEWPORT",
+    "authorButtons": 0,
+    "dpr": 1,
+    "images": [
+      {
+        "natural": [
+          1672,
+          941
+        ],
+        "src": "../editable/assets/bg-hospital-control-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-firstaid-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-ration-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-metal-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-battery-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_isolation_access_card_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_bandage_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_metal_pipe_v01.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_heavy_coat_v01.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-toolbox-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-firstaid-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-ration-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-metal-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-battery-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_isolation_access_card_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_bandage_v02.png"
+      }
+    ],
+    "mode": "player",
+    "rects": [
+      {
+        "h": 1080,
+        "selector": "shell  ",
+        "w": 1920,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "h": 888,
+        "selector": "center",
+        "w": 1200,
+        "x": 320,
+        "y": 112
+      },
+      {
+        "h": 550.59375,
+        "selector": "panel tier-complex kind-inventory ",
+        "w": 1000,
+        "x": 420,
+        "y": 280.703125
+      },
+      {
+        "h": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 518.6875,
+        "y": 414.234375
+      },
+      {
+        "h": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 1553,
+        "y": 307.96875
+      }
+    ],
+    "scripts": [
+      "screens.js?v=r2-07",
+      "registered-art.js?v=r2-07",
+      "flow-context.js?v=r2-07",
+      "nine-slice.js?v=r2-07",
+      "../readiness-001/presentation.js",
+      "../readiness-001/theme-lab.js",
+      "ui.js?v=readiness-001"
+    ],
+    "title": "携带区 · 真实占格 · 电梯求生 UI设计",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "02-review-inventory",
+    "kind": "IAB_NATIVE_BROWSER_FULL_VIEWPORT",
+    "authorButtons": 0,
+    "dpr": 1,
+    "images": [
+      {
+        "natural": [
+          1672,
+          941
+        ],
+        "src": "../editable/assets/bg-hospital-control-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-firstaid-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-ration-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-metal-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-battery-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_isolation_access_card_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_bandage_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_metal_pipe_v01.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_heavy_coat_v01.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-toolbox-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-firstaid-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-ration-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-metal-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-battery-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_isolation_access_card_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_bandage_v02.png"
+      }
+    ],
+    "mode": "review",
+    "rects": [
+      {
+        "h": 1080,
+        "selector": "shell  ",
+        "w": 1920,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "h": 888,
+        "selector": "center",
+        "w": 1200,
+        "x": 320,
+        "y": 112
+      },
+      {
+        "h": 550.59375,
+        "selector": "panel tier-complex kind-inventory ",
+        "w": 1000,
+        "x": 420,
+        "y": 280.703125
+      },
+      {
+        "h": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 518.6875,
+        "y": 397.65625
+      },
+      {
+        "h": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 1553,
+        "y": 307.96875
+      }
+    ],
+    "scripts": [
+      "screens.js?v=r2-07",
+      "registered-art.js?v=r2-07",
+      "flow-context.js?v=r2-07",
+      "nine-slice.js?v=r2-07",
+      "../readiness-001/presentation.js",
+      "../readiness-001/theme-lab.js",
+      "ui.js?v=readiness-001"
+    ],
+    "title": "携带区 · 真实占格 · 电梯求生 UI设计",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "03-bandage-test",
+    "kind": "IAB_NATIVE_BROWSER_FULL_VIEWPORT",
+    "authorButtons": 0,
+    "dpr": 1,
+    "images": [
+      {
+        "natural": [
+          1672,
+          941
+        ],
+        "src": "../editable/assets/bg-hospital-control-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-firstaid-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-ration-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-metal-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-battery-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_isolation_access_card_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "http://127.0.0.1:8768/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_metal_pipe_v01.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_heavy_coat_v01.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-toolbox-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-firstaid-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-ration-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-metal-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-battery-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_isolation_access_card_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "http://127.0.0.1:8768/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg"
+      }
+    ],
+    "mode": "review",
+    "rects": [
+      {
+        "h": 1080,
+        "selector": "shell  ",
+        "w": 1920,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "h": 888,
+        "selector": "center",
+        "w": 1200,
+        "x": 320,
+        "y": 112
+      },
+      {
+        "h": 550.59375,
+        "selector": "panel tier-complex kind-inventory ",
+        "w": 1000,
+        "x": 420,
+        "y": 280.703125
+      },
+      {
+        "h": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 518.6875,
+        "y": 397.65625
+      },
+      {
+        "h": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 1553,
+        "y": 307.96875
+      }
+    ],
+    "scripts": [
+      "screens.js?v=r2-07",
+      "registered-art.js?v=r2-07",
+      "flow-context.js?v=r2-07",
+      "nine-slice.js?v=r2-07",
+      "../readiness-001/presentation.js",
+      "../readiness-001/theme-lab.js",
+      "ui.js?v=readiness-001"
+    ],
+    "title": "携带区 · 真实占格 · 电梯求生 UI设计",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "04-porter-baseline",
+    "kind": "IAB_NATIVE_BROWSER_FULL_VIEWPORT",
+    "authorButtons": 0,
+    "dpr": 1,
+    "images": [
+      {
+        "natural": [
+          1672,
+          941
+        ],
+        "src": "../editable/assets/bg-logistics-v1.png"
+      },
+      {
+        "natural": [
+          1672,
+          941
+        ],
+        "src": "../editable/assets/bg-logistics-v1.png"
+      },
+      {
+        "natural": [
+          1122,
+          1402
+        ],
+        "src": "../editable/assets/player-back-v2.png"
+      },
+      {
+        "natural": [
+          1122,
+          1402
+        ],
+        "src": "../editable/assets/enemy-porter-pristine-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/fx-hit-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-firstaid-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-ration-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-metal-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-battery-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_isolation_access_card_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_bandage_v02.png"
+      }
+    ],
+    "mode": "review",
+    "rects": [
+      {
+        "h": 1080,
+        "selector": "shell  ",
+        "w": 1920,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "h": 888,
+        "selector": "center",
+        "w": 1200,
+        "x": 320,
+        "y": 112
+      },
+      {
+        "h": 780,
+        "selector": "panel battle ",
+        "w": 1080,
+        "x": 380,
+        "y": 166
+      },
+      {
+        "h": 427.5,
+        "selector": "actor player",
+        "w": 342,
+        "x": 428.375,
+        "y": 332.5
+      },
+      {
+        "h": 427.5,
+        "selector": "actor enemy",
+        "w": 342,
+        "x": 1048.703125,
+        "y": 332.5
+      },
+      {
+        "h": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 1553,
+        "y": 307.96875
+      }
+    ],
+    "scripts": [
+      "screens.js?v=r2-07",
+      "registered-art.js?v=r2-07",
+      "flow-context.js?v=r2-07",
+      "nine-slice.js?v=r2-07",
+      "../readiness-001/presentation.js",
+      "../readiness-001/theme-lab.js",
+      "ui.js?v=readiness-001"
+    ],
+    "title": "装卸场 · 感染装卸工 · 电梯求生 UI设计",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "05-porter-test",
+    "kind": "IAB_NATIVE_BROWSER_FULL_VIEWPORT",
+    "authorButtons": 0,
+    "dpr": 1,
+    "images": [
+      {
+        "natural": [
+          1672,
+          941
+        ],
+        "src": "../editable/assets/bg-logistics-v1.png"
+      },
+      {
+        "natural": [
+          1672,
+          941
+        ],
+        "src": "../editable/assets/bg-logistics-v1.png"
+      },
+      {
+        "natural": [
+          1122,
+          1402
+        ],
+        "src": "../editable/assets/player-back-v2.png"
+      },
+      {
+        "natural": [
+          1122,
+          1402
+        ],
+        "src": "http://127.0.0.1:8768/readiness-001/theme/test-assets/enemy-porter-pristine-cyan-test.svg"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/fx-hit-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-firstaid-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-ration-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-metal-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-battery-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_isolation_access_card_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_bandage_v02.png"
+      }
+    ],
+    "mode": "review",
+    "rects": [
+      {
+        "h": 1080,
+        "selector": "shell  ",
+        "w": 1920,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "h": 888,
+        "selector": "center",
+        "w": 1200,
+        "x": 320,
+        "y": 112
+      },
+      {
+        "h": 780,
+        "selector": "panel battle ",
+        "w": 1080,
+        "x": 380,
+        "y": 166
+      },
+      {
+        "h": 427.5,
+        "selector": "actor player",
+        "w": 342,
+        "x": 428.375,
+        "y": 332.5
+      },
+      {
+        "h": 427.5,
+        "selector": "actor enemy",
+        "w": 342,
+        "x": 1048.703125,
+        "y": 332.5
+      },
+      {
+        "h": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 1553,
+        "y": 307.96875
+      }
+    ],
+    "scripts": [
+      "screens.js?v=r2-07",
+      "registered-art.js?v=r2-07",
+      "flow-context.js?v=r2-07",
+      "nine-slice.js?v=r2-07",
+      "../readiness-001/presentation.js",
+      "../readiness-001/theme-lab.js",
+      "ui.js?v=readiness-001"
+    ],
+    "title": "装卸场 · 感染装卸工 · 电梯求生 UI设计",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "06-frame-test",
+    "kind": "IAB_NATIVE_BROWSER_FULL_VIEWPORT",
+    "authorButtons": 0,
+    "dpr": 1,
+    "images": [
+      {
+        "natural": [
+          1672,
+          941
+        ],
+        "src": "../editable/assets/bg-logistics-v1.png"
+      },
+      {
+        "natural": [
+          1672,
+          941
+        ],
+        "src": "../editable/assets/bg-logistics-v1.png"
+      },
+      {
+        "natural": [
+          1122,
+          1402
+        ],
+        "src": "../editable/assets/player-back-v2.png"
+      },
+      {
+        "natural": [
+          1122,
+          1402
+        ],
+        "src": "../editable/assets/enemy-porter-pristine-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/fx-hit-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-firstaid-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-ration-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-metal-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-battery-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_isolation_access_card_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_bandage_v02.png"
+      }
+    ],
+    "mode": "review",
+    "rects": [
+      {
+        "h": 1080,
+        "selector": "shell  ",
+        "w": 1920,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "h": 888,
+        "selector": "center",
+        "w": 1200,
+        "x": 320,
+        "y": 112
+      },
+      {
+        "h": 780,
+        "selector": "panel battle ",
+        "w": 1080,
+        "x": 380,
+        "y": 166
+      },
+      {
+        "h": 427.5,
+        "selector": "actor player",
+        "w": 342,
+        "x": 428.375,
+        "y": 332.5
+      },
+      {
+        "h": 427.5,
+        "selector": "actor enemy",
+        "w": 342,
+        "x": 1048.703125,
+        "y": 332.5
+      },
+      {
+        "h": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 1553,
+        "y": 307.96875
+      }
+    ],
+    "scripts": [
+      "screens.js?v=r2-07",
+      "registered-art.js?v=r2-07",
+      "flow-context.js?v=r2-07",
+      "nine-slice.js?v=r2-07",
+      "../readiness-001/presentation.js",
+      "../readiness-001/theme-lab.js",
+      "ui.js?v=readiness-001"
+    ],
+    "title": "装卸场 · 感染装卸工 · 电梯求生 UI设计",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "07-player-depart",
+    "kind": "IAB_NATIVE_BROWSER_FULL_VIEWPORT",
+    "authorButtons": 0,
+    "dpr": 1,
+    "images": [
+      {
+        "natural": [
+          1672,
+          941
+        ],
+        "src": "../editable/assets/bg-h0-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_metal_pipe_v01.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_heavy_coat_v01.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_flashlight_v01.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_bandage_v02.png"
+      }
+    ],
+    "mode": "player",
+    "rects": [
+      {
+        "h": 1080,
+        "selector": "shell  ",
+        "w": 1920,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "h": 888,
+        "selector": "center",
+        "w": 1200,
+        "x": 320,
+        "y": 112
+      }
+    ],
+    "scripts": [
+      "screens.js?v=r2-07",
+      "registered-art.js?v=r2-07",
+      "flow-context.js?v=r2-07",
+      "nine-slice.js?v=r2-07",
+      "../readiness-001/presentation.js",
+      "../readiness-001/theme-lab.js",
+      "ui.js?v=readiness-001"
+    ],
+    "title": "医院 · 首次抵达电梯前室 · 电梯求生 UI设计",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "08-player-sampling",
+    "kind": "IAB_NATIVE_BROWSER_FULL_VIEWPORT",
+    "authorButtons": 0,
+    "dpr": 1,
+    "images": [
+      {
+        "natural": [
+          1672,
+          941
+        ],
+        "src": "../editable/assets/bg-h5-v1.png"
+      },
+      {
+        "natural": [
+          1024,
+          1024
+        ],
+        "src": "../editable/assets/objective_pathogen_case_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_bandage_v02.png"
+      }
+    ],
+    "mode": "player",
+    "rects": [
+      {
+        "h": 1080,
+        "selector": "shell  ",
+        "w": 1920,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "h": 888,
+        "selector": "center",
+        "w": 1200,
+        "x": 320,
+        "y": 112
+      },
+      {
+        "h": 597.375,
+        "selector": "panel tier-parameters kind-node ",
+        "w": 880,
+        "x": 480,
+        "y": 257.3125
+      },
+      {
+        "h": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 1553,
+        "y": 307.96875
+      }
+    ],
+    "scripts": [
+      "screens.js?v=r2-07",
+      "registered-art.js?v=r2-07",
+      "flow-context.js?v=r2-07",
+      "nine-slice.js?v=r2-07",
+      "../readiness-001/presentation.js",
+      "../readiness-001/theme-lab.js",
+      "ui.js?v=readiness-001"
+    ],
+    "title": "冷藏室 · 谨慎提样 · 电梯求生 UI设计",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "01-player-inventory",
+    "kind": "IAB_NATIVE_BROWSER_FULL_VIEWPORT",
+    "authorButtons": 0,
+    "dpr": 1,
+    "images": [
+      {
+        "natural": [
+          1672,
+          941
+        ],
+        "src": "../editable/assets/bg-hospital-control-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-firstaid-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-ration-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-metal-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-battery-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_isolation_access_card_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_bandage_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_metal_pipe_v01.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_heavy_coat_v01.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-toolbox-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_sealed_pathogen_case_v02.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-firstaid-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-ration-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-metal-v1.png"
+      },
+      {
+        "natural": [
+          1254,
+          1254
+        ],
+        "src": "../editable/assets/item-battery-v1.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_isolation_access_card_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_bandage_v02.png"
+      }
+    ],
+    "mode": "player",
+    "rects": [
+      {
+        "h": 1080,
+        "selector": "shell  ",
+        "w": 1920,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "h": 888,
+        "selector": "center",
+        "w": 1200,
+        "x": 320,
+        "y": 112
+      },
+      {
+        "h": 550.59375,
+        "selector": "panel tier-complex kind-inventory ",
+        "w": 1000,
+        "x": 420,
+        "y": 280.703125
+      },
+      {
+        "h": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 518.6875,
+        "y": 414.234375
+      },
+      {
+        "h": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 1553,
+        "y": 307.96875
+      }
+    ],
+    "scripts": [
+      "screens.js?v=r2-07",
+      "registered-art.js?v=r2-07",
+      "flow-context.js?v=r2-07",
+      "nine-slice.js?v=r2-07",
+      "../readiness-001/presentation.js",
+      "../readiness-001/theme-lab.js",
+      "ui.js?v=readiness-001"
+    ],
+    "title": "携带区 · 真实占格 · 电梯求生 UI设计",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "08-player-sampling",
+    "kind": "IAB_NATIVE_BROWSER_FULL_VIEWPORT",
+    "authorButtons": 0,
+    "dpr": 1,
+    "images": [
+      {
+        "natural": [
+          1672,
+          941
+        ],
+        "src": "../editable/assets/bg-h5-v1.png"
+      },
+      {
+        "natural": [
+          1024,
+          1024
+        ],
+        "src": "../editable/assets/objective_pathogen_case_v02.png"
+      },
+      {
+        "natural": [
+          512,
+          512
+        ],
+        "src": "../editable/assets/icon_bandage_v02.png"
+      }
+    ],
+    "mode": "player",
+    "rects": [
+      {
+        "h": 1080,
+        "selector": "shell  ",
+        "w": 1920,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "h": 888,
+        "selector": "center",
+        "w": 1200,
+        "x": 320,
+        "y": 112
+      },
+      {
+        "h": 597.375,
+        "selector": "panel tier-parameters kind-node ",
+        "w": 880,
+        "x": 480,
+        "y": 257.3125
+      },
+      {
+        "h": 216,
+        "selector": "inventory ",
+        "w": 326,
+        "x": 1553,
+        "y": 307.96875
+      }
+    ],
+    "scripts": [
+      "screens.js?v=r2-07",
+      "registered-art.js?v=r2-07",
+      "flow-context.js?v=r2-07",
+      "nine-slice.js?v=r2-07",
+      "../readiness-001/presentation.js",
+      "../readiness-001/theme-lab.js",
+      "ui.js?v=readiness-001"
+    ],
+    "title": "冷藏室 · 谨慎提样 · 电梯求生 UI设计",
+    "viewport": [
+      1920,
+      1080
+    ]
+  }
+]

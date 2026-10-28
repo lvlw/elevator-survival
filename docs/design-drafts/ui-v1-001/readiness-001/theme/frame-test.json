@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "themeId": "frame-cyan-test",
+    "themeVersion": "0.1",
+    "compatibility": "R2_PRESENTATION_ONLY",
+    "baselineSHA": "956da8065030ccea15256e49bd927a4e6a71942f",
+    "status": "TEST",
+    "source": "asset-manifest + registered-art + crops + prototype; no production state"
+  },
+  "group": "frame",
+  "resources": [
+    {
+      "key": "panel-nine-slice",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "alpha": false,
+      "canvas": [
+        1254,
+        1254
+      ],
+      "foot": null,
+      "hit": null,
+      "motion": null,
+      "nineSlice": {
+        "sourceInsets": [
+          48,
+          48,
+          48,
+          48
+        ],
+        "cssInsets": [
+          24,
+          24,
+          24,
+          24
+        ]
+      },
+      "fit": "contain",
+      "path": "readiness-001/theme/test-assets/panel-nine-slice-cyan-test.svg",
+      "sha256": "a0b88abac80260fb3a9516976547807c24463218c4370c9c679bf0fd1c9d42b2",
+      "format": "SVG",
+      "status": "TEST",
+      "sourceSha256": "7f8a892f51159446c8d681c5811838ecf2dc177db7ca2dec6cda1b72d2eeb28e",
+      "derivation": "Unchanged embedded PNG + reversible feColorMatrix; not native detail or alpha cleanup"
+    }
+  ]
+}

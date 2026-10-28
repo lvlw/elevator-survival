@@ -17,3 +17,8 @@
 优先审阅重点包的面板前后、原生/PNG、真实缩放、初选出发、地图/退却、样本支付和素材失败证据，再看完整审阅包与源包。大包直接拆为每份≤250MiB的普通ZIP，不降画质；精确文件、大小、SHA和分包范围见[交付清单](spec/delivery-packages.json)。
 
 生产test/typecheck/build均NOT RUN，新增生产测试0。等待主线准确SHA与Owner实际图稿/素材/原型联合审阅，不进入生产UI、O3或音频。
+
+
+## WORLD-UI-VISUAL-READINESS-001 追加索引
+
+本轮独立设计分支承接R2，未覆盖原审阅结论。[玩家/作者分离、主题规范与有限方法验证](readiness-001/README.md)供准确SHA实审；美术仍INCOMPLETE_ART。原R1“普通弹窗建议待处理”的描述仅属旧时点，R2已按内容分档，当前不另改几何。新工程合同A/B/C均为候选，未授权生产接入。

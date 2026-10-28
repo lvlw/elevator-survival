@@ -1,0 +1,179 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "themeId": "porter-cyan-test",
+    "themeVersion": "0.1",
+    "compatibility": "R2_PRESENTATION_ONLY",
+    "baselineSHA": "956da8065030ccea15256e49bd927a4e6a71942f",
+    "status": "TEST",
+    "source": "asset-manifest + registered-art + crops + prototype; no production state"
+  },
+  "group": "porter",
+  "resources": [
+    {
+      "key": "enemy-porter-critical",
+      "pixels": [
+        1122,
+        1402
+      ],
+      "alpha": true,
+      "canvas": [
+        1536,
+        1920
+      ],
+      "foot": [
+        0.5,
+        0.92
+      ],
+      "hit": [
+        0.4467732747395834,
+        0.39851562500000004
+      ],
+      "motion": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "nineSlice": null,
+      "fit": "contain",
+      "path": "readiness-001/theme/test-assets/enemy-porter-critical-cyan-test.svg",
+      "sha256": "5a9ae2d4ee25f47451009f979d670c5b24f21b9c3de9327c2064eed8425bbebb",
+      "format": "SVG",
+      "status": "TEST",
+      "sourceSha256": "a32adbeb63b7db6d5127adc78f10d11a3458067997f04fe066bfe33955f0fbb6",
+      "derivation": "Unchanged embedded PNG + reversible feColorMatrix; not native detail or alpha cleanup"
+    },
+    {
+      "key": "enemy-porter-disabled",
+      "pixels": [
+        1122,
+        1402
+      ],
+      "alpha": true,
+      "canvas": [
+        1536,
+        1920
+      ],
+      "foot": [
+        0.5,
+        0.92
+      ],
+      "hit": [
+        0.46160074869791673,
+        0.6599088541666667
+      ],
+      "motion": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "nineSlice": null,
+      "fit": "contain",
+      "path": "readiness-001/theme/test-assets/enemy-porter-disabled-cyan-test.svg",
+      "sha256": "a4cb70421ba17bf282b9f3fc4a37e8e094012c111a98c065898d0ad7036ad7ed",
+      "format": "SVG",
+      "status": "TEST",
+      "sourceSha256": "48de5d321c28d5b88d37b9c241a09e2fef1a84638c4361f8e3e87d5c75ea6930",
+      "derivation": "Unchanged embedded PNG + reversible feColorMatrix; not native detail or alpha cleanup"
+    },
+    {
+      "key": "enemy-porter-heavy-wounded",
+      "pixels": [
+        1121,
+        1403
+      ],
+      "alpha": true,
+      "canvas": [
+        1536,
+        1920
+      ],
+      "foot": [
+        0.5,
+        0.92
+      ],
+      "hit": [
+        0.43607991536458335,
+        0.43302083333333335
+      ],
+      "motion": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "nineSlice": null,
+      "fit": "contain",
+      "path": "readiness-001/theme/test-assets/enemy-porter-heavy-wounded-cyan-test.svg",
+      "sha256": "4b32f8137f78b1e29f979ee3888e15b04bb8a698333a94c808f7034c97ffc5f5",
+      "format": "SVG",
+      "status": "TEST",
+      "sourceSha256": "545b25cb12385f00f77362854d849602517de3e51fb300138677497213e09325",
+      "derivation": "Unchanged embedded PNG + reversible feColorMatrix; not native detail or alpha cleanup"
+    },
+    {
+      "key": "enemy-porter-pristine",
+      "pixels": [
+        1122,
+        1402
+      ],
+      "alpha": true,
+      "canvas": [
+        1536,
+        1920
+      ],
+      "foot": [
+        0.5,
+        0.92
+      ],
+      "hit": [
+        0.4793945312499999,
+        0.45059895833333335
+      ],
+      "motion": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "nineSlice": null,
+      "fit": "contain",
+      "path": "readiness-001/theme/test-assets/enemy-porter-pristine-cyan-test.svg",
+      "sha256": "e63e19fbb5526ba7b67118b3151ab4f92c3b53f52bb6c351a29d212925ee2e1f",
+      "format": "SVG",
+      "status": "TEST",
+      "sourceSha256": "c62b70c69c0e6977ef1e7239d68f15f74951a8cdf9b17c363d3610f23438a1a4",
+      "derivation": "Unchanged embedded PNG + reversible feColorMatrix; not native detail or alpha cleanup"
+    },
+    {
+      "key": "enemy-porter-wounded",
+      "pixels": [
+        1122,
+        1402
+      ],
+      "alpha": true,
+      "canvas": [
+        1536,
+        1920
+      ],
+      "foot": [
+        0.5,
+        0.92
+      ],
+      "hit": [
+        0.47626953125000004,
+        0.4450651041666667
+      ],
+      "motion": {
+        "x": 9,
+        "y": -3,
+        "rotationDegrees": 2
+      },
+      "nineSlice": null,
+      "fit": "contain",
+      "path": "readiness-001/theme/test-assets/enemy-porter-wounded-cyan-test.svg",
+      "sha256": "5a90327aaec95611b940fa2b754fbe4ac735de062e9600f2ffbec087724c3378",
+      "format": "SVG",
+      "status": "TEST",
+      "sourceSha256": "48a370f9fc2dc43cc676de35b5359dc03a68e810a84a28b7880ad45855a5fe8e",
+      "derivation": "Unchanged embedded PNG + reversible feColorMatrix; not native detail or alpha cleanup"
+    }
+  ]
+}

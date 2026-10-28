@@ -1,0 +1,81 @@
+{
+  "task": "WORLD-UI-VISUAL-READINESS-001",
+  "version": "1.0",
+  "repository": "lvlw/elevator-survival",
+  "startSha": "956da8065030ccea15256e49bd927a4e6a71942f",
+  "startParent": "0e0c5cf50bce038f1e915529fe83c3278c30ab95",
+  "startTree": "30cc11ad81dc27e5194a972a9537c0b4a3713788",
+  "createBranch": "feature/design-ui-readiness-001",
+  "preserveBranch": "feature/design-ui-v1-001",
+  "statusAtStart": "REVIEW_CANDIDATE / INCOMPLETE_ART; limited eight-image visual checkpoint only",
+  "allowedNewPrefix": "docs/design-drafts/ui-v1-001/readiness-001/",
+  "allowedExistingFiles": {
+    "docs/design-drafts/ui-v1-001/prototype/index.html": "design-only load and player/reviewer presentation mode",
+    "docs/design-drafts/ui-v1-001/prototype/ui.js": "copy and pure presentation delegation only; no state/action semantics",
+    "docs/design-drafts/ui-v1-001/prototype/ui.css": "review controls visibility and local text wrapping only; no R2 geometry changes",
+    "docs/design-drafts/ui-v1-001/00-owner-review.md": "append-only",
+    "docs/design-drafts/ui-v1-001/06-implementation-handoff-draft.md": "append-only"
+  },
+  "protectedRelativeToDesignRoot": [
+    "inputs/",
+    "editable/",
+    "previews/",
+    "spec/",
+    "validation/",
+    "prototype/flow-context.js",
+    "prototype/screens.js",
+    "prototype/registered-art.js",
+    "prototype/nine-slice.js",
+    "prototype/export.js",
+    "03-dimension-contract.md",
+    "04-interaction-and-motion.md"
+  ],
+  "deniedRepositoryPrefixes": [
+    "src/",
+    "public/",
+    ".github/"
+  ],
+  "deniedRepositoryFiles": [
+    "AGENTS.md",
+    "package.json",
+    "package-lock.json",
+    "vite.config.ts",
+    ".gitattributes",
+    ".gitignore",
+    "docs/05-design-decisions.md",
+    "docs/09-ui-design-record.md"
+  ],
+  "git": {
+    "ordinaryCommit": true,
+    "ordinaryPushNewBranchOnly": true,
+    "merge": false,
+    "forcePush": false,
+    "historyRewrite": false,
+    "lfsMigration": false,
+    "maxNewTrackedBytes": 67108864,
+    "maxSingleNewTrackedFileBytes": 20971520
+  },
+  "art": {
+    "maxGenerationOrGenerativeEditCalls": 12,
+    "maxSamePathFailedAttempts": 2,
+    "maxBackgroundCandidatesAfterGate": 3,
+    "maxAlphaSubjectsAfterGate": 7,
+    "replaceR2Defaults": false,
+    "productionAdoption": false
+  },
+  "server": {
+    "localLoopbackReadOnly": true,
+    "cloudLoginOrModification": false,
+    "dnsOrFirewallChanges": false,
+    "existingWikiModification": false
+  },
+  "noOwnerMidtaskNeeded": true,
+  "stopAfter": "Complete independent W1-W4 candidate outputs, validation and ordinary branch delivery; await exact-SHA review",
+  "delivery": {
+    "mainlineReviewTargetMaxBytes": 62914560,
+    "candidateAssetPartMaxBytes": 209715200,
+    "fullR2Repack": false,
+    "directImageCopies": "6-8 exact-byte images optional fallback"
+  },
+  "sourceBoundary": "Draft tooling and presentation only; no DEC/UIR, gameplay approval, save format or production UI authorization"
+}

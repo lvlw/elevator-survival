@@ -1,0 +1,43 @@
+{
+  "rasters": 64,
+  "vectorsAndComponents": 22,
+  "groups": {
+    "bandage": [
+      "icon-bandage"
+    ],
+    "porter": [
+      "enemy-porter-critical",
+      "enemy-porter-disabled",
+      "enemy-porter-heavy-wounded",
+      "enemy-porter-pristine",
+      "enemy-porter-wounded"
+    ],
+    "frame": [
+      "panel-nine-slice"
+    ]
+  },
+  "categories": [
+    "background",
+    "closeup",
+    "player-npc",
+    "enemy-stage",
+    "item-equipment-task",
+    "frame-control",
+    "map-status",
+    "fx"
+  ],
+  "scan": [
+    "IMG export observations",
+    "CSS URL",
+    "SVG href/use",
+    "registered wrappers",
+    "JS mapping and enemyFile",
+    "shared nine-slice image"
+  ],
+  "unobserved": [
+    "bg-c3",
+    "bg-h2",
+    "bg-workshop",
+    "panel-nine-slice"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "exactCommit": "956da8065030ccea15256e49bd927a4e6a71942f",
+  "mustReadFirst": [
+    "AGENTS.md",
+    "docs/01-game-design-v0.1.md",
+    "docs/02-vertical-slice.md",
+    "docs/03-architecture.md",
+    "docs/05-design-decisions.md",
+    "docs/09-ui-design-record.md",
+    "package.json"
+  ],
+  "designSources": [
+    "docs/design-drafts/ui-v1-001/00-owner-review.md",
+    "docs/design-drafts/ui-v1-001/01-source-and-concept-corrections.md",
+    "docs/design-drafts/ui-v1-001/02-page-state-matrix.md",
+    "docs/design-drafts/ui-v1-001/03-dimension-contract.md",
+    "docs/design-drafts/ui-v1-001/04-interaction-and-motion.md",
+    "docs/design-drafts/ui-v1-001/05-asset-coverage.md",
+    "docs/design-drafts/ui-v1-001/06-implementation-handoff-draft.md",
+    "docs/design-drafts/ui-v1-001/spec/asset-manifest.json",
+    "docs/design-drafts/ui-v1-001/spec/node-crop-manifest.json",
+    "docs/design-drafts/ui-v1-001/spec/registered-art.json",
+    "docs/design-drafts/ui-v1-001/spec/screens-and-content.json",
+    "docs/design-drafts/ui-v1-001/spec/delivery-packages.json",
+    "docs/design-drafts/ui-v1-001/prototype/index.html",
+    "docs/design-drafts/ui-v1-001/prototype/ui.js",
+    "docs/design-drafts/ui-v1-001/prototype/ui.css",
+    "docs/design-drafts/ui-v1-001/prototype/export.js",
+    "docs/design-drafts/ui-v1-001/prototype/flow-context.js",
+    "docs/design-drafts/ui-v1-001/validation/r2/semantic-check.cjs",
+    "docs/design-drafts/ui-v1-001/validation/r2/review-notes.md",
+    "docs/design-drafts/ui-v1-001/validation/r2/geometry-readback.json",
+    "docs/design-drafts/ui-v1-001/validation/r2/asset-inspection/measurements.json"
+  ],
+  "directReviewSources": [
+    {
+      "file": "DIRECT-REVIEW-INDEX.md",
+      "kind": "author exact-byte bridge manifest; does not itself grant acceptance"
+    },
+    {
+      "file": "FINAL-REPORT.md",
+      "kind": "R2 author report; incomplete art remains"
+    },
+    {
+      "file": "UNIFIED-FILE-LIST.json",
+      "kind": "R2 generated distribution and repository payload distinction; not a proof of upload bytes by itself"
+    }
+  ],
+  "newAuthorization": "Current Owner request to continue and delegate a consolidated batch, under prior mainline task authority; strictly bounded by this task",
+  "importantConflictRule": "Later confirmed DEC dominates older hospital snapshot. Approved visual direction does not approve sample numbers or hidden information."
+}

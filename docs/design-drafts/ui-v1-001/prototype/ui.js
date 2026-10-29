@@ -126,7 +126,8 @@ function navigate(id){selectSample(id);}
 
 function openKind(origin,kind,id){const next=SCREENS.find(s=>s.kind===kind&&(id?s.id===id:true));openView(origin,next);}
 
-function toast(text){feedback=text;const f=$('.feedback');if(f)f.textContent=typeof Readiness==='undefined'?text:Readiness.text(text);}
+function presentText(text){return typeof Readiness==='undefined'?text:Readiness.text(text);}
+function toast(text){feedback=text;const f=$('.feedback');if(f)f.textContent=presentText(text);}
 function parameters(){document.querySelectorAll('[data-needs]').forEach(b=>{const keys=b.dataset.needs.split(',');b.disabled=!keys.every(k=>chosen[k]!==undefined&&chosen[k]!=='')||!!active.invalid||active.id==='P11-no-space';});}
 function wire(){
  document.querySelectorAll('[data-act]').forEach(b=>b.addEventListener('click',()=>act(b.dataset.act,b)));
@@ -170,9 +171,9 @@ case 'cell':{
  const occupied=context.items.filter(i=>variant()!=='move'||i.ref!==selectedObject.ref);
  const valid=x+size[0]<=6&&y+size[1]<=4&&!occupied.some(i=>x<i.x+i.w&&x+size[0]>i.x&&y<i.y+i.h&&y+size[1]>i.y);
  chosen.cell=valid?cell:undefined;document.querySelectorAll('.selection-grid .slot').forEach((e,i)=>{const inside=i%6>=x&&i%6<x+size[0]&&Math.floor(i/6)>=y&&Math.floor(i/6)<y+size[1];e.classList.toggle('chosen',inside&&valid);e.classList.toggle('invalid',inside&&!valid);});
- $('#placement-label').textContent=`${ITEMS[selectedObject.key][0]} · ${size[0]}×${size[1]} · 第${x+1}列，第${y+1}行 · ${valid?'有效位置':'越界或占用'}`;parameters();break;
+ $('#placement-label').textContent=presentText(`${ITEMS[selectedObject.key][0]} · ${size[0]}×${size[1]} · 第${x+1}列，第${y+1}行 · ${valid?'有效位置':'越界或占用'}`);parameters();break;
 }
-case 'rotate-placement':chosen.rotated=!chosen.rotated;chosen.cell=undefined;document.querySelectorAll('.selection-grid .slot').forEach(e=>e.classList.remove('chosen','invalid'));$('#placement-label').textContent='朝向已变，请重新明确完整占格位置。';parameters();break;
+case 'rotate-placement':chosen.rotated=!chosen.rotated;chosen.cell=undefined;document.querySelectorAll('.selection-grid .slot').forEach(e=>e.classList.remove('chosen','invalid'));$('#placement-label').textContent=presentText('朝向已变，请重新明确完整占格位置。');parameters();break;
 case 'rotate-demo':toast('旋转独立样例位于设计索引；当前查看不更换携带内容。');break;
 case 'organize-submit':if(!selectedObject){toast('请明确原对象。');return;}if(['move','task-pickup','split'].includes(variant())&&chosen.cell===undefined){toast('请明确目标格位。');return;}if(variant()==='split'&&(!Number.isSafeInteger(Number(chosen.quantity))||Number(chosen.quantity)<1||Number(chosen.quantity)>=selectedObject.quantity)){toast('拆出数量须为小于原堆叠的正整数。');return;}if(variant()==='drop'&&TASK_ITEMS.has(selectedObject.key)){openView(b,{...SCREENS.find(s=>s.id==='P22-critical-drop'),title:'留置'+ITEMS[selectedObject.key][0]+' · 关键物'},selectedObject);return;}toast(ITEMS[selectedObject.key][0]+'参数已明确；设计原型不修改实物。');break;
 case 'medical-submit':if(['bandage','firstaid'].includes(active.item)&&!chosen.wound){toast('请选择明确的处理目标。');return;}toast(active.unknown?'语义示范：真实规则仍须验证隐藏目标，不把unknown写成安全。':'一次用药设计示范，不执行治疗或扣物。');break;
@@ -181,9 +182,9 @@ case 'retry-save':toast('只保存重试示范：没有重放动作、发物或�
 case 'reduce':reduced=!reduced;render();break;
 case 'attack-demo':case 'signature-demo':case 'defend-demo':case 'hit-demo':{
  const ar=$('.arena'),tl=$('.timeline');if(!ar||context.domain!=='battle')return;clearTimeout(motionTimer);const epoch=flowSerial;
- if(verb==='defend-demo'){tl.classList.add('play');$('.decision').textContent='防御姿态 · 无敌人受击';ar.classList.add('defending');toast('防御动作示范；不造成敌人受击、不更换敌人战损。');}
- else{tl.classList.add('play');ar.classList.add('hit');$('.decision').textContent=verb==='hit-demo'?'通用命中FX · 无规则结算':'攻击演出示范 · 已结公开命中';toast(verb==='hit-demo'?'仅演示通用命中FX；不推进战损。':'独立攻击故事板：一次公开阶段切换；不是伤害计算。');}
- motionTimer=setTimeout(()=>{if(epoch!==flowSerial||!$('.arena'))return;if(['attack-demo','signature-demo'].includes(verb)){stage=Math.min(3,stage+1);$('.actor.enemy').outerHTML=actorVisual(enemyFile(context.enemy,stage),'当前敌人 · '+STAGES[stage],'enemy');$('#enemy-stage').textContent=STAGES[stage];}ar.classList.remove('hit','defending');tl.classList.remove('play');$('.decision').textContent='等待你的选择';},reduced?0:700);break;
+ if(verb==='defend-demo'){tl.classList.add('play');$('.decision').textContent=presentText('防御姿态 · 无敌人受击');ar.classList.add('defending');toast('防御动作示范；不造成敌人受击、不更换敌人战损。');}
+ else{tl.classList.add('play');ar.classList.add('hit');$('.decision').textContent=presentText(verb==='hit-demo'?'通用命中FX · 无规则结算':'攻击演出示范 · 已结公开命中');toast(verb==='hit-demo'?'仅演示通用命中FX；不推进战损。':'独立攻击故事板：一次公开阶段切换；不是伤害计算。');}
+ motionTimer=setTimeout(()=>{if(epoch!==flowSerial||!$('.arena'))return;if(['attack-demo','signature-demo'].includes(verb)){stage=Math.min(3,stage+1);$('.actor.enemy').outerHTML=actorVisual(enemyFile(context.enemy,stage),'当前敌人 · '+STAGES[stage],'enemy');$('#enemy-stage').textContent=presentText(STAGES[stage]);}ar.classList.remove('hit','defending');tl.classList.remove('play');$('.decision').textContent=presentText('等待你的选择');},reduced?0:700);break;
 }
 case 'retreat':scriptedRetreat();break;
 case 'menu-close':document.querySelector('.context')?.remove();lastFocus?.focus();break;case 'demo':toast(val);break;

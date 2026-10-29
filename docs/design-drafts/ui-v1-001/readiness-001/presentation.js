@@ -3,6 +3,37 @@
 const Readiness = (() => {
   let mode = new URLSearchParams(location.search).get('view') === 'player' ? 'player' : 'review';
   let theme = null;
+  // Whole authored messages, shared by first render and later text writes.
+  // Unlisted messages are kept; never erase arbitrary engineering keywords.
+  const playerMessages = new Map([
+    ['搜索结果版式示范；未抽取随机或更换身体/配装。','已展示搜索结果。'],
+    ['完整意图设计示范；没有执行生产规则。','本次操作的方案与位置已就绪。'],
+    ['已有现场行为的设计示范；没有生成新商品或支线。','已选择本次现场操作。'],
+    ['维护分配设计示范；没有写入装备资源。','本次维护分配已就绪。'],
+    ['只保存重试示范：没有重放动作、发物或扣款。','保存尚未成功，可再次重试；当前操作仍已生效。'],
+    ['独立攻击故事板：一次公开阶段切换；不是伤害计算。','攻击命中。'],
+    ['攻击演出示范 · 已结公开命中','攻击命中'],
+    ['通用命中FX · 无规则结算','命中效果'],
+    ['仅演示通用命中FX；不推进战损。','查看命中效果。'],
+    ['防御姿态 · 无敌人受击','防御姿态'],
+    ['语义示范：真实规则仍须验证隐藏目标，不把unknown写成安全。','尚不能判断是否有合格目标；当前病程提示不能保证用药有效。'],
+    ['一次用药设计示范，不执行治疗或扣物。','已选择本次用药。'],
+    ['敏感确认设计演示；未接真实玩法','已确认当前选择。'],
+    ['休整结果示范已记录','已选择休整。'],
+    ['整实例拾取示范，先检验合法容量','整件拾取仍须有足够的合法空间。'],
+    ['单边到达的设计接续；不运行精力或风险结算。','已到达相邻地点。'],
+    ['当前已知来路的单边移动；此审阅样例不模拟路线推进。','当前来路已显示。'],
+    ['独立迁移，不复制实物','移入快捷位后，原容器不再保留该物品'],
+    ['只改占格，不拉扁图像','旋转物品以调整放置方向'],
+    ['任务件占用真实格位。2×2样本不是额外的关键物栏。','任务物也占背包空间；样本需要2×2格。'],
+    ['先选择当前上下文中的实际对象。','请先选择要操作的物品。'],
+    ['朝向已变，请重新明确完整占格位置。','朝向已变，请重新选择完整放置位置。'],
+    ['明确设备与真实材料','选择设备与材料'],
+    ['金属零件实例','金属零件'], ['织物材料实例','织物材料'],
+    ['兼容通用电池实例','兼容通用电池'], ['金属实例 + 电子实例','金属零件 + 电子元件'],
+    ['合并 · 明确目标实例','合并 · 选择目标物品'], ['快捷迁移 · 明确槽位','放入快捷位 · 选择槽位'],
+    ['拾取整个金属零件实例','拾取整件金属零件']
+  ]);
   const substitutions = [
     ['（请求1，实际1）','（消耗1）'], ['明确2×2格位 · 原实例一次取得','选择2×2位置 · 仅取得一次'],
     ['防御动作示范；不造成敌人受击、不更换敌人战损。','进入防御姿态。'], ['战斗进行中 · 查看不推进CTB','战斗进行中 · 查看不会推进战斗'],
@@ -39,17 +70,21 @@ const Readiness = (() => {
     '恢复、锁与保存由后续正式接线负责。本设计原型不读写任何玩家记录。'
   ];
   function playerText(s) {
+    if(playerMessages.has(s)) return playerMessages.get(s);
+    const organized=/^(.+)参数已明确；设计原型不修改实物。$/.exec(s);
+    if(organized) return '已选'+organized[1]+'，整理参数已就绪。';
     for (const x of authorSentences) s=s.replaceAll(x,'');
     for (const [a,b] of substitutions) s=s.replaceAll(a,b);
     return s.replaceAll('本样张','当前状态').replaceAll('姿态示范 · 不伤敌','防御姿态').replaceAll(' · 已结事件示范','').replaceAll(' · 演出示范','').replaceAll(' · 过程示范','');
   }
+  const text=s=>mode==='player'?playerText(s):s;
   function html(markup) {
     if(mode!=='player') return markup.replace(/<button data-(?:export|local-export|batch)=[^>]*>.*?<\/button>/g,'');
     const template=document.createElement('template');template.innerHTML=markup;
     template.content.querySelectorAll('.designer,.stage-list,[data-act^="screen:"],[data-act="hit-demo"],[data-act="rotate-demo"],[data-export],[data-batch],[data-local-export]').forEach(e=>e.remove());
     const walker=document.createTreeWalker(template.content,NodeFilter.SHOW_TEXT);
-    while(walker.nextNode()) walker.currentNode.nodeValue=playerText(walker.currentNode.nodeValue);
-    template.content.querySelectorAll('[aria-label],[alt],[title]').forEach(e=>{for(const a of ['aria-label','alt','title'])if(e.hasAttribute(a))e.setAttribute(a,playerText(e.getAttribute(a)));});
+    while(walker.nextNode()) walker.currentNode.nodeValue=text(walker.currentNode.nodeValue);
+    template.content.querySelectorAll('[aria-label],[alt],[title]').forEach(e=>{for(const a of ['aria-label','alt','title'])if(e.hasAttribute(a))e.setAttribute(a,text(e.getAttribute(a)));});
     const label=template.content.querySelector('.draftlabel');if(label)label.textContent='设计模拟 · 不读写玩家记录';
     const burden=template.content.querySelector('.sidebar.right .spread h3 + small');if(burden)burden.textContent='负重 '+burden.textContent;
     // Keep exact public durability delta; technical requested/actual labels remain review-only.
@@ -93,5 +128,5 @@ const Readiness = (() => {
     if(JSON.stringify(before)!==JSON.stringify(snapshot()))throw new Error('CONTEXT_DRIFT');
     return theme?.themeId||'baseline';
   }
-  return Object.freeze({html,mount,assetPass,playerText,setTheme,text:s=>mode==='player'?playerText(s):s,getMode:()=>mode,getTheme:()=>theme});
+  return Object.freeze({html,mount,assetPass,playerText,setTheme,text,getMode:()=>mode,getTheme:()=>theme});
 })();

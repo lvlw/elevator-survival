@@ -4,6 +4,33 @@ const ThemeLab=(()=>{
  const hex=async b=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b)),x=>x.toString(16).padStart(2,'0')).join('');
  const exact=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
  const need=(v,c)=>{if(!v)throw new Error(c);};
+ async function svgContent(bytes,r,b){
+  const source=new TextDecoder('utf-8',{fatal:true}).decode(bytes);
+  need(!source.includes('<!DOCTYPE')&&!source.includes('<!ENTITY'),'SVG_ENTITY');
+  const doc=new DOMParser().parseFromString(source,'image/svg+xml');
+  need(!doc.querySelector('parsererror'),'SVG_PARSE');
+  for(const e of doc.querySelectorAll('*')){
+   need(['svg','title','defs','filter','feColorMatrix','image'].includes(e.localName),'SVG_TAG');
+   for(const a of e.attributes){need(['xmlns','width','height','viewBox','id','color-interpolation-filters','type','values','filter','href'].includes(a.name),'SVG_ATTRIBUTE');if(a.name==='href')need(a.value.startsWith('data:image/png;base64,'),'SVG_EXTERNAL');if(a.name==='filter')need(a.value==='url(#t)','SVG_EXTERNAL');}
+  }
+  const root=doc.documentElement;
+  need(root.localName==='svg'&&root.getAttribute('width')===String(b.pixels[0])&&root.getAttribute('height')===String(b.pixels[1])&&root.getAttribute('viewBox')===`0 0 ${b.pixels[0]} ${b.pixels[1]}`,'SVG_DIMENSIONS');
+  const images=[...doc.querySelectorAll('image')];need(images.length===1,'SVG_IMAGE_COUNT');
+  const image=images[0];
+  need(image.getAttribute('width')===String(b.pixels[0])&&image.getAttribute('height')===String(b.pixels[1])&&image.getAttribute('filter')==='url(#t)','SVG_CONTENT_GEOMETRY');
+  const href=image.getAttribute('href')||'',encoded=href.slice('data:image/png;base64,'.length);
+  need(href.startsWith('data:image/png;base64,')&&/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(encoded),'EMBEDDED_IMAGE');
+  const raw=Uint8Array.from(atob(encoded),c=>c.charCodeAt(0)),png=new Image();png.src=href;
+  try{await png.decode();}catch{throw new Error('EMBEDDED_IMAGE');}
+  need(await hex(raw)===b.sha256,'EMBEDDED_SOURCE');
+  need(png.naturalWidth===r.pixels[0]&&png.naturalHeight===r.pixels[1],'DECODE');
+  const matrices=[...doc.querySelectorAll('feColorMatrix')];need(matrices.length===1,'FILTER_COUNT');
+  need(matrices[0].getAttribute('type')==='matrix','FILTER_TYPE');
+  const parts=(matrices[0].getAttribute('values')||'').trim().split(/\s+/);
+  const decimal=/^[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?$/;
+  const values=parts.map(Number);
+  need(parts.length===20&&parts.every(x=>decimal.test(x))&&values.every(x=>Number.isFinite(x)&&Math.abs(x)<=1)&&exact(values.slice(15),[0,0,0,1,0]),'FILTER_ALPHA');
+ }
  async function validate(group){
   if(group==='baseline')return null;
   need(accepted.includes(group),'UNKNOWN_GROUP');
@@ -22,12 +49,7 @@ const ThemeLab=(()=>{
    for(const k of ['pixels','alpha','canvas','foot','hit','motion','nineSlice','fit'])need(exact(r[k],b[k]),'GEOMETRY_'+k);
    need(/^readiness-001\/theme\/test-assets\/[a-z0-9_-]+\.svg$/.test(r.path),'PATH');
    const u=new URL(r.path,base),res=await fetch(u);need(res.ok,'FILE');const bytes=await res.arrayBuffer();need(await hex(bytes)===r.sha256,'HASH');
-   const doc=new DOMParser().parseFromString(new TextDecoder().decode(bytes),'image/svg+xml');
-   need(!doc.querySelector('parsererror'),'SVG_PARSE');
-   for(const e of doc.querySelectorAll('*')){
-    need(['svg','title','defs','filter','feColorMatrix','image'].includes(e.localName),'SVG_TAG');
-    for(const a of e.attributes){need(['xmlns','width','height','viewBox','id','color-interpolation-filters','type','values','filter','href'].includes(a.name),'SVG_ATTRIBUTE');if(a.name==='href')need(a.value.startsWith('data:image/png;base64,'),'SVG_EXTERNAL');if(a.name==='filter')need(a.value==='url(#t)','SVG_FILTER');}
-   }
+   await svgContent(bytes,r,b);
    const im=new Image();im.src=u.href;await im.decode();need(im.naturalWidth===r.pixels[0]&&im.naturalHeight===r.pixels[1],'DECODE');
    replacements[b.path.split('/').pop()]=u.href;
   }

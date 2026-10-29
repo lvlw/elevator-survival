@@ -1,5 +1,5 @@
 """Closed design theme dialect. Validation is not visual or production approval."""
-import base64, copy, hashlib, io, json, math, sys
+import base64, copy, hashlib, io, json, math, re, sys
 import xml.etree.ElementTree as ET
 from pathlib import Path, PurePosixPath
 from PIL import Image
@@ -44,8 +44,9 @@ def validate(candidate,catalog=None,root_directory=None):
         need(hashlib.sha256(raw).hexdigest()==b['sha256'],'EMBEDDED_SOURCE');need(list(im.size)==r['pixels'] and ('A' in im.getbands())==r['alpha'],'DECODE')
         mats=[e for e in root.iter() if e.tag.endswith('feColorMatrix')];need(len(mats)==1,'FILTER_COUNT')
         need(mats[0].get('type')=='matrix','FILTER_TYPE')
-        try:vals=[float(v) for v in mats[0].get('values','').split()]
-        except ValueError:raise Reject('FILTER_VALUES')
+        parts=mats[0].get('values','').split()
+        need(all(re.fullmatch(r'[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?',v) for v in parts),'FILTER_ALPHA')
+        vals=[float(v) for v in parts]
         need(len(vals)==20 and all(math.isfinite(v) and abs(v)<=1 for v in vals) and vals[15:]==[0,0,0,1,0],'FILTER_ALPHA')
     return {'status':'VALID_TEST_ONLY','themeId':m['themeId'],'group':group,'members':len(rr)}
 def tests():

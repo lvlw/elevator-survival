@@ -1,0 +1,74 @@
+{
+  "images": [
+    {
+      "path": "after/player-attack.jpg",
+      "captureName": "after/player-attack.png",
+      "actualFormat": "JPEG",
+      "pixels": [
+        1280,
+        720
+      ],
+      "cssViewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "bytes": 182099,
+      "sha256": "3df4a3f4f9c3de075879660263c4805df911d0edfccad1a0bd4ddf9e31571c1a",
+      "renamedWithoutConversion": true
+    },
+    {
+      "path": "after/player-inventory.jpg",
+      "captureName": "after/player-inventory.png",
+      "actualFormat": "JPEG",
+      "pixels": [
+        1280,
+        720
+      ],
+      "cssViewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "bytes": 156066,
+      "sha256": "104ffc2edb9139070083572afda427aa71d9ae23e051f9d93c960070148903d5",
+      "renamedWithoutConversion": true
+    },
+    {
+      "path": "after/player-medical-unknown.jpg",
+      "captureName": "after/player-medical-unknown.png",
+      "actualFormat": "JPEG",
+      "pixels": [
+        1280,
+        720
+      ],
+      "cssViewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "bytes": 147524,
+      "sha256": "b1164c5f2aac092366e6f72f57641bdb58a0aa3c488466220b7739131bc6ecd8",
+      "renamedWithoutConversion": true
+    },
+    {
+      "path": "before/player-attack.jpg",
+      "captureName": "before/player-attack.png",
+      "actualFormat": "JPEG",
+      "pixels": [
+        1280,
+        720
+      ],
+      "cssViewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "bytes": 186235,
+      "sha256": "af00de2aa883fe8d01f91a85143b6e46e051f4e96ff15008131422e550e580ee",
+      "renamedWithoutConversion": true
+    }
+  ],
+  "pass": true,
+  "toolNote": "First rename attempt was blocked by the inspection image handle; closed it before retry. No pixels changed."
+}

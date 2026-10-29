@@ -23,4 +23,4 @@ async function run(mutation='none'){
  check('context-drift-detected',()=>assert(caught));
  return {mutation,kind:'NODE_ISOLATED_DESIGN_ADAPTER',total:results.length,failed:results.filter(x=>!x.pass).length,results};
 }
-(async()=>{const positive=await run();const negativeControls=await Promise.all(['context-drift','author-copy'].map(run));const report={positive,negativeControls,pass:positive.failed===0&&negativeControls.every(x=>x.failed>0)};console.log(JSON.stringify(report,null,2));process.exitCode=report.pass?0:1;})().catch(e=>{console.error(e);process.exitCode=2;});
+(async()=>{const positive=await run();const negativeControls=await Promise.all(['context-drift','author-copy'].map(run));const r1=require('../r1/player-check.cjs');const r1Positive=r1.run(),r1Negative=r1.run('dynamic-copy');const report={positive,negativeControls,r1Positive,r1Negative,pass:positive.failed===0&&negativeControls.every(x=>x.failed>0)&&r1Positive.failed===0&&r1Negative.failed>0&&r1Negative.results.every(x=>x.pass||x.name==='AssertionError')};console.log(JSON.stringify(report,null,2));process.exitCode=report.pass?0:1;})().catch(e=>{console.error(e);process.exitCode=2;});

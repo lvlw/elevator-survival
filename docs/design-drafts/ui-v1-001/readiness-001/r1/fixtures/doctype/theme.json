@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "themeId": "bandage-cyan-test",
+    "themeVersion": "0.1",
+    "compatibility": "R2_PRESENTATION_ONLY",
+    "baselineSHA": "956da8065030ccea15256e49bd927a4e6a71942f",
+    "status": "TEST",
+    "source": "asset-manifest + registered-art + crops + prototype; no production state"
+  },
+  "group": "bandage",
+  "resources": [
+    {
+      "key": "icon-bandage",
+      "pixels": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "canvas": [
+        512,
+        512
+      ],
+      "foot": null,
+      "hit": null,
+      "motion": null,
+      "nineSlice": null,
+      "fit": "contain",
+      "path": "readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+      "sha256": "7e305039a9d46093e57df1f965f187d8d6432b4abe71049dc7769a93f1e8f3ae",
+      "format": "SVG",
+      "status": "TEST",
+      "sourceSha256": "573199ffec28fc6c7fb8a5a75eda8264c920dbc0a1e4b09a95a222c57cfa8c6c",
+      "derivation": "Unchanged embedded PNG + reversible feColorMatrix; not native detail or alpha cleanup"
+    }
+  ]
+}

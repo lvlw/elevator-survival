@@ -1,0 +1,10 @@
+{
+  "url": "http://127.0.0.1:8780/prototype/index.html?screen=P15-porter&view=player",
+  "text": "独立攻击故事板：一次公开阶段切换；不是伤害计算。",
+  "viewport": {
+    "dpr": 1,
+    "height": 720,
+    "width": 1280
+  },
+  "kind": "NATIVE_IAB_KEYBOARD_ACTIVATION"
+}

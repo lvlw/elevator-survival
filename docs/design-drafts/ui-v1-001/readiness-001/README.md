@@ -26,3 +26,10 @@ python -B docs/design-drafts/ui-v1-001/readiness-001/tools/serve.py --root ABSOL
 统一入口为 `tools/readiness.py validate`、`test`、`build-review`、`verify-artifact`。后两者分别接受上面的 `--out --target --art`、`--out` 参数。`--art` 内须有候选包 `method-proofs/` 中两份原件，摘要必须匹配已提交方法回执；不可用旧R2图代替。使用新的仓库外输出目录，避免把其他任务文件混入制品。
 
 发布判断不由检查数量替代。生产 test/typecheck/build 起始与最终均 NOT RUN；新增生产测试0。没有服务器登录、部署、旧Wiki修改、O3决定、音频或关机操作。
+
+
+## R1 限定补修续办
+
+起点 `8ffe22616c68d806d7bda48d55e0adf6383765c4`，沿用 `feature/design-ui-readiness-001`。仅补玩家动态文案、浏览器 SVG 内容校验及 ZIP 实际条目唯一性；旧报告与失败记录保持原字节。
+
+[R1 完整报告与复跑入口](r1/report.md)；[修前 CLI](r1/before/cli.json)、[修前浏览器主题](r1/before/browser-theme.json)、[修后 CLI](r1/after/cli.json)、[修后浏览器主题](r1/after/browser-theme.json)。本次只交新版 MAINLINE-REVIEW；原候选素材未变，不重复打包。INCOMPLETE_ART 仍未关闭。

@@ -1,0 +1,14 @@
+{
+  "browser": "Codex IAB",
+  "viewport": {
+    "dpr": 1,
+    "height": 720,
+    "width": 1280
+  },
+  "method": "native DOM controls activated with keyboard Enter; no hidden app-state injection",
+  "notes": [
+    "Browser navigator is not exposed in this tool DOM scope; UA NOT VERIFIED",
+    "One nonexistent combat-actions selector timed out; corrected from actual buttons, not a semantic test failure",
+    "1688 extension overlay retained unedited in screenshots"
+  ]
+}

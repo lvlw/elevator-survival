@@ -118,17 +118,30 @@ def get_cached_base():
     global _base
     if _base is None:_base=set(get_files(BASE))
     return _base
+def verify_package(p):
+    """Check physical members before any name-based lookup can hide duplicates."""
+    with zipfile.ZipFile(p) as z:
+        names=[entry.filename for entry in z.infolist()]
+        theme_check.need(len(names)==len(set(names)),'ZIP_DUPLICATE_ENTRY')
+        for name in names:valid_name(name)
+        theme_check.need('ARTIFACT-MANIFEST.json' in names,'ZIP_MANIFEST_MISSING')
+        theme_check.need(z.testzip() is None,'ZIP_CRC')
+        m=json.loads(z.read('ARTIFACT-MANIFEST.json'))
+        closure(m['files'],[],False) # Manifest uniqueness is independent of ZIP uniqueness.
+        expected=[e['path'] for e in m['files']]+['ARTIFACT-MANIFEST.json','SHA256SUMS.txt']
+        theme_check.need(len(expected)==len(set(expected)),'DUPLICATE_PATH')
+        theme_check.need(set(expected)<=set(names),'ZIP_MISSING')
+        theme_check.need(set(names)<=set(expected),'ZIP_EXTRA')
+        for e in m['files']:
+            data=z.read(e['path']);theme_check.need(len(data)==e['bytes'] and sha(data)==e['sha256'],'ZIP_HASH')
+        claimed=m.pop('artifactId')
+        theme_check.need(sha(json.dumps(m,sort_keys=True,separators=(',',':')).encode())==claimed,'ARTIFACT_ID')
+        return {'package':m['kind'],'files':len(m['files']),'pass':True}
 def verify(out):
     results=[]
     for name in ['MAINLINE-REVIEW','CANDIDATE-ASSETS']:
         p=out/(name+'.zip')
-        with zipfile.ZipFile(p) as z:
-            theme_check.need(z.testzip() is None,'ZIP_CRC');m=json.loads(z.read('ARTIFACT-MANIFEST.json'));seen=[]
-            for e in m['files']:
-                valid_name(e['path']);data=z.read(e['path']);theme_check.need(len(data)==e['bytes'] and sha(data)==e['sha256'],'ZIP_HASH');seen.append(e['path'])
-            theme_check.need(set(z.namelist())==set(seen+['ARTIFACT-MANIFEST.json','SHA256SUMS.txt']),'ZIP_EXTRA')
-            claimed=m.pop('artifactId');theme_check.need(sha(json.dumps(m,sort_keys=True,separators=(',',':')).encode())==claimed,'ARTIFACT_ID')
-            results.append({'package':name,'files':len(seen),'pass':True})
+        results.append(verify_package(p))
     m=json.loads((out/'REVIEW-SITE/SITE-MANIFEST.json').read_text('utf-8'));closure(m['files'],m['required'],m['selfContained'])
     for e in m['files']:theme_check.need(sha(theme_check.path_check(out/'REVIEW-SITE',e['path']).read_bytes())==e['sha256'],'SITE_HASH')
     site_references(out/'REVIEW-SITE')

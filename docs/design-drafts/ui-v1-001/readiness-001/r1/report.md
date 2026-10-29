@@ -79,3 +79,5 @@ python -B docs/design-drafts/ui-v1-001/readiness-001/r1/scope.py
 候选素材引用原 `CANDIDATE-ASSETS.zip`：11,968,658字节；SHA-256 `e711af0efea9792efb937cdc570a0753cd7d55b7d19706e9aa6360f6e1dd185a`。本次重新核对摘要，未改动、未重打、无需重新上传。
 
 提交及普通push完成后停止，等待主线准确SHA复审；不自动进入生产实现或美术批量制作。
+
+封包复核追加：首次包的根目录 FINAL-REPORT 相对链接仍指向源目录位置；已修正打包器重定位这些链接，并增加ZIP内实际目标检查。首次包和回执只作交付过程记录，最终仅交修正后的新版包；源码与玩法没有因此改变。

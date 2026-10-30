@@ -33,3 +33,8 @@ python -B docs/design-drafts/ui-v1-001/readiness-001/tools/serve.py --root ABSOL
 起点 `8ffe22616c68d806d7bda48d55e0adf6383765c4`，沿用 `feature/design-ui-readiness-001`。仅补玩家动态文案、浏览器 SVG 内容校验及 ZIP 实际条目唯一性；旧报告与失败记录保持原字节。
 
 [R1 完整报告与复跑入口](r1/report.md)；[修前 CLI](r1/before/cli.json)、[修前浏览器主题](r1/before/browser-theme.json)、[修后 CLI](r1/after/cli.json)、[修后浏览器主题](r1/after/browser-theme.json)。本次只交新版 MAINLINE-REVIEW；原候选素材未变，不重复打包。INCOMPLETE_ART 仍未关闭。
+
+
+## R2：动态战损主题保持
+
+起点 `8bd50890be44d8ab0921e3bc4b1fabab1a8e1203`。仅在新敌人节点插入后复用当前主题映射；不改动作、阶段上限或演出时长。修前原生反例、修后实图及检查见 [R2报告](r2/report.md)。原R1报告、范围脚本和证据均保持；INCOMPLETE_ART不变。

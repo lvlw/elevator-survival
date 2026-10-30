@@ -1,0 +1,118 @@
+{
+  "sample": "P16-porter-phases",
+  "mode": "review",
+  "theme": [
+    {
+      "alt": "感染装卸工完好",
+      "baseline": "../editable/assets/enemy-porter-pristine-v1.png",
+      "complete": true,
+      "currentSrc": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-pristine-cyan-test.svg",
+      "pixels": [
+        1122,
+        1402
+      ],
+      "src": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-pristine-cyan-test.svg"
+    },
+    {
+      "alt": "感染装卸工受伤",
+      "baseline": "../editable/assets/enemy-porter-wounded-v1.png",
+      "complete": true,
+      "currentSrc": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-wounded-cyan-test.svg",
+      "pixels": [
+        1122,
+        1402
+      ],
+      "src": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-wounded-cyan-test.svg"
+    },
+    {
+      "alt": "感染装卸工重伤",
+      "baseline": "../editable/assets/enemy-porter-heavy_wounded-v1.png",
+      "complete": true,
+      "currentSrc": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-heavy-wounded-cyan-test.svg",
+      "pixels": [
+        1121,
+        1403
+      ],
+      "src": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-heavy-wounded-cyan-test.svg"
+    },
+    {
+      "alt": "感染装卸工濒危",
+      "baseline": "../editable/assets/enemy-porter-critical-v1.png",
+      "complete": true,
+      "currentSrc": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-critical-cyan-test.svg",
+      "pixels": [
+        1122,
+        1402
+      ],
+      "src": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-critical-cyan-test.svg"
+    },
+    {
+      "alt": "感染装卸工失去能力",
+      "baseline": "../editable/assets/enemy-porter-disabled-v1.png",
+      "complete": true,
+      "currentSrc": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-disabled-cyan-test.svg",
+      "pixels": [
+        1122,
+        1402
+      ],
+      "src": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-disabled-cyan-test.svg"
+    }
+  ],
+  "baseline": [
+    {
+      "alt": "感染装卸工完好",
+      "baseline": "../editable/assets/enemy-porter-pristine-v1.png",
+      "complete": true,
+      "currentSrc": "http://127.0.0.1:8780/editable/assets/enemy-porter-pristine-v1.png",
+      "pixels": [
+        1122,
+        1402
+      ],
+      "src": "../editable/assets/enemy-porter-pristine-v1.png"
+    },
+    {
+      "alt": "感染装卸工受伤",
+      "baseline": "../editable/assets/enemy-porter-wounded-v1.png",
+      "complete": true,
+      "currentSrc": "http://127.0.0.1:8780/editable/assets/enemy-porter-wounded-v1.png",
+      "pixels": [
+        1122,
+        1402
+      ],
+      "src": "../editable/assets/enemy-porter-wounded-v1.png"
+    },
+    {
+      "alt": "感染装卸工重伤",
+      "baseline": "../editable/assets/enemy-porter-heavy_wounded-v1.png",
+      "complete": true,
+      "currentSrc": "http://127.0.0.1:8780/editable/assets/enemy-porter-heavy_wounded-v1.png",
+      "pixels": [
+        1121,
+        1403
+      ],
+      "src": "../editable/assets/enemy-porter-heavy_wounded-v1.png"
+    },
+    {
+      "alt": "感染装卸工濒危",
+      "baseline": "../editable/assets/enemy-porter-critical-v1.png",
+      "complete": true,
+      "currentSrc": "http://127.0.0.1:8780/editable/assets/enemy-porter-critical-v1.png",
+      "pixels": [
+        1122,
+        1402
+      ],
+      "src": "../editable/assets/enemy-porter-critical-v1.png"
+    },
+    {
+      "alt": "感染装卸工失去能力",
+      "baseline": "../editable/assets/enemy-porter-disabled-v1.png",
+      "complete": true,
+      "currentSrc": "http://127.0.0.1:8780/editable/assets/enemy-porter-disabled-v1.png",
+      "pixels": [
+        1122,
+        1402
+      ],
+      "src": "../editable/assets/enemy-porter-disabled-v1.png"
+    }
+  ]
+}

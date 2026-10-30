@@ -1,0 +1,85 @@
+{
+  "images": [
+    {
+      "path": "after/01-theme-enabled.jpg",
+      "format": "JPEG",
+      "pixels": [
+        1280,
+        720
+      ],
+      "cssViewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "bytes": 188096,
+      "sha256": "aa32ac87282814a3e8e0c47840840185f799a5fff4e79344421bdeff602b3515",
+      "originalScreenshotBytes": true
+    },
+    {
+      "path": "after/02-next-stage-themed.jpg",
+      "format": "JPEG",
+      "pixels": [
+        1280,
+        720
+      ],
+      "cssViewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "bytes": 188460,
+      "sha256": "7e62c3c3b2934f69b2524996e7ca43a97bcce90c6a72a7f54afe1d4bccbccb87",
+      "originalScreenshotBytes": true
+    },
+    {
+      "path": "after/03-baseline-fallback.jpg",
+      "format": "JPEG",
+      "pixels": [
+        1280,
+        720
+      ],
+      "cssViewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "bytes": 188657,
+      "sha256": "6339ace9037df30ffadf86c8ba3489993974d56861b0416771ebc3adde063adb",
+      "originalScreenshotBytes": true
+    },
+    {
+      "path": "before/01-theme-enabled.jpg",
+      "format": "JPEG",
+      "pixels": [
+        1280,
+        720
+      ],
+      "cssViewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "bytes": 188096,
+      "sha256": "aa32ac87282814a3e8e0c47840840185f799a5fff4e79344421bdeff602b3515",
+      "originalScreenshotBytes": true
+    },
+    {
+      "path": "before/02-stage-lost-theme.jpg",
+      "format": "JPEG",
+      "pixels": [
+        1280,
+        720
+      ],
+      "cssViewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "bytes": 188728,
+      "sha256": "22720b405a73170946fe6dd1e0a7c073eda79dc21d884a6a416fbdc0e16c4be4",
+      "originalScreenshotBytes": true
+    }
+  ],
+  "pass": true
+}

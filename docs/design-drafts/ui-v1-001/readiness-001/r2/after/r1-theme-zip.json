@@ -1,0 +1,269 @@
+{
+  "kind": "CLI_SEMANTIC_REPRODUCTION",
+  "baselineObservation": false,
+  "theme": [
+    {
+      "id": "valid-bandage",
+      "group": "bandage",
+      "expected": "ACCEPT",
+      "manifest": "../../theme/bandage-test.json",
+      "root": "baseline",
+      "actual": "ACCEPT",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "valid-porter",
+      "group": "porter",
+      "expected": "ACCEPT",
+      "manifest": "../../theme/porter-test.json",
+      "root": "baseline",
+      "actual": "ACCEPT",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "valid-frame",
+      "group": "frame",
+      "expected": "ACCEPT",
+      "manifest": "../../theme/frame-test.json",
+      "root": "baseline",
+      "actual": "ACCEPT",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "image-width",
+      "group": "bandage",
+      "expected": "SVG_CONTENT_GEOMETRY",
+      "manifest": "image-width/theme.json",
+      "root": "image-width",
+      "svgSha256": "87bcc7c772b48f6ee5399ea08f206dc1519e6341be432671b35340467fd37103",
+      "actual": "SVG_CONTENT_GEOMETRY",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "image-height",
+      "group": "bandage",
+      "expected": "SVG_CONTENT_GEOMETRY",
+      "manifest": "image-height/theme.json",
+      "root": "image-height",
+      "svgSha256": "0fc2888d4f90db91add89310c8140c08dfb15c5b89fdfca3e116a499be1c57b6",
+      "actual": "SVG_CONTENT_GEOMETRY",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "image-missing",
+      "group": "bandage",
+      "expected": "SVG_IMAGE_COUNT",
+      "manifest": "image-missing/theme.json",
+      "root": "image-missing",
+      "svgSha256": "27fd33883b8abd3cef58a8f8f1a59b8d4cf889200a765703f401ed80c12f93bc",
+      "actual": "SVG_IMAGE_COUNT",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "image-duplicate",
+      "group": "bandage",
+      "expected": "SVG_IMAGE_COUNT",
+      "manifest": "image-duplicate/theme.json",
+      "root": "image-duplicate",
+      "svgSha256": "5904de7cede1b582235dc4ba66fd274ad4be8e00644d3e35b37d34f4b5bd7ab3",
+      "actual": "SVG_IMAGE_COUNT",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "embedded-source",
+      "group": "bandage",
+      "expected": "EMBEDDED_SOURCE",
+      "manifest": "embedded-source/theme.json",
+      "root": "embedded-source",
+      "svgSha256": "81a868393669a4d71969c91209ba4bc9009cdaff7da84febf995f5ed41d4471c",
+      "actual": "EMBEDDED_SOURCE",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "matrix-nan",
+      "group": "bandage",
+      "expected": "FILTER_ALPHA",
+      "manifest": "matrix-nan/theme.json",
+      "root": "matrix-nan",
+      "svgSha256": "b588713f80b6d58fdaf1ab42947fcaf88914ed7dbb54952d2da71bf1e88bacdc",
+      "actual": "FILTER_ALPHA",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "matrix-infinite",
+      "group": "bandage",
+      "expected": "FILTER_ALPHA",
+      "manifest": "matrix-infinite/theme.json",
+      "root": "matrix-infinite",
+      "svgSha256": "22c6b50dabcd2a71cefdb7d8e22e00042d88e7aa534174a2c1ca28d5e6d1739a",
+      "actual": "FILTER_ALPHA",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "matrix-range",
+      "group": "bandage",
+      "expected": "FILTER_ALPHA",
+      "manifest": "matrix-range/theme.json",
+      "root": "matrix-range",
+      "svgSha256": "427549d988b1ebbe840e85d279cda2d88ad99d4ad6231a76db9e63ba5684587e",
+      "actual": "FILTER_ALPHA",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "matrix-short",
+      "group": "bandage",
+      "expected": "FILTER_ALPHA",
+      "manifest": "matrix-short/theme.json",
+      "root": "matrix-short",
+      "svgSha256": "821883a8b450aa274ee4a4eb3aaa96f3fecee2690e3ab44af0a15926c80bf4d4",
+      "actual": "FILTER_ALPHA",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "matrix-alpha",
+      "group": "bandage",
+      "expected": "FILTER_ALPHA",
+      "manifest": "matrix-alpha/theme.json",
+      "root": "matrix-alpha",
+      "svgSha256": "7d594f44968dfd678b46198ca098806efd7873332e8892f4a6caedbe3758a9cd",
+      "actual": "FILTER_ALPHA",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "matrix-type",
+      "group": "bandage",
+      "expected": "FILTER_TYPE",
+      "manifest": "matrix-type/theme.json",
+      "root": "matrix-type",
+      "svgSha256": "fd19f1d54669c5c3bca4b7a009c02ce821318773cec26b79fc3918586e4a5f6d",
+      "actual": "FILTER_TYPE",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "matrix-missing",
+      "group": "bandage",
+      "expected": "FILTER_COUNT",
+      "manifest": "matrix-missing/theme.json",
+      "root": "matrix-missing",
+      "svgSha256": "a4add1e28915ade62871c0f0fd23a821d4aa70199f09eb6f1b25dd14c3d5bc28",
+      "actual": "FILTER_COUNT",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "root-viewbox",
+      "group": "bandage",
+      "expected": "SVG_DIMENSIONS",
+      "manifest": "root-viewbox/theme.json",
+      "root": "root-viewbox",
+      "svgSha256": "9482e6320aa140004bf616e92ab4c1b68efe1aefe400c9a4b137938436ac7825",
+      "actual": "SVG_DIMENSIONS",
+      "error": null,
+      "pass": true
+    },
+    {
+      "id": "doctype",
+      "group": "bandage",
+      "expected": "SVG_ENTITY",
+      "manifest": "doctype/theme.json",
+      "root": "doctype",
+      "svgSha256": "7e305039a9d46093e57df1f965f187d8d6432b4abe71049dc7769a93f1e8f3ae",
+      "actual": "SVG_ENTITY",
+      "error": null,
+      "pass": true
+    }
+  ],
+  "zip": [
+    {
+      "case": "valid",
+      "expected": "ACCEPT",
+      "actual": "ACCEPT",
+      "error": null,
+      "warnings": [],
+      "stdout": "{\"packages\": [{\"package\": \"MAINLINE-REVIEW\", \"files\": 1, \"pass\": true}, {\"package\": \"CANDIDATE-ASSETS\", \"files\": 1, \"pass\": true}], \"siteFiles\": 0, \"pass\": true}\n",
+      "pass": true
+    },
+    {
+      "case": "duplicate-same",
+      "expected": "ZIP_DUPLICATE_ENTRY",
+      "actual": "ZIP_DUPLICATE_ENTRY",
+      "error": null,
+      "warnings": [
+        "Duplicate name: 'record.txt'"
+      ],
+      "stdout": "",
+      "pass": true
+    },
+    {
+      "case": "duplicate-different",
+      "expected": "ZIP_DUPLICATE_ENTRY",
+      "actual": "ZIP_DUPLICATE_ENTRY",
+      "error": null,
+      "warnings": [
+        "Duplicate name: 'record.txt'"
+      ],
+      "stdout": "",
+      "pass": true
+    },
+    {
+      "case": "duplicate-manifest",
+      "expected": "DUPLICATE_PATH",
+      "actual": "DUPLICATE_PATH",
+      "error": null,
+      "warnings": [],
+      "stdout": "",
+      "pass": true
+    },
+    {
+      "case": "missing",
+      "expected": "ZIP_MISSING",
+      "actual": "ZIP_MISSING",
+      "error": null,
+      "warnings": [],
+      "stdout": "",
+      "pass": true
+    },
+    {
+      "case": "extra",
+      "expected": "ZIP_EXTRA",
+      "actual": "ZIP_EXTRA",
+      "error": null,
+      "warnings": [],
+      "stdout": "",
+      "pass": true
+    },
+    {
+      "case": "hash-tamper",
+      "expected": "ZIP_HASH",
+      "actual": "ZIP_HASH",
+      "error": null,
+      "warnings": [],
+      "stdout": "",
+      "pass": true
+    },
+    {
+      "case": "commit-tamper",
+      "expected": "ARTIFACT_ID",
+      "actual": "ARTIFACT_ID",
+      "error": null,
+      "warnings": [],
+      "stdout": "",
+      "pass": true
+    }
+  ],
+  "pass": true
+}

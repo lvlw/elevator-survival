@@ -1,0 +1,122 @@
+[
+  {
+    "label": "porter-enabled",
+    "themeId": "porter-cyan-test",
+    "stage": "完好",
+    "src": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-pristine-cyan-test.svg",
+    "currentSrc": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-pristine-cyan-test.svg",
+    "baseline": "../editable/assets/enemy-porter-pristine-v1.png",
+    "complete": true,
+    "pixels": [
+      1122,
+      1402
+    ],
+    "decision": "等待你的选择",
+    "feedback": "当前地点可自由查看；查看详情不消耗精力。",
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1
+  },
+  {
+    "label": "after-ordinary-attack",
+    "themeId": "porter-cyan-test",
+    "stage": "受伤",
+    "src": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-wounded-cyan-test.svg",
+    "currentSrc": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-wounded-cyan-test.svg",
+    "baseline": "../editable/assets/enemy-porter-wounded-v1.png",
+    "complete": true,
+    "pixels": [
+      1122,
+      1402
+    ],
+    "decision": "等待你的选择",
+    "feedback": "独立攻击故事板：一次公开阶段切换；不是伤害计算。",
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1
+  },
+  {
+    "label": "baseline-fallback",
+    "themeId": "baseline",
+    "stage": "受伤",
+    "src": "../editable/assets/enemy-porter-wounded-v1.png",
+    "currentSrc": "http://127.0.0.1:8780/editable/assets/enemy-porter-wounded-v1.png",
+    "baseline": "../editable/assets/enemy-porter-wounded-v1.png",
+    "complete": true,
+    "pixels": [
+      1122,
+      1402
+    ],
+    "decision": "等待你的选择",
+    "feedback": "独立攻击故事板：一次公开阶段切换；不是伤害计算。",
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1
+  },
+  {
+    "label": "after-signature-action",
+    "themeId": "porter-cyan-test",
+    "stage": "重伤",
+    "src": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-heavy-wounded-cyan-test.svg",
+    "currentSrc": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-heavy-wounded-cyan-test.svg",
+    "baseline": "../editable/assets/enemy-porter-heavy_wounded-v1.png",
+    "complete": true,
+    "pixels": [
+      1121,
+      1403
+    ],
+    "decision": "等待你的选择",
+    "feedback": "独立攻击故事板：一次公开阶段切换；不是伤害计算。",
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1
+  },
+  {
+    "label": "after-defense",
+    "themeId": "porter-cyan-test",
+    "stage": "重伤",
+    "src": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-heavy-wounded-cyan-test.svg",
+    "currentSrc": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-heavy-wounded-cyan-test.svg",
+    "baseline": "../editable/assets/enemy-porter-heavy_wounded-v1.png",
+    "complete": true,
+    "pixels": [
+      1121,
+      1403
+    ],
+    "decision": "等待你的选择",
+    "feedback": "防御动作示范；不造成敌人受击、不更换敌人战损。",
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1
+  },
+  {
+    "label": "reduced-motion-player-mode",
+    "themeId": "porter-cyan-test",
+    "stage": "濒危",
+    "src": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-critical-cyan-test.svg",
+    "currentSrc": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-critical-cyan-test.svg",
+    "baseline": "../editable/assets/enemy-porter-critical-v1.png",
+    "complete": true,
+    "pixels": [
+      1122,
+      1402
+    ],
+    "decision": "等待你的选择",
+    "feedback": "攻击命中。",
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1
+  }
+]

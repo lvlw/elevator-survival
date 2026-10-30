@@ -184,7 +184,7 @@ case 'attack-demo':case 'signature-demo':case 'defend-demo':case 'hit-demo':{
  const ar=$('.arena'),tl=$('.timeline');if(!ar||context.domain!=='battle')return;clearTimeout(motionTimer);const epoch=flowSerial;
  if(verb==='defend-demo'){tl.classList.add('play');$('.decision').textContent=presentText('防御姿态 · 无敌人受击');ar.classList.add('defending');toast('防御动作示范；不造成敌人受击、不更换敌人战损。');}
  else{tl.classList.add('play');ar.classList.add('hit');$('.decision').textContent=presentText(verb==='hit-demo'?'通用命中FX · 无规则结算':'攻击演出示范 · 已结公开命中');toast(verb==='hit-demo'?'仅演示通用命中FX；不推进战损。':'独立攻击故事板：一次公开阶段切换；不是伤害计算。');}
- motionTimer=setTimeout(()=>{if(epoch!==flowSerial||!$('.arena'))return;if(['attack-demo','signature-demo'].includes(verb)){stage=Math.min(3,stage+1);$('.actor.enemy').outerHTML=actorVisual(enemyFile(context.enemy,stage),'当前敌人 · '+STAGES[stage],'enemy');$('#enemy-stage').textContent=presentText(STAGES[stage]);}ar.classList.remove('hit','defending');tl.classList.remove('play');$('.decision').textContent=presentText('等待你的选择');},reduced?0:700);break;
+ motionTimer=setTimeout(()=>{if(epoch!==flowSerial||!$('.arena'))return;if(['attack-demo','signature-demo'].includes(verb)){stage=Math.min(3,stage+1);$('.actor.enemy').outerHTML=actorVisual(enemyFile(context.enemy,stage),'当前敌人 · '+STAGES[stage],'enemy');if(typeof Readiness!=='undefined')Readiness.assetPass($('.actor.enemy'));$('#enemy-stage').textContent=presentText(STAGES[stage]);}ar.classList.remove('hit','defending');tl.classList.remove('play');$('.decision').textContent=presentText('等待你的选择');},reduced?0:700);break;
 }
 case 'retreat':scriptedRetreat();break;
 case 'menu-close':document.querySelector('.context')?.remove();lastFocus?.focus();break;case 'demo':toast(val);break;

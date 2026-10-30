@@ -1,0 +1,366 @@
+{
+  "base": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+  "purpose": "References only; unchanged source, theme maps, images and old regression fixtures are not copied into this delta ZIP",
+  "files": [
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-critical-v1.png",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1234907,
+      "sha256": "a32adbeb63b7db6d5127adc78f10d11a3458067997f04fe066bfe33955f0fbb6"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-disabled-v1.png",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 943083,
+      "sha256": "48de5d321c28d5b88d37b9c241a09e2fef1a84638c4361f8e3e87d5c75ea6930"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-heavy_wounded-v1.png",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1070058,
+      "sha256": "545b25cb12385f00f77362854d849602517de3e51fb300138677497213e09325"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-pristine-v1.png",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 988486,
+      "sha256": "c62b70c69c0e6977ef1e7239d68f15f74951a8cdf9b17c363d3610f23438a1a4"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-wounded-v1.png",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 908147,
+      "sha256": "48a370f9fc2dc43cc676de35b5359dc03a68e810a84a28b7880ad45855a5fe8e"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/prototype/flow-context.js",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 7539,
+      "sha256": "e65af9a754fe74138fef5ebef939d09265f21cda7e6d0098c911b2b96d727946"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/prototype/index.html",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 675,
+      "sha256": "dd16c496bb43079465c177c972d5e17e07abea38ed89723f6143026830237245"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/prototype/nine-slice.js",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1026,
+      "sha256": "8d5400d0d6fca92875695c28e087c1d140ab97cc8091bdd90ea83942493e69f9"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/prototype/registered-art.js",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 12474,
+      "sha256": "59672c5d589f645c3cdc47c2f71ea8cf2254c3b573e3376de27047d19463fd4b"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/prototype/screens.js",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 10144,
+      "sha256": "23ba18607a121ba861664f22c5961f9bc2775923723084340e14c6ebd9dbafac"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/prototype/ui.css",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 24977,
+      "sha256": "b3b9034135d685baebbe74a4edce3de196f4aaa206a874deed85146b7d8961f1"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/presentation.js",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 11092,
+      "sha256": "bfdf35a0690c50165830d1b8546cceb68d74a8e48262f6639d2d554b37b1bfe2"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/browser-theme.html",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1258,
+      "sha256": "10e86a5fb65239803d7cb1467066fbea0899202b6f0a8399794ec7e255605d3e"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/browser-theme.js",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 2630,
+      "sha256": "c9dd79e076321581d979061e433cfcdf6462cdd6f397e434f453b83ecc1f7011"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/checks.py",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 4230,
+      "sha256": "f5c68740d26d6de7aa4249a9319487271bcc2d7f8aa5472c58932400333054e2"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/cases.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 3945,
+      "sha256": "c512dfabaf606025ac0ebcbbab05ee7fc27561e834985a48a834afe80a2d01ca"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/doctype/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 280153,
+      "sha256": "7e305039a9d46093e57df1f965f187d8d6432b4abe71049dc7769a93f1e8f3ae"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/doctype/theme.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1055,
+      "sha256": "1859fffa6d8795a494dd53e6be3e6e8f8c8020599a35ceaf08cbce7965ceaada"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/embedded-source/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 173655,
+      "sha256": "81a868393669a4d71969c91209ba4bc9009cdaff7da84febf995f5ed41d4471c"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/embedded-source/theme.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1055,
+      "sha256": "9a254e22684643b94fe02f9f1c86d263d99d2a67849ad32dfc4b133676c78b62"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/image-duplicate/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 559975,
+      "sha256": "5904de7cede1b582235dc4ba66fd274ad4be8e00644d3e35b37d34f4b5bd7ab3"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/image-duplicate/theme.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1055,
+      "sha256": "60389fe8a7003daf81e2b847cdcef175570efa1bdf3c89f95eaa3b2f51e52d1a"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/image-height/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 280137,
+      "sha256": "0fc2888d4f90db91add89310c8140c08dfb15c5b89fdfca3e116a499be1c57b6"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/image-height/theme.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1055,
+      "sha256": "1c95aab8bc61ea94b5969515265802e05176251c736a452e3d145f6a9800b498"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/image-missing/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 303,
+      "sha256": "27fd33883b8abd3cef58a8f8f1a59b8d4cf889200a765703f401ed80c12f93bc"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/image-missing/theme.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1055,
+      "sha256": "dae4b1fc99c2724a3c7ba2e16a396297a28c4a16089a4677db4c155e8fd63d94"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/image-width/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 280137,
+      "sha256": "87bcc7c772b48f6ee5399ea08f206dc1519e6341be432671b35340467fd37103"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/image-width/theme.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1055,
+      "sha256": "e82c9c0a4f1951acc5031f0b5745bfe0a2f02803054c64c9f1c219b04261c999"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/matrix-alpha/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 280136,
+      "sha256": "7d594f44968dfd678b46198ca098806efd7873332e8892f4a6caedbe3758a9cd"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/matrix-alpha/theme.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1055,
+      "sha256": "cab4f47ab03c47183515f53ac136edb4caa21b281803762a41d810bdef2dd0d6"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/matrix-infinite/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 280140,
+      "sha256": "22c6b50dabcd2a71cefdb7d8e22e00042d88e7aa534174a2c1ca28d5e6d1739a"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/matrix-infinite/theme.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1055,
+      "sha256": "38b4780dec782a588f873a406ee29466f6f47f3875e717faf2eef509f56e7643"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/matrix-missing/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 280049,
+      "sha256": "a4add1e28915ade62871c0f0fd23a821d4aa70199f09eb6f1b25dd14c3d5bc28"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/matrix-missing/theme.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1055,
+      "sha256": "dc41e3c4ee2f72dbb5bacd8c64c0b1add3b93d93fcd83f5158c4ea7078383317"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/matrix-nan/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 280135,
+      "sha256": "b588713f80b6d58fdaf1ab42947fcaf88914ed7dbb54952d2da71bf1e88bacdc"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/matrix-nan/theme.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1055,
+      "sha256": "a4f738c2dd9d5b81951b7e20788193c9e5c767f2e13cf91119b0e498141d0b38"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/matrix-range/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 280133,
+      "sha256": "427549d988b1ebbe840e85d279cda2d88ad99d4ad6231a76db9e63ba5684587e"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/matrix-range/theme.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1055,
+      "sha256": "572619972d9aba0f1f458802c5e07be29a8de5673971ed03c1c2da5be8fb6a5e"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/matrix-short/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 280134,
+      "sha256": "821883a8b450aa274ee4a4eb3aaa96f3fecee2690e3ab44af0a15926c80bf4d4"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/matrix-short/theme.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1055,
+      "sha256": "4b351813d67c419acf3ba156d85588bca07440692237fe3e777a77a2a1404f9d"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/matrix-type/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 280141,
+      "sha256": "fd19f1d54669c5c3bca4b7a009c02ce821318773cec26b79fc3918586e4a5f6d"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/matrix-type/theme.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1055,
+      "sha256": "0ae651821301dfe343e3bbbe882f1e5ee7f1e4d0dd7dad40998519f45cdba092"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/root-viewbox/readiness-001/theme/test-assets/icon-bandage-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 280135,
+      "sha256": "9482e6320aa140004bf616e92ab4c1b68efe1aefe400c9a4b137938436ac7825"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/fixtures/root-viewbox/theme.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1055,
+      "sha256": "c0f3b1fb5318f1c6e0dab59c73439df104495f0e2dba672413df4a3d85a93e2d"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/r1/player-check.cjs",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 5777,
+      "sha256": "47baed83b4a7c681c967a47a98f28e293e30063ff62199bdedfac361d8c6ea0b"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme-lab.js",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 5515,
+      "sha256": "1628a9c6bafae9583c97625dac5636ae555499b2e908f7c2f6067701776f26f0"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme/bandage-test.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1055,
+      "sha256": "8e0a6db9a96e1dee4c97a8d7ada28f631d1638b2c8e0b1fff166bf543d55129a"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme/catalog.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 274306,
+      "sha256": "510ef4f2e42645319c8f507ab3382ed38f8b094c525bcc64ece3afa6e13991cd"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme/frame-test.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1249,
+      "sha256": "45c7086721906f672393a3ea2fedbd5e67c7f34e5fb1eaf3a1aedfbe940f8169"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme/porter-test.json",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 4695,
+      "sha256": "f261eadafc21b7a30a635bca38e52da3dd8e1786dd44336f00c5e478ed7fdf67"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme/test-assets/enemy-porter-critical-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1646942,
+      "sha256": "5a9ae2d4ee25f47451009f979d670c5b24f21b9c3de9327c2064eed8425bbebb"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme/test-assets/enemy-porter-disabled-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1257842,
+      "sha256": "a4cb70421ba17bf282b9f3fc4a37e8e094012c111a98c065898d0ad7036ad7ed"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme/test-assets/enemy-porter-heavy-wounded-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1427147,
+      "sha256": "4b32f8137f78b1e29f979ee3888e15b04bb8a698333a94c808f7034c97ffc5f5"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme/test-assets/enemy-porter-pristine-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1318382,
+      "sha256": "e63e19fbb5526ba7b67118b3151ab4f92c3b53f52bb6c351a29d212925ee2e1f"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme/test-assets/enemy-porter-wounded-cyan-test.svg",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1211261,
+      "sha256": "5a90327aaec95611b940fa2b754fbe4ac735de062e9600f2ffbec087724c3378"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/tools/delivery.py",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 15659,
+      "sha256": "298d699c8b147454d16d9b37361cb344937e56aa91634e5ed7837a251f6588bc"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/tools/presentation-check.cjs",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 3083,
+      "sha256": "933884db4ab01eb84384798ba0a2fe29dc36db3cb2a60cdbdb794904a66ebf37"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/tools/serve.py",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 1745,
+      "sha256": "3770a9622e80706c7cafe1e751cb6456aae46baf232009c74bfe4bc002f40c34"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/tools/theme_check.py",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 6634,
+      "sha256": "9bcd2d55876cadee7b5e40cb9e01b7ca1cc4929d06bb0c23e9569d00a1d2c1ab"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/validation/r2/semantic-check.cjs",
+      "sourceCommit": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+      "bytes": 7809,
+      "sha256": "75c86ec985f35a90b59dfb412c73654af9a0269f153b600a270c25faf25cdd2b"
+    }
+  ]
+}

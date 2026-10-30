@@ -1,0 +1,41 @@
+[
+  {
+    "label": "porter-enabled",
+    "themeId": "porter-cyan-test",
+    "stage": "完好",
+    "src": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-pristine-cyan-test.svg",
+    "currentSrc": "http://127.0.0.1:8780/readiness-001/theme/test-assets/enemy-porter-pristine-cyan-test.svg",
+    "baseline": "../editable/assets/enemy-porter-pristine-v1.png",
+    "complete": true,
+    "pixels": [
+      1122,
+      1402
+    ],
+    "decision": "等待你的选择",
+    "feedback": "当前地点可自由查看；查看详情不消耗精力。",
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1
+  },
+  {
+    "label": "after-original-callback",
+    "themeId": "porter-cyan-test",
+    "stage": "受伤",
+    "src": "../editable/assets/enemy-porter-wounded-v1.png",
+    "currentSrc": "http://127.0.0.1:8780/editable/assets/enemy-porter-wounded-v1.png",
+    "complete": true,
+    "pixels": [
+      1122,
+      1402
+    ],
+    "decision": "等待你的选择",
+    "feedback": "独立攻击故事板：一次公开阶段切换；不是伤害计算。",
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1
+  }
+]

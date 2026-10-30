@@ -48,3 +48,8 @@ MAINLINE-REVIEW包含全部小清单与回执；CANDIDATE-ASSETS只含本轮TEST
 追加续办；以上原批次记录不是本轮通过结论。F01统一初始／动态纯呈现入口并补背包文案；F02补浏览器内嵌图片、原PNG摘要及矩阵检查；F03独立验证物理ZIP条目和清单路径唯一性，缺文件明确拒绝。修前缺陷、首轮测试加载错误及修后结果均保留。
 
 实际范围、原30项与既有检查、新正反例及语义负控、浏览器记录见 [R1完整报告](r1/report.md)。生产 test/typecheck/build 起始与最终均 NOT RUN，新增生产测试0。美术未重做，INCOMPLETE_ART 不变；异常降级不等于美术获批。最终准确提交、tree及push回执由新版包的外层 FINAL-REPORT 和 DELIVERY-RECEIPTS 提供。仅新版 MAINLINE-REVIEW，原候选素材包引用原摘要；停止等待准确SHA复审。
+
+
+## WORLD-UI-VISUAL-READINESS-001-R2 追加记录
+
+F04修前已在本轮真实浏览器复现：porter主题仍启用，但攻击后受伤图回到基线。补修仅在动态新节点上调用既有assetPass，保留基线引用；不重验／重发主题，不重新执行动作。13项新增隔离回归、实际地址负控、原30项、R1文案和既有主题／ZIP检查均完成，原生观察与限制详见 [R2报告](r2/report.md)。新增R2范围检查，不改或冒称旧R1精确字节脚本通过。本轮无新美术，生产test/typecheck/build均NOT RUN，新增生产测试0。只交小型MAINLINE-REVIEW增量，停止等待准确SHA专项复审。

@@ -1,0 +1,140 @@
+{
+  "repository": "lvlw/elevator-survival",
+  "ref": "723d547665298463ecd8a8d04c7ed508a1658dc1",
+  "purpose": "主线实读定位与开工重读清单；这不是完整仓库归档或同步证明",
+  "readSources": [
+    {
+      "path": "AGENTS.md",
+      "gitBlobSha": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "readExtent": "完整读取",
+      "role": "工程约束；Codex开工须重读"
+    },
+    {
+      "path": "package.json",
+      "gitBlobSha": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+      "readExtent": "完整读取",
+      "role": "test:run与check实际脚本；禁止改依赖"
+    },
+    {
+      "path": "docs/09-ui-design-record.md",
+      "gitBlobSha": "216f76d08f91175130603c35125322026bb78262",
+      "readExtent": "当前有效速查及前部选段",
+      "role": "只读/确认/公开阶段；不把历史占位要求当新美术批准"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/contracts/A-public-visual-key.md",
+      "gitBlobSha": "b90afbec34eb1b93d81479c3218993ff014e2a53",
+      "readExtent": "完整读取",
+      "role": "本包窄定稿来源；旧候选只读"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/contracts/B-committed-motion.md",
+      "gitBlobSha": "8e99bab8ccc078799fa16a30caa7c99f606c52b8",
+      "readExtent": "完整读取",
+      "role": "B候选来源；本批不实施"
+    },
+    {
+      "path": "src/core/residence-combat/player-query.ts",
+      "gitBlobSha": "ad4dabb086d671177564f60fecd0f63c62c47875",
+      "readExtent": "完整读取",
+      "role": "当前事实、意图、阶段、相对顺序和安全动作"
+    },
+    {
+      "path": "src/core/residence-combat/types.ts",
+      "gitBlobSha": "844dc816ad725b11d08d1862230e489fe979d565",
+      "readExtent": "完整读取",
+      "role": "B源证据定位；不是公开DTO或写入许可"
+    },
+    {
+      "path": "src/core/combat/combat-selectors.ts",
+      "gitBlobSha": "316042ba7a0ac12b52f188beb2ecd4e134055357",
+      "readExtent": "选段含完整selectEnemyHealthPhase",
+      "role": "低正HP也可失去能力；不得重解释为actual death"
+    },
+    {
+      "path": "src/content/infected-world-v0.1/combat-profile.ts",
+      "gitBlobSha": "b2a91f9d7d6876afa862a621763c56fdb1776aa5",
+      "readExtent": "完整读取",
+      "role": "原profile只读，内部定义绑定"
+    },
+    {
+      "path": "src/content/infected-world-v0.1/enemies.ts",
+      "gitBlobSha": "c1abce3ee6658153225198136a4c0b881d02e89e",
+      "readExtent": "完整读取",
+      "role": "内容到当前敌定义生成方式"
+    },
+    {
+      "path": "src/content/infected-world-v0.1/content.ts",
+      "gitBlobSha": "17328e8cd910f34f2243fa941301dcb9de8f2fa5",
+      "readExtent": "选段含全部三敌声明",
+      "role": "orderly/porter/technician当前声明；不按node映射UI"
+    },
+    {
+      "path": "src/content/infected-world-v0.1/player-query.ts",
+      "gitBlobSha": "534c8f5c00e263bb8ac755abb4fa6075f4843610",
+      "readExtent": "完整读取",
+      "role": "受控标签接缝"
+    },
+    {
+      "path": "src/state/residence-session/player-types.ts",
+      "gitBlobSha": "468f4c06d71891851904508baddc74cf1bb6ded1",
+      "readExtent": "完整读取",
+      "role": "PlayerReadyView/PlayerExecution/PlayerLabels"
+    },
+    {
+      "path": "src/state/residence-session/player-queries.ts",
+      "gitBlobSha": "602786c0d291fb3574d1935d3ac5a657ffdc4d2e",
+      "readExtent": "完整读取",
+      "role": "显式combat字段投影；须实际接到公开query"
+    },
+    {
+      "path": "src/state/residence-session/player-facade.ts",
+      "gitBlobSha": "2f03ef2d2cb5873be854a7b98b6396c6c899a02e",
+      "readExtent": "完整读取",
+      "role": "唯一既有S/Context同步；只读不修改"
+    },
+    {
+      "path": "src/state/residence-session/player-fields.test.ts",
+      "gitBlobSha": "493c3c7ed6865e20e85918ef8bca943651d3f793",
+      "readExtent": "完整读取",
+      "role": "旧24字段及runtime方法集合继续保留"
+    },
+    {
+      "path": "src/state/residence-session/player-privacy.test.ts",
+      "gitBlobSha": "a55501ceb197da900d8fdc17ae0c60a91d983f8c",
+      "readExtent": "完整读取",
+      "role": "真实不同种子/隐藏感染/敌HP的非干涉，旧测试不改"
+    },
+    {
+      "path": "src/app/infected-preplay/types.ts",
+      "gitBlobSha": "cfe84e9721c0ee26fef18031c28555a4d1db226a",
+      "readExtent": "完整读取",
+      "role": "PreplayResult/feed实际不足；B源观察"
+    },
+    {
+      "path": "src/ui/infected-world/components/battle-stage.tsx",
+      "gitBlobSha": "5e1f70e9bef29ac186b6501687b1bae1b76d7d8b",
+      "readExtent": "完整读取",
+      "role": "当前中性对手，UI本批只读，不提前接图"
+    }
+  ],
+  "codexMustAdditionallyReadAtActualBaseline": [
+    "docs/01-game-design-v0.1.md",
+    "docs/02-vertical-slice.md",
+    "docs/03-architecture.md",
+    "docs/05-design-decisions.md",
+    "docs/content/infected-world-entry-content-v0.1.json",
+    "docs/content/infected-world-entry-test-config-v0.1.json",
+    "docs/engineering/world-integration/player-query/player-query-field-contract-v1.1.json",
+    "docs/design-drafts/ui-v1-001/readiness-001/contracts/C-staged-ui.md",
+    "docs/design-drafts/ui-v1-001/readiness-001/theme/catalog.json",
+    "docs/design-drafts/ui-v1-001/spec/registered-art.json",
+    "src/state/residence-session/player-test-fixtures.ts",
+    "src/state/residence-session/player-test-routes.ts",
+    "src/state/residence-session/combat-session.ts",
+    "src/state/residence-session/combat-test-fixtures.ts",
+    "src/app/infected-preplay/ (定位实际controller及其测试，不猜不存在文件)",
+    "src/app/ (定位现有browser-owner的受控controls与prepared链，只读)",
+    "scripts/validate-architecture.mjs"
+  ]
+}

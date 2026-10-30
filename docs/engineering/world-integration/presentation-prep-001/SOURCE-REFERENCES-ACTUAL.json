@@ -1,0 +1,171 @@
+{
+  "baseSHA": "723d547665298463ecd8a8d04c7ed508a1658dc1",
+  "purpose": "Source audit navigation; large design records read through governing/current sections, historical records retain their original authority",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "baseBlob": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "worktreeSha256": "00c2cad61c99530c1343ca9faad9a32994d67e5ca4aeb991156bb9828e5c501e"
+    },
+    {
+      "path": "docs/01-game-design-v0.1.md",
+      "baseBlob": "9f1537ed931845601353ffd1f880690c2cdfa77e",
+      "worktreeSha256": "20c947930a1a7fca7b97f581b9813213fda3c45cfbea724d5af4a4788b18410b"
+    },
+    {
+      "path": "docs/02-vertical-slice.md",
+      "baseBlob": "784db68f16572b7666c3da37a1e39b5ad3b4385b",
+      "worktreeSha256": "bd1482a0a04f0b74b935c06bb3d64a963ed410daf36940be3b78d3ab2d61b6fd"
+    },
+    {
+      "path": "docs/03-architecture.md",
+      "baseBlob": "72e29fcd0f5efe21493dbd02a66aa130be7cc2d0",
+      "worktreeSha256": "586c9960468a4733e2145d8a179ccf75ca9a75a17f24669e89367ab35aa0a9fa"
+    },
+    {
+      "path": "docs/05-design-decisions.md",
+      "baseBlob": "2fd80b12fb57285dd7d1bbe89e4ea51353710ff8",
+      "worktreeSha256": "68f35a56c754f55b1137314ba41cd7fbbeea88afdcb816690ff52a509c90d6ca"
+    },
+    {
+      "path": "docs/09-ui-design-record.md",
+      "baseBlob": "216f76d08f91175130603c35125322026bb78262",
+      "worktreeSha256": "ef487405761d553bf59da280f7b93563207f77af6173e96ddc1cccf26e1e033d"
+    },
+    {
+      "path": "docs/content/infected-world-entry-content-v0.1.json",
+      "baseBlob": "dece5112e546af127943f846d7003e384ff97a21",
+      "worktreeSha256": "05dabf10796ee027ea31037641ae91b95fc9346b9b98f032f1b7c99dada88925"
+    },
+    {
+      "path": "docs/content/infected-world-entry-test-config-v0.1.json",
+      "baseBlob": "40ba0e3edd1a13843e40be5f8d420bef6afeb8f0",
+      "worktreeSha256": "15624fee92e615e1d4ffcec39d071057b10a8de6ce16408cca0ffb4e94f5d8e6"
+    },
+    {
+      "path": "docs/engineering/world-integration/player-query/player-query-field-contract-v1.1.json",
+      "baseBlob": "d4b50e78ca6c0503676d48cb70b9a523fb487b8f",
+      "worktreeSha256": "2ac7feadcab19cb580886f8f327e454870172f18e47dbc109d0e6e450c845ae9"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/contracts/A-public-visual-key.md",
+      "baseBlob": "b90afbec34eb1b93d81479c3218993ff014e2a53",
+      "worktreeSha256": "a110de1fbb37c8c7ca5d77a657f65d076e736ad17b7a999060a0cba3bf36d539"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/contracts/B-committed-motion.md",
+      "baseBlob": "8e99bab8ccc078799fa16a30caa7c99f606c52b8",
+      "worktreeSha256": "05164c30ce62114d9ebbbe2c7ba5b2bee9222e311a46d5bf4164c9db1d031597"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/contracts/C-staged-ui.md",
+      "baseBlob": "12c51c4daeeea808e4c948a635b18d95d1ef0ed4",
+      "worktreeSha256": "12531edb60bde600af1dff6a15b57d9c54a791f145ee1d1214e3d95f0f8ae3a9"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme/catalog.json",
+      "baseBlob": "e97497c03c382dc22daac10914aab858dd96c96c",
+      "worktreeSha256": "8f32a6a5ba6f1338ce59254c4643fafeb281e8d38215b7f97445e89c8934ee4d"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/spec/registered-art.json",
+      "baseBlob": "cb04a06f5cbd79cf73f790a024bdfefc49d94af0",
+      "worktreeSha256": "d7b1404a29f1276e552afab89e44cd3a8f6778b2db79fafff6c0f3ffeb2a5c42"
+    },
+    {
+      "path": "src/core/residence-combat/player-query.ts",
+      "baseBlob": "ad4dabb086d671177564f60fecd0f63c62c47875",
+      "worktreeSha256": "26f207f558ec5dbf37e8be5c208cf11cc2a31c0a274320bef6d3bbfdd9bb36a5"
+    },
+    {
+      "path": "src/core/residence-combat/types.ts",
+      "baseBlob": "844dc816ad725b11d08d1862230e489fe979d565",
+      "worktreeSha256": "bfc55c6d57241e0df5ceff7b7086780dff5b037655333d40a59e806b15104688"
+    },
+    {
+      "path": "src/core/combat/combat-selectors.ts",
+      "baseBlob": "316042ba7a0ac12b52f188beb2ecd4e134055357",
+      "worktreeSha256": "3859445a84455cf8f4c5d772ab418a038819ec31db3c4affa4f68060d9c1f887"
+    },
+    {
+      "path": "src/content/infected-world-v0.1/combat-profile.ts",
+      "baseBlob": "b2a91f9d7d6876afa862a621763c56fdb1776aa5",
+      "worktreeSha256": "5c708a3dc9671e8fa998aabc4c11349739572f19ad922e217e8d1df4d629333d"
+    },
+    {
+      "path": "src/content/infected-world-v0.1/enemies.ts",
+      "baseBlob": "c1abce3ee6658153225198136a4c0b881d02e89e",
+      "worktreeSha256": "fa63710f68e5551cf0ad2901b6c3542f1b43a46d059d46db87f14a9a0c4f4bf9"
+    },
+    {
+      "path": "src/content/infected-world-v0.1/content.ts",
+      "baseBlob": "17328e8cd910f34f2243fa941301dcb9de8f2fa5",
+      "worktreeSha256": "e84900d5e39b61a8e9615885677b691937502c6cef50a0aff677650d59e34624"
+    },
+    {
+      "path": "src/state/residence-session/player-facade.ts",
+      "baseBlob": "2f03ef2d2cb5873be854a7b98b6396c6c899a02e",
+      "worktreeSha256": "862c79d34cb12cfc3598712aaa1313b7eb0075ff2a302dac0efe77aada39c0ab"
+    },
+    {
+      "path": "src/state/residence-session/player-context.ts",
+      "baseBlob": "570551016b947819ade97646da0fd379d164f385",
+      "worktreeSha256": "459e0cbe63d0530d6c089e2a3153948cf345f2ae6d59ae9312f36a02007b71ff"
+    },
+    {
+      "path": "src/state/residence-session/player-test-fixtures.ts",
+      "baseBlob": "6808f34378979e334490f4aa6d79993e6cbcd6ef",
+      "worktreeSha256": "8431b2c913f9f71e950d1241112cec6ef5fd8a1c9b10efdbe5a854141ad1d65c"
+    },
+    {
+      "path": "src/state/residence-session/player-test-routes.ts",
+      "baseBlob": "329676ee40a748038b36c43bf749a4d2ec14b898",
+      "worktreeSha256": "92dbfe655f6133c545ccae72bf59488528f6721c543837cd611928e85f2c68b8"
+    },
+    {
+      "path": "src/state/residence-session/combat-session.ts",
+      "baseBlob": "31b05b5a8535d872d5663588dcf3c61cf05cc431",
+      "worktreeSha256": "54d558c9c10b825abd4b279c11e274f640d29182bc5fc3c6985d9037da3bdf28"
+    },
+    {
+      "path": "src/state/residence-session/combat-test-fixtures.ts",
+      "baseBlob": "75b04ca972244a95c342cfc2d254147e94c5e997",
+      "worktreeSha256": "ac9223ed823857da1bd3ce2f922de5a4354be4462ae0d8d66d6fe5bbabdc84fd"
+    },
+    {
+      "path": "src/state/residence-session/player-fields.test.ts",
+      "baseBlob": "493c3c7ed6865e20e85918ef8bca943651d3f793",
+      "worktreeSha256": "559f45e91b5332315cff2b1991830b3aa4c332c06031b753cf8cf9b806ac0a5b"
+    },
+    {
+      "path": "src/state/residence-session/player-privacy.test.ts",
+      "baseBlob": "a55501ceb197da900d8fdc17ae0c60a91d983f8c",
+      "worktreeSha256": "cd65399808f643ae65245b67db98bd9d6722aff26a9964ef1549f6692f72d67e"
+    },
+    {
+      "path": "src/app/infected-preplay/types.ts",
+      "baseBlob": "cfe84e9721c0ee26fef18031c28555a4d1db226a",
+      "worktreeSha256": "f48f39974eb505dd310d2a385060737777cb1aca7211c437cd88bc57b1e49c8c"
+    },
+    {
+      "path": "src/app/infected-preplay/controller.ts",
+      "baseBlob": "500a888a229fd34fc30419d78cc99f1fdcea886b",
+      "worktreeSha256": "cb5a96614a96ae33e103c41665cf2ccc0c1e9bd71f71c742bd74a0f3a1a23a0c"
+    },
+    {
+      "path": "src/app/infected-browser/owner.ts",
+      "baseBlob": "97c3d8e59d017a420944a321113e24a62aa6c525",
+      "worktreeSha256": "d2c1fd40841b9aea10fccc7812a46044115c4e54e271c464849987d5a39e21f3"
+    },
+    {
+      "path": "scripts/validate-architecture.mjs",
+      "baseBlob": "df9ff13d1e3a518ca441f78bd8428b32d383202f",
+      "worktreeSha256": "8baaeae649dd267c40f46b6de25cd0272587ca89d934d3c12445a8ab03404aa2"
+    },
+    {
+      "path": "package.json",
+      "baseBlob": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+      "worktreeSha256": "f6b6752aebd3aa6161a0c802ef49ee1b2ddbbffeb19b76e2e4d581f2465e5346"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "AUTHOR_CHECKED_PENDING_MAINLINE_REVIEW",
+  "addedPath": "PlayerReadyView.combat.opponent",
+  "exactKeys": ["kind", "visualKey", "name"],
+  "knownPairs": [
+    {"kind": "known", "visualKey": "infected-orderly", "name": "感染护工"},
+    {"kind": "known", "visualKey": "infected-porter", "name": "感染装卸工"},
+    {"kind": "known", "visualKey": "infected-technician", "name": "感染技术员"}
+  ],
+  "unknown": {"kind": "unknown", "visualKey": null, "name": "当前对手"},
+  "forbidden": [
+    "instanceId", "definitionId", "enemyId", "battleId", "executionId", "runId", "seed",
+    "originId", "woundId", "riskIndex", "riskDrawIndex", "roll", "drawIndex", "streamId",
+    "currentCtb", "playerNext", "enemyNext", "enemyHealth", "enemyHealthRatio",
+    "infectionProgress", "pendingInfectionExposures", "futureIntent", "drops", "sourceAllowance"
+  ],
+  "evidence": [
+    "Exact keys and extra-property stripping in player-opponent.test.ts",
+    "Complete graph noninterference in player-opponent-privacy.test.ts",
+    "Strict invalid binding rejection before mapping",
+    "External private-identifier mutation actually reached key assertions and failed",
+    "Actual v4 string excludes opponent/visualKey/name; protected codec/expected unchanged"
+  ],
+  "oldContract": "player-query-field-contract-v1.1.json unchanged; this is a narrow addition only"
+}

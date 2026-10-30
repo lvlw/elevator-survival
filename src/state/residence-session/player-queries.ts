@@ -9,6 +9,7 @@ import type { CombatDependencies } from '../../core/residence-combat/types'
 import type { CombatSessionView } from './combat-types'
 import type { PlayerContext, ActionReference } from './player-context'
 import type { PlayerView, PlayerReadyView, PlayerAction, PlayerLabels } from './player-types'
+import { playerOpponent } from './player-opponent'
 
 export function projectPlayerView(state: CombatSessionView, ctx: PlayerContext | null, deps: CombatDependencies,
   labels: PlayerLabels, busy = false): PlayerView {
@@ -77,7 +78,7 @@ export function projectPlayerView(state: CombatSessionView, ctx: PlayerContext |
     move: { options: moves }, sources, ground: supply.ground.map(item), carried: supply.carried.map(item), backpack: supply.backpack,
     tasks: { publicObjectives, sample, choices: taskChoices }, terminal: { eligibility: terminal.eligibility, result: terminal.result },
     combat: combat ? { intent: combat.intent, enemyStage: combat.enemyStage, relativeTimeline: combat.relativeTimeline,
-      energySettlement: combat.energySettlement, actions: combatActions } : null,
+      energySettlement: combat.energySettlement, actions: combatActions, opponent: playerOpponent(v, labels)! } : null,
     body: { ...supply.body, wounds: supply.body.wounds.map(({ key, ...w }) => ({ selector: ctx.wound(key), ...w })) },
     persistence, staticHub: { successors: terminal.successors }, actions }
   return deepFreeze(view)

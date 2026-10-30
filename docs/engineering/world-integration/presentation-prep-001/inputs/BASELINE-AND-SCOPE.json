@@ -1,0 +1,83 @@
+{
+  "task": "ENG-WORLD-PRESENTATION-PREP-001",
+  "version": "1.0",
+  "repository": "lvlw/elevator-survival",
+  "baseSHA": "723d547665298463ecd8a8d04c7ed508a1658dc1",
+  "baseParent": "8bd50890be44d8ab0921e3bc4b1fabab1a8e1203",
+  "baseTree": "3c0f39cb2895020d6c94a52a851074336498b12a",
+  "newBranch": "feature/world-presentation-prep-001",
+  "preserveBranches": [
+    "main",
+    "feature/design-ui-readiness-001",
+    "feature/design-ui-v1-001",
+    "all other pre-existing local and remote refs"
+  ],
+  "productionGoal": "A: current-encounter safe presentation only",
+  "existingProductionMayModify": [
+    "src/content/infected-world-v0.1/player-query.ts",
+    "src/state/residence-session/player-types.ts",
+    "src/state/residence-session/player-queries.ts",
+    "src/state/residence-session/player-index.ts"
+  ],
+  "newProductionMayAdd": [
+    "src/content/infected-world-v0.1/player-opponent-catalog.ts",
+    "src/state/residence-session/player-opponent.ts"
+  ],
+  "newTestsAndTestOnlyHelpersMayAdd": [
+    "src/content/infected-world-v0.1/player-opponent-catalog.test.ts",
+    "src/state/residence-session/player-opponent.test.ts",
+    "src/state/residence-session/player-opponent-privacy.test.ts",
+    "src/state/residence-session/player-opponent-purity.test.ts",
+    "src/state/residence-session/player-opponent-lifecycle.test.ts",
+    "src/state/residence-session/player-opponent-compatibility.test.ts",
+    "src/state/residence-session/player-opponent-routes.integration.test.ts",
+    "src/state/residence-session/player-opponent-test-fixtures.ts",
+    "src/state/residence-session/player-motion-source-probe.test.ts",
+    "src/state/residence-session/player-motion-probe-fixtures.ts",
+    "src/app/infected-preplay/presentation-preparation-probe.test.ts"
+  ],
+  "newDocumentationSubtree": "docs/engineering/world-integration/presentation-prep-001/",
+  "pathSemantics": {
+    "listedPathsAreCeilingsNotMandatoryFiles": true,
+    "oldTestsAndHelpers": "read-only; do not change to satisfy new output",
+    "playerIndex": "optional type-only export adjustment; runtime export set unchanged",
+    "B": "TEST-only source observations and candidate documents; no production implementation",
+    "docsScripts": "audit/evidence/package only; cannot smuggle runtime implementation",
+    "broadUnlistedSrcChanges": "not authorized; report exact missing dependency",
+    "inputOriginals": "archive this package byte-for-byte under new docs/inputs; verify first"
+  },
+  "protected": [
+    "all unlisted tracked files",
+    "src/core/**",
+    "src/ui/**",
+    "src/state/residence-save/**",
+    "src/state/residence-session/combat-session.ts",
+    "src/state/residence-session/player-facade.ts",
+    "src/state/residence-session/player-context.ts",
+    "all existing production owners, prepared modes, schemas, commands and expected",
+    "src/app/** production files",
+    "public/**",
+    "docs/05-design-decisions.md",
+    "docs/09-ui-design-record.md",
+    "all previously ratified contracts and content parameters",
+    "docs/design-drafts/ui-v1-001/**",
+    "package.json",
+    "package-lock.json",
+    ".github/**",
+    "AGENTS.md",
+    "old tests, fixtures and timeout/worker configuration"
+  ],
+  "permissions": {
+    "commit": "ordinary commits only to newBranch",
+    "push": "ordinary push only to same-name origin branch",
+    "mainPush": false,
+    "merge": false,
+    "forcePush": false,
+    "historyRewrite": false,
+    "deploy": false,
+    "newDependencies": false,
+    "newPaidTools": false,
+    "shutdownOrScheduling": false
+  },
+  "stop": "A exact-SHA review; B remains candidate; C/art adoption/O3 remain unapproved"
+}

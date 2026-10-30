@@ -2,6 +2,11 @@ import type { playerSupplyFacts } from '../../core/residence-supply/player-query
 import type { playerCombatFacts } from '../../core/residence-combat/player-query'
 import type { playerTerminalFacts } from '../../core/residence-terminal/player-query'
 export type PlayerHandle = Readonly<{ selection: 'opaque' }>
+export type PlayerOpponentPresentation =
+  | Readonly<{ kind: 'known'; visualKey: 'infected-orderly'; name: '感染护工' }>
+  | Readonly<{ kind: 'known'; visualKey: 'infected-porter'; name: '感染装卸工' }>
+  | Readonly<{ kind: 'known'; visualKey: 'infected-technician'; name: '感染技术员' }>
+  | Readonly<{ kind: 'unknown'; visualKey: null; name: '当前对手' }>
 export type PlayerPlacement = Readonly<{ x: number; y: number; rotated: boolean }>
 export type PlayerRequest = Readonly<{ action: PlayerHandle; item?: PlayerHandle; targetItem?: PlayerHandle; wound?: PlayerHandle;
   quantity?: number; placement?: PlayerPlacement; placements?: readonly PlayerPlacement[]; slot?: number;
@@ -25,7 +30,7 @@ export type PlayerReadyView = Readonly<{ status: 'ready'; phase: 'first-hub' | '
   tasks: Readonly<{ publicObjectives: readonly Readonly<{ label: string; state: 'unobserved' | 'observed' | 'completed' }>[];
     sample: 'not-acquired' | 'carried' | 'left-in-world' | 'delivered' | 'unavailable'; choices: readonly PlayerAction[] }>;
   terminal: Omit<ReturnType<typeof playerTerminalFacts>, 'successors'>;
-  combat: (Omit<NonNullable<ReturnType<typeof playerCombatFacts>>, 'actions'> & Readonly<{ actions: readonly PlayerAction[] }>) | null;
+  combat: (Omit<NonNullable<ReturnType<typeof playerCombatFacts>>, 'actions'> & Readonly<{ actions: readonly PlayerAction[]; opponent: PlayerOpponentPresentation }>) | null;
   body: Omit<SupplyFacts['body'], 'wounds'> & Readonly<{ wounds: readonly Readonly<{ selector: PlayerHandle; ordinal: number; kind: string; treatment: string }>[] }>;
   persistence: Readonly<{ feedback: 'not-attempted' | 'saved' | 'save-failed' }>;
   staticHub: Readonly<{ successors: ReturnType<typeof playerTerminalFacts>['successors'] }>;
@@ -39,4 +44,5 @@ export type PlayerSession = Readonly<{ query(): PlayerView; setup(): Readonly<{ 
   preview(request: unknown): PlayerPreview; resolve(request: unknown): PlayerPreview;
   execute(request: unknown): PlayerExecution; retrySave(): PlayerView;
   subscribe(listener: (view: PlayerView) => void): () => void }>
-export type PlayerLabels = Readonly<{ action(key: string): string; source(key: string): string; place(key: string): string }>
+export type PlayerLabels = Readonly<{ action(key: string): string; source(key: string): string; place(key: string): string;
+  opponent?(definitionId: string): PlayerOpponentPresentation }>

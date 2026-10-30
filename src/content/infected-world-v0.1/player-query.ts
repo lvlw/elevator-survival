@@ -1,4 +1,5 @@
 import { infectedSupplyTasks } from './catalog'
+import { infectedWorldOpponentPresentation } from './player-opponent-catalog'
 const actions: Readonly<Record<string, string>> = Object.freeze({ depart: '进入封锁区', rest: '原位休整',
   move: '移动物品', split: '拆分', merge: '合并', 'to-quick': '放入快捷栏', 'to-backpack': '放入背包', pickup: '拾取', drop: '留置',
   'task-pickup': '拾取任务物', 'task-drop': '留置任务物', medical: '使用药食', mechanical: '机械维护', coat: '外套维护', toolbox: '工具箱维护', recharge: '手电充能',
@@ -10,6 +11,7 @@ const sources: Readonly<Record<string, string>> = Object.freeze({ 'H1-search': '
   'L1-cabinet': '物流柜物资', 'L2-search': '物流装卸区搜索', 'L3-rack': '物流侧室物资', 'C4-cabinet': '通信设备柜', 'C4-food': '检修间物资', 'T1-exchange': '酒店交换' })
 /** Content names only. Does not grant knowledge or register a new player entry. */
 export const infectedWorldPlayerLabels = Object.freeze({
+  opponent: infectedWorldOpponentPresentation,
   action: (key: string) => actions[key] ?? (key === 'powered' ? '本地供电' : key === 'installed' ? '急救转运' : '现场互动'),
   source: (key: string) => sources[key] ?? '现场来源',
   place: (key: string) => infectedSupplyTasks.data.maps[key] ?? '当前位置',

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ENG-WORLD-PRESENTATION-PREP-001 任务书</title>
+<style>
+body{max-width:1080px;margin:36px auto;padding:0 24px;font:17px/1.75 system-ui,sans-serif;color:#243243;background:#f7f8fa}
+article{background:white;padding:34px 42px;border:1px solid #d9e0e7;border-radius:12px}
+h1,h2,h3{line-height:1.35;color:#163652}h2{margin-top:2em;border-top:1px solid #e1e7ec;padding-top:1em}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.65 ui-monospace,monospace;background:#f1f4f7;padding:16px}
+code{overflow-wrap:anywhere}table{border-collapse:collapse;width:100%}td,th{border:1px solid #d9e0e7;padding:9px;text-align:left}
+</style></head><body><article>
+<p>执行依据：任务书、A技术合同、授权与范围文件共同适用。HTML为阅读副本；全部输入以本包清单核验。</p>
+<pre># ENG-WORLD-PRESENTATION-PREP-001
+## 当前敌人安全呈现接口、演出源验证与正式视觉接入准备
+
+版本：v1.0。目标是推进真实游戏接入前置工程，不是继续修设计原型。
+执行权、技术合同及范围以本包为准。完整阅读全部文件后执行，不将此概述替代合同。
+
+## 0. 执行配置与准确起点
+仓库 lvlw/elevator-survival。
+起始SHA：723d547665298463ecd8a8d04c7ed508a1658dc1。
+起始父SHA：8bd50890be44d8ab0921e3bc4b1fabab1a8e1203。
+起始Tree：3c0f39cb2895020d6c94a52a851074336498b12a。
+
+从此提交新建 feature/world-presentation-prep-001。
+原设计分支 feature/design-ui-readiness-001 保留，不移动引用。
+工程在工程会话执行；不要在原设计会话继续改视觉原型。
+推荐用户已明确可用的 GPT-6.1 Sol / 极高；这是任务分工建议，不是官方能力排名。
+模型切换后重读状态、实际源码和规则；不沿用前模型推断。不能独立核验实际档位则如实注明。
+
+## 1. 明确目标与不做什么
+本批有一个实际生产实现目标：按 A-TECHNICAL-CONTRACT-v1.0 增加当前敌人的安全呈现值。
+并完成两项独立准备：B真实已提交结果的源证据与完整候选合同；既有素材的逐槽绑定和接入分批资料。
+
+明确不做：
+- 全面正式UI布局/主题加载/美术切换/动画播放器；
+- 新生产事件、通知订阅生命周期、会话重构或通用事件总线；
+- core战斗/周期/判定/任务/经济/随机、保存与恢复语义修改；
+- 任何新玩家知识，包括提前列未来敌人、全图、原始CTB、精确敌HP/比例、风险/种子/隐藏暴露；
+- 新占位图批准、降低2×或清稿要求、继续同一失败图像制作方法；
+- 公开站点、服务器/隧道/访问实验、音频、Git历史整理、依赖升级。
+
+## 2. W0：实际开工核对与可复跑基线
+1. 在仓库外解包并校验本包。读取真实 AGENTS 指定文档、当前DEC/UIR有效约定、A/B/C历史候选与本包A窄合同。
+2. 只读核对HEAD、branch、status、普通diff、cached diff、各既有引用。记录branch/commit/tree。
+3. 新分支不存在时从准确基线创建。若同名分支已有内容，仅在能证明是同任务续跑时继续；禁止reset/clean/stash/rebase覆盖。
+4. 实际执行 `npm run test:run` 建立本轮基线。不能以设计13项/30项或历史CI代替。
+5. 读取当时package.json。当前check包含architecture、typecheck、test:run、build，最终仍按实际文件执行。
+6. 无关工作区改动/真实规则冲突，停止受影响部分并保留现场；不得以Owner睡觉为由猜授权。其余独立只读准备可以完成。
+
+输入原件保存在本工程新docs目录/inputs/，原字节保存。本包已避免空白告警；发现原件冲突报告，不自改原件或新增例外。
+
+## 3. W1：A安全呈现查询实际实现
+先将本包窄合同、实现定位与冻结写入计划记入新工程目录，不改旧候选正文。
+按机器白名单实现最小可复用结构，具体函数组织由Codex确定。
+
+应形成：
+- 一个内容侧闭合公开呈现映射；
+- 一个只对当前有效战斗生效的纯查询适配；
+- PlayerReadyView.combat的新增opponent值；
+- 现有可信内容labels的兼容接线；
+- 无额外current、持久化、命令、selector或生产者。
+
+现有 state/projectPlayerView 对 combat 做显式字段投影，务必验证新增值真正到达普通PlayerSession.query，而不是只停在内部helper。
+不要直接从UI读entry/definitionId；也不要把content import进core。
+优先保留当前player-facade、S owner、controller与BrowserOwner原字节。
+如实现必须越出许可列表，记录精确依赖并停止该子项；不为了绕白名单建旁路owner。
+
+## 4. W2：接口、组合与隐私验收
+详见 ACCEPTANCE-MATRIX.md，数量不作为完成标准。
+必须用实际生产查询与受控真实结果，不只测手填DTO。
+
+至少包括：
+1. 三敌各自通过正式移动/入场产生当前战斗，再由实际PlayerSession.query读取；恢复/再入不依赖地点猜测。
+2. 5个公开阶段的分组规格与可达状态；边界测试沿现有阶段函数，不改阈值。
+3. first-hub、稳定探索、胜利、退却、死亡、living-hub及blocked时无旧敌信息。
+4. 三类 known、缺省映射和合法未知类别的固定unknown；原本无效状态继续严格拒绝。
+5. 完整旧输出等价：删除唯一新增opponent后的旧字段与原基线一致；句柄比较使用正确的一一对应，不删除actions等困难字段。
+6. 同公开事实不同隐藏输入的完整DTO/preview/错误非干涉，以及不同当前公开敌种的正向对照。
+7. query/preview/describeAction窗口独立计数与值/引用不变；真实执行维持一次生产/commit/write/通知。
+8. 实际v4字符串冷恢复，保存失败→继续→retry，新增显示值不入盘、无额外写入或重放。
+9. stale selector拒绝与原对象绑定不因新增显示字段改变。
+10. 至少两类仓库外语义负控，例如按地点猜敌人/稳定态泄漏上一敌，以及将私有标识带入公开结果；恢复后重跑。
+负控必须实际触达目标断言，导入/类型/超时/fixture失败不算检出。
+
+原测试和helper原则上原字节保留，不放宽断言。不更新旧24字段JSON制造通过。
+新字段兼容性通过局部API设计处理；不得批量改旧测试、增加全局timeout或改默认workers。
+
+## 5. W3：B演出来源原生验证与完整工程候选（不生产实现）
+读取真实 P结果、S提交、PlayerExecution、PreplayResult/Feed及BrowserOwner调用链。
+交付必须有实际TEST-only观察，不只写“以后可以”。
+
+使用现有测试工具和fixture，在新测试文件中记录以下代表链：
+- 普通攻击与标志动作，含一次玩家动作内多次敌响应的合法实例；
+- 防御、退却、真实快捷治疗；末次资源与拒绝请求；
+- 胜利、玩家死亡、双方归零，终局先后依既有事实；
+- commit后保存失败→retry；取消、陈旧选择、重复读取/同步；
+- 活战斗冷恢复与退出/再入。
+
+标清哪些事件源在当前真实返回值/受控提交结果存在，哪些只有核心内部trace有，哪些当前普通接口完全没有。
+测试可读取可信内部值定位来源，但交付的公开字段候选不得照抄这些内部值。
+不要从前后HP差、feed中文、累计行动次数或截图猜具体命中次数/时序。
+一次观察只消费真实原结果，不重跑CTB/随机/治疗来“补演出”。
+
+形成 B-COMMITTED-PRESENTATION-CANDIDATE.md，至少包括：
+- 每个拟公开字段的真实源文件/函数/当前可得性与已允许公开依据；
+- 最小公开actor引用、已发生动作、有限顺序、当前停点的确定性投影；
+- 事件数量、缺字段、错误信息的隐私约束；未知/不可证明的事实不补造；
+- session-local去重token的生成与作用域、取消/失锁/卸载、冷恢复不回放；
+- committed+save-failed与rejected的不同处理，retry/同步不新建演出；
+- 审查/取消/跳过/减少动态均不改变规则，动画结束不决定胜负；
+- 精确生产白名单候选、验收命令、阶段拆分、需要Owner决定的真正新知识；
+- 若目前源不足，给出最小必要内部接缝与代价，继续标候选，不实现它。
+
+本批严禁修改owner.dispatch、commit、publish、prepared/expected、controller生产文件或通知生命周期。
+测试观察不是B实现通过；B最终开工要主线另发任务。
+
+## 6. W4：逐槽接入资料、自查与交付
+A与原生证据完成后，补齐下列小文件：
+- ASSET-BINDING-CANDIDATE.json：三种公开visualKey×现有5阶段，到已有主题资源key/路径/注册信息/源码摘要的关联。只引用不复制图片。
+- ART-AND-INTEGRATION-GATES.md：清楚区分本批查询可用、阶段贴图对应、原生像素/透明清稿未过、Owner视觉未验；失去能力贴图不决定实际死亡。
+- NEXT-IMPLEMENTATION-CUTS.md：A完成后B候选→C实际接入的最小分批。已经通过的布局/设计工具不重新返工，不引入总框架。
+- 支持矩阵：实际生产验收、TEST-only研究、NOT RUN、未支持/待采纳分别列出。
+- 独立只读自查：可用子审查则执行，不得让多代理同时写同一文件；不可用如实记，不当阻塞理由。
+
+不生成新图片，不重导177图，不重打候选素材。
+源码/逻辑关联未证明时标为待核验；不能在清单中把REVIEW_ONLY改成PRODUCTION_READY。
+
+## 7. 验收命令、Git与证据
+开工实际 `npm run test:run`。
+完成执行新定向测试、受影响原查询/隐私/保存/长链及原E03四路线/72默认样本，最后默认 `npm run check`。
+命令可按实际新测试路径精确选择；最终完整check不能由定向替代。
+默认并发失败时先保留真实输出。可命令级降并发定位，但不能称默认通过；不修改全局预算/CI。
+架构维持依赖边界。对生产源码、参数、save/expected、旧医院入口与锁/owner做保护对象比较。
+普通、cached、起点→最终diff-check保留原始退出码。本批增量必须exit0；历史W01七处/W02一处只按现有实际原路径核对，不新增第九处。
+
+允许新分支正常commit/push；不推main/旧分支、不merge/force/amend循环改SHA。
+约三个独立工程任务或新生命周期先到即停审。本批只一个窄生产Goal，B不是下一生命周期实现。
+可在本分支作检查点commit，但最终整体停在A工程实审，不因尚有时间继续B/C。
+
+推送成功后独立ls-remote确认；失败最多两次普通重试，保留本地提交及完整退出码。
+不改代理/TLS校验/凭据；网络失败不重做实现，不虚报远端通过。
+CI可读就核对准确SHA，不能访问则UNCONFIRMED；CI结果与本地/主线证据分开。
+
+## 8. 交付与Owner操作
+所有工程记录位于 docs/engineering/world-integration/presentation-prep-001/。
+完成报告包含起始/最终完整SHA、父SHA/tree、真实基线、修改清单、新增/替换/删除数量、命令结果、失败修正、冲突、未完成、越界检查及停止点。
+原生探针报告包含合法前态来源、每步真正调用、受控记录和独立计数；不能把历史测试重新计为新增。
+
+只交一个仓库外 MAINLINE-REVIEW.zip，建议不超过20MiB：
+完整FINAL-REPORT、准确源码/patch、验收与范围记录、测试输出摘要、必要可复跑脚本、新A合同、B候选、资产关联清单、全部小清单/摘要/Git回执。
+标明base/target/tree及每个源文件blob/sha256，自己校验ZIP重复/CRC/摘要/路径/链接。
+不嵌套旧ZIP，不带基线图片、font、node_modules、缓存、profile、真实存档或账号信息。
+本批无必要截图；如确有新增可见证据，最多少量并注明来源，不用截图代替代码/状态证据。
+引用准确基线和已有素材包即可，不要求Owner另外追传JSON。
+
+最终消息只给：逐W结果、准确SHA、实际测试与CI、未完成和唯一ZIP的路径/大小/SHA256。
+提供一句明确交接：“上传此MAINLINE-REVIEW.zip并贴回报告即可。”
+完成停止，不关机、不重启、不做计划任务、不清档、不进入后续工程。
+
+# A：当前遭遇公开呈现查询技术合同 v1.0
+
+状态：本工程限定批准执行。来源与授权见 AUTHORIZATION-AND-STATUS.md。
+本合同不创建玩法、场次、敌人或存档版本。
+
+## 1. 目标与新增公开值
+现有 PlayerReadyView.combat 已提供 intent、enemyStage、relativeTimeline、energySettlement 和安全 actions。
+本批只增加 `combat.opponent`，用于当前敌人名称与未来视觉组选择。
+
+对实际已识别的三种当前敌人，新增字段为只读值：
+```ts
+type PlayerOpponentPresentation =
+  | Readonly&lt;{ kind: &#x27;known&#x27;; visualKey: &#x27;infected-orderly&#x27;; name: &#x27;感染护工&#x27; }&gt;
+  | Readonly&lt;{ kind: &#x27;known&#x27;; visualKey: &#x27;infected-porter&#x27;; name: &#x27;感染装卸工&#x27; }&gt;
+  | Readonly&lt;{ kind: &#x27;known&#x27;; visualKey: &#x27;infected-technician&#x27;; name: &#x27;感染技术员&#x27; }&gt;
+  | Readonly&lt;{ kind: &#x27;unknown&#x27;; visualKey: null; name: &#x27;当前对手&#x27; }&gt;
+```
+这些是本包指定的公开分类，不是 instanceId/definitionId 的透传、编码、哈希或动态拼接。
+名称来自当前已采用的三敌设计表达；不允许增加第四敌人/背景故事/能力描述。
+生产查询在 combat 非空时必须明确产出 known 或 unknown；不得悄悄省略字段。
+无当前战斗时沿用 `combat: null`，不新建 opponent 的全局缓存或历史字段。
+
+TypeScript内部组织可用等价闭合类型；输出字段、含义和不泄漏边界不得变。
+兼容性如需要，可以让旧构造输入接受缺省映射，但真实查询输出仍必须明确。
+不能为了满足新必填类型跨白名单批量改旧fixture。
+
+## 2. 当前来源与分层
+- 从现有已校验 CombatValue 的“当前活跃场次”识别敌人；不能根据地点、地图、上次战斗、当前贴图或某个样例序号猜测。
+- 当前工程已声明内部 definition 为 infected-world-orderly / infected-world-porter / infected-world-technician。它们只能在可信内容映射/查询边界内部使用，不进入安全DTO。
+- 首选实现：内容侧唯一闭合表/纯映射，经现有 PlayerLabels 的兼容可选受控接缝供 state 查询使用；新增 state helper完成当前场次门禁与显式投影。
+- 内容表不得 import state/app/ui；core不得 import content；保持现有依赖方向。结构兼容可由TS推断实现，不为此引入通用依赖注册系统。
+- 可选标签接缝缺失时输出固定 unknown，旧三个 action/source/place 调用者不必全量修改。
+- 查询只构造新的公开值，不把整个敌对象、映射对象或callback返回对象用展开运算直接复制到DTO。
+- 预先错误的 CombatValue/恢复/身份绑定仍走原严格拒绝路径。unknown仅代表“有效当前战斗无法匹配受审呈现组”，不是吞掉坏状态的通行证。
+- 本批不引入新的公开诊断字段、回调通知或console输出。开发排查信息放测试/交付记录，不输出私有标识。
+
+## 3. 旧公开值与阶段含义必须保持
+保留原 intent、enemyStage、relativeTimeline、actions、resourceCost、配额和选择器的行为。
+五阶段继续复用 selectEnemyHealthPhase 的正式返回值：
+healthy / wounded / severely-wounded / critical / incapacitated。
+
+特别注意：现有选择器对“正HP但低于某比例”的情况也可能返回 incapacitated。
+所以 visual stage 不等于 actual death；不得将其强行解释为HP0、胜利、终局或不可再行动。
+不得复制/调整阶段阈值，不能在UI/映射表重算HP百分比。
+真实HP0终局之后是否仍有当前战斗，遵循既有current；本批不能为补第五阶段而伪造活战斗HP0。
+3敌×5阶段的资产组规格可以完整列出；原生可达状态按实际实现验证。
+不能通过提高敌HP、修改配置或造不合法history来凑覆盖。
+
+## 4. 只读、生命周期与隐私
+- 重复query、preview、describeAction、展示组解析应零规则生产、零RNG、零签发、零IO、零current替换、零revision变化。
+- 复用原opaque selector与句柄生命周期；不因视觉信息重建PlayerContext，或按名字寻找第一件对象。
+- 退却/胜利/死亡/静态中枢/未出发/阻塞态不得留下前一敌人呈现信息。
+- 再入与冷恢复只读当前有效场次；恢复不补演出、不额外写入。
+- 保留原知情支付、隐藏医疗unknown及不泄漏当前秘密的约定。
+- 同一已公开敌类别、同一已公开阶段和其他公开事实相等时，改变种子、执行ID、实例ID、隐藏暴露和阶段内精确HP，完整公开输出和错误不得不同。
+- 对未进入战斗的不同隐藏远端敌人，仍然 combat=null，不新增节点标签/图片预载提示等可见差异。
+- 这是公开“当前对手类别”的有界新增；不同已公开类别输出不同名称/组是正向控制，不要求把三类敌人强行投影成同一值。
+- 查询结果冻结且不能反向修改current；不得将 visualKey/name写入save、expected、mission身份或命令。
+
+## 5. 向下兼容与范围
+旧24字段合同仍是历史/既有字段权威，本批只追加受控字段，不重写旧JSON、不称25字段已全量重新采纳。
+不添加普通PlayerSession运行时方法，不改其精确七个导出方法集合。
+旧低资产UI本批不读取新增字段，因此界面外观不变；后续另审接入。
+内容标签接缝只用于可信composition，不提供任意主题输入、远程加载或脚本执行权限。
+未知呈现的中性文字是异常安全降级，不构成正式UI占位图美术验收通过。
+
+## 6. 本批交付与冻结
+实际实现、完整测试、禁止字段对照、真实3敌接入证据、完整旧输出等价性证明。
+完成后停于本工程准确SHA实审。A通过不自动开工B/C。
+</pre>
+</article></body></html>

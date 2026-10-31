@@ -20,3 +20,5 @@
 异常策略：前态缺失、非正常执行/投影或run抛错不补事件、不发token；既有程序Error照原通道暴露。已提交后出现不确定性不包装成可重试原动作，旧selector继续失效。blocked公开后态只映射unavailable，null阶段不推断胜利。没有可信持久化feedback时固定省略载荷，不猜值。正常支持链必须实际产生载荷。
 
 只动四个既有生产宿主及两纯辅助、许可新测试/本任务目录，两旧测试单处替换及治理摘要两字面替换。其余core/S/current/save/expected/owner/UI/素材/依赖/CI/规则/旧refs全部保全。完成普通commit/push仅本新分支并停审，不进入B2/C/O3。
+
+CI178后仅细化TEST oracle可移植性：保留开工前原Windows捕获，另复制准确base的facade/controller函数体（仅导出名改变）在同宿主独立native domain运行，逐字段/顺序/字节/计数与新实现比较；baseline bootstrap不调用新facade。额外en/zh-CN正控，不改原localeCompare运行代码。来源SHA绑定见BASELINE-ORACLE-PROVENANCE.json。

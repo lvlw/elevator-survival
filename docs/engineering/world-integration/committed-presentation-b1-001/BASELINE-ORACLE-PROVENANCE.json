@@ -1,0 +1,31 @@
+{
+  "reason": "Default localeCompare order differs across host locale. Preserve every field and array order by comparing exact baseline executable source in the same locale, rather than sorting away differences.",
+  "originalWindowsCaptureUntouched": true,
+  "sources": [
+    {
+      "testFixture": "src/state/residence-session/player-committed-presentation-test-fixtures.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "originalFunction": "wrapPlayerSession",
+      "literalBodySHA256": "9bda28f6fb1e1542109f4e825b37a5dc4abd3c7d2b5e21b1bc0ca052f2d2fd90",
+      "onlyBodyChange": "exported function name",
+      "sameEnvironmentOracle": true,
+      "sharedDependenciesProtectedUnmodified": true,
+      "baselinePath": "src/state/residence-session/player-facade.ts",
+      "baseGitBlob": "2f03ef2d2cb5873be854a7b98b6396c6c899a02e",
+      "hashBoundary": "exported function declaration through its column-zero closing brace, including terminal newline"
+    },
+    {
+      "testFixture": "src/app/infected-preplay/committed-presentation-test-fixtures.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "originalFunction": "createPreplayController",
+      "literalBodySHA256": "69eb6cf92aa791b3503ad5c6e7b3d5a16033188cb8d7418bc7e5577e3ff2148e",
+      "onlyBodyChange": "exported function name",
+      "sameEnvironmentOracle": true,
+      "sharedDependenciesProtectedUnmodified": true,
+      "baselinePath": "src/app/infected-preplay/controller.ts",
+      "baseGitBlob": "500a888a229fd34fc30419d78cc99f1fdcea886b",
+      "hashBoundary": "exported function declaration through its column-zero closing brace, including terminal newline"
+    }
+  ],
+  "baselineConstruction": "Protected coldRecord + exact old wrapper/bootstrap only; never invokes the new facade."
+}

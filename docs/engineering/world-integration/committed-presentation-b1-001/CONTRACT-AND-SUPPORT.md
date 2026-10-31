@@ -34,7 +34,7 @@ controller在executeCaptured同步操作窗口从正式纯query取得前态；�
 | K14 | C从真实结果取得token，假时钟/单scope高水位/单pending去重、取消、skip/reduced、scope替换和迟到回调；回调无command/save/玩法端口。只证明TEST协议，不是实际动画体验 |
 | K15 | P真实seed/execution/item/battle身份差异、同档隐藏病程/暴露、原生退却/维修/休整/再入后同阶段不同敌HP；先验证完整公开前/后态相等，再比较全载荷和错误，scope引用一对一重命名。公开敌组/阶段改变作正控 |
 | K16 | F私有command/label抛错getter；A在combat/opponent/执行对象/后态放额外私有字段和抛错getter，输出只显式闭合复制。既检查所有keys和冻结，也实际证明不读这些getter |
-| K17 | 开工准确base在仓库外采集26固定记录；F剥离仅一个新属性后完整旧结果/当前全值SHA/存档字节SHA/RNG及所有原生计数对等。非combat移动开战无新增属性；受保护旧errors测试也保留并复跑 |
+| K17 | 开工准确base在仓库外采集26固定记录；F在同一宿主用准确base的TEST-only facade/controller函数体作为活oracle，剥离仅一个新增属性后全字段、数组顺序、opaque拓扑、current/save字节摘要及所有计数严格对等；不排序或删除差异。独立Win捕获的current/save/RNG摘要仍作额外oracle。非combat移动开战无新增属性；受保护旧errors测试也保留并复跑 |
 | K18 | 两处旧观察仅精确键集单次适配；其余原A39/B观察14、query/选择/保存/controller/owner/UI/content/E03均由组合与最终默认check实际回归，数量不重复相加 |
 | K19 | 仓库外N01错误retry token/N02响应数扩序列/N03selector scope/N04私有battle ID四独立变异，被相应用例AssertionError检出；正控通过，排除语法/加载/TypeError。生产修复后重新绑定并复跑，初次记录保留 |
 | K20 | 精确base/tree、新分支、源blob/输入/受保护对象/两处适配/字面纠正/标准检查、轻包与独立push回读分账。最终对象/CI放包外层准确回执 |
@@ -59,3 +59,9 @@ controller在executeCaptured同步操作窗口从正式纯query取得前态；�
 初次测试的菜单顺序、零伤假设、模拟锁释放，以及新测试的浏览器HP字段/Node类型适配均已修正，原始失败保留。组合首次发现的真正生产兼容偏差单列在验证记录；未改旧测试应对。
 
 三份历史最终专项原件缺口、19逻辑资产摘要风险、18背景原生2×、alpha/Owner观感/首玩/分段九组合体验、依赖完整公告/可达性/修复版本、仓库保护、O3、商城/身体服务/未来委托继续开放。CI177的7项安装摘要与本机audit404并存，不升级或倒改旧时点UNKNOWN。B1不修素材清单，不公开逐击命中/敌响应，不自动开始B2/C或合main。
+
+## CI178后的TEST-only可移植性修订
+
+首次提交f1ce08e5的CI178有24个新增对照断言失败，原因是原受保护查询使用默认localeCompare：Win采集公开菜单顺序与Linux不同。原运行源码和旧测试均不改。本目录新增BASELINE-ORACLE-PROVENANCE，准确base两函数体仅改导出名放入获准TEST fixture；baseline通过protected coldRecord和旧wrapper独立bootstrap，完全不调用新facade。共享query/core/S及辅助依赖由对象保全证明不变。原Windows26记录原字节保留，新增en/zh-CN强制排序正控证明真实顺序确实不同，各同环境新旧结果仍严格等序、全字段、全计数/字节相等。没有把新实现当作oracle，也没有规范排序掩盖偏差。新增测试最终74项，原73项结果保留为其时点。
+
+历史探针case ID `move-enters-battle` 实际是H0→H1普通移动，名称偏宽，原捕获不改写；真实非combat移动开战由A测试中三敌退却后正式再入场直接证明，并断言无presentation。

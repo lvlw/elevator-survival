@@ -1,6 +1,6 @@
 {
   "newGameTestFiles": 7,
-  "newGameTests": 73,
+  "newGameTests": 74,
   "oldKeySetAdaptations": 2,
   "oldTestsDeletedOrSkipped": 0,
   "baselineOracleExternalTests": 1,
@@ -17,7 +17,13 @@
   ],
   "cases": [
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K01 explicit metal-pipe-basic-attack mapping reads no label/trace/identity 3ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-native.test.ts > B1 facade native payment and parsed action authority > K06 last-durability pays the real last resource once and rejects the stale request 305ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native basic has exactly one returned record 326ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K01 explicit metal-pipe-basic-attack mapping reads no label/trace/identity 2ms"
     },
     {
       "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K01 explicit metal-pipe-charged-strike mapping reads no label/trace/identity 0ms"
@@ -38,160 +44,127 @@
       "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K01 future combat enum and noncombat never acquire a generic action 0ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-native.test.ts > B1 facade native payment and parsed action authority > K06 last-durability pays the real last resource once and rejects the stale request 330ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K08 K10 save failure, continuation, retry and readonly calls never replay or consume an extra ordinal 463ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade basic equals pre-edit baseline after only the new property is removed 363ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-consumer.test.ts > B1 K14 TEST-only finite reference consumer > real tokens are accepted in order once; cancel, skip and reduced consume without any gameplay callbacks 436ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native basic has exactly one returned record 368ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native signature has exactly one returned record 175ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K08 K10 save failure, continuation, retry and readonly calls never replay or consume an extra ordinal 497ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-native.test.ts > B1 facade native payment and parsed action authority > K06 quick pays the real last resource once and rejects the stale request 170ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-consumer.test.ts > B1 K14 TEST-only finite reference consumer > real tokens are accepted in order once; cancel, skip and reduced consume without any gameplay callbacks 452ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-native.test.ts > B1 facade native payment and parsed action authority > K01 translated identical labels cannot classify different original opaque choices 283ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade signature equals pre-edit baseline after only the new property is removed 169ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-consumer.test.ts > B1 K14 TEST-only finite reference consumer > scope replacement rejects delayed old results and callbacks, even with identical serialized empty scopes 212ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native signature has exactly one returned record 173ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-consumer.test.ts > B1 K14 TEST-only finite reference consumer > unmount/view-switch/current-owner invalidation only cancels local presentation; the real commit stays 119ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-consumer.test.ts > B1 K14 TEST-only finite reference consumer > scope replacement rejects delayed old results and callbacks, even with identical serialized empty scopes 224ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-privacy.test.ts > B1 K15 whole-output native noninterference, not a field-name scan > different native execution/seed/item/battle identities compare under one-to-one scope renaming 776ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-privacy.test.ts > B1 K15 whole-output native noninterference, not a field-name scan > different native execution/seed/item/battle identities compare under one-to-one scope renaming 829ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native temporary has exactly one returned record 149ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-consumer.test.ts > B1 K14 TEST-only finite reference consumer > unmount/view-switch/current-owner invalidation only cancels local presentation; the real commit stays 152ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade basic equals exact-base live oracle in the same locale after only the new property is removed 512ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade defend equals pre-edit baseline after only the new property is removed 152ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native defend has exactly one returned record 125ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-native.test.ts > B1 facade native payment and parsed action authority > K06 quick pays the real last resource once and rejects the stale request 198ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K02 K11 doubled subscribers, throwing listeners and reentry preserve busy/stable and one direct payload 157ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-native.test.ts > B1 facade native payment and parsed action authority > K01 translated identical labels cannot classify different original opaque choices 321ms"
+      "passedCaseLine": "✓ src/app/infected-browser/committed-presentation-forwarding.test.ts > B1 K13 unchanged BrowserOwner native headless forwarding and ownership > execute/executeDraft return the very controller object; confirm also forwards unchanged on its real noncombat path 674ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native temporary has exactly one returned record 164ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade signature equals exact-base live oracle in the same locale after only the new property is removed 265ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade retreat equals pre-edit baseline after only the new property is removed 144ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native retreat has exactly one returned record 103ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native defend has exactly one returned record 160ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-privacy.test.ts > B1 K15 whole-output native noninterference, not a field-name scan > same approved current band with hidden progress/exposure has identical complete before/after/result/payload 250ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K02 K11 doubled subscribers, throwing listeners and reentry preserve busy/stable and one direct payload 159ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K09 executeDraft and a real protected combat confirm transport only their actual commit 303ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-browser/committed-presentation-forwarding.test.ts > B1 K13 unchanged BrowserOwner native headless forwarding and ownership > execute/executeDraft return the very controller object; confirm also forwards unchanged on its real noncombat path 752ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade defend equals exact-base live oracle in the same locale after only the new property is removed 204ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native retreat has exactly one returned record 121ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native quick has exactly one returned record 111ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-privacy.test.ts > B1 K15 whole-output native noninterference, not a field-name scan > same approved current band with hidden progress/exposure has identical complete before/after/result/payload 284ms"
+      "passedCaseLine": "✓ src/app/infected-browser/committed-presentation-forwarding.test.ts > B1 K13 unchanged BrowserOwner native headless forwarding and ownership > suspend invalidates old controls and late payload, reacquisition is a new scope with ordinal zero 285ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K09 executeDraft and a real protected combat confirm transport only their actual commit 366ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K09 cancelled, copied, cross-controller and stale real combat confirmations have no payload 150ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade quick equals pre-edit baseline after only the new property is removed 131ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K05 native eight-defend temporary attack has two private responses but one public record 213ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade temporary equals pre-edit baseline after only the new property is removed 95ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade retreat equals exact-base live oracle in the same locale after only the new property is removed 193ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native quick has exactly one returned record 106ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K12 five real v4 cold stops bootstrap/sync without any action, saved token or stock 215ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade two-responses equals pre-edit baseline after only the new property is removed 213ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K07 victory: null after-stage follows the actual stop, not an inferred win 126ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-browser/committed-presentation-forwarding.test.ts > B1 K13 unchanged BrowserOwner native headless forwarding and ownership > suspend invalidates old controls and late payload, reacquisition is a new scope with ordinal zero 332ms"
+      "passedCaseLine": "✓ src/app/infected-browser/committed-presentation-forwarding.test.ts > B1 K13 unchanged BrowserOwner native headless forwarding and ownership > dispose invalidates old controls and late payload, reacquisition is a new scope with ordinal zero 261ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K09 cancelled, copied, cross-controller and stale real combat confirmations have no payload 162ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade quick equals exact-base live oracle in the same locale after only the new property is removed 207ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K05 native eight-defend temporary attack has two private responses but one public record 214ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-privacy.test.ts > B1 K15 whole-output native noninterference, not a field-name scan > same-stage different real enemy HP after native retreat/repair/rest/reentry preserves the entire payload 569ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K12 five real v4 cold stops bootstrap/sync without any action, saved token or stock 213ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K07 death: null after-stage follows the actual stop, not an inferred win 128ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade last-durability equals pre-edit baseline after only the new property is removed 106ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K05 K08 missing safe prestate consumes no ordinal; a later supported real return starts at zero 109ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K07 victory: null after-stage follows the actual stop, not an inferred win 133ms"
+      "passedCaseLine": "✓ src/app/infected-browser/committed-presentation-forwarding.test.ts > B1 K13 unchanged BrowserOwner native headless forwarding and ownership > lost-lock invalidates old controls and late payload, reacquisition is a new scope with ordinal zero 272ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade victory equals pre-edit baseline after only the new property is removed 152ms"
+      "passedCaseLine": "✓ src/app/infected-browser/committed-presentation-forwarding.test.ts > B1 K13 unchanged BrowserOwner native headless forwarding and ownership > dispose during post-commit stable notification may leave a direct return, but TEST consumer drops it without rolling back disk 188ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-browser/committed-presentation-forwarding.test.ts > B1 K13 unchanged BrowserOwner native headless forwarding and ownership > dispose invalidates old controls and late payload, reacquisition is a new scope with ordinal zero 299ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K05 program failures before execution and after a real commit throw visibly without token or automatic action retry 251ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-privacy.test.ts > B1 K15 whole-output native noninterference, not a field-name scan > same-stage different real enemy HP after native retreat/repair/rest/reentry preserves the entire payload 615ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K07 both-zero: null after-stage follows the actual stop, not an inferred win 161ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K07 death: null after-stage follows the actual stop, not an inferred win 136ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K05 captures fresh pure query in the synchronous window rather than stale feed snapshot 109ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K05 K08 missing safe prestate consumes no ordinal; a later supported real return starts at zero 118ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K03 K08 orderly retreat and real reentry bind fresh A facts, not location guessing 141ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade death equals pre-edit baseline after only the new property is removed 123ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade temporary equals exact-base live oracle in the same locale after only the new property is removed 192ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K05 program failures before execution and after a real commit throw visibly without token or automatic action retry 259ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-privacy.test.ts > B1 K15 whole-output native noninterference, not a field-name scan > K03 known/unknown are actual A facts at the same node; public enemy and stage changes are positive controls 388ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K05 captures fresh pure query in the synchronous window rather than stale feed snapshot 130ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K03 K08 porter retreat and real reentry bind fresh A facts, not location guessing 120ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K07 both-zero: null after-stage follows the actual stop, not an inferred win 183ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade two-responses equals exact-base live oracle in the same locale after only the new property is removed 313ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-browser/committed-presentation-forwarding.test.ts > B1 K13 unchanged BrowserOwner native headless forwarding and ownership > lost-lock invalidates old controls and late payload, reacquisition is a new scope with ordinal zero 321ms"
-    },
-    {
-      "passedCaseLine": "✓ src/app/infected-browser/committed-presentation-forwarding.test.ts > B1 K13 unchanged BrowserOwner native headless forwarding and ownership > dispose during post-commit stable notification may leave a direct return, but TEST consumer drops it without rolling back disk 228ms"
-    },
-    {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade both-zero equals pre-edit baseline after only the new property is removed 157ms"
-    },
-    {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade move-enters-battle equals pre-edit baseline after only the new property is removed 63ms"
-    },
-    {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K03 K08 orderly retreat and real reentry bind fresh A facts, not location guessing 165ms"
-    },
-    {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade save-failed equals pre-edit baseline after only the new property is removed 101ms"
-    },
-    {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller basic equals pre-edit baseline after only the new property is removed 78ms"
-    },
-    {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-privacy.test.ts > B1 K15 whole-output native noninterference, not a field-name scan > K03 known/unknown are actual A facts at the same node; public enemy and stage changes are positive controls 451ms"
-    },
-    {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K03 K08 porter retreat and real reentry bind fresh A facts, not location guessing 149ms"
-    },
-    {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller signature equals pre-edit baseline after only the new property is removed 76ms"
-    },
-    {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller defend equals pre-edit baseline after only the new property is removed 68ms"
-    },
-    {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K03 K08 technician retreat and real reentry bind fresh A facts, not location guessing 123ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K03 K08 technician retreat and real reentry bind fresh A facts, not location guessing 133ms"
     },
     {
       "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K03 K16 pure safe projection: unknown opponent, poison extras, unavailable and four stop variants 2ms"
@@ -200,40 +173,70 @@
       "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K08 pure ordinal boundary terminates instead of wrapping; no gameplay or private diagnostic 0ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K04 zero damage in an executed enemy response is not reachable under approved profiles; no profile is changed 69ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K04 zero damage in an executed enemy response is not reachable under approved profiles; no profile is changed 64ms"
     },
     {
-      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K04 native zero-damage action with no due enemy response still has exactly the initiating record 73ms"
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K04 native zero-damage action with no due enemy response still has exactly the initiating record 77ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller retreat equals pre-edit baseline after only the new property is removed 72ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade last-durability equals exact-base live oracle in the same locale after only the new property is removed 149ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller quick equals pre-edit baseline after only the new property is removed 67ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade victory equals exact-base live oracle in the same locale after only the new property is removed 176ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller temporary equals pre-edit baseline after only the new property is removed 72ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade death equals exact-base live oracle in the same locale after only the new property is removed 128ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller two-responses equals pre-edit baseline after only the new property is removed 146ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade both-zero equals exact-base live oracle in the same locale after only the new property is removed 179ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller last-durability equals pre-edit baseline after only the new property is removed 68ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade move-enters-battle equals exact-base live oracle in the same locale after only the new property is removed 80ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller victory equals pre-edit baseline after only the new property is removed 78ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade save-failed equals exact-base live oracle in the same locale after only the new property is removed 114ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller death equals pre-edit baseline after only the new property is removed 75ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller basic equals exact-base live oracle in the same locale after only the new property is removed 115ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller both-zero equals pre-edit baseline after only the new property is removed 87ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller signature equals exact-base live oracle in the same locale after only the new property is removed 127ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller move-enters-battle equals pre-edit baseline after only the new property is removed 37ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller defend equals exact-base live oracle in the same locale after only the new property is removed 115ms"
     },
     {
-      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller save-failed equals pre-edit baseline after only the new property is removed 56ms"
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller retreat equals exact-base live oracle in the same locale after only the new property is removed 104ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller quick equals exact-base live oracle in the same locale after only the new property is removed 104ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller temporary equals exact-base live oracle in the same locale after only the new property is removed 100ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller two-responses equals exact-base live oracle in the same locale after only the new property is removed 226ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller last-durability equals exact-base live oracle in the same locale after only the new property is removed 110ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller victory equals exact-base live oracle in the same locale after only the new property is removed 125ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller death equals exact-base live oracle in the same locale after only the new property is removed 121ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller both-zero equals exact-base live oracle in the same locale after only the new property is removed 163ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller move-enters-battle equals exact-base live oracle in the same locale after only the new property is removed 67ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller save-failed equals exact-base live oracle in the same locale after only the new property is removed 104ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 full ordered graph follows exact baseline under both en and zh-CN collations, without sorting the oracle away 212ms"
     }
   ],
   "nativeObservedCounters": [
@@ -594,5 +597,7 @@
       }
     }
   ],
-  "noSummingAcrossRepeatedRuns": true
+  "noSummingAcrossRepeatedRuns": true,
+  "source": "evidence/targeted-final74.log",
+  "first73CaseInventoryWasHistorical": true
 }

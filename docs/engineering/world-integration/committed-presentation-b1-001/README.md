@@ -8,7 +8,8 @@
 | 详细设计、前置实查、职责与异常策略 | [implementation-plan.md](implementation-plan.md) |
 | 唯一支持矩阵K01—K20、生命周期、隐私、自查与开放项 | [CONTRACT-AND-SUPPORT.md](CONTRACT-AND-SUPPORT.md) |
 | 新测试清单、用例名和实际原生计数 | [TEST-INVENTORY.json](TEST-INVENTORY.json) |
-| 开工前旧版本实际对照记录 | [BASELINE-COMPATIBILITY.json](BASELINE-COMPATIBILITY.json) |
+| 开工前旧版本实际对照记录（原Windows字节保留） | [BASELINE-COMPATIBILITY.json](BASELINE-COMPATIBILITY.json) |
+| 同环境准确旧版活oracle、函数体来源/边界 | [BASELINE-ORACLE-PROVENANCE.json](BASELINE-ORACLE-PROVENANCE.json) |
 | 实际来源/基线对象 | [SOURCE-REFERENCES-ACTUAL.json](SOURCE-REFERENCES-ACTUAL.json) |
 | 本轮检查与首次失败/修复 | [VERIFICATION-RESULTS.json](VERIFICATION-RESULTS.json) |
 | 完成与停止点 | [completion.md](completion.md) |

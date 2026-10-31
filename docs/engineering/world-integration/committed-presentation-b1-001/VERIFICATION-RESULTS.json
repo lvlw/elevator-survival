@@ -40,14 +40,17 @@
   },
   "newTests": {
     "files": 7,
-    "tests": 73,
-    "passed": 73,
+    "tests": 74,
+    "passed": 74,
     "oldKeySetAdaptations": 2,
     "oldDeletedSkippedOrWeakened": 0,
     "raw": [
       "evidence/targeted-all.log",
-      "evidence/targeted-verbose-counts.log"
-    ]
+      "evidence/targeted-verbose-counts.log",
+      "evidence/targeted-final74.log"
+    ],
+    "first73CountIsHistorical": true,
+    "finalTargetedDurationSeconds": 8.31
   },
   "firstFailures": [
     {
@@ -104,7 +107,8 @@
     "toolOrSyntaxFailuresCounted": 0,
     "positiveControlExit": 0,
     "reboundAndRerunAfterProductionRepair": true,
-    "raw": "evidence/negative-controls.json"
+    "raw": "evidence/negative-controls.json",
+    "rerunAfterFinalLocaleRepair": true
   },
   "reviewToolTests": {
     "tests": 6,
@@ -117,8 +121,8 @@
     "command": "npm run check",
     "exit": 0,
     "filesPassed": 330,
-    "testsPassed": 4798,
-    "testDurationSeconds": 278.41,
+    "testsPassed": 4799,
+    "testDurationSeconds": 280.32,
     "architecture": {
       "DEC": 53,
       "coreProductionFiles": 347,
@@ -126,9 +130,10 @@
     },
     "typecheck": "PASS",
     "build": "PASS",
-    "buildMs": 254,
-    "raw": "evidence/default-check.log",
-    "workersTimeoutScriptsDepsCIUnchanged": true
+    "buildMs": 205,
+    "raw": "evidence/default-check-final.log",
+    "workersTimeoutScriptsDepsCIUnchanged": true,
+    "allRuntimeAndTestSourcesUnchangedSinceStart": true
   },
   "scope": {
     "protectedExistingObjects": 3067,
@@ -159,5 +164,49 @@
     "art adoption",
     "main merge",
     "O3 release"
-  ]
+  ],
+  "ci178Failure": {
+    "sha": "f1ce08e539c65c82f86d503e7f13409d35644c29",
+    "run": 41194953853,
+    "job": 124519166426,
+    "status": "failure",
+    "newOracleAssertionsFailed": 24,
+    "cause": "Default collation on host; fixed Windows public-menu order was not a portable expectation. No runtime/old-test/CI changes needed.",
+    "raw": "evidence/ci178-failed-job.log"
+  },
+  "localeOracleRepair": {
+    "provenance": "BASELINE-ORACLE-PROVENANCE.json",
+    "literalBaseFunctionsOnlyExportNameChanged": true,
+    "independentColdBootstrap": true,
+    "wholeGraphOrderAndKeysRetained": true,
+    "enZhPositiveControl": true,
+    "targetedFirstRepair": {
+      "files": 3,
+      "tests": 42,
+      "exit": 0
+    },
+    "independentOracleTargeted": {
+      "files": 1,
+      "tests": 34,
+      "exit": 0
+    }
+  },
+  "defaultCheckBeforeLocaleRepair": {
+    "status": "PASS",
+    "command": "npm run check",
+    "exit": 0,
+    "filesPassed": 330,
+    "testsPassed": 4798,
+    "testDurationSeconds": 278.41,
+    "architecture": {
+      "DEC": 53,
+      "coreProductionFiles": 347,
+      "status": "PASS"
+    },
+    "typecheck": "PASS",
+    "build": "PASS",
+    "buildMs": 254,
+    "raw": "evidence/default-check.log",
+    "workersTimeoutScriptsDepsCIUnchanged": true
+  }
 }

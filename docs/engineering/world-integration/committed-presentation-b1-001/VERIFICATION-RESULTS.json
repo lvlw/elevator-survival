@@ -1,0 +1,163 @@
+{
+  "task": "ENG-WORLD-COMMITTED-PRESENTATION-B1-001",
+  "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+  "baseTree": "b2ffbddc453bfd93077359c5434d5a010473b745",
+  "evidenceLevel": "AUTHOR_CURRENT_EXECUTION",
+  "model": "NOT_INDEPENDENTLY_VERIFIED",
+  "reasoningEffort": "NOT_INDEPENDENTLY_VERIFIED",
+  "speed": "NOT_INDEPENDENTLY_VERIFIED",
+  "toolMode": "Default",
+  "environment": {
+    "node": "v24.9.0",
+    "npm": "11.6.0",
+    "shell": "PowerShell",
+    "platform": "Windows",
+    "timezone": "Asia/Shanghai"
+  },
+  "input": {
+    "zipBytes": 35121,
+    "zipSHA256": "b1c81ea055eacaa8db13fb65c488f9e10a6b6f6e36c6626fc5850c69369bd603",
+    "files": 14,
+    "uncompressedBytes": 63624,
+    "verification": "PASS",
+    "archivedOriginalBytes": true
+  },
+  "baseline": {
+    "command": "npm run test:run",
+    "exit": 0,
+    "filesPassed": 323,
+    "testsPassed": 4725,
+    "durationSeconds": 360.55,
+    "atExactBaseBeforeProductionEdits": true,
+    "raw": "evidence/baseline-test-run.log"
+  },
+  "baselineOracle": {
+    "externalTests": 1,
+    "records": 26,
+    "capturedBeforeAnyB1RuntimeEdit": true,
+    "raw": "evidence/baseline-oracle.log",
+    "snapshot": "BASELINE-COMPATIBILITY.json"
+  },
+  "newTests": {
+    "files": 7,
+    "tests": 73,
+    "passed": 73,
+    "oldKeySetAdaptations": 2,
+    "oldDeletedSkippedOrWeakened": 0,
+    "raw": [
+      "evidence/targeted-all.log",
+      "evidence/targeted-verbose-counts.log"
+    ]
+  },
+  "firstFailures": [
+    {
+      "run": "targeted-initial",
+      "exit": 1,
+      "passed": 50,
+      "failed": 2,
+      "cause": "New TEST assumptions: initial same-label order and zero-damage enemy response. Fixed from actual formal menu/profile facts; no production parameters changed."
+    },
+    {
+      "run": "targeted-privacy-browser-initial",
+      "exit": 1,
+      "passed": 28,
+      "failed": 1,
+      "cause": "Headless lock test initially resolved the outer promise; actual lease loss is the platform rejection channel. Fixed TEST endpoint, owner untouched."
+    },
+    {
+      "run": "typecheck-initial",
+      "exit": 1,
+      "cause": "New TEST public health property and unavailable Node module typings. Corrected hp.current and narrow TEST-only existing Node builtin adapter, no dependency/config edits."
+    },
+    {
+      "run": "combined-regression-e03",
+      "exit": 1,
+      "filesPassed": 161,
+      "filesFailed": 1,
+      "testsPassed": 1722,
+      "testsFailed": 1,
+      "durationSeconds": 238.46,
+      "cause": "Extra prequery threw before the old noncombat move could commit. Actual production compatibility defect, fixed in allowed controller only; protected errors.test untouched."
+    }
+  ],
+  "productionRepair": {
+    "raw": "evidence/projection-compatibility-repair.log",
+    "exit": 0,
+    "filesPassed": 3,
+    "testsPassed": 45,
+    "source": "controller.ts executeCaptured defers auxiliary capture failure until original execute, preserving committed current and visible uncertainty"
+  },
+  "combinedRegression": {
+    "command": "npm run test:run -- src/state/residence-session src/state/residence-save src/app/infected-preplay src/app/infected-browser src/ui/infected-world src/content/infected-world-v0.1 --reporter=verbose --silent=false",
+    "exit": 0,
+    "filesPassed": 162,
+    "testsPassed": 1723,
+    "durationSeconds": 237.24,
+    "E03FourOriginalRoutes": "PASS",
+    "E03DefaultCorpusCases": 72,
+    "raw": "evidence/combined-regression-e03-repaired.log",
+    "caseReceipts": "evidence/e03-current-corpus.json"
+  },
+  "semanticNegatives": {
+    "mutants": 4,
+    "allBusinessAssertionsDetected": true,
+    "toolOrSyntaxFailuresCounted": 0,
+    "positiveControlExit": 0,
+    "reboundAndRerunAfterProductionRepair": true,
+    "raw": "evidence/negative-controls.json"
+  },
+  "reviewToolTests": {
+    "tests": 6,
+    "exit": 0,
+    "raw": "evidence/review-tool-tests.log",
+    "notGameTests": true
+  },
+  "defaultCheck": {
+    "status": "PASS",
+    "command": "npm run check",
+    "exit": 0,
+    "filesPassed": 330,
+    "testsPassed": 4798,
+    "testDurationSeconds": 278.41,
+    "architecture": {
+      "DEC": 53,
+      "coreProductionFiles": 347,
+      "status": "PASS"
+    },
+    "typecheck": "PASS",
+    "build": "PASS",
+    "buildMs": 254,
+    "raw": "evidence/default-check.log",
+    "workersTimeoutScriptsDepsCIUnchanged": true
+  },
+  "scope": {
+    "protectedExistingObjects": 3067,
+    "newProductionHelpersTypeImportsOnly": true,
+    "currentStageAndFinalObjectReceipt": "external scope-protected-objects.json and final-object-check.json",
+    "literalCompatibilityChangesOnly": true,
+    "fullGitDiffCheckExit": 2,
+    "newBodyWhitespaceExit": 0,
+    "exception": "Only original archived task-input whitespace; original14 files exact Git bytes verified. No authored text exemption.",
+    "originalWarnings": [
+      "docs/engineering/world-integration/committed-presentation-b1-001/inputs/README-FIRST.md:3: trailing whitespace.",
+      "docs/engineering/world-integration/committed-presentation-b1-001/inputs/README-FIRST.md:4: trailing whitespace.",
+      "docs/engineering/world-integration/committed-presentation-b1-001/inputs/inputs/AUD-12186083-GOV-WORLD-BASELINE-001-v1.0.md:3: trailing whitespace.",
+      "docs/engineering/world-integration/committed-presentation-b1-001/inputs/inputs/AUD-12186083-GOV-WORLD-BASELINE-001-v1.0.md:4: trailing whitespace."
+    ]
+  },
+  "notReachableOrNotRun": {
+    "nativeCombatToLivingHubOrFirstHub": "NOT_REACHABLE; pure stop schema only",
+    "zeroActualDamageInAnExecutedEnemyResponse": "NOT_REACHABLE with current profiles; native no-response/no-damage action separately tested",
+    "maximumOrdinalLifetime": "PURE boundary only; not 2^53 native commands",
+    "actualBrowserAnimationReducedMotionOwnerExperience": "NOT_RUN",
+    "CIAtFinalSHA": "External exact-SHA receipt; not inferred from prior CI177",
+    "mainlineB1Review": "NOT_RUN; waiting"
+  },
+  "noAutomaticNextStep": [
+    "B2",
+    "C",
+    "art adoption",
+    "main merge",
+    "O3 release"
+  ]
+}

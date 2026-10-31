@@ -13,6 +13,7 @@ import { buildCombatSession } from './combat-session'
 import type { ResidenceDomain } from './types'
 import { assertCombatSyncFunction } from './combat-composition'
 import { createPlayerPreplay } from './player-preplay'
+import { committedCombatAction } from './player-committed-presentation'
 
 /** Trusted composition only. The supplied existing S is the sole current/writer. */
 export function wrapPlayerSession(owner: CombatSession, policy: CombatResidencePolicy, labels: PlayerLabels) {
@@ -50,7 +51,9 @@ export function wrapPlayerSession(owner: CombatSession, policy: CombatResidenceP
         if (!isPlayerBusinessError(e)) throw e
         return deepFreeze({ kind: 'rejected', view: projectPlayerView(owner.getState(), context, deps, labels), preview: { kind: 'unavailable', cost: null } })
       } finally { try { synchronize() } finally { busy = false } }
-      return deepFreeze({ kind: 'committed', view: query(), preview: checked })
+      const view = query(), committedAction = committedCombatAction(command)
+      return deepFreeze(committedAction ? { kind: 'committed', view, preview: checked, committedAction } :
+        { kind: 'committed', view, preview: checked })
     },
     retrySave: () => { if (busy) return query(); busy = true;
       try { owner.retrySave() } catch (e) { if (!isPlayerBusinessError(e)) throw e } finally { busy = false }; return query() },

@@ -1,0 +1,598 @@
+{
+  "newGameTestFiles": 7,
+  "newGameTests": 73,
+  "oldKeySetAdaptations": 2,
+  "oldTestsDeletedOrSkipped": 0,
+  "baselineOracleExternalTests": 1,
+  "baselineOracleRecords": 26,
+  "externalSemanticMutants": 4,
+  "testFiles": [
+    "src/app/infected-browser/committed-presentation-forwarding.test.ts",
+    "src/app/infected-preplay/committed-presentation-consumer.test.ts",
+    "src/app/infected-preplay/committed-presentation-lifecycle.test.ts",
+    "src/app/infected-preplay/committed-presentation.test.ts",
+    "src/state/residence-session/player-committed-presentation-native.test.ts",
+    "src/state/residence-session/player-committed-presentation-privacy.test.ts",
+    "src/state/residence-session/player-committed-presentation.test.ts"
+  ],
+  "cases": [
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K01 explicit metal-pipe-basic-attack mapping reads no label/trace/identity 3ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K01 explicit metal-pipe-charged-strike mapping reads no label/trace/identity 0ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K01 explicit temporary-attack mapping reads no label/trace/identity 0ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K01 explicit defend mapping reads no label/trace/identity 0ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K01 explicit escape mapping reads no label/trace/identity 0ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K01 explicit use-quick-slot-item mapping reads no label/trace/identity 0ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K01 future combat enum and noncombat never acquire a generic action 0ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-native.test.ts > B1 facade native payment and parsed action authority > K06 last-durability pays the real last resource once and rejects the stale request 330ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade basic equals pre-edit baseline after only the new property is removed 363ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native basic has exactly one returned record 368ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K08 K10 save failure, continuation, retry and readonly calls never replay or consume an extra ordinal 497ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-consumer.test.ts > B1 K14 TEST-only finite reference consumer > real tokens are accepted in order once; cancel, skip and reduced consume without any gameplay callbacks 452ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade signature equals pre-edit baseline after only the new property is removed 169ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native signature has exactly one returned record 173ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-consumer.test.ts > B1 K14 TEST-only finite reference consumer > scope replacement rejects delayed old results and callbacks, even with identical serialized empty scopes 224ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-privacy.test.ts > B1 K15 whole-output native noninterference, not a field-name scan > different native execution/seed/item/battle identities compare under one-to-one scope renaming 829ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-consumer.test.ts > B1 K14 TEST-only finite reference consumer > unmount/view-switch/current-owner invalidation only cancels local presentation; the real commit stays 152ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade defend equals pre-edit baseline after only the new property is removed 152ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-native.test.ts > B1 facade native payment and parsed action authority > K06 quick pays the real last resource once and rejects the stale request 198ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-native.test.ts > B1 facade native payment and parsed action authority > K01 translated identical labels cannot classify different original opaque choices 321ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native temporary has exactly one returned record 164ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade retreat equals pre-edit baseline after only the new property is removed 144ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native defend has exactly one returned record 160ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K02 K11 doubled subscribers, throwing listeners and reentry preserve busy/stable and one direct payload 159ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-browser/committed-presentation-forwarding.test.ts > B1 K13 unchanged BrowserOwner native headless forwarding and ownership > execute/executeDraft return the very controller object; confirm also forwards unchanged on its real noncombat path 752ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native retreat has exactly one returned record 121ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-privacy.test.ts > B1 K15 whole-output native noninterference, not a field-name scan > same approved current band with hidden progress/exposure has identical complete before/after/result/payload 284ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K09 executeDraft and a real protected combat confirm transport only their actual commit 366ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade quick equals pre-edit baseline after only the new property is removed 131ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade temporary equals pre-edit baseline after only the new property is removed 95ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K01 K02 K04 native quick has exactly one returned record 106ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade two-responses equals pre-edit baseline after only the new property is removed 213ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-browser/committed-presentation-forwarding.test.ts > B1 K13 unchanged BrowserOwner native headless forwarding and ownership > suspend invalidates old controls and late payload, reacquisition is a new scope with ordinal zero 332ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K09 cancelled, copied, cross-controller and stale real combat confirmations have no payload 162ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K05 native eight-defend temporary attack has two private responses but one public record 214ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K12 five real v4 cold stops bootstrap/sync without any action, saved token or stock 213ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade last-durability equals pre-edit baseline after only the new property is removed 106ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K07 victory: null after-stage follows the actual stop, not an inferred win 133ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade victory equals pre-edit baseline after only the new property is removed 152ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-browser/committed-presentation-forwarding.test.ts > B1 K13 unchanged BrowserOwner native headless forwarding and ownership > dispose invalidates old controls and late payload, reacquisition is a new scope with ordinal zero 299ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-privacy.test.ts > B1 K15 whole-output native noninterference, not a field-name scan > same-stage different real enemy HP after native retreat/repair/rest/reentry preserves the entire payload 615ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K07 death: null after-stage follows the actual stop, not an inferred win 136ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K05 K08 missing safe prestate consumes no ordinal; a later supported real return starts at zero 118ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade death equals pre-edit baseline after only the new property is removed 123ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K05 program failures before execution and after a real commit throw visibly without token or automatic action retry 259ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation-lifecycle.test.ts > B1 issuance belongs only to the completed direct return > K05 captures fresh pure query in the synchronous window rather than stale feed snapshot 130ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K07 both-zero: null after-stage follows the actual stop, not an inferred win 183ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-browser/committed-presentation-forwarding.test.ts > B1 K13 unchanged BrowserOwner native headless forwarding and ownership > lost-lock invalidates old controls and late payload, reacquisition is a new scope with ordinal zero 321ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-browser/committed-presentation-forwarding.test.ts > B1 K13 unchanged BrowserOwner native headless forwarding and ownership > dispose during post-commit stable notification may leave a direct return, but TEST consumer drops it without rolling back disk 228ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade both-zero equals pre-edit baseline after only the new property is removed 157ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade move-enters-battle equals pre-edit baseline after only the new property is removed 63ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K03 K08 orderly retreat and real reentry bind fresh A facts, not location guessing 165ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade save-failed equals pre-edit baseline after only the new property is removed 101ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller basic equals pre-edit baseline after only the new property is removed 78ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation-privacy.test.ts > B1 K15 whole-output native noninterference, not a field-name scan > K03 known/unknown are actual A facts at the same node; public enemy and stage changes are positive controls 451ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K03 K08 porter retreat and real reentry bind fresh A facts, not location guessing 149ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller signature equals pre-edit baseline after only the new property is removed 76ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller defend equals pre-edit baseline after only the new property is removed 68ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K03 K08 technician retreat and real reentry bind fresh A facts, not location guessing 123ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K03 K16 pure safe projection: unknown opponent, poison extras, unavailable and four stop variants 2ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K08 pure ordinal boundary terminates instead of wrapping; no gameplay or private diagnostic 0ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K04 zero damage in an executed enemy response is not reachable under approved profiles; no profile is changed 69ms"
+    },
+    {
+      "passedCaseLine": "✓ src/app/infected-preplay/committed-presentation.test.ts > B1 single completed player-action record > K04 native zero-damage action with no due enemy response still has exactly the initiating record 73ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller retreat equals pre-edit baseline after only the new property is removed 72ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller quick equals pre-edit baseline after only the new property is removed 67ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller temporary equals pre-edit baseline after only the new property is removed 72ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller two-responses equals pre-edit baseline after only the new property is removed 146ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller last-durability equals pre-edit baseline after only the new property is removed 68ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller victory equals pre-edit baseline after only the new property is removed 78ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller death equals pre-edit baseline after only the new property is removed 75ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller both-zero equals pre-edit baseline after only the new property is removed 87ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller move-enters-battle equals pre-edit baseline after only the new property is removed 37ms"
+    },
+    {
+      "passedCaseLine": "✓ src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller save-failed equals pre-edit baseline after only the new property is removed 56ms"
+    }
+  ],
+  "nativeObservedCounters": [
+    {
+      "id": "basic",
+      "action": "basic-attack",
+      "sequenceLength": 1,
+      "counts": {
+        "initial": 0,
+        "depart": 0,
+        "move": 0,
+        "rest": 0,
+        "task": 0,
+        "source": 0,
+        "transfer": 0,
+        "inventory": 0,
+        "medical": 0,
+        "maintenance": 0,
+        "terminal": 0,
+        "combat": 1,
+        "death": 0,
+        "authority": 1,
+        "issue": 1,
+        "verify": 1,
+        "ctb": 1,
+        "ctbPlan": 1,
+        "ctbReduce": 1,
+        "g1Action": 0,
+        "g1Cycle": 0,
+        "g2Move": 0,
+        "g2Rest": 0,
+        "activate": 0,
+        "terminate": 0,
+        "origin": 0,
+        "use": 0,
+        "recipe": 0,
+        "sharedMedical": 0,
+        "sharedMaintenance": 0,
+        "settle": 0,
+        "sharedTerminal": 0,
+        "aggregate": 2,
+        "encode": 1,
+        "decode": 0,
+        "draw": 1,
+        "materials": 0,
+        "coldExpected": 0,
+        "read": 0,
+        "write": 1,
+        "current": 1,
+        "batches": 1,
+        "listener1": 1,
+        "listener2": 1
+      }
+    },
+    {
+      "id": "signature",
+      "action": "signature",
+      "sequenceLength": 1,
+      "counts": {
+        "initial": 0,
+        "depart": 0,
+        "move": 0,
+        "rest": 0,
+        "task": 0,
+        "source": 0,
+        "transfer": 0,
+        "inventory": 0,
+        "medical": 0,
+        "maintenance": 0,
+        "terminal": 0,
+        "combat": 1,
+        "death": 0,
+        "authority": 1,
+        "issue": 1,
+        "verify": 1,
+        "ctb": 1,
+        "ctbPlan": 1,
+        "ctbReduce": 1,
+        "g1Action": 0,
+        "g1Cycle": 0,
+        "g2Move": 0,
+        "g2Rest": 0,
+        "activate": 0,
+        "terminate": 0,
+        "origin": 0,
+        "use": 0,
+        "recipe": 0,
+        "sharedMedical": 0,
+        "sharedMaintenance": 0,
+        "settle": 0,
+        "sharedTerminal": 0,
+        "aggregate": 2,
+        "encode": 1,
+        "decode": 0,
+        "draw": 0,
+        "materials": 0,
+        "coldExpected": 0,
+        "read": 0,
+        "write": 1,
+        "current": 1,
+        "batches": 1,
+        "listener1": 1,
+        "listener2": 1
+      }
+    },
+    {
+      "id": "temporary",
+      "action": "temporary-attack",
+      "sequenceLength": 1,
+      "counts": {
+        "initial": 0,
+        "depart": 0,
+        "move": 0,
+        "rest": 0,
+        "task": 0,
+        "source": 0,
+        "transfer": 0,
+        "inventory": 0,
+        "medical": 0,
+        "maintenance": 0,
+        "terminal": 0,
+        "combat": 1,
+        "death": 0,
+        "authority": 1,
+        "issue": 1,
+        "verify": 1,
+        "ctb": 1,
+        "ctbPlan": 1,
+        "ctbReduce": 1,
+        "g1Action": 0,
+        "g1Cycle": 0,
+        "g2Move": 0,
+        "g2Rest": 0,
+        "activate": 0,
+        "terminate": 0,
+        "origin": 0,
+        "use": 0,
+        "recipe": 0,
+        "sharedMedical": 0,
+        "sharedMaintenance": 0,
+        "settle": 0,
+        "sharedTerminal": 0,
+        "aggregate": 2,
+        "encode": 1,
+        "decode": 0,
+        "draw": 1,
+        "materials": 0,
+        "coldExpected": 0,
+        "read": 0,
+        "write": 1,
+        "current": 1,
+        "batches": 1,
+        "listener1": 1,
+        "listener2": 1
+      }
+    },
+    {
+      "id": "defend",
+      "action": "defend",
+      "sequenceLength": 1,
+      "counts": {
+        "initial": 0,
+        "depart": 0,
+        "move": 0,
+        "rest": 0,
+        "task": 0,
+        "source": 0,
+        "transfer": 0,
+        "inventory": 0,
+        "medical": 0,
+        "maintenance": 0,
+        "terminal": 0,
+        "combat": 1,
+        "death": 0,
+        "authority": 1,
+        "issue": 1,
+        "verify": 1,
+        "ctb": 1,
+        "ctbPlan": 1,
+        "ctbReduce": 1,
+        "g1Action": 0,
+        "g1Cycle": 0,
+        "g2Move": 0,
+        "g2Rest": 0,
+        "activate": 0,
+        "terminate": 0,
+        "origin": 0,
+        "use": 0,
+        "recipe": 0,
+        "sharedMedical": 0,
+        "sharedMaintenance": 0,
+        "settle": 0,
+        "sharedTerminal": 0,
+        "aggregate": 2,
+        "encode": 1,
+        "decode": 0,
+        "draw": 1,
+        "materials": 0,
+        "coldExpected": 0,
+        "read": 0,
+        "write": 1,
+        "current": 1,
+        "batches": 1,
+        "listener1": 1,
+        "listener2": 1
+      }
+    },
+    {
+      "id": "retreat",
+      "action": "retreat",
+      "sequenceLength": 1,
+      "counts": {
+        "initial": 0,
+        "depart": 0,
+        "move": 0,
+        "rest": 0,
+        "task": 0,
+        "source": 0,
+        "transfer": 0,
+        "inventory": 0,
+        "medical": 0,
+        "maintenance": 0,
+        "terminal": 0,
+        "combat": 1,
+        "death": 0,
+        "authority": 1,
+        "issue": 1,
+        "verify": 1,
+        "ctb": 1,
+        "ctbPlan": 1,
+        "ctbReduce": 1,
+        "g1Action": 0,
+        "g1Cycle": 0,
+        "g2Move": 0,
+        "g2Rest": 0,
+        "activate": 0,
+        "terminate": 0,
+        "origin": 0,
+        "use": 0,
+        "recipe": 0,
+        "sharedMedical": 0,
+        "sharedMaintenance": 0,
+        "settle": 0,
+        "sharedTerminal": 0,
+        "aggregate": 2,
+        "encode": 1,
+        "decode": 0,
+        "draw": 1,
+        "materials": 0,
+        "coldExpected": 0,
+        "read": 0,
+        "write": 1,
+        "current": 1,
+        "batches": 1,
+        "listener1": 1,
+        "listener2": 1
+      }
+    },
+    {
+      "id": "quick",
+      "action": "quick-use",
+      "sequenceLength": 1,
+      "counts": {
+        "initial": 0,
+        "depart": 0,
+        "move": 0,
+        "rest": 0,
+        "task": 0,
+        "source": 0,
+        "transfer": 0,
+        "inventory": 0,
+        "medical": 0,
+        "maintenance": 0,
+        "terminal": 0,
+        "combat": 1,
+        "death": 0,
+        "authority": 1,
+        "issue": 1,
+        "verify": 1,
+        "ctb": 1,
+        "ctbPlan": 1,
+        "ctbReduce": 1,
+        "g1Action": 0,
+        "g1Cycle": 0,
+        "g2Move": 0,
+        "g2Rest": 0,
+        "activate": 0,
+        "terminate": 0,
+        "origin": 0,
+        "use": 1,
+        "recipe": 0,
+        "sharedMedical": 0,
+        "sharedMaintenance": 0,
+        "settle": 0,
+        "sharedTerminal": 0,
+        "aggregate": 2,
+        "encode": 1,
+        "decode": 0,
+        "draw": 1,
+        "materials": 0,
+        "coldExpected": 0,
+        "read": 0,
+        "write": 1,
+        "current": 1,
+        "batches": 1,
+        "listener1": 1,
+        "listener2": 1
+      }
+    },
+    {
+      "responses": 2,
+      "publicRecords": 1,
+      "counts": {
+        "initial": 0,
+        "depart": 0,
+        "move": 0,
+        "rest": 0,
+        "task": 0,
+        "source": 0,
+        "transfer": 0,
+        "inventory": 0,
+        "medical": 0,
+        "maintenance": 0,
+        "terminal": 0,
+        "combat": 1,
+        "death": 0,
+        "authority": 1,
+        "issue": 1,
+        "verify": 1,
+        "ctb": 1,
+        "ctbPlan": 1,
+        "ctbReduce": 1,
+        "g1Action": 0,
+        "g1Cycle": 0,
+        "g2Move": 0,
+        "g2Rest": 0,
+        "activate": 0,
+        "terminate": 0,
+        "origin": 0,
+        "use": 0,
+        "recipe": 0,
+        "sharedMedical": 0,
+        "sharedMaintenance": 0,
+        "settle": 0,
+        "sharedTerminal": 0,
+        "aggregate": 2,
+        "encode": 1,
+        "decode": 0,
+        "draw": 3,
+        "materials": 0,
+        "coldExpected": 0,
+        "read": 0,
+        "write": 1,
+        "current": 1,
+        "batches": 1,
+        "listener1": 1,
+        "listener2": 1
+      }
+    }
+  ],
+  "noSummingAcrossRepeatedRuns": true
+}

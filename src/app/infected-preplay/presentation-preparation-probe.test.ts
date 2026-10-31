@@ -12,7 +12,7 @@ describe('B TEST-only controller and BrowserControls source gaps', () => {
     h.app.subscribe(() => snapshots.push(h.app.getSnapshot().status))
     o.clear(); h.faults.write = true
     const result = commit(h.app, { action: appChoose(h.app, 'combat', '金属管攻击') })
-    expect(Object.keys(result).sort()).toEqual(['kind', 'snapshot'])
+    expect(Object.keys(result).sort()).toEqual(['kind', 'presentation', 'snapshot'])
     expect(result.snapshot.feed).toHaveLength(1)
     expect(Object.keys(result.snapshot.feed[0]).sort()).toEqual(['kind', 'ordinal', 'text'])
     expect(appReady(h.app).persistence.feedback).toBe('save-failed')

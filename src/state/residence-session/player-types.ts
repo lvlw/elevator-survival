@@ -39,7 +39,9 @@ export type PlayerView = PlayerReadyView | Readonly<{ status: 'unbootstrapped' |
   reason: 'not-started' | 'no-save' | 'read-failed' | 'load-blocked' | 'transaction-in-progress' | 'projection-unavailable';
   persistence: Readonly<{ feedback: 'not-attempted' | 'saved' | 'save-failed' }> }>
 export type PlayerPreview = Readonly<{ kind: 'available' | 'unavailable' | 'invalid-selection' | 'unknown'; cost: number | null }>
-export type PlayerExecution = Readonly<{ kind: 'committed' | 'rejected'; view: PlayerView; preview: PlayerPreview | null }>
+export type PublicCombatAction = 'basic-attack' | 'signature' | 'temporary-attack' | 'defend' | 'retreat' | 'quick-use'
+export type PlayerExecution = Readonly<{ kind: 'committed' | 'rejected'; view: PlayerView; preview: PlayerPreview | null;
+  committedAction?: Readonly<{ action: PublicCombatAction }> }>
 export type PlayerSession = Readonly<{ query(): PlayerView; setup(): Readonly<{ tools: readonly string[]; specialties: readonly string[] }>;
   preview(request: unknown): PlayerPreview; resolve(request: unknown): PlayerPreview;
   execute(request: unknown): PlayerExecution; retrySave(): PlayerView;

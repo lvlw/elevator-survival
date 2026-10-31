@@ -1,0 +1,116 @@
+{
+  "task_id": "ENG-WORLD-COMMITTED-PRESENTATION-B1-001",
+  "version": "1.0",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+  "start_tree": "b2ffbddc453bfd93077359c5434d5a010473b745",
+  "runtime_same_as": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+  "work_branch": "feature/world-committed-presentation-b1-001",
+  "allowed_existing_production_edits": [
+    "src/state/residence-session/player-types.ts",
+    "src/state/residence-session/player-facade.ts",
+    "src/app/infected-preplay/types.ts",
+    "src/app/infected-preplay/controller.ts"
+  ],
+  "allowed_existing_test_edits": [
+    {
+      "path": "src/state/residence-session/player-motion-probe-fixtures.ts",
+      "mode": "only exact key-set successor adaptation per T10; existing other assertions/fixtures/counts protected"
+    },
+    {
+      "path": "src/app/infected-preplay/presentation-preparation-probe.test.ts",
+      "mode": "only exact key-set successor adaptation per T10; existing other assertions/fixtures/counts protected"
+    }
+  ],
+  "allowed_existing_document_edits": [
+    {
+      "path": "docs/governance/world-baseline-001/current-state.md",
+      "mode": "only two literal replacements",
+      "replacements": [
+        [
+          "初配钢管/外套",
+          "初配金属管/外套"
+        ],
+        [
+          "速效绷带1",
+          "快捷位绷带1"
+        ]
+      ],
+      "all_other_bytes_protected": true
+    }
+  ],
+  "allowed_new_production_files": [
+    "src/state/residence-session/player-committed-presentation.ts",
+    "src/app/infected-preplay/committed-presentation.ts"
+  ],
+  "allowed_new_test_files": [
+    "src/state/residence-session/player-committed-presentation.test.ts",
+    "src/state/residence-session/player-committed-presentation-privacy.test.ts",
+    "src/state/residence-session/player-committed-presentation-native.test.ts",
+    "src/state/residence-session/player-committed-presentation-test-fixtures.ts",
+    "src/app/infected-preplay/committed-presentation.test.ts",
+    "src/app/infected-preplay/committed-presentation-lifecycle.test.ts",
+    "src/app/infected-preplay/committed-presentation-noninterference.test.ts",
+    "src/app/infected-preplay/committed-presentation-consumer.test.ts",
+    "src/app/infected-preplay/committed-presentation-test-fixtures.ts",
+    "src/app/infected-browser/committed-presentation-forwarding.test.ts"
+  ],
+  "allowed_new_document_prefix": "docs/engineering/world-integration/committed-presentation-b1-001/",
+  "input_archive_prefix": "docs/engineering/world-integration/committed-presentation-b1-001/inputs/",
+  "optional_new_files": "Whitelist grants maximum permissible locations, not a required file/test count. Create only needed files. If already present at exact base, stop before overwriting.",
+  "protected": [
+    "all core/** runtime and existing tests",
+    "all other src/**",
+    "all public/** and design art/prototypes/catalogs",
+    "all existing rules/DEC/UIR/content/parameters/contracts/archived evidence",
+    "all existing governance docs except two literal replacements",
+    "package.json",
+    "package-lock.json",
+    "all configuration and scripts/**",
+    ".github/**",
+    "AGENTS.md"
+  ],
+  "git": {
+    "create_work_branch": true,
+    "normal_commit": true,
+    "normal_push_to_work_branch_only": true,
+    "merge": false,
+    "force_push": false,
+    "amend": false,
+    "rebase": false,
+    "delete_or_rename_refs": false,
+    "main_push": false,
+    "old_branch_push": false,
+    "baseline_move": false,
+    "tag_write": false,
+    "pr_or_release_create": false
+  },
+  "verification": {
+    "start": "npm run test:run on exact base; record actual result, do not use historical4725 as execution",
+    "end": "new targeted suites + actual existing related suites/E03 + npm run check with unchanged defaults",
+    "baseline_evidence": "prior CI177 323/4725 is reference, not new task baseline",
+    "forbidden_test_workarounds": [
+      "skip/delete/weaken old assertions",
+      "change global timeout or workers",
+      "change CI or package scripts",
+      "arbitrary state/HP/RNG mutation to manufacture native cases"
+    ]
+  },
+  "not_authorized": [
+    "B2 detailed response knowledge",
+    "C UI/production consumer/animation/theme/art",
+    "core/S/store/save/expected/browser owner mutation",
+    "dependency audit remediation or upgrades/new paid tool",
+    "remote deployment/profile/save manipulations",
+    "main merge/push or old ref changes",
+    "power or scheduled actions"
+  ],
+  "model": {
+    "recommended": "GPT-6.1 Sol",
+    "reasoning": "极高/xhigh",
+    "speed": "普通/Standard",
+    "actual_configuration": "NOT_INDEPENDENTLY_VERIFIED",
+    "fallback": "If unavailable use current actually available coding model with recorded effort; do not invent availability or silently buy speed/credits"
+  },
+  "stop": "exact-SHA B1 transport/projection review; no auto B2/C or release"
+}

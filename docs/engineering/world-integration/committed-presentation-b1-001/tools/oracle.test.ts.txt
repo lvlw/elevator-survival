@@ -1,0 +1,61 @@
+// TEST-ONLY: capture before any B1 production edit; synthetic fixture saves are digested, not exported.
+import { it, expect, vi } from 'vitest'
+import { createHash } from 'node:crypto'
+import { writeFileSync } from 'node:fs'
+import { execFileSync } from 'node:child_process'
+import { entered, fixture } from 'E:/projects/elevator-survival/src/state/residence-session/combat-test-fixtures'
+import { fromValue, ready, allActions, normalize } from 'E:/projects/elevator-survival/src/state/residence-session/player-test-fixtures'
+import { observe } from 'E:/projects/elevator-survival/src/state/residence-session/combat-test-observers'
+import { readCombatValue } from 'E:/projects/elevator-survival/src/core/residence-combat/validation'
+import { simultaneous } from 'E:/projects/elevator-survival/src/state/residence-save/combat-review-simultaneous-fixtures'
+import { createPreplayController } from 'E:/projects/elevator-survival/src/app/infected-preplay/controller'
+
+const base = '12186083a8791e26b4e87f21ab1767d3ae4e4a58'
+const digest = (v: unknown) => createHash('sha256').update(typeof v === 'string' ? v : JSON.stringify(v)).digest('hex')
+const cases = ['basic', 'signature', 'defend', 'retreat', 'quick', 'temporary', 'two-responses', 'last-durability', 'victory', 'death', 'both-zero', 'move-enters-battle', 'save-failed'] as const
+type Case = typeof cases[number]
+function setup(id: Case) {
+  const pair = id === 'both-zero' ? simultaneous() : null
+  const f = pair?.h ?? (id === 'move-enters-battle' ? fixture() : entered(id === 'two-responses' ? 'technician' : 'orderly',
+    id === 'quick' ? { hp: 10 } : id === 'death' ? { hp: 1 } : {}))
+  let value = pair?.beforeLast ?? f.value
+  if (['temporary', 'two-responses', 'last-durability'].includes(id)) {
+    const weapon = value.carried.equipment.weapon!.instanceId
+    value = readCombatValue({ ...value, itemStates: { states: value.itemStates.states.map(s => s.instanceId === weapon ?
+      { ...s, resource: { kind: 'durability', current: id === 'last-durability' ? 1 : 0 } } : s) } }, f.deps)
+  }
+  if (id === 'two-responses') for (let n = 0; n < 8; n++) value = f.action(value, { kind: 'defend' }).snapshot
+  if (id === 'victory') for (const kind of ['metal-pipe-charged-strike', 'metal-pipe-basic-attack'] as const) value = f.action(value, { kind }).snapshot
+  const h = fromValue(value, f.deps)
+  const label = id === 'signature' || id === 'last-durability' ? '蓄力打击' : id === 'defend' || id === 'death' ? '防御' :
+    id === 'retreat' ? '退却' : id === 'temporary' || id === 'two-responses' ? '临时攻击' : id === 'quick' ? '使用快捷物品' :
+      id === 'move-enters-battle' ? '大厅' : '金属管攻击'
+  const action = allActions(ready(h.player)).find(a => a.family === (id === 'move-enters-battle' ? 'move' : 'combat') && a.label.startsWith(label))!
+  expect(action).toBeDefined()
+  return { h, request: { action: action.selector } }
+}
+it('captures exact baseline public results and full current/save digests with native counts', () => {
+  expect(execFileSync('git', ['rev-parse', 'HEAD'], { cwd: 'E:/projects/elevator-survival', encoding: 'utf8' }).trim()).toBe(base)
+  const records: unknown[] = []
+  for (const layer of ['facade', 'controller'] as const) for (const id of cases) {
+    try {
+      const { h, request } = setup(id), app = layer === 'controller' ? createPreplayController(h) : null
+      const before = normalize(h.player.query()), currentBefore = digest(h.owner.getState().current), diskBefore = digest(h.disk())
+      const observer = observe(h), statuses: string[] = []
+      app?.subscribe(() => statuses.push(app.getSnapshot().status))
+      observer.clear(); h.dispatch.mockClear()
+      if (id === 'save-failed') h.faults.write = true
+      let result = app ? app.execute(request) : h.player.execute(request)
+      if (app && result.kind === 'confirmation-required') result = app.confirm(result.confirmation!)
+      expect(result.kind).toBe('committed')
+      expect(h.dispatch).toHaveBeenCalledTimes(1)
+      expect(observer.counts()).toMatchObject({ current: 1, write: 1, batches: 1 })
+      records.push({ layer, id, before, currentBefore, diskBefore, result: normalize(result),
+        currentAfter: digest(h.owner.getState().current), diskAfter: digest(h.disk()), counts: observer.counts(),
+        dispatches: h.dispatch.mock.calls.length, controllerNotifications: statuses })
+    } finally { vi.restoreAllMocks() }
+  }
+  writeFileSync('C:/Users/zjl/.codex/visualizations/2026/10/30/01a18dbc-1d81-7312-99ab-903daead5d63/ENG-WORLD-COMMITTED-PRESENTATION-B1-001-work/BASELINE-COMPATIBILITY.json', JSON.stringify({ baseSHA: base,
+    kind: 'TEST_ONLY_CAPTURED_BEFORE_B1_EDIT', baselineCodeIsOracle: true, records }, null, 2) + '\n')
+  console.log('BASELINE-ORACLE ' + records.length + ' native facade/controller records captured')
+}, 30000)

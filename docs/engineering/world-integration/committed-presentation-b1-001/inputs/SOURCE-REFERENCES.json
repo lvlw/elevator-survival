@@ -1,0 +1,150 @@
+{
+  "kind": "MAINLINE_READ_LOCATORS_NOT_FULL_REPOSITORY_ARCHIVE",
+  "read_date": "2026-10-31",
+  "base_sha": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+  "sources": [
+    {
+      "path": "src/state/residence-session/player-facade.ts",
+      "ref": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "git_blob": "2f03ef2d2cb5873be854a7b98b6396c6c899a02e",
+      "read_extent": "完整execute/dispatch/sync返回及subscribe",
+      "url": "https://github.com/lvlw/elevator-survival/blob/12186083a8791e26b4e87f21ab1767d3ae4e4a58/src/state/residence-session/player-facade.ts"
+    },
+    {
+      "path": "src/state/residence-session/player-types.ts",
+      "ref": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "git_blob": "576f4072df54ef7558b7f1aebd6b25d1f8398cd4",
+      "read_extent": "完整PlayerExecution/PlayerView/opponent闭合类型",
+      "url": "https://github.com/lvlw/elevator-survival/blob/12186083a8791e26b4e87f21ab1767d3ae4e4a58/src/state/residence-session/player-types.ts"
+    },
+    {
+      "path": "src/app/infected-preplay/controller.ts",
+      "ref": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "git_blob": "500a888a229fd34fc30419d78cc99f1fdcea886b",
+      "read_extent": "完整run/adopt/executeCaptured/direct return与当前scope",
+      "url": "https://github.com/lvlw/elevator-survival/blob/12186083a8791e26b4e87f21ab1767d3ae4e4a58/src/app/infected-preplay/controller.ts"
+    },
+    {
+      "path": "src/app/infected-preplay/types.ts",
+      "ref": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "git_blob": "cfe84e9721c0ee26fef18031c28555a4d1db226a",
+      "read_extent": "完整PreplayResult/Snapshot/ports",
+      "url": "https://github.com/lvlw/elevator-survival/blob/12186083a8791e26b4e87f21ab1767d3ae4e4a58/src/app/infected-preplay/types.ts"
+    },
+    {
+      "path": "src/app/infected-browser/owner.ts",
+      "ref": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "git_blob": "97c3d8e59d017a420944a321113e24a62aa6c525",
+      "read_extent": "完整freshContext透传、guard、suspend/dispose",
+      "url": "https://github.com/lvlw/elevator-survival/blob/12186083a8791e26b4e87f21ab1767d3ae4e4a58/src/app/infected-browser/owner.ts"
+    },
+    {
+      "path": "src/state/residence-session/player-commands.ts",
+      "ref": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "git_blob": "a2367c7aa5fd2865a82c767014d34ab3e67e72a2",
+      "read_extent": "完整原请求到已解析command；禁止UIlabel分类",
+      "url": "https://github.com/lvlw/elevator-survival/blob/12186083a8791e26b4e87f21ab1767d3ae4e4a58/src/state/residence-session/player-commands.ts"
+    },
+    {
+      "path": "src/state/residence-session/combat-types.ts",
+      "ref": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "git_blob": "5e6194b70f7c07f3078fbf6d37e33e32373d9cc3",
+      "read_extent": "完整原commit型与Persistence定义关系",
+      "url": "https://github.com/lvlw/elevator-survival/blob/12186083a8791e26b4e87f21ab1767d3ae4e4a58/src/state/residence-session/combat-types.ts"
+    },
+    {
+      "path": "src/state/residence-session/combat-commands.ts",
+      "ref": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "git_blob": "8dbbab0167caa6e5924091866cf6a780a1858d90",
+      "read_extent": "完整typed family/combat严格结构",
+      "url": "https://github.com/lvlw/elevator-survival/blob/12186083a8791e26b4e87f21ab1767d3ae4e4a58/src/state/residence-session/combat-commands.ts"
+    },
+    {
+      "path": "src/core/residence-combat/player-query.ts",
+      "ref": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "git_blob": "ad4dabb086d671177564f60fecd0f63c62c47875",
+      "read_extent": "原公开阶段和相对时序，只读不改",
+      "url": "https://github.com/lvlw/elevator-survival/blob/12186083a8791e26b4e87f21ab1767d3ae4e4a58/src/core/residence-combat/player-query.ts"
+    },
+    {
+      "path": "src/state/residence-session/player-motion-probe-fixtures.ts",
+      "ref": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "git_blob": "5f60d69c9f8927c3345840351c05045adf5f86bc",
+      "read_extent": "完整原观察helper，发现execution精确keys适配点",
+      "url": "https://github.com/lvlw/elevator-survival/blob/12186083a8791e26b4e87f21ab1767d3ae4e4a58/src/state/residence-session/player-motion-probe-fixtures.ts"
+    },
+    {
+      "path": "src/state/residence-session/player-motion-source-probe.test.ts",
+      "ref": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "git_blob": "e9b519ba05771c4a92c3e27a32a519c22cc26184",
+      "read_extent": "完整原双响应/支付/死亡/保存观察，保持不改",
+      "url": "https://github.com/lvlw/elevator-survival/blob/12186083a8791e26b4e87f21ab1767d3ae4e4a58/src/state/residence-session/player-motion-source-probe.test.ts"
+    },
+    {
+      "path": "src/app/infected-preplay/presentation-preparation-probe.test.ts",
+      "ref": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "git_blob": "dbd94ece35ad7a0e4372cc2642225451b6b7a09f",
+      "read_extent": "完整原controller/BrowserControls观察，首个combat键集适配",
+      "url": "https://github.com/lvlw/elevator-survival/blob/12186083a8791e26b4e87f21ab1767d3ae4e4a58/src/app/infected-preplay/presentation-preparation-probe.test.ts"
+    },
+    {
+      "path": "docs/governance/world-baseline-001/asset-guide.md",
+      "ref": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "git_blob": "b3033e4aa3a7bfffb0fd931ef01db082cf01b49c",
+      "read_extent": "完整19逻辑风险及未做像素验收",
+      "url": "https://github.com/lvlw/elevator-survival/blob/12186083a8791e26b4e87f21ab1767d3ae4e4a58/docs/governance/world-baseline-001/asset-guide.md"
+    },
+    {
+      "path": "docs/governance/world-baseline-001/evidence-guide.md",
+      "ref": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "git_blob": "3ad3a2412b5cf38a68ca62bc7da62dfec44898d1",
+      "read_extent": "完整三个最终审查原件缺口与身份分层",
+      "url": "https://github.com/lvlw/elevator-survival/blob/12186083a8791e26b4e87f21ab1767d3ae4e4a58/docs/governance/world-baseline-001/evidence-guide.md"
+    },
+    {
+      "path": "docs/governance/world-baseline-001/current-state.md",
+      "ref": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "git_blob": "45ecfb1e944bba0d67c61ce3cfdbdc4577c05bac",
+      "read_extent": "实际交付字节已绑定准确终点tree；仅N01两处字面修正",
+      "url": "https://github.com/lvlw/elevator-survival/blob/12186083a8791e26b4e87f21ab1767d3ae4e4a58/docs/governance/world-baseline-001/current-state.md"
+    }
+  ],
+  "inherited_read_sources": [
+    {
+      "path": "docs/engineering/world-integration/presentation-prep-001/B-COMMITTED-PRESENTATION-CANDIDATE.md",
+      "read_ref": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "git_blob": "05e3a5e1338dd9d900f0de55e27d947d78b3fa17",
+      "status": "候选；当前治理完整tree证明原字节不变，本包仅局部定稿B1"
+    },
+    {
+      "path": "AGENTS.md",
+      "read_ref": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "git_blob": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "status": "实际已读；开工仍须按准确base重新读取"
+    },
+    {
+      "path": "docs/05-design-decisions.md",
+      "read_ref": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "git_blob": "2fd80b12fb57285dd7d1bbe89e4ea51353710ff8",
+      "status": "DEC049—053正式定位，治理未改；开工按任务相关条款实读"
+    }
+  ],
+  "not_claimed": [
+    "全量源码本轮独立重审",
+    "所有旧审查原件均已获得",
+    "用户磁盘直接访问",
+    "本轮真实浏览器/像素验收"
+  ],
+  "public_model_sources": [
+    {
+      "url": "https://learn.chatgpt.com/docs/models?surface=web",
+      "read_date": "2026-10-31",
+      "use": "模型/客户端提供范围；用户实时菜单未核验"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+      "read_date": "2026-10-31",
+      "use": "复杂编码与xhigh支持；非账户实际配置证明"
+    }
+  ]
+}

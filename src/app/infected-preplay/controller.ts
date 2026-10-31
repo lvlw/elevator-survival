@@ -1,15 +1,17 @@
 import { assertCombatSyncFunction } from '../../state/residence-session/combat-composition'
-import type { PlayerView, PlayerRequest } from '../../state/residence-session/player-types'
+import type { PlayerView, PlayerRequest, PlayerExecution } from '../../state/residence-session/player-types'
 import { createDraftStore } from './drafts'
 import { createConfirmationStore } from './confirmation'
 import { appendPreplayFeed, publicActionFeed } from './feed'
 import { preplaySnapshot } from './snapshot'
 import { publicPreplayError, isPlayerBusinessError } from './errors'
 import type { PreplayPorts, PreplayController, PreplayResult, PreplaySnapshot } from './types'
+import { createCommittedPresentationIssuer } from './committed-presentation'
 
 /** The existing S/facade is the only gameplay owner. No storage port or canonical cache. */
 export function createPreplayController(ports: PreplayPorts): PreplayController {
   const drafts = createDraftStore(), confirmations = createConfirmationStore(), listeners = new Set<() => void>()
+  const issuePresentation = createCommittedPresentationIssuer()
   let busy = false, notifying = false, scope = ports.preplay.scope(), listenerErrors = 0
   let snapshot: PreplaySnapshot = preplaySnapshot({ status: 'stable', view: ports.player.query(), error: null, draft: null, feed: Object.freeze([]) })
   const notify = () => { notifying = true; try { for (const listener of [...listeners]) { try { listener() } catch { listenerErrors++ } } } finally { notifying = false } }
@@ -54,10 +56,22 @@ export function createPreplayController(ports: PreplayPorts): PreplayController 
     publish({ view: null, status: 'projection-error', draft: null, error: publicPreplayError('projection') })
   })
   function executeCaptured(request: PlayerRequest): PreplayResult {
-    return run(() => {
-      const executed = ports.player.execute(request)
+    let before: PlayerView | null = null, executed: PlayerExecution | null = null
+    let captureFailure: { error: unknown } | null = null
+    const completed = run(() => {
+      // Auxiliary presentation capture must not prevent the original explicit action.
+      try { before = ports.player.query() } catch (error) { captureFailure = { error } }
+      executed = ports.player.execute(request)
+      if (captureFailure) {
+        // Keep the failure observable as uncertainty after native execution, never a false business rejection.
+        const error = captureFailure.error
+        throw isPlayerBusinessError(error) ? new Error('Presentation capture unavailable after execution', { cause: error }) : error
+      }
       return { view: executed.view, committed: executed.kind === 'committed', rejected: executed.kind === 'rejected' }
     })
+    if (completed.kind !== 'committed' || !executed) return completed
+    const presentation = issuePresentation(before, executed)
+    return presentation ? Object.freeze({ kind: completed.kind, snapshot: completed.snapshot, presentation }) : completed
   }
   const execute: PreplayController['execute'] = input => {
     if (busy || notifying || snapshot.status !== 'stable') return result('rejected')

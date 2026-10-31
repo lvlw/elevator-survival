@@ -1,0 +1,24 @@
+执行附件 ENG-WORLD-COMMITTED-PRESENTATION-B1-001。
+
+先在仓库外解压并运行verify-package.py，完整读授权、B1定稿合同、范围JSON、验收矩阵和任务书。
+
+仓库：lvlw/elevator-survival
+准确起点：12186083a8791e26b4e87f21ab1767d3ae4e4a58
+新分支：feature/world-committed-presentation-b1-001
+
+推荐GPT-6.1 Sol／极高（xhigh）／普通Standard；实际配置如实记录。
+本项已授权白名单内详细设计、B1实现、新测试、两处旧观察键集兼容、两处摘要术语纠正、自查修订及本新分支普通commit/push。
+一次完成W0—W4，不需要Owner逐函数确认。
+
+只做六类真实已提交combat动作的安全单记录直接返回、独立临时scope/token与TEST-only消费验证。
+不改core/S/current/保存/expected/browser owner；不接React、动画、主题或图片；不做B2逐击披露或C。
+不把selector scope当呈现scope，不从HP差、Feed、label或raw trace猜动作；不在订阅/retrySave/冷恢复发token。
+保持旧原生支付、死亡、恢复、通知与选择边界；两处旧测试只按合同适配新字段，不删除/skip/放宽其余断言。
+
+开工实跑npm run test:run；完成新测试、原相关回归/E03与默认npm run check。
+不升级依赖、不audit fix、不改CI，不动main/固定baseline/旧分支，不merge/force push/改历史，不部署/关机/定时。
+真正规则/知识/范围冲突停止相关子项并保留证据，其他独立工作继续。
+
+只交一个小型MAINLINE-REVIEW.zip：报告、最终源码/patch、清单/摘要、原始验证与负控、git回执。
+报告准确最终SHA/parent/tree、实际检查与未完成、包路径/大小/SHA256。
+完成即停止，等待主线B1准确SHA实审；不自动进入B2/C或素材采用。

@@ -1,0 +1,5 @@
+export default {
+  root: 'C:/Users/zjl/.codex/visualizations/2026/10/30/01a18dbc-1d81-7312-99ab-903daead5d63/ENG-WORLD-COMMITTED-PRESENTATION-B1-001-work/oracle',
+  resolve: { alias: { vitest: 'E:/projects/elevator-survival/node_modules/vitest/dist/index.js' } },
+  test: { environment: 'node', include: ['oracle.test.ts'] },
+}

@@ -1,0 +1,286 @@
+{
+  "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+  "sources": [
+    {
+      "path": "src/state/residence-session/player-facade.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "2f03ef2d2cb5873be854a7b98b6396c6c899a02e",
+      "gitBytes": 4291,
+      "sha256AtBase": "862c79d34cb12cfc3598712aaa1313b7eb0075ff2a302dac0efe77aada39c0ab",
+      "readExtent": "完整execute/dispatch/sync返回及subscribe",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/state/residence-session/player-types.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "576f4072df54ef7558b7f1aebd6b25d1f8398cd4",
+      "gitBytes": 4701,
+      "sha256AtBase": "767985b566c41fa1555ee7ff97b5649824246d1edd2a0268b80acbd5527385c8",
+      "readExtent": "完整PlayerExecution/PlayerView/opponent闭合类型",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/app/infected-preplay/controller.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "500a888a229fd34fc30419d78cc99f1fdcea886b",
+      "gitBytes": 6642,
+      "sha256AtBase": "cb5a96614a96ae33e103c41665cf2ccc0c1e9bd71f71c742bd74a0f3a1a23a0c",
+      "readExtent": "完整run/adopt/executeCaptured/direct return与当前scope",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/app/infected-preplay/types.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "cfe84e9721c0ee26fef18031c28555a4d1db226a",
+      "gitBytes": 1950,
+      "sha256AtBase": "f48f39974eb505dd310d2a385060737777cb1aca7211c437cd88bc57b1e49c8c",
+      "readExtent": "完整PreplayResult/Snapshot/ports",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/app/infected-browser/owner.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "97c3d8e59d017a420944a321113e24a62aa6c525",
+      "gitBytes": 8407,
+      "sha256AtBase": "d2c1fd40841b9aea10fccc7812a46044115c4e54e271c464849987d5a39e21f3",
+      "readExtent": "完整freshContext透传、guard、suspend/dispose",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/state/residence-session/player-commands.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "a2367c7aa5fd2865a82c767014d34ab3e67e72a2",
+      "gitBytes": 4044,
+      "sha256AtBase": "9be729a6399f0a4eed583cd0b11e00307caa2a2dc612ce32112478718f0e9ffb",
+      "readExtent": "完整原请求到已解析command；禁止UIlabel分类",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/state/residence-session/combat-types.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "5e6194b70f7c07f3078fbf6d37e33e32373d9cc3",
+      "gitBytes": 2451,
+      "sha256AtBase": "16a9996f628a0606c0c18d184e9f1066517c6c6c8150b083906f5e32e6fef8f7",
+      "readExtent": "完整原commit型与Persistence定义关系",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/state/residence-session/combat-commands.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "8dbbab0167caa6e5924091866cf6a780a1858d90",
+      "gitBytes": 4060,
+      "sha256AtBase": "2586066fbda9ad7efbfa06523d6532340855da50d7f027c305f157dd44e727be",
+      "readExtent": "完整typed family/combat严格结构",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/core/residence-combat/player-query.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "ad4dabb086d671177564f60fecd0f63c62c47875",
+      "gitBytes": 2428,
+      "sha256AtBase": "26f207f558ec5dbf37e8be5c208cf11cc2a31c0a274320bef6d3bbfdd9bb36a5",
+      "readExtent": "原公开阶段和相对时序，只读不改",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/state/residence-session/player-motion-probe-fixtures.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "5f60d69c9f8927c3345840351c05045adf5f86bc",
+      "gitBytes": 2148,
+      "sha256AtBase": "46e11e5759779fd0ae202d986e2715e60b25c81409789bd8692e2dd8d9664d2a",
+      "readExtent": "完整原观察helper，发现execution精确keys适配点",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/state/residence-session/player-motion-source-probe.test.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "e9b519ba05771c4a92c3e27a32a519c22cc26184",
+      "gitBytes": 6497,
+      "sha256AtBase": "e4051db40c39a165211499811a59f2e8e43c3b6aef189ea13321ba3cdc41e7c7",
+      "readExtent": "完整原双响应/支付/死亡/保存观察，保持不改",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/app/infected-preplay/presentation-preparation-probe.test.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "dbd94ece35ad7a0e4372cc2642225451b6b7a09f",
+      "gitBytes": 4013,
+      "sha256AtBase": "7dde1f506bde8548da6cbcaa521dbdf0f3375503f480a351e9e7f73d65b50be2",
+      "readExtent": "完整原controller/BrowserControls观察，首个combat键集适配",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "docs/governance/world-baseline-001/asset-guide.md",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "b3033e4aa3a7bfffb0fd931ef01db082cf01b49c",
+      "gitBytes": 1593,
+      "sha256AtBase": "30db8eccc62d42a0e4dfb313c207d429b820574d0e1c6c62e63697e3f2f86bb3",
+      "readExtent": "完整19逻辑风险及未做像素验收",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "docs/governance/world-baseline-001/evidence-guide.md",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "3ad3a2412b5cf38a68ca62bc7da62dfec44898d1",
+      "gitBytes": 2464,
+      "sha256AtBase": "b314f8cd3d4a849e304cc8402e4a90029d81ac6d0e24fc2a5688001948044a7a",
+      "readExtent": "完整三个最终审查原件缺口与身份分层",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "docs/governance/world-baseline-001/current-state.md",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "45ecfb1e944bba0d67c61ce3cfdbdc4577c05bac",
+      "gitBytes": 4931,
+      "sha256AtBase": "d7eacc8b3082dc1f3ef3b9112f4172b2c21c53be8741e01379e4cf3b740312ba",
+      "readExtent": "实际交付字节已绑定准确终点tree；仅N01两处字面修正",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "AGENTS.md",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "gitBytes": 2024,
+      "sha256AtBase": "00c2cad61c99530c1343ca9faad9a32994d67e5ca4aeb991156bb9828e5c501e",
+      "readExtent": "全文重新读取",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "docs/01-game-design-v0.1.md",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "9f1537ed931845601353ffd1f880690c2cdfa77e",
+      "gitBytes": 37753,
+      "sha256AtBase": "20c947930a1a7fca7b97f581b9813213fda3c45cfbea724d5af4a4788b18410b",
+      "readExtent": "产品定位、状态、战斗/保存/架构/当前采纳附记",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "docs/02-vertical-slice.md",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "784db68f16572b7666c3da37a1e39b5ad3b4385b",
+      "gitBytes": 51466,
+      "sha256AtBase": "bd1482a0a04f0b74b935c06bb3d64a963ed410daf36940be3b78d3ab2d61b6fd",
+      "readExtent": "总体验收/战斗/终局/当前新世界附记",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "docs/03-architecture.md",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "72e29fcd0f5efe21493dbd02a66aa130be7cc2d0",
+      "gitBytes": 96483,
+      "sha256AtBase": "586c9960468a4733e2145d8a179ccf75ca9a75a17f24669e89367ab35aa0a9fa",
+      "readExtent": "统一分派/展示/CTB/终局/当前E02到UI附记；大输出截断后所需章节补读",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "docs/05-design-decisions.md",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "2fd80b12fb57285dd7d1bbe89e4ea51353710ff8",
+      "gitBytes": 282147,
+      "sha256AtBase": "68f35a56c754f55b1137314ba41cd7fbbeea88afdcb816690ff52a509c90d6ca",
+      "readExtent": "DEC-049—053完整正式正文，历史局部覆盖保留",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "docs/09-ui-design-record.md",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "216f76d08f91175130603c35125322026bb78262",
+      "gitBytes": 46798,
+      "sha256AtBase": "ef487405761d553bf59da280f7b93563207f77af6173e96ddc1cccf26e1e033d",
+      "readExtent": "当前有效速查及UIR012/013/015完整相关段",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "docs/engineering/world-integration/presentation-prep-001/B-COMMITTED-PRESENTATION-CANDIDATE.md",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "05e3a5e1338dd9d900f0de55e27d947d78b3fa17",
+      "gitBytes": 11034,
+      "sha256AtBase": "ac6d9c5ee1560d1cf4f486120b1125ae32bdfe38c92a71ed9f0c09e7c8a4d159",
+      "readExtent": "全文；仅B1同范围被新合同替代",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "docs/content/infected-residence-core-test-config-v0.1.json",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "db6959ac02bf1e3bf8e816fe2b0d148ced9ca273",
+      "gitBytes": 1417,
+      "sha256AtBase": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9",
+      "readExtent": "实际JSON结构、战斗/身体/初配与终局相关配置；不改参数",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "docs/content/infected-terminal-core-test-config-v0.1.json",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "fa999e7f456414daf6279fd8fbff3cd117394135",
+      "gitBytes": 770,
+      "sha256AtBase": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+      "readExtent": "实际JSON结构、战斗/身体/初配与终局相关配置；不改参数",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "docs/content/infected-world-entry-content-v0.1.json",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "dece5112e546af127943f846d7003e384ff97a21",
+      "gitBytes": 25804,
+      "sha256AtBase": "05dabf10796ee027ea31037641ae91b95fc9346b9b98f032f1b7c99dada88925",
+      "readExtent": "实际JSON结构、战斗/身体/初配与终局相关配置；不改参数",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "docs/content/infected-world-entry-test-config-v0.1.json",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "40ba0e3edd1a13843e40be5f8d420bef6afeb8f0",
+      "gitBytes": 6213,
+      "sha256AtBase": "15624fee92e615e1d4ffcec39d071057b10a8de6ce16408cca0ffb4e94f5d8e6",
+      "readExtent": "实际JSON结构、战斗/身体/初配与终局相关配置；不改参数",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/state/residence-session/combat-session.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "31b05b5a8535d872d5663588dcf3c61cf05cc431",
+      "gitBytes": 7124,
+      "sha256AtBase": "54d558c9c10b825abd4b279c11e274f640d29182bc5fc3c6985d9037da3bdf28",
+      "readExtent": "本次提交/观察/生命周期接缝相关读取",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/state/residence-session/combat-test-fixtures.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "75b04ca972244a95c342cfc2d254147e94c5e997",
+      "gitBytes": 6379,
+      "sha256AtBase": "ac9223ed823857da1bd3ce2f922de5a4354be4462ae0d8d66d6fe5bbabdc84fd",
+      "readExtent": "本次提交/观察/生命周期接缝相关读取",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/state/residence-session/combat-test-observers.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "0b2895e5e33c08966eeaeecb7930452ee6e41207",
+      "gitBytes": 4764,
+      "sha256AtBase": "7a54b8b8bdafdc7de85a1f8d3568c9a9372bc05ae9b395c2cebf3c417abfb0e6",
+      "readExtent": "本次提交/观察/生命周期接缝相关读取",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/core/residence-combat/schema.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "d2f4a5f342b10a4277052319bac2bcd5387a2025",
+      "gitBytes": 3637,
+      "sha256AtBase": "a4650b4021a1cc58d5dcafb07d64b696eb66b061e7c8f74cd50f9b261d34398c",
+      "readExtent": "本次提交/观察/生命周期接缝相关读取",
+      "notWholeRepositoryReaudit": true
+    },
+    {
+      "path": "src/app/infected-browser/lease.ts",
+      "baseSHA": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+      "gitBlobAtBase": "5cf50c7d2a697eb3535fb4fa273f644389708e1b",
+      "gitBytes": 1061,
+      "sha256AtBase": "cf6c29ec9cc4db948ea251e6a2ffc1f473dd40ecd24fd6f14e83c507e9fe1138",
+      "readExtent": "本次提交/观察/生命周期接缝相关读取",
+      "notWholeRepositoryReaudit": true
+    }
+  ],
+  "inputSourceBlobsAllMatch": true,
+  "actualModelAndEffort": "NOT_INDEPENDENTLY_VERIFIED"
+}

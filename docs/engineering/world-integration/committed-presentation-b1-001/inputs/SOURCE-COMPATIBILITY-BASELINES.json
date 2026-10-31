@@ -1,0 +1,36 @@
+{
+  "base_sha": "12186083a8791e26b4e87f21ab1767d3ae4e4a58",
+  "existing_test_changes": [
+    {
+      "path": "src/state/residence-session/player-motion-probe-fixtures.ts",
+      "git_blob": "5f60d69c9f8927c3345840351c05045adf5f86bc",
+      "old_exact_assertion": "expect(Object.keys(execution).sort()).toEqual(['kind', 'preview', 'view'])",
+      "new_exact_assertion": "expect(Object.keys(execution).sort()).toEqual(['committedAction', 'kind', 'preview', 'view'])",
+      "all_other_bytes": "PROTECTED"
+    },
+    {
+      "path": "src/app/infected-preplay/presentation-preparation-probe.test.ts",
+      "git_blob": "dbd94ece35ad7a0e4372cc2642225451b6b7a09f",
+      "old_exact_assertion": "expect(Object.keys(result).sort()).toEqual(['kind', 'snapshot'])",
+      "new_exact_assertion": "expect(Object.keys(result).sort()).toEqual(['kind', 'presentation', 'snapshot'])",
+      "only_match": "standalone assertion in first combat save-failed test; do NOT replace same line substring in third non-combat test",
+      "expected_replacements": 1,
+      "all_other_bytes": "PROTECTED"
+    }
+  ],
+  "nonblocking_document_change": {
+    "path": "docs/governance/world-baseline-001/current-state.md",
+    "git_blob": "45ecfb1e944bba0d67c61ce3cfdbdc4577c05bac",
+    "replacements": [
+      [
+        "初配钢管/外套",
+        "初配金属管/外套"
+      ],
+      [
+        "速效绷带1",
+        "快捷位绷带1"
+      ]
+    ],
+    "all_other_bytes": "PROTECTED"
+  }
+}

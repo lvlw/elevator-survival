@@ -1,0 +1,577 @@
+{
+  "kind": "NORMALIZED_MAINLINE_OBSERVATIONS_NOT_RAW_API_ARCHIVE",
+  "observed_date": "2026-10-31",
+  "repository": "lvlw/elevator-survival",
+  "baseline": {
+    "sha": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+    "parent": "723d547665298463ecd8a8d04c7ed508a1658dc1",
+    "tree": "1f75162b22bcf486796b6c02bc57b3ec38e6616a"
+  },
+  "branches_before": [
+    {
+      "name": "main",
+      "sha": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-world-infected-world-001",
+      "sha": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/mission-lifecycle-core-001",
+      "sha": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-world-entry-002",
+      "sha": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-energy-cycle-core-001",
+      "sha": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-location-core-001",
+      "sha": "d7953bbf96dc842d2953e019f950275cd693bf09",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-session-core-001",
+      "sha": "60e9c30732c5e22cfe9ff58b9b381de64b945180",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-actions-core-001",
+      "sha": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-world-entry-003",
+      "sha": "6438f7a38939297225538cdd68af24201ed7d34f",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-terminal-core-001",
+      "sha": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-terminal-restore-001",
+      "sha": "b9b1e0fee0e779669ca40e088ac9a867016bff82",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-terminal-session-001",
+      "sha": "0921df3f219f368479d1bf3401d8fecddc0d5f71",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-world-entry-004",
+      "sha": "ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-content-supply-core-001",
+      "sha": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-content-supply-restore-001",
+      "sha": "84eb6dff5e9d3238c3e651525b6ed28412132549",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-content-supply-session-001",
+      "sha": "9c3c8a8c97c374bd1def6217c691137f3df10096",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-world-entry-005",
+      "sha": "4166fb25ab2898ca602043fbddacbb88d3444fdf",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-combat-core-001",
+      "sha": "9ada1bd76c768b7bcff676b263e4533854064909",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-combat-restore-001",
+      "sha": "29a018a2ad64f8d5cbe56257381568bf3527cd08",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-combat-session-001",
+      "sha": "713dd376ddb60d20d9afaedaee4505e695f89d94",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/world-route-acceptance-001",
+      "sha": "8cddbdc3243561aaef5eb9a4eb6bd74dcbca11f3",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/world-player-query-001",
+      "sha": "394f59d3c5df2a65ce87186e8988982d76784a71",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-world-entry-006",
+      "sha": "ff2b79f332c5ea2bec493eb5e166dcee6ba667eb",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/world-preplay-foundation-001",
+      "sha": "bc60f24cc16625a25ad56b0b917da63b16f29f56",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/world-browser-owner-001",
+      "sha": "0ac23bc3654d69c3d0a6289d5d9e97ce30c69164",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/world-low-asset-ui-001",
+      "sha": "6bb43c8861b7c3dd21499211fdb0e646e48bba20",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-ui-v1-001",
+      "sha": "956da8065030ccea15256e49bd927a4e6a71942f",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-ui-readiness-001",
+      "sha": "723d547665298463ecd8a8d04c7ed508a1658dc1",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/world-presentation-prep-001",
+      "sha": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "protected_flag_observed": false
+    }
+  ],
+  "branches_after": [
+    {
+      "name": "main",
+      "sha": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-world-infected-world-001",
+      "sha": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/mission-lifecycle-core-001",
+      "sha": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-world-entry-002",
+      "sha": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-energy-cycle-core-001",
+      "sha": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-location-core-001",
+      "sha": "d7953bbf96dc842d2953e019f950275cd693bf09",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-session-core-001",
+      "sha": "60e9c30732c5e22cfe9ff58b9b381de64b945180",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-actions-core-001",
+      "sha": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-world-entry-003",
+      "sha": "6438f7a38939297225538cdd68af24201ed7d34f",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-terminal-core-001",
+      "sha": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-terminal-restore-001",
+      "sha": "b9b1e0fee0e779669ca40e088ac9a867016bff82",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-terminal-session-001",
+      "sha": "0921df3f219f368479d1bf3401d8fecddc0d5f71",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-world-entry-004",
+      "sha": "ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-content-supply-core-001",
+      "sha": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-content-supply-restore-001",
+      "sha": "84eb6dff5e9d3238c3e651525b6ed28412132549",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-content-supply-session-001",
+      "sha": "9c3c8a8c97c374bd1def6217c691137f3df10096",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-world-entry-005",
+      "sha": "4166fb25ab2898ca602043fbddacbb88d3444fdf",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-combat-core-001",
+      "sha": "9ada1bd76c768b7bcff676b263e4533854064909",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-combat-restore-001",
+      "sha": "29a018a2ad64f8d5cbe56257381568bf3527cd08",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/residence-combat-session-001",
+      "sha": "713dd376ddb60d20d9afaedaee4505e695f89d94",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/world-route-acceptance-001",
+      "sha": "8cddbdc3243561aaef5eb9a4eb6bd74dcbca11f3",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/world-player-query-001",
+      "sha": "394f59d3c5df2a65ce87186e8988982d76784a71",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-world-entry-006",
+      "sha": "ff2b79f332c5ea2bec493eb5e166dcee6ba667eb",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/world-preplay-foundation-001",
+      "sha": "bc60f24cc16625a25ad56b0b917da63b16f29f56",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/world-browser-owner-001",
+      "sha": "0ac23bc3654d69c3d0a6289d5d9e97ce30c69164",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/world-low-asset-ui-001",
+      "sha": "6bb43c8861b7c3dd21499211fdb0e646e48bba20",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-ui-v1-001",
+      "sha": "956da8065030ccea15256e49bd927a4e6a71942f",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/design-ui-readiness-001",
+      "sha": "723d547665298463ecd8a8d04c7ed508a1658dc1",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "feature/world-presentation-prep-001",
+      "sha": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "protected_flag_observed": false
+    },
+    {
+      "name": "baseline/world-pre-b1-20261031",
+      "sha": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "protected_flag_observed": false
+    }
+  ],
+  "comparison_method": {
+    "tool": "GitHub.compare_commits",
+    "base": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+    "per_head": "each original branch other than baseline-equal head",
+    "acceptance": "status=behind AND ahead_by=0 AND merge_base=head_sha",
+    "results": [
+      {
+        "head": "main",
+        "head_sha": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 62,
+        "merge_base": "a76e9c1c998051fc1643b6e0c3d53443fa55feed"
+      },
+      {
+        "head": "feature/design-world-infected-world-001",
+        "head_sha": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 52,
+        "merge_base": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35"
+      },
+      {
+        "head": "feature/mission-lifecycle-core-001",
+        "head_sha": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 51,
+        "merge_base": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a"
+      },
+      {
+        "head": "feature/design-world-entry-002",
+        "head_sha": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 48,
+        "merge_base": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63"
+      },
+      {
+        "head": "feature/residence-energy-cycle-core-001",
+        "head_sha": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 46,
+        "merge_base": "942b2d93916c649f4c2ec6cd399035151269d2ca"
+      },
+      {
+        "head": "feature/residence-location-core-001",
+        "head_sha": "d7953bbf96dc842d2953e019f950275cd693bf09",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 45,
+        "merge_base": "d7953bbf96dc842d2953e019f950275cd693bf09"
+      },
+      {
+        "head": "feature/residence-session-core-001",
+        "head_sha": "60e9c30732c5e22cfe9ff58b9b381de64b945180",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 44,
+        "merge_base": "60e9c30732c5e22cfe9ff58b9b381de64b945180"
+      },
+      {
+        "head": "feature/residence-actions-core-001",
+        "head_sha": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 43,
+        "merge_base": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c"
+      },
+      {
+        "head": "feature/design-world-entry-003",
+        "head_sha": "6438f7a38939297225538cdd68af24201ed7d34f",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 40,
+        "merge_base": "6438f7a38939297225538cdd68af24201ed7d34f"
+      },
+      {
+        "head": "feature/residence-terminal-core-001",
+        "head_sha": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 39,
+        "merge_base": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf"
+      },
+      {
+        "head": "feature/residence-terminal-restore-001",
+        "head_sha": "b9b1e0fee0e779669ca40e088ac9a867016bff82",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 38,
+        "merge_base": "b9b1e0fee0e779669ca40e088ac9a867016bff82"
+      },
+      {
+        "head": "feature/residence-terminal-session-001",
+        "head_sha": "0921df3f219f368479d1bf3401d8fecddc0d5f71",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 37,
+        "merge_base": "0921df3f219f368479d1bf3401d8fecddc0d5f71"
+      },
+      {
+        "head": "feature/design-world-entry-004",
+        "head_sha": "ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 34,
+        "merge_base": "ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc"
+      },
+      {
+        "head": "feature/residence-content-supply-core-001",
+        "head_sha": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 33,
+        "merge_base": "8c19ca0d28058cf743b41c8547cc2629c8eac767"
+      },
+      {
+        "head": "feature/residence-content-supply-restore-001",
+        "head_sha": "84eb6dff5e9d3238c3e651525b6ed28412132549",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 31,
+        "merge_base": "84eb6dff5e9d3238c3e651525b6ed28412132549"
+      },
+      {
+        "head": "feature/residence-content-supply-session-001",
+        "head_sha": "9c3c8a8c97c374bd1def6217c691137f3df10096",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 30,
+        "merge_base": "9c3c8a8c97c374bd1def6217c691137f3df10096"
+      },
+      {
+        "head": "feature/design-world-entry-005",
+        "head_sha": "4166fb25ab2898ca602043fbddacbb88d3444fdf",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 27,
+        "merge_base": "4166fb25ab2898ca602043fbddacbb88d3444fdf"
+      },
+      {
+        "head": "feature/residence-combat-core-001",
+        "head_sha": "9ada1bd76c768b7bcff676b263e4533854064909",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 24,
+        "merge_base": "9ada1bd76c768b7bcff676b263e4533854064909"
+      },
+      {
+        "head": "feature/residence-combat-restore-001",
+        "head_sha": "29a018a2ad64f8d5cbe56257381568bf3527cd08",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 22,
+        "merge_base": "29a018a2ad64f8d5cbe56257381568bf3527cd08"
+      },
+      {
+        "head": "feature/residence-combat-session-001",
+        "head_sha": "713dd376ddb60d20d9afaedaee4505e695f89d94",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 21,
+        "merge_base": "713dd376ddb60d20d9afaedaee4505e695f89d94"
+      },
+      {
+        "head": "feature/world-route-acceptance-001",
+        "head_sha": "8cddbdc3243561aaef5eb9a4eb6bd74dcbca11f3",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 17,
+        "merge_base": "8cddbdc3243561aaef5eb9a4eb6bd74dcbca11f3"
+      },
+      {
+        "head": "feature/world-player-query-001",
+        "head_sha": "394f59d3c5df2a65ce87186e8988982d76784a71",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 16,
+        "merge_base": "394f59d3c5df2a65ce87186e8988982d76784a71"
+      },
+      {
+        "head": "feature/design-world-entry-006",
+        "head_sha": "ff2b79f332c5ea2bec493eb5e166dcee6ba667eb",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 14,
+        "merge_base": "ff2b79f332c5ea2bec493eb5e166dcee6ba667eb"
+      },
+      {
+        "head": "feature/world-preplay-foundation-001",
+        "head_sha": "bc60f24cc16625a25ad56b0b917da63b16f29f56",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 12,
+        "merge_base": "bc60f24cc16625a25ad56b0b917da63b16f29f56"
+      },
+      {
+        "head": "feature/world-browser-owner-001",
+        "head_sha": "0ac23bc3654d69c3d0a6289d5d9e97ce30c69164",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 11,
+        "merge_base": "0ac23bc3654d69c3d0a6289d5d9e97ce30c69164"
+      },
+      {
+        "head": "feature/world-low-asset-ui-001",
+        "head_sha": "6bb43c8861b7c3dd21499211fdb0e646e48bba20",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 9,
+        "merge_base": "6bb43c8861b7c3dd21499211fdb0e646e48bba20"
+      },
+      {
+        "head": "feature/design-ui-v1-001",
+        "head_sha": "956da8065030ccea15256e49bd927a4e6a71942f",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 6,
+        "merge_base": "956da8065030ccea15256e49bd927a4e6a71942f"
+      },
+      {
+        "head": "feature/design-ui-readiness-001",
+        "head_sha": "723d547665298463ecd8a8d04c7ed508a1658dc1",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 1,
+        "merge_base": "723d547665298463ecd8a8d04c7ed508a1658dc1"
+      }
+    ]
+  },
+  "writes": [
+    {
+      "operation": "create_branch",
+      "branch": "baseline/world-pre-b1-20261031",
+      "target_sha": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "reason": "Owner 本轮分支治理请求内的非破坏性基线固定",
+      "result": "SUCCESS",
+      "independent_readback": "MATCH",
+      "new_commit_created": false
+    }
+  ],
+  "old_refs_unchanged": true,
+  "open_prs": [],
+  "visible_rulesets": [],
+  "tags": {
+    "status": "NOT_VERIFIED",
+    "reason": "tags collection URL rejected by connector allowlist; no absence claim"
+  },
+  "ci": {
+    "run_id": 41099921845,
+    "run_number": 175,
+    "event": "push",
+    "head_sha": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+    "status": "completed",
+    "conclusion": "success",
+    "evidence_scope_this_turn": "run metadata only; no fresh job-log reading or local execution",
+    "url": "https://github.com/lvlw/elevator-survival/actions/runs/41099921845"
+  },
+  "endpoint_sources": [
+    "https://api.github.com/repos/lvlw/elevator-survival/branches?per_page=100&page=1",
+    "https://api.github.com/repos/lvlw/elevator-survival/git/commits/a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+    "https://api.github.com/repos/lvlw/elevator-survival/git/ref/heads/baseline/world-pre-b1-20261031",
+    "https://api.github.com/repos/lvlw/elevator-survival/pulls?state=open&per_page=100&page=1",
+    "https://api.github.com/repos/lvlw/elevator-survival/rulesets?includes_parents=true&per_page=100",
+    "https://api.github.com/repos/lvlw/elevator-survival/actions/runs/41099921845"
+  ]
+}

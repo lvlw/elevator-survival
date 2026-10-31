@@ -1,0 +1,91 @@
+{
+  "formatVersion": 1,
+  "taskId": "GOV-WORLD-BASELINE-001",
+  "packageVersion": "1.0",
+  "baseline": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+  "scope": "governance task inputs, not full repository or image archive",
+  "excludedFromPayloads": [
+    "PACKAGE-MANIFEST.json",
+    "SHA256SUMS.txt"
+  ],
+  "payloads": [
+    {
+      "path": "AUTHORIZATION.md",
+      "bytes": 2403,
+      "sha256": "7e554b1fd6f4718a011b3750ee1cae2c50e25db045db0ec58e3b01081d6e9db4",
+      "gitBlobSha1": "0679b11aea0981bf319548b5aa4a4667b661ca83"
+    },
+    {
+      "path": "BASELINE-AND-SCOPE.json",
+      "bytes": 3541,
+      "sha256": "c67aef79aea22fae379cad1ffa0780d7010a00cc8dfda1f1a79b9bba463f6f53",
+      "gitBlobSha1": "0ec3002fa178f0d762aadee53c2b0ac4a7cfb83a"
+    },
+    {
+      "path": "BRANCH-REGISTER.json",
+      "bytes": 13388,
+      "sha256": "8991825a3984ae58e971c6db9b8511de83952ee81a8d42461510cc84ffcda6be",
+      "gitBlobSha1": "528d337ad763232eb4a88986019ed5876e319e62"
+    },
+    {
+      "path": "CURRENT-STATE.md",
+      "bytes": 9267,
+      "sha256": "6ea29e0bb9f23a2ee2c42965fb55a501b06922d3d59d1303c4829f94f6d69a8b",
+      "gitBlobSha1": "b834d6195e2b78b2ae3b9851788d27e632446e03"
+    },
+    {
+      "path": "GOV-WORLD-BASELINE-001-TASK-v1.0.md",
+      "bytes": 13381,
+      "sha256": "6226f6d7f2942942c0ba030dabad017c4d2e2d6c5a076cb312b8c3512d520f23",
+      "gitBlobSha1": "0b087234bdfa8cc99994588302d2f71cc4840f4e"
+    },
+    {
+      "path": "MAINLINE-GOVERNANCE-REPORT.md",
+      "bytes": 9109,
+      "sha256": "4a9d8337156fb9618ce2eee4fdcada1f4cc3365950927ae4315e20228646fb32",
+      "gitBlobSha1": "7b7d217c828c46dfcb67e0e0750f82c7bd13dc4f"
+    },
+    {
+      "path": "OPEN-GATES.md",
+      "bytes": 2980,
+      "sha256": "419a5e05e835ef1a6e8efbf6b31357a3f26e24020c103d767f15e66476e528af",
+      "gitBlobSha1": "524c7f34ab84fca1d2751a23177573381ac7a88c"
+    },
+    {
+      "path": "README-FIRST.md",
+      "bytes": 2230,
+      "sha256": "493e3c5759bb7ede4b5a7330d5922ab7eb976823594dc0c975fe3be58d2d0cbd",
+      "gitBlobSha1": "2354cd2499a85fce7dd207c47fd3e0c733a225a4"
+    },
+    {
+      "path": "SEND-TO-CODEX.txt",
+      "bytes": 1570,
+      "sha256": "4e1fc83bd77f323653c0c140c8e8d6c7ebe55e00111b06a88fc5f371f2271967",
+      "gitBlobSha1": "7168fcc22282e55d40c2594340cc71e8074cc5e4"
+    },
+    {
+      "path": "SOURCE-INDEX.json",
+      "bytes": 10184,
+      "sha256": "707e675a1f883d00a463b13c99afb7561058d003ee461e6c438b0c7201d98f06",
+      "gitBlobSha1": "f26fece9f764a96f06584d7a98724fc2b5ed6ba9"
+    },
+    {
+      "path": "evidence/REMOTE-EVIDENCE-SUMMARY.json",
+      "bytes": 19396,
+      "sha256": "83be1238f360f8a42914b3442171a2c90827633bf32ca002c6b9bf2c7a3d8218",
+      "gitBlobSha1": "e8d88998492a95778e436820df79d62b5af4c3f4"
+    },
+    {
+      "path": "inputs/AUD-a7f0f153-PRESENTATION-PREP-001-v1.0.md",
+      "bytes": 10328,
+      "sha256": "a900ee0297e48854c4e143e77a87c6a4446a5167c46121ffac6f3c94c1dba7f1",
+      "gitBlobSha1": "b13bd3d02fef53cdab1ba91319c8bf432174c4e7"
+    },
+    {
+      "path": "verify-package.py",
+      "bytes": 5871,
+      "sha256": "c695d536c362194725c1824e16127de4513a62a1f810377ae922a8fb489eb92a",
+      "gitBlobSha1": "5bc1c489b51d25345cb0eb331d488f6ece8aad1b"
+    }
+  ]
+}

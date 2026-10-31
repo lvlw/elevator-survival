@@ -1,0 +1,192 @@
+{
+  "as_of": "2026-10-31",
+  "baseline": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+  "record_type": "READ_SCOPE_AND_PROVENANCE_INDEX_NOT_FULL_REPOSITORY_ARCHIVE",
+  "sources": [
+    {
+      "id": "S01",
+      "kind": "repository_text_read",
+      "repository": "lvlw/elevator-survival",
+      "commit": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "path": "AGENTS.md",
+      "blob_sha": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "read_scope": "全文",
+      "use": "协作与实际任务边界",
+      "url": "https://github.com/lvlw/elevator-survival/blob/a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0/AGENTS.md",
+      "bytes_archived_in_this_package": false
+    },
+    {
+      "id": "S02",
+      "kind": "repository_text_read",
+      "repository": "lvlw/elevator-survival",
+      "commit": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "path": "package.json",
+      "blob_sha": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+      "read_scope": "全文",
+      "use": "当前检查命令；不以旧上传副本作为唯一依据",
+      "url": "https://github.com/lvlw/elevator-survival/blob/a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0/package.json",
+      "bytes_archived_in_this_package": false
+    },
+    {
+      "id": "S03",
+      "kind": "repository_text_read",
+      "repository": "lvlw/elevator-survival",
+      "commit": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "path": "docs/05-design-decisions.md",
+      "blob_sha": "2fd80b12fb57285dd7d1bbe89e4ea51353710ff8",
+      "read_scope": "本轮重点 D04—D12、DEC-053；前轮已读取新世界采纳与批准记录",
+      "use": "DEC-049—053 为新世界局部规则，具体引用须以完整正文核验",
+      "url": "https://github.com/lvlw/elevator-survival/blob/a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0/docs/05-design-decisions.md",
+      "bytes_archived_in_this_package": false
+    },
+    {
+      "id": "S04",
+      "kind": "repository_text_read",
+      "repository": "lvlw/elevator-survival",
+      "commit": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "path": "docs/08-rule-implementation-traceability.md",
+      "blob_sha": "3988589388a968c449ba5b7e68477c0e603acfaa",
+      "read_scope": "分段读取新世界历史与最近实现附记；大响应有截断",
+      "use": "历史追踪与实际入口，不以全文旧时态概括当前",
+      "url": "https://github.com/lvlw/elevator-survival/blob/a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0/docs/08-rule-implementation-traceability.md",
+      "bytes_archived_in_this_package": false
+    },
+    {
+      "id": "S05",
+      "kind": "repository_text_read",
+      "repository": "lvlw/elevator-survival",
+      "commit": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "blob_sha": "49424896ddaeffa972f5c48c372035ca79d1285e",
+      "read_scope": "入口及后段附记；入口响应有截断",
+      "use": "旧队列与后继状态分层；不是完整最新总表",
+      "url": "https://github.com/lvlw/elevator-survival/blob/a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0/docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "bytes_archived_in_this_package": false
+    },
+    {
+      "id": "S06",
+      "kind": "repository_text_read",
+      "repository": "lvlw/elevator-survival",
+      "commit": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "path": "docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+      "blob_sha": "620c07bc4c34ca2a47802ea3edc93d1acb849a55",
+      "read_scope": "全文",
+      "use": "Owner 体验、发布、依赖与历史工程门槛",
+      "url": "https://github.com/lvlw/elevator-survival/blob/a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0/docs/engineering/world-integration/route-acceptance/first-play-and-release-gates.md",
+      "bytes_archived_in_this_package": false
+    },
+    {
+      "id": "S07",
+      "kind": "repository_text_read",
+      "repository": "lvlw/elevator-survival",
+      "commit": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "path": "docs/engineering/world-integration/preplay/low-asset-ui/owner-playtest-guide.md",
+      "blob_sha": "a35bc92274becfc480cf56c447f46af4a78b3686",
+      "read_scope": "全文",
+      "use": "现有显式 DEV 入口、保存与隔离说明；不是本轮试玩",
+      "url": "https://github.com/lvlw/elevator-survival/blob/a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0/docs/engineering/world-integration/preplay/low-asset-ui/owner-playtest-guide.md",
+      "bytes_archived_in_this_package": false
+    },
+    {
+      "id": "S08",
+      "kind": "repository_text_read",
+      "repository": "lvlw/elevator-survival",
+      "commit": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "path": "src/ui/infected-world/components/battle-stage.tsx",
+      "blob_sha": "5e1f70e9bef29ac186b6501687b1bae1b76d7d8b",
+      "read_scope": "全文",
+      "use": "实际战斗组件仍为中性占位；设计稿未等同运行画面",
+      "url": "https://github.com/lvlw/elevator-survival/blob/a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0/src/ui/infected-world/components/battle-stage.tsx",
+      "bytes_archived_in_this_package": false
+    },
+    {
+      "id": "S09",
+      "kind": "repository_text_read",
+      "repository": "lvlw/elevator-survival",
+      "commit": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "path": "docs/design-drafts/ui-v1-001/00-owner-review.md",
+      "blob_sha": "bb4019cdd5e9cc9a8d746644e500854dfc4cf49b",
+      "read_scope": "全文",
+      "use": "v1.2 / R2 及 readiness 导航，作者资产与截图数量",
+      "url": "https://github.com/lvlw/elevator-survival/blob/a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0/docs/design-drafts/ui-v1-001/00-owner-review.md",
+      "bytes_archived_in_this_package": false
+    },
+    {
+      "id": "S10",
+      "kind": "repository_text_read",
+      "repository": "lvlw/elevator-survival",
+      "commit": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "path": "docs/design-drafts/ui-v1-001/inputs/SOURCE-BOUNDARIES.md",
+      "blob_sha": "e656c35b14cc7f0b22467e70239edd212e5acd67",
+      "read_scope": "全文",
+      "use": "Owner 视觉方向与设计仿真／生产边界",
+      "url": "https://github.com/lvlw/elevator-survival/blob/a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0/docs/design-drafts/ui-v1-001/inputs/SOURCE-BOUNDARIES.md",
+      "bytes_archived_in_this_package": false
+    },
+    {
+      "id": "S11",
+      "kind": "repository_text_read",
+      "repository": "lvlw/elevator-survival",
+      "commit": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "path": "docs/engineering/world-integration/presentation-prep-001/inputs/AUTHORIZATION-AND-STATUS.md",
+      "blob_sha": "f9911b662333a4348381585ac161f6ec98c9a5ae",
+      "read_scope": "全文",
+      "use": "Readiness F01—F04 历史限定关闭、A/B/C 授权区分",
+      "url": "https://github.com/lvlw/elevator-survival/blob/a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0/docs/engineering/world-integration/presentation-prep-001/inputs/AUTHORIZATION-AND-STATUS.md",
+      "bytes_archived_in_this_package": false
+    },
+    {
+      "id": "S12",
+      "kind": "repository_text_read",
+      "repository": "lvlw/elevator-survival",
+      "commit": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "path": "docs/engineering/world-integration/presentation-prep-001/inputs/SEND-TO-CODEX.txt",
+      "blob_sha": "aa708069c99d5396a5aff98824da32eaab82e928",
+      "read_scope": "全文",
+      "use": "上一批任务明确推荐 GPT-6.1 Sol／极高；不证明客户端当前配置",
+      "url": "https://github.com/lvlw/elevator-survival/blob/a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0/docs/engineering/world-integration/presentation-prep-001/inputs/SEND-TO-CODEX.txt",
+      "bytes_archived_in_this_package": false
+    },
+    {
+      "id": "S13",
+      "kind": "repository_text_read",
+      "repository": "lvlw/elevator-survival",
+      "commit": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "path": "docs/engineering/world-integration/presentation-prep-001/B-COMMITTED-PRESENTATION-CANDIDATE.md",
+      "blob_sha": "05e3a5e1338dd9d900f0de55e27d947d78b3fa17",
+      "read_scope": "全文",
+      "use": "B1 粗粒度通道候选，未批准生产实现",
+      "url": "https://github.com/lvlw/elevator-survival/blob/a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0/docs/engineering/world-integration/presentation-prep-001/B-COMMITTED-PRESENTATION-CANDIDATE.md",
+      "bytes_archived_in_this_package": false
+    },
+    {
+      "id": "S14",
+      "kind": "repository_text_read",
+      "repository": "lvlw/elevator-survival",
+      "commit": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "path": "docs/engineering/world-integration/presentation-prep-001/ART-AND-INTEGRATION-GATES.md",
+      "blob_sha": "9afc1335a42f67feeb1a5ffd6826fbe3d795b3e8",
+      "read_scope": "全文",
+      "use": "15 槽参考、阶段语义、艺术与体验门槛",
+      "url": "https://github.com/lvlw/elevator-survival/blob/a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0/docs/engineering/world-integration/presentation-prep-001/ART-AND-INTEGRATION-GATES.md",
+      "bytes_archived_in_this_package": false
+    },
+    {
+      "id": "AUD-A",
+      "kind": "owner_uploaded_mainline_audit",
+      "path": "inputs/AUD-a7f0f153-PRESENTATION-PREP-001-v1.0.md",
+      "original_uploaded_name": "AUD-a7f0f153-PRESENTATION-PREP-001-v1.0(1).md",
+      "bytes": 10328,
+      "sha256": "a900ee0297e48854c4e143e77a87c6a4446a5167c46121ffac6f3c94c1dba7f1",
+      "exact_byte_copy": true,
+      "use": "承接上一主线准确 SHA 限定 PASS；不是本轮重审或重跑",
+      "evidence_zip_included": false
+    }
+  ],
+  "limitations": [
+    "源码引用依据连接工具实际文本读取，包中未重打这些远端文件，blob SHA 是工具返回值，不冒称本轮对所有文本重新计算 Git 对象。",
+    "未取得并重验上一批 evidence ZIP，已附的是 Owner 上传审查报告的原字节副本。",
+    "美术数量来自已读作者清单／记录，不表示本轮逐件看过像素。",
+    "所有早期工程的独立审查原件未在本轮逐一全文复审，Codex 需建立证据路径与状态索引。"
+  ]
+}

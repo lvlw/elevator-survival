@@ -1,0 +1,2744 @@
+{
+  "task": "GOV-WORLD-BASELINE-001",
+  "status": "PARTIAL_AUDIT_SERVICE_UNAVAILABLE",
+  "auditCommands": [
+    {
+      "command": "npm audit --json",
+      "exitReceipt": "exit=1",
+      "kind": "AUDIT_SERVICE_FAILURE",
+      "resultFile": "npm-audit-all-network.json",
+      "metadata": null,
+      "message": "404 Not Found - POST https://registry.npmmirror.com/-/npm/v1/security/advisories/bulk - [NOT_IMPLEMENTED] /-/npm/v1/security/* not implemented yet",
+      "advisories": null
+    },
+    {
+      "command": "npm audit --omit=dev --json",
+      "exitReceipt": "exit=1",
+      "kind": "AUDIT_SERVICE_FAILURE",
+      "resultFile": "npm-audit-runtime-network.json",
+      "metadata": null,
+      "message": "404 Not Found - POST https://registry.npmmirror.com/-/npm/v1/security/advisories/bulk - [NOT_IMPLEMENTED] /-/npm/v1/security/* not implemented yet",
+      "advisories": null
+    }
+  ],
+  "initialSandboxAttempts": "Both preserved separately: exit1/EACCES",
+  "registryUnchanged": true,
+  "actualAuditEndpoint": "https://registry.npmmirror.com/-/npm/v1/security/advisories/bulk",
+  "currentVulnerabilityCount": null,
+  "currentSeverityCounts": null,
+  "historicalCIOnly": {
+    "source": "inputs/inputs/AUD-a7f0f153-PRESENTATION-PREP-001-v1.0.md section8",
+    "reportedCount": 7,
+    "moderate": 2,
+    "high": 5,
+    "packageNamesNotProvided": true,
+    "notAResultOfThisExecution": true
+  },
+  "localTree": {
+    "command": "npm ls --all --json",
+    "exit": 0,
+    "directPackages": [
+      {
+        "name": "react",
+        "declaredRange": "^19.2.8",
+        "installedVersion": "19.2.8",
+        "lockVersion": "19.2.8",
+        "direct": true,
+        "dependencyClass": "runtime",
+        "lockDevFlag": false,
+        "actualDependencyPaths": [
+          [
+            "elevator-survival@0.0.0",
+            "react-dom@19.2.8",
+            "react@19.2.8"
+          ],
+          [
+            "elevator-survival@0.0.0",
+            "react@19.2.8"
+          ],
+          [
+            "elevator-survival@0.0.0",
+            "zustand@5.0.14",
+            "react@19.2.8"
+          ]
+        ],
+        "relevance": "生产浏览器包的直接运行依赖；树中存在不等于存在可利用漏洞",
+        "advisorySource": "NOT_AVAILABLE_FROM_FAILED_AUDIT",
+        "affectedPrerequisites": "UNKNOWN",
+        "applicability": "UNKNOWN",
+        "candidateFixedVersion": "UNKNOWN; no advisory retrieved",
+        "changeCost": "需另行授权对版本/锁/构建及全量回归评估；本轮不升级"
+      },
+      {
+        "name": "react-dom",
+        "declaredRange": "^19.2.8",
+        "installedVersion": "19.2.8",
+        "lockVersion": "19.2.8",
+        "direct": true,
+        "dependencyClass": "runtime",
+        "lockDevFlag": false,
+        "actualDependencyPaths": [
+          [
+            "elevator-survival@0.0.0",
+            "react-dom@19.2.8"
+          ]
+        ],
+        "relevance": "生产浏览器包的直接运行依赖；树中存在不等于存在可利用漏洞",
+        "advisorySource": "NOT_AVAILABLE_FROM_FAILED_AUDIT",
+        "affectedPrerequisites": "UNKNOWN",
+        "applicability": "UNKNOWN",
+        "candidateFixedVersion": "UNKNOWN; no advisory retrieved",
+        "changeCost": "需另行授权对版本/锁/构建及全量回归评估；本轮不升级"
+      },
+      {
+        "name": "zod",
+        "declaredRange": "^4.4.3",
+        "installedVersion": "4.4.3",
+        "lockVersion": "4.4.3",
+        "direct": true,
+        "dependencyClass": "runtime",
+        "lockDevFlag": false,
+        "actualDependencyPaths": [
+          [
+            "elevator-survival@0.0.0",
+            "zod@4.4.3"
+          ]
+        ],
+        "relevance": "生产浏览器包的直接运行依赖；树中存在不等于存在可利用漏洞",
+        "advisorySource": "NOT_AVAILABLE_FROM_FAILED_AUDIT",
+        "affectedPrerequisites": "UNKNOWN",
+        "applicability": "UNKNOWN",
+        "candidateFixedVersion": "UNKNOWN; no advisory retrieved",
+        "changeCost": "需另行授权对版本/锁/构建及全量回归评估；本轮不升级"
+      },
+      {
+        "name": "zustand",
+        "declaredRange": "^5.0.14",
+        "installedVersion": "5.0.14",
+        "lockVersion": "5.0.14",
+        "direct": true,
+        "dependencyClass": "runtime",
+        "lockDevFlag": false,
+        "actualDependencyPaths": [
+          [
+            "elevator-survival@0.0.0",
+            "zustand@5.0.14"
+          ]
+        ],
+        "relevance": "生产浏览器包的直接运行依赖；树中存在不等于存在可利用漏洞",
+        "advisorySource": "NOT_AVAILABLE_FROM_FAILED_AUDIT",
+        "affectedPrerequisites": "UNKNOWN",
+        "applicability": "UNKNOWN",
+        "candidateFixedVersion": "UNKNOWN; no advisory retrieved",
+        "changeCost": "需另行授权对版本/锁/构建及全量回归评估；本轮不升级"
+      },
+      {
+        "name": "@types/react",
+        "declaredRange": "^19.2.17",
+        "installedVersion": "19.2.17",
+        "lockVersion": "19.2.17",
+        "direct": true,
+        "dependencyClass": "development/build/test",
+        "lockDevFlag": false,
+        "actualDependencyPaths": [
+          [
+            "elevator-survival@0.0.0",
+            "@types/react-dom@19.2.3",
+            "@types/react@19.2.17"
+          ],
+          [
+            "elevator-survival@0.0.0",
+            "@types/react@19.2.17"
+          ],
+          [
+            "elevator-survival@0.0.0",
+            "zustand@5.0.14",
+            "@types/react@19.2.17"
+          ]
+        ],
+        "relevance": "开发服务/本地或CI构建/测试工具；dev标志不等于零风险，未观察实际公开服务暴露",
+        "advisorySource": "NOT_AVAILABLE_FROM_FAILED_AUDIT",
+        "affectedPrerequisites": "UNKNOWN",
+        "applicability": "UNKNOWN",
+        "candidateFixedVersion": "UNKNOWN; no advisory retrieved",
+        "changeCost": "需另行授权对版本/锁/构建及全量回归评估；本轮不升级"
+      },
+      {
+        "name": "@types/react-dom",
+        "declaredRange": "^19.2.3",
+        "installedVersion": "19.2.3",
+        "lockVersion": "19.2.3",
+        "direct": true,
+        "dependencyClass": "development/build/test",
+        "lockDevFlag": true,
+        "actualDependencyPaths": [
+          [
+            "elevator-survival@0.0.0",
+            "@types/react-dom@19.2.3"
+          ]
+        ],
+        "relevance": "开发服务/本地或CI构建/测试工具；dev标志不等于零风险，未观察实际公开服务暴露",
+        "advisorySource": "NOT_AVAILABLE_FROM_FAILED_AUDIT",
+        "affectedPrerequisites": "UNKNOWN",
+        "applicability": "UNKNOWN",
+        "candidateFixedVersion": "UNKNOWN; no advisory retrieved",
+        "changeCost": "需另行授权对版本/锁/构建及全量回归评估；本轮不升级"
+      },
+      {
+        "name": "@vitejs/plugin-react",
+        "declaredRange": "^6.0.4",
+        "installedVersion": "6.0.4",
+        "lockVersion": "6.0.4",
+        "direct": true,
+        "dependencyClass": "development/build/test",
+        "lockDevFlag": true,
+        "actualDependencyPaths": [
+          [
+            "elevator-survival@0.0.0",
+            "@vitejs/plugin-react@6.0.4"
+          ]
+        ],
+        "relevance": "开发服务/本地或CI构建/测试工具；dev标志不等于零风险，未观察实际公开服务暴露",
+        "advisorySource": "NOT_AVAILABLE_FROM_FAILED_AUDIT",
+        "affectedPrerequisites": "UNKNOWN",
+        "applicability": "UNKNOWN",
+        "candidateFixedVersion": "UNKNOWN; no advisory retrieved",
+        "changeCost": "需另行授权对版本/锁/构建及全量回归评估；本轮不升级"
+      },
+      {
+        "name": "jsdom",
+        "declaredRange": "^29.1.1",
+        "installedVersion": "29.1.1",
+        "lockVersion": "29.1.1",
+        "direct": true,
+        "dependencyClass": "development/build/test",
+        "lockDevFlag": true,
+        "actualDependencyPaths": [
+          [
+            "elevator-survival@0.0.0",
+            "jsdom@29.1.1"
+          ],
+          [
+            "elevator-survival@0.0.0",
+            "vitest@4.1.10",
+            "jsdom@29.1.1"
+          ]
+        ],
+        "relevance": "开发服务/本地或CI构建/测试工具；dev标志不等于零风险，未观察实际公开服务暴露",
+        "advisorySource": "NOT_AVAILABLE_FROM_FAILED_AUDIT",
+        "affectedPrerequisites": "UNKNOWN",
+        "applicability": "UNKNOWN",
+        "candidateFixedVersion": "UNKNOWN; no advisory retrieved",
+        "changeCost": "需另行授权对版本/锁/构建及全量回归评估；本轮不升级"
+      },
+      {
+        "name": "typescript",
+        "declaredRange": "^7.0.2",
+        "installedVersion": "7.0.2",
+        "lockVersion": "7.0.2",
+        "direct": true,
+        "dependencyClass": "development/build/test",
+        "lockDevFlag": true,
+        "actualDependencyPaths": [
+          [
+            "elevator-survival@0.0.0",
+            "typescript@7.0.2"
+          ]
+        ],
+        "relevance": "开发服务/本地或CI构建/测试工具；dev标志不等于零风险，未观察实际公开服务暴露",
+        "advisorySource": "NOT_AVAILABLE_FROM_FAILED_AUDIT",
+        "affectedPrerequisites": "UNKNOWN",
+        "applicability": "UNKNOWN",
+        "candidateFixedVersion": "UNKNOWN; no advisory retrieved",
+        "changeCost": "需另行授权对版本/锁/构建及全量回归评估；本轮不升级"
+      },
+      {
+        "name": "vite",
+        "declaredRange": "^8.1.5",
+        "installedVersion": "8.1.5",
+        "lockVersion": "8.1.5",
+        "direct": true,
+        "dependencyClass": "development/build/test",
+        "lockDevFlag": true,
+        "actualDependencyPaths": [
+          [
+            "elevator-survival@0.0.0",
+            "@vitejs/plugin-react@6.0.4",
+            "vite@8.1.5"
+          ],
+          [
+            "elevator-survival@0.0.0",
+            "vite@8.1.5"
+          ],
+          [
+            "elevator-survival@0.0.0",
+            "vitest@4.1.10",
+            "@vitest/mocker@4.1.10",
+            "vite@8.1.5"
+          ],
+          [
+            "elevator-survival@0.0.0",
+            "vitest@4.1.10",
+            "vite@8.1.5"
+          ]
+        ],
+        "relevance": "开发服务/本地或CI构建/测试工具；dev标志不等于零风险，未观察实际公开服务暴露",
+        "advisorySource": "NOT_AVAILABLE_FROM_FAILED_AUDIT",
+        "affectedPrerequisites": "UNKNOWN",
+        "applicability": "UNKNOWN",
+        "candidateFixedVersion": "UNKNOWN; no advisory retrieved",
+        "changeCost": "需另行授权对版本/锁/构建及全量回归评估；本轮不升级"
+      },
+      {
+        "name": "vitest",
+        "declaredRange": "^4.1.10",
+        "installedVersion": "4.1.10",
+        "lockVersion": "4.1.10",
+        "direct": true,
+        "dependencyClass": "development/build/test",
+        "lockDevFlag": true,
+        "actualDependencyPaths": [
+          [
+            "elevator-survival@0.0.0",
+            "vitest@4.1.10"
+          ]
+        ],
+        "relevance": "开发服务/本地或CI构建/测试工具；dev标志不等于零风险，未观察实际公开服务暴露",
+        "advisorySource": "NOT_AVAILABLE_FROM_FAILED_AUDIT",
+        "affectedPrerequisites": "UNKNOWN",
+        "applicability": "UNKNOWN",
+        "candidateFixedVersion": "UNKNOWN; no advisory retrieved",
+        "changeCost": "需另行授权对版本/锁/构建及全量回归评估；本轮不升级"
+      }
+    ],
+    "observedDependencyChains": [
+      {
+        "name": "@types/react-dom",
+        "version": "19.2.3",
+        "path": [
+          "elevator-survival@0.0.0",
+          "@types/react-dom@19.2.3"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@types/react",
+        "version": "19.2.17",
+        "path": [
+          "elevator-survival@0.0.0",
+          "@types/react-dom@19.2.3",
+          "@types/react@19.2.17"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@types/react",
+        "version": "19.2.17",
+        "path": [
+          "elevator-survival@0.0.0",
+          "@types/react@19.2.17"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "csstype",
+        "version": "3.2.3",
+        "path": [
+          "elevator-survival@0.0.0",
+          "@types/react@19.2.17",
+          "csstype@3.2.3"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitejs/plugin-react",
+        "version": "6.0.4",
+        "path": [
+          "elevator-survival@0.0.0",
+          "@vitejs/plugin-react@6.0.4"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/plugin-babel",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "@vitejs/plugin-react@6.0.4",
+          "@rolldown/plugin-babel@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/pluginutils",
+        "version": "1.0.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "@vitejs/plugin-react@6.0.4",
+          "@rolldown/pluginutils@1.0.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "babel-plugin-react-compiler",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "@vitejs/plugin-react@6.0.4",
+          "babel-plugin-react-compiler@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "vite",
+        "version": "8.1.5",
+        "path": [
+          "elevator-survival@0.0.0",
+          "@vitejs/plugin-react@6.0.4",
+          "vite@8.1.5"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "jsdom",
+        "version": "29.1.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@asamuzakjp/css-color",
+        "version": "5.1.11",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/css-color@5.1.11"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@asamuzakjp/generational-cache",
+        "version": "1.0.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/css-color@5.1.11",
+          "@asamuzakjp/generational-cache@1.0.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@csstools/css-calc",
+        "version": "3.3.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/css-color@5.1.11",
+          "@csstools/css-calc@3.3.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@csstools/css-parser-algorithms",
+        "version": "4.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/css-color@5.1.11",
+          "@csstools/css-calc@3.3.0",
+          "@csstools/css-parser-algorithms@4.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@csstools/css-tokenizer",
+        "version": "4.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/css-color@5.1.11",
+          "@csstools/css-calc@3.3.0",
+          "@csstools/css-tokenizer@4.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@csstools/css-color-parser",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/css-color@5.1.11",
+          "@csstools/css-color-parser@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@csstools/color-helpers",
+        "version": "6.1.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/css-color@5.1.11",
+          "@csstools/css-color-parser@4.1.10",
+          "@csstools/color-helpers@6.1.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@csstools/css-calc",
+        "version": "3.3.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/css-color@5.1.11",
+          "@csstools/css-color-parser@4.1.10",
+          "@csstools/css-calc@3.3.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@csstools/css-parser-algorithms",
+        "version": "4.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/css-color@5.1.11",
+          "@csstools/css-color-parser@4.1.10",
+          "@csstools/css-parser-algorithms@4.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@csstools/css-tokenizer",
+        "version": "4.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/css-color@5.1.11",
+          "@csstools/css-color-parser@4.1.10",
+          "@csstools/css-tokenizer@4.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@csstools/css-parser-algorithms",
+        "version": "4.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/css-color@5.1.11",
+          "@csstools/css-parser-algorithms@4.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@csstools/css-tokenizer",
+        "version": "4.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/css-color@5.1.11",
+          "@csstools/css-parser-algorithms@4.0.0",
+          "@csstools/css-tokenizer@4.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@csstools/css-tokenizer",
+        "version": "4.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/css-color@5.1.11",
+          "@csstools/css-tokenizer@4.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@asamuzakjp/dom-selector",
+        "version": "7.1.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/dom-selector@7.1.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@asamuzakjp/generational-cache",
+        "version": "1.0.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/dom-selector@7.1.1",
+          "@asamuzakjp/generational-cache@1.0.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@asamuzakjp/nwsapi",
+        "version": "2.3.9",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/dom-selector@7.1.1",
+          "@asamuzakjp/nwsapi@2.3.9"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "bidi-js",
+        "version": "1.0.3",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/dom-selector@7.1.1",
+          "bidi-js@1.0.3"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "require-from-string",
+        "version": "2.0.2",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/dom-selector@7.1.1",
+          "bidi-js@1.0.3",
+          "require-from-string@2.0.2"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "css-tree",
+        "version": "3.2.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/dom-selector@7.1.1",
+          "css-tree@3.2.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "is-potential-custom-element-name",
+        "version": "1.0.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@asamuzakjp/dom-selector@7.1.1",
+          "is-potential-custom-element-name@1.0.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@bramus/specificity",
+        "version": "2.4.2",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@bramus/specificity@2.4.2"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "css-tree",
+        "version": "3.2.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@bramus/specificity@2.4.2",
+          "css-tree@3.2.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@csstools/css-syntax-patches-for-csstree",
+        "version": "1.1.7",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@csstools/css-syntax-patches-for-csstree@1.1.7"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "css-tree",
+        "version": "3.2.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@csstools/css-syntax-patches-for-csstree@1.1.7",
+          "css-tree@3.2.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@exodus/bytes",
+        "version": "1.15.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@exodus/bytes@1.15.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@noble/hashes",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "@exodus/bytes@1.15.1",
+          "@noble/hashes@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "canvas",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "canvas@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "css-tree",
+        "version": "3.2.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "css-tree@3.2.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "mdn-data",
+        "version": "2.27.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "css-tree@3.2.1",
+          "mdn-data@2.27.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "source-map-js",
+        "version": "1.2.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "css-tree@3.2.1",
+          "source-map-js@1.2.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "data-urls",
+        "version": "7.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "data-urls@7.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "whatwg-mimetype",
+        "version": "5.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "data-urls@7.0.0",
+          "whatwg-mimetype@5.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "whatwg-url",
+        "version": "16.0.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "data-urls@7.0.0",
+          "whatwg-url@16.0.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "decimal.js",
+        "version": "10.6.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "decimal.js@10.6.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "html-encoding-sniffer",
+        "version": "6.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "html-encoding-sniffer@6.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@exodus/bytes",
+        "version": "1.15.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "html-encoding-sniffer@6.0.0",
+          "@exodus/bytes@1.15.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "is-potential-custom-element-name",
+        "version": "1.0.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "is-potential-custom-element-name@1.0.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "lru-cache",
+        "version": "11.5.2",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "lru-cache@11.5.2"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "parse5",
+        "version": "8.0.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "parse5@8.0.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "entities",
+        "version": "8.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "parse5@8.0.1",
+          "entities@8.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "saxes",
+        "version": "6.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "saxes@6.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "xmlchars",
+        "version": "2.2.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "saxes@6.0.0",
+          "xmlchars@2.2.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "symbol-tree",
+        "version": "3.2.4",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "symbol-tree@3.2.4"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "tough-cookie",
+        "version": "6.0.2",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "tough-cookie@6.0.2"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "tldts",
+        "version": "7.4.9",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "tough-cookie@6.0.2",
+          "tldts@7.4.9"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "tldts-core",
+        "version": "7.4.9",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "tough-cookie@6.0.2",
+          "tldts@7.4.9",
+          "tldts-core@7.4.9"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "undici",
+        "version": "7.29.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "undici@7.29.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "w3c-xmlserializer",
+        "version": "5.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "w3c-xmlserializer@5.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "xml-name-validator",
+        "version": "5.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "w3c-xmlserializer@5.0.0",
+          "xml-name-validator@5.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "webidl-conversions",
+        "version": "8.0.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "webidl-conversions@8.0.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "whatwg-mimetype",
+        "version": "5.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "whatwg-mimetype@5.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "whatwg-url",
+        "version": "16.0.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "whatwg-url@16.0.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@exodus/bytes",
+        "version": "1.15.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "whatwg-url@16.0.1",
+          "@exodus/bytes@1.15.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "tr46",
+        "version": "6.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "whatwg-url@16.0.1",
+          "tr46@6.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "punycode",
+        "version": "2.3.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "whatwg-url@16.0.1",
+          "tr46@6.0.0",
+          "punycode@2.3.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "webidl-conversions",
+        "version": "8.0.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "whatwg-url@16.0.1",
+          "webidl-conversions@8.0.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "xml-name-validator",
+        "version": "5.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "jsdom@29.1.1",
+          "xml-name-validator@5.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "react-dom",
+        "version": "19.2.8",
+        "path": [
+          "elevator-survival@0.0.0",
+          "react-dom@19.2.8"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "react",
+        "version": "19.2.8",
+        "path": [
+          "elevator-survival@0.0.0",
+          "react-dom@19.2.8",
+          "react@19.2.8"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "scheduler",
+        "version": "0.27.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "react-dom@19.2.8",
+          "scheduler@0.27.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "react",
+        "version": "19.2.8",
+        "path": [
+          "elevator-survival@0.0.0",
+          "react@19.2.8"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "typescript",
+        "version": "7.0.2",
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-aix-ppc64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-aix-ppc64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-darwin-arm64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-darwin-arm64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-darwin-x64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-darwin-x64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-freebsd-arm64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-freebsd-arm64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-freebsd-x64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-freebsd-x64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-linux-arm",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-linux-arm@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-linux-arm64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-linux-arm64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-linux-loong64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-linux-loong64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-linux-mips64el",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-linux-mips64el@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-linux-ppc64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-linux-ppc64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-linux-riscv64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-linux-riscv64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-linux-s390x",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-linux-s390x@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-linux-x64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-linux-x64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-netbsd-arm64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-netbsd-arm64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-netbsd-x64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-netbsd-x64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-openbsd-arm64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-openbsd-arm64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-openbsd-x64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-openbsd-x64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-sunos-x64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-sunos-x64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-win32-arm64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-win32-arm64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@typescript/typescript-win32-x64",
+        "version": "7.0.2",
+        "path": [
+          "elevator-survival@0.0.0",
+          "typescript@7.0.2",
+          "@typescript/typescript-win32-x64@7.0.2"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "vite",
+        "version": "8.1.5",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@types/node",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "@types/node@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitejs/devtools",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "@vitejs/devtools@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "esbuild",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "esbuild@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "fsevents",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "fsevents@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "jiti",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "jiti@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "less",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "less@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "lightningcss",
+        "version": "1.33.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "lightningcss@1.33.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "detect-libc",
+        "version": "2.1.2",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "lightningcss@1.33.0",
+          "detect-libc@2.1.2"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "lightningcss-android-arm64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "lightningcss@1.33.0",
+          "lightningcss-android-arm64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "lightningcss-darwin-arm64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "lightningcss@1.33.0",
+          "lightningcss-darwin-arm64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "lightningcss-darwin-x64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "lightningcss@1.33.0",
+          "lightningcss-darwin-x64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "lightningcss-freebsd-x64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "lightningcss@1.33.0",
+          "lightningcss-freebsd-x64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "lightningcss-linux-arm-gnueabihf",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "lightningcss@1.33.0",
+          "lightningcss-linux-arm-gnueabihf@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "lightningcss-linux-arm64-gnu",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "lightningcss@1.33.0",
+          "lightningcss-linux-arm64-gnu@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "lightningcss-linux-arm64-musl",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "lightningcss@1.33.0",
+          "lightningcss-linux-arm64-musl@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "lightningcss-linux-x64-gnu",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "lightningcss@1.33.0",
+          "lightningcss-linux-x64-gnu@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "lightningcss-linux-x64-musl",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "lightningcss@1.33.0",
+          "lightningcss-linux-x64-musl@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "lightningcss-win32-arm64-msvc",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "lightningcss@1.33.0",
+          "lightningcss-win32-arm64-msvc@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "lightningcss-win32-x64-msvc",
+        "version": "1.33.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "lightningcss@1.33.0",
+          "lightningcss-win32-x64-msvc@1.33.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "picomatch",
+        "version": "4.0.5",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "picomatch@4.0.5"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "postcss",
+        "version": "8.5.23",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "postcss@8.5.23"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "nanoid",
+        "version": "3.3.16",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "postcss@8.5.23",
+          "nanoid@3.3.16"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "picocolors",
+        "version": "1.1.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "postcss@8.5.23",
+          "picocolors@1.1.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "source-map-js",
+        "version": "1.2.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "postcss@8.5.23",
+          "source-map-js@1.2.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "rolldown",
+        "version": "1.1.5",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@oxc-project/types",
+        "version": "0.139.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@oxc-project/types@0.139.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/binding-android-arm64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/binding-android-arm64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/binding-darwin-arm64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/binding-darwin-arm64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/binding-darwin-x64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/binding-darwin-x64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/binding-freebsd-x64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/binding-freebsd-x64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/binding-linux-arm-gnueabihf",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/binding-linux-arm-gnueabihf@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/binding-linux-arm64-gnu",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/binding-linux-arm64-gnu@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/binding-linux-arm64-musl",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/binding-linux-arm64-musl@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/binding-linux-ppc64-gnu",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/binding-linux-ppc64-gnu@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/binding-linux-s390x-gnu",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/binding-linux-s390x-gnu@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/binding-linux-x64-gnu",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/binding-linux-x64-gnu@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/binding-linux-x64-musl",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/binding-linux-x64-musl@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/binding-openharmony-arm64",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/binding-openharmony-arm64@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/binding-wasm32-wasi",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/binding-wasm32-wasi@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/binding-win32-arm64-msvc",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/binding-win32-arm64-msvc@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/binding-win32-x64-msvc",
+        "version": "1.1.5",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/binding-win32-x64-msvc@1.1.5"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@rolldown/pluginutils",
+        "version": "1.0.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "rolldown@1.1.5",
+          "@rolldown/pluginutils@1.0.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "sass-embedded",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "sass-embedded@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "sass",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "sass@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "stylus",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "stylus@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "sugarss",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "sugarss@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "terser",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "terser@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "tinyglobby",
+        "version": "0.2.17",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "tinyglobby@0.2.17"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "fdir",
+        "version": "6.5.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "tinyglobby@0.2.17",
+          "fdir@6.5.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "picomatch",
+        "version": "4.0.5",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "tinyglobby@0.2.17",
+          "fdir@6.5.0",
+          "picomatch@4.0.5"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "picomatch",
+        "version": "4.0.5",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "tinyglobby@0.2.17",
+          "picomatch@4.0.5"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "tsx",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "tsx@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "yaml",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vite@8.1.5",
+          "yaml@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "vitest",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@edge-runtime/vm",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@edge-runtime/vm@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@opentelemetry/api",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@opentelemetry/api@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@types/node",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@types/node@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/browser-playwright",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/browser-playwright@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/browser-preview",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/browser-preview@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/browser-webdriverio",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/browser-webdriverio@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/coverage-istanbul",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/coverage-istanbul@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/coverage-v8",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/coverage-v8@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/expect",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/expect@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@standard-schema/spec",
+        "version": "1.1.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/expect@4.1.10",
+          "@standard-schema/spec@1.1.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@types/chai",
+        "version": "5.2.3",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/expect@4.1.10",
+          "@types/chai@5.2.3"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@types/deep-eql",
+        "version": "4.0.2",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/expect@4.1.10",
+          "@types/chai@5.2.3",
+          "@types/deep-eql@4.0.2"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "assertion-error",
+        "version": "2.0.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/expect@4.1.10",
+          "@types/chai@5.2.3",
+          "assertion-error@2.0.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/spy",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/expect@4.1.10",
+          "@vitest/spy@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/utils",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/expect@4.1.10",
+          "@vitest/utils@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "chai",
+        "version": "6.2.2",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/expect@4.1.10",
+          "chai@6.2.2"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "tinyrainbow",
+        "version": "3.1.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/expect@4.1.10",
+          "tinyrainbow@3.1.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/mocker",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/mocker@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/spy",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/mocker@4.1.10",
+          "@vitest/spy@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "estree-walker",
+        "version": "3.0.3",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/mocker@4.1.10",
+          "estree-walker@3.0.3"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@types/estree",
+        "version": "1.0.9",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/mocker@4.1.10",
+          "estree-walker@3.0.3",
+          "@types/estree@1.0.9"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "magic-string",
+        "version": "0.30.21",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/mocker@4.1.10",
+          "magic-string@0.30.21"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "msw",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/mocker@4.1.10",
+          "msw@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "vite",
+        "version": "8.1.5",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/mocker@4.1.10",
+          "vite@8.1.5"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/pretty-format",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/pretty-format@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "tinyrainbow",
+        "version": "3.1.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/pretty-format@4.1.10",
+          "tinyrainbow@3.1.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/runner",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/runner@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/utils",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/runner@4.1.10",
+          "@vitest/utils@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "pathe",
+        "version": "2.0.3",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/runner@4.1.10",
+          "pathe@2.0.3"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/snapshot",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/snapshot@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/pretty-format",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/snapshot@4.1.10",
+          "@vitest/pretty-format@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/utils",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/snapshot@4.1.10",
+          "@vitest/utils@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "magic-string",
+        "version": "0.30.21",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/snapshot@4.1.10",
+          "magic-string@0.30.21"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "pathe",
+        "version": "2.0.3",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/snapshot@4.1.10",
+          "pathe@2.0.3"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/spy",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/spy@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/ui",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/ui@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/utils",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/utils@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@vitest/pretty-format",
+        "version": "4.1.10",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/utils@4.1.10",
+          "@vitest/pretty-format@4.1.10"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "convert-source-map",
+        "version": "2.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/utils@4.1.10",
+          "convert-source-map@2.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "tinyrainbow",
+        "version": "3.1.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "@vitest/utils@4.1.10",
+          "tinyrainbow@3.1.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "es-module-lexer",
+        "version": "2.3.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "es-module-lexer@2.3.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "expect-type",
+        "version": "1.4.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "expect-type@1.4.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "happy-dom",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "happy-dom@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "jsdom",
+        "version": "29.1.1",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "jsdom@29.1.1"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "magic-string",
+        "version": "0.30.21",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "magic-string@0.30.21"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@jridgewell/sourcemap-codec",
+        "version": "1.5.5",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "magic-string@0.30.21",
+          "@jridgewell/sourcemap-codec@1.5.5"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "obug",
+        "version": "2.1.4",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "obug@2.1.4"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "pathe",
+        "version": "2.0.3",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "pathe@2.0.3"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "picomatch",
+        "version": "4.0.5",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "picomatch@4.0.5"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "std-env",
+        "version": "4.2.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "std-env@4.2.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "tinybench",
+        "version": "2.9.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "tinybench@2.9.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "tinyexec",
+        "version": "1.2.4",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "tinyexec@1.2.4"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "tinyglobby",
+        "version": "0.2.17",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "tinyglobby@0.2.17"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "tinyrainbow",
+        "version": "3.1.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "tinyrainbow@3.1.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "vite",
+        "version": "8.1.5",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "vite@8.1.5"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "why-is-node-running",
+        "version": "2.3.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "why-is-node-running@2.3.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "siginfo",
+        "version": "2.0.0",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "why-is-node-running@2.3.0",
+          "siginfo@2.0.0"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "stackback",
+        "version": "0.0.2",
+        "path": [
+          "elevator-survival@0.0.0",
+          "vitest@4.1.10",
+          "why-is-node-running@2.3.0",
+          "stackback@0.0.2"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "zod",
+        "version": "4.4.3",
+        "path": [
+          "elevator-survival@0.0.0",
+          "zod@4.4.3"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "zustand",
+        "version": "5.0.14",
+        "path": [
+          "elevator-survival@0.0.0",
+          "zustand@5.0.14"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "@types/react",
+        "version": "19.2.17",
+        "path": [
+          "elevator-survival@0.0.0",
+          "zustand@5.0.14",
+          "@types/react@19.2.17"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "immer",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "zustand@5.0.14",
+          "immer@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "react",
+        "version": "19.2.8",
+        "path": [
+          "elevator-survival@0.0.0",
+          "zustand@5.0.14",
+          "react@19.2.8"
+        ],
+        "invalid": false,
+        "missing": false
+      },
+      {
+        "name": "use-sync-external-store",
+        "version": null,
+        "path": [
+          "elevator-survival@0.0.0",
+          "zustand@5.0.14",
+          "use-sync-external-store@UNKNOWN"
+        ],
+        "invalid": false,
+        "missing": false
+      }
+    ]
+  },
+  "limits": [
+    "未取得有效新公告列表，不能指定七个包名或修复版本",
+    "未运行或观察对外服务；无法推定端口暴露或生产可利用性",
+    "无 audit fix、升级、换源配置、锁变更、额外扫描器或CI修改"
+  ],
+  "nextAction": "单独授权的依赖核查应先明确可用审计来源，再取得逐项公告与依赖可达性；有真实结果后才提精确修复版本"
+}

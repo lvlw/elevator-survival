@@ -1,0 +1,85 @@
+{
+  "task_id": "GOV-WORLD-BASELINE-001",
+  "version": "1.0",
+  "kind": "GOVERNANCE_DOCS_AND_READONLY_DIAGNOSTICS",
+  "repository": "lvlw/elevator-survival",
+  "start_sha": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+  "start_tree": "1f75162b22bcf486796b6c02bc57b3ec38e6616a",
+  "parent_sha": "723d547665298463ecd8a8d04c7ed508a1658dc1",
+  "checkpoint_branch": "baseline/world-pre-b1-20261031",
+  "checkpoint_mutation_allowed": false,
+  "work_branch": "chore/world-baseline-governance-001",
+  "allowed_new_paths": [
+    "docs/governance/world-baseline-001/**",
+    "docs/governance/README.md"
+  ],
+  "allowed_existing_edits": [
+    {
+      "path": "README.md",
+      "mode": "single clearly labelled current-new-world navigation/status block; keep historical text"
+    },
+    {
+      "path": "docs/08-rule-implementation-traceability.md",
+      "mode": "append-only short current-governance index; do not rewrite history"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/10-decision-queue.md",
+      "mode": "append-only short current-governance index; do not rewrite history"
+    }
+  ],
+  "external_artifacts": "fresh task-specific directory outside every repository/worktree; no home/profile/saves copied",
+  "protected": [
+    "all src/**",
+    "all public/**",
+    "all existing art and screenshots",
+    "AGENTS.md",
+    "all formal DEC/UIR/content and contracts",
+    "package.json",
+    "package-lock.json",
+    "all configuration files",
+    "all .github/**",
+    "all old archived inputs/audits"
+  ],
+  "git": {
+    "create_work_branch": true,
+    "normal_commit": true,
+    "normal_push_to_work_branch_only": true,
+    "merge": false,
+    "force_push": false,
+    "amend": false,
+    "rebase": false,
+    "delete_or_rename_refs": false,
+    "main_push": false,
+    "old_branch_push": false,
+    "tag_write": false,
+    "pr_or_release_create": false,
+    "history_or_lfs_migration": false
+  },
+  "not_authorized": [
+    "B1 production implementation",
+    "C production UI or theme integration",
+    "new DEC/UIR or mechanics or numerical adoption",
+    "art generation/editing/adoption",
+    "browser/profile/save mutations or Owner playtest",
+    "server/Wiki/network/deployment changes",
+    "dependency upgrades/npm audit fix/new tools or billable APIs",
+    "branch protection administration",
+    "power/scheduled operations"
+  ],
+  "verification": {
+    "baseline": "npm run check once on exact start SHA, recording actual scripts and outputs",
+    "end": "npm run validate:architecture + git diff/scope/protected-object and artifact checks; rerun full check only if justified, report what actually ran",
+    "new_gameplay_tests": 0,
+    "dependency_audit": "readonly npm audit --json and --omit=dev plus actual dependency chains; no config changes",
+    "failure_policy": "preserve failure, do not broaden write scope; complete independent docs, report PARTIAL/BLOCKED where appropriate"
+  },
+  "stop": "normal push only new governance branch; exact final SHA review; no automatic B/C/merge/release",
+  "model": {
+    "recommended": "GPT-6.1 Sol",
+    "reasoning": "高",
+    "mode": "普通/Standard（若客户端提供该区分）",
+    "basis": "上一批任务明确指定的模型；本轮范围为治理与只读诊断，不是新核心协议实现",
+    "client_availability": "NOT_INDEPENDENTLY_VERIFIED",
+    "fallback": "若当前客户端无该模型，保留当前实际可用编码模型并记录名称和档位；不自称实际配置已核验、不自动升级付费速度或 Ultra/Max"
+  }
+}

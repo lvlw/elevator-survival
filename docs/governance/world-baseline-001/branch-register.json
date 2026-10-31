@@ -1,0 +1,639 @@
+{
+  "task": "GOV-WORLD-BASELINE-001",
+  "baseSHA": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+  "baseTree": "1f75162b22bcf486796b6c02bc57b3ec38e6616a",
+  "branch": "chore/world-baseline-governance-001",
+  "remoteQuery": "git ls-remote --heads origin; exit 0",
+  "remoteCount": 30,
+  "inputSnapshotDifferences": [],
+  "extraRemoteHeads": {},
+  "branches": [
+    {
+      "name": "baseline/world-pre-b1-20261031",
+      "sha": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "classification": "fixed-checkpoint-readonly",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 0,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/design-ui-readiness-001",
+      "sha": "723d547665298463ecd8a8d04c7ed508a1658dc1",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 1,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/design-ui-v1-001",
+      "sha": "956da8065030ccea15256e49bd927a4e6a71942f",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 6,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/design-world-entry-002",
+      "sha": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 48,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/design-world-entry-003",
+      "sha": "6438f7a38939297225538cdd68af24201ed7d34f",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 40,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/design-world-entry-004",
+      "sha": "ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 34,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/design-world-entry-005",
+      "sha": "4166fb25ab2898ca602043fbddacbb88d3444fdf",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 27,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/design-world-entry-006",
+      "sha": "ff2b79f332c5ea2bec493eb5e166dcee6ba667eb",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 14,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/design-world-infected-world-001",
+      "sha": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 52,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/mission-lifecycle-core-001",
+      "sha": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 51,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/residence-actions-core-001",
+      "sha": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 43,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/residence-combat-core-001",
+      "sha": "9ada1bd76c768b7bcff676b263e4533854064909",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 24,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/residence-combat-restore-001",
+      "sha": "29a018a2ad64f8d5cbe56257381568bf3527cd08",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 22,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/residence-combat-session-001",
+      "sha": "713dd376ddb60d20d9afaedaee4505e695f89d94",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 21,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/residence-content-supply-core-001",
+      "sha": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 33,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/residence-content-supply-restore-001",
+      "sha": "84eb6dff5e9d3238c3e651525b6ed28412132549",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 31,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/residence-content-supply-session-001",
+      "sha": "9c3c8a8c97c374bd1def6217c691137f3df10096",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 30,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/residence-energy-cycle-core-001",
+      "sha": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 46,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/residence-location-core-001",
+      "sha": "d7953bbf96dc842d2953e019f950275cd693bf09",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 45,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/residence-session-core-001",
+      "sha": "60e9c30732c5e22cfe9ff58b9b381de64b945180",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 44,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/residence-terminal-core-001",
+      "sha": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 39,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/residence-terminal-restore-001",
+      "sha": "b9b1e0fee0e779669ca40e088ac9a867016bff82",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 38,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/residence-terminal-session-001",
+      "sha": "0921df3f219f368479d1bf3401d8fecddc0d5f71",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 37,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/world-browser-owner-001",
+      "sha": "0ac23bc3654d69c3d0a6289d5d9e97ce30c69164",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 11,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/world-low-asset-ui-001",
+      "sha": "6bb43c8861b7c3dd21499211fdb0e646e48bba20",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 9,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/world-player-query-001",
+      "sha": "394f59d3c5df2a65ce87186e8988982d76784a71",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 16,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/world-preplay-foundation-001",
+      "sha": "bc60f24cc16625a25ad56b0b917da63b16f29f56",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 12,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/world-presentation-prep-001",
+      "sha": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "classification": "audited-A-stop",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 0,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "feature/world-route-acceptance-001",
+      "sha": "8cddbdc3243561aaef5eb9a4eb6bd74dcbca11f3",
+      "classification": "historical-checkpoint-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 17,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    },
+    {
+      "name": "main",
+      "sha": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+      "classification": "legacy-default-retain",
+      "ancestorOfBase": true,
+      "ancestorExit": 0,
+      "commitsBehindBase": 62,
+      "uniqueCommitsOutsideBase": 0,
+      "inputSnapshotMatches": true,
+      "serverEnforcedFreeze": "NOT_VERIFIED_THIS_EXECUTION"
+    }
+  ],
+  "localBranches": [
+    {
+      "name": "chore/world-baseline-governance-001",
+      "sha": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": null,
+      "unpublishedVsLiveSameName": "NO_SAME_NAME_REMOTE; retain, never infer safe deletion"
+    },
+    {
+      "name": "feature/design-ui-readiness-001",
+      "sha": "723d547665298463ecd8a8d04c7ed508a1658dc1",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "723d547665298463ecd8a8d04c7ed508a1658dc1",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/design-ui-v1-001",
+      "sha": "956da8065030ccea15256e49bd927a4e6a71942f",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "956da8065030ccea15256e49bd927a4e6a71942f",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/design-world-entry-002",
+      "sha": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+      "upstream": "refs/remotes/origin/feature/design-world-entry-002",
+      "withoutUpstream": false,
+      "sameNameRemoteSHA": "9dfe21ef7f423c1e5d9801d26e4425b28444cf63",
+      "aheadOfConfiguredUpstream": 0,
+      "behindConfiguredUpstream": 0,
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/design-world-entry-003",
+      "sha": "6438f7a38939297225538cdd68af24201ed7d34f",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "6438f7a38939297225538cdd68af24201ed7d34f",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/design-world-entry-004",
+      "sha": "ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/design-world-entry-005",
+      "sha": "4166fb25ab2898ca602043fbddacbb88d3444fdf",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "4166fb25ab2898ca602043fbddacbb88d3444fdf",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/design-world-entry-006",
+      "sha": "ff2b79f332c5ea2bec493eb5e166dcee6ba667eb",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "ff2b79f332c5ea2bec493eb5e166dcee6ba667eb",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/design-world-infected-world-001",
+      "sha": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+      "upstream": "refs/remotes/origin/feature/design-world-infected-world-001",
+      "withoutUpstream": false,
+      "sameNameRemoteSHA": "6b48b3de6521d9a9c296754a4d8135c7f7c7ca35",
+      "aheadOfConfiguredUpstream": 0,
+      "behindConfiguredUpstream": 0,
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/mission-lifecycle-core-001",
+      "sha": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "upstream": "refs/remotes/origin/feature/mission-lifecycle-core-001",
+      "withoutUpstream": false,
+      "sameNameRemoteSHA": "d1d3b7927c6733cff709a4bfd617fb1e85e7485a",
+      "aheadOfConfiguredUpstream": 0,
+      "behindConfiguredUpstream": 0,
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/residence-actions-core-001",
+      "sha": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "7ca547ab8ab4f411d1102a79baf8c0796f4b082c",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/residence-combat-core-001",
+      "sha": "9ada1bd76c768b7bcff676b263e4533854064909",
+      "upstream": "refs/remotes/origin/feature/residence-combat-core-001",
+      "withoutUpstream": false,
+      "sameNameRemoteSHA": "9ada1bd76c768b7bcff676b263e4533854064909",
+      "aheadOfConfiguredUpstream": 0,
+      "behindConfiguredUpstream": 0,
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/residence-combat-restore-001",
+      "sha": "29a018a2ad64f8d5cbe56257381568bf3527cd08",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "29a018a2ad64f8d5cbe56257381568bf3527cd08",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/residence-combat-session-001",
+      "sha": "713dd376ddb60d20d9afaedaee4505e695f89d94",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "713dd376ddb60d20d9afaedaee4505e695f89d94",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/residence-content-supply-core-001",
+      "sha": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+      "upstream": "refs/remotes/origin/feature/residence-content-supply-core-001",
+      "withoutUpstream": false,
+      "sameNameRemoteSHA": "8c19ca0d28058cf743b41c8547cc2629c8eac767",
+      "aheadOfConfiguredUpstream": 0,
+      "behindConfiguredUpstream": 0,
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/residence-content-supply-restore-001",
+      "sha": "84eb6dff5e9d3238c3e651525b6ed28412132549",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "84eb6dff5e9d3238c3e651525b6ed28412132549",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/residence-content-supply-session-001",
+      "sha": "9c3c8a8c97c374bd1def6217c691137f3df10096",
+      "upstream": "refs/remotes/origin/feature/residence-content-supply-session-001",
+      "withoutUpstream": false,
+      "sameNameRemoteSHA": "9c3c8a8c97c374bd1def6217c691137f3df10096",
+      "aheadOfConfiguredUpstream": 0,
+      "behindConfiguredUpstream": 0,
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/residence-energy-cycle-core-001",
+      "sha": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "942b2d93916c649f4c2ec6cd399035151269d2ca",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/residence-location-core-001",
+      "sha": "d7953bbf96dc842d2953e019f950275cd693bf09",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "d7953bbf96dc842d2953e019f950275cd693bf09",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/residence-session-core-001",
+      "sha": "60e9c30732c5e22cfe9ff58b9b381de64b945180",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "60e9c30732c5e22cfe9ff58b9b381de64b945180",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/residence-terminal-core-001",
+      "sha": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf",
+      "upstream": "refs/remotes/origin/feature/residence-terminal-core-001",
+      "withoutUpstream": false,
+      "sameNameRemoteSHA": "bfc6bd973eeb306df1e8ee916b2160c30b757cdf",
+      "aheadOfConfiguredUpstream": 0,
+      "behindConfiguredUpstream": 0,
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/residence-terminal-restore-001",
+      "sha": "b9b1e0fee0e779669ca40e088ac9a867016bff82",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "b9b1e0fee0e779669ca40e088ac9a867016bff82",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/residence-terminal-session-001",
+      "sha": "0921df3f219f368479d1bf3401d8fecddc0d5f71",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "0921df3f219f368479d1bf3401d8fecddc0d5f71",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/world-browser-owner-001",
+      "sha": "0ac23bc3654d69c3d0a6289d5d9e97ce30c69164",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "0ac23bc3654d69c3d0a6289d5d9e97ce30c69164",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/world-low-asset-ui-001",
+      "sha": "6bb43c8861b7c3dd21499211fdb0e646e48bba20",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "6bb43c8861b7c3dd21499211fdb0e646e48bba20",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/world-player-query-001",
+      "sha": "394f59d3c5df2a65ce87186e8988982d76784a71",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "394f59d3c5df2a65ce87186e8988982d76784a71",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/world-preplay-foundation-001",
+      "sha": "bc60f24cc16625a25ad56b0b917da63b16f29f56",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "bc60f24cc16625a25ad56b0b917da63b16f29f56",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/world-presentation-prep-001",
+      "sha": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "upstream": "refs/remotes/origin/feature/world-presentation-prep-001",
+      "withoutUpstream": false,
+      "sameNameRemoteSHA": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+      "aheadOfConfiguredUpstream": 0,
+      "behindConfiguredUpstream": 0,
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "feature/world-route-acceptance-001",
+      "sha": "8cddbdc3243561aaef5eb9a4eb6bd74dcbca11f3",
+      "upstream": null,
+      "withoutUpstream": true,
+      "sameNameRemoteSHA": "8cddbdc3243561aaef5eb9a4eb6bd74dcbca11f3",
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    },
+    {
+      "name": "main",
+      "sha": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+      "upstream": "refs/remotes/origin/main",
+      "withoutUpstream": false,
+      "sameNameRemoteSHA": "a76e9c1c998051fc1643b6e0c3d53443fa55feed",
+      "aheadOfConfiguredUpstream": 0,
+      "behindConfiguredUpstream": 0,
+      "unpublishedVsLiveSameName": 0,
+      "behindLiveSameName": 0
+    }
+  ],
+  "remoteTags": {
+    "queryExit": 0,
+    "rows": [],
+    "statement": "No tags returned at this query time"
+  },
+  "worktrees": "worktree E:/projects/elevator-survival\nHEAD a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0\nbranch refs/heads/feature/world-presentation-prep-001\n\n",
+  "logicalArchiveOnly": true,
+  "baselineRefCreatedOrMovedByThisTask": false
+}

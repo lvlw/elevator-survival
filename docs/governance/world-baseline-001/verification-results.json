@@ -1,0 +1,36 @@
+{
+  "task": "GOV-WORLD-BASELINE-001",
+  "baseSHA": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+  "baseTree": "1f75162b22bcf486796b6c02bc57b3ec38e6616a",
+  "evidenceLevel": "CURRENT_EXECUTION",
+  "modelName": "NOT_INDEPENDENTLY_VERIFIED",
+  "reasoningEffort": "NOT_INDEPENDENTLY_VERIFIED",
+  "clientSpeedMode": "NOT_INDEPENDENTLY_VERIFIED",
+  "toolExecutionMode": "Default",
+  "environment": {"node": "v24.9.0", "npm": "11.6.0", "shell": "PowerShell", "platform": "Windows", "timezone": "Asia/Shanghai"},
+  "inputPackage": {"verification": "PASS", "payloadFiles": 13, "totalFiles": 15, "uncompressedBytes": 108146, "archivedOriginals": true},
+  "baselineCheck": {
+    "command": "npm run check",
+    "ranAtExactBaseBeforeDocs": true,
+    "exit": 0,
+    "fullRawLog": "evidence/baseline-check.log (external review ZIP)",
+    "scripts": ["validate:architecture", "typecheck", "test:run", "build"],
+    "architecture": {"decEntries": 53, "coreProductionFiles": 347, "status": "PASS"},
+    "testRun": {"filesPassed": 323, "testsPassed": 4725, "durationSeconds": 336.34, "status": "PASS"},
+    "typecheck": "PASS", "build": "PASS",
+    "newGameTests": 0,
+    "secondFullCheck": "NOT_RUN; governance-only changes, no justified rerun"
+  },
+  "endArchitecture": {"command": "npm run validate:architecture", "exit": 0, "decEntries": 53, "coreProductionFiles": 347},
+  "governanceTools": {
+    "command": "python -B -X utf8 docs/governance/world-baseline-001/test_governance_checks.py",
+    "exit": 0, "tests": 15, "status": "PASS",
+    "cases": ["valid path and traversal rejection", "casefold duplicate rejection", "old ref preservation and moved/deleted rejection", "append prefix preservation and rewrite rejection", "whitelist and protected path rejection", "manifest digest/membership tamper rejection", "ZIP symlink rejection", "known Git blob hash"]
+  },
+  "dependency": {"allAuditExit": 1, "runtimeAuditExit": 1, "validNewVulnerabilityResult": false, "status": "PARTIAL_API_404_NOT_IMPLEMENTED", "npmLsExit": 0, "directPackages": 11, "actualDependencyChains": 211},
+  "assets": {"rasters": 64, "registeredSVG": 17, "codeComponents": 5, "enemyStageSlots": 15, "metadataStatus": "PARTIAL_METADATA_DISCREPANCIES", "checkoutCRLFBoundCatalogRows": 15, "staleCodeLogicalRowsOnePhysicalSource": 4, "pixelReview": "NOT_RUN", "adoption": "NOT_RUN"},
+  "finalScopeAndPackage": "See external precommit-self-check.json, staged/final-object-check.json, ZIP verification and post-push receipts; final objects are recorded outside this commit",
+  "CIAtGovernanceFinalSHA": "See external exact-SHA receipt; not inferred from historical a7 CI#175",
+  "mainlineGovernanceReview": "NOT_RUN; awaiting exact SHA review",
+  "B1_C_O3": "NOT_IMPLEMENTED_THIS_TASK"
+}

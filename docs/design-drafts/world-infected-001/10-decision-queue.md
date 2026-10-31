@@ -376,3 +376,8 @@ D1/D2 范围内独立 DEV 低资产界面与作者验证已形成，见[本批�
 ### ENG-WORLD-LOW-ASSET-UI-001-R1 作者附记
 
 本轮仅补齐现行合同的行动说明、初选公开能力、任务物展示名、对象菜单与保存提示；未新增待批准玩法或玩家知识。修前／修后及剩余边界见[R1 映射](../../engineering/world-integration/preplay/low-asset-ui/r1/wording-and-test-map.md)。继续等待准确 SHA 源码／浏览器／视觉复审，Owner 自由体验、分段与九组合体验及 O3 保持原状态。
+
+
+## 当前总账索引（GOV-WORLD-BASELINE-001，2026-10-31）
+
+以上队列按原时点保留。准确a7基线 `a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0` 的DEC-049—053批准子集、实现／审查链和未关闭门槛见 [当前治理入口](../../governance/world-baseline-001/README.md)。该索引不新增规则、不采用候选；先主线治理实审，再另发B1，不自动开始C。

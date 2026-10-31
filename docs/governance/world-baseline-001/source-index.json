@@ -1,0 +1,719 @@
+{
+  "baseSHA": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+  "sources": [
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-002/inputs/AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 17689,
+      "sha256": "145810ebde164ff17eba4e5ad32e010ea0592fa90ece6947a5725a605125aa92",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "d14798073a5beb4fd6fc4b2dc8630724e367ab12",
+      "conclusionExcerpt": "# ENG-MISSION-LIFECYCLE-001 精确提交源码实审\n\n> 标识：AUD-d1d3b79-ENG-MISSION-LIFECYCLE-001 / v1.0\n> 日期：2026-10-03\n> 结论：PASS——本项“具体委托身份与关闭资格纯核心”在已批准契约范围内通过。未发现需要本轮返修的阻塞项。\n> 原件三处空白例外继续按 ADDENDUM-01 接受；不是生产规则或源码检查豁免。\n> 不代表完整世界、真实保存、全角色聚合、玩家界面、试玩或合并 main 通过。\n\n## 1. Owner 当前操作与停止点\n",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/mission-lifecycle-001/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 7899,
+      "sha256": "078bd1311648d0175b96327359ebaf270490a7b97882f67492d24f718a586f3c",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "51054a9227cbf01e9b1d627691f9991928927006"
+    },
+    {
+      "path": "docs/engineering/residence-foundation/g2/inputs/AUD-942b2d9-ENG-RESIDENCE-ENERGY-CYCLE-001-R1-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 8085,
+      "sha256": "c47836d73c651c6c0c5a3bc2040ae8ad9b6573d63350ea27a22c082d7610bb3e",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "86781ff8c9192c1716d60a95787bf4ce1220e677",
+      "conclusionExcerpt": "# G1-R1：准确提交专项源码复审\n\n> 审查标识：AUD-942b2d9-ENG-RESIDENCE-ENERGY-CYCLE-001-R1 / v1.0\n> 日期：2026-10-04\n> 结论：**PASS。F01关闭；G1在942b2d9所代表的当前限定实现通过源码准入实审，可以进入单独下发的G2。**\n> 不将9bbf5aaa原提交追认为当时通过；不代表完整新世界、真实保存、发布或Owner试玩通过。\n\n## 1. 决定与玩家含义\n\nR1修复了唯一要求返修的“纯查看进入行动效果计划”缺口。`view`仍可查询，但公开执行请求、执行schema、Completion及provider返回结构均不再接受它。`planResidenceAction`先解析执行请求，再检查当前上下文、计算revision并调用provider；因此view不能生成可提交noop、身体后态或死亡计划。",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/residence-foundation/g1/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 8766,
+      "sha256": "a9ed62a783297c8e5c3a962a51bc7f96b799458eaf05853f52dbdfa1081ebbf1",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "9a403349ef9c80c73103bdc925252bb43115cb21"
+    },
+    {
+      "path": "docs/engineering/residence-foundation/g3/inputs/AUD-d7953bb-ENG-RESIDENCE-LOCATION-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 9088,
+      "sha256": "807e753c193fec1e854fb625720a577255598159ad47af70dbafa8d12dd36e93",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "b2fa7efc117309fcf1f6374dfb02f534e8d8a790",
+      "conclusionExcerpt": "# G2：准确提交源码实审\n\n> 标识：AUD-d7953bb-ENG-RESIDENCE-LOCATION-001 / v1.0\n> 日期：2026-10-04。\n> 结论：**PASS——在本次连续位置与最小持久现场纯核心范围内，未发现必须返修的阻塞项。**\n> 可以进入按已批准O2边界单独下发的G3；不表示新世界、完整保存、战斗或试玩通过。\n\n## 1. 基线、授权和审查身份\n\n| 项目 | 事实 |",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/residence-foundation/g2/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 5630,
+      "sha256": "672022c40996681280717b985c84fb09627c071051b426cec231001ecc7aa039",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "ab5e6843584eb9c4c8e0a59b868481065d7d83d6"
+    },
+    {
+      "path": "docs/engineering/residence-foundation/g4/inputs/AUD-60e9c30-ENG-RESIDENCE-SESSION-RESTORE-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 8825,
+      "sha256": "9ba16fe906cd0453815b401a695888c1f88bf59e274343facdcd1057fff651ac",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "37d1c7b43de605075f1a23cb14f2b3091d8efa7d",
+      "conclusionExcerpt": "# G3 + ADDENDUM-01：准确提交源码／headless 恢复实审\n\n> 标识：AUD-60e9c30-ENG-RESIDENCE-SESSION-RESTORE-001 / v1.0\n> 日期：2026-10-04\n> 结论：**PASS，限定于本次 G3 合同支持的阶段和接口；无必须返修项。**\n\n## 1. 审查基线与结论\n\n- 仓库：`lvlw/elevator-survival`。\n- 最终提交：`60e9c30732c5e22cfe9ff58b9b381de64b945180`。",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/residence-foundation/g3/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 7966,
+      "sha256": "d6123546139646810e5532046d5323b67076cf1c5eb1c5164bbd854212d1d7de",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "81e187909a2025ba14e04ee293cbda435f36d67c"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-003/inputs/AUD-7ca547a-ENG-RESIDENCE-ACTIONS-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 11130,
+      "sha256": "c2deb808af931a184c41c9be4f4822845584e6b6fbc3720c537329750e17098d",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "be8853b88cb73b1b544e10843ec2e4b56c530b7b",
+      "conclusionExcerpt": "# G4：准确提交源码实审\n\n> 标识：AUD-7ca547a-ENG-RESIDENCE-ACTIONS-001 / v1.0\n> 日期：2026-10-04\n> 结论：**PASS（限定 G4 任务范围），无需返修。**\n> 审查提交：`7ca547ab8ab4f411d1102a79baf8c0796f4b082c`\n> 父提交：`60e9c30732c5e22cfe9ff58b9b381de64b945180`\n> 当前根 tree：`4b5a39ef32f5b24e2cfa56076403bf301654324e`\n\n## 1. 结论与授权边界",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/residence-foundation/g4/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 5751,
+      "sha256": "f31de5f39ee86565f84de9d5e4d1790f91d292007d4303fc96204c231d7a1b38",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "acf74062dfc6c78107905841a9aa44b883aa50a3"
+    },
+    {
+      "path": "docs/engineering/residence-foundation/terminal-restore/inputs/AUD-bfc6bd9-ENG-RESIDENCE-TERMINAL-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 8840,
+      "sha256": "d21a60d6d0d597e9bbafc6a82af6c6ba06630f0b2de022129fc61dcb186d4a43",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "67ef610b24a8ffe1455c2dba136ac32408067b44",
+      "conclusionExcerpt": "# ENG-RESIDENCE-TERMINAL-001（A）：准确提交源码实审\n\n标识：AUD-bfc6bd9-ENG-RESIDENCE-TERMINAL-001 / v1.0。\n日期：2026-10-04。结论：**PASS（A契约限定范围）；无需返修。**\n\n本报告由WebGPT主线产生，不是作者完成报告。PASS覆盖本次纯终局资格、四结果组成、真实G1/G2结果消费、资产与历史完整计划；不覆盖B字符串恢复、C会话安装、真实五图内容、浏览器或体验。\n\n## 1. 准确基线与审查依据\n\n| 项目 | 核对值 |",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/residence-foundation/terminal-core/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 5421,
+      "sha256": "f1e70e9bc4560b57442190bb52fafcd939c949564a67e5e2e7856695dbcc9353",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "2356db0983573dfd7f21d9bf78a7b61b0be669f5"
+    },
+    {
+      "path": "docs/engineering/residence-foundation/terminal-session/inputs/AUD-b9b1e0f-ENG-RESIDENCE-TERMINAL-RESTORE-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 8037,
+      "sha256": "029d317b615ceb6362b665d60f5661de33a85fb12cceda15adcfc6c18f16a32d",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "632bd0cd9584753b196326068e9c263fcdfb707c",
+      "conclusionExcerpt": "# ENG-RESIDENCE-TERMINAL-RESTORE-001（B）：准确提交恢复接缝实审\n\n标识：AUD-b9b1e0f-ENG-RESIDENCE-TERMINAL-RESTORE-001 / v1.0。\n审查日期：2026-10-05。结论：**PASS（B契约限定范围）；无阻塞项、无需返修。**\n\n## 1. 锁定对象与效力\n\n- 仓库：lvlw/elevator-survival。\n- 受审提交：b9b1e0fee0e779669ca40e088ac9a867016bff82。\n- 父／工程基线：bfc6bd973eeb306df1e8ee916b2160c30b757cdf。",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/residence-foundation/terminal-restore/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 8362,
+      "sha256": "85d1c9215d4b8b3f58e4926c7a0a111d2149e161150677c0e7d05a949fff472a",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "d9001bbd652cf01d0943d364415eaaeb7b801528"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/inputs/AUD-0921df3-ENG-RESIDENCE-TERMINAL-SESSION-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 10031,
+      "sha256": "21993be973a3afe87d6f3c34298e883a8c65cee3d0fea01e8da8e604e5c5517f",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "bb93c4da3d67dfa947cd5ea997552cb6ef8d6555",
+      "conclusionExcerpt": "# ENG-RESIDENCE-TERMINAL-SESSION-001（C）：准确提交源码／headless 恢复实审\n\n标识：AUD-0921df3-ENG-RESIDENCE-TERMINAL-SESSION-001 / v1.0。\n评审日期：2026-10-05。结论：**PASS（原 C 契约限定范围），无需返修。**\n\n## 1. 结论与直接推进\n\nC 的显式 v2 会话、共享 domain、首次创建／出发、既有 G2 操作、A 完整终局、B 预编码及冷恢复、同步端口保存故障和重入边界符合本项任务。此结论不是五图可玩、完整战斗医疗、浏览器保存或 Owner 体验通过。\n\n下一批主线下发 WORLD-ENTRY-004：在已存在的世界设计和本次实际代码之上，集中收口真实五图任务生产者、战斗／医疗／物品消费、三专长／工具箱及近期工程准入材料。该任务仅做设计与隔离验证，不自动采纳新规则或参数，不启动下一生产工程，不合并 main。",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/residence-foundation/terminal-session/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 6685,
+      "sha256": "d65884353fdc5f38a02a91f203b2f93f05e60a0ac49055b0579b913ffc54a817",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "555b40a70bc85fa3688495ba89caba1902a520b8"
+    },
+    {
+      "path": "docs/engineering/residence-foundation/content-supply-restore/inputs/AUD-8c19ca0-E01-P-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 4655,
+      "sha256": "bab11e7b844b831f28c25d6b0904696ab72cad2345efddcec785ecd157618d48",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "76f01dfb2bb2fa303da88ab0296c6c48e94550c0",
+      "conclusionExcerpt": "# AUD-8c19ca0：ENG-RESIDENCE-CONTENT-SUPPLY-001（E01-P）源码实审 v1.0\n\n状态：**PASS / 可进入 E01-R**  \n受审准确 SHA：`8c19ca0d28058cf743b41c8547cc2629c8eac767`  \n父 SHA：`ad56a7d9dfc08e38f966f20cf7e07c71c08c09dc`  \nTree：`7de411403ecdde135fe0f0e6fa1ae9d9b9ed7936`  \n分支：`feature/residence-content-supply-core-001`\n\n## 1. 结论\n",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/residence-foundation/content-supply-core/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 7421,
+      "sha256": "c197ed9b6145931443117958be5a8d7f2c6b6c0f1ca3c72f588f4831e245eaa1",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "b20629586bddf2a8dd5f15bada96294f0264187b"
+    },
+    {
+      "path": "docs/engineering/residence-foundation/content-supply-session/inputs/AUD-84eb6df-ENG-RESIDENCE-CONTENT-SUPPLY-RESTORE-001-R1-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 8061,
+      "sha256": "641c2e1c7a69f42c2104f8e1c66f517dfe08514e950e96fb232f6f26d257ede6",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "c1be122506b8cd5d6cde5116ef9d08311c733f9f",
+      "conclusionExcerpt": "# E01-R-R1 准确 SHA 专项复审 v1.0\n\n日期：2026-10-05。\n结论：**PASS；F01关闭；W01限定原件例外保留。**\n\n- 受审提交：`84eb6dff5e9d3238c3e651525b6ed28412132549`。\n- 父提交：`346902461c3fd1f01ec88132d4d2e7c3ef1d50bd`。\n- Tree：`327e3474a3f6b90d156f6e34dbbcc0288f7efe87`。\n- 分支：`feature/residence-content-supply-restore-001`。\n- 审查对象：R1对v3历史流血幅度及局部休整来源约束的修复，不是重新宣称全部世界或任意离线历史已经认证。",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/residence-foundation/content-supply-restore/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 10040,
+      "sha256": "9a9d4addb89e7ee4be38183dbfcbe797a4bd6304967936452a4a8d8aa2ca4650",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "afdec3ca5ec26008a98fab7ccbdeb990ae22684b"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-005/inputs/AUD-9c3c8a8-ENG-RESIDENCE-CONTENT-SUPPLY-SESSION-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 10175,
+      "sha256": "0f1e4358fa3d6a4ab22d9f50286c78272bd56d47c46658ac174ea65297d89a79",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "c70e1db39dcef3a0d3b19d77b94cc38a5ae22339",
+      "conclusionExcerpt": "# E01-S 准确 SHA 会话／保存故障源码实审 v1.0\n\n日期：2026-10-05。\n结论：**PASS；E01-S限定范围通过。W01原七行归档例外保留。**\n\n## 1. 基线、证据与停止点\n\n| 项目 | 锁定事实 |\n| --- | --- |\n| 仓库 | `lvlw/elevator-survival` |",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/residence-foundation/content-supply-session/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 8061,
+      "sha256": "9e7d00a2d9ba8360dc3a77f6758bb4e0f56c36e4611f22b09229d0d674e9b00e",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "1a877f63f14219250a5900781f4e3eed7733bf40"
+    },
+    {
+      "path": "docs/engineering/residence-foundation/active-combat-restore/inputs/AUD-9ada1bd-ENG-RESIDENCE-COMBAT-CORE-001-R2-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 9441,
+      "sha256": "be2e4a966f58d0ce188c48e21060d4e82db0298a5cfc0499f1780c243f64893d",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "8e03e8409cc216bf16082e60766ae66e2fb39e5b",
+      "conclusionExcerpt": "# E02-P-R2 准确SHA专项源码复审 v1.0\n\n日期：2026-10-13。\n结论：**PASS。F03关闭；承接前轮F01/F02修复及本轮保护回归，E02-P可进入独立E02-R工程。**\n\n## 1. 准确基线与适用范围\n\n- 受审提交：`9ada1bd76c768b7bcff676b263e4533854064909`。\n- 父提交／本轮起点：`8512c991adb353775ffa4785599a011e419a81fa`。\n- Tree：`8a0c09f43fb3be66a2ff07cf64b928aa6e1a7862`。",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/residence-foundation/active-combat-core/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 25395,
+      "sha256": "d15a02f29b4256eaae90cf27fba4554badd1ed35857bb021700dde655cabb6cc",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "25c7ec7237536004f267f2fda10c97ebf4e24cda"
+    },
+    {
+      "path": "docs/engineering/residence-foundation/active-combat-session/inputs/AUD-29a018a-ENG-RESIDENCE-COMBAT-RESTORE-001-R1-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 7744,
+      "sha256": "29a5060b656cee08418544927995242d88bf14ed64afeb1cee506a1527388019",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "bbf58dfcfc542b95f671a2d7347d25fca535926c",
+      "conclusionExcerpt": "# E02-R-R1 准确 SHA 专项复审 v1.0\n\n日期：2026-10-13。\n结论：**PASS。R-F01 关闭；允许由主线下发 E02-S 独立工程任务，不自动跨入 E03。**\n\n## 1. 精确基线\n\n- 仓库：`lvlw/elevator-survival`。\n- 受审提交：`29a018a2ad64f8d5cbe56257381568bf3527cd08`。\n- 父提交：`55fbf0f48e6a76bea3030bd77354528816581776`。",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/residence-foundation/active-combat-restore/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 11173,
+      "sha256": "daf867fd852989af9b911e172dbcd976f554bf57ba80995cec5aaac1fee4c941",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "30debb52bffc11a014b419aca1f270555fe9b0e4"
+    },
+    {
+      "path": "docs/engineering/world-integration/route-acceptance/inputs/AUD-713dd37-ENG-RESIDENCE-COMBAT-SESSION-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 7137,
+      "sha256": "eb816e7e96407efdbb28fb07f43640648630399b3bb2e1be668dd21b49d03c95",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "62fcc95e46e61dc74f074485d6662fb3de229c56",
+      "conclusionExcerpt": "# E02-S 准确 SHA 会话／保存故障实审 v1.0\n\n日期：2026-10-14。\n结论：**PASS，E02-S本批无需返修。可以进入另行下发的E03-A真实路线验收任务。**\n\n## 1. 准确基线与范围\n\n- 仓库：`lvlw/elevator-survival`。\n- 受审提交：`713dd376ddb60d20d9afaedaee4505e695f89d94`。\n- 父提交：`29a018a2ad64f8d5cbe56257381568bf3527cd08`。",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/residence-foundation/active-combat-session/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 7013,
+      "sha256": "b6076b469ef4db41303ec905cad367198f1d1832bf9cb2bc58a4e5ea77fb0164",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "bb846907498d8c5f94bea9a2b21c5edaa4a22ddf"
+    },
+    {
+      "path": "docs/engineering/world-integration/player-query/adoption/inputs/AUD-7a3acd3-ENG-LONGCHAIN-TEST-BUDGET-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 5672,
+      "sha256": "f110fb830cd73a3c8e5c37217d065b62c25dbb733044ae286f2a5c7c893ccc00",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "2ef42bd04eb02e09921f814c98c02eab45b2428c",
+      "conclusionExcerpt": "# ENG-LONGCHAIN-TEST-BUDGET-001 准确提交复审 v1.0\n\n## 结论\n\n**PASS。F01 的本机默认完整检查欠账关闭；已关闭的 F02 保持。无需继续返修测试预算。**\n\n审查日期：2026-10-20。受审 SHA：`7a3acd3855aefdde68fdaed13ebe037f3e9bd6de`；父 SHA：`de8f358d2d281eb4ff914d6ebc20f16986164701`；tree：`17d43169891e71e5e5686ccff8271f98b49800c7`；分支：`feature/world-route-acceptance-001`。\n\n本结论只收口本任务及 E03-A 的限定测试／路线验收门槛。不是完整 E03、玩家安全查询、UI、浏览器保存、多标签或 Owner 体验通过；也不是生产性能优化结论。\n",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/world-integration/route-acceptance/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 22241,
+      "sha256": "92ce2ee0502bb63704d86c525e92e890c4c59068a8c58555cfbd22d5ed1ea9ab",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "68d950aac80c3d534518ccf6697b5c5b9fbe8324"
+    },
+    {
+      "path": "docs/engineering/world-integration/player-query/implementation/inputs/AUD-8cddbdc-DOC-WORLD-QUERY-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 7572,
+      "sha256": "d572371584016a10cdb1e8e7df63b54cf5c495841a7dcf7853c91bbdb9791586",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "326bfeb9cc2f3ac4e9ea88171e60fc806eec7c16",
+      "conclusionExcerpt": "# DOC-WORLD-QUERY-001 准确 SHA 文档实审 v1.0\n\n## 1. 结论与适用范围\n\n**PASS：三份确定载荷已按批准字节安装，归档及同范围入口附记符合本轮文档任务；无需返修。**\n\n受审提交：`8cddbdc3243561aaef5eb9a4eb6bd74dcbca11f3`\n父提交：`7a3acd3855aefdde68fdaed13ebe037f3e9bd6de`\nTree：`758c5cf11eb3ae15c543b50f30a7e4f5a703f38c`\n分支：`feature/world-route-acceptance-001`",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/inputs/AUD-394f59d-ENG-WORLD-PLAYER-QUERY-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 8868,
+      "sha256": "2ebfce8212c73699b0b76f911bd8dd91ce0c96baf6674a15f58c24768ab55cd6",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "ae3f35633a0dc83206d7882d7446d6fc97a2431a",
+      "conclusionExcerpt": "# ENG-WORLD-PLAYER-QUERY-001 准确提交实审 v1.0\n\n## 结论与适用范围\n\n**PASS（本项 headless 玩家查询／选择接缝的限定源码实审）；未发现需要本轮返修的阻断项。**\n\n- 受审完整 SHA：`394f59d3c5df2a65ce87186e8988982d76784a71`\n- 父提交：`8cddbdc3243561aaef5eb9a4eb6bd74dcbca11f3`\n- Tree：`0431a7f73abe7ce99c070887f6872489007175f0`\n- 工程分支：`feature/world-player-query-001`",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/world-integration/player-query/implementation/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 9892,
+      "sha256": "133a6e1c4af74459bc2991ef758350eb41115fbb8bc30ca64564b46da7674b67",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "9346548e0744b32a1734102e10f4853d90d3e2ba"
+    },
+    {
+      "path": "docs/engineering/world-integration/preplay/browser-owner/inputs/AUD-bc60f24-ENG-WORLD-PREPLAY-FOUNDATION-001-R1-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 7023,
+      "sha256": "c39d3f1e04e051d479db3660c0bf8e489127ca9989815cb1049e6e395e9049d3",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "2cf81ace974ccd9c9c07110686749660e0cf96a8",
+      "conclusionExcerpt": "# ENG-WORLD-PREPLAY-FOUNDATION-001-R1 准确 SHA 专项复审 v1.0\n\n结论：**PASS — R-M01关闭。** 基础准备可作为后续浏览器 owner 工程起点；不是浏览器、玩家入口、UI或Owner体验PASS。\n\n## 1. 锁定事实与审查性质\n\n- 仓库：lvlw/elevator-survival。\n- 受审完整SHA：`bc60f24cc16625a25ad56b0b917da63b16f29f56`。\n- 父SHA：`cc147cd253f3e7e57e45de265610becb64a74821`；tree：`875f04ad8018f48df9b248fc19317d35e48798a0`。\n- 远端 `feature/world-preplay-foundation-001` 在本轮读取时指向受审SHA。",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/world-integration/preplay/foundation/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 23030,
+      "sha256": "110cdc7f824612521bf4aeb1201d0cba7abf6659c847a9e835eda48b57673e96",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "3975bb7c900f3ddff712e4280fe827d6c1a158c4"
+    },
+    {
+      "path": "docs/engineering/world-integration/preplay/low-asset-ui/inputs/AUD-0ac23bc-ENG-WORLD-BROWSER-OWNER-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 9611,
+      "sha256": "5b28cfc9e10f673ff5bf92a202e3c9825c048123656c6bcd4715fc0b92e99c0f",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "5cb42e2028a54daeb127ca5cdc398f961724204b",
+      "conclusionExcerpt": "# AUD-0ac23bc — ENG-WORLD-BROWSER-OWNER-001 准确SHA专项实审 v1.0\n\n## 结论与停止点\n\n**PASS：本批浏览器启动／prepared持久化／合作页面独占接缝通过限定实文件审查。** 没有发现需要退回浏览器生产实现的阻塞项。可按已批准批次顺序下发低资产UI工程；不是已完成UI、Owner首玩、公开发布、O3或全平台验收。\n\n非阻塞工具附记 **T02**：本批浏览器TEST runner的输出目录保护仍是字面路径前缀判断，会误放行“外部符号链接实际指向仓库内部”。应在下一批UI测试工具工作包内窄修，复用已审T01 helper；不要求重做存档设计，不倒改已有浏览器结果。\n\n## 1. 精确事实基线\n",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/world-integration/preplay/browser-owner/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 2796,
+      "sha256": "3e6e6af55a06f08ce122189edf0abda0b6990bfe33e5c4937a2a595f4419a521",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "5d23a07cdd2c129f5c827161b9bdee9059d8956a"
+    },
+    {
+      "path": "docs/engineering/world-integration/preplay/low-asset-ui/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 12176,
+      "sha256": "da8440a3e5cd12e3cc0c429614c3733285f2ab1ee63a3d35e8320eec4c3ca558",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "7e92e2d8afc3a79bc665f253febca81a1d965acb"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/inputs/SOURCE-BOUNDARIES.md",
+      "level": "HISTORICAL_REFERENCE_ONLY",
+      "bytes": 4653,
+      "sha256": "f902a39dc49c882cc1a2920479f7a4d41dbc31740d03f2a3102471a65dee1d39",
+      "readExtent": "后继引用/作者状态，不冒充缺失的专项审查原件",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "e656c35b14cc7f0b22467e70239edd212e5acd67"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 2145,
+      "sha256": "37b60ca8ded4d9ac055c9c04f28ab48c028eb8b13d221c5a36f335a1c8b47480",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "60e82cf36f85526ce65caa0817c96504ab78554d"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/00-owner-review.md",
+      "level": "HISTORICAL_REFERENCE_ONLY",
+      "bytes": 2594,
+      "sha256": "bd277de959d383b49f61bd02054f101273cfd811ad5d56d5fdbd40d7eef970e2",
+      "readExtent": "后继引用/作者状态，不冒充缺失的专项审查原件",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "bb4019cdd5e9cc9a8d746644e500854dfc4cf49b"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/completion.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 7179,
+      "sha256": "f69f80a525d1a04d094d36c10df047ea949593edbec8908b939b008a7d6d89b3",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "ca86a8148cbf98f56cb28d9ce1e0baae8b5722e1"
+    },
+    {
+      "path": "docs/engineering/world-integration/presentation-prep-001/inputs/AUTHORIZATION-AND-STATUS.md",
+      "level": "HISTORICAL_REFERENCE_ONLY",
+      "bytes": 2525,
+      "sha256": "3b8a887680842d357fb0b7341ce2460eedef0fffc55b4c625b169a4356f3f38f",
+      "readExtent": "后继引用/作者状态，不冒充缺失的专项审查原件",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "f9911b662333a4348381585ac161f6ec98c9a5ae"
+    },
+    {
+      "path": "docs/governance/world-baseline-001/inputs/inputs/AUD-a7f0f153-PRESENTATION-PREP-001-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 10328,
+      "sha256": "a900ee0297e48854c4e143e77a87c6a4446a5167c46121ffac6f3c94c1dba7f1",
+      "readExtent": "结论、准确对象、适用范围和排除项定位；不重演该历史实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": null,
+      "conclusionExcerpt": "# ENG-WORLD-PRESENTATION-PREP-001 主线准确 SHA 实审\n\n审查日期：2026-10-31。状态：**PASS（本批授权范围）**。\n\n## 1. 结论与授权边界\n\nA 当前敌人安全展示查询通过源码与交付实审。本批 W0—W4 的实际交付可收口，无须发起返修。\n\nW3 的原生观察和 B 候选合同、W4 的15槽关联与接入资料满足本批准备任务；这不把 B 的候选字段或生命周期变成已批准生产合同，不授权 B 实现、C 正式 UI、素材采用、O3、部署、合并或推送 main。\n",
+      "targetSHAReferenced": true
+    },
+    {
+      "path": "docs/engineering/world-integration/presentation-prep-001/FINAL-REPORT.md",
+      "level": "AUTHOR_EVIDENCE",
+      "bytes": 9563,
+      "sha256": "8f75813a54e751d1226fa8982758e6e3d526cb0fdffb12a9728af3eca0c97c40",
+      "readExtent": "完成记录/失败与修订/检查边界定位；历史测试不计本轮新增",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "c43c426c724cca7a0d27329d877f126279c9a37a"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/reviews/input-doc-world-entry-001/OWNER-approval-WORLD-ENTRY-001-v1.0.md",
+      "level": "FORMAL_APPROVAL",
+      "bytes": 1561,
+      "sha256": "f8b7a3e2f3f1f7b04c036b736529831d303fe2f9254d83fb64d4b9bb41e4fc29",
+      "readExtent": "批准记录全文；原话/转录身份按原件说明，不称新增亲签证明",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "0d88221c73bd0d0c47eb0428f31db40452b57cd2"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-002/adoption/inputs/OWNER-approval-WORLD-ENTRY-002-ADOPTION-v1.0.md",
+      "level": "FORMAL_APPROVAL",
+      "bytes": 1729,
+      "sha256": "9121e016394c8f9d4a2e54b72b59d92636570582c0a06b5ec05cfbb4a0678705",
+      "readExtent": "批准记录全文；原话/转录身份按原件说明，不称新增亲签证明",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "66c04d8467909f0df6724de6eda7ab6cf0821427"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-003/adoption/inputs/OWNER-approval-WORLD-ENTRY-003-ADOPTION-v1.0.md",
+      "level": "FORMAL_APPROVAL",
+      "bytes": 2415,
+      "sha256": "6c52b7fac95b8ea5c645efc898639d8c50c448edbc4664c341f888cd40e9e47a",
+      "readExtent": "批准记录全文；原话/转录身份按原件说明，不称新增亲签证明",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "a20c7b5f2129b2d1cceb20bcb77f1039d0939a72"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-004/adoption/inputs/OWNER-approval-WORLD-ENTRY-004-ADOPTION-v1.0.md",
+      "level": "FORMAL_APPROVAL",
+      "bytes": 2357,
+      "sha256": "9b6b79a26e53ec6ec2b57d831f5be61a60e505d141dd3de2e4137b7ea13032e4",
+      "readExtent": "批准记录全文；原话/转录身份按原件说明，不称新增亲签证明",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "4fb36f7ecee21415bd1bde8299bb924fc4f192bc"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/OWNER-approval-WORLD-ENTRY-006-v1.0.md",
+      "level": "FORMAL_APPROVAL",
+      "bytes": 573,
+      "sha256": "c527927f098f04c58f4f8ef6dbff15eed41299b3a4a3180aef3e03902337210f",
+      "readExtent": "批准记录全文；原话/转录身份按原件说明，不称新增亲签证明",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "d446193ce90c8ea62f7d49b1eef2312250d1a808"
+    },
+    {
+      "path": "docs/engineering/residence-foundation/g1/reviews/AUD-9bbf5aa-ENG-RESIDENCE-ENERGY-CYCLE-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 11288,
+      "sha256": "37a57346ff15d6c53933436d434e1e85e9be7b475da7c9f02a519d07ce71a1ae",
+      "readExtent": "历史未通过/修订结论定位；保持原时点",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "93dbc8cac342ec66bb7f51a9b5c920efbecfd4ca",
+      "conclusionExcerpt": "# G1：主线准确提交源码实审\n\n> 审查标识：AUD-9bbf5aa-ENG-RESIDENCE-ENERGY-CYCLE-001 / v1.0\n> 日期：2026-10-04\n> 结论：**NEEDS REVISION——1项P2接口分类缺口，完成限定返修后专项复审。**\n> 本结论针对G1当前实现，不撤销DEC-050、已批准契约或首身份核心的历史PASS；不启动G2/G3。\n\n## 1. 结论与玩家影响\n\n唯一阻塞项F01：`view`被纳入`planResidenceAction`的可执行请求。该路径即使收到零效果，也会调用效果提供者、产生`primary`步骤并把结果中的revision加1；提供者返回合法形状的损血／暴露时，还会生成对应身体改变乃至死亡计划。"
+    },
+    {
+      "path": "docs/engineering/residence-foundation/active-combat-core/r2-inputs/AUD-8512c99-ENG-RESIDENCE-COMBAT-CORE-001-R1-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 7484,
+      "sha256": "cae576e2959c582b3707b6deb552e11071fda0eb45579402a1af34098c9a5442",
+      "readExtent": "历史未通过/修订结论定位；保持原时点",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "4b93ddb1d531b1551241b4736b77a5fb13e8340b",
+      "conclusionExcerpt": "# E02-P-R1 准确SHA专项源码复审 v1.0\n\n日期：2026-10-12。\n结论：**NEEDS REVISION。原F01／F02八个反例的修复方向成立；新增相邻回归F03必须限定修复，暂不进入E02-R。**\n\n## 1. 准确基线与授权边界\n\n- 仓库：lvlw/elevator-survival。\n- 受审SHA：`8512c991adb353775ffa4785599a011e419a81fa`。\n- 父SHA：`9f0eaacfbb83e49401c52fb57c3cfa061b2ef026`。"
+    },
+    {
+      "path": "docs/engineering/residence-foundation/active-combat-restore/r1-inputs/AUD-55fbf0f-ENG-RESIDENCE-COMBAT-RESTORE-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 6999,
+      "sha256": "3564deb9c06090ad80945bf74294b233e97908a80f0313b01fe20b1742cf6847",
+      "readExtent": "历史未通过/修订结论定位；保持原时点",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "32517891a42c0c391c7bb45c3a2aef6e8484f4e6",
+      "conclusionExcerpt": "# E02-R 准确 SHA 恢复接缝实审 v1.0\n\n日期：2026-10-13。\n结论：**NEEDS REVISION，暂不进入 E02-S。** 一项限定问题 R-F01：攻击击杀敌人后，同一动作流血使玩家 HP 归零的合法死亡，可能被 v4 死亡归档校验拒绝。\n\n## 1. 精确对象与证据分层\n\n- 受审提交：`55fbf0f48e6a76bea3030bd77354528816581776`。\n- 父提交：`9ada1bd76c768b7bcff676b263e4533854064909`。\n- Tree：`94b8f203cb97957ddb3ede1598b5e4938f81a7d9`。"
+    },
+    {
+      "path": "docs/engineering/world-integration/preplay/low-asset-ui/r1-inputs/AUD-2e3d13a-ENG-WORLD-LOW-ASSET-UI-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 11705,
+      "sha256": "bb8bb997565325ddfebae48cc7252fb9d967717d8375aedefaa5bbb4982680f4",
+      "readExtent": "历史未通过/修订结论定位；保持原时点",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "29c4d56a3e8c3158c526d56b53e2c29b41dce45a",
+      "conclusionExcerpt": "# ENG-WORLD-LOW-ASSET-UI-001 准确 SHA 源码／截图合并实审 v1.0\n\n## 结论与下一步\n\n**NEEDS REVISION。** 进入 Owner 首玩前完成一次集中限定返修：UI-01 行动前只读说明、UI-02 公开初选／物品文案、UI-03 物品上下文菜单。V01 为同批可收口的保存状态文案小修，不是另一个存档漏洞。\n\n不重做基础controller、browser owner或玩法，不要求新增最终美术。当前中央舞台、桌面主操作布局、真实网格、样本显式放置、保存失败警示与两条DOM路线成果保留。此前源码阶段报告保持原件；本报告补齐当时缺失的截图证据并成为当前合并结论。\n\n现在可按既有任务下发权限执行 `ENG-WORLD-LOW-ASSET-UI-001-R1`，同一Codex工程会话、同一分支；无需Owner重新授权。完成后准确SHA和新截图包同时停审，未批准首玩通过、O3、公开发布、迁移、清档或后继工程。\n"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/reviews/r2-inputs/AUD-0e0c5cf-WORLD-UI-DESIGN-001-R1-package-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 11269,
+      "sha256": "945d87bf84a414fbf7e5397c9d1c5f59b280c8e56c3a57082bdfd14a92db088b",
+      "readExtent": "历史未通过/修订结论定位；保持原时点",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "462c78b4b529aa702a369056f98cae5b225f78d8",
+      "conclusionExcerpt": "# WORLD-UI-DESIGN-001-R1：附件、原型与视觉联合审阅\n版本：v1.0\n审阅日期：2026-10-28\n结论：**NEEDS REVISION / INCOMPLETE_ART；原四组问题在上传包范围内修复成立；精确 Git 提交关联尚待核验。**\n\n## 1. 给 Owner 的结论\n\n不重做已认可的三栏方向，不返修已经解决的四组原型语义问题；不进入生产 UI 实现。\n本版已能证明连续上下文、原物品绑定、采样支付及动作示范得到修正，布局和当前内容美术的覆盖也有实物。\n但是主线在同状态图中发现了**导出背包位置偏移**，不只是作者已记录的滚动条差异。背景2×像素供给、透明清稿、可靠离线审阅和尺寸收口也仍有责任。"
+    },
+    {
+      "path": "docs/engineering/world-integration/route-acceptance/r1-inputs/AUD-2258e1b-ENG-WORLD-ROUTE-ACCEPTANCE-001-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 7854,
+      "sha256": "3576cf87f13689646e7aca08ea00fedc3a0489fac84bc581d735ab63efe9db55",
+      "readExtent": "历史未通过/修订结论定位；保持原时点",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "b3c71485c24f3a7d30cd6f07e86995d07da45baf",
+      "conclusionExcerpt": "# E03-A 准确 SHA 原生路线／查询合同实审 v1.0\n\n审查日期：2026-10-14。\n结论：**NEEDS REVISION**。限定返修测试执行稳定性和路线 harness 的异常分类；不重做世界路线，不改变已批准数值，不撤销 E02-S 的 PASS。\n\n## 1. 准确基线与权限\n\n- 受审提交：`2258e1bad17ffb03297b691be51bf9bfe5883979`。\n- 父提交／起点：`713dd376ddb60d20d9afaedaee4505e695f89d94`。\n- Tree：`4c041d6a048acf5b7029f88e6f4bb4aaa8b87d24`。"
+    },
+    {
+      "path": "docs/engineering/world-integration/longchain-test-budget/inputs/AUD-de8f358-ENG-WORLD-ROUTE-ACCEPTANCE-001-R1-review-v1.0.md",
+      "level": "MAINLINE_AUDIT_ORIGINAL",
+      "bytes": 8890,
+      "sha256": "025a0179e5f711e478d98bdcd6682f526e5aed59e680a9afac287fbed9de0f0a",
+      "readExtent": "历史未通过/修订结论定位；保持原时点",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "5f46693aa1a9ac3f435e4501cb420bc5939e7a47",
+      "conclusionExcerpt": "# E03-A-R1 准确提交专项复审\n\n受审 SHA：`de8f358d2d281eb4ff914d6ebc20f16986164701`\n\n父 SHA：`2258e1bad17ffb03297b691be51bf9bfe5883979`\n\nTree：`785c2b6b4fedd369d46feddb3313a6ca558967d5`\n\n分支：`feature/world-route-acceptance-001`\n"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-005/adoption/inputs/MAINLINE-technical-ratification-WORLD-ENTRY-005-v1.0.md",
+      "level": "FORMAL_APPROVAL",
+      "bytes": 2190,
+      "sha256": "3ad2d7d7b43046b0ae29093e57853d3bfa28d5e2411c35f7b2d6a13c8edc2b54",
+      "readExtent": "技术 ratification 的对象/边界；不是新增 Owner 玩法批准",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "413a413eb6d0bf3d0c0cf6c616eb21820e14b361"
+    },
+    {
+      "path": "docs/engineering/world-integration/player-query/adoption/inputs/MAINLINE-WORLD-QUERY-001-ratification-v1.0.md",
+      "level": "FORMAL_APPROVAL",
+      "bytes": 2404,
+      "sha256": "be63fde450a1bba49059005599202e1104063855e0297d0590a0af59f3b685ac",
+      "readExtent": "技术 ratification 的对象/边界；不是新增 Owner 玩法批准",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "144a3b4fe57e84c45b3a15c3c634718cbea5004a"
+    },
+    {
+      "path": "docs/design-drafts/world-infected-001/entry-006/adoption/inputs/MAINLINE-WORLD-ENTRY-006-ratification-v1.0.md",
+      "level": "FORMAL_APPROVAL",
+      "bytes": 2985,
+      "sha256": "7cb898759cdd914a70e28d8e3e15228b2af220b2b5bcd4c9188d4183d2e92433",
+      "readExtent": "技术 ratification 的对象/边界；不是新增 Owner 玩法批准",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "153cf9e9e5472ae53b33c8e7f3136a402e6f7ebd"
+    },
+    {
+      "path": "AGENTS.md",
+      "level": "CURRENT_EXECUTION",
+      "bytes": 2024,
+      "sha256": "00c2cad61c99530c1343ca9faad9a32994d67e5ca4aeb991156bb9828e5c501e",
+      "readExtent": "当前适用章节/结构读取与准确基线对象核对；不是本轮完整源码重新实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "0055de32c18517d4d016b077e5fc287d9360317d"
+    },
+    {
+      "path": "package.json",
+      "level": "CURRENT_EXECUTION",
+      "bytes": 824,
+      "sha256": "f6b6752aebd3aa6161a0c802ef49ee1b2ddbbffeb19b76e2e4d581f2465e5346",
+      "readExtent": "当前适用章节/结构读取与准确基线对象核对；不是本轮完整源码重新实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "e52c8b2716f8f44f4678066443516de5c738a3b8"
+    },
+    {
+      "path": "package-lock.json",
+      "level": "CURRENT_EXECUTION",
+      "bytes": 77694,
+      "sha256": "d701893a8f89f88e33f1278129df58718d0341f2dd1caee232315bd1dddf5990",
+      "readExtent": "当前适用章节/结构读取与准确基线对象核对；不是本轮完整源码重新实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "3b320a8a79a1815c0909d8846e5e6248d4fc187e"
+    },
+    {
+      "path": "docs/01-game-design-v0.1.md",
+      "level": "CURRENT_EXECUTION",
+      "bytes": 37753,
+      "sha256": "20c947930a1a7fca7b97f581b9813213fda3c45cfbea724d5af4a4788b18410b",
+      "readExtent": "当前适用章节/结构读取与准确基线对象核对；不是本轮完整源码重新实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "9f1537ed931845601353ffd1f880690c2cdfa77e"
+    },
+    {
+      "path": "docs/02-vertical-slice.md",
+      "level": "CURRENT_EXECUTION",
+      "bytes": 51466,
+      "sha256": "bd1482a0a04f0b74b935c06bb3d64a963ed410daf36940be3b78d3ab2d61b6fd",
+      "readExtent": "当前适用章节/结构读取与准确基线对象核对；不是本轮完整源码重新实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "784db68f16572b7666c3da37a1e39b5ad3b4385b"
+    },
+    {
+      "path": "docs/03-architecture.md",
+      "level": "CURRENT_EXECUTION",
+      "bytes": 96483,
+      "sha256": "586c9960468a4733e2145d8a179ccf75ca9a75a17f24669e89367ab35aa0a9fa",
+      "readExtent": "当前适用章节/结构读取与准确基线对象核对；不是本轮完整源码重新实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "72e29fcd0f5efe21493dbd02a66aa130be7cc2d0"
+    },
+    {
+      "path": "docs/05-design-decisions.md",
+      "level": "CURRENT_EXECUTION",
+      "bytes": 282147,
+      "sha256": "68f35a56c754f55b1137314ba41cd7fbbeea88afdcb816690ff52a509c90d6ca",
+      "readExtent": "当前适用章节/结构读取与准确基线对象核对；不是本轮完整源码重新实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "2fd80b12fb57285dd7d1bbe89e4ea51353710ff8"
+    },
+    {
+      "path": "docs/09-ui-design-record.md",
+      "level": "CURRENT_EXECUTION",
+      "bytes": 46798,
+      "sha256": "ef487405761d553bf59da280f7b93563207f77af6173e96ddc1cccf26e1e033d",
+      "readExtent": "当前适用章节/结构读取与准确基线对象核对；不是本轮完整源码重新实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "216f76d08f91175130603c35125322026bb78262"
+    },
+    {
+      "path": "docs/content/infected-world-entry-content-v0.1.json",
+      "level": "CURRENT_EXECUTION",
+      "bytes": 25804,
+      "sha256": "05dabf10796ee027ea31037641ae91b95fc9346b9b98f032f1b7c99dada88925",
+      "readExtent": "当前适用章节/结构读取与准确基线对象核对；不是本轮完整源码重新实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "dece5112e546af127943f846d7003e384ff97a21"
+    },
+    {
+      "path": "docs/content/infected-world-entry-test-config-v0.1.json",
+      "level": "CURRENT_EXECUTION",
+      "bytes": 6213,
+      "sha256": "15624fee92e615e1d4ffcec39d071057b10a8de6ce16408cca0ffb4e94f5d8e6",
+      "readExtent": "当前适用章节/结构读取与准确基线对象核对；不是本轮完整源码重新实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "40ba0e3edd1a13843e40be5f8d420bef6afeb8f0"
+    },
+    {
+      "path": "docs/content/infected-residence-core-test-config-v0.1.json",
+      "level": "CURRENT_EXECUTION",
+      "bytes": 1417,
+      "sha256": "377aa63f5fc0d1110cfb056d6252d6f3ef35705d250512fbae679274d5a4e1c9",
+      "readExtent": "当前适用章节/结构读取与准确基线对象核对；不是本轮完整源码重新实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "db6959ac02bf1e3bf8e816fe2b0d148ced9ca273"
+    },
+    {
+      "path": "docs/content/infected-terminal-core-test-config-v0.1.json",
+      "level": "CURRENT_EXECUTION",
+      "bytes": 770,
+      "sha256": "a42a0689a32f8ed88b9ac025a0da1800dda01d51e0f5a285ce5383198e212c18",
+      "readExtent": "当前适用章节/结构读取与准确基线对象核对；不是本轮完整源码重新实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "fa999e7f456414daf6279fd8fbff3cd117394135"
+    },
+    {
+      "path": "src/ui/infected-world/components/battle-stage.tsx",
+      "level": "CURRENT_EXECUTION",
+      "bytes": 2830,
+      "sha256": "4b1e3a514d67e7956ee6f3997a702bb50745f9d6dc2b3c8cb29bd4301258827f",
+      "readExtent": "当前适用章节/结构读取与准确基线对象核对；不是本轮完整源码重新实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "5e1f70e9bef29ac186b6501687b1bae1b76d7d8b"
+    },
+    {
+      "path": "docs/engineering/world-integration/presentation-prep-001/B-COMMITTED-PRESENTATION-CANDIDATE.md",
+      "level": "CURRENT_EXECUTION",
+      "bytes": 11034,
+      "sha256": "ac6d9c5ee1560d1cf4f486120b1125ae32bdfe38c92a71ed9f0c09e7c8a4d159",
+      "readExtent": "当前适用章节/结构读取与准确基线对象核对；不是本轮完整源码重新实审",
+      "isNewIndependentAudit": false,
+      "gitBlobAtBase": "05e3a5e1338dd9d900f0de55e27d947d78b3fa17"
+    }
+  ],
+  "limits": "原件路径、字节和Git对象已核对；历史报告按结论/对象/范围索引，不将各历史测试累加成当前验收。"
+}

@@ -1,0 +1,3268 @@
+{
+  "status": "PARTIAL_METADATA_DISCREPANCIES",
+  "baseSHA": "a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0",
+  "counts": {
+    "rasters": 64,
+    "registeredSVG": 17,
+    "codeComponents": 5,
+    "enemyStageSlots": 15
+  },
+  "rasters": [
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-c1-v1.png",
+      "bytes": 2389817,
+      "sha256": "f06397979d2c7861ffab6a010d4c1faf9a36ef321b90fe61201e403b2ba02bce",
+      "gitBlobAtBase": "7992c6d838669af7ca824179ad46f1d4f529b9d6",
+      "worktreeBlob": "7992c6d838669af7ca824179ad46f1d4f529b9d6",
+      "exactBlobMatches": true,
+      "committedSha256": "f06397979d2c7861ffab6a010d4c1faf9a36ef321b90fe61201e403b2ba02bce",
+      "checkoutEOLOnly": false,
+      "key": "bg-c1",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "f06397979d2c7861ffab6a010d4c1faf9a36ef321b90fe61201e403b2ba02bce",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "C1"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-c3-v1.png",
+      "bytes": 2653246,
+      "sha256": "65842580c024fd69d905c0361e120f35ad16f3aef6bdd74bb617567fa56a8811",
+      "gitBlobAtBase": "3e59c175e3bd6b71d665a18476b05430c42c547d",
+      "worktreeBlob": "3e59c175e3bd6b71d665a18476b05430c42c547d",
+      "exactBlobMatches": true,
+      "committedSha256": "65842580c024fd69d905c0361e120f35ad16f3aef6bdd74bb617567fa56a8811",
+      "checkoutEOLOnly": false,
+      "key": "bg-c3",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "65842580c024fd69d905c0361e120f35ad16f3aef6bdd74bb617567fa56a8811",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "C3"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-communication-v1.png",
+      "bytes": 3033547,
+      "sha256": "2bbcf3e39673a9e3bc80a0632632ec62eb2ced2e7a782947c36c614907611829",
+      "gitBlobAtBase": "ae198214d1b8b764276dbc9844c27c1367447b74",
+      "worktreeBlob": "ae198214d1b8b764276dbc9844c27c1367447b74",
+      "exactBlobMatches": true,
+      "committedSha256": "2bbcf3e39673a9e3bc80a0632632ec62eb2ced2e7a782947c36c614907611829",
+      "checkoutEOLOnly": false,
+      "key": "bg-communication",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "2bbcf3e39673a9e3bc80a0632632ec62eb2ced2e7a782947c36c614907611829",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "C0",
+        "C5"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-h0-v1.png",
+      "bytes": 2709631,
+      "sha256": "6f1abcb7b2f3368f0951b26ffe4f9812c1164488d498d45e114c4b5a2817adb1",
+      "gitBlobAtBase": "5525b346b1c75f3924e734df7fd72435221b154f",
+      "worktreeBlob": "5525b346b1c75f3924e734df7fd72435221b154f",
+      "exactBlobMatches": true,
+      "committedSha256": "6f1abcb7b2f3368f0951b26ffe4f9812c1164488d498d45e114c4b5a2817adb1",
+      "checkoutEOLOnly": false,
+      "key": "bg-h0",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "6f1abcb7b2f3368f0951b26ffe4f9812c1164488d498d45e114c4b5a2817adb1",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "H0"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-h2-v1.png",
+      "bytes": 2455503,
+      "sha256": "d2788109ca0d3a2adcbdd1e59ed0a952f2242b63deaec3abb6c8b3fc9fbc6746",
+      "gitBlobAtBase": "6ee077460fe5eb040d781c9984808df094a9957e",
+      "worktreeBlob": "6ee077460fe5eb040d781c9984808df094a9957e",
+      "exactBlobMatches": true,
+      "committedSha256": "d2788109ca0d3a2adcbdd1e59ed0a952f2242b63deaec3abb6c8b3fc9fbc6746",
+      "checkoutEOLOnly": false,
+      "key": "bg-h2",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "d2788109ca0d3a2adcbdd1e59ed0a952f2242b63deaec3abb6c8b3fc9fbc6746",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "H2"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-h5-v1.png",
+      "bytes": 2899585,
+      "sha256": "376076b7fa43fd756ddea94b2b2c3013a18bd16f45e8acdc87e7d290177f502d",
+      "gitBlobAtBase": "9de1fac6eca6078eac9cfd66229615d1da099c2f",
+      "worktreeBlob": "9de1fac6eca6078eac9cfd66229615d1da099c2f",
+      "exactBlobMatches": true,
+      "committedSha256": "376076b7fa43fd756ddea94b2b2c3013a18bd16f45e8acdc87e7d290177f502d",
+      "checkoutEOLOnly": false,
+      "key": "bg-h5",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "376076b7fa43fd756ddea94b2b2c3013a18bd16f45e8acdc87e7d290177f502d",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "H5"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-h6-v1.png",
+      "bytes": 2479195,
+      "sha256": "babb4a48798992463c4121c4900607a51fc021b83776eacf8f5bbb24153257ee",
+      "gitBlobAtBase": "db15ec1f71547ef72394ecbb4e7caa74d4bec0b7",
+      "worktreeBlob": "db15ec1f71547ef72394ecbb4e7caa74d4bec0b7",
+      "exactBlobMatches": true,
+      "committedSha256": "babb4a48798992463c4121c4900607a51fc021b83776eacf8f5bbb24153257ee",
+      "checkoutEOLOnly": false,
+      "key": "bg-h6",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "babb4a48798992463c4121c4900607a51fc021b83776eacf8f5bbb24153257ee",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "H6"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-h8-v1.png",
+      "bytes": 2471845,
+      "sha256": "41ecd5b907bb5220f00dec4fb7e29b1b33535d2fc5c5930aedf155d7eb26e546",
+      "gitBlobAtBase": "b520505067b394ab9097336df1522ecd84c0a5e5",
+      "worktreeBlob": "b520505067b394ab9097336df1522ecd84c0a5e5",
+      "exactBlobMatches": true,
+      "committedSha256": "41ecd5b907bb5220f00dec4fb7e29b1b33535d2fc5c5930aedf155d7eb26e546",
+      "checkoutEOLOnly": false,
+      "key": "bg-h8",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "41ecd5b907bb5220f00dec4fb7e29b1b33535d2fc5c5930aedf155d7eb26e546",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "H8"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-hospital-control-v1.png",
+      "bytes": 2449512,
+      "sha256": "d6b8570f80ece0f648e20506934857a40f67fbd9f3c30102521e8115ccec6229",
+      "gitBlobAtBase": "5c2bce3be287806bec5c980b4dfaba841c39361b",
+      "worktreeBlob": "5c2bce3be287806bec5c980b4dfaba841c39361b",
+      "exactBlobMatches": true,
+      "committedSha256": "d6b8570f80ece0f648e20506934857a40f67fbd9f3c30102521e8115ccec6229",
+      "checkoutEOLOnly": false,
+      "key": "bg-hospital-control",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "d6b8570f80ece0f648e20506934857a40f67fbd9f3c30102521e8115ccec6229",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "H3",
+        "H7"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-hotel-v1.png",
+      "bytes": 2740767,
+      "sha256": "9783cb9de7377450f8acdedac51e5545b204281ac78ae881a6b6575692ffd277",
+      "gitBlobAtBase": "74c7885454bebfcb55c9759f92f6ca60857db0eb",
+      "worktreeBlob": "74c7885454bebfcb55c9759f92f6ca60857db0eb",
+      "exactBlobMatches": true,
+      "committedSha256": "9783cb9de7377450f8acdedac51e5545b204281ac78ae881a6b6575692ffd277",
+      "checkoutEOLOnly": false,
+      "key": "bg-hotel",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "9783cb9de7377450f8acdedac51e5545b204281ac78ae881a6b6575692ffd277",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "T0",
+        "T1"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-l0-v1.png",
+      "bytes": 2452288,
+      "sha256": "7e153cff593b3ff27f23f442b27b154c7381c89b8849a0438195c1f6498e71b3",
+      "gitBlobAtBase": "0b4a72c230f8606131fff574d1aed15b216170f6",
+      "worktreeBlob": "0b4a72c230f8606131fff574d1aed15b216170f6",
+      "exactBlobMatches": true,
+      "committedSha256": "7e153cff593b3ff27f23f442b27b154c7381c89b8849a0438195c1f6498e71b3",
+      "checkoutEOLOnly": false,
+      "key": "bg-l0",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "7e153cff593b3ff27f23f442b27b154c7381c89b8849a0438195c1f6498e71b3",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "L0"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-logistics-office-v1.png",
+      "bytes": 2881346,
+      "sha256": "6dd13b70ad7a2237cdf2121065286a1b1704960b4867e8d1b72b8d0d96e4a2ca",
+      "gitBlobAtBase": "4ad3bfc3b833fdf59d4488aeb77e944702c70da4",
+      "worktreeBlob": "4ad3bfc3b833fdf59d4488aeb77e944702c70da4",
+      "exactBlobMatches": true,
+      "committedSha256": "6dd13b70ad7a2237cdf2121065286a1b1704960b4867e8d1b72b8d0d96e4a2ca",
+      "checkoutEOLOnly": false,
+      "key": "bg-logistics-office",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "6dd13b70ad7a2237cdf2121065286a1b1704960b4867e8d1b72b8d0d96e4a2ca",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "L1",
+        "L5"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-logistics-v1.png",
+      "bytes": 3010164,
+      "sha256": "f9a02d394e722402c8102b31ae48a4fd6a6b601dab540c1bdaab7c0318bafcf5",
+      "gitBlobAtBase": "b4b1ddde5b263b1bbcc650157a416ba9da481652",
+      "worktreeBlob": "b4b1ddde5b263b1bbcc650157a416ba9da481652",
+      "exactBlobMatches": true,
+      "committedSha256": "f9a02d394e722402c8102b31ae48a4fd6a6b601dab540c1bdaab7c0318bafcf5",
+      "checkoutEOLOnly": false,
+      "key": "bg-logistics",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "f9a02d394e722402c8102b31ae48a4fd6a6b601dab540c1bdaab7c0318bafcf5",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "L2"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-power-v1.png",
+      "bytes": 2920431,
+      "sha256": "bc2e137f2f1877911f0c2611f7d05c1a0f1383bdf19fd76e6779ec1919096ff9",
+      "gitBlobAtBase": "22fbd00001cb1ef26aafb8bbdad5a09ba7db2520",
+      "worktreeBlob": "22fbd00001cb1ef26aafb8bbdad5a09ba7db2520",
+      "exactBlobMatches": true,
+      "committedSha256": "bc2e137f2f1877911f0c2611f7d05c1a0f1383bdf19fd76e6779ec1919096ff9",
+      "checkoutEOLOnly": false,
+      "key": "bg-power",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "bc2e137f2f1877911f0c2611f7d05c1a0f1383bdf19fd76e6779ec1919096ff9",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "P0",
+        "P1",
+        "C2"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-workshop-v1.png",
+      "bytes": 2646572,
+      "sha256": "fec1421c73f4cba01aa68b663f3b97ad264c9fb411f372ca947ae85834daa3b1",
+      "gitBlobAtBase": "75a5894278137026db3b7cacd80d1034b305ce4e",
+      "worktreeBlob": "75a5894278137026db3b7cacd80d1034b305ce4e",
+      "exactBlobMatches": true,
+      "committedSha256": "fec1421c73f4cba01aa68b663f3b97ad264c9fb411f372ca947ae85834daa3b1",
+      "checkoutEOLOnly": false,
+      "key": "bg-workshop",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "fec1421c73f4cba01aa68b663f3b97ad264c9fb411f372ca947ae85834daa3b1",
+      "catalogPixels": [
+        1672,
+        940
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        940
+      ],
+      "nativePixels": [
+        1672,
+        940
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "L3",
+        "C4"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg_elevator_hub_v01.png",
+      "bytes": 1888877,
+      "sha256": "5c8fe78f4bd67454137b1a1c783abe23beba8fcefc6520a3abf67855fa142d74",
+      "gitBlobAtBase": "aec2de97d1c05734016a4c5dd793488263d34ad9",
+      "worktreeBlob": "aec2de97d1c05734016a4c5dd793488263d34ad9",
+      "exactBlobMatches": true,
+      "committedSha256": "5c8fe78f4bd67454137b1a1c783abe23beba8fcefc6520a3abf67855fa142d74",
+      "checkoutEOLOnly": false,
+      "key": "bg-elevator-hub",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "5c8fe78f4bd67454137b1a1c783abe23beba8fcefc6520a3abf67855fa142d74",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg_emergency_hall_v01.png",
+      "bytes": 1978783,
+      "sha256": "55395363f8a91518feb6668299288542a21233895703382e28d8eea6c9653527",
+      "gitBlobAtBase": "bc1d317cc94c72860fe9ce72313054ebaba0285e",
+      "worktreeBlob": "bc1d317cc94c72860fe9ce72313054ebaba0285e",
+      "exactBlobMatches": true,
+      "committedSha256": "55395363f8a91518feb6668299288542a21233895703382e28d8eea6c9653527",
+      "checkoutEOLOnly": false,
+      "key": "bg-emergency-hall",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "55395363f8a91518feb6668299288542a21233895703382e28d8eea6c9653527",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "H1"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg_isolation_corridor_v01.png",
+      "bytes": 2225938,
+      "sha256": "ccee3cb40f131116adae3835c984b73002949eb094e2537f3b28a621393b41c3",
+      "gitBlobAtBase": "73a8a728a513120703eaea929cfddce4db33871c",
+      "worktreeBlob": "73a8a728a513120703eaea929cfddce4db33871c",
+      "exactBlobMatches": true,
+      "committedSha256": "ccee3cb40f131116adae3835c984b73002949eb094e2537f3b28a621393b41c3",
+      "checkoutEOLOnly": false,
+      "key": "bg-isolation-corridor",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "ccee3cb40f131116adae3835c984b73002949eb094e2537f3b28a621393b41c3",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "H4"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/closeup-component-v1.png",
+      "bytes": 2981918,
+      "sha256": "49e898ba86c21bb9cfe49106cb4fa9e0a67f8f264ae50b5d4da3f6ac501721fa",
+      "gitBlobAtBase": "5cb9ebc69778e213b20a2227253c1bf92af7ee9f",
+      "worktreeBlob": "5cb9ebc69778e213b20a2227253c1bf92af7ee9f",
+      "exactBlobMatches": true,
+      "committedSha256": "49e898ba86c21bb9cfe49106cb4fa9e0a67f8f264ae50b5d4da3f6ac501721fa",
+      "checkoutEOLOnly": false,
+      "key": "closeup-component",
+      "status": "REVIEW_ONLY",
+      "category": "closeup",
+      "catalogSha256": "49e898ba86c21bb9cfe49106cb4fa9e0a67f8f264ae50b5d4da3f6ac501721fa",
+      "catalogPixels": [
+        1586,
+        992
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1586,
+        992
+      ],
+      "nativePixels": [
+        1586,
+        992
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/closeup-install-v1.png",
+      "bytes": 2403805,
+      "sha256": "023281b94f11fef611b52c4fd8fd1edf7b42bef4ff88742479b2d5298f87b52f",
+      "gitBlobAtBase": "19fcb3dd549c51dc9a7757670b3f299748dfe6ea",
+      "worktreeBlob": "19fcb3dd549c51dc9a7757670b3f299748dfe6ea",
+      "exactBlobMatches": true,
+      "committedSha256": "023281b94f11fef611b52c4fd8fd1edf7b42bef4ff88742479b2d5298f87b52f",
+      "checkoutEOLOnly": false,
+      "key": "closeup-install",
+      "status": "REVIEW_ONLY",
+      "category": "closeup",
+      "catalogSha256": "023281b94f11fef611b52c4fd8fd1edf7b42bef4ff88742479b2d5298f87b52f",
+      "catalogPixels": [
+        1586,
+        992
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1586,
+        992
+      ],
+      "nativePixels": [
+        1586,
+        992
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/closeup-power-v1.png",
+      "bytes": 2616405,
+      "sha256": "85f962f3f9f526a6a7ffc0265af98a3f3731db989d124d7f539122541e9f7eac",
+      "gitBlobAtBase": "570578b9b6f3fb0d345725430a03aeef944d6f2e",
+      "worktreeBlob": "570578b9b6f3fb0d345725430a03aeef944d6f2e",
+      "exactBlobMatches": true,
+      "committedSha256": "85f962f3f9f526a6a7ffc0265af98a3f3731db989d124d7f539122541e9f7eac",
+      "checkoutEOLOnly": false,
+      "key": "closeup-power",
+      "status": "REVIEW_ONLY",
+      "category": "closeup",
+      "catalogSha256": "85f962f3f9f526a6a7ffc0265af98a3f3731db989d124d7f539122541e9f7eac",
+      "catalogPixels": [
+        2006,
+        784
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        2006,
+        784
+      ],
+      "nativePixels": [
+        2006,
+        784
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/closeup-records-v1.png",
+      "bytes": 2458781,
+      "sha256": "d84a8a1f278358b9d1fd054622753da1c38268a3770ac695a2ac6b01df9c797a",
+      "gitBlobAtBase": "47fb9cfad1a11cd5d66461f0c446853096c6b1b9",
+      "worktreeBlob": "47fb9cfad1a11cd5d66461f0c446853096c6b1b9",
+      "exactBlobMatches": true,
+      "committedSha256": "d84a8a1f278358b9d1fd054622753da1c38268a3770ac695a2ac6b01df9c797a",
+      "checkoutEOLOnly": false,
+      "key": "closeup-records",
+      "status": "REVIEW_ONLY",
+      "category": "closeup",
+      "catalogSha256": "d84a8a1f278358b9d1fd054622753da1c38268a3770ac695a2ac6b01df9c797a",
+      "catalogPixels": [
+        1586,
+        992
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1586,
+        992
+      ],
+      "nativePixels": [
+        1586,
+        992
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-critical-v1.png",
+      "bytes": 1234907,
+      "sha256": "a32adbeb63b7db6d5127adc78f10d11a3458067997f04fe066bfe33955f0fbb6",
+      "gitBlobAtBase": "61f873a2bd3ebfc14d7b71283a83ff019be9058e",
+      "worktreeBlob": "61f873a2bd3ebfc14d7b71283a83ff019be9058e",
+      "exactBlobMatches": true,
+      "committedSha256": "a32adbeb63b7db6d5127adc78f10d11a3458067997f04fe066bfe33955f0fbb6",
+      "checkoutEOLOnly": false,
+      "key": "enemy-porter-critical",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "a32adbeb63b7db6d5127adc78f10d11a3458067997f04fe066bfe33955f0fbb6",
+      "catalogPixels": [
+        1122,
+        1402
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-disabled-v1.png",
+      "bytes": 943083,
+      "sha256": "48de5d321c28d5b88d37b9c241a09e2fef1a84638c4361f8e3e87d5c75ea6930",
+      "gitBlobAtBase": "9406364b929d67ce37b53d6a78a0153d82e1d1d3",
+      "worktreeBlob": "9406364b929d67ce37b53d6a78a0153d82e1d1d3",
+      "exactBlobMatches": true,
+      "committedSha256": "48de5d321c28d5b88d37b9c241a09e2fef1a84638c4361f8e3e87d5c75ea6930",
+      "checkoutEOLOnly": false,
+      "key": "enemy-porter-disabled",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "48de5d321c28d5b88d37b9c241a09e2fef1a84638c4361f8e3e87d5c75ea6930",
+      "catalogPixels": [
+        1122,
+        1402
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-heavy_wounded-v1.png",
+      "bytes": 1070058,
+      "sha256": "545b25cb12385f00f77362854d849602517de3e51fb300138677497213e09325",
+      "gitBlobAtBase": "912ad26f9b245d0466b6dc4366fdd52e5f41dc4e",
+      "worktreeBlob": "912ad26f9b245d0466b6dc4366fdd52e5f41dc4e",
+      "exactBlobMatches": true,
+      "committedSha256": "545b25cb12385f00f77362854d849602517de3e51fb300138677497213e09325",
+      "checkoutEOLOnly": false,
+      "key": "enemy-porter-heavy-wounded",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "545b25cb12385f00f77362854d849602517de3e51fb300138677497213e09325",
+      "catalogPixels": [
+        1121,
+        1403
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1121,
+        1403
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-pristine-v1.png",
+      "bytes": 988486,
+      "sha256": "c62b70c69c0e6977ef1e7239d68f15f74951a8cdf9b17c363d3610f23438a1a4",
+      "gitBlobAtBase": "2e76e52018e5c6cb2c83e87dc5847cc224b1dadc",
+      "worktreeBlob": "2e76e52018e5c6cb2c83e87dc5847cc224b1dadc",
+      "exactBlobMatches": true,
+      "committedSha256": "c62b70c69c0e6977ef1e7239d68f15f74951a8cdf9b17c363d3610f23438a1a4",
+      "checkoutEOLOnly": false,
+      "key": "enemy-porter-pristine",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "c62b70c69c0e6977ef1e7239d68f15f74951a8cdf9b17c363d3610f23438a1a4",
+      "catalogPixels": [
+        1122,
+        1402
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-wounded-v1.png",
+      "bytes": 908147,
+      "sha256": "48a370f9fc2dc43cc676de35b5359dc03a68e810a84a28b7880ad45855a5fe8e",
+      "gitBlobAtBase": "ca511f614d79d3de5c5927f2cfb93127ef4762cc",
+      "worktreeBlob": "ca511f614d79d3de5c5927f2cfb93127ef4762cc",
+      "exactBlobMatches": true,
+      "committedSha256": "48a370f9fc2dc43cc676de35b5359dc03a68e810a84a28b7880ad45855a5fe8e",
+      "checkoutEOLOnly": false,
+      "key": "enemy-porter-wounded",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "48a370f9fc2dc43cc676de35b5359dc03a68e810a84a28b7880ad45855a5fe8e",
+      "catalogPixels": [
+        1122,
+        1402
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-technician-critical-v1.png",
+      "bytes": 985621,
+      "sha256": "86b7a8af0ae94f37d8bb618ebf253cd63b97441f95d2d941e8566e6366852922",
+      "gitBlobAtBase": "6452fcb2200997ab997523627e2581c5f2cd6331",
+      "worktreeBlob": "6452fcb2200997ab997523627e2581c5f2cd6331",
+      "exactBlobMatches": true,
+      "committedSha256": "86b7a8af0ae94f37d8bb618ebf253cd63b97441f95d2d941e8566e6366852922",
+      "checkoutEOLOnly": false,
+      "key": "enemy-technician-critical",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "86b7a8af0ae94f37d8bb618ebf253cd63b97441f95d2d941e8566e6366852922",
+      "catalogPixels": [
+        1122,
+        1402
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-technician-disabled-v1.png",
+      "bytes": 982549,
+      "sha256": "fa70feefa7164fcab84edcf846d47d80d4f88f50895228d5826cb91799bb0dec",
+      "gitBlobAtBase": "58adab3f232cb75200479268d676d1b6edb59ee8",
+      "worktreeBlob": "58adab3f232cb75200479268d676d1b6edb59ee8",
+      "exactBlobMatches": true,
+      "committedSha256": "fa70feefa7164fcab84edcf846d47d80d4f88f50895228d5826cb91799bb0dec",
+      "checkoutEOLOnly": false,
+      "key": "enemy-technician-disabled",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "fa70feefa7164fcab84edcf846d47d80d4f88f50895228d5826cb91799bb0dec",
+      "catalogPixels": [
+        1122,
+        1402
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-technician-heavy_wounded-v1.png",
+      "bytes": 927421,
+      "sha256": "f415a3384d1c5e21b1840877eccfeeecf7711b6c7ff1d3a7046c06ea527a158f",
+      "gitBlobAtBase": "a5f4114ff81618e3ec0cdbe27ac698429f055469",
+      "worktreeBlob": "a5f4114ff81618e3ec0cdbe27ac698429f055469",
+      "exactBlobMatches": true,
+      "committedSha256": "f415a3384d1c5e21b1840877eccfeeecf7711b6c7ff1d3a7046c06ea527a158f",
+      "checkoutEOLOnly": false,
+      "key": "enemy-technician-heavy-wounded",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "f415a3384d1c5e21b1840877eccfeeecf7711b6c7ff1d3a7046c06ea527a158f",
+      "catalogPixels": [
+        1122,
+        1402
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-technician-pristine-v1.png",
+      "bytes": 855282,
+      "sha256": "240077aef5b5adb7efe1d4632894e5a7018a94dc3f18cd894f998a8e1c243444",
+      "gitBlobAtBase": "5500c4c778d22ba59ebccda126e379c5ab7c2460",
+      "worktreeBlob": "5500c4c778d22ba59ebccda126e379c5ab7c2460",
+      "exactBlobMatches": true,
+      "committedSha256": "240077aef5b5adb7efe1d4632894e5a7018a94dc3f18cd894f998a8e1c243444",
+      "checkoutEOLOnly": false,
+      "key": "enemy-technician-pristine",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "240077aef5b5adb7efe1d4632894e5a7018a94dc3f18cd894f998a8e1c243444",
+      "catalogPixels": [
+        1122,
+        1402
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-technician-wounded-v1.png",
+      "bytes": 813714,
+      "sha256": "d5f2e525282e2c65a51ad6a2eb07b507099d342122d9b3788b5413e02b282269",
+      "gitBlobAtBase": "5b35b2fd25bf0432474c52633507554d161c4ea7",
+      "worktreeBlob": "5b35b2fd25bf0432474c52633507554d161c4ea7",
+      "exactBlobMatches": true,
+      "committedSha256": "d5f2e525282e2c65a51ad6a2eb07b507099d342122d9b3788b5413e02b282269",
+      "checkoutEOLOnly": false,
+      "key": "enemy-technician-wounded",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "d5f2e525282e2c65a51ad6a2eb07b507099d342122d9b3788b5413e02b282269",
+      "catalogPixels": [
+        1122,
+        1402
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy_infected_orderly_critical_v02.png",
+      "bytes": 805320,
+      "sha256": "1005537773f9aab7a8e5d84911e349bbe5a8a0025a14c13a7baa1ca4c33ebe00",
+      "gitBlobAtBase": "ff2381cbab03790b95e47d357fcef4c96d308665",
+      "worktreeBlob": "ff2381cbab03790b95e47d357fcef4c96d308665",
+      "exactBlobMatches": true,
+      "committedSha256": "1005537773f9aab7a8e5d84911e349bbe5a8a0025a14c13a7baa1ca4c33ebe00",
+      "checkoutEOLOnly": false,
+      "key": "enemy-infected-orderly-critical",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "1005537773f9aab7a8e5d84911e349bbe5a8a0025a14c13a7baa1ca4c33ebe00",
+      "catalogPixels": [
+        1024,
+        1280
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1024,
+        1280
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy_infected_orderly_disabled_v02.png",
+      "bytes": 1018817,
+      "sha256": "4112dadacfc3c89da9b3cc7576fe3772a58a026cb74b21eb3fe451649f2f41e1",
+      "gitBlobAtBase": "c135f73df4c5425682076f5342003d150842d51e",
+      "worktreeBlob": "c135f73df4c5425682076f5342003d150842d51e",
+      "exactBlobMatches": true,
+      "committedSha256": "4112dadacfc3c89da9b3cc7576fe3772a58a026cb74b21eb3fe451649f2f41e1",
+      "checkoutEOLOnly": false,
+      "key": "enemy-infected-orderly-disabled",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "4112dadacfc3c89da9b3cc7576fe3772a58a026cb74b21eb3fe451649f2f41e1",
+      "catalogPixels": [
+        1024,
+        1280
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1024,
+        1280
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy_infected_orderly_heavy_wounded_v02.png",
+      "bytes": 873718,
+      "sha256": "9d9dcce02310fea3fdf9c04ffb0db00edd8697771c19a1f119b0fdd9457e8d58",
+      "gitBlobAtBase": "033880ffc9193612c5aebcf3ef50a0a255cdad09",
+      "worktreeBlob": "033880ffc9193612c5aebcf3ef50a0a255cdad09",
+      "exactBlobMatches": true,
+      "committedSha256": "9d9dcce02310fea3fdf9c04ffb0db00edd8697771c19a1f119b0fdd9457e8d58",
+      "checkoutEOLOnly": false,
+      "key": "enemy-infected-orderly-heavy-wounded",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "9d9dcce02310fea3fdf9c04ffb0db00edd8697771c19a1f119b0fdd9457e8d58",
+      "catalogPixels": [
+        1024,
+        1280
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1024,
+        1280
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy_infected_orderly_pristine_v02.png",
+      "bytes": 735184,
+      "sha256": "9fd480efca6c4dc8e02198cd25175e385de8f80efa64cbb11fce6372d2b76907",
+      "gitBlobAtBase": "fe40a7829b1ddab4e907db6b704b3cc3e135a1bb",
+      "worktreeBlob": "fe40a7829b1ddab4e907db6b704b3cc3e135a1bb",
+      "exactBlobMatches": true,
+      "committedSha256": "9fd480efca6c4dc8e02198cd25175e385de8f80efa64cbb11fce6372d2b76907",
+      "checkoutEOLOnly": false,
+      "key": "enemy-infected-orderly-pristine",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "9fd480efca6c4dc8e02198cd25175e385de8f80efa64cbb11fce6372d2b76907",
+      "catalogPixels": [
+        1024,
+        1280
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1024,
+        1280
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy_infected_orderly_wounded_v02.png",
+      "bytes": 764998,
+      "sha256": "c00c5126bfc6967f0a34af94a2ccd32d6874bae3899d9e02ae189af8f662ed5b",
+      "gitBlobAtBase": "80733ca0efbdeac0e929d7c606f957d3e56407a2",
+      "worktreeBlob": "80733ca0efbdeac0e929d7c606f957d3e56407a2",
+      "exactBlobMatches": true,
+      "committedSha256": "c00c5126bfc6967f0a34af94a2ccd32d6874bae3899d9e02ae189af8f662ed5b",
+      "checkoutEOLOnly": false,
+      "key": "enemy-infected-orderly-wounded",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "c00c5126bfc6967f0a34af94a2ccd32d6874bae3899d9e02ae189af8f662ed5b",
+      "catalogPixels": [
+        1024,
+        1280
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1024,
+        1280
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/event_isolation_fire_door_v02.png",
+      "bytes": 1472288,
+      "sha256": "37073ff3cd1d7769b96c617a3c83cb5c9815b4101fde6c4a4b49140800d9708d",
+      "gitBlobAtBase": "98ed3903463f2709f8077e6fe2926864bcb3ad11",
+      "worktreeBlob": "98ed3903463f2709f8077e6fe2926864bcb3ad11",
+      "exactBlobMatches": true,
+      "committedSha256": "37073ff3cd1d7769b96c617a3c83cb5c9815b4101fde6c4a4b49140800d9708d",
+      "checkoutEOLOnly": false,
+      "key": "event-isolation-fire-door",
+      "status": "REVIEW_ONLY",
+      "category": "closeup",
+      "catalogSha256": "37073ff3cd1d7769b96c617a3c83cb5c9815b4101fde6c4a4b49140800d9708d",
+      "catalogPixels": [
+        1280,
+        800
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1280,
+        800
+      ],
+      "nativePixels": [
+        1280,
+        800
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/fx-hit-v1.png",
+      "bytes": 701001,
+      "sha256": "bb2cea64914bb1748186408cf84bf6d18d4608eb45afb40983548241c8e0b852",
+      "gitBlobAtBase": "cfafac9903fe6ac506e13e74f1caf314844fe202",
+      "worktreeBlob": "cfafac9903fe6ac506e13e74f1caf314844fe202",
+      "exactBlobMatches": true,
+      "committedSha256": "bb2cea64914bb1748186408cf84bf6d18d4608eb45afb40983548241c8e0b852",
+      "checkoutEOLOnly": false,
+      "key": "fx-hit",
+      "status": "REVIEW_ONLY",
+      "category": "fx",
+      "catalogSha256": "bb2cea64914bb1748186408cf84bf6d18d4608eb45afb40983548241c8e0b852",
+      "catalogPixels": [
+        1254,
+        1254
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1254,
+        1254
+      ],
+      "nativePixels": [
+        1254,
+        1254
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/icon_bandage_v02.png",
+      "bytes": 209817,
+      "sha256": "573199ffec28fc6c7fb8a5a75eda8264c920dbc0a1e4b09a95a222c57cfa8c6c",
+      "gitBlobAtBase": "27d9a9f9a7303b53edabe68d558f274e355d5a4a",
+      "worktreeBlob": "27d9a9f9a7303b53edabe68d558f274e355d5a4a",
+      "exactBlobMatches": true,
+      "committedSha256": "573199ffec28fc6c7fb8a5a75eda8264c920dbc0a1e4b09a95a222c57cfa8c6c",
+      "checkoutEOLOnly": false,
+      "key": "icon-bandage",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "573199ffec28fc6c7fb8a5a75eda8264c920dbc0a1e4b09a95a222c57cfa8c6c",
+      "catalogPixels": [
+        512,
+        512
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        512,
+        512
+      ],
+      "nativePixels": [
+        512,
+        512
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/icon_flashlight_v01.png",
+      "bytes": 129954,
+      "sha256": "1edf5992c296c9011e547a3cdbae762613c1f2db3db74fe9ab9801cf90d9260c",
+      "gitBlobAtBase": "83f84a28237397af2096e1e0bc2d89aeeb37e6b6",
+      "worktreeBlob": "83f84a28237397af2096e1e0bc2d89aeeb37e6b6",
+      "exactBlobMatches": true,
+      "committedSha256": "1edf5992c296c9011e547a3cdbae762613c1f2db3db74fe9ab9801cf90d9260c",
+      "checkoutEOLOnly": false,
+      "key": "icon-flashlight",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "1edf5992c296c9011e547a3cdbae762613c1f2db3db74fe9ab9801cf90d9260c",
+      "catalogPixels": [
+        512,
+        512
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        512,
+        512
+      ],
+      "nativePixels": [
+        512,
+        512
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/icon_heavy_coat_v01.png",
+      "bytes": 243003,
+      "sha256": "da3da5f6977dc4c35b0ebbef82196123595b60276407f15caf10671b8a480792",
+      "gitBlobAtBase": "5e91e0fdf0f5d699b03b1bd32b7c2c4ec2f39821",
+      "worktreeBlob": "5e91e0fdf0f5d699b03b1bd32b7c2c4ec2f39821",
+      "exactBlobMatches": true,
+      "committedSha256": "da3da5f6977dc4c35b0ebbef82196123595b60276407f15caf10671b8a480792",
+      "checkoutEOLOnly": false,
+      "key": "icon-heavy-coat",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "da3da5f6977dc4c35b0ebbef82196123595b60276407f15caf10671b8a480792",
+      "catalogPixels": [
+        512,
+        512
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        512,
+        512
+      ],
+      "nativePixels": [
+        512,
+        512
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/icon_isolation_access_card_v02.png",
+      "bytes": 185827,
+      "sha256": "45f1e05a50817807c6ae32069b72b42b71dc7e9c613117392e50845d0a46868b",
+      "gitBlobAtBase": "81ae0dcf32e6870941671a02e9f2ea5803386d29",
+      "worktreeBlob": "81ae0dcf32e6870941671a02e9f2ea5803386d29",
+      "exactBlobMatches": true,
+      "committedSha256": "45f1e05a50817807c6ae32069b72b42b71dc7e9c613117392e50845d0a46868b",
+      "checkoutEOLOnly": false,
+      "key": "icon-isolation-access-card",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "45f1e05a50817807c6ae32069b72b42b71dc7e9c613117392e50845d0a46868b",
+      "catalogPixels": [
+        512,
+        512
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        512,
+        512
+      ],
+      "nativePixels": [
+        512,
+        512
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/icon_metal_pipe_v01.png",
+      "bytes": 99735,
+      "sha256": "3c1533215fb7f847dadefbccf4590aec4014692ba12fa71e57c624d1f32652a7",
+      "gitBlobAtBase": "23d69be4657caf27406651143e3c2c85d6fc28a1",
+      "worktreeBlob": "23d69be4657caf27406651143e3c2c85d6fc28a1",
+      "exactBlobMatches": true,
+      "committedSha256": "3c1533215fb7f847dadefbccf4590aec4014692ba12fa71e57c624d1f32652a7",
+      "checkoutEOLOnly": false,
+      "key": "icon-metal-pipe",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "3c1533215fb7f847dadefbccf4590aec4014692ba12fa71e57c624d1f32652a7",
+      "catalogPixels": [
+        512,
+        512
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        512,
+        512
+      ],
+      "nativePixels": [
+        512,
+        512
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/icon_sealed_pathogen_case_v02.png",
+      "bytes": 239212,
+      "sha256": "03ac0fcf92c1bb22a58e7d2c288a4d84b92507c24673b4d00139eef717df1104",
+      "gitBlobAtBase": "9b04f88966c40a41e4b33d4029e81205f8758d89",
+      "worktreeBlob": "9b04f88966c40a41e4b33d4029e81205f8758d89",
+      "exactBlobMatches": true,
+      "committedSha256": "03ac0fcf92c1bb22a58e7d2c288a4d84b92507c24673b4d00139eef717df1104",
+      "checkoutEOLOnly": false,
+      "key": "icon-sealed-pathogen-case",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "03ac0fcf92c1bb22a58e7d2c288a4d84b92507c24673b4d00139eef717df1104",
+      "catalogPixels": [
+        512,
+        512
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        512,
+        512
+      ],
+      "nativePixels": [
+        512,
+        512
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/item-battery-v1.png",
+      "bytes": 907516,
+      "sha256": "fa9dd9c134b0e99a9723ec8db4fbb00fbd4e1794583b599a6e17d40421fea1e4",
+      "gitBlobAtBase": "dd77010ad53e7bb8ae3777f781706e848e33911c",
+      "worktreeBlob": "dd77010ad53e7bb8ae3777f781706e848e33911c",
+      "exactBlobMatches": true,
+      "committedSha256": "fa9dd9c134b0e99a9723ec8db4fbb00fbd4e1794583b599a6e17d40421fea1e4",
+      "checkoutEOLOnly": false,
+      "key": "item-battery",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "fa9dd9c134b0e99a9723ec8db4fbb00fbd4e1794583b599a6e17d40421fea1e4",
+      "catalogPixels": [
+        1254,
+        1254
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1254,
+        1254
+      ],
+      "nativePixels": [
+        1254,
+        1254
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/item-cloth-v1.png",
+      "bytes": 1403360,
+      "sha256": "5d02f8f101deb5ba8e59f472f6e151645a0926953463b71efdfe84226c106e93",
+      "gitBlobAtBase": "4211caddf6c00ef8b67814f0d262beba33adb430",
+      "worktreeBlob": "4211caddf6c00ef8b67814f0d262beba33adb430",
+      "exactBlobMatches": true,
+      "committedSha256": "5d02f8f101deb5ba8e59f472f6e151645a0926953463b71efdfe84226c106e93",
+      "checkoutEOLOnly": false,
+      "key": "item-cloth",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "5d02f8f101deb5ba8e59f472f6e151645a0926953463b71efdfe84226c106e93",
+      "catalogPixels": [
+        1254,
+        1254
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1254,
+        1254
+      ],
+      "nativePixels": [
+        1254,
+        1254
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/item-component-v1.png",
+      "bytes": 1801707,
+      "sha256": "5285b0d2156f5b644e7ee39460430e71b720a177e6c0aefd8dd893fdb06e57e9",
+      "gitBlobAtBase": "12bbfb2653a74705e19d9a7d211f213d25b618de",
+      "worktreeBlob": "12bbfb2653a74705e19d9a7d211f213d25b618de",
+      "exactBlobMatches": true,
+      "committedSha256": "5285b0d2156f5b644e7ee39460430e71b720a177e6c0aefd8dd893fdb06e57e9",
+      "checkoutEOLOnly": false,
+      "key": "item-component",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "5285b0d2156f5b644e7ee39460430e71b720a177e6c0aefd8dd893fdb06e57e9",
+      "catalogPixels": [
+        1254,
+        1254
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1254,
+        1254
+      ],
+      "nativePixels": [
+        1254,
+        1254
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/item-crowbar-v1.png",
+      "bytes": 458211,
+      "sha256": "703df7fbaa51836e26e43d2be4445bb58b5fe32fcd1b845a0a4b44b8f54fcdaa",
+      "gitBlobAtBase": "bb3418cbb246177bc552a29af7cf867c0b58c166",
+      "worktreeBlob": "bb3418cbb246177bc552a29af7cf867c0b58c166",
+      "exactBlobMatches": true,
+      "committedSha256": "703df7fbaa51836e26e43d2be4445bb58b5fe32fcd1b845a0a4b44b8f54fcdaa",
+      "checkoutEOLOnly": false,
+      "key": "item-crowbar",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "703df7fbaa51836e26e43d2be4445bb58b5fe32fcd1b845a0a4b44b8f54fcdaa",
+      "catalogPixels": [
+        1254,
+        1254
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1254,
+        1254
+      ],
+      "nativePixels": [
+        1254,
+        1254
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/item-disinfectant-v1.png",
+      "bytes": 686321,
+      "sha256": "893d07081471db86908a450afab954cde41245f522cab79cbe47aac62dc443a6",
+      "gitBlobAtBase": "2d22b81fe8a244fd91a9ea815d368ffe3b24032d",
+      "worktreeBlob": "2d22b81fe8a244fd91a9ea815d368ffe3b24032d",
+      "exactBlobMatches": true,
+      "committedSha256": "893d07081471db86908a450afab954cde41245f522cab79cbe47aac62dc443a6",
+      "checkoutEOLOnly": false,
+      "key": "item-disinfectant",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "893d07081471db86908a450afab954cde41245f522cab79cbe47aac62dc443a6",
+      "catalogPixels": [
+        1254,
+        1254
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1254,
+        1254
+      ],
+      "nativePixels": [
+        1254,
+        1254
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/item-electronic-v1.png",
+      "bytes": 643807,
+      "sha256": "d3074bed30e9580329a641c5107815e107c271d8c77e88f15a9a3a3ad4a24f65",
+      "gitBlobAtBase": "278b940533d7c3e7435d5537c6a1d12775d5c7f4",
+      "worktreeBlob": "278b940533d7c3e7435d5537c6a1d12775d5c7f4",
+      "exactBlobMatches": true,
+      "committedSha256": "d3074bed30e9580329a641c5107815e107c271d8c77e88f15a9a3a3ad4a24f65",
+      "checkoutEOLOnly": false,
+      "key": "item-electronic",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "d3074bed30e9580329a641c5107815e107c271d8c77e88f15a9a3a3ad4a24f65",
+      "catalogPixels": [
+        1254,
+        1254
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1254,
+        1254
+      ],
+      "nativePixels": [
+        1254,
+        1254
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/item-firstaid-v1.png",
+      "bytes": 1183924,
+      "sha256": "4e5872b6358cceaa34650f8b01df937542fdb683a8c8cf81157fdee3eb087e4e",
+      "gitBlobAtBase": "81eeb9b9e626a85fb42a54ad4e0bf6831d97ffd5",
+      "worktreeBlob": "81eeb9b9e626a85fb42a54ad4e0bf6831d97ffd5",
+      "exactBlobMatches": true,
+      "committedSha256": "4e5872b6358cceaa34650f8b01df937542fdb683a8c8cf81157fdee3eb087e4e",
+      "checkoutEOLOnly": false,
+      "key": "item-firstaid",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "4e5872b6358cceaa34650f8b01df937542fdb683a8c8cf81157fdee3eb087e4e",
+      "catalogPixels": [
+        1254,
+        1254
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1254,
+        1254
+      ],
+      "nativePixels": [
+        1254,
+        1254
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/item-metal-v1.png",
+      "bytes": 1291262,
+      "sha256": "fe9ae706518d17157bb25a6cdbb4c9545139b2cc0a5bbec9983b82c3f7367f76",
+      "gitBlobAtBase": "c9fbc544403eaabcb746d4411ffe245ec1ffded5",
+      "worktreeBlob": "c9fbc544403eaabcb746d4411ffe245ec1ffded5",
+      "exactBlobMatches": true,
+      "committedSha256": "fe9ae706518d17157bb25a6cdbb4c9545139b2cc0a5bbec9983b82c3f7367f76",
+      "checkoutEOLOnly": false,
+      "key": "item-metal",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "fe9ae706518d17157bb25a6cdbb4c9545139b2cc0a5bbec9983b82c3f7367f76",
+      "catalogPixels": [
+        1254,
+        1254
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1254,
+        1254
+      ],
+      "nativePixels": [
+        1254,
+        1254
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/item-module-v1.png",
+      "bytes": 935103,
+      "sha256": "9d7b916d8c2b748a37372df27131ae7659593dfc09e5efb7566e3d575f575d23",
+      "gitBlobAtBase": "aaa6577b12794d8d1f80deda8bad687a53d4de93",
+      "worktreeBlob": "aaa6577b12794d8d1f80deda8bad687a53d4de93",
+      "exactBlobMatches": true,
+      "committedSha256": "9d7b916d8c2b748a37372df27131ae7659593dfc09e5efb7566e3d575f575d23",
+      "checkoutEOLOnly": false,
+      "key": "item-module",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "9d7b916d8c2b748a37372df27131ae7659593dfc09e5efb7566e3d575f575d23",
+      "catalogPixels": [
+        1254,
+        1254
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1254,
+        1254
+      ],
+      "nativePixels": [
+        1254,
+        1254
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/item-painkiller-v1.png",
+      "bytes": 967494,
+      "sha256": "9c809aa0e8495deda723c7f2a0c5e4edc342fa8c5f0e8c329e8e6c43accd757e",
+      "gitBlobAtBase": "071d234dbd83a85c4e57498c37f0e870f01e09e0",
+      "worktreeBlob": "071d234dbd83a85c4e57498c37f0e870f01e09e0",
+      "exactBlobMatches": true,
+      "committedSha256": "9c809aa0e8495deda723c7f2a0c5e4edc342fa8c5f0e8c329e8e6c43accd757e",
+      "checkoutEOLOnly": false,
+      "key": "item-painkiller",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "9c809aa0e8495deda723c7f2a0c5e4edc342fa8c5f0e8c329e8e6c43accd757e",
+      "catalogPixels": [
+        1254,
+        1254
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1254,
+        1254
+      ],
+      "nativePixels": [
+        1254,
+        1254
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/item-ration-v1.png",
+      "bytes": 951848,
+      "sha256": "2f5004380bac698530908ab74a3db99309e46685333d222a33631c9abdc7a7dd",
+      "gitBlobAtBase": "81c0344451da1354f3c3521e917462092c564f2c",
+      "worktreeBlob": "81c0344451da1354f3c3521e917462092c564f2c",
+      "exactBlobMatches": true,
+      "committedSha256": "2f5004380bac698530908ab74a3db99309e46685333d222a33631c9abdc7a7dd",
+      "checkoutEOLOnly": false,
+      "key": "item-ration",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "2f5004380bac698530908ab74a3db99309e46685333d222a33631c9abdc7a7dd",
+      "catalogPixels": [
+        1254,
+        1254
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1254,
+        1254
+      ],
+      "nativePixels": [
+        1254,
+        1254
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/item-suppressant-v1.png",
+      "bytes": 782140,
+      "sha256": "cd5907c8918c18d8683123924adb1c6051210a0a15b7b1d0ab1c3b94e09a02cd",
+      "gitBlobAtBase": "dba192ac760dbe3b9a9f62a350ad765726cf06ea",
+      "worktreeBlob": "dba192ac760dbe3b9a9f62a350ad765726cf06ea",
+      "exactBlobMatches": true,
+      "committedSha256": "cd5907c8918c18d8683123924adb1c6051210a0a15b7b1d0ab1c3b94e09a02cd",
+      "checkoutEOLOnly": false,
+      "key": "item-suppressant",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "cd5907c8918c18d8683123924adb1c6051210a0a15b7b1d0ab1c3b94e09a02cd",
+      "catalogPixels": [
+        1254,
+        1254
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1254,
+        1254
+      ],
+      "nativePixels": [
+        1254,
+        1254
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/item-toolbox-v1.png",
+      "bytes": 930431,
+      "sha256": "524a504a87cb9ebd29e10c469615eeb220f936143fdc1b0bbefc3459c8d36257",
+      "gitBlobAtBase": "58d1a05d5148cdcb78dfd8a4f9c196d9e2551f93",
+      "worktreeBlob": "58d1a05d5148cdcb78dfd8a4f9c196d9e2551f93",
+      "exactBlobMatches": true,
+      "committedSha256": "524a504a87cb9ebd29e10c469615eeb220f936143fdc1b0bbefc3459c8d36257",
+      "checkoutEOLOnly": false,
+      "key": "item-toolbox",
+      "status": "REVIEW_ONLY",
+      "category": "item",
+      "catalogSha256": "524a504a87cb9ebd29e10c469615eeb220f936143fdc1b0bbefc3459c8d36257",
+      "catalogPixels": [
+        1254,
+        1254
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1254,
+        1254
+      ],
+      "nativePixels": [
+        1254,
+        1254
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/npc-lin-v1.png",
+      "bytes": 828826,
+      "sha256": "3fd086563d232bb2099419cbcbd75cb229057c709abd8b81d4b7466ec7f8a41f",
+      "gitBlobAtBase": "3dba134ade33e77b170d1a1c6a16dab0d7f19ac0",
+      "worktreeBlob": "3dba134ade33e77b170d1a1c6a16dab0d7f19ac0",
+      "exactBlobMatches": true,
+      "committedSha256": "3fd086563d232bb2099419cbcbd75cb229057c709abd8b81d4b7466ec7f8a41f",
+      "checkoutEOLOnly": false,
+      "key": "npc-lin",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "3fd086563d232bb2099419cbcbd75cb229057c709abd8b81d4b7466ec7f8a41f",
+      "catalogPixels": [
+        1122,
+        1402
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1122,
+        1402
+      ],
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/npc-zhou-v1.png",
+      "bytes": 755154,
+      "sha256": "125ac063bf756ab3a11a448e8b29611dc66b22b814c3148cf82b632c313d3531",
+      "gitBlobAtBase": "41f4de9bc4576b698b426bfb6d1a387ff41d8b1f",
+      "worktreeBlob": "41f4de9bc4576b698b426bfb6d1a387ff41d8b1f",
+      "exactBlobMatches": true,
+      "committedSha256": "125ac063bf756ab3a11a448e8b29611dc66b22b814c3148cf82b632c313d3531",
+      "checkoutEOLOnly": false,
+      "key": "npc-zhou",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "125ac063bf756ab3a11a448e8b29611dc66b22b814c3148cf82b632c313d3531",
+      "catalogPixels": [
+        1122,
+        1402
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1122,
+        1402
+      ],
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/objective_pathogen_case_v02.png",
+      "bytes": 1190960,
+      "sha256": "0fd539ab383f9ab233ca105fd9491296368069270f63d1aa050f457b13a4a64a",
+      "gitBlobAtBase": "a22d02149a8c6bba79c4aadd9ef756545f52529e",
+      "worktreeBlob": "a22d02149a8c6bba79c4aadd9ef756545f52529e",
+      "exactBlobMatches": true,
+      "committedSha256": "0fd539ab383f9ab233ca105fd9491296368069270f63d1aa050f457b13a4a64a",
+      "checkoutEOLOnly": false,
+      "key": "objective-pathogen-case",
+      "status": "REVIEW_ONLY",
+      "category": "closeup",
+      "catalogSha256": "0fd539ab383f9ab233ca105fd9491296368069270f63d1aa050f457b13a4a64a",
+      "catalogPixels": [
+        1024,
+        1024
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1024,
+        1024
+      ],
+      "nativePixels": [
+        1024,
+        1024
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/panel-nine-slice-v1.png",
+      "bytes": 2811487,
+      "sha256": "7f8a892f51159446c8d681c5811838ecf2dc177db7ca2dec6cda1b72d2eeb28e",
+      "gitBlobAtBase": "c772050f0dd211e600d620e29506db4cf0899f37",
+      "worktreeBlob": "c772050f0dd211e600d620e29506db4cf0899f37",
+      "exactBlobMatches": true,
+      "committedSha256": "7f8a892f51159446c8d681c5811838ecf2dc177db7ca2dec6cda1b72d2eeb28e",
+      "checkoutEOLOnly": false,
+      "key": "panel-nine-slice",
+      "status": "REVIEW_ONLY",
+      "category": "frame",
+      "catalogSha256": "7f8a892f51159446c8d681c5811838ecf2dc177db7ca2dec6cda1b72d2eeb28e",
+      "catalogPixels": [
+        1254,
+        1254
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1254,
+        1254
+      ],
+      "nativePixels": [
+        1254,
+        1254
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/player-back-v1.png",
+      "bytes": 1047768,
+      "sha256": "73bd1abbe0a1db3a8c6e22558e6ecb62336bc86f749a5d56b6ab6456ed4adff8",
+      "gitBlobAtBase": "de37f7bdd45b2855a44093ec36eee7b75e1cd21d",
+      "worktreeBlob": "de37f7bdd45b2855a44093ec36eee7b75e1cd21d",
+      "exactBlobMatches": true,
+      "committedSha256": "73bd1abbe0a1db3a8c6e22558e6ecb62336bc86f749a5d56b6ab6456ed4adff8",
+      "checkoutEOLOnly": false,
+      "key": "player-back-legacy",
+      "status": "HISTORICAL_ONLY",
+      "category": "character",
+      "catalogSha256": "73bd1abbe0a1db3a8c6e22558e6ecb62336bc86f749a5d56b6ab6456ed4adff8",
+      "catalogPixels": [
+        1122,
+        1402
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/player-back-v2.png",
+      "bytes": 1113588,
+      "sha256": "2e67e775c465bdbb5ddf298967c2624b9d5aff31c4932922e48da935a8584791",
+      "gitBlobAtBase": "4dd1aba67a3ce47d29efb712e0a90d1784b14a58",
+      "worktreeBlob": "4dd1aba67a3ce47d29efb712e0a90d1784b14a58",
+      "exactBlobMatches": true,
+      "committedSha256": "2e67e775c465bdbb5ddf298967c2624b9d5aff31c4932922e48da935a8584791",
+      "checkoutEOLOnly": false,
+      "key": "player-back",
+      "status": "REVIEW_ONLY",
+      "category": "character",
+      "catalogSha256": "2e67e775c465bdbb5ddf298967c2624b9d5aff31c4932922e48da935a8584791",
+      "catalogPixels": [
+        1122,
+        1402
+      ],
+      "catalogAlpha": true,
+      "presentationCanvas": [
+        1536,
+        1920
+      ],
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "pngColorType": 6,
+      "alphaCapability": true,
+      "chunkCRC": "PASS",
+      "declaredNodes": [],
+      "manifestMatches": true,
+      "catalogMatches": true
+    }
+  ],
+  "registeredVectors": [
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-critical-v1.svg",
+      "bytes": 590,
+      "sha256": "092086aff7b7426c9ae9b58f4dc3650b308078f54223a53e957b12ea8f0758ef",
+      "gitBlobAtBase": "51b2f027b934eb4910564ea912ef394eedaa5627",
+      "worktreeBlob": "a51b10c1c07493d5956517241d97c817bf4b6369",
+      "exactBlobMatches": false,
+      "committedSha256": "13b72450b962e9d7bcbfc6cb66b754bb2953cc152c744a2fa1394c70eb620e47",
+      "checkoutEOLOnly": true,
+      "key": "registered.enemy-porter-critical-v1",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "092086aff7b7426c9ae9b58f4dc3650b308078f54223a53e957b12ea8f0758ef",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/enemy-porter-critical-v1.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-disabled-v1.svg",
+      "bytes": 579,
+      "sha256": "302a1d4b72374b9929983dbb888fca3c993bdb5896c21154a5a08a92a6f586bf",
+      "gitBlobAtBase": "7bf9f7946d93278fad58492d7dc215aba9de519f",
+      "worktreeBlob": "7396f13c23bc2c9c3c369539c0303c3c866b6588",
+      "exactBlobMatches": false,
+      "committedSha256": "c8610de02a4cdb30677d31caaf9c137fdef9fbc6054b3080bc102ad3ca6d894c",
+      "checkoutEOLOnly": true,
+      "key": "registered.enemy-porter-disabled-v1",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "302a1d4b72374b9929983dbb888fca3c993bdb5896c21154a5a08a92a6f586bf",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/enemy-porter-disabled-v1.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-heavy_wounded-v1.svg",
+      "bytes": 592,
+      "sha256": "c323c6d2831ab3e4c783171e0a7e09e96e94313fde81bcc1622099348825119e",
+      "gitBlobAtBase": "5fdac10789e389a22fda573cca3df85bcceeb137",
+      "worktreeBlob": "066e5d00b962cfa90da2b4d4af3076d1b7140320",
+      "exactBlobMatches": false,
+      "committedSha256": "bd8286daf7df340abb0b5c09d151ababd9cb4fa1c3cd4f618099c2beb056487f",
+      "checkoutEOLOnly": true,
+      "key": "registered.enemy-porter-heavy_wounded-v1",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "c323c6d2831ab3e4c783171e0a7e09e96e94313fde81bcc1622099348825119e",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/enemy-porter-heavy_wounded-v1.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-pristine-v1.svg",
+      "bytes": 588,
+      "sha256": "07688e17db54370d606786d1296c7f2d00d3bd8a3384729ad1b14a81f64e1205",
+      "gitBlobAtBase": "b224dfc28f3be341f0e50d373cd57bbcc0ef78f1",
+      "worktreeBlob": "d695a631bb148a19407dacd62d64dc2a43b75d91",
+      "exactBlobMatches": false,
+      "committedSha256": "031c6a11b53c1c81c1848d6f6411cbbb1898a65516a4d429a97b8761a1fc2af0",
+      "checkoutEOLOnly": true,
+      "key": "registered.enemy-porter-pristine-v1",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "07688e17db54370d606786d1296c7f2d00d3bd8a3384729ad1b14a81f64e1205",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/enemy-porter-pristine-v1.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-wounded-v1.svg",
+      "bytes": 587,
+      "sha256": "8dfe1153421404bf2ac82285600cb5986c929362b960fff65cf39db49c746707",
+      "gitBlobAtBase": "16d446aff6919f469220e11c0b41aca26443934b",
+      "worktreeBlob": "0acb20a750f0986c489bf04704e8a04d06acc2b6",
+      "exactBlobMatches": false,
+      "committedSha256": "511040d8e07dbc674dd5e77e22b006b416c3a56d7b657bbd566ca8283e016fcb",
+      "checkoutEOLOnly": true,
+      "key": "registered.enemy-porter-wounded-v1",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "8dfe1153421404bf2ac82285600cb5986c929362b960fff65cf39db49c746707",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/enemy-porter-wounded-v1.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-critical-v1.svg",
+      "bytes": 589,
+      "sha256": "b53f10c6cb57301922d56c8550826a6bd0e65cd8d4dea0d668df4dd774b7c500",
+      "gitBlobAtBase": "319270e966faef59fac676ecbd4ad8a7b2ead2e1",
+      "worktreeBlob": "fd2d4a5e3ca1b1805ed027a1622408fcd7199bdf",
+      "exactBlobMatches": false,
+      "committedSha256": "97bf1a8162ececa2ed1fbd54e18298fb5b311942b210f8d2fa1bfc946f22a1eb",
+      "checkoutEOLOnly": true,
+      "key": "registered.enemy-technician-critical-v1",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "b53f10c6cb57301922d56c8550826a6bd0e65cd8d4dea0d668df4dd774b7c500",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/enemy-technician-critical-v1.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-disabled-v1.svg",
+      "bytes": 583,
+      "sha256": "50049415493c4456cb079a24d06c67dabe265789d919209a9185876debd63731",
+      "gitBlobAtBase": "980a5038958207f5a3f874ba13b651cc953e8228",
+      "worktreeBlob": "980a5038958207f5a3f874ba13b651cc953e8228",
+      "exactBlobMatches": true,
+      "committedSha256": "50049415493c4456cb079a24d06c67dabe265789d919209a9185876debd63731",
+      "checkoutEOLOnly": false,
+      "key": "registered.enemy-technician-disabled-v1",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "50049415493c4456cb079a24d06c67dabe265789d919209a9185876debd63731",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/enemy-technician-disabled-v1.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-heavy_wounded-v1.svg",
+      "bytes": 596,
+      "sha256": "bcdfcc7c74da93b2bfac1186c221f1a2656eb839e42ff836d47053b9c8077208",
+      "gitBlobAtBase": "a3af3c98c76c39469c7d7bbdde156a0c0cced3bf",
+      "worktreeBlob": "e3e2bf157c7eea27bf5c4bcca9ce1892054918c3",
+      "exactBlobMatches": false,
+      "committedSha256": "f25c26d4768f513ff97242d16df0c8215ef662080a404ffb5c23418901e17ac8",
+      "checkoutEOLOnly": true,
+      "key": "registered.enemy-technician-heavy_wounded-v1",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "bcdfcc7c74da93b2bfac1186c221f1a2656eb839e42ff836d47053b9c8077208",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/enemy-technician-heavy_wounded-v1.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-pristine-v1.svg",
+      "bytes": 596,
+      "sha256": "1d8bb8ff1dfcb0414bb957d537bccd24a3442c382f9443e7cd95cf07a077f960",
+      "gitBlobAtBase": "97a406c8e860e879e8b4e8729a7116a23f751cd9",
+      "worktreeBlob": "bfb40e929cd3e0cd7b0213ae62b9e5d1ac262633",
+      "exactBlobMatches": false,
+      "committedSha256": "f517b46a4b3d62649a4ba27124f2bebca317d3684e44507130de5f7de7dc864d",
+      "checkoutEOLOnly": true,
+      "key": "registered.enemy-technician-pristine-v1",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "1d8bb8ff1dfcb0414bb957d537bccd24a3442c382f9443e7cd95cf07a077f960",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/enemy-technician-pristine-v1.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-wounded-v1.svg",
+      "bytes": 595,
+      "sha256": "21d6bc7bc40ffc900c59481dc4d7b0f9299346f00965d698daafef23669a7a50",
+      "gitBlobAtBase": "9bdf217a1dfe31647e873965d55059eea20971e6",
+      "worktreeBlob": "2d1e2d5cda711e3d1d5f26b859dbf827b84666f7",
+      "exactBlobMatches": false,
+      "committedSha256": "fcc09c52601301764f3c5ef16bad4473a1cf84f9aea6e0976b4812c849a6c045",
+      "checkoutEOLOnly": true,
+      "key": "registered.enemy-technician-wounded-v1",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "21d6bc7bc40ffc900c59481dc4d7b0f9299346f00965d698daafef23669a7a50",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/enemy-technician-wounded-v1.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_critical_v02.svg",
+      "bytes": 602,
+      "sha256": "bb2f76f9be2e08d0001fe9623a260335b59e159de70a811e88dac9d9de7ba555",
+      "gitBlobAtBase": "05b531cea5f640e5ae70586a6356e08fcc85b732",
+      "worktreeBlob": "8b6ffab6a5d20d51c43e5354b635fe608f1e4ebf",
+      "exactBlobMatches": false,
+      "committedSha256": "ba4f6ed29651f352012ad755a6314a409ad9f801221749b5d7cf985c54553933",
+      "checkoutEOLOnly": true,
+      "key": "registered.enemy_infected_orderly_critical_v02",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "bb2f76f9be2e08d0001fe9623a260335b59e159de70a811e88dac9d9de7ba555",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/enemy_infected_orderly_critical_v02.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_disabled_v02.svg",
+      "bytes": 601,
+      "sha256": "8c71472fa29b4f491dcf1a5520d8b833979e3e91ce406fe68ec7f2743eb3f84f",
+      "gitBlobAtBase": "90b61e23639247fd2d55c3126cefd9407e30b7b5",
+      "worktreeBlob": "0115dfeaea9befc26b39c73e8b1c76258fb3cf7d",
+      "exactBlobMatches": false,
+      "committedSha256": "62231b1fa2ceca47219cb691df197d9b66140ab3e5ada2bd15f09b29d18f7594",
+      "checkoutEOLOnly": true,
+      "key": "registered.enemy_infected_orderly_disabled_v02",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "8c71472fa29b4f491dcf1a5520d8b833979e3e91ce406fe68ec7f2743eb3f84f",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/enemy_infected_orderly_disabled_v02.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_heavy_wounded_v02.svg",
+      "bytes": 612,
+      "sha256": "7f5216b6381a8ac8e6713afbe3865c103f23683503504cbf3ba22bef6115a874",
+      "gitBlobAtBase": "7524c4683ca569c560c47e45babd410473219079",
+      "worktreeBlob": "9cb907c00109ddc2226bbaf998a6331c28eb9e77",
+      "exactBlobMatches": false,
+      "committedSha256": "e4ab63968c3a279a5ca3d5fc91b6b6dc09ab216847ad1edd8e377375fcbda708",
+      "checkoutEOLOnly": true,
+      "key": "registered.enemy_infected_orderly_heavy_wounded_v02",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "7f5216b6381a8ac8e6713afbe3865c103f23683503504cbf3ba22bef6115a874",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/enemy_infected_orderly_heavy_wounded_v02.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_pristine_v02.svg",
+      "bytes": 602,
+      "sha256": "a8d32f9a304d6644c26abf17075e54a4fef4ea78dc471d3b142b10c61f2792a2",
+      "gitBlobAtBase": "9d29a67592ca68cc7fab68dcfa3a1ae32723e3dd",
+      "worktreeBlob": "a2581b20958c36a9bc78d603cfe777946721f280",
+      "exactBlobMatches": false,
+      "committedSha256": "f8343567588fc3e4fa8bee8e6459bf5576dddbc3a6cb78a95e093791100bd753",
+      "checkoutEOLOnly": true,
+      "key": "registered.enemy_infected_orderly_pristine_v02",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "a8d32f9a304d6644c26abf17075e54a4fef4ea78dc471d3b142b10c61f2792a2",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/enemy_infected_orderly_pristine_v02.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_wounded_v02.svg",
+      "bytes": 597,
+      "sha256": "d2dabc7a120b56df93e5fc0c4fd39127c1c2d0ee2cef6867411f2c7a45194629",
+      "gitBlobAtBase": "e9540f0f7a603a932fbb6f308c92f77d01069d94",
+      "worktreeBlob": "4c516ab923e26e716eeafd5f32f1bad74297e981",
+      "exactBlobMatches": false,
+      "committedSha256": "b2ebec5131557a5db5442aba07669b138bb6219fb4591b8c299e73989afc1bcc",
+      "checkoutEOLOnly": true,
+      "key": "registered.enemy_infected_orderly_wounded_v02",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "d2dabc7a120b56df93e5fc0c4fd39127c1c2d0ee2cef6867411f2c7a45194629",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/enemy_infected_orderly_wounded_v02.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/player-back-v1.svg",
+      "bytes": 546,
+      "sha256": "6db179dd66c792bd6560e17d401e58c5d50b3c109e52290028e3cfbf973e1933",
+      "gitBlobAtBase": "a5aba90a59d429af6cc11bbc38cd2983494a3a3e",
+      "worktreeBlob": "6596bb99cf6343a1130102fa28dbbf9f03a2296e",
+      "exactBlobMatches": false,
+      "committedSha256": "372ef32c0d2d41a75020ab1bc940138a9a53fc944db58a0a916391acb51a562c",
+      "checkoutEOLOnly": true,
+      "key": "registered.player-back-v1",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "6db179dd66c792bd6560e17d401e58c5d50b3c109e52290028e3cfbf973e1933",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/player-back-v1.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/player-back-v2.svg",
+      "bytes": 553,
+      "sha256": "d371115c646dcfaaba58583b08e882205f725a4ba57ac98ac922f8ed700f9e84",
+      "gitBlobAtBase": "753a2c83c663b69a6dabddd6cf5d533db9e28bf3",
+      "worktreeBlob": "753a2c83c663b69a6dabddd6cf5d533db9e28bf3",
+      "exactBlobMatches": true,
+      "committedSha256": "d371115c646dcfaaba58583b08e882205f725a4ba57ac98ac922f8ed700f9e84",
+      "checkoutEOLOnly": false,
+      "key": "registered.player-back-v2",
+      "declaredStatus": "WRAPPER_NOT_NATIVE_2X",
+      "catalogSha256": "d371115c646dcfaaba58583b08e882205f725a4ba57ac98ac922f8ed700f9e84",
+      "catalogSourceHashMatches": true,
+      "wrapperDimensions": {
+        "width": "1536",
+        "height": "1920",
+        "viewBox": "0 0 1536 1920"
+      },
+      "imageReferences": [
+        "../assets/player-back-v2.png"
+      ],
+      "declaredReferencesMatch": true,
+      "referencedFilesExist": true
+    }
+  ],
+  "codeComponents": [
+    {
+      "path": "docs/design-drafts/ui-v1-001/prototype/ui.js",
+      "bytes": 56209,
+      "sha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+      "gitBlobAtBase": "8117c2fd0c8481e73e43c6ba388f21afe2bffc8d",
+      "worktreeBlob": "8117c2fd0c8481e73e43c6ba388f21afe2bffc8d",
+      "exactBlobMatches": true,
+      "committedSha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+      "checkoutEOLOnly": false,
+      "key": "map.known",
+      "declaredStatus": "CODE_NATIVE_NOT_RASTER",
+      "catalogSha256": "de0ada131263f21fb4275800b0a394fa798db20672c54282bc38c7fcf28a2626",
+      "catalogSourceHashMatches": false,
+      "sourceAnchor": "function knownMap",
+      "anchorFound": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/prototype/ui.js",
+      "bytes": 56209,
+      "sha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+      "gitBlobAtBase": "8117c2fd0c8481e73e43c6ba388f21afe2bffc8d",
+      "worktreeBlob": "8117c2fd0c8481e73e43c6ba388f21afe2bffc8d",
+      "exactBlobMatches": true,
+      "committedSha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+      "checkoutEOLOnly": false,
+      "key": "status.hud",
+      "declaredStatus": "CODE_NATIVE_NOT_RASTER",
+      "catalogSha256": "de0ada131263f21fb4275800b0a394fa798db20672c54282bc38c7fcf28a2626",
+      "catalogSourceHashMatches": false,
+      "sourceAnchor": "function shell",
+      "anchorFound": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/prototype/nine-slice.js",
+      "bytes": 1026,
+      "sha256": "8d5400d0d6fca92875695c28e087c1d140ab97cc8091bdd90ea83942493e69f9",
+      "gitBlobAtBase": "af8c7086bfe4c53aa85136e706a6764f1cdea61e",
+      "worktreeBlob": "af8c7086bfe4c53aa85136e706a6764f1cdea61e",
+      "exactBlobMatches": true,
+      "committedSha256": "8d5400d0d6fca92875695c28e087c1d140ab97cc8091bdd90ea83942493e69f9",
+      "checkoutEOLOnly": false,
+      "key": "frame.nine",
+      "declaredStatus": "CODE_NATIVE_NOT_RASTER",
+      "catalogSha256": "8d5400d0d6fca92875695c28e087c1d140ab97cc8091bdd90ea83942493e69f9",
+      "catalogSourceHashMatches": true,
+      "sourceAnchor": "function mountNineSlice",
+      "anchorFound": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/prototype/ui.js",
+      "bytes": 56209,
+      "sha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+      "gitBlobAtBase": "8117c2fd0c8481e73e43c6ba388f21afe2bffc8d",
+      "worktreeBlob": "8117c2fd0c8481e73e43c6ba388f21afe2bffc8d",
+      "exactBlobMatches": true,
+      "committedSha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+      "checkoutEOLOnly": false,
+      "key": "control.action",
+      "declaredStatus": "CODE_NATIVE_NOT_RASTER",
+      "catalogSha256": "de0ada131263f21fb4275800b0a394fa798db20672c54282bc38c7fcf28a2626",
+      "catalogSourceHashMatches": false,
+      "sourceAnchor": "const btn",
+      "anchorFound": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/prototype/ui.js",
+      "bytes": 56209,
+      "sha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+      "gitBlobAtBase": "8117c2fd0c8481e73e43c6ba388f21afe2bffc8d",
+      "worktreeBlob": "8117c2fd0c8481e73e43c6ba388f21afe2bffc8d",
+      "exactBlobMatches": true,
+      "committedSha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+      "checkoutEOLOnly": false,
+      "key": "fx.hit",
+      "declaredStatus": "CODE_NATIVE_NOT_RASTER",
+      "catalogSha256": "de0ada131263f21fb4275800b0a394fa798db20672c54282bc38c7fcf28a2626",
+      "catalogSourceHashMatches": false,
+      "sourceAnchor": "function actorVisual",
+      "anchorFound": true
+    }
+  ],
+  "enemyStageSlots": [
+    {
+      "visualKey": "infected-orderly",
+      "enemyStage": "healthy",
+      "resourceKey": "enemy-infected-orderly-pristine",
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy_infected_orderly_pristine_v02.png",
+      "registrationKey": "enemy_infected_orderly_pristine_v02.png",
+      "registrationMatches": true,
+      "nativePixels": [
+        1024,
+        1280
+      ],
+      "registeredCanvas": [
+        1536,
+        1920
+      ],
+      "status": "REVIEW_ONLY / INCOMPLETE_ART",
+      "pixelVisualReview": "NOT_RUN"
+    },
+    {
+      "visualKey": "infected-orderly",
+      "enemyStage": "wounded",
+      "resourceKey": "enemy-infected-orderly-wounded",
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy_infected_orderly_wounded_v02.png",
+      "registrationKey": "enemy_infected_orderly_wounded_v02.png",
+      "registrationMatches": true,
+      "nativePixels": [
+        1024,
+        1280
+      ],
+      "registeredCanvas": [
+        1536,
+        1920
+      ],
+      "status": "REVIEW_ONLY / INCOMPLETE_ART",
+      "pixelVisualReview": "NOT_RUN"
+    },
+    {
+      "visualKey": "infected-orderly",
+      "enemyStage": "severely-wounded",
+      "resourceKey": "enemy-infected-orderly-heavy-wounded",
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy_infected_orderly_heavy_wounded_v02.png",
+      "registrationKey": "enemy_infected_orderly_heavy_wounded_v02.png",
+      "registrationMatches": true,
+      "nativePixels": [
+        1024,
+        1280
+      ],
+      "registeredCanvas": [
+        1536,
+        1920
+      ],
+      "status": "REVIEW_ONLY / INCOMPLETE_ART",
+      "pixelVisualReview": "NOT_RUN"
+    },
+    {
+      "visualKey": "infected-orderly",
+      "enemyStage": "critical",
+      "resourceKey": "enemy-infected-orderly-critical",
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy_infected_orderly_critical_v02.png",
+      "registrationKey": "enemy_infected_orderly_critical_v02.png",
+      "registrationMatches": true,
+      "nativePixels": [
+        1024,
+        1280
+      ],
+      "registeredCanvas": [
+        1536,
+        1920
+      ],
+      "status": "REVIEW_ONLY / INCOMPLETE_ART",
+      "pixelVisualReview": "NOT_RUN"
+    },
+    {
+      "visualKey": "infected-orderly",
+      "enemyStage": "incapacitated",
+      "resourceKey": "enemy-infected-orderly-disabled",
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy_infected_orderly_disabled_v02.png",
+      "registrationKey": "enemy_infected_orderly_disabled_v02.png",
+      "registrationMatches": true,
+      "nativePixels": [
+        1024,
+        1280
+      ],
+      "registeredCanvas": [
+        1536,
+        1920
+      ],
+      "status": "REVIEW_ONLY / INCOMPLETE_ART",
+      "pixelVisualReview": "NOT_RUN"
+    },
+    {
+      "visualKey": "infected-porter",
+      "enemyStage": "healthy",
+      "resourceKey": "enemy-porter-pristine",
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-pristine-v1.png",
+      "registrationKey": "enemy-porter-pristine-v1.png",
+      "registrationMatches": true,
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "registeredCanvas": [
+        1536,
+        1920
+      ],
+      "status": "REVIEW_ONLY / INCOMPLETE_ART",
+      "pixelVisualReview": "NOT_RUN"
+    },
+    {
+      "visualKey": "infected-porter",
+      "enemyStage": "wounded",
+      "resourceKey": "enemy-porter-wounded",
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-wounded-v1.png",
+      "registrationKey": "enemy-porter-wounded-v1.png",
+      "registrationMatches": true,
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "registeredCanvas": [
+        1536,
+        1920
+      ],
+      "status": "REVIEW_ONLY / INCOMPLETE_ART",
+      "pixelVisualReview": "NOT_RUN"
+    },
+    {
+      "visualKey": "infected-porter",
+      "enemyStage": "severely-wounded",
+      "resourceKey": "enemy-porter-heavy-wounded",
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-heavy_wounded-v1.png",
+      "registrationKey": "enemy-porter-heavy_wounded-v1.png",
+      "registrationMatches": true,
+      "nativePixels": [
+        1121,
+        1403
+      ],
+      "registeredCanvas": [
+        1536,
+        1920
+      ],
+      "status": "REVIEW_ONLY / INCOMPLETE_ART",
+      "pixelVisualReview": "NOT_RUN"
+    },
+    {
+      "visualKey": "infected-porter",
+      "enemyStage": "critical",
+      "resourceKey": "enemy-porter-critical",
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-critical-v1.png",
+      "registrationKey": "enemy-porter-critical-v1.png",
+      "registrationMatches": true,
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "registeredCanvas": [
+        1536,
+        1920
+      ],
+      "status": "REVIEW_ONLY / INCOMPLETE_ART",
+      "pixelVisualReview": "NOT_RUN"
+    },
+    {
+      "visualKey": "infected-porter",
+      "enemyStage": "incapacitated",
+      "resourceKey": "enemy-porter-disabled",
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-disabled-v1.png",
+      "registrationKey": "enemy-porter-disabled-v1.png",
+      "registrationMatches": true,
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "registeredCanvas": [
+        1536,
+        1920
+      ],
+      "status": "REVIEW_ONLY / INCOMPLETE_ART",
+      "pixelVisualReview": "NOT_RUN"
+    },
+    {
+      "visualKey": "infected-technician",
+      "enemyStage": "healthy",
+      "resourceKey": "enemy-technician-pristine",
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-technician-pristine-v1.png",
+      "registrationKey": "enemy-technician-pristine-v1.png",
+      "registrationMatches": true,
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "registeredCanvas": [
+        1536,
+        1920
+      ],
+      "status": "REVIEW_ONLY / INCOMPLETE_ART",
+      "pixelVisualReview": "NOT_RUN"
+    },
+    {
+      "visualKey": "infected-technician",
+      "enemyStage": "wounded",
+      "resourceKey": "enemy-technician-wounded",
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-technician-wounded-v1.png",
+      "registrationKey": "enemy-technician-wounded-v1.png",
+      "registrationMatches": true,
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "registeredCanvas": [
+        1536,
+        1920
+      ],
+      "status": "REVIEW_ONLY / INCOMPLETE_ART",
+      "pixelVisualReview": "NOT_RUN"
+    },
+    {
+      "visualKey": "infected-technician",
+      "enemyStage": "severely-wounded",
+      "resourceKey": "enemy-technician-heavy-wounded",
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-technician-heavy_wounded-v1.png",
+      "registrationKey": "enemy-technician-heavy_wounded-v1.png",
+      "registrationMatches": true,
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "registeredCanvas": [
+        1536,
+        1920
+      ],
+      "status": "REVIEW_ONLY / INCOMPLETE_ART",
+      "pixelVisualReview": "NOT_RUN"
+    },
+    {
+      "visualKey": "infected-technician",
+      "enemyStage": "critical",
+      "resourceKey": "enemy-technician-critical",
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-technician-critical-v1.png",
+      "registrationKey": "enemy-technician-critical-v1.png",
+      "registrationMatches": true,
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "registeredCanvas": [
+        1536,
+        1920
+      ],
+      "status": "REVIEW_ONLY / INCOMPLETE_ART",
+      "pixelVisualReview": "NOT_RUN"
+    },
+    {
+      "visualKey": "infected-technician",
+      "enemyStage": "incapacitated",
+      "resourceKey": "enemy-technician-disabled",
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/enemy-technician-disabled-v1.png",
+      "registrationKey": "enemy-technician-disabled-v1.png",
+      "registrationMatches": true,
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "registeredCanvas": [
+        1536,
+        1920
+      ],
+      "status": "REVIEW_ONLY / INCOMPLETE_ART",
+      "pixelVisualReview": "NOT_RUN"
+    }
+  ],
+  "categoryCounts": {
+    "background": 18,
+    "closeup": 6,
+    "character": 19,
+    "fx": 1,
+    "item": 19,
+    "frame": 1
+  },
+  "sharedBackgroundResources": [
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-communication-v1.png",
+      "bytes": 3033547,
+      "sha256": "2bbcf3e39673a9e3bc80a0632632ec62eb2ced2e7a782947c36c614907611829",
+      "gitBlobAtBase": "ae198214d1b8b764276dbc9844c27c1367447b74",
+      "worktreeBlob": "ae198214d1b8b764276dbc9844c27c1367447b74",
+      "exactBlobMatches": true,
+      "committedSha256": "2bbcf3e39673a9e3bc80a0632632ec62eb2ced2e7a782947c36c614907611829",
+      "checkoutEOLOnly": false,
+      "key": "bg-communication",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "2bbcf3e39673a9e3bc80a0632632ec62eb2ced2e7a782947c36c614907611829",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "C0",
+        "C5"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-hospital-control-v1.png",
+      "bytes": 2449512,
+      "sha256": "d6b8570f80ece0f648e20506934857a40f67fbd9f3c30102521e8115ccec6229",
+      "gitBlobAtBase": "5c2bce3be287806bec5c980b4dfaba841c39361b",
+      "worktreeBlob": "5c2bce3be287806bec5c980b4dfaba841c39361b",
+      "exactBlobMatches": true,
+      "committedSha256": "d6b8570f80ece0f648e20506934857a40f67fbd9f3c30102521e8115ccec6229",
+      "checkoutEOLOnly": false,
+      "key": "bg-hospital-control",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "d6b8570f80ece0f648e20506934857a40f67fbd9f3c30102521e8115ccec6229",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "H3",
+        "H7"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-hotel-v1.png",
+      "bytes": 2740767,
+      "sha256": "9783cb9de7377450f8acdedac51e5545b204281ac78ae881a6b6575692ffd277",
+      "gitBlobAtBase": "74c7885454bebfcb55c9759f92f6ca60857db0eb",
+      "worktreeBlob": "74c7885454bebfcb55c9759f92f6ca60857db0eb",
+      "exactBlobMatches": true,
+      "committedSha256": "9783cb9de7377450f8acdedac51e5545b204281ac78ae881a6b6575692ffd277",
+      "checkoutEOLOnly": false,
+      "key": "bg-hotel",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "9783cb9de7377450f8acdedac51e5545b204281ac78ae881a6b6575692ffd277",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "T0",
+        "T1"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-logistics-office-v1.png",
+      "bytes": 2881346,
+      "sha256": "6dd13b70ad7a2237cdf2121065286a1b1704960b4867e8d1b72b8d0d96e4a2ca",
+      "gitBlobAtBase": "4ad3bfc3b833fdf59d4488aeb77e944702c70da4",
+      "worktreeBlob": "4ad3bfc3b833fdf59d4488aeb77e944702c70da4",
+      "exactBlobMatches": true,
+      "committedSha256": "6dd13b70ad7a2237cdf2121065286a1b1704960b4867e8d1b72b8d0d96e4a2ca",
+      "checkoutEOLOnly": false,
+      "key": "bg-logistics-office",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "6dd13b70ad7a2237cdf2121065286a1b1704960b4867e8d1b72b8d0d96e4a2ca",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "L1",
+        "L5"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-power-v1.png",
+      "bytes": 2920431,
+      "sha256": "bc2e137f2f1877911f0c2611f7d05c1a0f1383bdf19fd76e6779ec1919096ff9",
+      "gitBlobAtBase": "22fbd00001cb1ef26aafb8bbdad5a09ba7db2520",
+      "worktreeBlob": "22fbd00001cb1ef26aafb8bbdad5a09ba7db2520",
+      "exactBlobMatches": true,
+      "committedSha256": "bc2e137f2f1877911f0c2611f7d05c1a0f1383bdf19fd76e6779ec1919096ff9",
+      "checkoutEOLOnly": false,
+      "key": "bg-power",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "bc2e137f2f1877911f0c2611f7d05c1a0f1383bdf19fd76e6779ec1919096ff9",
+      "catalogPixels": [
+        1672,
+        941
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        941
+      ],
+      "nativePixels": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "P0",
+        "P1",
+        "C2"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/editable/assets/bg-workshop-v1.png",
+      "bytes": 2646572,
+      "sha256": "fec1421c73f4cba01aa68b663f3b97ad264c9fb411f372ca947ae85834daa3b1",
+      "gitBlobAtBase": "75a5894278137026db3b7cacd80d1034b305ce4e",
+      "worktreeBlob": "75a5894278137026db3b7cacd80d1034b305ce4e",
+      "exactBlobMatches": true,
+      "committedSha256": "fec1421c73f4cba01aa68b663f3b97ad264c9fb411f372ca947ae85834daa3b1",
+      "checkoutEOLOnly": false,
+      "key": "bg-workshop",
+      "status": "REVIEW_ONLY",
+      "category": "background",
+      "catalogSha256": "fec1421c73f4cba01aa68b663f3b97ad264c9fb411f372ca947ae85834daa3b1",
+      "catalogPixels": [
+        1672,
+        940
+      ],
+      "catalogAlpha": false,
+      "presentationCanvas": [
+        1672,
+        940
+      ],
+      "nativePixels": [
+        1672,
+        940
+      ],
+      "pngColorType": 2,
+      "alphaCapability": false,
+      "chunkCRC": "PASS",
+      "declaredNodes": [
+        "L3",
+        "C4"
+      ],
+      "manifestMatches": true,
+      "catalogMatches": true
+    }
+  ],
+  "issues": [
+    {
+      "key": "registered.enemy-porter-critical-v1",
+      "issue": "CATALOG_HASH_BOUND_TO_CHECKOUT_CRLF_NOT_COMMITTED_LF",
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-critical-v1.svg"
+    },
+    {
+      "key": "registered.enemy-porter-disabled-v1",
+      "issue": "CATALOG_HASH_BOUND_TO_CHECKOUT_CRLF_NOT_COMMITTED_LF",
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-disabled-v1.svg"
+    },
+    {
+      "key": "registered.enemy-porter-heavy_wounded-v1",
+      "issue": "CATALOG_HASH_BOUND_TO_CHECKOUT_CRLF_NOT_COMMITTED_LF",
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-heavy_wounded-v1.svg"
+    },
+    {
+      "key": "registered.enemy-porter-pristine-v1",
+      "issue": "CATALOG_HASH_BOUND_TO_CHECKOUT_CRLF_NOT_COMMITTED_LF",
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-pristine-v1.svg"
+    },
+    {
+      "key": "registered.enemy-porter-wounded-v1",
+      "issue": "CATALOG_HASH_BOUND_TO_CHECKOUT_CRLF_NOT_COMMITTED_LF",
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-wounded-v1.svg"
+    },
+    {
+      "key": "registered.enemy-technician-critical-v1",
+      "issue": "CATALOG_HASH_BOUND_TO_CHECKOUT_CRLF_NOT_COMMITTED_LF",
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-critical-v1.svg"
+    },
+    {
+      "key": "registered.enemy-technician-heavy_wounded-v1",
+      "issue": "CATALOG_HASH_BOUND_TO_CHECKOUT_CRLF_NOT_COMMITTED_LF",
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-heavy_wounded-v1.svg"
+    },
+    {
+      "key": "registered.enemy-technician-pristine-v1",
+      "issue": "CATALOG_HASH_BOUND_TO_CHECKOUT_CRLF_NOT_COMMITTED_LF",
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-pristine-v1.svg"
+    },
+    {
+      "key": "registered.enemy-technician-wounded-v1",
+      "issue": "CATALOG_HASH_BOUND_TO_CHECKOUT_CRLF_NOT_COMMITTED_LF",
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-wounded-v1.svg"
+    },
+    {
+      "key": "registered.enemy_infected_orderly_critical_v02",
+      "issue": "CATALOG_HASH_BOUND_TO_CHECKOUT_CRLF_NOT_COMMITTED_LF",
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_critical_v02.svg"
+    },
+    {
+      "key": "registered.enemy_infected_orderly_disabled_v02",
+      "issue": "CATALOG_HASH_BOUND_TO_CHECKOUT_CRLF_NOT_COMMITTED_LF",
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_disabled_v02.svg"
+    },
+    {
+      "key": "registered.enemy_infected_orderly_heavy_wounded_v02",
+      "issue": "CATALOG_HASH_BOUND_TO_CHECKOUT_CRLF_NOT_COMMITTED_LF",
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_heavy_wounded_v02.svg"
+    },
+    {
+      "key": "registered.enemy_infected_orderly_pristine_v02",
+      "issue": "CATALOG_HASH_BOUND_TO_CHECKOUT_CRLF_NOT_COMMITTED_LF",
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_pristine_v02.svg"
+    },
+    {
+      "key": "registered.enemy_infected_orderly_wounded_v02",
+      "issue": "CATALOG_HASH_BOUND_TO_CHECKOUT_CRLF_NOT_COMMITTED_LF",
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_wounded_v02.svg"
+    },
+    {
+      "key": "registered.player-back-v1",
+      "issue": "CATALOG_HASH_BOUND_TO_CHECKOUT_CRLF_NOT_COMMITTED_LF",
+      "path": "docs/design-drafts/ui-v1-001/editable/registered/player-back-v1.svg"
+    },
+    {
+      "key": "map.known",
+      "issue": "CATALOG_CODE_OR_VECTOR_SOURCE_DIGEST_STALE",
+      "path": "docs/design-drafts/ui-v1-001/prototype/ui.js"
+    },
+    {
+      "key": "status.hud",
+      "issue": "CATALOG_CODE_OR_VECTOR_SOURCE_DIGEST_STALE",
+      "path": "docs/design-drafts/ui-v1-001/prototype/ui.js"
+    },
+    {
+      "key": "control.action",
+      "issue": "CATALOG_CODE_OR_VECTOR_SOURCE_DIGEST_STALE",
+      "path": "docs/design-drafts/ui-v1-001/prototype/ui.js"
+    },
+    {
+      "key": "fx.hit",
+      "issue": "CATALOG_CODE_OR_VECTOR_SOURCE_DIGEST_STALE",
+      "path": "docs/design-drafts/ui-v1-001/prototype/ui.js"
+    }
+  ],
+  "pixelReview": "NOT_RUN",
+  "alphaEdgeOrCompositeReview": "NOT_RUN",
+  "browserReview": "NOT_RUN",
+  "artApproved": false,
+  "historicalUnadopted": {
+    "source": "docs/design-drafts/ui-v1-001/00-owner-review.md",
+    "background1448x1086": "AUTHOR_RECORD_REJECTED_NOT_ADOPTED",
+    "playerV3Cleanup": "AUTHOR_RECORD_REJECTED_NOT_ADOPTED"
+  },
+  "gatesRetained": [
+    "18 backgrounds native 2x",
+    "final subject alpha cleanup",
+    "Owner visual acceptance",
+    "production C integration"
+  ]
+}

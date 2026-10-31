@@ -61,3 +61,8 @@ npm run build
 - [场景](docs/content/scenes.md)
 - [事件](docs/content/events.md)
 - [敌人](docs/content/enemies.md)
+
+
+## 新世界开发检查点／旧默认版本不变
+
+当前新世界工程基线为 `a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0`，固定检查点为 `baseline/world-pre-b1-20261031`。当前总账、批准／验收来源及后续门槛见 [GOV-WORLD-BASELINE-001](docs/governance/world-baseline-001/README.md)。本治理工作位于 `chore/world-baseline-governance-001`，等待准确SHA主线审查，不表示main已包含本分支。旧医院默认入口和存档语义保留；下一步须主线治理实审后另发B1，C尚未接入。

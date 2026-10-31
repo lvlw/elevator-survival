@@ -394,3 +394,8 @@ D1/D2 已获 Owner 批准，主线已定稿后继三批技术责任；本轮只�
 ### ENG-WORLD-LOW-ASSET-UI-001-R1 作者补修附记
 
 UI-01 完整行动 L0 只读说明、UI-02 已批准初选能力及公开物品文案、UI-03 同一安全候选的物品菜单、V01 会话级保存文案已接入展示层；正式规则、资格／支付、安全判断及保存语义不变。修前真实 DOM、修后计数、原 A/B 链、E03 四路线／72样本和浏览器证据分别记录于[R1 映射](engineering/world-integration/preplay/low-asset-ui/r1/wording-and-test-map.md)及[R1 核验](engineering/world-integration/preplay/low-asset-ui/r1/verification-results.json)。此追踪不批准体验、发布或后继工程。
+
+
+## 当前总账索引（GOV-WORLD-BASELINE-001，2026-10-31）
+
+本文件以上记录保持各自历史时点。准确a7基线 `a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0` 的批准／实现／审查来源与开放门槛见 [当前治理入口](governance/world-baseline-001/README.md)。该入口是导航与证据索引，不新增玩法规则或倒改历史结论；治理分支待主线准确SHA审查。

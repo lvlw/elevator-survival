@@ -1,0 +1,127 @@
+{
+  "baseSHA": "d31828a74fcb1b2e28c0f070ad7f8fd3b3e87cc4",
+  "sources": [
+    {
+      "path": "src/ui/infected-world/app.tsx",
+      "baseGitBlob": "2fda4c229a52afe35438125c8e335e7d181aa7f8",
+      "sha256": "b78d2f174611788a1b9f265654274f6be63fa22c738c2ddfda73b0026aac7e26",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "src/ui/infected-world/components/game-shell.tsx",
+      "baseGitBlob": "04dc5e2041c26451630a2396e3144b0cc78fbb5a",
+      "sha256": "302f2157cf20a9ef46fe0c1a6982d3e652166c5dd8b51aed7ce013cdc180be1c",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "src/ui/infected-world/components/world-stage.tsx",
+      "baseGitBlob": "5ce613941a3336022958ce1a1448213f48d8857f",
+      "sha256": "e440cedfdbf4555ac21ebe045f315709b1b9855d0611285628b396337a56c03e",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "src/ui/infected-world/components/battle-stage.tsx",
+      "baseGitBlob": "5e1f70e9bef29ac186b6501687b1bae1b76d7d8b",
+      "sha256": "4b1e3a514d67e7956ee6f3997a702bb50745f9d6dc2b3c8cb29bd4301258827f",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "src/ui/infected-world/styles.css",
+      "baseGitBlob": "a0d8ad9d07b8fff6367523ac7aea8384eff19202",
+      "sha256": "6b7a7a5ce9fc54203e891514ecbcb205d8660af0085d44c872b8f680b247e4f5",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "src/ui/infected-world/use-browser-owner.ts",
+      "baseGitBlob": "5cdc4ef706c78fbd2b866d847bd15b351135a8a6",
+      "sha256": "353d2b9bcffb8352683599b3a308642c054d2c88dbd79eed929c0848f444571d",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "src/ui/infected-world/combat.test.tsx",
+      "baseGitBlob": "49c91558796473ab49e27e92ca712a26efae81e9",
+      "sha256": "a32f95a1fc782dedde80bd23878db49d05198dd03e1544bfbc8887905d9d427e",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "src/app/infected-preplay/committed-presentation.ts",
+      "baseGitBlob": "839889405ebf01425854a722901e0ee55396e36c",
+      "sha256": "da12d3992ddaa0d8261a5de24e6abd223be9283635bc9628a840d08546d4ce5f",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "src/app/infected-preplay/controller.ts",
+      "baseGitBlob": "2620a6bed75274e473d62d60763e9242eb8bc654",
+      "sha256": "2950c5bc9b39b69d5b92ec4a4ed09f28c021fbfd47cd7efa2d886b360ba1a87b",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "src/state/residence-session/player-types.ts",
+      "baseGitBlob": "d42f571a4a72ceb56853275030e58bd9be860334",
+      "sha256": "54e3d9cf6509929ad02836ce3de5391f4fc38b32e709cecf69dfad07ec0379d7",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "src/state/residence-session/player-facade.ts",
+      "baseGitBlob": "ebb1565c9b2829af7cbd637b6ef18a3bc0f9dc3e",
+      "sha256": "e9058c09a1b91d5e2937815b97d186c55e32da17626ecb70bd5b962ff2fec47f",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "src/app/infected-browser/owner.ts",
+      "baseGitBlob": "97c3d8e59d017a420944a321113e24a62aa6c525",
+      "sha256": "d2c1fd40841b9aea10fccc7812a46044115c4e54e271c464849987d5a39e21f3",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "docs/09-ui-design-record.md",
+      "baseGitBlob": "216f76d08f91175130603c35125322026bb78262",
+      "sha256": "ef487405761d553bf59da280f7b93563207f77af6173e96ddc1cccf26e1e033d",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "docs/05-design-decisions.md",
+      "baseGitBlob": "2fd80b12fb57285dd7d1bbe89e4ea51353710ff8",
+      "sha256": "68f35a56c754f55b1137314ba41cd7fbbeea88afdcb816690ff52a509c90d6ca",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "AGENTS.md",
+      "baseGitBlob": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "sha256": "00c2cad61c99530c1343ca9faad9a32994d67e5ca4aeb991156bb9828e5c501e",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "package.json",
+      "baseGitBlob": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+      "sha256": "f6b6752aebd3aa6161a0c802ef49ee1b2ddbbffeb19b76e2e4d581f2465e5346",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "docs/governance/world-baseline-001/asset-guide.md",
+      "baseGitBlob": "b3033e4aa3a7bfffb0fd931ef01db082cf01b49c",
+      "sha256": "30db8eccc62d42a0e4dfb313c207d429b820574d0e1c6c62e63697e3f2f86bb3",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/contracts/C-staged-ui.md",
+      "baseGitBlob": "12c51c4daeeea808e4c948a635b18d95d1ef0ed4",
+      "sha256": "12531edb60bde600af1dff6a15b57d9c54a791f145ee1d1214e3d95f0f8ae3a9",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    },
+    {
+      "path": "docs/engineering/world-integration/preplay/low-asset-ui/owner-playtest-guide.md",
+      "baseGitBlob": "a35bc92274becfc480cf56c447f46af4a78b3686",
+      "sha256": "52f2b2f41674901a12e5ced91d69a6a9a31a7db89b1723ac1e8733f0adba119a",
+      "readScope": "Current C1 relevant source inspected; see implementation plan for exact document ranges"
+    }
+  ],
+  "authorityReadRanges": {
+    "docs/01-game-design-v0.1.md": "1-149,1103-end current scope",
+    "docs/02-vertical-slice.md": "1-145,598-end current scope",
+    "docs/03-architecture.md": "147-238,765-end current presentation/state boundaries; historical index read, not whole-history reaudit",
+    "docs/05-design-decisions.md": "DEC049-053 full current rules",
+    "docs/09-ui-design-record.md": "Current quick reference + UIR007-015, latest implementation notes",
+    "docs/content/": "Current world/core configuration and content relevant combat/health/entry sections"
+  }
+}

@@ -1,0 +1,366 @@
+{
+  "task": "ENG-WORLD-PRESENTATION-C1-001",
+  "newDefaultTestFiles": 7,
+  "newDefaultTests": 59,
+  "files": [
+    {
+      "path": "src/ui/infected-world/committed-presentation-accessibility.test.tsx",
+      "tests": 4,
+      "assertions": [
+        {
+          "name": "C1 bounded feedback and reduced motion skip and local reduction are keyboard-focusable native controls, without gameplay writes or focus theft",
+          "status": "passed",
+          "durationMS": 607.5933000000005
+        },
+        {
+          "name": "C1 bounded feedback and reduced motion actual matchMedia contract is respected by default and local unchecked cannot override OS reduction",
+          "status": "passed",
+          "durationMS": 264.3067000000001
+        },
+        {
+          "name": "C1 bounded feedback and reduced motion OS preference change settles an active cue and never replays it when preference changes back",
+          "status": "passed",
+          "durationMS": 221.08989999999994
+        },
+        {
+          "name": "C1 bounded feedback and reduced motion StrictMode starts one actual acquisition and no action; media listener retires with the owner",
+          "status": "passed",
+          "durationMS": 212.35549999999967
+        }
+      ]
+    },
+    {
+      "path": "src/ui/infected-world/committed-presentation-lifecycle.test.tsx",
+      "tests": 12,
+      "assertions": [
+        {
+          "name": "C1 command window, loss and stale callbacks real post-commit listener suspend drops the late result, preserving the one actual commit",
+          "status": "passed",
+          "durationMS": 507.53870000000006
+        },
+        {
+          "name": "C1 command window, loss and stale callbacks real post-commit listener dispose drops the late result, preserving the one actual commit",
+          "status": "passed",
+          "durationMS": 215.46299999999974
+        },
+        {
+          "name": "C1 command window, loss and stale callbacks an old queued timer cannot settle a newer cue or lose its cancellation handle",
+          "status": "passed",
+          "durationMS": 312.84379999999965
+        },
+        {
+          "name": "C1 command window, loss and stale callbacks a timer callback has no gameplay path, and becomes inert after real unmount",
+          "status": "passed",
+          "durationMS": 190.53170000000046
+        },
+        {
+          "name": "C1 command window, loss and stale callbacks pagehide cancels feedback; a genuine reacquisition uses new controls and scope, not old memory",
+          "status": "passed",
+          "durationMS": 283.85660000000007
+        },
+        {
+          "name": "C1 command window, loss and stale callbacks an already retired subscription callback cannot clear feedback from genuinely reacquired controls",
+          "status": "passed",
+          "durationMS": 214.72730000000047
+        },
+        {
+          "name": "C1 command window, loss and stale callbacks a late result incompatible with the latest stable view is discarded without undoing the real action",
+          "status": "passed",
+          "durationMS": 153.1849000000002
+        },
+        {
+          "name": "C1 command window, loss and stale callbacks a copied old token matching a new result view is not revived; later genuine ordinal may skip the gap",
+          "status": "passed",
+          "durationMS": 233.99049999999988
+        },
+        {
+          "name": "C1 command window, loss and stale callbacks an unsolicited new scope under unchanged controls does not reset high-water",
+          "status": "passed",
+          "durationMS": 197.23239999999987
+        },
+        {
+          "name": "C1 command window, loss and stale callbacks native external controls and subscriptions update canonical DOM but cannot synthesize feedback",
+          "status": "passed",
+          "durationMS": 104.06919999999991
+        },
+        {
+          "name": "C1 command window, loss and stale callbacks timer scheduling failure after consumption stays observable without undoing the committed action",
+          "status": "passed",
+          "durationMS": 95.82870000000003
+        },
+        {
+          "name": "C1 command window, loss and stale callbacks post-commit presentation failure stays observable and clears feedback without replaying the action",
+          "status": "passed",
+          "durationMS": 88.6246000000001
+        }
+      ]
+    },
+    {
+      "path": "src/ui/infected-world/committed-presentation-native.integration.test.tsx",
+      "tests": 12,
+      "assertions": [
+        {
+          "name": "C1 original producers and cold checkpoints reach actual React DOM two genuine native enemy responses still render one player action and one fixed feedback span",
+          "status": "passed",
+          "durationMS": 649.3545000000004
+        },
+        {
+          "name": "C1 original producers and cold checkpoints reach actual React DOM victory immediately switches to the actual new view while feedback timer is still pending",
+          "status": "passed",
+          "durationMS": 343.97239999999965
+        },
+        {
+          "name": "C1 original producers and cold checkpoints reach actual React DOM death immediately switches to the actual new view while feedback timer is still pending",
+          "status": "passed",
+          "durationMS": 244.6898999999994
+        },
+        {
+          "name": "C1 original producers and cold checkpoints reach actual React DOM both-zero immediately switches to the actual new view while feedback timer is still pending",
+          "status": "passed",
+          "durationMS": 277.34490000000005
+        },
+        {
+          "name": "C1 original producers and cold checkpoints reach actual React DOM actual retreat and noncombat reentry keep the same controller scope/high-water and do not pretend the move is combat",
+          "status": "passed",
+          "durationMS": 255.48610000000008
+        },
+        {
+          "name": "C1 original producers and cold checkpoints reach actual React DOM first-hub genuine cold restore has no feedback, gameplay, stock or write",
+          "status": "passed",
+          "durationMS": 99.74020000000019
+        },
+        {
+          "name": "C1 original producers and cold checkpoints reach actual React DOM stable-active genuine cold restore has no feedback, gameplay, stock or write",
+          "status": "passed",
+          "durationMS": 114.22159999999985
+        },
+        {
+          "name": "C1 original producers and cold checkpoints reach actual React DOM battle-decision genuine cold restore has no feedback, gameplay, stock or write",
+          "status": "passed",
+          "durationMS": 206.0643
+        },
+        {
+          "name": "C1 original producers and cold checkpoints reach actual React DOM living-hub genuine cold restore has no feedback, gameplay, stock or write",
+          "status": "passed",
+          "durationMS": 225.40810000000056
+        },
+        {
+          "name": "C1 original producers and cold checkpoints reach actual React DOM dead genuine cold restore has no feedback, gameplay, stock or write",
+          "status": "passed",
+          "durationMS": 136.76760000000013
+        },
+        {
+          "name": "C1 original producers and cold checkpoints reach actual React DOM real read-null setup, parameters, movement and entry never synthesize an action record",
+          "status": "passed",
+          "durationMS": 327.8595000000005
+        },
+        {
+          "name": "C1 original producers and cold checkpoints reach actual React DOM read-only descriptions, cancel, synchronization and refused stale choices cannot append a cue or a gameplay write",
+          "status": "passed",
+          "durationMS": 80.46360000000004
+        }
+      ]
+    },
+    {
+      "path": "src/ui/infected-world/committed-presentation-privacy.test.tsx",
+      "tests": 3,
+      "assertions": [
+        {
+          "name": "C1 whole native public graph / DOM / aria / cue noninterference same public band with different hidden disease progress and exposure preserves every field and ordered DOM attribute",
+          "status": "passed",
+          "durationMS": 758.3674000000001
+        },
+        {
+          "name": "C1 whole native public graph / DOM / aria / cue noninterference different real character/seed/item/battle identities retain identical complete DOM and feedback structure",
+          "status": "passed",
+          "durationMS": 668.0933000000005
+        },
+        {
+          "name": "C1 whole native public graph / DOM / aria / cue noninterference same-stage differing enemy HP after actual retreat/repair/rest/reentry does not change before/after DOM or the action cue",
+          "status": "passed",
+          "durationMS": 628.1306999999997
+        }
+      ]
+    },
+    {
+      "path": "src/ui/infected-world/committed-presentation.test.tsx",
+      "tests": 10,
+      "assertions": [
+        {
+          "name": "C1 actual React direct-result consumption basic commits once through actual PlayerSession/controller/BrowserOwner/DOM",
+          "status": "passed",
+          "durationMS": 559.9103
+        },
+        {
+          "name": "C1 actual React direct-result consumption signature commits once through actual PlayerSession/controller/BrowserOwner/DOM",
+          "status": "passed",
+          "durationMS": 242.96769999999924
+        },
+        {
+          "name": "C1 actual React direct-result consumption temporary commits once through actual PlayerSession/controller/BrowserOwner/DOM",
+          "status": "passed",
+          "durationMS": 238.2460000000001
+        },
+        {
+          "name": "C1 actual React direct-result consumption defend commits once through actual PlayerSession/controller/BrowserOwner/DOM",
+          "status": "passed",
+          "durationMS": 199.23829999999998
+        },
+        {
+          "name": "C1 actual React direct-result consumption retreat commits once through actual PlayerSession/controller/BrowserOwner/DOM",
+          "status": "passed",
+          "durationMS": 209.45960000000014
+        },
+        {
+          "name": "C1 actual React direct-result consumption quick commits once through actual PlayerSession/controller/BrowserOwner/DOM",
+          "status": "passed",
+          "durationMS": 150.3732
+        },
+        {
+          "name": "C1 actual React direct-result consumption next legal same action commits immediately and replaces its span without waiting for the first timer",
+          "status": "passed",
+          "durationMS": 197.05050000000028
+        },
+        {
+          "name": "C1 actual React direct-result consumption duplicate notifications and React rerenders cannot replay or replace a consumed record",
+          "status": "passed",
+          "durationMS": 179.20889999999963
+        },
+        {
+          "name": "C1 actual React direct-result consumption save-failed is already effective once; retry saves latest memory without replay or stale banner ownership",
+          "status": "passed",
+          "durationMS": 199.52700000000004
+        },
+        {
+          "name": "C1 actual React direct-result consumption real protected combat confirm uses the same consumer and no pending confirmation plays",
+          "status": "passed",
+          "durationMS": 188.6871000000001
+        }
+      ]
+    },
+    {
+      "path": "src/ui/infected-world/current-opponent-presentation.test.tsx",
+      "tests": 4,
+      "assertions": [
+        {
+          "name": "C1 opponent comes exclusively from current formal A orderly has its exact safe name in title, placeholder text and aria, with no new enemy image",
+          "status": "passed",
+          "durationMS": 395.7627999999995
+        },
+        {
+          "name": "C1 opponent comes exclusively from current formal A porter has its exact safe name in title, placeholder text and aria, with no new enemy image",
+          "status": "passed",
+          "durationMS": 162.96549999999934
+        },
+        {
+          "name": "C1 opponent comes exclusively from current formal A technician has its exact safe name in title, placeholder text and aria, with no new enemy image",
+          "status": "passed",
+          "durationMS": 138.53300000000036
+        },
+        {
+          "name": "C1 opponent comes exclusively from current formal A unknown and five stages are explicit schema/renderer branches, never location guesses or death inference",
+          "status": "passed",
+          "durationMS": 169.8735999999999
+        }
+      ]
+    },
+    {
+      "path": "src/ui/infected-world/presentation/committed-consumer.test.ts",
+      "tests": 14,
+      "assertions": [
+        {
+          "name": "C1 bounded direct-result consumer first genuine-scope ordinal 0 can join without replaying gaps",
+          "status": "passed",
+          "durationMS": 222.4632999999999
+        },
+        {
+          "name": "C1 bounded direct-result consumer first genuine-scope ordinal 8 can join without replaying gaps",
+          "status": "passed",
+          "durationMS": 108.01200000000017
+        },
+        {
+          "name": "C1 bounded direct-result consumer first genuine-scope ordinal 9007199254740991 can join without replaying gaps",
+          "status": "passed",
+          "durationMS": 155.6896999999999
+        },
+        {
+          "name": "C1 bounded direct-result consumer same reference scope keeps one monotonic high-water across cancellation, skip and gaps",
+          "status": "passed",
+          "durationMS": 126.14649999999983
+        },
+        {
+          "name": "C1 bounded direct-result consumer a new scope object cannot revive or reset an existing owner lifetime",
+          "status": "passed",
+          "durationMS": 104.94550000000072
+        },
+        {
+          "name": "C1 bounded direct-result consumer invalid ordinal -1 never starts feedback",
+          "status": "passed",
+          "durationMS": 116.48509999999987
+        },
+        {
+          "name": "C1 bounded direct-result consumer invalid ordinal 0.5 never starts feedback",
+          "status": "passed",
+          "durationMS": 125.72779999999966
+        },
+        {
+          "name": "C1 bounded direct-result consumer invalid ordinal NaN never starts feedback",
+          "status": "passed",
+          "durationMS": 129.46339999999964
+        },
+        {
+          "name": "C1 bounded direct-result consumer invalid ordinal Infinity never starts feedback",
+          "status": "passed",
+          "durationMS": 118.38810000000012
+        },
+        {
+          "name": "C1 bounded direct-result consumer invalid ordinal 9007199254740992 never starts feedback",
+          "status": "passed",
+          "durationMS": 119.21939999999995
+        },
+        {
+          "name": "C1 bounded direct-result consumer old timer generations cannot finish a newer action and disposal is final",
+          "status": "passed",
+          "durationMS": 99.85429999999997
+        },
+        {
+          "name": "C1 bounded direct-result consumer reduction consumes before any simulated rendering failure; no token resurrection",
+          "status": "passed",
+          "durationMS": 109.9319000000005
+        },
+        {
+          "name": "C1 bounded direct-result consumer hidden fields and ordinal magnitude do not influence the complete local cue",
+          "status": "passed",
+          "durationMS": 99.89719999999943
+        },
+        {
+          "name": "C1 bounded direct-result consumer even a malformed multi-record payload cannot become an enemy/hit timeline",
+          "status": "passed",
+          "durationMS": 88.00950000000012
+        }
+      ]
+    }
+  ],
+  "fixturesOnly": [
+    "src/ui/infected-world/presentation/committed-consumer-test-fixtures.ts",
+    "src/ui/infected-world/committed-presentation-test-fixtures.tsx"
+  ],
+  "historicalTestAdaptation": "one exact aria literal only; all other bytes unchanged",
+  "notTestCounts": [
+    "18 acceptance rows",
+    "9 contract rows",
+    "browser producer1",
+    "delivery integrity unittest6",
+    "external semantic mutants4",
+    "external positive-control34",
+    "CLI -t unselected cases"
+  ],
+  "evidenceLevels": [
+    "pure consumer/fake clock",
+    "real P/R/S/controller/BrowserOwner",
+    "real React DOM",
+    "real browser",
+    "Owner manual experience NOT RUN"
+  ],
+  "fullMatrixBrowserClaim": false
+}

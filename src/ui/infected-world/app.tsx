@@ -15,6 +15,8 @@ import { ActionForm } from './components/action-form'
 import { ConfirmationLayer } from './components/confirmation-layer'
 import { ActionInformationProvider } from './components/action-information'
 import { actionName, publicItemName } from './labels'
+import { useCommittedPresentation } from './presentation/use-committed-presentation'
+import { CommittedActionCue } from './components/committed-action-cue'
 import './styles.css'
 
 type Draft = Readonly<{ action: PlayerAction; inputs: PlayerActionInputs; controls: BrowserControls; item?: PlayerItem }>
@@ -28,6 +30,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
   useEffect(() => { document.documentElement.classList.add('iw-document'); return () => { document.documentElement.classList.remove('iw-document') } }, [])
   const view = snapshot.status === 'ready' && snapshot.preplay?.status === 'stable' && snapshot.preplay.view?.status === 'ready' ? snapshot.preplay.view : null
   const controls = owner?.controls() ?? null
+  const presentation = useCommittedPresentation(owner, controls, snapshot, handleError)
   const draftCurrent = draft && view && controls === draft.controls && currentActions(view).some(a => a.selector === draft.action.selector)
   const confirmationCurrent = confirmation && view && controls === confirmation.controls && requestStillVisible(view, confirmation.request)
   useEffect(() => {
@@ -36,6 +39,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
     }
   }, [draft, draftCurrent, confirmation, confirmationCurrent])
   function handleError(error: unknown) {
+    presentation.cancel()
     if (error instanceof BrowserOwnerError || isPlayerBusinessError(error)) { setDraft(null); setConfirmation(null); setMessage('当前上下文或选择已失效，请重新选择。') }
     else { setFatal(true); throw error }
   }
@@ -48,7 +52,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
     guarded(() => {
       if (!controls || !view || !requestStillVisible(view, request)) { setMessage('选择已失效，请重新选择。'); return }
       const metadata = controls.preview(request)
-      const result = controls.execute(request)
+      const result = presentation.perform(() => controls.execute(request))
       if (result.kind === 'confirmation-required' && result.confirmation) {
         const item = [...view.carried, ...view.ground].find(i => i.selector === request.item)
         setDraft(null); setConfirmation({ token: result.confirmation, request, metadata,
@@ -87,7 +91,9 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
   return <div className="iw-app" onClickCapture={event => {
     if (event.detail > 1) { event.preventDefault(); event.stopPropagation() }
   }}><ActionInformationProvider view={view} controls={controls}><GameShell view={view} feed={snapshot.preplay!.feed} onAction={choose} describeAction={controls.describeAction}
-    onRetrySave={() => guarded(() => { controls.retrySave() })}>
+    onRetrySave={() => guarded(() => { controls.retrySave() })}
+    presentation={<CommittedActionCue cue={presentation.cue} reduced={presentation.reduced} localReduced={presentation.localReduced}
+      onReduce={presentation.setLocalReduced} onSkip={presentation.skip} />}>
     {(message || snapshot.preplay?.error) && <div className="iw-feedback" role="alert">{message ?? snapshot.preplay?.error?.message}<button aria-label="关闭提示" onClick={() => setMessage(null)}>×</button></div>}
   </GameShell>
     {draft && draftCurrent && <ActionForm action={draft.action} inputs={draft.inputs} view={view} controls={controls} initialItem={draft.item}
@@ -96,7 +102,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
       onCancel={() => guarded(() => { controls.cancel(); setConfirmation(null) })} onConfirm={() => guarded(() => {
         const current = owner?.controls()
         if (current !== confirmation.controls) { setConfirmation(null); setMessage('确认已失效，请重新选择。'); return }
-        const result = current.confirm(confirmation.token)
+        const result = presentation.perform(() => current.confirm(confirmation.token))
         setConfirmation(null); setMessage(result.kind === 'rejected' ? '确认已失效或行动被拒绝，请重新选择。' : null)
       })} />}</ActionInformationProvider>
   </div>

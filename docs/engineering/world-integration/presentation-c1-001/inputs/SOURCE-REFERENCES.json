@@ -1,0 +1,107 @@
+{
+  "pinned_sha": "d31828a74fcb1b2e28c0f070ad7f8fd3b3e87cc4",
+  "note": "Git blob绑定来自已重建完整树；实际读取范围单列。不是声称所有历史全文与全部像素已复审。",
+  "sources": [
+    {
+      "path": "src/ui/infected-world/app.tsx",
+      "git_blob": "2fda4c229a52afe35438125c8e335e7d181aa7f8",
+      "read_scope": "本轮远端完整读取：execute/confirm及singleFlight错误路径"
+    },
+    {
+      "path": "src/ui/infected-world/components/game-shell.tsx",
+      "git_blob": "04dc5e2041c26451630a2396e3144b0cc78fbb5a",
+      "read_scope": "本轮远端完整读取：中央舞台/Feed/携带与children"
+    },
+    {
+      "path": "src/ui/infected-world/components/world-stage.tsx",
+      "git_blob": "5ce613941a3336022958ce1a1448213f48d8857f",
+      "read_scope": "本轮远端完整读取：battle/terminal切换与既有背景"
+    },
+    {
+      "path": "src/ui/infected-world/components/battle-stage.tsx",
+      "git_blob": "5e1f70e9bef29ac186b6501687b1bae1b76d7d8b",
+      "read_scope": "前文实际源码已读；本轮Git树保护证明未变；执行者开工重读"
+    },
+    {
+      "path": "src/ui/infected-world/styles.css",
+      "git_blob": "a0d8ad9d07b8fff6367523ac7aea8384eff19202",
+      "read_scope": "本轮请求1—120行并读取可见前段，已看到舞台/布局；未称全CSS阅读或视觉实测"
+    },
+    {
+      "path": "src/ui/infected-world/use-browser-owner.ts",
+      "git_blob": "5cdc4ef706c78fbd2b866d847bd15b351135a8a6",
+      "read_scope": "本轮远端完整读取；只读既有effect owner/StrictMode桥"
+    },
+    {
+      "path": "src/ui/infected-world/combat.test.tsx",
+      "git_blob": "49c91558796473ab49e27e92ca712a26efae81e9",
+      "read_scope": "本轮远端完整读取；只许可aria命名断言适配"
+    },
+    {
+      "path": "src/app/infected-preplay/committed-presentation.ts",
+      "git_blob": "839889405ebf01425854a722901e0ee55396e36c",
+      "read_scope": "本轮准确交付实际字节与远端树绑定，并独立执行"
+    },
+    {
+      "path": "src/app/infected-preplay/controller.ts",
+      "git_blob": "2620a6bed75274e473d62d60763e9242eb8bc654",
+      "read_scope": "本轮准确交付完整源码实审与隔离执行；C1只读"
+    },
+    {
+      "path": "src/state/residence-session/player-types.ts",
+      "git_blob": "d42f571a4a72ceb56853275030e58bd9be860334",
+      "read_scope": "本轮准确交付源码实审；正式A/B1类型"
+    },
+    {
+      "path": "src/state/residence-session/player-facade.ts",
+      "git_blob": "ebb1565c9b2829af7cbd637b6ef18a3bc0f9dc3e",
+      "read_scope": "本轮准确交付完整实审；C1只读"
+    },
+    {
+      "path": "src/app/infected-browser/owner.ts",
+      "git_blob": "97c3d8e59d017a420944a321113e24a62aa6c525",
+      "read_scope": "此前完整读取；本轮保护树证明未改，C1执行者开工复读"
+    },
+    {
+      "path": "docs/09-ui-design-record.md",
+      "git_blob": "216f76d08f91175130603c35125322026bb78262",
+      "read_scope": "本轮读取当前有效速查与UIR-012；执行者再读相关UIR-015及后续有效覆盖"
+    },
+    {
+      "path": "docs/05-design-decisions.md",
+      "git_blob": "2fd80b12fb57285dd7d1bbe89e4ea51353710ff8",
+      "read_scope": "已知当前DEC049—053；本轮未重审全历史条款，执行者按AGENTS读正式权威"
+    },
+    {
+      "path": "AGENTS.md",
+      "git_blob": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "read_scope": "实际工程协作规则，保护对象未变，开工必读"
+    },
+    {
+      "path": "package.json",
+      "git_blob": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+      "read_scope": "脚本/依赖保护对象未变，执行者按实际脚本运行"
+    },
+    {
+      "path": "docs/governance/world-baseline-001/asset-guide.md",
+      "git_blob": "b3033e4aa3a7bfffb0fd931ef01db082cf01b49c",
+      "read_scope": "历史19项元数据风险导航，不是本轮美术实审"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/contracts/C-staged-ui.md",
+      "git_blob": "12c51c4daeeea808e4c948a635b18d95d1ef0ed4",
+      "read_scope": "历史整体C候选，只读；本包仅独立批准无新素材C1窄范围"
+    },
+    {
+      "path": "docs/engineering/world-integration/preplay/low-asset-ui/owner-playtest-guide.md",
+      "git_blob": "a35bc92274becfc480cf56c447f46af4a78b3686",
+      "read_scope": "独立DEV命名空间/保存/当前首玩限制导航"
+    }
+  ],
+  "openai_model_reference": {
+    "url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+    "checked_date": "2026-10-31",
+    "supports_xhigh": true,
+    "actual_user_codex_configuration": "NOT_INDEPENDENTLY_VERIFIED"
+  }
+}

@@ -11,14 +11,14 @@ import { publicItemName } from '../labels'
 import type { BrowserControls } from '../../../app/infected-browser/types'
 import { ActionButton } from './action-information'
 
-export function GameShell({ view, feed, onAction, onRetrySave, describeAction, children }: { view: PlayerReadyView;
+export function GameShell({ view, feed, onAction, onRetrySave, describeAction, presentation, children }: { view: PlayerReadyView;
   feed: readonly PreplayFeedEntry[]; onAction: (action: PlayerAction, item?: PlayerItem) => void;
-  onRetrySave: () => void; describeAction: BrowserControls['describeAction']; children?: ReactNode }) {
+  onRetrySave: () => void; describeAction: BrowserControls['describeAction']; children?: ReactNode; presentation?: ReactNode }) {
   const [utilitiesOpen, setUtilitiesOpen] = useState(false)
   const [tasksOpen, setTasksOpen] = useState(false)
   const utility = view.actions.filter(action => action.family === 'medical' || action.family === 'maintenance')
   return <main className="iw-app iw-game"><StatusHud view={view} /><PersistenceBanner persistence={view.persistence} onRetrySave={onRetrySave} />
-    <div className="iw-game-layout"><div className="iw-stage-column"><WorldStage view={view} onAction={onAction} />
+    <div className="iw-game-layout"><div className="iw-stage-column"><WorldStage view={view} onAction={onAction} presentation={presentation} />
       <div className="iw-support-strip"><button type="button" aria-expanded={tasksOpen} onClick={() => setTasksOpen(open => !open)}>任务目标</button>
         {utility.length > 0 && <button type="button" aria-expanded={utilitiesOpen} onClick={() => setUtilitiesOpen(open => !open)}>药食与维护</button>}
       </div>

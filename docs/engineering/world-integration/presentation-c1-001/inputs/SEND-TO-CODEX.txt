@@ -1,0 +1,27 @@
+执行附件 ENG-WORLD-PRESENTATION-C1-001。
+
+先在仓库外解压并验证完整任务包，读完授权、C1定稿合同、白名单、验收矩阵和浏览器要求。
+仓库：lvlw/elevator-survival
+准确起点：d31828a74fcb1b2e28c0f070ad7f8fd3b3e87cc4
+新分支：feature/world-presentation-c1-001
+推荐GPT-6.1 Sol／极高（xhigh）／普通Standard；实际配置如实记录。
+
+本批已单独授权：在现有独立DEV低资产UI接入A当前对手名称和B1已提交动作反馈，
+实现有界临时消费者、取消/跳过/减少动态、真实DOM及浏览器验证、自查修订，
+并仅在指定新分支普通commit/push。一次完成W0—W4，无需Owner逐函数确认。
+
+只消费正式直接返回，不能从snapshot/Feed/HP差补猜。
+独立B1 scope按引用、高水位去重；不按battle/selector scope重置。
+原动作不等动画；保存失败已生效，retry/冷恢复不重播。
+特别验证同步busy→stable、post-commit失权、迟到返回和旧timer回调。
+
+不改A/B1协议、core/S/current/保存/expected/BrowserOwner；不改原单writer和L0—L3。
+不接B2逐击、不换整套布局、不加载或生成新素材、不修19项素材元数据。
+不改依赖/CI、不audit fix、不部署、不碰main/固定baseline/旧分支，不强推或改历史。
+旧测试只有白名单中一个aria断言可精确适配，其他保持。
+
+实际test:run建立基线，完成新/旧相关/E03及默认check；
+浏览器必须实际运行生产React页面，没跑写NOT RUN，不拿静态示意替代。
+只交一个小型MAINLINE-REVIEW.zip，含源码/patch/清单/原输入/真实检查与少量原生截图。
+报告准确base/final/parent/tree、CI、未完成项及包大小/SHA256。
+完成即停，等待主线C1准确SHA及实际UI证据审查，不自动扩展C或采用美术。

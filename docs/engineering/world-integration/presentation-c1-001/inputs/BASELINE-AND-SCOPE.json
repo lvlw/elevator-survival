@@ -1,0 +1,72 @@
+{
+  "task": "ENG-WORLD-PRESENTATION-C1-001",
+  "version": "1.0",
+  "repository": "lvlw/elevator-survival",
+  "base_sha": "d31828a74fcb1b2e28c0f070ad7f8fd3b3e87cc4",
+  "base_tree": "85ac8131fd81c106b781667b9db60d21fd6298e0",
+  "branch": "feature/world-presentation-c1-001",
+  "allowed_existing_production_edits": [
+    "src/ui/infected-world/app.tsx",
+    "src/ui/infected-world/components/game-shell.tsx",
+    "src/ui/infected-world/components/world-stage.tsx",
+    "src/ui/infected-world/components/battle-stage.tsx",
+    "src/ui/infected-world/styles.css"
+  ],
+  "allowed_new_production_files": [
+    "src/ui/infected-world/presentation/committed-consumer.ts",
+    "src/ui/infected-world/presentation/use-committed-presentation.ts",
+    "src/ui/infected-world/presentation/presentation-types.ts",
+    "src/ui/infected-world/presentation/public-action-copy.ts",
+    "src/ui/infected-world/components/committed-action-cue.tsx"
+  ],
+  "allowed_new_test_files": [
+    "src/ui/infected-world/presentation/committed-consumer.test.ts",
+    "src/ui/infected-world/presentation/committed-consumer-test-fixtures.ts",
+    "src/ui/infected-world/committed-presentation.test.tsx",
+    "src/ui/infected-world/committed-presentation-lifecycle.test.tsx",
+    "src/ui/infected-world/committed-presentation-privacy.test.tsx",
+    "src/ui/infected-world/committed-presentation-accessibility.test.tsx",
+    "src/ui/infected-world/committed-presentation-native.integration.test.tsx",
+    "src/ui/infected-world/current-opponent-presentation.test.tsx",
+    "src/ui/infected-world/committed-presentation-test-fixtures.tsx"
+  ],
+  "allowed_existing_test_edits": [
+    {
+      "path": "src/ui/infected-world/combat.test.tsx",
+      "limit": "只适配固定“当前对手中性占位”aria查询为对应A已知三组名称的精确断言/局部表；不得删弱其余断言，尤其无img、counts、终局、保存、冷恢复、隐私。",
+      "baseline_literal": "expect(h.host.querySelector('[aria-label=\"当前对手中性占位\"]')).not.toBeNull()"
+    }
+  ],
+  "allowed_new_document_prefix": "docs/engineering/world-integration/presentation-c1-001/",
+  "input_archive_prefix": "docs/engineering/world-integration/presentation-c1-001/inputs/",
+  "git_permissions": {
+    "normal_commit": true,
+    "normal_push_only": "refs/heads/feature/world-presentation-c1-001",
+    "merge": false,
+    "force": false,
+    "amend": false,
+    "rewrite_history": false,
+    "move_other_refs": false,
+    "delete_refs": false
+  },
+  "protected_in_particular": [
+    "src/core/",
+    "src/state/",
+    "src/app/",
+    "src/ui/infected-world/use-browser-owner.ts",
+    "src/ui/infected-world/assets.ts",
+    "docs/design-drafts/",
+    "docs/05-design-decisions.md",
+    "docs/09-ui-design-record.md",
+    "package.json",
+    "package-lock.json",
+    ".github/",
+    "vite.config.ts",
+    "scripts/",
+    "AGENTS.md",
+    "all_existing_tests_except_precise_exception",
+    "main",
+    "baseline/world-pre-b1-20261031"
+  ],
+  "scope_extension": "遇必须越界的真实缺口先停止相关子项报告，不擅自换路径；允许新文档前缀不是生产代码借道。"
+}

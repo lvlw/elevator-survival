@@ -1,0 +1,153 @@
+{
+  "task": "ENG-WORLD-PRESENTATION-C1-001",
+  "baseSHA": "d31828a74fcb1b2e28c0f070ad7f8fd3b3e87cc4",
+  "actualConfiguration": {
+    "collaborationToolMode": "Default",
+    "modelReasoningSpeed": "NOT_INDEPENDENTLY_VERIFIED",
+    "newAgents": false
+  },
+  "input": {
+    "files": 14,
+    "uncompressedBytes": 50451,
+    "zipBytes": 30793,
+    "sha256": "0488806d6d4d82516c9f8ca790d7d3167300a276459209471b579e5b7cabb79f",
+    "verifyBeforeTaskExecution": "PASS"
+  },
+  "runs": [
+    {
+      "id": "baseline",
+      "command": "npm run test:run",
+      "files": 330,
+      "tests": 4799,
+      "exit": 0,
+      "seconds": 279.74,
+      "log": "baseline-test-run.log"
+    },
+    {
+      "id": "new-final",
+      "command": "npm run test:run -- <exact seven files> --reporter=verbose --reporter=json --silent=false",
+      "files": 7,
+      "tests": 59,
+      "exit": 0,
+      "seconds": 7.13,
+      "log": "new-tests-final.log",
+      "rawJSON": "new-tests-final.json"
+    },
+    {
+      "id": "combined-e03",
+      "command": "npm run test:run -- src/state/residence-session src/state/residence-save src/app/infected-preplay src/app/infected-browser src/ui/infected-world src/content/infected-world-v0.1 --reporter=verbose --silent=false",
+      "files": 169,
+      "tests": 1781,
+      "exit": 0,
+      "seconds": 246.66,
+      "log": "combined-regression-e03.log",
+      "note": "57 new tests at this phase; two later lifecycle tests covered by final59 and default4858"
+    },
+    {
+      "id": "default-final",
+      "command": "npm run check",
+      "files": 337,
+      "tests": 4858,
+      "exit": 0,
+      "seconds": 340.13,
+      "architecture": "53 DEC / 347 core production",
+      "typecheck": "PASS",
+      "build": "PASS",
+      "log": "default-check-final.log",
+      "note": "Final default rerun after all executable/test/tool revisions; 38 exact byte bindings unchanged before/after; earlier default306.23s retained separately"
+    },
+    {
+      "id": "delivery-tools",
+      "command": "python -B -X utf8 docs/engineering/world-integration/presentation-c1-001/test_review_tools.py",
+      "tests": 6,
+      "exit": 0,
+      "log": "delivery-tools-tests.log"
+    }
+  ],
+  "negativeControls": {
+    "positiveControlExit": 0,
+    "mutants": [
+      {
+        "id": "N01-duplicate-notification-replay",
+        "mutatedPath": "src/ui/infected-world/presentation/use-committed-presentation.ts",
+        "selector": "duplicate notifications and React rerenders",
+        "meaning": "Reactivates a cached consumed cue from a subscription; actual duplicate native notifications must leave settled span identity and phase unchanged.",
+        "exit": 1,
+        "businessAssertionDetected": true,
+        "patchSHA256": "8e390cc97e7430f188b38d93d6c1734d60e93221be2e589653ac90b85fb6893a"
+      },
+      {
+        "id": "N02-stale-feedback-on-loss",
+        "mutatedPath": "src/ui/infected-world/app.tsx",
+        "selector": "real post-commit listener",
+        "meaning": "Equivalent minimal stale-UI sentinel in the true loss branch after actual suspend/dispose; does not pretend the correct consumer has a hidden replay port.",
+        "exit": 1,
+        "businessAssertionDetected": true,
+        "patchSHA256": "d49863ac66706b98a8ea1f0e0f763e83265d476236db4a4d24222977342ba367"
+      },
+      {
+        "id": "N03-timer-dispatches-again",
+        "mutatedPath": "src/ui/infected-world/presentation/use-committed-presentation.ts",
+        "selector": "a timer callback has no gameplay path",
+        "meaning": "Actual second legal original controls.execute in the animation callback; real combat/dispatch/current/write counters must remain zero after initial action.",
+        "exit": 1,
+        "businessAssertionDetected": true,
+        "patchSHA256": "79dcc264294d83b49604fa6ed5dfaf850001ab39ca4b15dab1c23a44e4234119"
+      },
+      {
+        "id": "N04-two-response-shaped-expansion",
+        "mutatedPath": "src/ui/infected-world/components/committed-action-cue.tsx",
+        "selector": "two genuine native enemy responses",
+        "meaning": "Equivalent minimal two-record expansion, exercised on a genuine decision with exactly two private enemy responses. The correct UI has no private response port; mutation models the forbidden shape, not a newly authorized disclosure.",
+        "exit": 1,
+        "businessAssertionDetected": true,
+        "patchSHA256": "10a185d97fe15edb904e270ef003fbdda98cbf6dfcd72cd9c098ff186ff84471"
+      }
+    ],
+    "externalCandidateRestored": true,
+    "repositorySourceUnchanged": true,
+    "CLIUnselectedIsNotSourceSkip": true
+  },
+  "browser": {
+    "status": "PARTIAL",
+    "productionReact": "ACTUALLY RUN",
+    "originalScreenshots": 6,
+    "finalRuntimeBindings": 19,
+    "actualNativeWebLocks": "occupied -> pagehide -> explicit reacquire; no replay",
+    "saveFault": "TEST-only checkpoint setItem fault; not actual OS quota exhaustion",
+    "OSReducedMotionTrue": "NOT VERIFIED",
+    "realBrowserZoom125150": "NOT VERIFIED",
+    "complete1920Pixels": "NOT VERIFIED: provider image 1632x1072",
+    "390FullPage": "NOT VERIFIED: screenshot API failure; delivered real scrolled frame",
+    "ownerManualExperience": "NOT RUN",
+    "details": "BROWSER-REVIEW.md"
+  },
+  "preservedFailures": [
+    "consumer-initial.log",
+    "targeted-initial.log",
+    "lifecycle-accessibility-initial.log",
+    "new-suite-first.log",
+    "retired-subscription-red.log",
+    "pre-assets-negative-positive-control.log"
+  ],
+  "accidentalExtraRun": {
+    "log": "probe-initial-unintended-full-src.log",
+    "files": 337,
+    "tests": 4856,
+    "seconds": 307.61,
+    "exit": 0,
+    "note": "probe include merge was corrected; not claimed as default check or producer run"
+  },
+  "finalCommitRemoteCI": "external exact git-receipt.json; independently queried only after push",
+  "mainlineAcceptance": "PENDING exact C1 SHA and actual UI review",
+  "noB2FullCArtOrRelease": true,
+  "scopeProof": {
+    "protectedObjects": 3109,
+    "inputExactGitFiles": 14,
+    "unchangedExistingAssets": 707,
+    "originalLocalRefs": 66,
+    "originalPublicRefs": 63,
+    "remoteHeadsBeforePush": 32,
+    "allPreservedBeforeCommit": true
+  }
+}

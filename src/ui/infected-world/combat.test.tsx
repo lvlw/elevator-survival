@@ -17,7 +17,7 @@ describe('real CTB through infected-world React controls', () => {
       expect(h.view().point).toBe('battle-decision')
       expect(h.entropy).not.toHaveBeenCalled(); expect(h.setItem).not.toHaveBeenCalled()
       expect(h.host.querySelector('[aria-label="相对行动顺序"]')).not.toBeNull()
-      expect(h.host.querySelector('[aria-label="当前对手中性占位"]')).not.toBeNull()
+      expect(h.host.querySelector(`[aria-label="${({ orderly: '感染护工', porter: '感染装卸工', technician: '感染技术员' })[enemy]}中性占位"]`)).not.toBeNull()
       expect(h.host.querySelector('.iw-battle img')).toBeNull()
       const before = observed.owners.at(-1)!.getState().current!.character.revision
       observed.clear(); await h.d.send('金属管攻击')

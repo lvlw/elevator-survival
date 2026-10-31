@@ -193,3 +193,24 @@
 }
 @media (prefers-reduced-motion: reduce) { .iw-app *, .iw-context { scroll-behavior: auto; } }
 .iw-document body { margin: 0; background: #0c1519; }
+
+/* C1: fixed, data-independent single cue; latest canonical stage remains immediately visible. */
+.iw-committed-feedback { display: flex; flex: none; align-items: center; flex-wrap: wrap; gap: 0.35rem 0.6rem; min-height: 2.8rem; margin-top: 0.45rem; padding: 0.25rem 0.45rem; border-top: 1px solid #6b817a; background: #13252cdd; }
+.iw-committed-cue { flex: 1; min-width: 8rem; min-height: 1.5em; color: #eed29a; font-size: 0.85rem; }
+.iw-committed-cue > span { display: inline-block; }
+.iw-committed-cue--active > span { animation: iw-committed-action 180ms ease-out 1; }
+.iw-committed-options { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem; font-size: 0.75rem; }
+.iw-committed-options label { display: inline-flex; align-items: center; gap: 0.3rem; cursor: pointer; }
+.iw-committed-options button { min-height: 2rem; padding: 0.25rem 0.5rem; font-size: 0.75rem; }
+.iw-committed-options small { font-size: 0.7rem; }
+@keyframes iw-committed-action { from { opacity: 0.55; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .iw-committed-cue--active > span { animation: none; } }
+
+/* Keep the bounded C1 row from taking actor space away from the original action bar. */
+@media (min-width: 781px) {
+  .iw-stage-column:has(.iw-battle) > .iw-feed { min-height: 7rem; height: clamp(7rem, calc(24vh - 3rem), 12rem); }
+  .iw-battle-actors { grid-template-rows: minmax(0, 1fr); }
+  .iw-enemy-info h2 { display: inline; margin-right: 0.5rem; }
+  .iw-enemy-info .iw-stage-badge { margin-bottom: 0.45rem; }
+  .iw-battle-figures, .iw-battle-figures .iw-actor-placeholder, .iw-enemy-info { min-height: 0; }
+}

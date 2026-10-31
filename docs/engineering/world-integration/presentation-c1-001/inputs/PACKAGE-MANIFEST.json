@@ -1,0 +1,72 @@
+{
+  "task": "ENG-WORLD-PRESENTATION-C1-001",
+  "version": "1.0",
+  "base_sha": "d31828a74fcb1b2e28c0f070ad7f8fd3b3e87cc4",
+  "files": [
+    {
+      "path": "ACCEPTANCE-MATRIX.md",
+      "bytes": 2309,
+      "sha256": "d8f89fbb11ce3b62747b6de9ae054295a97fc273ea4274b095e334982e1c3d51"
+    },
+    {
+      "path": "AUTHORIZATION-AND-STATUS.md",
+      "bytes": 2279,
+      "sha256": "be2b9878bc78cead439685c267e7a3045072983cd9e2a50decb3d4a5512904c6"
+    },
+    {
+      "path": "BASELINE-AND-SCOPE.json",
+      "bytes": 3151,
+      "sha256": "afb4d674b13006162cd8e7ebbe7d32a5181d71be7a67f196d303e41bcb6c483f"
+    },
+    {
+      "path": "BROWSER-AND-EVIDENCE.md",
+      "bytes": 2903,
+      "sha256": "4e3d834f10a87de87a7cfd3bab36ff5d1ab8eb4d372a420d74458a5e5d80a0d7"
+    },
+    {
+      "path": "C1-TECHNICAL-CONTRACT-v1.0.md",
+      "bytes": 7748,
+      "sha256": "d0720d99d632cd2cd78d6cac5a7cca969bb9035f47b2fbff2365c895477c594d"
+    },
+    {
+      "path": "ENG-WORLD-PRESENTATION-C1-001-task-v1.0.md",
+      "bytes": 5865,
+      "sha256": "e932c8881da6694be61319c08fa7597a713568adc08af315433386a80110594b"
+    },
+    {
+      "path": "OPEN-GATES.md",
+      "bytes": 1146,
+      "sha256": "c231281147df39ca8d7208825e8265c2d8c573fcba8ae0276e2182164ad9559a"
+    },
+    {
+      "path": "README-FIRST.md",
+      "bytes": 1443,
+      "sha256": "a8e6588414319ae060bbf26ee8bc008d82bd08f1648525fcc6c7678c44d2b4f5"
+    },
+    {
+      "path": "SEND-TO-CODEX.txt",
+      "bytes": 1847,
+      "sha256": "d0936fad27e1b34255426a3acd031de1caf8404f6795b81e45e820c9eda6f1aa"
+    },
+    {
+      "path": "SHA256SUMS.txt",
+      "bytes": 1108,
+      "sha256": "cdf4982b61898aac159e065897ef8b7ab8eab3046af9135d2aacda33b4b291cf"
+    },
+    {
+      "path": "SOURCE-REFERENCES.json",
+      "bytes": 4714,
+      "sha256": "eb27c47b2992d6a9312547c1f6aa1343b9538fe9d2550ee01685a68fc9056abf"
+    },
+    {
+      "path": "inputs/AUD-d31828a-COMMITTED-PRESENTATION-B1-001-v1.0.md",
+      "bytes": 11364,
+      "sha256": "1bd59118ab1ad49acfe8130c0daf8fdbd125ac589a67b86622a239674b0e56fc"
+    },
+    {
+      "path": "verify-package.py",
+      "bytes": 2359,
+      "sha256": "87cd328675d26c28ab1e8634e1e39fdda59ed63fc388c037aa920c23d6aac517"
+    }
+  ]
+}

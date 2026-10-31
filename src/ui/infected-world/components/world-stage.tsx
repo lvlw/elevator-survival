@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import type { PlayerAction, PlayerItem, PlayerReadyView } from '../../../state/residence-session/player-types'
 import { itemImage, roomImage, hubImage } from '../assets'
 import { actionName, publicItemName } from '../labels'
@@ -9,7 +9,7 @@ import { BattleStage } from './battle-stage'
 import { TravelCluster } from './travel-cluster'
 import { KnowledgeMap } from './knowledge-map'
 
-export function WorldStage({ view, onAction }: { view: PlayerReadyView; onAction: (action: PlayerAction, item?: PlayerItem) => void }) {
+export function WorldStage({ view, onAction, presentation }: { view: PlayerReadyView; onAction: (action: PlayerAction, item?: PlayerItem) => void; presentation?: ReactNode }) {
   const [resultsOpen, setResultsOpen] = useState(true)
   const signature = view.sources.map(source => `${source.label}:${source.completed}`).join('|')
   useEffect(() => { setResultsOpen(true) }, [signature, view.location?.name])
@@ -31,5 +31,6 @@ export function WorldStage({ view, onAction }: { view: PlayerReadyView; onAction
       <TravelCluster actions={view.move.options} onAction={onAction} />
       <nav className="iw-local-actions" aria-label="当前地点行动">{view.actions.filter(action => action.family === 'rest' || action.family === 'terminal').map((action, index) => <ActionButton action={action} key={index} onAction={() => onAction(action)}>{actionName(action)}</ActionButton>)}</nav>
     </>}
+    {presentation}
   </section>
 }

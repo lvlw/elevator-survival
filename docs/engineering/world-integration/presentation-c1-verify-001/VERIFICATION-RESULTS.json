@@ -1,0 +1,128 @@
+{
+  "task": "ENG-WORLD-PRESENTATION-C1-VERIFY-001",
+  "baseSHA": "2de63f7da48d86bcfde280f7beaf08e4ffd42ee3",
+  "baseTree": "9c6bfdf2139b572e9f920975fcbaebc472df59fc",
+  "branch": "test/world-presentation-c1-verify-001",
+  "summary": {
+    "nativeMediaTrue": "NOT VERIFIED",
+    "localOffCannotOverrideNativeTrue": "NOT VERIFIED",
+    "nativeMediaChanges": "NOT VERIFIED",
+    "complete1920_1280_1366": "PASS",
+    "narrow390": "PARTIAL",
+    "realZoom125150": "NOT VERIFIED",
+    "OwnerManualExperience": "NOT RUN",
+    "C16": "PARTIAL",
+    "allOriginalRefs": "PARTIAL: two host turn-diffs refs removed; all65 project refs preserved"
+  },
+  "input": {
+    "files": 10,
+    "uncompressedBytes": 28395,
+    "zipBytes": 17974,
+    "rawSHA256": "d9dd5fa860c1065a0aec0e6287c4ead6f777db776bba5ca07499e3288888e814",
+    "verifyFirst": "PASS"
+  },
+  "actualConfiguration": {
+    "toolMode": "Default",
+    "modelReasoningSpeed": "NOT_INDEPENDENTLY_VERIFIED",
+    "newAgents": false
+  },
+  "runs": [
+    {
+      "id": "baseline",
+      "command": "npm run test:run",
+      "exit": 0,
+      "files": 337,
+      "tests": 4858,
+      "seconds": 282.91,
+      "log": "baseline-test-run.log"
+    },
+    {
+      "id": "producer",
+      "command": "C16_BROWSER_RECORDS=<external> npm run test:run -- --config docs/engineering/world-integration/presentation-c1-verify-001/browser-probe.config.mjs --reporter=verbose --silent=false",
+      "exit": 0,
+      "files": 1,
+      "tests": 1,
+      "seconds": 4.11,
+      "countingDomain": "TEST-only checkpoint producer, not additional game tests",
+      "log": "browser-producer.log"
+    },
+    {
+      "id": "delivery-integrity",
+      "command": "python -B -X utf8 docs/engineering/world-integration/presentation-c1-verify-001/test_review_tools.py",
+      "exit": 0,
+      "tests": 6,
+      "countingDomain": "transport/scope integrity only",
+      "log": "delivery-tools-tests.log"
+    },
+    {
+      "id": "default-check",
+      "command": "npm run check",
+      "status": "PASS",
+      "log": "default-check-final.log",
+      "exit": 0,
+      "files": 337,
+      "tests": 4858,
+      "seconds": 281.63,
+      "architecture": "53 DEC / 347 core",
+      "typecheck": "PASS",
+      "build": "PASS",
+      "26ExecutableRuntimeBytesUnchanged": true
+    }
+  ],
+  "browser": {
+    "tool": "Cua authorized Edge extension instance4",
+    "taskTabId": "1512062116",
+    "taskOrigin": "http://127.0.0.1:5211",
+    "nativeMediaValue": false,
+    "capabilities": [
+      "viewport",
+      "management"
+    ],
+    "nativeMediaInterfaceAdvertised": false,
+    "nativeZoomInterfaceAdvertised": false,
+    "browserUAReducedVersion": "Edg/156.0.0.0",
+    "connectedFullBuild": "NOT INDEPENDENTLY VERIFIED",
+    "taskTagsOnlyOwnerAuthorization": "OWNER-LOCAL-TABS-AUTHORIZATION.md",
+    "originalJPEGs": 7,
+    "exactDesktopJPEGs": 5,
+    "narrowRawResults": 2,
+    "nativeCueIntervalMS": 44.400000005960464,
+    "firstCueStillActiveAtNextCommit": true,
+    "coldRestore": "HP8; ready actual DOM, empty cue, writes0",
+    "mediaChangesOrOSTrueClaim": false,
+    "allPhotosRawBytesUnedited": true,
+    "runtimeBindings": 20,
+    "otherUserTabsRead": false,
+    "profileSettingsChanged": false
+  },
+  "scope": {
+    "allowedExistingEdits": 0,
+    "allBaseObjectsProtected": 3160,
+    "newPrefixOnly": "docs/engineering/world-integration/presentation-c1-verify-001/",
+    "finalRawProof": "external scope-protected-objects.json and git-receipt.json",
+    "projectPublicRefsPreserved": true,
+    "allOriginalRefsPreserved": false,
+    "internalHostRefDeltas": [
+      {
+        "ref": "refs/codex/turn-diffs/captures/1793465796202/72016e93-2571-4dce-b443-76f03bea84ed/base",
+        "before": "9c6bfdf2139b572e9f920975fcbaebc472df59fc",
+        "after": null,
+        "kind": "removed"
+      },
+      {
+        "ref": "refs/codex/turn-diffs/checkpoints/03d93e9d104199cefa1675557431908c/d6b5b06312068f750e4c8339e089c66d/1793463172978/9d363fed-d1e0-4b25-ad7b-da5ddae4a2dd",
+        "before": "9c6bfdf2139b572e9f920975fcbaebc472df59fc",
+        "after": null,
+        "kind": "removed"
+      }
+    ],
+    "refEvidence": "precommit-ref-conservation.json"
+  },
+  "failuresPreserved": [
+    "driver-initial-launch.log",
+    "edge-capability-and-authority.json",
+    "excluded frame metadata for loading/scaled/mismatched QA images"
+  ],
+  "ci": "Independent exact final SHA query after ordinary push; outer git-receipt, not base CI substituted",
+  "mainlineReview": "PENDING C16 closure decision; no production R1/B2/fullC/art/merge/deploy"
+}

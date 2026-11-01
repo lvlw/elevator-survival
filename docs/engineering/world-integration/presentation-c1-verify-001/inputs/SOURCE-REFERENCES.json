@@ -1,0 +1,19 @@
+{
+  "repo": "lvlw/elevator-survival",
+  "ref": "2de63f7da48d86bcfde280f7beaf08e4ffd42ee3",
+  "requiredPaths": [
+    "AGENTS.md",
+    "docs/09-ui-design-record.md",
+    "docs/engineering/world-integration/presentation-c1-001/BROWSER-REVIEW.md",
+    "docs/engineering/world-integration/presentation-c1-001/CONTRACT-AND-SUPPORT.md",
+    "docs/engineering/world-integration/presentation-c1-001/inputs/BROWSER-AND-EVIDENCE.md",
+    "docs/engineering/world-integration/presentation-c1-001/inputs/ACCEPTANCE-MATRIX.md",
+    "src/ui/infected-world/app.tsx",
+    "src/ui/infected-world/presentation/use-committed-presentation.ts",
+    "src/ui/infected-world/styles.css",
+    "package.json"
+  ],
+  "modelRecommendation": "GPT-6.1 Sol high Standard; actual account selection not independently known",
+  "officialReference": "https://developers.openai.com/api/docs/guides/deployment-checklist",
+  "modelEvidenceLimit": "Official documentation supports reasoning levels; does not establish the user account menu or author actual selected model."
+}

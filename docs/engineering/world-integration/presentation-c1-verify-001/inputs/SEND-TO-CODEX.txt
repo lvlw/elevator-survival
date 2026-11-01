@@ -1,0 +1,23 @@
+执行附件 ENG-WORLD-PRESENTATION-C1-VERIFY-001，只补C16浏览器证据，不做生产代码R1。
+
+先在仓库外验证包，读授权、任务书、范围、矩阵及所附主线AUD。
+仓库lvlw/elevator-survival；准确起点2de63f7da48d86bcfde280f7beaf08e4ffd42ee3；新分支test/world-presentation-c1-verify-001。
+推荐GPT-6.1 Sol／高（high）／普通Standard，实际配置如实记录。
+
+一次完成W0—W4：先查现有已授权浏览器能力，再补实际媒体reduce=true、
+local开关不能覆盖OS偏好、完整1920/1280及代表1366像素/键盘证据。
+真实zoom和390全页能测则补；做不到逐项NOT VERIFIED，不冒充完成。
+不得覆盖matchMedia、改动画时长、用CSS视口冒充zoom、补边/拼图冒充原图。
+
+只在新文档前缀写TEST-only驱动、报告和证据；所有既有源码/测试/规则/
+样式/依赖/CI/保存/素材不改。允许本新分支普通commit/push；不碰旧分支、
+main或固定baseline，不merge、不强推、不部署、不安装新依赖或扩展。
+不操作Owner日常profile或全局OS设置，不绕过浏览器工具权限。
+
+开工实际test:run，结束默认check，精确SHA回读CI和对象保护。
+新产品缺陷只给最小复现并停止相关PASS，其他独立用例继续；不擅自修代码。
+浏览器缺能力先明确记录，不对同一不支持接口反复无效尝试。
+
+只交一个MAINLINE-REVIEW.zip，含准确SHA/parent/tree、保护与refs、
+实际日志/逐帧metadata、少量原图及SHA256。完成即停，等主线C16收口审查；
+不自动进入B2、整套C、美术采用或发布。

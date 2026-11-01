@@ -1,0 +1,20 @@
+{
+  "task": "ENG-WORLD-PRESENTATION-C1-VERIFY-001",
+  "base": "2de63f7da48d86bcfde280f7beaf08e4ffd42ee3",
+  "baseTree": "9c6bfdf2139b572e9f920975fcbaebc472df59fc",
+  "branch": "test/world-presentation-c1-verify-001",
+  "allowedNewPrefix": "docs/engineering/world-integration/presentation-c1-verify-001/",
+  "allowedExistingEdits": [],
+  "protected": "All pre-existing Git objects and refs; no production or dependency change",
+  "commitPush": "normal only on new task branch",
+  "forbidden": [
+    "merge",
+    "force-push",
+    "main push",
+    "old branch changes",
+    "new dependencies",
+    "asset generation/adoption",
+    "OS global preferences",
+    "Owner daily profile"
+  ]
+}

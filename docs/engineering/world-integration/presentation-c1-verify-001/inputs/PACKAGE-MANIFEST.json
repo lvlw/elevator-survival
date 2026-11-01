@@ -1,0 +1,52 @@
+{
+  "task": "ENG-WORLD-PRESENTATION-C1-VERIFY-001",
+  "version": "1.0",
+  "base": "2de63f7da48d86bcfde280f7beaf08e4ffd42ee3",
+  "files": [
+    {
+      "path": "ACCEPTANCE-MATRIX.md",
+      "bytes": 1618,
+      "sha256": "6893c6f3959cb90e82fef76b7cc5640d1bd3d9729d1d30808df94730cec117d0"
+    },
+    {
+      "path": "AUTHORIZATION-AND-STATUS.md",
+      "bytes": 2044,
+      "sha256": "611e144fa842e580c2c56d91920f5013cd7c36decdab6df08c84ea7b2c7a391c"
+    },
+    {
+      "path": "BASELINE-AND-SCOPE.json",
+      "bytes": 685,
+      "sha256": "3d5baa6dc5a8b0b06cb9357a39253f58a4f3e438daf7270616ae32c57dd71af4"
+    },
+    {
+      "path": "README-FIRST.md",
+      "bytes": 954,
+      "sha256": "ac89314e9fc352810ebb01228a6220f6bfc4bfaf0e1822a3eff2b20d41f810d7"
+    },
+    {
+      "path": "SEND-TO-CODEX.txt",
+      "bytes": 1634,
+      "sha256": "ecdecaf04c42194c88977e1cc6521800ed84818fd4fe7d6dee16b2a6edc2839f"
+    },
+    {
+      "path": "SOURCE-REFERENCES.json",
+      "bytes": 1034,
+      "sha256": "70adcfa8a1910ecd13609f80d33735406a5a6e776e7320adbe48858cb7e43791"
+    },
+    {
+      "path": "TASK.md",
+      "bytes": 5397,
+      "sha256": "675d0d9ffce99e6e477444e88572939d8bd4b2197dd91a36ae301b62af4df827"
+    },
+    {
+      "path": "inputs/AUD-2de63f7-PRESENTATION-C1-001-v1.0.md",
+      "bytes": 11470,
+      "sha256": "b1d24f03d9c80c26b2d8174471ee173c05537f0109c69bee29598a9783102d1f"
+    },
+    {
+      "path": "verify-package.py",
+      "bytes": 2008,
+      "sha256": "5acf7f2be2f62fae72c0ee89cab33367b97ffb291960d42b4dddef93ed0cfc99"
+    }
+  ]
+}

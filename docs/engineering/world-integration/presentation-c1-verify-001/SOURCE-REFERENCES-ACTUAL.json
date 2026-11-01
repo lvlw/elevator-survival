@@ -1,0 +1,69 @@
+{
+  "baseSHA": "2de63f7da48d86bcfde280f7beaf08e4ffd42ee3",
+  "requiredSources": [
+    {
+      "path": "AGENTS.md",
+      "baseGitBlob": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "canonicalSHA256": "00c2cad61c99530c1343ca9faad9a32994d67e5ca4aeb991156bb9828e5c501e",
+      "workingMatchesBase": true
+    },
+    {
+      "path": "docs/09-ui-design-record.md",
+      "baseGitBlob": "216f76d08f91175130603c35125322026bb78262",
+      "canonicalSHA256": "ef487405761d553bf59da280f7b93563207f77af6173e96ddc1cccf26e1e033d",
+      "workingMatchesBase": true
+    },
+    {
+      "path": "docs/engineering/world-integration/presentation-c1-001/BROWSER-REVIEW.md",
+      "baseGitBlob": "149a4c357ccec1256abe3c049e2b8a1d37851dcc",
+      "canonicalSHA256": "a45a38f7546b711cd1cc3675f80ea5777bb7e1d4c67ce555ef3617ccdba1ef63",
+      "workingMatchesBase": true
+    },
+    {
+      "path": "docs/engineering/world-integration/presentation-c1-001/CONTRACT-AND-SUPPORT.md",
+      "baseGitBlob": "f4c28f444c912817ded07d1ab4d86b3e360dba8f",
+      "canonicalSHA256": "70887c39c73292e6c4de64f4797c3c93fc8fccabd8224f9ccea61463345dc609",
+      "workingMatchesBase": true
+    },
+    {
+      "path": "docs/engineering/world-integration/presentation-c1-001/inputs/BROWSER-AND-EVIDENCE.md",
+      "baseGitBlob": "902045c532b9931453e0f087376c9fa87902d903",
+      "canonicalSHA256": "4e3d834f10a87de87a7cfd3bab36ff5d1ab8eb4d372a420d74458a5e5d80a0d7",
+      "workingMatchesBase": true
+    },
+    {
+      "path": "docs/engineering/world-integration/presentation-c1-001/inputs/ACCEPTANCE-MATRIX.md",
+      "baseGitBlob": "de30a3afa27c9b4384fe741d4f2b3635ed5f5d4b",
+      "canonicalSHA256": "d8f89fbb11ce3b62747b6de9ae054295a97fc273ea4274b095e334982e1c3d51",
+      "workingMatchesBase": true
+    },
+    {
+      "path": "src/ui/infected-world/app.tsx",
+      "baseGitBlob": "bc5f03440b4394499447cc69197274a656a38097",
+      "canonicalSHA256": "29618f0ef066ad378e0ff29cff562339c13e4e552b639ba5fcb56b79d4022cbf",
+      "workingMatchesBase": true
+    },
+    {
+      "path": "src/ui/infected-world/presentation/use-committed-presentation.ts",
+      "baseGitBlob": "54b086e8dd5bb25345e252562c2b55f014e6721c",
+      "canonicalSHA256": "d6a5c9a80442bc41cb30ae8fcb00aef3322ad42c1f645e21504e8f34d77313be",
+      "workingMatchesBase": true
+    },
+    {
+      "path": "src/ui/infected-world/styles.css",
+      "baseGitBlob": "9ba2f2be83f11bab9172f47583dac13416a2bf9b",
+      "canonicalSHA256": "788702b971e011001807c53653464a667c0c87baaabb25fe7dfe37ee506dc94c",
+      "workingMatchesBase": true
+    },
+    {
+      "path": "package.json",
+      "baseGitBlob": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+      "canonicalSHA256": "f6b6752aebd3aa6161a0c802ef49ee1b2ddbbffeb19b76e2e4d581f2465e5346",
+      "workingMatchesBase": true
+    }
+  ],
+  "authority": "User C1-VERIFY request controls authorization; attached AUD is review evidence, not production R1 authority",
+  "actualModelReasoningSpeed": "NOT_INDEPENDENTLY_VERIFIED",
+  "actualToolMode": "Default",
+  "newAgents": false
+}

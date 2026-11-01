@@ -1,0 +1,118 @@
+{
+  "name": "14-known-map-1280",
+  "mode": "fullPage",
+  "bytes": 116623,
+  "documentHeight": 720,
+  "dpr": 1,
+  "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+  "height": 720,
+  "images": [
+    {
+      "complete": true,
+      "h": 941,
+      "src": "/src/assets/presentation/world-ui-v1/bg-h2-v1.png",
+      "w": 1672
+    },
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-suppressant-v1.png",
+      "w": 1254
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    }
+  ],
+  "regions": [
+    {
+      "box": {
+        "bottom": 63,
+        "height": 56,
+        "left": 12,
+        "right": 1268,
+        "top": 7,
+        "width": 1256,
+        "x": 12,
+        "y": 7
+      },
+      "class": "iw-hud iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 659,
+        "height": 584,
+        "left": 12,
+        "right": 204,
+        "top": 75,
+        "width": 192,
+        "x": 12,
+        "y": 75
+      },
+      "class": "iw-sidebar iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 659,
+        "height": 584,
+        "left": 216,
+        "right": 984,
+        "top": 75,
+        "width": 768,
+        "x": 216,
+        "y": 75
+      },
+      "class": "iw-stage"
+    },
+    {
+      "box": {
+        "bottom": 659,
+        "height": 584,
+        "left": 996,
+        "right": 1268,
+        "top": 75,
+        "width": 272,
+        "x": 996,
+        "y": 75
+      },
+      "class": "iw-carrying iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 703,
+        "height": 32,
+        "left": 12,
+        "right": 1268,
+        "top": 671,
+        "width": 1256,
+        "x": 12,
+        "y": 671
+      },
+      "class": "iw-footer iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 629.046875,
+        "height": 514.09375,
+        "left": 228,
+        "right": 972,
+        "top": 114.953125,
+        "width": 744,
+        "x": 228,
+        "y": 114.953125
+      },
+      "class": "iw-content-layer iw-tier-map"
+    }
+  ],
+  "scene": "医院/药房",
+  "url": "http://127.0.0.1:5241/?dev-infected-world=1",
+  "width": 1280
+}

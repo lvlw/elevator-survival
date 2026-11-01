@@ -1,0 +1,135 @@
+{
+  "name": "11-item-detail-1280",
+  "bytes": 116804,
+  "dpr": 1,
+  "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+  "height": 720,
+  "images": [
+    {
+      "complete": true,
+      "h": 941,
+      "src": "/src/assets/presentation/world-ui-v1/bg-h2-v1.png",
+      "w": 1672
+    },
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-suppressant-v1.png",
+      "w": 1254
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    }
+  ],
+  "regions": [
+    {
+      "box": {
+        "bottom": 68,
+        "height": 56,
+        "left": 12,
+        "right": 1268,
+        "top": 12,
+        "width": 1256,
+        "x": 12,
+        "y": 12
+      },
+      "class": "iw-hud iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 664,
+        "height": 584,
+        "left": 12,
+        "right": 204,
+        "top": 80,
+        "width": 192,
+        "x": 12,
+        "y": 80
+      },
+      "class": "iw-sidebar iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 664,
+        "height": 584,
+        "left": 216,
+        "right": 984,
+        "top": 80,
+        "width": 768,
+        "x": 216,
+        "y": 80
+      },
+      "class": "iw-stage"
+    },
+    {
+      "box": {
+        "bottom": 481.03125,
+        "height": 94.390625,
+        "left": 239.1875,
+        "right": 960.8125,
+        "top": 386.640625,
+        "width": 721.625,
+        "x": 239.1875,
+        "y": 386.640625
+      },
+      "class": "iw-ground"
+    },
+    {
+      "box": {
+        "bottom": 664,
+        "height": 584,
+        "left": 996,
+        "right": 1268,
+        "top": 80,
+        "width": 272,
+        "x": 996,
+        "y": 80
+      },
+      "class": "iw-carrying iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 708,
+        "height": 32,
+        "left": 12,
+        "right": 1268,
+        "top": 676,
+        "width": 1256,
+        "x": 12,
+        "y": 676
+      },
+      "class": "iw-footer iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 571.96875,
+        "height": 399.9375,
+        "left": 260,
+        "right": 940,
+        "top": 172.03125,
+        "width": 680,
+        "x": 260,
+        "y": 172.03125
+      },
+      "class": "iw-content-layer iw-tier-detail"
+    }
+  ],
+  "scene": "医院/药房",
+  "url": "http://127.0.0.1:5241/?dev-infected-world=1",
+  "width": 1280
+}

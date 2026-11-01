@@ -1,0 +1,17 @@
+{
+  "name": "12-item-detail-1920-fullpage",
+  "mode": "fullPage",
+  "bytes": 215055,
+  "width": 1920,
+  "height": 1080,
+  "documentHeight": 1080,
+  "dpr": 1,
+  "zoomCSS": "1",
+  "layer": {
+    "x": 580,
+    "y": 356.03125,
+    "width": 680,
+    "height": 399.9375
+  },
+  "metadataSource": "same screenshot-call tool output; CSS zoom is not a real-browser-zoom verification"
+}

@@ -2,15 +2,16 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 
 /** A view only. The caller supplies current public facts, never a saved screen sample. */
-export function ContentLayer({ title, tier = 'summary', onClose, children }: {
-  title: string; tier?: 'short' | 'detail' | 'summary' | 'parameters' | 'organize' | 'map'; onClose(): void; children: ReactNode
+export function ContentLayer({ title, tier = 'summary', onClose, children, restoreFocus }: {
+  title: string; tier?: 'short' | 'detail' | 'summary' | 'parameters' | 'organize' | 'map'; onClose(): void; children: ReactNode; restoreFocus?: () => boolean
 }) {
   const close = useRef<HTMLButtonElement>(null)
+  const restore = useRef(restoreFocus); restore.current = restoreFocus
   const [maximized, setMaximized] = useState(false)
   useEffect(() => {
     const prior = document.activeElement
     close.current?.focus()
-    return () => { if (prior instanceof HTMLElement && prior.isConnected && !prior.matches(':disabled')) prior.focus({ preventScroll: true }) }
+    return () => { if ((!restore.current || restore.current()) && prior instanceof HTMLElement && prior.isConnected && !prior.matches(':disabled')) prior.focus({ preventScroll: true }) }
   }, [])
   return createPortal(<div className="iw-app iw-content-overlay" onKeyDown={event => {
     if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); onClose() }

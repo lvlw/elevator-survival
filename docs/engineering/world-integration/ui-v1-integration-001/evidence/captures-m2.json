@@ -1,0 +1,68 @@
+[
+  {
+    "file": "10-item-detail-1920.jpg",
+    "bytes": 108458,
+    "sha256": "5ef0cfe7e8934b4d2e08f3cbaa47fb4f76b8fffa6357c4c6133b2d9672ca1d32",
+    "rawPixels": [
+      1920,
+      683
+    ],
+    "status": "PARTIAL",
+    "derived": false
+  },
+  {
+    "file": "11-item-detail-1280.jpg",
+    "bytes": 116804,
+    "sha256": "984b15adc6660985c6f3c0fcfcaee2cb93766535ea8c48988d0c2f8b237fca73",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false
+  },
+  {
+    "file": "12-item-detail-1920-fullpage.jpg",
+    "bytes": 215055,
+    "sha256": "5c83a07dca3890d081dfd443fdb6a2996988cf74a3a9e2f42c0f99c1a4f2d880",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false
+  },
+  {
+    "file": "13-real-placement-parameters-1280.jpg",
+    "bytes": 93505,
+    "sha256": "9906c4f0bdf4b88390e0997ee47fdbc7fe1d94db41d7c5037ebe2803e896d653",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false
+  },
+  {
+    "file": "14-known-map-1280.jpg",
+    "bytes": 116623,
+    "sha256": "ea9616063c78e718045dd4cb56c1e745c7e20e7d243572b220b555a023fd593d",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false
+  },
+  {
+    "file": "15-existing-npc-context-1280.jpg",
+    "bytes": 114367,
+    "sha256": "87dfc3afccc65414d93c0366b2316c19b1af5fbafa065fc0cb2bcc471b223841",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false
+  }
+]

@@ -1,0 +1,124 @@
+{
+  "name": "15-existing-npc-context-1280",
+  "mode": "fullPage",
+  "bytes": 114367,
+  "documentHeight": 720,
+  "dpr": 1,
+  "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+  "height": 720,
+  "images": [
+    {
+      "complete": true,
+      "h": 941,
+      "src": "/src/assets/presentation/world-ui-v1/bg-hotel-v1.png",
+      "w": 1672
+    },
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-suppressant-v1.png",
+      "w": 1254
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    },
+    {
+      "complete": true,
+      "h": 1402,
+      "src": "/src/assets/presentation/world-ui-v1/npc-lin-v1.png",
+      "w": 1122
+    }
+  ],
+  "regions": [
+    {
+      "box": {
+        "bottom": 68,
+        "height": 56,
+        "left": 12,
+        "right": 1268,
+        "top": 12,
+        "width": 1256,
+        "x": 12,
+        "y": 12
+      },
+      "class": "iw-hud iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 664,
+        "height": 584,
+        "left": 12,
+        "right": 204,
+        "top": 80,
+        "width": 192,
+        "x": 12,
+        "y": 80
+      },
+      "class": "iw-sidebar iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 664,
+        "height": 584,
+        "left": 216,
+        "right": 984,
+        "top": 80,
+        "width": 768,
+        "x": 216,
+        "y": 80
+      },
+      "class": "iw-stage"
+    },
+    {
+      "box": {
+        "bottom": 664,
+        "height": 584,
+        "left": 996,
+        "right": 1268,
+        "top": 80,
+        "width": 272,
+        "x": 996,
+        "y": 80
+      },
+      "class": "iw-carrying iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 708,
+        "height": 32,
+        "left": 12,
+        "right": 1268,
+        "top": 676,
+        "width": 1256,
+        "x": 12,
+        "y": 676
+      },
+      "class": "iw-footer iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 559.59375,
+        "height": 375.1875,
+        "left": 228,
+        "right": 972,
+        "top": 184.40625,
+        "width": 744,
+        "x": 228,
+        "y": 184.40625
+      },
+      "class": "iw-content-layer iw-tier-parameters"
+    }
+  ],
+  "scene": "酒店/林岑安置点",
+  "url": "http://127.0.0.1:5241/?dev-infected-world=1",
+  "width": 1280
+}

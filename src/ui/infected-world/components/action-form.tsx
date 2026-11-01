@@ -5,6 +5,8 @@ import type { PlayerAction, PlayerItem, PlayerPlacement, PlayerReadyView, Player
 import { SafeFacts } from './confirmation-layer'
 import { PlacementPicker } from './placement-picker'
 import { actionName, publicItemName } from '../labels'
+import { ItemPicture } from './item-inspection'
+import { TaskArtwork } from './task-artwork'
 
 export function ActionForm({ action, inputs, view, controls, initialItem, onExecute, onCancel }: {
   action: PlayerAction; inputs: PlayerActionInputs; view: PlayerReadyView; controls: BrowserControls; initialItem?: PlayerItem;
@@ -59,8 +61,9 @@ export function ActionForm({ action, inputs, view, controls, initialItem, onExec
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus() }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus() }
     }
-  }}><form className="iw-dialog iw-action-form" aria-label="行动参数" onSubmit={e => { e.preventDefault(); if (canExecute) onExecute(request) }} role="dialog" aria-modal="true">
+  }}><form className={`iw-dialog iw-action-form iw-tier-${action.family === 'inventory' && (has('placement') || has('placements')) ? 'organize' : 'parameters'}`} aria-label="行动参数" onSubmit={e => { e.preventDefault(); if (canExecute) onExecute(request) }} role="dialog" aria-modal="true">
     <h2>{actionName(action)}{selectedSource ? ` · ${publicItemName(source.name)}` : ''}</h2><div className="iw-form-content"><div className="iw-form-fields">
+      {selectedSource ? <div className="iw-form-item-art"><ItemPicture name={source.name} /><strong>{publicItemName(source.name)} ×{source.quantity}</strong></div> : inputs.outputs.length ? inputs.outputs.map((output, index) => <div key={index} className="iw-form-item-art"><ItemPicture name={output.name} /><strong>声明产物：{publicItemName(output.name)} ×{output.quantity}</strong></div>) : <TaskArtwork view={view} action={action} />}
       {inputs.hints.map(h => <p key={h}>{h}</p>)}
       {has('item') && <label>物品<select aria-label="物品" value={item} onChange={e => { setItem(e.target.value); setTarget(''); setWound(''); setPlacements([]) }}>
         <option value="">请选择实际物品</option>{inputs.items.map((i, n) => <option key={n} value={n}>{publicItemName(i.name)} ×{i.quantity}</option>)}

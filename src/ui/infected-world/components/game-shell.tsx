@@ -13,6 +13,7 @@ import { ActionButton } from './action-information'
 import { KnowledgeMap } from './knowledge-map'
 import { ContentLayer } from './content-layer'
 import { BodyDetails, HelpDetails } from './shell-information'
+import { ItemInspectionProvider } from './item-inspection'
 
 export function GameShell({ view, feed, onAction, onRetrySave, describeAction, presentation, children }: { view: PlayerReadyView;
   feed: readonly PreplayFeedEntry[]; onAction: (action: PlayerAction, item?: PlayerItem) => void;
@@ -22,7 +23,7 @@ export function GameShell({ view, feed, onAction, onRetrySave, describeAction, p
   const [drawer, setDrawer] = useState<'left' | 'right' | null>(null)
   const utility = view.actions.filter(action => action.family === 'medical' || action.family === 'maintenance')
   const objectives = <><ul className="iw-objectives">{view.tasks.publicObjectives.map((objective, index) => <li key={index} data-state={objective.state}><span>{publicItemName(objective.label)}</span><small>{objective.state === 'completed' ? '已完成' : objective.state === 'observed' ? '已观察' : '尚未观察'}</small></li>)}</ul><p className="iw-muted">样本状态：{({ 'not-acquired': '尚未取得', carried: '正在携带', 'left-in-world': '留置现场', delivered: '已交付', unavailable: '当前不可取得' })[view.tasks.sample]}</p></>
-  return <main className={`iw-app iw-game${drawer ? ` iw-drawer-${drawer}` : ''}`}><StatusHud view={view} onBody={() => setPanel('body')} onHelp={() => setPanel('help')} />
+  return <ItemInspectionProvider view={view} describeAction={describeAction} onAction={onAction}><main className={`iw-app iw-game${drawer ? ` iw-drawer-${drawer}` : ''}`}><StatusHud view={view} onBody={() => setPanel('body')} onHelp={() => setPanel('help')} />
     <nav className="iw-drawer-tabs" aria-label="窄屏侧栏"><button onClick={() => setDrawer(drawer === 'left' ? null : 'left')}>任务与地图</button><button onClick={() => setDrawer(drawer === 'right' ? null : 'right')}>携带</button>{drawer && <button onClick={() => setDrawer(null)}>关闭侧栏</button>}</nav>
     <div className="iw-game-layout"><aside className="iw-sidebar iw-framed" aria-label="任务与已知信息"><h2>当前委托</h2>{objectives}<button type="button" onClick={() => setPanel('tasks')}>任务目标</button>
       <h2>已知地点 <small>只读</small></h2><KnowledgeMap map={view.map} /><button type="button" onClick={() => setPanel('map')}>展开已知区域</button>
@@ -37,5 +38,5 @@ export function GameShell({ view, feed, onAction, onRetrySave, describeAction, p
     </ContentLayer>}
     {utilitiesOpen && <ContentLayer title="药食与维护" tier="parameters" onClose={() => setUtilitiesOpen(false)}><div className="iw-actions">{utility.map((action, index) => <ActionButton key={index} action={action} onAction={() => onAction(action)}>{actionName(action)}</ActionButton>)}</div></ContentLayer>}
     {children}
-  </main>
+  </main></ItemInspectionProvider>
 }

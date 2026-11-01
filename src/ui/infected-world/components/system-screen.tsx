@@ -16,7 +16,7 @@ export function SystemScreen({ snapshot, onAcquire, onRetryRead, onSynchronize }
     view?.status === 'unbootstrapped' || (view?.status === 'blocked' && view.reason === 'load-blocked')
   const reread = ['read-error', 'blocked', 'reservation-failed'].includes(snapshot.status) && withoutCurrent && !projectionUnavailable
   const projection = ['ready', 'blocked'].includes(snapshot.status) && projectionUnavailable
-  return <main className="iw-app iw-system"><section className="iw-system-card" aria-live="polite">
+  return <main className="iw-app iw-system"><section className="iw-system-card iw-framed" aria-live="polite">
     <p className="iw-eyebrow">独立 DEV 封闭首玩</p><h1>{titles[snapshot.status]}</h1>
     <p>{snapshot.message ?? '当前不会执行游戏行动，也不会创建或覆盖另一份进度。'}</p>
     {snapshot.status === 'occupied' && <p>请关闭占用页面后明确重试。本页不会自动排队，也不会继续旧内存。</p>}

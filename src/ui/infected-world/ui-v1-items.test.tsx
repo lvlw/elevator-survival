@@ -9,7 +9,7 @@ import { itemImage, itemPlaceholder } from './assets'
 afterEach(() => { vi.restoreAllMocks(); document.body.replaceChildren() })
 describe('R2 actual item inspection and bounded picture failures', () => {
   it('inspection uses the current quick item, is read-only, then transfers it exactly once through original parameters', async () => {
-    const h = await mountUi(), observed = observeBrowser()
+    const observed = observeBrowser(), h = await mountUi()
     try {
       await h.d.setup(); await h.d.send('进入封锁区')
       const before = h.view(), original = before.carried.find(item => item.container === 'quick')!
@@ -24,6 +24,7 @@ describe('R2 actual item inspection and bounded picture failures', () => {
       await h.d.button('放入背包'); await h.d.anchor(0, 0); await h.d.button('执行行动')
       expect(h.view().carried.find(item => item.name === original.name)).toMatchObject({ container: 'backpack', quantity: original.quantity, resource: original.resource, placement: { x: 0, y: 0, rotated: false } })
       expect(document.querySelector('[aria-label="绷带 · 详情"]')).toBeNull()
+      expect(document.querySelector('.iw-content-layer')).toBeNull()
       expect(observed.counts()).toMatchObject({ dispatch: 1, current: 1, notices: 1 }); expect(h.setItem).toHaveBeenCalledTimes(1)
     } finally { await h.unmount() }
   })

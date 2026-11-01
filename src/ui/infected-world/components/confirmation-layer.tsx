@@ -28,7 +28,7 @@ export function ConfirmationLayer({ title, metadata, onConfirm, onCancel }: {
       const index = buttons.indexOf(document.activeElement as HTMLButtonElement)
       e.preventDefault(); buttons[(index + (e.shiftKey ? buttons.length - 1 : 1)) % buttons.length]?.focus()
     }
-  }}><section role="dialog" aria-modal="true" aria-label="保护确认" className="iw-dialog">
+  }}><section role="dialog" aria-modal="true" aria-label="保护确认" className="iw-dialog iw-framed">
     <h2>{title}</h2><p className="iw-warning">此操作不可撤销。请确认当前选择及后果。</p>
     <SafeFacts metadata={metadata} />
     <footer><button ref={cancel} onClick={onCancel}>取消</button><button onClick={onConfirm}>确认执行</button></footer>

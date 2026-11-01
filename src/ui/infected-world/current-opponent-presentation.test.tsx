@@ -16,9 +16,9 @@ describe('C1 opponent comes exclusively from current formal A', () => {
     try {
       expect(h.view().combat!.opponent.name).toBe(name); expect(h.host.querySelector('.iw-enemy-info h2')?.textContent).toBe(name)
       expect(h.host.querySelector(`[aria-label="${name}中性占位"]`)?.textContent).toContain(name)
-      expect(h.host.querySelector('.iw-battle img')).toBeNull(); await images.finish()
+      expect(h.host.querySelector('.iw-battle img.iw-enemy-art-raster')).toBeNull(); await images.finish()
       expect(h.host.querySelector(`[aria-label="${name} · 完好"]`)).not.toBeNull()
-      expect(h.host.querySelector('.iw-battle img')).not.toBeNull(); expect(h.cue().textContent).toBe('')
+      expect(h.host.querySelector('.iw-battle img.iw-enemy-art-raster')).not.toBeNull(); expect(h.cue().textContent).toBe('')
     } finally { await h.unmount() }
   })
   it('unknown and five stages are explicit schema/renderer branches, never location guesses or death inference', async () => {

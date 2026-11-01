@@ -1,0 +1,148 @@
+{
+  "name": "22-actual-2x2-detail-1920",
+  "mode": "fullPage",
+  "bytes": 255029,
+  "documentHeight": 1080,
+  "dpr": 1,
+  "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+  "height": 1080,
+  "images": [
+    {
+      "complete": true,
+      "h": 941,
+      "src": "/src/assets/presentation/world-ui-v1/bg-h5-v1.png",
+      "w": 1672
+    },
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-module-v1.png",
+      "w": 1254
+    },
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-metal-v1.png",
+      "w": 1254
+    },
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-ration-v1.png",
+      "w": 1254
+    },
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-component-v1.png",
+      "w": 1254
+    },
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-electronic-v1.png",
+      "w": 1254
+    },
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-ration-v1.png",
+      "w": 1254
+    },
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-ration-v1.png",
+      "w": 1254
+    },
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-component-v1.png",
+      "w": 1254
+    }
+  ],
+  "regions": [
+    {
+      "box": {
+        "bottom": 96,
+        "height": 72,
+        "left": 24,
+        "right": 1896,
+        "top": 24,
+        "width": 1872,
+        "x": 24,
+        "y": 24
+      },
+      "class": "iw-hud iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 1000,
+        "height": 888,
+        "left": 24,
+        "right": 304,
+        "top": 112,
+        "width": 280,
+        "x": 24,
+        "y": 112
+      },
+      "class": "iw-sidebar iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 1000,
+        "height": 888,
+        "left": 320,
+        "right": 1520,
+        "top": 112,
+        "width": 1200,
+        "x": 320,
+        "y": 112
+      },
+      "class": "iw-stage"
+    },
+    {
+      "box": {
+        "bottom": 1000,
+        "height": 888,
+        "left": 1536,
+        "right": 1896,
+        "top": 112,
+        "width": 360,
+        "x": 1536,
+        "y": 112
+      },
+      "class": "iw-carrying iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 1056,
+        "height": 40,
+        "left": 24,
+        "right": 1896,
+        "top": 1016,
+        "width": 1872,
+        "x": 24,
+        "y": 1016
+      },
+      "class": "iw-footer iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 788.375,
+        "height": 464.75,
+        "left": 580,
+        "right": 1260,
+        "top": 323.625,
+        "width": 680,
+        "x": 580,
+        "y": 323.625
+      },
+      "class": "iw-content-layer iw-framed iw-tier-detail"
+    }
+  ],
+  "scene": "医院/冷藏室",
+  "url": "http://127.0.0.1:5241/?dev-infected-world=1&ui-test-case=late-inventory",
+  "width": 1920
+}

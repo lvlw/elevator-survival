@@ -1,0 +1,144 @@
+{
+  "name": "20-save-failed-action-effective-1366",
+  "mode": "fullPage",
+  "bytes": 200748,
+  "documentHeight": 768,
+  "dpr": 1,
+  "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+  "height": 768,
+  "images": [
+    {
+      "complete": true,
+      "h": 941,
+      "src": "/src/assets/presentation/v0.1/visual/bg_isolation_corridor_v01.png",
+      "w": 1672
+    },
+    {
+      "complete": true,
+      "h": 941,
+      "src": "/src/assets/presentation/v0.1/visual/bg_isolation_corridor_v01.png",
+      "w": 1672
+    },
+    {
+      "complete": true,
+      "h": 1280,
+      "src": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png",
+      "w": 1024
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    }
+  ],
+  "regions": [
+    {
+      "box": {
+        "bottom": 75,
+        "height": 60,
+        "left": 16,
+        "right": 1350,
+        "top": 15,
+        "width": 1334,
+        "x": 16,
+        "y": 15
+      },
+      "class": "iw-hud iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 707,
+        "height": 620,
+        "left": 16,
+        "right": 224,
+        "top": 87,
+        "width": 208,
+        "x": 16,
+        "y": 87
+      },
+      "class": "iw-sidebar iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 707,
+        "height": 620,
+        "left": 236,
+        "right": 1050,
+        "top": 87,
+        "width": 814,
+        "x": 236,
+        "y": 87
+      },
+      "class": "iw-stage"
+    },
+    {
+      "box": {
+        "bottom": 707,
+        "height": 620,
+        "left": 236,
+        "right": 1050,
+        "top": 87,
+        "width": 814,
+        "x": 236,
+        "y": 87
+      },
+      "class": "iw-battle iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 567,
+        "height": 364,
+        "left": 248,
+        "right": 1038,
+        "top": 203,
+        "width": 790,
+        "x": 248,
+        "y": 203
+      },
+      "class": "iw-battle-actors iw-battle-figures"
+    },
+    {
+      "box": {
+        "bottom": 559.734375,
+        "height": 345.78125,
+        "left": 721.875,
+        "right": 998.5,
+        "top": 213.953125,
+        "width": 276.625,
+        "x": 721.875,
+        "y": 213.953125
+      },
+      "class": "iw-enemy-art-frame"
+    },
+    {
+      "box": {
+        "bottom": 707,
+        "height": 620,
+        "left": 1062,
+        "right": 1350,
+        "top": 87,
+        "width": 288,
+        "x": 1062,
+        "y": 87
+      },
+      "class": "iw-carrying iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 751,
+        "height": 32,
+        "left": 16,
+        "right": 1350,
+        "top": 719,
+        "width": 1334,
+        "x": 16,
+        "y": 719
+      },
+      "class": "iw-footer iw-framed"
+    }
+  ],
+  "scene": "医院/隔离走廊",
+  "url": "http://127.0.0.1:5241/?dev-infected-world=1&ui-test-case=defend&ui-test-savefail=1",
+  "width": 1366
+}

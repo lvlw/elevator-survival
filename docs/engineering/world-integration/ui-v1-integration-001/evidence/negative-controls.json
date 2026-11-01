@@ -1,0 +1,31 @@
+{
+  "cases": [
+    {
+      "case": "wrong-public-scene",
+      "path": "src/ui/infected-world/assets.ts",
+      "test": "src/ui/infected-world/ui-v1-assets.test.ts",
+      "exitCode": 1,
+      "semanticAssertionFailed": true,
+      "originalSHA256": "e3f40c7d485ac9ec43f109aadae3dc70e93c9815948c0d3d5fbfdfa0f63167f4",
+      "byteExactRestored": true
+    },
+    {
+      "case": "stale-item-substitution",
+      "path": "src/ui/infected-world/components/item-inspection.tsx",
+      "test": "src/ui/infected-world/ui-v1-items.test.tsx",
+      "exitCode": 1,
+      "semanticAssertionFailed": true,
+      "originalSHA256": "b688c7e24a2f7679216610879515ed631a8d3b15bcd402da0653d5c34bbb7765",
+      "byteExactRestored": true
+    },
+    {
+      "case": "readonly-map-dispatch",
+      "path": "src/ui/infected-world/components/game-shell.tsx",
+      "test": "src/ui/infected-world/ui-v1-map.test.tsx",
+      "exitCode": 1,
+      "semanticAssertionFailed": true,
+      "originalSHA256": "bf47fce58d333994cc8bcd4974759bef24c3503faf618de13161d9ba32a15a89",
+      "byteExactRestored": true
+    }
+  ]
+}

@@ -28,7 +28,7 @@ export function WorldStage({ view, onAction, presentation }: { view: PlayerReady
   return <section className="iw-stage" data-scene={art?.key ?? 'neutral'}>
     {art && <img key={art.key} className="iw-scene-plate" src={art.src} alt="" aria-hidden="true" style={{ objectPosition: `${art.focal[0] * 100}% ${art.focal[1] * 100}%` }} onError={event => { event.currentTarget.hidden = true }} />}
     <div className="iw-scene-shade" aria-hidden="true" />
-    {view.point === 'first-hub' ? <HubPanel view={view} onAction={onAction} /> : view.point === 'living-hub' || view.point === 'dead' ? <TerminalPanel view={view} /> : view.combat ? <BattleStage view={view} onAction={onAction} /> : <>
+    {view.point === 'first-hub' ? <HubPanel view={view} onAction={onAction} /> : view.point === 'living-hub' || view.point === 'dead' ? <TerminalPanel view={view} /> : view.combat ? <BattleStage view={view} onAction={onAction} presentation={presentation} /> : <>
       <header className="iw-room-heading"><div><p className="iw-eyebrow">{view.location?.place} / 当前地点</p><h1>{view.location?.name}</h1></div><div>{contextActions.length > 0 && <button type="button" className="iw-scene-details-trigger" onClick={() => { contextFocus.current = true; setContext(contextActions[0]!) }}>查看现场详情</button>}</div></header>
       <div className="iw-scene-card"><div className="iw-room-content"><section className="iw-room-interactions" aria-label="当前现场互动">
         {view.sources.map((source, index) => <div className="iw-source" key={index}><strong>{source.label}</strong>{source.completed ? <span className="iw-muted">已处理</span> : <div className="iw-actions">{source.choices.map((action, n) => <ActionButton action={action} key={n} onAction={() => onAction(action)}>{actionName(action)}</ActionButton>)}</div>}</div>)}
@@ -43,7 +43,7 @@ export function WorldStage({ view, onAction, presentation }: { view: PlayerReady
       <TravelCluster actions={view.move.options} onAction={onAction} />
       <nav className="iw-local-actions" aria-label="当前地点行动">{view.actions.filter(action => action.family === 'rest' || action.family === 'terminal').map((action, index) => <ActionButton action={action} key={index} onAction={() => onAction(action)}>{actionName(action)}</ActionButton>)}</nav></div>
     </>}
-    {presentation}
+    {!view.combat && presentation}
     {context && contextCurrent && <ContentLayer title={`${view.location?.name} · 现场详情`} tier="parameters" restoreFocus={() => contextFocus.current} onClose={() => setContext(null)}>
       <div className="iw-context-details"><TaskArtwork view={view} action={context} /><div><h3>当前公开操作</h3><p>方法与成本来自当前现场；查看不执行操作。需要物品、材料或位置时仍须明确选择。</p><div className="iw-actions">{contextActions.map((action, index) => <ActionButton action={action} key={index} onAction={() => onAction(action)}>{actionName(action)}{action.cost !== null && <small>精力 {action.cost}</small>}</ActionButton>)}</div></div></div>
     </ContentLayer>}

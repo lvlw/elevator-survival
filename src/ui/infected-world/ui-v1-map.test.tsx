@@ -35,7 +35,7 @@ describe('shared safe SVG known-map projection (renderer tests, not native scree
     } finally { await act(async () => root.unmount()); host.remove() }
   })
   it('real current and known-unvisited nodes only open facts; keyboard, scrolling and expanded map do not move or save', async () => {
-    const h = await mountUi(), observed = observeBrowser()
+    const observed = observeBrowser(), h = await mountUi()
     try {
       await h.d.setup(); await h.d.send('进入封锁区')
       const before = h.view(); observed.clear(); h.setItem.mockClear()

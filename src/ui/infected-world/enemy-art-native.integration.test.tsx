@@ -16,14 +16,14 @@ describe('C2 real React/BrowserOwner/P/R/S integration with controlled resource 
       expect(images.requests).toHaveLength(5)
       if (mode === 'ready') await images.finish()
       if (mode === 'failed') await h.flush(() => images.requests[0].onerror!())
-      expect(!!h.host.querySelector('.iw-battle img')).toBe(mode === 'ready')
+      expect(!!h.host.querySelector('.iw-battle img.iw-enemy-art-raster')).toBe(mode === 'ready')
       const before = observed.owners.at(-1)!.getState().current!.character.revision
       observed.clear(); await h.combat('金属管攻击')
       expect(observed.counts()).toMatchObject({ combat: 1, dispatch: 1, current: 1, notices: 1 })
       expect(h.setItem).toHaveBeenCalledTimes(1); expect(observed.owners.at(-1)!.getState().current!.character.revision).toBe(before + 1)
       expect(h.direct()!.sequence).toHaveLength(1); expect(h.direct()!.stop).toBe(h.view().point)
       expect(h.cue().textContent).toBe('攻击已执行'); expect(images.requests).toHaveLength(5)
-      expect(!!h.host.querySelector('.iw-battle img')).toBe(mode === 'ready')
+      expect(!!h.host.querySelector('.iw-battle img.iw-enemy-art-raster')).toBe(mode === 'ready')
     } finally { await h.unmount() }
   })
   it('read-null setup and original visible entry route prepare only the actual current opponent, without extra commit or synthetic cue', async () => {

@@ -1,0 +1,74 @@
+{
+  "baseline": {
+    "command": "npm run test:run",
+    "files": 343,
+    "tests": 4929,
+    "exit": 0,
+    "seconds": 387.13
+  },
+  "combined": {
+    "command": "npm run test:run -- --maxWorkers=2 src/ui/infected-world src/app/infected-preplay src/app/infected-browser src/state/residence-session src/content/infected-world-v0.1/acceptance",
+    "files": 147,
+    "tests": 1328,
+    "exit": 0,
+    "seconds": 466.14
+  },
+  "producerProbe": {
+    "files": 1,
+    "tests": 1,
+    "exit": 0,
+    "seconds": 15.02
+  },
+  "final": {
+    "command": "npm run check",
+    "environment": {
+      "VITEST_MAX_WORKERS": "2"
+    },
+    "selection": "UNCHANGED DEFAULT ALL",
+    "architecture": "PASS: 53 DEC entries, 347 core production files",
+    "typecheck": "PASS",
+    "testFiles": 348,
+    "tests": 5024,
+    "testSeconds": 678.09,
+    "build": "PASS: 425 modules",
+    "exit": 0
+  },
+  "priorDefaultAttempt": {
+    "files": 348,
+    "passedTests": 5019,
+    "failedTests": 5,
+    "reason": "Old C2 selectors counted the newly displayed scene plate as enemy raster. Two selectors in each of two files narrowed to img.iw-enemy-art-raster. No assertion removed."
+  },
+  "negativeControls": {
+    "cases": [
+      {
+        "case": "wrong-public-scene",
+        "path": "src/ui/infected-world/assets.ts",
+        "test": "src/ui/infected-world/ui-v1-assets.test.ts",
+        "exitCode": 1,
+        "semanticAssertionFailed": true,
+        "originalSHA256": "e3f40c7d485ac9ec43f109aadae3dc70e93c9815948c0d3d5fbfdfa0f63167f4",
+        "byteExactRestored": true
+      },
+      {
+        "case": "stale-item-substitution",
+        "path": "src/ui/infected-world/components/item-inspection.tsx",
+        "test": "src/ui/infected-world/ui-v1-items.test.tsx",
+        "exitCode": 1,
+        "semanticAssertionFailed": true,
+        "originalSHA256": "b688c7e24a2f7679216610879515ed631a8d3b15bcd402da0653d5c34bbb7765",
+        "byteExactRestored": true
+      },
+      {
+        "case": "readonly-map-dispatch",
+        "path": "src/ui/infected-world/components/game-shell.tsx",
+        "test": "src/ui/infected-world/ui-v1-map.test.tsx",
+        "exitCode": 1,
+        "semanticAssertionFailed": true,
+        "originalSHA256": "bf47fce58d333994cc8bcd4974759bef24c3503faf618de13161d9ba32a15a89",
+        "byteExactRestored": true
+      }
+    ]
+  },
+  "nativeRecordSha256": "6c0e17848dd1d5a941883ef96b94cc129d5580d329735720708f2b1a41233011"
+}

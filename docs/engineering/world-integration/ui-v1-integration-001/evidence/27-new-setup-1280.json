@@ -1,0 +1,32 @@
+{
+  "name": "27-new-setup-1280",
+  "mode": "fullPage",
+  "bytes": 139955,
+  "documentHeight": 720,
+  "dpr": 1,
+  "font": "\"Noto Sans SC\"",
+  "height": 720,
+  "images": [
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-crowbar-v1.png",
+      "w": 1254
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_flashlight_v01.png",
+      "w": 512
+    },
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-toolbox-v1.png",
+      "w": 1254
+    }
+  ],
+  "regions": [],
+  "url": "http://127.0.0.1:5241/?dev-infected-world=1&ui-test-case=fresh",
+  "width": 1280
+}

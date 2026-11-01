@@ -1,0 +1,457 @@
+[
+  {
+    "file": "01-hub-1920.jpg",
+    "bytes": 230051,
+    "sha256": "1fdd160f06c486aeb7c18d3a2efd71a1048d5ed639579ca6c89f64c2f6876db4",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "NOT RECORDED: initial original screenshot, tool observation only"
+  },
+  {
+    "file": "02-hall-1920.jpg",
+    "bytes": 270787,
+    "sha256": "aa1196b9a6bc7ca830b8a794cbd14f44ff44b437331d03a338be6fd149f91c30",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": true,
+    "metadata": "02-hall-1920.json"
+  },
+  {
+    "file": "03-pharmacy-unsearched-1920.jpg",
+    "bytes": 254621,
+    "sha256": "2794703d27e10a721146227c86966cf179598b274fe83439634d3dd531ce7bb7",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": true,
+    "metadata": "03-pharmacy-unsearched-1920.json"
+  },
+  {
+    "file": "04-pharmacy-revealed-1920.jpg",
+    "bytes": 251503,
+    "sha256": "cab42005248c9aa6bbd5acd92c3509d5e5efe63e619f5aa5e8b464b23c01f79d",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "04-pharmacy-revealed-1920.json"
+  },
+  {
+    "file": "05-pharmacy-empty-reopened-1920.jpg",
+    "bytes": 253086,
+    "sha256": "978a34c6a2c511bee6017e28f809fe6823d6c6713e931b2c922ce4546b37c649",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "05-pharmacy-empty-reopened-1920.json"
+  },
+  {
+    "file": "06-pharmacy-empty-1280.jpg",
+    "bytes": 143701,
+    "sha256": "6a2f291baaa09ad7f821cb234adc06554d2b6c66ef1dd1afd93c62586e2deede",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "06-pharmacy-empty-1280.json"
+  },
+  {
+    "file": "07-pharmacy-1600.jpg",
+    "bytes": 201411,
+    "sha256": "1c5bdd285b8ca7c77d6a091b547eca70dc6b27dae425d04637b81eee7062e086",
+    "rawPixels": [
+      1600,
+      900
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "07-pharmacy-1600.json"
+  },
+  {
+    "file": "08-pharmacy-1440.jpg",
+    "bytes": 180207,
+    "sha256": "7974e9985e6f35a177f4ebe491536712ccbe43e313411d1571471facb448f5c4",
+    "rawPixels": [
+      1440,
+      900
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "08-pharmacy-1440.json"
+  },
+  {
+    "file": "09-pharmacy-1366.jpg",
+    "bytes": 155672,
+    "sha256": "fab6838aca64d4a1b3d1b94b2ee4dc1721557cf6c7b80d63222badde188d8234",
+    "rawPixels": [
+      1366,
+      768
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "09-pharmacy-1366.json"
+  },
+  {
+    "file": "10-item-detail-1920.jpg",
+    "bytes": 108458,
+    "sha256": "5ef0cfe7e8934b4d2e08f3cbaa47fb4f76b8fffa6357c4c6133b2d9672ca1d32",
+    "rawPixels": [
+      1920,
+      683
+    ],
+    "status": "PARTIAL",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "10-item-detail-1920.json"
+  },
+  {
+    "file": "11-item-detail-1280.jpg",
+    "bytes": 116804,
+    "sha256": "984b15adc6660985c6f3c0fcfcaee2cb93766535ea8c48988d0c2f8b237fca73",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "11-item-detail-1280.json"
+  },
+  {
+    "file": "12-item-detail-1920-fullpage.jpg",
+    "bytes": 215055,
+    "sha256": "5c83a07dca3890d081dfd443fdb6a2996988cf74a3a9e2f42c0f99c1a4f2d880",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "12-item-detail-1920-fullpage.json"
+  },
+  {
+    "file": "13-real-placement-parameters-1280.jpg",
+    "bytes": 93505,
+    "sha256": "9906c4f0bdf4b88390e0997ee47fdbc7fe1d94db41d7c5037ebe2803e896d653",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "13-real-placement-parameters-1280.json"
+  },
+  {
+    "file": "14-known-map-1280.jpg",
+    "bytes": 116623,
+    "sha256": "ea9616063c78e718045dd4cb56c1e745c7e20e7d243572b220b555a023fd593d",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "14-known-map-1280.json"
+  },
+  {
+    "file": "15-existing-npc-context-1280.jpg",
+    "bytes": 114367,
+    "sha256": "87dfc3afccc65414d93c0366b2316c19b1af5fbafa065fc0cb2bcc471b223841",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "15-existing-npc-context-1280.json"
+  },
+  {
+    "file": "16-natural-orderly-battle-1280.jpg",
+    "bytes": 184723,
+    "sha256": "29ae7fed3a284ec691e64a45a44ea751616c3c977525408c25387d00b3c05125",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "16-natural-orderly-battle-1280.json"
+  },
+  {
+    "file": "17-natural-battle-1920.jpg",
+    "bytes": 316309,
+    "sha256": "621845b18a3fb1bbfd30ecf4fc8f32593edc08be68cbe9f1d1068c888273d609",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "17-natural-battle-1920.json"
+  },
+  {
+    "file": "18-porter-1280.jpg",
+    "bytes": 193796,
+    "sha256": "6af68ebc407d332def498729e70386b5207f30dcc49f0fb3c4d994301b91f541",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "18-porter-1280.json"
+  },
+  {
+    "file": "19-technician-1366.jpg",
+    "bytes": 207451,
+    "sha256": "3323875556af53904e31bf944a494d14eef669d9a457af6447b0d7e1889a8dd7",
+    "rawPixels": [
+      1366,
+      768
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "19-technician-1366.json"
+  },
+  {
+    "file": "20-save-failed-action-effective-1366.jpg",
+    "bytes": 200748,
+    "sha256": "7d371199531c4204699bde620a3a9a6b1d2a98498b84497fc229d5caf85c06b2",
+    "rawPixels": [
+      1366,
+      768
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "20-save-failed-action-effective-1366.json"
+  },
+  {
+    "file": "21-e03-late-inventory-1920.jpg",
+    "bytes": 297907,
+    "sha256": "0264f7f9c6e03417f13427dba732dded5e9afeac8fd0bd90f75ac9c66b30dc6e",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "21-e03-late-inventory-1920.json"
+  },
+  {
+    "file": "22-actual-2x2-detail-1920.jpg",
+    "bytes": 255029,
+    "sha256": "a6e726be17affa1200f699a288c5157617c6d40c886e4f19d85b099f8ad7acb7",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "22-actual-2x2-detail-1920.json"
+  },
+  {
+    "file": "23-actual-enemy-network-failure-action-1280.jpg",
+    "bytes": 180607,
+    "sha256": "3c409d6d9c8bc919a16e75eee652cf0c6c877c83566814f74a94f95575eb89ca",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "23-actual-enemy-network-failure-action-1280.json"
+  },
+  {
+    "file": "24-real-codec-success-1280.jpg",
+    "bytes": 136801,
+    "sha256": "e221e5918407e217410bce9dc92f0c4abfd6793ab636222a6a0aee348910d652",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "24-real-codec-success-1280.json"
+  },
+  {
+    "file": "25-real-hp-zero-death-1280.jpg",
+    "bytes": 118468,
+    "sha256": "828ca68b112989e625d7f5c5d90da889e9902d84e6792f3b8eb7e35e62e9d34b",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "25-real-hp-zero-death-1280.json"
+  },
+  {
+    "file": "26-real-living-failure-1280.jpg",
+    "bytes": 136174,
+    "sha256": "61a7829b64fc17c216cb5bd06630940abbc034ba6f22697361640016ca48da5a",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "26-real-living-failure-1280.json"
+  },
+  {
+    "file": "27-new-setup-1280.jpg",
+    "bytes": 139955,
+    "sha256": "cbc6ad3ed59ebbd11b4ba2d4114e21a02fb6d5fd962485621cefbdf67790948c",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "27-new-setup-1280.json"
+  },
+  {
+    "file": "28-final-pharmacy-unsearched-1920.jpg",
+    "bytes": 267040,
+    "sha256": "f6aa6cc38bdcac6f2db89c508ae481502cdec12594b53442c1070a9ba2b734a1",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "28-final-pharmacy-unsearched-1920.json"
+  },
+  {
+    "file": "29-final-pharmacy-unsearched-1280.jpg",
+    "bytes": 148049,
+    "sha256": "11c5a42c9aefc7ce56e3e9f02fda1b3f439abb6771072cd4c9017cc1f4f93147",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "29-final-pharmacy-unsearched-1280.json"
+  },
+  {
+    "file": "30-final-pharmacy-revealed-1920.jpg",
+    "bytes": 262930,
+    "sha256": "005afe443c75afb08a7838ac6b3d9d9ccd76a0297addd86669e386bc1ae659d2",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "30-final-pharmacy-revealed-1920.json"
+  },
+  {
+    "file": "31-final-pharmacy-empty-reopened-1920.jpg",
+    "bytes": 264588,
+    "sha256": "03a0dc30e5c8c1033b75981fc0de762f80f705bd39c8d7c2fe8e7f95144b6947",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "31-final-pharmacy-empty-reopened-1920.json"
+  },
+  {
+    "file": "32-final-pharmacy-empty-reopened-1280.jpg",
+    "bytes": 146159,
+    "sha256": "389ff5f91b28a43ed00c0500310ddc3ff7ac3874e470c614ef8fe2a172e71d93",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "32-final-pharmacy-empty-reopened-1280.json"
+  },
+  {
+    "file": "33-390-native-pressure-fullpage.jpg",
+    "bytes": 53519,
+    "sha256": "2f220cbdf653f313aff1a08bef0441e0079b887a4f91e4c59f9c1724cf5e40b0",
+    "rawPixels": [
+      390,
+      844
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "33-390-native-pressure-fullpage.json"
+  },
+  {
+    "file": "34-390-carrying-keyboard-drawer.jpg",
+    "bytes": 62411,
+    "sha256": "38a890495b5e09407baf11cffa60101162779c203cf6ba313e3fa68a251746d3",
+    "rawPixels": [
+      390,
+      844
+    ],
+    "status": "COMPLETE_RAW_CAPTURE",
+    "derived": false,
+    "earlyRevision": false,
+    "metadata": "34-390-carrying-keyboard-drawer.json"
+  },
+  {
+    "file": "comparison-m1-derived.jpg",
+    "bytes": 451945,
+    "sha256": "097f354c9484d0c8e225af5e05b5f03aac46821bd8b7f44f0998d585dd0dfb8b",
+    "rawPixels": [
+      2560,
+      776
+    ],
+    "status": "DERIVED_COMPARISON",
+    "derived": true,
+    "earlyRevision": false,
+    "metadata": "comparison-m1-derived.json"
+  }
+]

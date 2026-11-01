@@ -31,7 +31,7 @@ export function KnowledgeMap({ map, compact = true }: { map: MapView; compact?: 
   }, [current?.name, current?.place, compact, width, height])
   return <section className="iw-known-map">
     {current && <p className="iw-map-help">当前位置：{nameOf(current)}</p>}
-    <p className="iw-map-help">节点只查看；移动使用现场“前往”。图内可滚动。</p>
+    <p className="iw-map-help">已知节点示意（非比例）。节点只查看；移动使用现场“前往”。图内可滚动。</p>
     <div className={`iw-map-viewport${compact ? '' : ' iw-map-viewport--expanded'}`} ref={viewport} tabIndex={0} aria-label="已知地图画布，可滚动">
       <svg className="iw-minimap iw-map-canvas" style={{ width, height }} viewBox={`0 0 ${width} ${height}`} role="group" aria-label="已知地点拓扑，只读">
         <defs><marker id={marker} markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 1 L 9 5 L 0 9 Z" fill="#c5cecc" /></marker></defs>

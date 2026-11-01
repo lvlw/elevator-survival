@@ -1,0 +1,144 @@
+{
+  "name": "19-technician-1366",
+  "mode": "fullPage",
+  "bytes": 207451,
+  "documentHeight": 768,
+  "dpr": 1,
+  "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+  "height": 768,
+  "images": [
+    {
+      "complete": true,
+      "h": 941,
+      "src": "/src/assets/presentation/world-ui-v1/bg-power-v1.png",
+      "w": 1672
+    },
+    {
+      "complete": true,
+      "h": 941,
+      "src": "/src/assets/presentation/world-ui-v1/bg-power-v1.png",
+      "w": 1672
+    },
+    {
+      "complete": true,
+      "h": 1402,
+      "src": "/src/assets/presentation/world-battle-v1/enemy-technician-pristine-v1.png",
+      "w": 1122
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    }
+  ],
+  "regions": [
+    {
+      "box": {
+        "bottom": 76,
+        "height": 60,
+        "left": 16,
+        "right": 1350,
+        "top": 16,
+        "width": 1334,
+        "x": 16,
+        "y": 16
+      },
+      "class": "iw-hud iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 708,
+        "height": 620,
+        "left": 16,
+        "right": 224,
+        "top": 88,
+        "width": 208,
+        "x": 16,
+        "y": 88
+      },
+      "class": "iw-sidebar iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 708,
+        "height": 620,
+        "left": 236,
+        "right": 1050,
+        "top": 88,
+        "width": 814,
+        "x": 236,
+        "y": 88
+      },
+      "class": "iw-stage"
+    },
+    {
+      "box": {
+        "bottom": 708,
+        "height": 620,
+        "left": 236,
+        "right": 1050,
+        "top": 88,
+        "width": 814,
+        "x": 236,
+        "y": 88
+      },
+      "class": "iw-battle iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 568,
+        "height": 364,
+        "left": 248,
+        "right": 1038,
+        "top": 204,
+        "width": 790,
+        "x": 248,
+        "y": 204
+      },
+      "class": "iw-battle-actors iw-battle-figures"
+    },
+    {
+      "box": {
+        "bottom": 560.734375,
+        "height": 345.78125,
+        "left": 721.875,
+        "right": 998.5,
+        "top": 214.953125,
+        "width": 276.625,
+        "x": 721.875,
+        "y": 214.953125
+      },
+      "class": "iw-enemy-art-frame"
+    },
+    {
+      "box": {
+        "bottom": 708,
+        "height": 620,
+        "left": 1062,
+        "right": 1350,
+        "top": 88,
+        "width": 288,
+        "x": 1062,
+        "y": 88
+      },
+      "class": "iw-carrying iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 752,
+        "height": 32,
+        "left": 16,
+        "right": 1350,
+        "top": 720,
+        "width": 1334,
+        "x": 16,
+        "y": 720
+      },
+      "class": "iw-footer iw-framed"
+    }
+  ],
+  "scene": "通信/检修走廊",
+  "url": "http://127.0.0.1:5241/?dev-infected-world=1&ui-test-case=technician",
+  "width": 1366
+}

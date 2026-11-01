@@ -1,0 +1,105 @@
+{
+  "name": "33-390-native-pressure-fullpage",
+  "mode": "fullPage",
+  "bytes": 53519,
+  "documentHeight": 844,
+  "dpr": 1,
+  "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+  "height": 844,
+  "images": [
+    {
+      "complete": true,
+      "h": 941,
+      "src": "/src/assets/presentation/world-ui-v1/bg-h2-v1.png",
+      "w": 1672
+    },
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-disinfectant-v1.png",
+      "w": 1254
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    }
+  ],
+  "regions": [
+    {
+      "box": {
+        "bottom": 128,
+        "height": 120,
+        "left": 8,
+        "right": 382,
+        "top": 8,
+        "width": 374,
+        "x": 8,
+        "y": 8
+      },
+      "class": "iw-hud iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 0,
+        "height": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "class": "iw-sidebar iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 784,
+        "height": 648,
+        "left": 8,
+        "right": 382,
+        "top": 136,
+        "width": 374,
+        "x": 8,
+        "y": 136
+      },
+      "class": "iw-stage"
+    },
+    {
+      "box": {
+        "bottom": 0,
+        "height": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "class": "iw-carrying iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 836,
+        "height": 44,
+        "left": 8,
+        "right": 382,
+        "top": 792,
+        "width": 374,
+        "x": 8,
+        "y": 792
+      },
+      "class": "iw-footer iw-framed"
+    }
+  ],
+  "scene": "医院/药房",
+  "url": "http://127.0.0.1:5241/?dev-infected-world=1&ui-test-case=fresh",
+  "width": 390
+}

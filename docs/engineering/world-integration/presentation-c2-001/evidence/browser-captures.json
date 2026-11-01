@@ -1,0 +1,6224 @@
+[
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [],
+      "attempts": 0,
+      "cue": null,
+      "cues": 0,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BODY",
+        "text": "\n    独立 DEV 封闭首玩电梯求生封锁区 · 出发准备明确选择一件实用工具和一项专长。创建后选择锁定，不会自动出发"
+      },
+      "geometry": {
+        ".iw-battle": null,
+        ".iw-battle-actions": null,
+        ".iw-battle-figures": null,
+        ".iw-committed-feedback": null,
+        ".iw-enemy-art-frame": null,
+        ".iw-feed": null,
+        ".iw-game": null
+      },
+      "image": null,
+      "initial": {
+        "case": "natural",
+        "checkpointNull": true,
+        "reservationNull": true
+      },
+      "ms": 104661.20000001788,
+      "name": null,
+      "reason": "native-resize",
+      "resources": [],
+      "serial": 6,
+      "stage": null,
+      "successes": 0,
+      "time": "2026-11-01T07:58:39.661Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+      "viewport": {
+        "clientWidth": 2552,
+        "dpr": 1,
+        "height": 909,
+        "scrollHeight": 909,
+        "scrollWidth": 2552,
+        "visualScale": 1,
+        "width": 2552
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+    "name": "00-native-read-null",
+    "capturedUTC": "2026-11-01T07:59:24.272Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 37.984375,
+            "right": 93.984375,
+            "top": 676.734375,
+            "width": 56,
+            "x": 37.984375,
+            "y": 676.734375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 97.171875,
+            "right": 137.171875,
+            "top": 676.734375,
+            "width": 40,
+            "x": 97.171875,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 143.5625,
+            "right": 244.5625,
+            "top": 676.734375,
+            "width": 101,
+            "x": 143.5625,
+            "y": 676.734375
+          },
+          "text": "金属管攻击资源 30 → 29"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 247.75,
+            "right": 287.75,
+            "top": 676.734375,
+            "width": 40,
+            "x": 247.75,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 294.140625,
+            "right": 350.140625,
+            "top": 676.734375,
+            "width": 56,
+            "x": 294.140625,
+            "y": 676.734375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 353.328125,
+            "right": 393.328125,
+            "top": 676.734375,
+            "width": 40,
+            "x": 353.328125,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 399.71875,
+            "right": 493.5625,
+            "top": 676.734375,
+            "width": 93.84375,
+            "x": 399.71875,
+            "y": 676.734375
+          },
+          "text": "蓄力打击资源 30 → 27"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 496.75,
+            "right": 536.75,
+            "top": 676.734375,
+            "width": 40,
+            "x": 496.75,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 5,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": ""
+      },
+      "cues": 0,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BODY",
+        "text": "\n    电梯求生DEV · 封闭首玩任务进度第 1 日战斗生命12 / 12精力90 / 100饱食6 / 6未达病程"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 764.640625,
+          "height": 620.8125,
+          "left": 29.796875,
+          "right": 1544.609375,
+          "top": 143.828125,
+          "width": 1514.8125,
+          "x": 29.796875,
+          "y": 143.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 738.8125,
+          "height": 70.265625,
+          "left": 29.796875,
+          "right": 1544.609375,
+          "top": 668.546875,
+          "width": 1514.8125,
+          "x": 29.796875,
+          "y": 668.546875
+        },
+        ".iw-battle-figures": {
+          "bottom": 658.953125,
+          "height": 411.84375,
+          "left": 508.171875,
+          "right": 1544.59375,
+          "top": 247.109375,
+          "width": 1036.421875,
+          "x": 508.171875,
+          "y": 247.109375
+        },
+        ".iw-committed-feedback": {
+          "bottom": 816.625,
+          "height": 44.796875,
+          "left": 29.796875,
+          "right": 1544.609375,
+          "top": 771.828125,
+          "width": 1514.8125,
+          "x": 29.796875,
+          "y": 771.828125
+        },
+        ".iw-enemy-art-frame": null,
+        ".iw-feed": {
+          "bottom": 1071.203125,
+          "height": 192,
+          "left": 8.796875,
+          "right": 1565.609375,
+          "top": 879.203125,
+          "width": 1556.8125,
+          "x": 8.796875,
+          "y": 879.203125
+        },
+        ".iw-game": {
+          "bottom": 1080,
+          "height": 1080,
+          "left": 0,
+          "right": 1920,
+          "top": 0,
+          "width": 1920,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": null,
+      "initial": {
+        "case": "natural",
+        "checkpointNull": true,
+        "reservationNull": true
+      },
+      "ms": 262381.8000000119,
+      "name": "感染护工",
+      "reason": "native-click",
+      "resources": [],
+      "serial": 16,
+      "stage": "完好",
+      "successes": 5,
+      "time": "2026-11-01T08:01:17.381Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+      "viewport": {
+        "clientWidth": 1920,
+        "dpr": 1,
+        "height": 1080,
+        "scrollHeight": 1080,
+        "scrollWidth": 1920,
+        "visualScale": 1,
+        "width": 1920
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+    "name": "01-orderly-pending",
+    "capturedUTC": "2026-11-01T08:01:17.600Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 37.984375,
+            "right": 93.984375,
+            "top": 676.734375,
+            "width": 56,
+            "x": 37.984375,
+            "y": 676.734375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 97.171875,
+            "right": 137.171875,
+            "top": 676.734375,
+            "width": 40,
+            "x": 97.171875,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 143.5625,
+            "right": 244.5625,
+            "top": 676.734375,
+            "width": 101,
+            "x": 143.5625,
+            "y": 676.734375
+          },
+          "text": "金属管攻击资源 30 → 29"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 247.75,
+            "right": 287.75,
+            "top": 676.734375,
+            "width": 40,
+            "x": 247.75,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 294.140625,
+            "right": 435.5625,
+            "top": 676.734375,
+            "width": 141.421875,
+            "x": 294.140625,
+            "y": 676.734375
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 438.75,
+            "right": 478.75,
+            "top": 676.734375,
+            "width": 40,
+            "x": 438.75,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 485.140625,
+            "right": 541.140625,
+            "top": 676.734375,
+            "width": 56,
+            "x": 485.140625,
+            "y": 676.734375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 544.328125,
+            "right": 584.328125,
+            "top": 676.734375,
+            "width": 40,
+            "x": 544.328125,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 590.71875,
+            "right": 684.5625,
+            "top": 676.734375,
+            "width": 93.84375,
+            "x": 590.71875,
+            "y": 676.734375
+          },
+          "text": "蓄力打击资源 30 → 27"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 687.75,
+            "right": 727.75,
+            "top": 676.734375,
+            "width": 40,
+            "x": 687.75,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 6,
+      "cue": {
+        "class": "iw-committed-cue iw-committed-cue--active",
+        "text": "防御已执行"
+      },
+      "cues": 1,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BUTTON",
+        "text": "防御"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 764.640625,
+          "height": 620.8125,
+          "left": 29.796875,
+          "right": 1544.609375,
+          "top": 143.828125,
+          "width": 1514.8125,
+          "x": 29.796875,
+          "y": 143.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 738.8125,
+          "height": 70.265625,
+          "left": 29.796875,
+          "right": 1544.609375,
+          "top": 668.546875,
+          "width": 1514.8125,
+          "x": 29.796875,
+          "y": 668.546875
+        },
+        ".iw-battle-figures": {
+          "bottom": 658.953125,
+          "height": 411.84375,
+          "left": 508.171875,
+          "right": 1544.59375,
+          "top": 247.109375,
+          "width": 1036.421875,
+          "x": 508.171875,
+          "y": 247.109375
+        },
+        ".iw-committed-feedback": {
+          "bottom": 816.625,
+          "height": 44.796875,
+          "left": 29.796875,
+          "right": 1544.609375,
+          "top": 771.828125,
+          "width": 1514.8125,
+          "x": 29.796875,
+          "y": 771.828125
+        },
+        ".iw-enemy-art-frame": {
+          "bottom": 656.953125,
+          "height": 240,
+          "left": 613.640625,
+          "right": 805.640625,
+          "top": 416.953125,
+          "width": 192,
+          "x": 613.640625,
+          "y": 416.953125
+        },
+        ".iw-feed": {
+          "bottom": 1071.203125,
+          "height": 192,
+          "left": 8.796875,
+          "right": 1565.609375,
+          "top": 879.203125,
+          "width": 1556.8125,
+          "x": 8.796875,
+          "y": 879.203125
+        },
+        ".iw-game": {
+          "bottom": 1080,
+          "height": 1080,
+          "left": 0,
+          "right": 1920,
+          "top": 0,
+          "width": 1920,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": {
+        "alpha128Rect": {
+          "height": 186.45526123046875,
+          "width": 99.05445861816406,
+          "x": 653.0336608886719,
+          "y": 459.1266723632813
+        },
+        "complete": true,
+        "natural": [
+          1024,
+          1280
+        ],
+        "pointerEvents": "none",
+        "rect": {
+          "bottom": 655.03125,
+          "height": 215.984375,
+          "left": 613.546875,
+          "right": 786.34375,
+          "top": 439.046875,
+          "width": 172.796875,
+          "x": 613.546875,
+          "y": 439.046875
+        },
+        "src": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png"
+      },
+      "initial": {
+        "case": "natural",
+        "checkpointNull": true,
+        "reservationNull": true
+      },
+      "ms": 277086.2000000179,
+      "name": "感染护工",
+      "reason": "native-keydown",
+      "resources": [],
+      "serial": 18,
+      "stage": "完好",
+      "successes": 6,
+      "time": "2026-11-01T08:01:32.085Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+      "viewport": {
+        "clientWidth": 1920,
+        "dpr": 1,
+        "height": 1080,
+        "scrollHeight": 1080,
+        "scrollWidth": 1920,
+        "visualScale": 1,
+        "width": 1920
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+    "name": "02-orderly-native-defense",
+    "capturedUTC": "2026-11-01T08:01:32.250Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 37.984375,
+            "right": 93.984375,
+            "top": 676.734375,
+            "width": 56,
+            "x": 37.984375,
+            "y": 676.734375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 97.171875,
+            "right": 137.171875,
+            "top": 676.734375,
+            "width": 40,
+            "x": 97.171875,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 143.5625,
+            "right": 244.5625,
+            "top": 676.734375,
+            "width": 101,
+            "x": 143.5625,
+            "y": 676.734375
+          },
+          "text": "金属管攻击资源 30 → 29"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 247.75,
+            "right": 287.75,
+            "top": 676.734375,
+            "width": 40,
+            "x": 247.75,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 294.140625,
+            "right": 435.5625,
+            "top": 676.734375,
+            "width": 141.421875,
+            "x": 294.140625,
+            "y": 676.734375
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 438.75,
+            "right": 478.75,
+            "top": 676.734375,
+            "width": 40,
+            "x": 438.75,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 485.140625,
+            "right": 541.140625,
+            "top": 676.734375,
+            "width": 56,
+            "x": 485.140625,
+            "y": 676.734375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 544.328125,
+            "right": 584.328125,
+            "top": 676.734375,
+            "width": 40,
+            "x": 544.328125,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 590.71875,
+            "right": 684.5625,
+            "top": 676.734375,
+            "width": 93.84375,
+            "x": 590.71875,
+            "y": 676.734375
+          },
+          "text": "蓄力打击资源 30 → 27"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 687.75,
+            "right": 727.75,
+            "top": 676.734375,
+            "width": 40,
+            "x": 687.75,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 6,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": "防御已执行"
+      },
+      "cues": 1,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BUTTON",
+        "text": "防御"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 764.640625,
+          "height": 620.8125,
+          "left": 29.796875,
+          "right": 1544.609375,
+          "top": 143.828125,
+          "width": 1514.8125,
+          "x": 29.796875,
+          "y": 143.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 738.8125,
+          "height": 70.265625,
+          "left": 29.796875,
+          "right": 1544.609375,
+          "top": 668.546875,
+          "width": 1514.8125,
+          "x": 29.796875,
+          "y": 668.546875
+        },
+        ".iw-battle-figures": {
+          "bottom": 658.953125,
+          "height": 411.84375,
+          "left": 508.171875,
+          "right": 1544.59375,
+          "top": 247.109375,
+          "width": 1036.421875,
+          "x": 508.171875,
+          "y": 247.109375
+        },
+        ".iw-committed-feedback": {
+          "bottom": 816.625,
+          "height": 44.796875,
+          "left": 29.796875,
+          "right": 1544.609375,
+          "top": 771.828125,
+          "width": 1514.8125,
+          "x": 29.796875,
+          "y": 771.828125
+        },
+        ".iw-enemy-art-frame": {
+          "bottom": 656.953125,
+          "height": 240,
+          "left": 613.640625,
+          "right": 805.640625,
+          "top": 416.953125,
+          "width": 192,
+          "x": 613.640625,
+          "y": 416.953125
+        },
+        ".iw-feed": {
+          "bottom": 1071.203125,
+          "height": 192,
+          "left": 8.796875,
+          "right": 1565.609375,
+          "top": 879.203125,
+          "width": 1556.8125,
+          "x": 8.796875,
+          "y": 879.203125
+        },
+        ".iw-game": {
+          "bottom": 1080,
+          "height": 1080,
+          "left": 0,
+          "right": 1920,
+          "top": 0,
+          "width": 1920,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": {
+        "alpha128Rect": {
+          "height": 186.45526123046875,
+          "width": 99.05445861816406,
+          "x": 653.0336608886719,
+          "y": 459.1266723632813
+        },
+        "complete": true,
+        "natural": [
+          1024,
+          1280
+        ],
+        "pointerEvents": "none",
+        "rect": {
+          "bottom": 655.03125,
+          "height": 215.984375,
+          "left": 613.546875,
+          "right": 786.34375,
+          "top": 439.046875,
+          "width": 172.796875,
+          "x": 613.546875,
+          "y": 439.046875
+        },
+        "src": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png"
+      },
+      "initial": {
+        "case": "natural",
+        "checkpointNull": true,
+        "reservationNull": true
+      },
+      "ms": 277261.10000002384,
+      "name": "感染护工",
+      "reason": "product-DOM-frame",
+      "resources": [],
+      "serial": 19,
+      "stage": "完好",
+      "successes": 6,
+      "time": "2026-11-01T08:01:32.260Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+      "viewport": {
+        "clientWidth": 1920,
+        "dpr": 1,
+        "height": 1080,
+        "scrollHeight": 1080,
+        "scrollWidth": 1920,
+        "visualScale": 1,
+        "width": 1920
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+    "name": "03-orderly-1920-ready",
+    "capturedUTC": "2026-11-01T08:02:00.724Z",
+    "screenshot": {
+      "file": "03-orderly-1920-ready.jpg",
+      "bytes": 182118,
+      "sha256": "58ae9102b14df95487caa6128684b6af607b1c93499b9d2909c66d41b45db072",
+      "rawAPIJPEG": true
+    }
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 37.984375,
+            "right": 93.984375,
+            "top": 676.734375,
+            "width": 56,
+            "x": 37.984375,
+            "y": 676.734375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 97.171875,
+            "right": 137.171875,
+            "top": 676.734375,
+            "width": 40,
+            "x": 97.171875,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 143.5625,
+            "right": 244.5625,
+            "top": 676.734375,
+            "width": 101,
+            "x": 143.5625,
+            "y": 676.734375
+          },
+          "text": "金属管攻击资源 29 → 28"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 247.75,
+            "right": 287.75,
+            "top": 676.734375,
+            "width": 40,
+            "x": 247.75,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 294.140625,
+            "right": 435.5625,
+            "top": 676.734375,
+            "width": 141.421875,
+            "x": 294.140625,
+            "y": 676.734375
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 438.75,
+            "right": 478.75,
+            "top": 676.734375,
+            "width": 40,
+            "x": 438.75,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 485.140625,
+            "right": 541.140625,
+            "top": 676.734375,
+            "width": 56,
+            "x": 485.140625,
+            "y": 676.734375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 544.328125,
+            "right": 584.328125,
+            "top": 676.734375,
+            "width": 40,
+            "x": 544.328125,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 590.71875,
+            "right": 684.5625,
+            "top": 676.734375,
+            "width": 93.84375,
+            "x": 590.71875,
+            "y": 676.734375
+          },
+          "text": "蓄力打击资源 29 → 26"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 730.625,
+            "height": 53.890625,
+            "left": 687.75,
+            "right": 727.75,
+            "top": 676.734375,
+            "width": 40,
+            "x": 687.75,
+            "y": 676.734375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 7,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": "攻击已执行"
+      },
+      "cues": 2,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BUTTON",
+        "text": "金属管攻击资源 29 → 28"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 764.640625,
+          "height": 620.8125,
+          "left": 29.796875,
+          "right": 1544.609375,
+          "top": 143.828125,
+          "width": 1514.8125,
+          "x": 29.796875,
+          "y": 143.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 738.8125,
+          "height": 70.265625,
+          "left": 29.796875,
+          "right": 1544.609375,
+          "top": 668.546875,
+          "width": 1514.8125,
+          "x": 29.796875,
+          "y": 668.546875
+        },
+        ".iw-battle-figures": {
+          "bottom": 658.953125,
+          "height": 411.84375,
+          "left": 508.171875,
+          "right": 1544.59375,
+          "top": 247.109375,
+          "width": 1036.421875,
+          "x": 508.171875,
+          "y": 247.109375
+        },
+        ".iw-committed-feedback": {
+          "bottom": 816.625,
+          "height": 44.796875,
+          "left": 29.796875,
+          "right": 1544.609375,
+          "top": 771.828125,
+          "width": 1514.8125,
+          "x": 29.796875,
+          "y": 771.828125
+        },
+        ".iw-enemy-art-frame": {
+          "bottom": 656.953125,
+          "height": 240,
+          "left": 613.640625,
+          "right": 805.640625,
+          "top": 416.953125,
+          "width": 192,
+          "x": 613.640625,
+          "y": 416.953125
+        },
+        ".iw-feed": {
+          "bottom": 1071.203125,
+          "height": 192,
+          "left": 8.796875,
+          "right": 1565.609375,
+          "top": 879.203125,
+          "width": 1556.8125,
+          "x": 8.796875,
+          "y": 879.203125
+        },
+        ".iw-game": {
+          "bottom": 1080,
+          "height": 1080,
+          "left": 0,
+          "right": 1920,
+          "top": 0,
+          "width": 1920,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": {
+        "alpha128Rect": {
+          "height": 173.63118896484377,
+          "width": 92.13583374023438,
+          "x": 673.6960601806641,
+          "y": 465.11326904296874
+        },
+        "complete": true,
+        "natural": [
+          1024,
+          1280
+        ],
+        "pointerEvents": "none",
+        "rect": {
+          "bottom": 648.53125,
+          "height": 215.984375,
+          "left": 628.640625,
+          "right": 801.4375,
+          "top": 432.546875,
+          "width": 172.796875,
+          "x": 628.640625,
+          "y": 432.546875
+        },
+        "src": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_wounded_v02.png"
+      },
+      "initial": {
+        "case": "natural",
+        "checkpointNull": true,
+        "reservationNull": true
+      },
+      "ms": 307024.8000000119,
+      "name": "感染护工",
+      "reason": "product-DOM-frame",
+      "resources": [],
+      "serial": 21,
+      "stage": "受伤",
+      "successes": 7,
+      "time": "2026-11-01T08:02:02.023Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+      "viewport": {
+        "clientWidth": 1920,
+        "dpr": 1,
+        "height": 1080,
+        "scrollHeight": 1080,
+        "scrollWidth": 1920,
+        "visualScale": 1,
+        "width": 1920
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+    "name": "04-orderly-native-stage-change",
+    "capturedUTC": "2026-11-01T08:02:02.102Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 478.3125,
+            "height": 53.890625,
+            "left": 33.984375,
+            "right": 89.984375,
+            "top": 424.421875,
+            "width": 56,
+            "x": 33.984375,
+            "y": 424.421875
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 478.3125,
+            "height": 53.890625,
+            "left": 93.171875,
+            "right": 133.171875,
+            "top": 424.421875,
+            "width": 40,
+            "x": 93.171875,
+            "y": 424.421875
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 478.3125,
+            "height": 53.890625,
+            "left": 139.5625,
+            "right": 240.5625,
+            "top": 424.421875,
+            "width": 101,
+            "x": 139.5625,
+            "y": 424.421875
+          },
+          "text": "金属管攻击资源 29 → 28"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 478.3125,
+            "height": 53.890625,
+            "left": 243.75,
+            "right": 283.75,
+            "top": 424.421875,
+            "width": 40,
+            "x": 243.75,
+            "y": 424.421875
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 478.3125,
+            "height": 53.890625,
+            "left": 290.140625,
+            "right": 431.5625,
+            "top": 424.421875,
+            "width": 141.421875,
+            "x": 290.140625,
+            "y": 424.421875
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 478.3125,
+            "height": 53.890625,
+            "left": 434.75,
+            "right": 474.75,
+            "top": 424.421875,
+            "width": 40,
+            "x": 434.75,
+            "y": 424.421875
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 478.3125,
+            "height": 53.890625,
+            "left": 481.140625,
+            "right": 537.140625,
+            "top": 424.421875,
+            "width": 56,
+            "x": 481.140625,
+            "y": 424.421875
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 478.3125,
+            "height": 53.890625,
+            "left": 540.328125,
+            "right": 580.328125,
+            "top": 424.421875,
+            "width": 40,
+            "x": 540.328125,
+            "y": 424.421875
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 478.3125,
+            "height": 53.890625,
+            "left": 586.71875,
+            "right": 680.5625,
+            "top": 424.421875,
+            "width": 93.84375,
+            "x": 586.71875,
+            "y": 424.421875
+          },
+          "text": "蓄力打击资源 29 → 26"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 478.3125,
+            "height": 53.890625,
+            "left": 683.75,
+            "right": 723.75,
+            "top": 424.421875,
+            "width": 40,
+            "x": 683.75,
+            "y": 424.421875
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 7,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": "攻击已执行"
+      },
+      "cues": 2,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BUTTON",
+        "text": "金属管攻击资源 29 → 28"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 512.328125,
+          "height": 372.5,
+          "left": 25.796875,
+          "right": 1026.609375,
+          "top": 139.828125,
+          "width": 1000.8125,
+          "x": 25.796875,
+          "y": 139.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 486.5,
+          "height": 70.265625,
+          "left": 25.796875,
+          "right": 1026.609375,
+          "top": 416.234375,
+          "width": 1000.8125,
+          "x": 25.796875,
+          "y": 416.234375
+        },
+        ".iw-battle-figures": {
+          "bottom": 406.640625,
+          "height": 165.359375,
+          "left": 344.65625,
+          "right": 1026.609375,
+          "top": 241.28125,
+          "width": 681.953125,
+          "x": 344.65625,
+          "y": 241.28125
+        },
+        ".iw-committed-feedback": {
+          "bottom": 564.3125,
+          "height": 44.796875,
+          "left": 25.796875,
+          "right": 1026.609375,
+          "top": 519.515625,
+          "width": 1000.8125,
+          "x": 25.796875,
+          "y": 519.515625
+        },
+        ".iw-enemy-art-frame": {
+          "bottom": 404.640625,
+          "height": 163.359375,
+          "left": 401.265625,
+          "right": 531.953125,
+          "top": 241.28125,
+          "width": 130.6875,
+          "x": 401.265625,
+          "y": 241.28125
+        },
+        ".iw-feed": {
+          "bottom": 759.203125,
+          "height": 136.3125,
+          "left": 8.796875,
+          "right": 1043.609375,
+          "top": 622.890625,
+          "width": 1034.8125,
+          "x": 8.796875,
+          "y": 622.890625
+        },
+        ".iw-game": {
+          "bottom": 768,
+          "height": 768,
+          "left": 0,
+          "right": 1366,
+          "top": 0,
+          "width": 1366,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": {
+        "alpha128Rect": {
+          "height": 118.17421875,
+          "width": 62.709686279296875,
+          "x": 442.1344757080078,
+          "y": 274.05546875
+        },
+        "complete": true,
+        "natural": [
+          1024,
+          1280
+        ],
+        "pointerEvents": "none",
+        "rect": {
+          "bottom": 398.890625,
+          "height": 147,
+          "left": 411.46875,
+          "right": 529.078125,
+          "top": 251.890625,
+          "width": 117.609375,
+          "x": 411.46875,
+          "y": 251.890625
+        },
+        "src": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_wounded_v02.png"
+      },
+      "initial": {
+        "case": "natural",
+        "checkpointNull": true,
+        "reservationNull": true
+      },
+      "ms": 428085.5,
+      "name": "感染护工",
+      "reason": "native-resize",
+      "resources": [],
+      "serial": 22,
+      "stage": "受伤",
+      "successes": 7,
+      "time": "2026-11-01T08:04:03.083Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+      "viewport": {
+        "clientWidth": 1366,
+        "dpr": 1,
+        "height": 768,
+        "scrollHeight": 768,
+        "scrollWidth": 1366,
+        "visualScale": 1,
+        "width": 1366
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+    "name": "05-orderly-1366-wounded",
+    "capturedUTC": "2026-11-01T08:04:16.638Z",
+    "screenshot": {
+      "file": "05-orderly-1366-wounded.jpg",
+      "bytes": 124802,
+      "sha256": "826b4162aba20853b3017114a8e94a62e177bc1ab032cc8a7f12d58c97f23eea",
+      "rawAPIJPEG": true
+    }
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 33.984375,
+            "right": 89.984375,
+            "top": 387.9375,
+            "width": 56,
+            "x": 33.984375,
+            "y": 387.9375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 93.171875,
+            "right": 133.171875,
+            "top": 387.9375,
+            "width": 40,
+            "x": 93.171875,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 139.5625,
+            "right": 240.5625,
+            "top": 387.9375,
+            "width": 101,
+            "x": 139.5625,
+            "y": 387.9375
+          },
+          "text": "金属管攻击资源 29 → 28"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 243.75,
+            "right": 283.75,
+            "top": 387.9375,
+            "width": 40,
+            "x": 243.75,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 290.140625,
+            "right": 431.5625,
+            "top": 387.9375,
+            "width": 141.421875,
+            "x": 290.140625,
+            "y": 387.9375
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 434.75,
+            "right": 474.75,
+            "top": 387.9375,
+            "width": 40,
+            "x": 434.75,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 481.140625,
+            "right": 537.140625,
+            "top": 387.9375,
+            "width": 56,
+            "x": 481.140625,
+            "y": 387.9375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 540.328125,
+            "right": 580.328125,
+            "top": 387.9375,
+            "width": 40,
+            "x": 540.328125,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 586.71875,
+            "right": 680.5625,
+            "top": 387.9375,
+            "width": 93.84375,
+            "x": 586.71875,
+            "y": 387.9375
+          },
+          "text": "蓄力打击资源 29 → 26"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 683.75,
+            "right": 723.75,
+            "top": 387.9375,
+            "width": 40,
+            "x": 683.75,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 7,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": "攻击已执行"
+      },
+      "cues": 2,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BUTTON",
+        "text": "金属管攻击资源 29 → 28"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 475.84375,
+          "height": 336.015625,
+          "left": 25.796875,
+          "right": 940.609375,
+          "top": 139.828125,
+          "width": 914.8125,
+          "x": 25.796875,
+          "y": 139.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 450.015625,
+          "height": 70.265625,
+          "left": 25.796875,
+          "right": 940.609375,
+          "top": 379.75,
+          "width": 914.8125,
+          "x": 25.796875,
+          "y": 379.75
+        },
+        ".iw-battle-figures": {
+          "bottom": 370.15625,
+          "height": 131.65625,
+          "left": 317.96875,
+          "right": 940.59375,
+          "top": 238.5,
+          "width": 622.625,
+          "x": 317.96875,
+          "y": 238.5
+        },
+        ".iw-committed-feedback": {
+          "bottom": 527.828125,
+          "height": 44.796875,
+          "left": 25.796875,
+          "right": 940.609375,
+          "top": 483.03125,
+          "width": 914.8125,
+          "x": 25.796875,
+          "y": 483.03125
+        },
+        ".iw-enemy-art-frame": {
+          "bottom": 368.15625,
+          "height": 129.640625,
+          "left": 369.1875,
+          "right": 472.90625,
+          "top": 238.515625,
+          "width": 103.71875,
+          "x": 369.1875,
+          "y": 238.515625
+        },
+        ".iw-feed": {
+          "bottom": 711.203125,
+          "height": 124.796875,
+          "left": 8.796875,
+          "right": 957.609375,
+          "top": 586.40625,
+          "width": 948.8125,
+          "x": 8.796875,
+          "y": 586.40625
+        },
+        ".iw-game": {
+          "bottom": 720,
+          "height": 720,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": {
+        "alpha128Rect": {
+          "height": 93.79324951171876,
+          "width": 49.77117919921875,
+          "x": 401.6199035644531,
+          "y": 264.52943115234376
+        },
+        "complete": true,
+        "natural": [
+          1024,
+          1280
+        ],
+        "pointerEvents": "none",
+        "rect": {
+          "bottom": 363.609375,
+          "height": 116.671875,
+          "left": 377.28125,
+          "right": 470.625,
+          "top": 246.9375,
+          "width": 93.34375,
+          "x": 377.28125,
+          "y": 246.9375
+        },
+        "src": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_wounded_v02.png"
+      },
+      "initial": {
+        "case": "natural",
+        "checkpointNull": true,
+        "reservationNull": true
+      },
+      "ms": 443448.4000000059,
+      "name": "感染护工",
+      "reason": "native-resize",
+      "resources": [],
+      "serial": 23,
+      "stage": "受伤",
+      "successes": 7,
+      "time": "2026-11-01T08:04:18.446Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+      "viewport": {
+        "clientWidth": 1280,
+        "dpr": 1,
+        "height": 720,
+        "scrollHeight": 720,
+        "scrollWidth": 1280,
+        "visualScale": 1,
+        "width": 1280
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+    "name": "06-orderly-1280-wounded",
+    "capturedUTC": "2026-11-01T08:04:22.933Z",
+    "screenshot": {
+      "file": "06-orderly-1280-wounded.jpg",
+      "bytes": 113226,
+      "sha256": "9ccf6f308592aa8fd31348245bff0ae67919766a8bbe656ab470eb5556ee7f73",
+      "rawAPIJPEG": true
+    }
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 33.984375,
+            "right": 89.984375,
+            "top": 387.9375,
+            "width": 56,
+            "x": 33.984375,
+            "y": 387.9375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 93.171875,
+            "right": 133.171875,
+            "top": 387.9375,
+            "width": 40,
+            "x": 93.171875,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 139.5625,
+            "right": 240.5625,
+            "top": 387.9375,
+            "width": 101,
+            "x": 139.5625,
+            "y": 387.9375
+          },
+          "text": "金属管攻击资源 29 → 28"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 243.75,
+            "right": 283.75,
+            "top": 387.9375,
+            "width": 40,
+            "x": 243.75,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 290.140625,
+            "right": 431.5625,
+            "top": 387.9375,
+            "width": 141.421875,
+            "x": 290.140625,
+            "y": 387.9375
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 434.75,
+            "right": 474.75,
+            "top": 387.9375,
+            "width": 40,
+            "x": 434.75,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 481.140625,
+            "right": 537.140625,
+            "top": 387.9375,
+            "width": 56,
+            "x": 481.140625,
+            "y": 387.9375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 540.328125,
+            "right": 580.328125,
+            "top": 387.9375,
+            "width": 40,
+            "x": 540.328125,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 586.71875,
+            "right": 680.5625,
+            "top": 387.9375,
+            "width": 93.84375,
+            "x": 586.71875,
+            "y": 387.9375
+          },
+          "text": "蓄力打击资源 29 → 26"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 683.75,
+            "right": 723.75,
+            "top": 387.9375,
+            "width": 40,
+            "x": 683.75,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 0,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": ""
+      },
+      "cues": 0,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BODY",
+        "text": "\n    电梯求生DEV · 封闭首玩任务进度第 1 日战斗生命5 / 12精力90 / 100饱食6 / 6未达病程损"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 475.84375,
+          "height": 336.015625,
+          "left": 25.796875,
+          "right": 940.609375,
+          "top": 139.828125,
+          "width": 914.8125,
+          "x": 25.796875,
+          "y": 139.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 450.015625,
+          "height": 70.265625,
+          "left": 25.796875,
+          "right": 940.609375,
+          "top": 379.75,
+          "width": 914.8125,
+          "x": 25.796875,
+          "y": 379.75
+        },
+        ".iw-battle-figures": {
+          "bottom": 370.15625,
+          "height": 131.65625,
+          "left": 317.96875,
+          "right": 940.59375,
+          "top": 238.5,
+          "width": 622.625,
+          "x": 317.96875,
+          "y": 238.5
+        },
+        ".iw-committed-feedback": {
+          "bottom": 527.828125,
+          "height": 44.796875,
+          "left": 25.796875,
+          "right": 940.609375,
+          "top": 483.03125,
+          "width": 914.8125,
+          "x": 25.796875,
+          "y": 483.03125
+        },
+        ".iw-enemy-art-frame": {
+          "bottom": 368.15625,
+          "height": 129.640625,
+          "left": 369.1875,
+          "right": 472.90625,
+          "top": 238.515625,
+          "width": 103.71875,
+          "x": 369.1875,
+          "y": 238.515625
+        },
+        ".iw-feed": {
+          "bottom": 711.203125,
+          "height": 124.796875,
+          "left": 8.796875,
+          "right": 957.609375,
+          "top": 586.40625,
+          "width": 948.8125,
+          "x": 8.796875,
+          "y": 586.40625
+        },
+        ".iw-game": {
+          "bottom": 720,
+          "height": 720,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": {
+        "alpha128Rect": {
+          "height": 93.79324951171876,
+          "width": 49.77117919921875,
+          "x": 401.6199035644531,
+          "y": 264.52943115234376
+        },
+        "complete": true,
+        "natural": [
+          1024,
+          1280
+        ],
+        "pointerEvents": "none",
+        "rect": {
+          "bottom": 363.609375,
+          "height": 116.671875,
+          "left": 377.28125,
+          "right": 470.625,
+          "top": 246.9375,
+          "width": 93.34375,
+          "x": 377.28125,
+          "y": 246.9375
+        },
+        "src": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_wounded_v02.png"
+      },
+      "initial": {
+        "case": "natural",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 2869.199999988079,
+      "name": "感染护工",
+      "reason": "product-DOM-frame",
+      "resources": [],
+      "serial": 5,
+      "stage": "受伤",
+      "successes": 0,
+      "time": "2026-11-01T08:05:00.504Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+      "viewport": {
+        "clientWidth": 1280,
+        "dpr": 1,
+        "height": 720,
+        "scrollHeight": 720,
+        "scrollWidth": 1280,
+        "visualScale": 1,
+        "width": 1280
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+    "name": "07-orderly-cold-restore",
+    "capturedUTC": "2026-11-01T08:05:04.516Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [],
+      "attempts": 1,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": "退却行动已执行"
+      },
+      "cues": 1,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BODY",
+        "text": "\n    电梯求生DEV · 封闭首玩任务进度第 1 日探索生命5 / 12精力78 / 100饱食6 / 6未达病程损"
+      },
+      "geometry": {
+        ".iw-battle": null,
+        ".iw-battle-actions": null,
+        ".iw-battle-figures": null,
+        ".iw-committed-feedback": {
+          "bottom": 468.625,
+          "height": 44.796875,
+          "left": 25.796875,
+          "right": 940.609375,
+          "top": 423.828125,
+          "width": 914.8125,
+          "x": 25.796875,
+          "y": 423.828125
+        },
+        ".iw-enemy-art-frame": null,
+        ".iw-feed": {
+          "bottom": 711.203125,
+          "height": 184,
+          "left": 8.796875,
+          "right": 957.609375,
+          "top": 527.203125,
+          "width": 948.8125,
+          "x": 8.796875,
+          "y": 527.203125
+        },
+        ".iw-game": {
+          "bottom": 720,
+          "height": 720,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": null,
+      "initial": {
+        "case": "natural",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 7283,
+      "name": null,
+      "reason": "product-DOM-frame",
+      "resources": [],
+      "serial": 7,
+      "stage": null,
+      "successes": 1,
+      "time": "2026-11-01T08:05:04.918Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+      "viewport": {
+        "clientWidth": 1280,
+        "dpr": 1,
+        "height": 720,
+        "scrollHeight": 720,
+        "scrollWidth": 1280,
+        "visualScale": 1,
+        "width": 1280
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+    "name": "08-orderly-native-retreat",
+    "capturedUTC": "2026-11-01T08:05:07.560Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 37.984375,
+            "right": 93.984375,
+            "top": 520.734375,
+            "width": 56,
+            "x": 37.984375,
+            "y": 520.734375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 97.171875,
+            "right": 137.171875,
+            "top": 520.734375,
+            "width": 40,
+            "x": 97.171875,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 143.5625,
+            "right": 244.5625,
+            "top": 520.734375,
+            "width": 101,
+            "x": 143.5625,
+            "y": 520.734375
+          },
+          "text": "金属管攻击资源 30 → 29"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 247.75,
+            "right": 287.75,
+            "top": 520.734375,
+            "width": 40,
+            "x": 247.75,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 294.140625,
+            "right": 350.140625,
+            "top": 520.734375,
+            "width": 56,
+            "x": 294.140625,
+            "y": 520.734375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 353.328125,
+            "right": 393.328125,
+            "top": 520.734375,
+            "width": 40,
+            "x": 353.328125,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 399.71875,
+            "right": 493.5625,
+            "top": 520.734375,
+            "width": 93.84375,
+            "x": 399.71875,
+            "y": 520.734375
+          },
+          "text": "蓄力打击资源 30 → 27"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 496.75,
+            "right": 536.75,
+            "top": 520.734375,
+            "width": 40,
+            "x": 496.75,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 1,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": ""
+      },
+      "cues": 0,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BODY",
+        "text": "\n    电梯求生DEV · 封闭首玩任务进度第 1 日战斗生命12 / 12精力76 / 100饱食6 / 6未达病程"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 608.640625,
+          "height": 464.8125,
+          "left": 29.796875,
+          "right": 1224.609375,
+          "top": 143.828125,
+          "width": 1194.8125,
+          "x": 29.796875,
+          "y": 143.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 582.8125,
+          "height": 70.265625,
+          "left": 29.796875,
+          "right": 1224.609375,
+          "top": 512.546875,
+          "width": 1194.8125,
+          "x": 29.796875,
+          "y": 512.546875
+        },
+        ".iw-battle-figures": {
+          "bottom": 502.953125,
+          "height": 255.84375,
+          "left": 408.875,
+          "right": 1224.59375,
+          "top": 247.109375,
+          "width": 815.71875,
+          "x": 408.875,
+          "y": 247.109375
+        },
+        ".iw-committed-feedback": {
+          "bottom": 660.625,
+          "height": 44.796875,
+          "left": 29.796875,
+          "right": 1224.609375,
+          "top": 615.828125,
+          "width": 1194.8125,
+          "x": 29.796875,
+          "y": 615.828125
+        },
+        ".iw-enemy-art-frame": null,
+        ".iw-feed": {
+          "bottom": 891.203125,
+          "height": 168,
+          "left": 8.796875,
+          "right": 1245.609375,
+          "top": 723.203125,
+          "width": 1236.8125,
+          "x": 8.796875,
+          "y": 723.203125
+        },
+        ".iw-game": {
+          "bottom": 900,
+          "height": 900,
+          "left": 0,
+          "right": 1600,
+          "top": 0,
+          "width": 1600,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": null,
+      "initial": {
+        "case": "porter-entry",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 44395.79999998212,
+      "name": "感染装卸工",
+      "reason": "native-click",
+      "resources": [],
+      "serial": 4,
+      "stage": "完好",
+      "successes": 1,
+      "time": "2026-11-01T08:20:28.084Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=porter-entry",
+      "viewport": {
+        "clientWidth": 1600,
+        "dpr": 1,
+        "height": 900,
+        "scrollHeight": 900,
+        "scrollWidth": 1600,
+        "visualScale": 1,
+        "width": 1600
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=porter-entry",
+    "name": "09-porter-pending-entry",
+    "capturedUTC": "2026-11-01T08:20:28.288Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 37.984375,
+            "right": 93.984375,
+            "top": 520.734375,
+            "width": 56,
+            "x": 37.984375,
+            "y": 520.734375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 97.171875,
+            "right": 137.171875,
+            "top": 520.734375,
+            "width": 40,
+            "x": 97.171875,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 143.5625,
+            "right": 244.5625,
+            "top": 520.734375,
+            "width": 101,
+            "x": 143.5625,
+            "y": 520.734375
+          },
+          "text": "金属管攻击资源 30 → 29"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 247.75,
+            "right": 287.75,
+            "top": 520.734375,
+            "width": 40,
+            "x": 247.75,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 294.140625,
+            "right": 435.5625,
+            "top": 520.734375,
+            "width": 141.421875,
+            "x": 294.140625,
+            "y": 520.734375
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 438.75,
+            "right": 478.75,
+            "top": 520.734375,
+            "width": 40,
+            "x": 438.75,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 485.140625,
+            "right": 541.140625,
+            "top": 520.734375,
+            "width": 56,
+            "x": 485.140625,
+            "y": 520.734375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 544.328125,
+            "right": 584.328125,
+            "top": 520.734375,
+            "width": 40,
+            "x": 544.328125,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 590.71875,
+            "right": 684.5625,
+            "top": 520.734375,
+            "width": 93.84375,
+            "x": 590.71875,
+            "y": 520.734375
+          },
+          "text": "蓄力打击资源 30 → 27"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 687.75,
+            "right": 727.75,
+            "top": 520.734375,
+            "width": 40,
+            "x": 687.75,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 2,
+      "cue": {
+        "class": "iw-committed-cue iw-committed-cue--active",
+        "text": "防御已执行"
+      },
+      "cues": 1,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BUTTON",
+        "text": "防御"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 608.640625,
+          "height": 464.8125,
+          "left": 29.796875,
+          "right": 1224.609375,
+          "top": 143.828125,
+          "width": 1194.8125,
+          "x": 29.796875,
+          "y": 143.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 582.8125,
+          "height": 70.265625,
+          "left": 29.796875,
+          "right": 1224.609375,
+          "top": 512.546875,
+          "width": 1194.8125,
+          "x": 29.796875,
+          "y": 512.546875
+        },
+        ".iw-battle-figures": {
+          "bottom": 502.953125,
+          "height": 255.84375,
+          "left": 408.875,
+          "right": 1224.59375,
+          "top": 247.109375,
+          "width": 815.71875,
+          "x": 408.875,
+          "y": 247.109375
+        },
+        ".iw-committed-feedback": {
+          "bottom": 660.625,
+          "height": 44.796875,
+          "left": 29.796875,
+          "right": 1224.609375,
+          "top": 615.828125,
+          "width": 1194.8125,
+          "x": 29.796875,
+          "y": 615.828125
+        },
+        ".iw-enemy-art-frame": null,
+        ".iw-feed": {
+          "bottom": 891.203125,
+          "height": 168,
+          "left": 8.796875,
+          "right": 1245.609375,
+          "top": 723.203125,
+          "width": 1236.8125,
+          "x": 8.796875,
+          "y": 723.203125
+        },
+        ".iw-game": {
+          "bottom": 900,
+          "height": 900,
+          "left": 0,
+          "right": 1600,
+          "top": 0,
+          "width": 1600,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": null,
+      "initial": {
+        "case": "porter-entry",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 44678.69999998808,
+      "name": "感染装卸工",
+      "reason": "native-keydown",
+      "resources": [],
+      "serial": 5,
+      "stage": "完好",
+      "successes": 2,
+      "time": "2026-11-01T08:20:28.367Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=porter-entry",
+      "viewport": {
+        "clientWidth": 1600,
+        "dpr": 1,
+        "height": 900,
+        "scrollHeight": 900,
+        "scrollWidth": 1600,
+        "visualScale": 1,
+        "width": 1600
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=porter-entry",
+    "name": "10-porter-pending-action",
+    "capturedUTC": "2026-11-01T08:20:28.546Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 37.984375,
+            "right": 93.984375,
+            "top": 520.734375,
+            "width": 56,
+            "x": 37.984375,
+            "y": 520.734375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 97.171875,
+            "right": 137.171875,
+            "top": 520.734375,
+            "width": 40,
+            "x": 97.171875,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 143.5625,
+            "right": 244.5625,
+            "top": 520.734375,
+            "width": 101,
+            "x": 143.5625,
+            "y": 520.734375
+          },
+          "text": "金属管攻击资源 30 → 29"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 247.75,
+            "right": 287.75,
+            "top": 520.734375,
+            "width": 40,
+            "x": 247.75,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 294.140625,
+            "right": 435.5625,
+            "top": 520.734375,
+            "width": 141.421875,
+            "x": 294.140625,
+            "y": 520.734375
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 438.75,
+            "right": 478.75,
+            "top": 520.734375,
+            "width": 40,
+            "x": 438.75,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 485.140625,
+            "right": 541.140625,
+            "top": 520.734375,
+            "width": 56,
+            "x": 485.140625,
+            "y": 520.734375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 544.328125,
+            "right": 584.328125,
+            "top": 520.734375,
+            "width": 40,
+            "x": 544.328125,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 590.71875,
+            "right": 684.5625,
+            "top": 520.734375,
+            "width": 93.84375,
+            "x": 590.71875,
+            "y": 520.734375
+          },
+          "text": "蓄力打击资源 30 → 27"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 687.75,
+            "right": 727.75,
+            "top": 520.734375,
+            "width": 40,
+            "x": 687.75,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 2,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": "防御已执行"
+      },
+      "cues": 1,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BUTTON",
+        "text": "防御"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 608.640625,
+          "height": 464.8125,
+          "left": 29.796875,
+          "right": 1224.609375,
+          "top": 143.828125,
+          "width": 1194.8125,
+          "x": 29.796875,
+          "y": 143.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 582.8125,
+          "height": 70.265625,
+          "left": 29.796875,
+          "right": 1224.609375,
+          "top": 512.546875,
+          "width": 1194.8125,
+          "x": 29.796875,
+          "y": 512.546875
+        },
+        ".iw-battle-figures": {
+          "bottom": 502.953125,
+          "height": 255.84375,
+          "left": 408.875,
+          "right": 1224.59375,
+          "top": 247.109375,
+          "width": 815.71875,
+          "x": 408.875,
+          "y": 247.109375
+        },
+        ".iw-committed-feedback": {
+          "bottom": 660.625,
+          "height": 44.796875,
+          "left": 29.796875,
+          "right": 1224.609375,
+          "top": 615.828125,
+          "width": 1194.8125,
+          "x": 29.796875,
+          "y": 615.828125
+        },
+        ".iw-enemy-art-frame": null,
+        ".iw-feed": {
+          "bottom": 891.203125,
+          "height": 168,
+          "left": 8.796875,
+          "right": 1245.609375,
+          "top": 723.203125,
+          "width": 1236.8125,
+          "x": 8.796875,
+          "y": 723.203125
+        },
+        ".iw-game": {
+          "bottom": 900,
+          "height": 900,
+          "left": 0,
+          "right": 1600,
+          "top": 0,
+          "width": 1600,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": null,
+      "initial": {
+        "case": "porter-entry",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 44853.09999999404,
+      "name": "感染装卸工",
+      "reason": "product-DOM-frame",
+      "resources": [],
+      "serial": 6,
+      "stage": "完好",
+      "successes": 2,
+      "time": "2026-11-01T08:20:28.541Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=porter-entry",
+      "viewport": {
+        "clientWidth": 1600,
+        "dpr": 1,
+        "height": 900,
+        "scrollHeight": 900,
+        "scrollWidth": 1600,
+        "visualScale": 1,
+        "width": 1600
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=porter-entry",
+    "name": "11-porter-timeout-late-results-stay-neutral",
+    "capturedUTC": "2026-11-01T08:22:09.153Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 37.984375,
+            "right": 93.984375,
+            "top": 520.734375,
+            "width": 56,
+            "x": 37.984375,
+            "y": 520.734375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 97.171875,
+            "right": 137.171875,
+            "top": 520.734375,
+            "width": 40,
+            "x": 97.171875,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 143.5625,
+            "right": 244.5625,
+            "top": 520.734375,
+            "width": 101,
+            "x": 143.5625,
+            "y": 520.734375
+          },
+          "text": "金属管攻击资源 30 → 29"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 247.75,
+            "right": 287.75,
+            "top": 520.734375,
+            "width": 40,
+            "x": 247.75,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 294.140625,
+            "right": 435.5625,
+            "top": 520.734375,
+            "width": 141.421875,
+            "x": 294.140625,
+            "y": 520.734375
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 438.75,
+            "right": 478.75,
+            "top": 520.734375,
+            "width": 40,
+            "x": 438.75,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 485.140625,
+            "right": 541.140625,
+            "top": 520.734375,
+            "width": 56,
+            "x": 485.140625,
+            "y": 520.734375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 544.328125,
+            "right": 584.328125,
+            "top": 520.734375,
+            "width": 40,
+            "x": 544.328125,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 590.71875,
+            "right": 684.5625,
+            "top": 520.734375,
+            "width": 93.84375,
+            "x": 590.71875,
+            "y": 520.734375
+          },
+          "text": "蓄力打击资源 30 → 27"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 574.625,
+            "height": 53.890625,
+            "left": 687.75,
+            "right": 727.75,
+            "top": 520.734375,
+            "width": 40,
+            "x": 687.75,
+            "y": 520.734375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 0,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": ""
+      },
+      "cues": 0,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BODY",
+        "text": "\n    电梯求生DEV · 封闭首玩任务进度第 1 日战斗生命9 / 12精力76 / 100饱食6 / 6未达病程损"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 608.640625,
+          "height": 464.8125,
+          "left": 29.796875,
+          "right": 1224.609375,
+          "top": 143.828125,
+          "width": 1194.8125,
+          "x": 29.796875,
+          "y": 143.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 582.8125,
+          "height": 70.265625,
+          "left": 29.796875,
+          "right": 1224.609375,
+          "top": 512.546875,
+          "width": 1194.8125,
+          "x": 29.796875,
+          "y": 512.546875
+        },
+        ".iw-battle-figures": {
+          "bottom": 502.953125,
+          "height": 255.84375,
+          "left": 408.875,
+          "right": 1224.59375,
+          "top": 247.109375,
+          "width": 815.71875,
+          "x": 408.875,
+          "y": 247.109375
+        },
+        ".iw-committed-feedback": {
+          "bottom": 660.625,
+          "height": 44.796875,
+          "left": 29.796875,
+          "right": 1224.609375,
+          "top": 615.828125,
+          "width": 1194.8125,
+          "x": 29.796875,
+          "y": 615.828125
+        },
+        ".iw-enemy-art-frame": {
+          "bottom": 500.953125,
+          "height": 240,
+          "left": 477.5625,
+          "right": 669.5625,
+          "top": 260.953125,
+          "width": 192,
+          "x": 477.5625,
+          "y": 260.953125
+        },
+        ".iw-feed": {
+          "bottom": 891.203125,
+          "height": 168,
+          "left": 8.796875,
+          "right": 1245.609375,
+          "top": 723.203125,
+          "width": 1236.8125,
+          "x": 8.796875,
+          "y": 723.203125
+        },
+        ".iw-game": {
+          "bottom": 900,
+          "height": 900,
+          "left": 0,
+          "right": 1600,
+          "top": 0,
+          "width": 1600,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": {
+        "alpha128Rect": {
+          "height": 185.15625,
+          "width": 76.5625,
+          "x": 532.40625,
+          "y": 299.875
+        },
+        "complete": true,
+        "natural": [
+          1122,
+          1402
+        ],
+        "pointerEvents": "none",
+        "rect": {
+          "bottom": 500.5,
+          "height": 219.0625,
+          "left": 481.9375,
+          "right": 657.25,
+          "top": 281.4375,
+          "width": 175.3125,
+          "x": 481.9375,
+          "y": 281.4375
+        },
+        "src": "/src/assets/presentation/world-battle-v1/enemy-porter-pristine-v1.png"
+      },
+      "initial": {
+        "case": "natural",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 796.4000000059605,
+      "name": "感染装卸工",
+      "reason": "product-DOM-frame",
+      "resources": [
+        {
+          "decodedBodySize": 908147,
+          "duration": 28.599999994039536,
+          "encodedBodySize": 908147,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-porter-wounded-v1.png",
+          "startTime": 716.5999999940395,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 988486,
+          "duration": 29.30000001192093,
+          "encodedBodySize": 988486,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-porter-pristine-v1.png",
+          "startTime": 716.5999999940395,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 1070058,
+          "duration": 29.700000017881393,
+          "encodedBodySize": 1070058,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-porter-heavy_wounded-v1.png",
+          "startTime": 716.6999999880791,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 943083,
+          "duration": 30,
+          "encodedBodySize": 943083,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-porter-disabled-v1.png",
+          "startTime": 716.6999999880791,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 1234907,
+          "duration": 30.200000017881393,
+          "encodedBodySize": 1234907,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-porter-critical-v1.png",
+          "startTime": 716.6999999880791,
+          "transferSize": 300
+        }
+      ],
+      "serial": 4,
+      "stage": "完好",
+      "successes": 0,
+      "time": "2026-11-01T08:22:09.986Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+      "viewport": {
+        "clientWidth": 1600,
+        "dpr": 1,
+        "height": 900,
+        "scrollHeight": 900,
+        "scrollWidth": 1600,
+        "visualScale": 1,
+        "width": 1600
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+    "name": "12-porter-1600-ready-after-cold-mount",
+    "capturedUTC": "2026-11-01T08:22:10.279Z",
+    "screenshot": {
+      "file": "12-porter-1600-ready-after-cold-mount.jpg",
+      "bytes": 57257,
+      "sha256": "2f94b80fe24e883cdadba4db9fb9aef46d6b844852d460f866c079b010740a1d",
+      "rawAPIJPEG": true
+    }
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 33.984375,
+            "right": 89.984375,
+            "top": 387.9375,
+            "width": 56,
+            "x": 33.984375,
+            "y": 387.9375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 93.171875,
+            "right": 133.171875,
+            "top": 387.9375,
+            "width": 40,
+            "x": 93.171875,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 139.5625,
+            "right": 240.5625,
+            "top": 387.9375,
+            "width": 101,
+            "x": 139.5625,
+            "y": 387.9375
+          },
+          "text": "金属管攻击资源 30 → 29"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 243.75,
+            "right": 283.75,
+            "top": 387.9375,
+            "width": 40,
+            "x": 243.75,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 290.140625,
+            "right": 346.140625,
+            "top": 387.9375,
+            "width": 56,
+            "x": 290.140625,
+            "y": 387.9375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 349.328125,
+            "right": 389.328125,
+            "top": 387.9375,
+            "width": 40,
+            "x": 349.328125,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 395.71875,
+            "right": 489.5625,
+            "top": 387.9375,
+            "width": 93.84375,
+            "x": 395.71875,
+            "y": 387.9375
+          },
+          "text": "蓄力打击资源 30 → 27"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 492.75,
+            "right": 532.75,
+            "top": 387.9375,
+            "width": 40,
+            "x": 492.75,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 0,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": ""
+      },
+      "cues": 0,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BODY",
+        "text": "\n    电梯求生DEV · 封闭首玩任务进度第 1 日战斗生命12 / 12精力74 / 100饱食6 / 6未达病程"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 475.84375,
+          "height": 336.015625,
+          "left": 25.796875,
+          "right": 940.609375,
+          "top": 139.828125,
+          "width": 914.8125,
+          "x": 25.796875,
+          "y": 139.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 450.015625,
+          "height": 70.265625,
+          "left": 25.796875,
+          "right": 940.609375,
+          "top": 379.75,
+          "width": 914.8125,
+          "x": 25.796875,
+          "y": 379.75
+        },
+        ".iw-battle-figures": {
+          "bottom": 370.15625,
+          "height": 131.65625,
+          "left": 317.96875,
+          "right": 940.59375,
+          "top": 238.5,
+          "width": 622.625,
+          "x": 317.96875,
+          "y": 238.5
+        },
+        ".iw-committed-feedback": {
+          "bottom": 527.828125,
+          "height": 44.796875,
+          "left": 25.796875,
+          "right": 940.609375,
+          "top": 483.03125,
+          "width": 914.8125,
+          "x": 25.796875,
+          "y": 483.03125
+        },
+        ".iw-enemy-art-frame": null,
+        ".iw-feed": {
+          "bottom": 711.203125,
+          "height": 124.796875,
+          "left": 8.796875,
+          "right": 957.609375,
+          "top": 586.40625,
+          "width": 948.8125,
+          "x": 8.796875,
+          "y": 586.40625
+        },
+        ".iw-game": {
+          "bottom": 720,
+          "height": 720,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": null,
+      "initial": {
+        "case": "technician",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 711.5999999940395,
+      "name": "感染技术员",
+      "reason": "product-DOM-frame",
+      "resources": [],
+      "serial": 2,
+      "stage": "完好",
+      "successes": 0,
+      "time": "2026-11-01T08:23:21.899Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=technician",
+      "viewport": {
+        "clientWidth": 1280,
+        "dpr": 1,
+        "height": 720,
+        "scrollHeight": 720,
+        "scrollWidth": 1280,
+        "visualScale": 1,
+        "width": 1280
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=technician",
+    "name": "13-technician-native-failure",
+    "capturedUTC": "2026-11-01T08:23:22.192Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 33.984375,
+            "right": 89.984375,
+            "top": 387.9375,
+            "width": 56,
+            "x": 33.984375,
+            "y": 387.9375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 93.171875,
+            "right": 133.171875,
+            "top": 387.9375,
+            "width": 40,
+            "x": 93.171875,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 139.5625,
+            "right": 240.5625,
+            "top": 387.9375,
+            "width": 101,
+            "x": 139.5625,
+            "y": 387.9375
+          },
+          "text": "金属管攻击资源 30 → 29"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 243.75,
+            "right": 283.75,
+            "top": 387.9375,
+            "width": 40,
+            "x": 243.75,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 290.140625,
+            "right": 431.5625,
+            "top": 387.9375,
+            "width": 141.421875,
+            "x": 290.140625,
+            "y": 387.9375
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 434.75,
+            "right": 474.75,
+            "top": 387.9375,
+            "width": 40,
+            "x": 434.75,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 481.140625,
+            "right": 537.140625,
+            "top": 387.9375,
+            "width": 56,
+            "x": 481.140625,
+            "y": 387.9375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 540.328125,
+            "right": 580.328125,
+            "top": 387.9375,
+            "width": 40,
+            "x": 540.328125,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 586.71875,
+            "right": 680.5625,
+            "top": 387.9375,
+            "width": 93.84375,
+            "x": 586.71875,
+            "y": 387.9375
+          },
+          "text": "蓄力打击资源 30 → 27"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 441.828125,
+            "height": 53.890625,
+            "left": 683.75,
+            "right": 723.75,
+            "top": 387.9375,
+            "width": 40,
+            "x": 683.75,
+            "y": 387.9375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 1,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": "防御已执行"
+      },
+      "cues": 1,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BUTTON",
+        "text": "防御"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 475.84375,
+          "height": 336.015625,
+          "left": 25.796875,
+          "right": 940.609375,
+          "top": 139.828125,
+          "width": 914.8125,
+          "x": 25.796875,
+          "y": 139.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 450.015625,
+          "height": 70.265625,
+          "left": 25.796875,
+          "right": 940.609375,
+          "top": 379.75,
+          "width": 914.8125,
+          "x": 25.796875,
+          "y": 379.75
+        },
+        ".iw-battle-figures": {
+          "bottom": 370.15625,
+          "height": 131.65625,
+          "left": 317.96875,
+          "right": 940.59375,
+          "top": 238.5,
+          "width": 622.625,
+          "x": 317.96875,
+          "y": 238.5
+        },
+        ".iw-committed-feedback": {
+          "bottom": 527.828125,
+          "height": 44.796875,
+          "left": 25.796875,
+          "right": 940.609375,
+          "top": 483.03125,
+          "width": 914.8125,
+          "x": 25.796875,
+          "y": 483.03125
+        },
+        ".iw-enemy-art-frame": null,
+        ".iw-feed": {
+          "bottom": 711.203125,
+          "height": 124.796875,
+          "left": 8.796875,
+          "right": 957.609375,
+          "top": 586.40625,
+          "width": 948.8125,
+          "x": 8.796875,
+          "y": 586.40625
+        },
+        ".iw-game": {
+          "bottom": 720,
+          "height": 720,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": null,
+      "initial": {
+        "case": "technician",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 1260.0999999940395,
+      "name": "感染技术员",
+      "reason": "product-DOM-frame",
+      "resources": [
+        {
+          "decodedBodySize": 30,
+          "duration": 14.5,
+          "encodedBodySize": 30,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-technician-pristine-v1.png",
+          "startTime": 711.3000000119209,
+          "transferSize": 330
+        },
+        {
+          "decodedBodySize": 30,
+          "duration": 15.899999976158142,
+          "encodedBodySize": 30,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-technician-wounded-v1.png",
+          "startTime": 711.3000000119209,
+          "transferSize": 330
+        },
+        {
+          "decodedBodySize": 30,
+          "duration": 16.5,
+          "encodedBodySize": 30,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-technician-heavy_wounded-v1.png",
+          "startTime": 711.3000000119209,
+          "transferSize": 330
+        },
+        {
+          "decodedBodySize": 30,
+          "duration": 17.299999982118607,
+          "encodedBodySize": 30,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-technician-critical-v1.png",
+          "startTime": 711.4000000059605,
+          "transferSize": 330
+        },
+        {
+          "decodedBodySize": 30,
+          "duration": 21.19999998807907,
+          "encodedBodySize": 30,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-technician-disabled-v1.png",
+          "startTime": 711.4000000059605,
+          "transferSize": 330
+        }
+      ],
+      "serial": 4,
+      "stage": "完好",
+      "successes": 1,
+      "time": "2026-11-01T08:23:22.448Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=technician",
+      "viewport": {
+        "clientWidth": 1280,
+        "dpr": 1,
+        "height": 720,
+        "scrollHeight": 720,
+        "scrollWidth": 1280,
+        "visualScale": 1,
+        "width": 1280
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=technician",
+    "name": "14-technician-failed-action-1280",
+    "capturedUTC": "2026-11-01T08:23:22.474Z",
+    "screenshot": {
+      "file": "14-technician-failed-action-1280.jpg",
+      "bytes": 35230,
+      "sha256": "5945541d07ce56ec62dd65c430a505fd3f0e83bef73ac807800da35f8c8fb7a3",
+      "rawAPIJPEG": true
+    }
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 33.984375,
+            "right": 89.984375,
+            "top": 524.734375,
+            "width": 56,
+            "x": 33.984375,
+            "y": 524.734375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 93.171875,
+            "right": 133.171875,
+            "top": 524.734375,
+            "width": 40,
+            "x": 93.171875,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 139.5625,
+            "right": 240.5625,
+            "top": 524.734375,
+            "width": 101,
+            "x": 139.5625,
+            "y": 524.734375
+          },
+          "text": "金属管攻击资源 30 → 29"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 243.75,
+            "right": 283.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 243.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 290.140625,
+            "right": 431.5625,
+            "top": 524.734375,
+            "width": 141.421875,
+            "x": 290.140625,
+            "y": 524.734375
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 434.75,
+            "right": 474.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 434.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 481.140625,
+            "right": 537.140625,
+            "top": 524.734375,
+            "width": 56,
+            "x": 481.140625,
+            "y": 524.734375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 540.328125,
+            "right": 580.328125,
+            "top": 524.734375,
+            "width": 40,
+            "x": 540.328125,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 586.71875,
+            "right": 680.5625,
+            "top": 524.734375,
+            "width": 93.84375,
+            "x": 586.71875,
+            "y": 524.734375
+          },
+          "text": "蓄力打击资源 30 → 27"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 683.75,
+            "right": 723.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 683.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 0,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": ""
+      },
+      "cues": 0,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BODY",
+        "text": "\n    电梯求生DEV · 封闭首玩任务进度第 1 日战斗生命11 / 12精力74 / 100饱食6 / 6未达病程"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 612.640625,
+          "height": 472.8125,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 139.828125,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 139.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 586.8125,
+          "height": 70.265625,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 516.546875,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 516.546875
+        },
+        ".iw-battle-figures": {
+          "bottom": 506.953125,
+          "height": 263.84375,
+          "left": 367.625,
+          "right": 1100.609375,
+          "top": 243.109375,
+          "width": 732.984375,
+          "x": 367.625,
+          "y": 243.109375
+        },
+        ".iw-committed-feedback": {
+          "bottom": 664.625,
+          "height": 44.796875,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 619.828125,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 619.828125
+        },
+        ".iw-enemy-art-frame": {
+          "bottom": 504.953125,
+          "height": 240,
+          "left": 422.515625,
+          "right": 614.515625,
+          "top": 264.953125,
+          "width": 192,
+          "x": 422.515625,
+          "y": 264.953125
+        },
+        ".iw-feed": {
+          "bottom": 891.203125,
+          "height": 168,
+          "left": 8.796875,
+          "right": 1117.609375,
+          "top": 723.203125,
+          "width": 1108.8125,
+          "x": 8.796875,
+          "y": 723.203125
+        },
+        ".iw-game": {
+          "bottom": 900,
+          "height": 900,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": {
+        "alpha128Rect": {
+          "height": 202.34375,
+          "width": 78.4375,
+          "x": 476.25,
+          "y": 290.28125
+        },
+        "complete": true,
+        "natural": [
+          1122,
+          1402
+        ],
+        "pointerEvents": "none",
+        "rect": {
+          "bottom": 501.21875,
+          "height": 219.0625,
+          "left": 426.5625,
+          "right": 601.875,
+          "top": 282.15625,
+          "width": 175.3125,
+          "x": 426.5625,
+          "y": 282.15625
+        },
+        "src": "/src/assets/presentation/world-battle-v1/enemy-technician-pristine-v1.png"
+      },
+      "initial": {
+        "case": "natural",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 748.5,
+      "name": "感染技术员",
+      "reason": "product-DOM-frame",
+      "resources": [
+        {
+          "decodedBodySize": 855282,
+          "duration": 34.69999998807907,
+          "encodedBodySize": 855282,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-technician-pristine-v1.png",
+          "startTime": 655.8000000119209,
+          "transferSize": 855582
+        },
+        {
+          "decodedBodySize": 813714,
+          "duration": 34,
+          "encodedBodySize": 813714,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-technician-wounded-v1.png",
+          "startTime": 655.9000000059605,
+          "transferSize": 814014
+        },
+        {
+          "decodedBodySize": 927421,
+          "duration": 46.70000001788139,
+          "encodedBodySize": 927421,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-technician-heavy_wounded-v1.png",
+          "startTime": 655.9000000059605,
+          "transferSize": 927721
+        },
+        {
+          "decodedBodySize": 985621,
+          "duration": 53.900000005960464,
+          "encodedBodySize": 985621,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-technician-critical-v1.png",
+          "startTime": 655.9000000059605,
+          "transferSize": 985921
+        },
+        {
+          "decodedBodySize": 982549,
+          "duration": 78,
+          "encodedBodySize": 982549,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-technician-disabled-v1.png",
+          "startTime": 655.9000000059605,
+          "transferSize": 982849
+        }
+      ],
+      "serial": 3,
+      "stage": "完好",
+      "successes": 0,
+      "time": "2026-11-01T08:23:51.561Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+      "viewport": {
+        "clientWidth": 1440,
+        "dpr": 1,
+        "height": 900,
+        "scrollHeight": 900,
+        "scrollWidth": 1440,
+        "visualScale": 1,
+        "width": 1440
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+    "name": "15-technician-1440-ready-cold-mount",
+    "capturedUTC": "2026-11-01T08:23:51.789Z",
+    "screenshot": {
+      "file": "15-technician-1440-ready-cold-mount.jpg",
+      "bytes": 46736,
+      "sha256": "e153304f5060d56ce35806c8d2fbd6d6480cc5f2f0062640bbc286b6a8146f63",
+      "rawAPIJPEG": true
+    }
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 33.984375,
+            "right": 89.984375,
+            "top": 524.734375,
+            "width": 56,
+            "x": 33.984375,
+            "y": 524.734375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 93.171875,
+            "right": 133.171875,
+            "top": 524.734375,
+            "width": 40,
+            "x": 93.171875,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 139.5625,
+            "right": 240.5625,
+            "top": 524.734375,
+            "width": 101,
+            "x": 139.5625,
+            "y": 524.734375
+          },
+          "text": "金属管攻击资源 29 → 28"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 243.75,
+            "right": 283.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 243.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 290.140625,
+            "right": 449.5625,
+            "top": 524.734375,
+            "width": 159.421875,
+            "x": 290.140625,
+            "y": 524.734375
+          },
+          "text": "使用快捷物品 (1, 1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 452.75,
+            "right": 492.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 452.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 499.140625,
+            "right": 555.140625,
+            "top": 524.734375,
+            "width": 56,
+            "x": 499.140625,
+            "y": 524.734375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 558.328125,
+            "right": 598.328125,
+            "top": 524.734375,
+            "width": 40,
+            "x": 558.328125,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 604.71875,
+            "right": 698.5625,
+            "top": 524.734375,
+            "width": 93.84375,
+            "x": 604.71875,
+            "y": 524.734375
+          },
+          "text": "蓄力打击资源 29 → 26"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 701.75,
+            "right": 741.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 701.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 1,
+      "cue": {
+        "class": "iw-committed-cue iw-committed-cue--active",
+        "text": "攻击已执行"
+      },
+      "cues": 1,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BUTTON",
+        "text": "金属管攻击资源 29 → 28"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 612.640625,
+          "height": 442.234375,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 170.40625,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 170.40625
+        },
+        ".iw-battle-actions": {
+          "bottom": 586.8125,
+          "height": 70.265625,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 516.546875,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 516.546875
+        },
+        ".iw-battle-figures": {
+          "bottom": 506.953125,
+          "height": 233.265625,
+          "left": 367.625,
+          "right": 1100.609375,
+          "top": 273.6875,
+          "width": 732.984375,
+          "x": 367.625,
+          "y": 273.6875
+        },
+        ".iw-committed-feedback": {
+          "bottom": 664.625,
+          "height": 44.796875,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 619.828125,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 619.828125
+        },
+        ".iw-enemy-art-frame": {
+          "bottom": 504.953125,
+          "height": 231.25,
+          "left": 423.6875,
+          "right": 608.6875,
+          "top": 273.703125,
+          "width": 185,
+          "x": 423.6875,
+          "y": 273.703125
+        },
+        ".iw-feed": {
+          "bottom": 891.203125,
+          "height": 168,
+          "left": 8.796875,
+          "right": 1117.609375,
+          "top": 723.203125,
+          "width": 1108.8125,
+          "x": 8.796875,
+          "y": 723.203125
+        },
+        ".iw-game": {
+          "bottom": 900,
+          "height": 900,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": {
+        "alpha128Rect": {
+          "height": 195.3914720042796,
+          "width": 75.571245543672,
+          "x": 474.8363692067736,
+          "y": 297.5792283345221
+        },
+        "complete": true,
+        "natural": [
+          1122,
+          1402
+        ],
+        "pointerEvents": "none",
+        "rect": {
+          "bottom": 501.25,
+          "height": 211.046875,
+          "left": 427.265625,
+          "right": 596.171875,
+          "top": 290.203125,
+          "width": 168.90625,
+          "x": 427.265625,
+          "y": 290.203125
+        },
+        "src": "/src/assets/presentation/world-battle-v1/enemy-technician-wounded-v1.png"
+      },
+      "initial": {
+        "case": "natural",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 1083.600000023842,
+      "name": "感染技术员",
+      "reason": "native-keydown",
+      "resources": [
+        {
+          "decodedBodySize": 855282,
+          "duration": 34.69999998807907,
+          "encodedBodySize": 855282,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-technician-pristine-v1.png",
+          "startTime": 655.8000000119209,
+          "transferSize": 855582
+        },
+        {
+          "decodedBodySize": 813714,
+          "duration": 34,
+          "encodedBodySize": 813714,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-technician-wounded-v1.png",
+          "startTime": 655.9000000059605,
+          "transferSize": 814014
+        },
+        {
+          "decodedBodySize": 927421,
+          "duration": 46.70000001788139,
+          "encodedBodySize": 927421,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-technician-heavy_wounded-v1.png",
+          "startTime": 655.9000000059605,
+          "transferSize": 927721
+        },
+        {
+          "decodedBodySize": 985621,
+          "duration": 53.900000005960464,
+          "encodedBodySize": 985621,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-technician-critical-v1.png",
+          "startTime": 655.9000000059605,
+          "transferSize": 985921
+        },
+        {
+          "decodedBodySize": 982549,
+          "duration": 78,
+          "encodedBodySize": 982549,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy-technician-disabled-v1.png",
+          "startTime": 655.9000000059605,
+          "transferSize": 982849
+        }
+      ],
+      "serial": 4,
+      "stage": "受伤",
+      "successes": 1,
+      "time": "2026-11-01T08:23:51.896Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+      "viewport": {
+        "clientWidth": 1440,
+        "dpr": 1,
+        "height": 900,
+        "scrollHeight": 900,
+        "scrollWidth": 1440,
+        "visualScale": 1,
+        "width": 1440
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+    "name": "16-technician-native-stage-change",
+    "capturedUTC": "2026-11-01T08:23:52.055Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 33.984375,
+            "right": 89.984375,
+            "top": 524.734375,
+            "width": 56,
+            "x": 33.984375,
+            "y": 524.734375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 93.171875,
+            "right": 133.171875,
+            "top": 524.734375,
+            "width": 40,
+            "x": 93.171875,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 139.5625,
+            "right": 240.5625,
+            "top": 524.734375,
+            "width": 101,
+            "x": 139.5625,
+            "y": 524.734375
+          },
+          "text": "金属管攻击资源 30 → 29"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 243.75,
+            "right": 283.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 243.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 290.140625,
+            "right": 431.5625,
+            "top": 524.734375,
+            "width": 141.421875,
+            "x": 290.140625,
+            "y": 524.734375
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 434.75,
+            "right": 474.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 434.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 481.140625,
+            "right": 537.140625,
+            "top": 524.734375,
+            "width": 56,
+            "x": 481.140625,
+            "y": 524.734375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 540.328125,
+            "right": 580.328125,
+            "top": 524.734375,
+            "width": 40,
+            "x": 540.328125,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 586.71875,
+            "right": 680.5625,
+            "top": 524.734375,
+            "width": 93.84375,
+            "x": 586.71875,
+            "y": 524.734375
+          },
+          "text": "蓄力打击资源 30 → 27"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 683.75,
+            "right": 723.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 683.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 1,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": "防御已执行"
+      },
+      "cues": 1,
+      "failures": 1,
+      "focused": {
+        "label": null,
+        "tag": "BUTTON",
+        "text": "防御"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 612.640625,
+          "height": 433.734375,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 178.90625,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 178.90625
+        },
+        ".iw-battle-actions": {
+          "bottom": 586.8125,
+          "height": 70.265625,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 516.546875,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 516.546875
+        },
+        ".iw-battle-figures": {
+          "bottom": 506.953125,
+          "height": 224.765625,
+          "left": 367.625,
+          "right": 1100.609375,
+          "top": 282.1875,
+          "width": 732.984375,
+          "x": 367.625,
+          "y": 282.1875
+        },
+        ".iw-committed-feedback": {
+          "bottom": 664.625,
+          "height": 44.796875,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 619.828125,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 619.828125
+        },
+        ".iw-enemy-art-frame": {
+          "bottom": 504.953125,
+          "height": 222.75,
+          "left": 424.8125,
+          "right": 603.015625,
+          "top": 282.203125,
+          "width": 178.203125,
+          "x": 424.8125,
+          "y": 282.203125
+        },
+        ".iw-feed": {
+          "bottom": 891.203125,
+          "height": 168,
+          "left": 8.796875,
+          "right": 1117.609375,
+          "top": 723.203125,
+          "width": 1108.8125,
+          "x": 8.796875,
+          "y": 723.203125
+        },
+        ".iw-game": {
+          "bottom": 900,
+          "height": 900,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": {
+        "alpha128Rect": {
+          "height": 173.0609130859375,
+          "width": 91.9337158203125,
+          "x": 461.366943359375,
+          "y": 321.3404541015625
+        },
+        "complete": true,
+        "natural": [
+          1024,
+          1280
+        ],
+        "pointerEvents": "none",
+        "rect": {
+          "bottom": 503.171875,
+          "height": 200.46875,
+          "left": 424.71875,
+          "right": 585.09375,
+          "top": 302.703125,
+          "width": 160.375,
+          "x": 424.71875,
+          "y": 302.703125
+        },
+        "src": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png"
+      },
+      "initial": {
+        "case": "defend",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 1082.7999999821186,
+      "name": "感染护工",
+      "reason": "product-DOM-frame",
+      "resources": [
+        {
+          "decodedBodySize": 735184,
+          "duration": 34.400000005960464,
+          "encodedBodySize": 735184,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png",
+          "startTime": 695.8999999761581,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 764998,
+          "duration": 34.5,
+          "encodedBodySize": 764998,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_wounded_v02.png",
+          "startTime": 696,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 873718,
+          "duration": 37.69999998807907,
+          "encodedBodySize": 873718,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_heavy_wounded_v02.png",
+          "startTime": 696,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 805320,
+          "duration": 35.900000005960464,
+          "encodedBodySize": 805320,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_critical_v02.png",
+          "startTime": 696.0999999940395,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 1018817,
+          "duration": 38.900000005960464,
+          "encodedBodySize": 1018817,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_disabled_v02.png",
+          "startTime": 696.0999999940395,
+          "transferSize": 300
+        }
+      ],
+      "serial": 5,
+      "stage": "完好",
+      "successes": 0,
+      "time": "2026-11-01T08:25:28.226Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=defend&c2-savefail=1",
+      "viewport": {
+        "clientWidth": 1440,
+        "dpr": 1,
+        "height": 900,
+        "scrollHeight": 900,
+        "scrollWidth": 1440,
+        "visualScale": 1,
+        "width": 1440
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=defend&c2-savefail=1",
+    "name": "17-native-save-failed-already-effective",
+    "capturedUTC": "2026-11-01T08:25:28.260Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 33.984375,
+            "right": 89.984375,
+            "top": 524.734375,
+            "width": 56,
+            "x": 33.984375,
+            "y": 524.734375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 93.171875,
+            "right": 133.171875,
+            "top": 524.734375,
+            "width": 40,
+            "x": 93.171875,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 139.5625,
+            "right": 240.5625,
+            "top": 524.734375,
+            "width": 101,
+            "x": 139.5625,
+            "y": 524.734375
+          },
+          "text": "金属管攻击资源 30 → 29"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 243.75,
+            "right": 283.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 243.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 290.140625,
+            "right": 431.5625,
+            "top": 524.734375,
+            "width": 141.421875,
+            "x": 290.140625,
+            "y": 524.734375
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 434.75,
+            "right": 474.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 434.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 481.140625,
+            "right": 537.140625,
+            "top": 524.734375,
+            "width": 56,
+            "x": 481.140625,
+            "y": 524.734375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 540.328125,
+            "right": 580.328125,
+            "top": 524.734375,
+            "width": 40,
+            "x": 540.328125,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 586.71875,
+            "right": 680.5625,
+            "top": 524.734375,
+            "width": 93.84375,
+            "x": 586.71875,
+            "y": 524.734375
+          },
+          "text": "蓄力打击资源 30 → 27"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 683.75,
+            "right": 723.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 683.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 2,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": ""
+      },
+      "cues": 1,
+      "failures": 1,
+      "focused": {
+        "label": null,
+        "tag": "BODY",
+        "text": "\n    电梯求生DEV · 封闭首玩任务进度第 1 日战斗生命11 / 12精力90 / 100饱食6 / 6未达病程"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 612.640625,
+          "height": 472.8125,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 139.828125,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 139.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 586.8125,
+          "height": 70.265625,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 516.546875,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 516.546875
+        },
+        ".iw-battle-figures": {
+          "bottom": 506.953125,
+          "height": 263.84375,
+          "left": 367.625,
+          "right": 1100.609375,
+          "top": 243.109375,
+          "width": 732.984375,
+          "x": 367.625,
+          "y": 243.109375
+        },
+        ".iw-committed-feedback": {
+          "bottom": 664.625,
+          "height": 44.796875,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 619.828125,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 619.828125
+        },
+        ".iw-enemy-art-frame": {
+          "bottom": 504.953125,
+          "height": 240,
+          "left": 422.515625,
+          "right": 614.515625,
+          "top": 264.953125,
+          "width": 192,
+          "x": 422.515625,
+          "y": 264.953125
+        },
+        ".iw-feed": {
+          "bottom": 891.203125,
+          "height": 168,
+          "left": 8.796875,
+          "right": 1117.609375,
+          "top": 723.203125,
+          "width": 1108.8125,
+          "x": 8.796875,
+          "y": 723.203125
+        },
+        ".iw-game": {
+          "bottom": 900,
+          "height": 900,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": {
+        "alpha128Rect": {
+          "height": 186.45526123046875,
+          "width": 99.05445861816406,
+          "x": 461.9086608886719,
+          "y": 307.1266723632813
+        },
+        "complete": true,
+        "natural": [
+          1024,
+          1280
+        ],
+        "pointerEvents": "none",
+        "rect": {
+          "bottom": 503.03125,
+          "height": 215.984375,
+          "left": 422.421875,
+          "right": 595.21875,
+          "top": 287.046875,
+          "width": 172.796875,
+          "x": 422.421875,
+          "y": 287.046875
+        },
+        "src": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png"
+      },
+      "initial": {
+        "case": "defend",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 1170,
+      "name": "感染护工",
+      "reason": "native-keydown",
+      "resources": [
+        {
+          "decodedBodySize": 735184,
+          "duration": 34.400000005960464,
+          "encodedBodySize": 735184,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png",
+          "startTime": 695.8999999761581,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 764998,
+          "duration": 34.5,
+          "encodedBodySize": 764998,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_wounded_v02.png",
+          "startTime": 696,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 873718,
+          "duration": 37.69999998807907,
+          "encodedBodySize": 873718,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_heavy_wounded_v02.png",
+          "startTime": 696,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 805320,
+          "duration": 35.900000005960464,
+          "encodedBodySize": 805320,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_critical_v02.png",
+          "startTime": 696.0999999940395,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 1018817,
+          "duration": 38.900000005960464,
+          "encodedBodySize": 1018817,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_disabled_v02.png",
+          "startTime": 696.0999999940395,
+          "transferSize": 300
+        }
+      ],
+      "serial": 6,
+      "stage": "完好",
+      "successes": 1,
+      "time": "2026-11-01T08:25:28.313Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=defend&c2-savefail=1",
+      "viewport": {
+        "clientWidth": 1440,
+        "dpr": 1,
+        "height": 900,
+        "scrollHeight": 900,
+        "scrollWidth": 1440,
+        "visualScale": 1,
+        "width": 1440
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=defend&c2-savefail=1",
+    "name": "18-native-retry-no-replay",
+    "capturedUTC": "2026-11-01T08:25:28.467Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 33.984375,
+            "right": 89.984375,
+            "top": 524.734375,
+            "width": 56,
+            "x": 33.984375,
+            "y": 524.734375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 93.171875,
+            "right": 133.171875,
+            "top": 524.734375,
+            "width": 40,
+            "x": 93.171875,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 139.5625,
+            "right": 240.5625,
+            "top": 524.734375,
+            "width": 101,
+            "x": 139.5625,
+            "y": 524.734375
+          },
+          "text": "金属管攻击资源 30 → 29"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 243.75,
+            "right": 283.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 243.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 290.140625,
+            "right": 431.5625,
+            "top": 524.734375,
+            "width": 141.421875,
+            "x": 290.140625,
+            "y": 524.734375
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 434.75,
+            "right": 474.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 434.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 481.140625,
+            "right": 537.140625,
+            "top": 524.734375,
+            "width": 56,
+            "x": 481.140625,
+            "y": 524.734375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 540.328125,
+            "right": 580.328125,
+            "top": 524.734375,
+            "width": 40,
+            "x": 540.328125,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 586.71875,
+            "right": 680.5625,
+            "top": 524.734375,
+            "width": 93.84375,
+            "x": 586.71875,
+            "y": 524.734375
+          },
+          "text": "蓄力打击资源 30 → 27"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 683.75,
+            "right": 723.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 683.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 0,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": ""
+      },
+      "cues": 0,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BODY",
+        "text": "\n    电梯求生DEV · 封闭首玩任务进度第 1 日战斗生命11 / 12精力90 / 100饱食6 / 6未达病程"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 612.640625,
+          "height": 472.8125,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 139.828125,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 139.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 586.8125,
+          "height": 70.265625,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 516.546875,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 516.546875
+        },
+        ".iw-battle-figures": {
+          "bottom": 506.953125,
+          "height": 263.84375,
+          "left": 367.625,
+          "right": 1100.609375,
+          "top": 243.109375,
+          "width": 732.984375,
+          "x": 367.625,
+          "y": 243.109375
+        },
+        ".iw-committed-feedback": {
+          "bottom": 664.625,
+          "height": 44.796875,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 619.828125,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 619.828125
+        },
+        ".iw-enemy-art-frame": {
+          "bottom": 504.953125,
+          "height": 240,
+          "left": 422.515625,
+          "right": 614.515625,
+          "top": 264.953125,
+          "width": 192,
+          "x": 422.515625,
+          "y": 264.953125
+        },
+        ".iw-feed": {
+          "bottom": 891.203125,
+          "height": 168,
+          "left": 8.796875,
+          "right": 1117.609375,
+          "top": 723.203125,
+          "width": 1108.8125,
+          "x": 8.796875,
+          "y": 723.203125
+        },
+        ".iw-game": {
+          "bottom": 900,
+          "height": 900,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": {
+        "alpha128Rect": {
+          "height": 186.45526123046875,
+          "width": 99.05445861816406,
+          "x": 461.9086608886719,
+          "y": 307.1266723632813
+        },
+        "complete": true,
+        "natural": [
+          1024,
+          1280
+        ],
+        "pointerEvents": "none",
+        "rect": {
+          "bottom": 503.03125,
+          "height": 215.984375,
+          "left": 422.421875,
+          "right": 595.21875,
+          "top": 287.046875,
+          "width": 172.796875,
+          "x": 422.421875,
+          "y": 287.046875
+        },
+        "src": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png"
+      },
+      "initial": {
+        "case": "natural",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 737.9000000059605,
+      "name": "感染护工",
+      "reason": "product-DOM-frame",
+      "resources": [
+        {
+          "decodedBodySize": 0,
+          "duration": 13.099999994039536,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png",
+          "startTime": 678.9000000059605,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 13.5,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_wounded_v02.png",
+          "startTime": 679,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 13.700000017881392,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_heavy_wounded_v02.png",
+          "startTime": 679,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 13.599999994039536,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_critical_v02.png",
+          "startTime": 679.1000000238419,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 21.899999976158146,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_disabled_v02.png",
+          "startTime": 679.1000000238419,
+          "transferSize": 300
+        }
+      ],
+      "serial": 3,
+      "stage": "完好",
+      "successes": 0,
+      "time": "2026-11-01T08:25:29.233Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+      "viewport": {
+        "clientWidth": 1440,
+        "dpr": 1,
+        "height": 900,
+        "scrollHeight": 900,
+        "scrollWidth": 1440,
+        "visualScale": 1,
+        "width": 1440
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1",
+    "name": "19-native-cold-after-retry-no-replay",
+    "capturedUTC": "2026-11-01T08:25:29.267Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 33.984375,
+            "right": 89.984375,
+            "top": 524.734375,
+            "width": 56,
+            "x": 33.984375,
+            "y": 524.734375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 93.171875,
+            "right": 133.171875,
+            "top": 524.734375,
+            "width": 40,
+            "x": 93.171875,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 139.5625,
+            "right": 240.5625,
+            "top": 524.734375,
+            "width": 101,
+            "x": 139.5625,
+            "y": 524.734375
+          },
+          "text": "金属管攻击资源 30 → 29"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 243.75,
+            "right": 283.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 243.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 290.140625,
+            "right": 431.5625,
+            "top": 524.734375,
+            "width": 141.421875,
+            "x": 290.140625,
+            "y": 524.734375
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 434.75,
+            "right": 474.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 434.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 481.140625,
+            "right": 537.140625,
+            "top": 524.734375,
+            "width": 56,
+            "x": 481.140625,
+            "y": 524.734375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 540.328125,
+            "right": 580.328125,
+            "top": 524.734375,
+            "width": 40,
+            "x": 540.328125,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 586.71875,
+            "right": 680.5625,
+            "top": 524.734375,
+            "width": 93.84375,
+            "x": 586.71875,
+            "y": 524.734375
+          },
+          "text": "蓄力打击资源 30 → 27"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 683.75,
+            "right": 723.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 683.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 0,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": ""
+      },
+      "cues": 0,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BUTTON",
+        "text": "取消"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 612.640625,
+          "height": 472.8125,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 139.828125,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 139.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 586.8125,
+          "height": 70.265625,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 516.546875,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 516.546875
+        },
+        ".iw-battle-figures": {
+          "bottom": 506.953125,
+          "height": 263.84375,
+          "left": 367.625,
+          "right": 1100.609375,
+          "top": 243.109375,
+          "width": 732.984375,
+          "x": 367.625,
+          "y": 243.109375
+        },
+        ".iw-committed-feedback": {
+          "bottom": 664.625,
+          "height": 44.796875,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 619.828125,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 619.828125
+        },
+        ".iw-enemy-art-frame": {
+          "bottom": 504.953125,
+          "height": 240,
+          "left": 422.515625,
+          "right": 614.515625,
+          "top": 264.953125,
+          "width": 192,
+          "x": 422.515625,
+          "y": 264.953125
+        },
+        ".iw-feed": {
+          "bottom": 891.203125,
+          "height": 168,
+          "left": 8.796875,
+          "right": 1117.609375,
+          "top": 723.203125,
+          "width": 1108.8125,
+          "x": 8.796875,
+          "y": 723.203125
+        },
+        ".iw-game": {
+          "bottom": 900,
+          "height": 900,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": {
+        "alpha128Rect": {
+          "height": 186.45526123046875,
+          "width": 99.05445861816406,
+          "x": 461.9086608886719,
+          "y": 307.1266723632813
+        },
+        "complete": true,
+        "natural": [
+          1024,
+          1280
+        ],
+        "pointerEvents": "none",
+        "rect": {
+          "bottom": 503.03125,
+          "height": 215.984375,
+          "left": 422.421875,
+          "right": 595.21875,
+          "top": 287.046875,
+          "width": 172.796875,
+          "x": 422.421875,
+          "y": 287.046875
+        },
+        "src": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png"
+      },
+      "initial": {
+        "case": "death",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 7576.59999999404,
+      "name": "感染护工",
+      "reason": "native-keydown",
+      "resources": [
+        {
+          "decodedBodySize": 0,
+          "duration": 6.9000000059604645,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png",
+          "startTime": 703,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 9,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_wounded_v02.png",
+          "startTime": 703.0999999940395,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 9.699999988079073,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_heavy_wounded_v02.png",
+          "startTime": 703.2000000178814,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 10,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_critical_v02.png",
+          "startTime": 703.2000000178814,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 11.5,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_disabled_v02.png",
+          "startTime": 703.3000000119209,
+          "transferSize": 300
+        }
+      ],
+      "serial": 4,
+      "stage": "完好",
+      "successes": 0,
+      "time": "2026-11-01T08:26:06.375Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=death",
+      "viewport": {
+        "clientWidth": 1440,
+        "dpr": 1,
+        "height": 900,
+        "scrollHeight": 900,
+        "scrollWidth": 1440,
+        "visualScale": 1,
+        "width": 1440
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=death",
+    "name": "20-native-protected-confirmation",
+    "capturedUTC": "2026-11-01T08:26:06.542Z",
+    "labelCorrection": {
+      "original": "20-native-death-clears-art",
+      "reason": "This frame is the original informed confirmation, before commit."
+    }
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 33.984375,
+            "right": 89.984375,
+            "top": 524.734375,
+            "width": 56,
+            "x": 33.984375,
+            "y": 524.734375
+          },
+          "text": "防御"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 93.171875,
+            "right": 133.171875,
+            "top": 524.734375,
+            "width": 40,
+            "x": 93.171875,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 139.5625,
+            "right": 240.5625,
+            "top": 524.734375,
+            "width": 101,
+            "x": 139.5625,
+            "y": 524.734375
+          },
+          "text": "金属管攻击资源 30 → 29"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 243.75,
+            "right": 283.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 243.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 290.140625,
+            "right": 431.5625,
+            "top": 524.734375,
+            "width": 141.421875,
+            "x": 290.140625,
+            "y": 524.734375
+          },
+          "text": "使用快捷物品 (1)快捷 1 · 消耗 1"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 434.75,
+            "right": 474.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 434.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 481.140625,
+            "right": 537.140625,
+            "top": 524.734375,
+            "width": 56,
+            "x": 481.140625,
+            "y": 524.734375
+          },
+          "text": "退却"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 540.328125,
+            "right": 580.328125,
+            "top": 524.734375,
+            "width": 40,
+            "x": 540.328125,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 586.71875,
+            "right": 680.5625,
+            "top": 524.734375,
+            "width": 93.84375,
+            "x": 586.71875,
+            "y": 524.734375
+          },
+          "text": "蓄力打击资源 30 → 27"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 578.625,
+            "height": 53.890625,
+            "left": 683.75,
+            "right": 723.75,
+            "top": 524.734375,
+            "width": 40,
+            "x": 683.75,
+            "y": 524.734375
+          },
+          "text": "ⓘ"
+        }
+      ],
+      "attempts": 0,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": ""
+      },
+      "cues": 0,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BUTTON",
+        "text": "确认执行"
+      },
+      "geometry": {
+        ".iw-battle": {
+          "bottom": 612.640625,
+          "height": 472.8125,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 139.828125,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 139.828125
+        },
+        ".iw-battle-actions": {
+          "bottom": 586.8125,
+          "height": 70.265625,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 516.546875,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 516.546875
+        },
+        ".iw-battle-figures": {
+          "bottom": 506.953125,
+          "height": 263.84375,
+          "left": 367.625,
+          "right": 1100.609375,
+          "top": 243.109375,
+          "width": 732.984375,
+          "x": 367.625,
+          "y": 243.109375
+        },
+        ".iw-committed-feedback": {
+          "bottom": 664.625,
+          "height": 44.796875,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 619.828125,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 619.828125
+        },
+        ".iw-enemy-art-frame": {
+          "bottom": 504.953125,
+          "height": 240,
+          "left": 422.515625,
+          "right": 614.515625,
+          "top": 264.953125,
+          "width": 192,
+          "x": 422.515625,
+          "y": 264.953125
+        },
+        ".iw-feed": {
+          "bottom": 891.203125,
+          "height": 168,
+          "left": 8.796875,
+          "right": 1117.609375,
+          "top": 723.203125,
+          "width": 1108.8125,
+          "x": 8.796875,
+          "y": 723.203125
+        },
+        ".iw-game": {
+          "bottom": 900,
+          "height": 900,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": {
+        "alpha128Rect": {
+          "height": 186.45526123046875,
+          "width": 99.05445861816406,
+          "x": 461.9086608886719,
+          "y": 307.1266723632813
+        },
+        "complete": true,
+        "natural": [
+          1024,
+          1280
+        ],
+        "pointerEvents": "none",
+        "rect": {
+          "bottom": 503.03125,
+          "height": 215.984375,
+          "left": 422.421875,
+          "right": 595.21875,
+          "top": 287.046875,
+          "width": 172.796875,
+          "x": 422.421875,
+          "y": 287.046875
+        },
+        "src": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png"
+      },
+      "initial": {
+        "case": "death",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 41481.5,
+      "name": "感染护工",
+      "reason": "native-keydown",
+      "resources": [
+        {
+          "decodedBodySize": 0,
+          "duration": 6.9000000059604645,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png",
+          "startTime": 703,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 9,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_wounded_v02.png",
+          "startTime": 703.0999999940395,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 9.699999988079073,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_heavy_wounded_v02.png",
+          "startTime": 703.2000000178814,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 10,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_critical_v02.png",
+          "startTime": 703.2000000178814,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 11.5,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_disabled_v02.png",
+          "startTime": 703.3000000119209,
+          "transferSize": 300
+        }
+      ],
+      "serial": 5,
+      "stage": "完好",
+      "successes": 0,
+      "time": "2026-11-01T08:26:40.279Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=death",
+      "viewport": {
+        "clientWidth": 1440,
+        "dpr": 1,
+        "height": 900,
+        "scrollHeight": 900,
+        "scrollWidth": 1440,
+        "visualScale": 1,
+        "width": 1440
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=death",
+    "name": "21-native-keyboard-confirm-focus",
+    "capturedUTC": "2026-11-01T08:26:40.556Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [],
+      "attempts": 1,
+      "cue": {
+        "class": "iw-committed-cue iw-committed-cue--active",
+        "text": "防御已执行"
+      },
+      "cues": 1,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BODY",
+        "text": "\n    电梯求生DEV · 封闭首玩任务进度第 1 日死亡生命0 / 12精力90 / 100饱食6 / 6未达病程损"
+      },
+      "geometry": {
+        ".iw-battle": null,
+        ".iw-battle-actions": null,
+        ".iw-battle-figures": null,
+        ".iw-committed-feedback": {
+          "bottom": 648.625,
+          "height": 44.796875,
+          "left": 25.796875,
+          "right": 1100.609375,
+          "top": 603.828125,
+          "width": 1074.8125,
+          "x": 25.796875,
+          "y": 603.828125
+        },
+        ".iw-enemy-art-frame": null,
+        ".iw-feed": {
+          "bottom": 891.203125,
+          "height": 184,
+          "left": 8.796875,
+          "right": 1117.609375,
+          "top": 707.203125,
+          "width": 1108.8125,
+          "x": 8.796875,
+          "y": 707.203125
+        },
+        ".iw-game": {
+          "bottom": 900,
+          "height": 900,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": null,
+      "initial": {
+        "case": "death",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 41836.09999999404,
+      "name": null,
+      "reason": "native-keydown",
+      "resources": [
+        {
+          "decodedBodySize": 0,
+          "duration": 6.9000000059604645,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png",
+          "startTime": 703,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 9,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_wounded_v02.png",
+          "startTime": 703.0999999940395,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 9.699999988079073,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_heavy_wounded_v02.png",
+          "startTime": 703.2000000178814,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 10,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_critical_v02.png",
+          "startTime": 703.2000000178814,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 11.5,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_disabled_v02.png",
+          "startTime": 703.3000000119209,
+          "transferSize": 300
+        }
+      ],
+      "serial": 6,
+      "stage": null,
+      "successes": 1,
+      "time": "2026-11-01T08:26:40.634Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=death",
+      "viewport": {
+        "clientWidth": 1440,
+        "dpr": 1,
+        "height": 900,
+        "scrollHeight": 900,
+        "scrollWidth": 1440,
+        "visualScale": 1,
+        "width": 1440
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=death",
+    "name": "22-native-actual-death-clears-art",
+    "capturedUTC": "2026-11-01T08:26:40.767Z"
+  },
+  {
+    "observation": {
+      "TEST_ONLY": true,
+      "actions": [],
+      "attempts": 1,
+      "cue": {
+        "class": "iw-committed-cue",
+        "text": "防御已执行"
+      },
+      "cues": 1,
+      "failures": 0,
+      "focused": {
+        "label": null,
+        "tag": "BODY",
+        "text": "\n    电梯求生DEV · 封闭首玩任务进度第 1 日死亡生命0 / 12精力90 / 100饱食6 / 6未达病程损"
+      },
+      "geometry": {
+        ".iw-battle": null,
+        ".iw-battle-actions": null,
+        ".iw-battle-figures": null,
+        ".iw-committed-feedback": {
+          "bottom": 652.625,
+          "height": 44.796875,
+          "left": 29.796875,
+          "right": 2176.609375,
+          "top": 607.828125,
+          "width": 2146.8125,
+          "x": 29.796875,
+          "y": 607.828125
+        },
+        ".iw-enemy-art-frame": null,
+        ".iw-feed": {
+          "bottom": 899.203125,
+          "height": 184,
+          "left": 8.796875,
+          "right": 2197.609375,
+          "top": 715.203125,
+          "width": 2188.8125,
+          "x": 8.796875,
+          "y": 715.203125
+        },
+        ".iw-game": {
+          "bottom": 908,
+          "height": 908,
+          "left": 0,
+          "right": 2552,
+          "top": 0,
+          "width": 2552,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "image": null,
+      "initial": {
+        "case": "death",
+        "checkpointNull": false,
+        "reservationNull": false
+      },
+      "ms": 116256.90000000596,
+      "name": null,
+      "reason": "native-resize",
+      "resources": [
+        {
+          "decodedBodySize": 0,
+          "duration": 6.9000000059604645,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png",
+          "startTime": 703,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 9,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_wounded_v02.png",
+          "startTime": 703.0999999940395,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 9.699999988079073,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_heavy_wounded_v02.png",
+          "startTime": 703.2000000178814,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 10,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_critical_v02.png",
+          "startTime": 703.2000000178814,
+          "transferSize": 300
+        },
+        {
+          "decodedBodySize": 0,
+          "duration": 11.5,
+          "encodedBodySize": 0,
+          "initiatorType": "img",
+          "name": "/src/assets/presentation/world-battle-v1/enemy_infected_orderly_disabled_v02.png",
+          "startTime": 703.3000000119209,
+          "transferSize": 300
+        }
+      ],
+      "serial": 8,
+      "stage": null,
+      "successes": 1,
+      "time": "2026-11-01T08:27:55.054Z",
+      "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=death",
+      "viewport": {
+        "clientWidth": 2552,
+        "dpr": 1,
+        "height": 908,
+        "scrollHeight": 908,
+        "scrollWidth": 2552,
+        "visualScale": 1,
+        "width": 2552
+      }
+    },
+    "title": "C2 TEST · 电梯求生",
+    "url": "http://127.0.0.1:5232/?dev-infected-world=1&c2-case=death",
+    "name": "23-cleanup-viewport-reset",
+    "capturedUTC": "2026-11-01T08:27:55.338Z"
+  }
+]

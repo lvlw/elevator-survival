@@ -1,0 +1,21 @@
+执行附件 ENG-WORLD-PRESENTATION-C2-001，本批已获Owner三敌15张DEV有限采用批准，可直接进入C2实现，不再做准备返工。
+
+仓库：lvlw/elevator-survival
+准确起点：4f349d97024151ac79aa099425ce83217ef47b31
+新分支：feature/world-presentation-c2-001
+推荐：GPT-6.1 Sol／高（high）／Standard；实际配置如实记录。
+
+先核对小包manifest，完整读Owner批准、TASK、C2-CONTRACT、验收矩阵、SCOPE和15图清单，并按实际AGENTS核对规则/UIR。
+一次完成W0—W4：真实基线、准确15图复制、封闭A键/阶段映射、当前组异步加载和中性回退、真实UI与原生测试、浏览器检查、同批修订和正常commit/push。
+
+只替换敌人图层；保留阶段文字、玩家中性占位和原动作/B1/C1链路。加载不锁动作，失败/超时整组回退；渲染当帧防串组，旧回调不能复活。
+两份旧测试只按合同窄适配，不能靠永远不完成图片加载假通过。缺源/错摘要走构建或必跑准入检查，不冒充运行时降级；CI不依赖旧commit历史。
+
+只按SCOPE精确白名单改动，不改core/state/存档/A/B1/C1/BrowserOwner/controller/依赖/CI/旧catalog；不生成修图、不采用玩家或背景、不B2/整套UI/发布。
+允许仅此新分支普通commit/push；不动main、固定baseline、旧分支/标签，不merge、不强推。宿主内部refs只观察。
+
+实际npm run test:run建立基线，完成新增/相关组合/E03、负控还原后最终npm run check及准确SHA CI。
+浏览器用原DEV生产React页及隔离任务数据；没测写NOT VERIFIED，不拿静态页替代，不重复无能力的C16补验。
+
+完成直接报完整SHA、分支、报告路径、验证、CI、必要原图和遗留项。主线从GitHub直审；不强制MAINLINE-REVIEW源码ZIP，不重复打包源码、全patch或整仓对象清单。
+完成即停，等待主线精确SHA及实际视觉实审，不自动进入后续阶段。

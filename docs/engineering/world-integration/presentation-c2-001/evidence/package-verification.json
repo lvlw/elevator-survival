@@ -1,0 +1,8 @@
+{
+  "inputZipBytes": 27706,
+  "inputZipSHA256": "d5bdac15cd96ee39d1557836d7648c7554b257b2c074f88a6e4fb954f3307217",
+  "entries": 10,
+  "manifestEntriesVerified": 9,
+  "payloadBytes": 70195,
+  "result": "PASS_FULL_MANIFEST_CRC_PATHS_RAW_BYTES"
+}

@@ -1,0 +1,167 @@
+{
+  "checkedCurrentImages": [
+    "02-orderly-native-defense",
+    "03-orderly-1920-ready",
+    "04-orderly-native-stage-change",
+    "05-orderly-1366-wounded",
+    "06-orderly-1280-wounded",
+    "07-orderly-cold-restore",
+    "12-porter-1600-ready-after-cold-mount",
+    "15-technician-1440-ready-cold-mount",
+    "16-technician-native-stage-change",
+    "17-native-save-failed-already-effective",
+    "18-native-retry-no-replay",
+    "19-native-cold-after-retry-no-replay",
+    "20-native-protected-confirmation",
+    "21-native-keyboard-confirm-focus"
+  ],
+  "observedDesktopViewports": [
+    [
+      1280,
+      720
+    ],
+    [
+      1366,
+      768
+    ],
+    [
+      1440,
+      900
+    ],
+    [
+      1600,
+      900
+    ],
+    [
+      1920,
+      1080
+    ]
+  ],
+  "screenshots": [
+    {
+      "file": "03-orderly-1920-ready.jpg",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "rawPixels": [
+        1920,
+        1080
+      ],
+      "bytes": 182118,
+      "sha256": "58ae9102b14df95487caa6128684b6af607b1c93499b9d2909c66d41b45db072",
+      "pixelStatus": "PASS",
+      "modified": false
+    },
+    {
+      "file": "05-orderly-1366-wounded.jpg",
+      "viewport": [
+        1366,
+        768
+      ],
+      "rawPixels": [
+        1366,
+        768
+      ],
+      "bytes": 124802,
+      "sha256": "826b4162aba20853b3017114a8e94a62e177bc1ab032cc8a7f12d58c97f23eea",
+      "pixelStatus": "PASS",
+      "modified": false
+    },
+    {
+      "file": "06-orderly-1280-wounded.jpg",
+      "viewport": [
+        1280,
+        720
+      ],
+      "rawPixels": [
+        1280,
+        720
+      ],
+      "bytes": 113226,
+      "sha256": "9ccf6f308592aa8fd31348245bff0ae67919766a8bbe656ab470eb5556ee7f73",
+      "pixelStatus": "PASS",
+      "modified": false
+    },
+    {
+      "file": "12-porter-1600-ready-after-cold-mount.jpg",
+      "viewport": [
+        1600,
+        900
+      ],
+      "rawPixels": [
+        1600,
+        569
+      ],
+      "bytes": 57257,
+      "sha256": "2f94b80fe24e883cdadba4db9fb9aef46d6b844852d460f866c079b010740a1d",
+      "pixelStatus": "PARTIAL",
+      "modified": false
+    },
+    {
+      "file": "14-technician-failed-action-1280.jpg",
+      "viewport": [
+        1280,
+        720
+      ],
+      "rawPixels": [
+        1280,
+        455
+      ],
+      "bytes": 35230,
+      "sha256": "5945541d07ce56ec62dd65c430a505fd3f0e83bef73ac807800da35f8c8fb7a3",
+      "pixelStatus": "PARTIAL",
+      "modified": false
+    },
+    {
+      "file": "15-technician-1440-ready-cold-mount.jpg",
+      "viewport": [
+        1440,
+        900
+      ],
+      "rawPixels": [
+        1440,
+        512
+      ],
+      "bytes": 46736,
+      "sha256": "e153304f5060d56ce35806c8d2fbd6d6480cc5f2f0062640bbc286b6a8146f63",
+      "pixelStatus": "PARTIAL",
+      "modified": false
+    }
+  ],
+  "nativeHTTP": {
+    "enemy_infected_orderly_": {
+      "uniquePNGs": 5,
+      "statuses": {
+        "200": 5,
+        "304": 20
+      },
+      "reportedContentLengthSum": 4198037
+    },
+    "enemy-porter-": {
+      "uniquePNGs": 5,
+      "statuses": {
+        "200": 5,
+        "304": 5
+      },
+      "reportedContentLengthSum": 5144681
+    },
+    "enemy-technician-": {
+      "uniquePNGs": 5,
+      "statuses": {
+        "503": 5,
+        "200": 5
+      },
+      "reportedContentLengthSum": 4564587
+    }
+  },
+  "wholeTaskStatus": "ENGINEERING_COMPLETE_PIXEL_EVIDENCE_PARTIAL",
+  "memory": "PNG/header bytes and RGBA arithmetic are not measured browser/GPU memory",
+  "initialSessionResourceTiming": "empty array; use raw HTTP log, no inferred transfer measurements",
+  "C16": {
+    "nativeMediaTrue": "NOT VERIFIED",
+    "realZoom": "NOT VERIFIED",
+    "390": "NOT VERIFIED"
+  },
+  "OwnerExperience": "NOT RUN"
+}

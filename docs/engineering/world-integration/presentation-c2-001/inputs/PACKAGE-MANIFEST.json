@@ -1,0 +1,53 @@
+{
+  "task": "ENG-WORLD-PRESENTATION-C2-001",
+  "version": "1.0",
+  "algorithm": "SHA-256",
+  "manifestSelfExcluded": true,
+  "files": [
+    {
+      "path": "ACCEPTANCE-MATRIX.md",
+      "bytes": 6974,
+      "sha256": "cabfdb162a9ef2d0efccd151d0493f8d080a2a074f89ae83a153298ef75f152d"
+    },
+    {
+      "path": "APPROVED-ASSETS.json",
+      "bytes": 30009,
+      "sha256": "94d3cfda30ec4adcc7e92e019597604c3a0da513f621868a0d8d72e8e06cc552"
+    },
+    {
+      "path": "C2-CONTRACT.md",
+      "bytes": 9320,
+      "sha256": "5a1aeff244c3a7e85a27530da8d666086363aad85f8396a55ebfced3da83ad19"
+    },
+    {
+      "path": "OWNER-APPROVAL.md",
+      "bytes": 3367,
+      "sha256": "b7808e511e9cc6c59be232e451680034d6140d1ba5e7150cc8cede0aafd85f1c"
+    },
+    {
+      "path": "README-FIRST.md",
+      "bytes": 1929,
+      "sha256": "8f4cba380a054efc22c1449de927f5e2e9dcbfe439aae7c2d9022df7df812157"
+    },
+    {
+      "path": "SCOPE.json",
+      "bytes": 5247,
+      "sha256": "41f27d27d3c4ee1385703d0e3e4fca1221d69ac2f99d8b2c4a154f0447326413"
+    },
+    {
+      "path": "SEND-TO-CODEX.txt",
+      "bytes": 1980,
+      "sha256": "8709305e6ebec8c8651b5f387f2be6be6c72b24de981df2be6d06975ef63a88f"
+    },
+    {
+      "path": "SOURCE-REFERENCES.json",
+      "bytes": 3048,
+      "sha256": "2db0526fe73db97a102e040e57f175b68a82b52a7d32d0158c6ba46a9fe9406f"
+    },
+    {
+      "path": "TASK.md",
+      "bytes": 6822,
+      "sha256": "ed65f4aca673ffb8b9145a207eb46c67e2fe7d690848fa04eaada12a290da31c"
+    }
+  ]
+}

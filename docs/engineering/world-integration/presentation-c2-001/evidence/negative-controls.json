@@ -1,0 +1,34 @@
+[
+  {
+    "id": "M1-any-one-ready",
+    "exit": 1,
+    "businessAssertionFound": true,
+    "restoredSHA256": "4910b87670fbf5266aba6e065db115a42fc0d3cd5820f62e8ef6b8d13fe97bb4",
+    "originalSHA256": "4910b87670fbf5266aba6e065db115a42fc0d3cd5820f62e8ef6b8d13fe97bb4",
+    "signal": null
+  },
+  {
+    "id": "M2-remove-current-key",
+    "exit": 1,
+    "businessAssertionFound": true,
+    "restoredSHA256": "ce0b85d89716610b883a8143aec0a96ab3d4b01ef6460b0d18e3c2bd2bc85ecf",
+    "originalSHA256": "ce0b85d89716610b883a8143aec0a96ab3d4b01ef6460b0d18e3c2bd2bc85ecf",
+    "signal": null
+  },
+  {
+    "id": "M3-remove-generation-guard",
+    "exit": 1,
+    "businessAssertionFound": true,
+    "restoredSHA256": "ce0b85d89716610b883a8143aec0a96ab3d4b01ef6460b0d18e3c2bd2bc85ecf",
+    "originalSHA256": "ce0b85d89716610b883a8143aec0a96ab3d4b01ef6460b0d18e3c2bd2bc85ecf",
+    "signal": null
+  },
+  {
+    "id": "M4-corrupt-TEST-admission-copy",
+    "exit": 1,
+    "businessAssertionFound": true,
+    "restoredSHA256": "fa8b9c9419c3cd52916f29a378cf25b77589e596881d6b1744b590b60cab29a6",
+    "originalSHA256": "fa8b9c9419c3cd52916f29a378cf25b77589e596881d6b1744b590b60cab29a6",
+    "signal": null
+  }
+]

@@ -1,19 +1,24 @@
 import { act } from 'react'
 import { createRoot } from 'react-dom/client'
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { boundaryRecords } from '../../../docs/engineering/world-integration/preplay/browser-owner/validation/browser-cases'
 import { mountPresentation } from './committed-presentation-test-fixtures'
 import { BattleStage } from './components/battle-stage'
 
-afterEach(() => { vi.restoreAllMocks(); document.body.replaceChildren() })
+import { installEnemyArtImages } from './enemy-art-test-fixtures'
+let images: ReturnType<typeof installEnemyArtImages>
+beforeEach(() => { images = installEnemyArtImages() })
+afterEach(() => { images.restore(); vi.restoreAllMocks(); document.body.replaceChildren() })
 
 describe('C1 opponent comes exclusively from current formal A', () => {
-  it.each([['orderly', '感染护工'], ['porter', '感染装卸工'], ['technician', '感染技术员']] as const)('%s has its exact safe name in title, placeholder text and aria, with no new enemy image', async (enemy, name) => {
+  it.each([['orderly', '感染护工'], ['porter', '感染装卸工'], ['technician', '感染技术员']] as const)('%s has its exact safe name in title, neutral pending and approved ready image aria', async (enemy, name) => {
     const h = await mountPresentation({ records: boundaryRecords(enemy) })
     try {
       expect(h.view().combat!.opponent.name).toBe(name); expect(h.host.querySelector('.iw-enemy-info h2')?.textContent).toBe(name)
       expect(h.host.querySelector(`[aria-label="${name}中性占位"]`)?.textContent).toContain(name)
-      expect(h.host.querySelector('.iw-battle img')).toBeNull(); expect(h.cue().textContent).toBe('')
+      expect(h.host.querySelector('.iw-battle img')).toBeNull(); await images.finish()
+      expect(h.host.querySelector(`[aria-label="${name} · 完好"]`)).not.toBeNull()
+      expect(h.host.querySelector('.iw-battle img')).not.toBeNull(); expect(h.cue().textContent).toBe('')
     } finally { await h.unmount() }
   })
   it('unknown and five stages are explicit schema/renderer branches, never location guesses or death inference', async () => {

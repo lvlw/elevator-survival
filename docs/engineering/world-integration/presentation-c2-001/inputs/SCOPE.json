@@ -1,0 +1,104 @@
+{
+  "task": "ENG-WORLD-PRESENTATION-C2-001",
+  "repository": "lvlw/elevator-survival",
+  "base": "4f349d97024151ac79aa099425ce83217ef47b31",
+  "baseTree": "3ddf6b8097e9dec899dd3e3dc7de7c149672c930",
+  "branch": "feature/world-presentation-c2-001",
+  "recommendedModel": "GPT-6.1 Sol",
+  "recommendedReasoning": "high",
+  "mode": "Standard",
+  "modifyExisting": [
+    {
+      "path": "src/ui/infected-world/components/battle-stage.tsx",
+      "restriction": "Replace only enemy visual layer; retain public name/stage/intent/timeline, player placeholder, action order and original ActionButton request bindings."
+    },
+    {
+      "path": "src/ui/infected-world/styles.css",
+      "restriction": "Enemy art/frame containment and narrowly necessary existing battle-figures sizing only. No shell/feed/HUD/dialog/global font or C1 animation redesign."
+    },
+    {
+      "path": "src/ui/infected-world/combat.test.tsx",
+      "restriction": "Explicit pending/failed versus ready art assertions and scoped fixture imports/setup/cleanup only. All original gameplay, revision, persistence, privacy, death and cold-restore assertions retained."
+    },
+    {
+      "path": "src/ui/infected-world/current-opponent-presentation.test.tsx",
+      "restriction": "Known ready image and explicit fallback assertion migration, names/descriptions and scoped fixtures only. Preserve every unknown/stage/no-guess/no-death semantic assertion."
+    }
+  ],
+  "addRuntimeExact": [
+    "src/ui/infected-world/presentation/approved-enemy-art.ts",
+    "src/ui/infected-world/presentation/use-enemy-art.ts",
+    "src/ui/infected-world/components/enemy-art.tsx"
+  ],
+  "optionalRuntimeExact": [
+    "src/ui/infected-world/presentation/enemy-art-loader.ts"
+  ],
+  "addTestsExact": [
+    "src/ui/infected-world/presentation/approved-enemy-art.test.ts",
+    "src/ui/infected-world/presentation/use-enemy-art.test.tsx",
+    "src/ui/infected-world/components/enemy-art.test.tsx",
+    "src/ui/infected-world/enemy-art-native.integration.test.tsx",
+    "src/ui/infected-world/enemy-art-privacy.test.tsx"
+  ],
+  "optionalTestsExact": [
+    "src/ui/infected-world/presentation/enemy-art-loader.test.ts",
+    "src/ui/infected-world/enemy-art-test-fixtures.ts"
+  ],
+  "addAssetExact": [
+    "src/assets/presentation/world-battle-v1/enemy_infected_orderly_pristine_v02.png",
+    "src/assets/presentation/world-battle-v1/enemy_infected_orderly_wounded_v02.png",
+    "src/assets/presentation/world-battle-v1/enemy_infected_orderly_heavy_wounded_v02.png",
+    "src/assets/presentation/world-battle-v1/enemy_infected_orderly_critical_v02.png",
+    "src/assets/presentation/world-battle-v1/enemy_infected_orderly_disabled_v02.png",
+    "src/assets/presentation/world-battle-v1/enemy-porter-pristine-v1.png",
+    "src/assets/presentation/world-battle-v1/enemy-porter-wounded-v1.png",
+    "src/assets/presentation/world-battle-v1/enemy-porter-heavy_wounded-v1.png",
+    "src/assets/presentation/world-battle-v1/enemy-porter-critical-v1.png",
+    "src/assets/presentation/world-battle-v1/enemy-porter-disabled-v1.png",
+    "src/assets/presentation/world-battle-v1/enemy-technician-pristine-v1.png",
+    "src/assets/presentation/world-battle-v1/enemy-technician-wounded-v1.png",
+    "src/assets/presentation/world-battle-v1/enemy-technician-heavy_wounded-v1.png",
+    "src/assets/presentation/world-battle-v1/enemy-technician-critical-v1.png",
+    "src/assets/presentation/world-battle-v1/enemy-technician-disabled-v1.png"
+  ],
+  "addDocumentPrefix": "docs/engineering/world-integration/presentation-c2-001/",
+  "documentPrefixRestrictions": [
+    "New task contract, input snapshot, concise reports, TEST-only browser producers/drivers and necessary evidence only.",
+    "Do not copy original 64-image library, full repository or previous delivery packages.",
+    "Runtime must not import TEST-only drivers or evidence. Tests may read approved asset JSON as a read-only oracle."
+  ],
+  "deleteOrRenameExisting": false,
+  "forbiddenChanges": [
+    "Any existing path outside modifyExisting",
+    "A/B1/C1 protocols",
+    "core",
+    "state/current",
+    "save/restore/expected",
+    "BrowserOwner/controller/single-writer",
+    "app.tsx/game-shell.tsx/world-stage.tsx/use-browser-owner.ts",
+    "assets.ts/entry.ts/application bootstrap",
+    "existing design catalog/generator/source art",
+    "package.json/package-lock.json/tsconfig/vite.config.ts/CI",
+    "formal DEC/UIR rule text"
+  ],
+  "git": {
+    "commit": true,
+    "push": true,
+    "pushOnlyBranch": "feature/world-presentation-c2-001",
+    "merge": false,
+    "forcePush": false,
+    "amendPublishedHistory": false,
+    "pushMain": false,
+    "moveFixedBaseline": false,
+    "deleteOldBranchesOrTags": false,
+    "hostInternalRefs": "OBSERVE_ONLY"
+  },
+  "delivery": {
+    "githubExactSHAIsPrimary": true,
+    "sourceZipRequired": false,
+    "fullPatchAttachmentRequired": false,
+    "wholeRepoObjectManifestRequired": false,
+    "attachments": "Only necessary uncommitted original browser evidence; omit duplicate repository-accessible source and image copies."
+  },
+  "stop": "After W0-W4, final normal commit/push, exact-SHA checks and report; no automatic B2, player/background adoption, whole UI redesign, merge or release."
+}

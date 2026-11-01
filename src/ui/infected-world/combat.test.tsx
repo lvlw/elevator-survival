@@ -1,10 +1,13 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { boundaryRecords } from '../../../docs/engineering/world-integration/preplay/browser-owner/validation/browser-cases'
 import { CHECKPOINT_KEY, RESERVATION_KEY } from '../../app/infected-browser/schema'
 import { observeBrowser } from '../../app/infected-browser/test-observers'
 import { mountUi } from './test-fixtures'
 
-afterEach(() => { vi.restoreAllMocks(); document.body.replaceChildren() })
+import { installEnemyArtImages } from './enemy-art-test-fixtures'
+let images: ReturnType<typeof installEnemyArtImages>
+beforeEach(() => { images = installEnemyArtImages() })
+afterEach(() => { images.restore(); vi.restoreAllMocks(); document.body.replaceChildren() })
 
 describe('real CTB through infected-world React controls', () => {
   it.each(['orderly', 'porter', 'technician'] as const)('%s strict cold checkpoint accepts an actual visible attack with one commit', async enemy => {
@@ -17,8 +20,9 @@ describe('real CTB through infected-world React controls', () => {
       expect(h.view().point).toBe('battle-decision')
       expect(h.entropy).not.toHaveBeenCalled(); expect(h.setItem).not.toHaveBeenCalled()
       expect(h.host.querySelector('[aria-label="相对行动顺序"]')).not.toBeNull()
-      expect(h.host.querySelector(`[aria-label="${({ orderly: '感染护工', porter: '感染装卸工', technician: '感染技术员' })[enemy]}中性占位"]`)).not.toBeNull()
-      expect(h.host.querySelector('.iw-battle img')).toBeNull()
+      await images.finish()
+      expect(h.host.querySelector(`[aria-label="${({ orderly: '感染护工', porter: '感染装卸工', technician: '感染技术员' })[enemy]} · 完好"]`)).not.toBeNull()
+      expect(h.host.querySelector('.iw-battle img')).not.toBeNull()
       const before = observed.owners.at(-1)!.getState().current!.character.revision
       observed.clear(); await h.d.send('金属管攻击')
       expect(observed.counts()).toMatchObject({ combat: 1, dispatch: 1, current: 1, notices: 1 })

@@ -1,0 +1,19 @@
+{
+  "base": "4f349d97024151ac79aa099425ce83217ef47b31",
+  "baseTrackedFiles": 3252,
+  "protectedProjectRefs": 69,
+  "projectRefsUnchanged": true,
+  "modifiedExistingWhitelist": [
+    "src/ui/infected-world/combat.test.tsx",
+    "src/ui/infected-world/components/battle-stage.tsx",
+    "src/ui/infected-world/current-opponent-presentation.test.tsx",
+    "src/ui/infected-world/styles.css"
+  ],
+  "exactPNGs": 15,
+  "totalPNGBytes": 13907305,
+  "internalRefsRecordedNotMoved": {
+    "refs/codex/turn-diffs/captures/1793517526565/2a148ae1-2155-4279-8bdf-f00965c9ea68/base": "3ddf6b8097e9dec899dd3e3dc7de7c149672c930",
+    "refs/codex/turn-diffs/checkpoints/03d93e9d104199cefa1675557431908c/b2244e328fc81a043e344623c60b3c34/1793497815433/f8456303-0e71-41c5-a2d1-9505eadc365c": "d4d653f170159ca6f467b7590f0ea8d1dbdc3eeb",
+    "refs/codex/turn-diffs/checkpoints/2b0923b0ded22d97e0d754aef3512cff/d06189173bc0dbf8d82709551b86ecf1/1793322152088/311e3450-c883-4dd4-8da2-895cb9bfa612": "3c0f39cb2895020d6c94a52a851074336498b12a"
+  }
+}

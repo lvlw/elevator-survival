@@ -1,0 +1,75 @@
+{
+  "verifiedDate": "2026-11-01",
+  "repository": "lvlw/elevator-survival",
+  "engineeringBase": "4f349d97024151ac79aa099425ce83217ef47b31",
+  "artSource": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+  "readOrReusedAtExactSHA": [
+    {
+      "path": "AGENTS.md",
+      "ref": "4f349d97024151ac79aa099425ce83217ef47b31",
+      "gitBlob": "0055de32c18517d4d016b077e5fc287d9360317d"
+    },
+    {
+      "path": "package.json",
+      "ref": "4f349d97024151ac79aa099425ce83217ef47b31",
+      "gitBlob": "e52c8b2716f8f44f4678066443516de5c738a3b8"
+    },
+    {
+      "path": "docs/09-ui-design-record.md",
+      "ref": "4f349d97024151ac79aa099425ce83217ef47b31",
+      "gitBlob": "216f76d08f91175130603c35125322026bb78262"
+    },
+    {
+      "path": "src/ui/infected-world/components/battle-stage.tsx",
+      "ref": "4f349d97024151ac79aa099425ce83217ef47b31",
+      "gitBlob": "d6bfae896b267613a155e0135d20105377ed34f5"
+    },
+    {
+      "path": "src/ui/infected-world/app.tsx",
+      "ref": "4f349d97024151ac79aa099425ce83217ef47b31",
+      "gitBlob": "bc5f03440b4394499447cc69197274a656a38097"
+    },
+    {
+      "path": "src/ui/infected-world/combat.test.tsx",
+      "ref": "4f349d97024151ac79aa099425ce83217ef47b31",
+      "gitBlob": "8b64143bf7744e76179fcb7527fdd2a079939d7e"
+    },
+    {
+      "path": "src/ui/infected-world/current-opponent-presentation.test.tsx",
+      "ref": "4f349d97024151ac79aa099425ce83217ef47b31",
+      "gitBlob": "266d0d433b0dabf501941c86a392a8a567c9ae51"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/adoption-prep-001/candidate-bindings.json",
+      "ref": "4f349d97024151ac79aa099425ce83217ef47b31",
+      "gitBlob": "08173984f6bd99991c153398f41dfebb60df284c"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/spec/registered-art.json",
+      "ref": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "cb04a06f5cbd79cf73f790a024bdfefc49d94af0"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/adoption-prep-001/C2-CONTRACT-DRAFT.md",
+      "ref": "4f349d97024151ac79aa099425ce83217ef47b31",
+      "gitBlob": "64e28163f945fce56dba292b000f8b56ecd5056c"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/adoption-prep-001/OWNER-REVIEW.md",
+      "ref": "4f349d97024151ac79aa099425ce83217ef47b31",
+      "gitBlob": "f486b0c56313d7a341cc9fb60951d8ce838a1a90"
+    }
+  ],
+  "priorMainlineAudit": {
+    "file": "AUD-4f349d9-ASSET-ADOPTION-PREP-001-v1.0.md",
+    "sha256": "2a8cf0b6d964a65abd1353ee3a625ea1e009d5ac69b4ef0e41df578b01b464d4",
+    "status": "PASS preparation only; F01-F04 incorporated here; historical pending approval superseded only by current Owner statement"
+  },
+  "modelDocumentation": {
+    "url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+    "checked": "2026-11-01",
+    "supportsHigh": true,
+    "accountMenuAndActualExecution": "NOT_INDEPENDENTLY_VERIFIED"
+  },
+  "note": "Source paths/pins aid audit; they do not add write permission. All paths outside SCOPE remain protected. No source file or image has been included in this package."
+}

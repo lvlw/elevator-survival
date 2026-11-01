@@ -194,6 +194,11 @@
 @media (prefers-reduced-motion: reduce) { .iw-app *, .iw-context { scroll-behavior: auto; } }
 .iw-document body { margin: 0; background: #0c1519; }
 
+/* C2: full registered canvas, bounded by the available actor width AND height. */
+.iw-battle-figures { container-type: size; }
+.iw-enemy-art-frame { position: relative; flex: none; width: min(40cqw, 80cqh, 12rem); aspect-ratio: 4 / 5; pointer-events: none; }
+.iw-enemy-art-raster { position: absolute; height: auto; max-width: none; pointer-events: none; user-select: none; }
+
 /* C1: fixed, data-independent single cue; latest canonical stage remains immediately visible. */
 .iw-committed-feedback { display: flex; flex: none; align-items: center; flex-wrap: wrap; gap: 0.35rem 0.6rem; min-height: 2.8rem; margin-top: 0.45rem; padding: 0.25rem 0.45rem; border-top: 1px solid #6b817a; background: #13252cdd; }
 .iw-committed-cue { flex: 1; min-width: 8rem; min-height: 1.5em; color: #eed29a; font-size: 0.85rem; }

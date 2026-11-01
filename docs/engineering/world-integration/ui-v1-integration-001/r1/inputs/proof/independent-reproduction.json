@@ -1,0 +1,43 @@
+{
+  "status": "TWO_FINDINGS_REPRODUCED",
+  "limitations": [
+    "Not actual React DOM",
+    "Not browser rendering",
+    "No game commands or persistence executed",
+    "Map ambiguity uses synthetic public data, not a claimed current map defect"
+  ],
+  "sources": {
+    "game-shell.tsx": "095c148aaa2797181501f4014c9ca6292f63b33d",
+    "knowledge-map.tsx": "e455e2443adc044ad399e0f5a99f9916807b3329"
+  },
+  "findings": [
+    {
+      "id": "R1-01",
+      "scope": "exact GameShell render with persistent hook-state test double; no native producer/browser",
+      "beforePoint": "stable-active",
+      "beforeUtilityActionCount": 1,
+      "afterPoint": "dead",
+      "terminalViewDeliveredToWorldStage": "dead",
+      "remainingUtilityLayers": 1,
+      "remainingUtilityActions": 0,
+      "expectedLayerCount": 0,
+      "reproduced": true
+    },
+    {
+      "id": "R1-02",
+      "scope": "synthetic public-projection boundary; no claim current content contains duplicates",
+      "duplicatePublicName": "测试公开区 / 同名地点",
+      "emittedAmbiguousEdges": 1,
+      "ambiguousPath": "M 205.7 79 Q 157.83151696247856 79.31357883621354 134.3 121",
+      "expectedEdges": 0,
+      "textRouteRetained": true,
+      "reproduced": true
+    }
+  ],
+  "positiveControls": [
+    "No utility modal on initial render",
+    "User opening produces one modal with one action",
+    "Manual close removes terminal leftover modal",
+    "Unambiguous map route still renders"
+  ]
+}

@@ -1,0 +1,253 @@
+{
+  "base": "ba865ea05cedac84d661969992683349cca7a519",
+  "evaluatedHead": "ba865ea05cedac84d661969992683349cca7a519",
+  "parent": "ac98a2bac0fe2b728783c5b1d8a20e4777f6b412",
+  "tree": "7d34277c26ce2d3990fcd9568a6d48693378041a",
+  "branch": "feature/world-ui-v1-integration-001",
+  "scope": "PASS",
+  "changedPaths": [
+    [
+      "M",
+      "src/ui/infected-world/components/game-shell.tsx"
+    ],
+    [
+      "M",
+      "src/ui/infected-world/components/knowledge-map.tsx"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/REPORT.md"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/VISUAL-MANIFEST.json"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/VISUAL-ONLY.zip"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/audit-scope.py"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/inputs/AUD-ba865ea.md"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/inputs/MAP-ADDENDUM.md"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/inputs/PACKAGE-MANIFEST.json"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/inputs/README-FIRST.md"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/inputs/SCOPE.json"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/inputs/SEND-TO-CODEX.txt"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/inputs/TASK.md"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/inputs/VIEWPORT-SCOPE-ADDENDUM.md"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/inputs/proof/README.md"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/inputs/proof/independent-reproduction.json"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/inputs/proof/reproduce-review.cjs"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/inputs/verification.json"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/raw-validation.json"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/scope-precommit.json"
+    ],
+    [
+      "?",
+      "docs/engineering/world-integration/ui-v1-integration-001/r1/validation-summary.json"
+    ],
+    [
+      "?",
+      "src/ui/infected-world/ui-v1-review-lifecycle.test.tsx"
+    ],
+    [
+      "?",
+      "src/ui/infected-world/ui-v1-review-map.test.tsx"
+    ],
+    [
+      "?",
+      "src/ui/infected-world/ui-v1-review-test-fixtures.ts"
+    ]
+  ],
+  "protectedExplicitBlobs": [
+    {
+      "path": "src/ui/infected-world/ui-v1.css",
+      "baseBlob": "68df750f23ef84061476a8197a6c1074af3c0af2",
+      "currentBlob": "68df750f23ef84061476a8197a6c1074af3c0af2"
+    },
+    {
+      "path": "src/ui/infected-world/styles.css",
+      "baseBlob": "01b51edf0c84364205856e40cd7672044a3dd2ee",
+      "currentBlob": "01b51edf0c84364205856e40cd7672044a3dd2ee"
+    },
+    {
+      "path": "src/ui/infected-world/app.tsx",
+      "baseBlob": "197a0ac546b5145f845834dbcb44d77b50b1b6b5",
+      "currentBlob": "197a0ac546b5145f845834dbcb44d77b50b1b6b5"
+    },
+    {
+      "path": "src/ui/infected-world/components/content-layer.tsx",
+      "baseBlob": "8004862cfac30bcdd9b08135be87a7e90e0bf53b",
+      "currentBlob": "8004862cfac30bcdd9b08135be87a7e90e0bf53b"
+    },
+    {
+      "path": "src/ui/infected-world/use-browser-owner.ts",
+      "baseBlob": "5cdc4ef706c78fbd2b866d847bd15b351135a8a6",
+      "currentBlob": "5cdc4ef706c78fbd2b866d847bd15b351135a8a6"
+    },
+    {
+      "path": "src/ui/infected-world/interaction.ts",
+      "baseBlob": "26fbb6c5502d6d6a58e2bc76ce7febc6f9550f41",
+      "currentBlob": "26fbb6c5502d6d6a58e2bc76ce7febc6f9550f41"
+    },
+    {
+      "path": "src/ui/infected-world/presentation/use-committed-presentation.ts",
+      "baseBlob": "54b086e8dd5bb25345e252562c2b55f014e6721c",
+      "currentBlob": "54b086e8dd5bb25345e252562c2b55f014e6721c"
+    },
+    {
+      "path": "src/ui/infected-world/presentation/committed-consumer.ts",
+      "baseBlob": "1bb631b4aec1812848651e8b9a58d5981f989127",
+      "currentBlob": "1bb631b4aec1812848651e8b9a58d5981f989127"
+    },
+    {
+      "path": "src/ui/infected-world/presentation/approved-enemy-art.ts",
+      "baseBlob": "76e00c625e0769f3198a824dd084c563aa560232",
+      "currentBlob": "76e00c625e0769f3198a824dd084c563aa560232"
+    },
+    {
+      "path": "src/ui/infected-world/presentation/enemy-art-loader.ts",
+      "baseBlob": "a468717e401a39a614d4d8099c7401d87e262d65",
+      "currentBlob": "a468717e401a39a614d4d8099c7401d87e262d65"
+    },
+    {
+      "path": "src/ui/infected-world/presentation/use-enemy-art.ts",
+      "baseBlob": "d5cb28ee0e4157c147202523f36b2f26e6df7e96",
+      "currentBlob": "d5cb28ee0e4157c147202523f36b2f26e6df7e96"
+    },
+    {
+      "path": "package.json",
+      "baseBlob": "e52c8b2716f8f44f4678066443516de5c738a3b8",
+      "currentBlob": "e52c8b2716f8f44f4678066443516de5c738a3b8"
+    },
+    {
+      "path": "package-lock.json",
+      "baseBlob": "3b320a8a79a1815c0909d8846e5e6248d4fc187e",
+      "currentBlob": "3b320a8a79a1815c0909d8846e5e6248d4fc187e"
+    },
+    {
+      "path": "vite.config.ts",
+      "baseBlob": "9b630ac9166409f0519e6c5c499e9def6399cf67",
+      "currentBlob": "9b630ac9166409f0519e6c5c499e9def6399cf67"
+    },
+    {
+      "path": "AGENTS.md",
+      "baseBlob": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "currentBlob": "0055de32c18517d4d016b077e5fc287d9360317d"
+    }
+  ],
+  "allOtherTrackedFiles": "No changes outside the exact scope; existing assets, core/state/app/saves/expected/CI and prior reports/tests preserved",
+  "oldProjectRefs": {
+    "count": 71,
+    "changed": {}
+  },
+  "oldRemoteRefsChanged": {},
+  "hostRefsObservedOnly": {
+    "before": {
+      "refs/codex/turn-diffs/captures/1793550882694/8a14b275-567c-481a-8cd0-7d5fd119da65/base": "7d34277c26ce2d3990fcd9568a6d48693378041a",
+      "refs/codex/turn-diffs/checkpoints/03d93e9d104199cefa1675557431908c/ea1904348c43e200028cfd1c64498bf6/1793531549647/a679fd4c-09e2-4307-9972-aaf4a43f58b9": "7b97cd88523255a737fe406974b78de247672f57",
+      "refs/codex/turn-diffs/checkpoints/2b0923b0ded22d97e0d754aef3512cff/d06189173bc0dbf8d82709551b86ecf1/1793322152088/311e3450-c883-4dd4-8da2-895cb9bfa612": "3c0f39cb2895020d6c94a52a851074336498b12a",
+      "refs/codex/turn-diffs/checkpoints/dd2bae4cae418bbd1adacb8d16019724/bfee5e8aaa1340b8913c78cac2f36717/1793545553178/9adddece-873b-46bf-a44c-a0685f13eb17": "ef2f36806f9fc767f27141814400d3f048bba17e"
+    },
+    "after": {
+      "refs/codex/turn-diffs/captures/1793550882694/8a14b275-567c-481a-8cd0-7d5fd119da65/base": "7d34277c26ce2d3990fcd9568a6d48693378041a",
+      "refs/codex/turn-diffs/captures/1793553058846/828df754-381f-4381-974c-920df70e87c0/base": "7bdef29b5eecd61917c7cbadfcf11f395fc5dcee",
+      "refs/codex/turn-diffs/checkpoints/03d93e9d104199cefa1675557431908c/ea1904348c43e200028cfd1c64498bf6/1793531549647/a679fd4c-09e2-4307-9972-aaf4a43f58b9": "7b97cd88523255a737fe406974b78de247672f57",
+      "refs/codex/turn-diffs/checkpoints/2b0923b0ded22d97e0d754aef3512cff/d06189173bc0dbf8d82709551b86ecf1/1793322152088/311e3450-c883-4dd4-8da2-895cb9bfa612": "3c0f39cb2895020d6c94a52a851074336498b12a",
+      "refs/codex/turn-diffs/checkpoints/dd2bae4cae418bbd1adacb8d16019724/bfee5e8aaa1340b8913c78cac2f36717/1793545553178/9adddece-873b-46bf-a44c-a0685f13eb17": "ef2f36806f9fc767f27141814400d3f048bba17e"
+    }
+  },
+  "visual": {
+    "sourceSHA": "ba865ea05cedac84d661969992683349cca7a519",
+    "r1Recaptured": false,
+    "contains": "Exactly the four requested unchanged original JPGs; no source or assets",
+    "images": [
+      {
+        "name": "30-final-pharmacy-revealed-1920.jpg",
+        "source": "docs/engineering/world-integration/ui-v1-integration-001/evidence/30-final-pharmacy-revealed-1920.jpg",
+        "bytes": 262930,
+        "sha256": "005afe443c75afb08a7838ac6b3d9d9ccd76a0297addd86669e386bc1ae659d2",
+        "pixels": [
+          1920,
+          1080
+        ]
+      },
+      {
+        "name": "31-final-pharmacy-empty-reopened-1920.jpg",
+        "source": "docs/engineering/world-integration/ui-v1-integration-001/evidence/31-final-pharmacy-empty-reopened-1920.jpg",
+        "bytes": 264588,
+        "sha256": "03a0dc30e5c8c1033b75981fc0de762f80f705bd39c8d7c2fe8e7f95144b6947",
+        "pixels": [
+          1920,
+          1080
+        ]
+      },
+      {
+        "name": "22-actual-2x2-detail-1920.jpg",
+        "source": "docs/engineering/world-integration/ui-v1-integration-001/evidence/22-actual-2x2-detail-1920.jpg",
+        "bytes": 255029,
+        "sha256": "a6e726be17affa1200f699a288c5157617c6d40c886e4f19d85b099f8ad7acb7",
+        "pixels": [
+          1920,
+          1080
+        ]
+      },
+      {
+        "name": "17-natural-battle-1920.jpg",
+        "source": "docs/engineering/world-integration/ui-v1-integration-001/evidence/17-natural-battle-1920.jpg",
+        "bytes": 316309,
+        "sha256": "621845b18a3fb1bbfd30ecf4fc8f32593edc08be68cbe9f1d1068c888273d609",
+        "pixels": [
+          1920,
+          1080
+        ]
+      }
+    ],
+    "zipBytes": 1080736,
+    "zipSHA256": "46718f48408c1f9570a18ab09467862beed5f892e8b5a62550ffedf35ac16075"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "task": "ENG-WORLD-UI-V1-INTEGRATION-001-R1",
+  "zipBytes": 25236,
+  "zipSHA256": "917eb5ed2df157d5f289487e5d53a41861886b973e14440a10b5f138ca483998",
+  "pathSafety": "PASS",
+  "crc": "PASS",
+  "manifestPayloads": 10,
+  "manifestSHA256": "PASS",
+  "verifyPackagePy": "NOT PRESENT"
+}

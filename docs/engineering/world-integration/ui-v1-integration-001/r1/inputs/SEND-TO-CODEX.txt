@@ -1,0 +1,16 @@
+执行附件 ENG-WORLD-UI-V1-INTEGRATION-001-R1。
+
+准确起点：ba865ea05cedac84d661969992683349cca7a519
+继续原分支：feature/world-ui-v1-integration-001
+推荐沿用：GPT-6.1 Sol／高（high）／Standard；实际配置如实记录。
+
+保留全部M1—M3，不重做UI、不再铺分辨率。只修两项：
+1. 药食/维护操作后进入终局或当前不再有此类动作时，旧操作层立即消失；补真实React/正式生产者、必要确认、保存失败和retry回归。
+2. 地图完整公开名重复或端点缺失时，不猜第一/最后节点连线，保留原路线文字；唯一端点和有向环/旧观察保持。
+
+先读TASK、SCOPE、AUD、视口补充及实际AGENTS。只改指定两处运行组件和相应测试；不改CSS、素材、核心、协议、保存、BrowserOwner、依赖或CI。
+开工实际test:run，先复现业务失败；完成定向回归和默认check/准确SHA CI，不叠加一轮多视口或重复全量矩阵。
+允许仅原分支普通commit/push，不合并、强推、改已发布历史或动main/baseline。
+
+直接交完整SHA、报告/CI、修复证据；附TASK列出的4张已有1920原JPG（可仅作VISUAL-ONLY.zip），不重拍、不打源码包。明确原图来自ba865ea，不伪称R1重新取证。
+完成即停等主线代码与视觉复审，Owner暂不试玩。

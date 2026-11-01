@@ -1,0 +1,44 @@
+{
+  "baseline": {
+    "command": "npm run test:run",
+    "files": 348,
+    "tests": 5024,
+    "seconds": 554.19,
+    "exit": 0
+  },
+  "red": {
+    "files": 2,
+    "passed": 7,
+    "businessFailed": 10,
+    "exit": 1,
+    "runtimeAt": "ba865ea05cedac84d661969992683349cca7a519"
+  },
+  "greenSameTests": {
+    "files": 2,
+    "tests": 17,
+    "seconds": 6.13,
+    "exit": 0
+  },
+  "targeted": {
+    "files": 12,
+    "tests": 63,
+    "seconds": 22.19,
+    "exit": 0
+  },
+  "final": {
+    "command": "npm run check",
+    "env": {
+      "VITEST_MAX_WORKERS": "2"
+    },
+    "defaultSelectionUnchanged": true,
+    "files": 350,
+    "tests": 5041,
+    "testSeconds": 592.08,
+    "architecture": "PASS: 53 DEC/347 core",
+    "typecheck": "PASS",
+    "build": "PASS: 425 modules",
+    "exit": 0
+  },
+  "newNativeBrowserScreenshot": "NOT RUN; only original ba865ea JPGs supplied",
+  "separateE03Matrix": "NOT RUN: already included in required default check"
+}

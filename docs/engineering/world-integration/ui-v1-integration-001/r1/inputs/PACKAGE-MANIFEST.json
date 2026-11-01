@@ -1,0 +1,46 @@
+{
+  "task": "ENG-WORLD-UI-V1-INTEGRATION-001-R1",
+  "base": "ba865ea05cedac84d661969992683349cca7a519",
+  "files": {
+    "AUD-ba865ea.md": {
+      "bytes": 10202,
+      "sha256": "76a448760febf5ee0943f3d781bc3012330a88d6f4bf1aa8e7f7b59af2f93b62"
+    },
+    "MAP-ADDENDUM.md": {
+      "bytes": 6901,
+      "sha256": "1b7f8c3391291fb9567650cfb9bcf9b83ddf60fec3c15364c19721119a67c109"
+    },
+    "README-FIRST.md": {
+      "bytes": 768,
+      "sha256": "9f2130c4a9d38064d89bef155bbfcf71b59d1cb64383f5c2a6d56041ae823319"
+    },
+    "SCOPE.json": {
+      "bytes": 1591,
+      "sha256": "d36ee3bb36979210be433037097d44de572469364aa7494a57480d4d82d64adc"
+    },
+    "SEND-TO-CODEX.txt": {
+      "bytes": 1348,
+      "sha256": "5b5d91cbfca2c21af4a69b3f299de51b01fd42ff7d9974cb0028d723ea241a77"
+    },
+    "TASK.md": {
+      "bytes": 5455,
+      "sha256": "bd59f5fef7d8c3131ce30edbd9f94a2b8162b2d4be8677461802d8218990423d"
+    },
+    "VIEWPORT-SCOPE-ADDENDUM.md": {
+      "bytes": 7282,
+      "sha256": "52423b3544ea239dfb5be08d00113a645d584b754845c6a97a5fb5c465beb321"
+    },
+    "proof/README.md": {
+      "bytes": 702,
+      "sha256": "0fa1794e7196ff178c19a56c383cfe890b4efba6d7510fbd0ecd5a3c73bda86f"
+    },
+    "proof/independent-reproduction.json": {
+      "bytes": 1471,
+      "sha256": "f7d79f489a2eeb6d22f6949a1eb29520b3294f2de8b1ba60af76077e39ca3110"
+    },
+    "proof/reproduce-review.cjs": {
+      "bytes": 6791,
+      "sha256": "5ed6fa1f81b52eb5735409b44a6a665cd9c32478affc02ff7bd4d6a59152d816"
+    }
+  }
+}

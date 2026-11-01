@@ -1,0 +1,49 @@
+{
+  "sourceSHA": "ba865ea05cedac84d661969992683349cca7a519",
+  "r1Recaptured": false,
+  "contains": "Exactly the four requested unchanged original JPGs; no source or assets",
+  "images": [
+    {
+      "name": "30-final-pharmacy-revealed-1920.jpg",
+      "source": "docs/engineering/world-integration/ui-v1-integration-001/evidence/30-final-pharmacy-revealed-1920.jpg",
+      "bytes": 262930,
+      "sha256": "005afe443c75afb08a7838ac6b3d9d9ccd76a0297addd86669e386bc1ae659d2",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "name": "31-final-pharmacy-empty-reopened-1920.jpg",
+      "source": "docs/engineering/world-integration/ui-v1-integration-001/evidence/31-final-pharmacy-empty-reopened-1920.jpg",
+      "bytes": 264588,
+      "sha256": "03a0dc30e5c8c1033b75981fc0de762f80f705bd39c8d7c2fe8e7f95144b6947",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "name": "22-actual-2x2-detail-1920.jpg",
+      "source": "docs/engineering/world-integration/ui-v1-integration-001/evidence/22-actual-2x2-detail-1920.jpg",
+      "bytes": 255029,
+      "sha256": "a6e726be17affa1200f699a288c5157617c6d40c886e4f19d85b099f8ad7acb7",
+      "pixels": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "name": "17-natural-battle-1920.jpg",
+      "source": "docs/engineering/world-integration/ui-v1-integration-001/evidence/17-natural-battle-1920.jpg",
+      "bytes": 316309,
+      "sha256": "621845b18a3fb1bbfd30ecf4fc8f32593edc08be68cbe9f1d1068c888273d609",
+      "pixels": [
+        1920,
+        1080
+      ]
+    }
+  ],
+  "zipBytes": 1080736,
+  "zipSHA256": "46718f48408c1f9570a18ab09467862beed5f892e8b5a62550ffedf35ac16075"
+}

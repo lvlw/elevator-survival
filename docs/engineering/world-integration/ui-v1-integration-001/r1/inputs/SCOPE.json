@@ -1,0 +1,43 @@
+{
+  "task": "ENG-WORLD-UI-V1-INTEGRATION-001-R1",
+  "base": "ba865ea05cedac84d661969992683349cca7a519",
+  "branch": "feature/world-ui-v1-integration-001",
+  "modifyRuntimeExact": [
+    "src/ui/infected-world/components/game-shell.tsx",
+    "src/ui/infected-world/components/knowledge-map.tsx"
+  ],
+  "appendOrNarrowTestExact": [
+    "src/ui/infected-world/ui-v1-shell.test.tsx",
+    "src/ui/infected-world/ui-v1-map.test.tsx"
+  ],
+  "optionalAddTests": [
+    "src/ui/infected-world/ui-v1-review-lifecycle.test.tsx",
+    "src/ui/infected-world/ui-v1-review-map.test.tsx",
+    "src/ui/infected-world/ui-v1-review-test-fixtures.ts"
+  ],
+  "documentPrefix": "docs/engineering/world-integration/ui-v1-integration-001/r1/",
+  "preserve": [
+    "All other runtime paths",
+    "All existing CSS/layout",
+    "All assets",
+    "Core/State/App/BrowserOwner/Saves/A/B1/C1/C2 loader",
+    "All prior tests and their semantic assertions",
+    "Dependencies/CI",
+    "Owner profiles and saves"
+  ],
+  "git": {
+    "commit": true,
+    "push": true,
+    "pushOnlyBranch": "feature/world-ui-v1-integration-001",
+    "merge": false,
+    "force": false,
+    "rewriteHistory": false,
+    "pushMain": false,
+    "moveBaseline": false
+  },
+  "viewport": "1920x1080 existing primary desktop; no new multi-viewport campaign",
+  "ownerPlaytest": "PAUSED_UNTIL_MAINLINE_CODE_AND_VISUAL_REVIEW",
+  "sourceZipRequired": false,
+  "visualAttachment": "Four existing original JPGs only; optional VISUAL-ONLY.zip",
+  "scopeConflict": "Stop only affected item with exact evidence; do not broaden file scope or reset work"
+}

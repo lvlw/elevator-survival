@@ -1,0 +1,223 @@
+{
+  "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+  "count": 27,
+  "result": "PASS_EXACT_SOURCE_PINS",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "expectedBlob": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "actualBlob": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "bytes": 2024,
+      "sha256": "00c2cad61c99530c1343ca9faad9a32994d67e5ca4aeb991156bb9828e5c501e",
+      "matches": true
+    },
+    {
+      "path": "docs/01-game-design-v0.1.md",
+      "expectedBlob": "9f1537ed931845601353ffd1f880690c2cdfa77e",
+      "actualBlob": "9f1537ed931845601353ffd1f880690c2cdfa77e",
+      "bytes": 37753,
+      "sha256": "20c947930a1a7fca7b97f581b9813213fda3c45cfbea724d5af4a4788b18410b",
+      "matches": true
+    },
+    {
+      "path": "docs/02-vertical-slice.md",
+      "expectedBlob": "784db68f16572b7666c3da37a1e39b5ad3b4385b",
+      "actualBlob": "784db68f16572b7666c3da37a1e39b5ad3b4385b",
+      "bytes": 51466,
+      "sha256": "bd1482a0a04f0b74b935c06bb3d64a963ed410daf36940be3b78d3ab2d61b6fd",
+      "matches": true
+    },
+    {
+      "path": "docs/03-architecture.md",
+      "expectedBlob": "72e29fcd0f5efe21493dbd02a66aa130be7cc2d0",
+      "actualBlob": "72e29fcd0f5efe21493dbd02a66aa130be7cc2d0",
+      "bytes": 96483,
+      "sha256": "586c9960468a4733e2145d8a179ccf75ca9a75a17f24669e89367ab35aa0a9fa",
+      "matches": true
+    },
+    {
+      "path": "docs/05-design-decisions.md",
+      "expectedBlob": "2fd80b12fb57285dd7d1bbe89e4ea51353710ff8",
+      "actualBlob": "2fd80b12fb57285dd7d1bbe89e4ea51353710ff8",
+      "bytes": 282147,
+      "sha256": "68f35a56c754f55b1137314ba41cd7fbbeea88afdcb816690ff52a509c90d6ca",
+      "matches": true
+    },
+    {
+      "path": "docs/09-ui-design-record.md",
+      "expectedBlob": "216f76d08f91175130603c35125322026bb78262",
+      "actualBlob": "216f76d08f91175130603c35125322026bb78262",
+      "bytes": 46798,
+      "sha256": "ef487405761d553bf59da280f7b93563207f77af6173e96ddc1cccf26e1e033d",
+      "matches": true
+    },
+    {
+      "path": "docs/content/enemies.md",
+      "expectedBlob": "9d4c22d33ab7efa4786e41aedfea482f844186b2",
+      "actualBlob": "9d4c22d33ab7efa4786e41aedfea482f844186b2",
+      "bytes": 11277,
+      "sha256": "8cbfa4fb91f56ec754d89c3f4b71e2a2228148bfbe4cf14ba534b6b577c21c0a",
+      "matches": true
+    },
+    {
+      "path": "docs/governance/world-baseline-001/asset-guide.md",
+      "expectedBlob": "b3033e4aa3a7bfffb0fd931ef01db082cf01b49c",
+      "actualBlob": "b3033e4aa3a7bfffb0fd931ef01db082cf01b49c",
+      "bytes": 1593,
+      "sha256": "30db8eccc62d42a0e4dfb313c207d429b820574d0e1c6c62e63697e3f2f86bb3",
+      "matches": true
+    },
+    {
+      "path": "docs/governance/world-baseline-001/asset-status.json",
+      "expectedBlob": "ae00580d1ce105250e087750a4020489fe0d8470",
+      "actualBlob": "ae00580d1ce105250e087750a4020489fe0d8470",
+      "bytes": 109779,
+      "sha256": "19d6b991e8e302d23a66b669060589720abf8a63c35ffc616f8b95d08dcd54a9",
+      "matches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/00-owner-review.md",
+      "expectedBlob": "bb4019cdd5e9cc9a8d746644e500854dfc4cf49b",
+      "actualBlob": "bb4019cdd5e9cc9a8d746644e500854dfc4cf49b",
+      "bytes": 2594,
+      "sha256": "bd277de959d383b49f61bd02054f101273cfd811ad5d56d5fdbd40d7eef970e2",
+      "matches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/03-dimension-contract.md",
+      "expectedBlob": "0e4e697f26dee41dd060b2d72d227030a9bd8199",
+      "actualBlob": "0e4e697f26dee41dd060b2d72d227030a9bd8199",
+      "bytes": 4442,
+      "sha256": "e588267fd0200b21cf939bb4e39840c9bf0c0065c54062e1809f999b26436ca8",
+      "matches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/04-interaction-and-motion.md",
+      "expectedBlob": "e6de67b893ad3dd7743c7e15a0c9902a845b84e4",
+      "actualBlob": "e6de67b893ad3dd7743c7e15a0c9902a845b84e4",
+      "bytes": 3733,
+      "sha256": "edd95506974d90c4f35d1ef9275ee905052b60d580274ed6d54922798578e838",
+      "matches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/05-asset-coverage.md",
+      "expectedBlob": "cec001b6a34bf283d74df3043b3788ad193de59f",
+      "actualBlob": "cec001b6a34bf283d74df3043b3788ad193de59f",
+      "bytes": 3314,
+      "sha256": "616281b67411bb76f061f94deac868f9063409acf807d325e7b29e296e4d7540",
+      "matches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/06-implementation-handoff-draft.md",
+      "expectedBlob": "aa9d03f59df0beae40b89e0ada165fab2e1d67db",
+      "actualBlob": "aa9d03f59df0beae40b89e0ada165fab2e1d67db",
+      "bytes": 3305,
+      "sha256": "f32488a51e1b1151b985d899664f128ef312555916dfa5300f404c7c65df8f78",
+      "matches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/spec/asset-manifest.json",
+      "expectedBlob": "6c7eb0a41bcb1402151f289aa06c8afb314b8413",
+      "actualBlob": "6c7eb0a41bcb1402151f289aa06c8afb314b8413",
+      "bytes": 387043,
+      "sha256": "404f26e9225c9cfa3c9bac998d4866a8968c56fb36eb1600312a453e73e75548",
+      "matches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/spec/registered-art.json",
+      "expectedBlob": "cb04a06f5cbd79cf73f790a024bdfefc49d94af0",
+      "actualBlob": "cb04a06f5cbd79cf73f790a024bdfefc49d94af0",
+      "bytes": 17353,
+      "sha256": "d7b1404a29f1276e552afab89e44cd3a8f6778b2db79fafff6c0f3ffeb2a5c42",
+      "matches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/spec/node-crop-manifest.json",
+      "expectedBlob": "4d233ae8b606cdd101efb57c4be802131ec49f37",
+      "actualBlob": "4d233ae8b606cdd101efb57c4be802131ec49f37",
+      "bytes": 113406,
+      "sha256": "6b4198768616e37c82e53acf4e78dfc6d368ff2473be11df1ccd918c1088d7e2",
+      "matches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme/catalog.json",
+      "expectedBlob": "e97497c03c382dc22daac10914aab858dd96c96c",
+      "actualBlob": "e97497c03c382dc22daac10914aab858dd96c96c",
+      "bytes": 274306,
+      "sha256": "510ef4f2e42645319c8f507ab3382ed38f8b094c525bcc64ece3afa6e13991cd",
+      "matches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme/GUIDE.md",
+      "expectedBlob": "b5b0a31dae1827695b3de86444c54e78f5f1166d",
+      "actualBlob": "b5b0a31dae1827695b3de86444c54e78f5f1166d",
+      "bytes": 4392,
+      "sha256": "6dac6befd3b6d6b77cd56b83e6ad2b1ec96806cf0ca64b4a03828822a9ff9da3",
+      "matches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/tools/catalog.py",
+      "expectedBlob": "74a039b68b96f4c12a6908a3526d70f6ddef2e98",
+      "actualBlob": "74a039b68b96f4c12a6908a3526d70f6ddef2e98",
+      "bytes": 6272,
+      "sha256": "21f9356f6858f5c82d56f233a4190f3c07ca347900affd52561e1f5f7d34f825",
+      "matches": true
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/contracts/C-staged-ui.md",
+      "expectedBlob": "12c51c4daeeea808e4c948a635b18d95d1ef0ed4",
+      "actualBlob": "12c51c4daeeea808e4c948a635b18d95d1ef0ed4",
+      "bytes": 2465,
+      "sha256": "12531edb60bde600af1dff6a15b57d9c54a791f145ee1d1214e3d95f0f8ae3a9",
+      "matches": true
+    },
+    {
+      "path": "docs/engineering/world-integration/presentation-prep-001/ASSET-BINDING-CANDIDATE.json",
+      "expectedBlob": "c29807598ea60ae45b4d6bc404f1fec732e2b227",
+      "actualBlob": "c29807598ea60ae45b4d6bc404f1fec732e2b227",
+      "bytes": 31690,
+      "sha256": "466ee9d03bb40f1b360eedb5ecc5a91e4251120a4c0fdf48f1a63c249827ee94",
+      "matches": true
+    },
+    {
+      "path": "docs/engineering/world-integration/presentation-prep-001/ART-AND-INTEGRATION-GATES.md",
+      "expectedBlob": "9afc1335a42f67feeb1a5ffd6826fbe3d795b3e8",
+      "actualBlob": "9afc1335a42f67feeb1a5ffd6826fbe3d795b3e8",
+      "bytes": 2350,
+      "sha256": "034b84b5edaf02a95d2f19afa1d448bd9e5b1382ba32374771930a2d2c112372",
+      "matches": true
+    },
+    {
+      "path": "docs/engineering/world-integration/presentation-c1-verify-001/BROWSER-MATRIX.md",
+      "expectedBlob": "60be62c39940ee5cbe4982205e95816dd881e93c",
+      "actualBlob": "60be62c39940ee5cbe4982205e95816dd881e93c",
+      "bytes": 6168,
+      "sha256": "c6e7d4b79be7fdc005762e2c2bb173ee91a0ccc49a80517ba61d907b940d915d",
+      "matches": true
+    },
+    {
+      "path": "src/ui/infected-world/assets.ts",
+      "expectedBlob": "af543ed02b2025c1c852a12000b0c32db41b138d",
+      "actualBlob": "af543ed02b2025c1c852a12000b0c32db41b138d",
+      "bytes": 1431,
+      "sha256": "0448c7f87501d41c4f07ede0adf4206f5d8ffac340b111789074725635179e0b",
+      "matches": true
+    },
+    {
+      "path": "src/ui/infected-world/app.tsx",
+      "expectedBlob": "bc5f03440b4394499447cc69197274a656a38097",
+      "actualBlob": "bc5f03440b4394499447cc69197274a656a38097",
+      "bytes": 8140,
+      "sha256": "29618f0ef066ad378e0ff29cff562339c13e4e552b639ba5fcb56b79d4022cbf",
+      "matches": true
+    },
+    {
+      "path": "src/ui/infected-world/components/battle-stage.tsx",
+      "expectedBlob": "d6bfae896b267613a155e0135d20105377ed34f5",
+      "actualBlob": "d6bfae896b267613a155e0135d20105377ed34f5",
+      "bytes": 2866,
+      "sha256": "6f44f36717944d1442fef2acbceecab4c448a6eeb6448db73b067a80c3ff1c6a",
+      "matches": true
+    }
+  ]
+}

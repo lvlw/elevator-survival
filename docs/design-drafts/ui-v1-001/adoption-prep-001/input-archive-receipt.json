@@ -1,0 +1,70 @@
+{
+  "sourceZipName": "ART-WORLD-ASSET-ADOPTION-PREP-001-task-v1.0.zip",
+  "sourceZipBytes": 23072,
+  "sourceZipSHA256": "5433e8dd2a1c079bab7eadf6a92a66b81199f31e1e28b091d421e01e7bd6f582",
+  "count": 12,
+  "uncompressedBytes": 40914,
+  "result": "PASS_EXACT_RAW_INPUT_BYTES",
+  "files": [
+    {
+      "path": "ACCEPTANCE-MATRIX.md",
+      "bytes": 1304,
+      "sha256": "8c2aededf28243019c684825eae6977cf12ae678be4aca551de630722898065f"
+    },
+    {
+      "path": "ASSET-REVIEW-CONTRACT.md",
+      "bytes": 3326,
+      "sha256": "41cdab3bac5ef34281aba3868b3fd0b94d7102ef09b0eea9d5b40325ef9a82a9"
+    },
+    {
+      "path": "AUTHORIZATION-AND-STATUS.md",
+      "bytes": 2385,
+      "sha256": "d06feb974b84edd85f41ead841e8a29df8fbdb9c74ebdd2cef6f955eca04573c"
+    },
+    {
+      "path": "BASELINE-AND-SCOPE.json",
+      "bytes": 824,
+      "sha256": "c418c49b2f8167a94e15da4f20286d96bdb3dae2213d565dd6cd7c8760f325bc"
+    },
+    {
+      "path": "CURRENT-STATE.md",
+      "bytes": 1409,
+      "sha256": "7ac68e8a2a18557667510f85aecc7451bb3ce735b0051550f28e3a8feed4fcce"
+    },
+    {
+      "path": "PACKAGE-MANIFEST.json",
+      "bytes": 1891,
+      "sha256": "8a20563247092751bd3c96c1c496028d7d6d80385fd502506e4b8fb1d7dc7208"
+    },
+    {
+      "path": "README-FIRST.md",
+      "bytes": 1130,
+      "sha256": "16e6d6ca875c7592c6f3473b3f87453b553c1bc5c3414d4df386c43ee7a750b8"
+    },
+    {
+      "path": "SEND-TO-CODEX.txt",
+      "bytes": 1670,
+      "sha256": "7e0c01e1201ba24345a36789b64742225c2247363df225f8241cba06d3667fc3"
+    },
+    {
+      "path": "SOURCE-REFERENCES.json",
+      "bytes": 7807,
+      "sha256": "8a2a2d1ace0d14387fe449489e76a4f65cd154da22d10f12fd1199173ed25d5b"
+    },
+    {
+      "path": "TASK.md",
+      "bytes": 6881,
+      "sha256": "dd8630a251f878c3316eb16b67aa2c495b679c5fef6d1da4f5c1e1342f42f4e8"
+    },
+    {
+      "path": "inputs/AUD-8c962f9-PRESENTATION-C1-VERIFY-001-v1.0.md",
+      "bytes": 10354,
+      "sha256": "86ab7bdea944f3e7b8ba4317adb529308dd957104a20425259c04d7c47f40cdf"
+    },
+    {
+      "path": "verify-package.py",
+      "bytes": 1933,
+      "sha256": "8a03873f9c910f2479817691b0fa75bb23dcf634d19b99d907008e4a1ca87062"
+    }
+  ]
+}

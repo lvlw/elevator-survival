@@ -1,0 +1,1016 @@
+{
+  "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+  "allRasterCount": 64,
+  "focusCount": 16,
+  "items": [
+    {
+      "key": "enemy-infected-orderly-pristine",
+      "sourceSha256": "9fd480efca6c4dc8e02198cd25175e385de8f80efa64cbb11fce6372d2b76907",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1024,
+        1280
+      ],
+      "alpha1Pixels": 6106,
+      "outer8Nontransparent": 0,
+      "alphaBoundsByThreshold": {
+        "1": [
+          143,
+          112,
+          880,
+          1232
+        ],
+        "8": [
+          233,
+          117,
+          822,
+          1225
+        ],
+        "32": [
+          233,
+          118,
+          822,
+          1225
+        ],
+        "128": [
+          234,
+          119,
+          821,
+          1224
+        ],
+        "254": [
+          235,
+          127,
+          820,
+          1223
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        315.075,
+        337.42500000000007,
+        1107.525,
+        1829.1750000000002
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.48546289062500003,
+          0.4700703125000001
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-enemy-infected-orderly-pristine.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    },
+    {
+      "key": "enemy-infected-orderly-wounded",
+      "sourceSha256": "c00c5126bfc6967f0a34af94a2ccd32d6874bae3899d9e02ae189af8f662ed5b",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1024,
+        1280
+      ],
+      "alpha1Pixels": 6158,
+      "outer8Nontransparent": 0,
+      "alphaBoundsByThreshold": {
+        "1": [
+          143,
+          185,
+          880,
+          1232
+        ],
+        "8": [
+          266,
+          188,
+          814,
+          1223
+        ],
+        "32": [
+          266,
+          191,
+          813,
+          1223
+        ],
+        "128": [
+          267,
+          193,
+          813,
+          1222
+        ],
+        "254": [
+          268,
+          203,
+          812,
+          1221
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        480.45000000000005,
+        385.34999999999997,
+        1217.5500000000002,
+        1774.5
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.5641250000000001,
+          0.443
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-enemy-infected-orderly-wounded.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    },
+    {
+      "key": "enemy-infected-orderly-heavy-wounded",
+      "sourceSha256": "9d9dcce02310fea3fdf9c04ffb0db00edd8697771c19a1f119b0fdd9457e8d58",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1024,
+        1280
+      ],
+      "alpha1Pixels": 8335,
+      "outer8Nontransparent": 0,
+      "alphaBoundsByThreshold": {
+        "1": [
+          115,
+          207,
+          909,
+          1232
+        ],
+        "8": [
+          258,
+          209,
+          833,
+          1228
+        ],
+        "32": [
+          259,
+          209,
+          832,
+          1228
+        ],
+        "128": [
+          259,
+          210,
+          832,
+          1227
+        ],
+        "254": [
+          260,
+          276,
+          831,
+          1226
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        411.2625,
+        450.1500000000001,
+        1184.8125,
+        1823.1000000000001
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.5261123046875,
+          0.4647968750000001
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-enemy-infected-orderly-heavy-wounded.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    },
+    {
+      "key": "enemy-infected-orderly-critical",
+      "sourceSha256": "1005537773f9aab7a8e5d84911e349bbe5a8a0025a14c13a7baa1ca4c33ebe00",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1024,
+        1280
+      ],
+      "alpha1Pixels": 9599,
+      "outer8Nontransparent": 0,
+      "alphaBoundsByThreshold": {
+        "1": [
+          119,
+          185,
+          905,
+          1232
+        ],
+        "8": [
+          289,
+          188,
+          767,
+          1215
+        ],
+        "32": [
+          289,
+          192,
+          765,
+          1215
+        ],
+        "128": [
+          291,
+          197,
+          764,
+          1214
+        ],
+        "254": [
+          293,
+          218,
+          763,
+          1213
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        432.1875,
+        453.5250000000001,
+        1070.7375000000002,
+        1826.4750000000001
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.5116103515625,
+          0.4756953125000001
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-enemy-infected-orderly-critical.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    },
+    {
+      "key": "enemy-infected-orderly-disabled",
+      "sourceSha256": "4112dadacfc3c89da9b3cc7576fe3772a58a026cb74b21eb3fe451649f2f41e1",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1024,
+        1280
+      ],
+      "alpha1Pixels": 8397,
+      "outer8Nontransparent": 0,
+      "alphaBoundsByThreshold": {
+        "1": [
+          115,
+          180,
+          909,
+          1232
+        ],
+        "8": [
+          129,
+          292,
+          902,
+          1157
+        ],
+        "32": [
+          130,
+          293,
+          902,
+          1156
+        ],
+        "128": [
+          130,
+          297,
+          901,
+          1155
+        ],
+        "254": [
+          132,
+          367,
+          901,
+          1138
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        323.51249999999993,
+        620.925,
+        1364.3625000000002,
+        1779.225
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.5823623046875,
+          0.4925703125
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-enemy-infected-orderly-disabled.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    },
+    {
+      "key": "enemy-porter-pristine",
+      "sourceSha256": "c62b70c69c0e6977ef1e7239d68f15f74951a8cdf9b17c363d3610f23438a1a4",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "alpha1Pixels": 7404,
+      "outer8Nontransparent": 0,
+      "alphaBoundsByThreshold": {
+        "1": [
+          41,
+          86,
+          1068,
+          1352
+        ],
+        "8": [
+          322,
+          113,
+          814,
+          1304
+        ],
+        "32": [
+          322,
+          114,
+          814,
+          1304
+        ],
+        "128": [
+          323,
+          118,
+          813,
+          1303
+        ],
+        "254": [
+          324,
+          141,
+          812,
+          1302
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        438.8499999999999,
+        311.4000000000001,
+        1051.35,
+        1792.65
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.4793945312499999,
+          0.45059895833333335
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-enemy-porter-pristine.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    },
+    {
+      "key": "enemy-porter-wounded",
+      "sourceSha256": "48a370f9fc2dc43cc676de35b5359dc03a68e810a84a28b7880ad45855a5fe8e",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "alpha1Pixels": 5939,
+      "outer8Nontransparent": 12,
+      "alphaBoundsByThreshold": {
+        "1": [
+          0,
+          53,
+          1082,
+          1328
+        ],
+        "8": [
+          363,
+          115,
+          821,
+          1306
+        ],
+        "32": [
+          363,
+          117,
+          821,
+          1306
+        ],
+        "128": [
+          364,
+          119,
+          820,
+          1305
+        ],
+        "254": [
+          365,
+          163,
+          819,
+          1304
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        486.55000000000007,
+        309.5250000000001,
+        1056.5500000000002,
+        1792.025
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.47626953125000004,
+          0.4450651041666667
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-enemy-porter-wounded.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    },
+    {
+      "key": "enemy-porter-heavy-wounded",
+      "sourceSha256": "545b25cb12385f00f77362854d849602517de3e51fb300138677497213e09325",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1121,
+        1403
+      ],
+      "alpha1Pixels": 8383,
+      "outer8Nontransparent": 2,
+      "alphaBoundsByThreshold": {
+        "1": [
+          0,
+          19,
+          1083,
+          1379
+        ],
+        "8": [
+          317,
+          129,
+          890,
+          1310
+        ],
+        "32": [
+          317,
+          129,
+          889,
+          1309
+        ],
+        "128": [
+          321,
+          130,
+          888,
+          1309
+        ],
+        "254": [
+          357,
+          190,
+          886,
+          1308
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        371.06875,
+        318.9000000000001,
+        1079.81875,
+        1792.65
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.43607991536458335,
+          0.43302083333333335
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-enemy-porter-heavy-wounded.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    },
+    {
+      "key": "enemy-porter-critical",
+      "sourceSha256": "a32adbeb63b7db6d5127adc78f10d11a3458067997f04fe066bfe33955f0fbb6",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "alpha1Pixels": 10220,
+      "outer8Nontransparent": 4,
+      "alphaBoundsByThreshold": {
+        "1": [
+          0,
+          63,
+          1046,
+          1370
+        ],
+        "8": [
+          296,
+          117,
+          897,
+          1335
+        ],
+        "32": [
+          297,
+          119,
+          897,
+          1335
+        ],
+        "128": [
+          300,
+          121,
+          896,
+          1334
+        ],
+        "254": [
+          308,
+          132,
+          895,
+          1333
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        356.2437500000001,
+        278.9000000000001,
+        1101.24375,
+        1795.15
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.4467732747395834,
+          0.39851562500000004
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-enemy-porter-critical.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    },
+    {
+      "key": "enemy-porter-disabled",
+      "sourceSha256": "48de5d321c28d5b88d37b9c241a09e2fef1a84638c4361f8e3e87d5c75ea6930",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "alpha1Pixels": 7435,
+      "outer8Nontransparent": 63,
+      "alphaBoundsByThreshold": {
+        "1": [
+          27,
+          21,
+          1108,
+          1402
+        ],
+        "8": [
+          177,
+          572,
+          1028,
+          1270
+        ],
+        "32": [
+          177,
+          574,
+          1028,
+          1269
+        ],
+        "128": [
+          178,
+          577,
+          1028,
+          1269
+        ],
+        "254": [
+          179,
+          616,
+          1025,
+          1268
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        262.76875000000007,
+        913.2750000000001,
+        1325.2687500000002,
+        1778.275
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.46160074869791673,
+          0.6599088541666667
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-enemy-porter-disabled.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    },
+    {
+      "key": "enemy-technician-pristine",
+      "sourceSha256": "240077aef5b5adb7efe1d4632894e5a7018a94dc3f18cd894f998a8e1c243444",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "alpha1Pixels": 9581,
+      "outer8Nontransparent": 14,
+      "alphaBoundsByThreshold": {
+        "1": [
+          0,
+          26,
+          1108,
+          1388
+        ],
+        "8": [
+          317,
+          48,
+          821,
+          1349
+        ],
+        "32": [
+          317,
+          49,
+          821,
+          1347
+        ],
+        "128": [
+          318,
+          52,
+          820,
+          1347
+        ],
+        "254": [
+          319,
+          62,
+          819,
+          1346
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        429.91874999999993,
+        202.6500000000001,
+        1057.4187499999998,
+        1821.4
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.45242106119791664,
+          0.3386197916666667
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-enemy-technician-pristine.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    },
+    {
+      "key": "enemy-technician-wounded",
+      "sourceSha256": "d5f2e525282e2c65a51ad6a2eb07b507099d342122d9b3788b5413e02b282269",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "alpha1Pixels": 7270,
+      "outer8Nontransparent": 0,
+      "alphaBoundsByThreshold": {
+        "1": [
+          87,
+          44,
+          1046,
+          1356
+        ],
+        "8": [
+          315,
+          46,
+          819,
+          1348
+        ],
+        "32": [
+          316,
+          48,
+          819,
+          1347
+        ],
+        "128": [
+          316,
+          49,
+          818,
+          1347
+        ],
+        "254": [
+          317,
+          57,
+          817,
+          1346
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        424.7812500000001,
+        198.2750000000001,
+        1052.28125,
+        1820.775
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.4458211263020834,
+          0.33243489583333335
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-enemy-technician-wounded.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    },
+    {
+      "key": "enemy-technician-heavy-wounded",
+      "sourceSha256": "f415a3384d1c5e21b1840877eccfeeecf7711b6c7ff1d3a7046c06ea527a158f",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "alpha1Pixels": 8569,
+      "outer8Nontransparent": 18,
+      "alphaBoundsByThreshold": {
+        "1": [
+          73,
+          21,
+          1104,
+          1402
+        ],
+        "8": [
+          297,
+          65,
+          889,
+          1350
+        ],
+        "32": [
+          298,
+          66,
+          889,
+          1349
+        ],
+        "128": [
+          305,
+          69,
+          888,
+          1349
+        ],
+        "254": [
+          323,
+          82,
+          887,
+          1348
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        330.4,
+        221.4000000000001,
+        1059.15,
+        1821.4
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.39007161458333334,
+          0.30802083333333335
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-enemy-technician-heavy-wounded.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    },
+    {
+      "key": "enemy-technician-critical",
+      "sourceSha256": "86b7a8af0ae94f37d8bb618ebf253cd63b97441f95d2d941e8566e6366852922",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "alpha1Pixels": 9687,
+      "outer8Nontransparent": 2,
+      "alphaBoundsByThreshold": {
+        "1": [
+          0,
+          44,
+          1058,
+          1386
+        ],
+        "8": [
+          272,
+          93,
+          862,
+          1350
+        ],
+        "32": [
+          272,
+          94,
+          861,
+          1349
+        ],
+        "128": [
+          274,
+          95,
+          861,
+          1349
+        ],
+        "254": [
+          291,
+          104,
+          860,
+          1348
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        335.51250000000005,
+        253.9000000000001,
+        1069.2625,
+        1821.4
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.4186279296875,
+          0.33731770833333335
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-enemy-technician-critical.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    },
+    {
+      "key": "enemy-technician-disabled",
+      "sourceSha256": "fa70feefa7164fcab84edcf846d47d80d4f88f50895228d5826cb91799bb0dec",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "alpha1Pixels": 8155,
+      "outer8Nontransparent": 12,
+      "alphaBoundsByThreshold": {
+        "1": [
+          0,
+          28,
+          1050,
+          1402
+        ],
+        "8": [
+          228,
+          523,
+          1042,
+          1303
+        ],
+        "32": [
+          229,
+          527,
+          1041,
+          1302
+        ],
+        "128": [
+          229,
+          529,
+          1041,
+          1302
+        ],
+        "254": [
+          232,
+          532,
+          1033,
+          1301
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        140.6187500000001,
+        805.7750000000001,
+        1155.61875,
+        1772.025
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.3405721028645834,
+          0.6156380208333334
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-enemy-technician-disabled.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    },
+    {
+      "key": "player-back",
+      "sourceSha256": "2e67e775c465bdbb5ddf298967c2624b9d5aff31c4932922e48da935a8584791",
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "nativePixels": [
+        1122,
+        1402
+      ],
+      "alpha1Pixels": 6601,
+      "outer8Nontransparent": 0,
+      "alphaBoundsByThreshold": {
+        "1": [
+          27,
+          46,
+          1048,
+          1348
+        ],
+        "8": [
+          173,
+          47,
+          1045,
+          1342
+        ],
+        "32": [
+          173,
+          49,
+          1045,
+          1342
+        ],
+        "128": [
+          174,
+          50,
+          1044,
+          1341
+        ],
+        "254": [
+          175,
+          53,
+          1043,
+          1340
+        ]
+      },
+      "registeredSubjectBoundsAlpha128": [
+        359.73828125,
+        193.2750000000001,
+        1447.23828125,
+        1807.025
+      ],
+      "subjectClipsCanvasAlpha128": false,
+      "anchorCheck": {
+        "footMapped": [
+          0.5,
+          0.92
+        ],
+        "hitMapped": [
+          0.49950408935546875,
+          0.39363281250000004
+        ],
+        "geometricCheck": "PASS_NOT_A_VISUAL_JUDGMENT"
+      },
+      "edgeEvidence": "derived/edge-player-back.png",
+      "visualJudgment": "PENDING_HUMAN_STYLE_PIXEL_INSPECTION_NOT_SCRIPT_PASS"
+    }
+  ],
+  "artApproved": false
+}

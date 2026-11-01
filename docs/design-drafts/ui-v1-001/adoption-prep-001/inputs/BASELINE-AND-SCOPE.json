@@ -1,0 +1,15 @@
+{
+  "task": "ART-WORLD-ASSET-ADOPTION-PREP-001",
+  "base": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+  "baseTree": "d4d653f170159ca6f467b7590f0ea8d1dbdc3eeb",
+  "branch": "chore/world-asset-adoption-prep-001",
+  "allowedNewPrefix": "docs/design-drafts/ui-v1-001/adoption-prep-001/",
+  "allowedExistingEdits": [],
+  "protectedFileCount": 3185,
+  "srcTreeMustRemain": "4e4c3997b748c6ede9252651f8914d62767ff1a7",
+  "productionAndAssetAdoption": "NOT AUTHORIZED",
+  "catalogCorrection": "candidate bindings and unapplied patch only; historical files frozen",
+  "commitPush": "normal on new branch only",
+  "refs": "preserve project heads/remotes/tags except own new task refs; observe but never edit host refs/codex namespace",
+  "browserMedia": "no repeat verification without new native capability and explicit authority"
+}

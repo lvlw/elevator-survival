@@ -1,0 +1,298 @@
+{
+  "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+  "applied": false,
+  "count": 19,
+  "counts": {
+    "svgEOL": 15,
+    "logicalCode": 4,
+    "uniqueStaleCodeFiles": 1
+  },
+  "historicalR2BaselinePreserved": "956da8065030ccea15256e49bd927a4e6a71942f",
+  "items": [
+    {
+      "key": "registered.enemy-porter-critical-v1",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-critical-v1.svg",
+      "oldSha256": "092086aff7b7426c9ae9b58f4dc3650b308078f54223a53e957b12ea8f0758ef",
+      "proposedSha256": "13b72450b962e9d7bcbfc6cb66b754bb2953cc152c744a2fa1394c70eb620e47",
+      "gitBlob": "51b2f027b934eb4910564ea912ef394eedaa5627",
+      "issue": "CRLF_CHECKOUT_NOT_GIT_LF",
+      "currentWorktree": {
+        "sha256": "092086aff7b7426c9ae9b58f4dc3650b308078f54223a53e957b12ea8f0758ef",
+        "bytes": 590,
+        "equalsGitBytes": false,
+        "eolOnly": true
+      },
+      "applied": false
+    },
+    {
+      "key": "registered.enemy-porter-disabled-v1",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-disabled-v1.svg",
+      "oldSha256": "302a1d4b72374b9929983dbb888fca3c993bdb5896c21154a5a08a92a6f586bf",
+      "proposedSha256": "c8610de02a4cdb30677d31caaf9c137fdef9fbc6054b3080bc102ad3ca6d894c",
+      "gitBlob": "7bf9f7946d93278fad58492d7dc215aba9de519f",
+      "issue": "CRLF_CHECKOUT_NOT_GIT_LF",
+      "currentWorktree": {
+        "sha256": "302a1d4b72374b9929983dbb888fca3c993bdb5896c21154a5a08a92a6f586bf",
+        "bytes": 579,
+        "equalsGitBytes": false,
+        "eolOnly": true
+      },
+      "applied": false
+    },
+    {
+      "key": "registered.enemy-porter-heavy_wounded-v1",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-heavy_wounded-v1.svg",
+      "oldSha256": "c323c6d2831ab3e4c783171e0a7e09e96e94313fde81bcc1622099348825119e",
+      "proposedSha256": "bd8286daf7df340abb0b5c09d151ababd9cb4fa1c3cd4f618099c2beb056487f",
+      "gitBlob": "5fdac10789e389a22fda573cca3df85bcceeb137",
+      "issue": "CRLF_CHECKOUT_NOT_GIT_LF",
+      "currentWorktree": {
+        "sha256": "c323c6d2831ab3e4c783171e0a7e09e96e94313fde81bcc1622099348825119e",
+        "bytes": 592,
+        "equalsGitBytes": false,
+        "eolOnly": true
+      },
+      "applied": false
+    },
+    {
+      "key": "registered.enemy-porter-pristine-v1",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-pristine-v1.svg",
+      "oldSha256": "07688e17db54370d606786d1296c7f2d00d3bd8a3384729ad1b14a81f64e1205",
+      "proposedSha256": "031c6a11b53c1c81c1848d6f6411cbbb1898a65516a4d429a97b8761a1fc2af0",
+      "gitBlob": "b224dfc28f3be341f0e50d373cd57bbcc0ef78f1",
+      "issue": "CRLF_CHECKOUT_NOT_GIT_LF",
+      "currentWorktree": {
+        "sha256": "07688e17db54370d606786d1296c7f2d00d3bd8a3384729ad1b14a81f64e1205",
+        "bytes": 588,
+        "equalsGitBytes": false,
+        "eolOnly": true
+      },
+      "applied": false
+    },
+    {
+      "key": "registered.enemy-porter-wounded-v1",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/editable/registered/enemy-porter-wounded-v1.svg",
+      "oldSha256": "8dfe1153421404bf2ac82285600cb5986c929362b960fff65cf39db49c746707",
+      "proposedSha256": "511040d8e07dbc674dd5e77e22b006b416c3a56d7b657bbd566ca8283e016fcb",
+      "gitBlob": "16d446aff6919f469220e11c0b41aca26443934b",
+      "issue": "CRLF_CHECKOUT_NOT_GIT_LF",
+      "currentWorktree": {
+        "sha256": "8dfe1153421404bf2ac82285600cb5986c929362b960fff65cf39db49c746707",
+        "bytes": 587,
+        "equalsGitBytes": false,
+        "eolOnly": true
+      },
+      "applied": false
+    },
+    {
+      "key": "registered.enemy-technician-critical-v1",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-critical-v1.svg",
+      "oldSha256": "b53f10c6cb57301922d56c8550826a6bd0e65cd8d4dea0d668df4dd774b7c500",
+      "proposedSha256": "97bf1a8162ececa2ed1fbd54e18298fb5b311942b210f8d2fa1bfc946f22a1eb",
+      "gitBlob": "319270e966faef59fac676ecbd4ad8a7b2ead2e1",
+      "issue": "CRLF_CHECKOUT_NOT_GIT_LF",
+      "currentWorktree": {
+        "sha256": "b53f10c6cb57301922d56c8550826a6bd0e65cd8d4dea0d668df4dd774b7c500",
+        "bytes": 589,
+        "equalsGitBytes": false,
+        "eolOnly": true
+      },
+      "applied": false
+    },
+    {
+      "key": "registered.enemy-technician-heavy_wounded-v1",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-heavy_wounded-v1.svg",
+      "oldSha256": "bcdfcc7c74da93b2bfac1186c221f1a2656eb839e42ff836d47053b9c8077208",
+      "proposedSha256": "f25c26d4768f513ff97242d16df0c8215ef662080a404ffb5c23418901e17ac8",
+      "gitBlob": "a3af3c98c76c39469c7d7bbdde156a0c0cced3bf",
+      "issue": "CRLF_CHECKOUT_NOT_GIT_LF",
+      "currentWorktree": {
+        "sha256": "bcdfcc7c74da93b2bfac1186c221f1a2656eb839e42ff836d47053b9c8077208",
+        "bytes": 596,
+        "equalsGitBytes": false,
+        "eolOnly": true
+      },
+      "applied": false
+    },
+    {
+      "key": "registered.enemy-technician-pristine-v1",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-pristine-v1.svg",
+      "oldSha256": "1d8bb8ff1dfcb0414bb957d537bccd24a3442c382f9443e7cd95cf07a077f960",
+      "proposedSha256": "f517b46a4b3d62649a4ba27124f2bebca317d3684e44507130de5f7de7dc864d",
+      "gitBlob": "97a406c8e860e879e8b4e8729a7116a23f751cd9",
+      "issue": "CRLF_CHECKOUT_NOT_GIT_LF",
+      "currentWorktree": {
+        "sha256": "1d8bb8ff1dfcb0414bb957d537bccd24a3442c382f9443e7cd95cf07a077f960",
+        "bytes": 596,
+        "equalsGitBytes": false,
+        "eolOnly": true
+      },
+      "applied": false
+    },
+    {
+      "key": "registered.enemy-technician-wounded-v1",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/editable/registered/enemy-technician-wounded-v1.svg",
+      "oldSha256": "21d6bc7bc40ffc900c59481dc4d7b0f9299346f00965d698daafef23669a7a50",
+      "proposedSha256": "fcc09c52601301764f3c5ef16bad4473a1cf84f9aea6e0976b4812c849a6c045",
+      "gitBlob": "9bdf217a1dfe31647e873965d55059eea20971e6",
+      "issue": "CRLF_CHECKOUT_NOT_GIT_LF",
+      "currentWorktree": {
+        "sha256": "21d6bc7bc40ffc900c59481dc4d7b0f9299346f00965d698daafef23669a7a50",
+        "bytes": 595,
+        "equalsGitBytes": false,
+        "eolOnly": true
+      },
+      "applied": false
+    },
+    {
+      "key": "registered.enemy_infected_orderly_critical_v02",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_critical_v02.svg",
+      "oldSha256": "bb2f76f9be2e08d0001fe9623a260335b59e159de70a811e88dac9d9de7ba555",
+      "proposedSha256": "ba4f6ed29651f352012ad755a6314a409ad9f801221749b5d7cf985c54553933",
+      "gitBlob": "05b531cea5f640e5ae70586a6356e08fcc85b732",
+      "issue": "CRLF_CHECKOUT_NOT_GIT_LF",
+      "currentWorktree": {
+        "sha256": "bb2f76f9be2e08d0001fe9623a260335b59e159de70a811e88dac9d9de7ba555",
+        "bytes": 602,
+        "equalsGitBytes": false,
+        "eolOnly": true
+      },
+      "applied": false
+    },
+    {
+      "key": "registered.enemy_infected_orderly_disabled_v02",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_disabled_v02.svg",
+      "oldSha256": "8c71472fa29b4f491dcf1a5520d8b833979e3e91ce406fe68ec7f2743eb3f84f",
+      "proposedSha256": "62231b1fa2ceca47219cb691df197d9b66140ab3e5ada2bd15f09b29d18f7594",
+      "gitBlob": "90b61e23639247fd2d55c3126cefd9407e30b7b5",
+      "issue": "CRLF_CHECKOUT_NOT_GIT_LF",
+      "currentWorktree": {
+        "sha256": "8c71472fa29b4f491dcf1a5520d8b833979e3e91ce406fe68ec7f2743eb3f84f",
+        "bytes": 601,
+        "equalsGitBytes": false,
+        "eolOnly": true
+      },
+      "applied": false
+    },
+    {
+      "key": "registered.enemy_infected_orderly_heavy_wounded_v02",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_heavy_wounded_v02.svg",
+      "oldSha256": "7f5216b6381a8ac8e6713afbe3865c103f23683503504cbf3ba22bef6115a874",
+      "proposedSha256": "e4ab63968c3a279a5ca3d5fc91b6b6dc09ab216847ad1edd8e377375fcbda708",
+      "gitBlob": "7524c4683ca569c560c47e45babd410473219079",
+      "issue": "CRLF_CHECKOUT_NOT_GIT_LF",
+      "currentWorktree": {
+        "sha256": "7f5216b6381a8ac8e6713afbe3865c103f23683503504cbf3ba22bef6115a874",
+        "bytes": 612,
+        "equalsGitBytes": false,
+        "eolOnly": true
+      },
+      "applied": false
+    },
+    {
+      "key": "registered.enemy_infected_orderly_pristine_v02",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_pristine_v02.svg",
+      "oldSha256": "a8d32f9a304d6644c26abf17075e54a4fef4ea78dc471d3b142b10c61f2792a2",
+      "proposedSha256": "f8343567588fc3e4fa8bee8e6459bf5576dddbc3a6cb78a95e093791100bd753",
+      "gitBlob": "9d29a67592ca68cc7fab68dcfa3a1ae32723e3dd",
+      "issue": "CRLF_CHECKOUT_NOT_GIT_LF",
+      "currentWorktree": {
+        "sha256": "a8d32f9a304d6644c26abf17075e54a4fef4ea78dc471d3b142b10c61f2792a2",
+        "bytes": 602,
+        "equalsGitBytes": false,
+        "eolOnly": true
+      },
+      "applied": false
+    },
+    {
+      "key": "registered.enemy_infected_orderly_wounded_v02",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/editable/registered/enemy_infected_orderly_wounded_v02.svg",
+      "oldSha256": "d2dabc7a120b56df93e5fc0c4fd39127c1c2d0ee2cef6867411f2c7a45194629",
+      "proposedSha256": "b2ebec5131557a5db5442aba07669b138bb6219fb4591b8c299e73989afc1bcc",
+      "gitBlob": "e9540f0f7a603a932fbb6f308c92f77d01069d94",
+      "issue": "CRLF_CHECKOUT_NOT_GIT_LF",
+      "currentWorktree": {
+        "sha256": "d2dabc7a120b56df93e5fc0c4fd39127c1c2d0ee2cef6867411f2c7a45194629",
+        "bytes": 597,
+        "equalsGitBytes": false,
+        "eolOnly": true
+      },
+      "applied": false
+    },
+    {
+      "key": "registered.player-back-v1",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/editable/registered/player-back-v1.svg",
+      "oldSha256": "6db179dd66c792bd6560e17d401e58c5d50b3c109e52290028e3cfbf973e1933",
+      "proposedSha256": "372ef32c0d2d41a75020ab1bc940138a9a53fc944db58a0a916391acb51a562c",
+      "gitBlob": "a5aba90a59d429af6cc11bbc38cd2983494a3a3e",
+      "issue": "CRLF_CHECKOUT_NOT_GIT_LF",
+      "currentWorktree": {
+        "sha256": "6db179dd66c792bd6560e17d401e58c5d50b3c109e52290028e3cfbf973e1933",
+        "bytes": 546,
+        "equalsGitBytes": false,
+        "eolOnly": true
+      },
+      "applied": false
+    },
+    {
+      "key": "map.known",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/prototype/ui.js",
+      "oldSha256": "de0ada131263f21fb4275800b0a394fa798db20672c54282bc38c7fcf28a2626",
+      "proposedSha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+      "gitBlob": "8117c2fd0c8481e73e43c6ba388f21afe2bffc8d",
+      "issue": "STALE_LOGICAL_COMPONENT_SHARED_SOURCE",
+      "currentWorktree": {
+        "sha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+        "bytes": 56209,
+        "equalsGitBytes": true,
+        "eolOnly": false
+      },
+      "applied": false
+    },
+    {
+      "key": "status.hud",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/prototype/ui.js",
+      "oldSha256": "de0ada131263f21fb4275800b0a394fa798db20672c54282bc38c7fcf28a2626",
+      "proposedSha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+      "gitBlob": "8117c2fd0c8481e73e43c6ba388f21afe2bffc8d",
+      "issue": "STALE_LOGICAL_COMPONENT_SHARED_SOURCE",
+      "currentWorktree": {
+        "sha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+        "bytes": 56209,
+        "equalsGitBytes": true,
+        "eolOnly": false
+      },
+      "applied": false
+    },
+    {
+      "key": "control.action",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/prototype/ui.js",
+      "oldSha256": "de0ada131263f21fb4275800b0a394fa798db20672c54282bc38c7fcf28a2626",
+      "proposedSha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+      "gitBlob": "8117c2fd0c8481e73e43c6ba388f21afe2bffc8d",
+      "issue": "STALE_LOGICAL_COMPONENT_SHARED_SOURCE",
+      "currentWorktree": {
+        "sha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+        "bytes": 56209,
+        "equalsGitBytes": true,
+        "eolOnly": false
+      },
+      "applied": false
+    },
+    {
+      "key": "fx.hit",
+      "repositoryPath": "docs/design-drafts/ui-v1-001/prototype/ui.js",
+      "oldSha256": "de0ada131263f21fb4275800b0a394fa798db20672c54282bc38c7fcf28a2626",
+      "proposedSha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+      "gitBlob": "8117c2fd0c8481e73e43c6ba388f21afe2bffc8d",
+      "issue": "STALE_LOGICAL_COMPONENT_SHARED_SOURCE",
+      "currentWorktree": {
+        "sha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+        "bytes": 56209,
+        "equalsGitBytes": true,
+        "eolOnly": false
+      },
+      "applied": false
+    }
+  ]
+}

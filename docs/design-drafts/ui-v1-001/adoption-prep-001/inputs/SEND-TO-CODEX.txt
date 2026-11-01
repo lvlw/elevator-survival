@@ -1,0 +1,23 @@
+执行附件 ART-WORLD-ASSET-ADOPTION-PREP-001。不是第三轮C16补验，也不是生产C2。
+
+先在仓库外验证任务包，读授权、任务书、素材审看约定、矩阵、范围和主线AUD。
+仓库：lvlw/elevator-survival
+起点：8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96
+新分支：chore/world-asset-adoption-prep-001
+推荐GPT-6.1 Sol／高（high）／Standard；实际配置如实记录。
+
+一次完成W0—W4：现有资产准确字节清单、19项历史差异候选纠偏与未应用patch、
+15敌人阶段槽/当前玩家候选的真实像素与透明边缘审看、只读可视评审入口、
+一份首批采用主推荐及精确C2合同草案、自测/默认check/准确CI/轻量交付。
+只在 docs/design-drafts/ui-v1-001/adoption-prep-001/ 新增文件。
+
+所有既有文件、原图、旧catalog/生成器、生产UI/A/B1/保存/规则/依赖/CI均不改。
+不生成/修复/放大新美术，不正式采用，不做B2/C2，不部署/合并/强推。
+候选试装明确标为静态审阅，不伪称真实游戏或原生战斗；不碰实际存档。
+C16媒体/zoom/390及Owner体验原状态保留，不反复尝试同样不支持的接口。
+
+先实际test:run，最终默认check，保护3185基线对象及旧项目refs。
+宿主refs只记录，不主动更改；前任务Edge日常profile许可不自动延续。
+允许本新分支普通commit/push。交一个MAINLINE-REVIEW.zip，含可看的对照与Owner主推荐、
+源码/patch/清单/原输入/实际检查/保护回执，准确base/final/parent/tree及包大小/SHA256。
+完成即停，等待主线实审和Owner首批素材采用决定；不自行进入生产接线。

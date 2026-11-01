@@ -1,0 +1,108 @@
+{
+  "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+  "count": 17,
+  "items": [
+    {
+      "key": "registered.enemy-porter-critical-v1",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-critical-v1.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.enemy-porter-disabled-v1",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-disabled-v1.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.enemy-porter-heavy_wounded-v1",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-heavy_wounded-v1.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.enemy-porter-pristine-v1",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-pristine-v1.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.enemy-porter-wounded-v1",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/enemy-porter-wounded-v1.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.enemy-technician-critical-v1",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/enemy-technician-critical-v1.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.enemy-technician-disabled-v1",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/enemy-technician-disabled-v1.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.enemy-technician-heavy_wounded-v1",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/enemy-technician-heavy_wounded-v1.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.enemy-technician-pristine-v1",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/enemy-technician-pristine-v1.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.enemy-technician-wounded-v1",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/enemy-technician-wounded-v1.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.enemy_infected_orderly_critical_v02",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/enemy_infected_orderly_critical_v02.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.enemy_infected_orderly_disabled_v02",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/enemy_infected_orderly_disabled_v02.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.enemy_infected_orderly_heavy_wounded_v02",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/enemy_infected_orderly_heavy_wounded_v02.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.enemy_infected_orderly_pristine_v02",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/enemy_infected_orderly_pristine_v02.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.enemy_infected_orderly_wounded_v02",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/enemy_infected_orderly_wounded_v02.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.player-back-v1",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/player-back-v1.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    },
+    {
+      "key": "registered.player-back-v2",
+      "sourcePNG": "docs/design-drafts/ui-v1-001/editable/assets/player-back-v2.png",
+      "SVGTransformExactlyMatchesRegistration": true,
+      "nativePixelsMatchSVGImageAttributes": true
+    }
+  ]
+}

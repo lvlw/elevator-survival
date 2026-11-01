@@ -1,0 +1,915 @@
+{
+  "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+  "warning": "All images in this manifest are labelled derived review composites/crops, never native art or browser evidence.",
+  "files": [
+    {
+      "path": "derived/overview-1.jpg",
+      "sha256": "3b32a0e4133e86995579f0a8287049b5381285b60bb90e863d8ef56ea2d0d3b0",
+      "bytes": 343438,
+      "pixels": [
+        1120,
+        1056
+      ],
+      "kind": "DERIVED_ALL_SOURCE_OVERVIEW",
+      "derived": true,
+      "sourceKeys": [
+        "bg-c1",
+        "bg-c3",
+        "bg-communication",
+        "bg-h0",
+        "bg-h2",
+        "bg-h5",
+        "bg-h6",
+        "bg-h8",
+        "bg-hospital-control",
+        "bg-hotel",
+        "bg-l0",
+        "bg-logistics-office",
+        "bg-logistics",
+        "bg-power",
+        "bg-workshop",
+        "bg-elevator-hub"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "thumbnailOnly": true
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/overview-2.jpg",
+      "sha256": "0cc4e41667bc6df89ab5bef7a644799f40373c6666299c819d4c7375c7557af7",
+      "bytes": 276080,
+      "pixels": [
+        1120,
+        1056
+      ],
+      "kind": "DERIVED_ALL_SOURCE_OVERVIEW",
+      "derived": true,
+      "sourceKeys": [
+        "bg-emergency-hall",
+        "bg-isolation-corridor",
+        "closeup-component",
+        "closeup-install",
+        "closeup-power",
+        "closeup-records",
+        "enemy-porter-critical",
+        "enemy-porter-disabled",
+        "enemy-porter-heavy-wounded",
+        "enemy-porter-pristine",
+        "enemy-porter-wounded",
+        "enemy-technician-critical",
+        "enemy-technician-disabled",
+        "enemy-technician-heavy-wounded",
+        "enemy-technician-pristine",
+        "enemy-technician-wounded"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "thumbnailOnly": true
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/overview-3.jpg",
+      "sha256": "dd10369356ee8b871a94233596587533aef9db83d8106c5ac1e773930817d7f4",
+      "bytes": 223595,
+      "pixels": [
+        1120,
+        1056
+      ],
+      "kind": "DERIVED_ALL_SOURCE_OVERVIEW",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-infected-orderly-critical",
+        "enemy-infected-orderly-disabled",
+        "enemy-infected-orderly-heavy-wounded",
+        "enemy-infected-orderly-pristine",
+        "enemy-infected-orderly-wounded",
+        "event-isolation-fire-door",
+        "fx-hit",
+        "icon-bandage",
+        "icon-flashlight",
+        "icon-heavy-coat",
+        "icon-isolation-access-card",
+        "icon-metal-pipe",
+        "icon-sealed-pathogen-case",
+        "item-battery",
+        "item-cloth",
+        "item-component"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "thumbnailOnly": true
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/overview-4.jpg",
+      "sha256": "9fa3bbe879d966bbfc079a3548bb9dac3eae6ce27ba43bbe9e01875cbf411df1",
+      "bytes": 199922,
+      "pixels": [
+        1120,
+        1056
+      ],
+      "kind": "DERIVED_ALL_SOURCE_OVERVIEW",
+      "derived": true,
+      "sourceKeys": [
+        "item-crowbar",
+        "item-disinfectant",
+        "item-electronic",
+        "item-firstaid",
+        "item-metal",
+        "item-module",
+        "item-painkiller",
+        "item-ration",
+        "item-suppressant",
+        "item-toolbox",
+        "npc-lin",
+        "npc-zhou",
+        "objective-pathogen-case",
+        "panel-nine-slice",
+        "player-back-legacy",
+        "player-back"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "thumbnailOnly": true
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/infected-orderly-group.jpg",
+      "sha256": "d599638202538c23fb1554d3229a9c2e7472e92e608759f1a02eb978122db4d2",
+      "bytes": 299003,
+      "pixels": [
+        1200,
+        1064
+      ],
+      "kind": "DERIVED_FIVE_STAGE_LIGHT_DARK_SCENE",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-infected-orderly-pristine",
+        "enemy-infected-orderly-wounded",
+        "enemy-infected-orderly-heavy-wounded",
+        "enemy-infected-orderly-critical",
+        "enemy-infected-orderly-disabled"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "canvasCSS": [
+          240,
+          300
+        ],
+        "anchors": "gold foot/cyan hit",
+        "backgroundKey": "bg-isolation-corridor"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/infected-porter-group.jpg",
+      "sha256": "18282cf474ff1837999d435757146ee856bb830aac05a95f0fd6458c1b726419",
+      "bytes": 313678,
+      "pixels": [
+        1200,
+        1064
+      ],
+      "kind": "DERIVED_FIVE_STAGE_LIGHT_DARK_SCENE",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-porter-pristine",
+        "enemy-porter-wounded",
+        "enemy-porter-heavy-wounded",
+        "enemy-porter-critical",
+        "enemy-porter-disabled"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "canvasCSS": [
+          240,
+          300
+        ],
+        "anchors": "gold foot/cyan hit",
+        "backgroundKey": "bg-isolation-corridor"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/infected-technician-group.jpg",
+      "sha256": "14b7aa42abd1223754d2021c2a228b48378db695915c8b4f3aa13a7eb2e9a6c6",
+      "bytes": 285685,
+      "pixels": [
+        1200,
+        1064
+      ],
+      "kind": "DERIVED_FIVE_STAGE_LIGHT_DARK_SCENE",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-technician-pristine",
+        "enemy-technician-wounded",
+        "enemy-technician-heavy-wounded",
+        "enemy-technician-critical",
+        "enemy-technician-disabled"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "canvasCSS": [
+          240,
+          300
+        ],
+        "anchors": "gold foot/cyan hit",
+        "backgroundKey": "bg-isolation-corridor"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/player-comparison.jpg",
+      "sha256": "b32acf3d1f1386872373be249b46d2191fd22c68b94810759bd779aad5a7157e",
+      "bytes": 138913,
+      "pixels": [
+        600,
+        1064
+      ],
+      "kind": "DERIVED_PLAYER_HISTORICAL_COMPARISON",
+      "derived": true,
+      "sourceKeys": [
+        "player-back-legacy",
+        "player-back"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "currentCandidate": "player-back",
+        "legacyAdopted": false,
+        "canvasCSS": [
+          240,
+          300
+        ]
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-enemy-infected-orderly-pristine.png",
+      "sha256": "39639d940413c5dca8450b0459f5b1c0c7a9e6e2520ed2dd065c80c64ce0d206",
+      "bytes": 50050,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-infected-orderly-pristine"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            558,
+            91,
+            654,
+            187
+          ],
+          [
+            442,
+            1168,
+            538,
+            1264
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          569.5,
+          1177.5
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-enemy-infected-orderly-wounded.png",
+      "sha256": "de47abd4eb95653beae6a05d228385871c620fe263c99ece933ddd7e077a5925",
+      "bytes": 60412,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-infected-orderly-wounded"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            588,
+            165,
+            684,
+            261
+          ],
+          [
+            432,
+            1166,
+            528,
+            1262
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          480.0,
+          1216.0
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-enemy-infected-orderly-heavy-wounded.png",
+      "sha256": "9752480041748a883da6f3a0d7c6d6d7a628f87d3e825d3cc55fbd526890346c",
+      "bytes": 58860,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-infected-orderly-heavy-wounded"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            635,
+            182,
+            731,
+            278
+          ],
+          [
+            356,
+            1171,
+            452,
+            1267
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          523.25,
+          1185.0
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-enemy-infected-orderly-critical.png",
+      "sha256": "9a1887faa88451940e813b7cd1b011bb9c66e09eb3dd945691e1bda3bbd55290",
+      "bytes": 54555,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-infected-orderly-critical"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            586,
+            169,
+            682,
+            265
+          ],
+          [
+            394,
+            1158,
+            490,
+            1254
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          539.75,
+          1169.5
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-enemy-infected-orderly-disabled.png",
+      "sha256": "894469f06560a81d066e055fdec29d5a4ad9c9d86da975f3b9a5493ea7dab036",
+      "bytes": 57730,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-infected-orderly-disabled"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            620,
+            269,
+            716,
+            365
+          ],
+          [
+            388,
+            1099,
+            484,
+            1195
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          459.25,
+          1145.5
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-enemy-porter-pristine.png",
+      "sha256": "db545cb01ef305854ec6a5dd97afdbc66e167af539070e98ba6f3457af241800",
+      "bytes": 50262,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-porter-pristine"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            425,
+            90,
+            521,
+            186
+          ],
+          [
+            636,
+            1247,
+            732,
+            1343
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          586.32,
+          1282
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-enemy-porter-wounded.png",
+      "sha256": "78f2189348c22a23ea4f52c4384772dd50a62ec0f15f7a266379c89af2a72dad",
+      "bytes": 48183,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-porter-wounded"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            421,
+            91,
+            517,
+            187
+          ],
+          [
+            637,
+            1249,
+            733,
+            1345
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          589.16,
+          1284.5
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-enemy-porter-heavy-wounded.png",
+      "sha256": "e4a7162d2d1fbc17938a353e5c1bdf212b6a3f5ad374f940c27305f7266da352",
+      "bytes": 48151,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-porter-heavy-wounded"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            367,
+            102,
+            463,
+            198
+          ],
+          [
+            704,
+            1253,
+            800,
+            1349
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          638.545,
+          1288
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-enemy-porter-critical.png",
+      "sha256": "11465f8cf80162d1addefbdb9bf36dac5e34ce2a9135f9d025cc35e66e8e6b10",
+      "bytes": 47366,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-porter-critical"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            355,
+            93,
+            451,
+            189
+          ],
+          [
+            697,
+            1278,
+            793,
+            1374
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          629.405,
+          1311
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-enemy-porter-disabled.png",
+      "sha256": "e5eb7397ba5d74a882e78eaffb4f85c977f687945d8d5413fb9cbaff85f58741",
+      "bytes": 55765,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-porter-disabled"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            259,
+            549,
+            355,
+            645
+          ],
+          [
+            642,
+            1213,
+            738,
+            1309
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          582.185,
+          1259.5
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-enemy-technician-pristine.png",
+      "sha256": "67fdac4e32b0c9e938b0271eff6d6b4c2254a78f5bead61c2ff928ce867ef345",
+      "bytes": 50046,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-technician-pristine"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            384,
+            24,
+            480,
+            120
+          ],
+          [
+            651,
+            1291,
+            747,
+            1387
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          588.465,
+          1303
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-enemy-technician-wounded.png",
+      "sha256": "bd8318360384bbd171ccf635ff5e43fc383fb886214964ef36bcbca60eb68b34",
+      "bytes": 50272,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-technician-wounded"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            386,
+            21,
+            482,
+            117
+          ],
+          [
+            651,
+            1291,
+            747,
+            1387
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          590.5749999999999,
+          1303.5
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-enemy-technician-heavy-wounded.png",
+      "sha256": "ad026375a005f7f61d31c3294ea3f32dd410b0b78a7f77432d3a6e8756001240",
+      "bytes": 51681,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-technician-heavy-wounded"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            350,
+            41,
+            446,
+            137
+          ],
+          [
+            717,
+            1293,
+            813,
+            1389
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          655.08,
+          1305
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-enemy-technician-critical.png",
+      "sha256": "4417063ccf597b1e06aa2c79727696227f181f6d65fd3ea650b53b5f38278893",
+      "bytes": 48580,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-technician-critical"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            334,
+            67,
+            430,
+            163
+          ],
+          [
+            678,
+            1293,
+            774,
+            1389
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          619.99,
+          1305
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-enemy-technician-disabled.png",
+      "sha256": "b625fc86d51a03c9a973d386a54cf6809c950cae8c79304557d75b1f81f869ad",
+      "bytes": 53721,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "enemy-technician-disabled"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            298,
+            501,
+            394,
+            597
+          ],
+          [
+            884,
+            1246,
+            980,
+            1342
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          730.905,
+          1297.5
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    },
+    {
+      "path": "derived/edge-player-back.png",
+      "sha256": "a23fa9cd909d0aaa0587062f1e168bab3880e61725dcd7a30f4a91d6e67d6d9b",
+      "bytes": 43982,
+      "pixels": [
+        768,
+        264
+      ],
+      "kind": "DERIVED_NEAREST_EDGE_CROPS",
+      "derived": true,
+      "sourceKeys": [
+        "player-back"
+      ],
+      "sourceCommit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "metadata": {
+        "nativeCropBoxes": [
+          [
+            558,
+            22,
+            654,
+            118
+          ],
+          [
+            528,
+            1285,
+            624,
+            1381
+          ]
+        ],
+        "scale": 2,
+        "filter": "NEAREST",
+        "noAlphaRepair": true,
+        "registrationFootAnchor": [
+          500.609375,
+          1308.5
+        ],
+        "cropSelection": "alpha>=128 top+20 and bottom-8 scanlines; visible support edge nearest source foot; crop stays in native canvas"
+      },
+      "notNativeArt": true,
+      "notBrowserScreenshot": true
+    }
+  ]
+}

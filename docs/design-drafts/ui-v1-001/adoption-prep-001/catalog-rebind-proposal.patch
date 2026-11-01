@@ -1,0 +1,171 @@
+--- a/docs/design-drafts/ui-v1-001/readiness-001/theme/catalog.json
++++ b/docs/design-drafts/ui-v1-001/readiness-001/theme/catalog.json
+@@ -9701,7 +9701,7 @@
+     {
+       "key": "registered.enemy-porter-critical-v1",
+       "path": "editable/registered/enemy-porter-critical-v1.svg",
+-      "sha256": "092086aff7b7426c9ae9b58f4dc3650b308078f54223a53e957b12ea8f0758ef",
++      "sha256": "13b72450b962e9d7bcbfc6cb66b754bb2953cc152c744a2fa1394c70eb620e47",
+       "hrefs": [
+         "../assets/enemy-porter-critical-v1.png"
+       ],
+@@ -9710,7 +9710,7 @@
+     {
+       "key": "registered.enemy-porter-disabled-v1",
+       "path": "editable/registered/enemy-porter-disabled-v1.svg",
+-      "sha256": "302a1d4b72374b9929983dbb888fca3c993bdb5896c21154a5a08a92a6f586bf",
++      "sha256": "c8610de02a4cdb30677d31caaf9c137fdef9fbc6054b3080bc102ad3ca6d894c",
+       "hrefs": [
+         "../assets/enemy-porter-disabled-v1.png"
+       ],
+@@ -9719,7 +9719,7 @@
+     {
+       "key": "registered.enemy-porter-heavy_wounded-v1",
+       "path": "editable/registered/enemy-porter-heavy_wounded-v1.svg",
+-      "sha256": "c323c6d2831ab3e4c783171e0a7e09e96e94313fde81bcc1622099348825119e",
++      "sha256": "bd8286daf7df340abb0b5c09d151ababd9cb4fa1c3cd4f618099c2beb056487f",
+       "hrefs": [
+         "../assets/enemy-porter-heavy_wounded-v1.png"
+       ],
+@@ -9728,7 +9728,7 @@
+     {
+       "key": "registered.enemy-porter-pristine-v1",
+       "path": "editable/registered/enemy-porter-pristine-v1.svg",
+-      "sha256": "07688e17db54370d606786d1296c7f2d00d3bd8a3384729ad1b14a81f64e1205",
++      "sha256": "031c6a11b53c1c81c1848d6f6411cbbb1898a65516a4d429a97b8761a1fc2af0",
+       "hrefs": [
+         "../assets/enemy-porter-pristine-v1.png"
+       ],
+@@ -9737,7 +9737,7 @@
+     {
+       "key": "registered.enemy-porter-wounded-v1",
+       "path": "editable/registered/enemy-porter-wounded-v1.svg",
+-      "sha256": "8dfe1153421404bf2ac82285600cb5986c929362b960fff65cf39db49c746707",
++      "sha256": "511040d8e07dbc674dd5e77e22b006b416c3a56d7b657bbd566ca8283e016fcb",
+       "hrefs": [
+         "../assets/enemy-porter-wounded-v1.png"
+       ],
+@@ -9746,7 +9746,7 @@
+     {
+       "key": "registered.enemy-technician-critical-v1",
+       "path": "editable/registered/enemy-technician-critical-v1.svg",
+-      "sha256": "b53f10c6cb57301922d56c8550826a6bd0e65cd8d4dea0d668df4dd774b7c500",
++      "sha256": "97bf1a8162ececa2ed1fbd54e18298fb5b311942b210f8d2fa1bfc946f22a1eb",
+       "hrefs": [
+         "../assets/enemy-technician-critical-v1.png"
+       ],
+@@ -9764,7 +9764,7 @@
+     {
+       "key": "registered.enemy-technician-heavy_wounded-v1",
+       "path": "editable/registered/enemy-technician-heavy_wounded-v1.svg",
+-      "sha256": "bcdfcc7c74da93b2bfac1186c221f1a2656eb839e42ff836d47053b9c8077208",
++      "sha256": "f25c26d4768f513ff97242d16df0c8215ef662080a404ffb5c23418901e17ac8",
+       "hrefs": [
+         "../assets/enemy-technician-heavy_wounded-v1.png"
+       ],
+@@ -9773,7 +9773,7 @@
+     {
+       "key": "registered.enemy-technician-pristine-v1",
+       "path": "editable/registered/enemy-technician-pristine-v1.svg",
+-      "sha256": "1d8bb8ff1dfcb0414bb957d537bccd24a3442c382f9443e7cd95cf07a077f960",
++      "sha256": "f517b46a4b3d62649a4ba27124f2bebca317d3684e44507130de5f7de7dc864d",
+       "hrefs": [
+         "../assets/enemy-technician-pristine-v1.png"
+       ],
+@@ -9782,7 +9782,7 @@
+     {
+       "key": "registered.enemy-technician-wounded-v1",
+       "path": "editable/registered/enemy-technician-wounded-v1.svg",
+-      "sha256": "21d6bc7bc40ffc900c59481dc4d7b0f9299346f00965d698daafef23669a7a50",
++      "sha256": "fcc09c52601301764f3c5ef16bad4473a1cf84f9aea6e0976b4812c849a6c045",
+       "hrefs": [
+         "../assets/enemy-technician-wounded-v1.png"
+       ],
+@@ -9791,7 +9791,7 @@
+     {
+       "key": "registered.enemy_infected_orderly_critical_v02",
+       "path": "editable/registered/enemy_infected_orderly_critical_v02.svg",
+-      "sha256": "bb2f76f9be2e08d0001fe9623a260335b59e159de70a811e88dac9d9de7ba555",
++      "sha256": "ba4f6ed29651f352012ad755a6314a409ad9f801221749b5d7cf985c54553933",
+       "hrefs": [
+         "../assets/enemy_infected_orderly_critical_v02.png"
+       ],
+@@ -9800,7 +9800,7 @@
+     {
+       "key": "registered.enemy_infected_orderly_disabled_v02",
+       "path": "editable/registered/enemy_infected_orderly_disabled_v02.svg",
+-      "sha256": "8c71472fa29b4f491dcf1a5520d8b833979e3e91ce406fe68ec7f2743eb3f84f",
++      "sha256": "62231b1fa2ceca47219cb691df197d9b66140ab3e5ada2bd15f09b29d18f7594",
+       "hrefs": [
+         "../assets/enemy_infected_orderly_disabled_v02.png"
+       ],
+@@ -9809,7 +9809,7 @@
+     {
+       "key": "registered.enemy_infected_orderly_heavy_wounded_v02",
+       "path": "editable/registered/enemy_infected_orderly_heavy_wounded_v02.svg",
+-      "sha256": "7f5216b6381a8ac8e6713afbe3865c103f23683503504cbf3ba22bef6115a874",
++      "sha256": "e4ab63968c3a279a5ca3d5fc91b6b6dc09ab216847ad1edd8e377375fcbda708",
+       "hrefs": [
+         "../assets/enemy_infected_orderly_heavy_wounded_v02.png"
+       ],
+@@ -9818,7 +9818,7 @@
+     {
+       "key": "registered.enemy_infected_orderly_pristine_v02",
+       "path": "editable/registered/enemy_infected_orderly_pristine_v02.svg",
+-      "sha256": "a8d32f9a304d6644c26abf17075e54a4fef4ea78dc471d3b142b10c61f2792a2",
++      "sha256": "f8343567588fc3e4fa8bee8e6459bf5576dddbc3a6cb78a95e093791100bd753",
+       "hrefs": [
+         "../assets/enemy_infected_orderly_pristine_v02.png"
+       ],
+@@ -9827,7 +9827,7 @@
+     {
+       "key": "registered.enemy_infected_orderly_wounded_v02",
+       "path": "editable/registered/enemy_infected_orderly_wounded_v02.svg",
+-      "sha256": "d2dabc7a120b56df93e5fc0c4fd39127c1c2d0ee2cef6867411f2c7a45194629",
++      "sha256": "b2ebec5131557a5db5442aba07669b138bb6219fb4591b8c299e73989afc1bcc",
+       "hrefs": [
+         "../assets/enemy_infected_orderly_wounded_v02.png"
+       ],
+@@ -9836,7 +9836,7 @@
+     {
+       "key": "registered.player-back-v1",
+       "path": "editable/registered/player-back-v1.svg",
+-      "sha256": "6db179dd66c792bd6560e17d401e58c5d50b3c109e52290028e3cfbf973e1933",
++      "sha256": "372ef32c0d2d41a75020ab1bc940138a9a53fc944db58a0a916391acb51a562c",
+       "hrefs": [
+         "../assets/player-back-v1.png"
+       ],
+@@ -9855,14 +9855,14 @@
+       "key": "map.known",
+       "path": "prototype/ui.js",
+       "sourceAnchor": "function knownMap",
+-      "sha256": "de0ada131263f21fb4275800b0a394fa798db20672c54282bc38c7fcf28a2626",
++      "sha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+       "status": "CODE_NATIVE_NOT_RASTER"
+     },
+     {
+       "key": "status.hud",
+       "path": "prototype/ui.js",
+       "sourceAnchor": "function shell",
+-      "sha256": "de0ada131263f21fb4275800b0a394fa798db20672c54282bc38c7fcf28a2626",
++      "sha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+       "status": "CODE_NATIVE_NOT_RASTER"
+     },
+     {
+@@ -9876,14 +9876,14 @@
+       "key": "control.action",
+       "path": "prototype/ui.js",
+       "sourceAnchor": "const btn",
+-      "sha256": "de0ada131263f21fb4275800b0a394fa798db20672c54282bc38c7fcf28a2626",
++      "sha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+       "status": "CODE_NATIVE_NOT_RASTER"
+     },
+     {
+       "key": "fx.hit",
+       "path": "prototype/ui.js",
+       "sourceAnchor": "function actorVisual",
+-      "sha256": "de0ada131263f21fb4275800b0a394fa798db20672c54282bc38c7fcf28a2626",
++      "sha256": "3415acd09ef42b78d299315c2b93f539742a1de4c83db0f2779be5d24b4b0be4",
+       "status": "CODE_NATIVE_NOT_RASTER"
+     }
+   ],

@@ -1,0 +1,31 @@
+{
+  "status": "OWNER_DECISION_PENDING_NOT_ADOPTED",
+  "title": "主推荐：三敌完整五态 15 张先行；当前玩家 v2 延期",
+  "summary": "建议把三组敌人共15张列为首批有限采用候选，接受已展示边缘现状须由Owner明确决定；玩家继续中性占位。之后还需主线准确SHA实审和独立C2工程授权。",
+  "assetKeys": [
+    "enemy-infected-orderly-pristine",
+    "enemy-infected-orderly-wounded",
+    "enemy-infected-orderly-heavy-wounded",
+    "enemy-infected-orderly-critical",
+    "enemy-infected-orderly-disabled",
+    "enemy-porter-pristine",
+    "enemy-porter-wounded",
+    "enemy-porter-heavy-wounded",
+    "enemy-porter-critical",
+    "enemy-porter-disabled",
+    "enemy-technician-pristine",
+    "enemy-technician-wounded",
+    "enemy-technician-heavy-wounded",
+    "enemy-technician-critical",
+    "enemy-technician-disabled"
+  ],
+  "deferredKeys": [
+    "player-back"
+  ],
+  "caveats": [
+    "玩家v2固定持金属管，不能当实际装备事实；不恢复v1或未采用V3。",
+    "原生边缘仍有局部彩点/蓝色轮廓光；最终透明清稿和整套美术仍OPEN。",
+    "18背景2×未通过，其他资产不随首批采用；静态五槽不是原生可达证明。",
+    "这里是供Owner看的采用提案；没有修改生产UI、A/B1、存档或规则。"
+  ]
+}

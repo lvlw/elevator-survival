@@ -1,0 +1,169 @@
+{
+  "repository": "lvlw/elevator-survival",
+  "base": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+  "note": "Blob IDs from independently root-tree-bound base index; not a claim all content was freshly read by mainline",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "0055de32c18517d4d016b077e5fc287d9360317d",
+      "mainlineThisTurn": "READ"
+    },
+    {
+      "path": "docs/01-game-design-v0.1.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "9f1537ed931845601353ffd1f880690c2cdfa77e",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/02-vertical-slice.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "784db68f16572b7666c3da37a1e39b5ad3b4385b",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/03-architecture.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "72e29fcd0f5efe21493dbd02a66aa130be7cc2d0",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/05-design-decisions.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "2fd80b12fb57285dd7d1bbe89e4ea51353710ff8",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/09-ui-design-record.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "216f76d08f91175130603c35125322026bb78262",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/content/enemies.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "9d4c22d33ab7efa4786e41aedfea482f844186b2",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/governance/world-baseline-001/asset-guide.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "b3033e4aa3a7bfffb0fd931ef01db082cf01b49c",
+      "mainlineThisTurn": "READ"
+    },
+    {
+      "path": "docs/governance/world-baseline-001/asset-status.json",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "ae00580d1ce105250e087750a4020489fe0d8470",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/00-owner-review.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "bb4019cdd5e9cc9a8d746644e500854dfc4cf49b",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/03-dimension-contract.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "0e4e697f26dee41dd060b2d72d227030a9bd8199",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/04-interaction-and-motion.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "e6de67b893ad3dd7743c7e15a0c9902a845b84e4",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/05-asset-coverage.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "cec001b6a34bf283d74df3043b3788ad193de59f",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/06-implementation-handoff-draft.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "aa9d03f59df0beae40b89e0ada165fab2e1d67db",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/spec/asset-manifest.json",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "6c7eb0a41bcb1402151f289aa06c8afb314b8413",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/spec/registered-art.json",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "cb04a06f5cbd79cf73f790a024bdfefc49d94af0",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/spec/node-crop-manifest.json",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "4d233ae8b606cdd101efb57c4be802131ec49f37",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme/catalog.json",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "e97497c03c382dc22daac10914aab858dd96c96c",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme/GUIDE.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "b5b0a31dae1827695b3de86444c54e78f5f1166d",
+      "mainlineThisTurn": "READ"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/tools/catalog.py",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "74a039b68b96f4c12a6908a3526d70f6ddef2e98",
+      "mainlineThisTurn": "READ"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/contracts/C-staged-ui.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "12c51c4daeeea808e4c948a635b18d95d1ef0ed4",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/engineering/world-integration/presentation-prep-001/ASSET-BINDING-CANDIDATE.json",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "c29807598ea60ae45b4d6bc404f1fec732e2b227",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/engineering/world-integration/presentation-prep-001/ART-AND-INTEGRATION-GATES.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "9afc1335a42f67feeb1a5ffd6826fbe3d795b3e8",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "docs/engineering/world-integration/presentation-c1-verify-001/BROWSER-MATRIX.md",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "60be62c39940ee5cbe4982205e95816dd881e93c",
+      "mainlineThisTurn": "READ"
+    },
+    {
+      "path": "src/ui/infected-world/assets.ts",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "af543ed02b2025c1c852a12000b0c32db41b138d",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "src/ui/infected-world/app.tsx",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "bc5f03440b4394499447cc69197274a656a38097",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    },
+    {
+      "path": "src/ui/infected-world/components/battle-stage.tsx",
+      "commit": "8c962f90d9e4ef01ab46a5fc4b970d93c7c45c96",
+      "gitBlob": "d6bfae896b267613a155e0135d20105377ed34f5",
+      "mainlineThisTurn": "NAVIGATION_ONLY_OR_PRIOR_REVIEW; Codex must read actual source"
+    }
+  ]
+}

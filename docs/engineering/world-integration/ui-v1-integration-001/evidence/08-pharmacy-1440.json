@@ -1,0 +1,101 @@
+{
+  "name": "08-pharmacy-1440",
+  "bytes": 180207,
+  "dpr": 1,
+  "height": 900,
+  "images": [
+    {
+      "complete": true,
+      "h": 941,
+      "src": "/src/assets/presentation/world-ui-v1/bg-h2-v1.png",
+      "w": 1672
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    },
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-suppressant-v1.png",
+      "w": 1254
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    }
+  ],
+  "regions": [
+    {
+      "box": {
+        "bottom": 80,
+        "height": 64,
+        "left": 16,
+        "right": 1424,
+        "top": 16,
+        "width": 1408,
+        "x": 16,
+        "y": 16
+      },
+      "class": "iw-hud iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 836,
+        "height": 744,
+        "left": 16,
+        "right": 240,
+        "top": 92,
+        "width": 224,
+        "x": 16,
+        "y": 92
+      },
+      "class": "iw-sidebar iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 836,
+        "height": 744,
+        "left": 252,
+        "right": 1108,
+        "top": 92,
+        "width": 856,
+        "x": 252,
+        "y": 92
+      },
+      "class": "iw-stage"
+    },
+    {
+      "box": {
+        "bottom": 836,
+        "height": 744,
+        "left": 1120,
+        "right": 1424,
+        "top": 92,
+        "width": 304,
+        "x": 1120,
+        "y": 92
+      },
+      "class": "iw-carrying iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 884,
+        "height": 36,
+        "left": 16,
+        "right": 1424,
+        "top": 848,
+        "width": 1408,
+        "x": 16,
+        "y": 848
+      },
+      "class": "iw-footer iw-framed"
+    }
+  ],
+  "url": "http://127.0.0.1:5241/?dev-infected-world=1",
+  "width": 1440
+}

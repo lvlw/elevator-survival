@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "task": "ENG-WORLD-UI-V1-INTEGRATION-001",
+  "base": "c5abeda4861710325a123e8321a314423525f8df",
+  "files": [
+    {
+      "path": "ACCEPTANCE.md",
+      "bytes": 5786,
+      "sha256": "be53687dc794d493fc2f915598507b162efe7bf25dca39a713d3750c318b54c6"
+    },
+    {
+      "path": "DEV-ASSET-ALLOWLIST.json",
+      "bytes": 44847,
+      "sha256": "b6b570c27dd01b77f9fb7fb2ae7b7a3b31f34fd578b776f2576efad944eaa83e"
+    },
+    {
+      "path": "OWNER-AUTHORIZATION.md",
+      "bytes": 4798,
+      "sha256": "273d45216c4c4eb2bfc0d84f7d8b2593f0dac3b35de85924643bd69e95049baa"
+    },
+    {
+      "path": "README-FIRST.md",
+      "bytes": 1519,
+      "sha256": "d3b748a5e20bbfef530be168fd1a3668a9186603267739fbd7496c185accdcb2"
+    },
+    {
+      "path": "SCOPE.json",
+      "bytes": 6997,
+      "sha256": "e474f100031058076a0f7f48159318b18a1c593a5dd6bb73564b085b9e00d037"
+    },
+    {
+      "path": "SEND-TO-CODEX.txt",
+      "bytes": 2193,
+      "sha256": "ecc715458a32ce67a567ab6470b3bd14c2409f16d8030dc3e449fc6fa17bf56c"
+    },
+    {
+      "path": "SOURCES.json",
+      "bytes": 10709,
+      "sha256": "7b0ab3fbc1ceb1c1bade5751b89040f71bd48525676b5d911c3d84b4e62f6858"
+    },
+    {
+      "path": "TASK.md",
+      "bytes": 6871,
+      "sha256": "29eebaf0a13cf22d153db4702630ef931c0b1007f527c13843f7b4cab62374b2"
+    },
+    {
+      "path": "UI-INTEGRATION-CONTRACT.md",
+      "bytes": 8913,
+      "sha256": "ab5a1bea760b519681a54f90ac11b6915d6e5d3d3ce9f804b77964c169520282"
+    },
+    {
+      "path": "references/OWNER-rejected-pharmacy.png",
+      "bytes": 100816,
+      "sha256": "3998eb57404a8131e0311094ba63c74a7a9d45ae4f25353de8975063fcfaee84"
+    }
+  ]
+}

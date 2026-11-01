@@ -1,0 +1,198 @@
+{
+  "task": "ENG-WORLD-UI-V1-INTEGRATION-001",
+  "repository": "lvlw/elevator-survival",
+  "ref": "c5abeda4861710325a123e8321a314423525f8df",
+  "authority": "本轮Owner实施授权+本包定稿作用于UI迁移；玩法仍按实际AGENTS/已确认DEC，既有安全行为不能被原型覆盖。",
+  "sourceRefs": [
+    {
+      "path": "AGENTS.md",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "实际工程规则；开工必须读",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/AGENTS.md"
+    },
+    {
+      "path": "docs/01-game-design-v0.1.md",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "总体背景；玩法以已确认DEC优先",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/01-game-design-v0.1.md"
+    },
+    {
+      "path": "docs/02-vertical-slice.md",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "切片范围；不要把旧医院限制套回新世界",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/02-vertical-slice.md"
+    },
+    {
+      "path": "docs/03-architecture.md",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "职责/架构，不创造玩法",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/03-architecture.md"
+    },
+    {
+      "path": "docs/05-design-decisions.md",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "正式玩法权威",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/05-design-decisions.md"
+    },
+    {
+      "path": "docs/09-ui-design-record.md",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "当前有效UIR，尤其L0-L3/只读地图/真实容器/Feed",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/09-ui-design-record.md"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/00-owner-review.md",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "R2/v1.2主稿和历史状态",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/design-drafts/ui-v1-001/00-owner-review.md"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/03-dimension-contract.md",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "五档三栏、内容面板分档与裁切",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/design-drafts/ui-v1-001/03-dimension-contract.md"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/04-interaction-and-motion.md",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "呈现交互意图；标明原型模拟不得照搬",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/design-drafts/ui-v1-001/04-interaction-and-motion.md"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/05-asset-coverage.md",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "24节点/19实物/主体/近景及未关闭美术门槛",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/design-drafts/ui-v1-001/05-asset-coverage.md"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/06-implementation-handoff-draft.md",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "职责接缝，非旧开工授权",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/design-drafts/ui-v1-001/06-implementation-handoff-draft.md"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/prototype/index.html",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "设计目标入口，不是最终游戏入口",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/design-drafts/ui-v1-001/prototype/index.html"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/prototype/ui.css",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "R2母版样式",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/design-drafts/ui-v1-001/prototype/ui.css"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/prototype/ui.js",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "视觉组件参考；sample/context逻辑不可迁入",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/design-drafts/ui-v1-001/prototype/ui.js"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/prototype/screens.js",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "P01-P25设计覆盖、静态资源绑定，不是运行状态",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/design-drafts/ui-v1-001/prototype/screens.js"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/spec/node-crop-manifest.json",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "节点focal/裁切定义",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/design-drafts/ui-v1-001/spec/node-crop-manifest.json"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/spec/registered-art.json",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "呈现注册参数，不是原生像素证明",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/design-drafts/ui-v1-001/spec/registered-art.json"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/contracts/C-staged-ui.md",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "原C建议主壳/物品菜单等接线，按本批定稿执行",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/design-drafts/ui-v1-001/readiness-001/contracts/C-staged-ui.md"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/readiness-001/theme/GUIDE.md",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "基线图像、代码原生组件与TEST主题区别",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/design-drafts/ui-v1-001/readiness-001/theme/GUIDE.md"
+    },
+    {
+      "path": "docs/design-drafts/ui-v1-001/adoption-prep-001/candidate-bindings.json",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "准确资源字节绑定，历史待批状态不倒改",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/design-drafts/ui-v1-001/adoption-prep-001/candidate-bindings.json"
+    },
+    {
+      "path": "src/ui/infected-world/app.tsx",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "原真实动作入口/确认/错误",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/src/ui/infected-world/app.tsx"
+    },
+    {
+      "path": "src/ui/infected-world/components/game-shell.tsx",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "待替换旧主壳",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/src/ui/infected-world/components/game-shell.tsx"
+    },
+    {
+      "path": "src/ui/infected-world/components/world-stage.tsx",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "待迁移现场/搜索/反馈组织",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/src/ui/infected-world/components/world-stage.tsx"
+    },
+    {
+      "path": "src/ui/infected-world/assets.ts",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "旧6物/2地点映射，需要补闭合",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/src/ui/infected-world/assets.ts"
+    },
+    {
+      "path": "src/app/infected-preplay/feed.ts",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "只读理解已有Feed内容，禁止另建日志owner",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/src/app/infected-preplay/feed.ts"
+    },
+    {
+      "path": "src/main.tsx",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "原DEV路由保持",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/src/main.tsx"
+    },
+    {
+      "path": "docs/engineering/world-integration/presentation-c2-001/REPORT.md",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "C2工程已审、T15仍partial",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/engineering/world-integration/presentation-c2-001/REPORT.md"
+    },
+    {
+      "path": "docs/engineering/world-integration/preplay/low-asset-ui/owner-playtest-guide.md",
+      "ref": "c5abeda4861710325a123e8321a314423525f8df",
+      "use": "历史入口说明；Owner启动安排已被本轮暂停",
+      "url": "https://github.com/lvlw/elevator-survival/blob/c5abeda4861710325a123e8321a314423525f8df/docs/engineering/world-integration/preplay/low-asset-ui/owner-playtest-guide.md"
+    }
+  ],
+  "mainlineCurrentChecks": {
+    "branchHead": "c5abeda4861710325a123e8321a314423525f8df",
+    "candidateBindingsGitBlob": "08173984f6bd99991c153398f41dfebb60df284c",
+    "designPrototypeStateIsNotProduction": true,
+    "newOwnerPlaytestPaused": true
+  },
+  "baselineScreenshot": {
+    "file": "references/OWNER-rejected-pharmacy.png",
+    "kind": "Owner直接上传的真实体验反例",
+    "sha256": "3998eb57404a8131e0311094ba63c74a7a9d45ae4f25353de8975063fcfaee84"
+  },
+  "modelRecommendationEvidence": {
+    "url": "https://developers.openai.com/api/docs/guides/reasoning",
+    "checkedOn": "2026-11-01",
+    "use": "high用于复杂代理工程的一般建议；不证明Owner具体Codex菜单或当次执行档位。"
+  },
+  "notClaimed": [
+    "本包未实现新版UI",
+    "未重新跑4929项",
+    "未重新解码46张图或关闭美术门槛",
+    "主线未读取用户本地HEAD/status"
+  ]
+}

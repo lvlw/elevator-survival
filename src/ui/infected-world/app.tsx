@@ -18,6 +18,7 @@ import { actionName, publicItemName } from './labels'
 import { useCommittedPresentation } from './presentation/use-committed-presentation'
 import { CommittedActionCue } from './components/committed-action-cue'
 import './styles.css'
+import './ui-v1.css'
 
 type Draft = Readonly<{ action: PlayerAction; inputs: PlayerActionInputs; controls: BrowserControls; item?: PlayerItem }>
 type Confirmation = Readonly<{ token: PreplayConfirmation; request: PlayerRequest; title: string; metadata: PlayerIntentMetadata; controls: BrowserControls }>
@@ -92,7 +93,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
     if (event.detail > 1) { event.preventDefault(); event.stopPropagation() }
   }}><ActionInformationProvider view={view} controls={controls}><GameShell view={view} feed={snapshot.preplay!.feed} onAction={choose} describeAction={controls.describeAction}
     onRetrySave={() => guarded(() => { controls.retrySave() })}
-    presentation={<CommittedActionCue cue={presentation.cue} reduced={presentation.reduced} localReduced={presentation.localReduced}
+    presentation={<CommittedActionCue cue={presentation.cue} reduced={presentation.reduced} localReduced={presentation.localReduced} inBattle={view.combat !== null}
       onReduce={presentation.setLocalReduced} onSkip={presentation.skip} />}>
     {(message || snapshot.preplay?.error) && <div className="iw-feedback" role="alert">{message ?? snapshot.preplay?.error?.message}<button aria-label="关闭提示" onClick={() => setMessage(null)}>×</button></div>}
   </GameShell>

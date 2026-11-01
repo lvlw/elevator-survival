@@ -50,10 +50,9 @@ export function ActionInformationProvider({ view, controls, children }: { view: 
 export function ActionButton({ action, onAction, children, ariaLabel, item, className }: { action: PlayerAction; onAction: () => void; children?: ReactNode; ariaLabel?: string; item?: PlayerItem; className?: string }) {
   const information = useContext(Context)
   return <span className="iw-action-entry"><button type="button" className={className} aria-label={ariaLabel}
-    onMouseEnter={e => information?.show(action, e.currentTarget, false, item)} onFocus={e => information?.show(action, e.currentTarget, false, item)}
+    onKeyDown={event => { if (event.key === 'F1') { event.preventDefault(); information?.show(action, event.currentTarget, true, item) } }}
     onClick={() => { information?.dismiss(false); onAction() }}>{children ?? actionName(action)}</button>
     <button className="iw-information-trigger" type="button" aria-label={`查看${actionName(action)}说明`} aria-haspopup="dialog"
-      onMouseEnter={e => information?.show(action, e.currentTarget, false, item)} onFocus={e => information?.show(action, e.currentTarget, false, item)}
       onClick={e => information?.show(action, e.currentTarget, true, item)}>ⓘ</button>
   </span>
 }

@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { mountUi } from './test-fixtures'
 import { domRouteA } from './route-test-fixtures'
+import { itemImage } from './assets'
 
 afterEach(() => vi.restoreAllMocks())
 describe('R02 approved public explanations', () => {
@@ -32,7 +33,9 @@ describe('R02 approved public explanations', () => {
       const selected = h.host.querySelector<HTMLSelectElement>('select[aria-label="物品"]')!
       expect(selected.selectedOptions[0].textContent).toContain('通信模块')
       expect(h.view().carried.find(i => i.name === 'module')!.selector).toBe(rawModule.selector)
-      expect(h.host.innerHTML).not.toMatch(/\bcomponent\b|\bmodule\b/)
+      // C2/UI-v1 authorizes these two public image filenames, not raw identity in copy or attributes.
+      expect(itemImage('component')).toBe(itemImage('转运组件')); expect(itemImage('module')).toBe(itemImage('通信模块'))
+      expect(h.host.innerHTML.replaceAll(itemImage('component'), '[已核准物品图]').replaceAll(itemImage('module'), '[已核准物品图]')).not.toMatch(/\bcomponent\b|\bmodule\b/)
       await h.d.button('取消')
     } finally { await h.unmount() }
   }, 30000)

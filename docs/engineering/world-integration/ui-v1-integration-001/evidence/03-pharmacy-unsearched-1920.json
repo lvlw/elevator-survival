@@ -1,0 +1,104 @@
+{
+  "name": "03-pharmacy-unsearched-1920",
+  "bytes": 254621,
+  "dpr": 1,
+  "font": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+  "height": 1080,
+  "images": [
+    {
+      "complete": true,
+      "h": 941,
+      "src": "/src/assets/presentation/world-ui-v1/bg-h2-v1.png",
+      "w": 1672
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    }
+  ],
+  "regions": [
+    {
+      "box": {
+        "bottom": 96,
+        "height": 72,
+        "left": 24,
+        "right": 1896,
+        "top": 24,
+        "width": 1872,
+        "x": 24,
+        "y": 24
+      },
+      "class": "iw-hud iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 1000,
+        "height": 888,
+        "left": 24,
+        "right": 304,
+        "top": 112,
+        "width": 280,
+        "x": 24,
+        "y": 112
+      },
+      "class": "iw-sidebar iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 1000,
+        "height": 888,
+        "left": 320,
+        "right": 1520,
+        "top": 112,
+        "width": 1200,
+        "x": 320,
+        "y": 112
+      },
+      "class": "iw-stage"
+    },
+    {
+      "box": {
+        "bottom": 771.828125,
+        "height": 94.390625,
+        "left": 355.1875,
+        "right": 1484.8125,
+        "top": 677.4375,
+        "width": 1129.625,
+        "x": 355.1875,
+        "y": 677.4375
+      },
+      "class": "iw-ground"
+    },
+    {
+      "box": {
+        "bottom": 1000,
+        "height": 888,
+        "left": 1536,
+        "right": 1896,
+        "top": 112,
+        "width": 360,
+        "x": 1536,
+        "y": 112
+      },
+      "class": "iw-carrying iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 1056,
+        "height": 40,
+        "left": 24,
+        "right": 1896,
+        "top": 1016,
+        "width": 1872,
+        "x": 24,
+        "y": 1016
+      },
+      "class": "iw-footer iw-framed"
+    }
+  ],
+  "scene": "医院/药房",
+  "url": "http://127.0.0.1:5241/?dev-infected-world=1",
+  "width": 1920
+}

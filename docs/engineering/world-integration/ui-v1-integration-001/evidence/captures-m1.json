@@ -1,0 +1,92 @@
+[
+  {
+    "file": "01-hub-1920.jpg",
+    "bytes": 230051,
+    "sha256": "1fdd160f06c486aeb7c18d3a2efd71a1048d5ed639579ca6c89f64c2f6876db4",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "derived": false
+  },
+  {
+    "file": "02-hall-1920.jpg",
+    "bytes": 270787,
+    "sha256": "aa1196b9a6bc7ca830b8a794cbd14f44ff44b437331d03a338be6fd149f91c30",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "derived": false
+  },
+  {
+    "file": "03-pharmacy-unsearched-1920.jpg",
+    "bytes": 254621,
+    "sha256": "2794703d27e10a721146227c86966cf179598b274fe83439634d3dd531ce7bb7",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "derived": false
+  },
+  {
+    "file": "04-pharmacy-revealed-1920.jpg",
+    "bytes": 251503,
+    "sha256": "cab42005248c9aa6bbd5acd92c3509d5e5efe63e619f5aa5e8b464b23c01f79d",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "derived": false
+  },
+  {
+    "file": "05-pharmacy-empty-reopened-1920.jpg",
+    "bytes": 253086,
+    "sha256": "978a34c6a2c511bee6017e28f809fe6823d6c6713e931b2c922ce4546b37c649",
+    "rawPixels": [
+      1920,
+      1080
+    ],
+    "derived": false
+  },
+  {
+    "file": "06-pharmacy-empty-1280.jpg",
+    "bytes": 143701,
+    "sha256": "6a2f291baaa09ad7f821cb234adc06554d2b6c66ef1dd1afd93c62586e2deede",
+    "rawPixels": [
+      1280,
+      720
+    ],
+    "derived": false
+  },
+  {
+    "file": "07-pharmacy-1600.jpg",
+    "bytes": 201411,
+    "sha256": "1c5bdd285b8ca7c77d6a091b547eca70dc6b27dae425d04637b81eee7062e086",
+    "rawPixels": [
+      1600,
+      900
+    ],
+    "derived": false
+  },
+  {
+    "file": "08-pharmacy-1440.jpg",
+    "bytes": 180207,
+    "sha256": "7974e9985e6f35a177f4ebe491536712ccbe43e313411d1571471facb448f5c4",
+    "rawPixels": [
+      1440,
+      900
+    ],
+    "derived": false
+  },
+  {
+    "file": "09-pharmacy-1366.jpg",
+    "bytes": 155672,
+    "sha256": "fab6838aca64d4a1b3d1b94b2ee4dc1721557cf6c7b80d63222badde188d8234",
+    "rawPixels": [
+      1366,
+      768
+    ],
+    "derived": false
+  }
+]

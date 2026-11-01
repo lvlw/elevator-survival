@@ -1,0 +1,14 @@
+{
+  "derived": true,
+  "method": "unscaled side by side plus an explicit 56px comparison caption; never a native screenshot",
+  "sources": [
+    {
+      "path": "docs/design-drafts/ui-v1-001/previews/screens/P03-hospital-1280x720.png",
+      "sha256": "6a73fa95a1761557a5b957b33693b977ae86b0b5469505cfb73f5cb67a205f96"
+    },
+    {
+      "path": "docs/engineering/world-integration/ui-v1-integration-001/evidence/06-pharmacy-empty-1280.jpg",
+      "sha256": "6a2f291baaa09ad7f821cb234adc06554d2b6c66ef1dd1afd93c62586e2deede"
+    }
+  ]
+}

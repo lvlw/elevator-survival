@@ -12,7 +12,7 @@ const zero = { dispatch: 0, current: 0, notices: 0, draw: 0, task: 0, source: 0,
   maintenance: 0, terminal: 0, g1Action: 0, g1Cycle: 0, origins: 0, consume: 0, encode: 0 }
 
 describe('R01 L0 pure information boundaries', () => {
-  it('actual focus, hover, switching and keyboard close are read-only; main click is not gated', async () => {
+  it('focus and hover stay unobstructed; explicit information, switching and keyboard close are read-only; main click is not gated', async () => {
     const h = await mountUi(), o = observeBrowser()
     try {
       await h.d.setup(); await h.d.send('进入封锁区'); await h.d.move('大厅')
@@ -20,9 +20,11 @@ describe('R01 L0 pure information boundaries', () => {
       o.clear()
       const main = [...h.host.querySelectorAll<HTMLButtonElement>('button')].find(b => b.textContent === '大厅搜索 · 无照明搜索')!
       await h.flush(() => main.focus())
+      expect(panel()).toBeNull()
+      await h.flush(() => main.dispatchEvent(new KeyboardEvent('keydown', { key: 'F1', bubbles: true, cancelable: true })))
       expect(panel()?.textContent).toContain('精力消耗：12')
       const info = h.host.querySelector<HTMLButtonElement>('[aria-label="查看隔离防火门 · 使用撬棍说明"]')!
-      await h.flush(() => info.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })))
+      await h.flush(() => info.click())
       expect(panel()?.textContent).toContain('本动作需要明确选择：实际物品')
       expect(panel()?.textContent).not.toContain('精力消耗：')
       await h.flush(() => info.click())

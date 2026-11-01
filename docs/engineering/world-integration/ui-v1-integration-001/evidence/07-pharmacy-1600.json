@@ -1,0 +1,101 @@
+{
+  "name": "07-pharmacy-1600",
+  "bytes": 201411,
+  "dpr": 1,
+  "height": 900,
+  "images": [
+    {
+      "complete": true,
+      "h": 941,
+      "src": "/src/assets/presentation/world-ui-v1/bg-h2-v1.png",
+      "w": 1672
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    },
+    {
+      "complete": true,
+      "h": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-suppressant-v1.png",
+      "w": 1254
+    },
+    {
+      "complete": true,
+      "h": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "w": 512
+    }
+  ],
+  "regions": [
+    {
+      "box": {
+        "bottom": 84,
+        "height": 64,
+        "left": 20,
+        "right": 1580,
+        "top": 20,
+        "width": 1560,
+        "x": 20,
+        "y": 20
+      },
+      "class": "iw-hud iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 828,
+        "height": 728,
+        "left": 20,
+        "right": 260,
+        "top": 100,
+        "width": 240,
+        "x": 20,
+        "y": 100
+      },
+      "class": "iw-sidebar iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 828,
+        "height": 728,
+        "left": 276,
+        "right": 1244,
+        "top": 100,
+        "width": 968,
+        "x": 276,
+        "y": 100
+      },
+      "class": "iw-stage"
+    },
+    {
+      "box": {
+        "bottom": 828,
+        "height": 728,
+        "left": 1260,
+        "right": 1580,
+        "top": 100,
+        "width": 320,
+        "x": 1260,
+        "y": 100
+      },
+      "class": "iw-carrying iw-framed"
+    },
+    {
+      "box": {
+        "bottom": 880,
+        "height": 36,
+        "left": 20,
+        "right": 1580,
+        "top": 844,
+        "width": 1560,
+        "x": 20,
+        "y": 844
+      },
+      "class": "iw-footer iw-framed"
+    }
+  ],
+  "url": "http://127.0.0.1:5241/?dev-infected-world=1",
+  "width": 1600
+}

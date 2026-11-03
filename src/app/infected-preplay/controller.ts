@@ -7,11 +7,14 @@ import { preplaySnapshot } from './snapshot'
 import { publicPreplayError, isPlayerBusinessError } from './errors'
 import type { PreplayPorts, PreplayController, PreplayResult, PreplaySnapshot } from './types'
 import { createCommittedPresentationIssuer } from './committed-presentation'
+import { createExplorationIssuer, explorationText } from './narrative-entry/issuer'
+import type { ExplorationReceipt } from '../../state/residence-session/narrative-entry/types'
 
 /** The existing S/facade is the only gameplay owner. No storage port or canonical cache. */
 export function createPreplayController(ports: PreplayPorts): PreplayController {
   const drafts = createDraftStore(), confirmations = createConfirmationStore(), listeners = new Set<() => void>()
   const issuePresentation = createCommittedPresentationIssuer()
+  const issueExploration = createExplorationIssuer()
   let busy = false, notifying = false, scope = ports.preplay.scope(), listenerErrors = 0
   let snapshot: PreplaySnapshot = preplaySnapshot({ status: 'stable', view: ports.player.query(), error: null, draft: null, feed: Object.freeze([]) })
   const notify = () => { notifying = true; try { for (const listener of [...listeners]) { try { listener() } catch { listenerErrors++ } } } finally { notifying = false } }
@@ -22,20 +25,20 @@ export function createPreplayController(ports: PreplayPorts): PreplayController 
     if (next !== scope) { drafts.clear(); confirmations.clear(); scope = next }
   }
   function reject() { publish({ error: publicPreplayError('rejected') }); return result('rejected') }
-  function adopt(view: PlayerView, before: PlayerView | null, committed: boolean) {
+  function adopt(view: PlayerView, before: PlayerView | null, committed: boolean, exploration?: ExplorationReceipt) {
     invalidateScope()
     const draft = drafts.get()
     publish({ status: 'stable', view, error: null, draft: draft ? { token: draft.token, request: draft.request } : null,
-      feed: committed ? appendPreplayFeed(snapshot.feed, publicActionFeed(before, view)) : snapshot.feed })
+      feed: committed ? appendPreplayFeed(snapshot.feed, publicActionFeed(before, view) + (exploration ? ' ' + explorationText(exploration) : '')) : snapshot.feed })
   }
-  function run(operation: () => { view: PlayerView; committed: boolean; rejected?: boolean }): PreplayResult {
+  function run(operation: () => { view: PlayerView; committed: boolean; rejected?: boolean; exploration?: ExplorationReceipt }): PreplayResult {
     if (busy || notifying) return result('rejected')
     const before = snapshot.view
     busy = true
     publish({ status: 'busy' })
     try {
       const completed = operation()
-      adopt(completed.view, before, completed.committed)
+      adopt(completed.view, before, completed.committed, completed.exploration)
       if (completed.rejected) { publish({ error: publicPreplayError('rejected') }); return result('rejected') }
       return result(completed.committed ? 'committed' : 'updated')
     } catch (error) {
@@ -67,11 +70,14 @@ export function createPreplayController(ports: PreplayPorts): PreplayController 
         const error = captureFailure.error
         throw isPlayerBusinessError(error) ? new Error('Presentation capture unavailable after execution', { cause: error }) : error
       }
-      return { view: executed.view, committed: executed.kind === 'committed', rejected: executed.kind === 'rejected' }
+      return { view: executed.view, committed: executed.kind === 'committed', rejected: executed.kind === 'rejected', exploration: executed.exploration }
     })
     if (completed.kind !== 'committed' || !executed) return completed
     const presentation = issuePresentation(before, executed)
-    return presentation ? Object.freeze({ kind: completed.kind, snapshot: completed.snapshot, presentation }) : completed
+    const execution = executed as PlayerExecution
+    return Object.freeze({ ...completed, ...(presentation ? { presentation } : {}),
+      ...(execution.exploration ? { exploration: issueExploration(execution.exploration) } : {}),
+      ...(execution.explorationDiagnostic ? { explorationDiagnostic: execution.explorationDiagnostic } : {}) })
   }
   const execute: PreplayController['execute'] = input => {
     if (busy || notifying || snapshot.status !== 'stable') return result('rejected')

@@ -1,0 +1,13 @@
+# ENG-WORLD-NARRATIVE-ENTRY-001 interface and verification plan
+
+BASE: 5e4a38b1d32719f3f7478ecee824c8efae454b8c. Branch: feature/world-narrative-entry-001.
+The original worktree contains unrelated uncommitted HTTP work; this clean worktree excludes it.
+Actual model/effort/service tier: UNCONFIRMED (recommendation is not runtime evidence).
+
+M1: Add a finite public narrative projection to the existing player query. Bind optional exploration receipts to the parsed command, immutable pre-state and actual dispatch commit.current, including actual same-instance resource differences. Issue session-local receipt tokens separately from B1. No receipts on queries, confirmations awaiting input, restore or save retry. Add one bounded, strictly validated reading sidecar under the original namespace and original exclusive owner; it never mutates S/current. Explicit acknowledgements alone write; failed gameplay saves defer marks to explicit successful retrySave. Invalid sidecars are ignored, never repaired into gameplay.
+
+M2: Install P01–P06 only in true setup. Keep explicit tool/specialty selection, character creation and departure separate. Consume direct execution receipts for H01–H07 with at most one short, nonblocking story, actual task facts gating workorder and no cold replay. Manual records use known facts and independent read/skip marks. Keep every existing route available beyond the workorder.
+
+M3: Use public describeAction candidates to fill only a unique item-only source/task method, then retain the original preview/capture/L3/execute chain. Replace permanent information buttons with short hover/focus descriptions, preserve F1 details, compact real search results and group door methods. Integrate with the original DEV React shell at 1920×1080 CSS.
+
+Verification: actual baseline npm run test:run passed 350 files / 5041 tests (baseline-test-run.log). The first sandbox attempt could not write Vite cache through an external dependency junction; a copied, unchanged local node_modules avoids that. A stalled sandbox run was interrupted; the successful original command ran elevated without configuration changes. Add focused facade/controller/owner/React regressions, preserve original assertions and route drivers using visible skip/preparation. Exercise sidecar corruption/binding/future marks/save failure/stale owner, actual truncated resource use, unique/multiple inputs and L3. Run and restore four semantic negative controls. Then run the unchanged npm run check, exact FINAL SHA CI, and real original DEV browser walkthrough with four unedited captures and measured viewport/DPR. No dependencies, core/save/schema/lease/CI/assets changes; no deployment or SSH.

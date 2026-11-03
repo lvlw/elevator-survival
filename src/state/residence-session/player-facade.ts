@@ -14,6 +14,7 @@ import type { ResidenceDomain } from './types'
 import { assertCombatSyncFunction } from './combat-composition'
 import { createPlayerPreplay } from './player-preplay'
 import { committedCombatAction } from './player-committed-presentation'
+import { explorationReceipt } from './narrative-entry/receipt'
 
 /** Trusted composition only. The supplied existing S is the sole current/writer. */
 export function wrapPlayerSession(owner: CombatSession, policy: CombatResidencePolicy, labels: PlayerLabels) {
@@ -44,16 +45,23 @@ export function wrapPlayerSession(owner: CombatSession, policy: CombatResidenceP
       const checked = preview(input)
       if (checked.kind !== 'available' && checked.kind !== 'unknown') return deepFreeze({ kind: 'rejected', view: query(), preview: checked })
       const command = resolvePlayerCommand(context!, input, deps)
+      const before = context!.value
+      let exploration: PlayerExecution['exploration'], explorationDiagnostic: PlayerExecution['explorationDiagnostic']
       busy = true
       try {
-        owner.dispatch(command)
+        const commit = owner.dispatch(command)
+        // Projection defects after a successful commit must never turn it into a rejected action.
+        try {
+          if (owner.getState().current !== commit.current) throw new Error('Commit no longer current')
+          exploration = explorationReceipt(before, commit.current, command) ?? undefined
+        } catch { explorationDiagnostic = 'projection-unavailable' }
       } catch (e) {
         if (!isPlayerBusinessError(e)) throw e
         return deepFreeze({ kind: 'rejected', view: projectPlayerView(owner.getState(), context, deps, labels), preview: { kind: 'unavailable', cost: null } })
       } finally { try { synchronize() } finally { busy = false } }
       const view = query(), committedAction = committedCombatAction(command)
-      return deepFreeze(committedAction ? { kind: 'committed', view, preview: checked, committedAction } :
-        { kind: 'committed', view, preview: checked })
+      return deepFreeze({ kind: 'committed', view, preview: checked, ...(committedAction ? { committedAction } : {}),
+        ...(exploration ? { exploration } : {}), ...(explorationDiagnostic ? { explorationDiagnostic } : {}) })
     },
     retrySave: () => { if (busy) return query(); busy = true;
       try { owner.retrySave() } catch (e) { if (!isPlayerBusinessError(e)) throw e } finally { busy = false }; return query() },

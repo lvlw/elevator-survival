@@ -10,6 +10,7 @@ import type { CombatSessionView } from './combat-types'
 import type { PlayerContext, ActionReference } from './player-context'
 import type { PlayerView, PlayerReadyView, PlayerAction, PlayerLabels } from './player-types'
 import { playerOpponent } from './player-opponent'
+import { narrativeKnowledge } from './narrative-entry/projection'
 
 export function projectPlayerView(state: CombatSessionView, ctx: PlayerContext | null, deps: CombatDependencies,
   labels: PlayerLabels, busy = false): PlayerView {
@@ -67,7 +68,7 @@ export function projectPlayerView(state: CombatSessionView, ctx: PlayerContext |
     resourceCost, quickConsumption, signatureUsesRemaining })) ?? []
   // Public order does not depend on hidden identity spellings.
   combatActions.sort((a, b) => a.label.localeCompare(b.label))
-  const view: PlayerReadyView = { status: 'ready', phase: v.phase,
+  const view: PlayerReadyView = { status: 'ready', phase: v.phase, narrative: narrativeKnowledge(v, deps),
     point: v.phase === 'active-world' ? v.battle ? 'battle-decision' : 'stable-active' : v.phase,
     first: { toolChoices: [v.choices.tool], specialtyChoices: [v.choices.specialty], locked: true },
     location: v.site ? { name: s.catalog.data.nodes.find(n => n.id === v.site!.nodeId)!.name,

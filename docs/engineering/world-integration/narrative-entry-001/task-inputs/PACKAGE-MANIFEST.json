@@ -1,0 +1,64 @@
+{
+  "task": "ENG-WORLD-NARRATIVE-ENTRY-001",
+  "version": "1.0",
+  "date": "2026-11-03",
+  "base": "5e4a38b1d32719f3f7478ecee824c8efae454b8c",
+  "files": [
+    {
+      "path": "ACCEPTANCE.md",
+      "bytes": 6374,
+      "sha256": "c0a376eb4a2725c77db25658c4c5541c408d697ee8b70ccde23ea3f454f386e7"
+    },
+    {
+      "path": "CONTENT-SCOPE.md",
+      "bytes": 4262,
+      "sha256": "83c9302f75b37d21159d38f27284d37b05d75d2f3f483f6182092fbc1c345993"
+    },
+    {
+      "path": "INTERACTION-CONTRACT.md",
+      "bytes": 4527,
+      "sha256": "14ab5ce129af16220657d1769fb4e48d3dc0d0e05f19cf4cec9bff72596c1c35"
+    },
+    {
+      "path": "NARRATIVE-CONTRACT.md",
+      "bytes": 10449,
+      "sha256": "f8bcdbebdad898a694c20ffba29498a9dd8973191ce82129802d54f214d81cb2"
+    },
+    {
+      "path": "README-FIRST.md",
+      "bytes": 1252,
+      "sha256": "6fdd86238f05080dae15d6a4437fcdc4b231bdfbdb31ab0b970156cb343e416f"
+    },
+    {
+      "path": "SCOPE.json",
+      "bytes": 5407,
+      "sha256": "c873ee35e2beefa118f3fbb9b388a002e58b73246752c89ed91a910c90f2217b"
+    },
+    {
+      "path": "SEND-TO-CODEX.txt",
+      "bytes": 2453,
+      "sha256": "14ba201221e56424ad7a33f98dc576c2d70787aec2e565edf1015ecbc383a182"
+    },
+    {
+      "path": "SOURCE-READING.md",
+      "bytes": 3172,
+      "sha256": "b7baab4d9af122a97f1d4d44305efdc0a639fab37d55dc7b733dab408eee1d6c"
+    },
+    {
+      "path": "TASK.md",
+      "bytes": 7082,
+      "sha256": "0a6af4311f017712af15ec6ffcaff59191bb1fd6f3f8398b13fd865dc95025e5"
+    },
+    {
+      "path": "inputs/医院篇游戏节奏与接入适配-v0.2.md",
+      "bytes": 18494,
+      "sha256": "a718c707051c9bb8c1765ecc709b6f4afbeb0938d0a04871e5a553055afcb735"
+    },
+    {
+      "path": "inputs/医院篇章节剧本-v0.2-精写稿.md",
+      "bytes": 35223,
+      "sha256": "a22f7b55dd0b83e05257fe9f98a2556e901d32c6e9a626a89b84dd757dfce227"
+    }
+  ],
+  "note": "本清单只校验任务输入；不是代码测试/工程通过证据。"
+}

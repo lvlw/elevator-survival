@@ -9,6 +9,7 @@ import { preparedBrowserWriter } from './storage'
 import type { BrowserStorage } from './types'
 import type { Checkpoint, Reservation } from './schema'
 import { BrowserOwnerError } from './errors'
+import { narrativeKnowledge } from '../../state/residence-session/narrative-entry/projection'
 /** Expected is fixed BEFORE any S or domain candidate decode. No value is installed here twice. */
 export function createBrowserContext(r: Reservation, cp: Checkpoint | null, storage: BrowserStorage, active: () => boolean) {
   const guard = <T>(fn: () => T): T => { if (!active()) throw new BrowserOwnerError('LOST_LEASE'); return fn() }
@@ -25,5 +26,13 @@ export function createBrowserContext(r: Reservation, cp: Checkpoint | null, stor
     subscribe: listener => ports.player.subscribe(v => { if (active()) listener(v) }),
   }), preplay: ports.preplay, bootstrap: () => guard(ports.bootstrap), createFirst: () => guard(ports.createFirst),
     retryRead: () => guard(ports.retryRead), synchronize: () => guard(ports.synchronize) })
-  return Object.freeze({ controller, hasCurrent: () => session.getState().current !== null })
+  let persistedRevision = cp ? validateCheckpoint(r, cp, c).revision : -1
+  return Object.freeze({ controller, hasCurrent: () => session.getState().current !== null,
+    readingCurrent: () => {
+      const state = session.getState(), value = state.current
+      if (!value) return null
+      if (state.persistence === 'saved') persistedRevision = value.character.revision
+      return { revision: value.character.revision, persistedRevision, saved: value.character.revision <= persistedRevision,
+        known: narrativeKnowledge(value, c.dependencies).known }
+    } })
 }

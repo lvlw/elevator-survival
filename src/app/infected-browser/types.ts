@@ -1,4 +1,5 @@
 import type { PreplayController, PreplaySnapshot } from '../infected-preplay/types'
+import type { ReadingMark, ReadingView } from './narrative-entry/reading'
 export type SetupChoices = Readonly<{ tool: 'crow' | 'lamp' | 'toolbox'; specialty: 'scout' | 'engineer' | 'survival' }>
 export type IdentityMaterials = Readonly<{ characterId: string; runId: string; seed: string; generation: string }>
 export type BrowserStorage = Readonly<{ getItem(key: string): string | null; setItem(key: string, value: string): void }>
@@ -11,6 +12,7 @@ export type BrowserSnapshot = Readonly<{ status: 'idle' | 'acquiring' | 'occupie
   preplay: PreplaySnapshot | null; message: string | null }>
 export type BrowserControls = Readonly<Pick<PreplayController, 'getSnapshot' | 'execute' | 'confirm' | 'preview' |
   'beginDraft' | 'cancel' | 'executeDraft' | 'retrySave' | 'synchronize' | 'describeAction'> & {
-  confirmSetup(choices: unknown): BrowserSnapshot; retryRead(): BrowserSnapshot }>
+  confirmSetup(choices: unknown): BrowserSnapshot; retryRead(): BrowserSnapshot
+  getReading(): ReadingView; acknowledgeReading(marks: readonly ReadingMark[]): ReadingView }>
 export type BrowserOwner = Readonly<{ getSnapshot(): BrowserSnapshot; subscribe(listener: () => void): () => void;
   controls(): BrowserControls | null; acquire(): Promise<BrowserSnapshot>; suspend(): void; dispose(): void }>

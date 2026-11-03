@@ -9,13 +9,14 @@ import { bindBrowserLifecycle } from './lifecycle'
 import { browserSnapshot } from './snapshot'
 import type { BrowserOwner, BrowserOptions, BrowserEnvironment, BrowserControls, BrowserSnapshot } from './types'
 import type { PreplayController } from '../infected-preplay/types'
+import { createReadingRecord } from './narrative-entry/reading'
 
 function ambientEnvironment(): BrowserEnvironment {
   return { secure: globalThis.isSecureContext === true, locks: globalThis.navigator?.locks ?? null,
     storage: () => globalThis.localStorage, entropy: generateBrowserIdentity,
     ...(typeof window === 'object' ? { lifecycle: window } : {}) }
 }
-type Context = { valid: boolean; controller: PreplayController | null; hasCurrent: (() => boolean) | null; unsubscribe: (() => void) | null; controls: BrowserControls | null }
+type Context = { valid: boolean; controller: PreplayController | null; hasCurrent: (() => boolean) | null; unsubscribe: (() => void) | null; controls: BrowserControls | null; reading?: ReturnType<typeof createReadingRecord> }
 /** Explicit application composition only. No player route, storage scan or second canonical. */
 export function createInfectedBrowserOwner(options: BrowserOptions = {}): BrowserOwner {
   let snapshot = browserSnapshot('idle'), lease: BrowserLease | null = null, ctx: Context | null = null
@@ -43,7 +44,7 @@ export function createInfectedBrowserOwner(options: BrowserOptions = {}): Browse
     if (!c.controller || (snapshot.status !== 'ready' && !(snapshot.status === 'blocked' && c.hasCurrent?.()))) throw new BrowserOwnerError('UNAVAILABLE')
     return c.controller
   }
-  function install(c: Context, prepared: ReturnType<typeof createBrowserContext>, first: boolean) {
+  function install(c: Context, prepared: ReturnType<typeof createBrowserContext>, first: boolean, r: Parameters<typeof createBrowserContext>[0], storage: Parameters<typeof createBrowserContext>[2]) {
     const controller = prepared.controller
     c.controller = controller; c.hasCurrent = prepared.hasCurrent
     c.unsubscribe = controller.subscribe(() => { if (alive(c)) publish('ready', controller.getSnapshot()) })
@@ -51,6 +52,7 @@ export function createInfectedBrowserOwner(options: BrowserOptions = {}): Browse
     if (!alive(c)) return
     if (first) controller.createFirst()
     if (!alive(c)) return
+    if (prepared.hasCurrent()) c.reading = createReadingRecord(storage, r, () => alive(c), prepared.readingCurrent)
     publish(controller.getSnapshot().view?.status === 'ready' ? 'ready' : 'blocked', controller.getSnapshot())
   }
   function freshContext(): Context {
@@ -62,7 +64,9 @@ export function createInfectedBrowserOwner(options: BrowserOptions = {}): Browse
       confirm: token => call(p => p.confirm(token)), preview: input => call(p => p.preview(input)),
       describeAction: action => call(p => p.describeAction(action)),
       beginDraft: input => call(p => p.beginDraft(input)), cancel: () => call(p => p.cancel()),
-      executeDraft: token => call(p => p.executeDraft(token)), retrySave: () => call(p => p.retrySave()),
+      executeDraft: token => call(p => p.executeDraft(token)), retrySave: () => call(p => { const result = p.retrySave(); c.reading?.flush(); return result }),
+      getReading: () => guard(c, () => c.reading?.query() ?? Object.freeze({ marks: Object.freeze([]), warning: null })),
+      acknowledgeReading: marks => guard(c, () => c.reading?.acknowledge(marks) ?? Object.freeze({ marks: Object.freeze([]), warning: null })),
       synchronize: () => call(p => p.synchronize()),
       retryRead: () => guard(c, () => {
         if (c.hasCurrent?.() || !['blocked', 'read-error', 'reservation-failed'].includes(snapshot.status))
@@ -83,7 +87,7 @@ export function createInfectedBrowserOwner(options: BrowserOptions = {}): Browse
           try { reserveBrowser(storage, r, () => alive(c)) }
           catch { if (alive(c)) publish('reservation-failed'); return snapshot }
           if (!alive(c)) return snapshot
-          install(c, createBrowserContext(r, null, storage, () => alive(c)), true)
+          install(c, createBrowserContext(r, null, storage, () => alive(c)), true, r, storage)
         } catch (error) { if (alive(c)) publish('blocked'); throw error }
         return snapshot
       }),
@@ -99,7 +103,7 @@ export function createInfectedBrowserOwner(options: BrowserOptions = {}): Browse
     catch (error) { if (alive(c)) publish(error instanceof BrowserOwnerError ? 'blocked' : 'read-error'); return }
     if (!alive(c)) return
     if (!pair) { publish(initializationAttempted ? 'blocked' : 'setup'); return }
-    try { install(c, createBrowserContext(pair.reservation, pair.checkpoint, storage, () => alive(c)), false) }
+    try { install(c, createBrowserContext(pair.reservation, pair.checkpoint, storage, () => alive(c)), false, pair.reservation, storage) }
     catch (error) {
       if (alive(c)) publish('blocked')
       // Known corruption is an application blocked state; program defects remain observable.

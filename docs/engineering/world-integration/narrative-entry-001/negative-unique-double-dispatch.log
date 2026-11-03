@@ -1,0 +1,39 @@
+
+ RUN  v4.1.10 E:/projects/传奇私服调整记录/world-narrative-entry-001
+
+ ❯ src/ui/infected-world/story-interaction.test.tsx (4 tests | 1 failed | 3 skipped) 384ms
+   × one real lit-search click uses one dispatch/current/notice/checkpoint, without a single-option form 383ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 skipped (4)
+   Start at  00:47:21
+   Duration  5.17s (transform 2.34s, setup 0ms, import 2.95s, tests 384ms, environment 1.61s)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/infected-world/story-interaction.test.tsx > one real lit-search click uses one dispatch/current/notice/checkpoint, without a single-option form
+AssertionError: expected { s: +0, initial: +0, task: +0, …(17) } to match object { dispatch: 1, current: 1, …(2) }
+(16 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "current": 1,
+-   "dispatch": 1,
++   "dispatch": 2,
+    "notices": 1,
+    "source": 1,
+  }
+
+ ❯ src/ui/infected-world/story-interaction.test.tsx:56:24
+     54|     await h.flush(() => { button.click(); button.click() })
+     55|     expect(h.host.querySelector('[aria-label="行动参数"],[aria-label="保护确认…
+     56|     expect(o.counts()).toMatchObject({ dispatch: 1, current: 1, notice…
+       |                        ^
+     57|     expect(h.setItem.mock.calls.filter(([k]) => k === CHECKPOINT_KEY))…
+     58|     const after = h.view().carried.find(i => i.container === 'utility'…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

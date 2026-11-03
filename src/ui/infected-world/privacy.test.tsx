@@ -39,7 +39,8 @@ describe('ordinary React DOM privacy', () => {
       const h = await mountUi(seed)
       try {
         await h.d.setup(); await h.d.send('进入封锁区'); await h.d.move('大厅'); await h.d.button('隔离防火门 · 使用撬棍')
-        await h.d.select('物品', '撬棍'); output.push(h.host.innerHTML)
+        expect(h.host.querySelector('[aria-label="行动参数"]')).toBeNull()
+        output.push(h.host.innerHTML)
       } finally { await h.unmount() }
     }
     expect(output[0]).toBe(output[1])

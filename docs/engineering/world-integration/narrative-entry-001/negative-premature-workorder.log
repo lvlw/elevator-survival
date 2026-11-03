@@ -1,0 +1,26 @@
+
+ RUN  v4.1.10 E:/projects/传奇私服调整记录/world-narrative-entry-001
+
+ ❯ src/app/infected-browser/narrative-entry.test.ts (17 tests | 1 failed | 16 skipped) 174ms
+     × arriving at H7, previewing and canceling do not reveal the signed workorder 172ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 16 skipped (17)
+   Start at  00:47:11
+   Duration  4.75s (transform 1.69s, setup 0ms, import 2.15s, tests 174ms, environment 2.15s)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/app/infected-browser/narrative-entry.test.ts > narrative entry owner boundary > arriving at H7, previewing and canceling do not reveal the signed workorder
+AssertionError: expected [ 'P01', 'P02', 'P03', 'P04', …(5) ] to not include 'H07'
+ ❯ src/app/infected-browser/narrative-entry.test.ts:14:49
+     12|     const h = browserFixture(), c = await setup(h)
+     13|     send(h.owner, 'depart', '进入封锁区'); send(h.owner, 'move', '大厅'); sen…
+     14|     expect(ready(h.owner).narrative?.known).not.toContain('H07')
+       |                                                 ^
+     15|     expect(storyText('H07', ready(h.owner).narrative!)).toBeNull()
+     16|     const action = actions(h.owner).find(a => a.family === 'task' && a…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

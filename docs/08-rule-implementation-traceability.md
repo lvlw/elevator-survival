@@ -399,3 +399,9 @@ UI-01 完整行动 L0 只读说明、UI-02 已批准初选能力及公开物品�
 ## 当前总账索引（GOV-WORLD-BASELINE-001，2026-10-31）
 
 本文件以上记录保持各自历史时点。准确a7基线 `a7f0f153ef1de7ad88377b1ff903d7e5404d3ea0` 的批准／实现／审查来源与开放门槛见 [当前治理入口](governance/world-baseline-001/README.md)。该入口是导航与证据索引，不新增玩法规则或倒改历史结论；治理分支待主线准确SHA审查。
+
+## ENG-WORLD-NARRATIVE-ENTRY-001 首段查询与呈现接缝
+
+原玩家适配层新增有限narrative查询及可选探索回执：可信层绑定解析命令、原前态与真实dispatch commit.current，实际工具消耗取同一实例差额。原控制器单次adopt组织增文，独立scope/ordinal不复用B1。附属阅读记录位于原namespace且只受原独占owner写，未知/损坏书签不能替代任务事实；save retry不重演或重发行动。S/current、core、保存协议、checkpoint/reservation/v4、lease及旧A/B1/C1/C2规则不改。
+
+按[本批合同](engineering/world-integration/narrative-entry-001/task-inputs/NARRATIVE-CONTRACT.md)有限实现，不注册新玩法或中后段。精确来源、原始测试日志、四类负控还原、白名单审计、真实浏览器及未验项见[作者报告](engineering/world-integration/narrative-entry-001/REPORT.md)。准确FINAL SHA与CI在普通提交推送后由交付回执核验，不沿用历史CI成绩。

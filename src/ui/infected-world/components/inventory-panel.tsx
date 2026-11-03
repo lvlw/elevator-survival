@@ -7,6 +7,7 @@ import type { BrowserControls } from '../../../app/infected-browser/types'
 import { itemMenuActions } from '../menu-options'
 import { ActionButton } from './action-information'
 import { actionName } from '../labels'
+import { ItemHint } from '../story-interaction/short-hint'
 
 type Menu = { item: PlayerItem; x: number; y: number; trigger: HTMLButtonElement }
 export function InventoryPanel({ view, onAction, describeAction }: { view: PlayerReadyView; onAction: (action: PlayerAction, item?: PlayerItem) => void;
@@ -25,22 +26,22 @@ export function InventoryPanel({ view, onAction, describeAction }: { view: Playe
         {Array.from({ length: view.backpack.width * view.backpack.height }, (_, index) => <span key={`cell-${index}`} className="iw-grid-cell" aria-hidden="true" style={{ gridColumn: index % view.backpack.width + 1, gridRow: Math.floor(index / view.backpack.width) + 1 }} />)}
         {view.carried.filter(item => item.container === 'backpack').map((item, index) => {
           const xs = item.footprint.map(cell => cell.x), ys = item.footprint.map(cell => cell.y)
-          return <ItemTile key={index} item={item} onMenu={menuActions(item).length ? showMenu : undefined} style={{
+          return <ItemHint key={index} item={item}><ItemTile item={item} onMenu={menuActions(item).length ? showMenu : undefined} style={{
             gridColumn: `${Math.min(...xs) + 1} / ${Math.max(...xs) + 2}`, gridRow: `${Math.min(...ys) + 1} / ${Math.max(...ys) + 2}`,
-          }} />
+          }} /></ItemHint>
         })}
       </div>
     </section> : <section className="iw-equipment" role="tabpanel" aria-label="装备">{(['weapon', 'armor', 'utility'] as const).map((container, index) => {
       const item = view.carried.find(item => item.container === container)
       const actions = item ? view.actions.filter(action => ['inventory', 'maintenance'].includes(action.family) && describeAction(action.selector).items.some(candidate => candidate.selector === item.selector)) : []
-      return <div key={container}><strong>{['武器', '防具', '实用装备'][index]}</strong>{item ? <><ItemTile item={item} /><span>{publicItemName(item.name)}</span><div className="iw-equipment-actions">{actions.map((action, n) => <ActionButton action={action} item={item} key={n} onAction={() => onAction(action, item)}>{actionName(action)}</ActionButton>)}</div></> : <span className="iw-empty-slot">未装备</span>}</div>
+      return <div key={container}><strong>{['武器', '防具', '实用装备'][index]}</strong>{item ? <><ItemHint item={item}><ItemTile item={item} /></ItemHint><span>{publicItemName(item.name)}</span><div className="iw-equipment-actions">{actions.map((action, n) => <ActionButton action={action} item={item} key={n} onAction={() => onAction(action, item)}>{actionName(action)}</ActionButton>)}</div></> : <span className="iw-empty-slot">未装备</span>}</div>
     })}</section>}
       {view.point === 'battle-decision' && <p className="iw-muted">战斗中携带区只读；快捷用药请使用舞台行动。</p>}
       {view.body.wounds.length > 0 && <details><summary>当前伤口</summary><ul>{view.body.wounds.map(wound => <li key={wound.ordinal}>伤口 {wound.ordinal} · {wound.kind === 'scratch' ? '抓伤' : wound.kind === 'bite' ? '咬伤' : '开放伤口'} · {wound.treatment === 'treated' ? '已处理' : '未处理'}</li>)}</ul></details>}
     </div>
     <div className="iw-quick-area"><h3>快捷位</h3><div className="iw-quick" aria-label="快捷栏">{[0, 1].map(slot => {
       const item = view.carried.find(item => item.container === 'quick' && item.slot === slot)
-      return <div key={slot}><span>快捷 {slot + 1}</span>{item ? <><ItemTile item={item} onMenu={menuActions(item).length ? showMenu : undefined} /><small>{publicItemName(item.name)}{item.quantity > 1 ? ` ×${item.quantity}` : ''}</small></> : <span className="iw-empty-slot">空</span>}</div>
+      return <div key={slot}><span>快捷 {slot + 1}</span>{item ? <><ItemHint item={item}><ItemTile item={item} onMenu={menuActions(item).length ? showMenu : undefined} /></ItemHint><small>{publicItemName(item.name)}{item.quantity > 1 ? ` ×${item.quantity}` : ''}</small></> : <span className="iw-empty-slot">空</span>}</div>
     })}</div></div>
     {menu && <ContextMenu name={publicItemName(menu.item.name)} actions={menuActions(menu.item)} x={menu.x} y={menu.y} onClose={closeMenu} onAction={action => { const item = menu.item; setMenu(null); onAction(action, item) }} />}
   </aside>

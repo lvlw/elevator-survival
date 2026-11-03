@@ -1,0 +1,30 @@
+
+ RUN  v4.1.10 E:/projects/传奇私服调整记录/world-narrative-entry-001
+
+ ❯ src/app/infected-browser/narrative-entry.test.ts (17 tests | 1 failed | 16 skipped) 79ms
+     × lost-owner acknowledgement leaves the subordinate record byte-identical 78ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 16 skipped (17)
+   Start at  00:47:26
+   Duration  4.21s (transform 1.92s, setup 0ms, import 2.37s, tests 79ms, environment 1.54s)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/app/infected-browser/narrative-entry.test.ts > narrative entry owner boundary > lost-owner acknowledgement leaves the subordinate record byte-identical
+AssertionError: expected '{"format":"infected-narrative-reading…' to be '{"format":"infected-narrative-reading…' // Object.is equality
+
+Expected: "{"format":"infected-narrative-reading","version":1,"storyVersion":"hospital-entry-v0.2.1","binding":{"generation":"TEST-generation","character":"E03-A-character","execution":"{\"runId\":\"E03-A-execution\",\"seed\":\"E03-A-seed-01\",\"rulesVersion\":\"infected-residence-local-v0.1\"}","versions":"{\"rulesVersion\":\"infected-residence-local-v0.1\",\"residenceConfigurationId\":\"infected-residence-core-test-v0.1\",\"terminalConfigurationId\":\"infected-terminal-core-test-v0.1\",\"supplyConfigurationId\":\"infected-world-entry-test-v0.1\",\"contentId\":\"infected-world-entry-content-v0.1\",\"randomAlgorithmVersion\":\"counter32-v1\",\"profileIds\":[\"infected-world-orderly\",\"infected-world-porter\",\"infected-world-technician\"],\"catalogs\":[{\"catalogId\":\"infected-supply:infected-transfer-local-001\",\"catalogVersion\":\"infected-world-entry-content-v0.1\",\"mission\":{\"worldId\":\"infected-world-local-v0.1\",\"templateId\":\"unfinished-transfer\",\"commissionId\":\"infected-transfer-local-001\",\"rulesVersion\":\"infected-residence-local-v0.1\",\"contractVersion\":\"DEC-052-pure-v1\"}}]}","lock":"elevator-survival.infected-preplay.v1.primary.writer"},"marks":[{"key":"P01","state":"read","revision":0}]}"
+Received: "{"format":"infected-narrative-reading","version":1,"storyVersion":"hospital-entry-v0.2.1","binding":{"generation":"TEST-generation","character":"E03-A-character","execution":"{\"runId\":\"E03-A-execution\",\"seed\":\"E03-A-seed-01\",\"rulesVersion\":\"infected-residence-local-v0.1\"}","versions":"{\"rulesVersion\":\"infected-residence-local-v0.1\",\"residenceConfigurationId\":\"infected-residence-core-test-v0.1\",\"terminalConfigurationId\":\"infected-terminal-core-test-v0.1\",\"supplyConfigurationId\":\"infected-world-entry-test-v0.1\",\"contentId\":\"infected-world-entry-content-v0.1\",\"randomAlgorithmVersion\":\"counter32-v1\",\"profileIds\":[\"infected-world-orderly\",\"infected-world-porter\",\"infected-world-technician\"],\"catalogs\":[{\"catalogId\":\"infected-supply:infected-transfer-local-001\",\"catalogVersion\":\"infected-world-entry-content-v0.1\",\"mission\":{\"worldId\":\"infected-world-local-v0.1\",\"templateId\":\"unfinished-transfer\",\"commissionId\":\"infected-transfer-local-001\",\"rulesVersion\":\"infected-residence-local-v0.1\",\"contractVersion\":\"DEC-052-pure-v1\"}}]}","lock":"elevator-survival.infected-preplay.v1.primary.writer"},"marks":[{"key":"P01","state":"read","revision":0},{"key":"P02","state":"read","revision":0}]}"
+
+ ❯ src/app/infected-browser/narrative-entry.test.ts:83:37
+     81|     h.owner.suspend()
+     82|     try { c.acknowledgeReading([{ key: 'P02', state: 'read' }]) } catc…
+     83|     expect(h.disk.get(READING_KEY)).toBe(record)
+       |                                     ^
+     84|     expect(h.setItem).toHaveBeenCalledTimes(writes)
+     85|     h.owner.dispose()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

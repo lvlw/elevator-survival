@@ -19,6 +19,7 @@ import { useCommittedPresentation } from './presentation/use-committed-presentat
 import { CommittedActionCue } from './components/committed-action-cue'
 import { useEntryStory } from './narrative-entry/use-entry-story'
 import { StoryPanel } from './narrative-entry/story-panel'
+import { uniqueToolRequest } from './story-interaction/unique-tool'
 import './styles.css'
 import './ui-v1.css'
 
@@ -79,6 +80,8 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
       setDraft(null); setConfirmation(null); setMessage('所选物品不适用于此操作或已失效，请重新选择。'); return
     }
     if (!inputs.fields.length) { execute({ action: action.selector }, action); return }
+    const unique = uniqueToolRequest(action, inputs, item)
+    if (unique) { execute(unique, action); return }
     if (inputs.convenience === 'ordinary-whole-pickup' && item?.ordinary && item.container === 'ground') {
       const placement = firstFit(view.backpack.width, view.backpack.height, { action: action.selector, item: item.selector }, controls.preview)
       if (placement) { execute({ action: action.selector, item: item.selector, placement }, action); return }

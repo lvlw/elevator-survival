@@ -41,7 +41,9 @@ describe('B TEST-only controller and BrowserControls source gaps', () => {
     browserSend(h.owner, 'depart', '进入封锁区')
     const request = { action: browserChoose(h.owner, 'move', '大厅') }, writes = h.setItem.mock.calls.length
     const result = controls.execute(request)
-    expect(result.kind).toBe('committed'); expect(Object.keys(result).sort()).toEqual(['kind', 'snapshot'])
+    const { exploration, ...legacy } = result
+    expect(result.kind).toBe('committed'); expect(Object.keys(legacy).sort()).toEqual(['kind', 'snapshot'])
+    expect(exploration?.receipt.kind).toBe('move')
     expect(h.setItem).toHaveBeenCalledTimes(writes + 1)
     const feed = controls.getSnapshot().feed
     controls.synchronize(); controls.retrySave(); expect(controls.getSnapshot().feed).toBe(feed)

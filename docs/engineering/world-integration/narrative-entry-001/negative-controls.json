@@ -1,0 +1,43 @@
+[
+  {
+    "control": "premature-workorder",
+    "test": "src/app/infected-browser/narrative-entry.test.ts",
+    "pattern": "arriving at H7",
+    "exit": 1,
+    "restored_byte_identical": true,
+    "restored_sha256": {
+      "src/state/residence-session/narrative-entry/projection.ts": "08940225e5cbfcedf8dfa27eef84061ac975c9bdc1a2f33d53f7c1aa6a863b86"
+    }
+  },
+  {
+    "control": "retry-reissues-receipt",
+    "test": "src/app/infected-browser/narrative-entry.test.ts",
+    "pattern": "only actual commits emit",
+    "exit": 1,
+    "restored_byte_identical": true,
+    "restored_sha256": {
+      "src/app/infected-preplay/controller.ts": "abc00ad852a8af575b0cb18250d0757f8fc3673968cef5ccd34de4eadd20e7e6"
+    }
+  },
+  {
+    "control": "unique-double-dispatch",
+    "test": "src/ui/infected-world/story-interaction.test.tsx",
+    "pattern": "one real lit-search click",
+    "exit": 1,
+    "restored_byte_identical": true,
+    "restored_sha256": {
+      "src/state/residence-session/player-facade.ts": "9f835d3099119deadf2e83f0615781dfd85004ed4c7d38de7239b8925e9c1128"
+    }
+  },
+  {
+    "control": "lost-owner-bookmark",
+    "test": "src/app/infected-browser/narrative-entry.test.ts",
+    "pattern": "lost-owner acknowledgement leaves",
+    "exit": 1,
+    "restored_byte_identical": true,
+    "restored_sha256": {
+      "src/app/infected-browser/owner.ts": "7100a6e97707b6d832c17919243cf7fd3056ee6313b8826a4e8500b01fbfee0e",
+      "src/app/infected-browser/narrative-entry/reading.ts": "85693d404eb5e419a18a422f5f767cbbb9ac9729421b79a30ca7ae6f6f9e0a29"
+    }
+  }
+]

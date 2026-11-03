@@ -1,0 +1,43 @@
+
+ RUN  v4.1.10 E:/projects/传奇私服调整记录/world-narrative-entry-001
+
+ ❯ src/app/infected-browser/narrative-entry.test.ts (17 tests | 1 failed | 16 skipped) 128ms
+     × only actual commits emit receipts; query/save retry/restore never replay them 127ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 16 skipped (17)
+   Start at  00:47:16
+   Duration  4.03s (transform 1.73s, setup 0ms, import 2.16s, tests 128ms, environment 1.52s)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/app/infected-browser/narrative-entry.test.ts > narrative entry owner boundary > only actual commits emit receipts; query/save retry/restore never replay them
+AssertionError: expected { scope: {}, ordinal: 2, …(1) } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+{
+  "ordinal": 2,
+  "receipt": {
+    "kind": "search",
+    "method": "lit",
+    "resource": null,
+    "revealed": 0,
+    "story": "H03",
+  },
+  "scope": {},
+}
+
+ ❯ src/app/infected-browser/narrative-entry.test.ts:56:39
+     54|     const r = send(h.owner, 'depart', '进入封锁区')
+     55|     expect(r.exploration?.receipt).toMatchObject({ kind: 'departure', …
+     56|     expect(c.retrySave().exploration).toBeUndefined()
+       |                                       ^
+     57|     const restored = await cold(h)
+     58|     expect(restored.getSnapshot().preplay?.feed).toEqual([])
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

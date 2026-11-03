@@ -4,6 +4,7 @@ import { CHECKPOINT_KEY } from './schema'
 import { READING_KEY } from './narrative-entry/reading'
 import { observeBrowser } from './test-observers'
 import * as projection from '../../state/residence-session/narrative-entry/receipt'
+import { storyText } from '../../content/infected-world-v0.1/narrative-entry/content'
 afterEach(() => vi.restoreAllMocks())
 
 describe('narrative entry owner boundary', () => {
@@ -11,6 +12,7 @@ describe('narrative entry owner boundary', () => {
     const h = browserFixture(), c = await setup(h)
     send(h.owner, 'depart', '进入封锁区'); send(h.owner, 'move', '大厅'); send(h.owner, 'move', '后勤控制间')
     expect(ready(h.owner).narrative?.known).not.toContain('H07')
+    expect(storyText('H07', ready(h.owner).narrative!)).toBeNull()
     const action = actions(h.owner).find(a => a.family === 'task' && a.label === '现场互动')!
     expect(action).toBeTruthy()
     c.preview({ action: action.selector }); c.cancel()
@@ -71,6 +73,52 @@ describe('narrative entry owner boundary', () => {
     expect(() => c.acknowledgeReading([{ key: 'P02', state: 'read' }])).toThrow()
     expect(h.disk.get(READING_KEY)).toBe(record)
     h.owner.dispose()
+  })
+  it('lost-owner acknowledgement leaves the subordinate record byte-identical', async () => {
+    const h = browserFixture(), c = await setup(h)
+    c.acknowledgeReading([{ key: 'P01', state: 'read' }])
+    const record = h.disk.get(READING_KEY), writes = h.setItem.mock.calls.length
+    h.owner.suspend()
+    try { c.acknowledgeReading([{ key: 'P02', state: 'read' }]) } catch { /* Expected stale-control refusal. */ }
+    expect(h.disk.get(READING_KEY)).toBe(record)
+    expect(h.setItem).toHaveBeenCalledTimes(writes)
+    h.owner.dispose()
+  })
+  it.each(['generation', 'character', 'execution', 'versions', 'storyVersion'] as const)('mismatched reading %s is ignored without changing gameplay', async field => {
+    const h = browserFixture(), c = await setup(h)
+    c.acknowledgeReading([{ key: 'P01', state: 'read' }])
+    const bad = JSON.parse(h.disk.get(READING_KEY)!)
+    if (field === 'storyVersion') bad.storyVersion = 'unknown'
+    else bad.binding[field] = 'another-owner'
+    h.disk.set(READING_KEY, JSON.stringify(bad))
+    const checkpoint = h.disk.get(CHECKPOINT_KEY), owner = await cold(h)
+    expect(owner.controls()!.getReading().marks).toEqual([])
+    expect(ready(owner).narrative?.workorder).toBe(false)
+    expect(h.disk.get(CHECKPOINT_KEY)).toBe(checkpoint)
+    owner.dispose()
+  })
+  it('future and unknown-fact marks are ignored; saved gameplay survives a sidecar write failure', async () => {
+    const h = browserFixture(), c = await setup(h)
+    c.acknowledgeReading([{ key: 'P01', state: 'read' }])
+    const record = JSON.parse(h.disk.get(READING_KEY)!)
+    record.marks = [{ key: 'P02', state: 'read', revision: 999 }, { key: 'H07', state: 'read', revision: 0 }]
+    h.disk.set(READING_KEY, JSON.stringify(record))
+    const owner = await cold(h), controls = owner.controls()!
+    expect(controls.getReading().marks).toEqual([])
+    const checkpoint = h.disk.get(CHECKPOINT_KEY)
+    h.setItem.mockImplementation((key, text) => { if (key === READING_KEY) throw new Error('TEST bookmark disk fault'); h.disk.set(key, text) })
+    expect(() => controls.acknowledgeReading([{ key: 'P02', state: 'skipped' }])).not.toThrow()
+    expect(controls.getReading().warning).toContain('阅读记录暂未保存')
+    expect(ready(owner).persistence.feedback).not.toBe('save-failed')
+    expect(h.disk.get(CHECKPOINT_KEY)).toBe(checkpoint)
+    owner.dispose()
+  })
+  it('a second same-origin owner cannot acknowledge under the existing exclusive lock', async () => {
+    const h = browserFixture(); await setup(h)
+    const other = h.make(), record = h.disk.get(READING_KEY)
+    expect((await other.acquire()).status).toBe('occupied')
+    expect(other.controls()).toBeNull(); expect(h.disk.get(READING_KEY)).toBe(record)
+    other.dispose(); h.owner.dispose()
   })
   it('save-failed marks stay in memory; explicit retry flushes once without an action receipt', async () => {
     const h = browserFixture(), c = await setup(h)

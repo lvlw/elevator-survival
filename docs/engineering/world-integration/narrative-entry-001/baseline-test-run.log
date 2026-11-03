@@ -1,0 +1,13 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run
+
+
+ RUN  v4.1.10 E:/projects/传奇私服调整记录/world-narrative-entry-001
+
+
+ Test Files  350 passed (350)
+      Tests  5041 passed (5041)
+   Start at  00:00:38
+   Duration  367.38s (transform 29.95s, setup 0ms, import 182.13s, tests 762.65s, environment 1276.01s)
+

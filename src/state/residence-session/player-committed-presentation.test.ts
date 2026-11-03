@@ -7,6 +7,8 @@ import { observe } from './combat-test-observers'
 import { committedCase, compatibilityCases, digest, type CompatibilityCase } from './player-committed-presentation-test-fixtures'
 import { createPreplayController } from '../../app/infected-preplay/controller'
 import { baselineCreatePreplayController } from '../../app/infected-preplay/committed-presentation-test-fixtures'
+import { explorationText } from '../../app/infected-preplay/narrative-entry/issuer'
+import { publicActionFeed } from '../../app/infected-preplay/feed'
 
 afterEach(() => vi.restoreAllMocks())
 const mapping = { 'metal-pipe-basic-attack': 'basic-attack', 'metal-pipe-charged-strike': 'signature',
@@ -54,7 +56,7 @@ describe('B1 parsed command classification and exact-base compatibility', () => 
 // Exact baseline executable bodies are in TEST-only fixtures. Shared core/query/S dependencies are unchanged at the task base.
 function runNativeCase(layer: 'facade' | 'controller', id: CompatibilityCase, old: boolean) {
   const { h, request } = committedCase(id, old), app = layer === 'controller' ? (old ? baselineCreatePreplayController(h) : createPreplayController(h)) : null
-  const before = normalize(h.player.query()), currentBefore = digest(h.owner.getState().current), diskBefore = digest(h.disk())
+  const sourceBefore = h.player.query(), before = normalize(sourceBefore), currentBefore = digest(h.owner.getState().current), diskBefore = digest(h.disk())
   const observer = observe(h), statuses: string[] = []
   app?.subscribe(() => statuses.push(app.getSnapshot().status))
   observer.clear(); h.dispatch.mockClear(); if (id === 'save-failed') h.faults.write = true
@@ -62,11 +64,16 @@ function runNativeCase(layer: 'facade' | 'controller', id: CompatibilityCase, ol
     let legacy: unknown
     if (app) {
       const ask = app.execute(request), result = ask.kind === 'confirmation-required' ? app.confirm(ask.confirmation!) : ask
-      const { presentation, ...rest } = result; legacy = rest
+      const { presentation, exploration, explorationDiagnostic: _diagnostic, ...rest } = result; legacy = rest
+      if (exploration) {
+        const feed = rest.snapshot.feed, last = feed.at(-1)!, suffix = ' ' + explorationText(exploration.receipt)
+        expect(last.text).toBe(publicActionFeed(sourceBefore, rest.snapshot.view!) + suffix)
+        legacy = { ...rest, snapshot: { ...rest.snapshot, feed: [...feed.slice(0, -1), { ...last, text: last.text.slice(0, -suffix.length) }] } }
+      }
       expect(Object.hasOwn(result, 'presentation')).toBe(!old && id !== 'move-enters-battle')
       expect(Boolean(presentation)).toBe(!old && id !== 'move-enters-battle')
     } else {
-      const result = h.player.execute(request), { committedAction, ...rest } = result; legacy = rest
+      const result = h.player.execute(request), { committedAction, exploration: _entry, explorationDiagnostic: _diagnostic, ...rest } = result; legacy = rest
       expect(Object.hasOwn(result, 'committedAction')).toBe(!old && id !== 'move-enters-battle')
       expect(Boolean(committedAction)).toBe(!old && id !== 'move-enters-battle')
     }

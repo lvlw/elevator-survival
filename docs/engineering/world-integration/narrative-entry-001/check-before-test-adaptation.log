@@ -1,0 +1,383 @@
+
+> elevator-survival@0.0.0 check
+> npm run validate:architecture && npm run typecheck && npm run test:run && npm run build
+
+
+> elevator-survival@0.0.0 validate:architecture
+> node scripts/validate-architecture.mjs
+
+Architecture validation passed: 53 DEC entries and 347 core production files checked.
+
+> elevator-survival@0.0.0 typecheck
+> tsc -b --pretty false
+
+
+> elevator-survival@0.0.0 test:run
+> vitest run
+
+
+ RUN  v4.1.10 E:/projects/传奇私服调整记录/world-narrative-entry-001
+
+ ❯ src/state/residence-session/player-committed-presentation.test.ts (34 tests | 2 failed) 14358ms
+     × K17 facade move-enters-battle equals exact-base live oracle in the same locale after only the new property is removed 286ms
+     × K17 controller move-enters-battle equals exact-base live oracle in the same locale after only the new property is removed 276ms
+ ❯ src/ui/infected-world/privacy.test.tsx (5 tests | 1 failed) 4983ms
+     × same public facts with different hidden event seeds render identical markup including aria and title 1002ms
+ ❯ src/state/residence-session/player-opponent-compatibility.test.ts (5 tests | 4 failed) 1129ms
+     × baseline oracle compares every field, action and handle alias at all five complete points 515ms
+     × orderly query uses original stage selector at native reachable HP, including critical 199ms
+     × porter query uses original stage selector at native reachable HP, including critical 231ms
+     × technician query uses original stage selector at native reachable HP, including critical 180ms
+ ❯ src/ui/infected-world/faults.test.tsx (7 tests | 2 failed) 2605ms
+     × loss of lease removes an open draft and never submits its old form 455ms
+     × retrySave on the same current keeps the already selected tool draft meaningful 540ms
+ ❯ src/app/infected-preplay/presentation-preparation-probe.test.ts (3 tests | 1 failed) 1087ms
+     × existing BrowserControls forwards coarse results and invalidates after suspend; cold restore has no action feed (headless locks) 236ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/app/infected-preplay/presentation-preparation-probe.test.ts > B TEST-only controller and BrowserControls source gaps > existing BrowserControls forwards coarse results and invalidates after suspend; cold restore has no action feed (headless locks)
+AssertionError: expected [ 'exploration', 'kind', 'snapshot' ] to deeply equal [ 'kind', 'snapshot' ]
+
+- Expected
++ Received
+
+  [
++   "exploration",
+    "kind",
+    "snapshot",
+  ]
+
+ ❯ src/app/infected-preplay/presentation-preparation-probe.test.ts:44:79
+     42|     const request = { action: browserChoose(h.owner, 'move', '大厅') }, …
+     43|     const result = controls.execute(request)
+     44|     expect(result.kind).toBe('committed'); expect(Object.keys(result).…
+       |                                                                               ^
+     45|     expect(h.setItem).toHaveBeenCalledTimes(writes + 1)
+     46|     const feed = controls.getSnapshot().feed
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 facade move-enters-battle equals exact-base live oracle in the same locale after only the new property is removed
+AssertionError: expected { …(9) } to deeply equal { …(9) }
+
+- Expected
++ Received
+
+@@ -508,10 +508,17 @@
+    "currentBefore": "3765a3b3bd37e3b8a5d28f9742f825c0d4f2182431acef2e2be6e5d90ea64199",
+    "diskAfter": "e6fe43e460dd59e69b97b34b6fe01814e82e5b162db7b17c6bd52f9eb1f1915a",
+    "diskBefore": "c146aba8a81034ccad185ecba821af6cf77b21df99c1fc97fa1981dd327b9fdd",
+    "dispatches": 1,
+    "result": {
++     "exploration": {
++       "kind": "move",
++       "method": null,
++       "resource": null,
++       "revealed": null,
++       "story": "H02",
++     },
+      "kind": "committed",
+      "preview": {
+        "cost": 2,
+        "kind": "available",
+      },
+
+ ❯ src/state/residence-session/player-committed-presentation.test.ts:29:21
+     27|     const expected = baseline.records.find(r => r.id === id && r.layer…
+     28|     const old = runNativeCase(layer, id, true), current = runNativeCas…
+     29|     expect(current).toEqual(old) // Every public field, array order, h…
+       |                     ^
+     30|     // The immutable Windows capture remains an independent canonical/…
+     31|     for (const result of [old, current]) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  src/state/residence-session/player-committed-presentation.test.ts > B1 parsed command classification and exact-base compatibility > K17 controller move-enters-battle equals exact-base live oracle in the same locale after only the new property is removed
+AssertionError: expected { …(9) } to deeply equal { …(9) }
+
+- Expected
++ Received
+
+@@ -511,19 +511,30 @@
+    "currentBefore": "3765a3b3bd37e3b8a5d28f9742f825c0d4f2182431acef2e2be6e5d90ea64199",
+    "diskAfter": "e6fe43e460dd59e69b97b34b6fe01814e82e5b162db7b17c6bd52f9eb1f1915a",
+    "diskBefore": "c146aba8a81034ccad185ecba821af6cf77b21df99c1fc97fa1981dd327b9fdd",
+    "dispatches": 1,
+    "result": {
++     "exploration": {
++       "ordinal": 1,
++       "receipt": {
++         "kind": "move",
++         "method": null,
++         "resource": null,
++         "revealed": null,
++         "story": "H02",
++       },
++       "scope": {},
++     },
+      "kind": "committed",
+      "snapshot": {
+        "draft": null,
+        "error": null,
+        "feed": [
+          {
+            "kind": "action",
+            "ordinal": 1,
+-           "text": "精力 100 → 98；抵达大厅",
++           "text": "精力 100 → 98；抵达大厅 移动完成。",
+          },
+        ],
+        "status": "stable",
+        "view": {
+          "actions": [
+
+ ❯ src/state/residence-session/player-committed-presentation.test.ts:29:21
+     27|     const expected = baseline.records.find(r => r.id === id && r.layer…
+     28|     const old = runNativeCase(layer, id, true), current = runNativeCas…
+     29|     expect(current).toEqual(old) // Every public field, array order, h…
+       |                     ^
+     30|     // The immutable Windows capture remains an independent canonical/…
+     31|     for (const result of [old, current]) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  src/state/residence-session/player-opponent-compatibility.test.ts > A complete historical DTO equivalence and formal phase semantics > baseline oracle compares every field, action and handle alias at all five complete points
+AssertionError: expected { status: 'ready', …(19) } to deeply equal { status: 'ready', …(18) }
+
+- Expected
++ Received
+
+@@ -155,10 +155,28 @@
+      "routes": [],
+    },
+    "move": {
+      "options": [],
+    },
++   "narrative": {
++     "brief": {
++       "days": 7,
++       "penalty": 20,
++       "reward": 120,
++     },
++     "doorParts": false,
++     "known": [
++       "P01",
++       "P02",
++       "P03",
++       "P04",
++       "P05",
++       "P06",
++     ],
++     "powerSurvey": false,
++     "workorder": false,
++   },
+    "persistence": {
+      "feedback": "not-attempted",
+    },
+    "phase": "first-hub",
+    "point": "first-hub",
+
+ ❯ src/state/residence-session/player-opponent-compatibility.test.ts:20:43
+     18|       const old = baselineProjectPlayerView(h.owner.getState(), create…
+     19|       const combat = q.combat ? (({ opponent: _, ...rest }) => rest)(q…
+     20|       expect(normalize({ ...q, combat })).toEqual(normalize(old))
+       |                                           ^
+     21|       expect(Object.keys(h.player).sort()).toEqual(['execute', 'previe…
+     22|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  src/state/residence-session/player-opponent-compatibility.test.ts > A complete historical DTO equivalence and formal phase semantics > orderly query uses original stage selector at native reachable HP, including critical
+AssertionError: expected { status: 'ready', …(19) } to deeply equal { status: 'ready', …(18) }
+
+- Expected
++ Received
+
+@@ -392,10 +392,32 @@
+      ],
+    },
+    "move": {
+      "options": [],
+    },
++   "narrative": {
++     "brief": {
++       "days": 7,
++       "penalty": 20,
++       "reward": 120,
++     },
++     "doorParts": false,
++     "known": [
++       "P01",
++       "P02",
++       "P03",
++       "P04",
++       "P05",
++       "P06",
++       "H01",
++       "H02",
++       "H05",
++       "H06",
++     ],
++     "powerSurvey": false,
++     "workorder": false,
++   },
+    "persistence": {
+      "feedback": "not-attempted",
+    },
+    "phase": "active-world",
+    "point": "battle-decision",
+
+ ❯ src/state/residence-session/player-opponent-compatibility.test.ts:37:45
+     35|         const old = baselineProjectPlayerView(h.owner.getState(), crea…
+     36|         const { opponent: _, ...combat } = q.combat
+     37|         expect(normalize({ ...q, combat })).toEqual(normalize(old))
+       |                                             ^
+     38|       }
+     39|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+ FAIL  src/state/residence-session/player-opponent-compatibility.test.ts > A complete historical DTO equivalence and formal phase semantics > porter query uses original stage selector at native reachable HP, including critical
+AssertionError: expected { status: 'ready', …(19) } to deeply equal { status: 'ready', …(18) }
+
+- Expected
++ Received
+
+@@ -518,10 +518,30 @@
+      ],
+    },
+    "move": {
+      "options": [],
+    },
++   "narrative": {
++     "brief": {
++       "days": 7,
++       "penalty": 20,
++       "reward": 120,
++     },
++     "doorParts": false,
++     "known": [
++       "P01",
++       "P02",
++       "P03",
++       "P04",
++       "P05",
++       "P06",
++       "H01",
++       "H02",
++     ],
++     "powerSurvey": false,
++     "workorder": false,
++   },
+    "persistence": {
+      "feedback": "not-attempted",
+    },
+    "phase": "active-world",
+    "point": "battle-decision",
+
+ ❯ src/state/residence-session/player-opponent-compatibility.test.ts:37:45
+     35|         const old = baselineProjectPlayerView(h.owner.getState(), crea…
+     36|         const { opponent: _, ...combat } = q.combat
+     37|         expect(normalize({ ...q, combat })).toEqual(normalize(old))
+       |                                             ^
+     38|       }
+     39|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+
+ FAIL  src/state/residence-session/player-opponent-compatibility.test.ts > A complete historical DTO equivalence and formal phase semantics > technician query uses original stage selector at native reachable HP, including critical
+AssertionError: expected { status: 'ready', …(19) } to deeply equal { status: 'ready', …(18) }
+
+- Expected
++ Received
+
+@@ -398,10 +398,29 @@
+      ],
+    },
+    "move": {
+      "options": [],
+    },
++   "narrative": {
++     "brief": {
++       "days": 7,
++       "penalty": 20,
++       "reward": 120,
++     },
++     "doorParts": false,
++     "known": [
++       "P01",
++       "P02",
++       "P03",
++       "P04",
++       "P05",
++       "P06",
++       "H01",
++     ],
++     "powerSurvey": false,
++     "workorder": false,
++   },
+    "persistence": {
+      "feedback": "not-attempted",
+    },
+    "phase": "active-world",
+    "point": "battle-decision",
+
+ ❯ src/state/residence-session/player-opponent-compatibility.test.ts:37:45
+     35|         const old = baselineProjectPlayerView(h.owner.getState(), crea…
+     36|         const { opponent: _, ...combat } = q.combat
+     37|         expect(normalize({ ...q, combat })).toEqual(normalize(old))
+       |                                             ^
+     38|       }
+     39|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+
+ FAIL  src/ui/infected-world/faults.test.tsx > React persistence and lease feedback > loss of lease removes an open draft and never submits its old form
+Error: DOM_TEST_ASSERTION: select 物品
+ ❯ assert src/ui/infected-world/route-test-fixtures.ts:12:99
+     10| export function createUiDriver(options: UiDriverOptions) {
+     11|   const doc = options.document, view = options.getView
+     12|   function assert(condition: unknown, message: string): asserts condit…
+       |                                                                                                   ^
+     13|   const buttons = () => [...doc.querySelectorAll<HTMLButtonElement>('b…
+     14|   async function button(label: string) {
+ ❯ Object.select src/ui/infected-world/route-test-fixtures.ts:22:5
+ ❯ src/ui/infected-world/faults.test.tsx:84:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+
+ FAIL  src/ui/infected-world/faults.test.tsx > React persistence and lease feedback > retrySave on the same current keeps the already selected tool draft meaningful
+Error: DOM_TEST_ASSERTION: select 物品
+ ❯ assert src/ui/infected-world/route-test-fixtures.ts:12:99
+     10| export function createUiDriver(options: UiDriverOptions) {
+     11|   const doc = options.document, view = options.getView
+     12|   function assert(condition: unknown, message: string): asserts condit…
+       |                                                                                                   ^
+     13|   const buttons = () => [...doc.querySelectorAll<HTMLButtonElement>('b…
+     14|   async function button(label: string) {
+ ❯ Object.select src/ui/infected-world/route-test-fixtures.ts:22:5
+ ❯ src/ui/infected-world/faults.test.tsx:95:51
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯
+
+ FAIL  src/ui/infected-world/privacy.test.tsx > ordinary React DOM privacy > same public facts with different hidden event seeds render identical markup including aria and title
+Error: DOM_TEST_ASSERTION: select 物品
+ ❯ assert src/ui/infected-world/route-test-fixtures.ts:12:99
+     10| export function createUiDriver(options: UiDriverOptions) {
+     11|   const doc = options.document, view = options.getView
+     12|   function assert(condition: unknown, message: string): asserts condit…
+       |                                                                                                   ^
+     13|   const buttons = () => [...doc.querySelectorAll<HTMLButtonElement>('b…
+     14|   async function button(label: string) {
+ ❯ Object.select src/ui/infected-world/route-test-fixtures.ts:22:5
+ ❯ src/ui/infected-world/privacy.test.tsx:42:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯
+
+
+ Test Files  5 failed | 350 passed (355)
+      Tests  10 failed | 5059 passed (5069)
+   Start at  00:48:23
+   Duration  389.63s (transform 42.71s, setup 0ms, import 213.07s, tests 1213.58s, environment 1550.86s)
+

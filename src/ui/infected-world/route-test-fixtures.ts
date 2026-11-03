@@ -24,6 +24,12 @@ export function createUiDriver(options: UiDriverOptions) {
     assert(o, 'option '+label+'/'+text)
     await options.flush(() => { Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, 'value')!.set!.call(s, o.value); s.dispatchEvent(new Event('change', { bubbles: true })) })
   }
+  async function information(label: string) {
+    const entry = buttons().find(b => b.textContent?.trim() === label && !b.disabled) ??
+      buttons().find(b => b.closest('.iw-travel') && b.textContent?.includes(label) && !b.disabled)
+    assert(entry, 'F1 information anchor '+label)
+    await options.flush(() => { entry.focus(); entry.dispatchEvent(new KeyboardEvent('keydown', { key: 'F1', bubbles: true, cancelable: true })) })
+  }
   async function input(label: string, value: string) {
     const i = doc.querySelector<HTMLInputElement>(`input[aria-label="${label}"]`)
     assert(i, 'input '+label)
@@ -115,7 +121,7 @@ export function createUiDriver(options: UiDriverOptions) {
     }
     await button('确认创建')
   }
-  return {view,button,select,input,anchor,confirm,fields,send,menu,pick,medical,rest,paid,move,walk,task,fight,setup}
+  return {view,button,information,select,input,anchor,confirm,fields,send,menu,pick,medical,rest,paid,move,walk,task,fight,setup}
 }
 export type UiDriver = ReturnType<typeof createUiDriver>
 

@@ -11,6 +11,7 @@ describe('R02 approved public explanations', () => {
   ] as const)('%s has a concrete explanation before any creation', async (value, meaning) => {
     const h = await mountUi()
     try {
+      await h.d.button('略过叙事，查看任务'); await h.d.button('准备出发')
       const radio = h.host.querySelector<HTMLInputElement>(`input[value="${value}"]`)!
       expect(radio).not.toBeNull(); expect(radio.closest('label')!.textContent).toMatch(meaning)
       const reads = h.getItem.mock.calls.length

@@ -1,0 +1,59 @@
+{
+  "documentHeight": 1080,
+  "documentWidth": 1920,
+  "dpr": 1,
+  "images": [
+    {
+      "height": 941,
+      "src": "/src/assets/presentation/world-ui-v1/bg-hospital-control-v1.png",
+      "width": 1672
+    },
+    {
+      "height": 1254,
+      "src": "/src/assets/presentation/world-ui-v1/item-firstaid-v1.png",
+      "width": 1254
+    },
+    {
+      "height": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "width": 512
+    },
+    {
+      "height": 512,
+      "src": "/src/assets/presentation/v0.1/visual/icon_bandage_v02.png",
+      "width": 512
+    }
+  ],
+  "innerHeight": 1080,
+  "innerWidth": 1920,
+  "rects": [
+    {
+      "class": "iw-stage",
+      "height": 888,
+      "width": 1200,
+      "x": 320,
+      "y": 112
+    },
+    {
+      "class": "iw-narrative",
+      "height": 205.15625,
+      "width": 780,
+      "x": 352,
+      "y": 230
+    },
+    {
+      "class": "iw-room-heading",
+      "height": 68.765625,
+      "width": 1136,
+      "x": 352,
+      "y": 140
+    },
+    {
+      "class": "iw-scene-card",
+      "height": 143.375,
+      "width": 1136,
+      "x": 352,
+      "y": 826.625
+    }
+  ]
+}

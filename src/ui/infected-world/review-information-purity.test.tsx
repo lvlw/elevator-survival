@@ -23,11 +23,11 @@ describe('R01 L0 pure information boundaries', () => {
       expect(panel()).toBeNull()
       await h.flush(() => main.dispatchEvent(new KeyboardEvent('keydown', { key: 'F1', bubbles: true, cancelable: true })))
       expect(panel()?.textContent).toContain('精力消耗：12')
-      const info = h.host.querySelector<HTMLButtonElement>('[aria-label="查看隔离防火门 · 使用撬棍说明"]')!
-      await h.flush(() => info.click())
-      expect(panel()?.textContent).toContain('本动作需要明确选择：实际物品')
-      expect(panel()?.textContent).not.toContain('精力消耗：')
-      await h.flush(() => info.click())
+      const info = [...h.host.querySelectorAll<HTMLButtonElement>('button')].find(b => b.textContent === '隔离防火门 · 使用撬棍')!
+      await h.d.information('隔离防火门 · 使用撬棍')
+      expect(panel()?.textContent).toContain('精力消耗：6')
+      expect(panel()?.textContent).toContain('资源：')
+      await h.d.information('隔离防火门 · 使用撬棍')
       expect(document.activeElement?.textContent).toBe('关闭说明')
       await h.flush(() => document.activeElement!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })))
       expect(panel()).toBeNull(); expect(document.activeElement).toBe(info)
@@ -45,13 +45,13 @@ describe('R01 L0 pure information boundaries', () => {
     document.body.append(extra)
     try {
       await h.d.setup(); await h.d.send('进入封锁区'); await h.d.move('大厅')
-      const controls = h.owner().controls()!, action = h.view().tasks.choices.find(a => a.method === 'crow')!
+      const controls = h.owner().controls()!, action = h.view().actions.find(a => a.label === '拆分')!
       const preview = vi.fn(controls.preview), describeAction = vi.fn(controls.describeAction), execute = vi.fn(controls.execute), onAction = vi.fn()
       const wrapped = { ...controls, preview, describeAction, execute }
       await act(async () => root.render(<ActionInformationProvider view={h.view()} controls={wrapped}><ActionButton action={action} onAction={onAction} /></ActionInformationProvider>))
-      const entry = extra.querySelector<HTMLButtonElement>('[aria-haspopup="dialog"]')!
-      await h.flush(() => entry.click())
-      expect(describeAction).toHaveBeenCalledWith(action.selector); expect(panel()?.textContent).toContain('使用撬棍')
+      const entry = extra.querySelector<HTMLButtonElement>('button')!
+      await h.flush(() => entry.dispatchEvent(new KeyboardEvent('keydown', { key: 'F1', bubbles: true, cancelable: true })))
+      expect(describeAction).toHaveBeenCalledWith(action.selector); expect(panel()?.textContent).toContain('拆分')
       expect(preview).not.toHaveBeenCalled(); expect(execute).not.toHaveBeenCalled(); expect(onAction).not.toHaveBeenCalled()
       expect(h.view().carried.find(i => i.container === 'utility')!.name).toBe('撬棍')
     } finally { await act(async () => root.unmount()); extra.remove(); await h.unmount() }
@@ -65,7 +65,7 @@ describe('R01 L0 pure information boundaries', () => {
       const controls = h.owner().controls()!, action = h.view().move.options[0]!, boom = new Error('R01 intentional metadata program defect')
       const wrapped = { ...controls, preview: () => { throw boom } }
       await act(async () => root.render(<ActionInformationProvider view={h.view()} controls={wrapped}><ActionButton action={action} onAction={() => undefined} /></ActionInformationProvider>))
-      await expect(h.flush(() => extra.querySelector<HTMLButtonElement>('[aria-haspopup="dialog"]')!.click())).rejects.toBe(boom)
+      await expect(h.flush(() => extra.querySelector<HTMLButtonElement>('button')!.dispatchEvent(new KeyboardEvent('keydown', { key: 'F1', bubbles: true, cancelable: true })))).rejects.toBe(boom)
       expect(panel()?.textContent ?? '').not.toContain('已失效')
     } finally { await act(async () => root.unmount()); extra.remove(); await h.unmount() }
   })
@@ -75,7 +75,7 @@ describe('R01 L0 pure information boundaries', () => {
     try {
       await h.d.setup(); await h.d.send('进入封锁区')
       const action = h.view().move.options.find(a => a.label === '大厅')!
-      await h.d.button(`查看${actionName(action)}说明`)
+      await h.d.information(actionName(action))
       expect(panel()).not.toBeNull()
       if (kind === 'movement') await h.flush(() => { h.owner().controls()!.execute({ action: action.selector }) })
       else if (kind === 'cold') await h.remount()
@@ -90,7 +90,7 @@ describe('R01 L0 pure information boundaries', () => {
     try {
       await h.d.setup(); await h.d.send('进入封锁区'); h.faults.checkpoint = true; await h.d.move('大厅')
       const action = h.view().tasks.choices.find(a => a.method === 'crow')!, item = h.view().carried.find(i => i.container === 'utility')!
-      await h.d.button(`查看${actionName(action)}说明`)
+      await h.d.information(actionName(action))
       const text = panel()!.textContent, writes = h.setItem.mock.calls.length
       h.faults.checkpoint = false; o.clear(); await h.flush(() => { h.owner().controls()!.retrySave() })
       expect(panel()!.textContent).toBe(text); expect(h.view().carried.find(i => i.container === 'utility')!.selector).toBe(item.selector)

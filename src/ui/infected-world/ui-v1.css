@@ -28,8 +28,15 @@
 .iw-app button:hover,.iw-context button:hover { background:#344348; border-color:#d0ad70; }
 .iw-app .iw-primary { background:linear-gradient(#b8955d,#7b5b31); border-color:#d5b982; color:#fff6e6; }
 .iw-action-entry { position:relative; display:inline-flex; }
-.iw-action-entry > button:first-child { padding-right:30px; }
+.iw-action-entry > button:first-child { padding-right:17px; }
 .iw-action-entry > .iw-information-trigger { position:absolute; right:5px; top:5px; width:18px; min-width:18px; min-height:18px; height:18px; padding:0; border:0; border-radius:0; font-size:13px; line-height:18px; background:transparent; color:#9aa5a7; }
+.iw-short-hint { position:fixed; z-index:90; padding:12px 15px; color:#e5e7dd; background:#14232af5; border:1px solid #8d967e; box-shadow:0 7px 24px #0009; font:14px/1.55 'Microsoft YaHei',sans-serif; pointer-events:none; overflow-wrap:anywhere; }
+.iw-short-hint p { margin:6px 0; }
+.iw-short-hint small { color:#adbbb6; }
+.iw-task-object h2 { margin:0 0 6px; font-size:16px; }
+.iw-ground[data-empty="true"] { min-height:0; padding:8px 12px; }
+.iw-ground[data-empty="true"] .iw-ground-items { min-height:0; padding:0; }
+.iw-ground[data-empty="true"] p { margin:4px 0; }
 .iw-app :is(h1,h2,h3,p) { margin-top:0; }
 .iw-app h1 { font-size:32px; line-height:1.35; letter-spacing:3px; font-weight:600; }
 .iw-app h2 { font-size:20px; letter-spacing:2px; font-weight:500; }

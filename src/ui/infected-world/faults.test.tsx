@@ -7,6 +7,13 @@ import { createInfectedCombatDependencies } from '../../content/infected-world-v
 
 afterEach(() => vi.restoreAllMocks())
 
+// A real item+placement form remains necessary after item-only tool methods become direct.
+async function openQuickTransfer(h: Awaited<ReturnType<typeof mountUi>>) {
+  const item = h.host.querySelector<HTMLButtonElement>('.iw-quick .iw-item')!
+  await h.flush(() => item.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true, cancelable: true, clientX: 100, clientY: 100 })))
+  await h.d.button('放入背包'); await h.d.select('物品', '绷带'); await h.d.anchor(0, 0)
+}
+
 describe('React persistence and lease feedback', () => {
   it('a strict outer checkpoint with corrupt v4 payload offers read retry, not projection rebuild', async () => {
     const source = await mountUi(); let disk: Map<string, string>
@@ -80,30 +87,30 @@ describe('React persistence and lease feedback', () => {
   it('loss of lease removes an open draft and never submits its old form', async () => {
     const h = await mountUi()
     try {
-      await h.d.setup(); await h.d.send('进入封锁区'); await h.d.move('大厅'); await h.d.button('隔离防火门 · 使用撬棍')
-      await h.d.select('物品', '撬棍')
+      await h.d.setup(); await h.d.send('进入封锁区'); await h.d.move('大厅'); await openQuickTransfer(h)
       const submit = [...h.host.querySelectorAll<HTMLButtonElement>('button')].find(b => b.textContent === '执行行动')!, writes = h.setItem.mock.calls.length
       await h.flush(() => h.owner().suspend())
       expect(h.host.querySelector('[aria-label="行动参数"]')).toBeNull(); expect(h.host.textContent).toContain('重新获取独占')
       await h.flush(() => submit.click()); expect(h.setItem).toHaveBeenCalledTimes(writes)
     } finally { await h.unmount() }
   })
-  it('retrySave on the same current keeps the already selected tool draft meaningful', async () => {
+  it('retrySave on the same current keeps the already selected item+placement draft meaningful', async () => {
     const o = observeBrowser(), h = await mountUi()
     try {
       await h.d.setup(); await h.d.send('进入封锁区'); h.faults.checkpoint = true; await h.d.move('大厅')
-      await h.d.button('隔离防火门 · 使用撬棍'); await h.d.select('物品', '撬棍')
-      const tool = h.view().carried.find(i => i.container === 'utility')!.selector, writes = h.setItem.mock.calls.length
+      await openQuickTransfer(h)
+      const tool = h.view().carried.find(i => i.container === 'quick')!.selector, writes = h.setItem.mock.calls.length
       const selected = h.host.querySelector<HTMLSelectElement>('[aria-label="物品"]')!.value
       h.faults.checkpoint = false; o.clear()
       await h.flush(() => { h.owner().controls()!.retrySave() })
       expect(h.setItem).toHaveBeenCalledTimes(writes + 1)
       expect(h.host.querySelector<HTMLSelectElement>('[aria-label="物品"]')!.value).toBe(selected)
-      expect(h.view().carried.find(i => i.container === 'utility')!.selector).toBe(tool)
+      expect(h.view().carried.find(i => i.container === 'quick')!.selector).toBe(tool)
       expect(o.counts()).toMatchObject({ dispatch: 0, current: 0, notices: 0, g1Action: 0, draw: 0, encode: 1 })
       o.clear(); await h.d.button('执行行动')
       expect(h.setItem).toHaveBeenCalledTimes(writes + 2)
-      expect(o.counts()).toMatchObject({ dispatch: 1, current: 1, notices: 1, task: 1 })
+      expect(o.counts()).toMatchObject({ dispatch: 1, current: 1, notices: 1, task: 0 })
+      expect(h.view().carried.find(i => i.name === '绷带')!.container).toBe('backpack')
     } finally { await h.unmount() }
   })
   it('an implementation AssertionError carrying a business-like code stays observable and stops old controls without submitting', async () => {

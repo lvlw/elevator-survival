@@ -16,9 +16,9 @@ describe('R01 complete actions have independently readable L0 information', () =
       expect(action).toBeDefined(); expect(controls.describeAction(action.selector).fields).toEqual([])
       const metadata = controls.preview({ action: action.selector }), before = h.view(), writes = h.setItem.mock.calls.length, reads = h.getItem.mock.calls.length
       o.clear()
-      const information = [...h.host.querySelectorAll<HTMLButtonElement>('button')].find(b => b.getAttribute('aria-label') === `查看${actionName(action)}说明`)
+      const information = [...h.host.querySelectorAll<HTMLButtonElement>('button')].find(b => b.textContent === actionName(action))
       expect(information, 'R01 actual DOM lacks an independent pre-execution information entry').toBeDefined()
-      await h.flush(() => information!.click())
+      await h.d.information(actionName(action))
       const panel = document.querySelector('[aria-label="行动说明"]')!
       expect(panel).not.toBeNull(); expect(panel.textContent).toContain(`精力消耗：${metadata.qualification.cost}`)
       for (const text of metadata.facts!.mechanisms) expect(panel.textContent).toContain(text)

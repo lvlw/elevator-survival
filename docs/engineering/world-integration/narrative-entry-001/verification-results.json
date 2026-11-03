@@ -1,0 +1,16 @@
+{
+  "task": "ENG-WORLD-NARRATIVE-ENTRY-001",
+  "base": "5e4a38b1d32719f3f7478ecee824c8efae454b8c",
+  "actual_model": "UNCONFIRMED",
+  "actual_effort": "UNCONFIRMED",
+  "actual_service_tier": "UNCONFIRMED",
+  "baseline": {"command":"npm run test:run","files":350,"tests":5041,"exit":0},
+  "final": {"command":"npm run check","files":355,"tests":5069,"exit":0,"duration_seconds":334.87,"architecture":"PASS","typecheck":"PASS","build":"PASS"},
+  "net_new": {"test_files":5,"tests":28},
+  "related_original_R1_lifecycle_map_tests":17,
+  "negative_controls": {"semantic_assertion_failures":4,"byte_identical_restore":true},
+  "browser": {"original_DEV_React":true,"native_new_player_route":true,"injected_gameplay_facts":false,"width":1920,"height":1080,"dpr":1,"representative_original_images":4,"cold_resume_no_replay":true,"continue_after_workorder":true},
+  "ci": "Exact final SHA checked after commit/push; see delivery receipt and GitHub Actions, not baseline CI185.",
+  "owner_experience": "NOT RUN",
+  "deployment": "NOT RUN"
+}

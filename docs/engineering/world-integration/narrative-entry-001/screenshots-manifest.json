@@ -1,0 +1,22 @@
+[
+  {
+    "file": "01-hub.jpg",
+    "bytes": 124644,
+    "sha256": "756a97e2507e9128086b3741c6cb216727eae193c7a209e5c18ffcff29e9e43e"
+  },
+  {
+    "file": "02-preparation.jpg",
+    "bytes": 158724,
+    "sha256": "f2c2aa682c53b0a789a527e4417475986c7f444cd418ca6700e85edb5616f8ac"
+  },
+  {
+    "file": "03-search.jpg",
+    "bytes": 233757,
+    "sha256": "2fb98f8ca82072b6ef3bc959031da6ad0c40af1a828749ca1125654b6755b31b"
+  },
+  {
+    "file": "04-workorder.jpg",
+    "bytes": 231841,
+    "sha256": "1b95772d09502f5534cf1b08169abf86a3ae7f3299f855066ec3398a4c2e132f"
+  }
+]

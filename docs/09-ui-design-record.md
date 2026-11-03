@@ -319,3 +319,9 @@ Owner 认可草图的总体布局与交互方向，下一步以真实浏览器�
 ### ENG-WORLD-LOW-ASSET-UI-001-R1 实现附记（非新 UIR）
 
 依既有 UIR-010／015 补齐普通完整行动的只读 L0，保留 L1 一次点击与原保护。必要参数、菜单的实体引用、未知医疗目标和当前粗病程边界均不变；独立详情可关闭并返回焦点。公开初选说明与任务物中文映射不成为第二份规则。十二张新视口截图与窄屏实际说明／菜单／参数核查见[R1 视觉记录](engineering/world-integration/preplay/low-asset-ui/r1/visual-review.md)。源阶段限制保留；本附记不新增 UIR，不视为 Owner 体验通过。
+
+## ENG-WORLD-NARRATIVE-ENTRY-001 实现附记（非新 UIR）
+
+依据本批[任务及叙事/交互合同](engineering/world-integration/narrative-entry-001/task-inputs/TASK.md)，将有限中枢序章和医院H01—H07接入原DEV React。确认创建与出发分离，只有真实成果解锁工单；阅读书签不成为玩法事实。唯一公开工具且必要输入完整时沿原preview/capture/L3/execute直用，普通hover/focus短说明及F1完整说明保留原保护与只读边界。首段文字不阻塞行动，冷恢复不补播，工单后仍可继续原路线。
+
+实现与测试/未验状态见[作者报告](engineering/world-integration/narrative-entry-001/REPORT.md)；一次固定1920×1080 CSS原生DEV主视口和四张原图见[浏览器验收](engineering/world-integration/narrative-entry-001/browser-review.md)。这是本批有限实现索引，不改变既有规则/UIR，不宣称Owner体验、完整章节或服务器部署通过。

@@ -1,0 +1,13 @@
+
+> elevator-survival@0.0.0 test:run
+> vitest run src/ui/infected-world/setup.test.tsx src/ui/infected-world/narrative-entry.test.tsx src/ui/infected-world/faults.test.tsx src/ui/infected-world/review-action-information.test.tsx src/ui/infected-world/review-information-purity.test.tsx src/app/infected-browser/narrative-entry.test.ts
+
+
+ RUN  v4.1.10 E:/projects/传奇私服调整记录/world-narrative-entry-001
+
+
+ Test Files  6 passed (6)
+      Tests  38 passed (38)
+   Start at  00:27:48
+   Duration  6.22s (transform 10.16s, setup 0ms, import 14.48s, tests 6.22s, environment 11.69s)
+

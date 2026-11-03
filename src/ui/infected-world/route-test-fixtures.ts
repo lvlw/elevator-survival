@@ -107,6 +107,8 @@ export function createUiDriver(options: UiDriverOptions) {
     throw new Error('DOM_TEST_ASSERTION: bounded strategy exhausted')
   }
   async function setup(tool='crow',specialty='engineer') {
+    if (buttons().some(b => b.textContent === '略过叙事，查看任务')) await button('略过叙事，查看任务')
+    if (buttons().some(b => b.textContent === '准备出发')) await button('准备出发')
     for (const [name,value] of [['tool',tool],['specialty',specialty]]) {
       const radio=doc.querySelector<HTMLInputElement>(`input[name="${name}"][value="${value}"]`);assert(radio,'setup radio')
       await options.flush(()=>radio.click())

@@ -12,8 +12,11 @@ export function explorationReceipt(before: CombatValue, after: CombatValue, comm
   if ('toolInstanceId' in c && c.toolInstanceId) {
     const a = before.itemStates.states.find(s => s.instanceId === c.toolInstanceId)?.resource
     const b = after.itemStates.states.find(s => s.instanceId === c.toolInstanceId)?.resource
-    if (!a || !b || a.kind === 'none' || b.kind !== a.kind || !('current' in b) || b.current > a.current) return null
-    resource = Object.freeze({ kind: a.kind, spent: a.current - b.current })
+    if (!a || !b || b.kind !== a.kind) return null
+    if (a.kind !== 'none') {
+      if (!('current' in b) || b.current > a.current) return null
+      resource = Object.freeze({ kind: a.kind, spent: a.current - b.current })
+    }
   }
   const base = { method: 'method' in c ? c.method ?? null : null, resource, revealed: null }
   if (command.kind === 'depart' && before.phase === 'first-hub' && after.site?.nodeId === 'H0')

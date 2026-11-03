@@ -15,9 +15,9 @@ import { ContentLayer } from './content-layer'
 import { BodyDetails, HelpDetails } from './shell-information'
 import { ItemInspectionProvider } from './item-inspection'
 
-export function GameShell({ view, feed, onAction, onRetrySave, describeAction, presentation, children }: { view: PlayerReadyView;
+export function GameShell({ view, feed, onAction, onRetrySave, describeAction, presentation, narrative, children }: { view: PlayerReadyView;
   feed: readonly PreplayFeedEntry[]; onAction: (action: PlayerAction, item?: PlayerItem) => void;
-  onRetrySave: () => void; describeAction: BrowserControls['describeAction']; children?: ReactNode; presentation?: ReactNode }) {
+  onRetrySave: () => void; describeAction: BrowserControls['describeAction']; children?: ReactNode; presentation?: ReactNode; narrative?: ReactNode }) {
   const [utilitiesOpen, setUtilitiesOpen] = useState(false)
   const [panel, setPanel] = useState<'tasks' | 'body' | 'help' | 'map' | null>(null)
   const [drawer, setDrawer] = useState<'left' | 'right' | null>(null)
@@ -31,7 +31,7 @@ export function GameShell({ view, feed, onAction, onRetrySave, describeAction, p
     <div className="iw-game-layout"><aside className="iw-sidebar iw-framed" aria-label="任务与已知信息"><h2>当前委托</h2>{objectives}<button type="button" onClick={() => setPanel('tasks')}>任务目标</button>
       <h2>已知地点 <small>只读</small></h2><KnowledgeMap map={view.map} /><button type="button" onClick={() => setPanel('map')}>展开已知区域</button>
       <div className="iw-sidebar-bottom"><p>{view.location ? `${view.location.place} / ${view.location.name}` : '电梯中枢'}</p><p>工具：{view.first.toolChoices.map(toolName).join('、')}<br />专长：{view.first.specialtyChoices.map(specialtyName).join('、')}</p></div></aside>
-      <div className="iw-stage-column"><WorldStage view={view} onAction={onAction} presentation={presentation} /></div>
+      <div className="iw-stage-column"><WorldStage view={view} onAction={onAction} presentation={presentation} narrative={narrative} /></div>
       <div className="iw-carrying iw-framed"><InventoryPanel view={view} onAction={onAction} describeAction={describeAction} />
         {utilitiesAvailable && <button className="iw-utility-button" type="button" aria-expanded={utilitiesOpen} onClick={() => setUtilitiesOpen(open => !open)}>药食与维护</button>}
       </div></div>

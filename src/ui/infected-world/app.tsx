@@ -17,6 +17,8 @@ import { ActionInformationProvider } from './components/action-information'
 import { actionName, publicItemName } from './labels'
 import { useCommittedPresentation } from './presentation/use-committed-presentation'
 import { CommittedActionCue } from './components/committed-action-cue'
+import { useEntryStory } from './narrative-entry/use-entry-story'
+import { StoryPanel } from './narrative-entry/story-panel'
 import './styles.css'
 import './ui-v1.css'
 
@@ -32,6 +34,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
   const view = snapshot.status === 'ready' && snapshot.preplay?.status === 'stable' && snapshot.preplay.view?.status === 'ready' ? snapshot.preplay.view : null
   const controls = owner?.controls() ?? null
   const presentation = useCommittedPresentation(owner, controls, snapshot, handleError)
+  const story = useEntryStory(owner, controls, view, handleError)
   const draftCurrent = draft && view && controls === draft.controls && currentActions(view).some(a => a.selector === draft.action.selector)
   const confirmationCurrent = confirmation && view && controls === confirmation.controls && requestStillVisible(view, confirmation.request)
   useEffect(() => {
@@ -41,6 +44,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
   }, [draft, draftCurrent, confirmation, confirmationCurrent])
   function handleError(error: unknown) {
     presentation.cancel()
+    story.cancel()
     if (error instanceof BrowserOwnerError || isPlayerBusinessError(error)) { setDraft(null); setConfirmation(null); setMessage('当前上下文或选择已失效，请重新选择。') }
     else { setFatal(true); throw error }
   }
@@ -54,6 +58,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
       if (!controls || !view || !requestStillVisible(view, request)) { setMessage('选择已失效，请重新选择。'); return }
       const metadata = controls.preview(request)
       const result = presentation.perform(() => controls.execute(request))
+      story.receive(result, view, controls)
       if (result.kind === 'confirmation-required' && result.confirmation) {
         const item = [...view.carried, ...view.ground].find(i => i.selector === request.item)
         setDraft(null); setConfirmation({ token: result.confirmation, request, metadata,
@@ -67,6 +72,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
   function choose(action: PlayerAction, item?: PlayerItem) {
     if (singleFlight.current || !controls || !view) return
     try {
+    story.cancel()
     setMessage(null)
     const inputs = controls.describeAction(action.selector)
     if (item && !inputs.items.some(candidate => candidate.selector === item.selector)) {
@@ -82,16 +88,20 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
     } catch (error) { handleError(error) }
   }
   if (fatal) return <main className="iw-app iw-system" role="alert"><h1>界面遇到程序异常</h1><p>操作结果可能已生效。已停止旧控件，请保留当前页面并反馈；不会自动重发行动。</p></main>
-  if (snapshot.status === 'setup' && snapshot.setup) return <SetupPanel setup={snapshot.setup} onConfirm={choices => guarded(() => {
-    owner?.controls()?.confirmSetup(choices)
+  if (snapshot.status === 'setup' && snapshot.setup) return <SetupPanel setup={snapshot.setup} onConfirm={(choices, marks) => guarded(() => {
+    const current = owner?.controls()
+    current?.confirmSetup(choices)
+    if (owner?.getSnapshot().status === 'ready') current?.acknowledgeReading(marks)
   })} />
   if (!view || !controls) return <SystemScreen snapshot={snapshot}
     onAcquire={() => { setDraft(null); setConfirmation(null); setMessage(null); void owner?.acquire() }}
     onRetryRead={() => guarded(() => { owner?.controls()?.retryRead() })}
     onSynchronize={() => guarded(() => { owner?.controls()?.synchronize() })} />
   return <div className="iw-app" onClickCapture={event => {
+    if (event.target instanceof Element && event.target.closest('button') && !event.target.closest('.iw-entry-story')) story.cancel()
     if (event.detail > 1) { event.preventDefault(); event.stopPropagation() }
-  }}><ActionInformationProvider view={view} controls={controls}><GameShell view={view} feed={snapshot.preplay!.feed} onAction={choose} describeAction={controls.describeAction}
+  }} onContextMenuCapture={story.cancel}><ActionInformationProvider view={view} controls={controls}><GameShell view={view} feed={snapshot.preplay!.feed} onAction={choose} describeAction={controls.describeAction}
+    narrative={<StoryPanel story={story} view={view} controls={controls} />}
     onRetrySave={() => guarded(() => { controls.retrySave() })}
     presentation={<CommittedActionCue cue={presentation.cue} reduced={presentation.reduced} localReduced={presentation.localReduced} inBattle={view.combat !== null}
       onReduce={presentation.setLocalReduced} onSkip={presentation.skip} />}>
@@ -104,6 +114,7 @@ export function InfectedWorldApp({ ownerFactory }: { ownerFactory?: OwnerFactory
         const current = owner?.controls()
         if (current !== confirmation.controls) { setConfirmation(null); setMessage('确认已失效，请重新选择。'); return }
         const result = presentation.perform(() => current.confirm(confirmation.token))
+        story.receive(result, view, current)
         setConfirmation(null); setMessage(result.kind === 'rejected' ? '确认已失效或行动被拒绝，请重新选择。' : null)
       })} />}</ActionInformationProvider>
   </div>

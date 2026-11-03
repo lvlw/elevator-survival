@@ -11,7 +11,7 @@ import { TravelCluster } from './travel-cluster'
 import { ContentLayer } from './content-layer'
 import { TaskArtwork } from './task-artwork'
 
-export function WorldStage({ view, onAction, presentation }: { view: PlayerReadyView; onAction: (action: PlayerAction, item?: PlayerItem) => void; presentation?: ReactNode }) {
+export function WorldStage({ view, onAction, presentation, narrative }: { view: PlayerReadyView; onAction: (action: PlayerAction, item?: PlayerItem) => void; presentation?: ReactNode; narrative?: ReactNode }) {
   const [resultsOpen, setResultsOpen] = useState(true)
   const inspect = useItemInspection()
   const [context, setContext] = useState<PlayerAction | null>(null)
@@ -28,6 +28,7 @@ export function WorldStage({ view, onAction, presentation }: { view: PlayerReady
   return <section className="iw-stage" data-scene={art?.key ?? 'neutral'}>
     {art && <img key={art.key} className="iw-scene-plate" src={art.src} alt="" aria-hidden="true" style={{ objectPosition: `${art.focal[0] * 100}% ${art.focal[1] * 100}%` }} onError={event => { event.currentTarget.hidden = true }} />}
     <div className="iw-scene-shade" aria-hidden="true" />
+    {narrative}
     {view.point === 'first-hub' ? <HubPanel view={view} onAction={onAction} /> : view.point === 'living-hub' || view.point === 'dead' ? <TerminalPanel view={view} /> : view.combat ? <BattleStage view={view} onAction={onAction} presentation={presentation} /> : <>
       <header className="iw-room-heading"><div><p className="iw-eyebrow">{view.location?.place} / 当前地点</p><h1>{view.location?.name}</h1></div><div>{contextActions.length > 0 && <button type="button" className="iw-scene-details-trigger" onClick={() => { contextFocus.current = true; setContext(contextActions[0]!) }}>查看现场详情</button>}</div></header>
       <div className="iw-scene-card"><div className="iw-room-content"><section className="iw-room-interactions" aria-label="当前现场互动">

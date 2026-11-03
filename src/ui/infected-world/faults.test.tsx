@@ -55,7 +55,7 @@ describe('React persistence and lease feedback', () => {
       expect(h.host.textContent).toContain('重试读取'); expect(h.host.textContent).not.toContain('重建安全展示')
       h.faults.read = false; await h.d.button('重试读取')
       expect(h.owner().getSnapshot().status).toBe('setup')
-      expect(h.host.textContent).toContain('确认创建'); expect(h.setItem).not.toHaveBeenCalled(); expect(h.entropy).not.toHaveBeenCalled()
+      expect(h.host.textContent).toContain('略过叙事，查看任务'); expect(h.setItem).not.toHaveBeenCalled(); expect(h.entropy).not.toHaveBeenCalled()
     } finally { await h.unmount() }
   })
   it('failed save retains the new public current and retry saves once without replaying the action', async () => {

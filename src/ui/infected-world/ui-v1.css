@@ -1,6 +1,26 @@
 /* R2/v1.2 geometry and material, translated to the real React components.
    Reference: docs/design-drafts/ui-v1-001/prototype/ui.css (read only).
    No author screens, simulated gameplay, actor motion or theme scripts. */
+/* Narrative entry: one nonblocking card, subordinate to original action/detail layers. */
+.iw-story-copy { white-space:pre-line; overflow-wrap:anywhere; }
+.iw-prologue .iw-setup-card { max-width:980px; padding:40px; }
+.iw-prologue .iw-story-copy { min-height:160px; font-size:20px; line-height:1.9; }
+.iw-prologue .iw-task-plate { margin:24px 0; padding:22px; border-left:2px solid #b89e6c; background:#0b131bcc; }
+.iw-prologue .iw-skip-story { margin-top:32px; display:block; background:transparent; color:#b5c1bf; }
+.iw-prologue .iw-muted { margin:20px 0 0; }
+.iw-entry-story { position:absolute; z-index:3; top:118px; left:32px; right:32px; pointer-events:none; }
+.iw-narrative { width:min(780px,100%); border-left:2px solid #b89e6c; padding:14px 18px; background:linear-gradient(105deg,#101c24f5,#101c24df); box-shadow:0 8px 24px #0005; pointer-events:auto; }
+.iw-narrative header { display:flex; gap:14px; align-items:center; color:#d5c09c; }
+.iw-narrative header small { color:#9aa5a7; font-size:12px; }
+.iw-narrative .iw-story-copy { margin:8px 0; line-height:1.65; font-size:16px; }
+.iw-story-controls { display:flex; gap:8px; justify-content:flex-end; }
+.iw-app .iw-story-controls button { padding:3px 12px; min-height:30px; font-size:13px; background:#17242b; }
+.iw-records { position:absolute; right:0; top:-88px; pointer-events:auto; }
+.iw-records summary { cursor:pointer; padding:8px 14px; border:1px solid #6d7267; background:#111c26e8; font-size:14px; }
+.iw-records nav { position:absolute; right:0; width:280px; max-height:520px; overflow:auto; background:#101b24f7; border:1px solid #5b6867; padding:8px; display:grid; gap:4px; }
+.iw-records nav button { display:flex; justify-content:space-between; gap:8px; text-align:left; }
+.iw-records nav small { color:#9aa5a7; font-size:12px; }
+.iw-reading-warning { display:block; margin-top:6px; color:#dbc590; background:#142029e8; width:fit-content; }
 .iw-app { --iw-m:24px; --iw-g:16px; --iw-l:280px; --iw-r:360px; --iw-t:72px; --iw-f:40px; --iw-p:16px; --iw-cell:51px; --iw-text:#e7e6dd; --iw-muted:#9aa5a7; --iw-line:#3a4547; --iw-gold:#c5a066; color:var(--iw-text); font:16px/1.6 'Microsoft YaHei','PingFang SC',sans-serif; background-color:#070c10; }
 .iw-document body { background:#070c10; }
 .iw-app .iw-sr-only { position:absolute; width:1px; height:1px; min-width:0; min-height:0; padding:0; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }

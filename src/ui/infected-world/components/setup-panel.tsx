@@ -3,12 +3,16 @@ import type { BrowserSnapshot, SetupChoices } from '../../../app/infected-browse
 import { hubImage, itemImage } from '../assets'
 import { toolName, specialtyName } from '../labels'
 import { infectedWorldUiCatalog } from '../../../content/infected-world-v0.1/player-ui-catalog'
+import { Prologue } from '../narrative-entry/prologue'
+import type { ReadingMark } from '../../../app/infected-browser/narrative-entry/reading'
 
 export function SetupPanel({ setup, onConfirm }: { setup: NonNullable<BrowserSnapshot['setup']>;
-  onConfirm: (choices: SetupChoices) => void }) {
+  onConfirm: (choices: SetupChoices, marks: readonly ReadingMark[]) => void }) {
+  const [prepared, setPrepared] = useState(false), [marks, setMarks] = useState<readonly ReadingMark[]>([])
   const [tool, setTool] = useState<SetupChoices['tool'] | null>(null)
   const [specialty, setSpecialty] = useState<SetupChoices['specialty'] | null>(null)
   const [submitted, setSubmitted] = useState(false)
+  if (!prepared) return <Prologue onPrepare={pending => { setMarks(pending); setPrepared(true) }} />
   return <main className="iw-app iw-setup" style={{ backgroundImage: `linear-gradient(90deg, #10191de8, #10191d40), url(${hubImage})` }}>
     <section className="iw-setup-card iw-framed">
       <p className="iw-eyebrow">独立 DEV 封闭首玩</p><h1>电梯求生</h1><h2>封锁区 · 出发准备</h2>
@@ -23,7 +27,7 @@ export function SetupPanel({ setup, onConfirm }: { setup: NonNullable<BrowserSna
           <input type="radio" name="specialty" value={value} checked={specialty === value} onChange={() => setSpecialty(value as SetupChoices['specialty'])} />
           <span>{specialtyName(value)}<small>{infectedWorldUiCatalog.specialties.find(row => row.value === value)?.description}</small></span></label>)}</div></fieldset>
       <button type="button" className="iw-primary" disabled={!tool || !specialty || submitted} onClick={() => {
-        if (tool && specialty && !submitted) { setSubmitted(true); onConfirm({ tool, specialty }) }
+        if (tool && specialty && !submitted) { setSubmitted(true); onConfirm({ tool, specialty }, [...marks, { key: 'P06', state: 'read' }]) }
       }}>确认创建</button>
       <p className="iw-muted">只使用本入口的独立存档；不读取或更改医院存档。此处不提供重置或迁移。</p>
     </section>
